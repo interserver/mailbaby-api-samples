@@ -23,7 +23,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Services do
   - `{:ok, [%MailOrder{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_mail_orders(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailOrder.t)} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  @spec get_mail_orders(Tesla.Env.client, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:ok, [MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailOrder.t]} | {:error, Tesla.Env.t}
   def get_mail_orders(connection, _opts \\ []) do
     request =
       %{}

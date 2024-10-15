@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * A block entry from the clickhouse mailblocks server.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailBlockClickHouse {
   public static final String SERIALIZED_NAME_DATE = "date";
   @SerializedName(SERIALIZED_NAME_DATE)
@@ -76,20 +76,18 @@ public class MailBlockClickHouse {
   }
 
   public MailBlockClickHouse date(Date date) {
-    
     this.date = date;
     return this;
   }
 
-   /**
+  /**
    * Get date
    * @return date
-  **/
+   */
   @javax.annotation.Nonnull
   public Date getDate() {
     return date;
   }
-
 
   public void setDate(Date date) {
     this.date = date;
@@ -97,20 +95,18 @@ public class MailBlockClickHouse {
 
 
   public MailBlockClickHouse from(String from) {
-    
     this.from = from;
     return this;
   }
 
-   /**
+  /**
    * Get from
    * @return from
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFrom() {
     return from;
   }
-
 
   public void setFrom(String from) {
     this.from = from;
@@ -118,20 +114,18 @@ public class MailBlockClickHouse {
 
 
   public MailBlockClickHouse messageId(String messageId) {
-    
     this.messageId = messageId;
     return this;
   }
 
-   /**
+  /**
    * Get messageId
    * @return messageId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMessageId() {
     return messageId;
   }
-
 
   public void setMessageId(String messageId) {
     this.messageId = messageId;
@@ -139,20 +133,18 @@ public class MailBlockClickHouse {
 
 
   public MailBlockClickHouse subject(String subject) {
-    
     this.subject = subject;
     return this;
   }
 
-   /**
+  /**
    * Get subject
    * @return subject
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSubject() {
     return subject;
   }
-
 
   public void setSubject(String subject) {
     this.subject = subject;
@@ -160,20 +152,18 @@ public class MailBlockClickHouse {
 
 
   public MailBlockClickHouse to(String to) {
-    
     this.to = to;
     return this;
   }
 
-   /**
+  /**
    * Get to
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTo() {
     return to;
   }
-
 
   public void setTo(String to) {
     this.to = to;
@@ -248,12 +238,12 @@ public class MailBlockClickHouse {
     openapiRequiredFields.add("to");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailBlockClickHouse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailBlockClickHouse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailBlockClickHouse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -319,22 +309,22 @@ public class MailBlockClickHouse {
     }
   }
 
- /**
-  * Create an instance of MailBlockClickHouse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailBlockClickHouse
-  * @throws IOException if the JSON string is invalid with respect to MailBlockClickHouse
-  */
+  /**
+   * Create an instance of MailBlockClickHouse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailBlockClickHouse
+   * @throws IOException if the JSON string is invalid with respect to MailBlockClickHouse
+   */
   public static MailBlockClickHouse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailBlockClickHouse.class);
   }
 
- /**
-  * Convert an instance of MailBlockClickHouse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailBlockClickHouse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

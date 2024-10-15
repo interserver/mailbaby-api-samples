@@ -69,9 +69,9 @@ open class SendingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/advsend"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/advsend"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -164,9 +164,9 @@ open class SendingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/send"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/send"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }

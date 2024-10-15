@@ -16,8 +16,7 @@ class ViewMailLogParameterData
     #[DTA\Data(subset: "query", field: "endDate", nullable: true)]
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
-    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
-    #[DTA\Validator("LessThan", ["max" => 9999999999, "inclusive" => true], subset: "query")]
+    #[DTA\Validator("Range", ["min" => 0, "max" => 9999999999], subset: "query")]
     public int|null $end_date = null;
 
     /**
@@ -42,7 +41,7 @@ class ViewMailLogParameterData
     #[DTA\Data(subset: "query", field: "skip", nullable: true)]
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
-    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
+    #[DTA\Validator("Range", ["min" => 0], subset: "query")]
     public int|null $skip = null;
 
     /**
@@ -67,8 +66,7 @@ class ViewMailLogParameterData
     #[DTA\Data(subset: "query", field: "limit", nullable: true)]
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
-    #[DTA\Validator("GreaterThan", ["min" => 1, "inclusive" => true], subset: "query")]
-    #[DTA\Validator("LessThan", ["max" => 10000, "inclusive" => true], subset: "query")]
+    #[DTA\Validator("Range", ["min" => 1, "max" => 10000], subset: "query")]
     public int|null $limit = null;
 
     /**
@@ -117,8 +115,7 @@ class ViewMailLogParameterData
     #[DTA\Data(subset: "query", field: "startDate", nullable: true)]
     #[DTA\Strategy("QueryStringScalar", ["type" => "int"], "query")]
     #[DTA\Validator("QueryStringScalar", ["type" => "int"], subset: "query")]
-    #[DTA\Validator("GreaterThan", ["min" => 0, "inclusive" => true], subset: "query")]
-    #[DTA\Validator("LessThan", ["max" => 9999999999, "inclusive" => true], subset: "query")]
+    #[DTA\Validator("Range", ["min" => 0, "max" => 9999999999], subset: "query")]
     public int|null $start_date = null;
 
 }

@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * GenericResponse
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2024-04-02T13:33:20.175525004-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2024-10-15T16:37:57.631374075-04:00[America/New_York]")
 public class GenericResponse   {
   @JsonProperty("status")
   private String status = null;
@@ -41,6 +41,7 @@ public class GenericResponse   {
    **/
   @JsonProperty("status")
   @Schema(example = "ok", description = "")
+  @NotNull
   public String getStatus() {
     return status;
   }
@@ -60,6 +61,7 @@ public class GenericResponse   {
    **/
   @JsonProperty("text")
   @Schema(example = "The command completed successfully.", description = "")
+  @NotNull
   public String getText() {
     return text;
   }

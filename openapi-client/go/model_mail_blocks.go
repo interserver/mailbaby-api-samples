@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MailBlocks type satisfies the MappedNullable interface at compile time
@@ -24,6 +26,8 @@ type MailBlocks struct {
 	Mbtrap []MailBlockClickHouse `json:"mbtrap"`
 	Subject []MailBlockRspamd `json:"subject"`
 }
+
+type _MailBlocks MailBlocks
 
 // NewMailBlocks instantiates a new MailBlocks object
 // This constructor will assign default values to properties that have it defined,
@@ -131,6 +135,45 @@ func (o MailBlocks) ToMap() (map[string]interface{}, error) {
 	toSerialize["mbtrap"] = o.Mbtrap
 	toSerialize["subject"] = o.Subject
 	return toSerialize, nil
+}
+
+func (o *MailBlocks) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"local",
+		"mbtrap",
+		"subject",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMailBlocks := _MailBlocks{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMailBlocks)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MailBlocks(varMailBlocks)
+
+	return err
 }
 
 type NullableMailBlocks struct {

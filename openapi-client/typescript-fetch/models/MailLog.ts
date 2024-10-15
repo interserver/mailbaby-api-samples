@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MailLogEntry } from './MailLogEntry';
 import {
     MailLogEntryFromJSON,
@@ -55,14 +55,12 @@ export interface MailLog {
 /**
  * Check if a given object implements the MailLog interface.
  */
-export function instanceOfMailLog(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "total" in value;
-    isInstance = isInstance && "skip" in value;
-    isInstance = isInstance && "limit" in value;
-    isInstance = isInstance && "emails" in value;
-
-    return isInstance;
+export function instanceOfMailLog(value: object): value is MailLog {
+    if (!('total' in value) || value['total'] === undefined) return false;
+    if (!('skip' in value) || value['skip'] === undefined) return false;
+    if (!('limit' in value) || value['limit'] === undefined) return false;
+    if (!('emails' in value) || value['emails'] === undefined) return false;
+    return true;
 }
 
 export function MailLogFromJSON(json: any): MailLog {
@@ -70,7 +68,7 @@ export function MailLogFromJSON(json: any): MailLog {
 }
 
 export function MailLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailLog {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -83,18 +81,15 @@ export function MailLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
 }
 
 export function MailLogToJSON(value?: MailLog | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'total': value.total,
-        'skip': value.skip,
-        'limit': value.limit,
-        'emails': ((value.emails as Array<any>).map(MailLogEntryToJSON)),
+        'total': value['total'],
+        'skip': value['skip'],
+        'limit': value['limit'],
+        'emails': ((value['emails'] as Array<any>).map(MailLogEntryToJSON)),
     };
 }
 

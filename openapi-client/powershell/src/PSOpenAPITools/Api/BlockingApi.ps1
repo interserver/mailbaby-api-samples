@@ -85,9 +85,14 @@ function Add-Rule {
         }
         $LocalVarFormParameters['data'] = $Data
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'POST' `
@@ -163,9 +168,14 @@ function Invoke-DeleteRule {
         }
         $LocalVarUri = $LocalVarUri.replace('{ruleId}', [System.Web.HTTPUtility]::UrlEncode($RuleId))
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'DELETE' `
@@ -246,9 +256,14 @@ function Invoke-DelistBlock {
 
         $LocalVarBodyParameter = $Body | ConvertTo-Json -Depth 100
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'POST' `
@@ -314,9 +329,14 @@ function Get-MailBlocks {
 
         $LocalVarUri = '/mail/blocks'
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `
@@ -382,9 +402,14 @@ function Get-Rules {
 
         $LocalVarUri = '/mail/rules'
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `

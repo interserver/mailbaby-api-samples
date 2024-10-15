@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MailLog type satisfies the MappedNullable interface at compile time
@@ -28,6 +30,8 @@ type MailLog struct {
 	Limit int32 `json:"limit"`
 	Emails []MailLogEntry `json:"emails"`
 }
+
+type _MailLog MailLog
 
 // NewMailLog instantiates a new MailLog object
 // This constructor will assign default values to properties that have it defined,
@@ -161,6 +165,46 @@ func (o MailLog) ToMap() (map[string]interface{}, error) {
 	toSerialize["limit"] = o.Limit
 	toSerialize["emails"] = o.Emails
 	return toSerialize, nil
+}
+
+func (o *MailLog) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"total",
+		"skip",
+		"limit",
+		"emails",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMailLog := _MailLog{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMailLog)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MailLog(varMailLog)
+
+	return err
 }
 
 type NullableMailLog struct {

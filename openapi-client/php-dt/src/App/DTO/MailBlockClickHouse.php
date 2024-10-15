@@ -13,7 +13,7 @@ class MailBlockClickHouse
     #[DTA\Data(field: "date")]
     #[DTA\Strategy("Date")]
     #[DTA\Validator("Date")]
-    public \DateTime|null $date = null;
+    public \DateTimeInterface|null $date = null;
 
     #[DTA\Data(field: "from")]
     #[DTA\Validator("Scalar", ["type" => "string"])]

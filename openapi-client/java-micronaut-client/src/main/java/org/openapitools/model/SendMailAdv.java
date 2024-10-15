@@ -42,7 +42,7 @@ import javax.annotation.Generated;
   SendMailAdv.JSON_PROPERTY_ID
 })
 @JsonTypeName("SendMailAdv")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class SendMailAdv {
     public static final String JSON_PROPERTY_SUBJECT = "subject";
@@ -67,7 +67,7 @@ public class SendMailAdv {
     private EmailAddressesTypes bcc;
 
     public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
-    private List<MailAttachment> attachments = null;
+    private List<@Valid MailAttachment> attachments = null;
 
     public static final String JSON_PROPERTY_ID = "id";
     private Long id;
@@ -87,7 +87,7 @@ public class SendMailAdv {
     /**
      * The subject or title of the email
      * @return subject
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -109,7 +109,7 @@ public class SendMailAdv {
     /**
      * The main email contents.
      * @return _body
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_BODY)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -131,7 +131,7 @@ public class SendMailAdv {
     /**
      * Get from
      * @return from
-     **/
+     */
     @Valid
     @NotNull
     @JsonProperty(JSON_PROPERTY_FROM)
@@ -154,7 +154,7 @@ public class SendMailAdv {
     /**
      * Get to
      * @return to
-     **/
+     */
     @Valid
     @NotNull
     @JsonProperty(JSON_PROPERTY_TO)
@@ -177,7 +177,7 @@ public class SendMailAdv {
     /**
      * Get replyto
      * @return replyto
-     **/
+     */
     @Valid
     @Nullable
     @JsonProperty(JSON_PROPERTY_REPLYTO)
@@ -200,7 +200,7 @@ public class SendMailAdv {
     /**
      * Get cc
      * @return cc
-     **/
+     */
     @Valid
     @Nullable
     @JsonProperty(JSON_PROPERTY_CC)
@@ -223,7 +223,7 @@ public class SendMailAdv {
     /**
      * Get bcc
      * @return bcc
-     **/
+     */
     @Valid
     @Nullable
     @JsonProperty(JSON_PROPERTY_BCC)
@@ -238,7 +238,7 @@ public class SendMailAdv {
         this.bcc = bcc;
     }
 
-    public SendMailAdv attachments(List<MailAttachment> attachments) {
+    public SendMailAdv attachments(List<@Valid MailAttachment> attachments) {
         this.attachments = attachments;
         return this;
     }
@@ -254,17 +254,17 @@ public class SendMailAdv {
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      * @return attachments
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public List<MailAttachment> getAttachments() {
+    public List<@Valid MailAttachment> getAttachments() {
         return attachments;
     }
 
     @JsonProperty(JSON_PROPERTY_ATTACHMENTS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setAttachments(List<MailAttachment> attachments) {
+    public void setAttachments(List<@Valid MailAttachment> attachments) {
         this.attachments = attachments;
     }
 
@@ -276,7 +276,7 @@ public class SendMailAdv {
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @return id
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

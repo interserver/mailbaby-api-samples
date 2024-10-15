@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.generic_response import GenericResponse  # noqa: E501
+from openapi_client.models.generic_response import GenericResponse
 
 class TestGenericResponse(unittest.TestCase):
     """GenericResponse unit test stubs"""
@@ -29,12 +28,12 @@ class TestGenericResponse(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GenericResponse:
         """Test GenericResponse
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GenericResponse`
         """
-        model = GenericResponse()  # noqa: E501
+        model = GenericResponse()
         if include_optional:
             return GenericResponse(
                 status = 'ok',

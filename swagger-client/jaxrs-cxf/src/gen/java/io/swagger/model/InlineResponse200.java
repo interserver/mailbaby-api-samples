@@ -92,6 +92,7 @@ public class InlineResponse200   {
    * @return password
   **/
   @JsonProperty("password")
+  @NotNull
   public String getPassword() {
     return password;
   }
@@ -110,6 +111,7 @@ public class InlineResponse200   {
    * @return comment
   **/
   @JsonProperty("comment")
+  @NotNull
   public String getComment() {
     return comment;
   }

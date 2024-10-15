@@ -25,14 +25,14 @@ Protected Class DenyRuleNew
 	#tag EndProperty
 
 
-	#tag Enum, Name = TypeEnum, Type = Integer, Flags = &h0
-		
+    #tag Enum, Name = TypeEnum, Type = Integer, Flags = &h0
+        
         Domain
         Email
         Startswith
         Destination
-		
-	#tag EndEnum
+        
+    #tag EndEnum
 
 
 	#tag Method, Flags = &h0

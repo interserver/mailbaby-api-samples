@@ -16,8 +16,7 @@ import sttp.client3._
 import sttp.model.Method
 
 object StatusApi {
-
-def apply(baseUrl: String = "https://api.mailbaby.net") = new StatusApi(baseUrl)
+  def apply(baseUrl: String = "https://api.mailbaby.net") = new StatusApi(baseUrl)
 }
 
 class StatusApi(baseUrl: String) {
@@ -31,11 +30,11 @@ class StatusApi(baseUrl: String) {
    *   apiKeyAuth (apiKey)
    */
   def pingServer(apiKey: String)(
-): Request[Either[Either[String, String], Unit], Any] =
+): Request[Either[ResponseException[String, Exception], Unit], Any] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/ping")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .response(asEither(asString, ignore))
+      .response(asString.mapWithMetadata(ResponseAs.deserializeRightWithError(_ => Right(()))))
 
 }

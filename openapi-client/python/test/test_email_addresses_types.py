@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.email_addresses_types import EmailAddressesTypes  # noqa: E501
+from openapi_client.models.email_addresses_types import EmailAddressesTypes
 
 class TestEmailAddressesTypes(unittest.TestCase):
     """EmailAddressesTypes unit test stubs"""
@@ -29,12 +28,12 @@ class TestEmailAddressesTypes(unittest.TestCase):
 
     def make_instance(self, include_optional) -> EmailAddressesTypes:
         """Test EmailAddressesTypes
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `EmailAddressesTypes`
         """
-        model = EmailAddressesTypes()  # noqa: E501
+        model = EmailAddressesTypes()
         if include_optional:
             return EmailAddressesTypes(
             )

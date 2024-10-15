@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * This is a block entry from the rspamd block list.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailBlockRspamd {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
@@ -63,20 +63,18 @@ public class MailBlockRspamd {
   }
 
   public MailBlockRspamd from(String from) {
-    
     this.from = from;
     return this;
   }
 
-   /**
+  /**
    * Get from
    * @return from
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFrom() {
     return from;
   }
-
 
   public void setFrom(String from) {
     this.from = from;
@@ -84,20 +82,18 @@ public class MailBlockRspamd {
 
 
   public MailBlockRspamd subject(String subject) {
-    
     this.subject = subject;
     return this;
   }
 
-   /**
+  /**
    * Get subject
    * @return subject
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSubject() {
     return subject;
   }
-
 
   public void setSubject(String subject) {
     this.subject = subject;
@@ -160,12 +156,12 @@ public class MailBlockRspamd {
     openapiRequiredFields.add("subject");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailBlockRspamd
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailBlockRspamd
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailBlockRspamd.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -225,22 +221,22 @@ public class MailBlockRspamd {
     }
   }
 
- /**
-  * Create an instance of MailBlockRspamd given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailBlockRspamd
-  * @throws IOException if the JSON string is invalid with respect to MailBlockRspamd
-  */
+  /**
+   * Create an instance of MailBlockRspamd given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailBlockRspamd
+   * @throws IOException if the JSON string is invalid with respect to MailBlockRspamd
+   */
   public static MailBlockRspamd fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailBlockRspamd.class);
   }
 
- /**
-  * Convert an instance of MailBlockRspamd to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailBlockRspamd to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

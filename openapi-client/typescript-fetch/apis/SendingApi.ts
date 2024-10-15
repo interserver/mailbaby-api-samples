@@ -63,20 +63,32 @@ export class SendingApi extends runtime.BaseAPI {
      * Sends an Email with Advanced Options
      */
     async sendAdvMailRaw(requestParameters: SendAdvMailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.subject === null || requestParameters.subject === undefined) {
-            throw new runtime.RequiredError('subject','Required parameter requestParameters.subject was null or undefined when calling sendAdvMail.');
+        if (requestParameters['subject'] == null) {
+            throw new runtime.RequiredError(
+                'subject',
+                'Required parameter "subject" was null or undefined when calling sendAdvMail().'
+            );
         }
 
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling sendAdvMail.');
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling sendAdvMail().'
+            );
         }
 
-        if (requestParameters.from === null || requestParameters.from === undefined) {
-            throw new runtime.RequiredError('from','Required parameter requestParameters.from was null or undefined when calling sendAdvMail.');
+        if (requestParameters['from'] == null) {
+            throw new runtime.RequiredError(
+                'from',
+                'Required parameter "from" was null or undefined when calling sendAdvMail().'
+            );
         }
 
-        if (requestParameters.to === null || requestParameters.to === undefined) {
-            throw new runtime.RequiredError('to','Required parameter requestParameters.to was null or undefined when calling sendAdvMail.');
+        if (requestParameters['to'] == null) {
+            throw new runtime.RequiredError(
+                'to',
+                'Required parameter "to" was null or undefined when calling sendAdvMail().'
+            );
         }
 
         const queryParameters: any = {};
@@ -84,7 +96,7 @@ export class SendingApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const consumes: runtime.Consume[] = [
@@ -102,40 +114,40 @@ export class SendingApi extends runtime.BaseAPI {
             formParams = new URLSearchParams();
         }
 
-        if (requestParameters.subject !== undefined) {
-            formParams.append('subject', requestParameters.subject as any);
+        if (requestParameters['subject'] != null) {
+            formParams.append('subject', requestParameters['subject'] as any);
         }
 
-        if (requestParameters.body !== undefined) {
-            formParams.append('body', requestParameters.body as any);
+        if (requestParameters['body'] != null) {
+            formParams.append('body', requestParameters['body'] as any);
         }
 
-        if (requestParameters.from !== undefined) {
-            formParams.append('from', new Blob([JSON.stringify(EmailAddressTypesToJSON(requestParameters.from))], { type: "application/json", }));
+        if (requestParameters['from'] != null) {
+            formParams.append('from', new Blob([JSON.stringify(EmailAddressTypesToJSON(requestParameters['from']))], { type: "application/json", }));
                     }
 
-        if (requestParameters.to !== undefined) {
-            formParams.append('to', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters.to))], { type: "application/json", }));
+        if (requestParameters['to'] != null) {
+            formParams.append('to', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['to']))], { type: "application/json", }));
                     }
 
-        if (requestParameters.replyto !== undefined) {
-            formParams.append('replyto', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters.replyto))], { type: "application/json", }));
+        if (requestParameters['replyto'] != null) {
+            formParams.append('replyto', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['replyto']))], { type: "application/json", }));
                     }
 
-        if (requestParameters.cc !== undefined) {
-            formParams.append('cc', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters.cc))], { type: "application/json", }));
+        if (requestParameters['cc'] != null) {
+            formParams.append('cc', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['cc']))], { type: "application/json", }));
                     }
 
-        if (requestParameters.bcc !== undefined) {
-            formParams.append('bcc', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters.bcc))], { type: "application/json", }));
+        if (requestParameters['bcc'] != null) {
+            formParams.append('bcc', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['bcc']))], { type: "application/json", }));
                     }
 
-        if (requestParameters.attachments) {
-            formParams.append('attachments', requestParameters.attachments.join(runtime.COLLECTION_FORMATS["csv"]));
+        if (requestParameters['attachments'] != null) {
+            formParams.append('attachments', requestParameters['attachments']!.join(runtime.COLLECTION_FORMATS["csv"]));
         }
 
-        if (requestParameters.id !== undefined) {
-            formParams.append('id', requestParameters.id as any);
+        if (requestParameters['id'] != null) {
+            formParams.append('id', requestParameters['id'] as any);
         }
 
         const response = await this.request({
@@ -163,20 +175,32 @@ export class SendingApi extends runtime.BaseAPI {
      * Sends an Email
      */
     async sendMailRaw(requestParameters: SendMailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.to === null || requestParameters.to === undefined) {
-            throw new runtime.RequiredError('to','Required parameter requestParameters.to was null or undefined when calling sendMail.');
+        if (requestParameters['to'] == null) {
+            throw new runtime.RequiredError(
+                'to',
+                'Required parameter "to" was null or undefined when calling sendMail().'
+            );
         }
 
-        if (requestParameters.from === null || requestParameters.from === undefined) {
-            throw new runtime.RequiredError('from','Required parameter requestParameters.from was null or undefined when calling sendMail.');
+        if (requestParameters['from'] == null) {
+            throw new runtime.RequiredError(
+                'from',
+                'Required parameter "from" was null or undefined when calling sendMail().'
+            );
         }
 
-        if (requestParameters.subject === null || requestParameters.subject === undefined) {
-            throw new runtime.RequiredError('subject','Required parameter requestParameters.subject was null or undefined when calling sendMail.');
+        if (requestParameters['subject'] == null) {
+            throw new runtime.RequiredError(
+                'subject',
+                'Required parameter "subject" was null or undefined when calling sendMail().'
+            );
         }
 
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling sendMail.');
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling sendMail().'
+            );
         }
 
         const queryParameters: any = {};
@@ -184,7 +208,7 @@ export class SendingApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const consumes: runtime.Consume[] = [
@@ -202,20 +226,20 @@ export class SendingApi extends runtime.BaseAPI {
             formParams = new URLSearchParams();
         }
 
-        if (requestParameters.to !== undefined) {
-            formParams.append('to', requestParameters.to as any);
+        if (requestParameters['to'] != null) {
+            formParams.append('to', requestParameters['to'] as any);
         }
 
-        if (requestParameters.from !== undefined) {
-            formParams.append('from', requestParameters.from as any);
+        if (requestParameters['from'] != null) {
+            formParams.append('from', requestParameters['from'] as any);
         }
 
-        if (requestParameters.subject !== undefined) {
-            formParams.append('subject', requestParameters.subject as any);
+        if (requestParameters['subject'] != null) {
+            formParams.append('subject', requestParameters['subject'] as any);
         }
 
-        if (requestParameters.body !== undefined) {
-            formParams.append('body', requestParameters.body as any);
+        if (requestParameters['body'] != null) {
+            formParams.append('body', requestParameters['body'] as any);
         }
 
         const response = await this.request({

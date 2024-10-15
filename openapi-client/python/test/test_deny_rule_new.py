@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.deny_rule_new import DenyRuleNew  # noqa: E501
+from openapi_client.models.deny_rule_new import DenyRuleNew
 
 class TestDenyRuleNew(unittest.TestCase):
     """DenyRuleNew unit test stubs"""
@@ -29,12 +28,12 @@ class TestDenyRuleNew(unittest.TestCase):
 
     def make_instance(self, include_optional) -> DenyRuleNew:
         """Test DenyRuleNew
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DenyRuleNew`
         """
-        model = DenyRuleNew()  # noqa: E501
+        model = DenyRuleNew()
         if include_optional:
             return DenyRuleNew(
                 user = 'mb20682',

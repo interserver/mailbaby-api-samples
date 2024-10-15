@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the GetStats200ResponseInner type satisfies the MappedNullable interface at compile time
@@ -26,6 +28,8 @@ type GetStats200ResponseInner struct {
 	Password *string `json:"password,omitempty"`
 	Comment *string `json:"comment,omitempty"`
 }
+
+type _GetStats200ResponseInner GetStats200ResponseInner
 
 // NewGetStats200ResponseInner instantiates a new GetStats200ResponseInner object
 // This constructor will assign default values to properties that have it defined,
@@ -203,6 +207,45 @@ func (o GetStats200ResponseInner) ToMap() (map[string]interface{}, error) {
 		toSerialize["comment"] = o.Comment
 	}
 	return toSerialize, nil
+}
+
+func (o *GetStats200ResponseInner) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"id",
+		"status",
+		"username",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGetStats200ResponseInner := _GetStats200ResponseInner{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGetStats200ResponseInner)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GetStats200ResponseInner(varGetStats200ResponseInner)
+
+	return err
 }
 
 type NullableGetStats200ResponseInner struct {

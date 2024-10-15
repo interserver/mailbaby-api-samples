@@ -58,8 +58,8 @@ public class GenericResponse  {
       return false;
     }
     GenericResponse genericResponse = (GenericResponse) o;
-    return Objects.equals(status, genericResponse.status) &&
-        Objects.equals(text, genericResponse.text);
+    return Objects.equals(this.status, genericResponse.status) &&
+        Objects.equals(this.text, genericResponse.text);
   }
 
   @Override

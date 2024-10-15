@@ -93,7 +93,8 @@ paths:
       summary: displays a list of mail service orders
       tags:
       - Services
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /mail/blocks:
     get:
       operationId: getMailBlocks
@@ -154,7 +155,8 @@ paths:
       summary: displays a list of blocked email addresses
       tags:
       - Blocking
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /mail/stats:
     get:
       description: Returns information about the usage on your mail accounts.
@@ -200,7 +202,8 @@ paths:
       summary: Account usage statistics.
       tags:
       - History
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /mail/send:
     post:
       description: |
@@ -261,7 +264,8 @@ paths:
       tags:
       - Sending
       x-content-type: application/x-www-form-urlencoded
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /mail/advsend:
     description: "Sends An email through one of your mail orders allowing additional\
       \ options such as file attachments, cc, bcc, etc."
@@ -461,7 +465,8 @@ paths:
       tags:
       - Sending
       x-content-type: application/x-www-form-urlencoded
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     summary: Sends an Email with Advanced Options
   /mail/log:
     get:
@@ -640,7 +645,8 @@ paths:
       summary: displays the mail log
       tags:
       - History
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /ping:
     get:
       operationId: pingServer
@@ -652,7 +658,8 @@ paths:
       summary: Checks if the server is running
       tags:
       - Status
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /mail/blocks/delete:
     post:
       description: |
@@ -719,7 +726,8 @@ paths:
       tags:
       - Blocking
       x-content-type: application/json
-      x-accepts: application/json
+      x-accepts:
+      - application/json
   /mail/rules:
     description: The deny rules allow you to setup assorted types of rules which will
       automatically deny the email from being sent through our system when  the citeria
@@ -781,7 +789,8 @@ paths:
       summary: Displays a listing of deny email rules.
       tags:
       - Blocking
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     post:
       description: Adds a new email deny rule into the system to block new emails
         that match the given criteria
@@ -852,7 +861,8 @@ paths:
       tags:
       - Blocking
       x-content-type: application/x-www-form-urlencoded
-      x-accepts: application/json
+      x-accepts:
+      - application/json
     summary: Deny Rules
   /mail/rules/{ruleId}:
     delete:
@@ -913,7 +923,8 @@ paths:
       summary: Removes an deny mail rule.
       tags:
       - Blocking
-      x-accepts: application/json
+      x-accepts:
+      - application/json
 components:
   responses:
     BadInput:

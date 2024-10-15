@@ -86,6 +86,7 @@ public class InlineResponse200   {
   
   @Schema(example = "guest123", description = "")
   @JsonProperty("password")
+  @NotNull
   public String getPassword() {
     return password;
   }
@@ -104,6 +105,7 @@ public class InlineResponse200   {
   
   @Schema(example = "main mail account", description = "")
   @JsonProperty("comment")
+  @NotNull
   public String getComment() {
     return comment;
   }

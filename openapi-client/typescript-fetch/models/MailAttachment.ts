@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
  * @export
@@ -36,12 +36,10 @@ export interface MailAttachment {
 /**
  * Check if a given object implements the MailAttachment interface.
  */
-export function instanceOfMailAttachment(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "filename" in value;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfMailAttachment(value: object): value is MailAttachment {
+    if (!('filename' in value) || value['filename'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function MailAttachmentFromJSON(json: any): MailAttachment {
@@ -49,7 +47,7 @@ export function MailAttachmentFromJSON(json: any): MailAttachment {
 }
 
 export function MailAttachmentFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailAttachment {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function MailAttachmentFromJSONTyped(json: any, ignoreDiscriminator: bool
 }
 
 export function MailAttachmentToJSON(value?: MailAttachment | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'filename': value.filename,
-        'data': value.data,
+        'filename': value['filename'],
+        'data': value['data'],
     };
 }
 

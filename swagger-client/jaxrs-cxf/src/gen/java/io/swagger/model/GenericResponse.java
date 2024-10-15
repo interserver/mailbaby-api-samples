@@ -26,6 +26,7 @@ public class GenericResponse   {
    * @return status
   **/
   @JsonProperty("status")
+  @NotNull
   public String getStatus() {
     return status;
   }
@@ -44,6 +45,7 @@ public class GenericResponse   {
    * @return text
   **/
   @JsonProperty("text")
+  @NotNull
   public String getText() {
     return text;
   }

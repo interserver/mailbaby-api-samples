@@ -41,6 +41,30 @@ private class OASSendingApiTest {
         expectedResponse = OASGenericResponse.getExample();
         response = (OASGenericResponse) api.sendAdvMail(params);
         System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.sendAdvMail(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.sendAdvMail(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.sendAdvMail(params);
+        System.assertEquals(expectedResponse, response);
     }
 
     /**
@@ -71,6 +95,30 @@ private class OASSendingApiTest {
         client = new OASClient();
         api = new OASSendingApi(client);
         ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.sendMail(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.sendMail(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.sendMail(params);
+        System.assertEquals(expectedResponse, response);
 
 
         js = JSON.serialize(OASGenericResponse.getExample());

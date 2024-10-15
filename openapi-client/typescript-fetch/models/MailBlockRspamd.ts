@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * This is a block entry from the rspamd block list.
  * @export
@@ -36,12 +36,10 @@ export interface MailBlockRspamd {
 /**
  * Check if a given object implements the MailBlockRspamd interface.
  */
-export function instanceOfMailBlockRspamd(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "from" in value;
-    isInstance = isInstance && "subject" in value;
-
-    return isInstance;
+export function instanceOfMailBlockRspamd(value: object): value is MailBlockRspamd {
+    if (!('from' in value) || value['from'] === undefined) return false;
+    if (!('subject' in value) || value['subject'] === undefined) return false;
+    return true;
 }
 
 export function MailBlockRspamdFromJSON(json: any): MailBlockRspamd {
@@ -49,7 +47,7 @@ export function MailBlockRspamdFromJSON(json: any): MailBlockRspamd {
 }
 
 export function MailBlockRspamdFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailBlockRspamd {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function MailBlockRspamdFromJSONTyped(json: any, ignoreDiscriminator: boo
 }
 
 export function MailBlockRspamdToJSON(value?: MailBlockRspamd | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'from': value.from,
-        'subject': value.subject,
+        'from': value['from'],
+        'subject': value['subject'],
     };
 }
 

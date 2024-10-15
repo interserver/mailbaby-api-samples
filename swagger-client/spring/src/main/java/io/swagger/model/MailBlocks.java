@@ -9,6 +9,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -17,23 +22,23 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "The listing of blocked emails.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-02T13:33:33.953471686-04:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-15T16:38:12.193621947-04:00[America/New_York]")
 
 
 public class MailBlocks   {
   @JsonProperty("local")
   @Valid
   private List<MailBlockClickHouse> local = new ArrayList<MailBlockClickHouse>();
-
   @JsonProperty("mbtrap")
   @Valid
   private List<MailBlockClickHouse> mbtrap = new ArrayList<MailBlockClickHouse>();
-
   @JsonProperty("subject")
   @Valid
   private List<MailBlockRspamd> subject = new ArrayList<MailBlockRspamd>();
 
-  public MailBlocks local(List<MailBlockClickHouse> local) {
+  public MailBlocks local(List<MailBlockClickHouse> local) { 
+
     this.local = local;
     return this;
   }
@@ -47,18 +52,24 @@ public class MailBlocks   {
    * Get local
    * @return local
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-    @Valid
-    public List<MailBlockClickHouse> getLocal() {
+  
+@Valid
+  @NotNull
+  public List<MailBlockClickHouse> getLocal() {  
     return local;
   }
 
-  public void setLocal(List<MailBlockClickHouse> local) {
+
+
+  public void setLocal(List<MailBlockClickHouse> local) { 
+
     this.local = local;
   }
 
-  public MailBlocks mbtrap(List<MailBlockClickHouse> mbtrap) {
+  public MailBlocks mbtrap(List<MailBlockClickHouse> mbtrap) { 
+
     this.mbtrap = mbtrap;
     return this;
   }
@@ -72,18 +83,24 @@ public class MailBlocks   {
    * Get mbtrap
    * @return mbtrap
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-    @Valid
-    public List<MailBlockClickHouse> getMbtrap() {
+  
+@Valid
+  @NotNull
+  public List<MailBlockClickHouse> getMbtrap() {  
     return mbtrap;
   }
 
-  public void setMbtrap(List<MailBlockClickHouse> mbtrap) {
+
+
+  public void setMbtrap(List<MailBlockClickHouse> mbtrap) { 
+
     this.mbtrap = mbtrap;
   }
 
-  public MailBlocks subject(List<MailBlockRspamd> subject) {
+  public MailBlocks subject(List<MailBlockRspamd> subject) { 
+
     this.subject = subject;
     return this;
   }
@@ -97,17 +114,21 @@ public class MailBlocks   {
    * Get subject
    * @return subject
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-    @Valid
-    public List<MailBlockRspamd> getSubject() {
+  
+@Valid
+  @NotNull
+  public List<MailBlockRspamd> getSubject() {  
     return subject;
   }
 
-  public void setSubject(List<MailBlockRspamd> subject) {
+
+
+  public void setSubject(List<MailBlockRspamd> subject) { 
+
     this.subject = subject;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

@@ -69,8 +69,8 @@ public class MailAttachment  {
       return false;
     }
     MailAttachment mailAttachment = (MailAttachment) o;
-    return Objects.equals(filename, mailAttachment.filename) &&
-        Objects.equals(data, mailAttachment.data);
+    return Objects.equals(this.filename, mailAttachment.filename) &&
+        Objects.equals(this.data, mailAttachment.data);
   }
 
   @Override

@@ -56,9 +56,9 @@ open class HistoryAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/stats"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/stats"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -132,9 +132,9 @@ open class HistoryAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/log"
-                let url = baseURL.appendingPathComponent(path)
-                var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/log"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                var components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 var queryItems: [URLQueryItem] = []
                 if let id = id { queryItems.append(URLQueryItem(name: "id", value: "\(id)")) } 
                 if let origin = origin { queryItems.append(URLQueryItem(name: "origin", value: origin)) } 

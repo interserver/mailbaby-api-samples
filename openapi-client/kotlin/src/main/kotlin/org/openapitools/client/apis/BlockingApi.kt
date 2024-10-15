@@ -55,7 +55,16 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
          @Json(name = "domain") domain("domain"),
          @Json(name = "email") email("email"),
          @Json(name = "startswith") startswith("startswith"),
-         @Json(name = "destination") destination("destination")
+         @Json(name = "destination") destination("destination");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
      }
 
     /**

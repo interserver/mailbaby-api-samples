@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.mail_block_rspamd import MailBlockRspamd  # noqa: E501
+from openapi_client.models.mail_block_rspamd import MailBlockRspamd
 
 class TestMailBlockRspamd(unittest.TestCase):
     """MailBlockRspamd unit test stubs"""
@@ -29,12 +28,12 @@ class TestMailBlockRspamd(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MailBlockRspamd:
         """Test MailBlockRspamd
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MailBlockRspamd`
         """
-        model = MailBlockRspamd()  # noqa: E501
+        model = MailBlockRspamd()
         if include_optional:
             return MailBlockRspamd(
                 var_from = '',

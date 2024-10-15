@@ -47,5 +47,8 @@ data class SendMail (
     @Json(name = "body")
     val body: kotlin.String
 
-)
+) {
+
+
+}
 

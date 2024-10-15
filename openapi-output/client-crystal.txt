@@ -45,16 +45,16 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/api/history_api.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/api/history_api_spec.cr
 Exception in thread "main" java.lang.RuntimeException: Could not generate api file for 'Sending'
-	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:745)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:977)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:511)
+	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:818)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1301)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:535)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
 Caused by: java.lang.NullPointerException: Cannot read field "name" because "codegenModel" is null
-	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:777)
-	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:793)
-	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:696)
-	at org.openapitools.codegen.languages.CrystalClientCodegen.postProcessOperationsWithModels(CrystalClientCodegen.java:613)
-	at org.openapitools.codegen.DefaultGenerator.processOperations(DefaultGenerator.java:1302)
-	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:626)
+	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:736)
+	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:752)
+	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:655)
+	at org.openapitools.codegen.languages.CrystalClientCodegen.postProcessOperationsWithModels(CrystalClientCodegen.java:572)
+	at org.openapitools.codegen.DefaultGenerator.processOperations(DefaultGenerator.java:1653)
+	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:690)
 	... 4 more

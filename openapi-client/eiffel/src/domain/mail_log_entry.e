@@ -19,8 +19,8 @@ class MAIL_LOG_ENTRY
 
 feature --Access
 
- 	var_id: INTEGER_32
-    	 -- internal db id
+    var_id: INTEGER_32
+      -- internal db id
     id: detachable STRING_32
       -- mail id
     var_from: detachable STRING_32
@@ -33,8 +33,8 @@ feature --Access
       -- message id
     created: detachable STRING_32
       -- creation date
- 	time: INTEGER_32
-    	 -- creation timestamp
+    time: INTEGER_32
+      -- creation timestamp
     user: detachable STRING_32
       -- user account
     transtype: detachable STRING_32
@@ -45,16 +45,16 @@ feature --Access
       -- interface name
     sending_zone: detachable STRING_32
       -- sending zone
- 	body_size: INTEGER_32
-    	 -- email body size in bytes
- 	seq: INTEGER_32
-    	 -- index of email in the to adderess list
+    body_size: INTEGER_32
+      -- email body size in bytes
+    seq: INTEGER_32
+      -- index of email in the to adderess list
     recipient: detachable STRING_32
       -- to address this email is being sent to
     domain: detachable STRING_32
       -- to address domain
- 	locked: INTEGER_32
-    	 -- locked status
+    locked: INTEGER_32
+      -- locked status
     lock_time: detachable STRING_32
       -- lock timestamp
     assigned: detachable STRING_32

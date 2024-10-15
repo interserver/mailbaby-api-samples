@@ -78,12 +78,12 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi();
 let opts = {
   'id': 2604, // Number | The ID of your mail order this will be sent through.
-  'origin': 1.2.3.4, // String | originating ip address sending mail
-  'mx': mx.google.com, // String | mx record mail was sent to
-  'from': me@sender.com, // String | from email address
-  'to': you@receiver.com, // String | to/destination email address
-  'subject': Support, // String | subject containing this string
-  'mailid': 185997065c60008840, // String | mail id
+  'origin': "1.2.3.4", // String | originating ip address sending mail
+  'mx': "mx.google.com", // String | mx record mail was sent to
+  'from': "me@sender.com", // String | from email address
+  'to': "you@receiver.com", // String | to/destination email address
+  'subject': "Support", // String | subject containing this string
+  'mailid': "185997065c60008840", // String | mail id
   'skip': 1000, // Number | number of records to skip for pagination
   'limit': 1000, // Number | maximum number of records to return
   'startDate': 1641781008, // Number | earliest date to get emails in unix timestamp format

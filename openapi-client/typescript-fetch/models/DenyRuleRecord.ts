@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The data for a email deny rule record.
  * @export
@@ -67,14 +67,12 @@ export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof 
 /**
  * Check if a given object implements the DenyRuleRecord interface.
  */
-export function instanceOfDenyRuleRecord(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "data" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "created" in value;
-
-    return isInstance;
+export function instanceOfDenyRuleRecord(value: object): value is DenyRuleRecord {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('created' in value) || value['created'] === undefined) return false;
+    return true;
 }
 
 export function DenyRuleRecordFromJSON(json: any): DenyRuleRecord {
@@ -82,7 +80,7 @@ export function DenyRuleRecordFromJSON(json: any): DenyRuleRecord {
 }
 
 export function DenyRuleRecordFromJSONTyped(json: any, ignoreDiscriminator: boolean): DenyRuleRecord {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -91,24 +89,21 @@ export function DenyRuleRecordFromJSONTyped(json: any, ignoreDiscriminator: bool
         'data': json['data'],
         'id': json['id'],
         'created': (new Date(json['created'])),
-        'user': !exists(json, 'user') ? undefined : json['user'],
+        'user': json['user'] == null ? undefined : json['user'],
     };
 }
 
 export function DenyRuleRecordToJSON(value?: DenyRuleRecord | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'type': value.type,
-        'data': value.data,
-        'id': value.id,
-        'created': (value.created.toISOString()),
-        'user': value.user,
+        'type': value['type'],
+        'data': value['data'],
+        'id': value['id'],
+        'created': ((value['created']).toISOString()),
+        'user': value['user'],
     };
 }
 

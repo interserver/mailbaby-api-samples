@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.mail_blocks import MailBlocks  # noqa: E501
+from openapi_client.models.mail_blocks import MailBlocks
 
 class TestMailBlocks(unittest.TestCase):
     """MailBlocks unit test stubs"""
@@ -29,12 +28,12 @@ class TestMailBlocks(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MailBlocks:
         """Test MailBlocks
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MailBlocks`
         """
-        model = MailBlocks()  # noqa: E501
+        model = MailBlocks()
         if include_optional:
             return MailBlocks(
                 local = [

@@ -35,6 +35,30 @@ private class OASBlockingApiTest {
         expectedResponse = OASGenericResponse.getExample();
         response = (OASGenericResponse) api.addRule(params);
         System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.addRule(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.addRule(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.addRule(params);
+        System.assertEquals(expectedResponse, response);
     }
 
     /**
@@ -62,6 +86,30 @@ private class OASBlockingApiTest {
         client = new OASClient();
         api = new OASBlockingApi(client);
         ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.deleteRule(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.deleteRule(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.deleteRule(params);
+        System.assertEquals(expectedResponse, response);
 
 
         js = JSON.serialize(OASGenericResponse.getExample());
@@ -105,6 +153,30 @@ private class OASBlockingApiTest {
         expectedResponse = OASGenericResponse.getExample();
         response = (OASGenericResponse) api.delistBlock(params);
         System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.delistBlock(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.delistBlock(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASGenericResponse.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASGenericResponse.getExample();
+        response = (OASGenericResponse) api.delistBlock(params);
+        System.assertEquals(expectedResponse, response);
     }
 
     /**
@@ -136,6 +208,22 @@ private class OASBlockingApiTest {
         expectedResponse = OASMailBlocks.getExample();
         response = (OASMailBlocks) api.getMailBlocks();
         System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASMailBlocks.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASMailBlocks.getExample();
+        response = (OASMailBlocks) api.getMailBlocks();
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASMailBlocks.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASMailBlocks.getExample();
+        response = (OASMailBlocks) api.getMailBlocks();
+        System.assertEquals(expectedResponse, response);
     }
 
     /**
@@ -159,6 +247,22 @@ private class OASBlockingApiTest {
         client = new OASClient();
         api = new OASBlockingApi(client);
         ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
+
+
+        js = JSON.serialize(new List<OASDenyRuleRecord>{OASDenyRuleRecord.getExample()});
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = new List<OASDenyRuleRecord>{OASDenyRuleRecord.getExample()};
+        response = (List<OASDenyRuleRecord>) api.getRules();
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(new List<OASDenyRuleRecord>{OASDenyRuleRecord.getExample()});
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = new List<OASDenyRuleRecord>{OASDenyRuleRecord.getExample()};
+        response = (List<OASDenyRuleRecord>) api.getRules();
+        System.assertEquals(expectedResponse, response);
 
 
         js = JSON.serialize(new List<OASDenyRuleRecord>{OASDenyRuleRecord.getExample()});

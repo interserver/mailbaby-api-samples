@@ -59,7 +59,7 @@ export class HistoryApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -88,62 +88,62 @@ export class HistoryApi extends runtime.BaseAPI {
     async viewMailLogRaw(requestParameters: ViewMailLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailLog>> {
         const queryParameters: any = {};
 
-        if (requestParameters.id !== undefined) {
-            queryParameters['id'] = requestParameters.id;
+        if (requestParameters['id'] != null) {
+            queryParameters['id'] = requestParameters['id'];
         }
 
-        if (requestParameters.origin !== undefined) {
-            queryParameters['origin'] = requestParameters.origin;
+        if (requestParameters['origin'] != null) {
+            queryParameters['origin'] = requestParameters['origin'];
         }
 
-        if (requestParameters.mx !== undefined) {
-            queryParameters['mx'] = requestParameters.mx;
+        if (requestParameters['mx'] != null) {
+            queryParameters['mx'] = requestParameters['mx'];
         }
 
-        if (requestParameters.from !== undefined) {
-            queryParameters['from'] = requestParameters.from;
+        if (requestParameters['from'] != null) {
+            queryParameters['from'] = requestParameters['from'];
         }
 
-        if (requestParameters.to !== undefined) {
-            queryParameters['to'] = requestParameters.to;
+        if (requestParameters['to'] != null) {
+            queryParameters['to'] = requestParameters['to'];
         }
 
-        if (requestParameters.subject !== undefined) {
-            queryParameters['subject'] = requestParameters.subject;
+        if (requestParameters['subject'] != null) {
+            queryParameters['subject'] = requestParameters['subject'];
         }
 
-        if (requestParameters.mailid !== undefined) {
-            queryParameters['mailid'] = requestParameters.mailid;
+        if (requestParameters['mailid'] != null) {
+            queryParameters['mailid'] = requestParameters['mailid'];
         }
 
-        if (requestParameters.skip !== undefined) {
-            queryParameters['skip'] = requestParameters.skip;
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.startDate !== undefined) {
-            queryParameters['startDate'] = requestParameters.startDate;
+        if (requestParameters['startDate'] != null) {
+            queryParameters['startDate'] = requestParameters['startDate'];
         }
 
-        if (requestParameters.endDate !== undefined) {
-            queryParameters['endDate'] = requestParameters.endDate;
+        if (requestParameters['endDate'] != null) {
+            queryParameters['endDate'] = requestParameters['endDate'];
         }
 
-        if (requestParameters.replyto !== undefined) {
-            queryParameters['replyto'] = requestParameters.replyto;
+        if (requestParameters['replyto'] != null) {
+            queryParameters['replyto'] = requestParameters['replyto'];
         }
 
-        if (requestParameters.headerfrom !== undefined) {
-            queryParameters['headerfrom'] = requestParameters.headerfrom;
+        if (requestParameters['headerfrom'] != null) {
+            queryParameters['headerfrom'] = requestParameters['headerfrom'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const response = await this.request({

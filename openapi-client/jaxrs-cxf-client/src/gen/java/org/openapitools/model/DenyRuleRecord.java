@@ -175,11 +175,11 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
       return false;
     }
     DenyRuleRecord denyRuleRecord = (DenyRuleRecord) o;
-    return Objects.equals(type, denyRuleRecord.type) &&
-        Objects.equals(data, denyRuleRecord.data) &&
-        Objects.equals(id, denyRuleRecord.id) &&
-        Objects.equals(created, denyRuleRecord.created) &&
-        Objects.equals(user, denyRuleRecord.user);
+    return Objects.equals(this.type, denyRuleRecord.type) &&
+        Objects.equals(this.data, denyRuleRecord.data) &&
+        Objects.equals(this.id, denyRuleRecord.id) &&
+        Objects.equals(this.created, denyRuleRecord.created) &&
+        Objects.equals(this.user, denyRuleRecord.user);
   }
 
   @Override

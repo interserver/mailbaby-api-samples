@@ -122,6 +122,7 @@ public class SendMailAdv   {
   
   @Schema(description = "")
   @JsonProperty("replyto")
+  @NotNull
   @Valid
   public EmailAddressesTypes getReplyto() {
     return replyto;
@@ -141,6 +142,7 @@ public class SendMailAdv   {
   
   @Schema(description = "")
   @JsonProperty("cc")
+  @NotNull
   @Valid
   public EmailAddressesTypes getCc() {
     return cc;
@@ -160,6 +162,7 @@ public class SendMailAdv   {
   
   @Schema(description = "")
   @JsonProperty("bcc")
+  @NotNull
   @Valid
   public EmailAddressesTypes getBcc() {
     return bcc;
@@ -180,6 +183,7 @@ public class SendMailAdv   {
   
   @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
   @JsonProperty("attachments")
+  @NotNull
   @Valid
   public List<MailAttachment> getAttachments() {
     return attachments;
@@ -200,6 +204,7 @@ public class SendMailAdv   {
   
   @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
   @JsonProperty("id")
+  @NotNull
   public Long getId() {
     return id;
   }

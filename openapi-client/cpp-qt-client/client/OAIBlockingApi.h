@@ -112,7 +112,7 @@ private:
     void getMailBlocksCallback(OAIHttpRequestWorker *worker);
     void getRulesCallback(OAIHttpRequestWorker *worker);
 
-signals:
+Q_SIGNALS:
 
     void addRuleSignal(OAIGenericResponse summary);
     void deleteRuleSignal(OAIGenericResponse summary);
@@ -126,24 +126,43 @@ signals:
     void getMailBlocksSignalFull(OAIHttpRequestWorker *worker, OAIMailBlocks summary);
     void getRulesSignalFull(OAIHttpRequestWorker *worker, QList<OAIDenyRuleRecord> summary);
 
+    Q_DECL_DEPRECATED_X("Use addRuleSignalError() instead")
     void addRuleSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void addRuleSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use deleteRuleSignalError() instead")
     void deleteRuleSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteRuleSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use delistBlockSignalError() instead")
     void delistBlockSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void delistBlockSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use getMailBlocksSignalError() instead")
     void getMailBlocksSignalE(OAIMailBlocks summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getMailBlocksSignalError(OAIMailBlocks summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use getRulesSignalError() instead")
     void getRulesSignalE(QList<OAIDenyRuleRecord> summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getRulesSignalError(QList<OAIDenyRuleRecord> summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
+    Q_DECL_DEPRECATED_X("Use addRuleSignalErrorFull() instead")
     void addRuleSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void addRuleSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use deleteRuleSignalErrorFull() instead")
     void deleteRuleSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteRuleSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use delistBlockSignalErrorFull() instead")
     void delistBlockSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void delistBlockSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use getMailBlocksSignalErrorFull() instead")
     void getMailBlocksSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getMailBlocksSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use getRulesSignalErrorFull() instead")
     void getRulesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getRulesSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
 
-public slots:
+public Q_SLOTS:
     void tokenAvailable();
-    
 };
 
 } // namespace OpenAPI

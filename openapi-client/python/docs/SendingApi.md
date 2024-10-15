@@ -18,9 +18,8 @@ Sends An email through one of your mail orders allowing additional options such 
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.email_address_types import EmailAddressTypes
 from openapi_client.models.email_addresses_types import EmailAddressesTypes
@@ -73,6 +72,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**| The subject or title of the email | 
@@ -99,6 +99,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
@@ -118,9 +119,8 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.generic_response import GenericResponse
 from openapi_client.rest import ApiException
@@ -165,6 +165,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **to** | **str**| The Contact whom is the primary recipient of this email. | 
@@ -186,6 +187,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |

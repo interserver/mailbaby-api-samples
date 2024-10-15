@@ -98,7 +98,7 @@ end:
 // Get a listing of the emails sent through this system 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate , char * replyto , char * headerfrom )
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, int *skip, int *limit, long startDate, long endDate, char *replyto, char *headerfrom)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -203,11 +203,11 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     char *keyQuery_skip = NULL;
     char * valueQuery_skip = NULL;
     keyValuePair_t *keyPairQuery_skip = 0;
-    if (1) // Always send integer parameters to the API server
+    if (skip)
     {
         keyQuery_skip = strdup("skip");
         valueQuery_skip = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_skip, MAX_NUMBER_LENGTH, "%d", skip);
+        snprintf(valueQuery_skip, MAX_NUMBER_LENGTH, "%d", *skip);
         keyPairQuery_skip = keyValuePair_create(keyQuery_skip, valueQuery_skip);
         list_addElement(localVarQueryParameters,keyPairQuery_skip);
     }
@@ -216,11 +216,11 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     char *keyQuery_limit = NULL;
     char * valueQuery_limit = NULL;
     keyValuePair_t *keyPairQuery_limit = 0;
-    if (1) // Always send integer parameters to the API server
+    if (limit)
     {
         keyQuery_limit = strdup("limit");
         valueQuery_limit = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", limit);
+        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", *limit);
         keyPairQuery_limit = keyValuePair_create(keyQuery_limit, valueQuery_limit);
         list_addElement(localVarQueryParameters,keyPairQuery_limit);
     }

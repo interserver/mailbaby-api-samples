@@ -56,6 +56,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
    * @return name
   **/
   @JsonProperty("name")
+  @NotNull
   public String getName() {
     return name;
   }

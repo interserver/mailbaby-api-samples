@@ -18,30 +18,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-from typing import Dict, Any
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SendMail(BaseModel):
     """
-    Details for an Email  # noqa: E501
-    """
+    Details for an Email
+    """ # noqa: E501
     to: StrictStr = Field(description="The Contact whom is the primary recipient of this email.")
     var_from: StrictStr = Field(description="The contact whom is the this email is from.", alias="from")
     subject: StrictStr = Field(description="The subject or title of the email")
     body: StrictStr = Field(description="The main email contents.")
     __properties: ClassVar[List[str]] = ["to", "from", "subject", "body"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -54,7 +50,7 @@ class SendMail(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SendMail from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -68,16 +64,18 @@ class SendMail(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SendMail from a dict"""
         if obj is None:
             return None

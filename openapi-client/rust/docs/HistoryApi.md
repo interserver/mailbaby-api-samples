@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_stats
 
-> Vec<crate::models::GetStats200ResponseInner> get_stats()
+> Vec<models::GetStats200ResponseInner> get_stats()
 Account usage statistics.
 
 Returns information about the usage on your mail accounts.
@@ -22,7 +22,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::GetStats200ResponseInner>**](getStats_200_response_inner.md)
+[**Vec<models::GetStats200ResponseInner>**](getStats_200_response_inner.md)
 
 ### Authorization
 
@@ -38,7 +38,7 @@ This endpoint does not need any parameter.
 
 ## view_mail_log
 
-> crate::models::MailLog view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom)
+> models::MailLog view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom)
 displays the mail log
 
 Get a listing of the emails sent through this system 
@@ -64,7 +64,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::MailLog**](MailLog.md)
+[**models::MailLog**](MailLog.md)
 
 ### Authorization
 

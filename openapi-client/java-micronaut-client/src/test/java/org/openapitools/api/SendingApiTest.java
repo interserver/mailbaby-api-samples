@@ -43,7 +43,7 @@ public class SendingApiTest {
         EmailAddressesTypes replyto = new EmailAddressesTypes();
         EmailAddressesTypes cc = new EmailAddressesTypes();
         EmailAddressesTypes bcc = new EmailAddressesTypes();
-        List<MailAttachment> attachments = Arrays.asList();
+        List<@Valid MailAttachment> attachments = Arrays.asList();
         Long id = 56L;
 
         // when

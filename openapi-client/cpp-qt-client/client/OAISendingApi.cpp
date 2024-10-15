@@ -115,15 +115,9 @@ int OAISendingApi::addServerConfiguration(const QString &operation, const QUrl &
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
 void OAISendingApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
     }
-#else
-    for (auto &e : _serverIndices.keys()) {
-        setServerIndex(e, addServerConfiguration(e, url, description, variables));
-    }
-#endif
 }
 
 /**
@@ -149,7 +143,7 @@ void OAISendingApi::enableResponseCompression() {
 }
 
 void OAISendingApi::abortRequests() {
-    emit abortRequestsSignal();
+    Q_EMIT abortRequestsSignal();
 }
 
 QString OAISendingApi::getParamStylePrefix(const QString &style) {
@@ -264,21 +258,15 @@ void OAISendingApi::sendAdvMail(const QString &subject, const QString &body, con
         input.add_var("id", ::OpenAPI::toStringValue(id.value()));
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAISendingApi::sendAdvMailCallback);
     connect(this, &OAISendingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -296,11 +284,37 @@ void OAISendingApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit sendAdvMailSignal(output);
-        emit sendAdvMailSignalFull(worker, output);
+        Q_EMIT sendAdvMailSignal(output);
+        Q_EMIT sendAdvMailSignalFull(worker, output);
     } else {
-        emit sendAdvMailSignalE(output, error_type, error_str);
-        emit sendAdvMailSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT sendAdvMailSignalE(output, error_type, error_str);
+        Q_EMIT sendAdvMailSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT sendAdvMailSignalError(output, error_type, error_str);
+        Q_EMIT sendAdvMailSignalErrorFull(worker, error_type, error_str);
     }
 }
 
@@ -333,21 +347,15 @@ void OAISendingApi::sendMail(const QString &to, const QString &from, const QStri
         input.add_var("body", ::OpenAPI::toStringValue(body));
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAISendingApi::sendMailCallback);
     connect(this, &OAISendingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -365,11 +373,37 @@ void OAISendingApi::sendMailCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit sendMailSignal(output);
-        emit sendMailSignalFull(worker, output);
+        Q_EMIT sendMailSignal(output);
+        Q_EMIT sendMailSignalFull(worker, output);
     } else {
-        emit sendMailSignalE(output, error_type, error_str);
-        emit sendMailSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT sendMailSignalE(output, error_type, error_str);
+        Q_EMIT sendMailSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT sendMailSignalError(output, error_type, error_str);
+        Q_EMIT sendMailSignalErrorFull(worker, error_type, error_str);
     }
 }
 

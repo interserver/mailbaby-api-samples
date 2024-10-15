@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The resposne when an error occurs.
  * @export
@@ -36,12 +36,10 @@ export interface ErrorMessage {
 /**
  * Check if a given object implements the ErrorMessage interface.
  */
-export function instanceOfErrorMessage(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "code" in value;
-    isInstance = isInstance && "message" in value;
-
-    return isInstance;
+export function instanceOfErrorMessage(value: object): value is ErrorMessage {
+    if (!('code' in value) || value['code'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    return true;
 }
 
 export function ErrorMessageFromJSON(json: any): ErrorMessage {
@@ -49,7 +47,7 @@ export function ErrorMessageFromJSON(json: any): ErrorMessage {
 }
 
 export function ErrorMessageFromJSONTyped(json: any, ignoreDiscriminator: boolean): ErrorMessage {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function ErrorMessageFromJSONTyped(json: any, ignoreDiscriminator: boolea
 }
 
 export function ErrorMessageToJSON(value?: ErrorMessage | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'code': value.code,
-        'message': value.message,
+        'code': value['code'],
+        'message': value['message'],
     };
 }
 

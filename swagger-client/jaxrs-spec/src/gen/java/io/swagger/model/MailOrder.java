@@ -93,6 +93,7 @@ public class MailOrder   {
   
   @ApiModelProperty(value = "Optional order comment.")
   @JsonProperty("comment")
+  @NotNull
 
   public String getComment() {
     return comment;

@@ -84,22 +84,25 @@ private:
 
     void pingServerCallback(OAIHttpRequestWorker *worker);
 
-signals:
+Q_SIGNALS:
 
     void pingServerSignal();
 
     void pingServerSignalFull(OAIHttpRequestWorker *worker);
 
+    Q_DECL_DEPRECATED_X("Use pingServerSignalError() instead")
     void pingServerSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void pingServerSignalError(QNetworkReply::NetworkError error_type, const QString &error_str);
 
+    Q_DECL_DEPRECATED_X("Use pingServerSignalErrorFull() instead")
     void pingServerSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void pingServerSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
 
-public slots:
+public Q_SLOTS:
     void tokenAvailable();
-    
 };
 
 } // namespace OpenAPI

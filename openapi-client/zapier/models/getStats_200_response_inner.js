@@ -7,16 +7,19 @@ module.exports = {
             {
                 key: `${keyPrefix}id`,
                 label: `[${labelPrefix}id]`,
+                required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}status`,
                 label: `[${labelPrefix}status]`,
+                required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}username`,
                 label: `[${labelPrefix}username]`,
+                required: true,
                 type: 'string',
             },
             {

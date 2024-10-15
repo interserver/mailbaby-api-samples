@@ -35,25 +35,25 @@ import javax.annotation.Generated;
   MailBlocks.JSON_PROPERTY_SUBJECT
 })
 @JsonTypeName("MailBlocks")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailBlocks {
     public static final String JSON_PROPERTY_LOCAL = "local";
-    private List<MailBlockClickHouse> local = new ArrayList<>();
+    private List<@Valid MailBlockClickHouse> local = new ArrayList<>();
 
     public static final String JSON_PROPERTY_MBTRAP = "mbtrap";
-    private List<MailBlockClickHouse> mbtrap = new ArrayList<>();
+    private List<@Valid MailBlockClickHouse> mbtrap = new ArrayList<>();
 
     public static final String JSON_PROPERTY_SUBJECT = "subject";
-    private List<MailBlockRspamd> subject = new ArrayList<>();
+    private List<@Valid MailBlockRspamd> subject = new ArrayList<>();
 
-    public MailBlocks(List<MailBlockClickHouse> local, List<MailBlockClickHouse> mbtrap, List<MailBlockRspamd> subject) {
+    public MailBlocks(List<@Valid MailBlockClickHouse> local, List<@Valid MailBlockClickHouse> mbtrap, List<@Valid MailBlockRspamd> subject) {
         this.local = local;
         this.mbtrap = mbtrap;
         this.subject = subject;
     }
 
-    public MailBlocks local(List<MailBlockClickHouse> local) {
+    public MailBlocks local(List<@Valid MailBlockClickHouse> local) {
         this.local = local;
         return this;
     }
@@ -66,21 +66,21 @@ public class MailBlocks {
     /**
      * Get local
      * @return local
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_LOCAL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<MailBlockClickHouse> getLocal() {
+    public List<@Valid MailBlockClickHouse> getLocal() {
         return local;
     }
 
     @JsonProperty(JSON_PROPERTY_LOCAL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setLocal(List<MailBlockClickHouse> local) {
+    public void setLocal(List<@Valid MailBlockClickHouse> local) {
         this.local = local;
     }
 
-    public MailBlocks mbtrap(List<MailBlockClickHouse> mbtrap) {
+    public MailBlocks mbtrap(List<@Valid MailBlockClickHouse> mbtrap) {
         this.mbtrap = mbtrap;
         return this;
     }
@@ -93,21 +93,21 @@ public class MailBlocks {
     /**
      * Get mbtrap
      * @return mbtrap
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_MBTRAP)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<MailBlockClickHouse> getMbtrap() {
+    public List<@Valid MailBlockClickHouse> getMbtrap() {
         return mbtrap;
     }
 
     @JsonProperty(JSON_PROPERTY_MBTRAP)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setMbtrap(List<MailBlockClickHouse> mbtrap) {
+    public void setMbtrap(List<@Valid MailBlockClickHouse> mbtrap) {
         this.mbtrap = mbtrap;
     }
 
-    public MailBlocks subject(List<MailBlockRspamd> subject) {
+    public MailBlocks subject(List<@Valid MailBlockRspamd> subject) {
         this.subject = subject;
         return this;
     }
@@ -120,17 +120,17 @@ public class MailBlocks {
     /**
      * Get subject
      * @return subject
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<MailBlockRspamd> getSubject() {
+    public List<@Valid MailBlockRspamd> getSubject() {
         return subject;
     }
 
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setSubject(List<MailBlockRspamd> subject) {
+    public void setSubject(List<@Valid MailBlockRspamd> subject) {
         this.subject = subject;
     }
 

@@ -54,7 +54,7 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class SendMailAdv {
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
@@ -86,7 +86,7 @@ public class SendMailAdv {
 
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
-  private List<MailAttachment> attachments;
+  private List<MailAttachment> attachments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -96,20 +96,18 @@ public class SendMailAdv {
   }
 
   public SendMailAdv subject(String subject) {
-    
     this.subject = subject;
     return this;
   }
 
-   /**
+  /**
    * The subject or title of the email
    * @return subject
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSubject() {
     return subject;
   }
-
 
   public void setSubject(String subject) {
     this.subject = subject;
@@ -117,20 +115,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv body(String body) {
-    
     this.body = body;
     return this;
   }
 
-   /**
+  /**
    * The main email contents.
    * @return body
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBody() {
     return body;
   }
-
 
   public void setBody(String body) {
     this.body = body;
@@ -138,20 +134,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv from(EmailAddressTypes from) {
-    
     this.from = from;
     return this;
   }
 
-   /**
+  /**
    * Get from
    * @return from
-  **/
+   */
   @javax.annotation.Nonnull
   public EmailAddressTypes getFrom() {
     return from;
   }
-
 
   public void setFrom(EmailAddressTypes from) {
     this.from = from;
@@ -159,20 +153,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv to(EmailAddressesTypes to) {
-    
     this.to = to;
     return this;
   }
 
-   /**
+  /**
    * Get to
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public EmailAddressesTypes getTo() {
     return to;
   }
-
 
   public void setTo(EmailAddressesTypes to) {
     this.to = to;
@@ -180,20 +172,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv replyto(EmailAddressesTypes replyto) {
-    
     this.replyto = replyto;
     return this;
   }
 
-   /**
+  /**
    * Get replyto
    * @return replyto
-  **/
+   */
   @javax.annotation.Nullable
   public EmailAddressesTypes getReplyto() {
     return replyto;
   }
-
 
   public void setReplyto(EmailAddressesTypes replyto) {
     this.replyto = replyto;
@@ -201,20 +191,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv cc(EmailAddressesTypes cc) {
-    
     this.cc = cc;
     return this;
   }
 
-   /**
+  /**
    * Get cc
    * @return cc
-  **/
+   */
   @javax.annotation.Nullable
   public EmailAddressesTypes getCc() {
     return cc;
   }
-
 
   public void setCc(EmailAddressesTypes cc) {
     this.cc = cc;
@@ -222,20 +210,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv bcc(EmailAddressesTypes bcc) {
-    
     this.bcc = bcc;
     return this;
   }
 
-   /**
+  /**
    * Get bcc
    * @return bcc
-  **/
+   */
   @javax.annotation.Nullable
   public EmailAddressesTypes getBcc() {
     return bcc;
   }
-
 
   public void setBcc(EmailAddressesTypes bcc) {
     this.bcc = bcc;
@@ -243,7 +229,6 @@ public class SendMailAdv {
 
 
   public SendMailAdv attachments(List<MailAttachment> attachments) {
-    
     this.attachments = attachments;
     return this;
   }
@@ -256,15 +241,14 @@ public class SendMailAdv {
     return this;
   }
 
-   /**
+  /**
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    * @return attachments
-  **/
+   */
   @javax.annotation.Nullable
   public List<MailAttachment> getAttachments() {
     return attachments;
   }
-
 
   public void setAttachments(List<MailAttachment> attachments) {
     this.attachments = attachments;
@@ -272,20 +256,18 @@ public class SendMailAdv {
 
 
   public SendMailAdv id(Long id) {
-    
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * (optional)  ID of the Mail order within our system to use as the Mail Account.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public Long getId() {
     return id;
   }
-
 
   public void setId(Long id) {
     this.id = id;
@@ -371,12 +353,12 @@ public class SendMailAdv {
     openapiRequiredFields.add("to");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SendMailAdv
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SendMailAdv
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SendMailAdv.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -466,22 +448,22 @@ public class SendMailAdv {
     }
   }
 
- /**
-  * Create an instance of SendMailAdv given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SendMailAdv
-  * @throws IOException if the JSON string is invalid with respect to SendMailAdv
-  */
+  /**
+   * Create an instance of SendMailAdv given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SendMailAdv
+   * @throws IOException if the JSON string is invalid with respect to SendMailAdv
+   */
   public static SendMailAdv fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SendMailAdv.class);
   }
 
- /**
-  * Convert an instance of SendMailAdv to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SendMailAdv to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

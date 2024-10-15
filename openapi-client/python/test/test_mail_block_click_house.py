@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.mail_block_click_house import MailBlockClickHouse  # noqa: E501
+from openapi_client.models.mail_block_click_house import MailBlockClickHouse
 
 class TestMailBlockClickHouse(unittest.TestCase):
     """MailBlockClickHouse unit test stubs"""
@@ -29,12 +28,12 @@ class TestMailBlockClickHouse(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MailBlockClickHouse:
         """Test MailBlockClickHouse
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MailBlockClickHouse`
         """
-        model = MailBlockClickHouse()  # noqa: E501
+        model = MailBlockClickHouse()
         if include_optional:
             return MailBlockClickHouse(
                 var_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),

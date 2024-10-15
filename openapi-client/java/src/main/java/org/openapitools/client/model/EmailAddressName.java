@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * An email contact.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class EmailAddressName {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
@@ -63,20 +63,18 @@ public class EmailAddressName {
   }
 
   public EmailAddressName email(String email) {
-    
     this.email = email;
     return this;
   }
 
-   /**
+  /**
    * The email address.
    * @return email
-  **/
+   */
   @javax.annotation.Nonnull
   public String getEmail() {
     return email;
   }
-
 
   public void setEmail(String email) {
     this.email = email;
@@ -84,20 +82,18 @@ public class EmailAddressName {
 
 
   public EmailAddressName name(String name) {
-    
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Name to use for the sending contact.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
-
 
   public void setName(String name) {
     this.name = name;
@@ -159,12 +155,12 @@ public class EmailAddressName {
     openapiRequiredFields.add("email");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EmailAddressName
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EmailAddressName
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!EmailAddressName.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -224,22 +220,22 @@ public class EmailAddressName {
     }
   }
 
- /**
-  * Create an instance of EmailAddressName given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EmailAddressName
-  * @throws IOException if the JSON string is invalid with respect to EmailAddressName
-  */
+  /**
+   * Create an instance of EmailAddressName given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EmailAddressName
+   * @throws IOException if the JSON string is invalid with respect to EmailAddressName
+   */
   public static EmailAddressName fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EmailAddressName.class);
   }
 
- /**
-  * Convert an instance of EmailAddressName to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EmailAddressName to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

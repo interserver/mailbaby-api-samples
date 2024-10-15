@@ -1,5 +1,6 @@
 package org.openapitools.model;
 
+import java.util.List;
 import org.openapitools.model.EmailAddressName;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;

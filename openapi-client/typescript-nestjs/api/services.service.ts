@@ -11,12 +11,13 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
+import { HttpService, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { Observable, from, of, switchMap } from 'rxjs';
 import { ErrorMessage } from '../model/errorMessage';
 import { MailOrder } from '../model/mailOrder';
 import { Configuration } from '../configuration';
+import { COLLECTION_FORMATS } from '../variables';
 
 
 @Injectable()
@@ -48,11 +49,12 @@ export class ServicesService {
      */
     public getMailOrders(): Observable<AxiosResponse<Array<MailOrder>>>;
     public getMailOrders(): Observable<any> {
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -68,11 +70,19 @@ export class ServicesService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<Array<MailOrder>>(`${this.basePath}/mail`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.get<Array<MailOrder>>(`${this.basePath}/mail`,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
 }

@@ -38,6 +38,7 @@ import java.util.Map;
 
 public class HistoryApi {
     private ApiClient apiClient;
+    private Map<String, String> headers;
 
     public HistoryApi() {
         this(Configuration.getDefaultApiClient());
@@ -53,6 +54,10 @@ public class HistoryApi {
 
     public void setApiClient(ApiClient apiClient) {
         this.apiClient = apiClient;
+    }
+
+    public void setHeadersOverrides(Map<String, String> headers) {
+        this.headers = headers;
     }
 
     /**
@@ -100,6 +105,9 @@ public class HistoryApi {
         }
 
         String[] localVarAuthNames = new String[] { "apiKeyAuth" };
+        if (headers != null) {
+            localVarHeaderParams.putAll(headers);
+        }
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
@@ -255,6 +263,9 @@ public class HistoryApi {
         }
 
         String[] localVarAuthNames = new String[] { "apiKeyAuth" };
+        if (headers != null) {
+            localVarHeaderParams.putAll(headers);
+        }
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     

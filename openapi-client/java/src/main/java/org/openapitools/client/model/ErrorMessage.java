@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * The resposne when an error occurs.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class ErrorMessage {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -63,20 +63,18 @@ public class ErrorMessage {
   }
 
   public ErrorMessage code(Integer code) {
-    
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * The response code associated with the error.
    * @return code
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getCode() {
     return code;
   }
-
 
   public void setCode(Integer code) {
     this.code = code;
@@ -84,20 +82,18 @@ public class ErrorMessage {
 
 
   public ErrorMessage message(String message) {
-    
     this.message = message;
     return this;
   }
 
-   /**
+  /**
    * The details or description of the error.
    * @return message
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMessage() {
     return message;
   }
-
 
   public void setMessage(String message) {
     this.message = message;
@@ -160,12 +156,12 @@ public class ErrorMessage {
     openapiRequiredFields.add("message");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ErrorMessage
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ErrorMessage
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ErrorMessage.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -222,22 +218,22 @@ public class ErrorMessage {
     }
   }
 
- /**
-  * Create an instance of ErrorMessage given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ErrorMessage
-  * @throws IOException if the JSON string is invalid with respect to ErrorMessage
-  */
+  /**
+   * Create an instance of ErrorMessage given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ErrorMessage
+   * @throws IOException if the JSON string is invalid with respect to ErrorMessage
+   */
   public static ErrorMessage fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ErrorMessage.class);
   }
 
- /**
-  * Convert an instance of ErrorMessage to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ErrorMessage to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

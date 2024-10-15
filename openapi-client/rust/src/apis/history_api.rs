@@ -10,8 +10,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -19,8 +19,8 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStatsError {
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -34,7 +34,7 @@ pub enum ViewMailLogError {
 
 
 /// Returns information about the usage on your mail accounts.
-pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::GetStats200ResponseInner>, Error<GetStatsError>> {
+pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result<Vec<models::GetStats200ResponseInner>, Error<GetStatsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -70,7 +70,7 @@ pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result
 }
 
 /// Get a listing of the emails sent through this system 
-pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>, replyto: Option<&str>, headerfrom: Option<&str>) -> Result<crate::models::MailLog, Error<ViewMailLogError>> {
+pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>, replyto: Option<&str>, headerfrom: Option<&str>) -> Result<models::MailLog, Error<ViewMailLogError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

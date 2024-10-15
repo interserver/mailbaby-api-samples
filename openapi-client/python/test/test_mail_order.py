@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.mail_order import MailOrder  # noqa: E501
+from openapi_client.models.mail_order import MailOrder
 
 class TestMailOrder(unittest.TestCase):
     """MailOrder unit test stubs"""
@@ -29,12 +28,12 @@ class TestMailOrder(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MailOrder:
         """Test MailOrder
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MailOrder`
         """
-        model = MailOrder()  # noqa: E501
+        model = MailOrder()
         if include_optional:
             return MailOrder(
                 id = 21472,

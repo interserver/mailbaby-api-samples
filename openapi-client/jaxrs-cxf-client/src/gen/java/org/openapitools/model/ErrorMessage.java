@@ -69,8 +69,8 @@ public class ErrorMessage  {
       return false;
     }
     ErrorMessage errorMessage = (ErrorMessage) o;
-    return Objects.equals(code, errorMessage.code) &&
-        Objects.equals(message, errorMessage.message);
+    return Objects.equals(this.code, errorMessage.code) &&
+        Objects.equals(this.message, errorMessage.message);
   }
 
   @Override

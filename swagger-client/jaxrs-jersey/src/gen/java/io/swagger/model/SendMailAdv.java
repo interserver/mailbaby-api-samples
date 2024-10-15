@@ -28,7 +28,7 @@ import javax.validation.Valid;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-04-02T13:33:16.911044268-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-10-15T16:37:54.418937740-04:00[America/New_York]")
 public class SendMailAdv   {
   @JsonProperty("subject")
   private String subject = null;
@@ -150,6 +150,7 @@ public class SendMailAdv   {
    **/
   @JsonProperty("replyto")
   @Schema(description = "")
+  @NotNull
   @Valid
   public EmailAddressesTypes getReplyto() {
     return replyto;
@@ -170,6 +171,7 @@ public class SendMailAdv   {
    **/
   @JsonProperty("cc")
   @Schema(description = "")
+  @NotNull
   @Valid
   public EmailAddressesTypes getCc() {
     return cc;
@@ -190,6 +192,7 @@ public class SendMailAdv   {
    **/
   @JsonProperty("bcc")
   @Schema(description = "")
+  @NotNull
   @Valid
   public EmailAddressesTypes getBcc() {
     return bcc;
@@ -218,6 +221,7 @@ public class SendMailAdv   {
    **/
   @JsonProperty("attachments")
   @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
+  @NotNull
   @Valid
   public List<MailAttachment> getAttachments() {
     return attachments;
@@ -238,6 +242,7 @@ public class SendMailAdv   {
    **/
   @JsonProperty("id")
   @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
+  @NotNull
   public Long getId() {
     return id;
   }

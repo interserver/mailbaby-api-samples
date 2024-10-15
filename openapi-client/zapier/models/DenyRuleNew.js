@@ -7,6 +7,7 @@ module.exports = {
             {
                 key: `${keyPrefix}type`,
                 label: `The type of deny rule. - [${labelPrefix}type]`,
+                required: true,
                 type: 'string',
                 choices: [
                     'domain',
@@ -18,6 +19,7 @@ module.exports = {
             {
                 key: `${keyPrefix}data`,
                 label: `The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. - [${labelPrefix}data]`,
+                required: true,
                 type: 'string',
             },
             {

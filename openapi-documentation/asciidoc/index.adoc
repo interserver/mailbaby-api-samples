@@ -1168,30 +1168,35 @@ endif::internal-generation[]
 
 The data for a email deny rule record.
 
+
 [.fields-DenyRuleNew]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | type
 | X
-| String 
+| 
+|  <<String>>  
 | The type of deny rule.
-|  _Enum:_ domain, email, startswith, destination, 
+|  _Enum:_ domain, email, startswith, destination,  
 
 | data
 | X
-| String 
+| 
+|   String  
 | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-|  
+|     
 
 | user
 | 
-| String 
+| 
+|   String  
 | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-|  
+|     
 
 |===
+
 
 
 [#DenyRuleRecord]
@@ -1199,42 +1204,49 @@ The data for a email deny rule record.
 
 The data for a email deny rule record.
 
+
 [.fields-DenyRuleRecord]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | type
 | X
-| String 
+| 
+|  <<String>>  
 | The type of deny rule.
-|  _Enum:_ domain, email, startswith, destination, 
+|  _Enum:_ domain, email, startswith, destination,  
 
 | data
 | X
-| String 
+| 
+|   String  
 | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-|  
+|     
 
 | id
 | X
-| String 
+| 
+|   String  
 | The deny rule Id number.
-|  
+|     
 
 | created
 | X
-| Date 
+| 
+|   Date  
 | the date the rule was created.
-| date-time 
+| date-time    
 
 | user
 | 
-| String 
+| 
+|   String  
 | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-|  
+|     
 
 |===
+
 
 
 [#EmailAddressName]
@@ -1242,24 +1254,28 @@ The data for a email deny rule record.
 
 An email contact.
 
+
 [.fields-EmailAddressName]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | email
 | X
-| String 
+| 
+|   String  
 | The email address.
-|  
+|     
 
 | name
 | 
-| String 
+| 
+|   String  
 | Name to use for the sending contact.
-|  
+|     
 
 |===
+
 
 
 [#EmailAddressTypes]
@@ -1267,24 +1283,28 @@ An email contact.
 
 
 
+
 [.fields-EmailAddressTypes]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | email
 | X
-| String 
+| 
+|   String  
 | The email address.
-|  
+|     
 
 | name
 | 
-| String 
+| 
+|   String  
 | Name to use for the sending contact.
-|  
+|     
 
 |===
+
 
 
 [#EmailAddressesTypes]
@@ -1292,12 +1312,14 @@ An email contact.
 
 
 
+
 [.fields-EmailAddressesTypes]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 |===
+
 
 
 [#ErrorMessage]
@@ -1305,24 +1327,28 @@ An email contact.
 
 The resposne when an error occurs.
 
+
 [.fields-ErrorMessage]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | code
 | X
-| Integer 
+| 
+|   Integer  
 | The response code associated with the error.
-| int32 
+| int32    
 
 | message
 | X
-| String 
+| 
+|   String  
 | The details or description of the error.
-|  
+|     
 
 |===
+
 
 
 [#GenericResponse]
@@ -1330,24 +1356,28 @@ The resposne when an error occurs.
 
 
 
+
 [.fields-GenericResponse]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | status
 | 
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | text
 | 
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
+
 
 
 [#GetStats200ResponseInner]
@@ -1355,42 +1385,49 @@ The resposne when an error occurs.
 
 
 
+
 [.fields-GetStats200ResponseInner]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | id
 | X
-| Integer 
 | 
-|  
+|   Integer  
+| 
+|     
 
 | status
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | username
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | password
 | 
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | comment
 | 
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
+
 
 
 [#MailAttachment]
@@ -1398,24 +1435,28 @@ The resposne when an error occurs.
 
 (optional) File attachments to include in the email.  The file contents must be base64
 
+
 [.fields-MailAttachment]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | filename
 | X
-| String 
+| 
+|   String  
 | The filename of the attached file.
-|  
+|     
 
 | data
 | X
-| String 
+| 
+|   String  
 | The file contents base64 encoded
-|  
+|     
 
 |===
+
 
 
 [#MailBlockClickHouse]
@@ -1423,42 +1464,49 @@ The resposne when an error occurs.
 
 A block entry from the clickhouse mailblocks server.
 
+
 [.fields-MailBlockClickHouse]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | date
 | X
-| date 
 | 
-| date 
+|   date  
+| 
+| date    
 
 | from
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | messageId
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | subject
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | to
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
+
 
 
 [#MailBlockRspamd]
@@ -1466,24 +1514,28 @@ A block entry from the clickhouse mailblocks server.
 
 This is a block entry from the rspamd block list.
 
+
 [.fields-MailBlockRspamd]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | from
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | subject
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
+
 
 
 [#MailBlocks]
@@ -1491,30 +1543,35 @@ This is a block entry from the rspamd block list.
 
 The listing of blocked emails.
 
+
 [.fields-MailBlocks]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | local
 | X
-| List  of <<MailBlockClickHouse>>
 | 
-|  
+|   List   of <<MailBlockClickHouse>>
+| 
+|     
 
 | mbtrap
 | X
-| List  of <<MailBlockClickHouse>>
 | 
-|  
+|   List   of <<MailBlockClickHouse>>
+| 
+|     
 
 | subject
 | X
-| List  of <<MailBlockRspamd>>
 | 
-|  
+|   List   of <<MailBlockRspamd>>
+| 
+|     
 
 |===
+
 
 
 [#MailLog]
@@ -1522,36 +1579,42 @@ The listing of blocked emails.
 
 Mail log records
 
+
 [.fields-MailLog]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | total
 | X
-| Integer 
+| 
+|   Integer  
 | total number of mail log entries
-|  
+|     
 
 | skip
 | X
-| Integer 
+| 
+|   Integer  
 | number of emails skipped in listing
-|  
+|     
 
 | limit
 | X
-| Integer 
+| 
+|   Integer  
 | number of emails to return
-|  
+|     
 
 | emails
 | X
-| List  of <<MailLogEntry>>
 | 
-|  
+|   List   of <<MailLogEntry>>
+| 
+|     
 
 |===
+
 
 
 [#MailLogEntry]
@@ -1559,150 +1622,175 @@ Mail log records
 
 An email record
 
+
 [.fields-MailLogEntry]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | _id
 | X
-| Integer 
+| 
+|   Integer  
 | internal db id
-|  
+|     
 
 | id
 | X
-| String 
+| 
+|   String  
 | mail id
-|  
+|     
 
 | from
 | X
-| String 
+| 
+|   String  
 | from address
-|  
+|     
 
 | to
 | X
-| String 
+| 
+|   String  
 | to address
-|  
+|     
 
 | subject
 | X
-| String 
+| 
+|   String  
 | email subject
-|  
+|     
 
 | created
 | X
-| String 
+| 
+|   String  
 | creation date
-|  
+|     
 
 | time
 | X
-| Integer 
+| 
+|   Integer  
 | creation timestamp
-|  
+|     
 
 | user
 | X
-| String 
+| 
+|   String  
 | user account
-|  
+|     
 
 | transtype
 | X
-| String 
+| 
+|   String  
 | transaction type
-|  
+|     
 
 | origin
 | X
-| String 
+| 
+|   String  
 | origin ip
-|  
+|     
 
 | interface
 | X
-| String 
+| 
+|   String  
 | interface name
-|  
+|     
 
 | sendingZone
 | X
-| String 
+| 
+|   String  
 | sending zone
-|  
+|     
 
 | bodySize
 | X
-| Integer 
+| 
+|   Integer  
 | email body size in bytes
-|  
+|     
 
 | seq
 | X
-| Integer 
+| 
+|   Integer  
 | index of email in the to adderess list
-|  
+|     
 
 | recipient
 | X
-| String 
+| 
+|   String  
 | to address this email is being sent to
-|  
+|     
 
 | domain
 | X
-| String 
+| 
+|   String  
 | to address domain
-|  
+|     
 
 | locked
 | X
-| Integer 
+| 
+|   Integer  
 | locked status
-|  
+|     
 
 | lockTime
 | X
-| String 
+| 
+|   String  
 | lock timestamp
-|  
+|     
 
 | assigned
 | X
-| String 
+| 
+|   String  
 | assigned server
-|  
+|     
 
 | queued
 | X
-| String 
+| 
+|   String  
 | queued timestamp
-|  
+|     
 
 | mxHostname
 | X
-| String 
+| 
+|   String  
 | mx hostname
-|  
+|     
 
 | response
 | X
-| String 
+| 
+|   String  
 | mail delivery response
-|  
+|     
 
 | messageId
 | 
-| String 
+| 
+|   String  
 | message id
-|  
+|     
 
 |===
+
 
 
 [#MailOrder]
@@ -1710,36 +1798,42 @@ An email record
 
 A mail order record
 
+
 [.fields-MailOrder]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | id
 | X
-| Integer 
+| 
+|   Integer  
 | The ID of the order.
-| int32 
+| int32    
 
 | status
 | X
-| String 
+| 
+|   String  
 | The order status.
-|  
+|     
 
 | username
 | X
-| String 
+| 
+|   String  
 | The username to use for this order.
-|  
+|     
 
 | comment
 | 
-| String 
+| 
+|   String  
 | Optional order comment.
-|  
+|     
 
 |===
+
 
 
 [#SendMail]
@@ -1747,36 +1841,42 @@ A mail order record
 
 Details for an Email
 
+
 [.fields-SendMail]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | to
 | X
-| String 
+| 
+|   String  
 | The Contact whom is the primary recipient of this email.
-|  
+|     
 
 | from
 | X
-| String 
+| 
+|   String  
 | The contact whom is the this email is from.
-|  
+|     
 
 | subject
 | X
-| String 
+| 
+|   String  
 | The subject or title of the email
-|  
+|     
 
 | body
 | X
-| String 
+| 
+|   String  
 | The main email contents.
-|  
+|     
 
 |===
+
 
 
 [#SendMailAdv]
@@ -1784,65 +1884,76 @@ Details for an Email
 
 Details for an Email
 
+
 [.fields-SendMailAdv]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | subject
 | X
-| String 
+| 
+|   String  
 | The subject or title of the email
-|  
+|     
 
 | body
 | X
-| String 
+| 
+|   String  
 | The main email contents.
-|  
+|     
 
 | from
 | X
-| EmailAddressTypes 
 | 
-|  
+| <<EmailAddressTypes>>    
+| 
+|     
 
 | to
 | X
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | replyto
 | 
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | cc
 | 
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | bcc
 | 
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | attachments
 | 
-| List  of <<MailAttachment>>
+| 
+|   List   of <<MailAttachment>>
 | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-|  
+|     
 
 | id
 | 
-| Long 
+| 
+|   Long  
 | (optional)  ID of the Mail order within our system to use as the Mail Account.
-| int64 
+| int64    
 
 |===
+
 
 

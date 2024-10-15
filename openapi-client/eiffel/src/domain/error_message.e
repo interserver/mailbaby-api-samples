@@ -19,8 +19,8 @@ class ERROR_MESSAGE
 
 feature --Access
 
- 	code: INTEGER_32
-    	 -- The response code associated with the error.
+    code: INTEGER_32
+      -- The response code associated with the error.
     message: detachable STRING_32
       -- The details or description of the error.
 

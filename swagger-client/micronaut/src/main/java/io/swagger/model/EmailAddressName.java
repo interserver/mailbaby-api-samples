@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "An email contact.")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-04-02T13:33:31.048512402-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-10-15T16:38:09.116249779-04:00[America/New_York]")
 public class EmailAddressName   {
   @JsonProperty("email")
   private String email = null;
@@ -53,6 +53,7 @@ public class EmailAddressName   {
    * @return name
   **/
   @Schema(example = "John Smith", description = "Name to use for the sending contact.")
+  @NotNull
 
   public String getName() {
     return name;

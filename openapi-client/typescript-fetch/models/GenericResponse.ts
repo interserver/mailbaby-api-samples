@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -36,10 +36,8 @@ export interface GenericResponse {
 /**
  * Check if a given object implements the GenericResponse interface.
  */
-export function instanceOfGenericResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+export function instanceOfGenericResponse(value: object): value is GenericResponse {
+    return true;
 }
 
 export function GenericResponseFromJSON(json: any): GenericResponse {
@@ -47,27 +45,24 @@ export function GenericResponseFromJSON(json: any): GenericResponse {
 }
 
 export function GenericResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GenericResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'text': !exists(json, 'text') ? undefined : json['text'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'text': json['text'] == null ? undefined : json['text'],
     };
 }
 
 export function GenericResponseToJSON(value?: GenericResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'status': value.status,
-        'text': value.text,
+        'status': value['status'],
+        'text': value['text'],
     };
 }
 

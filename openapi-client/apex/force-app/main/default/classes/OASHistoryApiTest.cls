@@ -29,6 +29,22 @@ private class OASHistoryApiTest {
         expectedResponse = new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()};
         response = (List<OASGetStats200ResponseInner>) api.getStats();
         System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()});
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()};
+        response = (List<OASGetStats200ResponseInner>) api.getStats();
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()});
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()};
+        response = (List<OASGetStats200ResponseInner>) api.getStats();
+        System.assertEquals(expectedResponse, response);
     }
 
     /**

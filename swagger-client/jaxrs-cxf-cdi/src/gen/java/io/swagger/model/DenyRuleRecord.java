@@ -107,6 +107,7 @@ public enum TypeEnum {
   
   @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
   @JsonProperty("user")
+  @NotNull
   public String getUser() {
     return user;
   }

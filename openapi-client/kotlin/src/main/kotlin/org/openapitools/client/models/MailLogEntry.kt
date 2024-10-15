@@ -142,5 +142,8 @@ data class MailLogEntry (
     @Json(name = "messageId")
     val messageId: kotlin.String? = null
 
-)
+) {
+
+
+}
 

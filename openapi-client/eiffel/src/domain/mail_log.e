@@ -19,12 +19,12 @@ class MAIL_LOG
 
 feature --Access
 
- 	total: INTEGER_32
-    	 -- total number of mail log entries
- 	skip: INTEGER_32
-    	 -- number of emails skipped in listing
- 	limit: INTEGER_32
-    	 -- number of emails to return
+    total: INTEGER_32
+      -- total number of mail log entries
+    skip: INTEGER_32
+      -- number of emails skipped in listing
+    limit: INTEGER_32
+      -- number of emails to return
     emails: detachable LIST [MAIL_LOG_ENTRY]
       
 

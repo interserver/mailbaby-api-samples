@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   EmailAddressName.JSON_PROPERTY_NAME
 })
 @JsonTypeName("EmailAddressName")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class EmailAddressName {
     public static final String JSON_PROPERTY_EMAIL = "email";
@@ -50,7 +50,7 @@ public class EmailAddressName {
     /**
      * The email address.
      * @return email
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_EMAIL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -72,7 +72,7 @@ public class EmailAddressName {
     /**
      * Name to use for the sending contact.
      * @return name
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

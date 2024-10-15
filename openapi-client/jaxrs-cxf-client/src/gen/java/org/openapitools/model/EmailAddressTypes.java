@@ -70,8 +70,8 @@ public class EmailAddressTypes  {
       return false;
     }
     EmailAddressTypes emailAddressTypes = (EmailAddressTypes) o;
-    return Objects.equals(email, emailAddressTypes.email) &&
-        Objects.equals(name, emailAddressTypes.name);
+    return Objects.equals(this.email, emailAddressTypes.email) &&
+        Objects.equals(this.name, emailAddressTypes.name);
   }
 
   @Override

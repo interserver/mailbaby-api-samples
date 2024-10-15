@@ -69,8 +69,8 @@ public class EmailAddressName  {
       return false;
     }
     EmailAddressName emailAddressName = (EmailAddressName) o;
-    return Objects.equals(email, emailAddressName.email) &&
-        Objects.equals(name, emailAddressName.name);
+    return Objects.equals(this.email, emailAddressName.email) &&
+        Objects.equals(this.name, emailAddressName.name);
   }
 
   @Override

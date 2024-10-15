@@ -26,7 +26,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2024-04-02T13:33:26.045791402-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2024-10-15T16:38:03.834066472-04:00[America/New_York]")
 public interface MailApiService {
       Response addRule(String user,String type,String data,SecurityContext securityContext) throws NotFoundException;
       Response addRule(DenyRuleNew body,SecurityContext securityContext) throws NotFoundException;

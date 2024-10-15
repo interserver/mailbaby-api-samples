@@ -127,11 +127,11 @@ public class MailBlockClickHouse  {
       return false;
     }
     MailBlockClickHouse mailBlockClickHouse = (MailBlockClickHouse) o;
-    return Objects.equals(date, mailBlockClickHouse.date) &&
-        Objects.equals(from, mailBlockClickHouse.from) &&
-        Objects.equals(messageId, mailBlockClickHouse.messageId) &&
-        Objects.equals(subject, mailBlockClickHouse.subject) &&
-        Objects.equals(to, mailBlockClickHouse.to);
+    return Objects.equals(this.date, mailBlockClickHouse.date) &&
+        Objects.equals(this.from, mailBlockClickHouse.from) &&
+        Objects.equals(this.messageId, mailBlockClickHouse.messageId) &&
+        Objects.equals(this.subject, mailBlockClickHouse.subject) &&
+        Objects.equals(this.to, mailBlockClickHouse.to);
   }
 
   @Override

@@ -12,29 +12,20 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
-import re  # noqa: F401
-import io
 import warnings
-
-from pydantic import validate_call, ValidationError
-from typing import Dict, List, Optional, Tuple
-
-from pydantic import Field
+from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
+from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
-from pydantic import StrictInt, StrictStr
 
+from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
-
+from typing_extensions import Annotated
 from openapi_client.models.get_stats200_response_inner import GetStats200ResponseInner
 from openapi_client.models.mail_log import MailLog
 
-from openapi_client.api_client import ApiClient
+from openapi_client.api_client import ApiClient, RequestSerialized
 from openapi_client.api_response import ApiResponse
-from openapi_client.exceptions import (  # noqa: F401
-    ApiTypeError,
-    ApiValueError
-)
+from openapi_client.rest import RESTResponseType
 
 
 class HistoryApi:
@@ -49,148 +40,256 @@ class HistoryApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
+
     @validate_call
     def get_stats(
         self,
-        **kwargs,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> List[GetStats200ResponseInner]:
-        """Account usage statistics.  # noqa: E501
+        """Account usage statistics.
 
-        Returns information about the usage on your mail accounts.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+        Returns information about the usage on your mail accounts.
 
-        >>> thread = api.get_stats(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
-        :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: List[GetStats200ResponseInner]
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the get_stats_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
-
-        return self.get_stats_with_http_info.raw_function(
-            **kwargs,
-        )
-
-    @validate_call
-    def get_stats_with_http_info(
-        self,
-        **kwargs,
-    ) -> ApiResponse:
-        """Account usage statistics.  # noqa: E501
-
-        Returns information about the usage on your mail accounts.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_stats_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(List[GetStats200ResponseInner], status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._get_stats_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get_stats" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats: Dict[str, str] = {}
-
-        # process the path parameters
-        _path_params: Dict[str, str] = {}
-
-        # process the query parameters
-        _query_params: List[Tuple[str, str]] = []
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings: List[str] = ['apiKeyAuth']  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "List[GetStats200ResponseInner]",
             '401': "ErrorMessage",
             '404': "ErrorMessage",
         }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
 
-        return self.api_client.call_api(
-            '/mail/stats', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+
+    @validate_call
+    def get_stats_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[GetStats200ResponseInner]]:
+        """Account usage statistics.
+
+        Returns information about the usage on your mail accounts.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_stats_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[GetStats200ResponseInner]",
+            '401': "ErrorMessage",
+            '404': "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_stats_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Account usage statistics.
+
+        Returns information about the usage on your mail accounts.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_stats_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "List[GetStats200ResponseInner]",
+            '401': "ErrorMessage",
+            '404': "ErrorMessage",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_stats_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/mail/stats',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
 
     @validate_call
     def view_mail_log(
@@ -208,16 +307,22 @@ class HistoryApi:
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
         headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
-        **kwargs,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> MailLog:
-        """displays the mail log  # noqa: E501
+        """displays the mail log
 
-        Get a listing of the emails sent through this system   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.view_mail_log(id, origin, mx, var_from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, async_req=True)
-        >>> result = thread.get()
+        Get a listing of the emails sent through this system 
 
         :param id: The ID of your mail order this will be sent through.
         :type id: int
@@ -245,38 +350,62 @@ class HistoryApi:
         :type replyto: str
         :param headerfrom: Header From Email Address
         :type headerfrom: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request.
-               If one number provided, it will be total request
-               timeout. It can also be a pair (tuple) of
-               (connection, read) timeouts.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: MailLog
-        """
-        kwargs['_return_http_data_only'] = True
-        if '_preload_content' in kwargs:
-            message = "Error! Please call the view_mail_log_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data"  # noqa: E501
-            raise ValueError(message)
+        """ # noqa: E501
 
-        return self.view_mail_log_with_http_info.raw_function(
-            id,
-            origin,
-            mx,
-            var_from,
-            to,
-            subject,
-            mailid,
-            skip,
-            limit,
-            start_date,
-            end_date,
-            replyto,
-            headerfrom,
-            **kwargs,
+        _param = self._view_mail_log_serialize(
+            id=id,
+            origin=origin,
+            mx=mx,
+            var_from=var_from,
+            to=to,
+            subject=subject,
+            mailid=mailid,
+            skip=skip,
+            limit=limit,
+            start_date=start_date,
+            end_date=end_date,
+            replyto=replyto,
+            headerfrom=headerfrom,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "MailLog",
+            '400': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
 
     @validate_call
     def view_mail_log_with_http_info(
@@ -294,16 +423,22 @@ class HistoryApi:
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
         headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
-        **kwargs,
-    ) -> ApiResponse:
-        """displays the mail log  # noqa: E501
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[MailLog]:
+        """displays the mail log
 
-        Get a listing of the emails sent through this system   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.view_mail_log_with_http_info(id, origin, mx, var_from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, async_req=True)
-        >>> result = thread.get()
+        Get a listing of the emails sent through this system 
 
         :param id: The ID of your mail order this will be sent through.
         :type id: int
@@ -331,148 +466,294 @@ class HistoryApi:
         :type replyto: str
         :param headerfrom: Header From Email Address
         :type headerfrom: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
         :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
         :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
-        :rtype: tuple(MailLog, status_code(int), headers(HTTPHeaderDict))
-        """
+        """ # noqa: E501
 
-        _params = locals()
-
-        _all_params = [
-            'id',
-            'origin',
-            'mx',
-            'var_from',
-            'to',
-            'subject',
-            'mailid',
-            'skip',
-            'limit',
-            'start_date',
-            'end_date',
-            'replyto',
-            'headerfrom'
-        ]
-        _all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout',
-                '_request_auth',
-                '_content_type',
-                '_headers'
-            ]
+        _param = self._view_mail_log_serialize(
+            id=id,
+            origin=origin,
+            mx=mx,
+            var_from=var_from,
+            to=to,
+            subject=subject,
+            mailid=mailid,
+            skip=skip,
+            limit=limit,
+            start_date=start_date,
+            end_date=end_date,
+            replyto=replyto,
+            headerfrom=headerfrom,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
         )
-
-        # validate the arguments
-        for _key, _val in _params['kwargs'].items():
-            if _key not in _all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method view_mail_log" % _key
-                )
-            _params[_key] = _val
-        del _params['kwargs']
-
-        _collection_formats: Dict[str, str] = {}
-
-        # process the path parameters
-        _path_params: Dict[str, str] = {}
-
-        # process the query parameters
-        _query_params: List[Tuple[str, str]] = []
-        if _params.get('id') is not None:  # noqa: E501
-            _query_params.append(('id', _params['id']))
-
-        if _params.get('origin') is not None:  # noqa: E501
-            _query_params.append(('origin', _params['origin']))
-
-        if _params.get('mx') is not None:  # noqa: E501
-            _query_params.append(('mx', _params['mx']))
-
-        if _params.get('var_from') is not None:  # noqa: E501
-            _query_params.append(('from', _params['var_from']))
-
-        if _params.get('to') is not None:  # noqa: E501
-            _query_params.append(('to', _params['to']))
-
-        if _params.get('subject') is not None:  # noqa: E501
-            _query_params.append(('subject', _params['subject']))
-
-        if _params.get('mailid') is not None:  # noqa: E501
-            _query_params.append(('mailid', _params['mailid']))
-
-        if _params.get('skip') is not None:  # noqa: E501
-            _query_params.append(('skip', _params['skip']))
-
-        if _params.get('limit') is not None:  # noqa: E501
-            _query_params.append(('limit', _params['limit']))
-
-        if _params.get('start_date') is not None:  # noqa: E501
-            _query_params.append(('startDate', _params['start_date']))
-
-        if _params.get('end_date') is not None:  # noqa: E501
-            _query_params.append(('endDate', _params['end_date']))
-
-        if _params.get('replyto') is not None:  # noqa: E501
-            _query_params.append(('replyto', _params['replyto']))
-
-        if _params.get('headerfrom') is not None:  # noqa: E501
-            _query_params.append(('headerfrom', _params['headerfrom']))
-
-        # process the header parameters
-        _header_params = dict(_params.get('_headers', {}))
-        # process the form parameters
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, str] = {}
-        # process the body parameter
-        _body_params = None
-        # set the HTTP header `Accept`
-        _header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
-
-        # authentication setting
-        _auth_settings: List[str] = ['apiKeyAuth']  # noqa: E501
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "MailLog",
             '400': None,
         }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
 
-        return self.api_client.call_api(
-            '/mail/log', 'GET',
-            _path_params,
-            _query_params,
-            _header_params,
+
+    @validate_call
+    def view_mail_log_without_preload_content(
+        self,
+        id: Annotated[Optional[StrictInt], Field(description="The ID of your mail order this will be sent through.")] = None,
+        origin: Annotated[Optional[StrictStr], Field(description="originating ip address sending mail")] = None,
+        mx: Annotated[Optional[StrictStr], Field(description="mx record mail was sent to")] = None,
+        var_from: Annotated[Optional[StrictStr], Field(description="from email address")] = None,
+        to: Annotated[Optional[StrictStr], Field(description="to/destination email address")] = None,
+        subject: Annotated[Optional[StrictStr], Field(description="subject containing this string")] = None,
+        mailid: Annotated[Optional[StrictStr], Field(description="mail id")] = None,
+        skip: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="number of records to skip for pagination")] = None,
+        limit: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="maximum number of records to return")] = None,
+        start_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
+        end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
+        replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
+        headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """displays the mail log
+
+        Get a listing of the emails sent through this system 
+
+        :param id: The ID of your mail order this will be sent through.
+        :type id: int
+        :param origin: originating ip address sending mail
+        :type origin: str
+        :param mx: mx record mail was sent to
+        :type mx: str
+        :param var_from: from email address
+        :type var_from: str
+        :param to: to/destination email address
+        :type to: str
+        :param subject: subject containing this string
+        :type subject: str
+        :param mailid: mail id
+        :type mailid: str
+        :param skip: number of records to skip for pagination
+        :type skip: int
+        :param limit: maximum number of records to return
+        :type limit: int
+        :param start_date: earliest date to get emails in unix timestamp format
+        :type start_date: int
+        :param end_date: earliest date to get emails in unix timestamp format
+        :type end_date: int
+        :param replyto: Reply-To Email Address
+        :type replyto: str
+        :param headerfrom: Header From Email Address
+        :type headerfrom: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._view_mail_log_serialize(
+            id=id,
+            origin=origin,
+            mx=mx,
+            var_from=var_from,
+            to=to,
+            subject=subject,
+            mailid=mailid,
+            skip=skip,
+            limit=limit,
+            start_date=start_date,
+            end_date=end_date,
+            replyto=replyto,
+            headerfrom=headerfrom,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "MailLog",
+            '400': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _view_mail_log_serialize(
+        self,
+        id,
+        origin,
+        mx,
+        var_from,
+        to,
+        subject,
+        mailid,
+        skip,
+        limit,
+        start_date,
+        end_date,
+        replyto,
+        headerfrom,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if id is not None:
+            
+            _query_params.append(('id', id))
+            
+        if origin is not None:
+            
+            _query_params.append(('origin', origin))
+            
+        if mx is not None:
+            
+            _query_params.append(('mx', mx))
+            
+        if var_from is not None:
+            
+            _query_params.append(('from', var_from))
+            
+        if to is not None:
+            
+            _query_params.append(('to', to))
+            
+        if subject is not None:
+            
+            _query_params.append(('subject', subject))
+            
+        if mailid is not None:
+            
+            _query_params.append(('mailid', mailid))
+            
+        if skip is not None:
+            
+            _query_params.append(('skip', skip))
+            
+        if limit is not None:
+            
+            _query_params.append(('limit', limit))
+            
+        if start_date is not None:
+            
+            _query_params.append(('startDate', start_date))
+            
+        if end_date is not None:
+            
+            _query_params.append(('endDate', end_date))
+            
+        if replyto is not None:
+            
+            _query_params.append(('replyto', replyto))
+            
+        if headerfrom is not None:
+            
+            _query_params.append(('headerfrom', headerfrom))
+            
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'apiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/mail/log',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
             body=_body_params,
             post_params=_form_params,
             files=_files,
-            response_types_map=_response_types_map,
             auth_settings=_auth_settings,
-            async_req=_params.get('async_req'),
-            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=_params.get('_preload_content', True),
-            _request_timeout=_params.get('_request_timeout'),
             collection_formats=_collection_formats,
-            _request_auth=_params.get('_request_auth'))
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+

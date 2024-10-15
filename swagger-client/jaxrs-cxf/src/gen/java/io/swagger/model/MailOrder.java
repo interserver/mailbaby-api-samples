@@ -106,6 +106,7 @@ public class MailOrder   {
    * @return comment
   **/
   @JsonProperty("comment")
+  @NotNull
   public String getComment() {
     return comment;
   }

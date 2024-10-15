@@ -63,8 +63,8 @@ public class MailBlockRspamd  {
       return false;
     }
     MailBlockRspamd mailBlockRspamd = (MailBlockRspamd) o;
-    return Objects.equals(from, mailBlockRspamd.from) &&
-        Objects.equals(subject, mailBlockRspamd.subject);
+    return Objects.equals(this.from, mailBlockRspamd.from) &&
+        Objects.equals(this.subject, mailBlockRspamd.subject);
   }
 
   @Override

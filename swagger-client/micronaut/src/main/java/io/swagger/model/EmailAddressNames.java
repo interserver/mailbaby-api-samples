@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Array of Email Addresses")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-04-02T13:33:31.048512402-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-10-15T16:38:09.116249779-04:00[America/New_York]")
 public class EmailAddressNames extends ArrayList<EmailAddressName>  {
 
   @Override

@@ -18,8 +18,7 @@ import sttp.client3._
 import sttp.model.Method
 
 object ServicesApi {
-
-def apply(baseUrl: String = "https://api.mailbaby.net") = new ServicesApi(baseUrl)
+  def apply(baseUrl: String = "https://api.mailbaby.net") = new ServicesApi(baseUrl)
 }
 
 class ServicesApi(baseUrl: String) {

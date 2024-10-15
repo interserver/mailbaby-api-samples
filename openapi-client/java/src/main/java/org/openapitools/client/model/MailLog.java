@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * Mail log records
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailLog {
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -74,20 +74,18 @@ public class MailLog {
   }
 
   public MailLog total(Integer total) {
-    
     this.total = total;
     return this;
   }
 
-   /**
+  /**
    * total number of mail log entries
    * @return total
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getTotal() {
     return total;
   }
-
 
   public void setTotal(Integer total) {
     this.total = total;
@@ -95,20 +93,18 @@ public class MailLog {
 
 
   public MailLog skip(Integer skip) {
-    
     this.skip = skip;
     return this;
   }
 
-   /**
+  /**
    * number of emails skipped in listing
    * @return skip
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getSkip() {
     return skip;
   }
-
 
   public void setSkip(Integer skip) {
     this.skip = skip;
@@ -116,20 +112,18 @@ public class MailLog {
 
 
   public MailLog limit(Integer limit) {
-    
     this.limit = limit;
     return this;
   }
 
-   /**
+  /**
    * number of emails to return
    * @return limit
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getLimit() {
     return limit;
   }
-
 
   public void setLimit(Integer limit) {
     this.limit = limit;
@@ -137,7 +131,6 @@ public class MailLog {
 
 
   public MailLog emails(List<MailLogEntry> emails) {
-    
     this.emails = emails;
     return this;
   }
@@ -150,15 +143,14 @@ public class MailLog {
     return this;
   }
 
-   /**
+  /**
    * Get emails
    * @return emails
-  **/
+   */
   @javax.annotation.Nonnull
   public List<MailLogEntry> getEmails() {
     return emails;
   }
-
 
   public void setEmails(List<MailLogEntry> emails) {
     this.emails = emails;
@@ -229,12 +221,12 @@ public class MailLog {
     openapiRequiredFields.add("emails");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailLog
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailLog
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailLog.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -298,22 +290,22 @@ public class MailLog {
     }
   }
 
- /**
-  * Create an instance of MailLog given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailLog
-  * @throws IOException if the JSON string is invalid with respect to MailLog
-  */
+  /**
+   * Create an instance of MailLog given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailLog
+   * @throws IOException if the JSON string is invalid with respect to MailLog
+   */
   public static MailLog fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailLog.class);
   }
 
- /**
-  * Convert an instance of MailLog to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailLog to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

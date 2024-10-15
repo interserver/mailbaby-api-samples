@@ -21,9 +21,8 @@ Adds a new email deny rule into the system to block new emails that match the gi
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.generic_response import GenericResponse
 from openapi_client.rest import ApiException
@@ -67,6 +66,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | **str**| The type of deny rule. | 
@@ -87,6 +87,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
@@ -106,9 +107,8 @@ Removes one of the configured deny mail rules from the system.
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.generic_response import GenericResponse
 from openapi_client.rest import ApiException
@@ -150,6 +150,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **rule_id** | **int**| The ID of the Rules entry. | 
@@ -168,6 +169,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
@@ -187,9 +189,8 @@ Removes an email address from the various block lists.
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.generic_response import GenericResponse
 from openapi_client.rest import ApiException
@@ -231,6 +232,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **str**|  | 
@@ -249,6 +251,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |
@@ -266,9 +269,8 @@ displays a list of blocked email addresses
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.mail_blocks import MailBlocks
 from openapi_client.rest import ApiException
@@ -308,6 +310,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -324,6 +327,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -342,9 +346,8 @@ Returns a listing of all the deny block rules you have configured.
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.deny_rule_record import DenyRuleRecord
 from openapi_client.rest import ApiException
@@ -384,6 +387,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -400,6 +404,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

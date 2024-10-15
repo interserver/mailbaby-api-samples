@@ -58,7 +58,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class EmailAddressTypes extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailAddressTypes.class.getName());
 
@@ -83,15 +83,15 @@ public class EmailAddressTypes extends AbstractOpenApiSchema {
 
                     // check if the actual instance is of the type `String`
                     if (value.getActualInstance() instanceof String) {
-                      JsonPrimitive primitive = adapterString.toJsonTree((String)value.getActualInstance()).getAsJsonPrimitive();
-                      elementAdapter.write(out, primitive);
-                      return;
+                        JsonPrimitive primitive = adapterString.toJsonTree((String)value.getActualInstance()).getAsJsonPrimitive();
+                        elementAdapter.write(out, primitive);
+                        return;
                     }
                     // check if the actual instance is of the type `EmailAddressName`
                     if (value.getActualInstance() instanceof EmailAddressName) {
-                      JsonElement element = adapterEmailAddressName.toJsonTree((EmailAddressName)value.getActualInstance());
-                      elementAdapter.write(out, element);
-                      return;
+                        JsonElement element = adapterEmailAddressName.toJsonTree((EmailAddressName)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
                     }
                     throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: EmailAddressName, String");
                 }
@@ -107,29 +107,29 @@ public class EmailAddressTypes extends AbstractOpenApiSchema {
 
                     // deserialize String
                     try {
-                      // validate the JSON object to see if any exception is thrown
-                      if(!jsonElement.getAsJsonPrimitive().isString()) {
-                        throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
-                      }
-                      actualAdapter = adapterString;
-                      match++;
-                      log.log(Level.FINER, "Input data matches schema 'String'");
+                        // validate the JSON object to see if any exception is thrown
+                        if (!jsonElement.getAsJsonPrimitive().isString()) {
+                            throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
+                        }
+                        actualAdapter = adapterString;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'String'");
                     } catch (Exception e) {
-                      // deserialization failed, continue
-                      errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
-                      log.log(Level.FINER, "Input data does not match schema 'String'", e);
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
                     // deserialize EmailAddressName
                     try {
-                      // validate the JSON object to see if any exception is thrown
-                      EmailAddressName.validateJsonElement(jsonElement);
-                      actualAdapter = adapterEmailAddressName;
-                      match++;
-                      log.log(Level.FINER, "Input data matches schema 'EmailAddressName'");
+                        // validate the JSON object to see if any exception is thrown
+                        EmailAddressName.validateJsonElement(jsonElement);
+                        actualAdapter = adapterEmailAddressName;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'EmailAddressName'");
                     } catch (Exception e) {
-                      // deserialization failed, continue
-                      errorMessages.add(String.format("Deserialization for EmailAddressName failed with `%s`.", e.getMessage()));
-                      log.log(Level.FINER, "Input data does not match schema 'EmailAddressName'", e);
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for EmailAddressName failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'EmailAddressName'", e);
                     }
 
                     if (match == 1) {
@@ -151,12 +151,7 @@ public class EmailAddressTypes extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public EmailAddressTypes(EmailAddressName o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public EmailAddressTypes(String o) {
+    public EmailAddressTypes(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
@@ -199,6 +194,7 @@ public class EmailAddressTypes extends AbstractOpenApiSchema {
      *
      * @return The actual instance (EmailAddressName, String)
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Object getActualInstance() {
         return super.getActualInstance();
@@ -225,57 +221,57 @@ public class EmailAddressTypes extends AbstractOpenApiSchema {
         return (EmailAddressName)super.getActualInstance();
     }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EmailAddressTypes
-  */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-    // validate oneOf schemas one by one
-    int validCount = 0;
-    ArrayList<String> errorMessages = new ArrayList<>();
-    // validate the json string with String
-    try {
-      if(!jsonElement.getAsJsonPrimitive().isString()) {
-        throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
-      }
-      validCount++;
-    } catch (Exception e) {
-      errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
-      // continue to the next one
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to EmailAddressTypes
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // validate oneOf schemas one by one
+        int validCount = 0;
+        ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with String
+        try {
+            if (!jsonElement.getAsJsonPrimitive().isString()) {
+                throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
+            }
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with EmailAddressName
+        try {
+            EmailAddressName.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for EmailAddressName failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        if (validCount != 1) {
+            throw new IOException(String.format("The JSON string is invalid for EmailAddressTypes with oneOf schemas: EmailAddressName, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+        }
     }
-    // validate the json string with EmailAddressName
-    try {
-      EmailAddressName.validateJsonElement(jsonElement);
-      validCount++;
-    } catch (Exception e) {
-      errorMessages.add(String.format("Deserialization for EmailAddressName failed with `%s`.", e.getMessage()));
-      // continue to the next one
-    }
-    if (validCount != 1) {
-      throw new IOException(String.format("The JSON string is invalid for EmailAddressTypes with oneOf schemas: EmailAddressName, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
-    }
-  }
 
- /**
-  * Create an instance of EmailAddressTypes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EmailAddressTypes
-  * @throws IOException if the JSON string is invalid with respect to EmailAddressTypes
-  */
-  public static EmailAddressTypes fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EmailAddressTypes.class);
-  }
+    /**
+     * Create an instance of EmailAddressTypes given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of EmailAddressTypes
+     * @throws IOException if the JSON string is invalid with respect to EmailAddressTypes
+     */
+    public static EmailAddressTypes fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, EmailAddressTypes.class);
+    }
 
- /**
-  * Convert an instance of EmailAddressTypes to an JSON string
-  *
-  * @return JSON string
-  */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    /**
+     * Convert an instance of EmailAddressTypes to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
 

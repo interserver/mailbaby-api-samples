@@ -47,5 +47,8 @@ data class MailLog (
     @Json(name = "emails")
     val emails: kotlin.collections.List<MailLogEntry>
 
-)
+) {
+
+
+}
 

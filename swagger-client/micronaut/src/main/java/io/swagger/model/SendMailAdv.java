@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Details for an Email")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-04-02T13:33:31.048512402-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-10-15T16:38:09.116249779-04:00[America/New_York]")
 public class SendMailAdv   {
   @JsonProperty("subject")
   private String subject = null;
@@ -142,6 +142,7 @@ public class SendMailAdv   {
    * @return replyto
   **/
   @Schema(description = "")
+  @NotNull
 
   @Valid
   public EmailAddressesTypes getReplyto() {
@@ -162,6 +163,7 @@ public class SendMailAdv   {
    * @return cc
   **/
   @Schema(description = "")
+  @NotNull
 
   @Valid
   public EmailAddressesTypes getCc() {
@@ -182,6 +184,7 @@ public class SendMailAdv   {
    * @return bcc
   **/
   @Schema(description = "")
+  @NotNull
 
   @Valid
   public EmailAddressesTypes getBcc() {
@@ -210,6 +213,7 @@ public class SendMailAdv   {
    * @return attachments
   **/
   @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
+  @NotNull
   @Valid
   public List<MailAttachment> getAttachments() {
     return attachments;
@@ -229,6 +233,7 @@ public class SendMailAdv   {
    * @return id
   **/
   @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
+  @NotNull
 
   public Long getId() {
     return id;

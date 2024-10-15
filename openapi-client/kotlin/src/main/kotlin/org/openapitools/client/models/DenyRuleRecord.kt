@@ -66,5 +66,6 @@ data class DenyRuleRecord (
         @Json(name = "startswith") startswith("startswith"),
         @Json(name = "destination") destination("destination");
     }
+
 }
 

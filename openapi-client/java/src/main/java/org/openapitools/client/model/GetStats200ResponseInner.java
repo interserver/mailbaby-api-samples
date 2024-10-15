@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * GetStats200ResponseInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class GetStats200ResponseInner {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -75,20 +75,18 @@ public class GetStats200ResponseInner {
   }
 
   public GetStats200ResponseInner id(Integer id) {
-    
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Get id
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getId() {
     return id;
   }
-
 
   public void setId(Integer id) {
     this.id = id;
@@ -96,20 +94,18 @@ public class GetStats200ResponseInner {
 
 
   public GetStats200ResponseInner status(String status) {
-    
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
   public String getStatus() {
     return status;
   }
-
 
   public void setStatus(String status) {
     this.status = status;
@@ -117,20 +113,18 @@ public class GetStats200ResponseInner {
 
 
   public GetStats200ResponseInner username(String username) {
-    
     this.username = username;
     return this;
   }
 
-   /**
+  /**
    * Get username
    * @return username
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUsername() {
     return username;
   }
-
 
   public void setUsername(String username) {
     this.username = username;
@@ -138,20 +132,18 @@ public class GetStats200ResponseInner {
 
 
   public GetStats200ResponseInner password(String password) {
-    
     this.password = password;
     return this;
   }
 
-   /**
+  /**
    * Get password
    * @return password
-  **/
+   */
   @javax.annotation.Nullable
   public String getPassword() {
     return password;
   }
-
 
   public void setPassword(String password) {
     this.password = password;
@@ -159,20 +151,18 @@ public class GetStats200ResponseInner {
 
 
   public GetStats200ResponseInner comment(String comment) {
-    
     this.comment = comment;
     return this;
   }
 
-   /**
+  /**
    * Get comment
    * @return comment
-  **/
+   */
   @javax.annotation.Nullable
   public String getComment() {
     return comment;
   }
-
 
   public void setComment(String comment) {
     this.comment = comment;
@@ -245,12 +235,12 @@ public class GetStats200ResponseInner {
     openapiRequiredFields.add("username");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetStats200ResponseInner
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetStats200ResponseInner
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetStats200ResponseInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -316,22 +306,22 @@ public class GetStats200ResponseInner {
     }
   }
 
- /**
-  * Create an instance of GetStats200ResponseInner given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetStats200ResponseInner
-  * @throws IOException if the JSON string is invalid with respect to GetStats200ResponseInner
-  */
+  /**
+   * Create an instance of GetStats200ResponseInner given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetStats200ResponseInner
+   * @throws IOException if the JSON string is invalid with respect to GetStats200ResponseInner
+   */
   public static GetStats200ResponseInner fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetStats200ResponseInner.class);
   }
 
- /**
-  * Convert an instance of GetStats200ResponseInner to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetStats200ResponseInner to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

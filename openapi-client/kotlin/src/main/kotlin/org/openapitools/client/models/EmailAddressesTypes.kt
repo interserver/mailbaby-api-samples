@@ -28,5 +28,8 @@ import com.squareup.moshi.JsonClass
 
 data class EmailAddressesTypes (
 
-)
+) {
+
+
+}
 

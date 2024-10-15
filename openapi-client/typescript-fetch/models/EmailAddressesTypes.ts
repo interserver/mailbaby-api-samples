@@ -24,18 +24,22 @@ export function EmailAddressesTypesFromJSON(json: any): EmailAddressesTypes {
 }
 
 export function EmailAddressesTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmailAddressesTypes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return { ...Array<EmailAddressName>FromJSONTyped(json, true), ...stringFromJSONTyped(json, true) };
+    if (instanceOfArray<EmailAddressName>(json)) {
+        return Array<EmailAddressName>FromJSONTyped(json, true);
+    }
+    if (instanceOfstring(json)) {
+        return stringFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function EmailAddressesTypesToJSON(value?: EmailAddressesTypes | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
 
     if (instanceOfArray<EmailAddressName>(value)) {

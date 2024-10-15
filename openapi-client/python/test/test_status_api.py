@@ -15,14 +15,14 @@
 
 import unittest
 
-from openapi_client.api.status_api import StatusApi  # noqa: E501
+from openapi_client.api.status_api import StatusApi
 
 
 class TestStatusApi(unittest.TestCase):
     """StatusApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = StatusApi()  # noqa: E501
+        self.api = StatusApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,7 +30,7 @@ class TestStatusApi(unittest.TestCase):
     def test_ping_server(self) -> None:
         """Test case for ping_server
 
-        Checks if the server is running  # noqa: E501
+        Checks if the server is running
         """
         pass
 

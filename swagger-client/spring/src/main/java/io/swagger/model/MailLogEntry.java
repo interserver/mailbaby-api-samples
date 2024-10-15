@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,80 +18,108 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "An email record")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-02T13:33:33.953471686-04:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-15T16:38:12.193621947-04:00[America/New_York]")
 
 
 public class MailLogEntry   {
   @JsonProperty("_id")
+
   private Integer _id = null;
 
   @JsonProperty("id")
+
   private String id = null;
 
   @JsonProperty("from")
+
   private String from = null;
 
   @JsonProperty("to")
+
   private String to = null;
 
   @JsonProperty("subject")
+
   private String subject = null;
 
   @JsonProperty("messageId")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String messageId = null;
 
   @JsonProperty("created")
+
   private String created = null;
 
   @JsonProperty("time")
+
   private Integer time = null;
 
   @JsonProperty("user")
+
   private String user = null;
 
   @JsonProperty("transtype")
+
   private String transtype = null;
 
   @JsonProperty("origin")
+
   private String origin = null;
 
   @JsonProperty("interface")
+
   private String _interface = null;
 
   @JsonProperty("sendingZone")
+
   private String sendingZone = null;
 
   @JsonProperty("bodySize")
+
   private Integer bodySize = null;
 
   @JsonProperty("seq")
+
   private Integer seq = null;
 
   @JsonProperty("recipient")
+
   private String recipient = null;
 
   @JsonProperty("domain")
+
   private String domain = null;
 
   @JsonProperty("locked")
+
   private Integer locked = null;
 
   @JsonProperty("lockTime")
+
   private String lockTime = null;
 
   @JsonProperty("assigned")
+
   private String assigned = null;
 
   @JsonProperty("queued")
+
   private String queued = null;
 
   @JsonProperty("mxHostname")
+
   private String mxHostname = null;
 
   @JsonProperty("response")
+
   private String response = null;
 
-  public MailLogEntry _id(Integer _id) {
+
+  public MailLogEntry _id(Integer _id) { 
+
     this._id = _id;
     return this;
   }
@@ -95,18 +128,23 @@ public class MailLogEntry   {
    * internal db id
    * @return _id
    **/
+  
   @Schema(example = "103172", required = true, description = "internal db id")
-      @NotNull
-
-    public Integer getId() {
+  
+  @NotNull
+  public Integer getId() {  
     return _id;
   }
 
-  public void setId(Integer _id) {
+
+
+  public void setId(Integer _id) { 
+
     this._id = _id;
   }
 
-  public MailLogEntry id(String id) {
+  public MailLogEntry id(String id) { 
+
     this.id = id;
     return this;
   }
@@ -115,18 +153,23 @@ public class MailLogEntry   {
    * mail id
    * @return id
    **/
+  
   @Schema(example = "17c7eda538e0005d03", required = true, description = "mail id")
-      @NotNull
-
-    public String getId() {
+  
+  @NotNull
+  public String getId() {  
     return id;
   }
 
-  public void setId(String id) {
+
+
+  public void setId(String id) { 
+
     this.id = id;
   }
 
-  public MailLogEntry from(String from) {
+  public MailLogEntry from(String from) { 
+
     this.from = from;
     return this;
   }
@@ -135,18 +178,23 @@ public class MailLogEntry   {
    * from address
    * @return from
    **/
+  
   @Schema(example = "person@mysite.com", required = true, description = "from address")
-      @NotNull
-
-    public String getFrom() {
+  
+  @NotNull
+  public String getFrom() {  
     return from;
   }
 
-  public void setFrom(String from) {
+
+
+  public void setFrom(String from) { 
+
     this.from = from;
   }
 
-  public MailLogEntry to(String to) {
+  public MailLogEntry to(String to) { 
+
     this.to = to;
     return this;
   }
@@ -155,18 +203,23 @@ public class MailLogEntry   {
    * to address
    * @return to
    **/
+  
   @Schema(example = "client@isp.com", required = true, description = "to address")
-      @NotNull
-
-    public String getTo() {
+  
+  @NotNull
+  public String getTo() {  
     return to;
   }
 
-  public void setTo(String to) {
+
+
+  public void setTo(String to) { 
+
     this.to = to;
   }
 
-  public MailLogEntry subject(String subject) {
+  public MailLogEntry subject(String subject) { 
+
     this.subject = subject;
     return this;
   }
@@ -175,18 +228,23 @@ public class MailLogEntry   {
    * email subject
    * @return subject
    **/
+  
   @Schema(example = "sell 0.005 shares", required = true, description = "email subject")
-      @NotNull
-
-    public String getSubject() {
+  
+  @NotNull
+  public String getSubject() {  
     return subject;
   }
 
-  public void setSubject(String subject) {
+
+
+  public void setSubject(String subject) { 
+
     this.subject = subject;
   }
 
-  public MailLogEntry messageId(String messageId) {
+  public MailLogEntry messageId(String messageId) { 
+
     this.messageId = messageId;
     return this;
   }
@@ -195,17 +253,21 @@ public class MailLogEntry   {
    * message id
    * @return messageId
    **/
+  
   @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "message id")
   
-    public String getMessageId() {
+  public String getMessageId() {  
     return messageId;
   }
 
-  public void setMessageId(String messageId) {
+
+
+  public void setMessageId(String messageId) { 
     this.messageId = messageId;
   }
 
-  public MailLogEntry created(String created) {
+  public MailLogEntry created(String created) { 
+
     this.created = created;
     return this;
   }
@@ -214,18 +276,23 @@ public class MailLogEntry   {
    * creation date
    * @return created
    **/
+  
   @Schema(example = "2021-10-14 08:50:10", required = true, description = "creation date")
-      @NotNull
-
-    public String getCreated() {
+  
+  @NotNull
+  public String getCreated() {  
     return created;
   }
 
-  public void setCreated(String created) {
+
+
+  public void setCreated(String created) { 
+
     this.created = created;
   }
 
-  public MailLogEntry time(Integer time) {
+  public MailLogEntry time(Integer time) { 
+
     this.time = time;
     return this;
   }
@@ -234,18 +301,23 @@ public class MailLogEntry   {
    * creation timestamp
    * @return time
    **/
+  
   @Schema(example = "1634215809", required = true, description = "creation timestamp")
-      @NotNull
-
-    public Integer getTime() {
+  
+  @NotNull
+  public Integer getTime() {  
     return time;
   }
 
-  public void setTime(Integer time) {
+
+
+  public void setTime(Integer time) { 
+
     this.time = time;
   }
 
-  public MailLogEntry user(String user) {
+  public MailLogEntry user(String user) { 
+
     this.user = user;
     return this;
   }
@@ -254,18 +326,23 @@ public class MailLogEntry   {
    * user account
    * @return user
    **/
+  
   @Schema(example = "mb5658", required = true, description = "user account")
-      @NotNull
-
-    public String getUser() {
+  
+  @NotNull
+  public String getUser() {  
     return user;
   }
 
-  public void setUser(String user) {
+
+
+  public void setUser(String user) { 
+
     this.user = user;
   }
 
-  public MailLogEntry transtype(String transtype) {
+  public MailLogEntry transtype(String transtype) { 
+
     this.transtype = transtype;
     return this;
   }
@@ -274,18 +351,23 @@ public class MailLogEntry   {
    * transaction type
    * @return transtype
    **/
+  
   @Schema(example = "ESMTPSA", required = true, description = "transaction type")
-      @NotNull
-
-    public String getTranstype() {
+  
+  @NotNull
+  public String getTranstype() {  
     return transtype;
   }
 
-  public void setTranstype(String transtype) {
+
+
+  public void setTranstype(String transtype) { 
+
     this.transtype = transtype;
   }
 
-  public MailLogEntry origin(String origin) {
+  public MailLogEntry origin(String origin) { 
+
     this.origin = origin;
     return this;
   }
@@ -294,18 +376,23 @@ public class MailLogEntry   {
    * origin ip
    * @return origin
    **/
+  
   @Schema(example = "199.231.189.154", required = true, description = "origin ip")
-      @NotNull
-
-    public String getOrigin() {
+  
+  @NotNull
+  public String getOrigin() {  
     return origin;
   }
 
-  public void setOrigin(String origin) {
+
+
+  public void setOrigin(String origin) { 
+
     this.origin = origin;
   }
 
-  public MailLogEntry _interface(String _interface) {
+  public MailLogEntry _interface(String _interface) { 
+
     this._interface = _interface;
     return this;
   }
@@ -314,18 +401,23 @@ public class MailLogEntry   {
    * interface name
    * @return _interface
    **/
+  
   @Schema(example = "feeder", required = true, description = "interface name")
-      @NotNull
-
-    public String getInterface() {
+  
+  @NotNull
+  public String getInterface() {  
     return _interface;
   }
 
-  public void setInterface(String _interface) {
+
+
+  public void setInterface(String _interface) { 
+
     this._interface = _interface;
   }
 
-  public MailLogEntry sendingZone(String sendingZone) {
+  public MailLogEntry sendingZone(String sendingZone) { 
+
     this.sendingZone = sendingZone;
     return this;
   }
@@ -334,18 +426,23 @@ public class MailLogEntry   {
    * sending zone
    * @return sendingZone
    **/
+  
   @Schema(example = "interserver", required = true, description = "sending zone")
-      @NotNull
-
-    public String getSendingZone() {
+  
+  @NotNull
+  public String getSendingZone() {  
     return sendingZone;
   }
 
-  public void setSendingZone(String sendingZone) {
+
+
+  public void setSendingZone(String sendingZone) { 
+
     this.sendingZone = sendingZone;
   }
 
-  public MailLogEntry bodySize(Integer bodySize) {
+  public MailLogEntry bodySize(Integer bodySize) { 
+
     this.bodySize = bodySize;
     return this;
   }
@@ -354,18 +451,23 @@ public class MailLogEntry   {
    * email body size in bytes
    * @return bodySize
    **/
+  
   @Schema(example = "63", required = true, description = "email body size in bytes")
-      @NotNull
-
-    public Integer getBodySize() {
+  
+  @NotNull
+  public Integer getBodySize() {  
     return bodySize;
   }
 
-  public void setBodySize(Integer bodySize) {
+
+
+  public void setBodySize(Integer bodySize) { 
+
     this.bodySize = bodySize;
   }
 
-  public MailLogEntry seq(Integer seq) {
+  public MailLogEntry seq(Integer seq) { 
+
     this.seq = seq;
     return this;
   }
@@ -374,18 +476,23 @@ public class MailLogEntry   {
    * index of email in the to adderess list
    * @return seq
    **/
+  
   @Schema(example = "1", required = true, description = "index of email in the to adderess list")
-      @NotNull
-
-    public Integer getSeq() {
+  
+  @NotNull
+  public Integer getSeq() {  
     return seq;
   }
 
-  public void setSeq(Integer seq) {
+
+
+  public void setSeq(Integer seq) { 
+
     this.seq = seq;
   }
 
-  public MailLogEntry recipient(String recipient) {
+  public MailLogEntry recipient(String recipient) { 
+
     this.recipient = recipient;
     return this;
   }
@@ -394,18 +501,23 @@ public class MailLogEntry   {
    * to address this email is being sent to
    * @return recipient
    **/
+  
   @Schema(example = "client@isp.com", required = true, description = "to address this email is being sent to")
-      @NotNull
-
-    public String getRecipient() {
+  
+  @NotNull
+  public String getRecipient() {  
     return recipient;
   }
 
-  public void setRecipient(String recipient) {
+
+
+  public void setRecipient(String recipient) { 
+
     this.recipient = recipient;
   }
 
-  public MailLogEntry domain(String domain) {
+  public MailLogEntry domain(String domain) { 
+
     this.domain = domain;
     return this;
   }
@@ -414,18 +526,23 @@ public class MailLogEntry   {
    * to address domain
    * @return domain
    **/
+  
   @Schema(example = "interserver.net", required = true, description = "to address domain")
-      @NotNull
-
-    public String getDomain() {
+  
+  @NotNull
+  public String getDomain() {  
     return domain;
   }
 
-  public void setDomain(String domain) {
+
+
+  public void setDomain(String domain) { 
+
     this.domain = domain;
   }
 
-  public MailLogEntry locked(Integer locked) {
+  public MailLogEntry locked(Integer locked) { 
+
     this.locked = locked;
     return this;
   }
@@ -434,18 +551,23 @@ public class MailLogEntry   {
    * locked status
    * @return locked
    **/
+  
   @Schema(example = "1", required = true, description = "locked status")
-      @NotNull
-
-    public Integer getLocked() {
+  
+  @NotNull
+  public Integer getLocked() {  
     return locked;
   }
 
-  public void setLocked(Integer locked) {
+
+
+  public void setLocked(Integer locked) { 
+
     this.locked = locked;
   }
 
-  public MailLogEntry lockTime(String lockTime) {
+  public MailLogEntry lockTime(String lockTime) { 
+
     this.lockTime = lockTime;
     return this;
   }
@@ -454,18 +576,23 @@ public class MailLogEntry   {
    * lock timestamp
    * @return lockTime
    **/
+  
   @Schema(example = "1634215818533", required = true, description = "lock timestamp")
-      @NotNull
-
-    public String getLockTime() {
+  
+  @NotNull
+  public String getLockTime() {  
     return lockTime;
   }
 
-  public void setLockTime(String lockTime) {
+
+
+  public void setLockTime(String lockTime) { 
+
     this.lockTime = lockTime;
   }
 
-  public MailLogEntry assigned(String assigned) {
+  public MailLogEntry assigned(String assigned) { 
+
     this.assigned = assigned;
     return this;
   }
@@ -474,18 +601,23 @@ public class MailLogEntry   {
    * assigned server
    * @return assigned
    **/
+  
   @Schema(example = "relay1", required = true, description = "assigned server")
-      @NotNull
-
-    public String getAssigned() {
+  
+  @NotNull
+  public String getAssigned() {  
     return assigned;
   }
 
-  public void setAssigned(String assigned) {
+
+
+  public void setAssigned(String assigned) { 
+
     this.assigned = assigned;
   }
 
-  public MailLogEntry queued(String queued) {
+  public MailLogEntry queued(String queued) { 
+
     this.queued = queued;
     return this;
   }
@@ -494,18 +626,23 @@ public class MailLogEntry   {
    * queued timestamp
    * @return queued
    **/
+  
   @Schema(example = "2021-10-14T12:50:15.487Z", required = true, description = "queued timestamp")
-      @NotNull
-
-    public String getQueued() {
+  
+  @NotNull
+  public String getQueued() {  
     return queued;
   }
 
-  public void setQueued(String queued) {
+
+
+  public void setQueued(String queued) { 
+
     this.queued = queued;
   }
 
-  public MailLogEntry mxHostname(String mxHostname) {
+  public MailLogEntry mxHostname(String mxHostname) { 
+
     this.mxHostname = mxHostname;
     return this;
   }
@@ -514,18 +651,23 @@ public class MailLogEntry   {
    * mx hostname
    * @return mxHostname
    **/
+  
   @Schema(example = "mx.j.is.cc", required = true, description = "mx hostname")
-      @NotNull
-
-    public String getMxHostname() {
+  
+  @NotNull
+  public String getMxHostname() {  
     return mxHostname;
   }
 
-  public void setMxHostname(String mxHostname) {
+
+
+  public void setMxHostname(String mxHostname) { 
+
     this.mxHostname = mxHostname;
   }
 
-  public MailLogEntry response(String response) {
+  public MailLogEntry response(String response) { 
+
     this.response = response;
     return this;
   }
@@ -534,17 +676,20 @@ public class MailLogEntry   {
    * mail delivery response
    * @return response
    **/
+  
   @Schema(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, description = "mail delivery response")
-      @NotNull
-
-    public String getResponse() {
+  
+  @NotNull
+  public String getResponse() {  
     return response;
   }
 
-  public void setResponse(String response) {
+
+
+  public void setResponse(String response) { 
+
     this.response = response;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

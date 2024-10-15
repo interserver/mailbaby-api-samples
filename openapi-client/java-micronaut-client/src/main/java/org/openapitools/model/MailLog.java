@@ -35,7 +35,7 @@ import javax.annotation.Generated;
   MailLog.JSON_PROPERTY_EMAILS
 })
 @JsonTypeName("MailLog")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailLog {
     public static final String JSON_PROPERTY_TOTAL = "total";
@@ -48,9 +48,9 @@ public class MailLog {
     private Integer limit;
 
     public static final String JSON_PROPERTY_EMAILS = "emails";
-    private List<MailLogEntry> emails = new ArrayList<>();
+    private List<@Valid MailLogEntry> emails = new ArrayList<>();
 
-    public MailLog(Integer total, Integer skip, Integer limit, List<MailLogEntry> emails) {
+    public MailLog(Integer total, Integer skip, Integer limit, List<@Valid MailLogEntry> emails) {
         this.total = total;
         this.skip = skip;
         this.limit = limit;
@@ -65,7 +65,7 @@ public class MailLog {
     /**
      * total number of mail log entries
      * @return total
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TOTAL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -87,7 +87,7 @@ public class MailLog {
     /**
      * number of emails skipped in listing
      * @return skip
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SKIP)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -109,7 +109,7 @@ public class MailLog {
     /**
      * number of emails to return
      * @return limit
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_LIMIT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -123,7 +123,7 @@ public class MailLog {
         this.limit = limit;
     }
 
-    public MailLog emails(List<MailLogEntry> emails) {
+    public MailLog emails(List<@Valid MailLogEntry> emails) {
         this.emails = emails;
         return this;
     }
@@ -136,17 +136,17 @@ public class MailLog {
     /**
      * Get emails
      * @return emails
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_EMAILS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public List<MailLogEntry> getEmails() {
+    public List<@Valid MailLogEntry> getEmails() {
         return emails;
     }
 
     @JsonProperty(JSON_PROPERTY_EMAILS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setEmails(List<MailLogEntry> emails) {
+    public void setEmails(List<@Valid MailLogEntry> emails) {
         this.emails = emails;
     }
 

@@ -7,11 +7,13 @@ module.exports = {
             {
                 key: `${keyPrefix}from`,
                 label: `[${labelPrefix}from]`,
+                required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}subject`,
                 label: `[${labelPrefix}subject]`,
+                required: true,
                 type: 'string',
             },
         ]

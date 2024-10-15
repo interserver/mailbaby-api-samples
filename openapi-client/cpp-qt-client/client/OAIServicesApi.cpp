@@ -113,15 +113,9 @@ int OAIServicesApi::addServerConfiguration(const QString &operation, const QUrl 
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
 void OAIServicesApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
     }
-#else
-    for (auto &e : _serverIndices.keys()) {
-        setServerIndex(e, addServerConfiguration(e, url, description, variables));
-    }
-#endif
 }
 
 /**
@@ -147,7 +141,7 @@ void OAIServicesApi::enableResponseCompression() {
 }
 
 void OAIServicesApi::abortRequests() {
-    emit abortRequestsSignal();
+    Q_EMIT abortRequestsSignal();
 }
 
 QString OAIServicesApi::getParamStylePrefix(const QString &style) {
@@ -226,21 +220,15 @@ void OAIServicesApi::getMailOrders() {
     OAIHttpRequestInput input(fullPath, "GET");
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIServicesApi::getMailOrdersCallback);
     connect(this, &OAIServicesApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -267,11 +255,37 @@ void OAIServicesApi::getMailOrdersCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getMailOrdersSignal(output);
-        emit getMailOrdersSignalFull(worker, output);
+        Q_EMIT getMailOrdersSignal(output);
+        Q_EMIT getMailOrdersSignalFull(worker, output);
     } else {
-        emit getMailOrdersSignalE(output, error_type, error_str);
-        emit getMailOrdersSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT getMailOrdersSignalE(output, error_type, error_str);
+        Q_EMIT getMailOrdersSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT getMailOrdersSignalError(output, error_type, error_str);
+        Q_EMIT getMailOrdersSignalErrorFull(worker, error_type, error_str);
     }
 }
 

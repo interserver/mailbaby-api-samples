@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.send_mail_adv import SendMailAdv  # noqa: E501
+from openapi_client.models.send_mail_adv import SendMailAdv
 
 class TestSendMailAdv(unittest.TestCase):
     """SendMailAdv unit test stubs"""
@@ -29,12 +28,12 @@ class TestSendMailAdv(unittest.TestCase):
 
     def make_instance(self, include_optional) -> SendMailAdv:
         """Test SendMailAdv
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SendMailAdv`
         """
-        model = SendMailAdv()  # noqa: E501
+        model = SendMailAdv()
         if include_optional:
             return SendMailAdv(
                 subject = 'Your Package has been Delivered!',

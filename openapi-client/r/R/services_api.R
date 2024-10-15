@@ -159,7 +159,7 @@ ServicesApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "array[MailOrder]", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "array[MailOrder]", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }

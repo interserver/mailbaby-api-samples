@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * A block entry from the clickhouse mailblocks server.
  * @export
@@ -54,15 +54,13 @@ export interface MailBlockClickHouse {
 /**
  * Check if a given object implements the MailBlockClickHouse interface.
  */
-export function instanceOfMailBlockClickHouse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "date" in value;
-    isInstance = isInstance && "from" in value;
-    isInstance = isInstance && "messageId" in value;
-    isInstance = isInstance && "subject" in value;
-    isInstance = isInstance && "to" in value;
-
-    return isInstance;
+export function instanceOfMailBlockClickHouse(value: object): value is MailBlockClickHouse {
+    if (!('date' in value) || value['date'] === undefined) return false;
+    if (!('from' in value) || value['from'] === undefined) return false;
+    if (!('messageId' in value) || value['messageId'] === undefined) return false;
+    if (!('subject' in value) || value['subject'] === undefined) return false;
+    if (!('to' in value) || value['to'] === undefined) return false;
+    return true;
 }
 
 export function MailBlockClickHouseFromJSON(json: any): MailBlockClickHouse {
@@ -70,7 +68,7 @@ export function MailBlockClickHouseFromJSON(json: any): MailBlockClickHouse {
 }
 
 export function MailBlockClickHouseFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailBlockClickHouse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -84,19 +82,16 @@ export function MailBlockClickHouseFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function MailBlockClickHouseToJSON(value?: MailBlockClickHouse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'date': (value.date.toISOString().substring(0,10)),
-        'from': value.from,
-        'messageId': value.messageId,
-        'subject': value.subject,
-        'to': value.to,
+        'date': ((value['date']).toISOString().substring(0,10)),
+        'from': value['from'],
+        'messageId': value['messageId'],
+        'subject': value['subject'],
+        'to': value['to'],
     };
 }
 

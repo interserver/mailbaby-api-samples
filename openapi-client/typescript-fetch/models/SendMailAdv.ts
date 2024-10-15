@@ -12,13 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { EmailAddressTypes } from './EmailAddressTypes';
-import {
-    EmailAddressTypesFromJSON,
-    EmailAddressTypesFromJSONTyped,
-    EmailAddressTypesToJSON,
-} from './EmailAddressTypes';
+import { mapValues } from '../runtime';
 import type { EmailAddressesTypes } from './EmailAddressesTypes';
 import {
     EmailAddressesTypesFromJSON,
@@ -31,6 +25,12 @@ import {
     MailAttachmentFromJSONTyped,
     MailAttachmentToJSON,
 } from './MailAttachment';
+import type { EmailAddressTypes } from './EmailAddressTypes';
+import {
+    EmailAddressTypesFromJSON,
+    EmailAddressTypesFromJSONTyped,
+    EmailAddressTypesToJSON,
+} from './EmailAddressTypes';
 
 /**
  * Details for an Email
@@ -97,14 +97,12 @@ export interface SendMailAdv {
 /**
  * Check if a given object implements the SendMailAdv interface.
  */
-export function instanceOfSendMailAdv(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "subject" in value;
-    isInstance = isInstance && "body" in value;
-    isInstance = isInstance && "from" in value;
-    isInstance = isInstance && "to" in value;
-
-    return isInstance;
+export function instanceOfSendMailAdv(value: object): value is SendMailAdv {
+    if (!('subject' in value) || value['subject'] === undefined) return false;
+    if (!('body' in value) || value['body'] === undefined) return false;
+    if (!('from' in value) || value['from'] === undefined) return false;
+    if (!('to' in value) || value['to'] === undefined) return false;
+    return true;
 }
 
 export function SendMailAdvFromJSON(json: any): SendMailAdv {
@@ -112,7 +110,7 @@ export function SendMailAdvFromJSON(json: any): SendMailAdv {
 }
 
 export function SendMailAdvFromJSONTyped(json: any, ignoreDiscriminator: boolean): SendMailAdv {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -121,32 +119,29 @@ export function SendMailAdvFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'body': json['body'],
         'from': EmailAddressTypesFromJSON(json['from']),
         'to': EmailAddressesTypesFromJSON(json['to']),
-        'replyto': !exists(json, 'replyto') ? undefined : EmailAddressesTypesFromJSON(json['replyto']),
-        'cc': !exists(json, 'cc') ? undefined : EmailAddressesTypesFromJSON(json['cc']),
-        'bcc': !exists(json, 'bcc') ? undefined : EmailAddressesTypesFromJSON(json['bcc']),
-        'attachments': !exists(json, 'attachments') ? undefined : ((json['attachments'] as Array<any>).map(MailAttachmentFromJSON)),
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'replyto': json['replyto'] == null ? undefined : EmailAddressesTypesFromJSON(json['replyto']),
+        'cc': json['cc'] == null ? undefined : EmailAddressesTypesFromJSON(json['cc']),
+        'bcc': json['bcc'] == null ? undefined : EmailAddressesTypesFromJSON(json['bcc']),
+        'attachments': json['attachments'] == null ? undefined : ((json['attachments'] as Array<any>).map(MailAttachmentFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 
 export function SendMailAdvToJSON(value?: SendMailAdv | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'subject': value.subject,
-        'body': value.body,
-        'from': EmailAddressTypesToJSON(value.from),
-        'to': EmailAddressesTypesToJSON(value.to),
-        'replyto': EmailAddressesTypesToJSON(value.replyto),
-        'cc': EmailAddressesTypesToJSON(value.cc),
-        'bcc': EmailAddressesTypesToJSON(value.bcc),
-        'attachments': value.attachments === undefined ? undefined : ((value.attachments as Array<any>).map(MailAttachmentToJSON)),
-        'id': value.id,
+        'subject': value['subject'],
+        'body': value['body'],
+        'from': EmailAddressTypesToJSON(value['from']),
+        'to': EmailAddressesTypesToJSON(value['to']),
+        'replyto': EmailAddressesTypesToJSON(value['replyto']),
+        'cc': EmailAddressesTypesToJSON(value['cc']),
+        'bcc': EmailAddressesTypesToJSON(value['bcc']),
+        'attachments': value['attachments'] == null ? undefined : ((value['attachments'] as Array<any>).map(MailAttachmentToJSON)),
+        'id': value['id'],
     };
 }
 

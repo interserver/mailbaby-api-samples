@@ -19,8 +19,7 @@ import sttp.client3._
 import sttp.model.Method
 
 object HistoryApi {
-
-def apply(baseUrl: String = "https://api.mailbaby.net") = new HistoryApi(baseUrl)
+  def apply(baseUrl: String = "https://api.mailbaby.net") = new HistoryApi(baseUrl)
 }
 
 class HistoryApi(baseUrl: String) {

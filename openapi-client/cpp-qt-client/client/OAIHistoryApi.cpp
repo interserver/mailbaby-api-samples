@@ -115,15 +115,9 @@ int OAIHistoryApi::addServerConfiguration(const QString &operation, const QUrl &
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
 void OAIHistoryApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
     }
-#else
-    for (auto &e : _serverIndices.keys()) {
-        setServerIndex(e, addServerConfiguration(e, url, description, variables));
-    }
-#endif
 }
 
 /**
@@ -149,7 +143,7 @@ void OAIHistoryApi::enableResponseCompression() {
 }
 
 void OAIHistoryApi::abortRequests() {
-    emit abortRequestsSignal();
+    Q_EMIT abortRequestsSignal();
 }
 
 QString OAIHistoryApi::getParamStylePrefix(const QString &style) {
@@ -228,21 +222,15 @@ void OAIHistoryApi::getStats() {
     OAIHttpRequestInput input(fullPath, "GET");
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIHistoryApi::getStatsCallback);
     connect(this, &OAIHistoryApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -269,11 +257,37 @@ void OAIHistoryApi::getStatsCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getStatsSignal(output);
-        emit getStatsSignalFull(worker, output);
+        Q_EMIT getStatsSignal(output);
+        Q_EMIT getStatsSignalFull(worker, output);
     } else {
-        emit getStatsSignalE(output, error_type, error_str);
-        emit getStatsSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT getStatsSignalE(output, error_type, error_str);
+        Q_EMIT getStatsSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT getStatsSignalError(output, error_type, error_str);
+        Q_EMIT getStatsSignalErrorFull(worker, error_type, error_str);
     }
 }
 
@@ -298,7 +312,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.value())));
+        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(id.stringValue()));
     }
     if (origin.hasValue())
     {
@@ -313,7 +327,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("origin")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(origin.value())));
+        fullPath.append(QUrl::toPercentEncoding("origin")).append(querySuffix).append(QUrl::toPercentEncoding(origin.stringValue()));
     }
     if (mx.hasValue())
     {
@@ -328,7 +342,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("mx")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(mx.value())));
+        fullPath.append(QUrl::toPercentEncoding("mx")).append(querySuffix).append(QUrl::toPercentEncoding(mx.stringValue()));
     }
     if (from.hasValue())
     {
@@ -343,7 +357,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("from")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(from.value())));
+        fullPath.append(QUrl::toPercentEncoding("from")).append(querySuffix).append(QUrl::toPercentEncoding(from.stringValue()));
     }
     if (to.hasValue())
     {
@@ -358,7 +372,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("to")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to.value())));
+        fullPath.append(QUrl::toPercentEncoding("to")).append(querySuffix).append(QUrl::toPercentEncoding(to.stringValue()));
     }
     if (subject.hasValue())
     {
@@ -373,7 +387,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("subject")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(subject.value())));
+        fullPath.append(QUrl::toPercentEncoding("subject")).append(querySuffix).append(QUrl::toPercentEncoding(subject.stringValue()));
     }
     if (mailid.hasValue())
     {
@@ -388,7 +402,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("mailid")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(mailid.value())));
+        fullPath.append(QUrl::toPercentEncoding("mailid")).append(querySuffix).append(QUrl::toPercentEncoding(mailid.stringValue()));
     }
     if (skip.hasValue())
     {
@@ -403,7 +417,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("skip")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(skip.value())));
+        fullPath.append(QUrl::toPercentEncoding("skip")).append(querySuffix).append(QUrl::toPercentEncoding(skip.stringValue()));
     }
     if (limit.hasValue())
     {
@@ -418,7 +432,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(limit.value())));
+        fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(limit.stringValue()));
     }
     if (start_date.hasValue())
     {
@@ -433,7 +447,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("startDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(start_date.value())));
+        fullPath.append(QUrl::toPercentEncoding("startDate")).append(querySuffix).append(QUrl::toPercentEncoding(start_date.stringValue()));
     }
     if (end_date.hasValue())
     {
@@ -448,7 +462,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("endDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(end_date.value())));
+        fullPath.append(QUrl::toPercentEncoding("endDate")).append(querySuffix).append(QUrl::toPercentEncoding(end_date.stringValue()));
     }
     if (replyto.hasValue())
     {
@@ -463,7 +477,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("replyto")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(replyto.value())));
+        fullPath.append(QUrl::toPercentEncoding("replyto")).append(querySuffix).append(QUrl::toPercentEncoding(replyto.stringValue()));
     }
     if (headerfrom.hasValue())
     {
@@ -478,7 +492,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("headerfrom")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(headerfrom.value())));
+        fullPath.append(QUrl::toPercentEncoding("headerfrom")).append(querySuffix).append(QUrl::toPercentEncoding(headerfrom.stringValue()));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -486,21 +500,15 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
     OAIHttpRequestInput input(fullPath, "GET");
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIHistoryApi::viewMailLogCallback);
     connect(this, &OAIHistoryApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -518,11 +526,37 @@ void OAIHistoryApi::viewMailLogCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit viewMailLogSignal(output);
-        emit viewMailLogSignalFull(worker, output);
+        Q_EMIT viewMailLogSignal(output);
+        Q_EMIT viewMailLogSignalFull(worker, output);
     } else {
-        emit viewMailLogSignalE(output, error_type, error_str);
-        emit viewMailLogSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT viewMailLogSignalE(output, error_type, error_str);
+        Q_EMIT viewMailLogSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT viewMailLogSignalError(output, error_type, error_str);
+        Q_EMIT viewMailLogSignalErrorFull(worker, error_type, error_str);
     }
 }
 

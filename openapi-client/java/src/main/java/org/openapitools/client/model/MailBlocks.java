@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * The listing of blocked emails.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailBlocks {
   public static final String SERIALIZED_NAME_LOCAL = "local";
   @SerializedName(SERIALIZED_NAME_LOCAL)
@@ -71,7 +71,6 @@ public class MailBlocks {
   }
 
   public MailBlocks local(List<MailBlockClickHouse> local) {
-    
     this.local = local;
     return this;
   }
@@ -84,15 +83,14 @@ public class MailBlocks {
     return this;
   }
 
-   /**
+  /**
    * Get local
    * @return local
-  **/
+   */
   @javax.annotation.Nonnull
   public List<MailBlockClickHouse> getLocal() {
     return local;
   }
-
 
   public void setLocal(List<MailBlockClickHouse> local) {
     this.local = local;
@@ -100,7 +98,6 @@ public class MailBlocks {
 
 
   public MailBlocks mbtrap(List<MailBlockClickHouse> mbtrap) {
-    
     this.mbtrap = mbtrap;
     return this;
   }
@@ -113,15 +110,14 @@ public class MailBlocks {
     return this;
   }
 
-   /**
+  /**
    * Get mbtrap
    * @return mbtrap
-  **/
+   */
   @javax.annotation.Nonnull
   public List<MailBlockClickHouse> getMbtrap() {
     return mbtrap;
   }
-
 
   public void setMbtrap(List<MailBlockClickHouse> mbtrap) {
     this.mbtrap = mbtrap;
@@ -129,7 +125,6 @@ public class MailBlocks {
 
 
   public MailBlocks subject(List<MailBlockRspamd> subject) {
-    
     this.subject = subject;
     return this;
   }
@@ -142,15 +137,14 @@ public class MailBlocks {
     return this;
   }
 
-   /**
+  /**
    * Get subject
    * @return subject
-  **/
+   */
   @javax.annotation.Nonnull
   public List<MailBlockRspamd> getSubject() {
     return subject;
   }
-
 
   public void setSubject(List<MailBlockRspamd> subject) {
     this.subject = subject;
@@ -217,12 +211,12 @@ public class MailBlocks {
     openapiRequiredFields.add("subject");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailBlocks
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailBlocks
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailBlocks.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -306,22 +300,22 @@ public class MailBlocks {
     }
   }
 
- /**
-  * Create an instance of MailBlocks given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailBlocks
-  * @throws IOException if the JSON string is invalid with respect to MailBlocks
-  */
+  /**
+   * Create an instance of MailBlocks given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailBlocks
+   * @throws IOException if the JSON string is invalid with respect to MailBlocks
+   */
   public static MailBlocks fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailBlocks.class);
   }
 
- /**
-  * Convert an instance of MailBlocks to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailBlocks to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

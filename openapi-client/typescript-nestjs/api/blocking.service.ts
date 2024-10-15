@@ -11,14 +11,15 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
+import { HttpService, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { Observable, from, of, switchMap } from 'rxjs';
 import { DenyRuleRecord } from '../model/denyRuleRecord';
 import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
 import { MailBlocks } from '../model/mailBlocks';
 import { Configuration } from '../configuration';
+import { COLLECTION_FORMATS } from '../variables';
 
 
 @Injectable()
@@ -53,7 +54,6 @@ export class BlockingService {
      */
     public addRule(type: string, data: string, user?: string, ): Observable<AxiosResponse<GenericResponse>>;
     public addRule(type: string, data: string, user?: string, ): Observable<any> {
-
         if (type === null || type === undefined) {
             throw new Error('Required parameter type was null or undefined when calling addRule.');
         }
@@ -62,11 +62,12 @@ export class BlockingService {
             throw new Error('Required parameter data was null or undefined when calling addRule.');
         }
 
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -97,23 +98,31 @@ export class BlockingService {
         }
 
         if (user !== undefined) {
-            formParams.append('user', <any>user);
+            formParams!.append('user', <any>user);
         }
 
         if (type !== undefined) {
-            formParams.append('type', <any>type);
+            formParams!.append('type', <any>type);
         }
 
         if (data !== undefined) {
-            formParams.append('data', <any>data);
+            formParams!.append('data', <any>data);
         }
 
-        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/rules`,
-            convertFormParamsToString ? formParams.toString() : formParams,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/rules`,
+                    convertFormParamsToString ? formParams!.toString() : formParams!,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
     /**
@@ -125,15 +134,16 @@ export class BlockingService {
      */
     public deleteRule(ruleId: number, ): Observable<AxiosResponse<GenericResponse>>;
     public deleteRule(ruleId: number, ): Observable<any> {
-
         if (ruleId === null || ruleId === undefined) {
             throw new Error('Required parameter ruleId was null or undefined when calling deleteRule.');
         }
 
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -149,11 +159,19 @@ export class BlockingService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.delete<GenericResponse>(`${this.basePath}/mail/rules/${encodeURIComponent(String(ruleId))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.delete<GenericResponse>(`${this.basePath}/mail/rules/${encodeURIComponent(String(ruleId))}`,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
     /**
@@ -165,15 +183,16 @@ export class BlockingService {
      */
     public delistBlock(body: string, ): Observable<AxiosResponse<GenericResponse>>;
     public delistBlock(body: string, ): Observable<any> {
-
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
 
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -195,12 +214,20 @@ export class BlockingService {
         if (httpContentTypeSelected != undefined) {
             headers['Content-Type'] = httpContentTypeSelected;
         }
-        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/blocks/delete`,
-            body,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/blocks/delete`,
+                    body,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
     /**
@@ -211,11 +238,12 @@ export class BlockingService {
      */
     public getMailBlocks(): Observable<AxiosResponse<MailBlocks>>;
     public getMailBlocks(): Observable<any> {
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -231,11 +259,19 @@ export class BlockingService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<MailBlocks>(`${this.basePath}/mail/blocks`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.get<MailBlocks>(`${this.basePath}/mail/blocks`,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
     /**
@@ -246,11 +282,12 @@ export class BlockingService {
      */
     public getRules(): Observable<AxiosResponse<Array<DenyRuleRecord>>>;
     public getRules(): Observable<any> {
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -266,11 +303,19 @@ export class BlockingService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<Array<DenyRuleRecord>>(`${this.basePath}/mail/rules`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.get<Array<DenyRuleRecord>>(`${this.basePath}/mail/rules`,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
 }

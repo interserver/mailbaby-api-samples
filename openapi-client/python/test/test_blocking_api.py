@@ -15,14 +15,14 @@
 
 import unittest
 
-from openapi_client.api.blocking_api import BlockingApi  # noqa: E501
+from openapi_client.api.blocking_api import BlockingApi
 
 
 class TestBlockingApi(unittest.TestCase):
     """BlockingApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = BlockingApi()  # noqa: E501
+        self.api = BlockingApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,35 +30,35 @@ class TestBlockingApi(unittest.TestCase):
     def test_add_rule(self) -> None:
         """Test case for add_rule
 
-        Creates a new email deny rule.  # noqa: E501
+        Creates a new email deny rule.
         """
         pass
 
     def test_delete_rule(self) -> None:
         """Test case for delete_rule
 
-        Removes an deny mail rule.  # noqa: E501
+        Removes an deny mail rule.
         """
         pass
 
     def test_delist_block(self) -> None:
         """Test case for delist_block
 
-        Removes an email address from the blocked list  # noqa: E501
+        Removes an email address from the blocked list
         """
         pass
 
     def test_get_mail_blocks(self) -> None:
         """Test case for get_mail_blocks
 
-        displays a list of blocked email addresses  # noqa: E501
+        displays a list of blocked email addresses
         """
         pass
 
     def test_get_rules(self) -> None:
         """Test case for get_rules
 
-        Displays a listing of deny email rules.  # noqa: E501
+        Displays a listing of deny email rules.
         """
         pass
 

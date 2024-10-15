@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * A mail order record
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailOrder {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -71,20 +71,18 @@ public class MailOrder {
   }
 
   public MailOrder id(Integer id) {
-    
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID of the order.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getId() {
     return id;
   }
-
 
   public void setId(Integer id) {
     this.id = id;
@@ -92,20 +90,18 @@ public class MailOrder {
 
 
   public MailOrder status(String status) {
-    
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The order status.
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
   public String getStatus() {
     return status;
   }
-
 
   public void setStatus(String status) {
     this.status = status;
@@ -113,20 +109,18 @@ public class MailOrder {
 
 
   public MailOrder username(String username) {
-    
     this.username = username;
     return this;
   }
 
-   /**
+  /**
    * The username to use for this order.
    * @return username
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUsername() {
     return username;
   }
-
 
   public void setUsername(String username) {
     this.username = username;
@@ -134,20 +128,18 @@ public class MailOrder {
 
 
   public MailOrder comment(String comment) {
-    
     this.comment = comment;
     return this;
   }
 
-   /**
+  /**
    * Optional order comment.
    * @return comment
-  **/
+   */
   @javax.annotation.Nullable
   public String getComment() {
     return comment;
   }
-
 
   public void setComment(String comment) {
     this.comment = comment;
@@ -217,12 +209,12 @@ public class MailOrder {
     openapiRequiredFields.add("username");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailOrder
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailOrder
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailOrder.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -285,22 +277,22 @@ public class MailOrder {
     }
   }
 
- /**
-  * Create an instance of MailOrder given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailOrder
-  * @throws IOException if the JSON string is invalid with respect to MailOrder
-  */
+  /**
+   * Create an instance of MailOrder given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailOrder
+   * @throws IOException if the JSON string is invalid with respect to MailOrder
+   */
   public static MailOrder fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailOrder.class);
   }
 
- /**
-  * Convert an instance of MailOrder to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailOrder to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

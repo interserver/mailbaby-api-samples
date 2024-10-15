@@ -15,14 +15,14 @@
 
 import unittest
 
-from openapi_client.api.sending_api import SendingApi  # noqa: E501
+from openapi_client.api.sending_api import SendingApi
 
 
 class TestSendingApi(unittest.TestCase):
     """SendingApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = SendingApi()  # noqa: E501
+        self.api = SendingApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,14 +30,14 @@ class TestSendingApi(unittest.TestCase):
     def test_send_adv_mail(self) -> None:
         """Test case for send_adv_mail
 
-        Sends an Email with Advanced Options  # noqa: E501
+        Sends an Email with Advanced Options
         """
         pass
 
     def test_send_mail(self) -> None:
         """Test case for send_mail
 
-        Sends an Email  # noqa: E501
+        Sends an Email
         """
         pass
 

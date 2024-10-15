@@ -21,8 +21,7 @@ import sttp.client3._
 import sttp.model.Method
 
 object SendingApi {
-
-def apply(baseUrl: String = "https://api.mailbaby.net") = new SendingApi(baseUrl)
+  def apply(baseUrl: String = "https://api.mailbaby.net") = new SendingApi(baseUrl)
 }
 
 class SendingApi(baseUrl: String) {

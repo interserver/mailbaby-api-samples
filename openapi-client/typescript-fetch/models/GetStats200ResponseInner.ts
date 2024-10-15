@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -54,13 +54,11 @@ export interface GetStats200ResponseInner {
 /**
  * Check if a given object implements the GetStats200ResponseInner interface.
  */
-export function instanceOfGetStats200ResponseInner(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "username" in value;
-
-    return isInstance;
+export function instanceOfGetStats200ResponseInner(value: object): value is GetStats200ResponseInner {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('username' in value) || value['username'] === undefined) return false;
+    return true;
 }
 
 export function GetStats200ResponseInnerFromJSON(json: any): GetStats200ResponseInner {
@@ -68,7 +66,7 @@ export function GetStats200ResponseInnerFromJSON(json: any): GetStats200Response
 }
 
 export function GetStats200ResponseInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStats200ResponseInner {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -76,25 +74,22 @@ export function GetStats200ResponseInnerFromJSONTyped(json: any, ignoreDiscrimin
         'id': json['id'],
         'status': json['status'],
         'username': json['username'],
-        'password': !exists(json, 'password') ? undefined : json['password'],
-        'comment': !exists(json, 'comment') ? undefined : json['comment'],
+        'password': json['password'] == null ? undefined : json['password'],
+        'comment': json['comment'] == null ? undefined : json['comment'],
     };
 }
 
 export function GetStats200ResponseInnerToJSON(value?: GetStats200ResponseInner | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'status': value.status,
-        'username': value.username,
-        'password': value.password,
-        'comment': value.comment,
+        'id': value['id'],
+        'status': value['status'],
+        'username': value['username'],
+        'password': value['password'],
+        'comment': value['comment'],
     };
 }
 

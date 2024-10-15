@@ -86,22 +86,25 @@ private:
 
     void getMailOrdersCallback(OAIHttpRequestWorker *worker);
 
-signals:
+Q_SIGNALS:
 
     void getMailOrdersSignal(QList<OAIMailOrder> summary);
 
     void getMailOrdersSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailOrder> summary);
 
+    Q_DECL_DEPRECATED_X("Use getMailOrdersSignalError() instead")
     void getMailOrdersSignalE(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getMailOrdersSignalError(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
+    Q_DECL_DEPRECATED_X("Use getMailOrdersSignalErrorFull() instead")
     void getMailOrdersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getMailOrdersSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
 
-public slots:
+public Q_SLOTS:
     void tokenAvailable();
-    
 };
 
 } // namespace OpenAPI

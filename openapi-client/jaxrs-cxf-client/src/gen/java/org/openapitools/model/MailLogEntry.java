@@ -573,29 +573,29 @@ public class MailLogEntry  {
       return false;
     }
     MailLogEntry mailLogEntry = (MailLogEntry) o;
-    return Objects.equals(id, mailLogEntry.id) &&
-        Objects.equals(id, mailLogEntry.id) &&
-        Objects.equals(from, mailLogEntry.from) &&
-        Objects.equals(to, mailLogEntry.to) &&
-        Objects.equals(subject, mailLogEntry.subject) &&
-        Objects.equals(created, mailLogEntry.created) &&
-        Objects.equals(time, mailLogEntry.time) &&
-        Objects.equals(user, mailLogEntry.user) &&
-        Objects.equals(transtype, mailLogEntry.transtype) &&
-        Objects.equals(origin, mailLogEntry.origin) &&
-        Objects.equals(_interface, mailLogEntry._interface) &&
-        Objects.equals(sendingZone, mailLogEntry.sendingZone) &&
-        Objects.equals(bodySize, mailLogEntry.bodySize) &&
-        Objects.equals(seq, mailLogEntry.seq) &&
-        Objects.equals(recipient, mailLogEntry.recipient) &&
-        Objects.equals(domain, mailLogEntry.domain) &&
-        Objects.equals(locked, mailLogEntry.locked) &&
-        Objects.equals(lockTime, mailLogEntry.lockTime) &&
-        Objects.equals(assigned, mailLogEntry.assigned) &&
-        Objects.equals(queued, mailLogEntry.queued) &&
-        Objects.equals(mxHostname, mailLogEntry.mxHostname) &&
-        Objects.equals(response, mailLogEntry.response) &&
-        Objects.equals(messageId, mailLogEntry.messageId);
+    return Objects.equals(this.id, mailLogEntry.id) &&
+        Objects.equals(this.id, mailLogEntry.id) &&
+        Objects.equals(this.from, mailLogEntry.from) &&
+        Objects.equals(this.to, mailLogEntry.to) &&
+        Objects.equals(this.subject, mailLogEntry.subject) &&
+        Objects.equals(this.created, mailLogEntry.created) &&
+        Objects.equals(this.time, mailLogEntry.time) &&
+        Objects.equals(this.user, mailLogEntry.user) &&
+        Objects.equals(this.transtype, mailLogEntry.transtype) &&
+        Objects.equals(this.origin, mailLogEntry.origin) &&
+        Objects.equals(this._interface, mailLogEntry._interface) &&
+        Objects.equals(this.sendingZone, mailLogEntry.sendingZone) &&
+        Objects.equals(this.bodySize, mailLogEntry.bodySize) &&
+        Objects.equals(this.seq, mailLogEntry.seq) &&
+        Objects.equals(this.recipient, mailLogEntry.recipient) &&
+        Objects.equals(this.domain, mailLogEntry.domain) &&
+        Objects.equals(this.locked, mailLogEntry.locked) &&
+        Objects.equals(this.lockTime, mailLogEntry.lockTime) &&
+        Objects.equals(this.assigned, mailLogEntry.assigned) &&
+        Objects.equals(this.queued, mailLogEntry.queued) &&
+        Objects.equals(this.mxHostname, mailLogEntry.mxHostname) &&
+        Objects.equals(this.response, mailLogEntry.response) &&
+        Objects.equals(this.messageId, mailLogEntry.messageId);
   }
 
   @Override

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * An email record
  * @export
@@ -162,32 +162,30 @@ export interface MailLogEntry {
 /**
  * Check if a given object implements the MailLogEntry interface.
  */
-export function instanceOfMailLogEntry(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "from" in value;
-    isInstance = isInstance && "to" in value;
-    isInstance = isInstance && "subject" in value;
-    isInstance = isInstance && "created" in value;
-    isInstance = isInstance && "time" in value;
-    isInstance = isInstance && "user" in value;
-    isInstance = isInstance && "transtype" in value;
-    isInstance = isInstance && "origin" in value;
-    isInstance = isInstance && "_interface" in value;
-    isInstance = isInstance && "sendingZone" in value;
-    isInstance = isInstance && "bodySize" in value;
-    isInstance = isInstance && "seq" in value;
-    isInstance = isInstance && "recipient" in value;
-    isInstance = isInstance && "domain" in value;
-    isInstance = isInstance && "locked" in value;
-    isInstance = isInstance && "lockTime" in value;
-    isInstance = isInstance && "assigned" in value;
-    isInstance = isInstance && "queued" in value;
-    isInstance = isInstance && "mxHostname" in value;
-    isInstance = isInstance && "response" in value;
-
-    return isInstance;
+export function instanceOfMailLogEntry(value: object): value is MailLogEntry {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('from' in value) || value['from'] === undefined) return false;
+    if (!('to' in value) || value['to'] === undefined) return false;
+    if (!('subject' in value) || value['subject'] === undefined) return false;
+    if (!('created' in value) || value['created'] === undefined) return false;
+    if (!('time' in value) || value['time'] === undefined) return false;
+    if (!('user' in value) || value['user'] === undefined) return false;
+    if (!('transtype' in value) || value['transtype'] === undefined) return false;
+    if (!('origin' in value) || value['origin'] === undefined) return false;
+    if (!('_interface' in value) || value['_interface'] === undefined) return false;
+    if (!('sendingZone' in value) || value['sendingZone'] === undefined) return false;
+    if (!('bodySize' in value) || value['bodySize'] === undefined) return false;
+    if (!('seq' in value) || value['seq'] === undefined) return false;
+    if (!('recipient' in value) || value['recipient'] === undefined) return false;
+    if (!('domain' in value) || value['domain'] === undefined) return false;
+    if (!('locked' in value) || value['locked'] === undefined) return false;
+    if (!('lockTime' in value) || value['lockTime'] === undefined) return false;
+    if (!('assigned' in value) || value['assigned'] === undefined) return false;
+    if (!('queued' in value) || value['queued'] === undefined) return false;
+    if (!('mxHostname' in value) || value['mxHostname'] === undefined) return false;
+    if (!('response' in value) || value['response'] === undefined) return false;
+    return true;
 }
 
 export function MailLogEntryFromJSON(json: any): MailLogEntry {
@@ -195,7 +193,7 @@ export function MailLogEntryFromJSON(json: any): MailLogEntry {
 }
 
 export function MailLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailLogEntry {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -222,42 +220,39 @@ export function MailLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'queued': json['queued'],
         'mxHostname': json['mxHostname'],
         'response': json['response'],
-        'messageId': !exists(json, 'messageId') ? undefined : json['messageId'],
+        'messageId': json['messageId'] == null ? undefined : json['messageId'],
     };
 }
 
 export function MailLogEntryToJSON(value?: MailLogEntry | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        '_id': value.id,
-        'id': value.id,
-        'from': value.from,
-        'to': value.to,
-        'subject': value.subject,
-        'created': value.created,
-        'time': value.time,
-        'user': value.user,
-        'transtype': value.transtype,
-        'origin': value.origin,
-        'interface': value._interface,
-        'sendingZone': value.sendingZone,
-        'bodySize': value.bodySize,
-        'seq': value.seq,
-        'recipient': value.recipient,
-        'domain': value.domain,
-        'locked': value.locked,
-        'lockTime': value.lockTime,
-        'assigned': value.assigned,
-        'queued': value.queued,
-        'mxHostname': value.mxHostname,
-        'response': value.response,
-        'messageId': value.messageId,
+        '_id': value['id'],
+        'id': value['id'],
+        'from': value['from'],
+        'to': value['to'],
+        'subject': value['subject'],
+        'created': value['created'],
+        'time': value['time'],
+        'user': value['user'],
+        'transtype': value['transtype'],
+        'origin': value['origin'],
+        'interface': value['_interface'],
+        'sendingZone': value['sendingZone'],
+        'bodySize': value['bodySize'],
+        'seq': value['seq'],
+        'recipient': value['recipient'],
+        'domain': value['domain'],
+        'locked': value['locked'],
+        'lockTime': value['lockTime'],
+        'assigned': value['assigned'],
+        'queued': value['queued'],
+        'mxHostname': value['mxHostname'],
+        'response': value['response'],
+        'messageId': value['messageId'],
     };
 }
 

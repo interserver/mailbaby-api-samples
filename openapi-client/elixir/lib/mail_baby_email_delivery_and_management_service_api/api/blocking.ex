@@ -162,7 +162,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
   - `{:ok, [%DenyRuleRecord{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_rules(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyEmailDeliveryAndManagementServiceAPI.Model.DenyRuleRecord.t)} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  @spec get_rules(Tesla.Env.client, keyword()) :: {:ok, [MailBabyEmailDeliveryAndManagementServiceAPI.Model.DenyRuleRecord.t]} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
   def get_rules(connection, _opts \\ []) do
     request =
       %{}

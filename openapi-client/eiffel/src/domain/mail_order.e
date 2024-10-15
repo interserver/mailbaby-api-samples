@@ -19,8 +19,8 @@ class MAIL_ORDER
 
 feature --Access
 
- 	id: INTEGER_32
-    	 -- The ID of the order.
+    id: INTEGER_32
+      -- The ID of the order.
     status: detachable STRING_32
       -- The order status.
     username: detachable STRING_32

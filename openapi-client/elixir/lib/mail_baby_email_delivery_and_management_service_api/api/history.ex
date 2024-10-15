@@ -23,7 +23,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.History do
   - `{:ok, [%GetStats200ResponseInner{}, ...]}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec get_stats(Tesla.Env.client, keyword()) :: {:ok, list(MailBabyEmailDeliveryAndManagementServiceAPI.Model.GetStats200ResponseInner.t)} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  @spec get_stats(Tesla.Env.client, keyword()) :: {:ok, [MailBabyEmailDeliveryAndManagementServiceAPI.Model.GetStats200ResponseInner.t]} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
   def get_stats(connection, _opts \\ []) do
     request =
       %{}

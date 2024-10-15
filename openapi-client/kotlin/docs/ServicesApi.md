@@ -2,9 +2,9 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getMailOrders**](ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getMailOrders**](ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders |
 
 
 <a id="getMailOrders"></a>

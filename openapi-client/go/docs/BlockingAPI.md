@@ -26,26 +26,26 @@ Creates a new email deny rule.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    type_ := "type__example" // string | The type of deny rule.
-    data := "data_example" // string | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-    user := "user_example" // string | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. (optional)
+	type_ := "type__example" // string | The type of deny rule.
+	data := "data_example" // string | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	user := "user_example" // string | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlockingAPI.AddRule(context.Background()).Type_(type_).Data(data).User(user).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.AddRule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `AddRule`: GenericResponse
-    fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.AddRule`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlockingAPI.AddRule(context.Background()).Type_(type_).Data(data).User(user).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.AddRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddRule`: GenericResponse
+	fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.AddRule`: %v\n", resp)
 }
 ```
 
@@ -96,24 +96,24 @@ Removes an deny mail rule.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    ruleId := int32(34) // int32 | The ID of the Rules entry.
+	ruleId := int32(34) // int32 | The ID of the Rules entry.
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlockingAPI.DeleteRule(context.Background(), ruleId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.DeleteRule``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteRule`: GenericResponse
-    fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.DeleteRule`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlockingAPI.DeleteRule(context.Background(), ruleId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.DeleteRule``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteRule`: GenericResponse
+	fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.DeleteRule`: %v\n", resp)
 }
 ```
 
@@ -166,24 +166,24 @@ Removes an email address from the blocked list
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    body := "{"email":"client@domain.com"}" // string | 
+	body := "{"email":"client@domain.com"}" // string | 
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlockingAPI.DelistBlock(context.Background()).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.DelistBlock``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DelistBlock`: GenericResponse
-    fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.DelistBlock`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlockingAPI.DelistBlock(context.Background()).Body(body).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.DelistBlock``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DelistBlock`: GenericResponse
+	fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.DelistBlock`: %v\n", resp)
 }
 ```
 
@@ -230,23 +230,23 @@ displays a list of blocked email addresses
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlockingAPI.GetMailBlocks(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.GetMailBlocks``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMailBlocks`: MailBlocks
-    fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.GetMailBlocks`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlockingAPI.GetMailBlocks(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.GetMailBlocks``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMailBlocks`: MailBlocks
+	fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.GetMailBlocks`: %v\n", resp)
 }
 ```
 
@@ -291,23 +291,23 @@ Displays a listing of deny email rules.
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.BlockingAPI.GetRules(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.GetRules``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetRules`: []DenyRuleRecord
-    fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.GetRules`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.BlockingAPI.GetRules(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.GetRules``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetRules`: []DenyRuleRecord
+	fmt.Fprintf(os.Stdout, "Response from `BlockingAPI.GetRules`: %v\n", resp)
 }
 ```
 

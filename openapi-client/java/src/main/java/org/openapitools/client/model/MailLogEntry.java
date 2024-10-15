@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * An email record
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailLogEntry {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -147,20 +147,18 @@ public class MailLogEntry {
   }
 
   public MailLogEntry id(Integer id) {
-    
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * internal db id
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getId() {
     return id;
   }
-
 
   public void setId(Integer id) {
     this.id = id;
@@ -168,20 +166,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry id(String id) {
-    
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * mail id
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
   }
-
 
   public void setId(String id) {
     this.id = id;
@@ -189,20 +185,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry from(String from) {
-    
     this.from = from;
     return this;
   }
 
-   /**
+  /**
    * from address
    * @return from
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFrom() {
     return from;
   }
-
 
   public void setFrom(String from) {
     this.from = from;
@@ -210,20 +204,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry to(String to) {
-    
     this.to = to;
     return this;
   }
 
-   /**
+  /**
    * to address
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTo() {
     return to;
   }
-
 
   public void setTo(String to) {
     this.to = to;
@@ -231,20 +223,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry subject(String subject) {
-    
     this.subject = subject;
     return this;
   }
 
-   /**
+  /**
    * email subject
    * @return subject
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSubject() {
     return subject;
   }
-
 
   public void setSubject(String subject) {
     this.subject = subject;
@@ -252,20 +242,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry created(String created) {
-    
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * creation date
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreated() {
     return created;
   }
-
 
   public void setCreated(String created) {
     this.created = created;
@@ -273,20 +261,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry time(Integer time) {
-    
     this.time = time;
     return this;
   }
 
-   /**
+  /**
    * creation timestamp
    * @return time
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getTime() {
     return time;
   }
-
 
   public void setTime(Integer time) {
     this.time = time;
@@ -294,20 +280,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry user(String user) {
-    
     this.user = user;
     return this;
   }
 
-   /**
+  /**
    * user account
    * @return user
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUser() {
     return user;
   }
-
 
   public void setUser(String user) {
     this.user = user;
@@ -315,20 +299,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry transtype(String transtype) {
-    
     this.transtype = transtype;
     return this;
   }
 
-   /**
+  /**
    * transaction type
    * @return transtype
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTranstype() {
     return transtype;
   }
-
 
   public void setTranstype(String transtype) {
     this.transtype = transtype;
@@ -336,20 +318,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry origin(String origin) {
-    
     this.origin = origin;
     return this;
   }
 
-   /**
+  /**
    * origin ip
    * @return origin
-  **/
+   */
   @javax.annotation.Nonnull
   public String getOrigin() {
     return origin;
   }
-
 
   public void setOrigin(String origin) {
     this.origin = origin;
@@ -357,20 +337,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry _interface(String _interface) {
-    
     this._interface = _interface;
     return this;
   }
 
-   /**
+  /**
    * interface name
    * @return _interface
-  **/
+   */
   @javax.annotation.Nonnull
   public String getInterface() {
     return _interface;
   }
-
 
   public void setInterface(String _interface) {
     this._interface = _interface;
@@ -378,20 +356,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry sendingZone(String sendingZone) {
-    
     this.sendingZone = sendingZone;
     return this;
   }
 
-   /**
+  /**
    * sending zone
    * @return sendingZone
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSendingZone() {
     return sendingZone;
   }
-
 
   public void setSendingZone(String sendingZone) {
     this.sendingZone = sendingZone;
@@ -399,20 +375,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry bodySize(Integer bodySize) {
-    
     this.bodySize = bodySize;
     return this;
   }
 
-   /**
+  /**
    * email body size in bytes
    * @return bodySize
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getBodySize() {
     return bodySize;
   }
-
 
   public void setBodySize(Integer bodySize) {
     this.bodySize = bodySize;
@@ -420,20 +394,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry seq(Integer seq) {
-    
     this.seq = seq;
     return this;
   }
 
-   /**
+  /**
    * index of email in the to adderess list
    * @return seq
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getSeq() {
     return seq;
   }
-
 
   public void setSeq(Integer seq) {
     this.seq = seq;
@@ -441,20 +413,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry recipient(String recipient) {
-    
     this.recipient = recipient;
     return this;
   }
 
-   /**
+  /**
    * to address this email is being sent to
    * @return recipient
-  **/
+   */
   @javax.annotation.Nonnull
   public String getRecipient() {
     return recipient;
   }
-
 
   public void setRecipient(String recipient) {
     this.recipient = recipient;
@@ -462,20 +432,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry domain(String domain) {
-    
     this.domain = domain;
     return this;
   }
 
-   /**
+  /**
    * to address domain
    * @return domain
-  **/
+   */
   @javax.annotation.Nonnull
   public String getDomain() {
     return domain;
   }
-
 
   public void setDomain(String domain) {
     this.domain = domain;
@@ -483,20 +451,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry locked(Integer locked) {
-    
     this.locked = locked;
     return this;
   }
 
-   /**
+  /**
    * locked status
    * @return locked
-  **/
+   */
   @javax.annotation.Nonnull
   public Integer getLocked() {
     return locked;
   }
-
 
   public void setLocked(Integer locked) {
     this.locked = locked;
@@ -504,20 +470,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry lockTime(String lockTime) {
-    
     this.lockTime = lockTime;
     return this;
   }
 
-   /**
+  /**
    * lock timestamp
    * @return lockTime
-  **/
+   */
   @javax.annotation.Nonnull
   public String getLockTime() {
     return lockTime;
   }
-
 
   public void setLockTime(String lockTime) {
     this.lockTime = lockTime;
@@ -525,20 +489,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry assigned(String assigned) {
-    
     this.assigned = assigned;
     return this;
   }
 
-   /**
+  /**
    * assigned server
    * @return assigned
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAssigned() {
     return assigned;
   }
-
 
   public void setAssigned(String assigned) {
     this.assigned = assigned;
@@ -546,20 +508,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry queued(String queued) {
-    
     this.queued = queued;
     return this;
   }
 
-   /**
+  /**
    * queued timestamp
    * @return queued
-  **/
+   */
   @javax.annotation.Nonnull
   public String getQueued() {
     return queued;
   }
-
 
   public void setQueued(String queued) {
     this.queued = queued;
@@ -567,20 +527,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry mxHostname(String mxHostname) {
-    
     this.mxHostname = mxHostname;
     return this;
   }
 
-   /**
+  /**
    * mx hostname
    * @return mxHostname
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMxHostname() {
     return mxHostname;
   }
-
 
   public void setMxHostname(String mxHostname) {
     this.mxHostname = mxHostname;
@@ -588,20 +546,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry response(String response) {
-    
     this.response = response;
     return this;
   }
 
-   /**
+  /**
    * mail delivery response
    * @return response
-  **/
+   */
   @javax.annotation.Nonnull
   public String getResponse() {
     return response;
   }
-
 
   public void setResponse(String response) {
     this.response = response;
@@ -609,20 +565,18 @@ public class MailLogEntry {
 
 
   public MailLogEntry messageId(String messageId) {
-    
     this.messageId = messageId;
     return this;
   }
 
-   /**
+  /**
    * message id
    * @return messageId
-  **/
+   */
   @javax.annotation.Nullable
   public String getMessageId() {
     return messageId;
   }
-
 
   public void setMessageId(String messageId) {
     this.messageId = messageId;
@@ -768,12 +722,12 @@ public class MailLogEntry {
     openapiRequiredFields.add("response");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailLogEntry
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailLogEntry
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailLogEntry.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -881,22 +835,22 @@ public class MailLogEntry {
     }
   }
 
- /**
-  * Create an instance of MailLogEntry given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailLogEntry
-  * @throws IOException if the JSON string is invalid with respect to MailLogEntry
-  */
+  /**
+   * Create an instance of MailLogEntry given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailLogEntry
+   * @throws IOException if the JSON string is invalid with respect to MailLogEntry
+   */
   public static MailLogEntry fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailLogEntry.class);
   }
 
- /**
-  * Convert an instance of MailLogEntry to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailLogEntry to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

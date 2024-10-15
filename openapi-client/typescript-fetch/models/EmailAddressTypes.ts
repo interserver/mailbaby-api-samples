@@ -12,15 +12,15 @@
  * Do not edit the class manually.
  */
 
+import type { EmailAddressName } from './EmailAddressName';
 import {
-    EmailAddressName,
     instanceOfEmailAddressName,
     EmailAddressNameFromJSON,
     EmailAddressNameFromJSONTyped,
     EmailAddressNameToJSON,
 } from './EmailAddressName';
+import type { string } from './string';
 import {
-    string,
     instanceOfstring,
     stringFromJSON,
     stringFromJSONTyped,
@@ -39,18 +39,22 @@ export function EmailAddressTypesFromJSON(json: any): EmailAddressTypes {
 }
 
 export function EmailAddressTypesFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmailAddressTypes {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
-    return { ...EmailAddressNameFromJSONTyped(json, true), ...stringFromJSONTyped(json, true) };
+    if (instanceOfEmailAddressName(json)) {
+        return EmailAddressNameFromJSONTyped(json, true);
+    }
+    if (instanceOfstring(json)) {
+        return stringFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function EmailAddressTypesToJSON(value?: EmailAddressTypes | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
 
     if (instanceOfEmailAddressName(value)) {

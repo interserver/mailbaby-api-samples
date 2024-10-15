@@ -56,5 +56,6 @@ data class DenyRuleNew (
         @Json(name = "startswith") startswith("startswith"),
         @Json(name = "destination") destination("destination");
     }
+
 }
 

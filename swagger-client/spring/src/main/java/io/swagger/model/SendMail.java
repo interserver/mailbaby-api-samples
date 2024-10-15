@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,23 +18,30 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Details for an Email")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-02T13:33:33.953471686-04:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-15T16:38:12.193621947-04:00[America/New_York]")
 
 
 public class SendMail   {
   @JsonProperty("to")
+
   private String to = null;
 
   @JsonProperty("from")
+
   private String from = null;
 
   @JsonProperty("subject")
+
   private String subject = null;
 
   @JsonProperty("body")
+
   private String body = null;
 
-  public SendMail to(String to) {
+
+  public SendMail to(String to) { 
+
     this.to = to;
     return this;
   }
@@ -38,18 +50,23 @@ public class SendMail   {
    * The Contact whom is the primary recipient of this email.
    * @return to
    **/
+  
   @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
-      @NotNull
-
-    public String getTo() {
+  
+  @NotNull
+  public String getTo() {  
     return to;
   }
 
-  public void setTo(String to) {
+
+
+  public void setTo(String to) { 
+
     this.to = to;
   }
 
-  public SendMail from(String from) {
+  public SendMail from(String from) { 
+
     this.from = from;
     return this;
   }
@@ -58,18 +75,23 @@ public class SendMail   {
    * The contact whom is the this email is from.
    * @return from
    **/
+  
   @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
-      @NotNull
-
-    public String getFrom() {
+  
+  @NotNull
+  public String getFrom() {  
     return from;
   }
 
-  public void setFrom(String from) {
+
+
+  public void setFrom(String from) { 
+
     this.from = from;
   }
 
-  public SendMail subject(String subject) {
+  public SendMail subject(String subject) { 
+
     this.subject = subject;
     return this;
   }
@@ -78,18 +100,23 @@ public class SendMail   {
    * The subject or title of the email
    * @return subject
    **/
+  
   @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
-      @NotNull
-
-    public String getSubject() {
+  
+  @NotNull
+  public String getSubject() {  
     return subject;
   }
 
-  public void setSubject(String subject) {
+
+
+  public void setSubject(String subject) { 
+
     this.subject = subject;
   }
 
-  public SendMail body(String body) {
+  public SendMail body(String body) { 
+
     this.body = body;
     return this;
   }
@@ -98,17 +125,20 @@ public class SendMail   {
    * The main email contents.
    * @return body
    **/
+  
   @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
-      @NotNull
-
-    public String getBody() {
+  
+  @NotNull
+  public String getBody() {  
     return body;
   }
 
-  public void setBody(String body) {
+
+
+  public void setBody(String body) { 
+
     this.body = body;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

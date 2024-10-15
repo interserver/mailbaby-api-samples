@@ -50,7 +50,7 @@ import javax.annotation.Generated;
   MailLogEntry.JSON_PROPERTY_MESSAGE_ID
 })
 @JsonTypeName("MailLogEntry")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailLogEntry {
     public static final String JSON_PROPERTY_ID = "_id";
@@ -155,7 +155,7 @@ public class MailLogEntry {
     /**
      * internal db id
      * @return id
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -177,7 +177,7 @@ public class MailLogEntry {
     /**
      * mail id
      * @return id
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -199,7 +199,7 @@ public class MailLogEntry {
     /**
      * from address
      * @return from
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FROM)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -221,7 +221,7 @@ public class MailLogEntry {
     /**
      * to address
      * @return to
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TO)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -243,7 +243,7 @@ public class MailLogEntry {
     /**
      * email subject
      * @return subject
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -265,7 +265,7 @@ public class MailLogEntry {
     /**
      * creation date
      * @return created
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_CREATED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -287,7 +287,7 @@ public class MailLogEntry {
     /**
      * creation timestamp
      * @return time
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TIME)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -309,7 +309,7 @@ public class MailLogEntry {
     /**
      * user account
      * @return user
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_USER)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -331,7 +331,7 @@ public class MailLogEntry {
     /**
      * transaction type
      * @return transtype
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TRANSTYPE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -353,7 +353,7 @@ public class MailLogEntry {
     /**
      * origin ip
      * @return origin
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ORIGIN)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -375,7 +375,7 @@ public class MailLogEntry {
     /**
      * interface name
      * @return _interface
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_INTERFACE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -397,7 +397,7 @@ public class MailLogEntry {
     /**
      * sending zone
      * @return sendingZone
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SENDING_ZONE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -419,7 +419,7 @@ public class MailLogEntry {
     /**
      * email body size in bytes
      * @return bodySize
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_BODY_SIZE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -441,7 +441,7 @@ public class MailLogEntry {
     /**
      * index of email in the to adderess list
      * @return seq
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SEQ)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -463,7 +463,7 @@ public class MailLogEntry {
     /**
      * to address this email is being sent to
      * @return recipient
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_RECIPIENT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -485,7 +485,7 @@ public class MailLogEntry {
     /**
      * to address domain
      * @return domain
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_DOMAIN)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -507,7 +507,7 @@ public class MailLogEntry {
     /**
      * locked status
      * @return locked
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_LOCKED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -529,7 +529,7 @@ public class MailLogEntry {
     /**
      * lock timestamp
      * @return lockTime
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_LOCK_TIME)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -551,7 +551,7 @@ public class MailLogEntry {
     /**
      * assigned server
      * @return assigned
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ASSIGNED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -573,7 +573,7 @@ public class MailLogEntry {
     /**
      * queued timestamp
      * @return queued
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_QUEUED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -595,7 +595,7 @@ public class MailLogEntry {
     /**
      * mx hostname
      * @return mxHostname
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_MX_HOSTNAME)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -617,7 +617,7 @@ public class MailLogEntry {
     /**
      * mail delivery response
      * @return response
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_RESPONSE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -639,7 +639,7 @@ public class MailLogEntry {
     /**
      * message id
      * @return messageId
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

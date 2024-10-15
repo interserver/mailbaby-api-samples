@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * An email contact.
  */
 @Schema(description = "An email contact.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-04-02T13:33:16.911044268-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-10-15T16:37:54.418937740-04:00[America/New_York]")
 public class EmailAddressName  implements EmailAddressTypes  {
   @JsonProperty("email")
   private String email = null;
@@ -62,6 +62,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
    **/
   @JsonProperty("name")
   @Schema(example = "John Smith", description = "Name to use for the sending contact.")
+  @NotNull
   public String getName() {
     return name;
   }

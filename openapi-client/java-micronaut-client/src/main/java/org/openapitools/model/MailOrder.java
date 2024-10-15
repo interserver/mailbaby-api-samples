@@ -31,7 +31,7 @@ import javax.annotation.Generated;
   MailOrder.JSON_PROPERTY_COMMENT
 })
 @JsonTypeName("MailOrder")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailOrder {
     public static final String JSON_PROPERTY_ID = "id";
@@ -60,7 +60,7 @@ public class MailOrder {
     /**
      * The ID of the order.
      * @return id
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -82,7 +82,7 @@ public class MailOrder {
     /**
      * The order status.
      * @return status
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_STATUS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -104,7 +104,7 @@ public class MailOrder {
     /**
      * The username to use for this order.
      * @return username
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_USERNAME)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -126,7 +126,7 @@ public class MailOrder {
     /**
      * Optional order comment.
      * @return comment
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_COMMENT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

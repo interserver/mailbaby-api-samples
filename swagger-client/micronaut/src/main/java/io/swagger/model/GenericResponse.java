@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-04-02T13:33:31.048512402-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-10-15T16:38:09.116249779-04:00[America/New_York]")
 public class GenericResponse   {
   @JsonProperty("status")
   private String status = null;
@@ -32,6 +32,7 @@ public class GenericResponse   {
    * @return status
   **/
   @Schema(example = "ok", description = "")
+  @NotNull
 
   public String getStatus() {
     return status;
@@ -51,6 +52,7 @@ public class GenericResponse   {
    * @return text
   **/
   @Schema(example = "The command completed successfully.", description = "")
+  @NotNull
 
   public String getText() {
     return text;

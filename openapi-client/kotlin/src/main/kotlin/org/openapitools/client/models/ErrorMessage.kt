@@ -37,5 +37,8 @@ data class ErrorMessage (
     @Json(name = "message")
     val message: kotlin.String
 
-)
+) {
+
+
+}
 

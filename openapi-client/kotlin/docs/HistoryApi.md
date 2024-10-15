@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
-[**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics. |
+| [**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
 
 
 <a id="getStats"></a>
@@ -95,22 +95,21 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
- **origin** | **kotlin.String**| originating ip address sending mail | [optional]
- **mx** | **kotlin.String**| mx record mail was sent to | [optional]
- **from** | **kotlin.String**| from email address | [optional]
- **to** | **kotlin.String**| to/destination email address | [optional]
- **subject** | **kotlin.String**| subject containing this string | [optional]
- **mailid** | **kotlin.String**| mail id | [optional]
- **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0]
- **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100]
- **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
- **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
- **replyto** | **kotlin.String**| Reply-To Email Address | [optional]
- **headerfrom** | **kotlin.String**| Header From Email Address | [optional]
+| **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional] |
+| **origin** | **kotlin.String**| originating ip address sending mail | [optional] |
+| **mx** | **kotlin.String**| mx record mail was sent to | [optional] |
+| **from** | **kotlin.String**| from email address | [optional] |
+| **to** | **kotlin.String**| to/destination email address | [optional] |
+| **subject** | **kotlin.String**| subject containing this string | [optional] |
+| **mailid** | **kotlin.String**| mail id | [optional] |
+| **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0] |
+| **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100] |
+| **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] |
+| **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] |
+| **replyto** | **kotlin.String**| Reply-To Email Address | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **headerfrom** | **kotlin.String**| Header From Email Address | [optional] |
 
 ### Return type
 

@@ -1,5 +1,7 @@
 ## ServicesApi
 
 ### displays a list of mail service orders
-# @name getMailOrders
+## displays a list of mail service orders
 GET https://api.mailbaby.net/mail
+Accept: application/json
+X-API-KEY: {{apiKey}}

@@ -2,6 +2,7 @@
 
 MailBaby Email Delivery and Management Service API
 - API version: 1.1.0
+    - Generator version: 8.0.0-SNAPSHOT
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 # Overview

@@ -2,10 +2,10 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+| [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email |
 
 
 <a id="sendAdvMail"></a>
@@ -45,18 +45,17 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subject** | **kotlin.String**| The subject or title of the email |
- **body** | **kotlin.String**| The main email contents. |
- **from** | [**EmailAddressTypes**](EmailAddressTypes.md)|  |
- **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  |
- **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional]
- **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional]
- **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional]
- **attachments** | [**kotlin.collections.List&lt;MailAttachment&gt;**](MailAttachment.md)| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional]
- **id** | **kotlin.Long**| (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional]
+| **subject** | **kotlin.String**| The subject or title of the email | |
+| **body** | **kotlin.String**| The main email contents. | |
+| **from** | [**EmailAddressTypes**](EmailAddressTypes.md)|  | |
+| **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | |
+| **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] |
+| **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] |
+| **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] |
+| **attachments** | [**kotlin.collections.List&lt;MailAttachment&gt;**](MailAttachment.md)| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **kotlin.Long**| (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] |
 
 ### Return type
 
@@ -106,13 +105,12 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **to** | **kotlin.String**| The Contact whom is the primary recipient of this email. |
- **from** | **kotlin.String**| The contact whom is the this email is from. |
- **subject** | **kotlin.String**| The subject or title of the email |
- **body** | **kotlin.String**| The main email contents. |
+| **to** | **kotlin.String**| The Contact whom is the primary recipient of this email. | |
+| **from** | **kotlin.String**| The contact whom is the this email is from. | |
+| **subject** | **kotlin.String**| The subject or title of the email | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **kotlin.String**| The main email contents. | |
 
 ### Return type
 

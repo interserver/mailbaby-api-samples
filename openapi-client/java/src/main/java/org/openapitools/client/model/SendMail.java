@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class SendMail {
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
@@ -71,20 +71,18 @@ public class SendMail {
   }
 
   public SendMail to(String to) {
-    
     this.to = to;
     return this;
   }
 
-   /**
+  /**
    * The Contact whom is the primary recipient of this email.
    * @return to
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTo() {
     return to;
   }
-
 
   public void setTo(String to) {
     this.to = to;
@@ -92,20 +90,18 @@ public class SendMail {
 
 
   public SendMail from(String from) {
-    
     this.from = from;
     return this;
   }
 
-   /**
+  /**
    * The contact whom is the this email is from.
    * @return from
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFrom() {
     return from;
   }
-
 
   public void setFrom(String from) {
     this.from = from;
@@ -113,20 +109,18 @@ public class SendMail {
 
 
   public SendMail subject(String subject) {
-    
     this.subject = subject;
     return this;
   }
 
-   /**
+  /**
    * The subject or title of the email
    * @return subject
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSubject() {
     return subject;
   }
-
 
   public void setSubject(String subject) {
     this.subject = subject;
@@ -134,20 +128,18 @@ public class SendMail {
 
 
   public SendMail body(String body) {
-    
     this.body = body;
     return this;
   }
 
-   /**
+  /**
    * The main email contents.
    * @return body
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBody() {
     return body;
   }
-
 
   public void setBody(String body) {
     this.body = body;
@@ -218,12 +210,12 @@ public class SendMail {
     openapiRequiredFields.add("body");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SendMail
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SendMail
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SendMail.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -289,22 +281,22 @@ public class SendMail {
     }
   }
 
- /**
-  * Create an instance of SendMail given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SendMail
-  * @throws IOException if the JSON string is invalid with respect to SendMail
-  */
+  /**
+   * Create an instance of SendMail given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SendMail
+   * @throws IOException if the JSON string is invalid with respect to SendMail
+   */
   public static SendMail fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SendMail.class);
   }
 
- /**
-  * Convert an instance of SendMail to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SendMail to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

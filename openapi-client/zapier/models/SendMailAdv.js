@@ -10,11 +10,13 @@ module.exports = {
             {
                 key: `${keyPrefix}subject`,
                 label: `The subject or title of the email - [${labelPrefix}subject]`,
+                required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}body`,
                 label: `The main email contents. - [${labelPrefix}body]`,
+                required: true,
                 type: 'string',
             },
             ...EmailAddressTypes.fields(`${keyPrefix}from`, isInput),

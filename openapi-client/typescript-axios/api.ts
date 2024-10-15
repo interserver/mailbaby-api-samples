@@ -14,14 +14,14 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
  * The data for a email deny rule record.
@@ -628,7 +628,7 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addRule: async (type: AddRuleTypeEnum, data: string, user?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        addRule: async (type: AddRuleTypeEnum, data: string, user?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'type' is not null or undefined
             assertParamExists('addRule', 'type', type)
             // verify required parameter 'data' is not null or undefined
@@ -682,7 +682,7 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRule: async (ruleId: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteRule: async (ruleId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'ruleId' is not null or undefined
             assertParamExists('deleteRule', 'ruleId', ruleId)
             const localVarPath = `/mail/rules/{ruleId}`
@@ -719,7 +719,7 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        delistBlock: async (body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        delistBlock: async (body: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             assertParamExists('delistBlock', 'body', body)
             const localVarPath = `/mail/blocks/delete`;
@@ -757,7 +757,7 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailBlocks: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMailBlocks: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail/blocks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -790,7 +790,7 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRules: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRules: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail/rules`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -836,9 +836,11 @@ export const BlockingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addRule(type, data, user, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockingApi.addRule']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Removes one of the configured deny mail rules from the system.
@@ -847,9 +849,11 @@ export const BlockingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteRule(ruleId: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async deleteRule(ruleId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteRule(ruleId, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockingApi.deleteRule']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Removes an email address from the various block lists. 
@@ -858,9 +862,11 @@ export const BlockingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async delistBlock(body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async delistBlock(body: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.delistBlock(body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockingApi.delistBlock']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -868,9 +874,11 @@ export const BlockingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMailBlocks(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailBlocks>> {
+        async getMailBlocks(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailBlocks>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMailBlocks(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockingApi.getMailBlocks']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns a listing of all the deny block rules you have configured.
@@ -878,9 +886,11 @@ export const BlockingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRules(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DenyRuleRecord>>> {
+        async getRules(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<DenyRuleRecord>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRules(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['BlockingApi.getRules']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -901,7 +911,7 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: any): AxiosPromise<GenericResponse> {
+        addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: RawAxiosRequestConfig): AxiosPromise<GenericResponse> {
             return localVarFp.addRule(type, data, user, options).then((request) => request(axios, basePath));
         },
         /**
@@ -911,7 +921,7 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRule(ruleId: number, options?: any): AxiosPromise<GenericResponse> {
+        deleteRule(ruleId: number, options?: RawAxiosRequestConfig): AxiosPromise<GenericResponse> {
             return localVarFp.deleteRule(ruleId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -921,7 +931,7 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        delistBlock(body: string, options?: any): AxiosPromise<GenericResponse> {
+        delistBlock(body: string, options?: RawAxiosRequestConfig): AxiosPromise<GenericResponse> {
             return localVarFp.delistBlock(body, options).then((request) => request(axios, basePath));
         },
         /**
@@ -930,7 +940,7 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailBlocks(options?: any): AxiosPromise<MailBlocks> {
+        getMailBlocks(options?: RawAxiosRequestConfig): AxiosPromise<MailBlocks> {
             return localVarFp.getMailBlocks(options).then((request) => request(axios, basePath));
         },
         /**
@@ -939,7 +949,7 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRules(options?: any): AxiosPromise<Array<DenyRuleRecord>> {
+        getRules(options?: RawAxiosRequestConfig): AxiosPromise<Array<DenyRuleRecord>> {
             return localVarFp.getRules(options).then((request) => request(axios, basePath));
         },
     };
@@ -962,7 +972,7 @@ export class BlockingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: AxiosRequestConfig) {
+    public addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).addRule(type, data, user, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -974,7 +984,7 @@ export class BlockingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public deleteRule(ruleId: number, options?: AxiosRequestConfig) {
+    public deleteRule(ruleId: number, options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).deleteRule(ruleId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -986,7 +996,7 @@ export class BlockingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public delistBlock(body: string, options?: AxiosRequestConfig) {
+    public delistBlock(body: string, options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).delistBlock(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -997,7 +1007,7 @@ export class BlockingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public getMailBlocks(options?: AxiosRequestConfig) {
+    public getMailBlocks(options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).getMailBlocks(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1008,7 +1018,7 @@ export class BlockingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof BlockingApi
      */
-    public getRules(options?: AxiosRequestConfig) {
+    public getRules(options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).getRules(options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1037,7 +1047,7 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStats: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getStats: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1083,7 +1093,7 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLog: async (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        viewMailLog: async (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail/log`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1178,9 +1188,11 @@ export const HistoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getStats(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetStats200ResponseInner>>> {
+        async getStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<GetStats200ResponseInner>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getStats(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HistoryApi.getStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get a listing of the emails sent through this system 
@@ -1201,9 +1213,11 @@ export const HistoryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailLog>> {
+        async viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MailLog>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HistoryApi.viewMailLog']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -1221,7 +1235,7 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getStats(options?: any): AxiosPromise<Array<GetStats200ResponseInner>> {
+        getStats(options?: RawAxiosRequestConfig): AxiosPromise<Array<GetStats200ResponseInner>> {
             return localVarFp.getStats(options).then((request) => request(axios, basePath));
         },
         /**
@@ -1243,7 +1257,7 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: any): AxiosPromise<MailLog> {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RawAxiosRequestConfig): AxiosPromise<MailLog> {
             return localVarFp.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options).then((request) => request(axios, basePath));
         },
     };
@@ -1263,7 +1277,7 @@ export class HistoryApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public getStats(options?: AxiosRequestConfig) {
+    public getStats(options?: RawAxiosRequestConfig) {
         return HistoryApiFp(this.configuration).getStats(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1287,7 +1301,7 @@ export class HistoryApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HistoryApi
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: AxiosRequestConfig) {
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RawAxiosRequestConfig) {
         return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1315,7 +1329,7 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMail: async (subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sendAdvMail: async (subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'subject' is not null or undefined
             assertParamExists('sendAdvMail', 'subject', subject)
             // verify required parameter 'body' is not null or undefined
@@ -1400,7 +1414,7 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail: async (to: string, from: string, subject: string, body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sendMail: async (to: string, from: string, subject: string, body: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'to' is not null or undefined
             assertParamExists('sendMail', 'to', to)
             // verify required parameter 'from' is not null or undefined
@@ -1480,9 +1494,11 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SendingApi.sendAdvMail']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
@@ -1494,9 +1510,11 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMail(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
+        async sendMail(to: string, from: string, subject: string, body: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenericResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.sendMail(to, from, subject, body, options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SendingApi.sendMail']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -1523,7 +1541,7 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: any): AxiosPromise<GenericResponse> {
+        sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RawAxiosRequestConfig): AxiosPromise<GenericResponse> {
             return localVarFp.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1536,7 +1554,7 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, options?: any): AxiosPromise<GenericResponse> {
+        sendMail(to: string, from: string, subject: string, body: string, options?: RawAxiosRequestConfig): AxiosPromise<GenericResponse> {
             return localVarFp.sendMail(to, from, subject, body, options).then((request) => request(axios, basePath));
         },
     };
@@ -1565,7 +1583,7 @@ export class SendingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: AxiosRequestConfig) {
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RawAxiosRequestConfig) {
         return SendingApiFp(this.configuration).sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -1580,7 +1598,7 @@ export class SendingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public sendMail(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig) {
+    public sendMail(to: string, from: string, subject: string, body: string, options?: RawAxiosRequestConfig) {
         return SendingApiFp(this.configuration).sendMail(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1599,7 +1617,7 @@ export const ServicesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMailOrders: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/mail`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1642,9 +1660,11 @@ export const ServicesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMailOrders(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailOrder>>> {
+        async getMailOrders(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<MailOrder>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMailOrders(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ServicesApi.getMailOrders']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -1662,7 +1682,7 @@ export const ServicesApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMailOrders(options?: any): AxiosPromise<Array<MailOrder>> {
+        getMailOrders(options?: RawAxiosRequestConfig): AxiosPromise<Array<MailOrder>> {
             return localVarFp.getMailOrders(options).then((request) => request(axios, basePath));
         },
     };
@@ -1682,7 +1702,7 @@ export class ServicesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ServicesApi
      */
-    public getMailOrders(options?: AxiosRequestConfig) {
+    public getMailOrders(options?: RawAxiosRequestConfig) {
         return ServicesApiFp(this.configuration).getMailOrders(options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -1701,7 +1721,7 @@ export const StatusApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pingServer: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        pingServer: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/ping`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1744,9 +1764,11 @@ export const StatusApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async pingServer(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async pingServer(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.pingServer(options);
-            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['StatusApi.pingServer']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -1764,7 +1786,7 @@ export const StatusApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        pingServer(options?: any): AxiosPromise<void> {
+        pingServer(options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.pingServer(options).then((request) => request(axios, basePath));
         },
     };
@@ -1784,7 +1806,7 @@ export class StatusApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof StatusApi
      */
-    public pingServer(options?: AxiosRequestConfig) {
+    public pingServer(options?: RawAxiosRequestConfig) {
         return StatusApiFp(this.configuration).pingServer(options).then((request) => request(this.axios, this.basePath));
     }
 }

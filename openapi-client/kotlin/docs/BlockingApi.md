@@ -2,13 +2,13 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addRule**](BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule.
-[**deleteRule**](BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
-[**delistBlock**](BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
-[**getMailBlocks**](BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
-[**getRules**](BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**addRule**](BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule. |
+| [**deleteRule**](BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule. |
+| [**delistBlock**](BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list |
+| [**getMailBlocks**](BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses |
+| [**getRules**](BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules. |
 
 
 <a id="addRule"></a>
@@ -42,12 +42,11 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **type** | **kotlin.String**| The type of deny rule. | [enum: domain, email, startswith, destination]
- **&#x60;data&#x60;** | **kotlin.String**| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. |
- **user** | **kotlin.String**| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | [optional]
+| **type** | **kotlin.String**| The type of deny rule. | [enum: domain, email, startswith, destination] |
+| **&#x60;data&#x60;** | **kotlin.String**| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. | |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **user** | **kotlin.String**| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | [optional] |
 
 ### Return type
 
@@ -94,10 +93,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ruleId** | **kotlin.Int**| The ID of the Rules entry. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ruleId** | **kotlin.Int**| The ID of the Rules entry. | |
 
 ### Return type
 
@@ -144,10 +142,9 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **kotlin.String**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **body** | **kotlin.String**|  | |
 
 ### Return type
 

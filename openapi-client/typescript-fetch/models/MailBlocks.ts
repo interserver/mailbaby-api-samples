@@ -12,19 +12,19 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { MailBlockClickHouse } from './MailBlockClickHouse';
-import {
-    MailBlockClickHouseFromJSON,
-    MailBlockClickHouseFromJSONTyped,
-    MailBlockClickHouseToJSON,
-} from './MailBlockClickHouse';
+import { mapValues } from '../runtime';
 import type { MailBlockRspamd } from './MailBlockRspamd';
 import {
     MailBlockRspamdFromJSON,
     MailBlockRspamdFromJSONTyped,
     MailBlockRspamdToJSON,
 } from './MailBlockRspamd';
+import type { MailBlockClickHouse } from './MailBlockClickHouse';
+import {
+    MailBlockClickHouseFromJSON,
+    MailBlockClickHouseFromJSONTyped,
+    MailBlockClickHouseToJSON,
+} from './MailBlockClickHouse';
 
 /**
  * The listing of blocked emails.
@@ -55,13 +55,11 @@ export interface MailBlocks {
 /**
  * Check if a given object implements the MailBlocks interface.
  */
-export function instanceOfMailBlocks(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "local" in value;
-    isInstance = isInstance && "mbtrap" in value;
-    isInstance = isInstance && "subject" in value;
-
-    return isInstance;
+export function instanceOfMailBlocks(value: object): value is MailBlocks {
+    if (!('local' in value) || value['local'] === undefined) return false;
+    if (!('mbtrap' in value) || value['mbtrap'] === undefined) return false;
+    if (!('subject' in value) || value['subject'] === undefined) return false;
+    return true;
 }
 
 export function MailBlocksFromJSON(json: any): MailBlocks {
@@ -69,7 +67,7 @@ export function MailBlocksFromJSON(json: any): MailBlocks {
 }
 
 export function MailBlocksFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailBlocks {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -81,17 +79,14 @@ export function MailBlocksFromJSONTyped(json: any, ignoreDiscriminator: boolean)
 }
 
 export function MailBlocksToJSON(value?: MailBlocks | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'local': ((value.local as Array<any>).map(MailBlockClickHouseToJSON)),
-        'mbtrap': ((value.mbtrap as Array<any>).map(MailBlockClickHouseToJSON)),
-        'subject': ((value.subject as Array<any>).map(MailBlockRspamdToJSON)),
+        'local': ((value['local'] as Array<any>).map(MailBlockClickHouseToJSON)),
+        'mbtrap': ((value['mbtrap'] as Array<any>).map(MailBlockClickHouseToJSON)),
+        'subject': ((value['subject'] as Array<any>).map(MailBlockRspamdToJSON)),
     };
 }
 

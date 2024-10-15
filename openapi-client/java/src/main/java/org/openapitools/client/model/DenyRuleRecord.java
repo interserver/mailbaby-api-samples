@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * The data for a email deny rule record.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class DenyRuleRecord {
   /**
    * The type of deny rule.
@@ -101,6 +101,11 @@ public class DenyRuleRecord {
         return TypeEnum.fromValue(value);
       }
     }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      TypeEnum.fromValue(value);
+    }
   }
 
   public static final String SERIALIZED_NAME_TYPE = "type";
@@ -127,20 +132,18 @@ public class DenyRuleRecord {
   }
 
   public DenyRuleRecord type(TypeEnum type) {
-    
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The type of deny rule.
    * @return type
-  **/
+   */
   @javax.annotation.Nonnull
   public TypeEnum getType() {
     return type;
   }
-
 
   public void setType(TypeEnum type) {
     this.type = type;
@@ -148,20 +151,18 @@ public class DenyRuleRecord {
 
 
   public DenyRuleRecord data(String data) {
-    
     this.data = data;
     return this;
   }
 
-   /**
+  /**
    * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
   public String getData() {
     return data;
   }
-
 
   public void setData(String data) {
     this.data = data;
@@ -169,20 +170,18 @@ public class DenyRuleRecord {
 
 
   public DenyRuleRecord id(String id) {
-    
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The deny rule Id number.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
   }
-
 
   public void setId(String id) {
     this.id = id;
@@ -190,20 +189,18 @@ public class DenyRuleRecord {
 
 
   public DenyRuleRecord created(Date created) {
-    
     this.created = created;
     return this;
   }
 
-   /**
+  /**
    * the date the rule was created.
    * @return created
-  **/
+   */
   @javax.annotation.Nonnull
   public Date getCreated() {
     return created;
   }
-
 
   public void setCreated(Date created) {
     this.created = created;
@@ -211,20 +208,18 @@ public class DenyRuleRecord {
 
 
   public DenyRuleRecord user(String user) {
-    
     this.user = user;
     return this;
   }
 
-   /**
+  /**
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
    * @return user
-  **/
+   */
   @javax.annotation.Nullable
   public String getUser() {
     return user;
   }
-
 
   public void setUser(String user) {
     this.user = user;
@@ -298,12 +293,12 @@ public class DenyRuleRecord {
     openapiRequiredFields.add("created");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DenyRuleRecord
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DenyRuleRecord
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DenyRuleRecord.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -329,6 +324,8 @@ public class DenyRuleRecord {
       if (!jsonObj.get("type").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
       }
+      // validate the required field `type`
+      TypeEnum.validateJsonElement(jsonObj.get("type"));
       if (!jsonObj.get("data").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `data` to be a primitive type in the JSON string but got `%s`", jsonObj.get("data").toString()));
       }
@@ -369,22 +366,22 @@ public class DenyRuleRecord {
     }
   }
 
- /**
-  * Create an instance of DenyRuleRecord given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DenyRuleRecord
-  * @throws IOException if the JSON string is invalid with respect to DenyRuleRecord
-  */
+  /**
+   * Create an instance of DenyRuleRecord given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DenyRuleRecord
+   * @throws IOException if the JSON string is invalid with respect to DenyRuleRecord
+   */
   public static DenyRuleRecord fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DenyRuleRecord.class);
   }
 
- /**
-  * Convert an instance of DenyRuleRecord to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DenyRuleRecord to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

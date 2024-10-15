@@ -10,8 +10,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -19,14 +19,14 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMailOrdersError {
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
 
 /// This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
-pub async fn get_mail_orders(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::MailOrder>, Error<GetMailOrdersError>> {
+pub async fn get_mail_orders(configuration: &configuration::Configuration, ) -> Result<Vec<models::MailOrder>, Error<GetMailOrdersError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

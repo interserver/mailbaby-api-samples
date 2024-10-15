@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * GenericResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class GenericResponse {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -63,20 +63,18 @@ public class GenericResponse {
   }
 
   public GenericResponse status(String status) {
-    
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
-
 
   public void setStatus(String status) {
     this.status = status;
@@ -84,20 +82,18 @@ public class GenericResponse {
 
 
   public GenericResponse text(String text) {
-    
     this.text = text;
     return this;
   }
 
-   /**
+  /**
    * Get text
    * @return text
-  **/
+   */
   @javax.annotation.Nullable
   public String getText() {
     return text;
   }
-
 
   public void setText(String text) {
     this.text = text;
@@ -158,12 +154,12 @@ public class GenericResponse {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GenericResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GenericResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GenericResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -216,22 +212,22 @@ public class GenericResponse {
     }
   }
 
- /**
-  * Create an instance of GenericResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GenericResponse
-  * @throws IOException if the JSON string is invalid with respect to GenericResponse
-  */
+  /**
+   * Create an instance of GenericResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GenericResponse
+   * @throws IOException if the JSON string is invalid with respect to GenericResponse
+   */
   public static GenericResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GenericResponse.class);
   }
 
- /**
-  * Convert an instance of GenericResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GenericResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

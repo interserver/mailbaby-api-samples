@@ -104,9 +104,9 @@ public class MailBlocks  {
       return false;
     }
     MailBlocks mailBlocks = (MailBlocks) o;
-    return Objects.equals(local, mailBlocks.local) &&
-        Objects.equals(mbtrap, mailBlocks.mbtrap) &&
-        Objects.equals(subject, mailBlocks.subject);
+    return Objects.equals(this.local, mailBlocks.local) &&
+        Objects.equals(this.mbtrap, mailBlocks.mbtrap) &&
+        Objects.equals(this.subject, mailBlocks.subject);
   }
 
   @Override

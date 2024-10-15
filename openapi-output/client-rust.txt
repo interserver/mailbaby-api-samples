@@ -14,10 +14,10 @@
 [main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
 [main] WARN  o.o.c.languages.AbstractRustCodegen - type cannot be used as a field/variable name. Renamed to r#type
 [main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
-[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<crate::models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_crate_colon_colon_models_colon_colon_email_address_name_greater_than
-[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<crate::models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_crate_colon_colon_models_colon_colon_email_address_name_greater_than
-[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<crate::models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_crate_colon_colon_models_colon_colon_email_address_name_greater_than
-[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<crate::models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_crate_colon_colon_models_colon_colon_email_address_name_greater_than
+[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_models_colon_colon_email_address_name_greater_than
+[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_models_colon_colon_email_address_name_greater_than
+[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_models_colon_colon_email_address_name_greater_than
+[main] WARN  o.o.c.languages.AbstractRustCodegen - vec<models::email_address_name> cannot be used as a field/variable name. Renamed to vec_less_than_models_colon_colon_email_address_name_greater_than
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/rust/src/models/deny_rule_new.rs
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/rust/docs/DenyRuleNew.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/rust/src/models/deny_rule_record.rs

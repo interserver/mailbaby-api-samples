@@ -10,8 +10,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -19,9 +19,9 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddRuleError {
-    Status400(crate::models::ErrorMessage),
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status400(models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -29,9 +29,9 @@ pub enum AddRuleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteRuleError {
-    Status400(crate::models::ErrorMessage),
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status400(models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -39,9 +39,9 @@ pub enum DeleteRuleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DelistBlockError {
-    Status400(crate::models::ErrorMessage),
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status400(models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -49,8 +49,8 @@ pub enum DelistBlockError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetMailBlocksError {
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
@@ -58,14 +58,14 @@ pub enum GetMailBlocksError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetRulesError {
-    Status401(crate::models::ErrorMessage),
-    Status404(crate::models::ErrorMessage),
+    Status401(models::ErrorMessage),
+    Status404(models::ErrorMessage),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Adds a new email deny rule into the system to block new emails that match the given criteria
-pub async fn add_rule(configuration: &configuration::Configuration, r#type: &str, data: &str, user: Option<&str>) -> Result<crate::models::GenericResponse, Error<AddRuleError>> {
+pub async fn add_rule(configuration: &configuration::Configuration, r#type: &str, data: &str, user: Option<&str>) -> Result<models::GenericResponse, Error<AddRuleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -108,7 +108,7 @@ pub async fn add_rule(configuration: &configuration::Configuration, r#type: &str
 }
 
 /// Removes one of the configured deny mail rules from the system.
-pub async fn delete_rule(configuration: &configuration::Configuration, rule_id: i32) -> Result<crate::models::GenericResponse, Error<DeleteRuleError>> {
+pub async fn delete_rule(configuration: &configuration::Configuration, rule_id: i32) -> Result<models::GenericResponse, Error<DeleteRuleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -144,7 +144,7 @@ pub async fn delete_rule(configuration: &configuration::Configuration, rule_id: 
 }
 
 /// Removes an email address from the various block lists. 
-pub async fn delist_block(configuration: &configuration::Configuration, body: &str) -> Result<crate::models::GenericResponse, Error<DelistBlockError>> {
+pub async fn delist_block(configuration: &configuration::Configuration, body: &str) -> Result<models::GenericResponse, Error<DelistBlockError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -180,7 +180,7 @@ pub async fn delist_block(configuration: &configuration::Configuration, body: &s
     }
 }
 
-pub async fn get_mail_blocks(configuration: &configuration::Configuration, ) -> Result<crate::models::MailBlocks, Error<GetMailBlocksError>> {
+pub async fn get_mail_blocks(configuration: &configuration::Configuration, ) -> Result<models::MailBlocks, Error<GetMailBlocksError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -216,7 +216,7 @@ pub async fn get_mail_blocks(configuration: &configuration::Configuration, ) -> 
 }
 
 /// Returns a listing of all the deny block rules you have configured.
-pub async fn get_rules(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::DenyRuleRecord>, Error<GetRulesError>> {
+pub async fn get_rules(configuration: &configuration::Configuration, ) -> Result<Vec<models::DenyRuleRecord>, Error<GetRulesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

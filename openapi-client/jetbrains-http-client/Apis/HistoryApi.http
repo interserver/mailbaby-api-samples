@@ -1,9 +1,13 @@
 ## HistoryApi
 
 ### Account usage statistics.
-# @name getStats
+## Account usage statistics.
 GET https://api.mailbaby.net/mail/stats
+Accept: application/json
+X-API-KEY: {{apiKey}}
 
 ### displays the mail log
-# @name viewMailLog
-GET https://api.mailbaby.net/mail/log
+## displays the mail log
+GET https://api.mailbaby.net/mail/log?id={{id}}&origin={{origin}}&mx={{mx}}&from={{from}}&to={{to}}&subject={{subject}}&mailid={{mailid}}&skip={{skip}}&limit={{limit}}&startDate={{startDate}}&endDate={{endDate}}&replyto={{replyto}}&headerfrom={{headerfrom}}
+Accept: application/json
+X-API-KEY: {{apiKey}}

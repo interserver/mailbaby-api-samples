@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The data for a email deny rule record.
  * @export
@@ -55,12 +55,10 @@ export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRu
 /**
  * Check if a given object implements the DenyRuleNew interface.
  */
-export function instanceOfDenyRuleNew(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "data" in value;
-
-    return isInstance;
+export function instanceOfDenyRuleNew(value: object): value is DenyRuleNew {
+    if (!('type' in value) || value['type'] === undefined) return false;
+    if (!('data' in value) || value['data'] === undefined) return false;
+    return true;
 }
 
 export function DenyRuleNewFromJSON(json: any): DenyRuleNew {
@@ -68,29 +66,26 @@ export function DenyRuleNewFromJSON(json: any): DenyRuleNew {
 }
 
 export function DenyRuleNewFromJSONTyped(json: any, ignoreDiscriminator: boolean): DenyRuleNew {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'type': json['type'],
         'data': json['data'],
-        'user': !exists(json, 'user') ? undefined : json['user'],
+        'user': json['user'] == null ? undefined : json['user'],
     };
 }
 
 export function DenyRuleNewToJSON(value?: DenyRuleNew | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'type': value.type,
-        'data': value.data,
-        'user': value.user,
+        'type': value['type'],
+        'data': value['data'],
+        'user': value['user'],
     };
 }
 

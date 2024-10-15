@@ -70,5 +70,8 @@ data class SendMailAdv (
     @Json(name = "id")
     val id: kotlin.Long? = null
 
-)
+) {
+
+
+}
 

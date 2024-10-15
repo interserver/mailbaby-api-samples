@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.get_stats200_response_inner import GetStats200ResponseInner  # noqa: E501
+from openapi_client.models.get_stats200_response_inner import GetStats200ResponseInner
 
 class TestGetStats200ResponseInner(unittest.TestCase):
     """GetStats200ResponseInner unit test stubs"""
@@ -29,12 +28,12 @@ class TestGetStats200ResponseInner(unittest.TestCase):
 
     def make_instance(self, include_optional) -> GetStats200ResponseInner:
         """Test GetStats200ResponseInner
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GetStats200ResponseInner`
         """
-        model = GetStats200ResponseInner()  # noqa: E501
+        model = GetStats200ResponseInner()
         if include_optional:
             return GetStats200ResponseInner(
                 id = 1234,

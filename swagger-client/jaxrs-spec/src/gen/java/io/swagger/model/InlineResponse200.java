@@ -88,6 +88,7 @@ public class InlineResponse200   {
   
   @ApiModelProperty(example = "guest123", value = "")
   @JsonProperty("password")
+  @NotNull
 
   public String getPassword() {
     return password;
@@ -106,6 +107,7 @@ public class InlineResponse200   {
   
   @ApiModelProperty(example = "main mail account", value = "")
   @JsonProperty("comment")
+  @NotNull
 
   public String getComment() {
     return comment;

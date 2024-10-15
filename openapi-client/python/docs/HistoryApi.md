@@ -18,9 +18,8 @@ Returns information about the usage on your mail accounts.
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.get_stats200_response_inner import GetStats200ResponseInner
 from openapi_client.rest import ApiException
@@ -60,6 +59,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -76,6 +76,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -94,9 +95,8 @@ Get a listing of the emails sent through this system
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.models.mail_log import MailLog
 from openapi_client.rest import ApiException
@@ -150,6 +150,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| The ID of your mail order this will be sent through. | [optional] 
@@ -180,6 +181,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | search results matching criteria |  -  |

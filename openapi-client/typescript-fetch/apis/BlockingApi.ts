@@ -55,12 +55,18 @@ export class BlockingApi extends runtime.BaseAPI {
      * Creates a new email deny rule.
      */
     async addRuleRaw(requestParameters: AddRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.type === null || requestParameters.type === undefined) {
-            throw new runtime.RequiredError('type','Required parameter requestParameters.type was null or undefined when calling addRule.');
+        if (requestParameters['type'] == null) {
+            throw new runtime.RequiredError(
+                'type',
+                'Required parameter "type" was null or undefined when calling addRule().'
+            );
         }
 
-        if (requestParameters.data === null || requestParameters.data === undefined) {
-            throw new runtime.RequiredError('data','Required parameter requestParameters.data was null or undefined when calling addRule.');
+        if (requestParameters['data'] == null) {
+            throw new runtime.RequiredError(
+                'data',
+                'Required parameter "data" was null or undefined when calling addRule().'
+            );
         }
 
         const queryParameters: any = {};
@@ -68,7 +74,7 @@ export class BlockingApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const consumes: runtime.Consume[] = [
@@ -86,16 +92,16 @@ export class BlockingApi extends runtime.BaseAPI {
             formParams = new URLSearchParams();
         }
 
-        if (requestParameters.user !== undefined) {
-            formParams.append('user', requestParameters.user as any);
+        if (requestParameters['user'] != null) {
+            formParams.append('user', requestParameters['user'] as any);
         }
 
-        if (requestParameters.type !== undefined) {
-            formParams.append('type', requestParameters.type as any);
+        if (requestParameters['type'] != null) {
+            formParams.append('type', requestParameters['type'] as any);
         }
 
-        if (requestParameters.data !== undefined) {
-            formParams.append('data', requestParameters.data as any);
+        if (requestParameters['data'] != null) {
+            formParams.append('data', requestParameters['data'] as any);
         }
 
         const response = await this.request({
@@ -123,8 +129,11 @@ export class BlockingApi extends runtime.BaseAPI {
      * Removes an deny mail rule.
      */
     async deleteRuleRaw(requestParameters: DeleteRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.ruleId === null || requestParameters.ruleId === undefined) {
-            throw new runtime.RequiredError('ruleId','Required parameter requestParameters.ruleId was null or undefined when calling deleteRule.');
+        if (requestParameters['ruleId'] == null) {
+            throw new runtime.RequiredError(
+                'ruleId',
+                'Required parameter "ruleId" was null or undefined when calling deleteRule().'
+            );
         }
 
         const queryParameters: any = {};
@@ -132,11 +141,11 @@ export class BlockingApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
-            path: `/mail/rules/{ruleId}`.replace(`{${"ruleId"}}`, encodeURIComponent(String(requestParameters.ruleId))),
+            path: `/mail/rules/{ruleId}`.replace(`{${"ruleId"}}`, encodeURIComponent(String(requestParameters['ruleId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -159,8 +168,11 @@ export class BlockingApi extends runtime.BaseAPI {
      * Removes an email address from the blocked list
      */
     async delistBlockRaw(requestParameters: DelistBlockRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
-        if (requestParameters.body === null || requestParameters.body === undefined) {
-            throw new runtime.RequiredError('body','Required parameter requestParameters.body was null or undefined when calling delistBlock.');
+        if (requestParameters['body'] == null) {
+            throw new runtime.RequiredError(
+                'body',
+                'Required parameter "body" was null or undefined when calling delistBlock().'
+            );
         }
 
         const queryParameters: any = {};
@@ -170,7 +182,7 @@ export class BlockingApi extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -178,7 +190,7 @@ export class BlockingApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: requestParameters.body as any,
+            body: requestParameters['body'] as any,
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));
@@ -202,7 +214,7 @@ export class BlockingApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const response = await this.request({
@@ -233,7 +245,7 @@ export class BlockingApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
-            headerParameters["X-API-KEY"] = this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
+            headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
         const response = await this.request({

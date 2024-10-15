@@ -72,9 +72,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/rules"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/rules"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -158,10 +158,10 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                var path = "/mail/rules/{ruleId}"
-                path = path.replacingOccurrences(of: "{ruleId}", with: "\(ruleId)")
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                var localVarPath = "/mail/rules/{ruleId}"
+                localVarPath = localVarPath.replacingOccurrences(of: "{ruleId}", with: "\(ruleId)")
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -239,9 +239,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/blocks/delete"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/blocks/delete"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -315,9 +315,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/blocks"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/blocks"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -382,9 +382,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/rules"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/rules"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }

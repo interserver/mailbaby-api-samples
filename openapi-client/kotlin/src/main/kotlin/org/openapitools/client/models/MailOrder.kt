@@ -47,5 +47,8 @@ data class MailOrder (
     @Json(name = "comment")
     val comment: kotlin.String? = null
 
-)
+) {
+
+
+}
 

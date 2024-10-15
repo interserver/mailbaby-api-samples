@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Details for an Email
  * @export
@@ -48,14 +48,12 @@ export interface SendMail {
 /**
  * Check if a given object implements the SendMail interface.
  */
-export function instanceOfSendMail(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "to" in value;
-    isInstance = isInstance && "from" in value;
-    isInstance = isInstance && "subject" in value;
-    isInstance = isInstance && "body" in value;
-
-    return isInstance;
+export function instanceOfSendMail(value: object): value is SendMail {
+    if (!('to' in value) || value['to'] === undefined) return false;
+    if (!('from' in value) || value['from'] === undefined) return false;
+    if (!('subject' in value) || value['subject'] === undefined) return false;
+    if (!('body' in value) || value['body'] === undefined) return false;
+    return true;
 }
 
 export function SendMailFromJSON(json: any): SendMail {
@@ -63,7 +61,7 @@ export function SendMailFromJSON(json: any): SendMail {
 }
 
 export function SendMailFromJSONTyped(json: any, ignoreDiscriminator: boolean): SendMail {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -76,18 +74,15 @@ export function SendMailFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
 }
 
 export function SendMailToJSON(value?: SendMail | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'to': value.to,
-        'from': value.from,
-        'subject': value.subject,
-        'body': value.body,
+        'to': value['to'],
+        'from': value['from'],
+        'subject': value['subject'],
+        'body': value['body'],
     };
 }
 

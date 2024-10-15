@@ -24,7 +24,7 @@ import javax.validation.Valid;
  * The data for a email deny rule record.
  */
 @Schema(description = "The data for a email deny rule record.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-04-02T13:33:16.911044268-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-10-15T16:37:54.418937740-04:00[America/New_York]")
 public class DenyRuleNew   {
   @JsonProperty("user")
   private String user = null;
@@ -80,6 +80,7 @@ public class DenyRuleNew   {
    **/
   @JsonProperty("user")
   @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+  @NotNull
   public String getUser() {
     return user;
   }

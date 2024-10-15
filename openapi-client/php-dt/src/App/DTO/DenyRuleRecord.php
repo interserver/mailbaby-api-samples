@@ -36,8 +36,8 @@ class DenyRuleRecord
      */
     #[DTA\Data(field: "created")]
     #[DTA\Strategy("DateTime")]
-    #[DTA\Validator("Date", ["format" => \DateTime::RFC3339])]
-    public \DateTime|null $created = null;
+    #[DTA\Validator("DateTime")]
+    public \DateTimeInterface|null $created = null;
 
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.

@@ -25,6 +25,7 @@ public class GenericResponse   {
   
   @ApiModelProperty(example = "ok", value = "")
   @JsonProperty("status")
+  @NotNull
 
   public String getStatus() {
     return status;
@@ -43,6 +44,7 @@ public class GenericResponse   {
   
   @ApiModelProperty(example = "The command completed successfully.", value = "")
   @JsonProperty("text")
+  @NotNull
 
   public String getText() {
     return text;

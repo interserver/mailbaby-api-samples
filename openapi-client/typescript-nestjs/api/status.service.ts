@@ -11,10 +11,11 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
+import { HttpService, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { Observable, from, of, switchMap } from 'rxjs';
 import { Configuration } from '../configuration';
+import { COLLECTION_FORMATS } from '../variables';
 
 
 @Injectable()
@@ -46,11 +47,12 @@ export class StatusService {
      */
     public pingServer(): Observable<AxiosResponse<any>>;
     public pingServer(): Observable<any> {
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -65,11 +67,19 @@ export class StatusService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<any>(`${this.basePath}/ping`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.get<any>(`${this.basePath}/ping`,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
 }

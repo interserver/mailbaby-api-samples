@@ -117,10 +117,10 @@ public class SendMail  {
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(to, sendMail.to) &&
-        Objects.equals(from, sendMail.from) &&
-        Objects.equals(subject, sendMail.subject) &&
-        Objects.equals(body, sendMail.body);
+    return Objects.equals(this.to, sendMail.to) &&
+        Objects.equals(this.from, sendMail.from) &&
+        Objects.equals(this.subject, sendMail.subject) &&
+        Objects.equals(this.body, sendMail.body);
   }
 
   @Override

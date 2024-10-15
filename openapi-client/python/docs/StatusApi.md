@@ -15,9 +15,8 @@ Checks if the server is running
 ### Example
 
 * Api Key Authentication (apiKeyAuth):
+
 ```python
-import time
-import os
 import openapi_client
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -54,6 +53,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -70,6 +70,7 @@ void (empty response body)
  - **Accept**: Not defined
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Server is up and running |  -  |

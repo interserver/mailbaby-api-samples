@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   ErrorMessage.JSON_PROPERTY_MESSAGE
 })
 @JsonTypeName("ErrorMessage")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class ErrorMessage {
     public static final String JSON_PROPERTY_CODE = "code";
@@ -51,7 +51,7 @@ public class ErrorMessage {
     /**
      * The response code associated with the error.
      * @return code
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_CODE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -73,7 +73,7 @@ public class ErrorMessage {
     /**
      * The details or description of the error.
      * @return message
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_MESSAGE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

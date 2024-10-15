@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   MailAttachment.JSON_PROPERTY_DATA
 })
 @JsonTypeName("MailAttachment")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailAttachment {
     public static final String JSON_PROPERTY_FILENAME = "filename";
@@ -51,7 +51,7 @@ public class MailAttachment {
     /**
      * The filename of the attached file.
      * @return filename
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FILENAME)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -73,7 +73,7 @@ public class MailAttachment {
     /**
      * The file contents base64 encoded
      * @return data
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_DATA)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

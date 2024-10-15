@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * A mail order record
  * @export
@@ -48,13 +48,11 @@ export interface MailOrder {
 /**
  * Check if a given object implements the MailOrder interface.
  */
-export function instanceOfMailOrder(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "status" in value;
-    isInstance = isInstance && "username" in value;
-
-    return isInstance;
+export function instanceOfMailOrder(value: object): value is MailOrder {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('username' in value) || value['username'] === undefined) return false;
+    return true;
 }
 
 export function MailOrderFromJSON(json: any): MailOrder {
@@ -62,7 +60,7 @@ export function MailOrderFromJSON(json: any): MailOrder {
 }
 
 export function MailOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): MailOrder {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -70,23 +68,20 @@ export function MailOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'id': json['id'],
         'status': json['status'],
         'username': json['username'],
-        'comment': !exists(json, 'comment') ? undefined : json['comment'],
+        'comment': json['comment'] == null ? undefined : json['comment'],
     };
 }
 
 export function MailOrderToJSON(value?: MailOrder | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'status': value.status,
-        'username': value.username,
-        'comment': value.comment,
+        'id': value['id'],
+        'status': value['status'],
+        'username': value['username'],
+        'comment': value['comment'],
     };
 }
 

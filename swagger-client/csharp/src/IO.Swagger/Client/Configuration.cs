@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using RestSharp;
 
 namespace IO.Swagger.Client
 {
@@ -230,8 +231,11 @@ namespace IO.Swagger.Client
             set {
                 _basePath = value;
                 // pass-through to ApiClient if it's set.
-                if(_apiClient != null) {
-                    _apiClient.RestClient.BaseUrl = new Uri(_basePath);
+                if (_apiClient != null) {
+                    _apiClient.RestClient = new RestClient(new RestClientOptions {
+                    BaseUrl = new Uri(_basePath)
+                    });
+
                 }
             }
         }
@@ -256,16 +260,18 @@ namespace IO.Swagger.Client
                 } 
                 else
                 {
-                    return ApiClient.RestClient.Timeout;
+                    return (int)ApiClient.RestClient.Options.Timeout.GetValueOrDefault(TimeSpan.FromSeconds(100)).TotalMilliseconds;
                 }
             }
             set
             {
                 _timeout = value;
                 if (_apiClient != null)
-                {
-                    ApiClient.RestClient.Timeout = _timeout;
-                }
+            {
+                ApiClient.RestClient = new RestClient(new RestClientOptions{
+                Timeout = TimeSpan.FromMilliseconds(_timeout)
+                });
+                };
             }
         }
 
@@ -425,7 +431,7 @@ namespace IO.Swagger.Client
         /// <returns></returns>
         public ApiClient CreateApiClient()
         {
-            return new ApiClient(BasePath) { Configuration = this };
+            return new ApiClient(this);
         }
 
 

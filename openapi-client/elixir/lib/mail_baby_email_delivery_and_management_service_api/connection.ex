@@ -96,7 +96,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - MailBabyEmailDeliveryAndManagementServiceAPI 1.1.0 - elixir"
+          "openapi-generator - MailBabyEmailDeliveryAndManagementServiceAPI 1.0.0 - elixir"
         )
       )
 

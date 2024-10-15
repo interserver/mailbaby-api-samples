@@ -18,23 +18,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr
-from pydantic import Field
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from openapi_client.models.email_address_types import EmailAddressTypes
 from openapi_client.models.email_addresses_types import EmailAddressesTypes
 from openapi_client.models.mail_attachment import MailAttachment
-from typing import Dict, Any
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SendMailAdv(BaseModel):
     """
-    Details for an Email  # noqa: E501
-    """
+    Details for an Email
+    """ # noqa: E501
     subject: StrictStr = Field(description="The subject or title of the email")
     body: StrictStr = Field(description="The main email contents.")
     var_from: EmailAddressTypes = Field(alias="from")
@@ -46,10 +41,11 @@ class SendMailAdv(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="(optional)  ID of the Mail order within our system to use as the Mail Account.")
     __properties: ClassVar[List[str]] = ["subject", "body", "from", "to", "replyto", "cc", "bcc", "attachments", "id"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -62,7 +58,7 @@ class SendMailAdv(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SendMailAdv from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -76,10 +72,12 @@ class SendMailAdv(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of var_from
@@ -107,7 +105,7 @@ class SendMailAdv(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SendMailAdv from a dict"""
         if obj is None:
             return None
@@ -118,12 +116,12 @@ class SendMailAdv(BaseModel):
         _obj = cls.model_validate({
             "subject": obj.get("subject"),
             "body": obj.get("body"),
-            "from": EmailAddressTypes.from_dict(obj.get("from")) if obj.get("from") is not None else None,
-            "to": EmailAddressesTypes.from_dict(obj.get("to")) if obj.get("to") is not None else None,
-            "replyto": EmailAddressesTypes.from_dict(obj.get("replyto")) if obj.get("replyto") is not None else None,
-            "cc": EmailAddressesTypes.from_dict(obj.get("cc")) if obj.get("cc") is not None else None,
-            "bcc": EmailAddressesTypes.from_dict(obj.get("bcc")) if obj.get("bcc") is not None else None,
-            "attachments": [MailAttachment.from_dict(_item) for _item in obj.get("attachments")] if obj.get("attachments") is not None else None,
+            "from": EmailAddressTypes.from_dict(obj["from"]) if obj.get("from") is not None else None,
+            "to": EmailAddressesTypes.from_dict(obj["to"]) if obj.get("to") is not None else None,
+            "replyto": EmailAddressesTypes.from_dict(obj["replyto"]) if obj.get("replyto") is not None else None,
+            "cc": EmailAddressesTypes.from_dict(obj["cc"]) if obj.get("cc") is not None else None,
+            "bcc": EmailAddressesTypes.from_dict(obj["bcc"]) if obj.get("bcc") is not None else None,
+            "attachments": [MailAttachment.from_dict(_item) for _item in obj["attachments"]] if obj.get("attachments") is not None else None,
             "id": obj.get("id")
         })
         return _obj

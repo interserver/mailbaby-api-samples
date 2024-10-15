@@ -11,13 +11,14 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
+import { HttpService, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { Observable, from, of, switchMap } from 'rxjs';
 import { ErrorMessage } from '../model/errorMessage';
 import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 import { MailLog } from '../model/mailLog';
 import { Configuration } from '../configuration';
+import { COLLECTION_FORMATS } from '../variables';
 
 
 @Injectable()
@@ -49,11 +50,12 @@ export class HistoryService {
      */
     public getStats(): Observable<AxiosResponse<Array<GetStats200ResponseInner>>>;
     public getStats(): Observable<any> {
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -69,11 +71,19 @@ export class HistoryService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<Array<GetStats200ResponseInner>>(`${this.basePath}/mail/stats`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.get<Array<GetStats200ResponseInner>>(`${this.basePath}/mail/stats`,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
     /**
@@ -97,20 +107,6 @@ export class HistoryService {
      */
     public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, ): Observable<AxiosResponse<MailLog>>;
     public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, ): Observable<any> {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         let queryParameters = new URLSearchParams();
         if (id !== undefined && id !== null) {
             queryParameters.append('id', <any>id);
@@ -154,8 +150,10 @@ export class HistoryService {
 
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -171,12 +169,20 @@ export class HistoryService {
         // to determine the Content-Type header
         const consumes: string[] = [
         ];
-        return this.httpClient.get<MailLog>(`${this.basePath}/mail/log`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.get<MailLog>(`${this.basePath}/mail/log`,
+                    {
+                        params: queryParameters,
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
 }

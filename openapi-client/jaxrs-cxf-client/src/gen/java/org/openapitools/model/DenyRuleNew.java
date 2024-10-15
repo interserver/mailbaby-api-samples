@@ -126,9 +126,9 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
       return false;
     }
     DenyRuleNew denyRuleNew = (DenyRuleNew) o;
-    return Objects.equals(type, denyRuleNew.type) &&
-        Objects.equals(data, denyRuleNew.data) &&
-        Objects.equals(user, denyRuleNew.user);
+    return Objects.equals(this.type, denyRuleNew.type) &&
+        Objects.equals(this.data, denyRuleNew.data) &&
+        Objects.equals(this.user, denyRuleNew.user);
   }
 
   @Override

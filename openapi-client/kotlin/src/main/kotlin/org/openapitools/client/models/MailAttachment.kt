@@ -37,5 +37,8 @@ data class MailAttachment (
     @Json(name = "data")
     val `data`: kotlin.String
 
-)
+) {
+
+
+}
 

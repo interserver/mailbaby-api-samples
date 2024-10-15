@@ -19,19 +19,15 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-
-from pydantic import BaseModel, StrictStr
-from pydantic import Field
-from typing import Dict, Any
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
+from typing import Optional, Set
+from typing_extensions import Self
 
 class MailBlockClickHouse(BaseModel):
     """
-    A block entry from the clickhouse mailblocks server.  # noqa: E501
-    """
+    A block entry from the clickhouse mailblocks server.
+    """ # noqa: E501
     var_date: date = Field(alias="date")
     var_from: StrictStr = Field(alias="from")
     message_id: StrictStr = Field(alias="messageId")
@@ -39,10 +35,11 @@ class MailBlockClickHouse(BaseModel):
     to: StrictStr
     __properties: ClassVar[List[str]] = ["date", "from", "messageId", "subject", "to"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -55,7 +52,7 @@ class MailBlockClickHouse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of MailBlockClickHouse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -69,16 +66,18 @@ class MailBlockClickHouse(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of MailBlockClickHouse from a dict"""
         if obj is None:
             return None

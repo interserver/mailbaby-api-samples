@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,17 +18,24 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "An email contact.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-02T13:33:33.953471686-04:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-10-15T16:38:12.193621947-04:00[America/New_York]")
 
 
 public class EmailAddressName  implements EmailAddressTypes {
   @JsonProperty("email")
+
   private String email = null;
 
   @JsonProperty("name")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String name = null;
 
-  public EmailAddressName email(String email) {
+
+  public EmailAddressName email(String email) { 
+
     this.email = email;
     return this;
   }
@@ -32,18 +44,23 @@ public class EmailAddressName  implements EmailAddressTypes {
    * The email address.
    * @return email
    **/
+  
   @Schema(example = "user@domain.com", required = true, description = "The email address.")
-      @NotNull
-
-    public String getEmail() {
+  
+  @NotNull
+  public String getEmail() {  
     return email;
   }
 
-  public void setEmail(String email) {
+
+
+  public void setEmail(String email) { 
+
     this.email = email;
   }
 
-  public EmailAddressName name(String name) {
+  public EmailAddressName name(String name) { 
+
     this.name = name;
     return this;
   }
@@ -52,16 +69,18 @@ public class EmailAddressName  implements EmailAddressTypes {
    * Name to use for the sending contact.
    * @return name
    **/
+  
   @Schema(example = "John Smith", description = "Name to use for the sending contact.")
   
-    public String getName() {
+  public String getName() {  
     return name;
   }
 
-  public void setName(String name) {
+
+
+  public void setName(String name) { 
     this.name = name;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

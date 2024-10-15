@@ -32,7 +32,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Sending do
   - `{:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec send_adv_mail(Tesla.Env.client, String.t, String.t, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailBabyEmailDeliveryAndManagementServiceAPI.Model.EmailAddressTypes.t.t, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailBabyEmailDeliveryAndManagementServiceAPI.Model.EmailAddressesTypes.t.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  @spec send_adv_mail(Tesla.Env.client, String.t, String.t, MailBabyEmailDeliveryAndManagementServiceAPI.Model.EmailAddressTypes.t, MailBabyEmailDeliveryAndManagementServiceAPI.Model.EmailAddressesTypes.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
   def send_adv_mail(connection, subject, body, from, to, opts \\ []) do
     optional_params = %{
       :replyto => :form,

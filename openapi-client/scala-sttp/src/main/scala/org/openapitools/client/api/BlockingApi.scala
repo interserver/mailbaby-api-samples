@@ -20,8 +20,7 @@ import sttp.client3._
 import sttp.model.Method
 
 object BlockingApi {
-
-def apply(baseUrl: String = "https://api.mailbaby.net") = new BlockingApi(baseUrl)
+  def apply(baseUrl: String = "https://api.mailbaby.net") = new BlockingApi(baseUrl)
 }
 
 class BlockingApi(baseUrl: String) {

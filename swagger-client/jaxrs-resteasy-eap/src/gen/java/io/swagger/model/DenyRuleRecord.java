@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="The data for a email deny rule record.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-04-02T13:33:23.260102821-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-10-15T16:38:00.756098598-04:00[America/New_York]")
 public class DenyRuleRecord   {
   private String id = null;
   private Date created = null;
@@ -75,6 +75,7 @@ public class DenyRuleRecord   {
   
   @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
   @JsonProperty("user")
+  @NotNull
   public String getUser() {
     return user;
   }

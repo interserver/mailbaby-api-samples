@@ -56,9 +56,9 @@ open class ServicesAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }

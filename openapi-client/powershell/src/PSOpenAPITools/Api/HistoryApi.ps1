@@ -49,9 +49,14 @@ function Get-Stats {
 
         $LocalVarUri = '/mail/stats'
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `
@@ -247,9 +252,14 @@ function Invoke-ViewMailLog {
             $LocalVarQueryParameters['headerfrom'] = $Headerfrom
         }
 
-        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["apiKeyAuth"]) {
-            $LocalVarHeaderParameters['apiKeyAuth'] = $Configuration["ApiKey"]["apiKeyAuth"]
-            Write-Verbose ("Using API key 'apiKeyAuth' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
+        if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
+            $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
+        } else {
+            $apiKeyPrefix = ""
+        }
+        if ($Configuration["ApiKey"] -and $Configuration["ApiKey"]["X-API-KEY"]) {
+            $LocalVarHeaderParameters['X-API-KEY'] = $apiKeyPrefix + $Configuration["ApiKey"]["X-API-KEY"]
+            Write-Verbose ("Using API key 'X-API-KEY' in the header for authentication in {0}" -f $MyInvocation.MyCommand)
         }
 
         $LocalVarResult = Invoke-ApiClient -Method 'GET' `

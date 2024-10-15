@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.email_address_name import EmailAddressName  # noqa: E501
+from openapi_client.models.email_address_name import EmailAddressName
 
 class TestEmailAddressName(unittest.TestCase):
     """EmailAddressName unit test stubs"""
@@ -29,12 +28,12 @@ class TestEmailAddressName(unittest.TestCase):
 
     def make_instance(self, include_optional) -> EmailAddressName:
         """Test EmailAddressName
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `EmailAddressName`
         """
-        model = EmailAddressName()  # noqa: E501
+        model = EmailAddressName()
         if include_optional:
             return EmailAddressName(
                 email = 'user@domain.com',

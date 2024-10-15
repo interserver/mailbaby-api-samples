@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // Adds a new email deny rule into the system to block new emails that match the given criteria
 //
-generic_response_t* BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type, char * data, char * user);
+generic_response_t* BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type, char *data, char *user);
 ```
 
 ### Parameters
@@ -50,14 +50,14 @@ Name | Type | Description  | Notes
 //
 // Removes one of the configured deny mail rules from the system.
 //
-generic_response_t* BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId);
+generic_response_t* BlockingAPI_deleteRule(apiClient_t *apiClient, int *ruleId);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**ruleId** | **int** | The ID of the Rules entry. | 
+**ruleId** | **int \*** | The ID of the Rules entry. | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 //
 // Removes an email address from the various block lists. 
 //
-generic_response_t* BlockingAPI_delistBlock(apiClient_t *apiClient, char * body);
+generic_response_t* BlockingAPI_delistBlock(apiClient_t *apiClient, char *body);
 ```
 
 ### Parameters

@@ -50,6 +50,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
   
   @Schema(example = "John Smith", description = "Name to use for the sending contact.")
   @JsonProperty("name")
+  @NotNull
   public String getName() {
     return name;
   }

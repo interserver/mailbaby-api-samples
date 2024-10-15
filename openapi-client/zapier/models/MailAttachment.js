@@ -7,11 +7,13 @@ module.exports = {
             {
                 key: `${keyPrefix}filename`,
                 label: `The filename of the attached file. - [${labelPrefix}filename]`,
+                required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}data`,
                 label: `The file contents base64 encoded - [${labelPrefix}data]`,
+                required: true,
                 type: 'string',
             },
         ]

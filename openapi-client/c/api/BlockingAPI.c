@@ -69,7 +69,7 @@ end:
 // Adds a new email deny rule into the system to block new emails that match the given criteria
 //
 generic_response_t*
-BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type , char * data , char * user )
+BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type, char *data, char *user)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -209,7 +209,7 @@ end:
 // Removes one of the configured deny mail rules from the system.
 //
 generic_response_t*
-BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
+BlockingAPI_deleteRule(apiClient_t *apiClient, int *ruleId)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -233,7 +233,7 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
     snprintf(localVarToReplace_ruleId, sizeOfPathParams_ruleId, "{%s}", "ruleId");
 
     char localVarBuff_ruleId[256];
-    intToStr(localVarBuff_ruleId, ruleId);
+    intToStr(localVarBuff_ruleId, *ruleId);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_ruleId, localVarBuff_ruleId);
 
@@ -299,7 +299,7 @@ end:
 // Removes an email address from the various block lists. 
 //
 generic_response_t*
-BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
+BlockingAPI_delistBlock(apiClient_t *apiClient, char *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

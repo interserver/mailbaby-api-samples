@@ -121,11 +121,11 @@ public class GetStats200ResponseInner  {
       return false;
     }
     GetStats200ResponseInner getStats200ResponseInner = (GetStats200ResponseInner) o;
-    return Objects.equals(id, getStats200ResponseInner.id) &&
-        Objects.equals(status, getStats200ResponseInner.status) &&
-        Objects.equals(username, getStats200ResponseInner.username) &&
-        Objects.equals(password, getStats200ResponseInner.password) &&
-        Objects.equals(comment, getStats200ResponseInner.comment);
+    return Objects.equals(this.id, getStats200ResponseInner.id) &&
+        Objects.equals(this.status, getStats200ResponseInner.status) &&
+        Objects.equals(this.username, getStats200ResponseInner.username) &&
+        Objects.equals(this.password, getStats200ResponseInner.password) &&
+        Objects.equals(this.comment, getStats200ResponseInner.comment);
   }
 
   @Override

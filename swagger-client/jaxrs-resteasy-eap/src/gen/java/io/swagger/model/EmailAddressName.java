@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="An email contact.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-04-02T13:33:23.260102821-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-10-15T16:38:00.756098598-04:00[America/New_York]")
 public class EmailAddressName  implements EmailAddressTypes  {
   private String email = null;
   private String name = null;
@@ -35,6 +35,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
   
   @Schema(example = "John Smith", description = "Name to use for the sending contact.")
   @JsonProperty("name")
+  @NotNull
   public String getName() {
     return name;
   }

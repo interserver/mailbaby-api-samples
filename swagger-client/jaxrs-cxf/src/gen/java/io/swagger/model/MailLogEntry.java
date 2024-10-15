@@ -258,6 +258,7 @@ public class MailLogEntry   {
    * @return messageId
   **/
   @JsonProperty("messageId")
+  @NotNull
   public String getMessageId() {
     return messageId;
   }

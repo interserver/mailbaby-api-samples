@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * InlineResponse200
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-04-02T13:33:16.911044268-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2024-10-15T16:37:54.418937740-04:00[America/New_York]")
 public class InlineResponse200   {
   @JsonProperty("id")
   private Integer id = null;
@@ -110,6 +110,7 @@ public class InlineResponse200   {
    **/
   @JsonProperty("password")
   @Schema(example = "guest123", description = "")
+  @NotNull
   public String getPassword() {
     return password;
   }
@@ -129,6 +130,7 @@ public class InlineResponse200   {
    **/
   @JsonProperty("comment")
   @Schema(example = "main mail account", description = "")
+  @NotNull
   public String getComment() {
     return comment;
   }

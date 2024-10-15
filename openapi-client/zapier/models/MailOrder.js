@@ -7,16 +7,19 @@ module.exports = {
             {
                 key: `${keyPrefix}id`,
                 label: `The ID of the order. - [${labelPrefix}id]`,
+                required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}status`,
                 label: `The order status. - [${labelPrefix}status]`,
+                required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}username`,
                 label: `The username to use for this order. - [${labelPrefix}username]`,
+                required: true,
                 type: 'string',
             },
             {

@@ -4,8 +4,8 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'objc' is considered stable.
 Exception in thread "main" java.lang.ClassCastException: class java.lang.Boolean cannot be cast to class java.lang.String (java.lang.Boolean and java.lang.String are in module java.base of loader 'bootstrap')
 	at org.openapitools.codegen.languages.ObjcClientCodegen.processOpts(ObjcClientCodegen.java:253)
-	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:257)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:963)
-	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:511)
+	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:259)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1283)
+	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:535)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

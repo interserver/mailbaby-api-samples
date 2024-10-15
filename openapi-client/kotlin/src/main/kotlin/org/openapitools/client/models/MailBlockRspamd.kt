@@ -35,5 +35,8 @@ data class MailBlockRspamd (
     @Json(name = "subject")
     val subject: kotlin.String
 
-)
+) {
+
+
+}
 

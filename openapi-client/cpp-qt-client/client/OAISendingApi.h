@@ -108,7 +108,7 @@ private:
     void sendAdvMailCallback(OAIHttpRequestWorker *worker);
     void sendMailCallback(OAIHttpRequestWorker *worker);
 
-signals:
+Q_SIGNALS:
 
     void sendAdvMailSignal(OAIGenericResponse summary);
     void sendMailSignal(OAIGenericResponse summary);
@@ -116,18 +116,25 @@ signals:
     void sendAdvMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void sendMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
 
+    Q_DECL_DEPRECATED_X("Use sendAdvMailSignalError() instead")
     void sendAdvMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendAdvMailSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use sendMailSignalError() instead")
     void sendMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendMailSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
+    Q_DECL_DEPRECATED_X("Use sendAdvMailSignalErrorFull() instead")
     void sendAdvMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendAdvMailSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use sendMailSignalErrorFull() instead")
     void sendMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void sendMailSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
 
-public slots:
+public Q_SLOTS:
     void tokenAvailable();
-    
 };
 
 } // namespace OpenAPI

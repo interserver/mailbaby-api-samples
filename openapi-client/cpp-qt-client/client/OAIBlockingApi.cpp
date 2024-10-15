@@ -121,15 +121,9 @@ int OAIBlockingApi::addServerConfiguration(const QString &operation, const QUrl 
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
 void OAIBlockingApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
     }
-#else
-    for (auto &e : _serverIndices.keys()) {
-        setServerIndex(e, addServerConfiguration(e, url, description, variables));
-    }
-#endif
 }
 
 /**
@@ -155,7 +149,7 @@ void OAIBlockingApi::enableResponseCompression() {
 }
 
 void OAIBlockingApi::abortRequests() {
-    emit abortRequestsSignal();
+    Q_EMIT abortRequestsSignal();
 }
 
 QString OAIBlockingApi::getParamStylePrefix(const QString &style) {
@@ -246,21 +240,15 @@ void OAIBlockingApi::addRule(const QString &type, const QString &data, const ::O
         input.add_var("data", ::OpenAPI::toStringValue(data));
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::addRuleCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -278,11 +266,37 @@ void OAIBlockingApi::addRuleCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit addRuleSignal(output);
-        emit addRuleSignalFull(worker, output);
+        Q_EMIT addRuleSignal(output);
+        Q_EMIT addRuleSignalFull(worker, output);
     } else {
-        emit addRuleSignalE(output, error_type, error_str);
-        emit addRuleSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT addRuleSignalE(output, error_type, error_str);
+        Q_EMIT addRuleSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT addRuleSignalError(output, error_type, error_str);
+        Q_EMIT addRuleSignalErrorFull(worker, error_type, error_str);
     }
 }
 
@@ -313,21 +327,15 @@ void OAIBlockingApi::deleteRule(const qint32 &rule_id) {
     OAIHttpRequestInput input(fullPath, "DELETE");
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::deleteRuleCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -345,11 +353,37 @@ void OAIBlockingApi::deleteRuleCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit deleteRuleSignal(output);
-        emit deleteRuleSignalFull(worker, output);
+        Q_EMIT deleteRuleSignal(output);
+        Q_EMIT deleteRuleSignalFull(worker, output);
     } else {
-        emit deleteRuleSignalE(output, error_type, error_str);
-        emit deleteRuleSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT deleteRuleSignalE(output, error_type, error_str);
+        Q_EMIT deleteRuleSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT deleteRuleSignalError(output, error_type, error_str);
+        Q_EMIT deleteRuleSignalErrorFull(worker, error_type, error_str);
     }
 }
 
@@ -370,21 +404,15 @@ void OAIBlockingApi::delistBlock(const QString &body) {
         QByteArray output = body.toUtf8();
         input.request_body.append(output);
     }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::delistBlockCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -402,11 +430,37 @@ void OAIBlockingApi::delistBlockCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit delistBlockSignal(output);
-        emit delistBlockSignalFull(worker, output);
+        Q_EMIT delistBlockSignal(output);
+        Q_EMIT delistBlockSignalFull(worker, output);
     } else {
-        emit delistBlockSignalE(output, error_type, error_str);
-        emit delistBlockSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT delistBlockSignalE(output, error_type, error_str);
+        Q_EMIT delistBlockSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT delistBlockSignalError(output, error_type, error_str);
+        Q_EMIT delistBlockSignalErrorFull(worker, error_type, error_str);
     }
 }
 
@@ -423,21 +477,15 @@ void OAIBlockingApi::getMailBlocks() {
     OAIHttpRequestInput input(fullPath, "GET");
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::getMailBlocksCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -455,11 +503,37 @@ void OAIBlockingApi::getMailBlocksCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getMailBlocksSignal(output);
-        emit getMailBlocksSignalFull(worker, output);
+        Q_EMIT getMailBlocksSignal(output);
+        Q_EMIT getMailBlocksSignalFull(worker, output);
     } else {
-        emit getMailBlocksSignalE(output, error_type, error_str);
-        emit getMailBlocksSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT getMailBlocksSignalE(output, error_type, error_str);
+        Q_EMIT getMailBlocksSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT getMailBlocksSignalError(output, error_type, error_str);
+        Q_EMIT getMailBlocksSignalErrorFull(worker, error_type, error_str);
     }
 }
 
@@ -476,21 +550,15 @@ void OAIBlockingApi::getRules() {
     OAIHttpRequestInput input(fullPath, "GET");
 
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
 
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::getRulesCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
+            Q_EMIT allPendingRequestsCompleted();
         }
     });
 
@@ -517,11 +585,37 @@ void OAIBlockingApi::getRulesCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getRulesSignal(output);
-        emit getRulesSignalFull(worker, output);
+        Q_EMIT getRulesSignal(output);
+        Q_EMIT getRulesSignalFull(worker, output);
     } else {
-        emit getRulesSignalE(output, error_type, error_str);
-        emit getRulesSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+// For MSVC
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__clang__)
+// For Clang
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+#elif defined(__GNUC__)
+// For GCC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
+        Q_EMIT getRulesSignalE(output, error_type, error_str);
+        Q_EMIT getRulesSignalEFull(worker, error_type, error_str);
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#elif defined(__clang__)
+#pragma clang diagnostic pop
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
+        Q_EMIT getRulesSignalError(output, error_type, error_str);
+        Q_EMIT getRulesSignalErrorFull(worker, error_type, error_str);
     }
 }
 

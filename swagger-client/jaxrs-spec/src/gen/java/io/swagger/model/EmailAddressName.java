@@ -49,6 +49,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
   
   @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
   @JsonProperty("name")
+  @NotNull
 
   public String getName() {
     return name;

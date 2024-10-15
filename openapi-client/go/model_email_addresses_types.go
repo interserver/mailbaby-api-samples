@@ -13,6 +13,7 @@ package openapi
 
 import (
 	"encoding/json"
+	"gopkg.in/validator.v2"
 	"fmt"
 )
 
@@ -48,7 +49,11 @@ func (dst *EmailAddressesTypes) UnmarshalJSON(data []byte) error {
 		if string(jsonArrayOfEmailAddressName) == "{}" { // empty struct
 			dst.ArrayOfEmailAddressName = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.ArrayOfEmailAddressName); err != nil {
+				dst.ArrayOfEmailAddressName = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.ArrayOfEmailAddressName = nil
@@ -61,7 +66,11 @@ func (dst *EmailAddressesTypes) UnmarshalJSON(data []byte) error {
 		if string(jsonString) == "{}" { // empty struct
 			dst.String = nil
 		} else {
-			match++
+			if err = validator.Validate(dst.String); err != nil {
+				dst.String = nil
+			} else {
+				match++
+			}
 		}
 	} else {
 		dst.String = nil

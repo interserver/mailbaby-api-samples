@@ -393,7 +393,7 @@ BlockingApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "GenericResponse", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "GenericResponse", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }
@@ -494,7 +494,7 @@ BlockingApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "GenericResponse", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "GenericResponse", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }
@@ -597,7 +597,7 @@ BlockingApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "GenericResponse", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "GenericResponse", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }
@@ -687,7 +687,7 @@ BlockingApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "MailBlocks", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "MailBlocks", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }
@@ -777,7 +777,7 @@ BlockingApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "array[DenyRuleRecord]", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "array[DenyRuleRecord]", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }

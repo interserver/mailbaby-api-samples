@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:mail_baby_email_delivery_and_management_service_api, "~> 1.1.0"}]
+  [{:mail_baby_email_delivery_and_management_service_api, "~> 1.0.0"}]
 end
 ```
 

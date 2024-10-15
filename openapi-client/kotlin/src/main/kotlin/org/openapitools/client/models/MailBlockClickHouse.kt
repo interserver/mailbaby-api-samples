@@ -47,5 +47,8 @@ data class MailBlockClickHouse (
     @Json(name = "to")
     val to: kotlin.String
 
-)
+) {
+
+
+}
 

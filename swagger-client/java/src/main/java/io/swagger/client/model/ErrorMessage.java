@@ -25,7 +25,7 @@ import java.io.IOException;
  * The resposne when an error occurs.
  */
 @Schema(description = "The resposne when an error occurs.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-04-02T13:33:00.214166027-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2024-10-15T16:37:36.960607936-04:00[America/New_York]")
 
 public class ErrorMessage {
   @SerializedName("code")

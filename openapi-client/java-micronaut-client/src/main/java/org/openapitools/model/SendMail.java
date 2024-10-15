@@ -31,7 +31,7 @@ import javax.annotation.Generated;
   SendMail.JSON_PROPERTY_BODY
 })
 @JsonTypeName("SendMail")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class SendMail {
     public static final String JSON_PROPERTY_TO = "to";
@@ -61,7 +61,7 @@ public class SendMail {
     /**
      * The Contact whom is the primary recipient of this email.
      * @return to
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TO)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -83,7 +83,7 @@ public class SendMail {
     /**
      * The contact whom is the this email is from.
      * @return from
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FROM)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -105,7 +105,7 @@ public class SendMail {
     /**
      * The subject or title of the email
      * @return subject
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -127,7 +127,7 @@ public class SendMail {
     /**
      * The main email contents.
      * @return _body
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_BODY)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -224,7 +224,7 @@ HistoryApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "array[GetStats200ResponseInner]", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "array[GetStats200ResponseInner]", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }
@@ -400,7 +400,7 @@ HistoryApi <- R6::R6Class(
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response, "MailLog", loadNamespace("openapi")),
+          self$api_client$deserialize(local_var_resp$response_as_text(), "MailLog", loadNamespace("openapi")),
           error = function(e) {
             stop("Failed to deserialize response")
           }

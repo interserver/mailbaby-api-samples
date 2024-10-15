@@ -47,5 +47,8 @@ data class GetStats200ResponseInner (
     @Json(name = "comment")
     val comment: kotlin.String? = null
 
-)
+) {
+
+
+}
 

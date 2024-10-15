@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   GenericResponse.JSON_PROPERTY_TEXT
 })
 @JsonTypeName("GenericResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class GenericResponse {
     public static final String JSON_PROPERTY_STATUS = "status";
@@ -49,7 +49,7 @@ public class GenericResponse {
     /**
      * Get status
      * @return status
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_STATUS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -71,7 +71,7 @@ public class GenericResponse {
     /**
      * Get text
      * @return text
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_TEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

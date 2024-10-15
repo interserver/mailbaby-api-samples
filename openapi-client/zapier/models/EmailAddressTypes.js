@@ -8,6 +8,7 @@ module.exports = {
             {
                 key: `${keyPrefix}email`,
                 label: `The email address. - [${labelPrefix}email]`,
+                required: true,
                 type: 'string',
             },
             {

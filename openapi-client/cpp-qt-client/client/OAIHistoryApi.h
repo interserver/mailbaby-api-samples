@@ -105,7 +105,7 @@ private:
     void getStatsCallback(OAIHttpRequestWorker *worker);
     void viewMailLogCallback(OAIHttpRequestWorker *worker);
 
-signals:
+Q_SIGNALS:
 
     void getStatsSignal(QList<OAIGetStats_200_response_inner> summary);
     void viewMailLogSignal(OAIMailLog summary);
@@ -113,18 +113,25 @@ signals:
     void getStatsSignalFull(OAIHttpRequestWorker *worker, QList<OAIGetStats_200_response_inner> summary);
     void viewMailLogSignalFull(OAIHttpRequestWorker *worker, OAIMailLog summary);
 
+    Q_DECL_DEPRECATED_X("Use getStatsSignalError() instead")
     void getStatsSignalE(QList<OAIGetStats_200_response_inner> summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getStatsSignalError(QList<OAIGetStats_200_response_inner> summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use viewMailLogSignalError() instead")
     void viewMailLogSignalE(OAIMailLog summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void viewMailLogSignalError(OAIMailLog summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
+    Q_DECL_DEPRECATED_X("Use getStatsSignalErrorFull() instead")
     void getStatsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getStatsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
+    Q_DECL_DEPRECATED_X("Use viewMailLogSignalErrorFull() instead")
     void viewMailLogSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void viewMailLogSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
 
-public slots:
+public Q_SLOTS:
     void tokenAvailable();
-    
 };
 
 } // namespace OpenAPI

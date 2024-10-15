@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.error_message import ErrorMessage  # noqa: E501
+from openapi_client.models.error_message import ErrorMessage
 
 class TestErrorMessage(unittest.TestCase):
     """ErrorMessage unit test stubs"""
@@ -29,12 +28,12 @@ class TestErrorMessage(unittest.TestCase):
 
     def make_instance(self, include_optional) -> ErrorMessage:
         """Test ErrorMessage
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ErrorMessage`
         """
-        model = ErrorMessage()  # noqa: E501
+        model = ErrorMessage()
         if include_optional:
             return ErrorMessage(
                 code = 400,

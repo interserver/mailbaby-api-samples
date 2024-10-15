@@ -33,7 +33,7 @@ import javax.annotation.Generated;
   DenyRuleRecord.JSON_PROPERTY_USER
 })
 @JsonTypeName("DenyRuleRecord")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class DenyRuleRecord {
     /**
@@ -101,7 +101,7 @@ public class DenyRuleRecord {
     /**
      * The type of deny rule.
      * @return type
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TYPE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -123,7 +123,7 @@ public class DenyRuleRecord {
     /**
      * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
      * @return data
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_DATA)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -145,7 +145,7 @@ public class DenyRuleRecord {
     /**
      * The deny rule Id number.
      * @return id
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -167,7 +167,7 @@ public class DenyRuleRecord {
     /**
      * the date the rule was created.
      * @return created
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_CREATED)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -191,7 +191,7 @@ public class DenyRuleRecord {
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @return user
-     **/
+     */
     @Nullable
     @JsonProperty(JSON_PROPERTY_USER)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

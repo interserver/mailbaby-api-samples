@@ -19,7 +19,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Creates a new email deny rule.
      * @param \App\DTO\DenyRuleNew $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -43,7 +43,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Creates a new email deny rule.
      * @param \App\DTO\DenyRuleNew $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -60,6 +60,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->addRuleRaw($requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -79,14 +81,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Creates a new email deny rule.
      * @param \App\DTO\DenyRuleNew $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return \App\DTO\GenericResponse
@@ -110,7 +112,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Removes an deny mail rule.
      * @param \App\DTO\DeleteRuleParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -131,7 +133,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Removes an deny mail rule.
      * @param \App\DTO\DeleteRuleParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -146,6 +148,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->deleteRuleRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -165,14 +169,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Removes an deny mail rule.
      * @param \App\DTO\DeleteRuleParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\GenericResponse
      * @throws ClientExceptionInterface
@@ -194,7 +198,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Removes an email address from the blocked list
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -218,7 +222,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Removes an email address from the blocked list
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -235,6 +239,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->delistBlockRaw($requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -254,14 +260,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Removes an email address from the blocked list
      * @param string $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return \App\DTO\GenericResponse
@@ -284,7 +290,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getMailBlocks
     /**
      * displays a list of blocked email addresses
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -303,7 +309,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * displays a list of blocked email addresses
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -317,6 +323,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getMailBlocksRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -332,13 +340,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * displays a list of blocked email addresses
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\MailBlocks
      * @throws ClientExceptionInterface
@@ -358,7 +366,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getMailOrders
     /**
      * displays a list of mail service orders
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -377,7 +385,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * displays a list of mail service orders
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -391,6 +399,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getMailOrdersRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -406,13 +416,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * displays a list of mail service orders
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Collection
      * @throws ClientExceptionInterface
@@ -432,7 +442,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getRules
     /**
      * Displays a listing of deny email rules.
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -451,7 +461,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Displays a listing of deny email rules.
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -465,6 +475,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getRulesRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -480,13 +492,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Displays a listing of deny email rules.
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Collection7
      * @throws ClientExceptionInterface
@@ -506,7 +518,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getStats
     /**
      * Account usage statistics.
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -525,7 +537,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Account usage statistics.
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -539,6 +551,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->getStatsRaw($security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -554,13 +568,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Account usage statistics.
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Collection4
      * @throws ClientExceptionInterface
@@ -580,7 +594,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region pingServer
     /**
      * Checks if the server is running
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -596,7 +610,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Checks if the server is running
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return array
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -608,6 +622,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->pingServerRaw($security);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -617,13 +633,13 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* Something is wrong */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Checks if the server is running
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @return mixed
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
@@ -642,7 +658,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Sends an Email with Advanced Options
      * @param \App\DTO\SendMailAdv $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -666,7 +682,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Sends an Email with Advanced Options
      * @param \App\DTO\SendMailAdv $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -683,6 +699,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->sendAdvMailRaw($requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -702,14 +720,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Sends an Email with Advanced Options
      * @param \App\DTO\SendMailAdv $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return \App\DTO\GenericResponse
@@ -733,7 +751,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Sends an Email
      * @param \App\DTO\SendMail $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -757,7 +775,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * Sends an Email
      * @param \App\DTO\SendMail $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return array
@@ -774,6 +792,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->sendMailRaw($requestContent, $security, $requestMediaType, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -793,14 +813,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * Sends an Email
      * @param \App\DTO\SendMail $requestContent
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
      * @return \App\DTO\GenericResponse
@@ -824,7 +844,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * displays the mail log
      * @param \App\DTO\ViewMailLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
      * @throws ClientExceptionInterface
@@ -845,7 +865,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     /**
      * displays the mail log
      * @param \App\DTO\ViewMailLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
      * @throws ClientExceptionInterface
@@ -860,6 +880,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     {
         $response = $this->viewMailLogRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
         switch ($response->getStatusCode())
         {
             case 200:
@@ -870,14 +892,14 @@ class ApiClient extends OAGAC\AbstractApiClient
                 /* bad input parameter */
                 break;
         }
-        $this->parseBody($response, $responseContent);
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
         return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
     }
 
     /**
      * displays the mail log
      * @param \App\DTO\ViewMailLogParameterData $parameters
-     * @param iterable|string[][] $security
+     * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\MailLog
      * @throws ClientExceptionInterface

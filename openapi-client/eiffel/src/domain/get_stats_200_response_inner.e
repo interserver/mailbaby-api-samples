@@ -19,8 +19,8 @@ class GET_STATS_200_RESPONSE_INNER
 
 feature --Access
 
- 	id: INTEGER_32
-    	 
+    id: INTEGER_32
+      
     status: detachable STRING_32
       
     username: detachable STRING_32

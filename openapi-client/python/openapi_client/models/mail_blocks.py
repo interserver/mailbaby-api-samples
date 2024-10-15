@@ -18,30 +18,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
 from openapi_client.models.mail_block_click_house import MailBlockClickHouse
 from openapi_client.models.mail_block_rspamd import MailBlockRspamd
-from typing import Dict, Any
-try:
-    from typing import Self
-except ImportError:
-    from typing_extensions import Self
+from typing import Optional, Set
+from typing_extensions import Self
 
 class MailBlocks(BaseModel):
     """
-    The listing of blocked emails.  # noqa: E501
-    """
+    The listing of blocked emails.
+    """ # noqa: E501
     local: List[MailBlockClickHouse]
     mbtrap: List[MailBlockClickHouse]
     subject: List[MailBlockRspamd]
     __properties: ClassVar[List[str]] = ["local", "mbtrap", "subject"]
 
-    model_config = {
-        "populate_by_name": True,
-        "validate_assignment": True
-    }
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
 
     def to_str(self) -> str:
@@ -54,7 +51,7 @@ class MailBlocks(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Self:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of MailBlocks from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -68,10 +65,12 @@ class MailBlocks(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         """
+        excluded_fields: Set[str] = set([
+        ])
+
         _dict = self.model_dump(
             by_alias=True,
-            exclude={
-            },
+            exclude=excluded_fields,
             exclude_none=True,
         )
         # override the default output from pydantic by calling `to_dict()` of each item in local (list)
@@ -98,7 +97,7 @@ class MailBlocks(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Self:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of MailBlocks from a dict"""
         if obj is None:
             return None
@@ -107,9 +106,9 @@ class MailBlocks(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "local": [MailBlockClickHouse.from_dict(_item) for _item in obj.get("local")] if obj.get("local") is not None else None,
-            "mbtrap": [MailBlockClickHouse.from_dict(_item) for _item in obj.get("mbtrap")] if obj.get("mbtrap") is not None else None,
-            "subject": [MailBlockRspamd.from_dict(_item) for _item in obj.get("subject")] if obj.get("subject") is not None else None
+            "local": [MailBlockClickHouse.from_dict(_item) for _item in obj["local"]] if obj.get("local") is not None else None,
+            "mbtrap": [MailBlockClickHouse.from_dict(_item) for _item in obj["mbtrap"]] if obj.get("mbtrap") is not None else None,
+            "subject": [MailBlockRspamd.from_dict(_item) for _item in obj["subject"]] if obj.get("subject") is not None else None
         })
         return _obj
 

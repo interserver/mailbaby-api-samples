@@ -15,14 +15,14 @@
 
 import unittest
 
-from openapi_client.api.history_api import HistoryApi  # noqa: E501
+from openapi_client.api.history_api import HistoryApi
 
 
 class TestHistoryApi(unittest.TestCase):
     """HistoryApi unit test stubs"""
 
     def setUp(self) -> None:
-        self.api = HistoryApi()  # noqa: E501
+        self.api = HistoryApi()
 
     def tearDown(self) -> None:
         pass
@@ -30,14 +30,14 @@ class TestHistoryApi(unittest.TestCase):
     def test_get_stats(self) -> None:
         """Test case for get_stats
 
-        Account usage statistics.  # noqa: E501
+        Account usage statistics.
         """
         pass
 
     def test_view_mail_log(self) -> None:
         """Test case for view_mail_log
 
-        displays the mail log  # noqa: E501
+        displays the mail log
         """
         pass
 

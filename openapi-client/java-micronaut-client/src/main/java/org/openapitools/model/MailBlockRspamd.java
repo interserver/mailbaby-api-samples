@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   MailBlockRspamd.JSON_PROPERTY_SUBJECT
 })
 @JsonTypeName("MailBlockRspamd")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailBlockRspamd {
     public static final String JSON_PROPERTY_FROM = "from";
@@ -51,7 +51,7 @@ public class MailBlockRspamd {
     /**
      * Get from
      * @return from
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FROM)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -73,7 +73,7 @@ public class MailBlockRspamd {
     /**
      * Get subject
      * @return subject
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

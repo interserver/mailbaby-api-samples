@@ -33,7 +33,7 @@ import javax.annotation.Generated;
   MailBlockClickHouse.JSON_PROPERTY_TO
 })
 @JsonTypeName("MailBlockClickHouse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-04-02T13:30:31.050992336-04:00[America/New_York]")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 @Introspected
 public class MailBlockClickHouse {
     public static final String JSON_PROPERTY_DATE = "date";
@@ -67,7 +67,7 @@ public class MailBlockClickHouse {
     /**
      * Get date
      * @return date
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_DATE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -91,7 +91,7 @@ public class MailBlockClickHouse {
     /**
      * Get from
      * @return from
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_FROM)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -113,7 +113,7 @@ public class MailBlockClickHouse {
     /**
      * Get messageId
      * @return messageId
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -135,7 +135,7 @@ public class MailBlockClickHouse {
     /**
      * Get subject
      * @return subject
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_SUBJECT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -157,7 +157,7 @@ public class MailBlockClickHouse {
     /**
      * Get to
      * @return to
-     **/
+     */
     @NotNull
     @JsonProperty(JSON_PROPERTY_TO)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

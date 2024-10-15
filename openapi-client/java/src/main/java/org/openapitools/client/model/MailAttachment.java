@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-04-02T13:30:27.520729796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
 public class MailAttachment {
   public static final String SERIALIZED_NAME_FILENAME = "filename";
   @SerializedName(SERIALIZED_NAME_FILENAME)
@@ -63,20 +63,18 @@ public class MailAttachment {
   }
 
   public MailAttachment filename(String filename) {
-    
     this.filename = filename;
     return this;
   }
 
-   /**
+  /**
    * The filename of the attached file.
    * @return filename
-  **/
+   */
   @javax.annotation.Nonnull
   public String getFilename() {
     return filename;
   }
-
 
   public void setFilename(String filename) {
     this.filename = filename;
@@ -84,20 +82,18 @@ public class MailAttachment {
 
 
   public MailAttachment data(String data) {
-    
     this.data = data;
     return this;
   }
 
-   /**
+  /**
    * The file contents base64 encoded
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
   public String getData() {
     return data;
   }
-
 
   public void setData(String data) {
     this.data = data;
@@ -160,12 +156,12 @@ public class MailAttachment {
     openapiRequiredFields.add("data");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MailAttachment
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MailAttachment
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailAttachment.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -225,22 +221,22 @@ public class MailAttachment {
     }
   }
 
- /**
-  * Create an instance of MailAttachment given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MailAttachment
-  * @throws IOException if the JSON string is invalid with respect to MailAttachment
-  */
+  /**
+   * Create an instance of MailAttachment given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MailAttachment
+   * @throws IOException if the JSON string is invalid with respect to MailAttachment
+   */
   public static MailAttachment fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MailAttachment.class);
   }
 
- /**
-  * Convert an instance of MailAttachment to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MailAttachment to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

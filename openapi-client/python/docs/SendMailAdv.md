@@ -3,6 +3,7 @@
 Details for an Email
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **str** | The subject or title of the email | 
@@ -25,12 +26,12 @@ json = "{}"
 # create an instance of SendMailAdv from a JSON string
 send_mail_adv_instance = SendMailAdv.from_json(json)
 # print the JSON string representation of the object
-print SendMailAdv.to_json()
+print(SendMailAdv.to_json())
 
 # convert the object into a dict
 send_mail_adv_dict = send_mail_adv_instance.to_dict()
 # create an instance of SendMailAdv from a dict
-send_mail_adv_form_dict = send_mail_adv.from_dict(send_mail_adv_dict)
+send_mail_adv_from_dict = SendMailAdv.from_dict(send_mail_adv_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

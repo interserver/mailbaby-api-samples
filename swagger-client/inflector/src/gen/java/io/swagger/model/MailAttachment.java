@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * (optional) File attachments to include in the email.  The file contents must be base64
  **/
 @Schema(description = "(optional) File attachments to include in the email.  The file contents must be base64")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-04-02T13:33:08.445114918-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-10-15T16:37:45.689132040-04:00[America/New_York]")
 
 public class MailAttachment   {
   @JsonProperty("filename")

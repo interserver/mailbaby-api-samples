@@ -14,9 +14,8 @@
 
 
 import unittest
-import datetime
 
-from openapi_client.models.mail_attachment import MailAttachment  # noqa: E501
+from openapi_client.models.mail_attachment import MailAttachment
 
 class TestMailAttachment(unittest.TestCase):
     """MailAttachment unit test stubs"""
@@ -29,12 +28,12 @@ class TestMailAttachment(unittest.TestCase):
 
     def make_instance(self, include_optional) -> MailAttachment:
         """Test MailAttachment
-            include_option is a boolean, when False only required
+            include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MailAttachment`
         """
-        model = MailAttachment()  # noqa: E501
+        model = MailAttachment()
         if include_optional:
             return MailAttachment(
                 filename = 'message.txt',

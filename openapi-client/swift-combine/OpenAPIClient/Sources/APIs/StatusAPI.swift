@@ -40,9 +40,9 @@ open class StatusAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/ping"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/ping"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }

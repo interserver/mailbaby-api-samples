@@ -123,10 +123,10 @@ public class MailLog  {
       return false;
     }
     MailLog mailLog = (MailLog) o;
-    return Objects.equals(total, mailLog.total) &&
-        Objects.equals(skip, mailLog.skip) &&
-        Objects.equals(limit, mailLog.limit) &&
-        Objects.equals(emails, mailLog.emails);
+    return Objects.equals(this.total, mailLog.total) &&
+        Objects.equals(this.skip, mailLog.skip) &&
+        Objects.equals(this.limit, mailLog.limit) &&
+        Objects.equals(this.emails, mailLog.emails);
   }
 
   @Override

@@ -29,11 +29,11 @@ class StatusApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def pingServer(apiKey: String)(): Request[Either[Either[String, String], Unit]] =
+  def pingServer(apiKey: String)(): Request[Either[ResponseException[String, Exception], Unit]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/ping")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .response(asEither(asString, ignore))
+      .response(asString.mapWithMetadata(ResponseAs.deserializeRightWithError(_ => Right(()))))
 
 }

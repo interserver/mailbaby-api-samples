@@ -56,7 +56,7 @@ Sends An email through one of your mail orders allowing additional options such 
 | **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional parameter] |
 | **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional parameter] |
 | **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional parameter] |
-| **attachments** | [**List&lt;MailAttachment&gt;**](MailAttachment.md)| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional parameter] |
+| **attachments** | [**List&lt;@Valid MailAttachment&gt;**](MailAttachment.md)| (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional parameter] |
 | **id** | `Long`| (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional parameter] |
 
 

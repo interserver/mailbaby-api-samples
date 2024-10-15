@@ -50,7 +50,7 @@ public class SendMailAdv  {
  /**
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
   **/
-  private List<MailAttachment> attachments;
+  private List<MailAttachment> attachments = new ArrayList<>();
 
   @ApiModelProperty(example = "5000", value = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
  /**
@@ -233,15 +233,15 @@ public class SendMailAdv  {
       return false;
     }
     SendMailAdv sendMailAdv = (SendMailAdv) o;
-    return Objects.equals(subject, sendMailAdv.subject) &&
-        Objects.equals(body, sendMailAdv.body) &&
-        Objects.equals(from, sendMailAdv.from) &&
-        Objects.equals(to, sendMailAdv.to) &&
-        Objects.equals(replyto, sendMailAdv.replyto) &&
-        Objects.equals(cc, sendMailAdv.cc) &&
-        Objects.equals(bcc, sendMailAdv.bcc) &&
-        Objects.equals(attachments, sendMailAdv.attachments) &&
-        Objects.equals(id, sendMailAdv.id);
+    return Objects.equals(this.subject, sendMailAdv.subject) &&
+        Objects.equals(this.body, sendMailAdv.body) &&
+        Objects.equals(this.from, sendMailAdv.from) &&
+        Objects.equals(this.to, sendMailAdv.to) &&
+        Objects.equals(this.replyto, sendMailAdv.replyto) &&
+        Objects.equals(this.cc, sendMailAdv.cc) &&
+        Objects.equals(this.bcc, sendMailAdv.bcc) &&
+        Objects.equals(this.attachments, sendMailAdv.attachments) &&
+        Objects.equals(this.id, sendMailAdv.id);
   }
 
   @Override

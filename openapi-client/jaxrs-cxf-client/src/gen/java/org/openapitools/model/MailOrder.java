@@ -117,10 +117,10 @@ public class MailOrder  {
       return false;
     }
     MailOrder mailOrder = (MailOrder) o;
-    return Objects.equals(id, mailOrder.id) &&
-        Objects.equals(status, mailOrder.status) &&
-        Objects.equals(username, mailOrder.username) &&
-        Objects.equals(comment, mailOrder.comment);
+    return Objects.equals(this.id, mailOrder.id) &&
+        Objects.equals(this.status, mailOrder.status) &&
+        Objects.equals(this.username, mailOrder.username) &&
+        Objects.equals(this.comment, mailOrder.comment);
   }
 
   @Override

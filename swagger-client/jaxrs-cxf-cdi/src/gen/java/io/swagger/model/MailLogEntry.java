@@ -151,6 +151,7 @@ public class MailLogEntry   {
   
   @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "message id")
   @JsonProperty("messageId")
+  @NotNull
   public String getMessageId() {
     return messageId;
   }

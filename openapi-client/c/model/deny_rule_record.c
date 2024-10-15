@@ -4,12 +4,12 @@
 #include "deny_rule_record.h"
 
 
-char* typedeny_rule_record_ToString(mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type) {
+char* deny_rule_record_type_ToString(mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type) {
     char* typeArray[] =  { "NULL", "domain", "email", "startswith", "destination" };
-	return typeArray[type];
+    return typeArray[type];
 }
 
-mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e typedeny_rule_record_FromString(char* type){
+mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e deny_rule_record_type_FromString(char* type){
     int stringToReturn = 0;
     char *typeArray[] =  { "NULL", "domain", "email", "startswith", "destination" };
     size_t sizeofArray = sizeof(typeArray) / sizeof(typeArray[0]);
@@ -138,7 +138,7 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
     {
     goto end; //Enum
     }
-    typeVariable = typedeny_rule_record_FromString(type->valuestring);
+    typeVariable = deny_rule_record_type_FromString(type->valuestring);
 
     // deny_rule_record->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "data");

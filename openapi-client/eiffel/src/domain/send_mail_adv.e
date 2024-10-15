@@ -35,8 +35,8 @@ feature --Access
       
     attachments: detachable LIST [MAIL_ATTACHMENT]
       -- (optional) File attachments to include in the email.  The file contents must be base64 encoded!
- 	id: INTEGER_64
-    	 -- (optional)  ID of the Mail order within our system to use as the Mail Account.
+    id: INTEGER_64
+      -- (optional)  ID of the Mail order within our system to use as the Mail Account.
 
 feature -- Change Element
 

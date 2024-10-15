@@ -11,15 +11,16 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { HttpService, Inject, Injectable, Optional } from '@nestjs/common';
+import { HttpService, Injectable, Optional } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { Observable, from, of, switchMap } from 'rxjs';
 import { EmailAddressTypes } from '../model/emailAddressTypes';
 import { EmailAddressesTypes } from '../model/emailAddressesTypes';
 import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
 import { MailAttachment } from '../model/mailAttachment';
 import { Configuration } from '../configuration';
+import { COLLECTION_FORMATS } from '../variables';
 
 
 @Injectable()
@@ -60,7 +61,6 @@ export class SendingService {
      */
     public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, ): Observable<AxiosResponse<GenericResponse>>;
     public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, ): Observable<any> {
-
         if (subject === null || subject === undefined) {
             throw new Error('Required parameter subject was null or undefined when calling sendAdvMail.');
         }
@@ -77,15 +77,12 @@ export class SendingService {
             throw new Error('Required parameter to was null or undefined when calling sendAdvMail.');
         }
 
-
-
-
-
-
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -116,47 +113,55 @@ export class SendingService {
         }
 
         if (subject !== undefined) {
-            formParams.append('subject', <any>subject);
+            formParams!.append('subject', <any>subject);
         }
 
         if (body !== undefined) {
-            formParams.append('body', <any>body);
+            formParams!.append('body', <any>body);
         }
 
         if (from !== undefined) {
-            formParams.append('from', <any>from);
+            formParams!.append('from', <any>from);
         }
 
         if (to !== undefined) {
-            formParams.append('to', <any>to);
+            formParams!.append('to', <any>to);
         }
 
         if (replyto !== undefined) {
-            formParams.append('replyto', <any>replyto);
+            formParams!.append('replyto', <any>replyto);
         }
 
         if (cc !== undefined) {
-            formParams.append('cc', <any>cc);
+            formParams!.append('cc', <any>cc);
         }
 
         if (bcc !== undefined) {
-            formParams.append('bcc', <any>bcc);
+            formParams!.append('bcc', <any>bcc);
         }
 
         if (attachments) {
-            formParams.append('attachments', attachments.join(COLLECTION_FORMATS['csv']));
+            formParams!.append('attachments', attachments.join(COLLECTION_FORMATS['csv']));
         }
 
         if (id !== undefined) {
-            formParams.append('id', <any>id);
+            formParams!.append('id', <any>id);
         }
 
-        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/advsend`,
-            convertFormParamsToString ? formParams.toString() : formParams,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/advsend`,
+                    convertFormParamsToString ? formParams!.toString() : formParams!,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
     /**
@@ -171,7 +176,6 @@ export class SendingService {
      */
     public sendMail(to: string, from: string, subject: string, body: string, ): Observable<AxiosResponse<GenericResponse>>;
     public sendMail(to: string, from: string, subject: string, body: string, ): Observable<any> {
-
         if (to === null || to === undefined) {
             throw new Error('Required parameter to was null or undefined when calling sendMail.');
         }
@@ -190,8 +194,10 @@ export class SendingService {
 
         let headers = {...this.defaultHeaders};
 
+        let accessTokenObservable: Observable<any> = of(null);
+
         // authentication (apiKeyAuth) required
-        if (this.configuration.apiKeys["X-API-KEY"]) {
+        if (this.configuration.apiKeys?.["X-API-KEY"]) {
             headers['X-API-KEY'] = this.configuration.apiKeys["X-API-KEY"];
         }
 
@@ -222,27 +228,35 @@ export class SendingService {
         }
 
         if (to !== undefined) {
-            formParams.append('to', <any>to);
+            formParams!.append('to', <any>to);
         }
 
         if (from !== undefined) {
-            formParams.append('from', <any>from);
+            formParams!.append('from', <any>from);
         }
 
         if (subject !== undefined) {
-            formParams.append('subject', <any>subject);
+            formParams!.append('subject', <any>subject);
         }
 
         if (body !== undefined) {
-            formParams.append('body', <any>body);
+            formParams!.append('body', <any>body);
         }
 
-        return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/send`,
-            convertFormParamsToString ? formParams.toString() : formParams,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers
-            }
+        return accessTokenObservable.pipe(
+            switchMap((accessToken) => {
+                if (accessToken) {
+                    headers['Authorization'] = `Bearer ${accessToken}`;
+                }
+
+                return this.httpClient.post<GenericResponse>(`${this.basePath}/mail/send`,
+                    convertFormParamsToString ? formParams!.toString() : formParams!,
+                    {
+                        withCredentials: this.configuration.withCredentials,
+                        headers: headers
+                    }
+                );
+            })
         );
     }
 }

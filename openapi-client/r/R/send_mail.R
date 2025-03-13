@@ -21,8 +21,7 @@ SendMail <- R6::R6Class(
     `from` = NULL,
     `subject` = NULL,
     `body` = NULL,
-    #' Initialize a new SendMail class.
-    #'
+
     #' @description
     #' Initialize a new SendMail class.
     #'
@@ -31,7 +30,6 @@ SendMail <- R6::R6Class(
     #' @param subject The subject or title of the email
     #' @param body The main email contents.
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`to`, `from`, `subject`, `body`, ...) {
       if (!missing(`to`)) {
         if (!(is.character(`to`) && length(`to`) == 1)) {
@@ -58,14 +56,37 @@ SendMail <- R6::R6Class(
         self$`body` <- `body`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return SendMail in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return SendMail as a base R list.
+    #' @examples
+    #' # convert array of SendMail (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert SendMail to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       SendMailObject <- list()
       if (!is.null(self$`to`)) {
         SendMailObject[["to"]] <-
@@ -83,16 +104,14 @@ SendMail <- R6::R6Class(
         SendMailObject[["body"]] <-
           self$`body`
       }
-      SendMailObject
+      return(SendMailObject)
     },
-    #' Deserialize JSON string into an instance of SendMail
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of SendMail
     #'
     #' @param input_json the JSON input
     #' @return the instance of SendMail
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`to`)) {
@@ -109,59 +128,23 @@ SendMail <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return SendMail in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`to`)) {
-          sprintf(
-          '"to":
-            "%s"
-                    ',
-          self$`to`
-          )
-        },
-        if (!is.null(self$`from`)) {
-          sprintf(
-          '"from":
-            "%s"
-                    ',
-          self$`from`
-          )
-        },
-        if (!is.null(self$`subject`)) {
-          sprintf(
-          '"subject":
-            "%s"
-                    ',
-          self$`subject`
-          )
-        },
-        if (!is.null(self$`body`)) {
-          sprintf(
-          '"body":
-            "%s"
-                    ',
-          self$`body`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of SendMail
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of SendMail
     #'
     #' @param input_json the JSON input
     #' @return the instance of SendMail
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`to` <- this_object$`to`
@@ -170,13 +153,11 @@ SendMail <- R6::R6Class(
       self$`body` <- this_object$`body`
       self
     },
-    #' Validate JSON input with respect to SendMail
-    #'
+
     #' @description
     #' Validate JSON input with respect to SendMail and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `to`
@@ -212,23 +193,19 @@ SendMail <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for SendMail: the required field `body` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of SendMail
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `to` is null
       if (is.null(self$`to`)) {
@@ -252,13 +229,11 @@ SendMail <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `to` is null
@@ -283,12 +258,9 @@ SendMail <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

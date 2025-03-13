@@ -19,8 +19,7 @@ DenyRuleNew <- R6::R6Class(
     `user` = NULL,
     `type` = NULL,
     `data` = NULL,
-    #' Initialize a new DenyRuleNew class.
-    #'
+
     #' @description
     #' Initialize a new DenyRuleNew class.
     #'
@@ -28,7 +27,6 @@ DenyRuleNew <- R6::R6Class(
     #' @param data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
     #' @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`type`, `data`, `user` = NULL, ...) {
       if (!missing(`type`)) {
         if (!(`type` %in% c("domain", "email", "startswith", "destination"))) {
@@ -52,14 +50,37 @@ DenyRuleNew <- R6::R6Class(
         self$`user` <- `user`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return DenyRuleNew in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return DenyRuleNew as a base R list.
+    #' @examples
+    #' # convert array of DenyRuleNew (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert DenyRuleNew to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       DenyRuleNewObject <- list()
       if (!is.null(self$`user`)) {
         DenyRuleNewObject[["user"]] <-
@@ -73,16 +94,14 @@ DenyRuleNew <- R6::R6Class(
         DenyRuleNewObject[["data"]] <-
           self$`data`
       }
-      DenyRuleNewObject
+      return(DenyRuleNewObject)
     },
-    #' Deserialize JSON string into an instance of DenyRuleNew
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of DenyRuleNew
     #'
     #' @param input_json the JSON input
     #' @return the instance of DenyRuleNew
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`user`)) {
@@ -99,51 +118,23 @@ DenyRuleNew <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return DenyRuleNew in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`user`)) {
-          sprintf(
-          '"user":
-            "%s"
-                    ',
-          self$`user`
-          )
-        },
-        if (!is.null(self$`type`)) {
-          sprintf(
-          '"type":
-            "%s"
-                    ',
-          self$`type`
-          )
-        },
-        if (!is.null(self$`data`)) {
-          sprintf(
-          '"data":
-            "%s"
-                    ',
-          self$`data`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of DenyRuleNew
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of DenyRuleNew
     #'
     #' @param input_json the JSON input
     #' @return the instance of DenyRuleNew
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`user` <- this_object$`user`
@@ -154,13 +145,11 @@ DenyRuleNew <- R6::R6Class(
       self$`data` <- this_object$`data`
       self
     },
-    #' Validate JSON input with respect to DenyRuleNew
-    #'
+
     #' @description
     #' Validate JSON input with respect to DenyRuleNew and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `type`
@@ -180,23 +169,19 @@ DenyRuleNew <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for DenyRuleNew: the required field `data` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of DenyRuleNew
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `type` is null
       if (is.null(self$`type`)) {
@@ -210,13 +195,11 @@ DenyRuleNew <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `type` is null
@@ -231,12 +214,9 @@ DenyRuleNew <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

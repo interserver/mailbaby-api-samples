@@ -43,9 +43,10 @@ typedef struct mail_log_entry_t {
     char *response; // string
     char *message_id; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_log_entry_t;
 
-mail_log_entry_t *mail_log_entry_create(
+__attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
     int _id,
     char *id,
     char *from,

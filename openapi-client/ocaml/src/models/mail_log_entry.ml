@@ -8,51 +8,143 @@
 
 type t = {
     (* internal db id *)
-    _id: int32;
+      _id: int32
+          
+          
+        
+        ; [@key "_id"]
     (* mail id *)
-    id: string;
+      id: string
+          
+          
+        
+        ; [@key "id"]
     (* from address *)
-    from: string;
+      from: string
+          
+          
+        
+        ; [@key "from"]
     (* to address *)
-    _to: string;
+      _to: string
+          
+          
+        
+        ; [@key "to"]
     (* email subject *)
-    subject: string;
+      subject: string
+          
+          
+        
+        ; [@key "subject"]
     (* creation date *)
-    created: string;
+      created: string
+          
+          
+        
+        ; [@key "created"]
     (* creation timestamp *)
-    time: int32;
+      time: int32
+          
+          
+        
+        ; [@key "time"]
     (* user account *)
-    user: string;
+      user: string
+          
+          
+        
+        ; [@key "user"]
     (* transaction type *)
-    transtype: string;
+      transtype: string
+          
+          
+        
+        ; [@key "transtype"]
     (* origin ip *)
-    origin: string;
+      origin: string
+          
+          
+        
+        ; [@key "origin"]
     (* interface name *)
-    interface: string;
+      interface: string
+          
+          
+        
+        ; [@key "interface"]
     (* sending zone *)
-    sending_zone: string;
+      sending_zone: string
+          
+          
+        
+        ; [@key "sendingZone"]
     (* email body size in bytes *)
-    body_size: int32;
+      body_size: int32
+          
+          
+        
+        ; [@key "bodySize"]
     (* index of email in the to adderess list *)
-    seq: int32;
+      seq: int32
+          
+          
+        
+        ; [@key "seq"]
     (* to address this email is being sent to *)
-    recipient: string;
+      recipient: string
+          
+          
+        
+        ; [@key "recipient"]
     (* to address domain *)
-    domain: string;
+      domain: string
+          
+          
+        
+        ; [@key "domain"]
     (* locked status *)
-    locked: int32;
+      locked: int32
+          
+          
+        
+        ; [@key "locked"]
     (* lock timestamp *)
-    lock_time: string;
+      lock_time: string
+          
+          
+        
+        ; [@key "lockTime"]
     (* assigned server *)
-    assigned: string;
+      assigned: string
+          
+          
+        
+        ; [@key "assigned"]
     (* queued timestamp *)
-    queued: string;
+      queued: string
+          
+          
+        
+        ; [@key "queued"]
     (* mx hostname *)
-    mx_hostname: string;
+      mx_hostname: string
+          
+          
+        
+        ; [@key "mxHostname"]
     (* mail delivery response *)
-    response: string;
+      response: string
+          
+          
+        
+        ; [@key "response"]
     (* message id *)
-    message_id: string option [@default None];
+      message_id: string
+          
+           option [@default None]
+        
+        ; [@key "messageId"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** An email record *)

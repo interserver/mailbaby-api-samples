@@ -8,13 +8,29 @@
 
 type t = {
     (* The ID of the order. *)
-    id: int32;
+      id: int32
+          
+          
+        
+        ; [@key "id"]
     (* The order status. *)
-    status: string;
+      status: string
+          
+          
+        
+        ; [@key "status"]
     (* The username to use for this order. *)
-    username: string;
+      username: string
+          
+          
+        
+        ; [@key "username"]
     (* Optional order comment. *)
-    comment: string option [@default None];
+      comment: string
+          
+           option [@default None]
+        
+        ; [@key "comment"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** A mail order record *)

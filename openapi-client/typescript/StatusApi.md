@@ -15,17 +15,15 @@ Method | HTTP request | Description
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, StatusApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .StatusApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new StatusApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.pingServer(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.pingServer(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

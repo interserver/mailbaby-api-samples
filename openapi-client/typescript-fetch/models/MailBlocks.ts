@@ -18,12 +18,14 @@ import {
     MailBlockRspamdFromJSON,
     MailBlockRspamdFromJSONTyped,
     MailBlockRspamdToJSON,
+    MailBlockRspamdToJSONTyped,
 } from './MailBlockRspamd';
 import type { MailBlockClickHouse } from './MailBlockClickHouse';
 import {
     MailBlockClickHouseFromJSON,
     MailBlockClickHouseFromJSONTyped,
     MailBlockClickHouseToJSON,
+    MailBlockClickHouseToJSONTyped,
 } from './MailBlockClickHouse';
 
 /**
@@ -78,10 +80,15 @@ export function MailBlocksFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function MailBlocksToJSON(value?: MailBlocks | null): any {
+export function MailBlocksToJSON(json: any): MailBlocks {
+    return MailBlocksToJSONTyped(json, false);
+}
+
+export function MailBlocksToJSONTyped(value?: MailBlocks | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'local': ((value['local'] as Array<any>).map(MailBlockClickHouseToJSON)),

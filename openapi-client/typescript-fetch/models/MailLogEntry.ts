@@ -224,10 +224,15 @@ export function MailLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function MailLogEntryToJSON(value?: MailLogEntry | null): any {
+export function MailLogEntryToJSON(json: any): MailLogEntry {
+    return MailLogEntryToJSONTyped(json, false);
+}
+
+export function MailLogEntryToJSONTyped(value?: MailLogEntry | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         '_id': value['id'],

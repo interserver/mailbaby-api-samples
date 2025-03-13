@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,32 +49,37 @@ import org.openapitools.client.JSON;
 /**
  * A block entry from the clickhouse mailblocks server.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class MailBlockClickHouse {
   public static final String SERIALIZED_NAME_DATE = "date";
   @SerializedName(SERIALIZED_NAME_DATE)
+  @javax.annotation.Nonnull
   private Date date;
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
+  @javax.annotation.Nonnull
   private String from;
 
   public static final String SERIALIZED_NAME_MESSAGE_ID = "messageId";
   @SerializedName(SERIALIZED_NAME_MESSAGE_ID)
+  @javax.annotation.Nonnull
   private String messageId;
 
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
+  @javax.annotation.Nonnull
   private String subject;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
+  @javax.annotation.Nonnull
   private String to;
 
   public MailBlockClickHouse() {
   }
 
-  public MailBlockClickHouse date(Date date) {
+  public MailBlockClickHouse date(@javax.annotation.Nonnull Date date) {
     this.date = date;
     return this;
   }
@@ -89,12 +93,12 @@ public class MailBlockClickHouse {
     return date;
   }
 
-  public void setDate(Date date) {
+  public void setDate(@javax.annotation.Nonnull Date date) {
     this.date = date;
   }
 
 
-  public MailBlockClickHouse from(String from) {
+  public MailBlockClickHouse from(@javax.annotation.Nonnull String from) {
     this.from = from;
     return this;
   }
@@ -108,12 +112,12 @@ public class MailBlockClickHouse {
     return from;
   }
 
-  public void setFrom(String from) {
+  public void setFrom(@javax.annotation.Nonnull String from) {
     this.from = from;
   }
 
 
-  public MailBlockClickHouse messageId(String messageId) {
+  public MailBlockClickHouse messageId(@javax.annotation.Nonnull String messageId) {
     this.messageId = messageId;
     return this;
   }
@@ -127,12 +131,12 @@ public class MailBlockClickHouse {
     return messageId;
   }
 
-  public void setMessageId(String messageId) {
+  public void setMessageId(@javax.annotation.Nonnull String messageId) {
     this.messageId = messageId;
   }
 
 
-  public MailBlockClickHouse subject(String subject) {
+  public MailBlockClickHouse subject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
     return this;
   }
@@ -146,12 +150,12 @@ public class MailBlockClickHouse {
     return subject;
   }
 
-  public void setSubject(String subject) {
+  public void setSubject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
   }
 
 
-  public MailBlockClickHouse to(String to) {
+  public MailBlockClickHouse to(@javax.annotation.Nonnull String to) {
     this.to = to;
     return this;
   }
@@ -165,7 +169,7 @@ public class MailBlockClickHouse {
     return to;
   }
 
-  public void setTo(String to) {
+  public void setTo(@javax.annotation.Nonnull String to) {
     this.to = to;
   }
 

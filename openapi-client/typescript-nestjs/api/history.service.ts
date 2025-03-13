@@ -12,7 +12,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { HttpService, Injectable, Optional } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
 import { ErrorMessage } from '../model/errorMessage';
 import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
@@ -27,10 +27,12 @@ export class HistoryService {
     protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders: Record<string,string> = {};
     public configuration = new Configuration();
+    protected httpClient: HttpService;
 
-    constructor(protected httpClient: HttpService, @Optional() configuration: Configuration) {
+    constructor(httpClient: HttpService, @Optional() configuration: Configuration) {
         this.configuration = configuration || this.configuration;
         this.basePath = configuration?.basePath || this.basePath;
+        this.httpClient = configuration?.httpClient || httpClient;
     }
 
     /**
@@ -47,9 +49,10 @@ export class HistoryService {
      * Returns information about the usage on your mail accounts.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [getStatsOpts.config] Override http request option.
      */
-    public getStats(): Observable<AxiosResponse<Array<GetStats200ResponseInner>>>;
-    public getStats(): Observable<any> {
+    public getStats(getStatsOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<Array<GetStats200ResponseInner>>>;
+    public getStats(getStatsOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let headers = {...this.defaultHeaders};
 
         let accessTokenObservable: Observable<any> = of(null);
@@ -80,7 +83,8 @@ export class HistoryService {
                 return this.httpClient.get<Array<GetStats200ResponseInner>>(`${this.basePath}/mail/stats`,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...getStatsOpts?.config,
+                        headers: {...headers, ...getStatsOpts?.config?.headers},
                     }
                 );
             })
@@ -92,7 +96,7 @@ export class HistoryService {
      * @param id The ID of your mail order this will be sent through.
      * @param origin originating ip address sending mail
      * @param mx mx record mail was sent to
-     * @param from from email address
+     * @param _from from email address
      * @param to to/destination email address
      * @param subject subject containing this string
      * @param mailid mail id
@@ -104,9 +108,10 @@ export class HistoryService {
      * @param headerfrom Header From Email Address
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [viewMailLogOpts.config] Override http request option.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, ): Observable<AxiosResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, ): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, viewMailLogOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, viewMailLogOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let queryParameters = new URLSearchParams();
         if (id !== undefined && id !== null) {
             queryParameters.append('id', <any>id);
@@ -117,8 +122,8 @@ export class HistoryService {
         if (mx !== undefined && mx !== null) {
             queryParameters.append('mx', <any>mx);
         }
-        if (from !== undefined && from !== null) {
-            queryParameters.append('from', <any>from);
+        if (_from !== undefined && _from !== null) {
+            queryParameters.append('from', <any>_from);
         }
         if (to !== undefined && to !== null) {
             queryParameters.append('to', <any>to);
@@ -179,7 +184,8 @@ export class HistoryService {
                     {
                         params: queryParameters,
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...viewMailLogOpts?.config,
+                        headers: {...headers, ...viewMailLogOpts?.config?.headers},
                     }
                 );
             })

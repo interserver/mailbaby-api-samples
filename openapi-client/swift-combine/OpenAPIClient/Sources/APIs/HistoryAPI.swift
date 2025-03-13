@@ -47,7 +47,7 @@ open class HistoryAPI {
     /// - GET /mail/stats
     /// - Returns information about the usage on your mail accounts.
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - returns: AnyPublisher<[GetStats200ResponseInner], Error> 
     open func getStats() -> AnyPublisher<[GetStats200ResponseInner], Error> {
@@ -110,7 +110,7 @@ open class HistoryAPI {
     /// - GET /mail/log
     /// - Get a listing of the emails sent through this system 
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - parameter id: (query) The ID of your mail order this will be sent through. (optional)
     /// - parameter origin: (query) originating ip address sending mail (optional)

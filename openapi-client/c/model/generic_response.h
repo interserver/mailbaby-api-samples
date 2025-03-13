@@ -22,9 +22,10 @@ typedef struct generic_response_t {
     char *status; // string
     char *text; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } generic_response_t;
 
-generic_response_t *generic_response_create(
+__attribute__((deprecated)) generic_response_t *generic_response_create(
     char *status,
     char *text
 );

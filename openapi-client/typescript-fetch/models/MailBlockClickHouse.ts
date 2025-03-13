@@ -81,10 +81,15 @@ export function MailBlockClickHouseFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function MailBlockClickHouseToJSON(value?: MailBlockClickHouse | null): any {
+export function MailBlockClickHouseToJSON(json: any): MailBlockClickHouse {
+    return MailBlockClickHouseToJSONTyped(json, false);
+}
+
+export function MailBlockClickHouseToJSONTyped(value?: MailBlockClickHouse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'date': ((value['date']).toISOString().substring(0,10)),

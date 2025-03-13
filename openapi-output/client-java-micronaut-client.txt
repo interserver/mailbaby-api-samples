@@ -109,4 +109,13 @@
 # Thanks for using OpenAPI Generator.                                          #
 # Please consider donation to help us maintain this project 🙏                 #
 # https://opencollective.com/openapi_generator/donate                          #
+#                                                                              #
+# WARNING! This generator is outdated. Please use the official generator for   #
+# Micronaut: https://github.com/micronaut-projects/micronaut-openapi with the  #
+# help of the plugin for Gradle                                                #
+# (https://github.com/micronaut-projects/micronaut-gradle-plugin) and Maven    #
+# (https://github.com/micronaut-projects/micronaut-maven-plugin).              #
+#                                                                              #
+# Supported generators for micronaut client / server side, java and kotlin     #
+# languages.                                                                   #
 ################################################################################

@@ -114,10 +114,10 @@ func (a *BlockingAPIService) AddRuleExecute(r ApiAddRuleRequest) (*GenericRespon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.user != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "user", r.user, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "user", r.user, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "data", r.data, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "type", r.type_, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "data", r.data, "", "")
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

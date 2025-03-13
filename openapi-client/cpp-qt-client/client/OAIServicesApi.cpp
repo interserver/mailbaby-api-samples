@@ -224,9 +224,10 @@ void OAIServicesApi::getMailOrders() {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIServicesApi::getMailOrdersCallback);
     connect(this, &OAIServicesApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }

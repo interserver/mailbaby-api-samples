@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,104 +48,127 @@ import org.openapitools.client.JSON;
 /**
  * An email record
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class MailLogEntry {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private Integer id;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
+  @javax.annotation.Nonnull
   private String from;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
+  @javax.annotation.Nonnull
   private String to;
 
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
+  @javax.annotation.Nonnull
   private String subject;
 
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
+  @javax.annotation.Nonnull
   private String created;
 
   public static final String SERIALIZED_NAME_TIME = "time";
   @SerializedName(SERIALIZED_NAME_TIME)
+  @javax.annotation.Nonnull
   private Integer time;
 
   public static final String SERIALIZED_NAME_USER = "user";
   @SerializedName(SERIALIZED_NAME_USER)
+  @javax.annotation.Nonnull
   private String user;
 
   public static final String SERIALIZED_NAME_TRANSTYPE = "transtype";
   @SerializedName(SERIALIZED_NAME_TRANSTYPE)
+  @javax.annotation.Nonnull
   private String transtype;
 
   public static final String SERIALIZED_NAME_ORIGIN = "origin";
   @SerializedName(SERIALIZED_NAME_ORIGIN)
+  @javax.annotation.Nonnull
   private String origin;
 
   public static final String SERIALIZED_NAME_INTERFACE = "interface";
   @SerializedName(SERIALIZED_NAME_INTERFACE)
+  @javax.annotation.Nonnull
   private String _interface;
 
   public static final String SERIALIZED_NAME_SENDING_ZONE = "sendingZone";
   @SerializedName(SERIALIZED_NAME_SENDING_ZONE)
+  @javax.annotation.Nonnull
   private String sendingZone;
 
   public static final String SERIALIZED_NAME_BODY_SIZE = "bodySize";
   @SerializedName(SERIALIZED_NAME_BODY_SIZE)
+  @javax.annotation.Nonnull
   private Integer bodySize;
 
   public static final String SERIALIZED_NAME_SEQ = "seq";
   @SerializedName(SERIALIZED_NAME_SEQ)
+  @javax.annotation.Nonnull
   private Integer seq;
 
   public static final String SERIALIZED_NAME_RECIPIENT = "recipient";
   @SerializedName(SERIALIZED_NAME_RECIPIENT)
+  @javax.annotation.Nonnull
   private String recipient;
 
   public static final String SERIALIZED_NAME_DOMAIN = "domain";
   @SerializedName(SERIALIZED_NAME_DOMAIN)
+  @javax.annotation.Nonnull
   private String domain;
 
   public static final String SERIALIZED_NAME_LOCKED = "locked";
   @SerializedName(SERIALIZED_NAME_LOCKED)
+  @javax.annotation.Nonnull
   private Integer locked;
 
   public static final String SERIALIZED_NAME_LOCK_TIME = "lockTime";
   @SerializedName(SERIALIZED_NAME_LOCK_TIME)
+  @javax.annotation.Nonnull
   private String lockTime;
 
   public static final String SERIALIZED_NAME_ASSIGNED = "assigned";
   @SerializedName(SERIALIZED_NAME_ASSIGNED)
+  @javax.annotation.Nonnull
   private String assigned;
 
   public static final String SERIALIZED_NAME_QUEUED = "queued";
   @SerializedName(SERIALIZED_NAME_QUEUED)
+  @javax.annotation.Nonnull
   private String queued;
 
   public static final String SERIALIZED_NAME_MX_HOSTNAME = "mxHostname";
   @SerializedName(SERIALIZED_NAME_MX_HOSTNAME)
+  @javax.annotation.Nonnull
   private String mxHostname;
 
   public static final String SERIALIZED_NAME_RESPONSE = "response";
   @SerializedName(SERIALIZED_NAME_RESPONSE)
+  @javax.annotation.Nonnull
   private String response;
 
   public static final String SERIALIZED_NAME_MESSAGE_ID = "messageId";
   @SerializedName(SERIALIZED_NAME_MESSAGE_ID)
+  @javax.annotation.Nullable
   private String messageId;
 
   public MailLogEntry() {
   }
 
-  public MailLogEntry id(Integer id) {
+  public MailLogEntry id(@javax.annotation.Nonnull Integer id) {
     this.id = id;
     return this;
   }
@@ -160,12 +182,12 @@ public class MailLogEntry {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(@javax.annotation.Nonnull Integer id) {
     this.id = id;
   }
 
 
-  public MailLogEntry id(String id) {
+  public MailLogEntry id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -179,12 +201,12 @@ public class MailLogEntry {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public MailLogEntry from(String from) {
+  public MailLogEntry from(@javax.annotation.Nonnull String from) {
     this.from = from;
     return this;
   }
@@ -198,12 +220,12 @@ public class MailLogEntry {
     return from;
   }
 
-  public void setFrom(String from) {
+  public void setFrom(@javax.annotation.Nonnull String from) {
     this.from = from;
   }
 
 
-  public MailLogEntry to(String to) {
+  public MailLogEntry to(@javax.annotation.Nonnull String to) {
     this.to = to;
     return this;
   }
@@ -217,12 +239,12 @@ public class MailLogEntry {
     return to;
   }
 
-  public void setTo(String to) {
+  public void setTo(@javax.annotation.Nonnull String to) {
     this.to = to;
   }
 
 
-  public MailLogEntry subject(String subject) {
+  public MailLogEntry subject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
     return this;
   }
@@ -236,12 +258,12 @@ public class MailLogEntry {
     return subject;
   }
 
-  public void setSubject(String subject) {
+  public void setSubject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
   }
 
 
-  public MailLogEntry created(String created) {
+  public MailLogEntry created(@javax.annotation.Nonnull String created) {
     this.created = created;
     return this;
   }
@@ -255,12 +277,12 @@ public class MailLogEntry {
     return created;
   }
 
-  public void setCreated(String created) {
+  public void setCreated(@javax.annotation.Nonnull String created) {
     this.created = created;
   }
 
 
-  public MailLogEntry time(Integer time) {
+  public MailLogEntry time(@javax.annotation.Nonnull Integer time) {
     this.time = time;
     return this;
   }
@@ -274,12 +296,12 @@ public class MailLogEntry {
     return time;
   }
 
-  public void setTime(Integer time) {
+  public void setTime(@javax.annotation.Nonnull Integer time) {
     this.time = time;
   }
 
 
-  public MailLogEntry user(String user) {
+  public MailLogEntry user(@javax.annotation.Nonnull String user) {
     this.user = user;
     return this;
   }
@@ -293,12 +315,12 @@ public class MailLogEntry {
     return user;
   }
 
-  public void setUser(String user) {
+  public void setUser(@javax.annotation.Nonnull String user) {
     this.user = user;
   }
 
 
-  public MailLogEntry transtype(String transtype) {
+  public MailLogEntry transtype(@javax.annotation.Nonnull String transtype) {
     this.transtype = transtype;
     return this;
   }
@@ -312,12 +334,12 @@ public class MailLogEntry {
     return transtype;
   }
 
-  public void setTranstype(String transtype) {
+  public void setTranstype(@javax.annotation.Nonnull String transtype) {
     this.transtype = transtype;
   }
 
 
-  public MailLogEntry origin(String origin) {
+  public MailLogEntry origin(@javax.annotation.Nonnull String origin) {
     this.origin = origin;
     return this;
   }
@@ -331,12 +353,12 @@ public class MailLogEntry {
     return origin;
   }
 
-  public void setOrigin(String origin) {
+  public void setOrigin(@javax.annotation.Nonnull String origin) {
     this.origin = origin;
   }
 
 
-  public MailLogEntry _interface(String _interface) {
+  public MailLogEntry _interface(@javax.annotation.Nonnull String _interface) {
     this._interface = _interface;
     return this;
   }
@@ -350,12 +372,12 @@ public class MailLogEntry {
     return _interface;
   }
 
-  public void setInterface(String _interface) {
+  public void setInterface(@javax.annotation.Nonnull String _interface) {
     this._interface = _interface;
   }
 
 
-  public MailLogEntry sendingZone(String sendingZone) {
+  public MailLogEntry sendingZone(@javax.annotation.Nonnull String sendingZone) {
     this.sendingZone = sendingZone;
     return this;
   }
@@ -369,12 +391,12 @@ public class MailLogEntry {
     return sendingZone;
   }
 
-  public void setSendingZone(String sendingZone) {
+  public void setSendingZone(@javax.annotation.Nonnull String sendingZone) {
     this.sendingZone = sendingZone;
   }
 
 
-  public MailLogEntry bodySize(Integer bodySize) {
+  public MailLogEntry bodySize(@javax.annotation.Nonnull Integer bodySize) {
     this.bodySize = bodySize;
     return this;
   }
@@ -388,12 +410,12 @@ public class MailLogEntry {
     return bodySize;
   }
 
-  public void setBodySize(Integer bodySize) {
+  public void setBodySize(@javax.annotation.Nonnull Integer bodySize) {
     this.bodySize = bodySize;
   }
 
 
-  public MailLogEntry seq(Integer seq) {
+  public MailLogEntry seq(@javax.annotation.Nonnull Integer seq) {
     this.seq = seq;
     return this;
   }
@@ -407,12 +429,12 @@ public class MailLogEntry {
     return seq;
   }
 
-  public void setSeq(Integer seq) {
+  public void setSeq(@javax.annotation.Nonnull Integer seq) {
     this.seq = seq;
   }
 
 
-  public MailLogEntry recipient(String recipient) {
+  public MailLogEntry recipient(@javax.annotation.Nonnull String recipient) {
     this.recipient = recipient;
     return this;
   }
@@ -426,12 +448,12 @@ public class MailLogEntry {
     return recipient;
   }
 
-  public void setRecipient(String recipient) {
+  public void setRecipient(@javax.annotation.Nonnull String recipient) {
     this.recipient = recipient;
   }
 
 
-  public MailLogEntry domain(String domain) {
+  public MailLogEntry domain(@javax.annotation.Nonnull String domain) {
     this.domain = domain;
     return this;
   }
@@ -445,12 +467,12 @@ public class MailLogEntry {
     return domain;
   }
 
-  public void setDomain(String domain) {
+  public void setDomain(@javax.annotation.Nonnull String domain) {
     this.domain = domain;
   }
 
 
-  public MailLogEntry locked(Integer locked) {
+  public MailLogEntry locked(@javax.annotation.Nonnull Integer locked) {
     this.locked = locked;
     return this;
   }
@@ -464,12 +486,12 @@ public class MailLogEntry {
     return locked;
   }
 
-  public void setLocked(Integer locked) {
+  public void setLocked(@javax.annotation.Nonnull Integer locked) {
     this.locked = locked;
   }
 
 
-  public MailLogEntry lockTime(String lockTime) {
+  public MailLogEntry lockTime(@javax.annotation.Nonnull String lockTime) {
     this.lockTime = lockTime;
     return this;
   }
@@ -483,12 +505,12 @@ public class MailLogEntry {
     return lockTime;
   }
 
-  public void setLockTime(String lockTime) {
+  public void setLockTime(@javax.annotation.Nonnull String lockTime) {
     this.lockTime = lockTime;
   }
 
 
-  public MailLogEntry assigned(String assigned) {
+  public MailLogEntry assigned(@javax.annotation.Nonnull String assigned) {
     this.assigned = assigned;
     return this;
   }
@@ -502,12 +524,12 @@ public class MailLogEntry {
     return assigned;
   }
 
-  public void setAssigned(String assigned) {
+  public void setAssigned(@javax.annotation.Nonnull String assigned) {
     this.assigned = assigned;
   }
 
 
-  public MailLogEntry queued(String queued) {
+  public MailLogEntry queued(@javax.annotation.Nonnull String queued) {
     this.queued = queued;
     return this;
   }
@@ -521,12 +543,12 @@ public class MailLogEntry {
     return queued;
   }
 
-  public void setQueued(String queued) {
+  public void setQueued(@javax.annotation.Nonnull String queued) {
     this.queued = queued;
   }
 
 
-  public MailLogEntry mxHostname(String mxHostname) {
+  public MailLogEntry mxHostname(@javax.annotation.Nonnull String mxHostname) {
     this.mxHostname = mxHostname;
     return this;
   }
@@ -540,12 +562,12 @@ public class MailLogEntry {
     return mxHostname;
   }
 
-  public void setMxHostname(String mxHostname) {
+  public void setMxHostname(@javax.annotation.Nonnull String mxHostname) {
     this.mxHostname = mxHostname;
   }
 
 
-  public MailLogEntry response(String response) {
+  public MailLogEntry response(@javax.annotation.Nonnull String response) {
     this.response = response;
     return this;
   }
@@ -559,12 +581,12 @@ public class MailLogEntry {
     return response;
   }
 
-  public void setResponse(String response) {
+  public void setResponse(@javax.annotation.Nonnull String response) {
     this.response = response;
   }
 
 
-  public MailLogEntry messageId(String messageId) {
+  public MailLogEntry messageId(@javax.annotation.Nullable String messageId) {
     this.messageId = messageId;
     return this;
   }
@@ -578,7 +600,7 @@ public class MailLogEntry {
     return messageId;
   }
 
-  public void setMessageId(String messageId) {
+  public void setMessageId(@javax.annotation.Nullable String messageId) {
     this.messageId = messageId;
   }
 

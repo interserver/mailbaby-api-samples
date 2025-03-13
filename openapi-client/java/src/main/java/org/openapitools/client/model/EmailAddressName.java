@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,20 +48,22 @@ import org.openapitools.client.JSON;
 /**
  * An email contact.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class EmailAddressName {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
+  @javax.annotation.Nonnull
   private String email;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public EmailAddressName() {
   }
 
-  public EmailAddressName email(String email) {
+  public EmailAddressName email(@javax.annotation.Nonnull String email) {
     this.email = email;
     return this;
   }
@@ -76,12 +77,12 @@ public class EmailAddressName {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(@javax.annotation.Nonnull String email) {
     this.email = email;
   }
 
 
-  public EmailAddressName name(String name) {
+  public EmailAddressName name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
@@ -95,7 +96,7 @@ public class EmailAddressName {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 

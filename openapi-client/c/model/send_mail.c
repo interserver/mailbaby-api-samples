@@ -5,7 +5,7 @@
 
 
 
-send_mail_t *send_mail_create(
+static send_mail_t *send_mail_create_internal(
     char *to,
     char *from,
     char *subject,
@@ -20,12 +20,30 @@ send_mail_t *send_mail_create(
     send_mail_local_var->subject = subject;
     send_mail_local_var->body = body;
 
+    send_mail_local_var->_library_owned = 1;
     return send_mail_local_var;
 }
 
+__attribute__((deprecated)) send_mail_t *send_mail_create(
+    char *to,
+    char *from,
+    char *subject,
+    char *body
+    ) {
+    return send_mail_create_internal (
+        to,
+        from,
+        subject,
+        body
+        );
+}
 
 void send_mail_free(send_mail_t *send_mail) {
     if(NULL == send_mail){
+        return ;
+    }
+    if(send_mail->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "send_mail_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -100,6 +118,9 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     // send_mail->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "to");
+    if (cJSON_IsNull(to)) {
+        to = NULL;
+    }
     if (!to) {
         goto end;
     }
@@ -112,6 +133,9 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     // send_mail->from
     cJSON *from = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "from");
+    if (cJSON_IsNull(from)) {
+        from = NULL;
+    }
     if (!from) {
         goto end;
     }
@@ -124,6 +148,9 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     // send_mail->subject
     cJSON *subject = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
+    }
     if (!subject) {
         goto end;
     }
@@ -136,6 +163,9 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     // send_mail->body
     cJSON *body = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "body");
+    if (cJSON_IsNull(body)) {
+        body = NULL;
+    }
     if (!body) {
         goto end;
     }
@@ -147,7 +177,7 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
     }
 
 
-    send_mail_local_var = send_mail_create (
+    send_mail_local_var = send_mail_create_internal (
         strdup(to->valuestring),
         strdup(from->valuestring),
         strdup(subject->valuestring),

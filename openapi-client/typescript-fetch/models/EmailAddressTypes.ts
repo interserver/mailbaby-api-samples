@@ -52,7 +52,11 @@ export function EmailAddressTypesFromJSONTyped(json: any, ignoreDiscriminator: b
     return {} as any;
 }
 
-export function EmailAddressTypesToJSON(value?: EmailAddressTypes | null): any {
+export function EmailAddressTypesToJSON(json: any): any {
+    return EmailAddressTypesToJSONTyped(json, false);
+}
+
+export function EmailAddressTypesToJSONTyped(value?: EmailAddressTypes | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -55,10 +55,15 @@ export function GenericResponseFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function GenericResponseToJSON(value?: GenericResponse | null): any {
+export function GenericResponseToJSON(json: any): GenericResponse {
+    return GenericResponseToJSONTyped(json, false);
+}
+
+export function GenericResponseToJSONTyped(value?: GenericResponse | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'status': value['status'],

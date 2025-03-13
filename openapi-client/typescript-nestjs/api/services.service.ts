@@ -12,7 +12,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { HttpService, Injectable, Optional } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
 import { ErrorMessage } from '../model/errorMessage';
 import { MailOrder } from '../model/mailOrder';
@@ -26,10 +26,12 @@ export class ServicesService {
     protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders: Record<string,string> = {};
     public configuration = new Configuration();
+    protected httpClient: HttpService;
 
-    constructor(protected httpClient: HttpService, @Optional() configuration: Configuration) {
+    constructor(httpClient: HttpService, @Optional() configuration: Configuration) {
         this.configuration = configuration || this.configuration;
         this.basePath = configuration?.basePath || this.basePath;
+        this.httpClient = configuration?.httpClient || httpClient;
     }
 
     /**
@@ -46,9 +48,10 @@ export class ServicesService {
      * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [getMailOrdersOpts.config] Override http request option.
      */
-    public getMailOrders(): Observable<AxiosResponse<Array<MailOrder>>>;
-    public getMailOrders(): Observable<any> {
+    public getMailOrders(getMailOrdersOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<Array<MailOrder>>>;
+    public getMailOrders(getMailOrdersOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let headers = {...this.defaultHeaders};
 
         let accessTokenObservable: Observable<any> = of(null);
@@ -79,7 +82,8 @@ export class ServicesService {
                 return this.httpClient.get<Array<MailOrder>>(`${this.basePath}/mail`,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...getMailOrdersOpts?.config,
+                        headers: {...headers, ...getMailOrdersOpts?.config?.headers},
                     }
                 );
             })

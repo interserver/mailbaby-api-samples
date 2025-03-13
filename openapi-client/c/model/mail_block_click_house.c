@@ -5,7 +5,7 @@
 
 
 
-mail_block_click_house_t *mail_block_click_house_create(
+static mail_block_click_house_t *mail_block_click_house_create_internal(
     char *date,
     char *from,
     char *message_id,
@@ -22,12 +22,32 @@ mail_block_click_house_t *mail_block_click_house_create(
     mail_block_click_house_local_var->subject = subject;
     mail_block_click_house_local_var->to = to;
 
+    mail_block_click_house_local_var->_library_owned = 1;
     return mail_block_click_house_local_var;
 }
 
+__attribute__((deprecated)) mail_block_click_house_t *mail_block_click_house_create(
+    char *date,
+    char *from,
+    char *message_id,
+    char *subject,
+    char *to
+    ) {
+    return mail_block_click_house_create_internal (
+        date,
+        from,
+        message_id,
+        subject,
+        to
+        );
+}
 
 void mail_block_click_house_free(mail_block_click_house_t *mail_block_click_house) {
     if(NULL == mail_block_click_house){
+        return ;
+    }
+    if(mail_block_click_house->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "mail_block_click_house_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -115,6 +135,9 @@ mail_block_click_house_t *mail_block_click_house_parseFromJSON(cJSON *mail_block
 
     // mail_block_click_house->date
     cJSON *date = cJSON_GetObjectItemCaseSensitive(mail_block_click_houseJSON, "date");
+    if (cJSON_IsNull(date)) {
+        date = NULL;
+    }
     if (!date) {
         goto end;
     }
@@ -127,6 +150,9 @@ mail_block_click_house_t *mail_block_click_house_parseFromJSON(cJSON *mail_block
 
     // mail_block_click_house->from
     cJSON *from = cJSON_GetObjectItemCaseSensitive(mail_block_click_houseJSON, "from");
+    if (cJSON_IsNull(from)) {
+        from = NULL;
+    }
     if (!from) {
         goto end;
     }
@@ -139,6 +165,9 @@ mail_block_click_house_t *mail_block_click_house_parseFromJSON(cJSON *mail_block
 
     // mail_block_click_house->message_id
     cJSON *message_id = cJSON_GetObjectItemCaseSensitive(mail_block_click_houseJSON, "messageId");
+    if (cJSON_IsNull(message_id)) {
+        message_id = NULL;
+    }
     if (!message_id) {
         goto end;
     }
@@ -151,6 +180,9 @@ mail_block_click_house_t *mail_block_click_house_parseFromJSON(cJSON *mail_block
 
     // mail_block_click_house->subject
     cJSON *subject = cJSON_GetObjectItemCaseSensitive(mail_block_click_houseJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
+    }
     if (!subject) {
         goto end;
     }
@@ -163,6 +195,9 @@ mail_block_click_house_t *mail_block_click_house_parseFromJSON(cJSON *mail_block
 
     // mail_block_click_house->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(mail_block_click_houseJSON, "to");
+    if (cJSON_IsNull(to)) {
+        to = NULL;
+    }
     if (!to) {
         goto end;
     }
@@ -174,7 +209,7 @@ mail_block_click_house_t *mail_block_click_house_parseFromJSON(cJSON *mail_block
     }
 
 
-    mail_block_click_house_local_var = mail_block_click_house_create (
+    mail_block_click_house_local_var = mail_block_click_house_create_internal (
         strdup(date->valuestring),
         strdup(from->valuestring),
         strdup(message_id->valuestring),

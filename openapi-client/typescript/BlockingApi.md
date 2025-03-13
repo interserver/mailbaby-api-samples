@@ -20,24 +20,23 @@ Adds a new email deny rule into the system to block new emails that match the gi
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlockingApi } from '';
+import type { BlockingApiAddRuleRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlockingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlockingApi(configuration);
 
-let body:.BlockingApiAddRuleRequest = {
-  // string | The type of deny rule.
+const request: BlockingApiAddRuleRequest = {
+    // The type of deny rule.
   type: "email",
-  // string | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+    // The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
   data: "domeinwo@server.guesshost.net",
-  // string | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. (optional)
+    // Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. (optional)
   user: "mb20682",
 };
 
-apiInstance.addRule(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.addRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -83,20 +82,19 @@ Removes one of the configured deny mail rules from the system.
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlockingApi } from '';
+import type { BlockingApiDeleteRuleRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlockingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlockingApi(configuration);
 
-let body:.BlockingApiDeleteRuleRequest = {
-  // number | The ID of the Rules entry.
+const request: BlockingApiDeleteRuleRequest = {
+    // The ID of the Rules entry.
   ruleId: 34,
 };
 
-apiInstance.deleteRule(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.deleteRule(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -140,20 +138,19 @@ Removes an email address from the various block lists.
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlockingApi } from '';
+import type { BlockingApiDelistBlockRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlockingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlockingApi(configuration);
 
-let body:.BlockingApiDelistBlockRequest = {
-  // string
+const request: BlockingApiDelistBlockRequest = {
+  
   body: "{"email":"client@domain.com"}",
 };
 
-apiInstance.delistBlock(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.delistBlock(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -196,17 +193,15 @@ Name | Type | Description  | Notes
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlockingApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlockingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlockingApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getMailBlocks(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getMailBlocks(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -246,17 +241,15 @@ Returns a listing of all the deny block rules you have configured.
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, BlockingApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .BlockingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new BlockingApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getRules(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getRules(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

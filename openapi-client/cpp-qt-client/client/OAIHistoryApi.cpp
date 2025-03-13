@@ -226,9 +226,10 @@ void OAIHistoryApi::getStats() {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIHistoryApi::getStatsCallback);
     connect(this, &OAIHistoryApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }
@@ -312,7 +313,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(id.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("id")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(id.stringValue())));
     }
     if (origin.hasValue())
     {
@@ -327,7 +328,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("origin")).append(querySuffix).append(QUrl::toPercentEncoding(origin.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("origin")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(origin.stringValue())));
     }
     if (mx.hasValue())
     {
@@ -342,7 +343,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("mx")).append(querySuffix).append(QUrl::toPercentEncoding(mx.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("mx")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(mx.stringValue())));
     }
     if (from.hasValue())
     {
@@ -357,7 +358,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("from")).append(querySuffix).append(QUrl::toPercentEncoding(from.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("from")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(from.stringValue())));
     }
     if (to.hasValue())
     {
@@ -372,7 +373,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("to")).append(querySuffix).append(QUrl::toPercentEncoding(to.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("to")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(to.stringValue())));
     }
     if (subject.hasValue())
     {
@@ -387,7 +388,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("subject")).append(querySuffix).append(QUrl::toPercentEncoding(subject.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("subject")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(subject.stringValue())));
     }
     if (mailid.hasValue())
     {
@@ -402,7 +403,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("mailid")).append(querySuffix).append(QUrl::toPercentEncoding(mailid.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("mailid")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(mailid.stringValue())));
     }
     if (skip.hasValue())
     {
@@ -417,7 +418,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("skip")).append(querySuffix).append(QUrl::toPercentEncoding(skip.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("skip")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(skip.stringValue())));
     }
     if (limit.hasValue())
     {
@@ -432,7 +433,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(limit.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("limit")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(limit.stringValue())));
     }
     if (start_date.hasValue())
     {
@@ -447,7 +448,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("startDate")).append(querySuffix).append(QUrl::toPercentEncoding(start_date.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("startDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(start_date.stringValue())));
     }
     if (end_date.hasValue())
     {
@@ -462,7 +463,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("endDate")).append(querySuffix).append(QUrl::toPercentEncoding(end_date.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("endDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(end_date.stringValue())));
     }
     if (replyto.hasValue())
     {
@@ -477,7 +478,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("replyto")).append(querySuffix).append(QUrl::toPercentEncoding(replyto.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("replyto")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(replyto.stringValue())));
     }
     if (headerfrom.hasValue())
     {
@@ -492,7 +493,7 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         else
             fullPath.append("?");
 
-        fullPath.append(QUrl::toPercentEncoding("headerfrom")).append(querySuffix).append(QUrl::toPercentEncoding(headerfrom.stringValue()));
+        fullPath.append(QUrl::toPercentEncoding("headerfrom")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(headerfrom.stringValue())));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -504,9 +505,10 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIHistoryApi::viewMailLogCallback);
     connect(this, &OAIHistoryApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }

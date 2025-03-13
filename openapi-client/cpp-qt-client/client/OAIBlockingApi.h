@@ -65,23 +65,23 @@ public:
     * @param[in]  data QString [required]
     * @param[in]  user QString [optional]
     */
-    void addRule(const QString &type, const QString &data, const ::OpenAPI::OptionalParam<QString> &user = ::OpenAPI::OptionalParam<QString>());
+    virtual void addRule(const QString &type, const QString &data, const ::OpenAPI::OptionalParam<QString> &user = ::OpenAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  rule_id qint32 [required]
     */
-    void deleteRule(const qint32 &rule_id);
+    virtual void deleteRule(const qint32 &rule_id);
 
     /**
     * @param[in]  body QString [required]
     */
-    void delistBlock(const QString &body);
+    virtual void delistBlock(const QString &body);
 
 
-    void getMailBlocks();
+    virtual void getMailBlocks();
 
 
-    void getRules();
+    virtual void getRules();
 
 
 private:
@@ -119,6 +119,7 @@ Q_SIGNALS:
     void delistBlockSignal(OAIGenericResponse summary);
     void getMailBlocksSignal(OAIMailBlocks summary);
     void getRulesSignal(QList<OAIDenyRuleRecord> summary);
+
 
     void addRuleSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void deleteRuleSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);

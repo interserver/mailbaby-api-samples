@@ -25,9 +25,10 @@ typedef struct mail_blocks_t {
     list_t *mbtrap; //nonprimitive container
     list_t *subject; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_blocks_t;
 
-mail_blocks_t *mail_blocks_create(
+__attribute__((deprecated)) mail_blocks_t *mail_blocks_create(
     list_t *local,
     list_t *mbtrap,
     list_t *subject

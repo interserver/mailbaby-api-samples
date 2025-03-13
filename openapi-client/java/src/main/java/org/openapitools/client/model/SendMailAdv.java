@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,48 +53,57 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class SendMailAdv {
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
+  @javax.annotation.Nonnull
   private String subject;
 
   public static final String SERIALIZED_NAME_BODY = "body";
   @SerializedName(SERIALIZED_NAME_BODY)
+  @javax.annotation.Nonnull
   private String body;
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
+  @javax.annotation.Nonnull
   private EmailAddressTypes from;
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
+  @javax.annotation.Nonnull
   private EmailAddressesTypes to;
 
   public static final String SERIALIZED_NAME_REPLYTO = "replyto";
   @SerializedName(SERIALIZED_NAME_REPLYTO)
+  @javax.annotation.Nullable
   private EmailAddressesTypes replyto;
 
   public static final String SERIALIZED_NAME_CC = "cc";
   @SerializedName(SERIALIZED_NAME_CC)
+  @javax.annotation.Nullable
   private EmailAddressesTypes cc;
 
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
+  @javax.annotation.Nullable
   private EmailAddressesTypes bcc;
 
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
+  @javax.annotation.Nullable
   private List<MailAttachment> attachments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private Long id;
 
   public SendMailAdv() {
   }
 
-  public SendMailAdv subject(String subject) {
+  public SendMailAdv subject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
     return this;
   }
@@ -109,12 +117,12 @@ public class SendMailAdv {
     return subject;
   }
 
-  public void setSubject(String subject) {
+  public void setSubject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
   }
 
 
-  public SendMailAdv body(String body) {
+  public SendMailAdv body(@javax.annotation.Nonnull String body) {
     this.body = body;
     return this;
   }
@@ -128,12 +136,12 @@ public class SendMailAdv {
     return body;
   }
 
-  public void setBody(String body) {
+  public void setBody(@javax.annotation.Nonnull String body) {
     this.body = body;
   }
 
 
-  public SendMailAdv from(EmailAddressTypes from) {
+  public SendMailAdv from(@javax.annotation.Nonnull EmailAddressTypes from) {
     this.from = from;
     return this;
   }
@@ -147,12 +155,12 @@ public class SendMailAdv {
     return from;
   }
 
-  public void setFrom(EmailAddressTypes from) {
+  public void setFrom(@javax.annotation.Nonnull EmailAddressTypes from) {
     this.from = from;
   }
 
 
-  public SendMailAdv to(EmailAddressesTypes to) {
+  public SendMailAdv to(@javax.annotation.Nonnull EmailAddressesTypes to) {
     this.to = to;
     return this;
   }
@@ -166,12 +174,12 @@ public class SendMailAdv {
     return to;
   }
 
-  public void setTo(EmailAddressesTypes to) {
+  public void setTo(@javax.annotation.Nonnull EmailAddressesTypes to) {
     this.to = to;
   }
 
 
-  public SendMailAdv replyto(EmailAddressesTypes replyto) {
+  public SendMailAdv replyto(@javax.annotation.Nullable EmailAddressesTypes replyto) {
     this.replyto = replyto;
     return this;
   }
@@ -185,12 +193,12 @@ public class SendMailAdv {
     return replyto;
   }
 
-  public void setReplyto(EmailAddressesTypes replyto) {
+  public void setReplyto(@javax.annotation.Nullable EmailAddressesTypes replyto) {
     this.replyto = replyto;
   }
 
 
-  public SendMailAdv cc(EmailAddressesTypes cc) {
+  public SendMailAdv cc(@javax.annotation.Nullable EmailAddressesTypes cc) {
     this.cc = cc;
     return this;
   }
@@ -204,12 +212,12 @@ public class SendMailAdv {
     return cc;
   }
 
-  public void setCc(EmailAddressesTypes cc) {
+  public void setCc(@javax.annotation.Nullable EmailAddressesTypes cc) {
     this.cc = cc;
   }
 
 
-  public SendMailAdv bcc(EmailAddressesTypes bcc) {
+  public SendMailAdv bcc(@javax.annotation.Nullable EmailAddressesTypes bcc) {
     this.bcc = bcc;
     return this;
   }
@@ -223,12 +231,12 @@ public class SendMailAdv {
     return bcc;
   }
 
-  public void setBcc(EmailAddressesTypes bcc) {
+  public void setBcc(@javax.annotation.Nullable EmailAddressesTypes bcc) {
     this.bcc = bcc;
   }
 
 
-  public SendMailAdv attachments(List<MailAttachment> attachments) {
+  public SendMailAdv attachments(@javax.annotation.Nullable List<MailAttachment> attachments) {
     this.attachments = attachments;
     return this;
   }
@@ -250,12 +258,12 @@ public class SendMailAdv {
     return attachments;
   }
 
-  public void setAttachments(List<MailAttachment> attachments) {
+  public void setAttachments(@javax.annotation.Nullable List<MailAttachment> attachments) {
     this.attachments = attachments;
   }
 
 
-  public SendMailAdv id(Long id) {
+  public SendMailAdv id(@javax.annotation.Nullable Long id) {
     this.id = id;
     return this;
   }
@@ -269,7 +277,7 @@ public class SendMailAdv {
     return id;
   }
 
-  public void setId(Long id) {
+  public void setId(@javax.annotation.Nullable Long id) {
     this.id = id;
   }
 

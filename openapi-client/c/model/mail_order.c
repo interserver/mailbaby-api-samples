@@ -5,7 +5,7 @@
 
 
 
-mail_order_t *mail_order_create(
+static mail_order_t *mail_order_create_internal(
     int id,
     char *status,
     char *username,
@@ -20,12 +20,30 @@ mail_order_t *mail_order_create(
     mail_order_local_var->username = username;
     mail_order_local_var->comment = comment;
 
+    mail_order_local_var->_library_owned = 1;
     return mail_order_local_var;
 }
 
+__attribute__((deprecated)) mail_order_t *mail_order_create(
+    int id,
+    char *status,
+    char *username,
+    char *comment
+    ) {
+    return mail_order_create_internal (
+        id,
+        status,
+        username,
+        comment
+        );
+}
 
 void mail_order_free(mail_order_t *mail_order) {
     if(NULL == mail_order){
+        return ;
+    }
+    if(mail_order->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "mail_order_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +113,9 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
 
     // mail_order->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(mail_orderJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (!id) {
         goto end;
     }
@@ -107,6 +128,9 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
 
     // mail_order->status
     cJSON *status = cJSON_GetObjectItemCaseSensitive(mail_orderJSON, "status");
+    if (cJSON_IsNull(status)) {
+        status = NULL;
+    }
     if (!status) {
         goto end;
     }
@@ -119,6 +143,9 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
 
     // mail_order->username
     cJSON *username = cJSON_GetObjectItemCaseSensitive(mail_orderJSON, "username");
+    if (cJSON_IsNull(username)) {
+        username = NULL;
+    }
     if (!username) {
         goto end;
     }
@@ -131,6 +158,9 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
 
     // mail_order->comment
     cJSON *comment = cJSON_GetObjectItemCaseSensitive(mail_orderJSON, "comment");
+    if (cJSON_IsNull(comment)) {
+        comment = NULL;
+    }
     if (comment) { 
     if(!cJSON_IsString(comment) && !cJSON_IsNull(comment))
     {
@@ -139,7 +169,7 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
     }
 
 
-    mail_order_local_var = mail_order_create (
+    mail_order_local_var = mail_order_create_internal (
         id->valuedouble,
         strdup(status->valuestring),
         strdup(username->valuestring),

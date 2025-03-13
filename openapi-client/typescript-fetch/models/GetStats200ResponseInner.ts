@@ -79,10 +79,15 @@ export function GetStats200ResponseInnerFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function GetStats200ResponseInnerToJSON(value?: GetStats200ResponseInner | null): any {
+export function GetStats200ResponseInnerToJSON(json: any): GetStats200ResponseInner {
+    return GetStats200ResponseInnerToJSONTyped(json, false);
+}
+
+export function GetStats200ResponseInnerToJSONTyped(value?: GetStats200ResponseInner | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

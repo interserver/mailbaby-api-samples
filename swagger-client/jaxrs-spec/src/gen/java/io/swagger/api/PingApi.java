@@ -20,7 +20,7 @@ import javax.validation.Valid;
 
 @Path("/ping")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2024-10-15T16:37:51.568226375-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2025-03-13T09:47:52.938135894-04:00[America/New_York]")
 public class PingApi {
 
     @GET

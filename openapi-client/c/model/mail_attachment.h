@@ -22,9 +22,10 @@ typedef struct mail_attachment_t {
     char *filename; // string
     char *data; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_attachment_t;
 
-mail_attachment_t *mail_attachment_create(
+__attribute__((deprecated)) mail_attachment_t *mail_attachment_create(
     char *filename,
     char *data
 );

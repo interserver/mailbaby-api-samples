@@ -12,98 +12,6 @@
 #' @format An \code{R6Class} generator object
 #' @field api_client Handles the client-server communication.
 #'
-#' @section Methods:
-#' \describe{
-#' \strong{ SendAdvMail } \emph{ Sends an Email with Advanced Options }
-#' Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ```
-#'
-#' \itemize{
-#' \item \emph{ @param } subject character
-#' \item \emph{ @param } body character
-#' \item \emph{ @param } from \link{EmailAddressTypes}
-#' \item \emph{ @param } to \link{EmailAddressesTypes}
-#' \item \emph{ @param } replyto \link{EmailAddressesTypes}
-#' \item \emph{ @param } cc \link{EmailAddressesTypes}
-#' \item \emph{ @param } bcc \link{EmailAddressesTypes}
-#' \item \emph{ @param } attachments list( \link{MailAttachment} )
-#' \item \emph{ @param } id integer
-#' \item \emph{ @returnType } \link{GenericResponse} \cr
-#'
-#'
-#' \item status code : 200 | search results matching criteria
-#'
-#' \item return type : GenericResponse
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 400 | Error message when there was a problem with the input parameters.
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 401 | Unauthorized
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 404 | The specified resource was not found
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' }
-#'
-#' \strong{ SendMail } \emph{ Sends an Email }
-#' Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
-#'
-#' \itemize{
-#' \item \emph{ @param } to character
-#' \item \emph{ @param } from character
-#' \item \emph{ @param } subject character
-#' \item \emph{ @param } body character
-#' \item \emph{ @returnType } \link{GenericResponse} \cr
-#'
-#'
-#' \item status code : 200 | search results matching criteria
-#'
-#' \item return type : GenericResponse
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 400 | Error message when there was a problem with the input parameters.
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 401 | Unauthorized
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 404 | The specified resource was not found
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' }
-#'
-#' }
-#'
-#'
 #' @examples
 #' \dontrun{
 #' ####################  SendAdvMail  ####################
@@ -159,13 +67,11 @@ SendingApi <- R6::R6Class(
   "SendingApi",
   public = list(
     api_client = NULL,
-    #' Initialize a new SendingApi.
-    #'
+
     #' @description
     #' Initialize a new SendingApi.
     #'
     #' @param api_client An instance of API client.
-    #' @export
     initialize = function(api_client) {
       if (!missing(api_client)) {
         self$api_client <- api_client
@@ -173,8 +79,7 @@ SendingApi <- R6::R6Class(
         self$api_client <- ApiClient$new()
       }
     },
-    #' Sends an Email with Advanced Options
-    #'
+
     #' @description
     #' Sends an Email with Advanced Options
     #'
@@ -189,22 +94,21 @@ SendingApi <- R6::R6Class(
     #' @param id (optional) (optional)  ID of the Mail order within our system to use as the Mail Account.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return GenericResponse
-    #' @export
     SendAdvMail = function(subject, body, from, to, replyto = NULL, cc = NULL, bcc = NULL, attachments = NULL, id = NULL, data_file = NULL, ...) {
       local_var_response <- self$SendAdvMailWithHttpInfo(subject, body, from, to, replyto, cc, bcc, attachments, id, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
-        local_var_response$content
+        return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 400 && local_var_response$status_code <= 499) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 500 && local_var_response$status_code <= 599) {
-        local_var_response
+        return(local_var_response)
       }
     },
-    #' Sends an Email with Advanced Options
-    #'
+
     #' @description
     #' Sends an Email with Advanced Options
     #'
@@ -219,8 +123,8 @@ SendingApi <- R6::R6Class(
     #' @param id (optional) (optional)  ID of the Mail order within our system to use as the Mail Account.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    #' @export
     SendAdvMailWithHttpInfo = function(subject, body, from, to, replyto = NULL, cc = NULL, bcc = NULL, attachments = NULL, id = NULL, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
@@ -293,18 +197,21 @@ SendingApi <- R6::R6Class(
       if (local_var_resp$status_code >= 200 && local_var_resp$status_code <= 299) {
         # save response in a file
         if (!is.null(data_file)) {
-          write(local_var_resp$response, data_file)
+          self$api_client$WriteFile(local_var_resp, data_file)
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response_as_text(), "GenericResponse", loadNamespace("openapi")),
+          self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
           error = function(e) {
             stop("Failed to deserialize response")
           }
         )
         local_var_resp$content <- deserialized_resp_obj
-        local_var_resp
-      } else if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
+        return(local_var_resp)
+      } 
+      
+      local_var_error_msg <- local_var_resp$response_as_text()      
+      if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
         ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
         ApiResponse$new("API client error", local_var_resp)
@@ -312,11 +219,10 @@ SendingApi <- R6::R6Class(
         if (is.null(local_var_resp$response) || local_var_resp$response == "") {
           local_var_resp$response <- "API server error"
         }
-        local_var_resp
+        return(local_var_resp)
       }
     },
-    #' Sends an Email
-    #'
+
     #' @description
     #' Sends an Email
     #'
@@ -326,22 +232,21 @@ SendingApi <- R6::R6Class(
     #' @param body The main email contents.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return GenericResponse
-    #' @export
     SendMail = function(to, from, subject, body, data_file = NULL, ...) {
       local_var_response <- self$SendMailWithHttpInfo(to, from, subject, body, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
-        local_var_response$content
+        return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 400 && local_var_response$status_code <= 499) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 500 && local_var_response$status_code <= 599) {
-        local_var_response
+        return(local_var_response)
       }
     },
-    #' Sends an Email
-    #'
+
     #' @description
     #' Sends an Email
     #'
@@ -351,8 +256,8 @@ SendingApi <- R6::R6Class(
     #' @param body The main email contents.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    #' @export
     SendMailWithHttpInfo = function(to, from, subject, body, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
@@ -415,18 +320,21 @@ SendingApi <- R6::R6Class(
       if (local_var_resp$status_code >= 200 && local_var_resp$status_code <= 299) {
         # save response in a file
         if (!is.null(data_file)) {
-          write(local_var_resp$response, data_file)
+          self$api_client$WriteFile(local_var_resp, data_file)
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response_as_text(), "GenericResponse", loadNamespace("openapi")),
+          self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
           error = function(e) {
             stop("Failed to deserialize response")
           }
         )
         local_var_resp$content <- deserialized_resp_obj
-        local_var_resp
-      } else if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
+        return(local_var_resp)
+      } 
+      
+      local_var_error_msg <- local_var_resp$response_as_text()      
+      if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
         ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
         ApiResponse$new("API client error", local_var_resp)
@@ -434,7 +342,7 @@ SendingApi <- R6::R6Class(
         if (is.null(local_var_resp$response) || local_var_resp$response == "") {
           local_var_resp$response <- "API server error"
         }
-        local_var_resp
+        return(local_var_resp)
       }
     }
   )

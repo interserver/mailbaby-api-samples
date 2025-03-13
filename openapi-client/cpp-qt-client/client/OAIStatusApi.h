@@ -57,7 +57,7 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
 
-    void pingServer();
+    virtual void pingServer();
 
 
 private:
@@ -87,6 +87,7 @@ private:
 Q_SIGNALS:
 
     void pingServerSignal();
+
 
     void pingServerSignalFull(OAIHttpRequestWorker *worker);
 

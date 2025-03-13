@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,28 +48,32 @@ import org.openapitools.client.JSON;
 /**
  * A mail order record
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class MailOrder {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nonnull
   private Integer id;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nonnull
   private String status;
 
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
+  @javax.annotation.Nonnull
   private String username;
 
   public static final String SERIALIZED_NAME_COMMENT = "comment";
   @SerializedName(SERIALIZED_NAME_COMMENT)
+  @javax.annotation.Nullable
   private String comment;
 
   public MailOrder() {
   }
 
-  public MailOrder id(Integer id) {
+  public MailOrder id(@javax.annotation.Nonnull Integer id) {
     this.id = id;
     return this;
   }
@@ -84,12 +87,12 @@ public class MailOrder {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(@javax.annotation.Nonnull Integer id) {
     this.id = id;
   }
 
 
-  public MailOrder status(String status) {
+  public MailOrder status(@javax.annotation.Nonnull String status) {
     this.status = status;
     return this;
   }
@@ -103,12 +106,12 @@ public class MailOrder {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nonnull String status) {
     this.status = status;
   }
 
 
-  public MailOrder username(String username) {
+  public MailOrder username(@javax.annotation.Nonnull String username) {
     this.username = username;
     return this;
   }
@@ -122,12 +125,12 @@ public class MailOrder {
     return username;
   }
 
-  public void setUsername(String username) {
+  public void setUsername(@javax.annotation.Nonnull String username) {
     this.username = username;
   }
 
 
-  public MailOrder comment(String comment) {
+  public MailOrder comment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
     return this;
   }
@@ -141,7 +144,7 @@ public class MailOrder {
     return comment;
   }
 
-  public void setComment(String comment) {
+  public void setComment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
   }
 

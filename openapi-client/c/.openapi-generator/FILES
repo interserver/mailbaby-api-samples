@@ -1,5 +1,6 @@
 .openapi-generator-ignore
 CMakeLists.txt
+Config.cmake.in
 Packing.cmake
 README.md
 api/BlockingAPI.c
@@ -42,6 +43,7 @@ include/binary.h
 include/keyValuePair.h
 include/list.h
 libcurl.licence
+model/any_type.h
 model/deny_rule_new.c
 model/deny_rule_new.h
 model/deny_rule_record.c

@@ -12,32 +12,6 @@
 #' @format An \code{R6Class} generator object
 #' @field api_client Handles the client-server communication.
 #'
-#' @section Methods:
-#' \describe{
-#' \strong{ PingServer } \emph{ Checks if the server is running }
-#'
-#' \itemize{
-#'
-#'
-#' \item status code : 200 | Server is up and running
-#'
-#'
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 0 | Something is wrong
-#'
-#'
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' }
-#'
-#' }
-#'
-#'
 #' @examples
 #' \dontrun{
 #' ####################  PingServer  ####################
@@ -61,13 +35,11 @@ StatusApi <- R6::R6Class(
   "StatusApi",
   public = list(
     api_client = NULL,
-    #' Initialize a new StatusApi.
-    #'
+
     #' @description
     #' Initialize a new StatusApi.
     #'
     #' @param api_client An instance of API client.
-    #' @export
     initialize = function(api_client) {
       if (!missing(api_client)) {
         self$api_client <- api_client
@@ -75,34 +47,32 @@ StatusApi <- R6::R6Class(
         self$api_client <- ApiClient$new()
       }
     },
-    #' Checks if the server is running
-    #'
+
     #' @description
     #' Checks if the server is running
     #'
     #' @param ... Other optional arguments
+    #'
     #' @return void
-    #' @export
     PingServer = function(...) {
       local_var_response <- self$PingServerWithHttpInfo(...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
-        local_var_response$content
+        return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 400 && local_var_response$status_code <= 499) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 500 && local_var_response$status_code <= 599) {
-        local_var_response
+        return(local_var_response)
       }
     },
-    #' Checks if the server is running
-    #'
+
     #' @description
     #' Checks if the server is running
     #'
     #' @param ... Other optional arguments
+    #'
     #' @return API response (void) with additional information such as HTTP status code, headers
-    #' @export
     PingServerWithHttpInfo = function(...) {
       args <- list(...)
       query_params <- list()
@@ -140,8 +110,11 @@ StatusApi <- R6::R6Class(
 
       if (local_var_resp$status_code >= 200 && local_var_resp$status_code <= 299) {
         local_var_resp$content <- NULL
-        local_var_resp
-      } else if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
+        return(local_var_resp)
+      } 
+      
+      local_var_error_msg <- local_var_resp$response_as_text()      
+      if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
         ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
         ApiResponse$new("API client error", local_var_resp)
@@ -149,7 +122,7 @@ StatusApi <- R6::R6Class(
         if (is.null(local_var_resp$response) || local_var_resp$response == "") {
           local_var_resp$response <- "API server error"
         }
-        local_var_resp
+        return(local_var_resp)
       }
     }
   )

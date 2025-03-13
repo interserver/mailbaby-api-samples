@@ -42,7 +42,7 @@ import javax.annotation.Generated;
   SendMailAdv.JSON_PROPERTY_ID
 })
 @JsonTypeName("SendMailAdv")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2024-10-15T16:34:57.929388047-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-03-13T09:44:54.048451733-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 @Introspected
 public class SendMailAdv {
     public static final String JSON_PROPERTY_SUBJECT = "subject";

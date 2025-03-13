@@ -6,8 +6,16 @@
  *)
 
 type t = {
-    status: string option [@default None];
-    text: string option [@default None];
+      status: string
+          
+           option [@default None]
+        
+        ; [@key "status"]
+      text: string
+          
+           option [@default None]
+        
+        ; [@key "text"]
 } [@@deriving yojson { strict = false }, show ];;
 
 let create () : t = {

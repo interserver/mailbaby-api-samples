@@ -47,7 +47,7 @@ open class ServicesAPI {
     /// - GET /mail
     /// - This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - returns: AnyPublisher<[MailOrder], Error> 
     open func getMailOrders() -> AnyPublisher<[MailOrder], Error> {

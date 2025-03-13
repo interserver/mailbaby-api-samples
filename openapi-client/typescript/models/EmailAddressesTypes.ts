@@ -10,24 +10,26 @@
  * Do not edit the class manually.
  */
 
-import { EmailAddressName } from '../models/EmailAddressName';
 import { HttpFile } from '../http/http';
 
 /**
 * 
 */
-export class EmailAddressesTypes {
+/**
+ * @type EmailAddressesTypes
+ * Type
+ * @export
+ */
+export type EmailAddressesTypes = Array<EmailAddressName> | string;
 
+/**
+* @type EmailAddressesTypesClass
+    * 
+* @export
+*/
+export class EmailAddressesTypesClass {
     static readonly discriminator: string | undefined = undefined;
 
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-    ];
-
-    static getAttributeTypeMap() {
-        return EmailAddressesTypes.attributeTypeMap;
-    }
-
-    public constructor() {
-    }
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
 }
 

@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-10-15T16:37:45.689132040-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-03-13T09:47:47.115863178-04:00[America/New_York]")
 
 public class GenericResponse   {
   @JsonProperty("status")

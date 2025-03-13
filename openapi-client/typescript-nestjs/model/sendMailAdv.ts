@@ -26,7 +26,7 @@ export interface SendMailAdv {
      * The main email contents.
      */
     body: string;
-    from: EmailAddressTypes;
+    'from': EmailAddressTypes;
     to: EmailAddressesTypes;
     replyto?: EmailAddressesTypes;
     cc?: EmailAddressesTypes;

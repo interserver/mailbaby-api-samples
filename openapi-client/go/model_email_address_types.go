@@ -13,8 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
 	"fmt"
+	"gopkg.in/validator.v2"
 )
 
 // EmailAddressTypes - 
@@ -113,6 +113,20 @@ func (obj *EmailAddressTypes) GetActualInstance() (interface{}) {
 
 	if obj.String != nil {
 		return obj.String
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+// Get the actual instance value
+func (obj EmailAddressTypes) GetActualInstanceValue() (interface{}) {
+	if obj.EmailAddressName != nil {
+		return *obj.EmailAddressName
+	}
+
+	if obj.String != nil {
+		return *obj.String
 	}
 
 	// all schemas are nil

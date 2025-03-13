@@ -22,7 +22,7 @@ export interface SendMail {
     /**
      * The contact whom is the this email is from.
      */
-    from: string;
+    'from': string;
     /**
      * The subject or title of the email
      */

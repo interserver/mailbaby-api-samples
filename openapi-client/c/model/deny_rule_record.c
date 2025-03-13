@@ -22,7 +22,7 @@ mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e deny_
     return 0;
 }
 
-deny_rule_record_t *deny_rule_record_create(
+static deny_rule_record_t *deny_rule_record_create_internal(
     mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type,
     char *data,
     char *id,
@@ -39,12 +39,32 @@ deny_rule_record_t *deny_rule_record_create(
     deny_rule_record_local_var->created = created;
     deny_rule_record_local_var->user = user;
 
+    deny_rule_record_local_var->_library_owned = 1;
     return deny_rule_record_local_var;
 }
 
+__attribute__((deprecated)) deny_rule_record_t *deny_rule_record_create(
+    mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_e type,
+    char *data,
+    char *id,
+    char *created,
+    char *user
+    ) {
+    return deny_rule_record_create_internal (
+        type,
+        data,
+        id,
+        created,
+        user
+        );
+}
 
 void deny_rule_record_free(deny_rule_record_t *deny_rule_record) {
     if(NULL == deny_rule_record){
+        return ;
+    }
+    if(deny_rule_record->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "deny_rule_record_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -74,7 +94,7 @@ cJSON *deny_rule_record_convertToJSON(deny_rule_record_t *deny_rule_record) {
     if (mailbaby_email_delivery_and_management_service_api_deny_rule_record_TYPE_NULL == deny_rule_record->type) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "type", typedeny_rule_record_ToString(deny_rule_record->type)) == NULL)
+    if(cJSON_AddStringToObject(item, "type", deny_rule_record_type_ToString(deny_rule_record->type)) == NULL)
     {
     goto fail; //Enum
     }
@@ -128,6 +148,9 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
 
     // deny_rule_record->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "type");
+    if (cJSON_IsNull(type)) {
+        type = NULL;
+    }
     if (!type) {
         goto end;
     }
@@ -142,6 +165,9 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
 
     // deny_rule_record->data
     cJSON *data = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "data");
+    if (cJSON_IsNull(data)) {
+        data = NULL;
+    }
     if (!data) {
         goto end;
     }
@@ -154,6 +180,9 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
 
     // deny_rule_record->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (!id) {
         goto end;
     }
@@ -166,6 +195,9 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
 
     // deny_rule_record->created
     cJSON *created = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "created");
+    if (cJSON_IsNull(created)) {
+        created = NULL;
+    }
     if (!created) {
         goto end;
     }
@@ -178,6 +210,9 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
 
     // deny_rule_record->user
     cJSON *user = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "user");
+    if (cJSON_IsNull(user)) {
+        user = NULL;
+    }
     if (user) { 
     if(!cJSON_IsString(user) && !cJSON_IsNull(user))
     {
@@ -186,7 +221,7 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
     }
 
 
-    deny_rule_record_local_var = deny_rule_record_create (
+    deny_rule_record_local_var = deny_rule_record_create_internal (
         typeVariable,
         strdup(data->valuestring),
         strdup(id->valuestring),

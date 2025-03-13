@@ -31,7 +31,7 @@ open class StatusAPI {
     /// Checks if the server is running
     /// - GET /ping
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - returns: AnyPublisher<Void, Error> 
     open func pingServer() -> AnyPublisher<Void, Error> {

@@ -24,7 +24,7 @@ import io.swagger.model.MailOrder;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-10-15T16:37:45.689132040-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-03-13T09:47:47.115863178-04:00[America/New_York]")
 public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map

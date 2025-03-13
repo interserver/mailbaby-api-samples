@@ -16,7 +16,7 @@
  */
 export interface MailBlockClickHouse { 
     date: string;
-    from: string;
+    'from': string;
     messageId: string;
     subject: string;
     to: string;

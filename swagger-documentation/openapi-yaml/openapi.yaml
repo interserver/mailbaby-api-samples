@@ -53,7 +53,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MailOrder'
+                  $ref: "#/components/schemas/MailOrder"
               examples:
                 MailOrders:
                   value:
@@ -76,7 +76,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -87,7 +87,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -105,7 +105,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MailBlocks'
+                $ref: "#/components/schemas/MailBlocks"
               examples:
                 MailBlocksExample:
                   value:
@@ -136,7 +136,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -147,7 +147,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -168,7 +168,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/inline_response_200'
+                  $ref: "#/components/schemas/inline_response_200"
           links:
             delistBlockLink:
               operationId: delistBlock
@@ -181,7 +181,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -192,7 +192,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -212,10 +212,10 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: "#/components/schemas/SendMail"
           application/json:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: "#/components/schemas/SendMail"
         required: true
       responses:
         "200":
@@ -223,13 +223,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
         "400":
           description: Error message when there was a problem with the input parameters.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 BadInputError:
                   value:
@@ -240,7 +240,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -251,7 +251,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 NotFoundError:
                   value:
@@ -383,7 +383,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SendMailAdv'
+              $ref: "#/components/schemas/SendMailAdv"
             examples:
               AdvSendExample:
                 value:
@@ -400,7 +400,7 @@ paths:
                   id: 66
           application/json:
             schema:
-              $ref: '#/components/schemas/SendMailAdv'
+              $ref: "#/components/schemas/SendMailAdv"
             examples:
               AdvSendExample:
                 value:
@@ -422,13 +422,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
         "400":
           description: Error message when there was a problem with the input parameters.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 BadInputError:
                   value:
@@ -439,7 +439,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -450,7 +450,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 NotFoundError:
                   value:
@@ -600,7 +600,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MailLog'
+                $ref: "#/components/schemas/MailLog"
               examples:
                 MailLogExample:
                   value:
@@ -656,14 +656,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EmailAddress'
+              $ref: "#/components/schemas/EmailAddress"
             examples:
               BlocksDeleteExample:
                 value:
                   email: client@domain.com
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/EmailAddress'
+              $ref: "#/components/schemas/EmailAddress"
             examples:
               BlocksDeleteExampleForm:
                 value:
@@ -675,13 +675,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
         "400":
           description: Error message when there was a problem with the input parameters.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 BadInputError:
                   value:
@@ -692,7 +692,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -703,7 +703,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 NotFoundError:
                   value:
@@ -728,7 +728,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/DenyRuleRecord'
+                  $ref: "#/components/schemas/DenyRuleRecord"
               examples:
                 ExampleMailRulesList:
                   value:
@@ -754,7 +754,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -765,7 +765,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -783,7 +783,7 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/DenyRuleNew'
+              $ref: "#/components/schemas/DenyRuleNew"
             examples:
               DenyRuleNewFormExample:
                 value:
@@ -792,7 +792,7 @@ paths:
                   data: domeinwo@server.guesshost.net
           application/json:
             schema:
-              $ref: '#/components/schemas/DenyRuleNew'
+              $ref: "#/components/schemas/DenyRuleNew"
             examples:
               DenyRuleNewJsonExample:
                 value:
@@ -806,13 +806,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
         "400":
           description: Error message when there was a problem with the input parameters.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 BadInputError:
                   value:
@@ -823,7 +823,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -834,7 +834,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 NotFoundError:
                   value:
@@ -865,13 +865,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
         "400":
           description: Error message when there was a problem with the input parameters.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 BadInputError:
                   value:
@@ -882,7 +882,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 UnauthorizedError:
                   value:
@@ -893,7 +893,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorMessage'
+                $ref: "#/components/schemas/ErrorMessage"
               examples:
                 NotFoundError:
                   value:
@@ -972,7 +972,7 @@ components:
             type: string
             description: the date the rule was created.
             format: date-time
-      - $ref: '#/components/schemas/DenyRuleNew'
+      - $ref: "#/components/schemas/DenyRuleNew"
     DenyRuleNew:
       title: DenyRuleNew
       required:
@@ -1079,15 +1079,15 @@ components:
         local:
           type: array
           items:
-            $ref: '#/components/schemas/MailBlockClickHouse'
+            $ref: "#/components/schemas/MailBlockClickHouse"
         mbtrap:
           type: array
           items:
-            $ref: '#/components/schemas/MailBlockClickHouse'
+            $ref: "#/components/schemas/MailBlockClickHouse"
         subject:
           type: array
           items:
-            $ref: '#/components/schemas/MailBlockRspamd'
+            $ref: "#/components/schemas/MailBlockRspamd"
       description: The listing of blocked emails.
       example:
         local:
@@ -1155,7 +1155,7 @@ components:
                 "response": "250 2.0.0 Ok queued as C91D83E128C"
             }]
           items:
-            $ref: '#/components/schemas/MailLogEntry'
+            $ref: "#/components/schemas/MailLogEntry"
       description: Mail log records
       example:
         total: 1
@@ -1248,7 +1248,7 @@ components:
       - email: user@domain.com
         name: John Smith
       items:
-        $ref: '#/components/schemas/EmailAddressName'
+        $ref: "#/components/schemas/EmailAddressName"
     SendMailAdv:
       title: SendMailAdv
       required:
@@ -1268,15 +1268,15 @@ components:
           example: "The package you ordered on 2021-01-23 has been delivered. If the\
             \ package is broken into many pieces, please blaim someone else."
         from:
-          $ref: '#/components/schemas/EmailAddressTypes'
+          $ref: "#/components/schemas/EmailAddressTypes"
         to:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         replyto:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         cc:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         bcc:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         attachments:
           type: array
           description: (optional) File attachments to include in the email.  The file
@@ -1289,7 +1289,7 @@ components:
                     }
             ]
           items:
-            $ref: '#/components/schemas/MailAttachment'
+            $ref: "#/components/schemas/MailAttachment"
         id:
           type: integer
           description: (optional)  ID of the Mail order within our system to use as
@@ -1463,14 +1463,14 @@ components:
       title: EmailAddressTypes
       description: ""
       oneOf:
-      - $ref: '#/components/schemas/EmailAddress'
-      - $ref: '#/components/schemas/EmailAddressNames'
+      - $ref: "#/components/schemas/EmailAddress"
+      - $ref: "#/components/schemas/EmailAddressNames"
     EmailAddressTypes:
       title: EmailAddressTypes
       description: ""
       oneOf:
-      - $ref: '#/components/schemas/EmailAddress'
-      - $ref: '#/components/schemas/EmailAddressName'
+      - $ref: "#/components/schemas/EmailAddress"
+      - $ref: "#/components/schemas/EmailAddressName"
     inline_response_200:
       required:
       - id
@@ -1499,7 +1499,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorMessage'
+            $ref: "#/components/schemas/ErrorMessage"
           examples:
             BadInputError:
               value:
@@ -1510,7 +1510,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorMessage'
+            $ref: "#/components/schemas/ErrorMessage"
           examples:
             NotFoundError:
               value:
@@ -1521,7 +1521,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ErrorMessage'
+            $ref: "#/components/schemas/ErrorMessage"
           examples:
             UnauthorizedError:
               value:

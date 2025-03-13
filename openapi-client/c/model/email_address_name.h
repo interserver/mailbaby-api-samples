@@ -22,9 +22,10 @@ typedef struct email_address_name_t {
     char *email; // string
     char *name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } email_address_name_t;
 
-email_address_name_t *email_address_name_create(
+__attribute__((deprecated)) email_address_name_t *email_address_name_create(
     char *email,
     char *name
 );

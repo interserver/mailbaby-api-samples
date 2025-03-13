@@ -5,7 +5,7 @@
 
 
 
-get_stats_200_response_inner_t *get_stats_200_response_inner_create(
+static get_stats_200_response_inner_t *get_stats_200_response_inner_create_internal(
     int id,
     char *status,
     char *username,
@@ -22,12 +22,32 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_create(
     get_stats_200_response_inner_local_var->password = password;
     get_stats_200_response_inner_local_var->comment = comment;
 
+    get_stats_200_response_inner_local_var->_library_owned = 1;
     return get_stats_200_response_inner_local_var;
 }
 
+__attribute__((deprecated)) get_stats_200_response_inner_t *get_stats_200_response_inner_create(
+    int id,
+    char *status,
+    char *username,
+    char *password,
+    char *comment
+    ) {
+    return get_stats_200_response_inner_create_internal (
+        id,
+        status,
+        username,
+        password,
+        comment
+        );
+}
 
 void get_stats_200_response_inner_free(get_stats_200_response_inner_t *get_stats_200_response_inner) {
     if(NULL == get_stats_200_response_inner){
+        return ;
+    }
+    if(get_stats_200_response_inner->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "get_stats_200_response_inner_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -109,6 +129,9 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_parseFromJSON(cJSON
 
     // get_stats_200_response_inner->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(get_stats_200_response_innerJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (!id) {
         goto end;
     }
@@ -121,6 +144,9 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_parseFromJSON(cJSON
 
     // get_stats_200_response_inner->status
     cJSON *status = cJSON_GetObjectItemCaseSensitive(get_stats_200_response_innerJSON, "status");
+    if (cJSON_IsNull(status)) {
+        status = NULL;
+    }
     if (!status) {
         goto end;
     }
@@ -133,6 +159,9 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_parseFromJSON(cJSON
 
     // get_stats_200_response_inner->username
     cJSON *username = cJSON_GetObjectItemCaseSensitive(get_stats_200_response_innerJSON, "username");
+    if (cJSON_IsNull(username)) {
+        username = NULL;
+    }
     if (!username) {
         goto end;
     }
@@ -145,6 +174,9 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_parseFromJSON(cJSON
 
     // get_stats_200_response_inner->password
     cJSON *password = cJSON_GetObjectItemCaseSensitive(get_stats_200_response_innerJSON, "password");
+    if (cJSON_IsNull(password)) {
+        password = NULL;
+    }
     if (password) { 
     if(!cJSON_IsString(password) && !cJSON_IsNull(password))
     {
@@ -154,6 +186,9 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_parseFromJSON(cJSON
 
     // get_stats_200_response_inner->comment
     cJSON *comment = cJSON_GetObjectItemCaseSensitive(get_stats_200_response_innerJSON, "comment");
+    if (cJSON_IsNull(comment)) {
+        comment = NULL;
+    }
     if (comment) { 
     if(!cJSON_IsString(comment) && !cJSON_IsNull(comment))
     {
@@ -162,7 +197,7 @@ get_stats_200_response_inner_t *get_stats_200_response_inner_parseFromJSON(cJSON
     }
 
 
-    get_stats_200_response_inner_local_var = get_stats_200_response_inner_create (
+    get_stats_200_response_inner_local_var = get_stats_200_response_inner_create_internal (
         id->valuedouble,
         strdup(status->valuestring),
         strdup(username->valuestring),

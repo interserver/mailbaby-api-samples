@@ -31,8 +31,7 @@ SendMailAdv <- R6::R6Class(
     `bcc` = NULL,
     `attachments` = NULL,
     `id` = NULL,
-    #' Initialize a new SendMailAdv class.
-    #'
+
     #' @description
     #' Initialize a new SendMailAdv class.
     #'
@@ -46,7 +45,6 @@ SendMailAdv <- R6::R6Class(
     #' @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
     #' @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`subject`, `body`, `from`, `to`, `replyto` = NULL, `cc` = NULL, `bcc` = NULL, `attachments` = NULL, `id` = NULL, ...) {
       if (!missing(`subject`)) {
         if (!(is.character(`subject`) && length(`subject`) == 1)) {
@@ -92,14 +90,37 @@ SendMailAdv <- R6::R6Class(
         self$`id` <- `id`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return SendMailAdv in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return SendMailAdv as a base R list.
+    #' @examples
+    #' # convert array of SendMailAdv (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert SendMailAdv to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       SendMailAdvObject <- list()
       if (!is.null(self$`subject`)) {
         SendMailAdvObject[["subject"]] <-
@@ -111,42 +132,40 @@ SendMailAdv <- R6::R6Class(
       }
       if (!is.null(self$`from`)) {
         SendMailAdvObject[["from"]] <-
-          self$`from`$toJSON()
+          self$`from`$toSimpleType()
       }
       if (!is.null(self$`to`)) {
         SendMailAdvObject[["to"]] <-
-          self$`to`$toJSON()
+          self$`to`$toSimpleType()
       }
       if (!is.null(self$`replyto`)) {
         SendMailAdvObject[["replyto"]] <-
-          self$`replyto`$toJSON()
+          self$`replyto`$toSimpleType()
       }
       if (!is.null(self$`cc`)) {
         SendMailAdvObject[["cc"]] <-
-          self$`cc`$toJSON()
+          self$`cc`$toSimpleType()
       }
       if (!is.null(self$`bcc`)) {
         SendMailAdvObject[["bcc"]] <-
-          self$`bcc`$toJSON()
+          self$`bcc`$toSimpleType()
       }
       if (!is.null(self$`attachments`)) {
         SendMailAdvObject[["attachments"]] <-
-          lapply(self$`attachments`, function(x) x$toJSON())
+          lapply(self$`attachments`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`id`)) {
         SendMailAdvObject[["id"]] <-
           self$`id`
       }
-      SendMailAdvObject
+      return(SendMailAdvObject)
     },
-    #' Deserialize JSON string into an instance of SendMailAdv
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of SendMailAdv
     #'
     #' @param input_json the JSON input
     #' @return the instance of SendMailAdv
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`subject`)) {
@@ -188,99 +207,23 @@ SendMailAdv <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return SendMailAdv in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`subject`)) {
-          sprintf(
-          '"subject":
-            "%s"
-                    ',
-          self$`subject`
-          )
-        },
-        if (!is.null(self$`body`)) {
-          sprintf(
-          '"body":
-            "%s"
-                    ',
-          self$`body`
-          )
-        },
-        if (!is.null(self$`from`)) {
-          sprintf(
-          '"from":
-          %s
-          ',
-          jsonlite::toJSON(self$`from`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`to`)) {
-          sprintf(
-          '"to":
-          %s
-          ',
-          jsonlite::toJSON(self$`to`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`replyto`)) {
-          sprintf(
-          '"replyto":
-          %s
-          ',
-          jsonlite::toJSON(self$`replyto`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`cc`)) {
-          sprintf(
-          '"cc":
-          %s
-          ',
-          jsonlite::toJSON(self$`cc`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`bcc`)) {
-          sprintf(
-          '"bcc":
-          %s
-          ',
-          jsonlite::toJSON(self$`bcc`$toJSON(), auto_unbox = TRUE, digits = NA)
-          )
-        },
-        if (!is.null(self$`attachments`)) {
-          sprintf(
-          '"attachments":
-          [%s]
-',
-          paste(sapply(self$`attachments`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            %d
-                    ',
-          self$`id`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of SendMailAdv
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of SendMailAdv
     #'
     #' @param input_json the JSON input
     #' @return the instance of SendMailAdv
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`subject` <- this_object$`subject`
@@ -294,13 +237,11 @@ SendMailAdv <- R6::R6Class(
       self$`id` <- this_object$`id`
       self
     },
-    #' Validate JSON input with respect to SendMailAdv
-    #'
+
     #' @description
     #' Validate JSON input with respect to SendMailAdv and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `subject`
@@ -332,23 +273,19 @@ SendMailAdv <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for SendMailAdv: the required field `to` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of SendMailAdv
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `subject` is null
       if (is.null(self$`subject`)) {
@@ -372,13 +309,11 @@ SendMailAdv <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `subject` is null
@@ -403,12 +338,9 @@ SendMailAdv <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

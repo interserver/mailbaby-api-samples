@@ -1,5 +1,6 @@
 import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
-import { Configuration} from '../configuration'
+import { Configuration, ConfigurationOptions, PromiseConfigurationOptions } from '../configuration'
+import { PromiseMiddleware, Middleware, PromiseMiddlewareWrapper } from '../middleware';
 
 import { DenyRuleNew } from '../models/DenyRuleNew';
 import { DenyRuleRecord } from '../models/DenyRuleRecord';
@@ -37,10 +38,22 @@ export class PromiseBlockingApi {
      * Creates a new email deny rule.
      * @param type The type of deny rule.
      * @param data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-     * @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @param [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      */
-    public addRuleWithHttpInfo(type: string, data: string, user?: string, _options?: Configuration): Promise<HttpInfo<GenericResponse>> {
-        const result = this.api.addRuleWithHttpInfo(type, data, user, _options);
+    public addRuleWithHttpInfo(type: string, data: string, user?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.addRuleWithHttpInfo(type, data, user, observableOptions);
         return result.toPromise();
     }
 
@@ -49,10 +62,22 @@ export class PromiseBlockingApi {
      * Creates a new email deny rule.
      * @param type The type of deny rule.
      * @param data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-     * @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+     * @param [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      */
-    public addRule(type: string, data: string, user?: string, _options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.addRule(type, data, user, _options);
+    public addRule(type: string, data: string, user?: string, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.addRule(type, data, user, observableOptions);
         return result.toPromise();
     }
 
@@ -61,8 +86,20 @@ export class PromiseBlockingApi {
      * Removes an deny mail rule.
      * @param ruleId The ID of the Rules entry.
      */
-    public deleteRuleWithHttpInfo(ruleId: number, _options?: Configuration): Promise<HttpInfo<GenericResponse>> {
-        const result = this.api.deleteRuleWithHttpInfo(ruleId, _options);
+    public deleteRuleWithHttpInfo(ruleId: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.deleteRuleWithHttpInfo(ruleId, observableOptions);
         return result.toPromise();
     }
 
@@ -71,44 +108,104 @@ export class PromiseBlockingApi {
      * Removes an deny mail rule.
      * @param ruleId The ID of the Rules entry.
      */
-    public deleteRule(ruleId: number, _options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.deleteRule(ruleId, _options);
+    public deleteRule(ruleId: number, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.deleteRule(ruleId, observableOptions);
         return result.toPromise();
     }
 
     /**
      * Removes an email address from the various block lists. 
      * Removes an email address from the blocked list
-     * @param body 
+     * @param body
      */
-    public delistBlockWithHttpInfo(body: string, _options?: Configuration): Promise<HttpInfo<GenericResponse>> {
-        const result = this.api.delistBlockWithHttpInfo(body, _options);
+    public delistBlockWithHttpInfo(body: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.delistBlockWithHttpInfo(body, observableOptions);
         return result.toPromise();
     }
 
     /**
      * Removes an email address from the various block lists. 
      * Removes an email address from the blocked list
-     * @param body 
+     * @param body
      */
-    public delistBlock(body: string, _options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.delistBlock(body, _options);
+    public delistBlock(body: string, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.delistBlock(body, observableOptions);
         return result.toPromise();
     }
 
     /**
      * displays a list of blocked email addresses
      */
-    public getMailBlocksWithHttpInfo(_options?: Configuration): Promise<HttpInfo<MailBlocks>> {
-        const result = this.api.getMailBlocksWithHttpInfo(_options);
+    public getMailBlocksWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<MailBlocks>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getMailBlocksWithHttpInfo(observableOptions);
         return result.toPromise();
     }
 
     /**
      * displays a list of blocked email addresses
      */
-    public getMailBlocks(_options?: Configuration): Promise<MailBlocks> {
-        const result = this.api.getMailBlocks(_options);
+    public getMailBlocks(_options?: PromiseConfigurationOptions): Promise<MailBlocks> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getMailBlocks(observableOptions);
         return result.toPromise();
     }
 
@@ -116,8 +213,20 @@ export class PromiseBlockingApi {
      * Returns a listing of all the deny block rules you have configured.
      * Displays a listing of deny email rules.
      */
-    public getRulesWithHttpInfo(_options?: Configuration): Promise<HttpInfo<Array<DenyRuleRecord>>> {
-        const result = this.api.getRulesWithHttpInfo(_options);
+    public getRulesWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<DenyRuleRecord>>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getRulesWithHttpInfo(observableOptions);
         return result.toPromise();
     }
 
@@ -125,8 +234,20 @@ export class PromiseBlockingApi {
      * Returns a listing of all the deny block rules you have configured.
      * Displays a listing of deny email rules.
      */
-    public getRules(_options?: Configuration): Promise<Array<DenyRuleRecord>> {
-        const result = this.api.getRules(_options);
+    public getRules(_options?: PromiseConfigurationOptions): Promise<Array<DenyRuleRecord>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getRules(observableOptions);
         return result.toPromise();
     }
 
@@ -153,8 +274,20 @@ export class PromiseHistoryApi {
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
      */
-    public getStatsWithHttpInfo(_options?: Configuration): Promise<HttpInfo<Array<GetStats200ResponseInner>>> {
-        const result = this.api.getStatsWithHttpInfo(_options);
+    public getStatsWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<GetStats200ResponseInner>>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getStatsWithHttpInfo(observableOptions);
         return result.toPromise();
     }
 
@@ -162,52 +295,88 @@ export class PromiseHistoryApi {
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
      */
-    public getStats(_options?: Configuration): Promise<Array<GetStats200ResponseInner>> {
-        const result = this.api.getStats(_options);
+    public getStats(_options?: PromiseConfigurationOptions): Promise<Array<GetStats200ResponseInner>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getStats(observableOptions);
         return result.toPromise();
     }
 
     /**
      * Get a listing of the emails sent through this system 
      * displays the mail log
-     * @param id The ID of your mail order this will be sent through.
-     * @param origin originating ip address sending mail
-     * @param mx mx record mail was sent to
-     * @param _from from email address
-     * @param to to/destination email address
-     * @param subject subject containing this string
-     * @param mailid mail id
-     * @param skip number of records to skip for pagination
-     * @param limit maximum number of records to return
-     * @param startDate earliest date to get emails in unix timestamp format
-     * @param endDate earliest date to get emails in unix timestamp format
-     * @param replyto Reply-To Email Address
-     * @param headerfrom Header From Email Address
+     * @param [id] The ID of your mail order this will be sent through.
+     * @param [origin] originating ip address sending mail
+     * @param [mx] mx record mail was sent to
+     * @param [_from] from email address
+     * @param [to] to/destination email address
+     * @param [subject] subject containing this string
+     * @param [mailid] mail id
+     * @param [skip] number of records to skip for pagination
+     * @param [limit] maximum number of records to return
+     * @param [startDate] earliest date to get emails in unix timestamp format
+     * @param [endDate] earliest date to get emails in unix timestamp format
+     * @param [replyto] Reply-To Email Address
+     * @param [headerfrom] Header From Email Address
      */
-    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: Configuration): Promise<HttpInfo<MailLog>> {
-        const result = this.api.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _options);
+    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<MailLog>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, observableOptions);
         return result.toPromise();
     }
 
     /**
      * Get a listing of the emails sent through this system 
      * displays the mail log
-     * @param id The ID of your mail order this will be sent through.
-     * @param origin originating ip address sending mail
-     * @param mx mx record mail was sent to
-     * @param _from from email address
-     * @param to to/destination email address
-     * @param subject subject containing this string
-     * @param mailid mail id
-     * @param skip number of records to skip for pagination
-     * @param limit maximum number of records to return
-     * @param startDate earliest date to get emails in unix timestamp format
-     * @param endDate earliest date to get emails in unix timestamp format
-     * @param replyto Reply-To Email Address
-     * @param headerfrom Header From Email Address
+     * @param [id] The ID of your mail order this will be sent through.
+     * @param [origin] originating ip address sending mail
+     * @param [mx] mx record mail was sent to
+     * @param [_from] from email address
+     * @param [to] to/destination email address
+     * @param [subject] subject containing this string
+     * @param [mailid] mail id
+     * @param [skip] number of records to skip for pagination
+     * @param [limit] maximum number of records to return
+     * @param [startDate] earliest date to get emails in unix timestamp format
+     * @param [endDate] earliest date to get emails in unix timestamp format
+     * @param [replyto] Reply-To Email Address
+     * @param [headerfrom] Header From Email Address
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: Configuration): Promise<MailLog> {
-        const result = this.api.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _options);
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: PromiseConfigurationOptions): Promise<MailLog> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, observableOptions);
         return result.toPromise();
     }
 
@@ -235,16 +404,28 @@ export class PromiseSendingApi {
      * Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
-     * @param _from 
-     * @param to 
-     * @param replyto 
-     * @param cc 
-     * @param bcc 
-     * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-     * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
+     * @param _from
+     * @param to
+     * @param [replyto]
+     * @param [cc]
+     * @param [bcc]
+     * @param [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+     * @param [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      */
-    public sendAdvMailWithHttpInfo(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: Configuration): Promise<HttpInfo<GenericResponse>> {
-        const result = this.api.sendAdvMailWithHttpInfo(subject, body, _from, to, replyto, cc, bcc, attachments, id, _options);
+    public sendAdvMailWithHttpInfo(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.sendAdvMailWithHttpInfo(subject, body, _from, to, replyto, cc, bcc, attachments, id, observableOptions);
         return result.toPromise();
     }
 
@@ -253,16 +434,28 @@ export class PromiseSendingApi {
      * Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
-     * @param _from 
-     * @param to 
-     * @param replyto 
-     * @param cc 
-     * @param bcc 
-     * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-     * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
+     * @param _from
+     * @param to
+     * @param [replyto]
+     * @param [cc]
+     * @param [bcc]
+     * @param [attachments] (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+     * @param [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      */
-    public sendAdvMail(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendAdvMail(subject, body, _from, to, replyto, cc, bcc, attachments, id, _options);
+    public sendAdvMail(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.sendAdvMail(subject, body, _from, to, replyto, cc, bcc, attachments, id, observableOptions);
         return result.toPromise();
     }
 
@@ -274,8 +467,20 @@ export class PromiseSendingApi {
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public sendMailWithHttpInfo(to: string, _from: string, subject: string, body: string, _options?: Configuration): Promise<HttpInfo<GenericResponse>> {
-        const result = this.api.sendMailWithHttpInfo(to, _from, subject, body, _options);
+    public sendMailWithHttpInfo(to: string, _from: string, subject: string, body: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.sendMailWithHttpInfo(to, _from, subject, body, observableOptions);
         return result.toPromise();
     }
 
@@ -287,8 +492,20 @@ export class PromiseSendingApi {
      * @param subject The subject or title of the email
      * @param body The main email contents.
      */
-    public sendMail(to: string, _from: string, subject: string, body: string, _options?: Configuration): Promise<GenericResponse> {
-        const result = this.api.sendMail(to, _from, subject, body, _options);
+    public sendMail(to: string, _from: string, subject: string, body: string, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.sendMail(to, _from, subject, body, observableOptions);
         return result.toPromise();
     }
 
@@ -315,8 +532,20 @@ export class PromiseServicesApi {
      * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
      * displays a list of mail service orders
      */
-    public getMailOrdersWithHttpInfo(_options?: Configuration): Promise<HttpInfo<Array<MailOrder>>> {
-        const result = this.api.getMailOrdersWithHttpInfo(_options);
+    public getMailOrdersWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<MailOrder>>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getMailOrdersWithHttpInfo(observableOptions);
         return result.toPromise();
     }
 
@@ -324,8 +553,20 @@ export class PromiseServicesApi {
      * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
      * displays a list of mail service orders
      */
-    public getMailOrders(_options?: Configuration): Promise<Array<MailOrder>> {
-        const result = this.api.getMailOrders(_options);
+    public getMailOrders(_options?: PromiseConfigurationOptions): Promise<Array<MailOrder>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.getMailOrders(observableOptions);
         return result.toPromise();
     }
 
@@ -351,16 +592,40 @@ export class PromiseStatusApi {
     /**
      * Checks if the server is running
      */
-    public pingServerWithHttpInfo(_options?: Configuration): Promise<HttpInfo<void>> {
-        const result = this.api.pingServerWithHttpInfo(_options);
+    public pingServerWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.pingServerWithHttpInfo(observableOptions);
         return result.toPromise();
     }
 
     /**
      * Checks if the server is running
      */
-    public pingServer(_options?: Configuration): Promise<void> {
-        const result = this.api.pingServer(_options);
+    public pingServer(_options?: PromiseConfigurationOptions): Promise<void> {
+        let observableOptions: undefined | ConfigurationOptions
+        if (_options){
+	    observableOptions = {
+                baseServer: _options.baseServer,
+                httpApi: _options.httpApi,
+                middleware: _options.middleware?.map(
+                    m => new PromiseMiddlewareWrapper(m)
+		),
+		middlewareMergeStrategy: _options.middlewareMergeStrategy,
+                authMethods: _options.authMethods
+	    }
+	}
+        const result = this.api.pingServer(observableOptions);
         return result.toPromise();
     }
 

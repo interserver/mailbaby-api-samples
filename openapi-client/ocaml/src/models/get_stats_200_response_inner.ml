@@ -6,11 +6,31 @@
  *)
 
 type t = {
-    id: int32;
-    status: string;
-    username: string;
-    password: string option [@default None];
-    comment: string option [@default None];
+      id: int32
+          
+          
+        
+        ; [@key "id"]
+      status: string
+          
+          
+        
+        ; [@key "status"]
+      username: string
+          
+          
+        
+        ; [@key "username"]
+      password: string
+          
+           option [@default None]
+        
+        ; [@key "password"]
+      comment: string
+          
+           option [@default None]
+        
+        ; [@key "comment"]
 } [@@deriving yojson { strict = false }, show ];;
 
 let create (id : int32) (status : string) (username : string) : t = {

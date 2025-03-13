@@ -7,11 +7,31 @@
  *)
 
 type t = {
-    date: string;
-    from: string;
-    message_id: string;
-    subject: string;
-    _to: string;
+      date: string
+          
+          
+        
+        ; [@key "date"]
+      from: string
+          
+          
+        
+        ; [@key "from"]
+      message_id: string
+          
+          
+        
+        ; [@key "messageId"]
+      subject: string
+          
+          
+        
+        ; [@key "subject"]
+      _to: string
+          
+          
+        
+        ; [@key "to"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** A block entry from the clickhouse mailblocks server. *)

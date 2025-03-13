@@ -224,9 +224,10 @@ void OAIStatusApi::pingServer() {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIStatusApi::pingServerCallback);
     connect(this, &OAIStatusApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }

@@ -93,10 +93,15 @@ export function DenyRuleRecordFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function DenyRuleRecordToJSON(value?: DenyRuleRecord | null): any {
+export function DenyRuleRecordToJSON(json: any): DenyRuleRecord {
+    return DenyRuleRecordToJSONTyped(json, false);
+}
+
+export function DenyRuleRecordToJSONTyped(value?: DenyRuleRecord | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'type': value['type'],

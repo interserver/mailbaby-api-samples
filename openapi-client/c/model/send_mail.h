@@ -24,9 +24,10 @@ typedef struct send_mail_t {
     char *subject; // string
     char *body; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } send_mail_t;
 
-send_mail_t *send_mail_create(
+__attribute__((deprecated)) send_mail_t *send_mail_create(
     char *to,
     char *from,
     char *subject,

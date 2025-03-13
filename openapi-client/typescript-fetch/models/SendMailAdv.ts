@@ -18,18 +18,21 @@ import {
     EmailAddressesTypesFromJSON,
     EmailAddressesTypesFromJSONTyped,
     EmailAddressesTypesToJSON,
+    EmailAddressesTypesToJSONTyped,
 } from './EmailAddressesTypes';
 import type { MailAttachment } from './MailAttachment';
 import {
     MailAttachmentFromJSON,
     MailAttachmentFromJSONTyped,
     MailAttachmentToJSON,
+    MailAttachmentToJSONTyped,
 } from './MailAttachment';
 import type { EmailAddressTypes } from './EmailAddressTypes';
 import {
     EmailAddressTypesFromJSON,
     EmailAddressTypesFromJSONTyped,
     EmailAddressTypesToJSON,
+    EmailAddressTypesToJSONTyped,
 } from './EmailAddressTypes';
 
 /**
@@ -127,10 +130,15 @@ export function SendMailAdvFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function SendMailAdvToJSON(value?: SendMailAdv | null): any {
+export function SendMailAdvToJSON(json: any): SendMailAdv {
+    return SendMailAdvToJSONTyped(json, false);
+}
+
+export function SendMailAdvToJSONTyped(value?: SendMailAdv | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'subject': value['subject'],

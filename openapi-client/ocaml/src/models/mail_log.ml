@@ -8,12 +8,26 @@
 
 type t = {
     (* total number of mail log entries *)
-    total: int32;
+      total: int32
+          
+          
+        
+        ; [@key "total"]
     (* number of emails skipped in listing *)
-    skip: int32;
+      skip: int32
+          
+          
+        
+        ; [@key "skip"]
     (* number of emails to return *)
-    limit: int32;
-    emails: Mail_log_entry.t list;
+      limit: int32
+          
+          
+        
+        ; [@key "limit"]
+      emails: Mail_log_entry.t list
+        
+        ; [@key "emails"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Mail log records *)

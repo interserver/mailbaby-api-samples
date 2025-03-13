@@ -262,9 +262,10 @@ void OAISendingApi::sendAdvMail(const QString &subject, const QString &body, con
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAISendingApi::sendAdvMailCallback);
     connect(this, &OAISendingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }
@@ -351,9 +352,10 @@ void OAISendingApi::sendMail(const QString &to, const QString &from, const QStri
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAISendingApi::sendMailCallback);
     connect(this, &OAISendingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }

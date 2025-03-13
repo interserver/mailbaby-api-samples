@@ -37,7 +37,11 @@ export function EmailAddressesTypesFromJSONTyped(json: any, ignoreDiscriminator:
     return {} as any;
 }
 
-export function EmailAddressesTypesToJSON(value?: EmailAddressesTypes | null): any {
+export function EmailAddressesTypesToJSON(json: any): any {
+    return EmailAddressesTypesToJSONTyped(json, false);
+}
+
+export function EmailAddressesTypesToJSONTyped(value?: EmailAddressesTypes | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

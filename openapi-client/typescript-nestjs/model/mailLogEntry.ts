@@ -26,7 +26,7 @@ export interface MailLogEntry {
     /**
      * from address
      */
-    from: string;
+    'from': string;
     /**
      * to address
      */
@@ -58,7 +58,7 @@ export interface MailLogEntry {
     /**
      * interface name
      */
-    _interface: string;
+    'interface': string;
     /**
      * sending zone
      */

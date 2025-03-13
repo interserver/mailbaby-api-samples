@@ -25,9 +25,10 @@ typedef struct mail_block_click_house_t {
     char *subject; // string
     char *to; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_block_click_house_t;
 
-mail_block_click_house_t *mail_block_click_house_create(
+__attribute__((deprecated)) mail_block_click_house_t *mail_block_click_house_create(
     char *date,
     char *from,
     char *message_id,

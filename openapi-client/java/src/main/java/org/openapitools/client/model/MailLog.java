@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,28 +51,32 @@ import org.openapitools.client.JSON;
 /**
  * Mail log records
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class MailLog {
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
+  @javax.annotation.Nonnull
   private Integer total;
 
   public static final String SERIALIZED_NAME_SKIP = "skip";
   @SerializedName(SERIALIZED_NAME_SKIP)
+  @javax.annotation.Nonnull
   private Integer skip;
 
   public static final String SERIALIZED_NAME_LIMIT = "limit";
   @SerializedName(SERIALIZED_NAME_LIMIT)
+  @javax.annotation.Nonnull
   private Integer limit;
 
   public static final String SERIALIZED_NAME_EMAILS = "emails";
   @SerializedName(SERIALIZED_NAME_EMAILS)
+  @javax.annotation.Nonnull
   private List<MailLogEntry> emails = new ArrayList<>();
 
   public MailLog() {
   }
 
-  public MailLog total(Integer total) {
+  public MailLog total(@javax.annotation.Nonnull Integer total) {
     this.total = total;
     return this;
   }
@@ -87,12 +90,12 @@ public class MailLog {
     return total;
   }
 
-  public void setTotal(Integer total) {
+  public void setTotal(@javax.annotation.Nonnull Integer total) {
     this.total = total;
   }
 
 
-  public MailLog skip(Integer skip) {
+  public MailLog skip(@javax.annotation.Nonnull Integer skip) {
     this.skip = skip;
     return this;
   }
@@ -106,12 +109,12 @@ public class MailLog {
     return skip;
   }
 
-  public void setSkip(Integer skip) {
+  public void setSkip(@javax.annotation.Nonnull Integer skip) {
     this.skip = skip;
   }
 
 
-  public MailLog limit(Integer limit) {
+  public MailLog limit(@javax.annotation.Nonnull Integer limit) {
     this.limit = limit;
     return this;
   }
@@ -125,12 +128,12 @@ public class MailLog {
     return limit;
   }
 
-  public void setLimit(Integer limit) {
+  public void setLimit(@javax.annotation.Nonnull Integer limit) {
     this.limit = limit;
   }
 
 
-  public MailLog emails(List<MailLogEntry> emails) {
+  public MailLog emails(@javax.annotation.Nonnull List<MailLogEntry> emails) {
     this.emails = emails;
     return this;
   }
@@ -152,7 +155,7 @@ public class MailLog {
     return emails;
   }
 
-  public void setEmails(List<MailLogEntry> emails) {
+  public void setEmails(@javax.annotation.Nonnull List<MailLogEntry> emails) {
     this.emails = emails;
   }
 

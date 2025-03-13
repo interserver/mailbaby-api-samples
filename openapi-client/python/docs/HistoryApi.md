@@ -90,7 +90,8 @@ This endpoint does not need any parameter.
 
 displays the mail log
 
-Get a listing of the emails sent through this system 
+Get a listing of the emails sent through this system
+
 
 ### Example
 

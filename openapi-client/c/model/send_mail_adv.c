@@ -5,7 +5,7 @@
 
 
 
-send_mail_adv_t *send_mail_adv_create(
+static send_mail_adv_t *send_mail_adv_create_internal(
     char *subject,
     char *body,
     email_address_types_t *from,
@@ -30,12 +30,40 @@ send_mail_adv_t *send_mail_adv_create(
     send_mail_adv_local_var->attachments = attachments;
     send_mail_adv_local_var->id = id;
 
+    send_mail_adv_local_var->_library_owned = 1;
     return send_mail_adv_local_var;
 }
 
+__attribute__((deprecated)) send_mail_adv_t *send_mail_adv_create(
+    char *subject,
+    char *body,
+    email_address_types_t *from,
+    email_addresses_types_t *to,
+    email_addresses_types_t *replyto,
+    email_addresses_types_t *cc,
+    email_addresses_types_t *bcc,
+    list_t *attachments,
+    long id
+    ) {
+    return send_mail_adv_create_internal (
+        subject,
+        body,
+        from,
+        to,
+        replyto,
+        cc,
+        bcc,
+        attachments,
+        id
+        );
+}
 
 void send_mail_adv_free(send_mail_adv_t *send_mail_adv) {
     if(NULL == send_mail_adv){
+        return ;
+    }
+    if(send_mail_adv->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "send_mail_adv_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -224,6 +252,9 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
 
     // send_mail_adv->subject
     cJSON *subject = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
+    }
     if (!subject) {
         goto end;
     }
@@ -236,6 +267,9 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
 
     // send_mail_adv->body
     cJSON *body = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "body");
+    if (cJSON_IsNull(body)) {
+        body = NULL;
+    }
     if (!body) {
         goto end;
     }
@@ -248,6 +282,9 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
 
     // send_mail_adv->from
     cJSON *from = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "from");
+    if (cJSON_IsNull(from)) {
+        from = NULL;
+    }
     if (!from) {
         goto end;
     }
@@ -257,6 +294,9 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
 
     // send_mail_adv->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "to");
+    if (cJSON_IsNull(to)) {
+        to = NULL;
+    }
     if (!to) {
         goto end;
     }
@@ -266,24 +306,36 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
 
     // send_mail_adv->replyto
     cJSON *replyto = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "replyto");
+    if (cJSON_IsNull(replyto)) {
+        replyto = NULL;
+    }
     if (replyto) { 
     replyto_local_nonprim = email_addresses_types_parseFromJSON(replyto); //nonprimitive
     }
 
     // send_mail_adv->cc
     cJSON *cc = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "cc");
+    if (cJSON_IsNull(cc)) {
+        cc = NULL;
+    }
     if (cc) { 
     cc_local_nonprim = email_addresses_types_parseFromJSON(cc); //nonprimitive
     }
 
     // send_mail_adv->bcc
     cJSON *bcc = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "bcc");
+    if (cJSON_IsNull(bcc)) {
+        bcc = NULL;
+    }
     if (bcc) { 
     bcc_local_nonprim = email_addresses_types_parseFromJSON(bcc); //nonprimitive
     }
 
     // send_mail_adv->attachments
     cJSON *attachments = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "attachments");
+    if (cJSON_IsNull(attachments)) {
+        attachments = NULL;
+    }
     if (attachments) { 
     cJSON *attachments_local_nonprimitive = NULL;
     if(!cJSON_IsArray(attachments)){
@@ -305,6 +357,9 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
 
     // send_mail_adv->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(send_mail_advJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsNumber(id))
     {
@@ -313,7 +368,7 @@ send_mail_adv_t *send_mail_adv_parseFromJSON(cJSON *send_mail_advJSON){
     }
 
 
-    send_mail_adv_local_var = send_mail_adv_create (
+    send_mail_adv_local_var = send_mail_adv_create_internal (
         strdup(subject->valuestring),
         strdup(body->valuestring),
         from_local_nonprim,

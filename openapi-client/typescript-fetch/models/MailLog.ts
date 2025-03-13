@@ -18,6 +18,7 @@ import {
     MailLogEntryFromJSON,
     MailLogEntryFromJSONTyped,
     MailLogEntryToJSON,
+    MailLogEntryToJSONTyped,
 } from './MailLogEntry';
 
 /**
@@ -80,10 +81,15 @@ export function MailLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): M
     };
 }
 
-export function MailLogToJSON(value?: MailLog | null): any {
+export function MailLogToJSON(json: any): MailLog {
+    return MailLogToJSONTyped(json, false);
+}
+
+export function MailLogToJSONTyped(value?: MailLog | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'total': value['total'],

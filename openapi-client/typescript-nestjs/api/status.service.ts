@@ -12,7 +12,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { HttpService, Injectable, Optional } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
 import { Configuration } from '../configuration';
 import { COLLECTION_FORMATS } from '../variables';
@@ -24,10 +24,12 @@ export class StatusService {
     protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders: Record<string,string> = {};
     public configuration = new Configuration();
+    protected httpClient: HttpService;
 
-    constructor(protected httpClient: HttpService, @Optional() configuration: Configuration) {
+    constructor(httpClient: HttpService, @Optional() configuration: Configuration) {
         this.configuration = configuration || this.configuration;
         this.basePath = configuration?.basePath || this.basePath;
+        this.httpClient = configuration?.httpClient || httpClient;
     }
 
     /**
@@ -44,9 +46,10 @@ export class StatusService {
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [pingServerOpts.config] Override http request option.
      */
-    public pingServer(): Observable<AxiosResponse<any>>;
-    public pingServer(): Observable<any> {
+    public pingServer(pingServerOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<any>>;
+    public pingServer(pingServerOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let headers = {...this.defaultHeaders};
 
         let accessTokenObservable: Observable<any> = of(null);
@@ -76,7 +79,8 @@ export class StatusService {
                 return this.httpClient.get<any>(`${this.basePath}/ping`,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...pingServerOpts?.config,
+                        headers: {...headers, ...pingServerOpts?.config?.headers},
                     }
                 );
             })

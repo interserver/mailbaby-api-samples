@@ -77,10 +77,15 @@ export function DenyRuleNewFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function DenyRuleNewToJSON(value?: DenyRuleNew | null): any {
+export function DenyRuleNewToJSON(json: any): DenyRuleNew {
+    return DenyRuleNewToJSONTyped(json, false);
+}
+
+export function DenyRuleNewToJSONTyped(value?: DenyRuleNew | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'type': value['type'],

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Account usage statistics.
@@ -25,11 +20,14 @@ HistoryAPI_getStats(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/stats")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/stats");
+    char *localVarPath = strdup("/mail/stats");
+
 
 
 
@@ -42,6 +40,7 @@ HistoryAPI_getStats(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -56,24 +55,27 @@ HistoryAPI_getStats(apiClient_t *apiClient)
     //if (apiClient->response_code == 404) {
     //    printf("%s\n","Unauthorized");
     //}
-    cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(HistoryAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, HistoryAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(HistoryAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, HistoryAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( HistoryAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( HistoryAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -106,11 +108,14 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/log")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/log");
+    char *localVarPath = strdup("/mail/log");
+
 
 
 
@@ -281,6 +286,7 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -292,11 +298,14 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
     //    printf("%s\n","bad input parameter");
     //}
     //nonprimitive not container
-    cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    mail_log_t *elementToReturn = mail_log_parseFromJSON(HistoryAPIlocalVarJSON);
-    cJSON_Delete(HistoryAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    mail_log_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = mail_log_parseFromJSON(HistoryAPIlocalVarJSON);
+        cJSON_Delete(HistoryAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

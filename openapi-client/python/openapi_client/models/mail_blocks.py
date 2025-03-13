@@ -76,23 +76,23 @@ class MailBlocks(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in local (list)
         _items = []
         if self.local:
-            for _item in self.local:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_local in self.local:
+                if _item_local:
+                    _items.append(_item_local.to_dict())
             _dict['local'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in mbtrap (list)
         _items = []
         if self.mbtrap:
-            for _item in self.mbtrap:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_mbtrap in self.mbtrap:
+                if _item_mbtrap:
+                    _items.append(_item_mbtrap.to_dict())
             _dict['mbtrap'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in subject (list)
         _items = []
         if self.subject:
-            for _item in self.subject:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_subject in self.subject:
+                if _item_subject:
+                    _items.append(_item_subject.to_dict())
             _dict['subject'] = _items
         return _dict
 

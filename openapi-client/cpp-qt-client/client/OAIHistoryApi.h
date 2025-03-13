@@ -60,7 +60,7 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
 
-    void getStats();
+    virtual void getStats();
 
     /**
     * @param[in]  id qint64 [optional]
@@ -77,7 +77,7 @@ public:
     * @param[in]  replyto QString [optional]
     * @param[in]  headerfrom QString [optional]
     */
-    void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &origin = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mx = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mailid = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint64> &start_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<qint64> &end_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &replyto = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &headerfrom = ::OpenAPI::OptionalParam<QString>());
+    virtual void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &origin = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mx = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mailid = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint64> &start_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<qint64> &end_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &replyto = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &headerfrom = ::OpenAPI::OptionalParam<QString>());
 
 
 private:
@@ -109,6 +109,7 @@ Q_SIGNALS:
 
     void getStatsSignal(QList<OAIGetStats_200_response_inner> summary);
     void viewMailLogSignal(OAIMailLog summary);
+
 
     void getStatsSignalFull(OAIHttpRequestWorker *worker, QList<OAIGetStats_200_response_inner> summary);
     void viewMailLogSignalFull(OAIHttpRequestWorker *worker, OAIMailLog summary);

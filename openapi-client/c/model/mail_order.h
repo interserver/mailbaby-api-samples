@@ -24,9 +24,10 @@ typedef struct mail_order_t {
     char *username; // string
     char *comment; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_order_t;
 
-mail_order_t *mail_order_create(
+__attribute__((deprecated)) mail_order_t *mail_order_create(
     int id,
     char *status,
     char *username,

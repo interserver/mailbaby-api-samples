@@ -56,10 +56,15 @@ export function EmailAddressNameFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function EmailAddressNameToJSON(value?: EmailAddressName | null): any {
+export function EmailAddressNameToJSON(json: any): EmailAddressName {
+    return EmailAddressNameToJSONTyped(json, false);
+}
+
+export function EmailAddressNameToJSONTyped(value?: EmailAddressName | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'email': value['email'],

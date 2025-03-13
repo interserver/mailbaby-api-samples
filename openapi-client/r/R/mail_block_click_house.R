@@ -23,8 +23,7 @@ MailBlockClickHouse <- R6::R6Class(
     `messageId` = NULL,
     `subject` = NULL,
     `to` = NULL,
-    #' Initialize a new MailBlockClickHouse class.
-    #'
+
     #' @description
     #' Initialize a new MailBlockClickHouse class.
     #'
@@ -34,7 +33,6 @@ MailBlockClickHouse <- R6::R6Class(
     #' @param subject subject
     #' @param to to
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`date`, `from`, `messageId`, `subject`, `to`, ...) {
       if (!missing(`date`)) {
         if (!(is.character(`date`) && length(`date`) == 1)) {
@@ -67,14 +65,37 @@ MailBlockClickHouse <- R6::R6Class(
         self$`to` <- `to`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return MailBlockClickHouse in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return MailBlockClickHouse as a base R list.
+    #' @examples
+    #' # convert array of MailBlockClickHouse (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert MailBlockClickHouse to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       MailBlockClickHouseObject <- list()
       if (!is.null(self$`date`)) {
         MailBlockClickHouseObject[["date"]] <-
@@ -96,16 +117,14 @@ MailBlockClickHouse <- R6::R6Class(
         MailBlockClickHouseObject[["to"]] <-
           self$`to`
       }
-      MailBlockClickHouseObject
+      return(MailBlockClickHouseObject)
     },
-    #' Deserialize JSON string into an instance of MailBlockClickHouse
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MailBlockClickHouse
     #'
     #' @param input_json the JSON input
     #' @return the instance of MailBlockClickHouse
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`date`)) {
@@ -125,67 +144,23 @@ MailBlockClickHouse <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return MailBlockClickHouse in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`date`)) {
-          sprintf(
-          '"date":
-            "%s"
-                    ',
-          self$`date`
-          )
-        },
-        if (!is.null(self$`from`)) {
-          sprintf(
-          '"from":
-            "%s"
-                    ',
-          self$`from`
-          )
-        },
-        if (!is.null(self$`messageId`)) {
-          sprintf(
-          '"messageId":
-            "%s"
-                    ',
-          self$`messageId`
-          )
-        },
-        if (!is.null(self$`subject`)) {
-          sprintf(
-          '"subject":
-            "%s"
-                    ',
-          self$`subject`
-          )
-        },
-        if (!is.null(self$`to`)) {
-          sprintf(
-          '"to":
-            "%s"
-                    ',
-          self$`to`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of MailBlockClickHouse
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MailBlockClickHouse
     #'
     #' @param input_json the JSON input
     #' @return the instance of MailBlockClickHouse
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`date` <- this_object$`date`
@@ -195,13 +170,11 @@ MailBlockClickHouse <- R6::R6Class(
       self$`to` <- this_object$`to`
       self
     },
-    #' Validate JSON input with respect to MailBlockClickHouse
-    #'
+
     #' @description
     #' Validate JSON input with respect to MailBlockClickHouse and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `date`
@@ -245,23 +218,19 @@ MailBlockClickHouse <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for MailBlockClickHouse: the required field `to` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of MailBlockClickHouse
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `date` is null
       if (is.null(self$`date`)) {
@@ -290,13 +259,11 @@ MailBlockClickHouse <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `date` is null
@@ -326,12 +293,9 @@ MailBlockClickHouse <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

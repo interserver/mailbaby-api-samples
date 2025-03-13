@@ -16,7 +16,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
-import okhttp3.OkHttpClient
+import okhttp3.Call
 import okhttp3.HttpUrl
 
 import org.openapitools.client.models.ErrorMessage
@@ -38,7 +38,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class ServicesApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class ServicesApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -47,6 +47,7 @@ class ServicesApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * GET /mail
      * displays a list of mail service orders
      * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
      * @return kotlin.collections.List<MailOrder>
@@ -77,6 +78,7 @@ class ServicesApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * GET /mail
      * displays a list of mail service orders
      * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
      * @return ApiResponse<kotlin.collections.List<MailOrder>?>

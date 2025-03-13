@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,28 +48,32 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class SendMail {
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
+  @javax.annotation.Nonnull
   private String to;
 
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
+  @javax.annotation.Nonnull
   private String from;
 
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
+  @javax.annotation.Nonnull
   private String subject;
 
   public static final String SERIALIZED_NAME_BODY = "body";
   @SerializedName(SERIALIZED_NAME_BODY)
+  @javax.annotation.Nonnull
   private String body;
 
   public SendMail() {
   }
 
-  public SendMail to(String to) {
+  public SendMail to(@javax.annotation.Nonnull String to) {
     this.to = to;
     return this;
   }
@@ -84,12 +87,12 @@ public class SendMail {
     return to;
   }
 
-  public void setTo(String to) {
+  public void setTo(@javax.annotation.Nonnull String to) {
     this.to = to;
   }
 
 
-  public SendMail from(String from) {
+  public SendMail from(@javax.annotation.Nonnull String from) {
     this.from = from;
     return this;
   }
@@ -103,12 +106,12 @@ public class SendMail {
     return from;
   }
 
-  public void setFrom(String from) {
+  public void setFrom(@javax.annotation.Nonnull String from) {
     this.from = from;
   }
 
 
-  public SendMail subject(String subject) {
+  public SendMail subject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
     return this;
   }
@@ -122,12 +125,12 @@ public class SendMail {
     return subject;
   }
 
-  public void setSubject(String subject) {
+  public void setSubject(@javax.annotation.Nonnull String subject) {
     this.subject = subject;
   }
 
 
-  public SendMail body(String body) {
+  public SendMail body(@javax.annotation.Nonnull String body) {
     this.body = body;
     return this;
   }
@@ -141,7 +144,7 @@ public class SendMail {
     return body;
   }
 
-  public void setBody(String body) {
+  public void setBody(@javax.annotation.Nonnull String body) {
     this.body = body;
   }
 

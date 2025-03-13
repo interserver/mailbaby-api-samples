@@ -59,7 +59,7 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
 
-    void getMailOrders();
+    virtual void getMailOrders();
 
 
 private:
@@ -89,6 +89,7 @@ private:
 Q_SIGNALS:
 
     void getMailOrdersSignal(QList<OAIMailOrder> summary);
+
 
     void getMailOrdersSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailOrder> summary);
 

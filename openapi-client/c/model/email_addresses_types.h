@@ -21,9 +21,10 @@ typedef struct email_addresses_types_t email_addresses_types_t;
 
 typedef struct email_addresses_types_t {
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } email_addresses_types_t;
 
-email_addresses_types_t *email_addresses_types_create(
+__attribute__((deprecated)) email_addresses_types_t *email_addresses_types_create(
 );
 
 void email_addresses_types_free(email_addresses_types_t *email_addresses_types);

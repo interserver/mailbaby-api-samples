@@ -49,7 +49,7 @@ proc getStats*(httpClient: HttpClient): (Option[seq[getStats_200_response_inner]
 
 proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, skip: int, limit: int, startDate: int64, endDate: int64, replyto: string, headerfrom: string): (Option[MailLog], Response) =
   ## displays the mail log
-  let query_for_api_call = encodeQuery([
+  let url_encoded_query_params = encodeQuery([
     ("id", $id), # The ID of your mail order this will be sent through.
     ("origin", $origin), # originating ip address sending mail
     ("mx", $mx), # mx record mail was sent to
@@ -65,6 +65,6 @@ proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string,
     ("headerfrom", $headerfrom), # Header From Email Address
   ])
 
-  let response = httpClient.get(basepath & "/mail/log" & "?" & query_for_api_call)
+  let response = httpClient.get(basepath & "/mail/log" & "?" & url_encoded_query_params)
   constructResult[MailLog](response)
 

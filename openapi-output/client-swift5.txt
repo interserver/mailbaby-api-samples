@@ -85,4 +85,11 @@
 #                                                                              #
 # swift5 generator is contributed by Bruno Coelho (https://github.com/4brunu). #
 # Please support his work directly via https://paypal.com/paypalme/4brunu 🙏   #
+#                                                                              #
+# There is a new swift6 generator, that is currently in beta.                #
+# Try it and give us your feedback.                                            #
+# https://openapi-generator.tech/docs/generators/swift6                        #
+#                                                                              #
+# If you need help migrating from the swift5 to the swift6 generator, check the following url.#
+# https://openapi-generator.tech/docs/faq-generators/#how-do-i-migrate-from-the-swift-5-generator-to-the-swift-6-generator
 ################################################################################

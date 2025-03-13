@@ -17,17 +17,15 @@ Returns information about the usage on your mail accounts.
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, HistoryApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .HistoryApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new HistoryApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getStats(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getStats(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -67,44 +65,43 @@ Get a listing of the emails sent through this system
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, HistoryApi } from '';
+import type { HistoryApiViewMailLogRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .HistoryApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new HistoryApi(configuration);
 
-let body:.HistoryApiViewMailLogRequest = {
-  // number | The ID of your mail order this will be sent through. (optional)
+const request: HistoryApiViewMailLogRequest = {
+    // The ID of your mail order this will be sent through. (optional)
   id: 2604,
-  // string | originating ip address sending mail (optional)
+    // originating ip address sending mail (optional)
   origin: "1.2.3.4",
-  // string | mx record mail was sent to (optional)
+    // mx record mail was sent to (optional)
   mx: "mx.google.com",
-  // string | from email address (optional)
+    // from email address (optional)
   _from: "me@sender.com",
-  // string | to/destination email address (optional)
+    // to/destination email address (optional)
   to: "you@receiver.com",
-  // string | subject containing this string (optional)
+    // subject containing this string (optional)
   subject: "Support",
-  // string | mail id (optional)
+    // mail id (optional)
   mailid: "185997065c60008840",
-  // number | number of records to skip for pagination (optional)
+    // number of records to skip for pagination (optional)
   skip: 1000,
-  // number | maximum number of records to return (optional)
+    // maximum number of records to return (optional)
   limit: 1000,
-  // number | earliest date to get emails in unix timestamp format (optional)
+    // earliest date to get emails in unix timestamp format (optional)
   startDate: 1641781008,
-  // number | earliest date to get emails in unix timestamp format (optional)
+    // earliest date to get emails in unix timestamp format (optional)
   endDate: 1673317008,
-  // string | Reply-To Email Address (optional)
+    // Reply-To Email Address (optional)
   replyto: "replyto_example",
-  // string | Header From Email Address (optional)
+    // Header From Email Address (optional)
   headerfrom: "headerfrom_example",
 };
 
-apiInstance.viewMailLog(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.viewMailLog(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

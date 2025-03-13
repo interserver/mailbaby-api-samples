@@ -184,7 +184,8 @@ Name | Type | Description  | Notes
 
 Removes an email address from the blocked list
 
-Removes an email address from the various block lists. 
+Removes an email address from the various block lists.
+
 
 ### Example
 

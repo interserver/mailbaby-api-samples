@@ -8,18 +8,52 @@
 
 type t = {
     (* The subject or title of the email *)
-    subject: string;
+      subject: string
+          
+          
+        
+        ; [@key "subject"]
     (* The main email contents. *)
-    body: string;
-    from: Email_address_types.t;
-    _to: Email_addresses_types.t;
-    replyto: Email_addresses_types.t option [@default None];
-    cc: Email_addresses_types.t option [@default None];
-    bcc: Email_addresses_types.t option [@default None];
+      body: string
+          
+          
+        
+        ; [@key "body"]
+      from: Email_address_types.t
+          
+          
+        
+        ; [@key "from"]
+      _to: Email_addresses_types.t
+          
+          
+        
+        ; [@key "to"]
+      replyto: Email_addresses_types.t
+          
+           option [@default None]
+        
+        ; [@key "replyto"]
+      cc: Email_addresses_types.t
+          
+           option [@default None]
+        
+        ; [@key "cc"]
+      bcc: Email_addresses_types.t
+          
+           option [@default None]
+        
+        ; [@key "bcc"]
     (* (optional) File attachments to include in the email.  The file contents must be base64 encoded! *)
-    attachments: Mail_attachment.t list;
+      attachments: Mail_attachment.t list
+         [@default []]
+        ; [@key "attachments"]
     (* (optional)  ID of the Mail order within our system to use as the Mail Account. *)
-    id: int64 option [@default None];
+      id: int64
+          
+           option [@default None]
+        
+        ; [@key "id"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Details for an Email *)

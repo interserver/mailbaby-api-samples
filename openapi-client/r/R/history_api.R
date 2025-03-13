@@ -12,77 +12,6 @@
 #' @format An \code{R6Class} generator object
 #' @field api_client Handles the client-server communication.
 #'
-#' @section Methods:
-#' \describe{
-#' \strong{ GetStats } \emph{ Account usage statistics. }
-#' Returns information about the usage on your mail accounts.
-#'
-#' \itemize{
-#' \item \emph{ @returnType } list( \link{getStats_200_response_inner} ) \cr
-#'
-#'
-#' \item status code : 200 | OK
-#'
-#' \item return type : array[GetStats200ResponseInner]
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 401 | Unauthorized
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 404 | Unauthorized
-#'
-#' \item return type : ErrorMessage
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' }
-#'
-#' \strong{ ViewMailLog } \emph{ displays the mail log }
-#' Get a listing of the emails sent through this system
-#'
-#' \itemize{
-#' \item \emph{ @param } id integer
-#' \item \emph{ @param } origin character
-#' \item \emph{ @param } mx character
-#' \item \emph{ @param } from character
-#' \item \emph{ @param } to character
-#' \item \emph{ @param } subject character
-#' \item \emph{ @param } mailid character
-#' \item \emph{ @param } skip integer
-#' \item \emph{ @param } limit integer
-#' \item \emph{ @param } start_date integer
-#' \item \emph{ @param } end_date integer
-#' \item \emph{ @param } replyto character
-#' \item \emph{ @param } headerfrom character
-#' \item \emph{ @returnType } \link{MailLog} \cr
-#'
-#'
-#' \item status code : 200 | search results matching criteria
-#'
-#' \item return type : MailLog
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' \item status code : 400 | bad input parameter
-#'
-#'
-#' \item response headers :
-#'
-#' \tabular{ll}{
-#' }
-#' }
-#'
-#' }
-#'
-#'
 #' @examples
 #' \dontrun{
 #' ####################  GetStats  ####################
@@ -138,13 +67,11 @@ HistoryApi <- R6::R6Class(
   "HistoryApi",
   public = list(
     api_client = NULL,
-    #' Initialize a new HistoryApi.
-    #'
+
     #' @description
     #' Initialize a new HistoryApi.
     #'
     #' @param api_client An instance of API client.
-    #' @export
     initialize = function(api_client) {
       if (!missing(api_client)) {
         self$api_client <- api_client
@@ -152,36 +79,34 @@ HistoryApi <- R6::R6Class(
         self$api_client <- ApiClient$new()
       }
     },
-    #' Account usage statistics.
-    #'
+
     #' @description
     #' Account usage statistics.
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return array[GetStats200ResponseInner]
-    #' @export
     GetStats = function(data_file = NULL, ...) {
       local_var_response <- self$GetStatsWithHttpInfo(data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
-        local_var_response$content
+        return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 400 && local_var_response$status_code <= 499) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 500 && local_var_response$status_code <= 599) {
-        local_var_response
+        return(local_var_response)
       }
     },
-    #' Account usage statistics.
-    #'
+
     #' @description
     #' Account usage statistics.
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return API response (array[GetStats200ResponseInner]) with additional information such as HTTP status code, headers
-    #' @export
     GetStatsWithHttpInfo = function(data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
@@ -220,18 +145,21 @@ HistoryApi <- R6::R6Class(
       if (local_var_resp$status_code >= 200 && local_var_resp$status_code <= 299) {
         # save response in a file
         if (!is.null(data_file)) {
-          write(local_var_resp$response, data_file)
+          self$api_client$WriteFile(local_var_resp, data_file)
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response_as_text(), "array[GetStats200ResponseInner]", loadNamespace("openapi")),
+          self$api_client$DeserializeResponse(local_var_resp, "array[GetStats200ResponseInner]"),
           error = function(e) {
             stop("Failed to deserialize response")
           }
         )
         local_var_resp$content <- deserialized_resp_obj
-        local_var_resp
-      } else if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
+        return(local_var_resp)
+      } 
+      
+      local_var_error_msg <- local_var_resp$response_as_text()      
+      if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
         ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
         ApiResponse$new("API client error", local_var_resp)
@@ -239,11 +167,10 @@ HistoryApi <- R6::R6Class(
         if (is.null(local_var_resp$response) || local_var_resp$response == "") {
           local_var_resp$response <- "API server error"
         }
-        local_var_resp
+        return(local_var_resp)
       }
     },
-    #' displays the mail log
-    #'
+
     #' @description
     #' displays the mail log
     #'
@@ -262,22 +189,21 @@ HistoryApi <- R6::R6Class(
     #' @param headerfrom (optional) Header From Email Address
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return MailLog
-    #' @export
     ViewMailLog = function(id = NULL, origin = NULL, mx = NULL, from = NULL, to = NULL, subject = NULL, mailid = NULL, skip = 0, limit = 100, start_date = NULL, end_date = NULL, replyto = NULL, headerfrom = NULL, data_file = NULL, ...) {
       local_var_response <- self$ViewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
-        local_var_response$content
+        return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 400 && local_var_response$status_code <= 499) {
-        local_var_response
+        return(local_var_response)
       } else if (local_var_response$status_code >= 500 && local_var_response$status_code <= 599) {
-        local_var_response
+        return(local_var_response)
       }
     },
-    #' displays the mail log
-    #'
+
     #' @description
     #' displays the mail log
     #'
@@ -296,8 +222,8 @@ HistoryApi <- R6::R6Class(
     #' @param headerfrom (optional) Header From Email Address
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #'
     #' @return API response (MailLog) with additional information such as HTTP status code, headers
-    #' @export
     ViewMailLogWithHttpInfo = function(id = NULL, origin = NULL, mx = NULL, from = NULL, to = NULL, subject = NULL, mailid = NULL, skip = 0, limit = 100, start_date = NULL, end_date = NULL, replyto = NULL, headerfrom = NULL, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
@@ -396,18 +322,21 @@ HistoryApi <- R6::R6Class(
       if (local_var_resp$status_code >= 200 && local_var_resp$status_code <= 299) {
         # save response in a file
         if (!is.null(data_file)) {
-          write(local_var_resp$response, data_file)
+          self$api_client$WriteFile(local_var_resp, data_file)
         }
 
         deserialized_resp_obj <- tryCatch(
-          self$api_client$deserialize(local_var_resp$response_as_text(), "MailLog", loadNamespace("openapi")),
+          self$api_client$DeserializeResponse(local_var_resp, "MailLog"),
           error = function(e) {
             stop("Failed to deserialize response")
           }
         )
         local_var_resp$content <- deserialized_resp_obj
-        local_var_resp
-      } else if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
+        return(local_var_resp)
+      } 
+      
+      local_var_error_msg <- local_var_resp$response_as_text()      
+      if (local_var_resp$status_code >= 300 && local_var_resp$status_code <= 399) {
         ApiResponse$new(paste("Server returned ", local_var_resp$status_code, " response status code."), local_var_resp)
       } else if (local_var_resp$status_code >= 400 && local_var_resp$status_code <= 499) {
         ApiResponse$new("API client error", local_var_resp)
@@ -415,7 +344,7 @@ HistoryApi <- R6::R6Class(
         if (is.null(local_var_resp$response) || local_var_resp$response == "") {
           local_var_resp$response <- "API server error"
         }
-        local_var_resp
+        return(local_var_resp)
       }
     }
   )

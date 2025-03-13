@@ -45,7 +45,7 @@ template constructResult[T](response: Response): untyped =
 proc sendAdvMail*(httpClient: HttpClient, subject: string, body: string, `from`: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: seq[MailAttachment], id: int64): (Option[GenericResponse], Response) =
   ## Sends an Email with Advanced Options
   httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
-  let query_for_api_call = encodeQuery([
+  let form_data = encodeQuery([
     ("subject", $subject), # The subject or title of the email
     ("body", $body), # The main email contents.
     ("from", $`from`), # 
@@ -57,20 +57,20 @@ proc sendAdvMail*(httpClient: HttpClient, subject: string, body: string, `from`:
     ("id", $id), # (optional)  ID of the Mail order within our system to use as the Mail Account.
   ])
 
-  let response = httpClient.post(basepath & "/mail/advsend", $query_for_api_call)
+  let response = httpClient.post(basepath & "/mail/advsend", $form_data)
   constructResult[GenericResponse](response)
 
 
 proc sendMail*(httpClient: HttpClient, to: string, `from`: string, subject: string, body: string): (Option[GenericResponse], Response) =
   ## Sends an Email
   httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
-  let query_for_api_call = encodeQuery([
+  let form_data = encodeQuery([
     ("to", $to), # The Contact whom is the primary recipient of this email.
     ("from", $`from`), # The contact whom is the this email is from.
     ("subject", $subject), # The subject or title of the email
     ("body", $body), # The main email contents.
   ])
 
-  let response = httpClient.post(basepath & "/mail/send", $query_for_api_call)
+  let response = httpClient.post(basepath & "/mail/send", $form_data)
   constructResult[GenericResponse](response)
 

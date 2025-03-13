@@ -8,13 +8,29 @@
 
 type t = {
     (* The Contact whom is the primary recipient of this email. *)
-    _to: string;
+      _to: string
+          
+          
+        
+        ; [@key "to"]
     (* The contact whom is the this email is from. *)
-    from: string;
+      from: string
+          
+          
+        
+        ; [@key "from"]
     (* The subject or title of the email *)
-    subject: string;
+      subject: string
+          
+          
+        
+        ; [@key "subject"]
     (* The main email contents. *)
-    body: string;
+      body: string
+          
+          
+        
+        ; [@key "body"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** Details for an Email *)

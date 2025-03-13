@@ -5,7 +5,7 @@
 
 
 
-mail_blocks_t *mail_blocks_create(
+static mail_blocks_t *mail_blocks_create_internal(
     list_t *local,
     list_t *mbtrap,
     list_t *subject
@@ -18,12 +18,28 @@ mail_blocks_t *mail_blocks_create(
     mail_blocks_local_var->mbtrap = mbtrap;
     mail_blocks_local_var->subject = subject;
 
+    mail_blocks_local_var->_library_owned = 1;
     return mail_blocks_local_var;
 }
 
+__attribute__((deprecated)) mail_blocks_t *mail_blocks_create(
+    list_t *local,
+    list_t *mbtrap,
+    list_t *subject
+    ) {
+    return mail_blocks_create_internal (
+        local,
+        mbtrap,
+        subject
+        );
+}
 
 void mail_blocks_free(mail_blocks_t *mail_blocks) {
     if(NULL == mail_blocks){
+        return ;
+    }
+    if(mail_blocks->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "mail_blocks_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -139,6 +155,9 @@ mail_blocks_t *mail_blocks_parseFromJSON(cJSON *mail_blocksJSON){
 
     // mail_blocks->local
     cJSON *local = cJSON_GetObjectItemCaseSensitive(mail_blocksJSON, "local");
+    if (cJSON_IsNull(local)) {
+        local = NULL;
+    }
     if (!local) {
         goto end;
     }
@@ -163,6 +182,9 @@ mail_blocks_t *mail_blocks_parseFromJSON(cJSON *mail_blocksJSON){
 
     // mail_blocks->mbtrap
     cJSON *mbtrap = cJSON_GetObjectItemCaseSensitive(mail_blocksJSON, "mbtrap");
+    if (cJSON_IsNull(mbtrap)) {
+        mbtrap = NULL;
+    }
     if (!mbtrap) {
         goto end;
     }
@@ -187,6 +209,9 @@ mail_blocks_t *mail_blocks_parseFromJSON(cJSON *mail_blocksJSON){
 
     // mail_blocks->subject
     cJSON *subject = cJSON_GetObjectItemCaseSensitive(mail_blocksJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
+    }
     if (!subject) {
         goto end;
     }
@@ -210,7 +235,7 @@ mail_blocks_t *mail_blocks_parseFromJSON(cJSON *mail_blocksJSON){
     }
 
 
-    mail_blocks_local_var = mail_blocks_create (
+    mail_blocks_local_var = mail_blocks_create_internal (
         localList,
         mbtrapList,
         subjectList

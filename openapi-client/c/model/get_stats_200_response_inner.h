@@ -25,9 +25,10 @@ typedef struct get_stats_200_response_inner_t {
     char *password; // string
     char *comment; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } get_stats_200_response_inner_t;
 
-get_stats_200_response_inner_t *get_stats_200_response_inner_create(
+__attribute__((deprecated)) get_stats_200_response_inner_t *get_stats_200_response_inner_create(
     int id,
     char *status,
     char *username,

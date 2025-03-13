@@ -57,10 +57,15 @@ export function MailAttachmentFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function MailAttachmentToJSON(value?: MailAttachment | null): any {
+export function MailAttachmentToJSON(json: any): MailAttachment {
+    return MailAttachmentToJSONTyped(json, false);
+}
+
+export function MailAttachmentToJSONTyped(value?: MailAttachment | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'filename': value['filename'],

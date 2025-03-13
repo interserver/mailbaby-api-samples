@@ -8,9 +8,17 @@
 
 type t = {
     (* The email address. *)
-    email: string;
+      email: string
+          
+          
+        
+        ; [@key "email"]
     (* Name to use for the sending contact. *)
-    name: string option [@default None];
+      name: string
+          
+           option [@default None]
+        
+        ; [@key "name"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** An email contact. *)

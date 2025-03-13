@@ -73,10 +73,15 @@ export function SendMailFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function SendMailToJSON(value?: SendMail | null): any {
+export function SendMailToJSON(json: any): SendMail {
+    return SendMailToJSONTyped(json, false);
+}
+
+export function SendMailToJSONTyped(value?: SendMail | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'to': value['to'],

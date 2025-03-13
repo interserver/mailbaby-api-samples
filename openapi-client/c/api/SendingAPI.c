@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Sends an Email with Advanced Options
@@ -25,11 +20,14 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char *subject, char *body, email_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/advsend")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/advsend");
+    char *localVarPath = strdup("/mail/advsend");
+
 
 
 
@@ -152,6 +150,7 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char *subject, char *body, email_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -171,11 +170,14 @@ SendingAPI_sendAdvMail(apiClient_t *apiClient, char *subject, char *body, email_
     //    printf("%s\n","The specified resource was not found");
     //}
     //nonprimitive not container
-    cJSON *SendingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    generic_response_t *elementToReturn = generic_response_parseFromJSON(SendingAPIlocalVarJSON);
-    cJSON_Delete(SendingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    generic_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *SendingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = generic_response_parseFromJSON(SendingAPIlocalVarJSON);
+        cJSON_Delete(SendingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -263,11 +265,14 @@ SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/send")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/send");
+    char *localVarPath = strdup("/mail/send");
+
 
 
 
@@ -330,6 +335,7 @@ SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -349,11 +355,14 @@ SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject,
     //    printf("%s\n","The specified resource was not found");
     //}
     //nonprimitive not container
-    cJSON *SendingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    generic_response_t *elementToReturn = generic_response_parseFromJSON(SendingAPIlocalVarJSON);
-    cJSON_Delete(SendingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    generic_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *SendingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = generic_response_parseFromJSON(SendingAPIlocalVarJSON);
+        cJSON_Delete(SendingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

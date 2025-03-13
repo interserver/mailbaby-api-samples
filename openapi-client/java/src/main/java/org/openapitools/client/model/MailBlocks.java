@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,24 +52,27 @@ import org.openapitools.client.JSON;
 /**
  * The listing of blocked emails.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class MailBlocks {
   public static final String SERIALIZED_NAME_LOCAL = "local";
   @SerializedName(SERIALIZED_NAME_LOCAL)
+  @javax.annotation.Nonnull
   private List<MailBlockClickHouse> local = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MBTRAP = "mbtrap";
   @SerializedName(SERIALIZED_NAME_MBTRAP)
+  @javax.annotation.Nonnull
   private List<MailBlockClickHouse> mbtrap = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SUBJECT = "subject";
   @SerializedName(SERIALIZED_NAME_SUBJECT)
+  @javax.annotation.Nonnull
   private List<MailBlockRspamd> subject = new ArrayList<>();
 
   public MailBlocks() {
   }
 
-  public MailBlocks local(List<MailBlockClickHouse> local) {
+  public MailBlocks local(@javax.annotation.Nonnull List<MailBlockClickHouse> local) {
     this.local = local;
     return this;
   }
@@ -92,12 +94,12 @@ public class MailBlocks {
     return local;
   }
 
-  public void setLocal(List<MailBlockClickHouse> local) {
+  public void setLocal(@javax.annotation.Nonnull List<MailBlockClickHouse> local) {
     this.local = local;
   }
 
 
-  public MailBlocks mbtrap(List<MailBlockClickHouse> mbtrap) {
+  public MailBlocks mbtrap(@javax.annotation.Nonnull List<MailBlockClickHouse> mbtrap) {
     this.mbtrap = mbtrap;
     return this;
   }
@@ -119,12 +121,12 @@ public class MailBlocks {
     return mbtrap;
   }
 
-  public void setMbtrap(List<MailBlockClickHouse> mbtrap) {
+  public void setMbtrap(@javax.annotation.Nonnull List<MailBlockClickHouse> mbtrap) {
     this.mbtrap = mbtrap;
   }
 
 
-  public MailBlocks subject(List<MailBlockRspamd> subject) {
+  public MailBlocks subject(@javax.annotation.Nonnull List<MailBlockRspamd> subject) {
     this.subject = subject;
     return this;
   }
@@ -146,7 +148,7 @@ public class MailBlocks {
     return subject;
   }
 
-  public void setSubject(List<MailBlockRspamd> subject) {
+  public void setSubject(@javax.annotation.Nonnull List<MailBlockRspamd> subject) {
     this.subject = subject;
   }
 

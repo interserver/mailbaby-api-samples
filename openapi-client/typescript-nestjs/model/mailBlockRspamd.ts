@@ -15,7 +15,7 @@
  * This is a block entry from the rspamd block list.
  */
 export interface MailBlockRspamd { 
-    from: string;
+    'from': string;
     subject: string;
 }
 

@@ -7,8 +7,16 @@
  *)
 
 type t = {
-    from: string;
-    subject: string;
+      from: string
+          
+          
+        
+        ; [@key "from"]
+      subject: string
+          
+          
+        
+        ; [@key "subject"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** This is a block entry from the rspamd block list. *)

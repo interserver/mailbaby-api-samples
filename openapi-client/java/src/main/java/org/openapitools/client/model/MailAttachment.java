@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,20 +48,22 @@ import org.openapitools.client.JSON;
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class MailAttachment {
   public static final String SERIALIZED_NAME_FILENAME = "filename";
   @SerializedName(SERIALIZED_NAME_FILENAME)
+  @javax.annotation.Nonnull
   private String filename;
 
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)
+  @javax.annotation.Nonnull
   private String data;
 
   public MailAttachment() {
   }
 
-  public MailAttachment filename(String filename) {
+  public MailAttachment filename(@javax.annotation.Nonnull String filename) {
     this.filename = filename;
     return this;
   }
@@ -76,12 +77,12 @@ public class MailAttachment {
     return filename;
   }
 
-  public void setFilename(String filename) {
+  public void setFilename(@javax.annotation.Nonnull String filename) {
     this.filename = filename;
   }
 
 
-  public MailAttachment data(String data) {
+  public MailAttachment data(@javax.annotation.Nonnull String data) {
     this.data = data;
     return this;
   }
@@ -95,7 +96,7 @@ public class MailAttachment {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(@javax.annotation.Nonnull String data) {
     this.data = data;
   }
 

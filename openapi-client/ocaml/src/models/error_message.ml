@@ -8,9 +8,17 @@
 
 type t = {
     (* The response code associated with the error. *)
-    code: int32;
+      code: int32
+          
+          
+        
+        ; [@key "code"]
     (* The details or description of the error. *)
-    message: string;
+      message: string
+          
+          
+        
+        ; [@key "message"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** The resposne when an error occurs. *)

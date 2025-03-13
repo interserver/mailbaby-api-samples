@@ -267,10 +267,10 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "", "")
 	if r.replyto != nil {
 		paramJson, err := parameterToJson(*r.replyto)
 		if err != nil {
@@ -293,10 +293,10 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 		localVarFormParams.Add("bcc", paramJson)
 	}
 	if r.attachments != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "attachments", r.attachments, "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "attachments", r.attachments, "", "csv")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "id", r.id, "", "")
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -486,10 +486,10 @@ func (a *SendingAPIService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "", "")
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

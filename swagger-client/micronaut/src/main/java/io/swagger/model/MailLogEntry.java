@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "An email record")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-10-15T16:38:09.116249779-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-03-13T09:48:10.258560296-04:00[America/New_York]")
 public class MailLogEntry   {
   @JsonProperty("_id")
   private Integer _id = null;

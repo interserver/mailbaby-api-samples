@@ -44,13 +44,13 @@ template constructResult[T](response: Response): untyped =
 proc addRule*(httpClient: HttpClient, `type`: string, data: string, user: string): (Option[GenericResponse], Response) =
   ## Creates a new email deny rule.
   httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
-  let query_for_api_call = encodeQuery([
+  let form_data = encodeQuery([
     ("user", $user), # Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     ("type", $`type`), # The type of deny rule.
     ("data", $data), # The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
   ])
 
-  let response = httpClient.post(basepath & "/mail/rules", $query_for_api_call)
+  let response = httpClient.post(basepath & "/mail/rules", $form_data)
   constructResult[GenericResponse](response)
 
 

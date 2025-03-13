@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "This is a block entry from the rspamd block list.")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-10-15T16:38:09.116249779-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-03-13T09:48:10.258560296-04:00[America/New_York]")
 public class MailBlockRspamd   {
   @JsonProperty("from")
   private String from = null;

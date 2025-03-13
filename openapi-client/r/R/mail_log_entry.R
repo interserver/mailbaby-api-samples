@@ -59,8 +59,7 @@ MailLogEntry <- R6::R6Class(
     `queued` = NULL,
     `mxHostname` = NULL,
     `response` = NULL,
-    #' Initialize a new MailLogEntry class.
-    #'
+
     #' @description
     #' Initialize a new MailLogEntry class.
     #'
@@ -88,7 +87,6 @@ MailLogEntry <- R6::R6Class(
     #' @param response mail delivery response
     #' @param messageId message id
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`_id`, `id`, `from`, `to`, `subject`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `sendingZone`, `bodySize`, `seq`, `recipient`, `domain`, `locked`, `lockTime`, `assigned`, `queued`, `mxHostname`, `response`, `messageId` = NULL, ...) {
       if (!missing(`_id`)) {
         if (!(is.numeric(`_id`) && length(`_id`) == 1)) {
@@ -229,14 +227,37 @@ MailLogEntry <- R6::R6Class(
         self$`messageId` <- `messageId`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return MailLogEntry in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return MailLogEntry as a base R list.
+    #' @examples
+    #' # convert array of MailLogEntry (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert MailLogEntry to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       MailLogEntryObject <- list()
       if (!is.null(self$`_id`)) {
         MailLogEntryObject[["_id"]] <-
@@ -330,16 +351,14 @@ MailLogEntry <- R6::R6Class(
         MailLogEntryObject[["response"]] <-
           self$`response`
       }
-      MailLogEntryObject
+      return(MailLogEntryObject)
     },
-    #' Deserialize JSON string into an instance of MailLogEntry
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MailLogEntry
     #'
     #' @param input_json the JSON input
     #' @return the instance of MailLogEntry
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`_id`)) {
@@ -413,211 +432,23 @@ MailLogEntry <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return MailLogEntry in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`_id`)) {
-          sprintf(
-          '"_id":
-            %d
-                    ',
-          self$`_id`
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            "%s"
-                    ',
-          self$`id`
-          )
-        },
-        if (!is.null(self$`from`)) {
-          sprintf(
-          '"from":
-            "%s"
-                    ',
-          self$`from`
-          )
-        },
-        if (!is.null(self$`to`)) {
-          sprintf(
-          '"to":
-            "%s"
-                    ',
-          self$`to`
-          )
-        },
-        if (!is.null(self$`subject`)) {
-          sprintf(
-          '"subject":
-            "%s"
-                    ',
-          self$`subject`
-          )
-        },
-        if (!is.null(self$`messageId`)) {
-          sprintf(
-          '"messageId":
-            "%s"
-                    ',
-          self$`messageId`
-          )
-        },
-        if (!is.null(self$`created`)) {
-          sprintf(
-          '"created":
-            "%s"
-                    ',
-          self$`created`
-          )
-        },
-        if (!is.null(self$`time`)) {
-          sprintf(
-          '"time":
-            %d
-                    ',
-          self$`time`
-          )
-        },
-        if (!is.null(self$`user`)) {
-          sprintf(
-          '"user":
-            "%s"
-                    ',
-          self$`user`
-          )
-        },
-        if (!is.null(self$`transtype`)) {
-          sprintf(
-          '"transtype":
-            "%s"
-                    ',
-          self$`transtype`
-          )
-        },
-        if (!is.null(self$`origin`)) {
-          sprintf(
-          '"origin":
-            "%s"
-                    ',
-          self$`origin`
-          )
-        },
-        if (!is.null(self$`interface`)) {
-          sprintf(
-          '"interface":
-            "%s"
-                    ',
-          self$`interface`
-          )
-        },
-        if (!is.null(self$`sendingZone`)) {
-          sprintf(
-          '"sendingZone":
-            "%s"
-                    ',
-          self$`sendingZone`
-          )
-        },
-        if (!is.null(self$`bodySize`)) {
-          sprintf(
-          '"bodySize":
-            %d
-                    ',
-          self$`bodySize`
-          )
-        },
-        if (!is.null(self$`seq`)) {
-          sprintf(
-          '"seq":
-            %d
-                    ',
-          self$`seq`
-          )
-        },
-        if (!is.null(self$`recipient`)) {
-          sprintf(
-          '"recipient":
-            "%s"
-                    ',
-          self$`recipient`
-          )
-        },
-        if (!is.null(self$`domain`)) {
-          sprintf(
-          '"domain":
-            "%s"
-                    ',
-          self$`domain`
-          )
-        },
-        if (!is.null(self$`locked`)) {
-          sprintf(
-          '"locked":
-            %d
-                    ',
-          self$`locked`
-          )
-        },
-        if (!is.null(self$`lockTime`)) {
-          sprintf(
-          '"lockTime":
-            "%s"
-                    ',
-          self$`lockTime`
-          )
-        },
-        if (!is.null(self$`assigned`)) {
-          sprintf(
-          '"assigned":
-            "%s"
-                    ',
-          self$`assigned`
-          )
-        },
-        if (!is.null(self$`queued`)) {
-          sprintf(
-          '"queued":
-            "%s"
-                    ',
-          self$`queued`
-          )
-        },
-        if (!is.null(self$`mxHostname`)) {
-          sprintf(
-          '"mxHostname":
-            "%s"
-                    ',
-          self$`mxHostname`
-          )
-        },
-        if (!is.null(self$`response`)) {
-          sprintf(
-          '"response":
-            "%s"
-                    ',
-          self$`response`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of MailLogEntry
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MailLogEntry
     #'
     #' @param input_json the JSON input
     #' @return the instance of MailLogEntry
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`_id` <- this_object$`_id`
@@ -645,13 +476,11 @@ MailLogEntry <- R6::R6Class(
       self$`response` <- this_object$`response`
       self
     },
-    #' Validate JSON input with respect to MailLogEntry
-    #'
+
     #' @description
     #' Validate JSON input with respect to MailLogEntry and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `_id`
@@ -831,23 +660,19 @@ MailLogEntry <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for MailLogEntry: the required field `response` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of MailLogEntry
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `_id` is null
       if (is.null(self$`_id`)) {
@@ -961,13 +786,11 @@ MailLogEntry <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `_id` is null
@@ -1082,12 +905,9 @@ MailLogEntry <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

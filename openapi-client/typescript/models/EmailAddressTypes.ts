@@ -16,37 +16,21 @@ import { HttpFile } from '../http/http';
 /**
 * 
 */
-export class EmailAddressTypes {
-    /**
-    * The email address.
-    */
-    'email': string;
-    /**
-    * Name to use for the sending contact.
-    */
-    'name'?: string;
+/**
+ * @type EmailAddressTypes
+ * Type
+ * @export
+ */
+export type EmailAddressTypes = EmailAddressName | string;
 
+/**
+* @type EmailAddressTypesClass
+    * 
+* @export
+*/
+export class EmailAddressTypesClass {
     static readonly discriminator: string | undefined = undefined;
 
-    static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "email",
-            "baseName": "email",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        }    ];
-
-    static getAttributeTypeMap() {
-        return EmailAddressTypes.attributeTypeMap;
-    }
-
-    public constructor() {
-    }
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
 }
 

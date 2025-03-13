@@ -12,7 +12,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { HttpService, Injectable, Optional } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
 import { DenyRuleRecord } from '../model/denyRuleRecord';
 import { ErrorMessage } from '../model/errorMessage';
@@ -28,10 +28,12 @@ export class BlockingService {
     protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders: Record<string,string> = {};
     public configuration = new Configuration();
+    protected httpClient: HttpService;
 
-    constructor(protected httpClient: HttpService, @Optional() configuration: Configuration) {
+    constructor(httpClient: HttpService, @Optional() configuration: Configuration) {
         this.configuration = configuration || this.configuration;
         this.basePath = configuration?.basePath || this.basePath;
+        this.httpClient = configuration?.httpClient || httpClient;
     }
 
     /**
@@ -51,9 +53,10 @@ export class BlockingService {
      * @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [addRuleOpts.config] Override http request option.
      */
-    public addRule(type: string, data: string, user?: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public addRule(type: string, data: string, user?: string, ): Observable<any> {
+    public addRule(type: string, data: string, user?: string, addRuleOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<GenericResponse>>;
+    public addRule(type: string, data: string, user?: string, addRuleOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         if (type === null || type === undefined) {
             throw new Error('Required parameter type was null or undefined when calling addRule.');
         }
@@ -119,7 +122,8 @@ export class BlockingService {
                     convertFormParamsToString ? formParams!.toString() : formParams!,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...addRuleOpts?.config,
+                        headers: {...headers, ...addRuleOpts?.config?.headers},
                     }
                 );
             })
@@ -131,9 +135,10 @@ export class BlockingService {
      * @param ruleId The ID of the Rules entry.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [deleteRuleOpts.config] Override http request option.
      */
-    public deleteRule(ruleId: number, ): Observable<AxiosResponse<GenericResponse>>;
-    public deleteRule(ruleId: number, ): Observable<any> {
+    public deleteRule(ruleId: number, deleteRuleOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<GenericResponse>>;
+    public deleteRule(ruleId: number, deleteRuleOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         if (ruleId === null || ruleId === undefined) {
             throw new Error('Required parameter ruleId was null or undefined when calling deleteRule.');
         }
@@ -168,7 +173,8 @@ export class BlockingService {
                 return this.httpClient.delete<GenericResponse>(`${this.basePath}/mail/rules/${encodeURIComponent(String(ruleId))}`,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...deleteRuleOpts?.config,
+                        headers: {...headers, ...deleteRuleOpts?.config?.headers},
                     }
                 );
             })
@@ -180,9 +186,10 @@ export class BlockingService {
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [delistBlockOpts.config] Override http request option.
      */
-    public delistBlock(body: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public delistBlock(body: string, ): Observable<any> {
+    public delistBlock(body: string, delistBlockOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<GenericResponse>>;
+    public delistBlock(body: string, delistBlockOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling delistBlock.');
         }
@@ -224,7 +231,8 @@ export class BlockingService {
                     body,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...delistBlockOpts?.config,
+                        headers: {...headers, ...delistBlockOpts?.config?.headers},
                     }
                 );
             })
@@ -235,9 +243,10 @@ export class BlockingService {
      * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [getMailBlocksOpts.config] Override http request option.
      */
-    public getMailBlocks(): Observable<AxiosResponse<MailBlocks>>;
-    public getMailBlocks(): Observable<any> {
+    public getMailBlocks(getMailBlocksOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<MailBlocks>>;
+    public getMailBlocks(getMailBlocksOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let headers = {...this.defaultHeaders};
 
         let accessTokenObservable: Observable<any> = of(null);
@@ -268,7 +277,8 @@ export class BlockingService {
                 return this.httpClient.get<MailBlocks>(`${this.basePath}/mail/blocks`,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...getMailBlocksOpts?.config,
+                        headers: {...headers, ...getMailBlocksOpts?.config?.headers},
                     }
                 );
             })
@@ -279,9 +289,10 @@ export class BlockingService {
      * Returns a listing of all the deny block rules you have configured.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [getRulesOpts.config] Override http request option.
      */
-    public getRules(): Observable<AxiosResponse<Array<DenyRuleRecord>>>;
-    public getRules(): Observable<any> {
+    public getRules(getRulesOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<Array<DenyRuleRecord>>>;
+    public getRules(getRulesOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let headers = {...this.defaultHeaders};
 
         let accessTokenObservable: Observable<any> = of(null);
@@ -312,7 +323,8 @@ export class BlockingService {
                 return this.httpClient.get<Array<DenyRuleRecord>>(`${this.basePath}/mail/rules`,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...getRulesOpts?.config,
+                        headers: {...headers, ...getRulesOpts?.config?.headers},
                     }
                 );
             })

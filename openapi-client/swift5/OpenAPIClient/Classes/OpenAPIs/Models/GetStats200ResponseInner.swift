@@ -46,3 +46,6 @@ public struct GetStats200ResponseInner: Codable, JSONEncodable, Hashable {
     }
 }
 
+
+@available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
+extension GetStats200ResponseInner: Identifiable {}

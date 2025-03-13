@@ -7,9 +7,15 @@
  *)
 
 type t = {
-    local: Mail_block_click_house.t list;
-    mbtrap: Mail_block_click_house.t list;
-    subject: Mail_block_rspamd.t list;
+      local: Mail_block_click_house.t list
+        
+        ; [@key "local"]
+      mbtrap: Mail_block_click_house.t list
+        
+        ; [@key "mbtrap"]
+      subject: Mail_block_rspamd.t list
+        
+        ; [@key "subject"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** The listing of blocked emails. *)

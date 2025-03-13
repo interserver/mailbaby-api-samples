@@ -23,8 +23,7 @@ DenyRuleRecord <- R6::R6Class(
     `data` = NULL,
     `id` = NULL,
     `created` = NULL,
-    #' Initialize a new DenyRuleRecord class.
-    #'
+
     #' @description
     #' Initialize a new DenyRuleRecord class.
     #'
@@ -34,7 +33,6 @@ DenyRuleRecord <- R6::R6Class(
     #' @param created the date the rule was created.
     #' @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`type`, `data`, `id`, `created`, `user` = NULL, ...) {
       if (!missing(`type`)) {
         if (!(`type` %in% c("domain", "email", "startswith", "destination"))) {
@@ -70,14 +68,37 @@ DenyRuleRecord <- R6::R6Class(
         self$`user` <- `user`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return DenyRuleRecord in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return DenyRuleRecord as a base R list.
+    #' @examples
+    #' # convert array of DenyRuleRecord (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert DenyRuleRecord to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       DenyRuleRecordObject <- list()
       if (!is.null(self$`user`)) {
         DenyRuleRecordObject[["user"]] <-
@@ -99,16 +120,14 @@ DenyRuleRecord <- R6::R6Class(
         DenyRuleRecordObject[["created"]] <-
           self$`created`
       }
-      DenyRuleRecordObject
+      return(DenyRuleRecordObject)
     },
-    #' Deserialize JSON string into an instance of DenyRuleRecord
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of DenyRuleRecord
     #'
     #' @param input_json the JSON input
     #' @return the instance of DenyRuleRecord
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`user`)) {
@@ -131,67 +150,23 @@ DenyRuleRecord <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return DenyRuleRecord in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`user`)) {
-          sprintf(
-          '"user":
-            "%s"
-                    ',
-          self$`user`
-          )
-        },
-        if (!is.null(self$`type`)) {
-          sprintf(
-          '"type":
-            "%s"
-                    ',
-          self$`type`
-          )
-        },
-        if (!is.null(self$`data`)) {
-          sprintf(
-          '"data":
-            "%s"
-                    ',
-          self$`data`
-          )
-        },
-        if (!is.null(self$`id`)) {
-          sprintf(
-          '"id":
-            "%s"
-                    ',
-          self$`id`
-          )
-        },
-        if (!is.null(self$`created`)) {
-          sprintf(
-          '"created":
-            "%s"
-                    ',
-          self$`created`
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of DenyRuleRecord
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of DenyRuleRecord
     #'
     #' @param input_json the JSON input
     #' @return the instance of DenyRuleRecord
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`user` <- this_object$`user`
@@ -204,13 +179,11 @@ DenyRuleRecord <- R6::R6Class(
       self$`created` <- this_object$`created`
       self
     },
-    #' Validate JSON input with respect to DenyRuleRecord
-    #'
+
     #' @description
     #' Validate JSON input with respect to DenyRuleRecord and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `type`
@@ -246,23 +219,19 @@ DenyRuleRecord <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for DenyRuleRecord: the required field `created` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of DenyRuleRecord
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `type` is null
       if (is.null(self$`type`)) {
@@ -286,13 +255,11 @@ DenyRuleRecord <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `type` is null
@@ -317,12 +284,9 @@ DenyRuleRecord <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

@@ -12,7 +12,7 @@
 /* tslint:disable:no-unused-variable member-ordering */
 
 import { HttpService, Injectable, Optional } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
 import { EmailAddressTypes } from '../model/emailAddressTypes';
 import { EmailAddressesTypes } from '../model/emailAddressesTypes';
@@ -29,10 +29,12 @@ export class SendingService {
     protected basePath = 'https://api.mailbaby.net';
     public defaultHeaders: Record<string,string> = {};
     public configuration = new Configuration();
+    protected httpClient: HttpService;
 
-    constructor(protected httpClient: HttpService, @Optional() configuration: Configuration) {
+    constructor(httpClient: HttpService, @Optional() configuration: Configuration) {
         this.configuration = configuration || this.configuration;
         this.basePath = configuration?.basePath || this.basePath;
+        this.httpClient = configuration?.httpClient || httpClient;
     }
 
     /**
@@ -49,7 +51,7 @@ export class SendingService {
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data to&#x3D;support@interserver.net &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;\&quot;Joe &lt;user@domain.com&gt;\&quot; \\ --data to&#x3D;\&quot;Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;support@interserver.net, support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; \\ --data \&quot;to[1][name]&#x3D;Joe\&quot; \\ --data \&quot;to[1][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;user@domain.com\&quot;, \&quot;to\&quot;: \&quot;support@interserver.net\&quot; }\&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: {\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;user@domain.com\&quot;}, \&quot;to\&quot;: [{\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;support@interserver.net\&quot;}] }\&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60; curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;Joe &lt;user@domain.com&gt;\&quot;, \&quot;to\&quot;: \&quot;Joe &lt;support@interserver.net&gt;\&quot; }\&#39; &#x60;&#x60;&#x60; 
      * @param subject The subject or title of the email
      * @param body The main email contents.
-     * @param from 
+     * @param _from 
      * @param to 
      * @param replyto 
      * @param cc 
@@ -58,9 +60,10 @@ export class SendingService {
      * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [sendAdvMailOpts.config] Override http request option.
      */
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, ): Observable<any> {
+    public sendAdvMail(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, sendAdvMailOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<GenericResponse>>;
+    public sendAdvMail(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, sendAdvMailOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         if (subject === null || subject === undefined) {
             throw new Error('Required parameter subject was null or undefined when calling sendAdvMail.');
         }
@@ -69,8 +72,8 @@ export class SendingService {
             throw new Error('Required parameter body was null or undefined when calling sendAdvMail.');
         }
 
-        if (from === null || from === undefined) {
-            throw new Error('Required parameter from was null or undefined when calling sendAdvMail.');
+        if (_from === null || _from === undefined) {
+            throw new Error('Required parameter _from was null or undefined when calling sendAdvMail.');
         }
 
         if (to === null || to === undefined) {
@@ -120,8 +123,8 @@ export class SendingService {
             formParams!.append('body', <any>body);
         }
 
-        if (from !== undefined) {
-            formParams!.append('from', <any>from);
+        if (_from !== undefined) {
+            formParams!.append('from', <any>_from);
         }
 
         if (to !== undefined) {
@@ -158,7 +161,8 @@ export class SendingService {
                     convertFormParamsToString ? formParams!.toString() : formParams!,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...sendAdvMailOpts?.config,
+                        headers: {...headers, ...sendAdvMailOpts?.config?.headers},
                     }
                 );
             })
@@ -168,20 +172,21 @@ export class SendingService {
      * Sends an Email
      * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      * @param to The Contact whom is the primary recipient of this email.
-     * @param from The contact whom is the this email is from.
+     * @param _from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
+     * @param {*} [sendMailOpts.config] Override http request option.
      */
-    public sendMail(to: string, from: string, subject: string, body: string, ): Observable<AxiosResponse<GenericResponse>>;
-    public sendMail(to: string, from: string, subject: string, body: string, ): Observable<any> {
+    public sendMail(to: string, _from: string, subject: string, body: string, sendMailOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<GenericResponse>>;
+    public sendMail(to: string, _from: string, subject: string, body: string, sendMailOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         if (to === null || to === undefined) {
             throw new Error('Required parameter to was null or undefined when calling sendMail.');
         }
 
-        if (from === null || from === undefined) {
-            throw new Error('Required parameter from was null or undefined when calling sendMail.');
+        if (_from === null || _from === undefined) {
+            throw new Error('Required parameter _from was null or undefined when calling sendMail.');
         }
 
         if (subject === null || subject === undefined) {
@@ -231,8 +236,8 @@ export class SendingService {
             formParams!.append('to', <any>to);
         }
 
-        if (from !== undefined) {
-            formParams!.append('from', <any>from);
+        if (_from !== undefined) {
+            formParams!.append('from', <any>_from);
         }
 
         if (subject !== undefined) {
@@ -253,7 +258,8 @@ export class SendingService {
                     convertFormParamsToString ? formParams!.toString() : formParams!,
                     {
                         withCredentials: this.configuration.withCredentials,
-                        headers: headers
+                        ...sendMailOpts?.config,
+                        headers: {...headers, ...sendMailOpts?.config?.headers},
                     }
                 );
             })

@@ -244,9 +244,10 @@ void OAIBlockingApi::addRule(const QString &type, const QString &data, const ::O
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::addRuleCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }
@@ -331,9 +332,10 @@ void OAIBlockingApi::deleteRule(const qint32 &rule_id) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::deleteRuleCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }
@@ -408,9 +410,10 @@ void OAIBlockingApi::delistBlock(const QString &body) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::delistBlockCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }
@@ -481,9 +484,10 @@ void OAIBlockingApi::getMailBlocks() {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::getMailBlocksCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }
@@ -554,9 +558,10 @@ void OAIBlockingApi::getRules() {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
     }
 
+
     connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIBlockingApi::getRulesCallback);
     connect(this, &OAIBlockingApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
+    connect(worker, &QObject::destroyed, this, [this] {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             Q_EMIT allPendingRequestsCompleted();
         }

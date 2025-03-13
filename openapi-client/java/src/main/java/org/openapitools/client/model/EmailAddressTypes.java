@@ -58,7 +58,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-15T16:34:54.145828598-04:00[America/New_York]", comments = "Generator version: 8.0.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
 public class EmailAddressTypes extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailAddressTypes.class.getName());
 
@@ -210,6 +210,7 @@ public class EmailAddressTypes extends AbstractOpenApiSchema {
     public String getString() throws ClassCastException {
         return (String)super.getActualInstance();
     }
+
     /**
      * Get the actual instance of `EmailAddressName`. If the actual instance is not `EmailAddressName`,
      * the ClassCastException will be thrown.

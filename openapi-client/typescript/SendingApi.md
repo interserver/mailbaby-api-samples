@@ -17,41 +17,40 @@ Sends An email through one of your mail orders allowing additional options such 
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, SendingApi } from '';
+import type { SendingApiSendAdvMailRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .SendingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new SendingApi(configuration);
 
-let body:.SendingApiSendAdvMailRequest = {
-  // string | The subject or title of the email
+const request: SendingApiSendAdvMailRequest = {
+    // The subject or title of the email
   subject: "Your Package has been Delivered!",
-  // string | The main email contents.
+    // The main email contents.
   body: "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
-  // EmailAddressTypes
+  
   _from: null,
-  // EmailAddressesTypes
+  
   to: null,
-  // EmailAddressesTypes (optional)
+  
   replyto: null,
-  // EmailAddressesTypes (optional)
+  
   cc: null,
-  // EmailAddressesTypes (optional)
+  
   bcc: null,
-  // Array<MailAttachment> | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
+    // (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
   attachments: [
     {
       filename: "message.txt",
       data: "aGVsbG8gdGhlcmUK",
     },
   ],
-  // number | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
+    // (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
   id: 5000,
 };
 
-apiInstance.sendAdvMail(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.sendAdvMail(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -103,26 +102,25 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, SendingApi } from '';
+import type { SendingApiSendMailRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .SendingApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new SendingApi(configuration);
 
-let body:.SendingApiSendMailRequest = {
-  // string | The Contact whom is the primary recipient of this email.
+const request: SendingApiSendMailRequest = {
+    // The Contact whom is the primary recipient of this email.
   to: "johndoe@company.com",
-  // string | The contact whom is the this email is from.
+    // The contact whom is the this email is from.
   _from: "janedoe@company.com",
-  // string | The subject or title of the email
+    // The subject or title of the email
   subject: "Attention Client",
-  // string | The main email contents.
+    // The main email contents.
   body: "This is an email to inform you that something noteworthy happened.",
 };
 
-apiInstance.sendMail(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.sendMail(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

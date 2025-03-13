@@ -8,9 +8,17 @@
 
 type t = {
     (* The filename of the attached file. *)
-    filename: string;
+      filename: string
+          
+          
+        
+        ; [@key "filename"]
     (* The file contents base64 encoded *)
-    data: string;
+      data: string
+          
+          
+        
+        ; [@key "data"]
 } [@@deriving yojson { strict = false }, show ];;
 
 (** (optional) File attachments to include in the email.  The file contents must be base64 *)

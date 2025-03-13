@@ -16,7 +16,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
-import okhttp3.OkHttpClient
+import okhttp3.Call
 import okhttp3.HttpUrl
 
 import org.openapitools.client.models.ErrorMessage
@@ -39,7 +39,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -48,6 +48,7 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * GET /mail/stats
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
      * @return kotlin.collections.List<GetStats200ResponseInner>
@@ -78,6 +79,7 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * GET /mail/stats
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
      * @return ApiResponse<kotlin.collections.List<GetStats200ResponseInner>?>
@@ -116,6 +118,7 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * GET /mail/log
      * displays the mail log
      * Get a listing of the emails sent through this system 
      * @param id The ID of your mail order this will be sent through. (optional)
@@ -159,6 +162,7 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * GET /mail/log
      * displays the mail log
      * Get a listing of the emails sent through this system 
      * @param id The ID of your mail order this will be sent through. (optional)

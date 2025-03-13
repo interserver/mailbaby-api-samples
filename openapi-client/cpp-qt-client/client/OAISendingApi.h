@@ -72,7 +72,7 @@ public:
     * @param[in]  attachments QList<OAIMailAttachment> [optional]
     * @param[in]  id qint64 [optional]
     */
-    void sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressTypes &from, const OAIEmailAddressesTypes &to, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &replyto = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &cc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &bcc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments = ::OpenAPI::OptionalParam<QList<OAIMailAttachment>>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
+    virtual void sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressTypes &from, const OAIEmailAddressesTypes &to, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &replyto = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &cc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &bcc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments = ::OpenAPI::OptionalParam<QList<OAIMailAttachment>>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
 
     /**
     * @param[in]  to QString [required]
@@ -80,7 +80,7 @@ public:
     * @param[in]  subject QString [required]
     * @param[in]  body QString [required]
     */
-    void sendMail(const QString &to, const QString &from, const QString &subject, const QString &body);
+    virtual void sendMail(const QString &to, const QString &from, const QString &subject, const QString &body);
 
 
 private:
@@ -112,6 +112,7 @@ Q_SIGNALS:
 
     void sendAdvMailSignal(OAIGenericResponse summary);
     void sendMailSignal(OAIGenericResponse summary);
+
 
     void sendAdvMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void sendMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);

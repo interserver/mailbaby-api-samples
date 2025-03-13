@@ -24,13 +24,21 @@
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from openapi_mail_attachment:openapi_mail_attachment(), null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_api.erl
+[main] WARN  o.o.codegen.DefaultGenerator - Duplicate file path detected. Not all operating systems can handle case sensitive file paths. path=/home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi_statem.erl
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/rebar.config
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/erlang-proper/src/openapi.app.src

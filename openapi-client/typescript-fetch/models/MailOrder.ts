@@ -72,10 +72,15 @@ export function MailOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function MailOrderToJSON(value?: MailOrder | null): any {
+export function MailOrderToJSON(json: any): MailOrder {
+    return MailOrderToJSONTyped(json, false);
+}
+
+export function MailOrderToJSONTyped(value?: MailOrder | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'id': value['id'],

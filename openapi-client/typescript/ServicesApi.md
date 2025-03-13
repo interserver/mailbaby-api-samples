@@ -16,17 +16,15 @@ This will return a list of the mail orders you have in our system including thei
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, ServicesApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .ServicesApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new ServicesApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getMailOrders(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getMailOrders(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

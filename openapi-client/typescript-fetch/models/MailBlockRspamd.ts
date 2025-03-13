@@ -57,10 +57,15 @@ export function MailBlockRspamdFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function MailBlockRspamdToJSON(value?: MailBlockRspamd | null): any {
+export function MailBlockRspamdToJSON(json: any): MailBlockRspamd {
+    return MailBlockRspamdToJSONTyped(json, false);
+}
+
+export function MailBlockRspamdToJSONTyped(value?: MailBlockRspamd | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
+
     return {
         
         'from': value['from'],

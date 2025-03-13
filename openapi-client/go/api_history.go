@@ -295,49 +295,49 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	localVarFormParams := url.Values{}
 
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.origin != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "origin", r.origin, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "origin", r.origin, "form", "")
 	}
 	if r.mx != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mx", r.mx, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mx", r.mx, "form", "")
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.subject != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "form", "")
 	}
 	if r.mailid != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mailid", r.mailid, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mailid", r.mailid, "form", "")
 	}
 	if r.skip != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "form", "")
 	} else {
 		var defaultValue int32 = 0
 		r.skip = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
 		var defaultValue int32 = 100
 		r.limit = &defaultValue
 	}
 	if r.startDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "form", "")
 	}
 	if r.endDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "form", "")
 	}
 	if r.replyto != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "replyto", r.replyto, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "replyto", r.replyto, "form", "")
 	}
 	if r.headerfrom != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

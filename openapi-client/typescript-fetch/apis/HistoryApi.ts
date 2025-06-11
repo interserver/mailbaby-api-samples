@@ -16,17 +16,21 @@
 import * as runtime from '../runtime';
 import type {
   ErrorMessage,
-  GetStats200ResponseInner,
   MailLog,
+  MailStatsType,
 } from '../models/index';
 import {
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
-    GetStats200ResponseInnerFromJSON,
-    GetStats200ResponseInnerToJSON,
     MailLogFromJSON,
     MailLogToJSON,
+    MailStatsTypeFromJSON,
+    MailStatsTypeToJSON,
 } from '../models/index';
+
+export interface GetStatsRequest {
+    time?: GetStatsTimeEnum;
+}
 
 export interface ViewMailLogRequest {
     id?: number;
@@ -42,6 +46,7 @@ export interface ViewMailLogRequest {
     endDate?: number;
     replyto?: string;
     headerfrom?: string;
+    delivered?: ViewMailLogDeliveredEnum;
 }
 
 /**
@@ -53,8 +58,12 @@ export class HistoryApi extends runtime.BaseAPI {
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
      */
-    async getStatsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetStats200ResponseInner>>> {
+    async getStatsRaw(requestParameters: GetStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailStatsType>> {
         const queryParameters: any = {};
+
+        if (requestParameters['time'] != null) {
+            queryParameters['time'] = requestParameters['time'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -69,15 +78,15 @@ export class HistoryApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GetStats200ResponseInnerFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => MailStatsTypeFromJSON(jsonValue));
     }
 
     /**
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
      */
-    async getStats(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetStats200ResponseInner>> {
-        const response = await this.getStatsRaw(initOverrides);
+    async getStats(requestParameters: GetStatsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<MailStatsType> {
+        const response = await this.getStatsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -140,6 +149,10 @@ export class HistoryApi extends runtime.BaseAPI {
             queryParameters['headerfrom'] = requestParameters['headerfrom'];
         }
 
+        if (requestParameters['delivered'] != null) {
+            queryParameters['delivered'] = requestParameters['delivered'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -166,3 +179,25 @@ export class HistoryApi extends runtime.BaseAPI {
     }
 
 }
+
+/**
+ * @export
+ */
+export const GetStatsTimeEnum = {
+    All: 'all',
+    Billing: 'billing',
+    Month: 'month',
+    _7d: '7d',
+    _24h: '24h',
+    _1d: '1d',
+    _1h: '1h'
+} as const;
+export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTimeEnum];
+/**
+ * @export
+ */
+export const ViewMailLogDeliveredEnum = {
+    _0: '0',
+    _1: '1'
+} as const;
+export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typeof ViewMailLogDeliveredEnum];

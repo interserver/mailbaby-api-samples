@@ -10,7 +10,6 @@ Private/OpenAPIEmailAddressTypes.cpp
 Private/OpenAPIEmailAddressesTypes.cpp
 Private/OpenAPIErrorMessage.cpp
 Private/OpenAPIGenericResponse.cpp
-Private/OpenAPIGetStats200ResponseInner.cpp
 Private/OpenAPIHelpers.cpp
 Private/OpenAPIHistoryApi.cpp
 Private/OpenAPIHistoryApiOperations.cpp
@@ -21,6 +20,11 @@ Private/OpenAPIMailBlocks.cpp
 Private/OpenAPIMailLog.cpp
 Private/OpenAPIMailLogEntry.cpp
 Private/OpenAPIMailOrder.cpp
+Private/OpenAPIMailStatsType.cpp
+Private/OpenAPIMailStatsTypeVolume.cpp
+Private/OpenAPIMailStatsTypeVolumeFrom.cpp
+Private/OpenAPIMailStatsTypeVolumeIp.cpp
+Private/OpenAPIMailStatsTypeVolumeTo.cpp
 Private/OpenAPIModule.cpp
 Private/OpenAPIModule.h
 Private/OpenAPISendMail.cpp
@@ -41,7 +45,6 @@ Public/OpenAPIEmailAddressTypes.h
 Public/OpenAPIEmailAddressesTypes.h
 Public/OpenAPIErrorMessage.h
 Public/OpenAPIGenericResponse.h
-Public/OpenAPIGetStats200ResponseInner.h
 Public/OpenAPIHelpers.h
 Public/OpenAPIHistoryApi.h
 Public/OpenAPIHistoryApiOperations.h
@@ -52,6 +55,11 @@ Public/OpenAPIMailBlocks.h
 Public/OpenAPIMailLog.h
 Public/OpenAPIMailLogEntry.h
 Public/OpenAPIMailOrder.h
+Public/OpenAPIMailStatsType.h
+Public/OpenAPIMailStatsTypeVolume.h
+Public/OpenAPIMailStatsTypeVolumeFrom.h
+Public/OpenAPIMailStatsTypeVolumeIp.h
+Public/OpenAPIMailStatsTypeVolumeTo.h
 Public/OpenAPISendMail.h
 Public/OpenAPISendMailAdv.h
 Public/OpenAPISendingApi.h

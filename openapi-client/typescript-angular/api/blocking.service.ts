@@ -113,11 +113,12 @@ export class BlockingService extends BaseService {
         }
 
         let localVarPath = `/mail/rules`;
-        return this.httpClient.request<GenericResponse>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<GenericResponse>('post', `${basePath}${localVarPath}`,
             {
                 body: localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
@@ -166,10 +167,11 @@ export class BlockingService extends BaseService {
         }
 
         let localVarPath = `/mail/rules/${this.configuration.encodeParam({name: "ruleId", value: ruleId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: undefined})}`;
-        return this.httpClient.request<GenericResponse>('delete', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<GenericResponse>('delete', `${basePath}${localVarPath}`,
             {
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
@@ -228,11 +230,12 @@ export class BlockingService extends BaseService {
         }
 
         let localVarPath = `/mail/blocks/delete`;
-        return this.httpClient.request<GenericResponse>('post', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<GenericResponse>('post', `${basePath}${localVarPath}`,
             {
                 body: body,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
@@ -276,10 +279,11 @@ export class BlockingService extends BaseService {
         }
 
         let localVarPath = `/mail/blocks`;
-        return this.httpClient.request<MailBlocks>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<MailBlocks>('get', `${basePath}${localVarPath}`,
             {
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
@@ -324,10 +328,11 @@ export class BlockingService extends BaseService {
         }
 
         let localVarPath = `/mail/rules`;
-        return this.httpClient.request<Array<DenyRuleRecord>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<DenyRuleRecord>>('get', `${basePath}${localVarPath}`,
             {
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress

@@ -74,8 +74,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -99,8 +99,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -124,8 +124,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -190,8 +190,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -215,8 +215,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -240,8 +240,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -306,8 +306,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -331,8 +331,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -356,8 +356,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -427,8 +427,8 @@ h4. Responses
       "description" : "The `from` value returned in the response can be used as the `email` parameter in `DELETE /mail/blocks`."
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -452,8 +452,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -477,8 +477,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -544,8 +544,8 @@ h4. Responses
       "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -569,8 +569,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -594,8 +594,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -616,22 +616,22 @@ h4. Parameters
 
 
 
+h5. Query Parameters
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |time |The timeframe for the statistics. | String | (x) |null |  | [all, billing, month, 7d, 24h, 1d, 1h] |
 ----
 h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
     	|| Message | OK |
-    	|| Response Type | array[getStats_200_response_inner] |
-    	|| Response Model | [array[getStats_200_response_inner] Model|#array[getStats_200_response_inner]ModelAnchor|Jump to model] |
+    	|| Response Type | MailStatsType |
+    	|| Response Model | [MailStatsType Model|#MailStatsTypeModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
   "description" : "OK",
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/getStats_200_response_inner"
-        }
+        "$ref" : "#/components/schemas/MailStatsType"
       }
     }
   },
@@ -669,8 +669,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -694,8 +694,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -718,7 +718,7 @@ h4. Parameters
 
 h5. Query Parameters
         ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||origin |originating ip address sending mail | String | (x) |null |  |  ||mx |mx record mail was sent to | String | (x) |null |  |  ||from |from email address | String | (x) |null |  |  ||to |to/destination email address | String | (x) |null |  |  ||subject |subject containing this string | String | (x) |null |  |  ||mailid |mail id | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  ||startDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||endDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||replyto |Reply-To Email Address | String | (x) |null |  |  ||headerfrom |Header From Email Address | String | (x) |null |  |  |
+        |id |The ID of your mail order this will be sent through. | Long | (x) |null |  |  ||origin |originating ip address sending mail | String | (x) |null |  |  ||mx |mx record mail was sent to | String | (x) |null |  |  ||from |from email address | String | (x) |null |  |  ||to |to/destination email address | String | (x) |null |  |  ||subject |subject containing this string | String | (x) |null |  |  ||mailid |mail id | String | (x) |null |  |  ||skip |number of records to skip for pagination | Integer | (x) |0 |  |  ||limit |maximum number of records to return | Integer | (x) |100 |  |  ||startDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||endDate |earliest date to get emails in unix timestamp format | Long | (x) |null |  |  ||replyto |Reply-To Email Address | String | (x) |null |  |  ||headerfrom |Header From Email Address | String | (x) |null |  |  ||delivered |Limiting the emails to wether or not they were delivered. | String | (x) |null |  | [0, 1] |
 ----
 h4. Responses
 
@@ -755,6 +755,7 @@ h4. Responses
               "sendingZone" : "interserver",
               "bodySize" : 63,
               "seq" : 1,
+              "delivered" : 1,
               "recipient" : "client@isp.com",
               "domain" : "interserver.net",
               "locked" : 1,
@@ -769,8 +770,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
@@ -793,7 +794,7 @@ h3. sendAdvMail
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
@@ -804,7 +805,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to&#x3D;support@interserver.net
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
@@ -816,7 +817,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data &quot;to[0\][email\]&#x3D;support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
@@ -827,7 +828,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to&#x3D;&quot;Joe &lt;support@interserver.net&gt;&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
@@ -838,7 +839,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data &quot;to&#x3D;support@interserver.net, support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
@@ -849,7 +850,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data &quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/x-www-form-urlencoded&#39; \\
@@ -863,7 +864,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data &quot;to[1\][email\]&#x3D;support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/json&#39; \\
@@ -876,7 +877,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 \}&#39;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/json&#39; \\
@@ -889,7 +890,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 \}&#39;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header &#39;Accept: application/json&#39; \\
 --header &#39;Content-Type: application/json&#39; \\
@@ -953,8 +954,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -978,8 +979,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -1003,8 +1004,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -1068,8 +1069,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -1093,8 +1094,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -1118,8 +1119,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -1182,8 +1183,8 @@ h4. Responses
       "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`."
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
@@ -1207,8 +1208,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
@@ -1232,8 +1233,8 @@ h4. Responses
       }
     }
   }
-}{code} |
-       
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
 
 {panel}
 
@@ -1353,19 +1354,6 @@ h2. Models
         ||Field Name||Required||Type||Description||Enum||Example||
          |status |(x) |{noformat:nopanel=true}String{noformat} |  |  | ok
          |text |(x) |{noformat:nopanel=true}String{noformat} |  |  | The command completed successfully.
-         
-        {anchor:GetStats200ResponseInnerModelAnchor}
-        h3. GetStats200ResponseInner
-
-        
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |id |(/) |{noformat:nopanel=true}Integer{noformat} |  |  | 1234
-         |status |(/) |{noformat:nopanel=true}String{noformat} |  |  | active
-         |username |(/) |{noformat:nopanel=true}String{noformat} |  |  | mb1234
-         |password |(x) |{noformat:nopanel=true}String{noformat} |  |  | guest123
-         |comment |(x) |{noformat:nopanel=true}String{noformat} |  |  | main mail account
          
         {anchor:MailAttachmentModelAnchor}
         h3. MailAttachment
@@ -1489,6 +1477,67 @@ h2. Models
          |status |(/) |{noformat:nopanel=true}String{noformat} | The order status. |  | active
          |username |(/) |{noformat:nopanel=true}String{noformat} | The username to use for this order. |  | mb21472
          |comment |(x) |{noformat:nopanel=true}String{noformat} | Optional order comment. |  | null
+         
+        {anchor:MailStatsTypeModelAnchor}
+        h3. MailStatsType
+
+        Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |time |(x) |{noformat:nopanel=true}String{noformat} |  |  [all, billing, month, 7d, 24h, today, 1h]  | null
+         |usage |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |currency |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |currencySymbol |(x) |{noformat:nopanel=true}String{noformat} |  |  | null
+         |cost |(x) |{noformat:nopanel=true}Double{noformat} |  |  | null
+         |received |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |sent |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |volume |(x) |{noformat:nopanel=true}MailStatsType_volume{noformat} |  |  | null
+         
+        {anchor:MailStatsTypeVolumeModelAnchor}
+        h3. MailStatsTypeVolume
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |to |(x) |{noformat:nopanel=true}MailStatsType_volume_to{noformat} |  |  | null
+         |from |(x) |{noformat:nopanel=true}MailStatsType_volume_from{noformat} |  |  | null
+         |ip |(x) |{noformat:nopanel=true}MailStatsType_volume_ip{noformat} |  |  | null
+         
+        {anchor:MailStatsTypeVolumeFromModelAnchor}
+        h3. MailStatsTypeVolumeFrom
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |billing@somedomain.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |sales@somedomain.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         
+        {anchor:MailStatsTypeVolumeIpModelAnchor}
+        h3. MailStatsTypeVolumeIp
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |1.1.1.1 |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |2.2.2.2 |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |3.3.3.3 |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |4.4.4.4 |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         
+        {anchor:MailStatsTypeVolumeToModelAnchor}
+        h3. MailStatsTypeVolumeTo
+
+        
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |client@domain.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |user@site.net |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |sales@company.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         |client@anothersite.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
         {anchor:SendMailModelAnchor}
         h3. SendMail

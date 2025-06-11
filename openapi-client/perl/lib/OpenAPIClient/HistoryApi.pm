@@ -53,16 +53,22 @@ sub new {
 #
 # Account usage statistics.
 #
+# @param string $time The timeframe for the statistics. (optional)
 {
     my $params = {
+    'time' => {
+        data_type => 'string',
+        description => 'The timeframe for the statistics.',
+        required => '0',
+    },
     };
     __PACKAGE__->method_documentation->{ 'get_stats' } = {
         summary => 'Account usage statistics.',
         params => $params,
-        returns => 'ARRAY[GetStats200ResponseInner]',
+        returns => 'MailStatsType',
         };
 }
-# @return ARRAY[GetStats200ResponseInner]
+# @return MailStatsType
 #
 sub get_stats {
     my ($self, %args) = @_;
@@ -82,6 +88,11 @@ sub get_stats {
     }
     $header_params->{'Content-Type'} = $self->{api_client}->select_header_content_type();
 
+    # query params
+    if ( exists $args{'time'}) {
+        $query_params->{'time'} = $self->{api_client}->to_query_value($args{'time'});
+    }
+
     my $_body_data;
     # authentication setting, if any
     my $auth_settings = [qw(apiKeyAuth )];
@@ -93,7 +104,7 @@ sub get_stats {
     if (!$response) {
         return;
     }
-    my $_response_object = $self->{api_client}->deserialize('ARRAY[GetStats200ResponseInner]', $response);
+    my $_response_object = $self->{api_client}->deserialize('MailStatsType', $response);
     return $_response_object;
 }
 
@@ -115,6 +126,7 @@ sub get_stats {
 # @param int $end_date earliest date to get emails in unix timestamp format (optional)
 # @param string $replyto Reply-To Email Address (optional)
 # @param string $headerfrom Header From Email Address (optional)
+# @param string $delivered Limiting the emails to wether or not they were delivered. (optional)
 {
     my $params = {
     'id' => {
@@ -180,6 +192,11 @@ sub get_stats {
     'headerfrom' => {
         data_type => 'string',
         description => 'Header From Email Address',
+        required => '0',
+    },
+    'delivered' => {
+        data_type => 'string',
+        description => 'Limiting the emails to wether or not they were delivered.',
         required => '0',
     },
     };
@@ -272,6 +289,11 @@ sub view_mail_log {
     # query params
     if ( exists $args{'headerfrom'}) {
         $query_params->{'headerfrom'} = $self->{api_client}->to_query_value($args{'headerfrom'});
+    }
+
+    # query params
+    if ( exists $args{'delivered'}) {
+        $query_params->{'delivered'} = $self->{api_client}->to_query_value($args{'delivered'});
     }
 
     my $_body_data;

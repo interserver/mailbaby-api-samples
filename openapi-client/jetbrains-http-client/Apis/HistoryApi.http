@@ -2,12 +2,12 @@
 
 ### Account usage statistics.
 ## Account usage statistics.
-GET https://api.mailbaby.net/mail/stats
+GET https://api.mailbaby.net/mail/stats?time={{time}}
 Accept: application/json
 X-API-KEY: {{apiKey}}
 
 ### displays the mail log
 ## displays the mail log
-GET https://api.mailbaby.net/mail/log?id={{id}}&origin={{origin}}&mx={{mx}}&from={{from}}&to={{to}}&subject={{subject}}&mailid={{mailid}}&skip={{skip}}&limit={{limit}}&startDate={{startDate}}&endDate={{endDate}}&replyto={{replyto}}&headerfrom={{headerfrom}}
+GET https://api.mailbaby.net/mail/log?id={{id}}&origin={{origin}}&mx={{mx}}&from={{from}}&to={{to}}&subject={{subject}}&mailid={{mailid}}&skip={{skip}}&limit={{limit}}&startDate={{startDate}}&endDate={{endDate}}&replyto={{replyto}}&headerfrom={{headerfrom}}&delivered={{delivered}}
 Accept: application/json
 X-API-KEY: {{apiKey}}

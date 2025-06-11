@@ -14,8 +14,8 @@
 package org.openapitools.api;
 
 import org.openapitools.model.ErrorMessage;
-import org.openapitools.model.GetStats200ResponseInner;
 import org.openapitools.model.MailLog;
+import org.openapitools.model.MailStatsType;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -72,7 +72,8 @@ public class HistoryApiTest {
      */
     @Test
     public void getStatsTest() {
-        //List<GetStats200ResponseInner> response = api.getStats();
+        String time = null;
+        //MailStatsType response = api.getStats(time);
         //assertNotNull(response);
         // TODO: test validations
 
@@ -102,7 +103,8 @@ public class HistoryApiTest {
         Long endDate = null;
         String replyto = null;
         String headerfrom = null;
-        //MailLog response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+        String delivered = null;
+        //MailLog response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
         //assertNotNull(response);
         // TODO: test validations
 

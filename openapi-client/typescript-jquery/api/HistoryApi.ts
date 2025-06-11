@@ -49,15 +49,19 @@ export class HistoryApi {
     /**
      * Returns information about the usage on your mail accounts.
      * @summary Account usage statistics.
+     * @param time The timeframe for the statistics.
      */
-    public getStats(extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
-    { response: JQueryXHR; body: Array<models.GetStats200ResponseInner>;  },
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    { response: JQueryXHR; body: models.MailStatsType;  },
     { response: JQueryXHR; errorThrown: string }
     > {
         let localVarPath = this.basePath + '/mail/stats';
 
         let queryParameters: any = {};
         let headerParams: any = {};
+        if (time !== null && time !== undefined) {
+            queryParameters['time'] = <string><any>time;
+        }
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);
         // to determine the Content-Type header
@@ -95,11 +99,11 @@ export class HistoryApi {
         }
 
         let dfd = $.Deferred<
-            { response: JQueryXHR; body: Array<models.GetStats200ResponseInner>;  },
+            { response: JQueryXHR; body: models.MailStatsType;  },
             { response: JQueryXHR; errorThrown: string }
         >();
         $.ajax(requestOptions).then(
-            (data: Array<models.GetStats200ResponseInner>, textStatus: string, jqXHR: JQueryXHR) =>
+            (data: models.MailStatsType, textStatus: string, jqXHR: JQueryXHR) =>
                 dfd.resolve({response: jqXHR, body: data}),
             (xhr: JQueryXHR, textStatus: string, errorThrown: string) =>
                 dfd.reject({response: xhr, errorThrown: errorThrown})
@@ -123,8 +127,9 @@ export class HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format
      * @param replyto Reply-To Email Address
      * @param headerfrom Header From Email Address
+     * @param delivered Limiting the emails to wether or not they were delivered.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.MailLog;  },
     { response: JQueryXHR; errorThrown: string }
     > {
@@ -170,6 +175,9 @@ export class HistoryApi {
         }
         if (headerfrom !== null && headerfrom !== undefined) {
             queryParameters['headerfrom'] = <string><any>headerfrom;
+        }
+        if (delivered !== null && delivered !== undefined) {
+            queryParameters['delivered'] = <string><any>delivered;
         }
 
         localVarPath = localVarPath + "?" + $.param(queryParameters);

@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * The data for a email deny rule record.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class DenyRuleNew {
   /**
    * The type of deny rule.
@@ -229,15 +229,10 @@ public class DenyRuleNew {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("type");
-    openapiFields.add("data");
-    openapiFields.add("user");
+    openapiFields = new HashSet<String>(Arrays.asList("type", "data", "user"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("type");
-    openapiRequiredFields.add("data");
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("type", "data"));
   }
 
   /**

@@ -10,7 +10,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 <a id="getStats"></a>
 # **getStats**
-> List&lt;GetStats200ResponseInner&gt; getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
@@ -38,8 +38,9 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     HistoryApi apiInstance = new HistoryApi(defaultClient);
+    String time = "all"; // String | The timeframe for the statistics.
     try {
-      List<GetStats200ResponseInner> result = apiInstance.getStats();
+      MailStatsType result = apiInstance.getStats(time);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling HistoryApi#getStats");
@@ -53,11 +54,14 @@ public class Example {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **time** | **String**| The timeframe for the statistics. | [optional] [enum: all, billing, month, 7d, 24h, 1d, 1h] |
 
 ### Return type
 
-[**List&lt;GetStats200ResponseInner&gt;**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -77,7 +81,7 @@ This endpoint does not need any parameter.
 
 <a id="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -118,8 +122,9 @@ public class Example {
     Long endDate = 1673317008L; // Long | earliest date to get emails in unix timestamp format
     String replyto = "replyto_example"; // String | Reply-To Email Address
     String headerfrom = "headerfrom_example"; // String | Header From Email Address
+    String delivered = "0"; // String | Limiting the emails to wether or not they were delivered.
     try {
-      MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+      MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -149,6 +154,7 @@ public class Example {
 | **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] |
 | **replyto** | **String**| Reply-To Email Address | [optional] |
 | **headerfrom** | **String**| Header From Email Address | [optional] |
+| **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] [enum: 0, 1] |
 
 ### Return type
 

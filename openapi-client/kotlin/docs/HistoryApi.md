@@ -10,7 +10,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 <a id="getStats"></a>
 # **getStats**
-> kotlin.collections.List&lt;GetStats200ResponseInner&gt; getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
@@ -23,8 +23,9 @@ Returns information about the usage on your mail accounts.
 //import org.openapitools.client.models.*
 
 val apiInstance = HistoryApi()
+val time : kotlin.String = time_example // kotlin.String | The timeframe for the statistics.
 try {
-    val result : kotlin.collections.List<GetStats200ResponseInner> = apiInstance.getStats()
+    val result : MailStatsType = apiInstance.getStats(time)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#getStats")
@@ -36,11 +37,13 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **time** | **kotlin.String**| The timeframe for the statistics. | [optional] [enum: all, billing, month, 7d, 24h, 1d, 1h] |
 
 ### Return type
 
-[**kotlin.collections.List&lt;GetStats200ResponseInner&gt;**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -56,7 +59,7 @@ Configure apiKeyAuth:
 
 <a id="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -82,8 +85,9 @@ val startDate : kotlin.Long = 1641781008 // kotlin.Long | earliest date to get e
 val endDate : kotlin.Long = 1673317008 // kotlin.Long | earliest date to get emails in unix timestamp format
 val replyto : kotlin.String = replyto_example // kotlin.String | Reply-To Email Address
 val headerfrom : kotlin.String = headerfrom_example // kotlin.String | Header From Email Address
+val delivered : kotlin.String = delivered_example // kotlin.String | Limiting the emails to wether or not they were delivered.
 try {
-    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
+    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#viewMailLog")
@@ -107,9 +111,10 @@ try {
 | **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] |
 | **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] |
 | **replyto** | **kotlin.String**| Reply-To Email Address | [optional] |
+| **headerfrom** | **kotlin.String**| Header From Email Address | [optional] |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **headerfrom** | **kotlin.String**| Header From Email Address | [optional] |
+| **delivered** | **kotlin.String**| Limiting the emails to wether or not they were delivered. | [optional] [enum: 0, 1] |
 
 ### Return type
 

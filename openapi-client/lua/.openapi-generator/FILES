@@ -14,7 +14,6 @@ openapiclient/model/email_address_types.lua
 openapiclient/model/email_addresses_types.lua
 openapiclient/model/error_message.lua
 openapiclient/model/generic_response.lua
-openapiclient/model/get_stats_200_response_inner.lua
 openapiclient/model/mail_attachment.lua
 openapiclient/model/mail_block_click_house.lua
 openapiclient/model/mail_block_rspamd.lua
@@ -22,6 +21,11 @@ openapiclient/model/mail_blocks.lua
 openapiclient/model/mail_log.lua
 openapiclient/model/mail_log_entry.lua
 openapiclient/model/mail_order.lua
+openapiclient/model/mail_stats_type.lua
+openapiclient/model/mail_stats_type_volume.lua
+openapiclient/model/mail_stats_type_volume_from.lua
+openapiclient/model/mail_stats_type_volume_ip.lua
+openapiclient/model/mail_stats_type_volume_to.lua
 openapiclient/model/send_mail.lua
 openapiclient/model/send_mail_adv.lua
 spec/blocking_api_spec.lua
@@ -32,7 +36,6 @@ spec/email_address_types_spec.lua
 spec/email_addresses_types_spec.lua
 spec/error_message_spec.lua
 spec/generic_response_spec.lua
-spec/get_stats_200_response_inner_spec.lua
 spec/history_api_spec.lua
 spec/mail_attachment_spec.lua
 spec/mail_block_click_house_spec.lua
@@ -41,6 +44,11 @@ spec/mail_blocks_spec.lua
 spec/mail_log_entry_spec.lua
 spec/mail_log_spec.lua
 spec/mail_order_spec.lua
+spec/mail_stats_type_spec.lua
+spec/mail_stats_type_volume_from_spec.lua
+spec/mail_stats_type_volume_ip_spec.lua
+spec/mail_stats_type_volume_spec.lua
+spec/mail_stats_type_volume_to_spec.lua
 spec/send_mail_adv_spec.lua
 spec/send_mail_spec.lua
 spec/sending_api_spec.lua

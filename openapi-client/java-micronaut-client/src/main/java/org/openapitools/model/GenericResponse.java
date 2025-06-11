@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   GenericResponse.JSON_PROPERTY_TEXT
 })
 @JsonTypeName("GenericResponse")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-03-13T09:44:54.048451733-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-06-11T03:19:54.195791465-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 @Introspected
 public class GenericResponse {
     public static final String JSON_PROPERTY_STATUS = "status";

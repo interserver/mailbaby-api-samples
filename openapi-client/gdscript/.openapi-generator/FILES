@@ -21,7 +21,6 @@ models/EmailAddressTypes.gd
 models/EmailAddressesTypes.gd
 models/ErrorMessage.gd
 models/GenericResponse.gd
-models/GetStats200ResponseInner.gd
 models/MailAttachment.gd
 models/MailBlockClickHouse.gd
 models/MailBlockRspamd.gd
@@ -29,5 +28,10 @@ models/MailBlocks.gd
 models/MailLog.gd
 models/MailLogEntry.gd
 models/MailOrder.gd
+models/MailStatsType.gd
+models/MailStatsTypeVolume.gd
+models/MailStatsTypeVolumeFrom.gd
+models/MailStatsTypeVolumeIp.gd
+models/MailStatsTypeVolumeTo.gd
 models/SendMail.gd
 models/SendMailAdv.gd

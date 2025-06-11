@@ -15,14 +15,15 @@ import { HttpClient } from 'aurelia-http-client';
 import { Api } from './Api';
 import { AuthStorage } from './AuthStorage';
 import {
-  GetStats200ResponseInner,
   MailLog,
+  MailStatsType,
 } from './models';
 
 /**
  * getStats - parameters interface
  */
 export interface IGetStatsParams {
+  time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h';
 }
 
 /**
@@ -42,6 +43,7 @@ export interface IViewMailLogParams {
   endDate?: number;
   replyto?: string;
   headerfrom?: string;
+  delivered?: '0' | '1';
 }
 
 /**
@@ -63,8 +65,9 @@ export class HistoryApi extends Api {
   /**
    * Account usage statistics.
    * Returns information about the usage on your mail accounts.
+   * @param params.time The timeframe for the statistics.
    */
-  async getStats(): Promise<Array<GetStats200ResponseInner>> {
+  async getStats(params: IGetStatsParams): Promise<MailStatsType> {
     // Verify required parameters are set
 
     // Create URL to call
@@ -73,6 +76,10 @@ export class HistoryApi extends Api {
     const response = await this.httpClient.createRequest(url)
       // Set HTTP method
       .asGet()
+      // Set query parameters
+      .withParams({ 
+        'time': params['time'],
+      })
 
       // Authentication 'apiKeyAuth' required
       .withHeader('X-API-KEY', this.authStorage.getapiKeyAuth())
@@ -103,6 +110,7 @@ export class HistoryApi extends Api {
    * @param params.endDate earliest date to get emails in unix timestamp format
    * @param params.replyto Reply-To Email Address
    * @param params.headerfrom Header From Email Address
+   * @param params.delivered Limiting the emails to wether or not they were delivered.
    */
   async viewMailLog(params: IViewMailLogParams): Promise<MailLog> {
     // Verify required parameters are set
@@ -128,6 +136,7 @@ export class HistoryApi extends Api {
         'endDate': params['endDate'],
         'replyto': params['replyto'],
         'headerfrom': params['headerfrom'],
+        'delivered': params['delivered'],
       })
 
       // Authentication 'apiKeyAuth' required

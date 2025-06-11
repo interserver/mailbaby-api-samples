@@ -35,13 +35,13 @@ export interface DenyRuleRecord {
     user?: string;
 }
 export namespace DenyRuleRecord {
-    export type TypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
     export const TypeEnum = {
-        Domain: 'domain' as TypeEnum,
-        Email: 'email' as TypeEnum,
-        Startswith: 'startswith' as TypeEnum,
-        Destination: 'destination' as TypeEnum
-    };
+        Domain: 'domain',
+        Email: 'email',
+        Startswith: 'startswith',
+        Destination: 'destination'
+    } as const;
+    export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }
 
 

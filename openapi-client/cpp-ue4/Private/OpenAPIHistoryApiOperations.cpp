@@ -23,9 +23,85 @@
 namespace OpenAPI
 {
 
+inline FString ToString(const OpenAPIHistoryApi::GetStatsRequest::TimeEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::All:
+		return TEXT("all");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Billing:
+		return TEXT("billing");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Month:
+		return TEXT("month");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_7d:
+		return TEXT("7d");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_24h:
+		return TEXT("24h");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_1d:
+		return TEXT("1d");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_1h:
+		return TEXT("1h");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::GetStatsRequest::TimeEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIHistoryApi::GetStatsRequest::EnumToString(const OpenAPIHistoryApi::GetStatsRequest::TimeEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::GetStatsRequest::TimeEnum& Value)
+{
+	static TMap<FString, OpenAPIHistoryApi::GetStatsRequest::TimeEnum> StringToEnum = { 
+		{ TEXT("all"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::All },
+		{ TEXT("billing"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Billing },
+		{ TEXT("month"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Month },
+		{ TEXT("7d"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_7d },
+		{ TEXT("24h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_24h },
+		{ TEXT("1d"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_1d },
+		{ TEXT("1h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_1h }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIHistoryApi::GetStatsRequest::EnumFromString(const FString& EnumAsString, OpenAPIHistoryApi::GetStatsRequest::TimeEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIHistoryApi::GetStatsRequest::TimeEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIHistoryApi::GetStatsRequest::TimeEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
 FString OpenAPIHistoryApi::GetStatsRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail/stats"));
+	TArray<FString> QueryParams;
+	if(Time.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("time=")) + ToUrlString(Time.GetValue()));
+	}
+	Path += TCHAR('?');
+	Path += FString::Join(QueryParams, TEXT("&"));
+
 	return Path;
 }
 
@@ -58,6 +134,59 @@ void OpenAPIHistoryApi::GetStatsResponse::SetHttpResponseCode(EHttpResponseCodes
 bool OpenAPIHistoryApi::GetStatsResponse::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 {
 	return TryGetJsonValue(JsonValue, Content);
+}
+
+inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_0:
+		return TEXT("0");
+	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_1:
+		return TEXT("1");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIHistoryApi::ViewMailLogRequest::EnumToString(const OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& Value)
+{
+	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum> StringToEnum = { 
+		{ TEXT("0"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_0 },
+		{ TEXT("1"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_1 }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIHistoryApi::ViewMailLogRequest::EnumFromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
 }
 
 FString OpenAPIHistoryApi::ViewMailLogRequest::ComputePath() const
@@ -115,6 +244,10 @@ FString OpenAPIHistoryApi::ViewMailLogRequest::ComputePath() const
 	if(Headerfrom.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("headerfrom=")) + ToUrlString(Headerfrom.GetValue()));
+	}
+	if(Delivered.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("delivered=")) + ToUrlString(Delivered.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));

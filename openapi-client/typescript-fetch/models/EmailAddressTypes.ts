@@ -19,13 +19,6 @@ import {
     EmailAddressNameFromJSONTyped,
     EmailAddressNameToJSON,
 } from './EmailAddressName';
-import type { string } from './string';
-import {
-    instanceOfstring,
-    stringFromJSON,
-    stringFromJSONTyped,
-    stringToJSON,
-} from './string';
 
 /**
  * @type EmailAddressTypes
@@ -42,11 +35,11 @@ export function EmailAddressTypesFromJSONTyped(json: any, ignoreDiscriminator: b
     if (json == null) {
         return json;
     }
+    if (typeof json !== 'object') {
+        return json;
+    }
     if (instanceOfEmailAddressName(json)) {
         return EmailAddressNameFromJSONTyped(json, true);
-    }
-    if (instanceOfstring(json)) {
-        return stringFromJSONTyped(json, true);
     }
 
     return {} as any;
@@ -60,12 +53,11 @@ export function EmailAddressTypesToJSONTyped(value?: EmailAddressTypes | null, i
     if (value == null) {
         return value;
     }
-
+    if (typeof value !== 'object') {
+        return value;
+    }
     if (instanceOfEmailAddressName(value)) {
         return EmailAddressNameToJSON(value as EmailAddressName);
-    }
-    if (instanceOfstring(value)) {
-        return stringToJSON(value as string);
     }
 
     return {};

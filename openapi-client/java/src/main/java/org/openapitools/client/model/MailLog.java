@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Mail log records
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class MailLog {
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -210,18 +210,10 @@ public class MailLog {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("total");
-    openapiFields.add("skip");
-    openapiFields.add("limit");
-    openapiFields.add("emails");
+    openapiFields = new HashSet<String>(Arrays.asList("total", "skip", "limit", "emails"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("total");
-    openapiRequiredFields.add("skip");
-    openapiRequiredFields.add("limit");
-    openapiRequiredFields.add("emails");
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("total", "skip", "limit", "emails"));
   }
 
   /**

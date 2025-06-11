@@ -27,8 +27,11 @@ import io.gsonfire.TypeSelector;
 import okio.ByteString;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -93,7 +96,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.EmailAddressesTypes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.ErrorMessage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GenericResponse.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.GetStats200ResponseInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailAttachment.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailBlockClickHouse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailBlockRspamd.CustomTypeAdapterFactory());
@@ -101,6 +103,11 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailLog.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailLogEntry.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailOrder.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailStatsType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailStatsTypeVolume.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailStatsTypeVolumeFrom.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailStatsTypeVolumeIp.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.MailStatsTypeVolumeTo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMail.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new org.openapitools.client.model.SendMailAdv.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
@@ -164,6 +171,28 @@ public class JSON {
                 return (T) body;
             } else {
                 throw (e);
+            }
+        }
+    }
+
+    /**
+    * Deserialize the given JSON InputStream to a Java object.
+    *
+    * @param <T>         Type
+    * @param inputStream The JSON InputStream
+    * @param returnType  The type to deserialize into
+    * @return The deserialized Java object
+    */
+    @SuppressWarnings("unchecked")
+    public static <T> T deserialize(InputStream inputStream, Type returnType) throws IOException {
+        try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+        if (isLenientOnJson) {
+            // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
+            JsonReader jsonReader = new JsonReader(reader);
+            jsonReader.setLenient(true);
+            return gson.fromJson(jsonReader, returnType);
+            } else {
+                return gson.fromJson(reader, returnType);
             }
         }
     }

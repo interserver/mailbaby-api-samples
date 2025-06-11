@@ -25,7 +25,6 @@ docs/email_address_types.md
 docs/email_addresses_types.md
 docs/error_message.md
 docs/generic_response.md
-docs/get_stats_200_response_inner.md
 docs/mail_attachment.md
 docs/mail_block_click_house.md
 docs/mail_block_rspamd.md
@@ -33,6 +32,11 @@ docs/mail_blocks.md
 docs/mail_log.md
 docs/mail_log_entry.md
 docs/mail_order.md
+docs/mail_stats_type.md
+docs/mail_stats_type_volume.md
+docs/mail_stats_type_volume_from.md
+docs/mail_stats_type_volume_ip.md
+docs/mail_stats_type_volume_to.md
 docs/send_mail.md
 docs/send_mail_adv.md
 external/cJSON.c
@@ -58,8 +62,6 @@ model/error_message.c
 model/error_message.h
 model/generic_response.c
 model/generic_response.h
-model/get_stats_200_response_inner.c
-model/get_stats_200_response_inner.h
 model/mail_attachment.c
 model/mail_attachment.h
 model/mail_block_click_house.c
@@ -74,6 +76,16 @@ model/mail_log_entry.c
 model/mail_log_entry.h
 model/mail_order.c
 model/mail_order.h
+model/mail_stats_type.c
+model/mail_stats_type.h
+model/mail_stats_type_volume.c
+model/mail_stats_type_volume.h
+model/mail_stats_type_volume_from.c
+model/mail_stats_type_volume_from.h
+model/mail_stats_type_volume_ip.c
+model/mail_stats_type_volume_ip.h
+model/mail_stats_type_volume_to.c
+model/mail_stats_type_volume_to.h
 model/object.c
 model/object.h
 model/send_mail.c
@@ -92,7 +104,6 @@ unit-test/test_email_address_types.c
 unit-test/test_email_addresses_types.c
 unit-test/test_error_message.c
 unit-test/test_generic_response.c
-unit-test/test_get_stats_200_response_inner.c
 unit-test/test_mail_attachment.c
 unit-test/test_mail_block_click_house.c
 unit-test/test_mail_block_rspamd.c
@@ -100,5 +111,10 @@ unit-test/test_mail_blocks.c
 unit-test/test_mail_log.c
 unit-test/test_mail_log_entry.c
 unit-test/test_mail_order.c
+unit-test/test_mail_stats_type.c
+unit-test/test_mail_stats_type_volume.c
+unit-test/test_mail_stats_type_volume_from.c
+unit-test/test_mail_stats_type_volume_ip.c
+unit-test/test_mail_stats_type_volume_to.c
 unit-test/test_send_mail.c
 unit-test/test_send_mail_adv.c

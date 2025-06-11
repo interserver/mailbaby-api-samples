@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class MailAttachment {
   public static final String SERIALIZED_NAME_FILENAME = "filename";
   @SerializedName(SERIALIZED_NAME_FILENAME)
@@ -147,14 +147,10 @@ public class MailAttachment {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("filename");
-    openapiFields.add("data");
+    openapiFields = new HashSet<String>(Arrays.asList("filename", "data"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("filename");
-    openapiRequiredFields.add("data");
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("filename", "data"));
   }
 
   /**

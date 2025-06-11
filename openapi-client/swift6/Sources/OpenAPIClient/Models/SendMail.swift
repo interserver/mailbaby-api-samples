@@ -8,7 +8,7 @@
 import Foundation
 
 /** Details for an Email */
-public struct SendMail: Sendable, Codable, JSONEncodable, Hashable {
+public struct SendMail: Sendable, Codable, ParameterConvertible, Hashable {
 
     /** The Contact whom is the primary recipient of this email. */
     public var to: String

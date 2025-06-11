@@ -12,7 +12,7 @@ Method | HTTP request | Description
 # **get_stats**   { #get_stats }
 <a name="get_stats"></a>
 
-> `get_stats( on_success: Callable, on_failure: Callable)`
+> `get_stats(some_timenull = "", on_success: Callable, on_failure: Callable)`
 
 Account usage statistics.
 
@@ -39,10 +39,13 @@ var api = HistoryApi.new(config)
 
 # Invoke an endpoint
 api.get_stats(
+	# some_timenull: String = ""   Eg: some_timenull_example
+	# The timeframe for the statistics.
+	some_timenull,
 	# On Success
 	func(response):  # response is ApiResponse
 		prints("Success!", "get_stats", response)
-		assert(response.data is getStats_200_response_inner)
+		assert(response.data is MailStatsType)
 		pass  # do things, make stuff
 		,
 	# On Error
@@ -56,7 +59,7 @@ api.get_stats(
 # **view_mail_log**   { #view_mail_log }
 <a name="view_mail_log"></a>
 
-> `view_mail_log(id = null,origin = "",mx = "",from = "",to = "",subject = "",mailid = "",skip = 0,limit = 100,startDate = null,endDate = null,replyto = "",headerfrom = "", on_success: Callable, on_failure: Callable)`
+> `view_mail_log(id = null,origin = "",mx = "",from = "",to = "",subject = "",mailid = "",skip = 0,limit = 100,startDate = null,endDate = null,replyto = "",headerfrom = "",delivered = "", on_success: Callable, on_failure: Callable)`
 
 displays the mail log
 
@@ -122,6 +125,9 @@ api.view_mail_log(
 	# headerfrom: String = ""   Eg: headerfrom_example
 	# Header From Email Address
 	headerfrom,
+	# delivered: String = ""   Eg: delivered_example
+	# Limiting the emails to wether or not they were delivered.
+	delivered,
 	# On Success
 	func(response):  # response is ApiResponse
 		prints("Success!", "view_mail_log", response)

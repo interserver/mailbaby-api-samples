@@ -74,10 +74,11 @@ export class ServicesService extends BaseService {
         }
 
         let localVarPath = `/mail`;
-        return this.httpClient.request<Array<MailOrder>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<Array<MailOrder>>('get', `${basePath}${localVarPath}`,
             {
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress

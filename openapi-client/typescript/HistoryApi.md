@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **getStats**
-> Array<GetStats200ResponseInner> getStats()
+> MailStatsType getStats()
 
 Returns information about the usage on your mail accounts.
 
@@ -18,11 +18,15 @@ Returns information about the usage on your mail accounts.
 
 ```typescript
 import { createConfiguration, HistoryApi } from '';
+import type { HistoryApiGetStatsRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new HistoryApi(configuration);
 
-const request = {};
+const request: HistoryApiGetStatsRequest = {
+    // The timeframe for the statistics. (optional)
+  time: "all",
+};
 
 const data = await apiInstance.getStats(request);
 console.log('API called successfully. Returned data:', data);
@@ -30,12 +34,15 @@ console.log('API called successfully. Returned data:', data);
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | [**&#39;all&#39; | &#39;billing&#39; | &#39;month&#39; | &#39;7d&#39; | &#39;24h&#39; | &#39;1d&#39; | &#39;1h&#39;**]**Array<&#39;all&#39; &#124; &#39;billing&#39; &#124; &#39;month&#39; &#124; &#39;7d&#39; &#124; &#39;24h&#39; &#124; &#39;1d&#39; &#124; &#39;1h&#39;>** | The timeframe for the statistics. | (optional) defaults to undefined
 
 
 ### Return type
 
-**Array<GetStats200ResponseInner>**
+**MailStatsType**
 
 ### Authorization
 
@@ -98,6 +105,8 @@ const request: HistoryApiViewMailLogRequest = {
   replyto: "replyto_example",
     // Header From Email Address (optional)
   headerfrom: "headerfrom_example",
+    // Limiting the emails to wether or not they were delivered. (optional)
+  delivered: "0",
 };
 
 const data = await apiInstance.viewMailLog(request);
@@ -122,6 +131,7 @@ Name | Type | Description  | Notes
  **endDate** | [**number**] | earliest date to get emails in unix timestamp format | (optional) defaults to undefined
  **replyto** | [**string**] | Reply-To Email Address | (optional) defaults to undefined
  **headerfrom** | [**string**] | Header From Email Address | (optional) defaults to undefined
+ **delivered** | [**&#39;0&#39; | &#39;1&#39;**]**Array<&#39;0&#39; &#124; &#39;1&#39;>** | Limiting the emails to wether or not they were delivered. | (optional) defaults to undefined
 
 
 ### Return type

@@ -5,15 +5,16 @@
  *
  *)
 
-let get_stats () =
+let get_stats ?time () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/stats" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
+    let uri = Request.maybe_add_query_param uri "time" Enums.show_time time in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
-    Request.read_json_body_as_list_of (JsonSupport.unwrap Get_stats_200_response_inner.of_yojson) resp body
+    Request.read_json_body_as (JsonSupport.unwrap Mail_stats_type.of_yojson) resp body
 
-let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?(skip = 00l) ?(limit = 100100l) ?start_date ?end_date ?replyto ?headerfrom () =
+let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?(skip = 00l) ?(limit = 100100l) ?start_date ?end_date ?replyto ?headerfrom ?delivered () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/log" in
     let headers = Request.default_headers in
@@ -31,6 +32,7 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?(skip = 00l) ?(li
     let uri = Request.maybe_add_query_param uri "endDate" Int64.to_string end_date in
     let uri = Request.maybe_add_query_param uri "replyto" (fun x -> x) replyto in
     let uri = Request.maybe_add_query_param uri "headerfrom" (fun x -> x) headerfrom in
+    let uri = Request.maybe_add_query_param uri "delivered" Enums.show_delivered delivered in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Mail_log.of_yojson) resp body
 

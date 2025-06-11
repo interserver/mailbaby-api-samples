@@ -28,8 +28,8 @@ import java.io.IOException;
 
 
 import org.openapitools.client.model.ErrorMessage;
-import org.openapitools.client.model.GetStats200ResponseInner;
 import org.openapitools.client.model.MailLog;
+import org.openapitools.client.model.MailStatsType;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -76,6 +76,7 @@ public class HistoryApi {
 
     /**
      * Build call for getStats
+     * @param time The timeframe for the statistics. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -88,7 +89,7 @@ public class HistoryApi {
         <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getStatsCall(final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getStatsCall(@javax.annotation.Nullable String time, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -113,6 +114,10 @@ public class HistoryApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (time != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("time", time));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -133,15 +138,16 @@ public class HistoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getStatsValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return getStatsCall(_callback);
+    private okhttp3.Call getStatsValidateBeforeCall(@javax.annotation.Nullable String time, final ApiCallback _callback) throws ApiException {
+        return getStatsCall(time, _callback);
 
     }
 
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
-     * @return List&lt;GetStats200ResponseInner&gt;
+     * @param time The timeframe for the statistics. (optional)
+     * @return MailStatsType
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -152,15 +158,16 @@ public class HistoryApi {
         <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public List<GetStats200ResponseInner> getStats() throws ApiException {
-        ApiResponse<List<GetStats200ResponseInner>> localVarResp = getStatsWithHttpInfo();
+    public MailStatsType getStats(@javax.annotation.Nullable String time) throws ApiException {
+        ApiResponse<MailStatsType> localVarResp = getStatsWithHttpInfo(time);
         return localVarResp.getData();
     }
 
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
-     * @return ApiResponse&lt;List&lt;GetStats200ResponseInner&gt;&gt;
+     * @param time The timeframe for the statistics. (optional)
+     * @return ApiResponse&lt;MailStatsType&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table border="1">
@@ -171,15 +178,16 @@ public class HistoryApi {
         <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<GetStats200ResponseInner>> getStatsWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = getStatsValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<GetStats200ResponseInner>>(){}.getType();
+    public ApiResponse<MailStatsType> getStatsWithHttpInfo(@javax.annotation.Nullable String time) throws ApiException {
+        okhttp3.Call localVarCall = getStatsValidateBeforeCall(time, null);
+        Type localVarReturnType = new TypeToken<MailStatsType>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Account usage statistics. (asynchronously)
      * Returns information about the usage on your mail accounts.
+     * @param time The timeframe for the statistics. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -192,10 +200,10 @@ public class HistoryApi {
         <tr><td> 404 </td><td> Unauthorized </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getStatsAsync(final ApiCallback<List<GetStats200ResponseInner>> _callback) throws ApiException {
+    public okhttp3.Call getStatsAsync(@javax.annotation.Nullable String time, final ApiCallback<MailStatsType> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getStatsValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<GetStats200ResponseInner>>(){}.getType();
+        okhttp3.Call localVarCall = getStatsValidateBeforeCall(time, _callback);
+        Type localVarReturnType = new TypeToken<MailStatsType>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -214,6 +222,7 @@ public class HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @param replyto Reply-To Email Address (optional)
      * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -225,7 +234,7 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call viewMailLogCall(@javax.annotation.Nullable Long id, @javax.annotation.Nullable String origin, @javax.annotation.Nullable String mx, @javax.annotation.Nullable String from, @javax.annotation.Nullable String to, @javax.annotation.Nullable String subject, @javax.annotation.Nullable String mailid, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Long startDate, @javax.annotation.Nullable Long endDate, @javax.annotation.Nullable String replyto, @javax.annotation.Nullable String headerfrom, @javax.annotation.Nullable String delivered, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -302,6 +311,10 @@ public class HistoryApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("headerfrom", headerfrom));
         }
 
+        if (delivered != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("delivered", delivered));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -322,8 +335,8 @@ public class HistoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback _callback) throws ApiException {
-        return viewMailLogCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _callback);
+    private okhttp3.Call viewMailLogValidateBeforeCall(@javax.annotation.Nullable Long id, @javax.annotation.Nullable String origin, @javax.annotation.Nullable String mx, @javax.annotation.Nullable String from, @javax.annotation.Nullable String to, @javax.annotation.Nullable String subject, @javax.annotation.Nullable String mailid, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Long startDate, @javax.annotation.Nullable Long endDate, @javax.annotation.Nullable String replyto, @javax.annotation.Nullable String headerfrom, @javax.annotation.Nullable String delivered, final ApiCallback _callback) throws ApiException {
+        return viewMailLogCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, _callback);
 
     }
 
@@ -343,6 +356,7 @@ public class HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @param replyto Reply-To Email Address (optional)
      * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return MailLog
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -353,8 +367,8 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) throws ApiException {
-        ApiResponse<MailLog> localVarResp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+    public MailLog viewMailLog(@javax.annotation.Nullable Long id, @javax.annotation.Nullable String origin, @javax.annotation.Nullable String mx, @javax.annotation.Nullable String from, @javax.annotation.Nullable String to, @javax.annotation.Nullable String subject, @javax.annotation.Nullable String mailid, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Long startDate, @javax.annotation.Nullable Long endDate, @javax.annotation.Nullable String replyto, @javax.annotation.Nullable String headerfrom, @javax.annotation.Nullable String delivered) throws ApiException {
+        ApiResponse<MailLog> localVarResp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
         return localVarResp.getData();
     }
 
@@ -374,6 +388,7 @@ public class HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @param replyto Reply-To Email Address (optional)
      * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return ApiResponse&lt;MailLog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -384,8 +399,8 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom) throws ApiException {
-        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, null);
+    public ApiResponse<MailLog> viewMailLogWithHttpInfo(@javax.annotation.Nullable Long id, @javax.annotation.Nullable String origin, @javax.annotation.Nullable String mx, @javax.annotation.Nullable String from, @javax.annotation.Nullable String to, @javax.annotation.Nullable String subject, @javax.annotation.Nullable String mailid, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Long startDate, @javax.annotation.Nullable Long endDate, @javax.annotation.Nullable String replyto, @javax.annotation.Nullable String headerfrom, @javax.annotation.Nullable String delivered) throws ApiException {
+        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, null);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -406,6 +421,7 @@ public class HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @param replyto Reply-To Email Address (optional)
      * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -417,9 +433,9 @@ public class HistoryApi {
         <tr><td> 400 </td><td> bad input parameter </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, final ApiCallback<MailLog> _callback) throws ApiException {
+    public okhttp3.Call viewMailLogAsync(@javax.annotation.Nullable Long id, @javax.annotation.Nullable String origin, @javax.annotation.Nullable String mx, @javax.annotation.Nullable String from, @javax.annotation.Nullable String to, @javax.annotation.Nullable String subject, @javax.annotation.Nullable String mailid, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Long startDate, @javax.annotation.Nullable Long endDate, @javax.annotation.Nullable String replyto, @javax.annotation.Nullable String headerfrom, @javax.annotation.Nullable String delivered, final ApiCallback<MailLog> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _callback);
+        okhttp3.Call localVarCall = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, _callback);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

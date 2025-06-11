@@ -32,11 +32,11 @@ open class StatusAPI {
     open class func pingServerWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
         let localVariablePath = "/ping"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters: [String: any Sendable]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 

@@ -10,7 +10,6 @@ doc/EmailAddressTypes.md
 doc/EmailAddressesTypes.md
 doc/ErrorMessage.md
 doc/GenericResponse.md
-doc/GetStats200ResponseInner.md
 doc/HistoryApi.md
 doc/MailAttachment.md
 doc/MailBlockClickHouse.md
@@ -19,6 +18,11 @@ doc/MailBlocks.md
 doc/MailLog.md
 doc/MailLogEntry.md
 doc/MailOrder.md
+doc/MailStatsType.md
+doc/MailStatsTypeVolume.md
+doc/MailStatsTypeVolumeFrom.md
+doc/MailStatsTypeVolumeIp.md
+doc/MailStatsTypeVolumeTo.md
 doc/SendMail.md
 doc/SendMailAdv.md
 doc/SendingApi.md
@@ -46,7 +50,6 @@ lib/src/model/email_address_types.dart
 lib/src/model/email_addresses_types.dart
 lib/src/model/error_message.dart
 lib/src/model/generic_response.dart
-lib/src/model/get_stats200_response_inner.dart
 lib/src/model/mail_attachment.dart
 lib/src/model/mail_block_click_house.dart
 lib/src/model/mail_block_rspamd.dart
@@ -54,6 +57,11 @@ lib/src/model/mail_blocks.dart
 lib/src/model/mail_log.dart
 lib/src/model/mail_log_entry.dart
 lib/src/model/mail_order.dart
+lib/src/model/mail_stats_type.dart
+lib/src/model/mail_stats_type_volume.dart
+lib/src/model/mail_stats_type_volume_from.dart
+lib/src/model/mail_stats_type_volume_ip.dart
+lib/src/model/mail_stats_type_volume_to.dart
 lib/src/model/send_mail.dart
 lib/src/model/send_mail_adv.dart
 lib/src/serializers.dart
@@ -66,7 +74,6 @@ test/email_address_types_test.dart
 test/email_addresses_types_test.dart
 test/error_message_test.dart
 test/generic_response_test.dart
-test/get_stats200_response_inner_test.dart
 test/history_api_test.dart
 test/mail_attachment_test.dart
 test/mail_block_click_house_test.dart
@@ -75,6 +82,11 @@ test/mail_blocks_test.dart
 test/mail_log_entry_test.dart
 test/mail_log_test.dart
 test/mail_order_test.dart
+test/mail_stats_type_test.dart
+test/mail_stats_type_volume_from_test.dart
+test/mail_stats_type_volume_ip_test.dart
+test/mail_stats_type_volume_test.dart
+test/mail_stats_type_volume_to_test.dart
 test/send_mail_adv_test.dart
 test/send_mail_test.dart
 test/sending_api_test.dart

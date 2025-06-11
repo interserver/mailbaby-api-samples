@@ -7,7 +7,6 @@ export * from './emailAddressTypes';
 export * from './emailAddressesTypes';
 export * from './errorMessage';
 export * from './genericResponse';
-export * from './getStats200ResponseInner';
 export * from './mailAttachment';
 export * from './mailBlockClickHouse';
 export * from './mailBlockRspamd';
@@ -15,6 +14,11 @@ export * from './mailBlocks';
 export * from './mailLog';
 export * from './mailLogEntry';
 export * from './mailOrder';
+export * from './mailStatsType';
+export * from './mailStatsTypeVolume';
+export * from './mailStatsTypeVolumeFrom';
+export * from './mailStatsTypeVolumeIp';
+export * from './mailStatsTypeVolumeTo';
 export * from './sendMail';
 export * from './sendMailAdv';
 
@@ -38,7 +42,6 @@ import { EmailAddressTypes } from './emailAddressTypes';
 import { EmailAddressesTypes } from './emailAddressesTypes';
 import { ErrorMessage } from './errorMessage';
 import { GenericResponse } from './genericResponse';
-import { GetStats200ResponseInner } from './getStats200ResponseInner';
 import { MailAttachment } from './mailAttachment';
 import { MailBlockClickHouse } from './mailBlockClickHouse';
 import { MailBlockRspamd } from './mailBlockRspamd';
@@ -46,6 +49,11 @@ import { MailBlocks } from './mailBlocks';
 import { MailLog } from './mailLog';
 import { MailLogEntry } from './mailLogEntry';
 import { MailOrder } from './mailOrder';
+import { MailStatsType } from './mailStatsType';
+import { MailStatsTypeVolume } from './mailStatsTypeVolume';
+import { MailStatsTypeVolumeFrom } from './mailStatsTypeVolumeFrom';
+import { MailStatsTypeVolumeIp } from './mailStatsTypeVolumeIp';
+import { MailStatsTypeVolumeTo } from './mailStatsTypeVolumeTo';
 import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
 
@@ -64,6 +72,7 @@ let primitives = [
 let enumsMap: {[index: string]: any} = {
         "DenyRuleNew.TypeEnum": DenyRuleNew.TypeEnum,
         "DenyRuleRecord.TypeEnum": DenyRuleRecord.TypeEnum,
+        "MailStatsType.TimeEnum": MailStatsType.TimeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -74,7 +83,6 @@ let typeMap: {[index: string]: any} = {
     "EmailAddressesTypes": EmailAddressesTypes,
     "ErrorMessage": ErrorMessage,
     "GenericResponse": GenericResponse,
-    "GetStats200ResponseInner": GetStats200ResponseInner,
     "MailAttachment": MailAttachment,
     "MailBlockClickHouse": MailBlockClickHouse,
     "MailBlockRspamd": MailBlockRspamd,
@@ -82,6 +90,11 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailLogEntry": MailLogEntry,
     "MailOrder": MailOrder,
+    "MailStatsType": MailStatsType,
+    "MailStatsTypeVolume": MailStatsTypeVolume,
+    "MailStatsTypeVolumeFrom": MailStatsTypeVolumeFrom,
+    "MailStatsTypeVolumeIp": MailStatsTypeVolumeIp,
+    "MailStatsTypeVolumeTo": MailStatsTypeVolumeTo,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
 }

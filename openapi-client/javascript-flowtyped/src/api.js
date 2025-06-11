@@ -219,43 +219,6 @@ export type GenericResponse = {
 }
 
 /**
- * 
- * @export
- */
-export type GetStats200ResponseInner = {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetStats200ResponseInner
-     */
-    id: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetStats200ResponseInner
-     */
-    status: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetStats200ResponseInner
-     */
-    username: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetStats200ResponseInner
-     */
-    password?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetStats200ResponseInner
-     */
-    comment?: string;
-}
-
-/**
  * (optional) File attachments to include in the email.  The file contents must be base64
  * @export
  */
@@ -560,6 +523,169 @@ export type MailOrder = {
      * @memberof MailOrder
      */
     comment?: string;
+}
+
+
+            export type MailStatsTypeTimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'today' | '1h';
+/**
+ * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * @export
+ */
+export type MailStatsType = {
+    /**
+     * 
+     * @type {string}
+     * @memberof MailStatsType
+     */
+    time?: MailStatsTypeTimeEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsType
+     */
+    usage?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailStatsType
+     */
+    currency?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MailStatsType
+     */
+    currencySymbol?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsType
+     */
+    cost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsType
+     */
+    received?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsType
+     */
+    sent?: number;
+    /**
+     * 
+     * @type {MailStatsTypeVolume}
+     * @memberof MailStatsType
+     */
+    volume?: MailStatsTypeVolume;
+}
+
+/**
+ * 
+ * @export
+ */
+export type MailStatsTypeVolume = {
+    /**
+     * 
+     * @type {MailStatsTypeVolumeTo}
+     * @memberof MailStatsTypeVolume
+     */
+    to?: MailStatsTypeVolumeTo;
+    /**
+     * 
+     * @type {MailStatsTypeVolumeFrom}
+     * @memberof MailStatsTypeVolume
+     */
+    from?: MailStatsTypeVolumeFrom;
+    /**
+     * 
+     * @type {MailStatsTypeVolumeIp}
+     * @memberof MailStatsTypeVolume
+     */
+    ip?: MailStatsTypeVolumeIp;
+}
+
+/**
+ * 
+ * @export
+ */
+export type MailStatsTypeVolumeFrom = {
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeFrom
+     */
+    billingsomedomain_com?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeFrom
+     */
+    salessomedomain_com?: number;
+}
+
+/**
+ * 
+ * @export
+ */
+export type MailStatsTypeVolumeIp = {
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeIp
+     */
+    _1_1_1_1?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeIp
+     */
+    _2_2_2_2?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeIp
+     */
+    _3_3_3_3?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeIp
+     */
+    _4_4_4_4?: number;
+}
+
+/**
+ * 
+ * @export
+ */
+export type MailStatsTypeVolumeTo = {
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeTo
+     */
+    clientdomain_com?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeTo
+     */
+    usersite_net?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeTo
+     */
+    salescompany_com?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MailStatsTypeVolumeTo
+     */
+    clientanothersite_com?: number;
 }
 
 /**
@@ -959,7 +1085,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
          * @summary Account usage statistics.
          * @throws {RequiredError}
          */
-        getStats(options: RequestOptions): FetchArgs {
+        getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', options: RequestOptions): FetchArgs {
             const localVarPath = `/mail/stats`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -972,6 +1098,10 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
                     ? configuration.apiKey("X-API-KEY")
                     : configuration.apiKey;
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
+            }
+
+            if (time !== undefined) {
+                localVarQueryParameter['time'] = ((time:any):string);
             }
 
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
@@ -989,7 +1119,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: RequestOptions): FetchArgs {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', options: RequestOptions): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -1056,6 +1186,10 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['headerfrom'] = ((headerfrom:any):string);
             }
 
+            if (delivered !== undefined) {
+                localVarQueryParameter['delivered'] = ((delivered:any):string);
+            }
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
@@ -1070,9 +1204,9 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
 };
 
 export type HistoryApiType = { 
-    getStats(options?: RequestOptions): Promise<Array<GetStats200ResponseInner>>,
+    getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', options?: RequestOptions): Promise<MailStatsType>,
 
-    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RequestOptions): Promise<MailLog>,
+    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', options?: RequestOptions): Promise<MailLog>,
 }
 
 /**
@@ -1087,8 +1221,8 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Account usage statistics.
          * @throws {RequiredError}
          */
-        getStats(options?: RequestOptions = {}): Promise<Array<GetStats200ResponseInner>> {
-            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).getStats(options);
+        getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', options?: RequestOptions = {}): Promise<MailStatsType> {
+            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).getStats(time, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -1102,8 +1236,8 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options?: RequestOptions = {}): Promise<MailLog> {
-            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, options);
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', options?: RequestOptions = {}): Promise<MailLog> {
+            const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -1123,7 +1257,7 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
 export const SendingApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */
@@ -1287,7 +1421,7 @@ export const SendingApi = function(configuration?: Configuration, fetch: FetchAP
     const basePath: string = (configuration && configuration.basePath) || BASE_PATH;
     return {
         /**
-         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+         * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
          * @summary Sends an Email with Advanced Options
          * @throws {RequiredError}
          */

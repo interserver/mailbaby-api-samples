@@ -4,7 +4,7 @@ docs/assets/css/bootstrap.css
 docs/assets/css/style.css
 docs/assets/images/logo.png
 docs/assets/js/bootstrap.js
-docs/assets/js/jquery-1.8.3.min.js
+docs/assets/js/jquery-3.7.1.min.js
 docs/assets/js/main.js
 docs/index.html
 docs/models/DenyRuleNew.html
@@ -14,7 +14,6 @@ docs/models/EmailAddressTypes.html
 docs/models/EmailAddressesTypes.html
 docs/models/ErrorMessage.html
 docs/models/GenericResponse.html
-docs/models/GetStats200ResponseInner.html
 docs/models/MailAttachment.html
 docs/models/MailBlockClickHouse.html
 docs/models/MailBlockRspamd.html
@@ -22,6 +21,11 @@ docs/models/MailBlocks.html
 docs/models/MailLog.html
 docs/models/MailLogEntry.html
 docs/models/MailOrder.html
+docs/models/MailStatsType.html
+docs/models/MailStatsTypeVolume.html
+docs/models/MailStatsTypeVolumeFrom.html
+docs/models/MailStatsTypeVolumeIp.html
+docs/models/MailStatsTypeVolumeTo.html
 docs/models/SendMail.html
 docs/models/SendMailAdv.html
 docs/operations/BlockingApi.html

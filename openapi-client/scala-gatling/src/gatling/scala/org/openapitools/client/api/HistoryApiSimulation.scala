@@ -62,14 +62,17 @@ class HistoryApiSimulation extends Simulation {
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
 
     // Set up CSV feeders
+    val getStatsQUERYFeeder = csv(userDataDirectory + File.separator + "getStats-queryParams.csv").random
     val viewMailLogQUERYFeeder = csv(userDataDirectory + File.separator + "viewMailLog-queryParams.csv").random
 
     // Setup all scenarios
 
     
     val scngetStats = scenario("getStatsSimulation")
+        .feed(getStatsQUERYFeeder)
         .exec(http("getStats")
         .httpRequest("GET","/mail/stats")
+        .queryParam("time","${time}")
 )
 
     // Run scngetStats with warm up and reach a constant rate for entire duration
@@ -84,19 +87,20 @@ class HistoryApiSimulation extends Simulation {
         .feed(viewMailLogQUERYFeeder)
         .exec(http("viewMailLog")
         .httpRequest("GET","/mail/log")
+        .queryParam("skip","${skip}")
+        .queryParam("origin","${origin}")
         .queryParam("limit","${limit}")
         .queryParam("mx","${mx}")
-        .queryParam("replyto","${replyto}")
-        .queryParam("origin","${origin}")
-        .queryParam("from","${from}")
-        .queryParam("mailid","${mailid}")
-        .queryParam("skip","${skip}")
-        .queryParam("startDate","${startDate}")
-        .queryParam("subject","${subject}")
-        .queryParam("endDate","${endDate}")
-        .queryParam("to","${to}")
         .queryParam("headerfrom","${headerfrom}")
+        .queryParam("from","${from}")
+        .queryParam("delivered","${delivered}")
+        .queryParam("replyto","${replyto}")
+        .queryParam("mailid","${mailid}")
+        .queryParam("to","${to}")
+        .queryParam("endDate","${endDate}")
         .queryParam("id","${id}")
+        .queryParam("subject","${subject}")
+        .queryParam("startDate","${startDate}")
 )
 
     // Run scnviewMailLog with warm up and reach a constant rate for entire duration

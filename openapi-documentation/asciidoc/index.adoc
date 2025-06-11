@@ -520,11 +520,24 @@ Returns information about the usage on your mail accounts.
 
 
 
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| time
+| The timeframe for the statistics. 
+| -
+| null
+| 
+
+|===
 
 
 ===== Return Type
 
-array[<<getStats_200_response_inner>>]
+<<MailStatsType>>
 
 
 ===== Content Type
@@ -541,7 +554,7 @@ array[<<getStats_200_response_inner>>]
 
 | 200
 | OK
-| List[<<getStats_200_response_inner>>] 
+|  <<MailStatsType>>
 
 
 | 401
@@ -683,6 +696,12 @@ Get a listing of the emails sent through this system
 | null
 | 
 
+| delivered
+| Limiting the emails to wether or not they were delivered. 
+| -
+| null
+| 
+
 |===
 
 
@@ -749,7 +768,7 @@ Sends an Email with Advanced Options
 
 ===== Description
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
 
 
 // markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
@@ -1380,56 +1399,6 @@ The resposne when an error occurs.
 
 
 
-[#GetStats200ResponseInner]
-=== _GetStats200ResponseInner_ 
-
-
-
-
-[.fields-GetStats200ResponseInner]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
-
-| id
-| X
-| 
-|   Integer  
-| 
-|     
-
-| status
-| X
-| 
-|   String  
-| 
-|     
-
-| username
-| X
-| 
-|   String  
-| 
-|     
-
-| password
-| 
-| 
-|   String  
-| 
-|     
-
-| comment
-| 
-| 
-|   String  
-| 
-|     
-
-|===
-
-
-
 [#MailAttachment]
 === _MailAttachment_ MailAttachment
 
@@ -1831,6 +1800,228 @@ A mail order record
 |   String  
 | Optional order comment.
 |     
+
+|===
+
+
+
+[#MailStatsType]
+=== _MailStatsType_ Root Type for MailStatsType
+
+Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+
+
+[.fields-MailStatsType]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| time
+| 
+| 
+|  <<String>>  
+| 
+|  _Enum:_ all, billing, month, 7d, 24h, today, 1h,  
+
+| usage
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| currency
+| 
+| 
+|   String  
+| 
+|     
+
+| currencySymbol
+| 
+| 
+|   String  
+| 
+|     
+
+| cost
+| 
+| 
+|   Double  
+| 
+| double    
+
+| received
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| sent
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| volume
+| 
+| 
+| <<MailStatsType_volume>>    
+| 
+|     
+
+|===
+
+
+
+[#MailStatsTypeVolume]
+=== _MailStatsTypeVolume_ 
+
+
+
+
+[.fields-MailStatsTypeVolume]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| to
+| 
+| 
+| <<MailStatsType_volume_to>>    
+| 
+|     
+
+| from
+| 
+| 
+| <<MailStatsType_volume_from>>    
+| 
+|     
+
+| ip
+| 
+| 
+| <<MailStatsType_volume_ip>>    
+| 
+|     
+
+|===
+
+
+
+[#MailStatsTypeVolumeFrom]
+=== _MailStatsTypeVolumeFrom_ 
+
+
+
+
+[.fields-MailStatsTypeVolumeFrom]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| billing@somedomain.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| sales@somedomain.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+|===
+
+
+
+[#MailStatsTypeVolumeIp]
+=== _MailStatsTypeVolumeIp_ 
+
+
+
+
+[.fields-MailStatsTypeVolumeIp]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| 1.1.1.1
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| 2.2.2.2
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| 3.3.3.3
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| 4.4.4.4
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+|===
+
+
+
+[#MailStatsTypeVolumeTo]
+=== _MailStatsTypeVolumeTo_ 
+
+
+
+
+[.fields-MailStatsTypeVolumeTo]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| client@domain.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| user@site.net
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| sales@company.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| client@anothersite.com
+| 
+| 
+|   Integer  
+| 
+| int32    
 
 |===
 

@@ -5,7 +5,10 @@
 [main] INFO  o.o.c.languages.AbstractDartCodegen - Environment variable DART_POST_PROCESS_FILE not defined so the Dart code may not be properly formatted. To define it, try `export DART_POST_PROCESS_FILE="/usr/local/bin/dartfmt -w"` (Linux/Mac)
 [main] INFO  o.o.c.languages.AbstractDartCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
 [main] INFO  o.o.c.languages.DartClientCodegen - Using serialization library native_serialization
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
 [main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/deny_rule_new.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/deny_rule_new_test.dart
@@ -28,9 +31,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/generic_response.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/generic_response_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/GenericResponse.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/get_stats200_response_inner.dart
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/get_stats200_response_inner_test.dart
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/GetStats200ResponseInner.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_attachment.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_attachment_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailAttachment.md
@@ -52,12 +52,28 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_order.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_order_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailOrder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_stats_type.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_stats_type_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailStatsType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_stats_type_volume.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_stats_type_volume_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailStatsTypeVolume.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_stats_type_volume_from.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_stats_type_volume_from_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailStatsTypeVolumeFrom.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_stats_type_volume_ip.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_stats_type_volume_ip_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailStatsTypeVolumeIp.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/mail_stats_type_volume_to.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/mail_stats_type_volume_to_test.dart
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/MailStatsTypeVolumeTo.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/send_mail.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/send_mail_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/model/send_mail_adv.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/send_mail_adv_test.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/doc/SendMailAdv.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/lib/api/blocking_api.dart
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/test/blocking_api_test.dart
@@ -92,8 +108,8 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/.openapi-generator-ignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/.openapi-generator/VERSION
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/dart/.openapi-generator/FILES
-################################################################################
-# Thanks for using OpenAPI Generator.                                          #
-# Please consider donation to help us maintain this project 🙏                 #
-# https://opencollective.com/openapi_generator/donate                          #
-################################################################################
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

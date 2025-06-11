@@ -3,7 +3,10 @@
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: crystal (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'crystal' is considered beta.
 [main] INFO  o.o.c.languages.CrystalClientCodegen - Hint: Environment variable 'CRYSTAL_POST_PROCESS_FILE' (optional) not defined. E.g. to format the source code, please try 'export CRYSTAL_POST_PROCESS_FILE="/usr/local/bin/crystal tool format"' (Linux/Mac)
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
 [main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/deny_rule_new.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/deny_rule_new_spec.cr
@@ -19,8 +22,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/error_message_spec.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/generic_response.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/generic_response_spec.cr
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/get_stats200_response_inner.cr
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/get_stats200_response_inner_spec.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_attachment.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_attachment_spec.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_block_click_house.cr
@@ -35,10 +36,21 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_log_entry_spec.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_order.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_order_spec.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_stats_type.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_stats_type_spec.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_stats_type_volume.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_stats_type_volume_spec.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_stats_type_volume_from.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_stats_type_volume_from_spec.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_stats_type_volume_ip.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_stats_type_volume_ip_spec.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/mail_stats_type_volume_to.cr
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/mail_stats_type_volume_to_spec.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/send_mail.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/send_mail_spec.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/models/send_mail_adv.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/models/send_mail_adv_spec.cr
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/api/blocking_api.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/api/blocking_api_spec.cr

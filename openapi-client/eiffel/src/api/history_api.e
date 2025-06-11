@@ -24,12 +24,14 @@ inherit
 feature -- API Access
 
 
-	stats : detachable LIST [GET_STATS_200_RESPONSE_INNER]
+	stats (time: STRING_32): detachable MAIL_STATS_TYPE
 			-- Account usage statistics.
 			-- Returns information about the usage on your mail accounts.
 			-- 
+			-- argument: time The timeframe for the statistics. (optional, default to null)
 			-- 
-			-- Result LIST [GET_STATS_200_RESPONSE_INNER]
+			-- 
+			-- Result MAIL_STATS_TYPE
 		require
 		local
   			l_path: STRING
@@ -40,6 +42,7 @@ feature -- API Access
 			create l_request
 			
 			l_path := "/mail/stats"
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "time", time));
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then
@@ -50,14 +53,14 @@ feature -- API Access
 			l_response := api_client.call_api (l_path, "Get", l_request, Void, agent deserializer)
 			if l_response.has_error then
 				last_error := l_response.error
-			elseif attached { LIST [GET_STATS_200_RESPONSE_INNER] } l_response.data ({ LIST [GET_STATS_200_RESPONSE_INNER] }) as l_data then
+			elseif attached { MAIL_STATS_TYPE } l_response.data ({ MAIL_STATS_TYPE }) as l_data then
 				Result := l_data
 			else
 				create last_error.make ("Unknown error: Status response [ " + l_response.status.out + "]")
 			end
 		end
 
-	view_mail_log (id: INTEGER_64; origin: STRING_32; mx: STRING_32; var_from: STRING_32; to: STRING_32; subject: STRING_32; mailid: STRING_32; skip: INTEGER_32; limit: INTEGER_32; start_date: INTEGER_64; end_date: INTEGER_64; replyto: STRING_32; headerfrom: STRING_32): detachable MAIL_LOG
+	view_mail_log (id: INTEGER_64; origin: STRING_32; mx: STRING_32; var_from: STRING_32; to: STRING_32; subject: STRING_32; mailid: STRING_32; skip: INTEGER_32; limit: INTEGER_32; start_date: INTEGER_64; end_date: INTEGER_64; replyto: STRING_32; headerfrom: STRING_32; delivered: STRING_32): detachable MAIL_LOG
 			-- displays the mail log
 			-- Get a listing of the emails sent through this system 
 			-- 
@@ -86,6 +89,8 @@ feature -- API Access
 			-- argument: replyto Reply-To Email Address (optional, default to null)
 			-- 
 			-- argument: headerfrom Header From Email Address (optional, default to null)
+			-- 
+			-- argument: delivered Limiting the emails to wether or not they were delivered. (optional, default to null)
 			-- 
 			-- 
 			-- Result MAIL_LOG
@@ -119,6 +124,7 @@ feature -- API Access
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "endDate", end_date));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "replyto", replyto));
 			l_request.fill_query_params(api_client.parameter_to_tuple("", "headerfrom", headerfrom));
+			l_request.fill_query_params(api_client.parameter_to_tuple("", "delivered", delivered));
 
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then

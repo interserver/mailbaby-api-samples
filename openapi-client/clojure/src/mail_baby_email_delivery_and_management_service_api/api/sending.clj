@@ -5,20 +5,24 @@
             [orchestra.core :refer [defn-spec]]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-blocks :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-address :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume-to :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-new :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-click-house :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-name :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume-ip :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.error-message :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log-entry :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.generic-response :refer :all]
-            [mail-baby-email-delivery-and-management-service-api.specs.get-stats-200-response-inner :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-rspamd :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume-from :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-addresses-types :refer :all]
             )
@@ -31,7 +35,7 @@
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-```
+```BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -42,7 +46,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=support@interserver.net
 ```
 
-```
+```ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -54,7 +58,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[0][email]=support@interserver.net\"
 ```
 
-```
+```NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -65,7 +69,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=\"Joe <support@interserver.net>\"
 ```
 
-```
+```MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -76,7 +80,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=support@interserver.net, support@interserver.net\"
 ```
 
-```
+```MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -87,7 +91,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"
 ```
 
-```
+```MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -101,7 +105,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[1][email]=support@interserver.net\"
 ```
 
-```
+```BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -114,7 +118,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 ```
 
-```
+```ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -127,7 +131,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 ```
 
-```
+```NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -157,7 +161,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-```
+```BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -168,7 +172,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=support@interserver.net
 ```
 
-```
+```ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -180,7 +184,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[0][email]=support@interserver.net\"
 ```
 
-```
+```NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -191,7 +195,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=\"Joe <support@interserver.net>\"
 ```
 
-```
+```MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -202,7 +206,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=support@interserver.net, support@interserver.net\"
 ```
 
-```
+```MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -213,7 +217,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"
 ```
 
-```
+```MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -227,7 +231,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[1][email]=support@interserver.net\"
 ```
 
-```
+```BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -240,7 +244,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 ```
 
-```
+```ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -253,7 +257,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 ```
 
-```
+```NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\

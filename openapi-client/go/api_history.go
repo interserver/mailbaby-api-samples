@@ -26,9 +26,16 @@ type HistoryAPIService service
 type ApiGetStatsRequest struct {
 	ctx context.Context
 	ApiService *HistoryAPIService
+	time *string
 }
 
-func (r ApiGetStatsRequest) Execute() ([]GetStats200ResponseInner, *http.Response, error) {
+// The timeframe for the statistics.
+func (r ApiGetStatsRequest) Time(time string) ApiGetStatsRequest {
+	r.time = &time
+	return r
+}
+
+func (r ApiGetStatsRequest) Execute() (*MailStatsType, *http.Response, error) {
 	return r.ApiService.GetStatsExecute(r)
 }
 
@@ -48,13 +55,13 @@ func (a *HistoryAPIService) GetStats(ctx context.Context) ApiGetStatsRequest {
 }
 
 // Execute executes the request
-//  @return []GetStats200ResponseInner
-func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200ResponseInner, *http.Response, error) {
+//  @return MailStatsType
+func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) (*MailStatsType, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GetStats200ResponseInner
+		localVarReturnValue  *MailStatsType
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetStats")
@@ -68,6 +75,9 @@ func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.time != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "time", r.time, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -173,6 +183,7 @@ type ApiViewMailLogRequest struct {
 	endDate *int64
 	replyto *string
 	headerfrom *string
+	delivered *string
 }
 
 // The ID of your mail order this will be sent through.
@@ -250,6 +261,12 @@ func (r ApiViewMailLogRequest) Replyto(replyto string) ApiViewMailLogRequest {
 // Header From Email Address
 func (r ApiViewMailLogRequest) Headerfrom(headerfrom string) ApiViewMailLogRequest {
 	r.headerfrom = &headerfrom
+	return r
+}
+
+// Limiting the emails to wether or not they were delivered.
+func (r ApiViewMailLogRequest) Delivered(delivered string) ApiViewMailLogRequest {
+	r.delivered = &delivered
 	return r
 }
 
@@ -338,6 +355,9 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	}
 	if r.headerfrom != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "form", "")
+	}
+	if r.delivered != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "delivered", r.delivered, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

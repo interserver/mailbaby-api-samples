@@ -37,9 +37,13 @@ All URIs are relative to *https://api.mailbaby.net*
  - [MailLog](./Models/MailLog.md)
  - [MailLogEntry](./Models/MailLogEntry.md)
  - [MailOrder](./Models/MailOrder.md)
+ - [MailStatsType](./Models/MailStatsType.md)
+ - [MailStatsType_volume](./Models/MailStatsType_volume.md)
+ - [MailStatsType_volume_from](./Models/MailStatsType_volume_from.md)
+ - [MailStatsType_volume_ip](./Models/MailStatsType_volume_ip.md)
+ - [MailStatsType_volume_to](./Models/MailStatsType_volume_to.md)
  - [SendMail](./Models/SendMail.md)
  - [SendMailAdv](./Models/SendMailAdv.md)
- - [getStats_200_response_inner](./Models/getStats_200_response_inner.md)
 
 
 <a name="documentation-for-authorization"></a>

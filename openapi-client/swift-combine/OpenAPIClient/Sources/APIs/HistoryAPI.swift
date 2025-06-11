@@ -27,6 +27,18 @@ open class HistoryAPI {
         self.transport = transport
     }
 
+    ///
+    /// Enum for parameter time
+    ///
+    public enum GetStatsTime: String, Codable, CaseIterable {
+        case all = "all"
+        case billing = "billing"
+        case month = "month"
+        case _7d = "7d"
+        case _24h = "24h"
+        case _1d = "1d"
+        case _1h = "1h"
+    }
     public enum GetStatsError: Error, CustomStringConvertible {
         // Unauthorized
         case code401Error(ErrorMessage)
@@ -49,8 +61,9 @@ open class HistoryAPI {
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
-    /// - returns: AnyPublisher<[GetStats200ResponseInner], Error> 
-    open func getStats() -> AnyPublisher<[GetStats200ResponseInner], Error> {
+    /// - parameter time: (query) The timeframe for the statistics. (optional)
+    /// - returns: AnyPublisher<MailStatsType, Error> 
+    open func getStats(time: GetStatsTime? = nil) -> AnyPublisher<MailStatsType, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -58,7 +71,10 @@ open class HistoryAPI {
                 }
                 let localVarPath = "/mail/stats"
                 let localVarURL = baseURL.appendingPathComponent(localVarPath)
-                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
+                var components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
+                var queryItems: [URLQueryItem] = []
+                if let time = time { queryItems.append(URLQueryItem(name: "time", value: time.rawValue)) } 
+                components?.queryItems = queryItems
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -66,7 +82,7 @@ open class HistoryAPI {
                 request.httpMethod = "GET"
                 return request
             }.publisher
-        }.flatMap { request -> AnyPublisher<[GetStats200ResponseInner], Error> in 
+        }.flatMap { request -> AnyPublisher<MailStatsType, Error> in 
             return self.transport.send(request: request)
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 401 {
@@ -88,12 +104,19 @@ open class HistoryAPI {
                     return transportError
                 }
                 .tryMap { response in
-                    try self.decoder.decode([GetStats200ResponseInner].self, from: response.data)
+                    try self.decoder.decode(MailStatsType.self, from: response.data)
                 }
                 .eraseToAnyPublisher()
         }.eraseToAnyPublisher()
     }
 
+    ///
+    /// Enum for parameter delivered
+    ///
+    public enum ViewMailLogDelivered: String, Codable, CaseIterable {
+        case _0 = "0"
+        case _1 = "1"
+    }
     public enum ViewMailLogError: Error, CustomStringConvertible {
         // bad input parameter
         case code400Error
@@ -125,8 +148,9 @@ open class HistoryAPI {
     /// - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
     /// - parameter replyto: (query) Reply-To Email Address (optional)
     /// - parameter headerfrom: (query) Header From Email Address (optional)
+    /// - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
     /// - returns: AnyPublisher<MailLog, Error> 
-    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil) -> AnyPublisher<MailLog, Error> {
+    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil) -> AnyPublisher<MailLog, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -149,6 +173,7 @@ open class HistoryAPI {
                 if let endDate = endDate { queryItems.append(URLQueryItem(name: "endDate", value: "\(endDate)")) } 
                 if let replyto = replyto { queryItems.append(URLQueryItem(name: "replyto", value: replyto)) } 
                 if let headerfrom = headerfrom { queryItems.append(URLQueryItem(name: "headerfrom", value: headerfrom)) } 
+                if let delivered = delivered { queryItems.append(URLQueryItem(name: "delivered", value: delivered.rawValue)) } 
                 components?.queryItems = queryItems
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()

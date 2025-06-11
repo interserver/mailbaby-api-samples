@@ -1,7 +1,7 @@
 #tag Interface
 Protected Interface HistoryApiCallbackHandler
 	#tag Method, Flags = &h0
-		Sub GetStatsCallback(status As OpenAPIClient.OpenAPIClientException, data() As OpenAPIClient.Models.GetStats200ResponseInner)
+		Sub GetStatsCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.MailStatsType)
 		  
 		End Sub
 	#tag EndMethod

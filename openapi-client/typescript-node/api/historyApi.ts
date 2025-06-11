@@ -16,8 +16,8 @@ import http from 'http';
 
 /* tslint:disable:no-unused-locals */
 import { ErrorMessage } from '../model/errorMessage';
-import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 import { MailLog } from '../model/mailLog';
+import { MailStatsType } from '../model/mailStatsType';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -94,8 +94,9 @@ export class HistoryApi {
     /**
      * Returns information about the usage on your mail accounts.
      * @summary Account usage statistics.
+     * @param time The timeframe for the statistics.
      */
-    public async getStats (options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: Array<GetStats200ResponseInner>;  }> {
+    public async getStats (time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailStatsType;  }> {
         const localVarPath = this.basePath + '/mail/stats';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -107,6 +108,10 @@ export class HistoryApi {
             localVarHeaderParams.Accept = produces.join(',');
         }
         let localVarFormParams: any = {};
+
+        if (time !== undefined) {
+            localVarQueryParameters['time'] = ObjectSerializer.serialize(time, "'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h'");
+        }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
 
@@ -140,13 +145,13 @@ export class HistoryApi {
                     localVarRequestOptions.form = localVarFormParams;
                 }
             }
-            return new Promise<{ response: http.IncomingMessage; body: Array<GetStats200ResponseInner>;  }>((resolve, reject) => {
+            return new Promise<{ response: http.IncomingMessage; body: MailStatsType;  }>((resolve, reject) => {
                 localVarRequest(localVarRequestOptions, (error, response, body) => {
                     if (error) {
                         reject(error);
                     } else {
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                            body = ObjectSerializer.deserialize(body, "Array<GetStats200ResponseInner>");
+                            body = ObjectSerializer.deserialize(body, "MailStatsType");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -172,8 +177,9 @@ export class HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format
      * @param replyto Reply-To Email Address
      * @param headerfrom Header From Email Address
+     * @param delivered Limiting the emails to wether or not they were delivered.
      */
-    public async viewMailLog (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailLog;  }> {
+    public async viewMailLog (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailLog;  }> {
         const localVarPath = this.basePath + '/mail/log';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -236,6 +242,10 @@ export class HistoryApi {
 
         if (headerfrom !== undefined) {
             localVarQueryParameters['headerfrom'] = ObjectSerializer.serialize(headerfrom, "string");
+        }
+
+        if (delivered !== undefined) {
+            localVarQueryParameters['delivered'] = ObjectSerializer.serialize(delivered, "'0' | '1'");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);

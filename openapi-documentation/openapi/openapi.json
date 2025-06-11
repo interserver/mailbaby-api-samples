@@ -85,40 +85,10 @@
             }
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           }
         },
         "summary" : "displays a list of mail service orders",
@@ -173,112 +143,14 @@
             }
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           }
         },
         "summary" : "displays a list of blocked email addresses",
         "tags" : [ "Blocking" ]
-      }
-    },
-    "/mail/stats" : {
-      "get" : {
-        "description" : "Returns information about the usage on your mail accounts.",
-        "operationId" : "getStats",
-        "responses" : {
-          "200" : {
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "items" : {
-                    "$ref" : "#/components/schemas/getStats_200_response_inner"
-                  },
-                  "type" : "array"
-                }
-              }
-            },
-            "description" : "OK",
-            "links" : {
-              "delistBlockLink" : {
-                "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`.",
-                "operationId" : "delistBlock",
-                "parameters" : {
-                  "id" : "$response.body#/0/id"
-                }
-              }
-            }
-          },
-          "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
-          },
-          "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
-          }
-        },
-        "summary" : "Account usage statistics.",
-        "tags" : [ "History" ]
       }
     },
     "/mail/send" : {
@@ -312,58 +184,13 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "BadInputError" : {
-                    "value" : {
-                      "code" : 400,
-                      "message" : "There was a problem with the input parameters."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Error message when there was a problem with the input parameters."
+            "$ref" : "#/components/responses/BadInput"
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "NotFoundError" : {
-                    "value" : {
-                      "code" : 404,
-                      "message" : "The specified resource was not found."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "The specified resource was not found"
+            "$ref" : "#/components/responses/NotFound"
           }
         },
         "summary" : "Sends an Email",
@@ -373,7 +200,7 @@
     "/mail/advsend" : {
       "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.",
       "post" : {
-        "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.\n\nHere are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data to=support@interserver.net\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to[0][name]=Joe\" \\\n--data \"to[0][email]=support@interserver.net\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=\"Joe <user@domain.com>\" \\\n--data to=\"Joe <support@interserver.net>\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to=support@interserver.net, support@interserver.net\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to[0][name]=Joe\" \\\n--data \"to[0][email]=support@interserver.net\" \\\n--data \"to[1][name]=Joe\" \\\n--data \"to[1][email]=support@interserver.net\"\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": \"user@domain.com\",\n\"to\": \"support@interserver.net\"\n}'\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"},\n\"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}]\n}'\n```\n\n```\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": \"Joe <user@domain.com>\",\n\"to\": \"Joe <support@interserver.net>\"\n}'\n```\n",
+        "description" : "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.\n\nHere are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.\n\n```BasicForm\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data to=support@interserver.net\n```\n\n```ArrayForm\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to[0][name]=Joe\" \\\n--data \"to[0][email]=support@interserver.net\"\n```\n\n```NameEmailForm\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=\"Joe <user@domain.com>\" \\\n--data to=\"Joe <support@interserver.net>\"\n```\n\n```MultToForm\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to=support@interserver.net, support@interserver.net\"\n```\n\n```MultToFullForm\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"\n```\n\n```MultToArrayForm\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/x-www-form-urlencoded' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data 'subject=Welcome' \\\n--data 'body=Hello' \\\n--data from=user@domain.com \\\n--data \"to[0][name]=Joe\" \\\n--data \"to[0][email]=support@interserver.net\" \\\n--data \"to[1][name]=Joe\" \\\n--data \"to[1][email]=support@interserver.net\"\n```\n\n```BasicJson\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": \"user@domain.com\",\n\"to\": \"support@interserver.net\"\n}'\n```\n\n```ArrayJson\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"},\n\"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}]\n}'\n```\n\n```NameEmailJson\ncurl -i --request POST --url https://api.mailbaby.net/mail/advsend \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--header 'X-API-KEY: YOUR_API_KEY' \\\n--data '{\n\"subject\": \"Welcome\",\n\"body\": \"Hello\",\n\"from\": \"Joe <user@domain.com>\",\n\"to\": \"Joe <support@interserver.net>\"\n}'\n```\n",
         "operationId" : "sendAdvMail",
         "requestBody" : {
           "content" : {
@@ -442,58 +269,13 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "BadInputError" : {
-                    "value" : {
-                      "code" : 400,
-                      "message" : "There was a problem with the input parameters."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Error message when there was a problem with the input parameters."
+            "$ref" : "#/components/responses/BadInput"
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "NotFoundError" : {
-                    "value" : {
-                      "code" : 404,
-                      "message" : "The specified resource was not found."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "The specified resource was not found"
+            "$ref" : "#/components/responses/NotFound"
           }
         },
         "summary" : "Sends an Email with Advanced Options",
@@ -660,6 +442,17 @@
             "type" : "string"
           },
           "style" : "form"
+        }, {
+          "description" : "Limiting the emails to wether or not they were delivered.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "delivered",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "0", "1" ],
+            "type" : "string"
+          },
+          "style" : "form"
         } ],
         "responses" : {
           "200" : {
@@ -687,6 +480,7 @@
                         "sendingZone" : "interserver",
                         "bodySize" : 63,
                         "seq" : 1,
+                        "delivered" : 1,
                         "recipient" : "client@isp.com",
                         "domain" : "interserver.net",
                         "locked" : 1,
@@ -774,58 +568,13 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "BadInputError" : {
-                    "value" : {
-                      "code" : 400,
-                      "message" : "There was a problem with the input parameters."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Error message when there was a problem with the input parameters."
+            "$ref" : "#/components/responses/BadInput"
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "NotFoundError" : {
-                    "value" : {
-                      "code" : 404,
-                      "message" : "The specified resource was not found."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "The specified resource was not found"
+            "$ref" : "#/components/responses/NotFound"
           }
         },
         "summary" : "Removes an email address from the blocked list",
@@ -878,40 +627,10 @@
             }
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           }
         },
         "summary" : "Displays a listing of deny email rules.",
@@ -966,58 +685,13 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "BadInputError" : {
-                    "value" : {
-                      "code" : 400,
-                      "message" : "There was a problem with the input parameters."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Error message when there was a problem with the input parameters."
+            "$ref" : "#/components/responses/BadInput"
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "NotFoundError" : {
-                    "value" : {
-                      "code" : 404,
-                      "message" : "The specified resource was not found."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "The specified resource was not found"
+            "$ref" : "#/components/responses/NotFound"
           }
         },
         "summary" : "Creates a new email deny rule.",
@@ -1057,62 +731,64 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "BadInputError" : {
-                    "value" : {
-                      "code" : 400,
-                      "message" : "There was a problem with the input parameters."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Error message when there was a problem with the input parameters."
+            "$ref" : "#/components/responses/BadInput"
           },
           "401" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "UnauthorizedError" : {
-                    "value" : {
-                      "code" : 401,
-                      "message" : "Unauthorized"
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "Unauthorized"
+            "$ref" : "#/components/responses/Unauthorized"
           },
           "404" : {
-            "content" : {
-              "application/json" : {
-                "examples" : {
-                  "NotFoundError" : {
-                    "value" : {
-                      "code" : 404,
-                      "message" : "The specified resource was not found."
-                    }
-                  }
-                },
-                "schema" : {
-                  "$ref" : "#/components/schemas/ErrorMessage"
-                }
-              }
-            },
-            "description" : "The specified resource was not found"
+            "$ref" : "#/components/responses/NotFound"
           }
         },
         "summary" : "Removes an deny mail rule.",
         "tags" : [ "Blocking" ]
+      }
+    },
+    "/mail/stats" : {
+      "get" : {
+        "description" : "Returns information about the usage on your mail accounts.",
+        "operationId" : "getStats",
+        "parameters" : [ {
+          "description" : "The timeframe for the statistics.",
+          "explode" : true,
+          "in" : "query",
+          "name" : "time",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "all", "billing", "month", "7d", "24h", "1d", "1h" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MailStatsType"
+                }
+              }
+            },
+            "description" : "OK",
+            "links" : {
+              "delistBlockLink" : {
+                "description" : "The `id` value returned in the response can be used as the `id` parameter in `GET /mail/advsend`.",
+                "operationId" : "delistBlock",
+                "parameters" : {
+                  "id" : "$response.body#/0/id"
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/Unauthorized"
+          }
+        },
+        "summary" : "Account usage statistics.",
+        "tags" : [ "History" ]
       }
     }
   },
@@ -1430,6 +1106,7 @@
             "sendingZone" : "interserver",
             "bodySize" : 63,
             "seq" : 1,
+            "delivered" : 1,
             "recipient" : "client@isp.com",
             "domain" : "interserver.net",
             "locked" : 1,
@@ -1624,6 +1301,7 @@
           "sendingZone" : "interserver",
           "bodySize" : 63,
           "seq" : 1,
+          "delivered" : 1,
           "recipient" : "client@isp.com",
           "domain" : "interserver.net",
           "locked" : 1,
@@ -1777,30 +1455,137 @@
         } ],
         "title" : "EmailAddressTypes"
       },
-      "getStats_200_response_inner" : {
-        "properties" : {
-          "id" : {
-            "example" : 1234,
-            "type" : "integer"
-          },
-          "status" : {
-            "example" : "active",
-            "type" : "string"
-          },
-          "username" : {
-            "example" : "mb1234",
-            "type" : "string"
-          },
-          "password" : {
-            "example" : "guest123",
-            "type" : "string"
-          },
-          "comment" : {
-            "example" : "main mail account",
-            "type" : "string"
+      "MailStatsType" : {
+        "description" : "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.",
+        "example" : {
+          "time" : "all",
+          "usage" : 55,
+          "currency" : "USD",
+          "currencySymbol" : "$",
+          "cost" : 1.02,
+          "received" : 508,
+          "sent" : 495,
+          "volume" : {
+            "to" : {
+              "client@domain.com" : 395,
+              "user@site.net" : 57,
+              "sales@company.com" : 47,
+              "client@anothersite.com" : 9
+            },
+            "from" : {
+              "billing@somedomain.com" : 369,
+              "sales@somedomain.com" : 139
+            },
+            "ip" : {
+              "1.1.1.1" : 142,
+              "2.2.2.2" : 132,
+              "3.3.3.3" : 129,
+              "4.4.4.4" : 105
+            }
           }
         },
-        "required" : [ "id", "status", "username" ],
+        "properties" : {
+          "time" : {
+            "default" : "1h",
+            "enum" : [ "all", "billing", "month", "7d", "24h", "today", "1h" ],
+            "type" : "string"
+          },
+          "usage" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "currency" : {
+            "type" : "string"
+          },
+          "currencySymbol" : {
+            "type" : "string"
+          },
+          "cost" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "received" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sent" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "volume" : {
+            "$ref" : "#/components/schemas/MailStatsType_volume"
+          }
+        },
+        "title" : "Root Type for MailStatsType",
+        "type" : "object"
+      },
+      "MailStatsType_volume_to" : {
+        "properties" : {
+          "client@domain.com" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "user@site.net" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sales@company.com" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "client@anothersite.com" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "MailStatsType_volume_from" : {
+        "properties" : {
+          "billing@somedomain.com" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sales@somedomain.com" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "MailStatsType_volume_ip" : {
+        "properties" : {
+          "1.1.1.1" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "2.2.2.2" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "3.3.3.3" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "4.4.4.4" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "MailStatsType_volume" : {
+        "properties" : {
+          "to" : {
+            "$ref" : "#/components/schemas/MailStatsType_volume_to"
+          },
+          "from" : {
+            "$ref" : "#/components/schemas/MailStatsType_volume_from"
+          },
+          "ip" : {
+            "$ref" : "#/components/schemas/MailStatsType_volume_ip"
+          }
+        },
         "type" : "object"
       }
     },

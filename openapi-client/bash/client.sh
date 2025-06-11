@@ -8,7 +8,7 @@
 # ! openapi-generator (https://openapi-generator.tech)
 # ! FROM OPENAPI SPECIFICATION IN JSON.
 # !
-# ! Generator version: 7.13.0-SNAPSHOT
+# ! Generator version: 7.14.0-SNAPSHOT
 # !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -101,6 +101,7 @@ operation_parameters_minimum_occurrences["addRule:::data"]=1
 operation_parameters_minimum_occurrences["addRule:::user"]=0
 operation_parameters_minimum_occurrences["deleteRule:::ruleId"]=1
 operation_parameters_minimum_occurrences["delistBlock:::body"]=1
+operation_parameters_minimum_occurrences["getStats:::time"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::id"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::origin"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::mx"]=0
@@ -114,6 +115,7 @@ operation_parameters_minimum_occurrences["viewMailLog:::startDate"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::replyto"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::headerfrom"]=0
+operation_parameters_minimum_occurrences["viewMailLog:::delivered"]=0
 operation_parameters_minimum_occurrences["sendAdvMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::body"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::from"]=1
@@ -140,6 +142,7 @@ operation_parameters_maximum_occurrences["addRule:::data"]=0
 operation_parameters_maximum_occurrences["addRule:::user"]=0
 operation_parameters_maximum_occurrences["deleteRule:::ruleId"]=0
 operation_parameters_maximum_occurrences["delistBlock:::body"]=0
+operation_parameters_maximum_occurrences["getStats:::time"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::id"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::origin"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::mx"]=0
@@ -153,6 +156,7 @@ operation_parameters_maximum_occurrences["viewMailLog:::startDate"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::endDate"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::replyto"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::headerfrom"]=0
+operation_parameters_maximum_occurrences["viewMailLog:::delivered"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::body"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::from"]=0
@@ -176,6 +180,7 @@ operation_parameters_collection_type["addRule:::data"]=""
 operation_parameters_collection_type["addRule:::user"]=""
 operation_parameters_collection_type["deleteRule:::ruleId"]=""
 operation_parameters_collection_type["delistBlock:::body"]=""
+operation_parameters_collection_type["getStats:::time"]=""
 operation_parameters_collection_type["viewMailLog:::id"]=""
 operation_parameters_collection_type["viewMailLog:::origin"]=""
 operation_parameters_collection_type["viewMailLog:::mx"]=""
@@ -189,6 +194,7 @@ operation_parameters_collection_type["viewMailLog:::startDate"]=""
 operation_parameters_collection_type["viewMailLog:::endDate"]=""
 operation_parameters_collection_type["viewMailLog:::replyto"]=""
 operation_parameters_collection_type["viewMailLog:::headerfrom"]=""
+operation_parameters_collection_type["viewMailLog:::delivered"]=""
 operation_parameters_collection_type["sendAdvMail:::subject"]=""
 operation_parameters_collection_type["sendAdvMail:::body"]=""
 operation_parameters_collection_type["sendAdvMail:::from"]=""
@@ -821,6 +827,9 @@ print_getStats_help() {
     echo -e ""
     echo -e "Returns information about the usage on your mail accounts." | paste -sd' ' | fold -sw 80
     echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}time${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The timeframe for the statistics.${YELLOW} Specify as: time=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -868,6 +877,8 @@ print_viewMailLog_help() {
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}headerfrom${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Header From Email Address${YELLOW} Specify as: headerfrom=value${OFF}" \
         | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}delivered${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Limiting the emails to wether or not they were delivered.${YELLOW} Specify as: delivered=value${OFF}" \
+        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
@@ -888,7 +899,7 @@ print_sendAdvMail_help() {
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-'''
+'''BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -899,7 +910,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=support@interserver.net
 '''
 
-'''
+'''ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -911,7 +922,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[0][email]=support@interserver.net\"
 '''
 
-'''
+'''NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -922,7 +933,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=\"Joe <support@interserver.net>\"
 '''
 
-'''
+'''MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -933,7 +944,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=support@interserver.net, support@interserver.net\"
 '''
 
-'''
+'''MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -944,7 +955,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"
 '''
 
-'''
+'''MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -958,7 +969,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[1][email]=support@interserver.net\"
 '''
 
-'''
+'''BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -971,7 +982,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 '''
 
-'''
+'''ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -984,7 +995,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 '''
 
-'''
+'''NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -1304,7 +1315,7 @@ call_getStats() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(  )
+    local query_parameter_names=(time  )
     local path
 
     if ! path=$(build_request_path "/mail/stats" path_parameter_names query_parameter_names); then
@@ -1340,7 +1351,7 @@ call_viewMailLog() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom  )
+    local query_parameter_names=(id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom delivered  )
     local path
 
     if ! path=$(build_request_path "/mail/log" path_parameter_names query_parameter_names); then

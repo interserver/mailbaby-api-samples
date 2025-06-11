@@ -58,7 +58,7 @@ paths:
                     comment: test order
               schema:
                 items:
-                  $ref: '#/components/schemas/MailOrder'
+                  $ref: "#/components/schemas/MailOrder"
                 type: array
           description: OK
           links:
@@ -69,27 +69,9 @@ paths:
               parameters:
                 id: $response.body#/0/id
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
       summary: displays a list of mail service orders
       tags:
       - Services
@@ -119,7 +101,7 @@ paths:
                     - from: user@domain.com
                       subject: Test Email
               schema:
-                $ref: '#/components/schemas/MailBlocks'
+                $ref: "#/components/schemas/MailBlocks"
           description: OK
           links:
             delistBlockLink:
@@ -129,75 +111,12 @@ paths:
               parameters:
                 email: $response.body#/local/0/from
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
       summary: displays a list of blocked email addresses
       tags:
       - Blocking
-  /mail/stats:
-    get:
-      description: Returns information about the usage on your mail accounts.
-      operationId: getStats
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/getStats_200_response_inner'
-                type: array
-          description: OK
-          links:
-            delistBlockLink:
-              description: The `id` value returned in the response can be used as
-                the `id` parameter in `GET /mail/advsend`.
-              operationId: delistBlock
-              parameters:
-                id: $response.body#/0/id
-        "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
-        "404":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
-      summary: Account usage statistics.
-      tags:
-      - History
   /mail/send:
     post:
       description: |
@@ -209,51 +128,24 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: "#/components/schemas/SendMail"
           application/json:
             schema:
-              $ref: '#/components/schemas/SendMail'
+              $ref: "#/components/schemas/SendMail"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          content:
-            application/json:
-              examples:
-                BadInputError:
-                  value:
-                    code: 400
-                    message: There was a problem with the input parameters.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Error message when there was a problem with the input parameters.
+          $ref: "#/components/responses/BadInput"
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                NotFoundError:
-                  value:
-                    code: 404
-                    message: The specified resource was not found.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: The specified resource was not found
+          $ref: "#/components/responses/NotFound"
       summary: Sends an Email
       tags:
       - Sending
@@ -266,7 +158,7 @@ paths:
 
         Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-        ```
+        ```BasicForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -277,7 +169,7 @@ paths:
         --data to=support@interserver.net
         ```
 
-        ```
+        ```ArrayForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -289,7 +181,7 @@ paths:
         --data "to[0][email]=support@interserver.net"
         ```
 
-        ```
+        ```NameEmailForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -300,7 +192,7 @@ paths:
         --data to="Joe <support@interserver.net>"
         ```
 
-        ```
+        ```MultToForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -311,7 +203,7 @@ paths:
         --data "to=support@interserver.net, support@interserver.net"
         ```
 
-        ```
+        ```MultToFullForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -322,7 +214,7 @@ paths:
         --data "to=Joe <support@interserver.net>, Joe <support@interserver.net>"
         ```
 
-        ```
+        ```MultToArrayForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -336,7 +228,7 @@ paths:
         --data "to[1][email]=support@interserver.net"
         ```
 
-        ```
+        ```BasicJson
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json' \
@@ -349,7 +241,7 @@ paths:
         }'
         ```
 
-        ```
+        ```ArrayJson
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json' \
@@ -362,7 +254,7 @@ paths:
         }'
         ```
 
-        ```
+        ```NameEmailJson
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json' \
@@ -393,7 +285,7 @@ paths:
                     data: base64_encoded_contents
                   id: 66
             schema:
-              $ref: '#/components/schemas/SendMailAdv'
+              $ref: "#/components/schemas/SendMailAdv"
           application/json:
             examples:
               AdvSendExample:
@@ -410,48 +302,21 @@ paths:
                     data: base64_encoded_contents
                   id: 66
             schema:
-              $ref: '#/components/schemas/SendMailAdv'
+              $ref: "#/components/schemas/SendMailAdv"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          content:
-            application/json:
-              examples:
-                BadInputError:
-                  value:
-                    code: 400
-                    message: There was a problem with the input parameters.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Error message when there was a problem with the input parameters.
+          $ref: "#/components/responses/BadInput"
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                NotFoundError:
-                  value:
-                    code: 404
-                    message: The specified resource was not found.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: The specified resource was not found
+          $ref: "#/components/responses/NotFound"
       summary: Sends an Email with Advanced Options
       tags:
       - Sending
@@ -591,6 +456,17 @@ paths:
         schema:
           type: string
         style: form
+      - description: Limiting the emails to wether or not they were delivered.
+        explode: true
+        in: query
+        name: delivered
+        required: false
+        schema:
+          enum:
+          - "0"
+          - "1"
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -617,6 +493,7 @@ paths:
                       sendingZone: interserver
                       bodySize: 63
                       seq: 1
+                      delivered: 1
                       recipient: client@isp.com
                       domain: interserver.net
                       locked: 1
@@ -626,7 +503,7 @@ paths:
                       mxHostname: mx.j.is.cc
                       response: 250 2.0.0 Ok queued as C91D83E128C
               schema:
-                $ref: '#/components/schemas/MailLog'
+                $ref: "#/components/schemas/MailLog"
           description: search results matching criteria
         "400":
           description: bad input parameter
@@ -657,55 +534,28 @@ paths:
                 value:
                   email: client@domain.com
             schema:
-              $ref: '#/components/schemas/EmailAddress'
+              $ref: "#/components/schemas/EmailAddress"
           multipart/form-data:
             examples:
               BlocksDeleteExampleForm:
                 value:
                   email: client@domain.com
             schema:
-              $ref: '#/components/schemas/EmailAddress'
+              $ref: "#/components/schemas/EmailAddress"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          content:
-            application/json:
-              examples:
-                BadInputError:
-                  value:
-                    code: 400
-                    message: There was a problem with the input parameters.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Error message when there was a problem with the input parameters.
+          $ref: "#/components/responses/BadInput"
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                NotFoundError:
-                  value:
-                    code: 404
-                    message: The specified resource was not found.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: The specified resource was not found
+          $ref: "#/components/responses/NotFound"
       summary: Removes an email address from the blocked list
       tags:
       - Blocking
@@ -735,7 +585,7 @@ paths:
                     created: 2022-03-22 19:18:01
               schema:
                 items:
-                  $ref: '#/components/schemas/DenyRuleRecord'
+                  $ref: "#/components/schemas/DenyRuleRecord"
                 type: array
           description: OK
           links:
@@ -746,27 +596,9 @@ paths:
               parameters:
                 id: $response.body#/0/id
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
       summary: Displays a listing of deny email rules.
       tags:
       - Blocking
@@ -784,7 +616,7 @@ paths:
                   type: email
                   data: domeinwo@server.guesshost.net
             schema:
-              $ref: '#/components/schemas/DenyRuleNew'
+              $ref: "#/components/schemas/DenyRuleNew"
           application/json:
             examples:
               DenyRuleNewJsonExample:
@@ -793,7 +625,7 @@ paths:
                   type: email
                   data: domeinwo@server.guesshost.net
             schema:
-              $ref: '#/components/schemas/DenyRuleNew'
+              $ref: "#/components/schemas/DenyRuleNew"
         description: These are the fields needed to create a new email deny rule.
         required: true
       responses:
@@ -801,41 +633,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          content:
-            application/json:
-              examples:
-                BadInputError:
-                  value:
-                    code: 400
-                    message: There was a problem with the input parameters.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Error message when there was a problem with the input parameters.
+          $ref: "#/components/responses/BadInput"
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                NotFoundError:
-                  value:
-                    code: 404
-                    message: The specified resource was not found.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: The specified resource was not found
+          $ref: "#/components/responses/NotFound"
       summary: Creates a new email deny rule.
       tags:
       - Blocking
@@ -861,44 +666,59 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GenericResponse'
+                $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          content:
-            application/json:
-              examples:
-                BadInputError:
-                  value:
-                    code: 400
-                    message: There was a problem with the input parameters.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Error message when there was a problem with the input parameters.
+          $ref: "#/components/responses/BadInput"
         "401":
-          content:
-            application/json:
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: Unauthorized
+          $ref: "#/components/responses/Unauthorized"
         "404":
-          content:
-            application/json:
-              examples:
-                NotFoundError:
-                  value:
-                    code: 404
-                    message: The specified resource was not found.
-              schema:
-                $ref: '#/components/schemas/ErrorMessage'
-          description: The specified resource was not found
+          $ref: "#/components/responses/NotFound"
       summary: Removes an deny mail rule.
       tags:
       - Blocking
+  /mail/stats:
+    get:
+      description: Returns information about the usage on your mail accounts.
+      operationId: getStats
+      parameters:
+      - description: The timeframe for the statistics.
+        explode: true
+        in: query
+        name: time
+        required: false
+        schema:
+          enum:
+          - all
+          - billing
+          - month
+          - 7d
+          - 24h
+          - 1d
+          - 1h
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MailStatsType"
+          description: OK
+          links:
+            delistBlockLink:
+              description: The `id` value returned in the response can be used as
+                the `id` parameter in `GET /mail/advsend`.
+              operationId: delistBlock
+              parameters:
+                id: $response.body#/0/id
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/Unauthorized"
+      summary: Account usage statistics.
+      tags:
+      - History
 components:
   responses:
     BadInput:
@@ -910,7 +730,7 @@ components:
                 code: 400
                 message: There was a problem with the input parameters.
           schema:
-            $ref: '#/components/schemas/ErrorMessage'
+            $ref: "#/components/schemas/ErrorMessage"
       description: Error message when there was a problem with the input parameters.
     NotFound:
       content:
@@ -921,7 +741,7 @@ components:
                 code: 404
                 message: The specified resource was not found.
           schema:
-            $ref: '#/components/schemas/ErrorMessage'
+            $ref: "#/components/schemas/ErrorMessage"
       description: The specified resource was not found
     Unauthorized:
       content:
@@ -932,7 +752,7 @@ components:
                 code: 401
                 message: Unauthorized
           schema:
-            $ref: '#/components/schemas/ErrorMessage'
+            $ref: "#/components/schemas/ErrorMessage"
       description: Unauthorized
   schemas:
     GenericResponse:
@@ -1000,7 +820,7 @@ components:
         - created
         - id
         type: object
-      - $ref: '#/components/schemas/DenyRuleNew'
+      - $ref: "#/components/schemas/DenyRuleNew"
       description: The data for a email deny rule record.
       example:
         id: 14
@@ -1126,15 +946,15 @@ components:
       properties:
         local:
           items:
-            $ref: '#/components/schemas/MailBlockClickHouse'
+            $ref: "#/components/schemas/MailBlockClickHouse"
           type: array
         mbtrap:
           items:
-            $ref: '#/components/schemas/MailBlockClickHouse'
+            $ref: "#/components/schemas/MailBlockClickHouse"
           type: array
         subject:
           items:
-            $ref: '#/components/schemas/MailBlockRspamd'
+            $ref: "#/components/schemas/MailBlockRspamd"
           type: array
       required:
       - local
@@ -1164,6 +984,7 @@ components:
           sendingZone: interserver
           bodySize: 63
           seq: 1
+          delivered: 1
           recipient: client@isp.com
           domain: interserver.net
           locked: 1
@@ -1213,7 +1034,7 @@ components:
                 "response": "250 2.0.0 Ok queued as C91D83E128C"
             }]
           items:
-            $ref: '#/components/schemas/MailLogEntry'
+            $ref: "#/components/schemas/MailLogEntry"
           type: array
       required:
       - emails
@@ -1283,7 +1104,7 @@ components:
       - email: user@domain.com
         name: John Smith
       items:
-        $ref: '#/components/schemas/EmailAddressName'
+        $ref: "#/components/schemas/EmailAddressName"
       title: EmailAddressNames
       type: array
     SendMailAdv:
@@ -1313,15 +1134,15 @@ components:
             \ package is broken into many pieces, please blaim someone else."
           type: string
         from:
-          $ref: '#/components/schemas/EmailAddressTypes'
+          $ref: "#/components/schemas/EmailAddressTypes"
         to:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         replyto:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         cc:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         bcc:
-          $ref: '#/components/schemas/EmailAddressesTypes'
+          $ref: "#/components/schemas/EmailAddressesTypes"
         attachments:
           description: (optional) File attachments to include in the email.  The file
             contents must be base64 encoded!
@@ -1333,7 +1154,7 @@ components:
                     }
             ]
           items:
-            $ref: '#/components/schemas/MailAttachment'
+            $ref: "#/components/schemas/MailAttachment"
           type: array
         id:
           description: (optional)  ID of the Mail order within our system to use as
@@ -1366,6 +1187,7 @@ components:
         sendingZone: interserver
         bodySize: 63
         seq: 1
+        delivered: 1
         recipient: client@isp.com
         domain: interserver.net
         locked: 1
@@ -1499,42 +1321,119 @@ components:
     EmailAddressesTypes:
       description: ""
       oneOf:
-      - $ref: '#/components/schemas/EmailAddress'
-      - $ref: '#/components/schemas/EmailAddressNames'
+      - $ref: "#/components/schemas/EmailAddress"
+      - $ref: "#/components/schemas/EmailAddressNames"
       title: EmailAddressTypes
     EmailAddressTypes:
       description: ""
       oneOf:
-      - $ref: '#/components/schemas/EmailAddress'
-      - $ref: '#/components/schemas/EmailAddressName'
+      - $ref: "#/components/schemas/EmailAddress"
+      - $ref: "#/components/schemas/EmailAddressName"
       title: EmailAddressTypes
-    getStats_200_response_inner:
+    MailStatsType:
+      description: "Statistics about the mail usage including volume by IP, To address,\
+        \ and From address; as well as total sent / delivered counts and cost."
       example:
-        password: guest123
-        comment: main mail account
-        id: 1234
-        status: active
-        username: mb1234
+        time: all
+        usage: 55
+        currency: USD
+        currencySymbol: $
+        cost: 1.02
+        received: 508
+        sent: 495
+        volume:
+          to:
+            client@domain.com: 395
+            user@site.net: 57
+            sales@company.com: 47
+            client@anothersite.com: 9
+          from:
+            billing@somedomain.com: 369
+            sales@somedomain.com: 139
+          ip:
+            "1.1.1.1": 142
+            "2.2.2.2": 132
+            "3.3.3.3": 129
+            "4.4.4.4": 105
       properties:
-        id:
-          example: 1234
+        time:
+          default: 1h
+          enum:
+          - all
+          - billing
+          - month
+          - 7d
+          - 24h
+          - today
+          - 1h
+          type: string
+        usage:
+          format: int32
           type: integer
-        status:
-          example: active
+        currency:
           type: string
-        username:
-          example: mb1234
+        currencySymbol:
           type: string
-        password:
-          example: guest123
-          type: string
-        comment:
-          example: main mail account
-          type: string
-      required:
-      - id
-      - status
-      - username
+        cost:
+          format: double
+          type: number
+        received:
+          format: int32
+          type: integer
+        sent:
+          format: int32
+          type: integer
+        volume:
+          $ref: "#/components/schemas/MailStatsType_volume"
+      title: Root Type for MailStatsType
+      type: object
+    MailStatsType_volume_to:
+      properties:
+        client@domain.com:
+          format: int32
+          type: integer
+        user@site.net:
+          format: int32
+          type: integer
+        sales@company.com:
+          format: int32
+          type: integer
+        client@anothersite.com:
+          format: int32
+          type: integer
+      type: object
+    MailStatsType_volume_from:
+      properties:
+        billing@somedomain.com:
+          format: int32
+          type: integer
+        sales@somedomain.com:
+          format: int32
+          type: integer
+      type: object
+    MailStatsType_volume_ip:
+      properties:
+        "1.1.1.1":
+          format: int32
+          type: integer
+        "2.2.2.2":
+          format: int32
+          type: integer
+        "3.3.3.3":
+          format: int32
+          type: integer
+        "4.4.4.4":
+          format: int32
+          type: integer
+      type: object
+    MailStatsType_volume:
+      properties:
+        to:
+          $ref: "#/components/schemas/MailStatsType_volume_to"
+        from:
+          $ref: "#/components/schemas/MailStatsType_volume_from"
+        ip:
+          $ref: "#/components/schemas/MailStatsType_volume_ip"
       type: object
   securitySchemes:
     apiKeyAuth:

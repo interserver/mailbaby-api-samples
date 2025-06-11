@@ -5,7 +5,6 @@ export * from '../models/EmailAddressTypes';
 export * from '../models/EmailAddressesTypes';
 export * from '../models/ErrorMessage';
 export * from '../models/GenericResponse';
-export * from '../models/GetStats200ResponseInner';
 export * from '../models/MailAttachment';
 export * from '../models/MailBlockClickHouse';
 export * from '../models/MailBlockRspamd';
@@ -13,6 +12,11 @@ export * from '../models/MailBlocks';
 export * from '../models/MailLog';
 export * from '../models/MailLogEntry';
 export * from '../models/MailOrder';
+export * from '../models/MailStatsType';
+export * from '../models/MailStatsTypeVolume';
+export * from '../models/MailStatsTypeVolumeFrom';
+export * from '../models/MailStatsTypeVolumeIp';
+export * from '../models/MailStatsTypeVolumeTo';
 export * from '../models/SendMail';
 export * from '../models/SendMailAdv';
 
@@ -23,7 +27,6 @@ import { EmailAddressTypesClass } from '../models/EmailAddressTypes';
 import { EmailAddressesTypesClass } from '../models/EmailAddressesTypes';
 import { ErrorMessage } from '../models/ErrorMessage';
 import { GenericResponse } from '../models/GenericResponse';
-import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
 import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
@@ -31,6 +34,11 @@ import { MailBlocks } from '../models/MailBlocks';
 import { MailLog } from '../models/MailLog';
 import { MailLogEntry } from '../models/MailLogEntry';
 import { MailOrder } from '../models/MailOrder';
+import { MailStatsType, MailStatsTypeTimeEnum          } from '../models/MailStatsType';
+import { MailStatsTypeVolume } from '../models/MailStatsTypeVolume';
+import { MailStatsTypeVolumeFrom } from '../models/MailStatsTypeVolumeFrom';
+import { MailStatsTypeVolumeIp } from '../models/MailStatsTypeVolumeIp';
+import { MailStatsTypeVolumeTo } from '../models/MailStatsTypeVolumeTo';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 
@@ -49,6 +57,7 @@ let primitives = [
 let enumsMap: Set<string> = new Set<string>([
     "DenyRuleNewTypeEnum",
     "DenyRuleRecordTypeEnum",
+    "MailStatsTypeTimeEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -59,7 +68,6 @@ let typeMap: {[index: string]: any} = {
     "EmailAddressesTypes": EmailAddressesTypesClass,
     "ErrorMessage": ErrorMessage,
     "GenericResponse": GenericResponse,
-    "GetStats200ResponseInner": GetStats200ResponseInner,
     "MailAttachment": MailAttachment,
     "MailBlockClickHouse": MailBlockClickHouse,
     "MailBlockRspamd": MailBlockRspamd,
@@ -67,6 +75,11 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailLogEntry": MailLogEntry,
     "MailOrder": MailOrder,
+    "MailStatsType": MailStatsType,
+    "MailStatsTypeVolume": MailStatsTypeVolume,
+    "MailStatsTypeVolumeFrom": MailStatsTypeVolumeFrom,
+    "MailStatsTypeVolumeIp": MailStatsTypeVolumeIp,
+    "MailStatsTypeVolumeTo": MailStatsTypeVolumeTo,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
 }

@@ -16,8 +16,8 @@
 #include "OpenAPIHistoryApi.h"
 
 #include "OpenAPIErrorMessage.h"
-#include "OpenAPIGetStats200ResponseInner.h"
 #include "OpenAPIMailLog.h"
+#include "OpenAPIMailStatsType.h"
 
 namespace OpenAPI
 {
@@ -33,6 +33,21 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
 
+	enum class TimeEnum
+	{
+		All,
+		Billing,
+		Month,
+		_7d,
+		_24h,
+		_1d,
+		_1h,
+  	};
+
+	static FString EnumToString(const TimeEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, TimeEnum& EnumValue);
+	/* The timeframe for the statistics. */
+	TOptional<TimeEnum> Time;
 };
 
 class OPENAPI_API OpenAPIHistoryApi::GetStatsResponse : public Response
@@ -42,7 +57,7 @@ public:
 	void SetHttpResponseCode(EHttpResponseCodes::Type InHttpResponseCode) final;
 	bool FromJson(const TSharedPtr<FJsonValue>& JsonValue) final;
 
-    TArray<OpenAPIGetStats200ResponseInner> Content;
+    OpenAPIMailStatsType Content;
 };
 
 /* displays the mail log
@@ -82,6 +97,16 @@ public:
 	TOptional<FString> Replyto;
 	/* Header From Email Address */
 	TOptional<FString> Headerfrom;
+	enum class DeliveredEnum
+	{
+		_0,
+		_1,
+  	};
+
+	static FString EnumToString(const DeliveredEnum& EnumValue);
+	static bool EnumFromString(const FString& EnumAsString, DeliveredEnum& EnumValue);
+	/* Limiting the emails to wether or not they were delivered. */
+	TOptional<DeliveredEnum> Delivered;
 };
 
 class OPENAPI_API OpenAPIHistoryApi::ViewMailLogResponse : public Response

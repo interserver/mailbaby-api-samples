@@ -2,7 +2,7 @@
 
 MailBaby Email Delivery and Management Service API
 - API version: 1.1.0
-    - Generator version: 7.13.0-SNAPSHOT
+    - Generator version: 7.14.0-SNAPSHOT
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 # Overview
@@ -95,7 +95,6 @@ Class | Method | HTTP request | Description
  - [EmailAddressesTypes](EmailAddressesTypes.md)
  - [ErrorMessage](ErrorMessage.md)
  - [GenericResponse](GenericResponse.md)
- - [GetStats200ResponseInner](GetStats200ResponseInner.md)
  - [MailAttachment](MailAttachment.md)
  - [MailBlockClickHouse](MailBlockClickHouse.md)
  - [MailBlockRspamd](MailBlockRspamd.md)
@@ -103,6 +102,11 @@ Class | Method | HTTP request | Description
  - [MailLog](MailLog.md)
  - [MailLogEntry](MailLogEntry.md)
  - [MailOrder](MailOrder.md)
+ - [MailStatsType](MailStatsType.md)
+ - [MailStatsTypeVolume](MailStatsTypeVolume.md)
+ - [MailStatsTypeVolumeFrom](MailStatsTypeVolumeFrom.md)
+ - [MailStatsTypeVolumeIp](MailStatsTypeVolumeIp.md)
+ - [MailStatsTypeVolumeTo](MailStatsTypeVolumeTo.md)
  - [SendMail](SendMail.md)
  - [SendMailAdv](SendMailAdv.md)
 

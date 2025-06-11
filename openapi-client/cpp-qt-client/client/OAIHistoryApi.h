@@ -19,8 +19,8 @@
 #include "OAIOauth.h"
 
 #include "OAIErrorMessage.h"
-#include "OAIGetStats_200_response_inner.h"
 #include "OAIMailLog.h"
+#include "OAIMailStatsType.h"
 #include <QString>
 
 #include <QObject>
@@ -59,8 +59,10 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
-
-    virtual void getStats();
+    /**
+    * @param[in]  time QString [optional]
+    */
+    virtual void getStats(const ::OpenAPI::OptionalParam<QString> &time = ::OpenAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  id qint64 [optional]
@@ -76,8 +78,9 @@ public:
     * @param[in]  end_date qint64 [optional]
     * @param[in]  replyto QString [optional]
     * @param[in]  headerfrom QString [optional]
+    * @param[in]  delivered QString [optional]
     */
-    virtual void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &origin = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mx = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mailid = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint64> &start_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<qint64> &end_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &replyto = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &headerfrom = ::OpenAPI::OptionalParam<QString>());
+    virtual void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &origin = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mx = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mailid = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint64> &start_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<qint64> &end_date = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &replyto = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &headerfrom = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &delivered = ::OpenAPI::OptionalParam<QString>());
 
 
 private:
@@ -107,16 +110,16 @@ private:
 
 Q_SIGNALS:
 
-    void getStatsSignal(QList<OAIGetStats_200_response_inner> summary);
+    void getStatsSignal(OAIMailStatsType summary);
     void viewMailLogSignal(OAIMailLog summary);
 
 
-    void getStatsSignalFull(OAIHttpRequestWorker *worker, QList<OAIGetStats_200_response_inner> summary);
+    void getStatsSignalFull(OAIHttpRequestWorker *worker, OAIMailStatsType summary);
     void viewMailLogSignalFull(OAIHttpRequestWorker *worker, OAIMailLog summary);
 
     Q_DECL_DEPRECATED_X("Use getStatsSignalError() instead")
-    void getStatsSignalE(QList<OAIGetStats_200_response_inner> summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getStatsSignalError(QList<OAIGetStats_200_response_inner> summary, QNetworkReply::NetworkError error_type, const QString &error_str);
+    void getStatsSignalE(OAIMailStatsType summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getStatsSignalError(OAIMailStatsType summary, QNetworkReply::NetworkError error_type, const QString &error_str);
     Q_DECL_DEPRECATED_X("Use viewMailLogSignalError() instead")
     void viewMailLogSignalE(OAIMailLog summary, QNetworkReply::NetworkError error_type, QString error_str);
     void viewMailLogSignalError(OAIMailLog summary, QNetworkReply::NetworkError error_type, const QString &error_str);

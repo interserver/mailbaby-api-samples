@@ -12,8 +12,8 @@
 package org.openapitools.client.api
 
 import org.openapitools.client.model.ErrorMessage
-import org.openapitools.client.model.GetStats200ResponseInner
 import org.openapitools.client.model.MailLog
+import org.openapitools.client.model.MailStatsType
 import org.openapitools.client.core.JsonSupport._
 import sttp.client4._
 import sttp.model.Method
@@ -28,19 +28,21 @@ class HistoryApi(baseUrl: String) {
    * Returns information about the usage on your mail accounts.
    * 
    * Expected answers:
-   *   code 200 : Seq[GetStats200ResponseInner] (OK)
+   *   code 200 : MailStatsType (OK)
    *   code 401 : ErrorMessage (Unauthorized)
    *   code 404 : ErrorMessage (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
+   * 
+   * @param time The timeframe for the statistics.
    */
-  def getStats(apiKey: String)(): Request[Either[ResponseException[String, Exception], Seq[GetStats200ResponseInner]]] =
+  def getStats(apiKey: String)(time: Option[String] = None): Request[Either[ResponseException[String, Exception], MailStatsType]] =
     basicRequest
-      .method(Method.GET, uri"$baseUrl/mail/stats")
+      .method(Method.GET, uri"$baseUrl/mail/stats?time=${ time }")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
-      .response(asJson[Seq[GetStats200ResponseInner]])
+      .response(asJson[MailStatsType])
 
   /**
    * Get a listing of the emails sent through this system 
@@ -65,10 +67,11 @@ class HistoryApi(baseUrl: String) {
    * @param endDate earliest date to get emails in unix timestamp format
    * @param replyto Reply-To Email Address
    * @param headerfrom Header From Email Address
+   * @param delivered Limiting the emails to wether or not they were delivered.
    */
-  def viewMailLog(apiKey: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None): Request[Either[ResponseException[String, Exception], MailLog]] =
+  def viewMailLog(apiKey: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[String] = None): Request[Either[ResponseException[String, Exception], MailLog]] =
     basicRequest
-      .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&origin=${ origin }&mx=${ mx }&from=${ from }&to=${ to }&subject=${ subject }&mailid=${ mailid }&skip=${ skip }&limit=${ limit }&startDate=${ startDate }&endDate=${ endDate }&replyto=${ replyto }&headerfrom=${ headerfrom }")
+      .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&origin=${ origin }&mx=${ mx }&from=${ from }&to=${ to }&subject=${ subject }&mailid=${ mailid }&skip=${ skip }&limit=${ limit }&startDate=${ startDate }&endDate=${ endDate }&replyto=${ replyto }&headerfrom=${ headerfrom }&delivered=${ delivered }")
       .contentType("application/json")
       .header("X-API-KEY", apiKey)
       .response(asJson[MailLog])

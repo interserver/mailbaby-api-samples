@@ -17,9 +17,13 @@ import { BaseAPI } from '../runtime';
 import type { OperationOpts, HttpHeaders, HttpQuery } from '../runtime';
 import type {
     ErrorMessage,
-    GetStats200ResponseInner,
     MailLog,
+    MailStatsType,
 } from '../models';
+
+export interface GetStatsRequest {
+    time?: GetStatsTimeEnum;
+}
 
 export interface ViewMailLogRequest {
     id?: number;
@@ -35,6 +39,7 @@ export interface ViewMailLogRequest {
     endDate?: number;
     replyto?: string;
     headerfrom?: string;
+    delivered?: ViewMailLogDeliveredEnum;
 }
 
 /**
@@ -46,17 +51,23 @@ export class HistoryApi extends BaseAPI {
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
      */
-    getStats(): Observable<Array<GetStats200ResponseInner>>
-    getStats(opts?: OperationOpts): Observable<AjaxResponse<Array<GetStats200ResponseInner>>>
-    getStats(opts?: OperationOpts): Observable<Array<GetStats200ResponseInner> | AjaxResponse<Array<GetStats200ResponseInner>>> {
+    getStats({ time }: GetStatsRequest): Observable<MailStatsType>
+    getStats({ time }: GetStatsRequest, opts?: OperationOpts): Observable<AjaxResponse<MailStatsType>>
+    getStats({ time }: GetStatsRequest, opts?: OperationOpts): Observable<MailStatsType | AjaxResponse<MailStatsType>> {
+
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
         };
 
-        return this.request<Array<GetStats200ResponseInner>>({
+        const query: HttpQuery = {};
+
+        if (time != null) { query['time'] = time; }
+
+        return this.request<MailStatsType>({
             url: '/mail/stats',
             method: 'GET',
             headers,
+            query,
         }, opts?.responseOpts);
     };
 
@@ -64,9 +75,9 @@ export class HistoryApi extends BaseAPI {
      * Get a listing of the emails sent through this system 
      * displays the mail log
      */
-    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom }: ViewMailLogRequest): Observable<MailLog>
-    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom }: ViewMailLogRequest, opts?: OperationOpts): Observable<AjaxResponse<MailLog>>
-    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom }: ViewMailLogRequest, opts?: OperationOpts): Observable<MailLog | AjaxResponse<MailLog>> {
+    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered }: ViewMailLogRequest): Observable<MailLog>
+    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered }: ViewMailLogRequest, opts?: OperationOpts): Observable<AjaxResponse<MailLog>>
+    viewMailLog({ id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered }: ViewMailLogRequest, opts?: OperationOpts): Observable<MailLog | AjaxResponse<MailLog>> {
 
         const headers: HttpHeaders = {
             ...(this.configuration.apiKey && { 'X-API-KEY': this.configuration.apiKey('X-API-KEY') }), // apiKeyAuth authentication
@@ -87,6 +98,7 @@ export class HistoryApi extends BaseAPI {
         if (endDate != null) { query['endDate'] = endDate; }
         if (replyto != null) { query['replyto'] = replyto; }
         if (headerfrom != null) { query['headerfrom'] = headerfrom; }
+        if (delivered != null) { query['delivered'] = delivered; }
 
         return this.request<MailLog>({
             url: '/mail/log',
@@ -96,4 +108,26 @@ export class HistoryApi extends BaseAPI {
         }, opts?.responseOpts);
     };
 
+}
+
+/**
+ * @export
+ * @enum {string}
+ */
+export enum GetStatsTimeEnum {
+    All = 'all',
+    Billing = 'billing',
+    Month = 'month',
+    _7d = '7d',
+    _24h = '24h',
+    _1d = '1d',
+    _1h = '1h'
+}
+/**
+ * @export
+ * @enum {string}
+ */
+export enum ViewMailLogDeliveredEnum {
+    _0 = '0',
+    _1 = '1'
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /** An email record */
-public struct MailLogEntry: Sendable, Codable, JSONEncodable, Hashable {
+public struct MailLogEntry: Sendable, Codable, ParameterConvertible, Hashable {
 
     /** internal db id */
     public var id: Int

@@ -17,11 +17,11 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictInt, StrictStr
-from typing import List, Optional
+from pydantic import Field, StrictInt, StrictStr, field_validator
+from typing import Optional
 from typing_extensions import Annotated
-from openapi_client.models.get_stats200_response_inner import GetStats200ResponseInner
 from openapi_client.models.mail_log import MailLog
+from openapi_client.models.mail_stats_type import MailStatsType
 
 from openapi_client.api_client import ApiClient, RequestSerialized
 from openapi_client.api_response import ApiResponse
@@ -44,6 +44,7 @@ class HistoryApi:
     @validate_call
     def get_stats(
         self,
+        time: Annotated[Optional[StrictStr], Field(description="The timeframe for the statistics.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -56,11 +57,13 @@ class HistoryApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[GetStats200ResponseInner]:
+    ) -> MailStatsType:
         """Account usage statistics.
 
         Returns information about the usage on your mail accounts.
 
+        :param time: The timeframe for the statistics.
+        :type time: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -84,6 +87,7 @@ class HistoryApi:
         """ # noqa: E501
 
         _param = self._get_stats_serialize(
+            time=time,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -91,7 +95,7 @@ class HistoryApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetStats200ResponseInner]",
+            '200': "MailStatsType",
             '401': "ErrorMessage",
             '404': "ErrorMessage",
         }
@@ -109,6 +113,7 @@ class HistoryApi:
     @validate_call
     def get_stats_with_http_info(
         self,
+        time: Annotated[Optional[StrictStr], Field(description="The timeframe for the statistics.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -121,11 +126,13 @@ class HistoryApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[GetStats200ResponseInner]]:
+    ) -> ApiResponse[MailStatsType]:
         """Account usage statistics.
 
         Returns information about the usage on your mail accounts.
 
+        :param time: The timeframe for the statistics.
+        :type time: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -149,6 +156,7 @@ class HistoryApi:
         """ # noqa: E501
 
         _param = self._get_stats_serialize(
+            time=time,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -156,7 +164,7 @@ class HistoryApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetStats200ResponseInner]",
+            '200': "MailStatsType",
             '401': "ErrorMessage",
             '404': "ErrorMessage",
         }
@@ -174,6 +182,7 @@ class HistoryApi:
     @validate_call
     def get_stats_without_preload_content(
         self,
+        time: Annotated[Optional[StrictStr], Field(description="The timeframe for the statistics.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -191,6 +200,8 @@ class HistoryApi:
 
         Returns information about the usage on your mail accounts.
 
+        :param time: The timeframe for the statistics.
+        :type time: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -214,6 +225,7 @@ class HistoryApi:
         """ # noqa: E501
 
         _param = self._get_stats_serialize(
+            time=time,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -221,7 +233,7 @@ class HistoryApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[GetStats200ResponseInner]",
+            '200': "MailStatsType",
             '401': "ErrorMessage",
             '404': "ErrorMessage",
         }
@@ -234,6 +246,7 @@ class HistoryApi:
 
     def _get_stats_serialize(
         self,
+        time,
         _request_auth,
         _content_type,
         _headers,
@@ -256,6 +269,10 @@ class HistoryApi:
 
         # process the path parameters
         # process the query parameters
+        if time is not None:
+            
+            _query_params.append(('time', time))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -309,6 +326,7 @@ class HistoryApi:
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
         headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
+        delivered: Annotated[Optional[StrictStr], Field(description="Limiting the emails to wether or not they were delivered.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -352,6 +370,8 @@ class HistoryApi:
         :type replyto: str
         :param headerfrom: Header From Email Address
         :type headerfrom: str
+        :param delivered: Limiting the emails to wether or not they were delivered.
+        :type delivered: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -388,6 +408,7 @@ class HistoryApi:
             end_date=end_date,
             replyto=replyto,
             headerfrom=headerfrom,
+            delivered=delivered,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -425,6 +446,7 @@ class HistoryApi:
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
         headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
+        delivered: Annotated[Optional[StrictStr], Field(description="Limiting the emails to wether or not they were delivered.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -468,6 +490,8 @@ class HistoryApi:
         :type replyto: str
         :param headerfrom: Header From Email Address
         :type headerfrom: str
+        :param delivered: Limiting the emails to wether or not they were delivered.
+        :type delivered: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -504,6 +528,7 @@ class HistoryApi:
             end_date=end_date,
             replyto=replyto,
             headerfrom=headerfrom,
+            delivered=delivered,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -541,6 +566,7 @@ class HistoryApi:
         end_date: Annotated[Optional[Annotated[int, Field(le=9999999999, strict=True, ge=0)]], Field(description="earliest date to get emails in unix timestamp format")] = None,
         replyto: Annotated[Optional[StrictStr], Field(description="Reply-To Email Address")] = None,
         headerfrom: Annotated[Optional[StrictStr], Field(description="Header From Email Address")] = None,
+        delivered: Annotated[Optional[StrictStr], Field(description="Limiting the emails to wether or not they were delivered.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -584,6 +610,8 @@ class HistoryApi:
         :type replyto: str
         :param headerfrom: Header From Email Address
         :type headerfrom: str
+        :param delivered: Limiting the emails to wether or not they were delivered.
+        :type delivered: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -620,6 +648,7 @@ class HistoryApi:
             end_date=end_date,
             replyto=replyto,
             headerfrom=headerfrom,
+            delivered=delivered,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -652,6 +681,7 @@ class HistoryApi:
         end_date,
         replyto,
         headerfrom,
+        delivered,
         _request_auth,
         _content_type,
         _headers,
@@ -725,6 +755,10 @@ class HistoryApi:
         if headerfrom is not None:
             
             _query_params.append(('headerfrom', headerfrom))
+            
+        if delivered is not None:
+            
+            _query_params.append(('delivered', delivered))
             
         # process the header parameters
         # process the form parameters

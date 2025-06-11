@@ -1,5 +1,5 @@
 import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
-import { Configuration, ConfigurationOptions } from '../configuration'
+import { Configuration, ConfigurationOptions, mergeConfiguration } from '../configuration'
 import type { Middleware } from '../middleware';
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
@@ -10,7 +10,6 @@ import { EmailAddressTypes } from '../models/EmailAddressTypes';
 import { EmailAddressesTypes } from '../models/EmailAddressesTypes';
 import { ErrorMessage } from '../models/ErrorMessage';
 import { GenericResponse } from '../models/GenericResponse';
-import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
 import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
@@ -18,6 +17,11 @@ import { MailBlocks } from '../models/MailBlocks';
 import { MailLog } from '../models/MailLog';
 import { MailLogEntry } from '../models/MailLogEntry';
 import { MailOrder } from '../models/MailOrder';
+import { MailStatsType } from '../models/MailStatsType';
+import { MailStatsTypeVolume } from '../models/MailStatsTypeVolume';
+import { MailStatsTypeVolumeFrom } from '../models/MailStatsTypeVolumeFrom';
+import { MailStatsTypeVolumeIp } from '../models/MailStatsTypeVolumeIp';
+import { MailStatsTypeVolumeTo } from '../models/MailStatsTypeVolumeTo';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 
@@ -45,47 +49,19 @@ export class ObservableBlockingApi {
      * @param [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      */
     public addRuleWithHttpInfo(type: string, data: string, user?: string, _options?: ConfigurationOptions): Observable<HttpInfo<GenericResponse>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.addRule(type, data, user, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.addRuleWithHttpInfo(rsp)));
@@ -109,47 +85,19 @@ export class ObservableBlockingApi {
      * @param ruleId The ID of the Rules entry.
      */
     public deleteRuleWithHttpInfo(ruleId: number, _options?: ConfigurationOptions): Observable<HttpInfo<GenericResponse>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.deleteRule(ruleId, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteRuleWithHttpInfo(rsp)));
@@ -171,47 +119,19 @@ export class ObservableBlockingApi {
      * @param body
      */
     public delistBlockWithHttpInfo(body: string, _options?: ConfigurationOptions): Observable<HttpInfo<GenericResponse>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.delistBlock(body, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.delistBlockWithHttpInfo(rsp)));
@@ -231,47 +151,19 @@ export class ObservableBlockingApi {
      * displays a list of blocked email addresses
      */
     public getMailBlocksWithHttpInfo(_options?: ConfigurationOptions): Observable<HttpInfo<MailBlocks>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.getMailBlocks(_config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getMailBlocksWithHttpInfo(rsp)));
@@ -290,47 +182,19 @@ export class ObservableBlockingApi {
      * Displays a listing of deny email rules.
      */
     public getRulesWithHttpInfo(_options?: ConfigurationOptions): Observable<HttpInfo<Array<DenyRuleRecord>>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.getRules(_config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getRulesWithHttpInfo(rsp)));
@@ -366,49 +230,22 @@ export class ObservableHistoryApi {
     /**
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
+     * @param [time] The timeframe for the statistics.
      */
-    public getStatsWithHttpInfo(_options?: ConfigurationOptions): Observable<HttpInfo<Array<GetStats200ResponseInner>>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
+    public getStatsWithHttpInfo(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', _options?: ConfigurationOptions): Observable<HttpInfo<MailStatsType>> {
+        const _config = mergeConfiguration(this.configuration, _options);
 
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
-
-        const requestContextPromise = this.requestFactory.getStats(_config);
+        const requestContextPromise = this.requestFactory.getStats(time, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getStatsWithHttpInfo(rsp)));
@@ -418,9 +255,10 @@ export class ObservableHistoryApi {
     /**
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
+     * @param [time] The timeframe for the statistics.
      */
-    public getStats(_options?: ConfigurationOptions): Observable<Array<GetStats200ResponseInner>> {
-        return this.getStatsWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<GetStats200ResponseInner>>) => apiResponse.data));
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', _options?: ConfigurationOptions): Observable<MailStatsType> {
+        return this.getStatsWithHttpInfo(time, _options).pipe(map((apiResponse: HttpInfo<MailStatsType>) => apiResponse.data));
     }
 
     /**
@@ -439,49 +277,22 @@ export class ObservableHistoryApi {
      * @param [endDate] earliest date to get emails in unix timestamp format
      * @param [replyto] Reply-To Email Address
      * @param [headerfrom] Header From Email Address
+     * @param [delivered] Limiting the emails to wether or not they were delivered.
      */
-    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: ConfigurationOptions): Observable<HttpInfo<MailLog>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
+    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', _options?: ConfigurationOptions): Observable<HttpInfo<MailLog>> {
+        const _config = mergeConfiguration(this.configuration, _options);
 
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
-
-        const requestContextPromise = this.requestFactory.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _config);
+        const requestContextPromise = this.requestFactory.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.viewMailLogWithHttpInfo(rsp)));
@@ -504,9 +315,10 @@ export class ObservableHistoryApi {
      * @param [endDate] earliest date to get emails in unix timestamp format
      * @param [replyto] Reply-To Email Address
      * @param [headerfrom] Header From Email Address
+     * @param [delivered] Limiting the emails to wether or not they were delivered.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: ConfigurationOptions): Observable<MailLog> {
-        return this.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, _options).pipe(map((apiResponse: HttpInfo<MailLog>) => apiResponse.data));
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', _options?: ConfigurationOptions): Observable<MailLog> {
+        return this.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, _options).pipe(map((apiResponse: HttpInfo<MailLog>) => apiResponse.data));
     }
 
 }
@@ -528,7 +340,7 @@ export class ObservableSendingApi {
     }
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
@@ -541,47 +353,19 @@ export class ObservableSendingApi {
      * @param [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      */
     public sendAdvMailWithHttpInfo(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: ConfigurationOptions): Observable<HttpInfo<GenericResponse>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.sendAdvMail(subject, body, _from, to, replyto, cc, bcc, attachments, id, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendAdvMailWithHttpInfo(rsp)));
@@ -589,7 +373,7 @@ export class ObservableSendingApi {
     }
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
@@ -614,47 +398,19 @@ export class ObservableSendingApi {
      * @param body The main email contents.
      */
     public sendMailWithHttpInfo(to: string, _from: string, subject: string, body: string, _options?: ConfigurationOptions): Observable<HttpInfo<GenericResponse>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.sendMail(to, _from, subject, body, _config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.sendMailWithHttpInfo(rsp)));
@@ -696,47 +452,19 @@ export class ObservableServicesApi {
      * displays a list of mail service orders
      */
     public getMailOrdersWithHttpInfo(_options?: ConfigurationOptions): Observable<HttpInfo<Array<MailOrder>>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.getMailOrders(_config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getMailOrdersWithHttpInfo(rsp)));
@@ -773,47 +501,19 @@ export class ObservableStatusApi {
      * Checks if the server is running
      */
     public pingServerWithHttpInfo(_options?: ConfigurationOptions): Observable<HttpInfo<void>> {
-    let _config = this.configuration;
-    let allMiddleware: Middleware[] = [];
-    if (_options && _options.middleware){
-      const middlewareMergeStrategy = _options.middlewareMergeStrategy || 'replace' // default to replace behavior
-      // call-time middleware provided
-      const calltimeMiddleware: Middleware[] = _options.middleware;
-
-      switch(middlewareMergeStrategy){
-      case 'append':
-        allMiddleware = this.configuration.middleware.concat(calltimeMiddleware);
-        break;
-      case 'prepend':
-        allMiddleware = calltimeMiddleware.concat(this.configuration.middleware)
-        break;
-      case 'replace':
-        allMiddleware = calltimeMiddleware
-        break;
-      default: 
-        throw new Error(`unrecognized middleware merge strategy '${middlewareMergeStrategy}'`)
-      }
-	}
-	if (_options){
-    _config = {
-      baseServer: _options.baseServer || this.configuration.baseServer,
-      httpApi: _options.httpApi || this.configuration.httpApi,
-      authMethods: _options.authMethods || this.configuration.authMethods,
-      middleware: allMiddleware || this.configuration.middleware
-		};
-	}
+        const _config = mergeConfiguration(this.configuration, _options);
 
         const requestContextPromise = this.requestFactory.pingServer(_config);
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of allMiddleware) {
+        for (const middleware of _config.middleware) {
             middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
         }
 
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => _config.httpApi.send(ctx))).
             pipe(mergeMap((response: ResponseContext) => {
                 let middlewarePostObservable = of(response);
-                for (const middleware of allMiddleware.reverse()) {
+                for (const middleware of _config.middleware.reverse()) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.pingServerWithHttpInfo(rsp)));

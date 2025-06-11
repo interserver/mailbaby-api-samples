@@ -15,15 +15,16 @@ import io.circe.Encoder
 import org.http4s.Uri
 import org.http4s.client.Client as Http4sClient
 import org.openapitools.client.models.ErrorMessage
-import org.openapitools.client.models.GetStats200ResponseInner
+import org.openapitools.client.models.GetStatsTimeParameter
 import org.openapitools.client.models.MailLog
-import scala.collection.immutable.Seq
+import org.openapitools.client.models.MailStatsType
+import org.openapitools.client.models.ViewMailLogDeliveredParameter
 import org.openapitools.client.models.*
 
 trait HistoryApiEndpoints[F[*]] {
 
-  def getStats()(using auth: _Authorization.ApiKey): F[Seq[GetStats200ResponseInner]]
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None)(using auth: _Authorization.ApiKey): F[MailLog]
+  def getStats(time: Option[GetStatsTimeParameter] = None)(using auth: _Authorization.ApiKey): F[MailStatsType]
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[ViewMailLogDeliveredParameter] = None)(using auth: _Authorization.ApiKey): F[MailLog]
 
 }
 
@@ -37,27 +38,30 @@ class HistoryApiEndpointsImpl[F[*]: Concurrent](
   import io.circe.syntax.EncoderOps
   import cats.implicits.toFlatMapOps
 
-  override def getStats()(using auth: _Authorization.ApiKey): F[Seq[GetStats200ResponseInner]] = {
+  override def getStats(time: Option[GetStatsTimeParameter] = None)(using auth: _Authorization.ApiKey): F[MailStatsType] = {
     val requestHeaders = Seq(
       Some("Content-Type" -> "application/json")
     ).flatten
+    val queryParameters = (
+      time.map("time" -> _).map(Seq(_))
+    ).toSeq.flatten
 
-    _executeRequest[Unit, Seq[GetStats200ResponseInner]](
+    _executeRequest[Unit, MailStatsType](
       method = "GET",
       path = s"/mail/stats",
       body = None,
       formParameters = None,
-      queryParameters = Nil,
+      queryParameters = queryParameters,
       requestHeaders = requestHeaders,
       auth = Some(auth)) {
         
-        case r if r.status.code == 200 => parseJson[F, Seq[GetStats200ResponseInner]]("Seq[GetStats200ResponseInner]", r)
+        case r if r.status.code == 200 => parseJson[F, MailStatsType]("MailStatsType", r)
         case r if r.status.code == 401 => parseJson[F, ErrorMessage]("ErrorMessage", r).flatMap(res => Concurrent[F].raiseError(_FailedRequest(r.status.code, r.status.reason, Some(res.asJson))))
         case r if r.status.code == 404 => parseJson[F, ErrorMessage]("ErrorMessage", r).flatMap(res => Concurrent[F].raiseError(_FailedRequest(r.status.code, r.status.reason, Some(res.asJson))))
     }
   }
 
-  override def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None)(using auth: _Authorization.ApiKey): F[MailLog] = {
+  override def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[ViewMailLogDeliveredParameter] = None)(using auth: _Authorization.ApiKey): F[MailLog] = {
     val requestHeaders = Seq(
       Some("Content-Type" -> "application/json")
     ).flatten
@@ -74,7 +78,8 @@ class HistoryApiEndpointsImpl[F[*]: Concurrent](
       startDate.map("startDate" -> _).map(Seq(_)) ++ 
       endDate.map("endDate" -> _).map(Seq(_)) ++ 
       replyto.map("replyto" -> _).map(Seq(_)) ++ 
-      headerfrom.map("headerfrom" -> _).map(Seq(_))
+      headerfrom.map("headerfrom" -> _).map(Seq(_)) ++ 
+      delivered.map("delivered" -> _).map(Seq(_))
     ).toSeq.flatten
 
     _executeRequest[Unit, MailLog](

@@ -17,7 +17,6 @@ src/main/scala/org/openapitools/client/model/EmailAddressTypes.scala
 src/main/scala/org/openapitools/client/model/EmailAddressesTypes.scala
 src/main/scala/org/openapitools/client/model/ErrorMessage.scala
 src/main/scala/org/openapitools/client/model/GenericResponse.scala
-src/main/scala/org/openapitools/client/model/GetStats200ResponseInner.scala
 src/main/scala/org/openapitools/client/model/MailAttachment.scala
 src/main/scala/org/openapitools/client/model/MailBlockClickHouse.scala
 src/main/scala/org/openapitools/client/model/MailBlockRspamd.scala
@@ -25,5 +24,10 @@ src/main/scala/org/openapitools/client/model/MailBlocks.scala
 src/main/scala/org/openapitools/client/model/MailLog.scala
 src/main/scala/org/openapitools/client/model/MailLogEntry.scala
 src/main/scala/org/openapitools/client/model/MailOrder.scala
+src/main/scala/org/openapitools/client/model/MailStatsType.scala
+src/main/scala/org/openapitools/client/model/MailStatsTypeVolume.scala
+src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeFrom.scala
+src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeIp.scala
+src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeTo.scala
 src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala

@@ -20,7 +20,7 @@ import uri
 
 import ../models/model_error_message
 import ../models/model_mail_log
-import ../models/model_get_stats_200_response_inner
+import ../models/model_mail_stats_type
 
 const basepath = "https://api.mailbaby.net"
 
@@ -40,14 +40,17 @@ template constructResult[T](response: Response): untyped =
     (none(T.typedesc), response)
 
 
-proc getStats*(httpClient: HttpClient): (Option[seq[getStats_200_response_inner]], Response) =
+proc getStats*(httpClient: HttpClient, time: string): (Option[MailStatsType], Response) =
   ## Account usage statistics.
+  let url_encoded_query_params = encodeQuery([
+    ("time", $time), # The timeframe for the statistics.
+  ])
 
-  let response = httpClient.get(basepath & "/mail/stats")
-  constructResult[seq[getStats_200_response_inner]](response)
+  let response = httpClient.get(basepath & "/mail/stats" & "?" & url_encoded_query_params)
+  constructResult[MailStatsType](response)
 
 
-proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, skip: int, limit: int, startDate: int64, endDate: int64, replyto: string, headerfrom: string): (Option[MailLog], Response) =
+proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, skip: int, limit: int, startDate: int64, endDate: int64, replyto: string, headerfrom: string, delivered: string): (Option[MailLog], Response) =
   ## displays the mail log
   let url_encoded_query_params = encodeQuery([
     ("id", $id), # The ID of your mail order this will be sent through.
@@ -63,6 +66,7 @@ proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string,
     ("endDate", $endDate), # earliest date to get emails in unix timestamp format
     ("replyto", $replyto), # Reply-To Email Address
     ("headerfrom", $headerfrom), # Header From Email Address
+    ("delivered", $delivered), # Limiting the emails to wether or not they were delivered.
   ])
 
   let response = httpClient.get(basepath & "/mail/log" & "?" & url_encoded_query_params)

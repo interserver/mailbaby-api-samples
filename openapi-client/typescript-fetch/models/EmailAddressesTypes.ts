@@ -12,6 +12,14 @@
  * Do not edit the class manually.
  */
 
+import type { EmailAddressName } from './EmailAddressName';
+import {
+    instanceOfEmailAddressName,
+    EmailAddressNameFromJSON,
+    EmailAddressNameFromJSONTyped,
+    EmailAddressNameToJSON,
+} from './EmailAddressName';
+
 /**
  * @type EmailAddressesTypes
  * 
@@ -27,11 +35,13 @@ export function EmailAddressesTypesFromJSONTyped(json: any, ignoreDiscriminator:
     if (json == null) {
         return json;
     }
-    if (instanceOfArray<EmailAddressName>(json)) {
-        return Array<EmailAddressName>FromJSONTyped(json, true);
-    }
-    if (instanceOfstring(json)) {
-        return stringFromJSONTyped(json, true);
+    if (Array.isArray(json)) {
+        if (json.every(item => typeof item === 'object')) {
+            if (json.every(item => instanceOfEmailAddressName(item))) {
+                return json.map(value => EmailAddressNameFromJSONTyped(value, true));
+            }
+        }
+        return json;
     }
 
     return {} as any;
@@ -45,12 +55,13 @@ export function EmailAddressesTypesToJSONTyped(value?: EmailAddressesTypes | nul
     if (value == null) {
         return value;
     }
-
-    if (instanceOfArray<EmailAddressName>(value)) {
-        return Array<EmailAddressName>ToJSON(value as Array<EmailAddressName>);
-    }
-    if (instanceOfstring(value)) {
-        return stringToJSON(value as string);
+    if (Array.isArray(value)) {
+        if (value.every(item => typeof item === 'object')) {
+            if (value.every(item => instanceOfEmailAddressName(item))) {
+                return value.map(value => EmailAddressNameToJSON(value as EmailAddressName));
+            }
+        }
+        return value;
     }
 
     return {};

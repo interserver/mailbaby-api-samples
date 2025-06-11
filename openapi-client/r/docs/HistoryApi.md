@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **GetStats**
-> array[GetStats200ResponseInner] GetStats()
+> MailStatsType GetStats(time = var.time)
 
 Account usage statistics.
 
@@ -21,22 +21,27 @@ library(openapi)
 
 # Account usage statistics.
 #
+# prepare function argument(s)
+var_time <- "time_example" # character | The timeframe for the statistics. (Optional)
 
 api_instance <- HistoryApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$GetStats(data_file = "result.txt")
-result <- api_instance$GetStats()
+# result <- api_instance$GetStats(time = var_timedata_file = "result.txt")
+result <- api_instance$GetStats(time = var_time)
 dput(result)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | Enum [all, billing, month, 7d, 24h, 1d, 1h] | The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**array[GetStats200ResponseInner]**](getStats_200_response_inner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -55,7 +60,7 @@ This endpoint does not need any parameter.
 | **404** | Unauthorized |  -  |
 
 # **ViewMailLog**
-> MailLog ViewMailLog(id = var.id, origin = var.origin, mx = var.mx, from = var.from, to = var.to, subject = var.subject, mailid = var.mailid, skip = 0, limit = 100, start_date = var.start_date, end_date = var.end_date, replyto = var.replyto, headerfrom = var.headerfrom)
+> MailLog ViewMailLog(id = var.id, origin = var.origin, mx = var.mx, from = var.from, to = var.to, subject = var.subject, mailid = var.mailid, skip = 0, limit = 100, start_date = var.start_date, end_date = var.end_date, replyto = var.replyto, headerfrom = var.headerfrom, delivered = var.delivered)
 
 displays the mail log
 
@@ -81,13 +86,14 @@ var_start_date <- 1641781008 # integer | earliest date to get emails in unix tim
 var_end_date <- 1673317008 # integer | earliest date to get emails in unix timestamp format (Optional)
 var_replyto <- "replyto_example" # character | Reply-To Email Address (Optional)
 var_headerfrom <- "headerfrom_example" # character | Header From Email Address (Optional)
+var_delivered <- "delivered_example" # character | Limiting the emails to wether or not they were delivered. (Optional)
 
 api_instance <- HistoryApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfromdata_file = "result.txt")
-result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfrom)
+# result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfrom, delivered = var_delivereddata_file = "result.txt")
+result <- api_instance$ViewMailLog(id = var_id, origin = var_origin, mx = var_mx, from = var_from, to = var_to, subject = var_subject, mailid = var_mailid, skip = var_skip, limit = var_limit, start_date = var_start_date, end_date = var_end_date, replyto = var_replyto, headerfrom = var_headerfrom, delivered = var_delivered)
 dput(result)
 ```
 
@@ -108,6 +114,7 @@ Name | Type | Description  | Notes
  **end_date** | **integer**| earliest date to get emails in unix timestamp format | [optional] 
  **replyto** | **character**| Reply-To Email Address | [optional] 
  **headerfrom** | **character**| Header From Email Address | [optional] 
+ **delivered** | Enum [0, 1] | Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

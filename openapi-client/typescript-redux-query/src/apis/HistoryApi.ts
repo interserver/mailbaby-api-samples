@@ -18,13 +18,17 @@ import {
     ErrorMessage,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
-    GetStats200ResponseInner,
-    GetStats200ResponseInnerFromJSON,
-    GetStats200ResponseInnerToJSON,
     MailLog,
     MailLogFromJSON,
     MailLogToJSON,
+    MailStatsType,
+    MailStatsTypeFromJSON,
+    MailStatsTypeToJSON,
 } from '../models';
+
+export interface GetStatsRequest {
+    time?: GetStatsTimeEnum;
+}
 
 export interface ViewMailLogRequest {
     id?: number;
@@ -40,6 +44,7 @@ export interface ViewMailLogRequest {
     endDate?: number;
     replyto?: string;
     headerfrom?: string;
+    delivered?: ViewMailLogDeliveredEnum;
 }
 
 
@@ -47,9 +52,15 @@ export interface ViewMailLogRequest {
  * Returns information about the usage on your mail accounts.
  * Account usage statistics.
  */
-function getStatsRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<GetStats200ResponseInner>> = {}): QueryConfig<T> {
+function getStatsRaw<T>(requestParameters: GetStatsRequest, requestConfig: runtime.TypedQueryConfig<T, MailStatsType> = {}): QueryConfig<T> {
     let queryParameters = null;
 
+    queryParameters = {};
+
+
+    if (requestParameters.time !== undefined) {
+        queryParameters['time'] = requestParameters.time;
+    }
 
     const headerParameters : runtime.HttpHeaders = {};
 
@@ -74,7 +85,7 @@ function getStatsRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<GetSta
 
     const { transform: requestTransform } = requestConfig;
     if (requestTransform) {
-        config.transform = (body: ResponseBody, text: ResponseBody) => requestTransform(body.map(GetStats200ResponseInnerFromJSON), text);
+        config.transform = (body: ResponseBody, text: ResponseBody) => requestTransform(MailStatsTypeFromJSON(body), text);
     }
 
     return config;
@@ -84,8 +95,8 @@ function getStatsRaw<T>( requestConfig: runtime.TypedQueryConfig<T, Array<GetSta
 * Returns information about the usage on your mail accounts.
 * Account usage statistics.
 */
-export function getStats<T>( requestConfig?: runtime.TypedQueryConfig<T, Array<GetStats200ResponseInner>>): QueryConfig<T> {
-    return getStatsRaw( requestConfig);
+export function getStats<T>(requestParameters: GetStatsRequest, requestConfig?: runtime.TypedQueryConfig<T, MailStatsType>): QueryConfig<T> {
+    return getStatsRaw(requestParameters, requestConfig);
 }
 
 /**
@@ -162,6 +173,11 @@ function viewMailLogRaw<T>(requestParameters: ViewMailLogRequest, requestConfig:
         queryParameters['headerfrom'] = requestParameters.headerfrom;
     }
 
+
+    if (requestParameters.delivered !== undefined) {
+        queryParameters['delivered'] = requestParameters.delivered;
+    }
+
     const headerParameters : runtime.HttpHeaders = {};
 
 
@@ -199,3 +215,25 @@ export function viewMailLog<T>(requestParameters: ViewMailLogRequest, requestCon
     return viewMailLogRaw(requestParameters, requestConfig);
 }
 
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum GetStatsTimeEnum {
+    All = 'all',
+    Billing = 'billing',
+    Month = 'month',
+    _7d = '7d',
+    _24h = '24h',
+    _1d = '1d',
+    _1h = '1h'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum ViewMailLogDeliveredEnum {
+    _0 = '0',
+    _1 = '1'
+}

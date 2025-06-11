@@ -55,7 +55,6 @@ set(SRCS
     model/email_addresses_types.c
     model/error_message.c
     model/generic_response.c
-    model/get_stats_200_response_inner.c
     model/mail_attachment.c
     model/mail_block_click_house.c
     model/mail_block_rspamd.c
@@ -63,6 +62,11 @@ set(SRCS
     model/mail_log.c
     model/mail_log_entry.c
     model/mail_order.c
+    model/mail_stats_type.c
+    model/mail_stats_type_volume.c
+    model/mail_stats_type_volume_from.c
+    model/mail_stats_type_volume_ip.c
+    model/mail_stats_type_volume_to.c
     model/send_mail.c
     model/send_mail_adv.c
     api/BlockingAPI.c
@@ -88,7 +92,6 @@ set(HDRS
     model/email_addresses_types.h
     model/error_message.h
     model/generic_response.h
-    model/get_stats_200_response_inner.h
     model/mail_attachment.h
     model/mail_block_click_house.h
     model/mail_block_rspamd.h
@@ -96,6 +99,11 @@ set(HDRS
     model/mail_log.h
     model/mail_log_entry.h
     model/mail_order.h
+    model/mail_stats_type.h
+    model/mail_stats_type_volume.h
+    model/mail_stats_type_volume_from.h
+    model/mail_stats_type_volume_ip.h
+    model/mail_stats_type_volume_to.h
     model/send_mail.h
     model/send_mail_adv.h
     api/BlockingAPI.h

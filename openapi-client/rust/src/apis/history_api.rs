@@ -34,11 +34,16 @@ pub enum ViewMailLogError {
 
 
 /// Returns information about the usage on your mail accounts.
-pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result<Vec<models::GetStats200ResponseInner>, Error<GetStatsError>> {
+pub async fn get_stats(configuration: &configuration::Configuration, time: Option<&str>) -> Result<models::MailStatsType, Error<GetStatsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_time = time;
 
     let uri_str = format!("{}/mail/stats", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = p_time {
+        req_builder = req_builder.query(&[("time", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -66,8 +71,8 @@ pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::GetStats200ResponseInner&gt;`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::GetStats200ResponseInner&gt;`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::MailStatsType`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::MailStatsType`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -77,7 +82,7 @@ pub async fn get_stats(configuration: &configuration::Configuration, ) -> Result
 }
 
 /// Get a listing of the emails sent through this system 
-pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>, replyto: Option<&str>, headerfrom: Option<&str>) -> Result<models::MailLog, Error<ViewMailLogError>> {
+pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>, replyto: Option<&str>, headerfrom: Option<&str>, delivered: Option<&str>) -> Result<models::MailLog, Error<ViewMailLogError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_id = id;
     let p_origin = origin;
@@ -92,6 +97,7 @@ pub async fn view_mail_log(configuration: &configuration::Configuration, id: Opt
     let p_end_date = end_date;
     let p_replyto = replyto;
     let p_headerfrom = headerfrom;
+    let p_delivered = delivered;
 
     let uri_str = format!("{}/mail/log", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -134,6 +140,9 @@ pub async fn view_mail_log(configuration: &configuration::Configuration, id: Opt
     }
     if let Some(ref param_value) = p_headerfrom {
         req_builder = req_builder.query(&[("headerfrom", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_delivered {
+        req_builder = req_builder.query(&[("delivered", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

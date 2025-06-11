@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * GenericResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class GenericResponse {
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
@@ -147,12 +147,10 @@ public class GenericResponse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("status");
-    openapiFields.add("text");
+    openapiFields = new HashSet<String>(Arrays.asList("status", "text"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
   /**

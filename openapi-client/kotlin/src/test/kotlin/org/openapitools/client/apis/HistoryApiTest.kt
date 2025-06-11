@@ -20,8 +20,8 @@ import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.apis.HistoryApi
 import org.openapitools.client.models.ErrorMessage
-import org.openapitools.client.models.GetStats200ResponseInner
 import org.openapitools.client.models.MailLog
+import org.openapitools.client.models.MailStatsType
 
 class HistoryApiTest : ShouldSpec() {
     init {
@@ -31,7 +31,8 @@ class HistoryApiTest : ShouldSpec() {
         // to test getStats
         should("test getStats") {
             // uncomment below to test getStats
-            //val result : kotlin.collections.List<GetStats200ResponseInner> = apiInstance.getStats()
+            //val time : kotlin.String = time_example // kotlin.String | The timeframe for the statistics.
+            //val result : MailStatsType = apiInstance.getStats(time)
             //result shouldBe ("TODO")
         }
 
@@ -51,7 +52,8 @@ class HistoryApiTest : ShouldSpec() {
             //val endDate : kotlin.Long = 1673317008 // kotlin.Long | earliest date to get emails in unix timestamp format
             //val replyto : kotlin.String = replyto_example // kotlin.String | Reply-To Email Address
             //val headerfrom : kotlin.String = headerfrom_example // kotlin.String | Header From Email Address
-            //val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
+            //val delivered : kotlin.String = delivered_example // kotlin.String | Limiting the emails to wether or not they were delivered.
+            //val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
             //result shouldBe ("TODO")
         }
 

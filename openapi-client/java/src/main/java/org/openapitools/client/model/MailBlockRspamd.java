@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * This is a block entry from the rspamd block list.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class MailBlockRspamd {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
@@ -147,14 +147,10 @@ public class MailBlockRspamd {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("from");
-    openapiFields.add("subject");
+    openapiFields = new HashSet<String>(Arrays.asList("from", "subject"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("from");
-    openapiRequiredFields.add("subject");
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("from", "subject"));
   }
 
   /**

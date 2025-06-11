@@ -10,7 +10,8 @@ test_that("GetStats", {
   # base path: https://api.mailbaby.net
   # Account usage statistics.
   # Returns information about the usage on your mail accounts.
-  # @return [array[GetStats200ResponseInner]]
+  # @param time character The timeframe for the statistics. (optional)
+  # @return [MailStatsType]
 
   # uncomment below to test the operation
   #expect_equal(result, "EXPECTED_RESULT")
@@ -34,6 +35,7 @@ test_that("ViewMailLog", {
   # @param end_date integer earliest date to get emails in unix timestamp format (optional)
   # @param replyto character Reply-To Email Address (optional)
   # @param headerfrom character Header From Email Address (optional)
+  # @param delivered character Limiting the emails to wether or not they were delivered. (optional)
   # @return [MailLog]
 
   # uncomment below to test the operation

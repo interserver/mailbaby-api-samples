@@ -33,7 +33,8 @@ isa_ok($api, 'OpenAPIClient::HistoryApi');
 # get_stats test
 #
 # uncomment below and update the test
-#my $get_stats_result = $api->get_stats();
+#my $get_stats_time = undef; # replace NULL with a proper value
+#my $get_stats_result = $api->get_stats(time => $get_stats_time);
 
 #
 # view_mail_log test
@@ -52,7 +53,8 @@ isa_ok($api, 'OpenAPIClient::HistoryApi');
 #my $view_mail_log_end_date = undef; # replace NULL with a proper value
 #my $view_mail_log_replyto = undef; # replace NULL with a proper value
 #my $view_mail_log_headerfrom = undef; # replace NULL with a proper value
-#my $view_mail_log_result = $api->view_mail_log(id => $view_mail_log_id, origin => $view_mail_log_origin, mx => $view_mail_log_mx, from => $view_mail_log_from, to => $view_mail_log_to, subject => $view_mail_log_subject, mailid => $view_mail_log_mailid, skip => $view_mail_log_skip, limit => $view_mail_log_limit, start_date => $view_mail_log_start_date, end_date => $view_mail_log_end_date, replyto => $view_mail_log_replyto, headerfrom => $view_mail_log_headerfrom);
+#my $view_mail_log_delivered = undef; # replace NULL with a proper value
+#my $view_mail_log_result = $api->view_mail_log(id => $view_mail_log_id, origin => $view_mail_log_origin, mx => $view_mail_log_mx, from => $view_mail_log_from, to => $view_mail_log_to, subject => $view_mail_log_subject, mailid => $view_mail_log_mailid, skip => $view_mail_log_skip, limit => $view_mail_log_limit, start_date => $view_mail_log_start_date, end_date => $view_mail_log_end_date, replyto => $view_mail_log_replyto, headerfrom => $view_mail_log_headerfrom, delivered => $view_mail_log_delivered);
 
 
 done_testing();

@@ -19,6 +19,9 @@ func _bzz_get_api_name() -> String:
 #
 # Returns information about the usage on your mail accounts.
 func get_stats(
+	# some_timenull: String = ""   Eg: some_timenull_example
+	# The timeframe for the statistics.
+	some_timenull = "",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -40,13 +43,14 @@ func get_stats(
 	# Collect the query parameters
 	# Note: we do not support multiple values for a single param (for now), nor arrays
 	var bzz_query := Dictionary()
+	bzz_query["time"] = some_timenull
 
 	var bzz_body = null
 
 	self._bzz_request(
 		bzz_method, bzz_path, bzz_headers, bzz_query, bzz_body,
 		func(bzz_response):
-			bzz_response.data = getStats_200_response_inner.bzz_denormalize_multiple(bzz_response.data)
+			bzz_response.data = MailStatsType.bzz_denormalize_single(bzz_response.data)
 			on_success.call(bzz_response)
 			,
 		func(bzz_error):
@@ -56,12 +60,16 @@ func get_stats(
 
 
 func get_stats_threaded(
+	# some_timenull: String = ""   Eg: some_timenull_example
+	# The timeframe for the statistics.
+	some_timenull = "",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
 	var bzz_thread := Thread.new()
 	var bzz_callable := Callable(self, "get_stats")
 	bzz_callable.bind(
+		some_timenull,
 		on_success,
 		on_failure,
 	)
@@ -113,6 +121,9 @@ func view_mail_log(
 	# headerfrom: String = ""   Eg: headerfrom_example
 	# Header From Email Address
 	headerfrom = "",
+	# delivered: String = ""   Eg: delivered_example
+	# Limiting the emails to wether or not they were delivered.
+	delivered = "",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -197,6 +208,7 @@ func view_mail_log(
 	bzz_query["endDate"] = endDate
 	bzz_query["replyto"] = replyto
 	bzz_query["headerfrom"] = headerfrom
+	bzz_query["delivered"] = delivered
 
 	var bzz_body = null
 
@@ -252,6 +264,9 @@ func view_mail_log_threaded(
 	# headerfrom: String = ""   Eg: headerfrom_example
 	# Header From Email Address
 	headerfrom = "",
+	# delivered: String = ""   Eg: delivered_example
+	# Limiting the emails to wether or not they were delivered.
+	delivered = "",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
@@ -271,6 +286,7 @@ func view_mail_log_threaded(
 		endDate,
 		replyto,
 		headerfrom,
+		delivered,
 		on_success,
 		on_failure,
 	)

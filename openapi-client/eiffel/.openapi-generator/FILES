@@ -10,7 +10,6 @@ docs/EMAIL_ADDRESS_NAME.md
 docs/EMAIL_ADDRESS_TYPES.md
 docs/ERROR_MESSAGE.md
 docs/GENERIC_RESPONSE.md
-docs/GET_STATS_200_RESPONSE_INNER.md
 docs/HISTORY_API.md
 docs/MAIL_ATTACHMENT.md
 docs/MAIL_BLOCKS.md
@@ -19,6 +18,11 @@ docs/MAIL_BLOCK_RSPAMD.md
 docs/MAIL_LOG.md
 docs/MAIL_LOG_ENTRY.md
 docs/MAIL_ORDER.md
+docs/MAIL_STATS_TYPE.md
+docs/MAIL_STATS_TYPE_VOLUME.md
+docs/MAIL_STATS_TYPE_VOLUME_FROM.md
+docs/MAIL_STATS_TYPE_VOLUME_IP.md
+docs/MAIL_STATS_TYPE_VOLUME_TO.md
 docs/SENDING_API.md
 docs/SEND_MAIL.md
 docs/SEND_MAIL_ADV.md
@@ -37,7 +41,6 @@ src/domain/email_address_types.e
 src/domain/email_addresses_types.e
 src/domain/error_message.e
 src/domain/generic_response.e
-src/domain/get_stats_200_response_inner.e
 src/domain/mail_attachment.e
 src/domain/mail_block_click_house.e
 src/domain/mail_block_rspamd.e
@@ -45,6 +48,11 @@ src/domain/mail_blocks.e
 src/domain/mail_log.e
 src/domain/mail_log_entry.e
 src/domain/mail_order.e
+src/domain/mail_stats_type.e
+src/domain/mail_stats_type_volume.e
+src/domain/mail_stats_type_volume_from.e
+src/domain/mail_stats_type_volume_ip.e
+src/domain/mail_stats_type_volume_to.e
 src/domain/send_mail.e
 src/domain/send_mail_adv.e
 src/framework/api_client_request.e

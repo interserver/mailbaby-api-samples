@@ -19,9 +19,9 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { ErrorMessage } from '../model/errorMessage';
 // @ts-ignore
-import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
-// @ts-ignore
 import { MailLog } from '../model/mailLog';
+// @ts-ignore
+import { MailStatsType } from '../model/mailStatsType';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -42,13 +42,18 @@ export class HistoryService extends BaseService {
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
+     * @param time The timeframe for the statistics.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getStats(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<Array<GetStats200ResponseInner>>;
-    public getStats(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<Array<GetStats200ResponseInner>>>;
-    public getStats(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<Array<GetStats200ResponseInner>>>;
-    public getStats(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<MailStatsType>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<MailStatsType>>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<MailStatsType>>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>time, 'time');
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -76,10 +81,12 @@ export class HistoryService extends BaseService {
         }
 
         let localVarPath = `/mail/stats`;
-        return this.httpClient.request<Array<GetStats200ResponseInner>>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<MailStatsType>('get', `${basePath}${localVarPath}`,
             {
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress
@@ -103,13 +110,14 @@ export class HistoryService extends BaseService {
      * @param endDate earliest date to get emails in unix timestamp format
      * @param replyto Reply-To Email Address
      * @param headerfrom Header From Email Address
+     * @param delivered Limiting the emails to wether or not they were delivered.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<MailLog>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<MailLog>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
@@ -138,6 +146,8 @@ export class HistoryService extends BaseService {
           <any>replyto, 'replyto');
         localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
           <any>headerfrom, 'headerfrom');
+        localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+          <any>delivered, 'delivered');
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -165,11 +175,12 @@ export class HistoryService extends BaseService {
         }
 
         let localVarPath = `/mail/log`;
-        return this.httpClient.request<MailLog>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<MailLog>('get', `${basePath}${localVarPath}`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress

@@ -16,7 +16,6 @@ docs/Model/EmailAddressTypes.md
 docs/Model/EmailAddressesTypes.md
 docs/Model/ErrorMessage.md
 docs/Model/GenericResponse.md
-docs/Model/GetStats200ResponseInner.md
 docs/Model/MailAttachment.md
 docs/Model/MailBlockClickHouse.md
 docs/Model/MailBlockRspamd.md
@@ -24,6 +23,11 @@ docs/Model/MailBlocks.md
 docs/Model/MailLog.md
 docs/Model/MailLogEntry.md
 docs/Model/MailOrder.md
+docs/Model/MailStatsType.md
+docs/Model/MailStatsTypeVolume.md
+docs/Model/MailStatsTypeVolumeFrom.md
+docs/Model/MailStatsTypeVolumeIp.md
+docs/Model/MailStatsTypeVolumeTo.md
 docs/Model/SendMail.md
 docs/Model/SendMailAdv.md
 git_push.sh
@@ -35,6 +39,7 @@ src/Api/ServicesApi.php
 src/Api/StatusApi.php
 src/ApiException.php
 src/Configuration.php
+src/FormDataProcessor.php
 src/HeaderSelector.php
 src/Model/DenyRuleNew.php
 src/Model/DenyRuleRecord.php
@@ -43,7 +48,6 @@ src/Model/EmailAddressTypes.php
 src/Model/EmailAddressesTypes.php
 src/Model/ErrorMessage.php
 src/Model/GenericResponse.php
-src/Model/GetStats200ResponseInner.php
 src/Model/MailAttachment.php
 src/Model/MailBlockClickHouse.php
 src/Model/MailBlockRspamd.php
@@ -51,6 +55,11 @@ src/Model/MailBlocks.php
 src/Model/MailLog.php
 src/Model/MailLogEntry.php
 src/Model/MailOrder.php
+src/Model/MailStatsType.php
+src/Model/MailStatsTypeVolume.php
+src/Model/MailStatsTypeVolumeFrom.php
+src/Model/MailStatsTypeVolumeIp.php
+src/Model/MailStatsTypeVolumeTo.php
 src/Model/ModelInterface.php
 src/Model/SendMail.php
 src/Model/SendMailAdv.php
@@ -67,7 +76,6 @@ test/Model/EmailAddressTypesTest.php
 test/Model/EmailAddressesTypesTest.php
 test/Model/ErrorMessageTest.php
 test/Model/GenericResponseTest.php
-test/Model/GetStats200ResponseInnerTest.php
 test/Model/MailAttachmentTest.php
 test/Model/MailBlockClickHouseTest.php
 test/Model/MailBlockRspamdTest.php
@@ -75,5 +83,10 @@ test/Model/MailBlocksTest.php
 test/Model/MailLogEntryTest.php
 test/Model/MailLogTest.php
 test/Model/MailOrderTest.php
+test/Model/MailStatsTypeTest.php
+test/Model/MailStatsTypeVolumeFromTest.php
+test/Model/MailStatsTypeVolumeIpTest.php
+test/Model/MailStatsTypeVolumeTest.php
+test/Model/MailStatsTypeVolumeToTest.php
 test/Model/SendMailAdvTest.php
 test/Model/SendMailTest.php

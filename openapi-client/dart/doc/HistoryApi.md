@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **getStats**
-> List<GetStats200ResponseInner> getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
@@ -29,9 +29,10 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api_instance = HistoryApi();
+final time = time_example; // String | The timeframe for the statistics.
 
 try {
-    final result = api_instance.getStats();
+    final result = api_instance.getStats(time);
     print(result);
 } catch (e) {
     print('Exception when calling HistoryApi->getStats: $e\n');
@@ -39,11 +40,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**List<GetStats200ResponseInner>**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -57,7 +61,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -85,9 +89,10 @@ final startDate = 1641781008; // int | earliest date to get emails in unix times
 final endDate = 1673317008; // int | earliest date to get emails in unix timestamp format
 final replyto = replyto_example; // String | Reply-To Email Address
 final headerfrom = headerfrom_example; // String | Header From Email Address
+final delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
 
 try {
-    final result = api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+    final result = api_instance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
     print(result);
 } catch (e) {
     print('Exception when calling HistoryApi->viewMailLog: $e\n');
@@ -111,6 +116,7 @@ Name | Type | Description  | Notes
  **endDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
  **replyto** | **String**| Reply-To Email Address | [optional] 
  **headerfrom** | **String**| Header From Email Address | [optional] 
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

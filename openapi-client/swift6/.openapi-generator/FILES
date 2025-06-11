@@ -29,7 +29,6 @@ Sources/OpenAPIClient/Models/EmailAddressTypes.swift
 Sources/OpenAPIClient/Models/EmailAddressesTypes.swift
 Sources/OpenAPIClient/Models/ErrorMessage.swift
 Sources/OpenAPIClient/Models/GenericResponse.swift
-Sources/OpenAPIClient/Models/GetStats200ResponseInner.swift
 Sources/OpenAPIClient/Models/MailAttachment.swift
 Sources/OpenAPIClient/Models/MailBlockClickHouse.swift
 Sources/OpenAPIClient/Models/MailBlockRspamd.swift
@@ -37,6 +36,11 @@ Sources/OpenAPIClient/Models/MailBlocks.swift
 Sources/OpenAPIClient/Models/MailLog.swift
 Sources/OpenAPIClient/Models/MailLogEntry.swift
 Sources/OpenAPIClient/Models/MailOrder.swift
+Sources/OpenAPIClient/Models/MailStatsType.swift
+Sources/OpenAPIClient/Models/MailStatsTypeVolume.swift
+Sources/OpenAPIClient/Models/MailStatsTypeVolumeFrom.swift
+Sources/OpenAPIClient/Models/MailStatsTypeVolumeIp.swift
+Sources/OpenAPIClient/Models/MailStatsTypeVolumeTo.swift
 Sources/OpenAPIClient/Models/SendMail.swift
 Sources/OpenAPIClient/Models/SendMailAdv.swift
 docs/BlockingAPI.md
@@ -47,7 +51,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryAPI.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -56,6 +59,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingAPI.md

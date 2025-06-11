@@ -10,14 +10,28 @@ import Foundation
 open class HistoryAPI {
 
     /**
+     * enum for parameter time
+     */
+    public enum Time_getStats: String, Sendable, CaseIterable {
+        case all = "all"
+        case billing = "billing"
+        case month = "month"
+        case _7d = "7d"
+        case _24h = "24h"
+        case _1d = "1d"
+        case _1h = "1h"
+    }
+
+    /**
      Account usage statistics.
      
+     - parameter time: (query) The timeframe for the statistics. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: [GetStats200ResponseInner]
+     - returns: MailStatsType
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getStats(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [GetStats200ResponseInner] {
-        return try await getStatsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    open class func getStats(time: Time_getStats? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailStatsType {
+        return try await getStatsWithRequestBuilder(time: time, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -27,25 +41,37 @@ open class HistoryAPI {
      - API Key:
        - type: apiKey X-API-KEY (HEADER)
        - name: apiKeyAuth
+     - parameter time: (query) The timeframe for the statistics. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<[GetStats200ResponseInner]> 
+     - returns: RequestBuilder<MailStatsType> 
      */
-    open class func getStatsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[GetStats200ResponseInner]> {
+    open class func getStatsWithRequestBuilder(time: Time_getStats? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailStatsType> {
         let localVariablePath = "/mail/stats"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters: [String: any Sendable]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "time": (wrappedValue: time?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[GetStats200ResponseInner]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<MailStatsType>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     * enum for parameter delivered
+     */
+    public enum Delivered_viewMailLog: String, Sendable, CaseIterable {
+        case _0 = "0"
+        case _1 = "1"
     }
 
     /**
@@ -64,12 +90,13 @@ open class HistoryAPI {
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter replyto: (query) Reply-To Email Address (optional)
      - parameter headerfrom: (query) Header From Email Address (optional)
+     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: MailLog
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailLog {
-        return try await viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, apiConfiguration: apiConfiguration).execute().body
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailLog {
+        return try await viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -92,32 +119,34 @@ open class HistoryAPI {
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter replyto: (query) Reply-To Email Address (optional)
      - parameter headerfrom: (query) Header From Email Address (optional)
+     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailLog> {
         let localVariablePath = "/mail/log"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "id": (wrappedValue: id?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "origin": (wrappedValue: origin?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "mx": (wrappedValue: mx?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "from": (wrappedValue: from?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "to": (wrappedValue: to?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "subject": (wrappedValue: subject?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "mailid": (wrappedValue: mailid?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "skip": (wrappedValue: skip?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "limit": (wrappedValue: limit?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "startDate": (wrappedValue: startDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "endDate": (wrappedValue: endDate?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "replyto": (wrappedValue: replyto?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "headerfrom": (wrappedValue: headerfrom?.encodeToJSON(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "id": (wrappedValue: id?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "origin": (wrappedValue: origin?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "mx": (wrappedValue: mx?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "from": (wrappedValue: from?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "to": (wrappedValue: to?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "subject": (wrappedValue: subject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "mailid": (wrappedValue: mailid?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "skip": (wrappedValue: skip?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "startDate": (wrappedValue: startDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "endDate": (wrappedValue: endDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "replyto": (wrappedValue: replyto?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "headerfrom": (wrappedValue: headerfrom?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "delivered": (wrappedValue: delivered?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 

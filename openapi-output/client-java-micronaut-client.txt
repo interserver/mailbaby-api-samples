@@ -4,10 +4,12 @@
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'java-micronaut-client' is considered beta.
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Environment variable JAVA_POST_PROCESS_FILE not defined so the Java code may not be properly formatted. To define it, try 'export JAVA_POST_PROCESS_FILE="/usr/local/bin/clang-format -i"' (Linux/Mac)
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailOrders
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getMailBlocks
-[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getStats
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendMail
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation sendAdvMail
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation viewMailLog
@@ -16,6 +18,7 @@
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getRules
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation addRule
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation deleteRule
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getStats
 [main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/DenyRuleNew.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/DenyRuleNewTest.java
@@ -38,9 +41,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/GenericResponse.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/GenericResponseTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/GenericResponse.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/GetStats200ResponseInner.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/GetStats200ResponseInnerTest.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/GetStats200ResponseInner.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailAttachment.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailAttachmentTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailAttachment.md
@@ -62,12 +62,28 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailOrder.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailOrderTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailOrder.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailStatsType.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailStatsTypeTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailStatsType.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailStatsTypeVolume.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailStatsTypeVolumeTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailStatsTypeVolume.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailStatsTypeVolumeFrom.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailStatsTypeVolumeFromTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailStatsTypeVolumeFrom.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailStatsTypeVolumeIp.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailStatsTypeVolumeIpTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailStatsTypeVolumeIp.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailStatsTypeVolumeTo.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailStatsTypeVolumeToTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailStatsTypeVolumeTo.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/SendMail.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/SendMailTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/SendMailAdv.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/SendMailAdvTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/SendMailAdv.md
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/api/BlockingApi.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/api/BlockingApiTest.java

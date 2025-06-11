@@ -481,7 +481,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* OK */
-                $responseContent = new \App\DTO\Collection7();
+                $responseContent = new \App\DTO\Collection6();
                 break;
             case 401:
                 /* Unauthorized */
@@ -500,7 +500,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * Displays a listing of deny email rules.
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection7
+     * @return \App\DTO\Collection6
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -509,7 +509,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function getRulesResult(
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection7
+    ): \App\DTO\Collection6
     {
         return $this->getSuccessfulContent(...$this->getRules($security, $responseMediaType));
     }
@@ -518,6 +518,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region getStats
     /**
      * Account usage statistics.
+     * @param \App\DTO\GetStatsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -525,11 +526,12 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      */
     public function getStatsRaw(
+        \App\DTO\GetStatsParameterData $parameters,
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
     ): ResponseInterface
     {
-        $request = $this->createRequest('GET', '/mail/stats', [], []);
+        $request = $this->createRequest('GET', '/mail/stats', [], $this->getQueryParameters($parameters));
         $request = $this->addAcceptHeader($request, $responseMediaType);
         $request = $this->addSecurity($request, $security);
         return $this->httpClient->sendRequest($request);
@@ -537,6 +539,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Account usage statistics.
+     * @param \App\DTO\GetStatsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
@@ -545,11 +548,12 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
     public function getStats(
+        \App\DTO\GetStatsParameterData $parameters,
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
     ): array
     {
-        $response = $this->getStatsRaw($security, $responseMediaType);
+        $response = $this->getStatsRaw($parameters, $security, $responseMediaType);
         $responseContent = null;
         $contentStrategy = null;
         $contentValidator = null;
@@ -557,7 +561,7 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* OK */
-                $responseContent = new \App\DTO\Collection4();
+                $responseContent = new \App\DTO\MailStatsType();
                 break;
             case 401:
                 /* Unauthorized */
@@ -574,20 +578,22 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Account usage statistics.
+     * @param \App\DTO\GetStatsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection4
+     * @return \App\DTO\MailStatsType
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
     public function getStatsResult(
+        \App\DTO\GetStatsParameterData $parameters,
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection4
+    ): \App\DTO\MailStatsType
     {
-        return $this->getSuccessfulContent(...$this->getStats($security, $responseMediaType));
+        return $this->getSuccessfulContent(...$this->getStats($parameters, $security, $responseMediaType));
     }
     //endregion
 

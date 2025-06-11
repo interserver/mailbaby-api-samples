@@ -68,10 +68,11 @@ export class StatusService extends BaseService {
         }
 
         let localVarPath = `/ping`;
-        return this.httpClient.request<any>('get', `${this.configuration.basePath}${localVarPath}`,
+        const { basePath, withCredentials } = this.configuration;
+        return this.httpClient.request<any>('get', `${basePath}${localVarPath}`,
             {
                 responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
+                ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
                 reportProgress: reportProgress

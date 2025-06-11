@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **get_stats**
-> List[GetStats200ResponseInner] get_stats()
+> MailStatsType get_stats(time=time)
 
 Account usage statistics.
 
@@ -21,7 +21,7 @@ Returns information about the usage on your mail accounts.
 
 ```python
 import openapi_client
-from openapi_client.models.get_stats200_response_inner import GetStats200ResponseInner
+from openapi_client.models.mail_stats_type import MailStatsType
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -46,10 +46,11 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.HistoryApi(api_client)
+    time = 'time_example' # str | The timeframe for the statistics. (optional)
 
     try:
         # Account usage statistics.
-        api_response = api_instance.get_stats()
+        api_response = api_instance.get_stats(time=time)
         print("The response of HistoryApi->get_stats:\n")
         pprint(api_response)
     except Exception as e:
@@ -60,11 +61,14 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **str**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**List[GetStats200ResponseInner]**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -86,7 +90,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_mail_log**
-> MailLog view_mail_log(id=id, origin=origin, mx=mx, var_from=var_from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, start_date=start_date, end_date=end_date, replyto=replyto, headerfrom=headerfrom)
+> MailLog view_mail_log(id=id, origin=origin, mx=mx, var_from=var_from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, start_date=start_date, end_date=end_date, replyto=replyto, headerfrom=headerfrom, delivered=delivered)
 
 displays the mail log
 
@@ -137,10 +141,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     end_date = 1673317008 # int | earliest date to get emails in unix timestamp format (optional)
     replyto = 'replyto_example' # str | Reply-To Email Address (optional)
     headerfrom = 'headerfrom_example' # str | Header From Email Address (optional)
+    delivered = 'delivered_example' # str | Limiting the emails to wether or not they were delivered. (optional)
 
     try:
         # displays the mail log
-        api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, var_from=var_from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, start_date=start_date, end_date=end_date, replyto=replyto, headerfrom=headerfrom)
+        api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, var_from=var_from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, start_date=start_date, end_date=end_date, replyto=replyto, headerfrom=headerfrom, delivered=delivered)
         print("The response of HistoryApi->view_mail_log:\n")
         pprint(api_response)
     except Exception as e:
@@ -167,6 +172,7 @@ Name | Type | Description  | Notes
  **end_date** | **int**| earliest date to get emails in unix timestamp format | [optional] 
  **replyto** | **str**| Reply-To Email Address | [optional] 
  **headerfrom** | **str**| Header From Email Address | [optional] 
+ **delivered** | **str**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

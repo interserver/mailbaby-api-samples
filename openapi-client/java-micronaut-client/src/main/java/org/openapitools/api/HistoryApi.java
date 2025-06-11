@@ -18,8 +18,8 @@ import io.micronaut.http.client.annotation.Client;
 import io.micronaut.core.convert.format.Format;
 import reactor.core.publisher.Mono;
 import org.openapitools.model.ErrorMessage;
-import org.openapitools.model.GetStats200ResponseInner;
 import org.openapitools.model.MailLog;
+import org.openapitools.model.MailStatsType;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,18 +28,21 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-03-13T09:44:54.048451733-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-06-11T03:19:54.195791465-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 @Client("${openapi-micronaut-client-base-path}")
 public interface HistoryApi {
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
      *
-     * @return List&lt;GetStats200ResponseInner&gt;
+     * @param time The timeframe for the statistics. (optional)
+     * @return MailStatsType
      */
     @Get(uri="/mail/stats")
     @Consumes({"application/json"})
-    Mono<List<GetStats200ResponseInner>> getStats();
+    Mono<MailStatsType> getStats(
+        @QueryValue(value="time") @Nullable String time
+    );
 
     /**
      * displays the mail log
@@ -58,6 +61,7 @@ public interface HistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @param replyto Reply-To Email Address (optional)
      * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return MailLog
      */
     @Get(uri="/mail/log")
@@ -75,7 +79,8 @@ public interface HistoryApi {
         @QueryValue(value="startDate") @Nullable @Min(0L) @Max(9999999999L) Long startDate, 
         @QueryValue(value="endDate") @Nullable @Min(0L) @Max(9999999999L) Long endDate, 
         @QueryValue(value="replyto") @Nullable String replyto, 
-        @QueryValue(value="headerfrom") @Nullable String headerfrom
+        @QueryValue(value="headerfrom") @Nullable String headerfrom, 
+        @QueryValue(value="delivered") @Nullable String delivered
     );
 
 }

@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * A block entry from the clickhouse mailblocks server.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class MailBlockClickHouse {
   public static final String SERIALIZED_NAME_DATE = "date";
   @SerializedName(SERIALIZED_NAME_DATE)
@@ -226,20 +226,10 @@ public class MailBlockClickHouse {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("date");
-    openapiFields.add("from");
-    openapiFields.add("messageId");
-    openapiFields.add("subject");
-    openapiFields.add("to");
+    openapiFields = new HashSet<String>(Arrays.asList("date", "from", "messageId", "subject", "to"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("date");
-    openapiRequiredFields.add("from");
-    openapiRequiredFields.add("messageId");
-    openapiRequiredFields.add("subject");
-    openapiRequiredFields.add("to");
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("date", "from", "messageId", "subject", "to"));
   }
 
   /**

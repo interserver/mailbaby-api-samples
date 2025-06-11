@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getStats**
 ```swift
-    open class func getStats(completion: @escaping (_ data: [GetStats200ResponseInner]?, _ error: Error?) -> Void)
+    open class func getStats(time: Time_getStats? = nil, completion: @escaping (_ data: MailStatsType?, _ error: Error?) -> Void)
 ```
 
 Account usage statistics.
@@ -22,9 +22,10 @@ Returns information about the usage on your mail accounts.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
+let time = "time_example" // String | The timeframe for the statistics. (optional)
 
 // Account usage statistics.
-HistoryAPI.getStats() { (response, error) in
+HistoryAPI.getStats(time: time) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -37,11 +38,14 @@ HistoryAPI.getStats() { (response, error) in
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String** | The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**[GetStats200ResponseInner]**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -56,7 +60,7 @@ This endpoint does not need any parameter.
 
 # **viewMailLog**
 ```swift
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, completion: @escaping (_ data: MailLog?, _ error: Error?) -> Void)
 ```
 
 displays the mail log
@@ -81,9 +85,10 @@ let startDate = 987 // Int64 | earliest date to get emails in unix timestamp for
 let endDate = 987 // Int64 | earliest date to get emails in unix timestamp format (optional)
 let replyto = "replyto_example" // String | Reply-To Email Address (optional)
 let headerfrom = "headerfrom_example" // String | Header From Email Address (optional)
+let delivered = "delivered_example" // String | Limiting the emails to wether or not they were delivered. (optional)
 
 // displays the mail log
-HistoryAPI.viewMailLog(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom) { (response, error) in
+HistoryAPI.viewMailLog(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -112,6 +117,7 @@ Name | Type | Description  | Notes
  **endDate** | **Int64** | earliest date to get emails in unix timestamp format | [optional] 
  **replyto** | **String** | Reply-To Email Address | [optional] 
  **headerfrom** | **String** | Header From Email Address | [optional] 
+ **delivered** | **String** | Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

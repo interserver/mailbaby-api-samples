@@ -2,7 +2,10 @@
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
 [main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: apex (client)
 [main] INFO  o.o.codegen.DefaultGenerator - Generator 'apex' is considered stable.
-[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as getStats_200_response_inner. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings getStats_200_response_inner=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
 [main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASDenyRuleNew.cls
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASDenyRuleNew.cls-meta.xml
@@ -32,10 +35,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGenericResponse.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGenericResponseTest.cls
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGenericResponseTest.cls-meta.xml
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGetStats200ResponseInner.cls
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGetStats200ResponseInner.cls-meta.xml
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGetStats200ResponseInnerTest.cls
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASGetStats200ResponseInnerTest.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailAttachment.cls
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailAttachment.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailAttachmentTest.cls
@@ -64,6 +63,26 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailOrder.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailOrderTest.cls
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailOrderTest.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsType.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsType.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeTest.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeTest.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolume.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolume.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeTest.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeTest.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeFrom.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeFrom.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeFromTest.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeFromTest.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeIp.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeIp.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeIpTest.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeIpTest.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeTo.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeTo.cls-meta.xml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeToTest.cls
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASMailStatsTypeVolumeToTest.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASSendMail.cls
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASSendMail.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASSendMailTest.cls
@@ -72,6 +91,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASSendMailAdv.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASSendMailAdvTest.cls
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASSendMailAdvTest.cls-meta.xml
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from OASMailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASBlockingApi.cls-meta.xml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/force-app/main/default/classes/OASBlockingApi.cls
@@ -108,8 +128,8 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/.openapi-generator-ignore
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/.openapi-generator/VERSION
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/apex/.openapi-generator/FILES
-################################################################################
-# Thanks for using OpenAPI Generator.                                          #
-# Please consider donation to help us maintain this project 🙏                 #
-# https://opencollective.com/openapi_generator/donate                          #
-################################################################################
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

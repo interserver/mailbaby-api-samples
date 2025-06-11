@@ -97,7 +97,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-```
+```BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -108,7 +108,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to=support@interserver.net
 ```
 
-```
+```ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -120,7 +120,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to[0][email]=support@interserver.net"
 ```
 
-```
+```NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -131,7 +131,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to="Joe <support@interserver.net>"
 ```
 
-```
+```MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -142,7 +142,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to=support@interserver.net, support@interserver.net"
 ```
 
-```
+```MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -153,7 +153,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to=Joe <support@interserver.net>, Joe <support@interserver.net>"
 ```
 
-```
+```MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -167,7 +167,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to[1][email]=support@interserver.net"
 ```
 
-```
+```BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
@@ -180,7 +180,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }'
 ```
 
-```
+```ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
@@ -193,7 +193,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }'
 ```
 
-```
+```NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GenericResponse: Sendable, Codable, JSONEncodable, Hashable {
+public struct GenericResponse: Sendable, Codable, ParameterConvertible, Hashable {
 
     public var status: String?
     public var text: String?

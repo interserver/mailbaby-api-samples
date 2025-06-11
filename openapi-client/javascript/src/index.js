@@ -20,7 +20,6 @@ import EmailAddressTypes from './model/EmailAddressTypes';
 import EmailAddressesTypes from './model/EmailAddressesTypes';
 import ErrorMessage from './model/ErrorMessage';
 import GenericResponse from './model/GenericResponse';
-import GetStats200ResponseInner from './model/GetStats200ResponseInner';
 import MailAttachment from './model/MailAttachment';
 import MailBlockClickHouse from './model/MailBlockClickHouse';
 import MailBlockRspamd from './model/MailBlockRspamd';
@@ -28,6 +27,11 @@ import MailBlocks from './model/MailBlocks';
 import MailLog from './model/MailLog';
 import MailLogEntry from './model/MailLogEntry';
 import MailOrder from './model/MailOrder';
+import MailStatsType from './model/MailStatsType';
+import MailStatsTypeVolume from './model/MailStatsTypeVolume';
+import MailStatsTypeVolumeFrom from './model/MailStatsTypeVolumeFrom';
+import MailStatsTypeVolumeIp from './model/MailStatsTypeVolumeIp';
+import MailStatsTypeVolumeTo from './model/MailStatsTypeVolumeTo';
 import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import BlockingApi from './api/BlockingApi';
@@ -118,12 +122,6 @@ export {
     GenericResponse,
 
     /**
-     * The GetStats200ResponseInner model constructor.
-     * @property {module:model/GetStats200ResponseInner}
-     */
-    GetStats200ResponseInner,
-
-    /**
      * The MailAttachment model constructor.
      * @property {module:model/MailAttachment}
      */
@@ -164,6 +162,36 @@ export {
      * @property {module:model/MailOrder}
      */
     MailOrder,
+
+    /**
+     * The MailStatsType model constructor.
+     * @property {module:model/MailStatsType}
+     */
+    MailStatsType,
+
+    /**
+     * The MailStatsTypeVolume model constructor.
+     * @property {module:model/MailStatsTypeVolume}
+     */
+    MailStatsTypeVolume,
+
+    /**
+     * The MailStatsTypeVolumeFrom model constructor.
+     * @property {module:model/MailStatsTypeVolumeFrom}
+     */
+    MailStatsTypeVolumeFrom,
+
+    /**
+     * The MailStatsTypeVolumeIp model constructor.
+     * @property {module:model/MailStatsTypeVolumeIp}
+     */
+    MailStatsTypeVolumeIp,
+
+    /**
+     * The MailStatsTypeVolumeTo model constructor.
+     * @property {module:model/MailStatsTypeVolumeTo}
+     */
+    MailStatsTypeVolumeTo,
 
     /**
      * The SendMail model constructor.

@@ -196,8 +196,6 @@ class ApiClient {
           return ErrorMessage.fromJson(value);
         case 'GenericResponse':
           return GenericResponse.fromJson(value);
-        case 'GetStats200ResponseInner':
-          return GetStats200ResponseInner.fromJson(value);
         case 'MailAttachment':
           return MailAttachment.fromJson(value);
         case 'MailBlockClickHouse':
@@ -212,6 +210,16 @@ class ApiClient {
           return MailLogEntry.fromJson(value);
         case 'MailOrder':
           return MailOrder.fromJson(value);
+        case 'MailStatsType':
+          return MailStatsType.fromJson(value);
+        case 'MailStatsTypeVolume':
+          return MailStatsTypeVolume.fromJson(value);
+        case 'MailStatsTypeVolumeFrom':
+          return MailStatsTypeVolumeFrom.fromJson(value);
+        case 'MailStatsTypeVolumeIp':
+          return MailStatsTypeVolumeIp.fromJson(value);
+        case 'MailStatsTypeVolumeTo':
+          return MailStatsTypeVolumeTo.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
         case 'SendMailAdv':

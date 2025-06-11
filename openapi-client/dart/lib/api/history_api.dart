@@ -21,7 +21,12 @@ class HistoryApi {
   /// Returns information about the usage on your mail accounts.
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getStatsWithHttpInfo() async {
+  ///
+  /// Parameters:
+  ///
+  /// * [String] time:
+  ///   The timeframe for the statistics.
+  Future<Response> getStatsWithHttpInfo({ String? time, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/stats';
 
@@ -31,6 +36,10 @@ class HistoryApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (time != null) {
+      queryParams.addAll(_queryParams('', 'time', time));
+    }
 
     const contentTypes = <String>[];
 
@@ -49,8 +58,13 @@ class HistoryApi {
   /// Account usage statistics.
   ///
   /// Returns information about the usage on your mail accounts.
-  Future<List<GetStats200ResponseInner>?> getStats() async {
-    final response = await getStatsWithHttpInfo();
+  ///
+  /// Parameters:
+  ///
+  /// * [String] time:
+  ///   The timeframe for the statistics.
+  Future<MailStatsType?> getStats({ String? time, }) async {
+    final response = await getStatsWithHttpInfo( time: time, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -58,11 +72,8 @@ class HistoryApi {
     // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
-      final responseBody = await _decodeBodyBytes(response);
-      return (await apiClient.deserializeAsync(responseBody, 'List<GetStats200ResponseInner>') as List)
-        .cast<GetStats200ResponseInner>()
-        .toList(growable: false);
-
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MailStatsType',) as MailStatsType;
+    
     }
     return null;
   }
@@ -113,7 +124,10 @@ class HistoryApi {
   ///
   /// * [String] headerfrom:
   ///   Header From Email Address
-  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, String? replyto, String? headerfrom, }) async {
+  ///
+  /// * [String] delivered:
+  ///   Limiting the emails to wether or not they were delivered.
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, String? replyto, String? headerfrom, String? delivered, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
@@ -162,6 +176,9 @@ class HistoryApi {
     }
     if (headerfrom != null) {
       queryParams.addAll(_queryParams('', 'headerfrom', headerfrom));
+    }
+    if (delivered != null) {
+      queryParams.addAll(_queryParams('', 'delivered', delivered));
     }
 
     const contentTypes = <String>[];
@@ -222,8 +239,11 @@ class HistoryApi {
   ///
   /// * [String] headerfrom:
   ///   Header From Email Address
-  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, String? replyto, String? headerfrom, }) async {
-    final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, );
+  ///
+  /// * [String] delivered:
+  ///   Limiting the emails to wether or not they were delivered.
+  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, int? skip, int? limit, int? startDate, int? endDate, String? replyto, String? headerfrom, String? delivered, }) async {
+    final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

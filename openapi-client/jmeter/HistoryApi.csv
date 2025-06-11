@@ -1,2 +1,2 @@
-testCase,httpStatusCode,id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom
-Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0
+testCase,httpStatusCode,time,id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom,delivered
+Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

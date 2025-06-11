@@ -18,7 +18,7 @@ local basexx = require "basexx"
 -- model import
 local openapiclient_error_message = require "openapiclient.model.error_message"
 local openapiclient_mail_log = require "openapiclient.model.mail_log"
-local openapiclient_get_stats_200_response_inner = require "openapiclient.model.get_stats_200_response_inner"
+local openapiclient_mail_stats_type = require "openapiclient.model.mail_stats_type"
 
 local history_api = {}
 local history_api_mt = {
@@ -46,13 +46,13 @@ local function new_history_api(authority, basePath, schemes)
 	}, history_api_mt)
 end
 
-function history_api:get_stats()
+function history_api:get_stats(time)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/stats",
-			self.basePath);
+		path = string.format("%s/mail/stats?time=%s",
+			self.basePath, http_util.encodeURIComponent(time));
 	})
 
 	-- set HTTP verb
@@ -84,10 +84,7 @@ function history_api:get_stats()
 		if result == nil then
 			return nil, err3
 		end
-		for _, ob in ipairs(result) do
-			openapiclient_get_stats_200_response_inner.cast(ob)
-		end
-		return result, headers
+		return openapiclient_mail_stats_type.cast(result), headers
 	else
 		local body, err, errno2 = stream:get_body_as_string()
 		if not body then
@@ -99,13 +96,13 @@ function history_api:get_stats()
 	end
 end
 
-function history_api:view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom)
+function history_api:view_mail_log(id, origin, mx, from, to, subject, mailid, skip, limit, start_date, end_date, replyto, headerfrom, delivered)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
 		port = self.port;
-		path = string.format("%s/mail/log?id=%s&origin=%s&mx=%s&from=%s&to=%s&subject=%s&mailid=%s&skip=%s&limit=%s&startDate=%s&endDate=%s&replyto=%s&headerfrom=%s",
-			self.basePath, http_util.encodeURIComponent(id), http_util.encodeURIComponent(origin), http_util.encodeURIComponent(mx), http_util.encodeURIComponent(from), http_util.encodeURIComponent(to), http_util.encodeURIComponent(subject), http_util.encodeURIComponent(mailid), http_util.encodeURIComponent(skip), http_util.encodeURIComponent(limit), http_util.encodeURIComponent(start_date), http_util.encodeURIComponent(end_date), http_util.encodeURIComponent(replyto), http_util.encodeURIComponent(headerfrom));
+		path = string.format("%s/mail/log?id=%s&origin=%s&mx=%s&from=%s&to=%s&subject=%s&mailid=%s&skip=%s&limit=%s&startDate=%s&endDate=%s&replyto=%s&headerfrom=%s&delivered=%s",
+			self.basePath, http_util.encodeURIComponent(id), http_util.encodeURIComponent(origin), http_util.encodeURIComponent(mx), http_util.encodeURIComponent(from), http_util.encodeURIComponent(to), http_util.encodeURIComponent(subject), http_util.encodeURIComponent(mailid), http_util.encodeURIComponent(skip), http_util.encodeURIComponent(limit), http_util.encodeURIComponent(start_date), http_util.encodeURIComponent(end_date), http_util.encodeURIComponent(replyto), http_util.encodeURIComponent(headerfrom), http_util.encodeURIComponent(delivered));
 	})
 
 	-- set HTTP verb

@@ -23,7 +23,6 @@ OpenAPIClient/Classes/OpenAPIs/Models/EmailAddressTypes.swift
 OpenAPIClient/Classes/OpenAPIs/Models/EmailAddressesTypes.swift
 OpenAPIClient/Classes/OpenAPIs/Models/ErrorMessage.swift
 OpenAPIClient/Classes/OpenAPIs/Models/GenericResponse.swift
-OpenAPIClient/Classes/OpenAPIs/Models/GetStats200ResponseInner.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailAttachment.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailBlockClickHouse.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailBlockRspamd.swift
@@ -31,6 +30,11 @@ OpenAPIClient/Classes/OpenAPIs/Models/MailBlocks.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailLog.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailLogEntry.swift
 OpenAPIClient/Classes/OpenAPIs/Models/MailOrder.swift
+OpenAPIClient/Classes/OpenAPIs/Models/MailStatsType.swift
+OpenAPIClient/Classes/OpenAPIs/Models/MailStatsTypeVolume.swift
+OpenAPIClient/Classes/OpenAPIs/Models/MailStatsTypeVolumeFrom.swift
+OpenAPIClient/Classes/OpenAPIs/Models/MailStatsTypeVolumeIp.swift
+OpenAPIClient/Classes/OpenAPIs/Models/MailStatsTypeVolumeTo.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SendMail.swift
 OpenAPIClient/Classes/OpenAPIs/Models/SendMailAdv.swift
 OpenAPIClient/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
@@ -47,7 +51,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryAPI.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -56,6 +59,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingAPI.md

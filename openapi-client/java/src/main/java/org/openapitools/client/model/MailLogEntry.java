@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * An email record
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-03-13T09:44:50.262373303-04:00[America/New_York]", comments = "Generator version: 7.13.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-11T03:19:49.935147945-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
 public class MailLogEntry {
   public static final String SERIALIZED_NAME_ID = "_id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -693,55 +693,10 @@ public class MailLogEntry {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("_id");
-    openapiFields.add("id");
-    openapiFields.add("from");
-    openapiFields.add("to");
-    openapiFields.add("subject");
-    openapiFields.add("created");
-    openapiFields.add("time");
-    openapiFields.add("user");
-    openapiFields.add("transtype");
-    openapiFields.add("origin");
-    openapiFields.add("interface");
-    openapiFields.add("sendingZone");
-    openapiFields.add("bodySize");
-    openapiFields.add("seq");
-    openapiFields.add("recipient");
-    openapiFields.add("domain");
-    openapiFields.add("locked");
-    openapiFields.add("lockTime");
-    openapiFields.add("assigned");
-    openapiFields.add("queued");
-    openapiFields.add("mxHostname");
-    openapiFields.add("response");
-    openapiFields.add("messageId");
+    openapiFields = new HashSet<String>(Arrays.asList("_id", "id", "from", "to", "subject", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname", "response", "messageId"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("_id");
-    openapiRequiredFields.add("id");
-    openapiRequiredFields.add("from");
-    openapiRequiredFields.add("to");
-    openapiRequiredFields.add("subject");
-    openapiRequiredFields.add("created");
-    openapiRequiredFields.add("time");
-    openapiRequiredFields.add("user");
-    openapiRequiredFields.add("transtype");
-    openapiRequiredFields.add("origin");
-    openapiRequiredFields.add("interface");
-    openapiRequiredFields.add("sendingZone");
-    openapiRequiredFields.add("bodySize");
-    openapiRequiredFields.add("seq");
-    openapiRequiredFields.add("recipient");
-    openapiRequiredFields.add("domain");
-    openapiRequiredFields.add("locked");
-    openapiRequiredFields.add("lockTime");
-    openapiRequiredFields.add("assigned");
-    openapiRequiredFields.add("queued");
-    openapiRequiredFields.add("mxHostname");
-    openapiRequiredFields.add("response");
+    openapiRequiredFields = new HashSet<String>(Arrays.asList("_id", "id", "from", "to", "subject", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname", "response"));
   }
 
   /**

@@ -14,7 +14,6 @@ src/main/groovy/org/openapitools/model/EmailAddressTypes.groovy
 src/main/groovy/org/openapitools/model/EmailAddressesTypes.groovy
 src/main/groovy/org/openapitools/model/ErrorMessage.groovy
 src/main/groovy/org/openapitools/model/GenericResponse.groovy
-src/main/groovy/org/openapitools/model/GetStats200ResponseInner.groovy
 src/main/groovy/org/openapitools/model/MailAttachment.groovy
 src/main/groovy/org/openapitools/model/MailBlockClickHouse.groovy
 src/main/groovy/org/openapitools/model/MailBlockRspamd.groovy
@@ -22,5 +21,10 @@ src/main/groovy/org/openapitools/model/MailBlocks.groovy
 src/main/groovy/org/openapitools/model/MailLog.groovy
 src/main/groovy/org/openapitools/model/MailLogEntry.groovy
 src/main/groovy/org/openapitools/model/MailOrder.groovy
+src/main/groovy/org/openapitools/model/MailStatsType.groovy
+src/main/groovy/org/openapitools/model/MailStatsTypeVolume.groovy
+src/main/groovy/org/openapitools/model/MailStatsTypeVolumeFrom.groovy
+src/main/groovy/org/openapitools/model/MailStatsTypeVolumeIp.groovy
+src/main/groovy/org/openapitools/model/MailStatsTypeVolumeTo.groovy
 src/main/groovy/org/openapitools/model/SendMail.groovy
 src/main/groovy/org/openapitools/model/SendMailAdv.groovy

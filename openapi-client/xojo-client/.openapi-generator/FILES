@@ -31,8 +31,6 @@ OpenAPIClient/Models/ErrorMessage.xojo_code
 OpenAPIClient/Models/ErrorMessageOptional.xojo_code
 OpenAPIClient/Models/GenericResponse.xojo_code
 OpenAPIClient/Models/GenericResponseOptional.xojo_code
-OpenAPIClient/Models/GetStats200ResponseInner.xojo_code
-OpenAPIClient/Models/GetStats200ResponseInnerOptional.xojo_code
 OpenAPIClient/Models/MailAttachment.xojo_code
 OpenAPIClient/Models/MailAttachmentOptional.xojo_code
 OpenAPIClient/Models/MailBlockClickHouse.xojo_code
@@ -47,6 +45,16 @@ OpenAPIClient/Models/MailLogEntryOptional.xojo_code
 OpenAPIClient/Models/MailLogOptional.xojo_code
 OpenAPIClient/Models/MailOrder.xojo_code
 OpenAPIClient/Models/MailOrderOptional.xojo_code
+OpenAPIClient/Models/MailStatsType.xojo_code
+OpenAPIClient/Models/MailStatsTypeOptional.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolume.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeFrom.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeFromOptional.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeIp.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeIpOptional.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeOptional.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeTo.xojo_code
+OpenAPIClient/Models/MailStatsTypeVolumeToOptional.xojo_code
 OpenAPIClient/Models/SendMail.xojo_code
 OpenAPIClient/Models/SendMailAdv.xojo_code
 OpenAPIClient/Models/SendMailAdvOptional.xojo_code

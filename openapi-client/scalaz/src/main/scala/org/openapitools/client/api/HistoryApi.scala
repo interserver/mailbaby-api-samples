@@ -22,8 +22,8 @@ import scalaz.concurrent.Task
 import HelperCodecs._
 
 import org.openapitools.client.api.ErrorMessage
-import org.openapitools.client.api.GetStats200ResponseInner
 import org.openapitools.client.api.MailLog
+import org.openapitools.client.api.MailStatsType
 
 object HistoryApi {
 
@@ -31,8 +31,8 @@ object HistoryApi {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def getStats(host: String): Task[List[GetStats200ResponseInner]] = {
-    implicit val returnTypeDecoder: EntityDecoder[List[GetStats200ResponseInner]] = jsonOf[List[GetStats200ResponseInner]]
+  def getStats(host: String, time: String)(implicit timeQuery: QueryParam[String]): Task[MailStatsType] = {
+    implicit val returnTypeDecoder: EntityDecoder[MailStatsType] = jsonOf[MailStatsType]
 
     val path = "/mail/stats"
 
@@ -41,18 +41,18 @@ object HistoryApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      )
+      ("time", Some(timeQuery.toParamString(time))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[List[GetStats200ResponseInner]](req)
+      resp          <- client.expect[MailStatsType](req)
 
     } yield resp
   }
 
-  def viewMailLog(host: String, id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, skip: Integer = 0, limit: Integer = 100, startDate: Long, endDate: Long, replyto: String, headerfrom: String)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[Long], endDateQuery: QueryParam[Long], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String]): Task[MailLog] = {
+  def viewMailLog(host: String, id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, skip: Integer = 0, limit: Integer = 100, startDate: Long, endDate: Long, replyto: String, headerfrom: String, delivered: String)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[Long], endDateQuery: QueryParam[Long], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String], deliveredQuery: QueryParam[String]): Task[MailLog] = {
     implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
@@ -62,7 +62,7 @@ object HistoryApi {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))), ("origin", Some(originQuery.toParamString(origin))), ("mx", Some(mxQuery.toParamString(mx))), ("from", Some(fromQuery.toParamString(from))), ("to", Some(toQuery.toParamString(to))), ("subject", Some(subjectQuery.toParamString(subject))), ("mailid", Some(mailidQuery.toParamString(mailid))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))), ("startDate", Some(startDateQuery.toParamString(startDate))), ("endDate", Some(endDateQuery.toParamString(endDate))), ("replyto", Some(replytoQuery.toParamString(replyto))), ("headerfrom", Some(headerfromQuery.toParamString(headerfrom))))
+      ("id", Some(idQuery.toParamString(id))), ("origin", Some(originQuery.toParamString(origin))), ("mx", Some(mxQuery.toParamString(mx))), ("from", Some(fromQuery.toParamString(from))), ("to", Some(toQuery.toParamString(to))), ("subject", Some(subjectQuery.toParamString(subject))), ("mailid", Some(mailidQuery.toParamString(mailid))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))), ("startDate", Some(startDateQuery.toParamString(startDate))), ("endDate", Some(endDateQuery.toParamString(endDate))), ("replyto", Some(replytoQuery.toParamString(replyto))), ("headerfrom", Some(headerfromQuery.toParamString(headerfrom))), ("delivered", Some(deliveredQuery.toParamString(delivered))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
@@ -80,8 +80,8 @@ class HttpServiceHistoryApi(service: HttpService) {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def getStats(): Task[List[GetStats200ResponseInner]] = {
-    implicit val returnTypeDecoder: EntityDecoder[List[GetStats200ResponseInner]] = jsonOf[List[GetStats200ResponseInner]]
+  def getStats(time: String)(implicit timeQuery: QueryParam[String]): Task[MailStatsType] = {
+    implicit val returnTypeDecoder: EntityDecoder[MailStatsType] = jsonOf[MailStatsType]
 
     val path = "/mail/stats"
 
@@ -90,18 +90,18 @@ class HttpServiceHistoryApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      )
+      ("time", Some(timeQuery.toParamString(time))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
       req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
-      resp          <- client.expect[List[GetStats200ResponseInner]](req)
+      resp          <- client.expect[MailStatsType](req)
 
     } yield resp
   }
 
-  def viewMailLog(id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, skip: Integer = 0, limit: Integer = 100, startDate: Long, endDate: Long, replyto: String, headerfrom: String)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[Long], endDateQuery: QueryParam[Long], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String]): Task[MailLog] = {
+  def viewMailLog(id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, skip: Integer = 0, limit: Integer = 100, startDate: Long, endDate: Long, replyto: String, headerfrom: String, delivered: String)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[Long], endDateQuery: QueryParam[Long], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String], deliveredQuery: QueryParam[String]): Task[MailLog] = {
     implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
@@ -111,7 +111,7 @@ class HttpServiceHistoryApi(service: HttpService) {
     val headers = Headers(
       )
     val queryParams = Query(
-      ("id", Some(idQuery.toParamString(id))), ("origin", Some(originQuery.toParamString(origin))), ("mx", Some(mxQuery.toParamString(mx))), ("from", Some(fromQuery.toParamString(from))), ("to", Some(toQuery.toParamString(to))), ("subject", Some(subjectQuery.toParamString(subject))), ("mailid", Some(mailidQuery.toParamString(mailid))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))), ("startDate", Some(startDateQuery.toParamString(startDate))), ("endDate", Some(endDateQuery.toParamString(endDate))), ("replyto", Some(replytoQuery.toParamString(replyto))), ("headerfrom", Some(headerfromQuery.toParamString(headerfrom))))
+      ("id", Some(idQuery.toParamString(id))), ("origin", Some(originQuery.toParamString(origin))), ("mx", Some(mxQuery.toParamString(mx))), ("from", Some(fromQuery.toParamString(from))), ("to", Some(toQuery.toParamString(to))), ("subject", Some(subjectQuery.toParamString(subject))), ("mailid", Some(mailidQuery.toParamString(mailid))), ("skip", Some(skipQuery.toParamString(skip))), ("limit", Some(limitQuery.toParamString(limit))), ("startDate", Some(startDateQuery.toParamString(startDate))), ("endDate", Some(endDateQuery.toParamString(endDate))), ("replyto", Some(replytoQuery.toParamString(replyto))), ("headerfrom", Some(headerfromQuery.toParamString(headerfrom))), ("delivered", Some(deliveredQuery.toParamString(delivered))))
 
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))

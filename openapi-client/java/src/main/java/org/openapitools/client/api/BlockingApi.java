@@ -93,7 +93,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addRuleCall(String type, String data, String user, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call addRuleCall(@javax.annotation.Nonnull String type, @javax.annotation.Nonnull String data, @javax.annotation.Nullable String user, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -152,7 +152,7 @@ public class BlockingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call addRuleValidateBeforeCall(String type, String data, String user, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call addRuleValidateBeforeCall(@javax.annotation.Nonnull String type, @javax.annotation.Nonnull String data, @javax.annotation.Nullable String user, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'type' is set
         if (type == null) {
             throw new ApiException("Missing the required parameter 'type' when calling addRule(Async)");
@@ -185,7 +185,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse addRule(String type, String data, String user) throws ApiException {
+    public GenericResponse addRule(@javax.annotation.Nonnull String type, @javax.annotation.Nonnull String data, @javax.annotation.Nullable String user) throws ApiException {
         ApiResponse<GenericResponse> localVarResp = addRuleWithHttpInfo(type, data, user);
         return localVarResp.getData();
     }
@@ -208,7 +208,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> addRuleWithHttpInfo(String type, String data, String user) throws ApiException {
+    public ApiResponse<GenericResponse> addRuleWithHttpInfo(@javax.annotation.Nonnull String type, @javax.annotation.Nonnull String data, @javax.annotation.Nullable String user) throws ApiException {
         okhttp3.Call localVarCall = addRuleValidateBeforeCall(type, data, user, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -233,7 +233,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call addRuleAsync(String type, String data, String user, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call addRuleAsync(@javax.annotation.Nonnull String type, @javax.annotation.Nonnull String data, @javax.annotation.Nullable String user, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = addRuleValidateBeforeCall(type, data, user, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
@@ -256,7 +256,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteRuleCall(Integer ruleId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call deleteRuleCall(@javax.annotation.Nonnull Integer ruleId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -302,7 +302,7 @@ public class BlockingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call deleteRuleValidateBeforeCall(Integer ruleId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call deleteRuleValidateBeforeCall(@javax.annotation.Nonnull Integer ruleId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'ruleId' is set
         if (ruleId == null) {
             throw new ApiException("Missing the required parameter 'ruleId' when calling deleteRule(Async)");
@@ -328,7 +328,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse deleteRule(Integer ruleId) throws ApiException {
+    public GenericResponse deleteRule(@javax.annotation.Nonnull Integer ruleId) throws ApiException {
         ApiResponse<GenericResponse> localVarResp = deleteRuleWithHttpInfo(ruleId);
         return localVarResp.getData();
     }
@@ -349,7 +349,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> deleteRuleWithHttpInfo(Integer ruleId) throws ApiException {
+    public ApiResponse<GenericResponse> deleteRuleWithHttpInfo(@javax.annotation.Nonnull Integer ruleId) throws ApiException {
         okhttp3.Call localVarCall = deleteRuleValidateBeforeCall(ruleId, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -372,7 +372,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call deleteRuleAsync(Integer ruleId, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call deleteRuleAsync(@javax.annotation.Nonnull Integer ruleId, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = deleteRuleValidateBeforeCall(ruleId, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
@@ -395,7 +395,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call delistBlockCall(String body, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call delistBlockCall(@javax.annotation.Nonnull String body, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -442,7 +442,7 @@ public class BlockingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call delistBlockValidateBeforeCall(String body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call delistBlockValidateBeforeCall(@javax.annotation.Nonnull String body, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling delistBlock(Async)");
@@ -468,7 +468,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse delistBlock(String body) throws ApiException {
+    public GenericResponse delistBlock(@javax.annotation.Nonnull String body) throws ApiException {
         ApiResponse<GenericResponse> localVarResp = delistBlockWithHttpInfo(body);
         return localVarResp.getData();
     }
@@ -489,7 +489,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> delistBlockWithHttpInfo(String body) throws ApiException {
+    public ApiResponse<GenericResponse> delistBlockWithHttpInfo(@javax.annotation.Nonnull String body) throws ApiException {
         okhttp3.Call localVarCall = delistBlockValidateBeforeCall(body, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -512,7 +512,7 @@ public class BlockingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call delistBlockAsync(String body, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call delistBlockAsync(@javax.annotation.Nonnull String body, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = delistBlockValidateBeforeCall(body, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();

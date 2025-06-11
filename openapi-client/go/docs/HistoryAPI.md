@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetStats
 
-> []GetStats200ResponseInner GetStats(ctx).Execute()
+> MailStatsType GetStats(ctx).Time(time).Execute()
 
 Account usage statistics.
 
@@ -30,31 +30,36 @@ import (
 )
 
 func main() {
+	time := "time_example" // string | The timeframe for the statistics. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HistoryAPI.GetStats(context.Background()).Execute()
+	resp, r, err := apiClient.HistoryAPI.GetStats(context.Background()).Time(time).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HistoryAPI.GetStats``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetStats`: []GetStats200ResponseInner
+	// response from `GetStats`: MailStatsType
 	fmt.Fprintf(os.Stdout, "Response from `HistoryAPI.GetStats`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetStatsRequest struct via the builder pattern
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **string** | The timeframe for the statistics. | 
+
 ### Return type
 
-[**[]GetStats200ResponseInner**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -72,7 +77,7 @@ Other parameters are passed through a pointer to a apiGetStatsRequest struct via
 
 ## ViewMailLog
 
-> MailLog ViewMailLog(ctx).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Replyto(replyto).Headerfrom(headerfrom).Execute()
+> MailLog ViewMailLog(ctx).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Replyto(replyto).Headerfrom(headerfrom).Delivered(delivered).Execute()
 
 displays the mail log
 
@@ -104,10 +109,11 @@ func main() {
 	endDate := int64(1673317008) // int64 | earliest date to get emails in unix timestamp format (optional)
 	replyto := "replyto_example" // string | Reply-To Email Address (optional)
 	headerfrom := "headerfrom_example" // string | Header From Email Address (optional)
+	delivered := "delivered_example" // string | Limiting the emails to wether or not they were delivered. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.HistoryAPI.ViewMailLog(context.Background()).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Replyto(replyto).Headerfrom(headerfrom).Execute()
+	resp, r, err := apiClient.HistoryAPI.ViewMailLog(context.Background()).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Replyto(replyto).Headerfrom(headerfrom).Delivered(delivered).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HistoryAPI.ViewMailLog``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -141,6 +147,7 @@ Name | Type | Description  | Notes
  **endDate** | **int64** | earliest date to get emails in unix timestamp format | 
  **replyto** | **string** | Reply-To Email Address | 
  **headerfrom** | **string** | Header From Email Address | 
+ **delivered** | **string** | Limiting the emails to wether or not they were delivered. | 
 
 ### Return type
 

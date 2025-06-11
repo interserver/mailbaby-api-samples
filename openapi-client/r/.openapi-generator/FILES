@@ -16,7 +16,6 @@ R/email_address_types.R
 R/email_addresses_types.R
 R/error_message.R
 R/generic_response.R
-R/get_stats200_response_inner.R
 R/history_api.R
 R/mail_attachment.R
 R/mail_block_click_house.R
@@ -25,6 +24,11 @@ R/mail_blocks.R
 R/mail_log.R
 R/mail_log_entry.R
 R/mail_order.R
+R/mail_stats_type.R
+R/mail_stats_type_volume.R
+R/mail_stats_type_volume_from.R
+R/mail_stats_type_volume_ip.R
+R/mail_stats_type_volume_to.R
 R/send_mail.R
 R/send_mail_adv.R
 R/sending_api.R
@@ -39,7 +43,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -48,6 +51,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -63,7 +71,6 @@ tests/testthat/test_email_address_types.R
 tests/testthat/test_email_addresses_types.R
 tests/testthat/test_error_message.R
 tests/testthat/test_generic_response.R
-tests/testthat/test_get_stats200_response_inner.R
 tests/testthat/test_history_api.R
 tests/testthat/test_mail_attachment.R
 tests/testthat/test_mail_block_click_house.R
@@ -72,6 +79,11 @@ tests/testthat/test_mail_blocks.R
 tests/testthat/test_mail_log.R
 tests/testthat/test_mail_log_entry.R
 tests/testthat/test_mail_order.R
+tests/testthat/test_mail_stats_type.R
+tests/testthat/test_mail_stats_type_volume.R
+tests/testthat/test_mail_stats_type_volume_from.R
+tests/testthat/test_mail_stats_type_volume_ip.R
+tests/testthat/test_mail_stats_type_volume_to.R
 tests/testthat/test_send_mail.R
 tests/testthat/test_send_mail_adv.R
 tests/testthat/test_sending_api.R

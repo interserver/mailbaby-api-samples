@@ -11,7 +11,7 @@ All URIs are relative to https://api.mailbaby.net, except if the operation defin
 ## `getStats()`
 
 ```php
-getStats(): \OpenAPI\Client\Model\GetStats200ResponseInner[]
+getStats($time): \OpenAPI\Client\Model\MailStatsType
 ```
 
 Account usage statistics.
@@ -37,9 +37,10 @@ $apiInstance = new OpenAPI\Client\Api\HistoryApi(
     new GuzzleHttp\Client(),
     $config
 );
+$time = 'time_example'; // string | The timeframe for the statistics.
 
 try {
-    $result = $apiInstance->getStats();
+    $result = $apiInstance->getStats($time);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->getStats: ', $e->getMessage(), PHP_EOL;
@@ -48,11 +49,13 @@ try {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **time** | **string**| The timeframe for the statistics. | [optional] |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GetStats200ResponseInner[]**](../Model/GetStats200ResponseInner.md)
+[**\OpenAPI\Client\Model\MailStatsType**](../Model/MailStatsType.md)
 
 ### Authorization
 
@@ -70,7 +73,7 @@ This endpoint does not need any parameter.
 ## `viewMailLog()`
 
 ```php
-viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date, $replyto, $headerfrom): \OpenAPI\Client\Model\MailLog
+viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date, $replyto, $headerfrom, $delivered): \OpenAPI\Client\Model\MailLog
 ```
 
 displays the mail log
@@ -109,9 +112,10 @@ $start_date = 1641781008; // int | earliest date to get emails in unix timestamp
 $end_date = 1673317008; // int | earliest date to get emails in unix timestamp format
 $replyto = 'replyto_example'; // string | Reply-To Email Address
 $headerfrom = 'headerfrom_example'; // string | Header From Email Address
+$delivered = 'delivered_example'; // string | Limiting the emails to wether or not they were delivered.
 
 try {
-    $result = $apiInstance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date, $replyto, $headerfrom);
+    $result = $apiInstance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $start_date, $end_date, $replyto, $headerfrom, $delivered);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -135,6 +139,7 @@ try {
 | **end_date** | **int**| earliest date to get emails in unix timestamp format | [optional] |
 | **replyto** | **string**| Reply-To Email Address | [optional] |
 | **headerfrom** | **string**| Header From Email Address | [optional] |
+| **delivered** | **string**| Limiting the emails to wether or not they were delivered. | [optional] |
 
 ### Return type
 

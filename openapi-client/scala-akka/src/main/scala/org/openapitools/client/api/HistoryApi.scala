@@ -12,8 +12,8 @@
 package org.openapitools.client.api
 
 import org.openapitools.client.model.ErrorMessage
-import org.openapitools.client.model.GetStats200ResponseInner
 import org.openapitools.client.model.MailLog
+import org.openapitools.client.model.MailStatsType
 import org.openapitools.client.core._
 import org.openapitools.client.core.CollectionFormats._
 import org.openapitools.client.core.ApiKeyLocations._
@@ -29,17 +29,20 @@ class HistoryApi(baseUrl: String) {
    * Returns information about the usage on your mail accounts.
    * 
    * Expected answers:
-   *   code 200 : Seq[GetStats200ResponseInner] (OK)
+   *   code 200 : MailStatsType (OK)
    *   code 401 : ErrorMessage (Unauthorized)
    *   code 404 : ErrorMessage (Unauthorized)
    * 
    * Available security schemes:
    *   apiKeyAuth (apiKey)
+   * 
+   * @param time The timeframe for the statistics.
    */
-  def getStats()(implicit apiKey: ApiKeyValue): ApiRequest[Seq[GetStats200ResponseInner]] =
-    ApiRequest[Seq[GetStats200ResponseInner]](ApiMethods.GET, baseUrl, "/mail/stats", "application/json")
+  def getStats(time: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailStatsType] =
+    ApiRequest[MailStatsType](ApiMethods.GET, baseUrl, "/mail/stats", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
-      .withSuccessResponse[Seq[GetStats200ResponseInner]](200)
+      .withQueryParam("time", time)
+      .withSuccessResponse[MailStatsType](200)
       .withErrorResponse[ErrorMessage](401)
       .withErrorResponse[ErrorMessage](404)
       
@@ -67,8 +70,9 @@ class HistoryApi(baseUrl: String) {
    * @param endDate earliest date to get emails in unix timestamp format
    * @param replyto Reply-To Email Address
    * @param headerfrom Header From Email Address
+   * @param delivered Limiting the emails to wether or not they were delivered.
    */
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailLog] =
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailLog] =
     ApiRequest[MailLog](ApiMethods.GET, baseUrl, "/mail/log", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
       .withQueryParam("id", id)
@@ -84,6 +88,7 @@ class HistoryApi(baseUrl: String) {
       .withQueryParam("endDate", endDate)
       .withQueryParam("replyto", replyto)
       .withQueryParam("headerfrom", headerfrom)
+      .withQueryParam("delivered", delivered)
       .withSuccessResponse[MailLog](200)
       .withErrorResponse[Unit](400)
       

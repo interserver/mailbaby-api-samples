@@ -18,7 +18,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryAPI.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -27,6 +26,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingAPI.md
@@ -42,7 +46,6 @@ model_email_address_types.go
 model_email_addresses_types.go
 model_error_message.go
 model_generic_response.go
-model_get_stats_200_response_inner.go
 model_mail_attachment.go
 model_mail_block_click_house.go
 model_mail_block_rspamd.go
@@ -50,6 +53,11 @@ model_mail_blocks.go
 model_mail_log.go
 model_mail_log_entry.go
 model_mail_order.go
+model_mail_stats_type.go
+model_mail_stats_type_volume.go
+model_mail_stats_type_volume_from.go
+model_mail_stats_type_volume_ip.go
+model_mail_stats_type_volume_to.go
 model_send_mail.go
 model_send_mail_adv.go
 response.go

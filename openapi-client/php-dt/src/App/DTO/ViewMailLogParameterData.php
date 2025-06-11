@@ -45,6 +45,14 @@ class ViewMailLogParameterData
     public int|null $skip = null;
 
     /**
+     * Limiting the emails to wether or not they were delivered.
+     */
+    #[DTA\Data(subset: "query", field: "delivered", nullable: true)]
+    #[DTA\Strategy("QueryStringScalar", ["type" => "string"], "query")]
+    #[DTA\Validator("QueryStringScalar", ["type" => "string"], subset: "query")]
+    public string|null $delivered = null;
+
+    /**
      * mx record mail was sent to
      */
     #[DTA\Data(subset: "query", field: "mx", nullable: true)]

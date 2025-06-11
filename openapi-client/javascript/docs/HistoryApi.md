@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getStats
 
-> [GetStats200ResponseInner] getStats()
+> MailStatsType getStats(opts)
 
 Account usage statistics.
 
@@ -29,7 +29,10 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi();
-apiInstance.getStats((error, data, response) => {
+let opts = {
+  'time': "time_example" // String | The timeframe for the statistics.
+};
+apiInstance.getStats(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -40,11 +43,14 @@ apiInstance.getStats((error, data, response) => {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**[GetStats200ResponseInner]**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -89,7 +95,8 @@ let opts = {
   'startDate': 1641781008, // Number | earliest date to get emails in unix timestamp format
   'endDate': 1673317008, // Number | earliest date to get emails in unix timestamp format
   'replyto': "replyto_example", // String | Reply-To Email Address
-  'headerfrom': "headerfrom_example" // String | Header From Email Address
+  'headerfrom': "headerfrom_example", // String | Header From Email Address
+  'delivered': "delivered_example" // String | Limiting the emails to wether or not they were delivered.
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -118,6 +125,7 @@ Name | Type | Description  | Notes
  **endDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
  **replyto** | **String**| Reply-To Email Address | [optional] 
  **headerfrom** | **String**| Header From Email Address | [optional] 
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

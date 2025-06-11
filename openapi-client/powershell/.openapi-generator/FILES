@@ -10,7 +10,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -19,6 +18,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -37,7 +41,6 @@ src/PSOpenAPITools/Model/EmailAddressTypes.ps1
 src/PSOpenAPITools/Model/EmailAddressesTypes.ps1
 src/PSOpenAPITools/Model/ErrorMessage.ps1
 src/PSOpenAPITools/Model/GenericResponse.ps1
-src/PSOpenAPITools/Model/GetStats200ResponseInner.ps1
 src/PSOpenAPITools/Model/MailAttachment.ps1
 src/PSOpenAPITools/Model/MailBlockClickHouse.ps1
 src/PSOpenAPITools/Model/MailBlockRspamd.ps1
@@ -45,6 +48,11 @@ src/PSOpenAPITools/Model/MailBlocks.ps1
 src/PSOpenAPITools/Model/MailLog.ps1
 src/PSOpenAPITools/Model/MailLogEntry.ps1
 src/PSOpenAPITools/Model/MailOrder.ps1
+src/PSOpenAPITools/Model/MailStatsType.ps1
+src/PSOpenAPITools/Model/MailStatsTypeVolume.ps1
+src/PSOpenAPITools/Model/MailStatsTypeVolumeFrom.ps1
+src/PSOpenAPITools/Model/MailStatsTypeVolumeIp.ps1
+src/PSOpenAPITools/Model/MailStatsTypeVolumeTo.ps1
 src/PSOpenAPITools/Model/SendMail.ps1
 src/PSOpenAPITools/Model/SendMailAdv.ps1
 src/PSOpenAPITools/PSOpenAPITools.psm1
@@ -66,7 +74,6 @@ tests/Model/EmailAddressTypes.Tests.ps1
 tests/Model/EmailAddressesTypes.Tests.ps1
 tests/Model/ErrorMessage.Tests.ps1
 tests/Model/GenericResponse.Tests.ps1
-tests/Model/GetStats200ResponseInner.Tests.ps1
 tests/Model/MailAttachment.Tests.ps1
 tests/Model/MailBlockClickHouse.Tests.ps1
 tests/Model/MailBlockRspamd.Tests.ps1
@@ -74,5 +81,10 @@ tests/Model/MailBlocks.Tests.ps1
 tests/Model/MailLog.Tests.ps1
 tests/Model/MailLogEntry.Tests.ps1
 tests/Model/MailOrder.Tests.ps1
+tests/Model/MailStatsType.Tests.ps1
+tests/Model/MailStatsTypeVolume.Tests.ps1
+tests/Model/MailStatsTypeVolumeFrom.Tests.ps1
+tests/Model/MailStatsTypeVolumeIp.Tests.ps1
+tests/Model/MailStatsTypeVolumeTo.Tests.ps1
 tests/Model/SendMail.Tests.ps1
 tests/Model/SendMailAdv.Tests.ps1

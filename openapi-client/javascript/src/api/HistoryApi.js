@@ -14,8 +14,8 @@
 
 import ApiClient from "../ApiClient";
 import ErrorMessage from '../model/ErrorMessage';
-import GetStats200ResponseInner from '../model/GetStats200ResponseInner';
 import MailLog from '../model/MailLog';
+import MailStatsType from '../model/MailStatsType';
 
 /**
 * History service.
@@ -40,22 +40,26 @@ export default class HistoryApi {
      * Callback function to receive the result of the getStats operation.
      * @callback module:api/HistoryApi~getStatsCallback
      * @param {String} error Error message, if any.
-     * @param {Array.<module:model/GetStats200ResponseInner>} data The data returned by the service call.
+     * @param {module:model/MailStatsType} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
      */
 
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
+     * @param {Object} opts Optional parameters
+     * @param {module:model/String} [time] The timeframe for the statistics.
      * @param {module:api/HistoryApi~getStatsCallback} callback The callback function, accepting three arguments: error, data, response
-     * data is of type: {@link Array.<module:model/GetStats200ResponseInner>}
+     * data is of type: {@link module:model/MailStatsType}
      */
-    getStats(callback) {
+    getStats(opts, callback) {
+      opts = opts || {};
       let postBody = null;
 
       let pathParams = {
       };
       let queryParams = {
+        'time': opts['time']
       };
       let headerParams = {
       };
@@ -65,7 +69,7 @@ export default class HistoryApi {
       let authNames = ['apiKeyAuth'];
       let contentTypes = [];
       let accepts = ['application/json'];
-      let returnType = [GetStats200ResponseInner];
+      let returnType = MailStatsType;
       return this.apiClient.callApi(
         '/mail/stats', 'GET',
         pathParams, queryParams, headerParams, formParams, postBody,
@@ -98,6 +102,7 @@ export default class HistoryApi {
      * @param {Number} [endDate] earliest date to get emails in unix timestamp format
      * @param {String} [replyto] Reply-To Email Address
      * @param {String} [headerfrom] Header From Email Address
+     * @param {module:model/String} [delivered] Limiting the emails to wether or not they were delivered.
      * @param {module:api/HistoryApi~viewMailLogCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/MailLog}
      */
@@ -120,7 +125,8 @@ export default class HistoryApi {
         'startDate': opts['startDate'],
         'endDate': opts['endDate'],
         'replyto': opts['replyto'],
-        'headerfrom': opts['headerfrom']
+        'headerfrom': opts['headerfrom'],
+        'delivered': opts['delivered']
       };
       let headerParams = {
       };

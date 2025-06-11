@@ -15,7 +15,6 @@ import openapiclient/models/model_email_address_types
 import openapiclient/models/model_email_addresses_types
 import openapiclient/models/model_error_message
 import openapiclient/models/model_generic_response
-import openapiclient/models/model_get_stats_200_response_inner
 import openapiclient/models/model_mail_attachment
 import openapiclient/models/model_mail_block_click_house
 import openapiclient/models/model_mail_block_rspamd
@@ -23,6 +22,11 @@ import openapiclient/models/model_mail_blocks
 import openapiclient/models/model_mail_log
 import openapiclient/models/model_mail_log_entry
 import openapiclient/models/model_mail_order
+import openapiclient/models/model_mail_stats_type
+import openapiclient/models/model_mail_stats_type_volume
+import openapiclient/models/model_mail_stats_type_volume_from
+import openapiclient/models/model_mail_stats_type_volume_ip
+import openapiclient/models/model_mail_stats_type_volume_to
 import openapiclient/models/model_send_mail
 import openapiclient/models/model_send_mail_adv
 
@@ -33,7 +37,6 @@ export model_email_address_types
 export model_email_addresses_types
 export model_error_message
 export model_generic_response
-export model_get_stats_200_response_inner
 export model_mail_attachment
 export model_mail_block_click_house
 export model_mail_block_rspamd
@@ -41,6 +44,11 @@ export model_mail_blocks
 export model_mail_log
 export model_mail_log_entry
 export model_mail_order
+export model_mail_stats_type
+export model_mail_stats_type_volume
+export model_mail_stats_type_volume_from
+export model_mail_stats_type_volume_ip
+export model_mail_stats_type_volume_to
 export model_send_mail
 export model_send_mail_adv
 

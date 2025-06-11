@@ -28,14 +28,19 @@ public class OASHistoryApi {
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
-     * @return List<OASGetStats200ResponseInner>
+     * @param r_time The timeframe for the statistics. (optional)
+     * @return OASMailStatsType
      * @throws OAS.ApiException if fails to make API call
      */
-    public List<OASGetStats200ResponseInner> getStats() {
+    public OASMailStatsType getStats(Map<String, Object> params) {
         List<OAS.Param> query = new List<OAS.Param>();
+
+        // cast query params to verify their expected type
+        query.addAll(client.makeParam('time', (String) params.get('r_time')));
+
         List<OAS.Param> form = new List<OAS.Param>();
 
-        return (List<OASGetStats200ResponseInner>) client.invoke(
+        return (OASMailStatsType) client.invoke(
             'GET', '/mail/stats', '',
             query, form,
             new Map<String, Object>(),
@@ -43,7 +48,7 @@ public class OASHistoryApi {
             new List<String>{ 'application/json' },
             new List<String>(),
             new List<String> { 'apiKeyAuth' },
-            List<OASGetStats200ResponseInner>.class
+            OASMailStatsType.class
         );
     }
     /**
@@ -62,6 +67,7 @@ public class OASHistoryApi {
      * @param endDate earliest date to get emails in unix timestamp format (optional)
      * @param replyto Reply-To Email Address (optional)
      * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return OASMailLog
      * @throws OAS.ApiException if fails to make API call
      */
@@ -82,6 +88,7 @@ public class OASHistoryApi {
         query.addAll(client.makeParam('endDate', (Long) params.get('endDate')));
         query.addAll(client.makeParam('replyto', (String) params.get('replyto')));
         query.addAll(client.makeParam('headerfrom', (String) params.get('headerfrom')));
+        query.addAll(client.makeParam('delivered', (String) params.get('delivered')));
 
         List<OAS.Param> form = new List<OAS.Param>();
 

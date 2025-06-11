@@ -9,7 +9,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -18,6 +17,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -57,7 +61,6 @@ src/main/kotlin/org/openapitools/client/models/EmailAddressTypes.kt
 src/main/kotlin/org/openapitools/client/models/EmailAddressesTypes.kt
 src/main/kotlin/org/openapitools/client/models/ErrorMessage.kt
 src/main/kotlin/org/openapitools/client/models/GenericResponse.kt
-src/main/kotlin/org/openapitools/client/models/GetStats200ResponseInner.kt
 src/main/kotlin/org/openapitools/client/models/MailAttachment.kt
 src/main/kotlin/org/openapitools/client/models/MailBlockClickHouse.kt
 src/main/kotlin/org/openapitools/client/models/MailBlockRspamd.kt
@@ -65,6 +68,11 @@ src/main/kotlin/org/openapitools/client/models/MailBlocks.kt
 src/main/kotlin/org/openapitools/client/models/MailLog.kt
 src/main/kotlin/org/openapitools/client/models/MailLogEntry.kt
 src/main/kotlin/org/openapitools/client/models/MailOrder.kt
+src/main/kotlin/org/openapitools/client/models/MailStatsType.kt
+src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolume.kt
+src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeFrom.kt
+src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeIp.kt
+src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeTo.kt
 src/main/kotlin/org/openapitools/client/models/SendMail.kt
 src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
 src/test/kotlin/org/openapitools/client/apis/BlockingApiTest.kt
@@ -79,7 +87,6 @@ src/test/kotlin/org/openapitools/client/models/EmailAddressTypesTest.kt
 src/test/kotlin/org/openapitools/client/models/EmailAddressesTypesTest.kt
 src/test/kotlin/org/openapitools/client/models/ErrorMessageTest.kt
 src/test/kotlin/org/openapitools/client/models/GenericResponseTest.kt
-src/test/kotlin/org/openapitools/client/models/GetStats200ResponseInnerTest.kt
 src/test/kotlin/org/openapitools/client/models/MailAttachmentTest.kt
 src/test/kotlin/org/openapitools/client/models/MailBlockClickHouseTest.kt
 src/test/kotlin/org/openapitools/client/models/MailBlockRspamdTest.kt
@@ -87,5 +94,10 @@ src/test/kotlin/org/openapitools/client/models/MailBlocksTest.kt
 src/test/kotlin/org/openapitools/client/models/MailLogEntryTest.kt
 src/test/kotlin/org/openapitools/client/models/MailLogTest.kt
 src/test/kotlin/org/openapitools/client/models/MailOrderTest.kt
+src/test/kotlin/org/openapitools/client/models/MailStatsTypeTest.kt
+src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeFromTest.kt
+src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeIpTest.kt
+src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeTest.kt
+src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeToTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailAdvTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailTest.kt

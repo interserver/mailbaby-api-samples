@@ -307,12 +307,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">400</h4>
     Error message when there was a problem with the input parameters.
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="deleteRule"/>
@@ -381,12 +390,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">400</h4>
     Error message when there was a problem with the input parameters.
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="delistBlock"/>
@@ -462,12 +480,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">400</h4>
     Error message when there was a problem with the input parameters.
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getMailBlocks"/>
@@ -537,12 +564,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">200</h4>
     OK
         <a href="#MailBlocks">MailBlocks</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getRules"/>
@@ -605,12 +641,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">200</h4>
     OK
         
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="History">History</a></h1>
@@ -625,11 +670,17 @@ We support several different authentication methods but the preferred method is 
 
 
 
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">time (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The timeframe for the statistics. default: null </div>
+    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#getStats_200_response_inner">getStats_200_response_inner</a>]
+      <a href="#MailStatsType">MailStatsType</a>
       
     </div>
 
@@ -637,19 +688,33 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}, {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-} ]</code></pre>
+    <pre class="example"><code>{
+  "time" : "all",
+  "usage" : 55,
+  "currency" : "USD",
+  "currencySymbol" : "$",
+  "cost" : 1.02,
+  "received" : 508,
+  "sent" : 495,
+  "volume" : {
+    "to" : {
+      "client@domain.com" : 395,
+      "user@site.net" : 57,
+      "sales@company.com" : 47,
+      "client@anothersite.com" : 9
+    },
+    "from" : {
+      "billing@somedomain.com" : 369,
+      "sales@somedomain.com" : 139
+    },
+    "ip" : {
+      "1.1.1.1" : 142,
+      "2.2.2.2" : 132,
+      "3.3.3.3" : 129,
+      "4.4.4.4" : 105
+    }
+  }
+}</code></pre>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
@@ -673,13 +738,19 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     OK
-        
+        <a href="#MailStatsType">MailStatsType</a>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="viewMailLog"/>
@@ -721,7 +792,9 @@ We support several different authentication methods but the preferred method is 
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Reply-To Email Address default: null </div><div class="param">headerfrom (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Header From Email Address default: null </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Header From Email Address default: null </div><div class="param">delivered (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Limiting the emails to wether or not they were delivered. default: null </div>
     </div>  <!-- field-items -->
 
 
@@ -755,6 +828,7 @@ We support several different authentication methods but the preferred method is 
     "sendingZone" : "interserver",
     "bodySize" : 63,
     "seq" : 1,
+    "delivered" : 1,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -777,6 +851,9 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">200</h4>
     search results matching criteria
         <a href="#MailLog">MailLog</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">400</h4>
     bad input parameter
         <a href="#"></a>
@@ -790,7 +867,7 @@ We support several different authentication methods but the preferred method is 
     <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMail</span>)</div>
     <div class="method-notes"><p>Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</p>
 <p>Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.</p>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-BasicForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -799,7 +876,7 @@ We support several different authentication methods but the preferred method is 
 --data from=user@domain.com \
 --data to=support@interserver.net
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-ArrayForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -809,7 +886,7 @@ We support several different authentication methods but the preferred method is 
 --data &quot;to[0][name]=Joe&quot; \
 --data &quot;to[0][email]=support@interserver.net&quot;
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-NameEmailForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -818,7 +895,7 @@ We support several different authentication methods but the preferred method is 
 --data from=&quot;Joe &lt;user@domain.com&gt;&quot; \
 --data to=&quot;Joe &lt;support@interserver.net&gt;&quot;
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-MultToForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -827,7 +904,7 @@ We support several different authentication methods but the preferred method is 
 --data from=user@domain.com \
 --data &quot;to=support@interserver.net, support@interserver.net&quot;
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-MultToFullForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -836,7 +913,7 @@ We support several different authentication methods but the preferred method is 
 --data from=user@domain.com \
 --data &quot;to=Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-MultToArrayForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -848,7 +925,7 @@ We support several different authentication methods but the preferred method is 
 --data &quot;to[1][name]=Joe&quot; \
 --data &quot;to[1][email]=support@interserver.net&quot;
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-BasicJson">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -859,7 +936,7 @@ We support several different authentication methods but the preferred method is 
 &quot;to&quot;: &quot;support@interserver.net&quot;
 }'
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-ArrayJson">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -870,7 +947,7 @@ We support several different authentication methods but the preferred method is 
 &quot;to&quot;: [{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;support@interserver.net&quot;}]
 }'
 </code></pre>
-<pre><code>curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
+<pre><code class="language-NameEmailJson">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
 --header 'X-API-KEY: YOUR_API_KEY' \
@@ -964,12 +1041,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">400</h4>
     Error message when there was a problem with the input parameters.
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="sendMail"/>
@@ -1052,12 +1138,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">400</h4>
     Error message when there was a problem with the input parameters.
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     The specified resource was not found
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Services">Services</a></h1>
@@ -1117,12 +1212,21 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">200</h4>
     OK
         
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">401</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">404</h4>
     Unauthorized
         <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Status">Status</a></h1>
@@ -1173,9 +1277,13 @@ We support several different authentication methods but the preferred method is 
     <li><a href="#MailLog"><code>MailLog</code> - MailLog</a></li>
     <li><a href="#MailLogEntry"><code>MailLogEntry</code> - MailLogEntry</a></li>
     <li><a href="#MailOrder"><code>MailOrder</code> - MailOrder</a></li>
+    <li><a href="#MailStatsType"><code>MailStatsType</code> - Root Type for MailStatsType</a></li>
+    <li><a href="#MailStatsType_volume"><code>MailStatsType_volume</code> - </a></li>
+    <li><a href="#MailStatsType_volume_from"><code>MailStatsType_volume_from</code> - </a></li>
+    <li><a href="#MailStatsType_volume_ip"><code>MailStatsType_volume_ip</code> - </a></li>
+    <li><a href="#MailStatsType_volume_to"><code>MailStatsType_volume_to</code> - </a></li>
     <li><a href="#SendMail"><code>SendMail</code> - SendMail</a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
-    <li><a href="#getStats_200_response_inner"><code>getStats_200_response_inner</code> - </a></li>
   </ol>
 
   <div class="model">
@@ -1326,6 +1434,59 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
+    <h3><a name="MailStatsType"><code>MailStatsType</code> - Root Type for MailStatsType</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.</div>
+    <div class="field-items">
+      <div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">all</div><div class="param-enum">billing</div><div class="param-enum">month</div><div class="param-enum">7d</div><div class="param-enum">24h</div><div class="param-enum">today</div><div class="param-enum">1h</div>
+<div class="param">usage (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">currencySymbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">cost (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">received (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">sent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume">MailStatsType_volume</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailStatsType_volume"><code>MailStatsType_volume</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume_to">MailStatsType_volume_to</a></span>  </div>
+<div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume_from">MailStatsType_volume_from</a></span>  </div>
+<div class="param">ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume_ip">MailStatsType_volume_ip</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailStatsType_volume_from"><code>MailStatsType_volume_from</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">billingAtsomedomainPeriodcom (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">salesAtsomedomainPeriodcom (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailStatsType_volume_ip"><code>MailStatsType_volume_ip</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">1Period1Period1Period1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">2Period2Period2Period2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">3Period3Period3Period3 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">4Period4Period4Period4 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailStatsType_volume_to"><code>MailStatsType_volume_to</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">clientAtdomainPeriodcom (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">userAtsitePeriodnet (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">salesAtcompanyPeriodcom (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">clientAtanothersitePeriodcom (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
     <h3><a name="SendMail"><code>SendMail</code> - SendMail</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
@@ -1348,17 +1509,6 @@ We support several different authentication methods but the preferred method is 
 <div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
 <div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> (optional) File attachments to include in the email.  The file contents must be base64 encoded! </div>
 <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> (optional)  ID of the Mail order within our system to use as the Mail Account. format: int64</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="getStats_200_response_inner"><code>getStats_200_response_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'></div>
-    <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
-<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>

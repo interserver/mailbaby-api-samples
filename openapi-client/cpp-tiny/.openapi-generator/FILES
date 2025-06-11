@@ -14,8 +14,6 @@ lib/Models/ErrorMessage.cpp
 lib/Models/ErrorMessage.h
 lib/Models/GenericResponse.cpp
 lib/Models/GenericResponse.h
-lib/Models/GetStats200ResponseInner.cpp
-lib/Models/GetStats200ResponseInner.h
 lib/Models/Helpers.cpp
 lib/Models/Helpers.h
 lib/Models/MailAttachment.cpp
@@ -32,6 +30,16 @@ lib/Models/MailLogEntry.cpp
 lib/Models/MailLogEntry.h
 lib/Models/MailOrder.cpp
 lib/Models/MailOrder.h
+lib/Models/MailStatsType.cpp
+lib/Models/MailStatsType.h
+lib/Models/MailStatsTypeVolume.cpp
+lib/Models/MailStatsTypeVolume.h
+lib/Models/MailStatsTypeVolumeFrom.cpp
+lib/Models/MailStatsTypeVolumeFrom.h
+lib/Models/MailStatsTypeVolumeIp.cpp
+lib/Models/MailStatsTypeVolumeIp.h
+lib/Models/MailStatsTypeVolumeTo.cpp
+lib/Models/MailStatsTypeVolumeTo.h
 lib/Models/SendMail.cpp
 lib/Models/SendMail.h
 lib/Models/SendMailAdv.cpp
@@ -43,7 +51,6 @@ lib/TestFiles/EmailAddressTypesTest.cpp
 lib/TestFiles/EmailAddressesTypesTest.cpp
 lib/TestFiles/ErrorMessageTest.cpp
 lib/TestFiles/GenericResponseTest.cpp
-lib/TestFiles/GetStats200ResponseInnerTest.cpp
 lib/TestFiles/MailAttachmentTest.cpp
 lib/TestFiles/MailBlockClickHouseTest.cpp
 lib/TestFiles/MailBlockRspamdTest.cpp
@@ -51,6 +58,11 @@ lib/TestFiles/MailBlocksTest.cpp
 lib/TestFiles/MailLogEntryTest.cpp
 lib/TestFiles/MailLogTest.cpp
 lib/TestFiles/MailOrderTest.cpp
+lib/TestFiles/MailStatsTypeTest.cpp
+lib/TestFiles/MailStatsTypeVolumeFromTest.cpp
+lib/TestFiles/MailStatsTypeVolumeIpTest.cpp
+lib/TestFiles/MailStatsTypeVolumeTest.cpp
+lib/TestFiles/MailStatsTypeVolumeToTest.cpp
 lib/TestFiles/SendMailAdvTest.cpp
 lib/TestFiles/SendMailTest.cpp
 lib/service/BlockingApi.cpp

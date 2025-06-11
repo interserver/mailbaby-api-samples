@@ -117,15 +117,6 @@ export interface GenericResponse {
 }
 
 
-export interface GetStats200ResponseInner {
-  id: number;
-  status: string;
-  username: string;
-  password?: string;
-  comment?: string;
-}
-
-
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
  */
@@ -311,6 +302,55 @@ export interface MailOrder {
    * Optional order comment.
    */
   comment?: string;
+}
+
+
+/**
+ * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ */
+export interface MailStatsType {
+  time?: MailStatsTypeTimeEnum;
+  usage?: number;
+  currency?: string;
+  currencySymbol?: string;
+  cost?: number;
+  received?: number;
+  sent?: number;
+  volume?: MailStatsTypeVolume;
+}
+
+/**
+ * Enum for the time property.
+ */
+export type MailStatsTypeTimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'today' | '1h';
+
+
+export interface MailStatsTypeVolume {
+  to?: MailStatsTypeVolumeTo;
+  from?: MailStatsTypeVolumeFrom;
+  ip?: MailStatsTypeVolumeIp;
+}
+
+
+export interface MailStatsTypeVolumeFrom {
+  billingsomedomain_com?: number;
+  salessomedomain_com?: number;
+}
+
+
+export interface MailStatsTypeVolumeIp {
+  _1_1_1_1?: number;
+  _2_2_2_2?: number;
+  _3_3_3_3?: number;
+  _4_4_4_4?: number;
+}
+
+
+export interface MailStatsTypeVolumeTo {
+  clientdomain_com?: number;
+  usersite_net?: number;
+  salescompany_com?: number;
+  clientanothersite_com?: number;
 }
 
 

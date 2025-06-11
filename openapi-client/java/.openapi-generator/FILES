@@ -14,7 +14,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -23,6 +22,11 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -67,7 +71,6 @@ src/main/java/org/openapitools/client/model/EmailAddressTypes.java
 src/main/java/org/openapitools/client/model/EmailAddressesTypes.java
 src/main/java/org/openapitools/client/model/ErrorMessage.java
 src/main/java/org/openapitools/client/model/GenericResponse.java
-src/main/java/org/openapitools/client/model/GetStats200ResponseInner.java
 src/main/java/org/openapitools/client/model/MailAttachment.java
 src/main/java/org/openapitools/client/model/MailBlockClickHouse.java
 src/main/java/org/openapitools/client/model/MailBlockRspamd.java
@@ -75,6 +78,11 @@ src/main/java/org/openapitools/client/model/MailBlocks.java
 src/main/java/org/openapitools/client/model/MailLog.java
 src/main/java/org/openapitools/client/model/MailLogEntry.java
 src/main/java/org/openapitools/client/model/MailOrder.java
+src/main/java/org/openapitools/client/model/MailStatsType.java
+src/main/java/org/openapitools/client/model/MailStatsTypeVolume.java
+src/main/java/org/openapitools/client/model/MailStatsTypeVolumeFrom.java
+src/main/java/org/openapitools/client/model/MailStatsTypeVolumeIp.java
+src/main/java/org/openapitools/client/model/MailStatsTypeVolumeTo.java
 src/main/java/org/openapitools/client/model/SendMail.java
 src/main/java/org/openapitools/client/model/SendMailAdv.java
 src/test/java/org/openapitools/client/api/BlockingApiTest.java
@@ -89,7 +97,6 @@ src/test/java/org/openapitools/client/model/EmailAddressTypesTest.java
 src/test/java/org/openapitools/client/model/EmailAddressesTypesTest.java
 src/test/java/org/openapitools/client/model/ErrorMessageTest.java
 src/test/java/org/openapitools/client/model/GenericResponseTest.java
-src/test/java/org/openapitools/client/model/GetStats200ResponseInnerTest.java
 src/test/java/org/openapitools/client/model/MailAttachmentTest.java
 src/test/java/org/openapitools/client/model/MailBlockClickHouseTest.java
 src/test/java/org/openapitools/client/model/MailBlockRspamdTest.java
@@ -97,5 +104,10 @@ src/test/java/org/openapitools/client/model/MailBlocksTest.java
 src/test/java/org/openapitools/client/model/MailLogEntryTest.java
 src/test/java/org/openapitools/client/model/MailLogTest.java
 src/test/java/org/openapitools/client/model/MailOrderTest.java
+src/test/java/org/openapitools/client/model/MailStatsTypeTest.java
+src/test/java/org/openapitools/client/model/MailStatsTypeVolumeFromTest.java
+src/test/java/org/openapitools/client/model/MailStatsTypeVolumeIpTest.java
+src/test/java/org/openapitools/client/model/MailStatsTypeVolumeTest.java
+src/test/java/org/openapitools/client/model/MailStatsTypeVolumeToTest.java
 src/test/java/org/openapitools/client/model/SendMailAdvTest.java
 src/test/java/org/openapitools/client/model/SendMailTest.java

@@ -5,10 +5,13 @@ using namespace Tiny;
 
 
         Response<
-            std::list<GetStats_200_response_inner>
+            MailStatsType
         >
         HistoryApi::
         getStats(
+            
+            std::string time
+            
         )
         {
             std::string url = basepath + "/mail/stats"; //
@@ -16,7 +19,8 @@ using namespace Tiny;
 
             // Headers  | 
 
-            // Query    | 
+            // Query    | time 
+            addQueryParam("time",time);
 
             // Form     | 
 
@@ -36,31 +40,11 @@ using namespace Tiny;
 
 
 
-            std::list<GetStats_200_response_inner> obj = std::list<GetStats_200_response_inner>();
-            bourne::json jsonPayload(output_string);
+
+            MailStatsType obj(output_string);
 
 
-
-
-
-
-
-
-            
-            for(auto& var : jsonPayload.array_range())
-            {
-                GetStats_200_response_inner tmp(var.dump());
-                obj.push_back(tmp);
-            }
-            
-
-
-
-
-
-
-
-            Response<std::list<GetStats_200_response_inner>> response(obj, httpCode);
+            Response<MailStatsType> response(obj, httpCode);
             return response;
         }
 
@@ -107,6 +91,9 @@ using namespace Tiny;
             , 
             
             std::string headerfrom
+            , 
+            
+            std::string delivered
             
         )
         {
@@ -115,7 +102,7 @@ using namespace Tiny;
 
             // Headers  | 
 
-            // Query    | id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom 
+            // Query    | id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom delivered 
             addQueryParam("id",id);
             addQueryParam("origin",origin);
             addQueryParam("mx",mx);
@@ -129,6 +116,7 @@ using namespace Tiny;
             addQueryParam("endDate",endDate);
             addQueryParam("replyto",replyto);
             addQueryParam("headerfrom",headerfrom);
+            addQueryParam("delivered",delivered);
 
             // Form     | 
 

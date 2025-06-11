@@ -10,7 +10,7 @@
 # !
 # ! Based on: https://github.com/Valodim/zsh-curl-completion/blob/master/_curl
 # !
-# ! Generator version: 7.13.0-SNAPSHOT
+# ! Generator version: 7.14.0-SNAPSHOT
 # !
 # !
 # ! Installation:
@@ -345,7 +345,8 @@ case $state in
       getStats)
         local -a _op_arguments
         _op_arguments=(
-                              )
+                    "time=:[QUERY] The timeframe for the statistics."
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       viewMailLog)
@@ -364,6 +365,7 @@ case $state in
 "endDate=:[QUERY] earliest date to get emails in unix timestamp format"
 "replyto=:[QUERY] Reply-To Email Address"
 "headerfrom=:[QUERY] Header From Email Address"
+"delivered=:[QUERY] Limiting the emails to wether or not they were delivered."
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;

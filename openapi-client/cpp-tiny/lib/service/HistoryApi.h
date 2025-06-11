@@ -9,8 +9,8 @@
 #include <list>
 
 #include "ErrorMessage.h"
-#include "GetStats_200_response_inner.h"
 #include "MailLog.h"
+#include "MailStatsType.h"
 
 namespace Tiny {
 
@@ -29,11 +29,15 @@ public:
     * Account usage statistics..
     *
     * Returns information about the usage on your mail accounts.
+    * \param time The timeframe for the statistics.
     */
     Response<
-                    std::list<GetStats_200_response_inner>
+                MailStatsType
         >
     getStats(
+            
+            std::string time
+            
     );
     /**
     * displays the mail log.
@@ -52,6 +56,7 @@ public:
     * \param endDate earliest date to get emails in unix timestamp format
     * \param replyto Reply-To Email Address
     * \param headerfrom Header From Email Address
+    * \param delivered Limiting the emails to wether or not they were delivered.
     */
     Response<
                 MailLog
@@ -95,6 +100,9 @@ public:
             , 
             
             std::string headerfrom
+            , 
+            
+            std::string delivered
             
     );
 }; 

@@ -14,17 +14,18 @@ Method | HTTP request | Description
 //
 // Returns information about the usage on your mail accounts.
 //
-list_t* HistoryAPI_getStats(apiClient_t *apiClient);
+mail_stats_type_t* HistoryAPI_getStats(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_getStats_time_e time);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
+**time** | **mailbaby_email_delivery_and_management_service_api_getStats_time_e** | The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[list_t](get_stats_200_response_inner.md) *
+[mail_stats_type_t](mail_stats_type.md) *
 
 
 ### Authorization
@@ -44,7 +45,7 @@ Name | Type | Description  | Notes
 //
 // Get a listing of the emails sent through this system 
 //
-mail_log_t* HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, int *skip, int *limit, long startDate, long endDate, char *replyto, char *headerfrom);
+mail_log_t* HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, int *skip, int *limit, long startDate, long endDate, char *replyto, char *headerfrom, mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e delivered);
 ```
 
 ### Parameters
@@ -64,6 +65,7 @@ Name | Type | Description  | Notes
 **endDate** | **long** | earliest date to get emails in unix timestamp format | [optional] 
 **replyto** | **char \*** | Reply-To Email Address | [optional] 
 **headerfrom** | **char \*** | Header From Email Address | [optional] 
+**delivered** | **mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e** | Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

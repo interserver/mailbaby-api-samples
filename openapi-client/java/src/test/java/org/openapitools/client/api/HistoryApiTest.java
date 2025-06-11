@@ -15,8 +15,8 @@ package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
 import org.openapitools.client.model.ErrorMessage;
-import org.openapitools.client.model.GetStats200ResponseInner;
 import org.openapitools.client.model.MailLog;
+import org.openapitools.client.model.MailStatsType;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +42,8 @@ public class HistoryApiTest {
      */
     @Test
     public void getStatsTest() throws ApiException {
-        List<GetStats200ResponseInner> response = api.getStats();
+        String time = null;
+        MailStatsType response = api.getStats(time);
         // TODO: test validations
     }
 
@@ -68,7 +69,8 @@ public class HistoryApiTest {
         Long endDate = null;
         String replyto = null;
         String headerfrom = null;
-        MailLog response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+        String delivered = null;
+        MailLog response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
         // TODO: test validations
     }
 

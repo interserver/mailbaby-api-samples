@@ -15,17 +15,24 @@ Account usage statistics.
 
 No description available.
 
+.PARAMETER Time
+The timeframe for the statistics.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
 
 .OUTPUTS
 
-GetStats200ResponseInner[]
+MailStatsType
 #>
 function Get-Stats {
     [CmdletBinding()]
     Param (
+        [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [ValidateSet("all", "billing", "month", "7d", "24h", "1d", "1h")]
+        [String]
+        ${Time},
         [Switch]
         $WithHttpInfo
     )
@@ -49,6 +56,10 @@ function Get-Stats {
 
         $LocalVarUri = '/mail/stats'
 
+        if ($Time) {
+            $LocalVarQueryParameters['time'] = $Time
+        }
+
         if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
             $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
         } else {
@@ -68,7 +79,7 @@ function Get-Stats {
                                 -QueryParameters $LocalVarQueryParameters `
                                 -FormParameters $LocalVarFormParameters `
                                 -CookieParameters $LocalVarCookieParameters `
-                                -ReturnType "GetStats200ResponseInner[]" `
+                                -ReturnType "MailStatsType" `
                                 -IsBodyNullable $false
 
         if ($WithHttpInfo.IsPresent) {
@@ -127,6 +138,9 @@ Reply-To Email Address
 .PARAMETER Headerfrom
 Header From Email Address
 
+.PARAMETER Delivered
+Limiting the emails to wether or not they were delivered.
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -177,6 +191,10 @@ function Invoke-ViewMailLog {
         [Parameter(Position = 12, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Headerfrom},
+        [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [ValidateSet("0", "1")]
+        [String]
+        ${Delivered},
         [Switch]
         $WithHttpInfo
     )
@@ -250,6 +268,10 @@ function Invoke-ViewMailLog {
 
         if ($Headerfrom) {
             $LocalVarQueryParameters['headerfrom'] = $Headerfrom
+        }
+
+        if ($Delivered) {
+            $LocalVarQueryParameters['delivered'] = $Delivered
         }
 
         if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {

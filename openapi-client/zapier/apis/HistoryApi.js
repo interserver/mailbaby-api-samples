@@ -1,7 +1,7 @@
 const samples = require('../samples/HistoryApi');
 const ErrorMessage = require('../models/ErrorMessage');
 const MailLog = require('../models/MailLog');
-const getStats_200_response_inner = require('../models/getStats_200_response_inner');
+const MailStatsType = require('../models/MailStatsType');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -15,8 +15,23 @@ module.exports = {
         },
         operation: {
             inputFields: [
+                {
+                    key: 'time',
+                    label: 'The timeframe for the statistics.',
+                    type: 'string',
+                    choices: [
+                        'all',
+                        'billing',
+                        'month',
+                        '7d',
+                        '24h',
+                        '1d',
+                        '1h',
+                    ],
+                },
             ],
             outputFields: [
+                ...MailStatsType.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -28,6 +43,7 @@ module.exports = {
                         'Accept': 'application/json',
                     },
                     params: {
+                        'time': bundle.inputData?.['time'],
                     },
                     body: {
                     },
@@ -38,7 +54,7 @@ module.exports = {
                     return results;
                 })
             },
-            sample: samples['getStats_200_response_innerSample']
+            sample: samples['MailStatsTypeSample']
         }
     },
     viewMailLog: {
@@ -116,6 +132,15 @@ module.exports = {
                     label: 'Header From Email Address',
                     type: 'string',
                 },
+                {
+                    key: 'delivered',
+                    label: 'Limiting the emails to wether or not they were delivered.',
+                    type: 'string',
+                    choices: [
+                        '0',
+                        '1',
+                    ],
+                },
             ],
             outputFields: [
                 ...MailLog.fields('', false),
@@ -143,6 +168,7 @@ module.exports = {
                         'endDate': bundle.inputData?.['endDate'],
                         'replyto': bundle.inputData?.['replyto'],
                         'headerfrom': bundle.inputData?.['headerfrom'],
+                        'delivered': bundle.inputData?.['delivered'],
                     },
                     body: {
                     },

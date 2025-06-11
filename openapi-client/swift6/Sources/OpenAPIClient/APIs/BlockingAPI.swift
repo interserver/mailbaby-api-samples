@@ -49,10 +49,10 @@ open class BlockingAPI {
     open class func addRuleWithRequestBuilder(type: ModelType_addRule, data: String, user: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GenericResponse> {
         let localVariablePath = "/mail/rules"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableFormParams: [String: Any?] = [
-            "user": user?.encodeToJSON(codableHelper: apiConfiguration.codableHelper),
-            "type": type.encodeToJSON(codableHelper: apiConfiguration.codableHelper),
-            "data": data.encodeToJSON(codableHelper: apiConfiguration.codableHelper),
+        let localVariableFormParams: [String: (any Sendable)?] = [
+            "user": user?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "type": type.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "data": data.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
@@ -60,7 +60,7 @@ open class BlockingAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/x-www-form-urlencoded",
         ]
 
@@ -100,11 +100,11 @@ open class BlockingAPI {
         let ruleIdPostEscape = ruleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{ruleId}", with: ruleIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters: [String: any Sendable]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
@@ -145,7 +145,7 @@ open class BlockingAPI {
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
 
@@ -179,11 +179,11 @@ open class BlockingAPI {
     open class func getMailBlocksWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailBlocks> {
         let localVariablePath = "/mail/blocks"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters: [String: any Sendable]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
@@ -218,11 +218,11 @@ open class BlockingAPI {
     open class func getRulesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[DenyRuleRecord]> {
         let localVariablePath = "/mail/rules"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
+        let localVariableParameters: [String: any Sendable]? = nil
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
-        let localVariableNillableHeaders: [String: Any?] = [
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 

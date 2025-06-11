@@ -21,8 +21,8 @@ import { Headers } from '../Headers';
 import HttpResponse from '../HttpResponse';
 
 import { ErrorMessage } from '../model/errorMessage';
-import { GetStats200ResponseInner } from '../model/getStats200ResponseInner';
 import { MailLog } from '../model/mailLog';
+import { MailStatsType } from '../model/mailStatsType';
 
 import { COLLECTION_FORMATS }  from '../variables';
 
@@ -41,21 +41,27 @@ export class HistoryService {
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
+     * @param time The timeframe for the statistics.
      
      */
-    public getStats(observe?: 'body', headers?: Headers): Observable<Array<GetStats200ResponseInner>>;
-    public getStats(observe?: 'response', headers?: Headers): Observable<HttpResponse<Array<GetStats200ResponseInner>>>;
-    public getStats(observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe?: 'body', headers?: Headers): Observable<MailStatsType>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe?: 'response', headers?: Headers): Observable<HttpResponse<MailStatsType>>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', observe: any = 'body', headers: Headers = {}): Observable<any> {
+        let queryParameters: string[] = [];
+        if (time !== undefined) {
+            queryParameters.push('time='+encodeURIComponent(String(time)));
+        }
+
         // authentication (apiKeyAuth) required
         if (this.APIConfiguration.apiKeys && this.APIConfiguration.apiKeys['X-API-KEY']) {
             headers['X-API-KEY'] = this.APIConfiguration.apiKeys['X-API-KEY'];
         }
         headers['Accept'] = 'application/json';
 
-        const response: Observable<HttpResponse<Array<GetStats200ResponseInner>>> = this.httpClient.get(`${this.basePath}/mail/stats`, headers);
+        const response: Observable<HttpResponse<MailStatsType>> = this.httpClient.get(`${this.basePath}/mail/stats?${queryParameters.join('&')}`, headers);
         if (observe === 'body') {
                return response.pipe(
-                   map((httpResponse: HttpResponse) => <Array<GetStats200ResponseInner>>(httpResponse.response))
+                   map((httpResponse: HttpResponse) => <MailStatsType>(httpResponse.response))
                );
         }
         return response;
@@ -78,11 +84,12 @@ export class HistoryService {
      * @param endDate earliest date to get emails in unix timestamp format
      * @param replyto Reply-To Email Address
      * @param headerfrom Header From Email Address
+     * @param delivered Limiting the emails to wether or not they were delivered.
      
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'body', headers?: Headers): Observable<MailLog>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe?: 'response', headers?: Headers): Observable<HttpResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, observe: any = 'body', headers: Headers = {}): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe?: 'body', headers?: Headers): Observable<MailLog>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe?: 'response', headers?: Headers): Observable<HttpResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', observe: any = 'body', headers: Headers = {}): Observable<any> {
         let queryParameters: string[] = [];
         if (id !== undefined) {
             queryParameters.push('id='+encodeURIComponent(String(id)));
@@ -122,6 +129,9 @@ export class HistoryService {
         }
         if (headerfrom !== undefined) {
             queryParameters.push('headerfrom='+encodeURIComponent(String(headerfrom)));
+        }
+        if (delivered !== undefined) {
+            queryParameters.push('delivered='+encodeURIComponent(String(delivered)));
         }
 
         // authentication (apiKeyAuth) required

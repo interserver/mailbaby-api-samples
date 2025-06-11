@@ -1,5 +1,5 @@
 import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
-import { Configuration, ConfigurationOptions, PromiseConfigurationOptions } from '../configuration'
+import { Configuration, PromiseConfigurationOptions, wrapOptions } from '../configuration'
 import { PromiseMiddleware, Middleware, PromiseMiddlewareWrapper } from '../middleware';
 
 import { DenyRuleNew } from '../models/DenyRuleNew';
@@ -9,7 +9,6 @@ import { EmailAddressTypes } from '../models/EmailAddressTypes';
 import { EmailAddressesTypes } from '../models/EmailAddressesTypes';
 import { ErrorMessage } from '../models/ErrorMessage';
 import { GenericResponse } from '../models/GenericResponse';
-import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
 import { MailAttachment } from '../models/MailAttachment';
 import { MailBlockClickHouse } from '../models/MailBlockClickHouse';
 import { MailBlockRspamd } from '../models/MailBlockRspamd';
@@ -17,6 +16,11 @@ import { MailBlocks } from '../models/MailBlocks';
 import { MailLog } from '../models/MailLog';
 import { MailLogEntry } from '../models/MailLogEntry';
 import { MailOrder } from '../models/MailOrder';
+import { MailStatsType } from '../models/MailStatsType';
+import { MailStatsTypeVolume } from '../models/MailStatsTypeVolume';
+import { MailStatsTypeVolumeFrom } from '../models/MailStatsTypeVolumeFrom';
+import { MailStatsTypeVolumeIp } from '../models/MailStatsTypeVolumeIp';
+import { MailStatsTypeVolumeTo } from '../models/MailStatsTypeVolumeTo';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 import { ObservableBlockingApi } from './ObservableAPI';
@@ -41,18 +45,7 @@ export class PromiseBlockingApi {
      * @param [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      */
     public addRuleWithHttpInfo(type: string, data: string, user?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.addRuleWithHttpInfo(type, data, user, observableOptions);
         return result.toPromise();
     }
@@ -65,18 +58,7 @@ export class PromiseBlockingApi {
      * @param [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      */
     public addRule(type: string, data: string, user?: string, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.addRule(type, data, user, observableOptions);
         return result.toPromise();
     }
@@ -87,18 +69,7 @@ export class PromiseBlockingApi {
      * @param ruleId The ID of the Rules entry.
      */
     public deleteRuleWithHttpInfo(ruleId: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.deleteRuleWithHttpInfo(ruleId, observableOptions);
         return result.toPromise();
     }
@@ -109,18 +80,7 @@ export class PromiseBlockingApi {
      * @param ruleId The ID of the Rules entry.
      */
     public deleteRule(ruleId: number, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.deleteRule(ruleId, observableOptions);
         return result.toPromise();
     }
@@ -131,18 +91,7 @@ export class PromiseBlockingApi {
      * @param body
      */
     public delistBlockWithHttpInfo(body: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.delistBlockWithHttpInfo(body, observableOptions);
         return result.toPromise();
     }
@@ -153,18 +102,7 @@ export class PromiseBlockingApi {
      * @param body
      */
     public delistBlock(body: string, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.delistBlock(body, observableOptions);
         return result.toPromise();
     }
@@ -173,18 +111,7 @@ export class PromiseBlockingApi {
      * displays a list of blocked email addresses
      */
     public getMailBlocksWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<MailBlocks>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getMailBlocksWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -193,18 +120,7 @@ export class PromiseBlockingApi {
      * displays a list of blocked email addresses
      */
     public getMailBlocks(_options?: PromiseConfigurationOptions): Promise<MailBlocks> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getMailBlocks(observableOptions);
         return result.toPromise();
     }
@@ -214,18 +130,7 @@ export class PromiseBlockingApi {
      * Displays a listing of deny email rules.
      */
     public getRulesWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<DenyRuleRecord>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getRulesWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -235,18 +140,7 @@ export class PromiseBlockingApi {
      * Displays a listing of deny email rules.
      */
     public getRules(_options?: PromiseConfigurationOptions): Promise<Array<DenyRuleRecord>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getRules(observableOptions);
         return result.toPromise();
     }
@@ -273,42 +167,22 @@ export class PromiseHistoryApi {
     /**
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
+     * @param [time] The timeframe for the statistics.
      */
-    public getStatsWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<GetStats200ResponseInner>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
-        const result = this.api.getStatsWithHttpInfo(observableOptions);
+    public getStatsWithHttpInfo(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', _options?: PromiseConfigurationOptions): Promise<HttpInfo<MailStatsType>> {
+        const observableOptions = wrapOptions(_options);
+        const result = this.api.getStatsWithHttpInfo(time, observableOptions);
         return result.toPromise();
     }
 
     /**
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
+     * @param [time] The timeframe for the statistics.
      */
-    public getStats(_options?: PromiseConfigurationOptions): Promise<Array<GetStats200ResponseInner>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
-        const result = this.api.getStats(observableOptions);
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', _options?: PromiseConfigurationOptions): Promise<MailStatsType> {
+        const observableOptions = wrapOptions(_options);
+        const result = this.api.getStats(time, observableOptions);
         return result.toPromise();
     }
 
@@ -328,21 +202,11 @@ export class PromiseHistoryApi {
      * @param [endDate] earliest date to get emails in unix timestamp format
      * @param [replyto] Reply-To Email Address
      * @param [headerfrom] Header From Email Address
+     * @param [delivered] Limiting the emails to wether or not they were delivered.
      */
-    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<MailLog>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
-        const result = this.api.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, observableOptions);
+    public viewMailLogWithHttpInfo(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', _options?: PromiseConfigurationOptions): Promise<HttpInfo<MailLog>> {
+        const observableOptions = wrapOptions(_options);
+        const result = this.api.viewMailLogWithHttpInfo(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, observableOptions);
         return result.toPromise();
     }
 
@@ -362,21 +226,11 @@ export class PromiseHistoryApi {
      * @param [endDate] earliest date to get emails in unix timestamp format
      * @param [replyto] Reply-To Email Address
      * @param [headerfrom] Header From Email Address
+     * @param [delivered] Limiting the emails to wether or not they were delivered.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, _options?: PromiseConfigurationOptions): Promise<MailLog> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
-        const result = this.api.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, observableOptions);
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', _options?: PromiseConfigurationOptions): Promise<MailLog> {
+        const observableOptions = wrapOptions(_options);
+        const result = this.api.viewMailLog(id, origin, mx, _from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, observableOptions);
         return result.toPromise();
     }
 
@@ -400,7 +254,7 @@ export class PromiseSendingApi {
     }
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
@@ -413,24 +267,13 @@ export class PromiseSendingApi {
      * @param [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      */
     public sendAdvMailWithHttpInfo(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.sendAdvMailWithHttpInfo(subject, body, _from, to, replyto, cc, bcc, attachments, id, observableOptions);
         return result.toPromise();
     }
 
     /**
-     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
+     * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/x-www-form-urlencoded\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'subject=Welcome\' \\ --data \'body=Hello\' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }\' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }\' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \'Accept: application/json\' \\ --header \'Content-Type: application/json\' \\ --header \'X-API-KEY: YOUR_API_KEY\' \\ --data \'{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }\' ``` 
      * Sends an Email with Advanced Options
      * @param subject The subject or title of the email
      * @param body The main email contents.
@@ -443,18 +286,7 @@ export class PromiseSendingApi {
      * @param [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      */
     public sendAdvMail(subject: string, body: string, _from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.sendAdvMail(subject, body, _from, to, replyto, cc, bcc, attachments, id, observableOptions);
         return result.toPromise();
     }
@@ -468,18 +300,7 @@ export class PromiseSendingApi {
      * @param body The main email contents.
      */
     public sendMailWithHttpInfo(to: string, _from: string, subject: string, body: string, _options?: PromiseConfigurationOptions): Promise<HttpInfo<GenericResponse>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.sendMailWithHttpInfo(to, _from, subject, body, observableOptions);
         return result.toPromise();
     }
@@ -493,18 +314,7 @@ export class PromiseSendingApi {
      * @param body The main email contents.
      */
     public sendMail(to: string, _from: string, subject: string, body: string, _options?: PromiseConfigurationOptions): Promise<GenericResponse> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.sendMail(to, _from, subject, body, observableOptions);
         return result.toPromise();
     }
@@ -533,18 +343,7 @@ export class PromiseServicesApi {
      * displays a list of mail service orders
      */
     public getMailOrdersWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<Array<MailOrder>>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getMailOrdersWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -554,18 +353,7 @@ export class PromiseServicesApi {
      * displays a list of mail service orders
      */
     public getMailOrders(_options?: PromiseConfigurationOptions): Promise<Array<MailOrder>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.getMailOrders(observableOptions);
         return result.toPromise();
     }
@@ -593,18 +381,7 @@ export class PromiseStatusApi {
      * Checks if the server is running
      */
     public pingServerWithHttpInfo(_options?: PromiseConfigurationOptions): Promise<HttpInfo<void>> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.pingServerWithHttpInfo(observableOptions);
         return result.toPromise();
     }
@@ -613,18 +390,7 @@ export class PromiseStatusApi {
      * Checks if the server is running
      */
     public pingServer(_options?: PromiseConfigurationOptions): Promise<void> {
-        let observableOptions: undefined | ConfigurationOptions
-        if (_options){
-	    observableOptions = {
-                baseServer: _options.baseServer,
-                httpApi: _options.httpApi,
-                middleware: _options.middleware?.map(
-                    m => new PromiseMiddlewareWrapper(m)
-		),
-		middlewareMergeStrategy: _options.middlewareMergeStrategy,
-                authMethods: _options.authMethods
-	    }
-	}
+        const observableOptions = wrapOptions(_options);
         const result = this.api.pingServer(observableOptions);
         return result.toPromise();
     }

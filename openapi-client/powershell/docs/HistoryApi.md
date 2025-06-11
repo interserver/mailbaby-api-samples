@@ -10,7 +10,8 @@ Method | HTTP request | Description
 
 <a id="Get-Stats"></a>
 # **Get-Stats**
-> GetStats200ResponseInner[] Get-Stats<br>
+> MailStatsType Get-Stats<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Time] <String><br>
 
 Account usage statistics.
 
@@ -25,10 +26,11 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
+$Time = "all" # String | The timeframe for the statistics. (optional)
 
 # Account usage statistics.
 try {
-    $Result = Get-Stats
+    $Result = Get-Stats -Time $Time
 } catch {
     Write-Host ("Exception occurred when calling Get-Stats: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -36,11 +38,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **Time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**GetStats200ResponseInner[]**](GetStats200ResponseInner.md) (PSCustomObject)
+[**MailStatsType**](MailStatsType.md) (PSCustomObject)
 
 ### Authorization
 
@@ -69,6 +74,7 @@ This endpoint does not need any parameter.
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-EndDate] <System.Nullable[Int64]><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Replyto] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Headerfrom] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Delivered] <String><br>
 
 displays the mail log
 
@@ -96,10 +102,11 @@ $StartDate = 1641781008 # Int64 | earliest date to get emails in unix timestamp 
 $EndDate = 1673317008 # Int64 | earliest date to get emails in unix timestamp format (optional)
 $Replyto = "MyReplyto" # String | Reply-To Email Address (optional)
 $Headerfrom = "MyHeaderfrom" # String | Header From Email Address (optional)
+$Delivered = "0" # String | Limiting the emails to wether or not they were delivered. (optional)
 
 # displays the mail log
 try {
-    $Result = Invoke-ViewMailLog -Id $Id -Origin $Origin -Mx $Mx -From $From -To $To -Subject $Subject -Mailid $Mailid -Skip $Skip -Limit $Limit -StartDate $StartDate -EndDate $EndDate -Replyto $Replyto -Headerfrom $Headerfrom
+    $Result = Invoke-ViewMailLog -Id $Id -Origin $Origin -Mx $Mx -From $From -To $To -Subject $Subject -Mailid $Mailid -Skip $Skip -Limit $Limit -StartDate $StartDate -EndDate $EndDate -Replyto $Replyto -Headerfrom $Headerfrom -Delivered $Delivered
 } catch {
     Write-Host ("Exception occurred when calling Invoke-ViewMailLog: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -123,6 +130,7 @@ Name | Type | Description  | Notes
  **EndDate** | **Int64**| earliest date to get emails in unix timestamp format | [optional] 
  **Replyto** | **String**| Reply-To Email Address | [optional] 
  **Headerfrom** | **String**| Header From Email Address | [optional] 
+ **Delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

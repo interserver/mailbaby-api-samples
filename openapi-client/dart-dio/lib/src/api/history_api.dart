@@ -8,11 +8,10 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/error_message.dart';
-import 'package:openapi/src/model/get_stats200_response_inner.dart';
 import 'package:openapi/src/model/mail_log.dart';
+import 'package:openapi/src/model/mail_stats_type.dart';
 
 class HistoryApi {
 
@@ -26,6 +25,7 @@ class HistoryApi {
   /// Returns information about the usage on your mail accounts.
   ///
   /// Parameters:
+  /// * [time] - The timeframe for the statistics.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -33,9 +33,10 @@ class HistoryApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<GetStats200ResponseInner>] as data
+  /// Returns a [Future] containing a [Response] with a [MailStatsType] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<GetStats200ResponseInner>>> getStats({ 
+  Future<Response<MailStatsType>> getStats({ 
+    String? time,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -63,22 +64,27 @@ class HistoryApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (time != null) r'time': encodeQueryParameter(_serializers, time, const FullType(String)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<GetStats200ResponseInner>? _responseData;
+    MailStatsType? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(GetStats200ResponseInner)]),
-      ) as BuiltList<GetStats200ResponseInner>;
+        specifiedType: const FullType(MailStatsType),
+      ) as MailStatsType;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -90,7 +96,7 @@ class HistoryApi {
       );
     }
 
-    return Response<BuiltList<GetStats200ResponseInner>>(
+    return Response<MailStatsType>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -119,6 +125,7 @@ class HistoryApi {
   /// * [endDate] - earliest date to get emails in unix timestamp format
   /// * [replyto] - Reply-To Email Address
   /// * [headerfrom] - Header From Email Address
+  /// * [delivered] - Limiting the emails to wether or not they were delivered.
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -142,6 +149,7 @@ class HistoryApi {
     int? endDate,
     String? replyto,
     String? headerfrom,
+    String? delivered,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -183,6 +191,7 @@ class HistoryApi {
       if (endDate != null) r'endDate': encodeQueryParameter(_serializers, endDate, const FullType(int)),
       if (replyto != null) r'replyto': encodeQueryParameter(_serializers, replyto, const FullType(String)),
       if (headerfrom != null) r'headerfrom': encodeQueryParameter(_serializers, headerfrom, const FullType(String)),
+      if (delivered != null) r'delivered': encodeQueryParameter(_serializers, delivered, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## getStats
 
-> getStats(): ApiRequest[Seq[GetStats200ResponseInner]]
+> getStats(getStatsRequest): ApiRequest[MailStatsType]
 
 Account usage statistics.
 
@@ -42,8 +42,10 @@ object Example extends App {
     implicit val apiKeyAuth: ApiKeyValue = ApiKeyValue("YOUR API KEY")
 
     val apiInvoker = ApiInvoker()
-    val apiInstance = HistoryApi("https://api.mailbaby.net")    
-    val request = apiInstance.getStats()
+    val apiInstance = HistoryApi("https://api.mailbaby.net")
+    val time: String = time_example // String | The timeframe for the statistics.
+    
+    val request = apiInstance.getStats(time)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -68,11 +70,14 @@ object Example extends App {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] [enum: all, billing, month, 7d, 24h, 1d, 1h]
 
 ### Return type
 
-ApiRequest[[**Seq[GetStats200ResponseInner]**](GetStats200ResponseInner.md)]
+ApiRequest[[**MailStatsType**](MailStatsType.md)]
 
 
 ### Authorization
@@ -148,8 +153,10 @@ object Example extends App {
     val replyto: String = replyto_example // String | Reply-To Email Address
 
     val headerfrom: String = headerfrom_example // String | Header From Email Address
+
+    val delivered: String = delivered_example // String | Limiting the emails to wether or not they were delivered.
     
-    val request = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom)
+    val request = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -190,6 +197,7 @@ Name | Type | Description  | Notes
  **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional]
  **replyto** | **String**| Reply-To Email Address | [optional]
  **headerfrom** | **String**| Header From Email Address | [optional]
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] [enum: 0, 1]
 
 ### Return type
 

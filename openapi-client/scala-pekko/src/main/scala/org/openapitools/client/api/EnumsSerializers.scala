@@ -19,7 +19,8 @@ object EnumsSerializers {
 
   def all: Seq[Serializer[_]] = Seq[Serializer[_]]() :+
     new EnumNameSerializer(DenyRuleNewEnums.`Type`) :+
-    new EnumNameSerializer(DenyRuleRecordEnums.`Type`)
+    new EnumNameSerializer(DenyRuleRecordEnums.`Type`) :+
+    new EnumNameSerializer(MailStatsTypeEnums.Time)
 
   private class EnumNameSerializer[E <: Enumeration: ClassTag](enum: E)
     extends Serializer[E#Value] {

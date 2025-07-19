@@ -1,0 +1,33 @@
+controllerPackage: io.swagger.controllers
+modelPackage:  io.swagger.model
+swaggerUrl: ./src/main/resources/openapi3.yaml
+modelMappings:
+  # to enable explicit mappings, use this syntax:
+  DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
+  DenyRuleNew : io.swagger.model.DenyRuleNew
+DenyRuleRecord : io.swagger.model.DenyRuleRecord
+EmailAddressName : io.swagger.model.EmailAddressName
+EmailAddressNames : io.swagger.model.EmailAddressNames
+EmailAddressTypes : io.swagger.model.EmailAddressTypes
+EmailAddressesTypes : io.swagger.model.EmailAddressesTypes
+ErrorMessage : io.swagger.model.ErrorMessage
+GenericResponse : io.swagger.model.GenericResponse
+MailAttachment : io.swagger.model.MailAttachment
+MailBlockClickHouse : io.swagger.model.MailBlockClickHouse
+MailBlockRspamd : io.swagger.model.MailBlockRspamd
+MailBlocks : io.swagger.model.MailBlocks
+MailLog : io.swagger.model.MailLog
+MailLogEntry : io.swagger.model.MailLogEntry
+MailOrder : io.swagger.model.MailOrder
+MailStatsType : io.swagger.model.MailStatsType
+MailStatsTypeVolume : io.swagger.model.MailStatsTypeVolume
+MailStatsTypeVolumeFrom : io.swagger.model.MailStatsTypeVolumeFrom
+MailStatsTypeVolumeIp : io.swagger.model.MailStatsTypeVolumeIp
+MailStatsTypeVolumeTo : io.swagger.model.MailStatsTypeVolumeTo
+SendMail : io.swagger.model.SendMail
+SendMailAdv : io.swagger.model.SendMailAdv
+
+entityProcessors:
+  - json
+  - xml
+  - yaml

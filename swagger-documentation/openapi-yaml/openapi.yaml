@@ -153,51 +153,6 @@ paths:
                   value:
                     code: 401
                     message: Unauthorized
-  /mail/stats:
-    get:
-      tags:
-      - History
-      summary: Account usage statistics.
-      description: Returns information about the usage on your mail accounts.
-      operationId: getStats
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/inline_response_200"
-          links:
-            delistBlockLink:
-              operationId: delistBlock
-              parameters:
-                id: $response.body#/0/id
-              description: The `id` value returned in the response can be used as
-                the `id` parameter in `GET /mail/advsend`.
-        "401":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorMessage"
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
-        "404":
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorMessage"
-              examples:
-                UnauthorizedError:
-                  value:
-                    code: 401
-                    message: Unauthorized
   /mail/send:
     post:
       tags:
@@ -270,7 +225,7 @@ paths:
 
         Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-        ```
+        ```BasicForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -281,7 +236,7 @@ paths:
         --data to=support@interserver.net
         ```
 
-        ```
+        ```ArrayForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -293,7 +248,7 @@ paths:
         --data "to[0][email]=support@interserver.net"
         ```
 
-        ```
+        ```NameEmailForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -304,7 +259,7 @@ paths:
         --data to="Joe <support@interserver.net>"
         ```
 
-        ```
+        ```MultToForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -315,7 +270,7 @@ paths:
         --data "to=support@interserver.net, support@interserver.net"
         ```
 
-        ```
+        ```MultToFullForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -326,7 +281,7 @@ paths:
         --data "to=Joe <support@interserver.net>, Joe <support@interserver.net>"
         ```
 
-        ```
+        ```MultToArrayForm
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -340,7 +295,7 @@ paths:
         --data "to[1][email]=support@interserver.net"
         ```
 
-        ```
+        ```BasicJson
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json' \
@@ -353,7 +308,7 @@ paths:
         }'
         ```
 
-        ```
+        ```ArrayJson
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json' \
@@ -366,7 +321,7 @@ paths:
         }'
         ```
 
-        ```
+        ```NameEmailJson
         curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
         --header 'Accept: application/json' \
         --header 'Content-Type: application/json' \
@@ -594,6 +549,17 @@ paths:
         explode: true
         schema:
           type: string
+      - name: delivered
+        in: query
+        description: Limiting the emails to wether or not they were delivered.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - "0"
+          - "1"
       responses:
         "200":
           description: search results matching criteria
@@ -623,6 +589,7 @@ paths:
                       sendingZone: interserver
                       bodySize: 63
                       seq: 1
+                      delivered: 1
                       recipient: client@isp.com
                       domain: interserver.net
                       locked: 1
@@ -899,6 +866,66 @@ paths:
                   value:
                     code: 404
                     message: The specified resource was not found.
+  /mail/stats:
+    get:
+      tags:
+      - History
+      summary: Account usage statistics.
+      description: Returns information about the usage on your mail accounts.
+      operationId: getStats
+      parameters:
+      - name: time
+        in: query
+        description: The timeframe for the statistics.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - all
+          - billing
+          - month
+          - 7d
+          - 24h
+          - 1d
+          - 1h
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MailStatsType"
+          links:
+            delistBlockLink:
+              operationId: delistBlock
+              parameters:
+                id: $response.body#/0/id
+              description: The `id` value returned in the response can be used as
+                the `id` parameter in `GET /mail/advsend`.
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+        "404":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
 components:
   schemas:
     GenericResponse:
@@ -1177,6 +1204,7 @@ components:
           sendingZone: interserver
           bodySize: 63
           seq: 1
+          delivered: 1
           recipient: client@isp.com
           domain: interserver.net
           locked: 1
@@ -1447,6 +1475,7 @@ components:
         sendingZone: interserver
         bodySize: 63
         seq: 1
+        delivered: 1
         recipient: client@isp.com
         domain: interserver.net
         locked: 1
@@ -1471,28 +1500,111 @@ components:
       oneOf:
       - $ref: "#/components/schemas/EmailAddress"
       - $ref: "#/components/schemas/EmailAddressName"
-    inline_response_200:
-      required:
-      - id
-      - status
-      - username
+    MailStatsType:
+      title: Root Type for MailStatsType
       type: object
       properties:
-        id:
+        time:
+          type: string
+          default: 1h
+          enum:
+          - all
+          - billing
+          - month
+          - 7d
+          - 24h
+          - today
+          - 1h
+        usage:
           type: integer
-          example: 1234
-        status:
+          format: int32
+        currency:
           type: string
-          example: active
-        username:
+        currencySymbol:
           type: string
-          example: mb1234
-        password:
-          type: string
-          example: guest123
-        comment:
-          type: string
-          example: main mail account
+        cost:
+          type: number
+          format: double
+        received:
+          type: integer
+          format: int32
+        sent:
+          type: integer
+          format: int32
+        volume:
+          $ref: "#/components/schemas/MailStatsType_volume"
+      description: "Statistics about the mail usage including volume by IP, To address,\
+        \ and From address; as well as total sent / delivered counts and cost."
+      example:
+        time: all
+        usage: 55
+        currency: USD
+        currencySymbol: $
+        cost: 1.02
+        received: 508
+        sent: 495
+        volume:
+          to:
+            client@domain.com: 395
+            user@site.net: 57
+            sales@company.com: 47
+            client@anothersite.com: 9
+          from:
+            billing@somedomain.com: 369
+            sales@somedomain.com: 139
+          ip:
+            "1.1.1.1": 142
+            "2.2.2.2": 132
+            "3.3.3.3": 129
+            "4.4.4.4": 105
+    MailStatsType_volume_to:
+      type: object
+      properties:
+        client@domain.com:
+          type: integer
+          format: int32
+        user@site.net:
+          type: integer
+          format: int32
+        sales@company.com:
+          type: integer
+          format: int32
+        client@anothersite.com:
+          type: integer
+          format: int32
+    MailStatsType_volume_from:
+      type: object
+      properties:
+        billing@somedomain.com:
+          type: integer
+          format: int32
+        sales@somedomain.com:
+          type: integer
+          format: int32
+    MailStatsType_volume_ip:
+      type: object
+      properties:
+        "1.1.1.1":
+          type: integer
+          format: int32
+        "2.2.2.2":
+          type: integer
+          format: int32
+        "3.3.3.3":
+          type: integer
+          format: int32
+        "4.4.4.4":
+          type: integer
+          format: int32
+    MailStatsType_volume:
+      type: object
+      properties:
+        to:
+          $ref: "#/components/schemas/MailStatsType_volume_to"
+        from:
+          $ref: "#/components/schemas/MailStatsType_volume_from"
+        ip:
+          $ref: "#/components/schemas/MailStatsType_volume_ip"
   responses:
     BadInput:
       description: Error message when there was a problem with the input parameters.

@@ -825,32 +825,6 @@
     }
   }
 };
-            defs["inline_response_200"] = {
-  "required" : [ "id", "status", "username" ],
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer",
-      "example" : 1234
-    },
-    "status" : {
-      "type" : "string",
-      "example" : "active"
-    },
-    "username" : {
-      "type" : "string",
-      "example" : "mb1234"
-    },
-    "password" : {
-      "type" : "string",
-      "example" : "guest123"
-    },
-    "comment" : {
-      "type" : "string",
-      "example" : "main mail account"
-    }
-  }
-};
             defs["MailAttachment"] = {
   "title" : "MailAttachment",
   "required" : [ "data", "filename" ],
@@ -1017,6 +991,7 @@
       "sendingZone" : "interserver",
       "bodySize" : 63,
       "seq" : 1,
+      "delivered" : 1,
       "recipient" : "client@isp.com",
       "domain" : "interserver.net",
       "locked" : 1,
@@ -1166,6 +1141,7 @@
     "sendingZone" : "interserver",
     "bodySize" : 63,
     "seq" : 1,
+    "delivered" : 1,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -1207,6 +1183,139 @@
     "id" : 21472,
     "status" : "active",
     "username" : "mb21472"
+  }
+};
+            defs["MailStatsType"] = {
+  "title" : "Root Type for MailStatsType",
+  "type" : "object",
+  "properties" : {
+    "time" : {
+      "type" : "string",
+      "default" : "1h",
+      "enum" : [ "all", "billing", "month", "7d", "24h", "today", "1h" ]
+    },
+    "usage" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "currencySymbol" : {
+      "type" : "string"
+    },
+    "cost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "received" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sent" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "volume" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume"
+    }
+  },
+  "description" : "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.",
+  "example" : {
+    "time" : "all",
+    "usage" : 55,
+    "currency" : "USD",
+    "currencySymbol" : "$",
+    "cost" : 1.02,
+    "received" : 508,
+    "sent" : 495,
+    "volume" : {
+      "to" : {
+        "client@domain.com" : 395,
+        "user@site.net" : 57,
+        "sales@company.com" : 47,
+        "client@anothersite.com" : 9
+      },
+      "from" : {
+        "billing@somedomain.com" : 369,
+        "sales@somedomain.com" : 139
+      },
+      "ip" : {
+        "1.1.1.1" : 142,
+        "2.2.2.2" : 132,
+        "3.3.3.3" : 129,
+        "4.4.4.4" : 105
+      }
+    }
+  }
+};
+            defs["MailStatsType_volume"] = {
+  "type" : "object",
+  "properties" : {
+    "to" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume_to"
+    },
+    "from" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume_from"
+    },
+    "ip" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume_ip"
+    }
+  }
+};
+            defs["MailStatsType_volume_from"] = {
+  "type" : "object",
+  "properties" : {
+    "billing@somedomain.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sales@somedomain.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
+  }
+};
+            defs["MailStatsType_volume_ip"] = {
+  "type" : "object",
+  "properties" : {
+    "1.1.1.1" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "2.2.2.2" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "3.3.3.3" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "4.4.4.4" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
+  }
+};
+            defs["MailStatsType_volume_to"] = {
+  "type" : "object",
+  "properties" : {
+    "client@domain.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "user@site.net" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sales@company.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "client@anothersite.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
   }
 };
             defs["SendMail"] = {
@@ -4001,7 +4110,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/stats"</code></pre>
+"https://api.mailbaby.net/mail/stats?time="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-getStats-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -4024,8 +4133,9 @@ public class HistoryApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         HistoryApi apiInstance = new HistoryApi();
+        String time = time_example; // String | The timeframe for the statistics.
         try {
-            array[inline_response_200] result = apiInstance.getStats();
+            MailStatsType result = apiInstance.getStats(time);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#getStats");
@@ -4042,8 +4152,9 @@ public class HistoryApiExample {
 
     public static void main(String[] args) {
         HistoryApi apiInstance = new HistoryApi();
+        String time = time_example; // String | The timeframe for the statistics.
         try {
-            array[inline_response_200] result = apiInstance.getStats();
+            MailStatsType result = apiInstance.getStats(time);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#getStats");
@@ -4062,12 +4173,13 @@ public class HistoryApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
+String *time = time_example; // The timeframe for the statistics. (optional)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
 // Account usage statistics.
-[apiInstance getStatsWithCompletionHandler: 
-              ^(array[inline_response_200] output, NSError* error) {
+[apiInstance getStatsWith:time
+              completionHandler: ^(MailStatsType output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -4089,6 +4201,9 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi()
+var opts = { 
+  'time': time_example // {{String}} The timeframe for the statistics.
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -4096,7 +4211,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getStats(callback);
+api.getStats(opts, callback);
 </code></pre>
                             </div>
 
@@ -4123,11 +4238,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new HistoryApi();
+            var time = time_example;  // String | The timeframe for the statistics. (optional) 
 
             try
             {
                 // Account usage statistics.
-                array[inline_response_200] result = apiInstance.getStats();
+                MailStatsType result = apiInstance.getStats(time);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4150,9 +4266,10 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiHistoryApi();
+$time = time_example; // String | The timeframe for the statistics.
 
 try {
-    $result = $api_instance->getStats();
+    $result = $api_instance->getStats($time);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->getStats: ', $e->getMessage(), PHP_EOL;
@@ -4171,9 +4288,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::HistoryApi->new();
+my $time = time_example; # String | The timeframe for the statistics.
 
 eval { 
-    my $result = $api_instance->getStats();
+    my $result = $api_instance->getStats(time => $time);
     print Dumper($result);
 };
 if ($@) {
@@ -4195,10 +4313,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.HistoryApi()
+time = time_example # String | The timeframe for the statistics. (optional)
 
 try: 
     # Account usage statistics.
-    api_response = api_instance.get_stats()
+    api_response = api_instance.get_stats(time=time)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->getStats: %s\n" % e)</code></pre>
@@ -4211,6 +4330,32 @@ except ApiException as e:
 
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">time</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getStats_time">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        The timeframe for the statistics.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
 
                           <h2>Responses</h2>
                             <h3> Status: 200 - OK </h3>
@@ -4232,11 +4377,7 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/inline_response_200"
-        },
-        "x-content-type" : "application/json"
+        "$ref" : "#/components/schemas/MailStatsType"
       }
     }
   },
@@ -4425,7 +4566,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate=&replyto=&headerfrom="</code></pre>
+"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate=&replyto=&headerfrom=&delivered="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -4461,8 +4602,9 @@ public class HistoryApiExample {
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
         String replyto = replyto_example; // String | Reply-To Email Address
         String headerfrom = headerfrom_example; // String | Header From Email Address
+        String delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4492,8 +4634,9 @@ public class HistoryApiExample {
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
         String replyto = replyto_example; // String | Reply-To Email Address
         String headerfrom = headerfrom_example; // String | Header From Email Address
+        String delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4525,6 +4668,7 @@ Long *startDate = 789; // earliest date to get emails in unix timestamp format (
 Long *endDate = 789; // earliest date to get emails in unix timestamp format (optional)
 String *replyto = replyto_example; // Reply-To Email Address (optional)
 String *headerfrom = headerfrom_example; // Header From Email Address (optional)
+String *delivered = delivered_example; // Limiting the emails to wether or not they were delivered. (optional)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
@@ -4542,6 +4686,7 @@ HistoryApi *apiInstance = [[HistoryApi alloc] init];
     endDate:endDate
     replyto:replyto
     headerfrom:headerfrom
+    delivered:delivered
               completionHandler: ^(MailLog output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4577,7 +4722,8 @@ var opts = {
   'startDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
   'endDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
   'replyto': replyto_example, // {{String}} Reply-To Email Address
-  'headerfrom': headerfrom_example // {{String}} Header From Email Address
+  'headerfrom': headerfrom_example, // {{String}} Header From Email Address
+  'delivered': delivered_example // {{String}} Limiting the emails to wether or not they were delivered.
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4626,11 +4772,12 @@ namespace Example
             var endDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
             var replyto = replyto_example;  // String | Reply-To Email Address (optional) 
             var headerfrom = headerfrom_example;  // String | Header From Email Address (optional) 
+            var delivered = delivered_example;  // String | Limiting the emails to wether or not they were delivered. (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4666,9 +4813,10 @@ $startDate = 789; // Long | earliest date to get emails in unix timestamp format
 $endDate = 789; // Long | earliest date to get emails in unix timestamp format
 $replyto = replyto_example; // String | Reply-To Email Address
 $headerfrom = headerfrom_example; // String | Header From Email Address
+$delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
 
 try {
-    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom, $delivered);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -4700,9 +4848,10 @@ my $startDate = 789; # Long | earliest date to get emails in unix timestamp form
 my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
 my $replyto = replyto_example; # String | Reply-To Email Address
 my $headerfrom = headerfrom_example; # String | Header From Email Address
+my $delivered = delivered_example; # String | Limiting the emails to wether or not they were delivered.
 
 eval { 
-    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate, replyto => $replyto, headerfrom => $headerfrom);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate, replyto => $replyto, headerfrom => $headerfrom, delivered => $delivered);
     print Dumper($result);
 };
 if ($@) {
@@ -4737,10 +4886,11 @@ startDate = 789 # Long | earliest date to get emails in unix timestamp format (o
 endDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
 replyto = replyto_example # String | Reply-To Email Address (optional)
 headerfrom = headerfrom_example # String | Header From Email Address (optional)
+delivered = delivered_example # String | Limiting the emails to wether or not they were delivered. (optional)
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate, replyto=replyto, headerfrom=headerfrom)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate, replyto=replyto, headerfrom=headerfrom, delivered=delivered)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->viewMailLog: %s\n" % e)</code></pre>
@@ -5021,6 +5171,25 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
+                                <tr><td style="width:150px;">delivered</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_delivered">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Limiting the emails to wether or not they were delivered.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
                             </table>
 
                           <h2>Responses</h2>
@@ -5067,6 +5236,7 @@ except ApiException as e:
               "sendingZone" : "interserver",
               "bodySize" : 63,
               "seq" : 1,
+              "delivered" : 1,
               "recipient" : "client@isp.com",
               "domain" : "interserver.net",
               "locked" : 1,
@@ -5133,7 +5303,7 @@ except ApiException as e:
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5144,7 +5314,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to&#x3D;support@interserver.net
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5156,7 +5326,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to[0][email]&#x3D;support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5167,7 +5337,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to&#x3D;&quot;Joe &lt;support@interserver.net&gt;&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5178,7 +5348,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to&#x3D;support@interserver.net, support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5189,7 +5359,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5203,7 +5373,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to[1][email]&#x3D;support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/json&#x27; \
@@ -5216,7 +5386,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }&#x27;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/json&#x27; \
@@ -5229,7 +5399,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }&#x27;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/json&#x27; \

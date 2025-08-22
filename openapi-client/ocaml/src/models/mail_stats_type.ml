@@ -48,7 +48,7 @@ type t = {
            option [@default None]
         
         ; [@key "volume"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost. *)
 let create () : t = {

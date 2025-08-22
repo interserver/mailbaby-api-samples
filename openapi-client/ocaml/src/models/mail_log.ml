@@ -28,7 +28,7 @@ type t = {
       emails: Mail_log_entry.t list
         
         ; [@key "emails"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** Mail log records *)
 let create (total : int32) (skip : int32) (limit : int32) (emails : Mail_log_entry.t list) : t = {

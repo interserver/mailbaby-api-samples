@@ -121,6 +121,9 @@ HistoryApi <- R6::R6Class(
       oauth_scopes <- NULL
       is_oauth <- FALSE
 
+      if (!missing(`time`) && is.null(`time`)) {
+        stop("Invalid value for `time` when calling HistoryApi$GetStats, `time` is not nullable")
+      }
 
       if (!is.null(`time`) && !(`time` %in% c("all", "billing", "month", "7d", "24h", "1d", "1h"))) {
         stop("Invalid value for time when calling HistoryApi$GetStats. Must be [all, billing, month, 7d, 24h, 1d, 1h].")
@@ -246,40 +249,82 @@ HistoryApi <- R6::R6Class(
       oauth_scopes <- NULL
       is_oauth <- FALSE
 
+      if (!missing(`id`) && is.null(`id`)) {
+        stop("Invalid value for `id` when calling HistoryApi$ViewMailLog, `id` is not nullable")
+      }
 
+      if (!missing(`origin`) && is.null(`origin`)) {
+        stop("Invalid value for `origin` when calling HistoryApi$ViewMailLog, `origin` is not nullable")
+      }
 
+      if (!missing(`mx`) && is.null(`mx`)) {
+        stop("Invalid value for `mx` when calling HistoryApi$ViewMailLog, `mx` is not nullable")
+      }
 
+      if (!missing(`from`) && is.null(`from`)) {
+        stop("Invalid value for `from` when calling HistoryApi$ViewMailLog, `from` is not nullable")
+      }
 
+      if (!missing(`to`) && is.null(`to`)) {
+        stop("Invalid value for `to` when calling HistoryApi$ViewMailLog, `to` is not nullable")
+      }
 
+      if (!missing(`subject`) && is.null(`subject`)) {
+        stop("Invalid value for `subject` when calling HistoryApi$ViewMailLog, `subject` is not nullable")
+      }
 
+      if (!missing(`mailid`) && is.null(`mailid`)) {
+        stop("Invalid value for `mailid` when calling HistoryApi$ViewMailLog, `mailid` is not nullable")
+      }
 
-      if (`skip` < 0) {
+      if (!missing(`skip`) && is.null(`skip`)) {
+        stop("Invalid value for `skip` when calling HistoryApi$ViewMailLog, `skip` is not nullable")
+      }
+      if (!is.null(`skip`) && `skip` <  0) {
         stop("Invalid value for `skip` when calling HistoryApi$ViewMailLog, must be bigger than or equal to 0.")
       }
 
-      if (`limit` > 10000) {
+      if (!missing(`limit`) && is.null(`limit`)) {
+        stop("Invalid value for `limit` when calling HistoryApi$ViewMailLog, `limit` is not nullable")
+      }
+      if (!is.null(`limit`) && `limit` >  10000) {
         stop("Invalid value for `limit` when calling HistoryApi$ViewMailLog, must be smaller than or equal to 10000.")
       }
-      if (`limit` < 1) {
+      if (!is.null(`limit`) && `limit` <  1) {
         stop("Invalid value for `limit` when calling HistoryApi$ViewMailLog, must be bigger than or equal to 1.")
       }
 
-      if (`start_date` > 9999999999) {
+      if (!missing(`start_date`) && is.null(`start_date`)) {
+        stop("Invalid value for `start_date` when calling HistoryApi$ViewMailLog, `start_date` is not nullable")
+      }
+      if (!is.null(`start_date`) && `start_date` >  9999999999) {
         stop("Invalid value for `start_date` when calling HistoryApi$ViewMailLog, must be smaller than or equal to 9999999999.")
       }
-      if (`start_date` < 0) {
+      if (!is.null(`start_date`) && `start_date` <  0) {
         stop("Invalid value for `start_date` when calling HistoryApi$ViewMailLog, must be bigger than or equal to 0.")
       }
 
-      if (`end_date` > 9999999999) {
+      if (!missing(`end_date`) && is.null(`end_date`)) {
+        stop("Invalid value for `end_date` when calling HistoryApi$ViewMailLog, `end_date` is not nullable")
+      }
+      if (!is.null(`end_date`) && `end_date` >  9999999999) {
         stop("Invalid value for `end_date` when calling HistoryApi$ViewMailLog, must be smaller than or equal to 9999999999.")
       }
-      if (`end_date` < 0) {
+      if (!is.null(`end_date`) && `end_date` <  0) {
         stop("Invalid value for `end_date` when calling HistoryApi$ViewMailLog, must be bigger than or equal to 0.")
       }
 
+      if (!missing(`replyto`) && is.null(`replyto`)) {
+        stop("Invalid value for `replyto` when calling HistoryApi$ViewMailLog, `replyto` is not nullable")
+      }
 
+      if (!missing(`headerfrom`) && is.null(`headerfrom`)) {
+        stop("Invalid value for `headerfrom` when calling HistoryApi$ViewMailLog, `headerfrom` is not nullable")
+      }
 
+      if (!missing(`delivered`) && is.null(`delivered`)) {
+        stop("Invalid value for `delivered` when calling HistoryApi$ViewMailLog, `delivered` is not nullable")
+      }
 
       query_params[["id"]] <- `id`
 

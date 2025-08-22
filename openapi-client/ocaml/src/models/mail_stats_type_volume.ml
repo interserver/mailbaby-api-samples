@@ -21,7 +21,7 @@ type t = {
            option [@default None]
         
         ; [@key "ip"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 let create () : t = {
     _to = None;

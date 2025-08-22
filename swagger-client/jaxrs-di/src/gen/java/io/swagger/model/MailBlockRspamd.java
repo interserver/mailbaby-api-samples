@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * This is a block entry from the rspamd block list.
  */
 @Schema(description = "This is a block entry from the rspamd block list.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2025-07-19T04:18:53.177794684-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2025-08-22T07:45:49.444595141-04:00[America/New_York]")
 public class MailBlockRspamd   {
   @JsonProperty("from")
   private String from = null;

@@ -104,8 +104,11 @@ export class BlockingApi extends runtime.BaseAPI {
             formParams.append('data', requestParameters['data'] as any);
         }
 
+
+        let urlPath = `/mail/rules`;
+
         const response = await this.request({
-            path: `/mail/rules`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -144,8 +147,12 @@ export class BlockingApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
+
+        let urlPath = `/mail/rules/{ruleId}`;
+        urlPath = urlPath.replace(`{${"ruleId"}}`, encodeURIComponent(String(requestParameters['ruleId'])));
+
         const response = await this.request({
-            path: `/mail/rules/{ruleId}`.replace(`{${"ruleId"}}`, encodeURIComponent(String(requestParameters['ruleId']))),
+            path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -185,8 +192,11 @@ export class BlockingApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
+
+        let urlPath = `/mail/blocks/delete`;
+
         const response = await this.request({
-            path: `/mail/blocks/delete`,
+            path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -217,8 +227,11 @@ export class BlockingApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
+
+        let urlPath = `/mail/blocks`;
+
         const response = await this.request({
-            path: `/mail/blocks`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -248,8 +261,11 @@ export class BlockingApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
+
+        let urlPath = `/mail/rules`;
+
         const response = await this.request({
-            path: `/mail/rules`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

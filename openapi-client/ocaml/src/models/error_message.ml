@@ -19,7 +19,7 @@ type t = {
           
         
         ; [@key "message"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** The resposne when an error occurs. *)
 let create (code : int32) (message : string) : t = {

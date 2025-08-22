@@ -24,7 +24,7 @@ import javax.validation.Valid;
  * Array of Email Addresses
  */
 @Schema(description = "Array of Email Addresses")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2025-07-19T04:18:53.177794684-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2025-08-22T07:45:49.444595141-04:00[America/New_York]")
 public class EmailAddressNames extends ArrayList<EmailAddressName> implements EmailAddressesTypes  {
 
   @Override

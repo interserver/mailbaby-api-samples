@@ -16,7 +16,7 @@ type t = {
       subject: Mail_block_rspamd.t list
         
         ; [@key "subject"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** The listing of blocked emails. *)
 let create (local : Mail_block_click_house.t list) (mbtrap : Mail_block_click_house.t list) (subject : Mail_block_rspamd.t list) : t = {

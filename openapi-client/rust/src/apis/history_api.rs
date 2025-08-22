@@ -36,12 +36,12 @@ pub enum ViewMailLogError {
 /// Returns information about the usage on your mail accounts.
 pub async fn get_stats(configuration: &configuration::Configuration, time: Option<&str>) -> Result<models::MailStatsType, Error<GetStatsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_time = time;
+    let p_query_time = time;
 
     let uri_str = format!("{}/mail/stats", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_time {
+    if let Some(ref param_value) = p_query_time {
         req_builder = req_builder.query(&[("time", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -84,64 +84,64 @@ pub async fn get_stats(configuration: &configuration::Configuration, time: Optio
 /// Get a listing of the emails sent through this system 
 pub async fn view_mail_log(configuration: &configuration::Configuration, id: Option<i64>, origin: Option<&str>, mx: Option<&str>, from: Option<&str>, to: Option<&str>, subject: Option<&str>, mailid: Option<&str>, skip: Option<i32>, limit: Option<i32>, start_date: Option<i64>, end_date: Option<i64>, replyto: Option<&str>, headerfrom: Option<&str>, delivered: Option<&str>) -> Result<models::MailLog, Error<ViewMailLogError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_origin = origin;
-    let p_mx = mx;
-    let p_from = from;
-    let p_to = to;
-    let p_subject = subject;
-    let p_mailid = mailid;
-    let p_skip = skip;
-    let p_limit = limit;
-    let p_start_date = start_date;
-    let p_end_date = end_date;
-    let p_replyto = replyto;
-    let p_headerfrom = headerfrom;
-    let p_delivered = delivered;
+    let p_query_id = id;
+    let p_query_origin = origin;
+    let p_query_mx = mx;
+    let p_query_from = from;
+    let p_query_to = to;
+    let p_query_subject = subject;
+    let p_query_mailid = mailid;
+    let p_query_skip = skip;
+    let p_query_limit = limit;
+    let p_query_start_date = start_date;
+    let p_query_end_date = end_date;
+    let p_query_replyto = replyto;
+    let p_query_headerfrom = headerfrom;
+    let p_query_delivered = delivered;
 
     let uri_str = format!("{}/mail/log", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_id {
+    if let Some(ref param_value) = p_query_id {
         req_builder = req_builder.query(&[("id", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_origin {
+    if let Some(ref param_value) = p_query_origin {
         req_builder = req_builder.query(&[("origin", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_mx {
+    if let Some(ref param_value) = p_query_mx {
         req_builder = req_builder.query(&[("mx", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_from {
+    if let Some(ref param_value) = p_query_from {
         req_builder = req_builder.query(&[("from", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_to {
+    if let Some(ref param_value) = p_query_to {
         req_builder = req_builder.query(&[("to", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_subject {
+    if let Some(ref param_value) = p_query_subject {
         req_builder = req_builder.query(&[("subject", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_mailid {
+    if let Some(ref param_value) = p_query_mailid {
         req_builder = req_builder.query(&[("mailid", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_skip {
+    if let Some(ref param_value) = p_query_skip {
         req_builder = req_builder.query(&[("skip", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_start_date {
+    if let Some(ref param_value) = p_query_start_date {
         req_builder = req_builder.query(&[("startDate", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_end_date {
+    if let Some(ref param_value) = p_query_end_date {
         req_builder = req_builder.query(&[("endDate", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_replyto {
+    if let Some(ref param_value) = p_query_replyto {
         req_builder = req_builder.query(&[("replyto", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_headerfrom {
+    if let Some(ref param_value) = p_query_headerfrom {
         req_builder = req_builder.query(&[("headerfrom", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_delivered {
+    if let Some(ref param_value) = p_query_delivered {
         req_builder = req_builder.query(&[("delivered", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

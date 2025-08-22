@@ -26,7 +26,7 @@ type t = {
            option [@default None]
         
         ; [@key "4.4.4.4"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 let create () : t = {
     var_1_1_1_1 = None;

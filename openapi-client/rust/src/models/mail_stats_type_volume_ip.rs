@@ -14,22 +14,22 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MailStatsTypeVolumeIp {
     #[serde(rename = "1.1.1.1", skip_serializing_if = "Option::is_none")]
-    pub param_1_period_1_period_1_period_1: Option<i32>,
+    pub param_1_1_1_1: Option<i32>,
     #[serde(rename = "2.2.2.2", skip_serializing_if = "Option::is_none")]
-    pub param_2_period_2_period_2_period_2: Option<i32>,
+    pub param_2_2_2_2: Option<i32>,
     #[serde(rename = "3.3.3.3", skip_serializing_if = "Option::is_none")]
-    pub param_3_period_3_period_3_period_3: Option<i32>,
+    pub param_3_3_3_3: Option<i32>,
     #[serde(rename = "4.4.4.4", skip_serializing_if = "Option::is_none")]
-    pub param_4_period_4_period_4_period_4: Option<i32>,
+    pub param_4_4_4_4: Option<i32>,
 }
 
 impl MailStatsTypeVolumeIp {
     pub fn new() -> MailStatsTypeVolumeIp {
         MailStatsTypeVolumeIp {
-            param_1_period_1_period_1_period_1: None,
-            param_2_period_2_period_2_period_2: None,
-            param_3_period_3_period_3_period_3: None,
-            param_4_period_4_period_4_period_4: None,
+            param_1_1_1_1: None,
+            param_2_2_2_2: None,
+            param_3_3_3_3: None,
+            param_4_4_4_4: None,
         }
     }
 }

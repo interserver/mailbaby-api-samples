@@ -25,26 +25,18 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
 
 /**
  * The data for a email deny rule record.
- * @export
- * @interface DenyRuleNew
  */
 export interface DenyRuleNew {
     /**
      * The type of deny rule.
-     * @type {string}
-     * @memberof DenyRuleNew
      */
     'type': DenyRuleNewTypeEnum;
     /**
      * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-     * @type {string}
-     * @memberof DenyRuleNew
      */
     'data': string;
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-     * @type {string}
-     * @memberof DenyRuleNew
      */
     'user'?: string;
 }
@@ -60,38 +52,26 @@ export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRu
 
 /**
  * The data for a email deny rule record.
- * @export
- * @interface DenyRuleRecord
  */
 export interface DenyRuleRecord {
     /**
      * The type of deny rule.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     'type': DenyRuleRecordTypeEnum;
     /**
      * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     'data': string;
     /**
      * The deny rule Id number.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     'id': string;
     /**
      * the date the rule was created.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     'created': string;
     /**
      * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     'user'?: string;
 }
@@ -107,435 +87,231 @@ export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof 
 
 /**
  * An email contact.
- * @export
- * @interface EmailAddressName
  */
 export interface EmailAddressName {
     /**
      * The email address.
-     * @type {string}
-     * @memberof EmailAddressName
      */
     'email': string;
     /**
      * Name to use for the sending contact.
-     * @type {string}
-     * @memberof EmailAddressName
      */
     'name'?: string;
 }
 /**
  * @type EmailAddressTypes
  * 
- * @export
  */
 export type EmailAddressTypes = EmailAddressName | string;
 
 /**
  * @type EmailAddressesTypes
  * 
- * @export
  */
 export type EmailAddressesTypes = Array<EmailAddressName> | string;
 
 /**
  * The resposne when an error occurs.
- * @export
- * @interface ErrorMessage
  */
 export interface ErrorMessage {
     /**
      * The response code associated with the error.
-     * @type {number}
-     * @memberof ErrorMessage
      */
     'code': number;
     /**
      * The details or description of the error.
-     * @type {string}
-     * @memberof ErrorMessage
      */
     'message': string;
 }
-/**
- * 
- * @export
- * @interface GenericResponse
- */
 export interface GenericResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof GenericResponse
-     */
     'status'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GenericResponse
-     */
     'text'?: string;
 }
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
- * @export
- * @interface MailAttachment
  */
 export interface MailAttachment {
     /**
      * The filename of the attached file.
-     * @type {string}
-     * @memberof MailAttachment
      */
     'filename': string;
     /**
      * The file contents base64 encoded
-     * @type {string}
-     * @memberof MailAttachment
      */
     'data': string;
 }
 /**
  * A block entry from the clickhouse mailblocks server.
- * @export
- * @interface MailBlockClickHouse
  */
 export interface MailBlockClickHouse {
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockClickHouse
-     */
     'date': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockClickHouse
-     */
     'from': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockClickHouse
-     */
     'messageId': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockClickHouse
-     */
     'subject': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockClickHouse
-     */
     'to': string;
 }
 /**
  * This is a block entry from the rspamd block list.
- * @export
- * @interface MailBlockRspamd
  */
 export interface MailBlockRspamd {
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockRspamd
-     */
     'from': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailBlockRspamd
-     */
     'subject': string;
 }
 /**
  * The listing of blocked emails.
- * @export
- * @interface MailBlocks
  */
 export interface MailBlocks {
-    /**
-     * 
-     * @type {Array<MailBlockClickHouse>}
-     * @memberof MailBlocks
-     */
     'local': Array<MailBlockClickHouse>;
-    /**
-     * 
-     * @type {Array<MailBlockClickHouse>}
-     * @memberof MailBlocks
-     */
     'mbtrap': Array<MailBlockClickHouse>;
-    /**
-     * 
-     * @type {Array<MailBlockRspamd>}
-     * @memberof MailBlocks
-     */
     'subject': Array<MailBlockRspamd>;
 }
 /**
  * Mail log records
- * @export
- * @interface MailLog
  */
 export interface MailLog {
     /**
      * total number of mail log entries
-     * @type {number}
-     * @memberof MailLog
      */
     'total': number;
     /**
      * number of emails skipped in listing
-     * @type {number}
-     * @memberof MailLog
      */
     'skip': number;
     /**
      * number of emails to return
-     * @type {number}
-     * @memberof MailLog
      */
     'limit': number;
-    /**
-     * 
-     * @type {Array<MailLogEntry>}
-     * @memberof MailLog
-     */
     'emails': Array<MailLogEntry>;
 }
 /**
  * An email record
- * @export
- * @interface MailLogEntry
  */
 export interface MailLogEntry {
     /**
      * internal db id
-     * @type {number}
-     * @memberof MailLogEntry
      */
     '_id': number;
     /**
      * mail id
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'id': string;
     /**
      * from address
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'from': string;
     /**
      * to address
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'to': string;
     /**
      * email subject
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'subject': string;
     /**
      * creation date
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'created': string;
     /**
      * creation timestamp
-     * @type {number}
-     * @memberof MailLogEntry
      */
     'time': number;
     /**
      * user account
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'user': string;
     /**
      * transaction type
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'transtype': string;
     /**
      * origin ip
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'origin': string;
     /**
      * interface name
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'interface': string;
     /**
      * sending zone
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'sendingZone': string;
     /**
      * email body size in bytes
-     * @type {number}
-     * @memberof MailLogEntry
      */
     'bodySize': number;
     /**
      * index of email in the to adderess list
-     * @type {number}
-     * @memberof MailLogEntry
      */
     'seq': number;
     /**
      * to address this email is being sent to
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'recipient': string;
     /**
      * to address domain
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'domain': string;
     /**
      * locked status
-     * @type {number}
-     * @memberof MailLogEntry
      */
     'locked': number;
     /**
      * lock timestamp
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'lockTime': string;
     /**
      * assigned server
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'assigned': string;
     /**
      * queued timestamp
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'queued': string;
     /**
      * mx hostname
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'mxHostname': string;
     /**
      * mail delivery response
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'response': string;
     /**
      * message id
-     * @type {string}
-     * @memberof MailLogEntry
      */
     'messageId'?: string;
 }
 /**
  * A mail order record
- * @export
- * @interface MailOrder
  */
 export interface MailOrder {
     /**
      * The ID of the order.
-     * @type {number}
-     * @memberof MailOrder
      */
     'id': number;
     /**
      * The order status.
-     * @type {string}
-     * @memberof MailOrder
      */
     'status': string;
     /**
      * The username to use for this order.
-     * @type {string}
-     * @memberof MailOrder
      */
     'username': string;
     /**
      * Optional order comment.
-     * @type {string}
-     * @memberof MailOrder
      */
     'comment'?: string;
 }
 /**
  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
- * @export
- * @interface MailStatsType
  */
 export interface MailStatsType {
-    /**
-     * 
-     * @type {string}
-     * @memberof MailStatsType
-     */
     'time'?: MailStatsTypeTimeEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsType
-     */
     'usage'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailStatsType
-     */
     'currency'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof MailStatsType
-     */
     'currencySymbol'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsType
-     */
     'cost'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsType
-     */
     'received'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsType
-     */
     'sent'?: number;
-    /**
-     * 
-     * @type {MailStatsTypeVolume}
-     * @memberof MailStatsType
-     */
     'volume'?: MailStatsTypeVolume;
 }
 
@@ -551,208 +327,77 @@ export const MailStatsTypeTimeEnum = {
 
 export type MailStatsTypeTimeEnum = typeof MailStatsTypeTimeEnum[keyof typeof MailStatsTypeTimeEnum];
 
-/**
- * 
- * @export
- * @interface MailStatsTypeVolume
- */
 export interface MailStatsTypeVolume {
-    /**
-     * 
-     * @type {MailStatsTypeVolumeTo}
-     * @memberof MailStatsTypeVolume
-     */
     'to'?: MailStatsTypeVolumeTo;
-    /**
-     * 
-     * @type {MailStatsTypeVolumeFrom}
-     * @memberof MailStatsTypeVolume
-     */
     'from'?: MailStatsTypeVolumeFrom;
-    /**
-     * 
-     * @type {MailStatsTypeVolumeIp}
-     * @memberof MailStatsTypeVolume
-     */
     'ip'?: MailStatsTypeVolumeIp;
 }
-/**
- * 
- * @export
- * @interface MailStatsTypeVolumeFrom
- */
 export interface MailStatsTypeVolumeFrom {
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeFrom
-     */
     'billing@somedomain.com'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeFrom
-     */
     'sales@somedomain.com'?: number;
 }
-/**
- * 
- * @export
- * @interface MailStatsTypeVolumeIp
- */
 export interface MailStatsTypeVolumeIp {
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeIp
-     */
     '1.1.1.1'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeIp
-     */
     '2.2.2.2'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeIp
-     */
     '3.3.3.3'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeIp
-     */
     '4.4.4.4'?: number;
 }
-/**
- * 
- * @export
- * @interface MailStatsTypeVolumeTo
- */
 export interface MailStatsTypeVolumeTo {
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeTo
-     */
     'client@domain.com'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeTo
-     */
     'user@site.net'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeTo
-     */
     'sales@company.com'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof MailStatsTypeVolumeTo
-     */
     'client@anothersite.com'?: number;
 }
 /**
  * Details for an Email
- * @export
- * @interface SendMail
  */
 export interface SendMail {
     /**
      * The Contact whom is the primary recipient of this email.
-     * @type {string}
-     * @memberof SendMail
      */
     'to': string;
     /**
      * The contact whom is the this email is from.
-     * @type {string}
-     * @memberof SendMail
      */
     'from': string;
     /**
      * The subject or title of the email
-     * @type {string}
-     * @memberof SendMail
      */
     'subject': string;
     /**
      * The main email contents.
-     * @type {string}
-     * @memberof SendMail
      */
     'body': string;
 }
 /**
  * Details for an Email
- * @export
- * @interface SendMailAdv
  */
 export interface SendMailAdv {
     /**
      * The subject or title of the email
-     * @type {string}
-     * @memberof SendMailAdv
      */
     'subject': string;
     /**
      * The main email contents.
-     * @type {string}
-     * @memberof SendMailAdv
      */
     'body': string;
-    /**
-     * 
-     * @type {EmailAddressTypes}
-     * @memberof SendMailAdv
-     */
     'from': EmailAddressTypes;
-    /**
-     * 
-     * @type {EmailAddressesTypes}
-     * @memberof SendMailAdv
-     */
     'to': EmailAddressesTypes;
-    /**
-     * 
-     * @type {EmailAddressesTypes}
-     * @memberof SendMailAdv
-     */
     'replyto'?: EmailAddressesTypes;
-    /**
-     * 
-     * @type {EmailAddressesTypes}
-     * @memberof SendMailAdv
-     */
     'cc'?: EmailAddressesTypes;
-    /**
-     * 
-     * @type {EmailAddressesTypes}
-     * @memberof SendMailAdv
-     */
     'bcc'?: EmailAddressesTypes;
     /**
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-     * @type {Array<MailAttachment>}
-     * @memberof SendMailAdv
      */
     'attachments'?: Array<MailAttachment>;
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
-     * @type {number}
-     * @memberof SendMailAdv
      */
     'id'?: number;
 }
 
 /**
  * BlockingApi - axios parameter creator
- * @export
  */
 export const BlockingApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -959,7 +604,6 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * BlockingApi - functional programming interface
- * @export
  */
 export const BlockingApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = BlockingApiAxiosParamCreator(configuration)
@@ -1034,7 +678,6 @@ export const BlockingApiFp = function(configuration?: Configuration) {
 
 /**
  * BlockingApi - factory interface
- * @export
  */
 export const BlockingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = BlockingApiFp(configuration)
@@ -1094,9 +737,6 @@ export const BlockingApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * BlockingApi - object-oriented interface
- * @export
- * @class BlockingApi
- * @extends {BaseAPI}
  */
 export class BlockingApi extends BaseAPI {
     /**
@@ -1107,7 +747,6 @@ export class BlockingApi extends BaseAPI {
      * @param {string} [user] Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BlockingApi
      */
     public addRule(type: AddRuleTypeEnum, data: string, user?: string, options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).addRule(type, data, user, options).then((request) => request(this.axios, this.basePath));
@@ -1119,7 +758,6 @@ export class BlockingApi extends BaseAPI {
      * @param {number} ruleId The ID of the Rules entry.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BlockingApi
      */
     public deleteRule(ruleId: number, options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).deleteRule(ruleId, options).then((request) => request(this.axios, this.basePath));
@@ -1131,7 +769,6 @@ export class BlockingApi extends BaseAPI {
      * @param {string} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BlockingApi
      */
     public delistBlock(body: string, options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).delistBlock(body, options).then((request) => request(this.axios, this.basePath));
@@ -1142,7 +779,6 @@ export class BlockingApi extends BaseAPI {
      * @summary displays a list of blocked email addresses
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BlockingApi
      */
     public getMailBlocks(options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).getMailBlocks(options).then((request) => request(this.axios, this.basePath));
@@ -1153,16 +789,12 @@ export class BlockingApi extends BaseAPI {
      * @summary Displays a listing of deny email rules.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof BlockingApi
      */
     public getRules(options?: RawAxiosRequestConfig) {
         return BlockingApiFp(this.configuration).getRules(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const AddRuleTypeEnum = {
     Domain: 'domain',
     Email: 'email',
@@ -1174,7 +806,6 @@ export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnu
 
 /**
  * HistoryApi - axios parameter creator
- * @export
  */
 export const HistoryApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1324,7 +955,6 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * HistoryApi - functional programming interface
- * @export
  */
 export const HistoryApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = HistoryApiAxiosParamCreator(configuration)
@@ -1373,7 +1003,6 @@ export const HistoryApiFp = function(configuration?: Configuration) {
 
 /**
  * HistoryApi - factory interface
- * @export
  */
 export const HistoryApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = HistoryApiFp(configuration)
@@ -1416,9 +1045,6 @@ export const HistoryApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * HistoryApi - object-oriented interface
- * @export
- * @class HistoryApi
- * @extends {BaseAPI}
  */
 export class HistoryApi extends BaseAPI {
     /**
@@ -1427,7 +1053,6 @@ export class HistoryApi extends BaseAPI {
      * @param {GetStatsTimeEnum} [time] The timeframe for the statistics.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof HistoryApi
      */
     public getStats(time?: GetStatsTimeEnum, options?: RawAxiosRequestConfig) {
         return HistoryApiFp(this.configuration).getStats(time, options).then((request) => request(this.axios, this.basePath));
@@ -1452,16 +1077,12 @@ export class HistoryApi extends BaseAPI {
      * @param {ViewMailLogDeliveredEnum} [delivered] Limiting the emails to wether or not they were delivered.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof HistoryApi
      */
     public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: ViewMailLogDeliveredEnum, options?: RawAxiosRequestConfig) {
         return HistoryApiFp(this.configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
-/**
- * @export
- */
 export const GetStatsTimeEnum = {
     All: 'all',
     Billing: 'billing',
@@ -1472,9 +1093,6 @@ export const GetStatsTimeEnum = {
     _1h: '1h'
 } as const;
 export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTimeEnum];
-/**
- * @export
- */
 export const ViewMailLogDeliveredEnum = {
     _0: '0',
     _1: '1'
@@ -1484,7 +1102,6 @@ export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typ
 
 /**
  * SendingApi - axios parameter creator
- * @export
  */
 export const SendingApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1648,7 +1265,6 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * SendingApi - functional programming interface
- * @export
  */
 export const SendingApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SendingApiAxiosParamCreator(configuration)
@@ -1695,7 +1311,6 @@ export const SendingApiFp = function(configuration?: Configuration) {
 
 /**
  * SendingApi - factory interface
- * @export
  */
 export const SendingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = SendingApiFp(configuration)
@@ -1736,9 +1351,6 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * SendingApi - object-oriented interface
- * @export
- * @class SendingApi
- * @extends {BaseAPI}
  */
 export class SendingApi extends BaseAPI {
     /**
@@ -1755,7 +1367,6 @@ export class SendingApi extends BaseAPI {
      * @param {number} [id] (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SendingApi
      */
     public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RawAxiosRequestConfig) {
         return SendingApiFp(this.configuration).sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, options).then((request) => request(this.axios, this.basePath));
@@ -1770,7 +1381,6 @@ export class SendingApi extends BaseAPI {
      * @param {string} body The main email contents.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof SendingApi
      */
     public sendMail(to: string, from: string, subject: string, body: string, options?: RawAxiosRequestConfig) {
         return SendingApiFp(this.configuration).sendMail(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
@@ -1781,7 +1391,6 @@ export class SendingApi extends BaseAPI {
 
 /**
  * ServicesApi - axios parameter creator
- * @export
  */
 export const ServicesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1823,7 +1432,6 @@ export const ServicesApiAxiosParamCreator = function (configuration?: Configurat
 
 /**
  * ServicesApi - functional programming interface
- * @export
  */
 export const ServicesApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ServicesApiAxiosParamCreator(configuration)
@@ -1845,7 +1453,6 @@ export const ServicesApiFp = function(configuration?: Configuration) {
 
 /**
  * ServicesApi - factory interface
- * @export
  */
 export const ServicesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = ServicesApiFp(configuration)
@@ -1864,9 +1471,6 @@ export const ServicesApiFactory = function (configuration?: Configuration, baseP
 
 /**
  * ServicesApi - object-oriented interface
- * @export
- * @class ServicesApi
- * @extends {BaseAPI}
  */
 export class ServicesApi extends BaseAPI {
     /**
@@ -1874,7 +1478,6 @@ export class ServicesApi extends BaseAPI {
      * @summary displays a list of mail service orders
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ServicesApi
      */
     public getMailOrders(options?: RawAxiosRequestConfig) {
         return ServicesApiFp(this.configuration).getMailOrders(options).then((request) => request(this.axios, this.basePath));
@@ -1885,7 +1488,6 @@ export class ServicesApi extends BaseAPI {
 
 /**
  * StatusApi - axios parameter creator
- * @export
  */
 export const StatusApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -1927,7 +1529,6 @@ export const StatusApiAxiosParamCreator = function (configuration?: Configuratio
 
 /**
  * StatusApi - functional programming interface
- * @export
  */
 export const StatusApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = StatusApiAxiosParamCreator(configuration)
@@ -1949,7 +1550,6 @@ export const StatusApiFp = function(configuration?: Configuration) {
 
 /**
  * StatusApi - factory interface
- * @export
  */
 export const StatusApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = StatusApiFp(configuration)
@@ -1968,9 +1568,6 @@ export const StatusApiFactory = function (configuration?: Configuration, basePat
 
 /**
  * StatusApi - object-oriented interface
- * @export
- * @class StatusApi
- * @extends {BaseAPI}
  */
 export class StatusApi extends BaseAPI {
     /**
@@ -1978,7 +1575,6 @@ export class StatusApi extends BaseAPI {
      * @summary Checks if the server is running
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof StatusApi
      */
     public pingServer(options?: RawAxiosRequestConfig) {
         return StatusApiFp(this.configuration).pingServer(options).then((request) => request(this.axios, this.basePath));

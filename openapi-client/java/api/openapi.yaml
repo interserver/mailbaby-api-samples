@@ -69,9 +69,27 @@ paths:
               parameters:
                 id: $response.body#/0/id
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
       summary: displays a list of mail service orders
       tags:
       - Services
@@ -113,9 +131,27 @@ paths:
               parameters:
                 email: $response.body#/local/0/from
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
       summary: displays a list of blocked email addresses
       tags:
       - Blocking
@@ -145,11 +181,38 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          $ref: "#/components/responses/BadInput"
+          content:
+            application/json:
+              examples:
+                BadInputError:
+                  value:
+                    code: 400
+                    message: There was a problem with the input parameters.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Error message when there was a problem with the input parameters.
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              examples:
+                NotFoundError:
+                  value:
+                    code: 404
+                    message: The specified resource was not found.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: The specified resource was not found
       summary: Sends an Email
       tags:
       - Sending
@@ -319,11 +382,38 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          $ref: "#/components/responses/BadInput"
+          content:
+            application/json:
+              examples:
+                BadInputError:
+                  value:
+                    code: 400
+                    message: There was a problem with the input parameters.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Error message when there was a problem with the input parameters.
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              examples:
+                NotFoundError:
+                  value:
+                    code: 404
+                    message: The specified resource was not found.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: The specified resource was not found
       summary: Sends an Email with Advanced Options
       tags:
       - Sending
@@ -565,11 +655,38 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          $ref: "#/components/responses/BadInput"
+          content:
+            application/json:
+              examples:
+                BadInputError:
+                  value:
+                    code: 400
+                    message: There was a problem with the input parameters.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Error message when there was a problem with the input parameters.
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              examples:
+                NotFoundError:
+                  value:
+                    code: 404
+                    message: The specified resource was not found.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: The specified resource was not found
       summary: Removes an email address from the blocked list
       tags:
       - Blocking
@@ -613,9 +730,27 @@ paths:
               parameters:
                 id: $response.body#/0/id
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
       summary: Displays a listing of deny email rules.
       tags:
       - Blocking
@@ -655,11 +790,38 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          $ref: "#/components/responses/BadInput"
+          content:
+            application/json:
+              examples:
+                BadInputError:
+                  value:
+                    code: 400
+                    message: There was a problem with the input parameters.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Error message when there was a problem with the input parameters.
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              examples:
+                NotFoundError:
+                  value:
+                    code: 404
+                    message: The specified resource was not found.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: The specified resource was not found
       summary: Creates a new email deny rule.
       tags:
       - Blocking
@@ -691,11 +853,38 @@ paths:
                 $ref: "#/components/schemas/GenericResponse"
           description: search results matching criteria
         "400":
-          $ref: "#/components/responses/BadInput"
+          content:
+            application/json:
+              examples:
+                BadInputError:
+                  value:
+                    code: 400
+                    message: There was a problem with the input parameters.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Error message when there was a problem with the input parameters.
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/NotFound"
+          content:
+            application/json:
+              examples:
+                NotFoundError:
+                  value:
+                    code: 404
+                    message: The specified resource was not found.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: The specified resource was not found
       summary: Removes an deny mail rule.
       tags:
       - Blocking
@@ -737,9 +926,27 @@ paths:
               parameters:
                 id: $response.body#/0/id
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
         "404":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
       summary: Account usage statistics.
       tags:
       - History

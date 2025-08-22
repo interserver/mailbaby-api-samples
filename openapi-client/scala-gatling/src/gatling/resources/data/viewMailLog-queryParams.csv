@@ -1,1 +1,1 @@
-skip,origin,limit,mx,headerfrom,from,delivered,replyto,mailid,to,endDate,id,subject,startDate
+mailid,delivered,from,id,to,subject,limit,origin,startDate,mx,headerfrom,skip,endDate,replyto

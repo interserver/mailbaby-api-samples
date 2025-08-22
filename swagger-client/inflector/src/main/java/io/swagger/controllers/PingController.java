@@ -11,7 +11,7 @@ import java.util.List;
 import io.swagger.model.*;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-07-19T04:18:40.805405904-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-08-22T07:45:35.938054049-04:00[America/New_York]")
 public class PingController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map

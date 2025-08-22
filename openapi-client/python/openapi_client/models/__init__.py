@@ -14,7 +14,37 @@
 """  # noqa: E501
 
 
-# import models into model package
+if __import__("typing").TYPE_CHECKING:
+    # import models into model package
+    from openapi_client.models.deny_rule_new import DenyRuleNew
+    from openapi_client.models.deny_rule_record import DenyRuleRecord
+    from openapi_client.models.email_address_name import EmailAddressName
+    from openapi_client.models.email_address_types import EmailAddressTypes
+    from openapi_client.models.email_addresses_types import EmailAddressesTypes
+    from openapi_client.models.error_message import ErrorMessage
+    from openapi_client.models.generic_response import GenericResponse
+    from openapi_client.models.mail_attachment import MailAttachment
+    from openapi_client.models.mail_block_click_house import MailBlockClickHouse
+    from openapi_client.models.mail_block_rspamd import MailBlockRspamd
+    from openapi_client.models.mail_blocks import MailBlocks
+    from openapi_client.models.mail_log import MailLog
+    from openapi_client.models.mail_log_entry import MailLogEntry
+    from openapi_client.models.mail_order import MailOrder
+    from openapi_client.models.mail_stats_type import MailStatsType
+    from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume
+    from openapi_client.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom
+    from openapi_client.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp
+    from openapi_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo
+    from openapi_client.models.send_mail import SendMail
+    from openapi_client.models.send_mail_adv import SendMailAdv
+    
+else:
+    from lazy_imports import LazyModule, as_package, load
+
+    load(
+        LazyModule(
+            *as_package(__file__),
+            """# import models into model package
 from openapi_client.models.deny_rule_new import DenyRuleNew
 from openapi_client.models.deny_rule_record import DenyRuleRecord
 from openapi_client.models.email_address_name import EmailAddressName
@@ -36,3 +66,9 @@ from openapi_client.models.mail_stats_type_volume_ip import MailStatsTypeVolumeI
 from openapi_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo
 from openapi_client.models.send_mail import SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv
+
+""",
+            name=__name__,
+            doc=__doc__,
+        )
+    )

@@ -26,7 +26,7 @@ type t = {
            option [@default None]
         
         ; [@key "client@anothersite.com"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 let create () : t = {
     clientdomain_com = None;

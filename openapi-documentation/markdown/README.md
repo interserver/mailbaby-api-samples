@@ -7,17 +7,17 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Class | Method | HTTP request | Description |
 |------------ | ------------- | ------------- | -------------|
-| *BlockingApi* | [**addRule**](Apis/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule. |
-*BlockingApi* | [**deleteRule**](Apis/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule. |
-*BlockingApi* | [**delistBlock**](Apis/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list |
-*BlockingApi* | [**getMailBlocks**](Apis/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses |
-*BlockingApi* | [**getRules**](Apis/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules. |
-| *HistoryApi* | [**getStats**](Apis/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics. |
-*HistoryApi* | [**viewMailLog**](Apis/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log |
-| *SendingApi* | [**sendAdvMail**](Apis/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
-*SendingApi* | [**sendMail**](Apis/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email |
-| *ServicesApi* | [**getMailOrders**](Apis/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders |
-| *StatusApi* | [**pingServer**](Apis/StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running |
+| *BlockingApi* | [**addRule**](Apis/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule. |
+*BlockingApi* | [**deleteRule**](Apis/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule. |
+*BlockingApi* | [**delistBlock**](Apis/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list |
+*BlockingApi* | [**getMailBlocks**](Apis/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses |
+*BlockingApi* | [**getRules**](Apis/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules. |
+| *HistoryApi* | [**getStats**](Apis/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics. |
+*HistoryApi* | [**viewMailLog**](Apis/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
+| *SendingApi* | [**sendAdvMail**](Apis/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+*SendingApi* | [**sendMail**](Apis/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email |
+| *ServicesApi* | [**getMailOrders**](Apis/ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders |
+| *StatusApi* | [**pingServer**](Apis/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running |
 
 
 <a name="documentation-for-models"></a>

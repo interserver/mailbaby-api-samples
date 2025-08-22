@@ -17,7 +17,7 @@ type t = {
           
         
         ; [@key "subject"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** This is a block entry from the rspamd block list. *)
 let create (from : string) (subject : string) : t = {

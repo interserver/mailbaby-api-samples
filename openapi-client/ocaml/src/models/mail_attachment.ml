@@ -19,7 +19,7 @@ type t = {
           
         
         ; [@key "data"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** (optional) File attachments to include in the email.  The file contents must be base64 *)
 let create (filename : string) (data : string) : t = {

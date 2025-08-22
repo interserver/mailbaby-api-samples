@@ -36,36 +36,36 @@
 [main] WARN  o.o.c.languages.AbstractRustCodegen - 7d cannot be used as a enum variant name. Renamed to Variant7d
 [main] WARN  o.o.c.languages.AbstractRustCodegen - 24h cannot be used as a enum variant name. Renamed to Variant24h
 [main] WARN  o.o.c.languages.AbstractRustCodegen - 1h cannot be used as a enum variant name. Renamed to Variant1h
-[main] WARN  o.o.c.languages.AbstractRustCodegen - client@domain/com cannot be used as a field/variable name. Renamed to client_at_domain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - client@domain/com cannot be used as a field/variable name. Renamed to client_at_domain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - client@domain/com cannot be used as a field/variable name. Renamed to client_at_domain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - user@site/net cannot be used as a field/variable name. Renamed to user_at_site_period_net
-[main] WARN  o.o.c.languages.AbstractRustCodegen - user@site/net cannot be used as a field/variable name. Renamed to user_at_site_period_net
-[main] WARN  o.o.c.languages.AbstractRustCodegen - user@site/net cannot be used as a field/variable name. Renamed to user_at_site_period_net
-[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@company/com cannot be used as a field/variable name. Renamed to sales_at_company_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@company/com cannot be used as a field/variable name. Renamed to sales_at_company_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@company/com cannot be used as a field/variable name. Renamed to sales_at_company_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - client@anothersite/com cannot be used as a field/variable name. Renamed to client_at_anothersite_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - client@anothersite/com cannot be used as a field/variable name. Renamed to client_at_anothersite_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - client@anothersite/com cannot be used as a field/variable name. Renamed to client_at_anothersite_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - billing@somedomain/com cannot be used as a field/variable name. Renamed to billing_at_somedomain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - billing@somedomain/com cannot be used as a field/variable name. Renamed to billing_at_somedomain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - billing@somedomain/com cannot be used as a field/variable name. Renamed to billing_at_somedomain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@somedomain/com cannot be used as a field/variable name. Renamed to sales_at_somedomain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@somedomain/com cannot be used as a field/variable name. Renamed to sales_at_somedomain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@somedomain/com cannot be used as a field/variable name. Renamed to sales_at_somedomain_period_com
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 1/1/1/1 cannot be used as a field/variable name. Renamed to param_1_period_1_period_1_period_1
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 1/1/1/1 cannot be used as a field/variable name. Renamed to param_1_period_1_period_1_period_1
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 1/1/1/1 cannot be used as a field/variable name. Renamed to param_1_period_1_period_1_period_1
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 2/2/2/2 cannot be used as a field/variable name. Renamed to param_2_period_2_period_2_period_2
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 2/2/2/2 cannot be used as a field/variable name. Renamed to param_2_period_2_period_2_period_2
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 2/2/2/2 cannot be used as a field/variable name. Renamed to param_2_period_2_period_2_period_2
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 3/3/3/3 cannot be used as a field/variable name. Renamed to param_3_period_3_period_3_period_3
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 3/3/3/3 cannot be used as a field/variable name. Renamed to param_3_period_3_period_3_period_3
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 3/3/3/3 cannot be used as a field/variable name. Renamed to param_3_period_3_period_3_period_3
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 4/4/4/4 cannot be used as a field/variable name. Renamed to param_4_period_4_period_4_period_4
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 4/4/4/4 cannot be used as a field/variable name. Renamed to param_4_period_4_period_4_period_4
-[main] WARN  o.o.c.languages.AbstractRustCodegen - 4/4/4/4 cannot be used as a field/variable name. Renamed to param_4_period_4_period_4_period_4
+[main] WARN  o.o.c.languages.AbstractRustCodegen - client@domain/com cannot be used as a field/variable name. Renamed to client_at_domain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - client@domain/com cannot be used as a field/variable name. Renamed to client_at_domain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - client@domain/com cannot be used as a field/variable name. Renamed to client_at_domain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - user@site/net cannot be used as a field/variable name. Renamed to user_at_site_net
+[main] WARN  o.o.c.languages.AbstractRustCodegen - user@site/net cannot be used as a field/variable name. Renamed to user_at_site_net
+[main] WARN  o.o.c.languages.AbstractRustCodegen - user@site/net cannot be used as a field/variable name. Renamed to user_at_site_net
+[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@company/com cannot be used as a field/variable name. Renamed to sales_at_company_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@company/com cannot be used as a field/variable name. Renamed to sales_at_company_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@company/com cannot be used as a field/variable name. Renamed to sales_at_company_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - client@anothersite/com cannot be used as a field/variable name. Renamed to client_at_anothersite_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - client@anothersite/com cannot be used as a field/variable name. Renamed to client_at_anothersite_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - client@anothersite/com cannot be used as a field/variable name. Renamed to client_at_anothersite_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - billing@somedomain/com cannot be used as a field/variable name. Renamed to billing_at_somedomain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - billing@somedomain/com cannot be used as a field/variable name. Renamed to billing_at_somedomain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - billing@somedomain/com cannot be used as a field/variable name. Renamed to billing_at_somedomain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@somedomain/com cannot be used as a field/variable name. Renamed to sales_at_somedomain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@somedomain/com cannot be used as a field/variable name. Renamed to sales_at_somedomain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - sales@somedomain/com cannot be used as a field/variable name. Renamed to sales_at_somedomain_com
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 1/1/1/1 cannot be used as a field/variable name. Renamed to param_1_1_1_1
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 1/1/1/1 cannot be used as a field/variable name. Renamed to param_1_1_1_1
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 1/1/1/1 cannot be used as a field/variable name. Renamed to param_1_1_1_1
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 2/2/2/2 cannot be used as a field/variable name. Renamed to param_2_2_2_2
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 2/2/2/2 cannot be used as a field/variable name. Renamed to param_2_2_2_2
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 2/2/2/2 cannot be used as a field/variable name. Renamed to param_2_2_2_2
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 3/3/3/3 cannot be used as a field/variable name. Renamed to param_3_3_3_3
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 3/3/3/3 cannot be used as a field/variable name. Renamed to param_3_3_3_3
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 3/3/3/3 cannot be used as a field/variable name. Renamed to param_3_3_3_3
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 4/4/4/4 cannot be used as a field/variable name. Renamed to param_4_4_4_4
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 4/4/4/4 cannot be used as a field/variable name. Renamed to param_4_4_4_4
+[main] WARN  o.o.c.languages.AbstractRustCodegen - 4/4/4/4 cannot be used as a field/variable name. Renamed to param_4_4_4_4
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/rust/src/models/deny_rule_new.rs
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/rust/docs/DenyRuleNew.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/rust/src/models/deny_rule_record.rs

@@ -41,7 +41,9 @@ export function EmailAddressTypesFromJSONTyped(json: any, ignoreDiscriminator: b
     if (instanceOfEmailAddressName(json)) {
         return EmailAddressNameFromJSONTyped(json, true);
     }
-
+    if (typeof json === 'string') {
+        return json;
+    }
     return {} as any;
 }
 
@@ -59,7 +61,9 @@ export function EmailAddressTypesToJSONTyped(value?: EmailAddressTypes | null, i
     if (instanceOfEmailAddressName(value)) {
         return EmailAddressNameToJSON(value as EmailAddressName);
     }
-
+    if (typeof value === 'string') {
+        return value;
+    }
     return {};
 }
 

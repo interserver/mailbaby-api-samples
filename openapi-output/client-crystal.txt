@@ -57,8 +57,8 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/src/openapi_client/api/history_api.cr
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/crystal/spec/api/history_api_spec.cr
 Exception in thread "main" java.lang.RuntimeException: Could not generate api file for 'Sending'
-	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:813)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1296)
+	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:820)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1294)
 	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:535)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)
@@ -67,6 +67,6 @@ Caused by: java.lang.NullPointerException: Cannot read field "name" because "cod
 	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:750)
 	at org.openapitools.codegen.languages.CrystalClientCodegen.constructExampleCode(CrystalClientCodegen.java:653)
 	at org.openapitools.codegen.languages.CrystalClientCodegen.postProcessOperationsWithModels(CrystalClientCodegen.java:570)
-	at org.openapitools.codegen.DefaultGenerator.processOperations(DefaultGenerator.java:1655)
-	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:685)
+	at org.openapitools.codegen.DefaultGenerator.processOperations(DefaultGenerator.java:1653)
+	at org.openapitools.codegen.DefaultGenerator.generateApis(DefaultGenerator.java:692)
 	... 4 more

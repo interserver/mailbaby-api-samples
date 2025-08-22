@@ -14,16 +14,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MailStatsTypeVolumeFrom {
     #[serde(rename = "billing@somedomain.com", skip_serializing_if = "Option::is_none")]
-    pub billing_at_somedomain_period_com: Option<i32>,
+    pub billing_at_somedomain_com: Option<i32>,
     #[serde(rename = "sales@somedomain.com", skip_serializing_if = "Option::is_none")]
-    pub sales_at_somedomain_period_com: Option<i32>,
+    pub sales_at_somedomain_com: Option<i32>,
 }
 
 impl MailStatsTypeVolumeFrom {
     pub fn new() -> MailStatsTypeVolumeFrom {
         MailStatsTypeVolumeFrom {
-            billing_at_somedomain_period_com: None,
-            sales_at_somedomain_period_com: None,
+            billing_at_somedomain_com: None,
+            sales_at_somedomain_com: None,
         }
     }
 }

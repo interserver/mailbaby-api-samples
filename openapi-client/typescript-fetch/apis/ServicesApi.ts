@@ -43,8 +43,11 @@ export class ServicesApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
+
+        let urlPath = `/mail`;
+
         const response = await this.request({
-            path: `/mail`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

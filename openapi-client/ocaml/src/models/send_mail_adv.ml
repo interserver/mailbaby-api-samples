@@ -54,7 +54,7 @@ type t = {
            option [@default None]
         
         ; [@key "id"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** Details for an Email *)
 let create (subject : string) (body : string) (from : Email_address_types.t) (_to : Email_addresses_types.t) : t = {

@@ -41,7 +41,6 @@ export class ApiKeyAuthAuthentication implements SecurityAuthentication {
     }
 }
 
-
 export type AuthMethods = {
     "default"?: SecurityAuthentication,
     "apiKeyAuth"?: SecurityAuthentication

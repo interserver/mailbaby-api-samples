@@ -31,7 +31,7 @@ type t = {
            option [@default None]
         
         ; [@key "comment"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** A mail order record *)
 let create (id : int32) (status : string) (username : string) : t = {

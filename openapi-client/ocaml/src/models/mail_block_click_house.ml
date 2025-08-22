@@ -32,7 +32,7 @@ type t = {
           
         
         ; [@key "to"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** A block entry from the clickhouse mailblocks server. *)
 let create (date : string) (from : string) (message_id : string) (subject : string) (_to : string) : t = {

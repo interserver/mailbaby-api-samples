@@ -151,14 +151,41 @@ SendingApi <- R6::R6Class(
         stop("Missing required parameter `to`.")
       }
 
+      if (!missing(`subject`) && is.null(`subject`)) {
+        stop("Invalid value for `subject` when calling SendingApi$SendAdvMail, `subject` is not nullable")
+      }
 
+      if (!missing(`body`) && is.null(`body`)) {
+        stop("Invalid value for `body` when calling SendingApi$SendAdvMail, `body` is not nullable")
+      }
 
+      if (!missing(`from`) && is.null(`from`)) {
+        stop("Invalid value for `from` when calling SendingApi$SendAdvMail, `from` is not nullable")
+      }
 
+      if (!missing(`to`) && is.null(`to`)) {
+        stop("Invalid value for `to` when calling SendingApi$SendAdvMail, `to` is not nullable")
+      }
 
+      if (!missing(`replyto`) && is.null(`replyto`)) {
+        stop("Invalid value for `replyto` when calling SendingApi$SendAdvMail, `replyto` is not nullable")
+      }
 
+      if (!missing(`cc`) && is.null(`cc`)) {
+        stop("Invalid value for `cc` when calling SendingApi$SendAdvMail, `cc` is not nullable")
+      }
 
+      if (!missing(`bcc`) && is.null(`bcc`)) {
+        stop("Invalid value for `bcc` when calling SendingApi$SendAdvMail, `bcc` is not nullable")
+      }
 
+      if (!missing(`attachments`) && is.null(`attachments`)) {
+        stop("Invalid value for `attachments` when calling SendingApi$SendAdvMail, `attachments` is not nullable")
+      }
 
+      if (!missing(`id`) && is.null(`id`)) {
+        stop("Invalid value for `id` when calling SendingApi$SendAdvMail, `id` is not nullable")
+      }
 
       form_params["subject"] <- `subject`
       form_params["body"] <- `body`
@@ -284,9 +311,21 @@ SendingApi <- R6::R6Class(
         stop("Missing required parameter `body`.")
       }
 
+      if (!missing(`to`) && is.null(`to`)) {
+        stop("Invalid value for `to` when calling SendingApi$SendMail, `to` is not nullable")
+      }
 
+      if (!missing(`from`) && is.null(`from`)) {
+        stop("Invalid value for `from` when calling SendingApi$SendMail, `from` is not nullable")
+      }
 
+      if (!missing(`subject`) && is.null(`subject`)) {
+        stop("Invalid value for `subject` when calling SendingApi$SendMail, `subject` is not nullable")
+      }
 
+      if (!missing(`body`) && is.null(`body`)) {
+        stop("Invalid value for `body` when calling SendingApi$SendMail, `body` is not nullable")
+      }
 
       form_params["to"] <- `to`
       form_params["from"] <- `from`

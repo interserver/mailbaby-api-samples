@@ -7,7 +7,7 @@
 Exception in thread "main" java.lang.NullPointerException: Cannot invoke "Object.toString()" because the return value of "java.util.Map.get(Object)" is null
 	at org.openapitools.codegen.languages.CppRestSdkClientCodegen.processOpts(CppRestSdkClientCodegen.java:193)
 	at org.openapitools.codegen.DefaultGenerator.configureGeneratorProperties(DefaultGenerator.java:251)
-	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1278)
+	at org.openapitools.codegen.DefaultGenerator.generate(DefaultGenerator.java:1276)
 	at org.openapitools.codegen.cmd.Generate.execute(Generate.java:535)
 	at org.openapitools.codegen.cmd.OpenApiGeneratorCommand.run(OpenApiGeneratorCommand.java:32)
 	at org.openapitools.codegen.OpenAPIGenerator.main(OpenAPIGenerator.java:66)

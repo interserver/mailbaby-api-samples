@@ -16,7 +16,7 @@ type t = {
            option [@default None]
         
         ; [@key "text"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 let create () : t = {
     status = None;

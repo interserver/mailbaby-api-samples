@@ -67,9 +67,9 @@ pub enum GetRulesError {
 /// Adds a new email deny rule into the system to block new emails that match the given criteria
 pub async fn add_rule(configuration: &configuration::Configuration, r#type: &str, data: &str, user: Option<&str>) -> Result<models::GenericResponse, Error<AddRuleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_type = r#type;
-    let p_data = data;
-    let p_user = user;
+    let p_form_type = r#type;
+    let p_form_data = data;
+    let p_form_user = user;
 
     let uri_str = format!("{}/mail/rules", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -86,11 +86,11 @@ pub async fn add_rule(configuration: &configuration::Configuration, r#type: &str
         req_builder = req_builder.header("X-API-KEY", value);
     };
     let mut multipart_form_params = std::collections::HashMap::new();
-    if let Some(param_value) = p_user {
+    if let Some(param_value) = p_form_user {
         multipart_form_params.insert("user", param_value.to_string());
     }
-    multipart_form_params.insert("type", p_type.to_string());
-    multipart_form_params.insert("data", p_data.to_string());
+    multipart_form_params.insert("type", p_form_type.to_string());
+    multipart_form_params.insert("data", p_form_data.to_string());
     req_builder = req_builder.form(&multipart_form_params);
 
     let req = req_builder.build()?;
@@ -121,9 +121,9 @@ pub async fn add_rule(configuration: &configuration::Configuration, r#type: &str
 /// Removes one of the configured deny mail rules from the system.
 pub async fn delete_rule(configuration: &configuration::Configuration, rule_id: i32) -> Result<models::GenericResponse, Error<DeleteRuleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_rule_id = rule_id;
+    let p_path_rule_id = rule_id;
 
-    let uri_str = format!("{}/mail/rules/{ruleId}", configuration.base_path, ruleId=p_rule_id);
+    let uri_str = format!("{}/mail/rules/{ruleId}", configuration.base_path, ruleId=p_path_rule_id);
     let mut req_builder = configuration.client.request(reqwest::Method::DELETE, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {
@@ -166,7 +166,7 @@ pub async fn delete_rule(configuration: &configuration::Configuration, rule_id: 
 /// Removes an email address from the various block lists. 
 pub async fn delist_block(configuration: &configuration::Configuration, body: &str) -> Result<models::GenericResponse, Error<DelistBlockError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body = body;
+    let p_body_body = body;
 
     let uri_str = format!("{}/mail/blocks/delete", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -182,7 +182,7 @@ pub async fn delist_block(configuration: &configuration::Configuration, body: &s
         };
         req_builder = req_builder.header("X-API-KEY", value);
     };
-    req_builder = req_builder.json(&p_body);
+    req_builder = req_builder.json(&p_body_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

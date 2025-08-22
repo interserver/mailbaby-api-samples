@@ -14,22 +14,22 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MailStatsTypeVolumeTo {
     #[serde(rename = "client@domain.com", skip_serializing_if = "Option::is_none")]
-    pub client_at_domain_period_com: Option<i32>,
+    pub client_at_domain_com: Option<i32>,
     #[serde(rename = "user@site.net", skip_serializing_if = "Option::is_none")]
-    pub user_at_site_period_net: Option<i32>,
+    pub user_at_site_net: Option<i32>,
     #[serde(rename = "sales@company.com", skip_serializing_if = "Option::is_none")]
-    pub sales_at_company_period_com: Option<i32>,
+    pub sales_at_company_com: Option<i32>,
     #[serde(rename = "client@anothersite.com", skip_serializing_if = "Option::is_none")]
-    pub client_at_anothersite_period_com: Option<i32>,
+    pub client_at_anothersite_com: Option<i32>,
 }
 
 impl MailStatsTypeVolumeTo {
     pub fn new() -> MailStatsTypeVolumeTo {
         MailStatsTypeVolumeTo {
-            client_at_domain_period_com: None,
-            user_at_site_period_net: None,
-            sales_at_company_period_com: None,
-            client_at_anothersite_period_com: None,
+            client_at_domain_com: None,
+            user_at_site_net: None,
+            sales_at_company_com: None,
+            client_at_anothersite_com: None,
         }
     }
 }

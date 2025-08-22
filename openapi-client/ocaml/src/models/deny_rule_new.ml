@@ -23,7 +23,7 @@ type t = {
            option [@default None]
         
         ; [@key "user"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** The data for a email deny rule record. *)
 let create (_type : Enums.denyrulenew_type) (data : string) : t = {

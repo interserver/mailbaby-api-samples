@@ -7,7 +7,7 @@
  *)
 
 type t = {
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (**  *)
 let create () : t = {

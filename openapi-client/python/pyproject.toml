@@ -8,13 +8,14 @@ authors = [
 license = "GNU GPLv3"
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "MailBaby Email Delivery and Management Service API"]
-requires-python = "^3.9"
+requires-python = ">=3.9"
 
 dependencies = [
   "urllib3 (>=2.1.0,<3.0.0)",
   "python-dateutil (>=2.8.2)",
   "pydantic (>=2)",
-  "typing-extensions (>=4.7.1)"
+  "typing-extensions (>=4.7.1)",
+  "lazy-imports (>=1,<2)"
 ]
 
 [project.urls]

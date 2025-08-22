@@ -37,12 +37,12 @@ class HistoryApi(baseUrl: String) {
    * 
    * @param time The timeframe for the statistics.
    */
-  def getStats(apiKey: String)(time: Option[String] = None
+  def getStats(apiKeyHeader: String)(time: Option[String] = None
 ): Request[Either[ResponseException[String, Exception], MailStatsType], Any] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/stats?time=${ time }")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .response(asJson[MailStatsType])
 
   /**
@@ -70,12 +70,12 @@ class HistoryApi(baseUrl: String) {
    * @param headerfrom Header From Email Address
    * @param delivered Limiting the emails to wether or not they were delivered.
    */
-  def viewMailLog(apiKey: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[String] = None
+  def viewMailLog(apiKeyHeader: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[Long] = None, endDate: Option[Long] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[String] = None
 ): Request[Either[ResponseException[String, Exception], MailLog], Any] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&origin=${ origin }&mx=${ mx }&from=${ from }&to=${ to }&subject=${ subject }&mailid=${ mailid }&skip=${ skip }&limit=${ limit }&startDate=${ startDate }&endDate=${ endDate }&replyto=${ replyto }&headerfrom=${ headerfrom }&delivered=${ delivered }")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .response(asJson[MailLog])
 
 }

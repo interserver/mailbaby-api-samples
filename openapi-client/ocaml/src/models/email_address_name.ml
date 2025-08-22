@@ -19,7 +19,7 @@ type t = {
            option [@default None]
         
         ; [@key "name"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** An email contact. *)
 let create (email : string) : t = {

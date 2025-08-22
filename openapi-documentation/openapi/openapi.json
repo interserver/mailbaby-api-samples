@@ -85,10 +85,40 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           }
         },
         "summary" : "displays a list of mail service orders",
@@ -143,10 +173,40 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           }
         },
         "summary" : "displays a list of blocked email addresses",
@@ -184,13 +244,58 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "$ref" : "#/components/responses/BadInput"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/NotFound"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "The specified resource was not found"
           }
         },
         "summary" : "Sends an Email",
@@ -269,13 +374,58 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "$ref" : "#/components/responses/BadInput"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/NotFound"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "The specified resource was not found"
           }
         },
         "summary" : "Sends an Email with Advanced Options",
@@ -568,13 +718,58 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "$ref" : "#/components/responses/BadInput"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/NotFound"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "The specified resource was not found"
           }
         },
         "summary" : "Removes an email address from the blocked list",
@@ -627,10 +822,40 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           }
         },
         "summary" : "Displays a listing of deny email rules.",
@@ -685,13 +910,58 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "$ref" : "#/components/responses/BadInput"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/NotFound"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "The specified resource was not found"
           }
         },
         "summary" : "Creates a new email deny rule.",
@@ -731,13 +1001,58 @@
             "description" : "search results matching criteria"
           },
           "400" : {
-            "$ref" : "#/components/responses/BadInput"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "BadInputError" : {
+                    "value" : {
+                      "code" : 400,
+                      "message" : "There was a problem with the input parameters."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Error message when there was a problem with the input parameters."
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/NotFound"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "NotFoundError" : {
+                    "value" : {
+                      "code" : 404,
+                      "message" : "The specified resource was not found."
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "The specified resource was not found"
           }
         },
         "summary" : "Removes an deny mail rule.",
@@ -781,10 +1096,40 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           },
           "404" : {
-            "$ref" : "#/components/responses/Unauthorized"
+            "content" : {
+              "application/json" : {
+                "examples" : {
+                  "UnauthorizedError" : {
+                    "value" : {
+                      "code" : 401,
+                      "message" : "Unauthorized"
+                    }
+                  }
+                },
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorMessage"
+                }
+              }
+            },
+            "description" : "Unauthorized"
           }
         },
         "summary" : "Account usage statistics.",

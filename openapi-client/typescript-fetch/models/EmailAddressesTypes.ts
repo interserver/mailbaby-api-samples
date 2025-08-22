@@ -43,7 +43,9 @@ export function EmailAddressesTypesFromJSONTyped(json: any, ignoreDiscriminator:
         }
         return json;
     }
-
+    if (typeof json === 'string') {
+        return json;
+    }
     return {} as any;
 }
 
@@ -63,7 +65,9 @@ export function EmailAddressesTypesToJSONTyped(value?: EmailAddressesTypes | nul
         }
         return value;
     }
-
+    if (typeof value === 'string') {
+        return value;
+    }
     return {};
 }
 

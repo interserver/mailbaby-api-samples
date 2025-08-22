@@ -32,8 +32,11 @@ export class StatusApi extends runtime.BaseAPI {
             headerParameters["X-API-KEY"] = await this.configuration.apiKey("X-API-KEY"); // apiKeyAuth authentication
         }
 
+
+        let urlPath = `/ping`;
+
         const response = await this.request({
-            path: `/ping`,
+            path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

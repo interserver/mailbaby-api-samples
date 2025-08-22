@@ -52,7 +52,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-07-19T04:15:41.503105825-04:00[America/New_York]", comments = "Generator version: 7.14.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-22T07:42:20.251123465-04:00[America/New_York]", comments = "Generator version: 7.15.0")
 public class EmailAddressesTypes extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailAddressesTypes.class.getName());
 
@@ -86,7 +86,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
                     // check if the actual instance is of the type `List<EmailAddressName>`
                     if (value.getActualInstance() instanceof List<?>) {
                         List<?> list = (List<?>) value.getActualInstance();
-                        if (list.get(0) instanceof EmailAddressName) {
+                        if (!list.isEmpty() && list.get(0) instanceof EmailAddressName) {
                             JsonArray array = adapterListEmailAddressName.toJsonTree((List<EmailAddressName>)value.getActualInstance()).getAsJsonArray();
                             elementAdapter.write(out, array);
                             return;
@@ -189,7 +189,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
 
         if (instance instanceof List<?>) {
             List<?> list = (List<?>) instance;
-            if (list.get(0) instanceof EmailAddressName) {
+            if (!list.isEmpty() && list.get(0) instanceof EmailAddressName) {
                 super.setActualInstance(instance);
                 return;
             }

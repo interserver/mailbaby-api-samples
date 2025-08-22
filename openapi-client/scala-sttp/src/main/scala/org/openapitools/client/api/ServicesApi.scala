@@ -34,12 +34,12 @@ class ServicesApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def getMailOrders(apiKey: String)(
+  def getMailOrders(apiKeyHeader: String)(
 ): Request[Either[ResponseException[String, Exception], Seq[MailOrder]], Any] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .response(asJson[Seq[MailOrder]])
 
 }

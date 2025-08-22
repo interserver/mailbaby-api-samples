@@ -41,12 +41,12 @@ class BlockingApi(baseUrl: String) {
    * @param data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
    * @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
    */
-  def addRule(apiKey: String)(`type`: String, data: String, user: Option[String] = None
+  def addRule(apiKeyHeader: String)(`type`: String, data: String, user: Option[String] = None
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/rules")
       .contentType("application/x-www-form-urlencoded")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .body(Map(
         "user" -> user,
         "type" -> `type`,
@@ -68,12 +68,12 @@ class BlockingApi(baseUrl: String) {
    * 
    * @param ruleId The ID of the Rules entry.
    */
-  def deleteRule(apiKey: String)(ruleId: Int
+  def deleteRule(apiKeyHeader: String)(ruleId: Int
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/mail/rules/${ruleId}")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .response(asJson[GenericResponse])
 
   /**
@@ -90,12 +90,12 @@ class BlockingApi(baseUrl: String) {
    * 
    * @param body 
    */
-  def delistBlock(apiKey: String)(body: String
+  def delistBlock(apiKeyHeader: String)(body: String
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/blocks/delete")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .body(body)
       .response(asJson[GenericResponse])
 
@@ -108,12 +108,12 @@ class BlockingApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def getMailBlocks(apiKey: String)(
+  def getMailBlocks(apiKeyHeader: String)(
 ): Request[Either[ResponseException[String, Exception], MailBlocks], Any] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/blocks")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .response(asJson[MailBlocks])
 
   /**
@@ -127,12 +127,12 @@ class BlockingApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def getRules(apiKey: String)(
+  def getRules(apiKeyHeader: String)(
 ): Request[Either[ResponseException[String, Exception], Seq[DenyRuleRecord]], Any] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/rules")
       .contentType("application/json")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .response(asJson[Seq[DenyRuleRecord]])
 
 }

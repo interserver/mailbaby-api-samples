@@ -171,8 +171,17 @@ BlockingApi <- R6::R6Class(
         stop("Missing required parameter `data`.")
       }
 
+      if (!missing(`type`) && is.null(`type`)) {
+        stop("Invalid value for `type` when calling BlockingApi$AddRule, `type` is not nullable")
+      }
 
+      if (!missing(`data`) && is.null(`data`)) {
+        stop("Invalid value for `data` when calling BlockingApi$AddRule, `data` is not nullable")
+      }
 
+      if (!missing(`user`) && is.null(`user`)) {
+        stop("Invalid value for `user` when calling BlockingApi$AddRule, `user` is not nullable")
+      }
 
       form_params["user"] <- `user`
       form_params["type"] <- `type`
@@ -274,6 +283,9 @@ BlockingApi <- R6::R6Class(
         stop("Missing required parameter `rule_id`.")
       }
 
+      if (!missing(`rule_id`) && is.null(`rule_id`)) {
+        stop("Invalid value for `rule_id` when calling BlockingApi$DeleteRule, `rule_id` is not nullable")
+      }
 
       local_var_url_path <- "/mail/rules/{ruleId}"
       if (!missing(`rule_id`)) {
@@ -376,6 +388,9 @@ BlockingApi <- R6::R6Class(
         stop("Missing required parameter `body`.")
       }
 
+      if (!missing(`body`) && is.null(`body`)) {
+        stop("Invalid value for `body` when calling BlockingApi$DelistBlock, `body` is not nullable")
+      }
 
       if (!is.null(`body`)) {
         local_var_body <- `body`$toJSONString()

@@ -16,7 +16,7 @@ type t = {
            option [@default None]
         
         ; [@key "sales@somedomain.com"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 let create () : t = {
     billingsomedomain_com = None;

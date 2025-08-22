@@ -31,7 +31,7 @@ type t = {
           
         
         ; [@key "body"]
-} [@@deriving yojson { strict = false }, show ];;
+} [@@deriving yojson { strict = false }, show, eq ];;
 
 (** Details for an Email *)
 let create (_to : string) (from : string) (subject : string) (body : string) : t = {

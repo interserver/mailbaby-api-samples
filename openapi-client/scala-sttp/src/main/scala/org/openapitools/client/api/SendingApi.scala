@@ -48,12 +48,12 @@ class SendingApi(baseUrl: String) {
    * @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    * @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
    */
-  def sendAdvMail(apiKey: String)(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: Option[EmailAddressesTypes] = None, cc: Option[EmailAddressesTypes] = None, bcc: Option[EmailAddressesTypes] = None, attachments: Seq[MailAttachment], id: Option[Long] = None
+  def sendAdvMail(apiKeyHeader: String)(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: Option[EmailAddressesTypes] = None, cc: Option[EmailAddressesTypes] = None, bcc: Option[EmailAddressesTypes] = None, attachments: Seq[MailAttachment], id: Option[Long] = None
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/advsend")
       .contentType("application/x-www-form-urlencoded")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .body(Map(
         "subject" -> subject,
         "body" -> body,
@@ -84,12 +84,12 @@ class SendingApi(baseUrl: String) {
    * @param subject The subject or title of the email
    * @param body The main email contents.
    */
-  def sendMail(apiKey: String)(to: String, from: String, subject: String, body: String
+  def sendMail(apiKeyHeader: String)(to: String, from: String, subject: String, body: String
 ): Request[Either[ResponseException[String, Exception], GenericResponse], Any] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")
       .contentType("application/x-www-form-urlencoded")
-      .header("X-API-KEY", apiKey)
+      .header("X-API-KEY", apiKeyHeader)
       .body(Map(
         "to" -> to,
         "from" -> from,

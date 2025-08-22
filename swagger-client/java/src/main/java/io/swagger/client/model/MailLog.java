@@ -28,7 +28,7 @@ import java.util.List;
  * Mail log records
  */
 @Schema(description = "Mail log records")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-07-19T04:18:32.024600571-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-08-22T07:45:26.487416628-04:00[America/New_York]")
 
 public class MailLog {
   @SerializedName("total")

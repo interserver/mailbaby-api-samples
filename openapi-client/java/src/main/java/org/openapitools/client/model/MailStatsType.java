@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-08-22T07:42:20.251123465-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-24T20:28:12.958971149-04:00[America/New_York]", comments = "Generator version: 7.15.0")
 public class MailStatsType {
   /**
    * Gets or Sets time

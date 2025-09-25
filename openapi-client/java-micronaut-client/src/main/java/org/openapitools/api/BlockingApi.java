@@ -29,7 +29,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-08-22T07:42:24.708059371-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-24T20:28:16.829689087-04:00[America/New_York]", comments = "Generator version: 7.15.0")
 @Client("${openapi-micronaut-client-base-path}")
 public interface BlockingApi {
     /**

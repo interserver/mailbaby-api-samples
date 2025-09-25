@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="An email record")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-08-22T07:45:56.140755215-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-09-24T20:31:33.990973012-04:00[America/New_York]")
 public class MailLogEntry   {
   private Integer _id = null;  private String id = null;  private String from = null;  private String to = null;  private String subject = null;  private String messageId = null;  private String created = null;  private Integer time = null;  private String user = null;  private String transtype = null;  private String origin = null;  private String _interface = null;  private String sendingZone = null;  private Integer bodySize = null;  private Integer seq = null;  private String recipient = null;  private String domain = null;  private Integer locked = null;  private String lockTime = null;  private String assigned = null;  private String queued = null;  private String mxHostname = null;  private String response = null;
 

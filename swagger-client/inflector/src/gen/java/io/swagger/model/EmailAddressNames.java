@@ -10,7 +10,7 @@ import java.util.List;
  * Array of Email Addresses
  **/
 @Schema(description = "Array of Email Addresses")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-08-22T07:45:35.938054049-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-09-24T20:31:14.655846932-04:00[America/New_York]")
 
 public class EmailAddressNames extends ArrayList<EmailAddressName> implements EmailAddressesTypes  {
 

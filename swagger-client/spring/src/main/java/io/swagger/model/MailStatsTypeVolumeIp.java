@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-08-22T07:46:05.105474443-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-09-24T20:31:43.190201396-04:00[America/New_York]")
 
 
 public class MailStatsTypeVolumeIp   {

@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * The resposne when an error occurs.
  */
 @Schema(description = "The resposne when an error occurs.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-08-22T07:45:45.615417224-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-09-24T20:31:23.709498377-04:00[America/New_York]")
 public class ErrorMessage   {
   @JsonProperty("code")
   private Integer code = null;

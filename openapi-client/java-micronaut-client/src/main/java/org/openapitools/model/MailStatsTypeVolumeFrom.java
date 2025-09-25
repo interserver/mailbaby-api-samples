@@ -30,7 +30,7 @@ import javax.annotation.Generated;
   MailStatsTypeVolumeFrom.JSON_PROPERTY_SALES_AT_SOMEDOMAIN_COM
 })
 @JsonTypeName("MailStatsType_volume_from")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-08-22T07:42:24.708059371-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-24T20:28:16.829689087-04:00[America/New_York]", comments = "Generator version: 7.15.0")
 @Introspected
 public class MailStatsTypeVolumeFrom {
     public static final String JSON_PROPERTY_BILLING_AT_SOMEDOMAIN_COM = "billing@somedomain.com";

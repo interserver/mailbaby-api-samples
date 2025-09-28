@@ -8,7 +8,7 @@
 # ! openapi-generator (https://openapi-generator.tech)
 # ! FROM OPENAPI SPECIFICATION IN JSON.
 # !
-# ! Generator version: 7.15.0
+# ! Generator version: 7.16.0
 # !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -691,7 +691,7 @@ This is the API interface to the [Mail Baby](https//mail.baby/) Mail services pr
 In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
 EOF
-echo "$appdescription" | paste -sd' ' | fold -sw 80
+echo "$appdescription" | paste -sd' ' - | fold -sw 80
 }
 
 
@@ -713,21 +713,21 @@ print_version() {
 ##############################################################################
 print_addRule_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}addRule - Creates a new email deny rule.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}addRule - Creates a new email deny rule.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Adds a new email deny rule into the system to block new emails that match the given criteria" | paste -sd' ' | fold -sw 80
+    echo -e "Adds a new email deny rule into the system to block new emails that match the given criteria" | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -736,22 +736,22 @@ print_addRule_help() {
 ##############################################################################
 print_deleteRule_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteRule - Removes an deny mail rule.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteRule - Removes an deny mail rule.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Removes one of the configured deny mail rules from the system." | paste -sd' ' | fold -sw 80
+    echo -e "Removes one of the configured deny mail rules from the system." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}ruleId${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the Rules entry. ${YELLOW}Specify as: ruleId=value${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}ruleId${OFF} ${BLUE}[integer]${OFF} ${RED}(required)${OFF} ${CYAN}(default: null)${OFF} - The ID of the Rules entry. ${YELLOW}Specify as: ruleId=value${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -760,23 +760,23 @@ print_deleteRule_help() {
 ##############################################################################
 print_delistBlock_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}delistBlock - Removes an email address from the blocked list${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}delistBlock - Removes an email address from the blocked list${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Removes an email address from the various block lists." | paste -sd' ' | fold -sw 80
+    echo -e "Removes an email address from the various block lists." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
-    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,multipart/form-data]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,multipart/form-data]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -785,16 +785,16 @@ print_delistBlock_help() {
 ##############################################################################
 print_getMailBlocks_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailBlocks - displays a list of blocked email addresses${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getMailBlocks - displays a list of blocked email addresses${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -803,18 +803,18 @@ print_getMailBlocks_help() {
 ##############################################################################
 print_getRules_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getRules - Displays a listing of deny email rules.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getRules - Displays a listing of deny email rules.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns a listing of all the deny block rules you have configured." | paste -sd' ' | fold -sw 80
+    echo -e "Returns a listing of all the deny block rules you have configured." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -823,21 +823,21 @@ print_getRules_help() {
 ##############################################################################
 print_getStats_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getStats - Account usage statistics.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getStats - Account usage statistics.${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns information about the usage on your mail accounts." | paste -sd' ' | fold -sw 80
+    echo -e "Returns information about the usage on your mail accounts." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}time${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - The timeframe for the statistics.${YELLOW} Specify as: time=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -846,45 +846,45 @@ print_getStats_help() {
 ##############################################################################
 print_viewMailLog_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}viewMailLog - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}viewMailLog - displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Get a listing of the emails sent through this system" | paste -sd' ' | fold -sw 80
+    echo -e "Get a listing of the emails sent through this system" | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo -e "  * ${GREEN}id${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - The ID of your mail order this will be sent through.${YELLOW} Specify as: id=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}origin${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - originating ip address sending mail${YELLOW} Specify as: origin=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}mx${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - mx record mail was sent to${YELLOW} Specify as: mx=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}from${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - from email address${YELLOW} Specify as: from=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}to${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - to/destination email address${YELLOW} Specify as: to=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}subject${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - subject containing this string${YELLOW} Specify as: subject=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}mailid${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - mail id${YELLOW} Specify as: mailid=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}skip${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 0)${OFF} - number of records to skip for pagination${YELLOW} Specify as: skip=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}limit${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: 100)${OFF} - maximum number of records to return${YELLOW} Specify as: limit=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}startDate${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - earliest date to get emails in unix timestamp format${YELLOW} Specify as: startDate=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}endDate${OFF} ${BLUE}[integer]${OFF} ${CYAN}(default: null)${OFF} - earliest date to get emails in unix timestamp format${YELLOW} Specify as: endDate=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}replyto${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Reply-To Email Address${YELLOW} Specify as: replyto=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}headerfrom${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Header From Email Address${YELLOW} Specify as: headerfrom=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e "  * ${GREEN}delivered${OFF} ${BLUE}[string]${OFF} ${CYAN}(default: null)${OFF} - Limiting the emails to wether or not they were delivered.${YELLOW} Specify as: delivered=value${OFF}" \
-        | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+        | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;bad input parameter${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;bad input parameter${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -893,7 +893,7 @@ print_viewMailLog_help() {
 ##############################################################################
 print_sendAdvMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
 
@@ -1006,19 +1006,19 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 \"from\": \"Joe <user@domain.com>\",
 \"to\": \"Joe <support@interserver.net>\"
 }'
-'''" | paste -sd' ' | fold -sw 80
+'''" | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1027,23 +1027,23 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 ##############################################################################
 print_sendMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo -e "Sends an email through one of your mail orders.
 
-*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead." | paste -sd' ' | fold -sw 80
+*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo -e "${BOLD}${WHITE}Parameters${OFF}"
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
-    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1052,18 +1052,18 @@ print_sendMail_help() {
 ##############################################################################
 print_getMailOrders_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getMailOrders - displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "This will return a list of the mail orders you have in our system including their id, status, username, and optional comment." | paste -sd' ' | fold -sw 80
+    echo -e "This will return a list of the mail orders you have in our system including their id, status, username, and optional comment." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;OK${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=401
-    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=404
-    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  404;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1072,14 +1072,14 @@ print_getMailOrders_help() {
 ##############################################################################
 print_pingServer_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}pingServer - Checks if the server is running${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}pingServer - Checks if the server is running${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
     code=200
-    echo -e "${result_color_table[${code:0:1}]}  200;Server is up and running${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  200;Server is up and running${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=0
-    echo -e "${result_color_table[${code:0:1}]}  0;Something is wrong${OFF}" | paste -sd' ' | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    echo -e "${result_color_table[${code:0:1}]}  0;Something is wrong${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 
 

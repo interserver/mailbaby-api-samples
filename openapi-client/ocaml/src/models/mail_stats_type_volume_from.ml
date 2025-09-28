@@ -5,21 +5,27 @@
  *
  *)
 
-type t = {
-      billingsomedomain_com: int32
-          
-           option [@default None]
-        
-        ; [@key "billing@somedomain.com"]
-      salessomedomain_com: int32
-          
-           option [@default None]
-        
-        ; [@key "sales@somedomain.com"]
-} [@@deriving yojson { strict = false }, show, eq ];;
 
-let create () : t = {
-    billingsomedomain_com = None;
-    salessomedomain_com = None;
-}
+
+    
+        type t = {
+                              billingsomedomain_com: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "billing@somedomain.com"]
+                                              salessomedomain_com: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "sales@somedomain.com"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            billingsomedomain_com = None;
+            salessomedomain_com = None;
+        }
+    
 

@@ -11,7 +11,7 @@ import io.vertx.codegen.annotations.DataObject;
  * Array of Email Addresses
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2025-09-24T20:31:37.639811536-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2025-09-28T16:29:03.707285853-04:00[America/New_York]")
 
 
 

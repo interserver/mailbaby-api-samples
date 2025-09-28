@@ -14,6 +14,7 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -43,13 +44,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Locale;
 
 import org.openapitools.client.JSON;
 
 /**
  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-24T20:28:12.958971149-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-28T16:25:36.113785640-04:00[America/New_York]", comments = "Generator version: 7.16.0")
 public class MailStatsType {
   /**
    * Gets or Sets time
@@ -381,7 +383,7 @@ public class MailStatsType {
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MailStatsType.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in MailStatsType is not found in the empty JSON string", MailStatsType.openapiRequiredFields.toString()));
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The required field(s) %s in MailStatsType is not found in the empty JSON string", MailStatsType.openapiRequiredFields.toString()));
         }
       }
 
@@ -389,22 +391,22 @@ public class MailStatsType {
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
         if (!MailStatsType.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `MailStatsType` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+          throw new IllegalArgumentException(String.format(Locale.ROOT, "The field `%s` in the JSON string is not defined in the `MailStatsType` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       if ((jsonObj.get("time") != null && !jsonObj.get("time").isJsonNull()) && !jsonObj.get("time").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("time").toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("time").toString()));
       }
       // validate the optional field `time`
       if (jsonObj.get("time") != null && !jsonObj.get("time").isJsonNull()) {
         TimeEnum.validateJsonElement(jsonObj.get("time"));
       }
       if ((jsonObj.get("currency") != null && !jsonObj.get("currency").isJsonNull()) && !jsonObj.get("currency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `currency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currency").toString()));
       }
       if ((jsonObj.get("currencySymbol") != null && !jsonObj.get("currencySymbol").isJsonNull()) && !jsonObj.get("currencySymbol").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `currencySymbol` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currencySymbol").toString()));
+        throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected the field `currencySymbol` to be a primitive type in the JSON string but got `%s`", jsonObj.get("currencySymbol").toString()));
       }
       // validate the optional field `volume`
       if (jsonObj.get("volume") != null && !jsonObj.get("volume").isJsonNull()) {

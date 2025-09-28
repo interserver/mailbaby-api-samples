@@ -12,12 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MailStatsTypeVolume  {
   
   @ApiModelProperty(value = "")
+
   private MailStatsTypeVolumeTo to;
 
   @ApiModelProperty(value = "")
+
   private MailStatsTypeVolumeFrom from;
 
   @ApiModelProperty(value = "")
+
   private MailStatsTypeVolumeIp ip;
  /**
    * Get to

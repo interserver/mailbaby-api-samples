@@ -6,24 +6,30 @@
  * Schema Email_address_name.t : An email contact.
  *)
 
-type t = {
-    (* The email address. *)
-      email: string
-          
-          
-        
-        ; [@key "email"]
-    (* Name to use for the sending contact. *)
-      name: string
-          
-           option [@default None]
-        
-        ; [@key "name"]
-} [@@deriving yojson { strict = false }, show, eq ];;
 
-(** An email contact. *)
-let create (email : string) : t = {
-    email = email;
-    name = None;
-}
+
+    
+        type t = {
+                              email: string
+                  
+                  
+                
+                
+                ; [@key "email"]
+                    (** The email address. *)
+                                      name: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "name"]
+                    (** Name to use for the sending contact. *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** An email contact. *)
+        let create (email : string) : t = {
+            email = email;
+            name = None;
+        }
+    
 

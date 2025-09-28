@@ -11,9 +11,39 @@ let add_rule ~_type ~data ?user () =
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
     let body = Request.init_form_encoded_body () in
-    let body = Request.maybe_add_form_encoded_body_param body "user" (fun x -> x) user in
-    let body = Request.add_form_encoded_body_param body "_type" Enums.show_denyrulenew_type _type in
-    let body = Request.add_form_encoded_body_param body "data" (fun x -> x) data in
+    let body = Request.maybe_add_form_encoded_body_param body "user"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ user in
+    let body = Request.add_form_encoded_body_param body "_type"         Enums.show_denyrulenew_type
+        
+ _type in
+    let body = Request.add_form_encoded_body_param body "data"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ data in
     let body = Request.finalize_form_encoded_body body in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
@@ -23,7 +53,21 @@ let delete_rule ~rule_id =
     let uri = Request.build_uri "/mail/rules/{ruleId}" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let uri = Request.replace_path_param uri "ruleId" Int32.to_string rule_id in
+    let uri = Request.replace_path_param uri "ruleId"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ rule_id in
     Cohttp_lwt_unix.Client.call `DELETE uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
@@ -32,7 +76,20 @@ let delist_block ~body =
     let uri = Request.build_uri "/mail/blocks/delete" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let body = Request.write_as_json_body JsonSupport.of_string body in
+    let body = Request.
+        
+        write_as_json_body     JsonSupport.of_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ body
+    in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 

@@ -5,33 +5,41 @@
  *
  *)
 
-type t = {
-      clientdomain_com: int32
-          
-           option [@default None]
-        
-        ; [@key "client@domain.com"]
-      usersite_net: int32
-          
-           option [@default None]
-        
-        ; [@key "user@site.net"]
-      salescompany_com: int32
-          
-           option [@default None]
-        
-        ; [@key "sales@company.com"]
-      clientanothersite_com: int32
-          
-           option [@default None]
-        
-        ; [@key "client@anothersite.com"]
-} [@@deriving yojson { strict = false }, show, eq ];;
 
-let create () : t = {
-    clientdomain_com = None;
-    usersite_net = None;
-    salescompany_com = None;
-    clientanothersite_com = None;
-}
+
+    
+        type t = {
+                              clientdomain_com: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "client@domain.com"]
+                                              usersite_net: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "user@site.net"]
+                                              salescompany_com: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "sales@company.com"]
+                                              clientanothersite_com: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "client@anothersite.com"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            clientdomain_com = None;
+            usersite_net = None;
+            salescompany_com = None;
+            clientanothersite_com = None;
+        }
+    
 

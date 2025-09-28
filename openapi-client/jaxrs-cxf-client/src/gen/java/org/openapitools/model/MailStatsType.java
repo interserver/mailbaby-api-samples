@@ -1,15 +1,15 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import org.openapitools.model.MailStatsTypeVolume;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
- **/
+ * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ */
 @ApiModel(description="Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
 
 public class MailStatsType  {
@@ -45,27 +45,35 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
 }
 
   @ApiModelProperty(value = "")
+
   private TimeEnum time = TimeEnum._1H;
 
   @ApiModelProperty(value = "")
+
   private Integer usage;
 
   @ApiModelProperty(value = "")
+
   private String currency;
 
   @ApiModelProperty(value = "")
+
   private String currencySymbol;
 
   @ApiModelProperty(value = "")
+
   private Double cost;
 
   @ApiModelProperty(value = "")
+
   private Integer received;
 
   @ApiModelProperty(value = "")
+
   private Integer sent;
 
   @ApiModelProperty(value = "")
+
   private MailStatsTypeVolume volume;
  /**
    * Get time

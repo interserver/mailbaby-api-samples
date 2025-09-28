@@ -1,30 +1,33 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.MailBlockClickHouse;
 import org.openapitools.model.MailBlockRspamd;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * The listing of blocked emails.
- **/
+ * The listing of blocked emails.
+ */
 @ApiModel(description="The listing of blocked emails.")
 
 public class MailBlocks  {
   
   @ApiModelProperty(required = true, value = "")
+
   private List<MailBlockClickHouse> local = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")
+
   private List<MailBlockClickHouse> mbtrap = new ArrayList<>();
 
   @ApiModelProperty(required = true, value = "")
+
   private List<MailBlockRspamd> subject = new ArrayList<>();
  /**
    * Get local

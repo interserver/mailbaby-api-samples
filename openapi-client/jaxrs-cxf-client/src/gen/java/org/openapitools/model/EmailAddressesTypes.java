@@ -1,16 +1,16 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import java.util.List;
 import org.openapitools.model.EmailAddressName;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * 
- **/
+ * 
+ */
 @ApiModel(description="")
 
 public class EmailAddressesTypes  {

@@ -14,6 +14,7 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Locale;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -29,7 +30,7 @@ import javax.annotation.Generated;
   MailAttachment.JSON_PROPERTY_DATA
 })
 @JsonTypeName("MailAttachment")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-24T20:28:16.829689087-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-28T16:25:40.004677733-04:00[America/New_York]", comments = "Generator version: 7.16.0")
 @Introspected
 public class MailAttachment {
     public static final String JSON_PROPERTY_FILENAME = "filename";

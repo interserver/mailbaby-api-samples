@@ -14,6 +14,7 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,7 @@ import javax.annotation.Generated;
   MailLog.JSON_PROPERTY_EMAILS
 })
 @JsonTypeName("MailLog")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-24T20:28:16.829689087-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-28T16:25:40.004677733-04:00[America/New_York]", comments = "Generator version: 7.16.0")
 @Introspected
 public class MailLog {
     public static final String JSON_PROPERTY_TOTAL = "total";

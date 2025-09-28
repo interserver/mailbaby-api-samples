@@ -10,7 +10,9 @@ let get_stats ?time () =
     let uri = Request.build_uri "/mail/stats" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let uri = Request.maybe_add_query_param uri "time" Enums.show_time time in
+    let uri = Request.maybe_add_query_param uri "time"         Enums.show_time
+        
+ time in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Mail_stats_type.of_yojson) resp body
 
@@ -19,20 +21,204 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?(skip = 00l) ?(li
     let uri = Request.build_uri "/mail/log" in
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
-    let uri = Request.maybe_add_query_param uri "id" Int64.to_string id in
-    let uri = Request.maybe_add_query_param uri "origin" (fun x -> x) origin in
-    let uri = Request.maybe_add_query_param uri "mx" (fun x -> x) mx in
-    let uri = Request.maybe_add_query_param uri "from" (fun x -> x) from in
-    let uri = Request.maybe_add_query_param uri "to" (fun x -> x) _to in
-    let uri = Request.maybe_add_query_param uri "subject" (fun x -> x) subject in
-    let uri = Request.maybe_add_query_param uri "mailid" (fun x -> x) mailid in
-    let uri = Request.add_query_param uri "skip" Int32.to_string skip in
-    let uri = Request.add_query_param uri "limit" Int32.to_string limit in
-    let uri = Request.maybe_add_query_param uri "startDate" Int64.to_string start_date in
-    let uri = Request.maybe_add_query_param uri "endDate" Int64.to_string end_date in
-    let uri = Request.maybe_add_query_param uri "replyto" (fun x -> x) replyto in
-    let uri = Request.maybe_add_query_param uri "headerfrom" (fun x -> x) headerfrom in
-    let uri = Request.maybe_add_query_param uri "delivered" Enums.show_delivered delivered in
+    let uri = Request.maybe_add_query_param uri "id"     Int64.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ id in
+    let uri = Request.maybe_add_query_param uri "origin"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ origin in
+    let uri = Request.maybe_add_query_param uri "mx"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ mx in
+    let uri = Request.maybe_add_query_param uri "from"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ from in
+    let uri = Request.maybe_add_query_param uri "to"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ _to in
+    let uri = Request.maybe_add_query_param uri "subject"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ subject in
+    let uri = Request.maybe_add_query_param uri "mailid"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ mailid in
+    let uri = Request.add_query_param uri "skip"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ skip in
+    let uri = Request.add_query_param uri "limit"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ limit in
+    let uri = Request.maybe_add_query_param uri "startDate"     Int64.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ start_date in
+    let uri = Request.maybe_add_query_param uri "endDate"     Int64.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ end_date in
+    let uri = Request.maybe_add_query_param uri "replyto"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ replyto in
+    let uri = Request.maybe_add_query_param uri "headerfrom"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ headerfrom in
+    let uri = Request.maybe_add_query_param uri "delivered"         Enums.show_delivered
+        
+ delivered in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Mail_log.of_yojson) resp body
 

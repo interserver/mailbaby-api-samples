@@ -56,57 +56,7 @@ __all__ = [
     "SendMailAdv",
 ]
 
-if __import__("typing").TYPE_CHECKING:
-    # import apis into sdk package
-    from openapi_client.api.blocking_api import BlockingApi as BlockingApi
-    from openapi_client.api.history_api import HistoryApi as HistoryApi
-    from openapi_client.api.sending_api import SendingApi as SendingApi
-    from openapi_client.api.services_api import ServicesApi as ServicesApi
-    from openapi_client.api.status_api import StatusApi as StatusApi
-    
-    # import ApiClient
-    from openapi_client.api_response import ApiResponse as ApiResponse
-    from openapi_client.api_client import ApiClient as ApiClient
-    from openapi_client.configuration import Configuration as Configuration
-    from openapi_client.exceptions import OpenApiException as OpenApiException
-    from openapi_client.exceptions import ApiTypeError as ApiTypeError
-    from openapi_client.exceptions import ApiValueError as ApiValueError
-    from openapi_client.exceptions import ApiKeyError as ApiKeyError
-    from openapi_client.exceptions import ApiAttributeError as ApiAttributeError
-    from openapi_client.exceptions import ApiException as ApiException
-    
-    # import models into sdk package
-    from openapi_client.models.deny_rule_new import DenyRuleNew as DenyRuleNew
-    from openapi_client.models.deny_rule_record import DenyRuleRecord as DenyRuleRecord
-    from openapi_client.models.email_address_name import EmailAddressName as EmailAddressName
-    from openapi_client.models.email_address_types import EmailAddressTypes as EmailAddressTypes
-    from openapi_client.models.email_addresses_types import EmailAddressesTypes as EmailAddressesTypes
-    from openapi_client.models.error_message import ErrorMessage as ErrorMessage
-    from openapi_client.models.generic_response import GenericResponse as GenericResponse
-    from openapi_client.models.mail_attachment import MailAttachment as MailAttachment
-    from openapi_client.models.mail_block_click_house import MailBlockClickHouse as MailBlockClickHouse
-    from openapi_client.models.mail_block_rspamd import MailBlockRspamd as MailBlockRspamd
-    from openapi_client.models.mail_blocks import MailBlocks as MailBlocks
-    from openapi_client.models.mail_log import MailLog as MailLog
-    from openapi_client.models.mail_log_entry import MailLogEntry as MailLogEntry
-    from openapi_client.models.mail_order import MailOrder as MailOrder
-    from openapi_client.models.mail_stats_type import MailStatsType as MailStatsType
-    from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume as MailStatsTypeVolume
-    from openapi_client.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom as MailStatsTypeVolumeFrom
-    from openapi_client.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp as MailStatsTypeVolumeIp
-    from openapi_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo as MailStatsTypeVolumeTo
-    from openapi_client.models.send_mail import SendMail as SendMail
-    from openapi_client.models.send_mail_adv import SendMailAdv as SendMailAdv
-    
-else:
-    from lazy_imports import LazyModule, as_package, load
-
-    load(
-        LazyModule(
-            *as_package(__file__),
-            ("__version__", __version__),
-            ("__all__", __all__),
-            """# import apis into sdk package
+# import apis into sdk package
 from openapi_client.api.blocking_api import BlockingApi as BlockingApi
 from openapi_client.api.history_api import HistoryApi as HistoryApi
 from openapi_client.api.sending_api import SendingApi as SendingApi
@@ -147,8 +97,3 @@ from openapi_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeT
 from openapi_client.models.send_mail import SendMail as SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv as SendMailAdv
 
-""",
-            name=__name__,
-            doc=__doc__,
-        )
-    )

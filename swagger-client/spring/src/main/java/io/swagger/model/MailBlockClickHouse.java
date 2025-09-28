@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
 @Schema(description = "A block entry from the clickhouse mailblocks server.")
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-09-24T20:31:43.190201396-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-09-28T16:29:09.082524796-04:00[America/New_York]")
 
 
 public class MailBlockClickHouse   {

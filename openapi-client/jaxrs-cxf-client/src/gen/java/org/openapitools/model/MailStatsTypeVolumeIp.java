@@ -9,15 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MailStatsTypeVolumeIp  {
   
   @ApiModelProperty(value = "")
+
   private Integer _1_1_1_1;
 
   @ApiModelProperty(value = "")
+
   private Integer _2_2_2_2;
 
   @ApiModelProperty(value = "")
+
   private Integer _3_3_3_3;
 
   @ApiModelProperty(value = "")
+
   private Integer _4_4_4_4;
  /**
    * Get _1_1_1_1

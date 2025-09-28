@@ -6,24 +6,30 @@
  * Schema Error_message.t : The resposne when an error occurs.
  *)
 
-type t = {
-    (* The response code associated with the error. *)
-      code: int32
-          
-          
-        
-        ; [@key "code"]
-    (* The details or description of the error. *)
-      message: string
-          
-          
-        
-        ; [@key "message"]
-} [@@deriving yojson { strict = false }, show, eq ];;
 
-(** The resposne when an error occurs. *)
-let create (code : int32) (message : string) : t = {
-    code = code;
-    message = message;
-}
+
+    
+        type t = {
+                              code: int32
+                  
+                  
+                
+                
+                ; [@key "code"]
+                    (** The response code associated with the error. *)
+                                      message: string
+                  
+                  
+                
+                
+                ; [@key "message"]
+                    (** The details or description of the error. *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** The resposne when an error occurs. *)
+        let create (code : int32) (message : string) : t = {
+            code = code;
+            message = message;
+        }
+    
 

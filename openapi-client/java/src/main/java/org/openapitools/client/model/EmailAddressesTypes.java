@@ -14,6 +14,7 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
+import java.util.Locale;
 import java.util.List;
 import org.openapitools.client.model.EmailAddressName;
 
@@ -29,6 +30,7 @@ import java.util.HashSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,7 +54,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-24T20:28:12.958971149-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-28T16:25:36.113785640-04:00[America/New_York]", comments = "Generator version: 7.16.0")
 public class EmailAddressesTypes extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailAddressesTypes.class.getName());
 
@@ -108,21 +110,21 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
                     try {
                         // validate the JSON object to see if any exception is thrown
                         if (!jsonElement.getAsJsonPrimitive().isString()) {
-                            throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
+                            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
                         }
                         actualAdapter = adapterString;
                         match++;
                         log.log(Level.FINER, "Input data matches schema 'String'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
+                        errorMessages.add(String.format(Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
                     // deserialize List<EmailAddressName>
                     try {
                         // validate the JSON object to see if any exception is thrown
                         if (!jsonElement.isJsonArray()) {
-                            throw new IllegalArgumentException(String.format("Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
+                            throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
                         }
 
                         JsonArray array = jsonElement.getAsJsonArray();
@@ -135,7 +137,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
                         log.log(Level.FINER, "Input data matches schema 'List<EmailAddressName>'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format("Deserialization for List<EmailAddressName> failed with `%s`.", e.getMessage()));
+                        errorMessages.add(String.format(Locale.ROOT, "Deserialization for List<EmailAddressName> failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'List<EmailAddressName>'", e);
                     }
 
@@ -145,7 +147,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
                         return ret;
                     }
 
-                    throw new IOException(String.format("Failed deserialization for EmailAddressesTypes: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
+                    throw new IOException(String.format(Locale.ROOT, "Failed deserialization for EmailAddressesTypes: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
@@ -245,17 +247,17 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
         // validate the json string with String
         try {
             if (!jsonElement.getAsJsonPrimitive().isString()) {
-                throw new IllegalArgumentException(String.format("Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
+                throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be of type String in the JSON string but got `%s`", jsonElement.toString()));
             }
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for String failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         // validate the json string with List<EmailAddressName>
         try {
             if (!jsonElement.isJsonArray()) {
-                throw new IllegalArgumentException(String.format("Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
+                throw new IllegalArgumentException(String.format(Locale.ROOT, "Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
             }
             JsonArray array = jsonElement.getAsJsonArray();
             // validate array items
@@ -264,11 +266,11 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
             }
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format("Deserialization for List<EmailAddressName> failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(Locale.ROOT, "Deserialization for List<EmailAddressName> failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for EmailAddressesTypes with oneOf schemas: List<EmailAddressName>, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(Locale.ROOT, "The JSON string is invalid for EmailAddressesTypes with oneOf schemas: List<EmailAddressName>, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

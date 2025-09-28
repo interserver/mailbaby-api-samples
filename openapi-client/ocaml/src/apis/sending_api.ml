@@ -11,15 +11,142 @@ let send_adv_mail ~subject ~body ~from ~_to ?replyto ?cc ?bcc ?(attachments = []
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
     let body = Request.init_form_encoded_body () in
-    let body = Request.add_form_encoded_body_param body "subject" (fun x -> x) subject in
-    let body = Request.add_form_encoded_body_param body "body" (fun x -> x) body in
-    let body = Request.add_form_encoded_body_param body "from" .show from in
-    let body = Request.add_form_encoded_body_param body "_to" .show _to in
-    let body = Request.maybe_add_form_encoded_body_param body "replyto" .show replyto in
-    let body = Request.maybe_add_form_encoded_body_param body "cc" .show cc in
-    let body = Request.maybe_add_form_encoded_body_param body "bcc" .show bcc in
-    let body = Request.add_form_encoded_body_param_list body "attachments" (List.map .show) attachments in
-    let body = Request.maybe_add_form_encoded_body_param body "id" Int64.to_string id in
+    let body = Request.add_form_encoded_body_param body "subject"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ subject in
+    let body = Request.add_form_encoded_body_param body "body"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ body in
+    let body = Request.add_form_encoded_body_param body "from"     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .show
+ from in
+    let body = Request.add_form_encoded_body_param body "_to"     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .show
+ _to in
+    let body = Request.maybe_add_form_encoded_body_param body "replyto"     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .show
+ replyto in
+    let body = Request.maybe_add_form_encoded_body_param body "cc"     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .show
+ cc in
+    let body = Request.maybe_add_form_encoded_body_param body "bcc"     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .show
+ bcc in
+    let body = Request.add_form_encoded_body_param_list body "attachments"     (Stdlib.List.map     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .show
+)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ attachments in
+    let body = Request.maybe_add_form_encoded_body_param body "id"     Int64.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ id in
     let body = Request.finalize_form_encoded_body body in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
@@ -30,10 +157,66 @@ let send_mail ~_to ~from ~subject ~body =
     let headers = Request.default_headers in
     let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
     let body = Request.init_form_encoded_body () in
-    let body = Request.add_form_encoded_body_param body "_to" (fun x -> x) _to in
-    let body = Request.add_form_encoded_body_param body "from" (fun x -> x) from in
-    let body = Request.add_form_encoded_body_param body "subject" (fun x -> x) subject in
-    let body = Request.add_form_encoded_body_param body "body" (fun x -> x) body in
+    let body = Request.add_form_encoded_body_param body "_to"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ _to in
+    let body = Request.add_form_encoded_body_param body "from"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ from in
+    let body = Request.add_form_encoded_body_param body "subject"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ subject in
+    let body = Request.add_form_encoded_body_param body "body"     
+    
+    
+    
+    
+    
+    
+    
+    
+    (fun x -> x)
+    
+    
+        
+        
+ body in
     let body = Request.finalize_form_encoded_body body in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body

@@ -4,13 +4,9 @@ import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
 import org.apache.cxf.jaxrs.ext.multipart.*;
 
 import io.swagger.annotations.Api;

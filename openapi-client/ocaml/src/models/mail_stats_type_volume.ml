@@ -5,27 +5,34 @@
  *
  *)
 
-type t = {
-      _to: Mail_stats_type_volume_to.t
-          
-           option [@default None]
-        
-        ; [@key "to"]
-      from: Mail_stats_type_volume_from.t
-          
-           option [@default None]
-        
-        ; [@key "from"]
-      ip: Mail_stats_type_volume_ip.t
-          
-           option [@default None]
-        
-        ; [@key "ip"]
-} [@@deriving yojson { strict = false }, show, eq ];;
 
-let create () : t = {
-    _to = None;
-    from = None;
-    ip = None;
-}
+
+    
+        type t = {
+                              _to: Mail_stats_type_volume_to.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "to"]
+                                              from: Mail_stats_type_volume_from.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "from"]
+                                              ip: Mail_stats_type_volume_ip.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "ip"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            _to = None;
+            from = None;
+            ip = None;
+        }
+    
 

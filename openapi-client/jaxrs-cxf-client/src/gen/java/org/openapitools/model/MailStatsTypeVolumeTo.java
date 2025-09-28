@@ -9,15 +9,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MailStatsTypeVolumeTo  {
   
   @ApiModelProperty(value = "")
+
   private Integer clientAtDomainCom;
 
   @ApiModelProperty(value = "")
+
   private Integer userAtSiteNet;
 
   @ApiModelProperty(value = "")
+
   private Integer salesAtCompanyCom;
 
   @ApiModelProperty(value = "")
+
   private Integer clientAtAnothersiteCom;
  /**
    * Get clientAtDomainCom

@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MailStatsTypeVolumeFrom  {
   
   @ApiModelProperty(value = "")
+
   private Integer billingAtSomedomainCom;
 
   @ApiModelProperty(value = "")
+
   private Integer salesAtSomedomainCom;
  /**
    * Get billingAtSomedomainCom

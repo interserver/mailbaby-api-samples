@@ -1,28 +1,30 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * (optional) File attachments to include in the email.  The file contents must be base64
- **/
+ * (optional) File attachments to include in the email.  The file contents must be base64
+ */
 @ApiModel(description="(optional) File attachments to include in the email.  The file contents must be base64")
 
 public class MailAttachment  {
   
-  @ApiModelProperty(example = "message.txt", required = true, value = "The filename of the attached file.")
  /**
-   * The filename of the attached file.
-  **/
+  * The filename of the attached file.
+  */
+  @ApiModelProperty(example = "message.txt", required = true, value = "The filename of the attached file.")
+
   private String filename;
 
-  @ApiModelProperty(example = "aGVsbG8gdGhlcmUK", required = true, value = "The file contents base64 encoded")
  /**
-   * The file contents base64 encoded
-  **/
+  * The file contents base64 encoded
+  */
+  @ApiModelProperty(example = "aGVsbG8gdGhlcmUK", required = true, value = "The file contents base64 encoded")
+
   private String data;
  /**
    * The filename of the attached file.

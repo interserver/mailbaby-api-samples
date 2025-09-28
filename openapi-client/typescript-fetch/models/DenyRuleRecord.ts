@@ -107,7 +107,7 @@ export function DenyRuleRecordToJSONTyped(value?: DenyRuleRecord | null, ignoreD
         'type': value['type'],
         'data': value['data'],
         'id': value['id'],
-        'created': ((value['created']).toISOString()),
+        'created': value['created'].toISOString(),
         'user': value['user'],
     };
 }

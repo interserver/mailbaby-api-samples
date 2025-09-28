@@ -6,7 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-09-24T20:31:14.655846932-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-09-28T16:28:41.499292232-04:00[America/New_York]")
 
 public class MailStatsTypeVolumeTo   {
   @JsonProperty("client@domain.com")

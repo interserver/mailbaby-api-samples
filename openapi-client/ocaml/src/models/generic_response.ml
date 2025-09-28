@@ -5,21 +5,27 @@
  *
  *)
 
-type t = {
-      status: string
-          
-           option [@default None]
-        
-        ; [@key "status"]
-      text: string
-          
-           option [@default None]
-        
-        ; [@key "text"]
-} [@@deriving yojson { strict = false }, show, eq ];;
 
-let create () : t = {
-    status = None;
-    text = None;
-}
+
+    
+        type t = {
+                              status: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "status"]
+                                              text: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "text"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        let create () : t = {
+            status = None;
+            text = None;
+        }
+    
 

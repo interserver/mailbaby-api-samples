@@ -92,7 +92,7 @@ export function MailBlockClickHouseToJSONTyped(value?: MailBlockClickHouse | nul
 
     return {
         
-        'date': ((value['date']).toISOString().substring(0,10)),
+        'date': value['date'].toISOString().substring(0,10),
         'from': value['from'],
         'messageId': value['messageId'],
         'subject': value['subject'],

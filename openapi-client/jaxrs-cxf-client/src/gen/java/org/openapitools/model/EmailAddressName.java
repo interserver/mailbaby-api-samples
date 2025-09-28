@@ -1,28 +1,30 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * An email contact.
- **/
+ * An email contact.
+ */
 @ApiModel(description="An email contact.")
 
 public class EmailAddressName  {
   
-  @ApiModelProperty(example = "user@domain.com", required = true, value = "The email address.")
  /**
-   * The email address.
-  **/
+  * The email address.
+  */
+  @ApiModelProperty(example = "user@domain.com", required = true, value = "The email address.")
+
   private String email;
 
-  @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
  /**
-   * Name to use for the sending contact.
-  **/
+  * Name to use for the sending contact.
+  */
+  @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
+
   private String name;
  /**
    * The email address.

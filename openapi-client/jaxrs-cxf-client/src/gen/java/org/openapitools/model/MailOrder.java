@@ -1,40 +1,44 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * A mail order record
- **/
+ * A mail order record
+ */
 @ApiModel(description="A mail order record")
 
 public class MailOrder  {
   
-  @ApiModelProperty(example = "21472", required = true, value = "The ID of the order.")
  /**
-   * The ID of the order.
-  **/
+  * The ID of the order.
+  */
+  @ApiModelProperty(example = "21472", required = true, value = "The ID of the order.")
+
   private Integer id;
 
-  @ApiModelProperty(example = "active", required = true, value = "The order status.")
  /**
-   * The order status.
-  **/
+  * The order status.
+  */
+  @ApiModelProperty(example = "active", required = true, value = "The order status.")
+
   private String status;
 
-  @ApiModelProperty(example = "mb21472", required = true, value = "The username to use for this order.")
  /**
-   * The username to use for this order.
-  **/
+  * The username to use for this order.
+  */
+  @ApiModelProperty(example = "mb21472", required = true, value = "The username to use for this order.")
+
   private String username;
 
-  @ApiModelProperty(value = "Optional order comment.")
  /**
-   * Optional order comment.
-  **/
+  * Optional order comment.
+  */
+  @ApiModelProperty(value = "Optional order comment.")
+
   private String comment;
  /**
    * The ID of the order.

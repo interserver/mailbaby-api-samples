@@ -1,32 +1,37 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import org.joda.time.LocalDate;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * A block entry from the clickhouse mailblocks server.
- **/
+ * A block entry from the clickhouse mailblocks server.
+ */
 @ApiModel(description="A block entry from the clickhouse mailblocks server.")
 
 public class MailBlockClickHouse  {
   
   @ApiModelProperty(required = true, value = "")
+
   private LocalDate date;
 
   @ApiModelProperty(required = true, value = "")
+
   private String from;
 
   @ApiModelProperty(required = true, value = "")
+
   private String messageId;
 
   @ApiModelProperty(required = true, value = "")
+
   private String subject;
 
   @ApiModelProperty(required = true, value = "")
+
   private String to;
  /**
    * Get date

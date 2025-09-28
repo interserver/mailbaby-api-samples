@@ -14,6 +14,7 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import java.util.Locale;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.*;
 
@@ -32,7 +33,7 @@ import javax.annotation.Generated;
   MailStatsTypeVolumeTo.JSON_PROPERTY_CLIENT_AT_ANOTHERSITE_COM
 })
 @JsonTypeName("MailStatsType_volume_to")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-24T20:28:16.829689087-04:00[America/New_York]", comments = "Generator version: 7.15.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-09-28T16:25:40.004677733-04:00[America/New_York]", comments = "Generator version: 7.16.0")
 @Introspected
 public class MailStatsTypeVolumeTo {
     public static final String JSON_PROPERTY_CLIENT_AT_DOMAIN_COM = "client@domain.com";

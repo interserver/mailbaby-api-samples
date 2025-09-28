@@ -6,24 +6,35 @@
  * Schema Email_address_types.t : 
  *)
 
-type t = {
-    (* The email address. *)
-      email: string
-          
-          
+        type t =
+            | OneOf0 of string
+            | OneOf1 of Email_address_name.t
+        [@@deriving show, eq];;
         
-        ; [@key "email"]
-    (* Name to use for the sending contact. *)
-      name: string
-          
-           option [@default None]
+        let to_yojson = function
+            | OneOf0 v -> [%to_yojson: string] v
+            | OneOf1 v -> [%to_yojson: Email_address_name.t] v
         
-        ; [@key "name"]
-} [@@deriving yojson { strict = false }, show, eq ];;
+        (* Manual implementations because the derived one encodes into a tuple list where the first element is the constructor name. *)
+        
+        let of_yojson json =
+          [
+            [%of_yojson: string] json
+              |> Stdlib.Result.to_option
+              |> Stdlib.Option.map (fun v -> OneOf0 v);
+            [%of_yojson: Email_address_name.t] json
+              |> Stdlib.Result.to_option
+              |> Stdlib.Option.map (fun v -> OneOf1 v);
+                        ]
+          |> Stdlib.List.filter_map (Fun.id)
+          |> function
+             | [t] -> Ok t
+             | [] -> Error ("Failed to parse JSON " ^ Yojson.Safe.show json ^ " into a value of type Email_address_types.t")
+             | ts -> let parsed_ts = ts
+                         |> Stdlib.List.map show
+                         |> Stdlib.String.concat " | "
+                     in Error ("Failed to parse JSON " ^ Yojson.Safe.show json ^ " into a value of type Email_address_types.t: oneOf should only succeed on one parser, but the JSON was parsed into [" ^ parsed_ts ^ "]")
 
-(**  *)
-let create (email : string) : t = {
-    email = email;
-    name = None;
-}
+
+    
 

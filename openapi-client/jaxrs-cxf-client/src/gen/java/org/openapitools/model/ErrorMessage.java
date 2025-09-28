@@ -1,28 +1,30 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * The resposne when an error occurs.
- **/
+ * The resposne when an error occurs.
+ */
 @ApiModel(description="The resposne when an error occurs.")
 
 public class ErrorMessage  {
   
-  @ApiModelProperty(example = "400", required = true, value = "The response code associated with the error.")
  /**
-   * The response code associated with the error.
-  **/
+  * The response code associated with the error.
+  */
+  @ApiModelProperty(example = "400", required = true, value = "The response code associated with the error.")
+
   private Integer code;
 
-  @ApiModelProperty(example = "There was an error.", required = true, value = "The details or description of the error.")
  /**
-   * The details or description of the error.
-  **/
+  * The details or description of the error.
+  */
+  @ApiModelProperty(example = "There was an error.", required = true, value = "The details or description of the error.")
+
   private String message;
  /**
    * The response code associated with the error.

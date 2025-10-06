@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-09-28T16:29:00.438008428-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-10-06T16:15:19.954918446-04:00[America/New_York]")
 public class MailStatsTypeVolumeIp   {
   private Integer _1111 = null;  private Integer _2222 = null;  private Integer _3333 = null;  private Integer _4444 = null;
 

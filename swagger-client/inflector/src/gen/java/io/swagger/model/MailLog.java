@@ -12,7 +12,7 @@ import java.util.List;
  * Mail log records
  **/
 @Schema(description = "Mail log records")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-09-28T16:28:41.499292232-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-10-06T16:15:00.935678241-04:00[America/New_York]")
 
 public class MailLog   {
   @JsonProperty("total")

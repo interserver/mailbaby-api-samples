@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Details for an Email")
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-09-28T16:29:09.082524796-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-10-06T16:15:28.723768777-04:00[America/New_York]")
 
 
 public class SendMailAdv   {

@@ -1,5 +1,7 @@
 # Interserver\Mailbaby\HistoryApi
 
+Information about already delivered emails.
+
 All URIs are relative to https://api.mailbaby.net, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * This is a block entry from the rspamd block list.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-09-28T16:25:36.113785640-04:00[America/New_York]", comments = "Generator version: 7.16.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-06T16:11:55.185987842-04:00[America/New_York]", comments = "Generator version: 7.17.0-SNAPSHOT")
 public class MailBlockRspamd {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)

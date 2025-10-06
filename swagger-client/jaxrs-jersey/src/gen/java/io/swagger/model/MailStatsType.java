@@ -25,7 +25,7 @@ import javax.validation.Valid;
  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
  */
 @Schema(description = "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-09-28T16:28:50.506130034-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-10-06T16:15:10.173055331-04:00[America/New_York]")
 public class MailStatsType   {
   /**
    * Gets or Sets time

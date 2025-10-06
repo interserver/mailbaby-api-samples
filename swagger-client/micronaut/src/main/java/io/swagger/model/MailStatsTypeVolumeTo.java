@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-09-28T16:29:05.877636411-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-10-06T16:15:25.436344464-04:00[America/New_York]")
 public class MailStatsTypeVolumeTo   {
   @JsonProperty("client@domain.com")
   private Integer clientAtDomainCom = null;

@@ -1,28 +1,28 @@
-16:29:02.943 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-16:29:02.945 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
-16:29:02.999 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-16:29:02.999 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@1a045693
-16:29:03.698 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-16:29:03.705 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailOrders, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailBlocks, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendMail, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendAdvMail, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId viewMailLog, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId pingServer, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId delistBlock, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getRules, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId addRule, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId deleteRule, will not be mount
-16:29:03.706 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getStats, will not be mount
-16:29:03.873 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
-16:29:03.875 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _1111 (model name starts with number) cannot be used as model name. Renamed to Model1111
-16:29:03.875 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _2222 (model name starts with number) cannot be used as model name. Renamed to Model2222
-16:29:03.875 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _3333 (model name starts with number) cannot be used as model name. Renamed to Model3333
-16:29:03.875 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _4444 (model name starts with number) cannot be used as model name. Renamed to Model4444
-16:29:04.064 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleNew.java
-16:29:04.114 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleRecord.java
-16:29:04.135 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddressName.java
-16:29:04.151 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddressNames.java
+16:15:22.436 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+16:15:22.439 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
+16:15:22.496 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+16:15:22.496 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@6719e1cb
+16:15:23.231 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+16:15:23.238 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailOrders, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getMailBlocks, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendMail, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId sendAdvMail, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId viewMailLog, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId pingServer, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId delistBlock, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getRules, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId addRule, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId deleteRule, will not be mount
+16:15:23.239 [Thread-0] WARN  i.s.c.v.g.j.JavaVertXServerCodegen - event bus address not found on operationId getStats, will not be mount
+16:15:23.404 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
+16:15:23.406 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _1111 (model name starts with number) cannot be used as model name. Renamed to Model1111
+16:15:23.406 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _2222 (model name starts with number) cannot be used as model name. Renamed to Model2222
+16:15:23.406 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _3333 (model name starts with number) cannot be used as model name. Renamed to Model3333
+16:15:23.406 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _4444 (model name starts with number) cannot be used as model name. Renamed to Model4444
+16:15:23.587 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleNew.java
+16:15:23.627 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/DenyRuleRecord.java
+16:15:23.654 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddressName.java
+16:15:23.675 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/java-vertx/src/main/java/io/swagger/server/api/model/EmailAddressNames.java
 Exception in thread "Thread-0" java.lang.RuntimeException: Could not generate model 'EmailAddressTypes'
 	at io.swagger.codegen.v3.DefaultGenerator.generateModels(DefaultGenerator.java:462)
 	at io.swagger.codegen.v3.DefaultGenerator.generate(DefaultGenerator.java:852)

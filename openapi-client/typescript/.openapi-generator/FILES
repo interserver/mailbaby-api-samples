@@ -1,12 +1,7 @@
 .gitattributes
 .gitignore
 .openapi-generator-ignore
-BlockingApi.md
-HistoryApi.md
 README.md
-SendingApi.md
-ServicesApi.md
-StatusApi.md
 apis/BlockingApi.ts
 apis/HistoryApi.ts
 apis/SendingApi.ts
@@ -16,6 +11,11 @@ apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts
 configuration.ts
+docs/BlockingApi.md
+docs/HistoryApi.md
+docs/SendingApi.md
+docs/ServicesApi.md
+docs/StatusApi.md
 git_push.sh
 http/http.ts
 http/isomorphic-fetch.ts

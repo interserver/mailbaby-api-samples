@@ -40,6 +40,7 @@ export class ServicesService extends BaseService {
     /**
      * displays a list of mail service orders
      * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+     * @endpoint get /mail
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

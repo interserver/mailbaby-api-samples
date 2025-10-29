@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "HistoryAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
+#define MAX_NUMBER_LENGTH_LONG 21
 
 // Functions for enum TIME for HistoryAPI_getStats
 
@@ -237,13 +239,13 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
 
     // query parameters
     char *keyQuery_id = NULL;
-    long valueQuery_id ;
+    char * valueQuery_id ;
     keyValuePair_t *keyPairQuery_id = 0;
-    if (id)
     {
         keyQuery_id = strdup("id");
-        valueQuery_id = (id);
-        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
+        valueQuery_id = calloc(1,MAX_NUMBER_LENGTH_LONG);
+        snprintf(valueQuery_id, MAX_NUMBER_LENGTH_LONG, "%d", id);
+        keyPairQuery_id = keyValuePair_create(keyQuery_id, valueQuery_id);
         list_addElement(localVarQueryParameters,keyPairQuery_id);
     }
 
@@ -347,25 +349,25 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
 
     // query parameters
     char *keyQuery_startDate = NULL;
-    long valueQuery_startDate ;
+    char * valueQuery_startDate ;
     keyValuePair_t *keyPairQuery_startDate = 0;
-    if (startDate)
     {
         keyQuery_startDate = strdup("startDate");
-        valueQuery_startDate = (startDate);
-        keyPairQuery_startDate = keyValuePair_create(keyQuery_startDate, &valueQuery_startDate);
+        valueQuery_startDate = calloc(1,MAX_NUMBER_LENGTH_LONG);
+        snprintf(valueQuery_startDate, MAX_NUMBER_LENGTH_LONG, "%d", startDate);
+        keyPairQuery_startDate = keyValuePair_create(keyQuery_startDate, valueQuery_startDate);
         list_addElement(localVarQueryParameters,keyPairQuery_startDate);
     }
 
     // query parameters
     char *keyQuery_endDate = NULL;
-    long valueQuery_endDate ;
+    char * valueQuery_endDate ;
     keyValuePair_t *keyPairQuery_endDate = 0;
-    if (endDate)
     {
         keyQuery_endDate = strdup("endDate");
-        valueQuery_endDate = (endDate);
-        keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, &valueQuery_endDate);
+        valueQuery_endDate = calloc(1,MAX_NUMBER_LENGTH_LONG);
+        snprintf(valueQuery_endDate, MAX_NUMBER_LENGTH_LONG, "%d", endDate);
+        keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, valueQuery_endDate);
         list_addElement(localVarQueryParameters,keyPairQuery_endDate);
     }
 

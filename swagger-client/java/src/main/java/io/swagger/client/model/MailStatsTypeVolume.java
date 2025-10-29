@@ -28,7 +28,7 @@ import java.io.IOException;
  * MailStatsTypeVolume
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-10-06T16:14:51.795515252-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-10-29T13:37:31.171928150-04:00[America/New_York]")
 
 public class MailStatsTypeVolume {
   @SerializedName("to")

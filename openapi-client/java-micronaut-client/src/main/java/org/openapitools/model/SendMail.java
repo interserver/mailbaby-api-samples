@@ -32,7 +32,7 @@ import javax.annotation.Generated;
   SendMail.JSON_PROPERTY_BODY
 })
 @JsonTypeName("SendMail")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-10-06T16:11:59.115476372-04:00[America/New_York]", comments = "Generator version: 7.17.0-SNAPSHOT")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-10-29T13:34:40.975885874-04:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Introspected
 public class SendMail {
     public static final String JSON_PROPERTY_TO = "to";

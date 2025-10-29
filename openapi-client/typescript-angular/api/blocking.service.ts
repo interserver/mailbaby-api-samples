@@ -44,6 +44,7 @@ export class BlockingService extends BaseService {
     /**
      * Creates a new email deny rule.
      * Adds a new email deny rule into the system to block new emails that match the given criteria
+     * @endpoint post /mail/rules
      * @param type The type of deny rule.
      * @param data The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
      * @param user Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
@@ -129,6 +130,7 @@ export class BlockingService extends BaseService {
     /**
      * Removes an deny mail rule.
      * Removes one of the configured deny mail rules from the system.
+     * @endpoint delete /mail/rules/{ruleId}
      * @param ruleId The ID of the Rules entry.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -182,6 +184,7 @@ export class BlockingService extends BaseService {
     /**
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
+     * @endpoint post /mail/blocks/delete
      * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -245,6 +248,7 @@ export class BlockingService extends BaseService {
 
     /**
      * displays a list of blocked email addresses
+     * @endpoint get /mail/blocks
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -294,6 +298,7 @@ export class BlockingService extends BaseService {
     /**
      * Displays a listing of deny email rules.
      * Returns a listing of all the deny block rules you have configured.
+     * @endpoint get /mail/rules
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

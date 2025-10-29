@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * MailStatsTypeVolumeIp
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-06T16:11:55.185987842-04:00[America/New_York]", comments = "Generator version: 7.17.0-SNAPSHOT")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-29T13:34:36.975934694-04:00[America/New_York]", comments = "Generator version: 7.17.0")
 public class MailStatsTypeVolumeIp {
   public static final String SERIALIZED_NAME_1111 = "1.1.1.1";
   @SerializedName(SERIALIZED_NAME_1111)

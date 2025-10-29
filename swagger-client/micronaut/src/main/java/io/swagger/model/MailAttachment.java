@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "(optional) File attachments to include in the email.  The file contents must be base64")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-10-06T16:15:25.436344464-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-10-29T13:38:04.648620498-04:00[America/New_York]")
 public class MailAttachment   {
   @JsonProperty("filename")
   private String filename = null;

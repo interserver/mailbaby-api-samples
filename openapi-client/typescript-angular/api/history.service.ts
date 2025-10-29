@@ -42,6 +42,7 @@ export class HistoryService extends BaseService {
     /**
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
+     * @endpoint get /mail/stats
      * @param time The timeframe for the statistics.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -97,6 +98,7 @@ export class HistoryService extends BaseService {
     /**
      * displays the mail log
      * Get a listing of the emails sent through this system 
+     * @endpoint get /mail/log
      * @param id The ID of your mail order this will be sent through.
      * @param origin originating ip address sending mail
      * @param mx mx record mail was sent to

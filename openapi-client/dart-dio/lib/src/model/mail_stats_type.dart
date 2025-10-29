@@ -54,7 +54,7 @@ abstract class MailStatsType implements Built<MailStatsType, MailStatsTypeBuilde
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(MailStatsTypeBuilder b) => b
-      ..time = '1h';
+      ..time = MailStatsTypeTimeEnum.valueOf('1h');
 
   @BuiltValueSerializer(custom: true)
   static Serializer<MailStatsType> get serializer => _$MailStatsTypeSerializer();

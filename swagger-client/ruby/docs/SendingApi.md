@@ -4,10 +4,118 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**raw_mail**](SendingApi.md#raw_mail) | **POST** /mail/rawsend | Sends a raw email
+[**raw_mail**](SendingApi.md#raw_mail) | **POST** /mail/rawsend | Sends a raw email
 [**send_adv_mail**](SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_adv_mail**](SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
 [**send_mail**](SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
+
+# **raw_mail**
+> GenericResponse raw_mail(body)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKeyAuth
+  config.api_key['X-API-KEY'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['X-API-KEY'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::SendingApi.new
+body = SwaggerClient::RawMail.new # RawMail | 
+
+
+begin
+  #Sends a raw email
+  result = api_instance.raw_mail(body)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling SendingApi->raw_mail: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+
+
+# **raw_mail**
+> GenericResponse raw_mail(raw_email)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```ruby
+# load the gem
+require 'swagger_client'
+# setup authorization
+SwaggerClient.configure do |config|
+  # Configure API key authorization: apiKeyAuth
+  config.api_key['X-API-KEY'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  #config.api_key_prefix['X-API-KEY'] = 'Bearer'
+end
+
+api_instance = SwaggerClient::SendingApi.new
+raw_email = 'raw_email_example' # String | 
+
+
+begin
+  #Sends a raw email
+  result = api_instance.raw_mail(raw_email)
+  p result
+rescue SwaggerClient::ApiError => e
+  puts "Exception when calling SendingApi->raw_mail: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **raw_email** | **String**|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+
 
 # **send_adv_mail**
 > GenericResponse send_adv_mail(subjectbodyfromtoreplytoccbccattachmentsid)

@@ -6,8 +6,57 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**raw_mail**](#raw_mail) | **POST** `/mail/rawsend` | Sends a raw email
 [**send_adv_mail**](#send_adv_mail) | **POST** `/mail/advsend` | Sends an Email with Advanced Options
 [**send_mail**](#send_mail) | **POST** `/mail/send` | Sends an Email
+
+# **raw_mail**   { #raw_mail }
+<a name="raw_mail"></a>
+
+> `raw_mail(rawMail: RawMail, on_success: Callable, on_failure: Callable)`
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+
+* Api Key Authentication (`apiKeyAuth`)
+
+```gdscript
+
+# Customize configuration
+var config := ApiConfig.new()
+config.host = "localhost"
+config.port = 8080
+#config.tls_enabled = true
+#config.trusted_chain = preload("res://my_cert_chain.crt")
+
+# Instantiate the api
+var api = SendingApi.new(config)
+# You can also provide your own HTTPClient, to re-use it across apis.
+#var api = SendingApi.new(config, client)
+
+var rawMail = RawMail.new()
+# … fill model rawMail with data
+
+# Invoke an endpoint
+api.raw_mail(
+	# rawMail: RawMail
+	rawMail,
+	# On Success
+	func(response):  # response is ApiResponse
+		prints("Success!", "raw_mail", response)
+		assert(response.data is GenericResponse)
+		pass  # do things, make stuff
+		,
+	# On Error
+	func(error):  # error is ApiError
+		push_error(str(error))
+		,
+)
+
+```
 
 # **send_adv_mail**   { #send_adv_mail }
 <a name="send_adv_mail"></a>

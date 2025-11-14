@@ -26,6 +26,7 @@ docs/models/MailStatsTypeVolume.html
 docs/models/MailStatsTypeVolumeFrom.html
 docs/models/MailStatsTypeVolumeIp.html
 docs/models/MailStatsTypeVolumeTo.html
+docs/models/RawMail.html
 docs/models/SendMail.html
 docs/models/SendMailAdv.html
 docs/operations/BlockingApi.html

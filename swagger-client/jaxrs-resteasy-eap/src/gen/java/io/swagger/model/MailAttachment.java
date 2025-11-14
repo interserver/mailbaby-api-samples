@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="(optional) File attachments to include in the email.  The file contents must be base64")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-10-29T13:37:56.433799779-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T05:52:46.271658002-05:00[America/New_York]")
 public class MailAttachment   {
   private String filename = null;
   private String data = null;

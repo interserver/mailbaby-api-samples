@@ -1318,6 +1318,21 @@
     }
   }
 };
+            defs["RawMail"] = {
+  "title" : "Root Type for RawMail",
+  "required" : [ "raw_email" ],
+  "type" : "object",
+  "properties" : {
+    "raw_email" : {
+      "type" : "string",
+      "description" : "The entire email contents"
+    }
+  },
+  "description" : "Raw Email Object",
+  "example" : {
+    "raw_email" : "<email contents here>"
+  }
+};
             defs["SendMail"] = {
   "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
@@ -1451,6 +1466,9 @@
                       <a href="#api-History-viewMailLog">viewMailLog</a>
                     </li>
                   <li class="nav-header" data-group="Sending"><a href="#api-Sending">API Methods - Sending</a></li>
+                    <li data-group="Sending" data-name="rawMail" class="">
+                      <a href="#api-Sending-rawMail">rawMail</a>
+                    </li>
                     <li data-group="Sending" data-name="sendAdvMail" class="">
                       <a href="#api-Sending-sendAdvMail">sendAdvMail</a>
                     </li>
@@ -1478,7 +1496,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.1.0</div>
+              <div class="app-desc">Version: 1.3.0</div>
             <hr>
             <div><p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
 <h1>Overview</h1>
@@ -5290,6 +5308,556 @@ except ApiException as e:
                   </section>
                 <section id="api-Sending">
                   <h1>Sending</h1>
+                    <div id="api-Sending-rawMail">
+                      <article id="api-Sending-rawMail-0" data-group="User" data-name="rawMail" data-version="0">
+                        <div class="pull-left">
+                          <h1>rawMail</h1>
+                          <p>Sends a raw email</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/mail/rawsend</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Sending-rawMail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Sending-rawMail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Sending-rawMail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Sending-rawMail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Sending-rawMail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Sending-rawMail-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "X-API-KEY: [[apiKey]]"\
+-H "Accept: application/json"\
+-H "Content-Type: application/json,multipart/form-data"\
+"https://api.mailbaby.net/mail/rawsend"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Sending-rawMail-0-java">
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.SendingApi;
+
+import java.io.File;
+import java.util.*;
+
+public class SendingApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: apiKeyAuth
+        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+        apiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //apiKeyAuth.setApiKeyPrefix("Token");
+
+        SendingApi apiInstance = new SendingApi();
+        RawMail body = ; // RawMail | 
+        try {
+            GenericResponse result = apiInstance.rawMail(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SendingApi#rawMail");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Sending-rawMail-0-android">
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.SendingApi;
+
+public class SendingApiExample {
+
+    public static void main(String[] args) {
+        SendingApi apiInstance = new SendingApi();
+        RawMail body = ; // RawMail | 
+        try {
+            GenericResponse result = apiInstance.rawMail(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SendingApi#rawMail");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Sending-rawMail-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure API key authorization: (authentication scheme: apiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
+RawMail *body = ; // 
+
+SendingApi *apiInstance = [[SendingApi alloc] init];
+
+// Sends a raw email
+[apiInstance rawMailWith:body
+              completionHandler: ^(GenericResponse output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryAndManagementServiceApi = require('mail_baby_email_delivery_and_management_service_api');
+var defaultClient = MailBabyEmailDeliveryAndManagementServiceApi.ApiClient.instance;
+
+// Configure API key authorization: apiKeyAuth
+var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
+apiKeyAuth.apiKey = "YOUR API KEY"
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
+
+var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
+var body = ; // {{RawMail}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.rawMail(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Sending-rawMail-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
+
+namespace Example
+{
+    public class rawMailExample
+    {
+        public void main()
+        {
+
+            // Configure API key authorization: apiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
+
+            var apiInstance = new SendingApi();
+            var body = new RawMail(); // RawMail | 
+
+            try
+            {
+                // Sends a raw email
+                GenericResponse result = apiInstance.rawMail(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling SendingApi.rawMail: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: apiKeyAuth
+Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+$api_instance = new Swagger\Client\ApiSendingApi();
+$body = ; // RawMail | 
+
+try {
+    $result = $api_instance->rawMail($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SendingApi->rawMail: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use MailBabyApi::Configuration;
+use MailBabyApi::SendingApi;
+
+# Configure API key authorization: apiKeyAuth
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+
+my $api_instance = MailBabyApi::SendingApi->new();
+my $body = MailBabyApi::Object::RawMail->new(); # RawMail | 
+
+eval { 
+    my $result = $api_instance->rawMail(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling SendingApi->rawMail: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import MailBabyApi
+from MailBabyApi.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuth
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = MailBabyApi.SendingApi()
+body =  # RawMail | 
+
+try: 
+    # Sends a raw email
+    api_response = api_instance.raw_mail(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SendingApi->rawMail: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/RawMail"
+      }
+    },
+    "multipart/form-data" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/RawMail"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_rawMail_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_rawMail_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+                            <div class="methodsubtabletitle">Form parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">raw_email*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_rawMail_rawEmail">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - successful email response </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-200-schema">
+                                  <div id='responses-rawMail-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "successful email response",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-400-schema">
+                                  <div id='responses-rawMail-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Error message when there was a problem with the input parameters.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-401-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-401-schema">
+                                  <div id='responses-rawMail-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-401-schema-401');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-401-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 404 - The specified resource was not found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-404-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-404-schema">
+                                  <div id='responses-rawMail-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-404-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Sending-sendAdvMail">
                       <article id="api-Sending-sendAdvMail-0" data-group="User" data-name="sendAdvMail" data-version="0">
                         <div class="pull-left">

@@ -11,6 +11,84 @@ import Alamofire
 
 open class SendingAPI {
     /**
+     Sends a raw email
+
+     - parameter body: (body)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func rawMail(body: RawMail, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        rawMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Sends a raw email
+     - POST /mail/rawsend
+
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "text" : "The command completed successfully.",
+  "status" : "ok"
+}}]
+     - parameter body: (body)  
+
+     - returns: RequestBuilder<GenericResponse> 
+     */
+    open class func rawMailWithRequestBuilder(body: RawMail) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/rawsend"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+        let url = URLComponents(string: URLString)
+
+
+        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+    /**
+     Sends a raw email
+
+     - parameter rawEmail: (form)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func rawMail(rawEmail: String, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        rawMailWithRequestBuilder(rawEmail: rawEmail).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Sends a raw email
+     - POST /mail/rawsend
+
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "text" : "The command completed successfully.",
+  "status" : "ok"
+}}]
+     - parameter rawEmail: (form)  
+
+     - returns: RequestBuilder<GenericResponse> 
+     */
+    open class func rawMailWithRequestBuilder(rawEmail: String) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/rawsend"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+        let url = URLComponents(string: URLString)
+
+
+        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+    /**
      Sends an Email with Advanced Options
 
      - parameter subject: (form)  

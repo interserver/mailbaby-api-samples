@@ -4,9 +4,40 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**raw_mail**](SendingApi.md#raw_mail) | **POST** /mail/rawsend | Sends a raw email
 [**send_adv_mail**](SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
 
+
+
+## raw_mail
+
+> models::GenericResponse raw_mail(raw_mail)
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**raw_mail** | [**RawMail**](RawMail.md) |  | [required] |
+
+### Return type
+
+[**models::GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## send_adv_mail

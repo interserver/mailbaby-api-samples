@@ -28,6 +28,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-oatpp-client/model/MailStatsType_volume_from.hpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-oatpp-client/model/MailStatsType_volume_ip.hpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-oatpp-client/model/MailStatsType_volume_to.hpp
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-oatpp-client/model/RawMail.hpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-oatpp-client/model/SendMail.hpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-oatpp-client/model/SendMailAdv.hpp
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null

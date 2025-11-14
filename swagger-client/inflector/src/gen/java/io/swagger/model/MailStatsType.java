@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
  **/
 @Schema(description = "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-10-29T13:37:40.574756771-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-11-14T05:52:30.119517379-05:00[America/New_York]")
 
 public class MailStatsType   {
   /**

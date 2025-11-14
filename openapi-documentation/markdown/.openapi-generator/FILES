@@ -23,6 +23,7 @@ Models/MailStatsType_volume.md
 Models/MailStatsType_volume_from.md
 Models/MailStatsType_volume_ip.md
 Models/MailStatsType_volume_to.md
+Models/RawMail.md
 Models/SendMail.md
 Models/SendMailAdv.md
 README.md

@@ -1,4 +1,4 @@
-(defproject mail-baby-email-delivery-and-management-service-api "1.1.0"
+(defproject mail-baby-email-delivery-and-management-service-api "1.3.0"
   :description "**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 # Overview
 This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).

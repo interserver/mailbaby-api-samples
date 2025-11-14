@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
 *OASBlockingApi* | [**getRules**](OASBlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
 *OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
 *OASHistoryApi* | [**viewMailLog**](OASHistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*OASSendingApi* | [**rawMail**](OASSendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 *OASSendingApi* | [**sendAdvMail**](OASSendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *OASSendingApi* | [**sendMail**](OASSendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *OASServicesApi* | [**getMailOrders**](OASServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
@@ -101,6 +102,7 @@ Class | Method | HTTP request | Description
  - [OASMailStatsTypeVolumeFrom](OASMailStatsTypeVolumeFrom.md)
  - [OASMailStatsTypeVolumeIp](OASMailStatsTypeVolumeIp.md)
  - [OASMailStatsTypeVolumeTo](OASMailStatsTypeVolumeTo.md)
+ - [OASRawMail](OASRawMail.md)
  - [OASSendMail](OASSendMail.md)
  - [OASSendMailAdv](OASSendMailAdv.md)
 

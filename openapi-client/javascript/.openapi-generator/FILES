@@ -24,6 +24,7 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
+docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -58,6 +59,7 @@ src/model/MailStatsTypeVolume.js
 src/model/MailStatsTypeVolumeFrom.js
 src/model/MailStatsTypeVolumeIp.js
 src/model/MailStatsTypeVolumeTo.js
+src/model/RawMail.js
 src/model/SendMail.js
 src/model/SendMailAdv.js
 test/api/BlockingApi.spec.js
@@ -84,5 +86,6 @@ test/model/MailStatsTypeVolume.spec.js
 test/model/MailStatsTypeVolumeFrom.spec.js
 test/model/MailStatsTypeVolumeIp.spec.js
 test/model/MailStatsTypeVolumeTo.spec.js
+test/model/RawMail.spec.js
 test/model/SendMail.spec.js
 test/model/SendMailAdv.spec.js

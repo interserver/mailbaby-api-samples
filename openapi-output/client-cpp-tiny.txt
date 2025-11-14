@@ -67,6 +67,9 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/Models/MailStatsTypeVolumeTo.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/Models/MailStatsTypeVolumeTo.cpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/TestFiles/MailStatsTypeVolumeToTest.cpp
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/Models/RawMail.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/Models/RawMail.cpp
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/TestFiles/RawMailTest.cpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/Models/SendMail.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/Models/SendMail.cpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-tiny/lib/TestFiles/SendMailTest.cpp

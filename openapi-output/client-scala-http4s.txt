@@ -45,6 +45,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/MailStatsTypeVolumeFrom.scala
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/MailStatsTypeVolumeIp.scala
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/MailStatsTypeVolumeTo.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/RawMail.scala
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/SendMail.scala
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/SendMailAdv.scala
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scala-http4s/src/main/scala/org/openapitools/client/models/ViewMailLogDeliveredParameter.scala

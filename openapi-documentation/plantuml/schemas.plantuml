@@ -134,6 +134,10 @@ entity MailStatsTypeVolumeTo {
     client@anothersite.com: Integer
 }
 
+entity RawMail {
+    * raw_email: String
+}
+
 entity SendMail {
     * to: String
     * from: String

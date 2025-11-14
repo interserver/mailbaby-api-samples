@@ -4,9 +4,76 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**RawMail**](SendingAPI.md#RawMail) | **Post** /mail/rawsend | Sends a raw email
 [**SendAdvMail**](SendingAPI.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](SendingAPI.md#SendMail) | **Post** /mail/send | Sends an Email
 
+
+
+## RawMail
+
+> GenericResponse RawMail(ctx).RawMail(rawMail).Execute()
+
+Sends a raw email
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	rawMail := *openapiclient.NewRawMail("RawEmail_example") // RawMail | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SendingAPI.RawMail(context.Background()).RawMail(rawMail).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SendingAPI.RawMail``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RawMail`: GenericResponse
+	fmt.Fprintf(os.Stdout, "Response from `SendingAPI.RawMail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRawMailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rawMail** | [**RawMail**](RawMail.md) |  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## SendAdvMail

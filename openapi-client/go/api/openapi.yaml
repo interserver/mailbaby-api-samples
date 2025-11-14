@@ -16,7 +16,7 @@ info:
     url: https://www.gnu.org/licenses/gpl.txt
   termsOfService: https://www.interserver.net/terms-of-service.html
   title: MailBaby Email Delivery and Management Service API
-  version: 1.1.0
+  version: 1.3.0
 externalDocs:
   description: FAQ
   url: https://www.mail.baby/tips/
@@ -926,6 +926,64 @@ paths:
       summary: Account usage statistics.
       tags:
       - History
+  /mail/rawsend:
+    post:
+      description: This call will let you pass the raw / complete email contents (including
+        headers) as a string and have it get sent as-is.  This is useful for things
+        like DKIM signed messages.
+      operationId: rawMail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RawMail"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/RawMail"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenericResponse"
+          description: successful email response
+        "400":
+          content:
+            application/json:
+              examples:
+                BadInputError:
+                  value:
+                    code: 400
+                    message: There was a problem with the input parameters.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Error message when there was a problem with the input parameters.
+        "401":
+          content:
+            application/json:
+              examples:
+                UnauthorizedError:
+                  value:
+                    code: 401
+                    message: Unauthorized
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              examples:
+                NotFoundError:
+                  value:
+                    code: 404
+                    message: The specified resource was not found.
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+          description: The specified resource was not found
+      summary: Sends a raw email
+      tags:
+      - Sending
 components:
   responses:
     BadInput:
@@ -1593,6 +1651,18 @@ components:
         volume:
           $ref: "#/components/schemas/MailStatsType_volume"
       title: Root Type for MailStatsType
+      type: object
+    RawMail:
+      description: Raw Email Object
+      example:
+        raw_email: <email contents here>
+      properties:
+        raw_email:
+          description: The entire email contents
+          type: string
+      required:
+      - raw_email
+      title: Root Type for RawMail
       type: object
     MailStatsType_volume_to:
       properties:

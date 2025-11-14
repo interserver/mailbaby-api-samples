@@ -24,6 +24,7 @@ src/gen/java/org/openapitools/model/MailStatsTypeVolume.java
 src/gen/java/org/openapitools/model/MailStatsTypeVolumeFrom.java
 src/gen/java/org/openapitools/model/MailStatsTypeVolumeIp.java
 src/gen/java/org/openapitools/model/MailStatsTypeVolumeTo.java
+src/gen/java/org/openapitools/model/RawMail.java
 src/gen/java/org/openapitools/model/SendMail.java
 src/gen/java/org/openapitools/model/SendMailAdv.java
 src/test/java/org/openapitools/api/BlockingApiTest.java

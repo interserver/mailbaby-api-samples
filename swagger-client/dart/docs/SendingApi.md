@@ -9,8 +9,58 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+
+# **rawMail**
+> GenericResponse rawMail(body, rawEmail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```dart
+import 'package:swagger/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//swagger.api.Configuration.apiKey{'X-API-KEY'} = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
+
+var api_instance = new SendingApi();
+var body = new RawMail(); // RawMail | 
+var rawEmail = rawEmail_example; // String | 
+
+try {
+    var result = api_instance.rawMail(body, rawEmail);
+    print(result);
+} catch (e) {
+    print("Exception when calling SendingApi->rawMail: $e\n");
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  | 
+ **rawEmail** | **String**|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendAdvMail**
 > GenericResponse sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, body)

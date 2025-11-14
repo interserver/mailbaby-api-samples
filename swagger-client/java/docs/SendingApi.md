@@ -4,8 +4,119 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+
+<a name="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(body)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.SendingApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKeyAuth
+ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+apiKeyAuth.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.setApiKeyPrefix("Token");
+
+SendingApi apiInstance = new SendingApi();
+RawMail body = new RawMail(); // RawMail | 
+try {
+    GenericResponse result = apiInstance.rawMail(body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SendingApi#rawMail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+<a name="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(rawEmail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```java
+// Import classes:
+//import io.swagger.client.ApiClient;
+//import io.swagger.client.ApiException;
+//import io.swagger.client.Configuration;
+//import io.swagger.client.auth.*;
+//import io.swagger.client.api.SendingApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: apiKeyAuth
+ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+apiKeyAuth.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.setApiKeyPrefix("Token");
+
+SendingApi apiInstance = new SendingApi();
+String rawEmail = "rawEmail_example"; // String | 
+try {
+    GenericResponse result = apiInstance.rawMail(rawEmail);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SendingApi#rawMail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rawEmail** | **String**|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
 
 <a name="sendAdvMail"></a>
 # **sendAdvMail**

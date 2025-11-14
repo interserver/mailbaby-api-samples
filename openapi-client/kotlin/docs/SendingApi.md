@@ -4,9 +4,59 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email |
 | [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
 | [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email |
 
+
+<a id="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(rawMail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```kotlin
+// Import classes:
+//import org.openapitools.client.infrastructure.*
+//import org.openapitools.client.models.*
+
+val apiInstance = SendingApi()
+val rawMail : RawMail =  // RawMail | 
+try {
+    val result : GenericResponse = apiInstance.rawMail(rawMail)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling SendingApi#rawMail")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SendingApi#rawMail")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **rawMail** | [**RawMail**](RawMail.md)|  | |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+
+Configure apiKeyAuth:
+    ApiClient.apiKey["X-API-KEY"] = ""
+    ApiClient.apiKeyPrefix["X-API-KEY"] = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a id="sendAdvMail"></a>
 # **sendAdvMail**

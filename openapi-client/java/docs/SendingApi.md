@@ -4,9 +4,82 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email |
 | [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
 | [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email |
 
+
+<a id="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(rawMail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```java
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.SendingApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.mailbaby.net");
+    
+    // Configure API key authorization: apiKeyAuth
+    ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+    apiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //apiKeyAuth.setApiKeyPrefix("Token");
+
+    SendingApi apiInstance = new SendingApi(defaultClient);
+    RawMail rawMail = new RawMail(); // RawMail | 
+    try {
+      GenericResponse result = apiInstance.rawMail(rawMail);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SendingApi#rawMail");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **rawMail** | [**RawMail**](RawMail.md)|  | |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful email response |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The specified resource was not found |  -  |
 
 <a id="sendAdvMail"></a>
 # **sendAdvMail**

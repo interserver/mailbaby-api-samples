@@ -24,6 +24,7 @@ import org.openapitools.client.models.EmailAddressesTypes
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailAttachment
+import org.openapitools.client.models.RawMail
 
 import com.squareup.moshi.Json
 
@@ -47,6 +48,80 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty(ApiClient.baseUrlKey, "https://api.mailbaby.net")
         }
+    }
+
+    /**
+     * POST /mail/rawsend
+     * Sends a raw email
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     * @param rawMail 
+     * @return GenericResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun rawMail(rawMail: RawMail) : GenericResponse {
+        val localVarResponse = rawMailWithHttpInfo(rawMail = rawMail)
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as GenericResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()} ${localVarError.body}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+     * POST /mail/rawsend
+     * Sends a raw email
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     * @param rawMail 
+     * @return ApiResponse<GenericResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun rawMailWithHttpInfo(rawMail: RawMail) : ApiResponse<GenericResponse?> {
+        val localVariableConfig = rawMailRequestConfig(rawMail = rawMail)
+
+        return request<RawMail, GenericResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation rawMail
+     *
+     * @param rawMail 
+     * @return RequestConfig
+     */
+    fun rawMailRequestConfig(rawMail: RawMail) : RequestConfig<RawMail> {
+        val localVariableBody = rawMail
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
+
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/mail/rawsend",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            requiresAuthentication = true,
+            body = localVariableBody
+        )
     }
 
     /**

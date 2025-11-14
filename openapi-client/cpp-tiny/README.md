@@ -6,7 +6,7 @@ After the client have been generated, you have to change these following variabl
 - src/main.cpp | Change wifi password
 - lib/service/AbstractService.h | Change to your url
 
-# Documentation for MailBaby Email Delivery and Management Service API 1.1.0 Tiny client cpp (Arduino) 
+# Documentation for MailBaby Email Delivery and Management Service API 1.3.0 Tiny client cpp (Arduino) 
 
 The project is structured like this:
 ```
@@ -45,6 +45,7 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 ### SendingApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
+|*rawMail* | *POST* /mail/rawsend | Sends a raw email.|
 |*sendAdvMail* | *POST* /mail/advsend | Sends an Email with Advanced Options.|
 |*sendMail* | *POST* /mail/send | Sends an Email.|
 
@@ -81,6 +82,7 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 |*MailStatsType_volume_from* | |
 |*MailStatsType_volume_ip* | |
 |*MailStatsType_volume_to* | |
+|*RawMail* | Raw Email Object|
 |*SendMail* | Details for an Email|
 |*SendMailAdv* | Details for an Email|
 

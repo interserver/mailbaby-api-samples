@@ -5,6 +5,7 @@ import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailAttachment;
+import org.openapitools.model.RawMail;
 
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,24 @@ import io.swagger.jaxrs.PATCH;
 @Path("/mail")
 @Api(value = "/", description = "")
 public interface SendingApi  {
+
+    /**
+     * Sends a raw email
+     *
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     *
+     */
+    @POST
+    @Path("/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @ApiOperation(value = "Sends a raw email", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful email response", response = GenericResponse.class),
+        @ApiResponse(code = 400, message = "Error message when there was a problem with the input parameters.", response = ErrorMessage.class),
+        @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
+        @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorMessage.class) })
+    public GenericResponse rawMail(RawMail rawMail);
 
     /**
      * Sends an Email with Advanced Options

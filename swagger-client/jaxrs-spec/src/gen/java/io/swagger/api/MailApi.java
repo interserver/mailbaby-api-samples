@@ -11,6 +11,7 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
@@ -33,7 +34,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2025-10-29T13:37:46.642161314-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2025-11-14T05:52:36.468173267-05:00[America/New_York]")
 public class MailApi {
 
     @POST
@@ -150,6 +151,36 @@ public class MailApi {
 
  @Parameter(description = "The timeframe for the statistics.")  String time
 ) {
+        return Response.ok().entity("magic!").build();
+    }
+    @POST
+    @Path("/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends a raw email", description = "This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful email response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+    })
+    public Response rawMail(@Valid RawMail body) {
+        return Response.ok().entity("magic!").build();
+    }
+    @POST
+    @Path("/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends a raw email", description = "This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.", security = {
+        @SecurityRequirement(name = "apiKeyAuth")    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful email response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+    })
+    public Response rawMail(@FormParam(value = "raw_email")  String rawEmail) {
         return Response.ok().entity("magic!").build();
     }
     @POST

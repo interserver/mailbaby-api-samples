@@ -4,9 +4,62 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**RawMail**](SendingApi.md#RawMail) | **POST** /mail/rawsend | Sends a raw email
 [**SendAdvMail**](SendingApi.md#SendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](SendingApi.md#SendMail) | **POST** /mail/send | Sends an Email
 
+
+# **RawMail**
+> GenericResponse RawMail(raw_mail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```R
+library(openapi)
+
+# Sends a raw email
+#
+# prepare function argument(s)
+var_raw_mail <- RawMail$new("raw_email_example") # RawMail | 
+
+api_instance <- SendingApi$new()
+# Configure API key authorization: apiKeyAuth
+api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$RawMail(var_raw_maildata_file = "result.txt")
+result <- api_instance$RawMail(var_raw_mail)
+dput(result)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **raw_mail** | [**RawMail**](RawMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful email response |  -  |
+| **400** | Error message when there was a problem with the input parameters. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The specified resource was not found |  -  |
 
 # **SendAdvMail**
 > GenericResponse SendAdvMail(subject, body, from, to, replyto = var.replyto, cc = var.cc, bcc = var.bcc, attachments = var.attachments, id = var.id)

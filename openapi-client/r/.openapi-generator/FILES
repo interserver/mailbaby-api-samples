@@ -29,6 +29,7 @@ R/mail_stats_type_volume.R
 R/mail_stats_type_volume_from.R
 R/mail_stats_type_volume_ip.R
 R/mail_stats_type_volume_to.R
+R/raw_mail.R
 R/send_mail.R
 R/send_mail_adv.R
 R/sending_api.R
@@ -56,6 +57,7 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
+docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -84,6 +86,7 @@ tests/testthat/test_mail_stats_type_volume.R
 tests/testthat/test_mail_stats_type_volume_from.R
 tests/testthat/test_mail_stats_type_volume_ip.R
 tests/testthat/test_mail_stats_type_volume_to.R
+tests/testthat/test_raw_mail.R
 tests/testthat/test_send_mail.R
 tests/testthat/test_send_mail_adv.R
 tests/testthat/test_sending_api.R

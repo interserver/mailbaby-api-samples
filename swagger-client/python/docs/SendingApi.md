@@ -4,8 +4,63 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**raw_mail**](SendingApi.md#raw_mail) | **POST** /mail/rawsend | Sends a raw email
 [**send_adv_mail**](SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
+
+# **raw_mail**
+> GenericResponse raw_mail(body)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```python
+from __future__ import print_function
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuth
+configuration = swagger_client.Configuration()
+configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = swagger_client.SendingApi(swagger_client.ApiClient(configuration))
+body = swagger_client.RawMail() # RawMail | 
+
+try:
+    # Sends a raw email
+    api_response = api_instance.raw_mail(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SendingApi->raw_mail: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_adv_mail**
 > GenericResponse send_adv_mail(subject, body, _from, to, replyto, cc, bcc, attachments, id)

@@ -28,6 +28,7 @@ docs/Model/MailStatsTypeVolume.md
 docs/Model/MailStatsTypeVolumeFrom.md
 docs/Model/MailStatsTypeVolumeIp.md
 docs/Model/MailStatsTypeVolumeTo.md
+docs/Model/RawMail.md
 docs/Model/SendMail.md
 docs/Model/SendMailAdv.md
 git_push.sh
@@ -61,6 +62,7 @@ src/Model/MailStatsTypeVolumeFrom.php
 src/Model/MailStatsTypeVolumeIp.php
 src/Model/MailStatsTypeVolumeTo.php
 src/Model/ModelInterface.php
+src/Model/RawMail.php
 src/Model/SendMail.php
 src/Model/SendMailAdv.php
 src/ObjectSerializer.php
@@ -88,5 +90,6 @@ test/Model/MailStatsTypeVolumeFromTest.php
 test/Model/MailStatsTypeVolumeIpTest.php
 test/Model/MailStatsTypeVolumeTest.php
 test/Model/MailStatsTypeVolumeToTest.php
+test/Model/RawMailTest.php
 test/Model/SendMailAdvTest.php
 test/Model/SendMailTest.php

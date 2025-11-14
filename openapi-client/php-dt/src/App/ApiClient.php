@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * MailBaby Email Delivery and Management Service API
  * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
- * The version of the OpenAPI document: 1.1.0
+ * The version of the OpenAPI document: 1.3.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {
@@ -657,6 +657,99 @@ class ApiClient extends OAGAC\AbstractApiClient
     ): mixed
     {
         return $this->getSuccessfulContent(...$this->pingServer($security));
+    }
+    //endregion
+
+    //region rawMail
+    /**
+     * Sends a raw email
+     * @param \App\DTO\RawMail $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function rawMailRaw(
+        \App\DTO\RawMail $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('POST', '/mail/rawsend', [], []);
+        $request = $this->addBody($request, $requestMediaType, $requestContent);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Sends a raw email
+     * @param \App\DTO\RawMail $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function rawMail(
+        \App\DTO\RawMail $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->rawMailRaw($requestContent, $security, $requestMediaType, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* successful email response */
+                $responseContent = new \App\DTO\GenericResponse();
+                break;
+            case 400:
+                /* Error message when there was a problem with the input parameters. */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+            case 401:
+                /* Unauthorized */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+            case 404:
+                /* The specified resource was not found */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Sends a raw email
+     * @param \App\DTO\RawMail $requestContent
+     * @param iterable<string, string[]> $security
+     * @param string $requestMediaType
+     * @param string $responseMediaType
+     * @return \App\DTO\GenericResponse
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function rawMailResult(
+        \App\DTO\RawMail $requestContent,
+        iterable $security = ['apiKeyAuth' => []],
+        string $requestMediaType = 'application/json',
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\GenericResponse
+    {
+        return $this->getSuccessfulContent(...$this->rawMail($requestContent, $security, $requestMediaType, $responseMediaType));
     }
     //endregion
 

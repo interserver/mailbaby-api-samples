@@ -22,6 +22,8 @@ import io.swagger.model.MailOrder;
 
 import io.swagger.model.MailStatsType;
 
+import io.swagger.model.RawMail;
+
 import io.swagger.model.SendMail;
 
 import io.swagger.model.SendMailAdv;
@@ -85,6 +87,18 @@ public class MailApiController implements MailApi {
     public Single<HttpResponse<MailStatsType>> getStats(@Nullable String time) {
         // TODO: Implement me
         return MailApi.super.getStats(time);
+    }
+
+    @Override
+    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Valid RawMail body) {
+        // TODO: Implement me
+        return MailApi.super.rawMail(body);
+    }
+
+    @Override
+    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull String rawEmail) {
+        // TODO: Implement me
+        return MailApi.super.rawMail(rawEmail);
     }
 
     @Override

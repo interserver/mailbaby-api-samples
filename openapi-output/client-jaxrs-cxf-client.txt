@@ -19,6 +19,7 @@
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation addRule
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation deleteRule
 [main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation getStats
+[main] INFO  o.o.c.languages.AbstractJavaCodegen - Processing operation rawMail
 [main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/DenyRuleNew.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/DenyRuleRecord.java
@@ -39,6 +40,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailStatsTypeVolumeFrom.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailStatsTypeVolumeIp.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/MailStatsTypeVolumeTo.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/RawMail.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMail.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/jaxrs-cxf-client/src/gen/java/org/openapitools/model/SendMailAdv.java
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null

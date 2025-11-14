@@ -14,6 +14,7 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
@@ -28,7 +29,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-10-29T13:37:59.301588478-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T05:52:49.510724097-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApiService {
       public Response addRule(String user,String type,String data,SecurityContext securityContext)
       throws NotFoundException {
@@ -66,6 +67,16 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
       public Response getStats(String time,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+      public Response rawMail(RawMail body,SecurityContext securityContext)
+      throws NotFoundException {
+      // do some magic!
+      return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+  }
+      public Response rawMail(String rawEmail,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

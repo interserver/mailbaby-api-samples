@@ -35,6 +35,7 @@ export 'package:openapi/src/model/mail_stats_type_volume.dart';
 export 'package:openapi/src/model/mail_stats_type_volume_from.dart';
 export 'package:openapi/src/model/mail_stats_type_volume_ip.dart';
 export 'package:openapi/src/model/mail_stats_type_volume_to.dart';
+export 'package:openapi/src/model/raw_mail.dart';
 export 'package:openapi/src/model/send_mail.dart';
 export 'package:openapi/src/model/send_mail_adv.dart';
 

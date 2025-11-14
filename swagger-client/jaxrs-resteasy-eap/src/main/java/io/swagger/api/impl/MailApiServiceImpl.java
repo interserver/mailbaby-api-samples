@@ -14,6 +14,7 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
@@ -25,7 +26,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-10-29T13:37:56.433799779-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T05:52:46.271658002-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApi {
       public Response addRule(String user,String type,String data,SecurityContext securityContext) {
       // do some magic!
@@ -56,6 +57,14 @@ public class MailApiServiceImpl implements MailApi {
       return Response.ok().build();
   }
       public Response getStats(String time,SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().build();
+  }
+      public Response rawMail(RawMail body,SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().build();
+  }
+      public Response rawMail(String rawEmail,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

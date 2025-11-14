@@ -7,7 +7,7 @@ This is the API interface to the [Mail Baby\](https//mail.baby/) Mail services p
 In order to use most of the API calls you must pass credentials from the [my.interserver.net\](https://my.interserver.net/) site.
 We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security\](https://my.interserver.net/account_security) page.
 
-*Version:* 1.1.0
+*Version:* 1.3.0
 
 ----
 
@@ -787,6 +787,122 @@ h4. Responses
 
 
 
+h3. rawMail
+{panel:title=rawMail|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
+    *Summary:* Sends a raw email
+    *Description:* This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+	|| HttpMethod | {status:colour=Yellow|title=post|subtle=false} |
+    || Protocol | {noformat:nopanel=true}https{noformat} |
+    || Path | {noformat:nopanel=true}/mail/rawsend{noformat} |
+    || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
+    || Produces | {noformat:nopanel=true}application/json {noformat} |
+----
+h4. Parameters
+
+h5. Body Parameter
+        ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
+        |RawMail | | RawMail | (/) | |  |  |
+
+
+----
+h4. Responses
+
+    	|| Status Code | {status:colour=Green|title=200|subtle=false} |
+    	|| Message | successful email response |
+    	|| Response Type | GenericResponse |
+    	|| Response Model | [GenericResponse Model|#GenericResponseModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "successful email response",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+}{code} |
+       
+
+
+    	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
+    	|| Message | Error message when there was a problem with the input parameters. |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Error message when there was a problem with the input parameters.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
+      }
+    }
+  }
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
+
+
+    	|| Status Code | {status:colour=Orange|title=401|subtle=false} |
+    	|| Message | Unauthorized |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
+
+
+    	|| Status Code | {status:colour=Orange|title=404|subtle=false} |
+    	|| Message | The specified resource was not found |
+    	|| Response Type | ErrorMessage |
+    	|| Response Model | [ErrorMessage Model|#ErrorMessageModelAnchor|Jump to model] |
+    	|| Response Schema | {code:collapse=true}{
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
+      }
+    }
+  }
+}{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} |
+
+{panel}
+
+
+
 h3. sendAdvMail
 {panel:title=sendAdvMail|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
     *Summary:* Sends an Email with Advanced Options
@@ -1538,6 +1654,15 @@ h2. Models
          |user@site.net |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          |sales@company.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          |client@anothersite.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
+         
+        {anchor:RawMailModelAnchor}
+        h3. RawMail
+
+        Raw Email Object
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |raw_email |(/) |{noformat:nopanel=true}String{noformat} | The entire email contents |  | null
          
         {anchor:SendMailModelAnchor}
         h3. SendMail

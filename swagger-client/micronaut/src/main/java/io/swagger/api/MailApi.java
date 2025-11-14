@@ -16,6 +16,7 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +33,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-10-29T13:38:04.648620498-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-11-14T05:52:54.856137132-05:00[America/New_York]")
 public interface MailApi {
 
 
@@ -130,6 +131,32 @@ public interface MailApi {
     @ApiResponse(responseCode = "404", description = "Unauthorized")
     @Get(value = "/mail/stats", produces = { "application/json" })
     default Single<HttpResponse<MailStatsType>> getStats(@Nullable @Parameter(description = "The timeframe for the statistics.") @QueryValue(value = "time") String time) {
+        return Single.fromCallable(() -> {
+            throw new UnsupportedOperationException();
+        });
+    }
+
+
+    @Operation(summary = "Sends a raw email", operationId = "rawMail", description = "This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages." , tags = {"Sending"})
+    @ApiResponse(responseCode = "200", description = "successful email response")
+    @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.")
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "404", description = "The specified resource was not found")
+    @Post(value = "/mail/rawsend", produces = { "application/json" }, consumes = {"application/json", "multipart/form-data"})
+    default Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Valid @Parameter(description = "") @Body RawMail body) {
+        return Single.fromCallable(() -> {
+            throw new UnsupportedOperationException();
+        });
+    }
+
+
+    @Operation(summary = "Sends a raw email", operationId = "rawMail", description = "This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages." , tags = {"Sending"})
+    @ApiResponse(responseCode = "200", description = "successful email response")
+    @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.")
+    @ApiResponse(responseCode = "401", description = "Unauthorized")
+    @ApiResponse(responseCode = "404", description = "The specified resource was not found")
+    @Post(value = "/mail/rawsend", produces = { "application/json" }, consumes = {"application/json", "multipart/form-data"})
+    default Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Parameter(description = "") @Body(value = "raw_email")  String rawEmail) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });

@@ -50,6 +50,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeFrom.gd
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeIp.gd
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeTo.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/RawMail.gd
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMail.gd
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
 {{modelNamePrefix}}
@@ -396,7 +397,43 @@
 {{coreNamePrefix}}
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
 {{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/SendingApi.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
 {{coreNamePrefix}}
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:

@@ -5,6 +5,7 @@ import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
@@ -34,6 +35,42 @@ import javax.validation.Valid;
  */
 @Path("/")
 public interface SendingApi  {
+
+    /**
+     * Sends a raw email
+     *
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     *
+     */
+    @POST
+    @Path("/mail/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends a raw email", tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful email response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public GenericResponse rawMail(@Valid RawMail body);
+
+    /**
+     * Sends a raw email
+     *
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     *
+     */
+    @POST
+    @Path("/mail/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Sends a raw email", tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "successful email response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public GenericResponse rawMail(@Multipart(value = "raw_email")  String rawEmail);
 
     /**
      * Sends an Email with Advanced Options

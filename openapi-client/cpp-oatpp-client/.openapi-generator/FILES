@@ -26,5 +26,6 @@ model/MailStatsType_volume.hpp
 model/MailStatsType_volume_from.hpp
 model/MailStatsType_volume_ip.hpp
 model/MailStatsType_volume_to.hpp
+model/RawMail.hpp
 model/SendMail.hpp
 model/SendMailAdv.hpp

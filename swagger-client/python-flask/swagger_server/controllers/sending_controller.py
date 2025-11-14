@@ -6,9 +6,38 @@ from swagger_server.models.email_addresses_types import EmailAddressesTypes  # n
 from swagger_server.models.error_message import ErrorMessage  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
+from swagger_server.models.raw_mail import RawMail  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
 from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
 from swagger_server import util
+
+
+def raw_mail(body):  # noqa: E501
+    """Sends a raw email
+
+    This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages. # noqa: E501
+
+    :param body: 
+    :type body: dict | bytes
+
+    :rtype: GenericResponse
+    """
+    if connexion.request.is_json:
+        body = RawMail.from_dict(connexion.request.get_json())  # noqa: E501
+    return 'do some magic!'
+
+
+def raw_mail(raw_email):  # noqa: E501
+    """Sends a raw email
+
+    This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages. # noqa: E501
+
+    :param raw_email: 
+    :type raw_email: str
+
+    :rtype: GenericResponse
+    """
+    return 'do some magic!'
 
 
 def send_adv_mail(subject, body, _from, to, replyto, cc, bcc, attachments, id):  # noqa: E501

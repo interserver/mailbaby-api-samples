@@ -4,8 +4,76 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**RawMail**](SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email
 [**SendAdvMail**](SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
+
+<a name="rawmail"></a>
+# **RawMail**
+> GenericResponse RawMail (RawMail body)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class RawMailExample
+    {
+        public void main()
+        {
+
+            // Configure API key authorization: apiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
+
+            var apiInstance = new SendingApi();
+            var body = new RawMail(); // RawMail | 
+
+            try
+            {
+                // Sends a raw email
+                GenericResponse result = apiInstance.RawMail(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling SendingApi.RawMail: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a name="sendadvmail"></a>
 # **SendAdvMail**

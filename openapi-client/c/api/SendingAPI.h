@@ -10,6 +10,15 @@
 #include "../model/error_message.h"
 #include "../model/generic_response.h"
 #include "../model/mail_attachment.h"
+#include "../model/raw_mail.h"
+
+
+// Sends a raw email
+//
+// This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+//
+generic_response_t*
+SendingAPI_rawMail(apiClient_t *apiClient, raw_mail_t *raw_mail);
 
 
 // Sends an Email with Advanced Options

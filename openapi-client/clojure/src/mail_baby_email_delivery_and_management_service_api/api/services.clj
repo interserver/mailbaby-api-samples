@@ -21,6 +21,7 @@
             [mail-baby-email-delivery-and-management-service-api.specs.generic-response :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-rspamd :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.raw-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume-from :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]

@@ -13,6 +13,21 @@ inherit
 feature -- Test routines
 
 
+    test_raw_mail
+            -- Sends a raw email
+            --
+            -- This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+        local
+            l_response: GENERIC_RESPONSE
+            l_raw_mail: RAW_MAIL
+        do
+            -- TODO: Initialize required params.
+            -- l_raw_mail
+
+            -- l_response := api.raw_mail(l_raw_mail)
+            assert ("not_implemented", False)
+        end
+
     test_send_adv_mail
             -- Sends an Email with Advanced Options
             --

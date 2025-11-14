@@ -220,6 +220,8 @@ class ApiClient {
           return MailStatsTypeVolumeIp.fromJson(value);
         case 'MailStatsTypeVolumeTo':
           return MailStatsTypeVolumeTo.fromJson(value);
+        case 'RawMail':
+          return RawMail.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
         case 'SendMailAdv':

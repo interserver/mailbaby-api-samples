@@ -23,7 +23,7 @@ import javax.validation.constraints.*;
 @Schema(description = "The listing of blocked emails.")
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-10-29T13:38:07.880886037-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T05:52:58.531972048-05:00[America/New_York]")
 
 
 public class MailBlocks   {

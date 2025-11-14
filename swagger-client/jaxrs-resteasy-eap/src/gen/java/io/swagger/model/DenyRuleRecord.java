@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="The data for a email deny rule record.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-10-29T13:37:56.433799779-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T05:52:46.271658002-05:00[America/New_York]")
 public class DenyRuleRecord   {
   private String id = null;
   private Date created = null;

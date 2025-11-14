@@ -4,9 +4,60 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Invoke-RawMail**](SendingApi.md#Invoke-RawMail) | **POST** /mail/rawsend | Sends a raw email
 [**Send-AdvMail**](SendingApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**Send-Mail**](SendingApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
 
+
+<a id="Invoke-RawMail"></a>
+# **Invoke-RawMail**
+> GenericResponse Invoke-RawMail<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-RawMail] <PSCustomObject><br>
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-Configuration
+# Configure API key authorization: apiKeyAuth
+$Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
+
+$RawMail = Initialize-RawMail -RawEmail "MyRawEmail" # RawMail | 
+
+# Sends a raw email
+try {
+    $Result = Invoke-RawMail -RawMail $RawMail
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-RawMail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **RawMail** | [**RawMail**](RawMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md) (PSCustomObject)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="Send-AdvMail"></a>
 # **Send-AdvMail**

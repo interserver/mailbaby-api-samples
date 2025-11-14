@@ -26,6 +26,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/clojure/src/mail_baby_email_delivery_and_management_service_api/specs/mail_stats_type_volume_from.clj
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/clojure/src/mail_baby_email_delivery_and_management_service_api/specs/mail_stats_type_volume_ip.clj
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/clojure/src/mail_baby_email_delivery_and_management_service_api/specs/mail_stats_type_volume_to.clj
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/clojure/src/mail_baby_email_delivery_and_management_service_api/specs/raw_mail.clj
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/clojure/src/mail_baby_email_delivery_and_management_service_api/specs/send_mail.clj
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/clojure/src/mail_baby_email_delivery_and_management_service_api/specs/send_mail_adv.clj
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null

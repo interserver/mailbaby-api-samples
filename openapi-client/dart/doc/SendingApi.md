@@ -9,9 +9,57 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rawMail**](SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email
 [**sendAdvMail**](SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
 
+
+# **rawMail**
+> GenericResponse rawMail(rawMail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+
+final api_instance = SendingApi();
+final rawMail = RawMail(); // RawMail | 
+
+try {
+    final result = api_instance.rawMail(rawMail);
+    print(result);
+} catch (e) {
+    print('Exception when calling SendingApi->rawMail: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rawMail** | [**RawMail**](RawMail.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendAdvMail**
 > GenericResponse sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id)

@@ -10,6 +10,7 @@ import io.swagger.server.model.EmailAddressesTypes
 import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailAttachment
+import io.swagger.server.model.RawMail
 import io.swagger.server.model.SendMail
 import io.swagger.server.model.SendMailAdv
 
@@ -20,6 +21,21 @@ class SendingApi(
   import sendingMarshaller._
 
   lazy val route: Route =
+    path() { 
+      post {
+        
+          
+            formFields("raw_email".as[String]) { (rawEmail) =>
+              
+                entity(as[RawMail]){ body =>
+                  sendingService.rawMail(body = body, rawEmail = rawEmail)
+                }
+             
+            }
+         
+       
+      }
+    } ~
     path() { 
       post {
         
@@ -53,6 +69,23 @@ class SendingApi(
 }
 
 trait SendingApiService {
+
+  def rawMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
+    complete((200, responseGenericResponse))
+  def rawMail400(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((400, responseErrorMessage))
+  def rawMail401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
+  def rawMail404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((404, responseErrorMessage))
+  /**
+   * Code: 200, Message: successful email response, DataType: GenericResponse
+   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
+   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   */
+  def rawMail(body: RawMail, rawEmail: String)
+      (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def sendAdvMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
     complete((200, responseGenericResponse))
@@ -93,8 +126,18 @@ trait SendingApiService {
 trait SendingApiMarshaller {
   implicit def fromRequestUnmarshallerSendMailAdv: FromRequestUnmarshaller[SendMailAdv]
 
+  implicit def fromRequestUnmarshallerRawMail: FromRequestUnmarshaller[RawMail]
+
   implicit def fromRequestUnmarshallerSendMail: FromRequestUnmarshaller[SendMail]
 
+
+  implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
+
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
+
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
+
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
   implicit def toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]
 

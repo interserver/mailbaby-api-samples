@@ -1,66 +1,67 @@
-13:38:44.595 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-13:38:44.598 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
-13:38:44.651 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-13:38:44.652 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@7788e231
-13:38:45.256 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-13:38:45.306 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.307 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.311 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.311 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.401 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.401 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Data (reserved word) cannot be used as model name. Renamed to ModelData
-13:38:45.402 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Data (reserved word) cannot be used as model name. Renamed to ModelData
-13:38:45.404 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Response (reserved word) cannot be used as model name. Renamed to ModelResponse
-13:38:45.405 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 1111 (model name starts with number) cannot be used as model name. Renamed to Model1111
-13:38:45.405 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 2222 (model name starts with number) cannot be used as model name. Renamed to Model2222
-13:38:45.405 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 3333 (model name starts with number) cannot be used as model name. Renamed to Model3333
-13:38:45.405 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 4444 (model name starts with number) cannot be used as model name. Renamed to Model4444
-13:38:45.554 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/DenyRuleNew.swift
-13:38:45.575 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/DenyRuleRecord.swift
-13:38:45.586 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddress.swift
-13:38:45.608 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressName.swift
-13:38:45.612 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressNames.swift
-13:38:45.625 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressTypes.swift
-13:38:45.636 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressesTypes.swift
-13:38:45.647 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/ErrorMessage.swift
-13:38:45.656 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/GenericResponse.swift
-13:38:45.665 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailAttachment.swift
-13:38:45.677 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailBlockClickHouse.swift
-13:38:45.685 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailBlockRspamd.swift
-13:38:45.694 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailBlocks.swift
-13:38:45.702 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailLog.swift
-13:38:45.713 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailLogEntry.swift
-13:38:45.726 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailOrder.swift
-13:38:45.736 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsType.swift
-13:38:45.743 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolume.swift
-13:38:45.750 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolumeFrom.swift
-13:38:45.757 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolumeIp.swift
-13:38:45.764 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolumeTo.swift
-13:38:45.770 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMail.swift
-13:38:45.776 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMailAdv.swift
-13:38:45.844 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.844 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.853 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.853 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.854 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.854 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
-13:38:45.889 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/BlockingAPI.swift
-13:38:45.953 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/HistoryAPI.swift
-13:38:45.977 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/SendingAPI.swift
-13:38:45.996 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/ServicesAPI.swift
-13:38:46.014 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/StatusAPI.swift
-13:38:46.019 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient.podspec
-13:38:46.020 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/Cartfile
-13:38:46.021 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIHelper.swift
-13:38:46.023 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/AlamofireImplementations.swift
-13:38:46.024 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Configuration.swift
-13:38:46.025 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Extensions.swift
-13:38:46.026 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models.swift
-13:38:46.027 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs.swift
-13:38:46.028 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/git_push.sh
-13:38:46.029 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.gitignore
-13:38:46.030 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/CodableHelper.swift
-13:38:46.031 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodableEncoding.swift
-13:38:46.032 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodingHelper.swift
-13:38:46.037 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen-ignore
-13:38:46.037 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen/VERSION
+05:53:35.623 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+05:53:35.626 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
+05:53:35.679 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+05:53:35.679 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@562b6be9
+05:53:36.350 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+05:53:36.406 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.406 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.411 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.411 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.510 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.511 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Data (reserved word) cannot be used as model name. Renamed to ModelData
+05:53:36.512 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Data (reserved word) cannot be used as model name. Renamed to ModelData
+05:53:36.514 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Response (reserved word) cannot be used as model name. Renamed to ModelResponse
+05:53:36.515 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 1111 (model name starts with number) cannot be used as model name. Renamed to Model1111
+05:53:36.515 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 2222 (model name starts with number) cannot be used as model name. Renamed to Model2222
+05:53:36.515 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 3333 (model name starts with number) cannot be used as model name. Renamed to Model3333
+05:53:36.515 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - 4444 (model name starts with number) cannot be used as model name. Renamed to Model4444
+05:53:36.676 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/DenyRuleNew.swift
+05:53:36.698 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/DenyRuleRecord.swift
+05:53:36.711 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddress.swift
+05:53:36.736 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressName.swift
+05:53:36.741 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressNames.swift
+05:53:36.755 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressTypes.swift
+05:53:36.766 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/EmailAddressesTypes.swift
+05:53:36.777 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/ErrorMessage.swift
+05:53:36.787 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/GenericResponse.swift
+05:53:36.797 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailAttachment.swift
+05:53:36.809 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailBlockClickHouse.swift
+05:53:36.818 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailBlockRspamd.swift
+05:53:36.828 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailBlocks.swift
+05:53:36.837 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailLog.swift
+05:53:36.849 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailLogEntry.swift
+05:53:36.861 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailOrder.swift
+05:53:36.871 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsType.swift
+05:53:36.878 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolume.swift
+05:53:36.884 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolumeFrom.swift
+05:53:36.891 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolumeIp.swift
+05:53:36.897 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/MailStatsTypeVolumeTo.swift
+05:53:36.903 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/RawMail.swift
+05:53:36.909 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMail.swift
+05:53:36.915 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models/SendMailAdv.swift
+05:53:36.990 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.991 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.999 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:36.999 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:37.000 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:37.000 [Thread-0] WARN  i.s.c.v.g.swift.AbstractSwiftCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+05:53:37.039 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/BlockingAPI.swift
+05:53:37.097 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/HistoryAPI.swift
+05:53:37.121 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/SendingAPI.swift
+05:53:37.139 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/ServicesAPI.swift
+05:53:37.155 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs/StatusAPI.swift
+05:53:37.159 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient.podspec
+05:53:37.160 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/Cartfile
+05:53:37.161 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIHelper.swift
+05:53:37.163 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/AlamofireImplementations.swift
+05:53:37.164 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Configuration.swift
+05:53:37.166 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Extensions.swift
+05:53:37.167 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/Models.swift
+05:53:37.168 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/APIs.swift
+05:53:37.170 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/git_push.sh
+05:53:37.171 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.gitignore
+05:53:37.172 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/CodableHelper.swift
+05:53:37.172 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodableEncoding.swift
+05:53:37.173 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/SwaggerClient/Classes/Swaggers/JSONEncodingHelper.swift
+05:53:37.179 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen-ignore
+05:53:37.179 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/swift4/.swagger-codegen/VERSION

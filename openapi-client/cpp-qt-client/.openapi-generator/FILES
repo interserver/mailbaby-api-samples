@@ -54,6 +54,8 @@ client/OAIMailStatsType_volume_to.h
 client/OAIOauth.cpp
 client/OAIOauth.h
 client/OAIObject.h
+client/OAIRawMail.cpp
+client/OAIRawMail.h
 client/OAISendMail.cpp
 client/OAISendMail.h
 client/OAISendMailAdv.cpp

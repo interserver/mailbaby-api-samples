@@ -1,8 +1,8 @@
 # swagger-java-client
 
 MailBaby Email Delivery and Management Service API
-- API version: 1.1.0
-  - Build date: 2025-10-29T13:37:31.171928150-04:00[America/New_York]
+- API version: 1.3.0
+  - Build date: 2025-11-14T05:52:20.926249542-05:00[America/New_York]
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
@@ -238,6 +238,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
 *HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 *SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
@@ -265,6 +266,7 @@ Class | Method | HTTP request | Description
  - [MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
+ - [RawMail](docs/RawMail.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
 

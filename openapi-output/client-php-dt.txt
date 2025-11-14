@@ -37,6 +37,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/MailStatsTypeVolumeFrom.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/MailStatsTypeVolumeIp.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/MailStatsTypeVolumeTo.php
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/RawMail.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/SendMail.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/SendMailAdv.php
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/php-dt/src/App/DTO/ViewMailLogParameterData.php

@@ -14,6 +14,80 @@ func _bzz_get_api_name() -> String:
 	return "SendingApi"
 
 
+# Operation rawMail → POST /mail/rawsend
+# Sends a raw email
+#
+# This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+func raw_mail(
+	# rawMail: RawMail
+	rawMail: RawMail,
+	on_success: Callable = Callable(),  # func(response: ApiResponse)
+	on_failure: Callable = Callable(),  # func(error: ApiError)
+):
+
+	# Convert the String HTTP method to a Constant Godot understands
+	var bzz_method := self._bzz_convert_http_method("POST")
+
+	# Compute the URL path to the API resource
+	var bzz_path := "/mail/rawsend"
+
+	# Collect the headers
+	var bzz_headers := Dictionary()
+	var bzz_mimes_consumable_by_server := ['application/json', 'multipart/form-data']
+	var bzz_found_producible_mime := false
+	for bzz_mime in BZZ_PRODUCIBLE_CONTENT_TYPES:
+		if bzz_mime in bzz_mimes_consumable_by_server:
+			bzz_headers["Content-Type"] = bzz_mime
+			bzz_found_producible_mime = true
+			break
+	if not bzz_found_producible_mime:
+		var error := ApiError.new()
+		error.identifier = "raw_mail.headers.content_type"
+		error.message = "That endpoint only accepts %s as content type(s) and none are supported by this client."
+		on_failure.call(error)
+		return
+	var bzz_mimes_produced_by_server := ['application/json']
+	for bzz_mime in BZZ_CONSUMABLE_CONTENT_TYPES:
+		if bzz_mime in bzz_mimes_produced_by_server:
+			bzz_headers["Accept"] = bzz_mime
+			break
+
+	# Collect the query parameters
+	# Note: we do not support multiple values for a single param (for now), nor arrays
+	var bzz_query := Dictionary()
+
+	var bzz_body = null
+	bzz_body = rawMail
+
+	self._bzz_request(
+		bzz_method, bzz_path, bzz_headers, bzz_query, bzz_body,
+		func(bzz_response):
+			bzz_response.data = GenericResponse.bzz_denormalize_single(bzz_response.data)
+			on_success.call(bzz_response)
+			,
+		func(bzz_error):
+			on_failure.call(bzz_error)
+			,  # ざわ‥
+	)
+
+
+func raw_mail_threaded(
+	# rawMail: RawMail
+	rawMail: RawMail,
+	on_success: Callable = Callable(),  # func(response: ApiResponse)
+	on_failure: Callable = Callable(),  # func(error: ApiError)
+) -> Thread:
+	var bzz_thread := Thread.new()
+	var bzz_callable := Callable(self, "raw_mail")
+	bzz_callable.bind(
+		rawMail,
+		on_success,
+		on_failure,
+	)
+	bzz_thread.start(bzz_callable)
+	return bzz_thread
+
+
 # Operation sendAdvMail → POST /mail/advsend
 # Sends an Email with Advanced Options
 #

@@ -4,8 +4,61 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+
+<a name="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(body, rawEmail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```javascript
+import {MailBabyEmailDeliveryAndManagementServiceApi} from 'mail_baby_email_delivery_and_management_service_api';
+let defaultClient = MailBabyEmailDeliveryAndManagementServiceApi.ApiClient.instance;
+
+// Configure API key authorization: apiKeyAuth
+let apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
+apiKeyAuth.apiKey = 'YOUR API KEY';
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.apiKeyPrefix = 'Token';
+
+let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
+let body = new MailBabyEmailDeliveryAndManagementServiceApi.RawMail(); // RawMail | 
+let rawEmail = "rawEmail_example"; // String | 
+
+apiInstance.rawMail(body, rawEmail, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  | 
+ **rawEmail** | **String**|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
 
 <a name="sendAdvMail"></a>
 # **sendAdvMail**

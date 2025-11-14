@@ -42,6 +42,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
 *HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email
 *SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
@@ -71,6 +72,7 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [io.swagger.client.models.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [io.swagger.client.models.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
+ - [io.swagger.client.models.RawMail](docs/RawMail.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
  - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
 

@@ -26,6 +26,7 @@ openapiclient/model/mail_stats_type_volume.lua
 openapiclient/model/mail_stats_type_volume_from.lua
 openapiclient/model/mail_stats_type_volume_ip.lua
 openapiclient/model/mail_stats_type_volume_to.lua
+openapiclient/model/raw_mail.lua
 openapiclient/model/send_mail.lua
 openapiclient/model/send_mail_adv.lua
 spec/blocking_api_spec.lua
@@ -49,6 +50,7 @@ spec/mail_stats_type_volume_from_spec.lua
 spec/mail_stats_type_volume_ip_spec.lua
 spec/mail_stats_type_volume_spec.lua
 spec/mail_stats_type_volume_to_spec.lua
+spec/raw_mail_spec.lua
 spec/send_mail_adv_spec.lua
 spec/send_mail_spec.lua
 spec/sending_api_spec.lua

@@ -20,6 +20,7 @@ src/model/openapi_mail_stats_type_volume.erl
 src/model/openapi_mail_stats_type_volume_from.erl
 src/model/openapi_mail_stats_type_volume_ip.erl
 src/model/openapi_mail_stats_type_volume_to.erl
+src/model/openapi_raw_mail.erl
 src/model/openapi_send_mail.erl
 src/model/openapi_send_mail_adv.erl
 src/openapi.app.src

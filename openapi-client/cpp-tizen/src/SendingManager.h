@@ -10,6 +10,7 @@
 #include "ErrorMessage.h"
 #include "GenericResponse.h"
 #include "MailAttachment.h"
+#include "RawMail.h"
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -27,6 +28,33 @@ class SendingManager {
 public:
 	SendingManager();
 	virtual ~SendingManager();
+
+/*! \brief Sends a raw email. *Synchronous*
+ *
+ * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+ * \param rawMail  *Required*
+ * \param handler The callback function to be invoked on completion. *Required*
+ * \param accessToken The Authorization token. *Required*
+ * \param userData The user data to be passed to the callback function.
+ */
+bool rawMailSync(char * accessToken,
+	std::shared_ptr<RawMail> rawMail, 
+	void(* handler)(GenericResponse, Error, void* )
+	, void* userData);
+
+/*! \brief Sends a raw email. *Asynchronous*
+ *
+ * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+ * \param rawMail  *Required*
+ * \param handler The callback function to be invoked on completion. *Required*
+ * \param accessToken The Authorization token. *Required*
+ * \param userData The user data to be passed to the callback function.
+ */
+bool rawMailAsync(char * accessToken,
+	std::shared_ptr<RawMail> rawMail, 
+	void(* handler)(GenericResponse, Error, void* )
+	, void* userData);
+
 
 /*! \brief Sends an Email with Advanced Options. *Synchronous*
  *

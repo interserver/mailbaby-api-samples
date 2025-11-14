@@ -67,6 +67,7 @@ set(SRCS
     model/mail_stats_type_volume_from.c
     model/mail_stats_type_volume_ip.c
     model/mail_stats_type_volume_to.c
+    model/raw_mail.c
     model/send_mail.c
     model/send_mail_adv.c
     api/BlockingAPI.c
@@ -104,6 +105,7 @@ set(HDRS
     model/mail_stats_type_volume_from.h
     model/mail_stats_type_volume_ip.h
     model/mail_stats_type_volume_to.h
+    model/raw_mail.h
     model/send_mail.h
     model/send_mail_adv.h
     api/BlockingAPI.h

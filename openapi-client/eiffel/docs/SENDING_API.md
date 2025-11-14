@@ -4,9 +4,40 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Feature | HTTP request | Description
 ------------- | ------------- | -------------
+[**raw_mail**](SENDING_API.md#raw_mail) | **Post** /mail/rawsend | Sends a raw email
 [**send_adv_mail**](SENDING_API.md#send_adv_mail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**send_mail**](SENDING_API.md#send_mail) | **Post** /mail/send | Sends an Email
 
+
+# **raw_mail**
+> raw_mail (raw_mail: RAW_MAIL ): detachable GENERIC_RESPONSE
+
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **raw_mail** | [**RAW_MAIL**](RAW_MAIL.md)|  | 
+
+### Return type
+
+[**GENERIC_RESPONSE**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_adv_mail**
 > send_adv_mail (subject: STRING_32 ; body: STRING_32 ; var_from: EMAIL_ADDRESS_TYPES ; to: EMAIL_ADDRESSES_TYPES ; replyto:  detachable EMAIL_ADDRESSES_TYPES ; cc:  detachable EMAIL_ADDRESSES_TYPES ; bcc:  detachable EMAIL_ADDRESSES_TYPES ; attachments:  detachable LIST [MAIL_ATTACHMENT] ; id:  detachable INTEGER_64 ): detachable GENERIC_RESPONSE

@@ -27,6 +27,7 @@ Private/OpenAPIMailStatsTypeVolumeIp.cpp
 Private/OpenAPIMailStatsTypeVolumeTo.cpp
 Private/OpenAPIModule.cpp
 Private/OpenAPIModule.h
+Private/OpenAPIRawMail.cpp
 Private/OpenAPISendMail.cpp
 Private/OpenAPISendMailAdv.cpp
 Private/OpenAPISendingApi.cpp
@@ -60,6 +61,7 @@ Public/OpenAPIMailStatsTypeVolume.h
 Public/OpenAPIMailStatsTypeVolumeFrom.h
 Public/OpenAPIMailStatsTypeVolumeIp.h
 Public/OpenAPIMailStatsTypeVolumeTo.h
+Public/OpenAPIRawMail.h
 Public/OpenAPISendMail.h
 Public/OpenAPISendMailAdv.h
 Public/OpenAPISendingApi.h

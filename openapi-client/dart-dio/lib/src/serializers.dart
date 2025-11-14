@@ -33,6 +33,7 @@ import 'package:openapi/src/model/mail_stats_type_volume.dart';
 import 'package:openapi/src/model/mail_stats_type_volume_from.dart';
 import 'package:openapi/src/model/mail_stats_type_volume_ip.dart';
 import 'package:openapi/src/model/mail_stats_type_volume_to.dart';
+import 'package:openapi/src/model/raw_mail.dart';
 import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
 
@@ -58,6 +59,7 @@ part 'serializers.g.dart';
   MailStatsTypeVolumeFrom,
   MailStatsTypeVolumeIp,
   MailStatsTypeVolumeTo,
+  RawMail,
   SendMail,
   SendMailAdv,
 ])

@@ -47,6 +47,7 @@ build = {
 		["openapiclient.model.mail_stats_type_volume_from"] = "openapiclient/model/mail_stats_type_volume_from.lua";
 		["openapiclient.model.mail_stats_type_volume_ip"] = "openapiclient/model/mail_stats_type_volume_ip.lua";
 		["openapiclient.model.mail_stats_type_volume_to"] = "openapiclient/model/mail_stats_type_volume_to.lua";
+		["openapiclient.model.raw_mail"] = "openapiclient/model/raw_mail.lua";
 		["openapiclient.model.send_mail"] = "openapiclient/model/send_mail.lua";
 		["openapiclient.model.send_mail_adv"] = "openapiclient/model/send_mail_adv.lua";
 	}

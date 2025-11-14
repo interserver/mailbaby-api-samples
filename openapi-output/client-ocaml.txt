@@ -28,6 +28,7 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/ocaml/src/models/mail_stats_type_volume_from.ml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/ocaml/src/models/mail_stats_type_volume_ip.ml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/ocaml/src/models/mail_stats_type_volume_to.ml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/ocaml/src/models/raw_mail.ml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/ocaml/src/models/send_mail.ml
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/ocaml/src/models/send_mail_adv.ml
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null

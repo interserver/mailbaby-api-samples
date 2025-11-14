@@ -24,11 +24,20 @@ import org.openapitools.client.models.EmailAddressesTypes
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailAttachment
+import org.openapitools.client.models.RawMail
 
 class SendingApiTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of SendingApi
         //val apiInstance = SendingApi()
+
+        // to test rawMail
+        should("test rawMail") {
+            // uncomment below to test rawMail
+            //val rawMail : RawMail =  // RawMail | 
+            //val result : GenericResponse = apiInstance.rawMail(rawMail)
+            //result shouldBe ("TODO")
+        }
 
         // to test sendAdvMail
         should("test sendAdvMail") {

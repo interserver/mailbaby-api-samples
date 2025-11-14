@@ -5,6 +5,7 @@ import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailAttachment;
+import org.openapitools.model.RawMail;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -25,6 +26,25 @@ public class SendingApiTest {
 
     @Inject
     SendingApi api;
+
+    
+    /**
+     * Sends a raw email
+     *
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     */
+    @Test
+    @Disabled("Not Implemented")
+    public void rawMailTest() {
+        // given
+        RawMail rawMail = new RawMail("example");
+
+        // when
+        GenericResponse body = api.rawMail(rawMail).block();
+
+        // then
+        // TODO implement the rawMailTest()
+    }
 
     
     /**

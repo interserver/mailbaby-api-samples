@@ -14,7 +14,8 @@ All URIs are relative to *https://api.mailbaby.net*
 *BlockingApi* | [**getRules**](Apis/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules. |
 | *HistoryApi* | [**getStats**](Apis/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics. |
 *HistoryApi* | [**viewMailLog**](Apis/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
-| *SendingApi* | [**sendAdvMail**](Apis/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
+| *SendingApi* | [**rawMail**](Apis/SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email |
+*SendingApi* | [**sendAdvMail**](Apis/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
 *SendingApi* | [**sendMail**](Apis/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email |
 | *ServicesApi* | [**getMailOrders**](Apis/ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders |
 | *StatusApi* | [**pingServer**](Apis/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running |
@@ -42,6 +43,7 @@ All URIs are relative to *https://api.mailbaby.net*
  - [MailStatsType_volume_from](./Models/MailStatsType_volume_from.md)
  - [MailStatsType_volume_ip](./Models/MailStatsType_volume_ip.md)
  - [MailStatsType_volume_to](./Models/MailStatsType_volume_to.md)
+ - [RawMail](./Models/RawMail.md)
  - [SendMail](./Models/SendMail.md)
  - [SendMailAdv](./Models/SendMailAdv.md)
 

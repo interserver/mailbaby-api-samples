@@ -1,5 +1,18 @@
 ## SendingApi
 
+### Sends a raw email
+## Sends a raw email
+POST https://api.mailbaby.net/mail/rawsend
+Content-Type: application/json
+Content-Type: multipart/form-data
+Accept: application/json
+X-API-KEY: {{apiKey}}
+
+{
+ "raw_email": "<string>"
+}
+
+
 ### Sends an Email with Advanced Options
 ## Sends an Email with Advanced Options
 POST https://api.mailbaby.net/mail/advsend

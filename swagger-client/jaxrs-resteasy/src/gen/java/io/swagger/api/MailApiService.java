@@ -14,6 +14,7 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
@@ -26,7 +27,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-10-29T13:37:59.301588478-04:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T05:52:49.510724097-05:00[America/New_York]")
 public interface MailApiService {
       Response addRule(String user,String type,String data,SecurityContext securityContext) throws NotFoundException;
       Response addRule(DenyRuleNew body,SecurityContext securityContext) throws NotFoundException;
@@ -36,6 +37,8 @@ public interface MailApiService {
       Response getMailOrders(SecurityContext securityContext) throws NotFoundException;
       Response getRules(SecurityContext securityContext) throws NotFoundException;
       Response getStats(String time,SecurityContext securityContext) throws NotFoundException;
+      Response rawMail(RawMail body,SecurityContext securityContext) throws NotFoundException;
+      Response rawMail(String rawEmail,SecurityContext securityContext) throws NotFoundException;
       Response sendAdvMail(String subject,String body,EmailAddressTypes from,EmailAddressesTypes to,EmailAddressesTypes replyto,EmailAddressesTypes cc,EmailAddressesTypes bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) throws NotFoundException;
       Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
       Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) throws NotFoundException;

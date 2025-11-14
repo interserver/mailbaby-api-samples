@@ -4,8 +4,103 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
+
+<a name="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(body)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```kotlin
+// Import classes:
+//import io.swagger.client.infrastructure.*
+//import io.swagger.client.models.*;
+
+val apiInstance = SendingApi()
+val body : RawMail =  // RawMail | 
+try {
+    val result : GenericResponse = apiInstance.rawMail(body)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling SendingApi#rawMail")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SendingApi#rawMail")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RawMail**](RawMail.md)|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+<a name="rawMail"></a>
+# **rawMail**
+> GenericResponse rawMail(rawEmail)
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```kotlin
+// Import classes:
+//import io.swagger.client.infrastructure.*
+//import io.swagger.client.models.*;
+
+val apiInstance = SendingApi()
+val rawEmail : kotlin.String = rawEmail_example // kotlin.String | 
+try {
+    val result : GenericResponse = apiInstance.rawMail(rawEmail)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling SendingApi#rawMail")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling SendingApi#rawMail")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rawEmail** | **kotlin.String**|  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
 
 <a name="sendAdvMail"></a>
 # **sendAdvMail**

@@ -21,12 +21,38 @@
             [mail-baby-email-delivery-and-management-service-api.specs.generic-response :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-rspamd :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.raw-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume-from :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-addresses-types :refer :all]
             )
   (:import (java.io File)))
+
+
+(defn-spec raw-mail-with-http-info any?
+  "Sends a raw email
+  This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages."
+  [raw-mail raw-mail]
+  (check-required-params raw-mail)
+  (call-api "/mail/rawsend" :post
+            {:path-params   {}
+             :header-params {}
+             :query-params  {}
+             :form-params   {}
+             :body-param    raw-mail
+             :content-types ["application/json" "multipart/form-data"]
+             :accepts       ["application/json"]
+             :auth-names    ["apiKeyAuth"]}))
+
+(defn-spec raw-mail generic-response-spec
+  "Sends a raw email
+  This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages."
+  [raw-mail raw-mail]
+  (let [res (:data (raw-mail-with-http-info raw-mail))]
+    (if (:decode-models *api-context*)
+       (st/decode generic-response-spec res st/string-transformer)
+       res)))
 
 
 (defn-spec send-adv-mail-with-http-info any?

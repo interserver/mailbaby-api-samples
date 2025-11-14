@@ -4,6 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email |
 | [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
 | [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email |
 
@@ -35,6 +36,32 @@ class MyClass {
 Note that the class needs to be annotated with one of Micronaut's [scope annotations](https://docs.micronaut.io/latest/guide/#scopes) like `Singleton` in order to be processed.
 
 More information can be found inside [Inversion of Control guide section](https://docs.micronaut.io/latest/guide/#ioc).
+
+<a id="rawMail"></a>
+# **rawMail**
+```java
+Mono<GenericResponse> SendingApi.rawMail(rawMail)
+```
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Parameters
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **rawMail** | [**RawMail**](RawMail.md)|  | |
+
+
+### Return type
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+* **[apiKeyAuth](auth.md#apiKeyAuth)**
+
+### HTTP request headers
+ - **Content-Type**: `application/json`, `multipart/form-data`
+ - **Accept**: `application/json`
 
 <a id="sendAdvMail"></a>
 # **sendAdvMail**

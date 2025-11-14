@@ -22,6 +22,7 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
+docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendingApi.md
@@ -60,5 +61,6 @@ src/main/scala/org/openapitools/client/model/MailStatsTypeVolume.scala
 src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeFrom.scala
 src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeIp.scala
 src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeTo.scala
+src/main/scala/org/openapitools/client/model/RawMail.scala
 src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala

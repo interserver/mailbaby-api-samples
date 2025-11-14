@@ -6,6 +6,7 @@ import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
+import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 
@@ -28,6 +29,30 @@ import org.apache.cxf.jaxrs.ext.multipart.*;
  *
  */
 public class SendingApiServiceImpl implements SendingApi {
+    /**
+     * Sends a raw email
+     *
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     *
+     */
+    public GenericResponse rawMail(RawMail body) {
+        // TODO: Implement...
+        
+        return null;
+    }
+    
+    /**
+     * Sends a raw email
+     *
+     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+     *
+     */
+    public GenericResponse rawMail(String rawEmail) {
+        // TODO: Implement...
+        
+        return null;
+    }
+    
     /**
      * Sends an Email with Advanced Options
      *

@@ -1,4 +1,4 @@
-# Documentation for MailBaby Email Delivery and Management Service API 1.1.0 Tizen Client SDK
+# Documentation for MailBaby Email Delivery and Management Service API 1.3.0 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`
@@ -66,6 +66,8 @@ Method | HTTP request | Description
 ### SendingManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+*rawMailSync* | *POST* /mail/rawsend | Sends a raw email.
+*rawMailASync* | *POST* /mail/rawsend | Sends a raw email.
 *sendAdvMailSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
 *sendAdvMailASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
 *sendMailSync* | *POST* /mail/send | Sends an Email.
@@ -108,6 +110,7 @@ Class | Description
  *MailStatsType_volume_from* | 
  *MailStatsType_volume_ip* | 
  *MailStatsType_volume_to* | 
+ *RawMail* | Raw Email Object
  *SendMail* | Details for an Email
  *SendMailAdv* | Details for an Email
 

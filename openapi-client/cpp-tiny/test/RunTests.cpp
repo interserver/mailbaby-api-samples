@@ -37,6 +37,8 @@
 
 #include "MailStatsType_volume_toTest.cpp"
 
+#include "RawMailTest.cpp"
+
 #include "SendMailTest.cpp"
 
 #include "SendMailAdvTest.cpp"
@@ -288,6 +290,10 @@ void runTests(){
     
     
     RUN_TEST(test_MailStatsType_volume_to_clientanothersitecom_is_assigned_from_json);
+    
+    
+    
+    RUN_TEST(test_RawMail_raw_email_is_assigned_from_json);
     
     
     
@@ -560,6 +566,10 @@ void runTests(){
     
     
     RUN_TEST(test_MailStatsType_volume_to_clientanothersitecom_is_converted_to_json);
+    
+    
+    
+    RUN_TEST(test_RawMail_raw_email_is_converted_to_json);
     
     
     

@@ -116,6 +116,7 @@ operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::replyto"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::headerfrom"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::delivered"]=0
+operation_parameters_minimum_occurrences["rawMail:::RawMail"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::body"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::from"]=1
@@ -157,6 +158,7 @@ operation_parameters_maximum_occurrences["viewMailLog:::endDate"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::replyto"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::headerfrom"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::delivered"]=0
+operation_parameters_maximum_occurrences["rawMail:::RawMail"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::body"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::from"]=0
@@ -195,6 +197,7 @@ operation_parameters_collection_type["viewMailLog:::endDate"]=""
 operation_parameters_collection_type["viewMailLog:::replyto"]=""
 operation_parameters_collection_type["viewMailLog:::headerfrom"]=""
 operation_parameters_collection_type["viewMailLog:::delivered"]=""
+operation_parameters_collection_type["rawMail:::RawMail"]=""
 operation_parameters_collection_type["sendAdvMail:::subject"]=""
 operation_parameters_collection_type["sendAdvMail:::body"]=""
 operation_parameters_collection_type["sendAdvMail:::from"]=""
@@ -581,7 +584,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.1.0)${OFF}
+${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.3.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -634,6 +637,7 @@ echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[sending]${OFF}"
 read -r -d '' ops <<EOF
+  ${CYAN}rawMail${OFF};Sends a raw email (AUTH)
   ${CYAN}sendAdvMail${OFF};Sends an Email with Advanced Options (AUTH)
   ${CYAN}sendMail${OFF};Sends an Email (AUTH)
 EOF
@@ -677,7 +681,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.1.0)${OFF}"
+    echo -e "${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.3.0)${OFF}"
     echo ""
     echo -e "License: GNU GPLv3"
     echo -e "Contact: support@interserver.net"
@@ -702,7 +706,7 @@ echo "$appdescription" | paste -sd' ' - | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}MailBaby Email Delivery and Management Service API command line client (API version 1.1.0)${OFF}"
+    echo -e "${BOLD}MailBaby Email Delivery and Management Service API command line client (API version 1.3.0)${OFF}"
     echo ""
 }
 
@@ -885,6 +889,31 @@ print_viewMailLog_help() {
     echo -e "${result_color_table[${code:0:1}]}  200;search results matching criteria${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
     code=400
     echo -e "${result_color_table[${code:0:1}]}  400;bad input parameter${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+}
+##############################################################################
+#
+# Print help for rawMail operation
+#
+##############################################################################
+print_rawMail_help() {
+    echo ""
+    echo -e "${BOLD}${WHITE}rawMail - Sends a raw email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo -e "This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages." | paste -sd' ' - | fold -sw 80
+    echo -e ""
+    echo -e "${BOLD}${WHITE}Parameters${OFF}"
+    echo -e "  * ${GREEN}body${OFF} ${BLUE}[application/json,multipart/form-data]${OFF} ${RED}(required)${OFF}${OFF} - " | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e ""
+    echo ""
+    echo -e "${BOLD}${WHITE}Responses${OFF}"
+    code=200
+    echo -e "${result_color_table[${code:0:1}]}  200;successful email response${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=400
+    echo -e "${result_color_table[${code:0:1}]}  400;Error message when there was a problem with the input parameters.${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=401
+    echo -e "${result_color_table[${code:0:1}]}  401;Unauthorized${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
+    code=404
+    echo -e "${result_color_table[${code:0:1}]}  404;The specified resource was not found${OFF}" | paste -sd' ' - | column -t -s ';' | fold -sw 80 | sed '2,$s/^/       /'
 }
 ##############################################################################
 #
@@ -1378,6 +1407,82 @@ call_viewMailLog() {
 
 ##############################################################################
 #
+# Call rawMail operation
+#
+##############################################################################
+call_rawMail() {
+    # ignore error about 'path_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local path_parameter_names=()
+    # ignore error about 'query_parameter_names' being unused; passed by reference
+    # shellcheck disable=SC2034
+    local query_parameter_names=(  )
+    local path
+
+    if ! path=$(build_request_path "/mail/rawsend" path_parameter_names query_parameter_names); then
+        ERROR_MSG=$path
+        exit 1
+    fi
+    local method="POST"
+    local headers_curl
+    headers_curl=$(header_arguments_to_curl)
+    if [[ -n $header_accept ]]; then
+        headers_curl="${headers_curl} -H 'Accept: ${header_accept}'"
+    fi
+
+    local basic_auth_option=""
+    if [[ -n $basic_auth_credential ]]; then
+        basic_auth_option="-u ${basic_auth_credential}"
+    fi
+    local body_json_curl=""
+
+    #
+    # Check if the user provided 'Content-type' headers in the
+    # command line. If not try to set them based on the OpenAPI specification
+    # if values produces and consumes are defined unambiguously
+    #
+
+
+    if [[ -z $header_content_type && "$force" = false ]]; then
+        :
+        echo "ERROR: Request's content-type not specified!!!"
+        echo "This operation expects content-type in one of the following formats:"
+        echo -e "\\t- application/json"
+        echo -e "\\t- multipart/form-data"
+        echo ""
+        echo "Use '--content-type' to set proper content type"
+        exit 1
+    else
+        headers_curl="${headers_curl} -H 'Content-type: ${header_content_type}'"
+    fi
+
+
+    #
+    # If we have received some body content over pipe, pass it from the
+    # temporary file to cURL
+    #
+    if [[ -n $body_content_temp_file ]]; then
+        if [[ "$print_curl" = true ]]; then
+            echo "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        else
+            eval "cat ${body_content_temp_file} | curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} \"${host}${path}\" -d @-"
+        fi
+        rm "${body_content_temp_file}"
+    #
+    # If not, try to build the content body from arguments KEY==VALUE and KEY:=VALUE
+    #
+    else
+        body_json_curl=$(body_parameters_to_json)
+        if [[ "$print_curl" = true ]]; then
+            echo "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        else
+            eval "curl ${basic_auth_option} ${curl_arguments} ${headers_curl} -X ${method} ${body_json_curl} \"${host}${path}\""
+        fi
+    fi
+}
+
+##############################################################################
+#
 # Call sendAdvMail operation
 #
 ##############################################################################
@@ -1640,6 +1745,9 @@ case $key in
     viewMailLog)
     operation="viewMailLog"
     ;;
+    rawMail)
+    operation="rawMail"
+    ;;
     sendAdvMail)
     operation="sendAdvMail"
     ;;
@@ -1766,6 +1874,9 @@ case $operation in
     ;;
     viewMailLog)
     call_viewMailLog
+    ;;
+    rawMail)
+    call_rawMail
     ;;
     sendAdvMail)
     call_sendAdvMail

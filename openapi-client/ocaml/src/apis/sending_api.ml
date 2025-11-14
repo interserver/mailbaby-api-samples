@@ -5,6 +5,29 @@
  *
  *)
 
+let raw_mail ~raw_mail_t =
+    let open Lwt.Infix in
+    let uri = Request.build_uri "/mail/rawsend" in
+    let headers = Request.default_headers in
+    let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
+    let body = Request.
+        
+        write_as_json_body     
+    
+    
+    
+    
+    
+    
+                Raw_mail.to_yojson
+    
+    
+    
+ raw_mail_t
+    in
+    Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
+    Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
+
 let send_adv_mail ~subject ~body ~from ~_to ?replyto ?cc ?bcc ?(attachments = []) ?id () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/advsend" in

@@ -23,6 +23,7 @@ docs/MAIL_STATS_TYPE_VOLUME.md
 docs/MAIL_STATS_TYPE_VOLUME_FROM.md
 docs/MAIL_STATS_TYPE_VOLUME_IP.md
 docs/MAIL_STATS_TYPE_VOLUME_TO.md
+docs/RAW_MAIL.md
 docs/SENDING_API.md
 docs/SEND_MAIL.md
 docs/SEND_MAIL_ADV.md
@@ -53,6 +54,7 @@ src/domain/mail_stats_type_volume.e
 src/domain/mail_stats_type_volume_from.e
 src/domain/mail_stats_type_volume_ip.e
 src/domain/mail_stats_type_volume_to.e
+src/domain/raw_mail.e
 src/domain/send_mail.e
 src/domain/send_mail_adv.e
 src/framework/api_client_request.e

@@ -5,6 +5,18 @@ context("Test SendingApi")
 
 api_instance <- SendingApi$new()
 
+test_that("RawMail", {
+  # tests for RawMail
+  # base path: https://api.mailbaby.net
+  # Sends a raw email
+  # This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+  # @param raw_mail RawMail 
+  # @return [GenericResponse]
+
+  # uncomment below to test the operation
+  #expect_equal(result, "EXPECTED_RESULT")
+})
+
 test_that("SendAdvMail", {
   # tests for SendAdvMail
   # base path: https://api.mailbaby.net

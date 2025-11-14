@@ -19,5 +19,6 @@ export * from './mailStatsTypeVolume';
 export * from './mailStatsTypeVolumeFrom';
 export * from './mailStatsTypeVolumeIp';
 export * from './mailStatsTypeVolumeTo';
+export * from './rawMail';
 export * from './sendMail';
 export * from './sendMailAdv';

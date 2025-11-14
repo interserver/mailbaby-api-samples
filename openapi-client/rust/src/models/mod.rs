@@ -36,6 +36,8 @@ pub mod mail_stats_type_volume_ip;
 pub use self::mail_stats_type_volume_ip::MailStatsTypeVolumeIp;
 pub mod mail_stats_type_volume_to;
 pub use self::mail_stats_type_volume_to::MailStatsTypeVolumeTo;
+pub mod raw_mail;
+pub use self::raw_mail::RawMail;
 pub mod send_mail;
 pub use self::send_mail::SendMail;
 pub mod send_mail_adv;

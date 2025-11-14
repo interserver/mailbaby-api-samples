@@ -8,6 +8,55 @@ using namespace Tiny;
             GenericResponse
         >
         SendingApi::
+        rawMail(
+            
+            RawMail rawMail
+            
+        )
+        {
+            std::string url = basepath + "/mail/rawsend"; //
+
+
+            // Headers  | 
+
+            // Query    | 
+
+            // Form     | 
+            addHeader("Content-Type", "application/json");
+
+
+
+
+
+            std::string payload = "";
+            // Send Request
+            // METHOD | POST
+            // Body     | rawMail
+
+
+
+            payload = rawMail.toJson().dump();
+
+            int httpCode = sendRequest(url, "POST", reinterpret_cast<uint8_t*>(&payload[0]), payload.length());
+
+            // Handle Request
+            String output = getResponseBody();
+            std::string output_string = output.c_str();
+
+
+
+
+            GenericResponse obj(output_string);
+
+
+            Response<GenericResponse> response(obj, httpCode);
+            return response;
+        }
+
+        Response<
+            GenericResponse
+        >
+        SendingApi::
         sendAdvMail(
             
             std::string subject

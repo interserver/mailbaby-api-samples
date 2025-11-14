@@ -26,6 +26,6 @@ src/main/groovy/org/openapitools/model/MailStatsTypeVolume.groovy
 src/main/groovy/org/openapitools/model/MailStatsTypeVolumeFrom.groovy
 src/main/groovy/org/openapitools/model/MailStatsTypeVolumeIp.groovy
 src/main/groovy/org/openapitools/model/MailStatsTypeVolumeTo.groovy
-src/main/groovy/org/openapitools/model/RawMail.groovy
 src/main/groovy/org/openapitools/model/SendMail.groovy
 src/main/groovy/org/openapitools/model/SendMailAdv.groovy
+src/main/groovy/org/openapitools/model/SendMailRaw.groovy

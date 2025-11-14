@@ -82,7 +82,7 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 |*MailStatsType_volume_from* | |
 |*MailStatsType_volume_ip* | |
 |*MailStatsType_volume_to* | |
-|*RawMail* | Raw Email Object|
 |*SendMail* | Details for an Email|
 |*SendMailAdv* | Details for an Email|
+|*SendMailRaw* | Raw Email Object|
 

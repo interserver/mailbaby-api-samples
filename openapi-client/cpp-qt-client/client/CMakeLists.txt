@@ -30,9 +30,9 @@ add_library(${PROJECT_NAME}
   OAIMailStatsType_volume_from.h
   OAIMailStatsType_volume_ip.h
   OAIMailStatsType_volume_to.h
-  OAIRawMail.h
   OAISendMail.h
   OAISendMailAdv.h
+  OAISendMailRaw.h
   OAIBlockingApi.h
   OAIHistoryApi.h
   OAISendingApi.h
@@ -65,9 +65,9 @@ add_library(${PROJECT_NAME}
   OAIMailStatsType_volume_from.cpp
   OAIMailStatsType_volume_ip.cpp
   OAIMailStatsType_volume_to.cpp
-  OAIRawMail.cpp
   OAISendMail.cpp
   OAISendMailAdv.cpp
+  OAISendMailRaw.cpp
   OAIBlockingApi.cpp
   OAIHistoryApi.cpp
   OAISendingApi.cpp

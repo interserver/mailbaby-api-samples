@@ -40,7 +40,7 @@ More information can be found inside [Inversion of Control guide section](https:
 <a id="rawMail"></a>
 # **rawMail**
 ```java
-Mono<GenericResponse> SendingApi.rawMail(rawMail)
+Mono<GenericResponse> SendingApi.rawMail(sendMailRaw)
 ```
 
 Sends a raw email
@@ -50,7 +50,7 @@ This call will let you pass the raw / complete email contents (including headers
 ### Parameters
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rawMail** | [**RawMail**](RawMail.md)|  | |
+| **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | |
 
 
 ### Return type
@@ -100,7 +100,7 @@ Sends An email through one of your mail orders allowing additional options such 
 <a id="sendMail"></a>
 # **sendMail**
 ```java
-Mono<GenericResponse> SendingApi.sendMail(tofromsubject_body)
+Mono<GenericResponse> SendingApi.sendMail(tofromsubject_bodyid)
 ```
 
 Sends an Email
@@ -114,6 +114,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 | **from** | `String`| The contact whom is the this email is from. | |
 | **subject** | `String`| The subject or title of the email | |
 | **_body** | `String`| The main email contents. | |
+| **id** | `Integer`| Optional Order ID | [optional parameter] |
 
 
 ### Return type

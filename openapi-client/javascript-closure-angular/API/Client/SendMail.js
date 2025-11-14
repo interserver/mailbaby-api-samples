@@ -34,3 +34,10 @@ API.Client.SendMail.prototype.subject;
  */
 API.Client.SendMail.prototype.body;
 
+/**
+ * Optional Order ID
+ * @type {!number}
+ * @export
+ */
+API.Client.SendMail.prototype.id;
+

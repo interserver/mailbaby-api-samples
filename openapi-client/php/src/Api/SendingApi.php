@@ -140,16 +140,16 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $rawMail rawMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $sendMailRaw sendMailRaw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage
      */
-    public function rawMail($rawMail, string $contentType = self::contentTypes['rawMail'][0])
+    public function rawMail($sendMailRaw, string $contentType = self::contentTypes['rawMail'][0])
     {
-        list($response) = $this->rawMailWithHttpInfo($rawMail, $contentType);
+        list($response) = $this->rawMailWithHttpInfo($sendMailRaw, $contentType);
         return $response;
     }
 
@@ -158,16 +158,16 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $rawMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $sendMailRaw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
-    public function rawMailWithHttpInfo($rawMail, string $contentType = self::contentTypes['rawMail'][0])
+    public function rawMailWithHttpInfo($sendMailRaw, string $contentType = self::contentTypes['rawMail'][0])
     {
-        $request = $this->rawMailRequest($rawMail, $contentType);
+        $request = $this->rawMailRequest($sendMailRaw, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -285,15 +285,15 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $rawMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $sendMailRaw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function rawMailAsync($rawMail, string $contentType = self::contentTypes['rawMail'][0])
+    public function rawMailAsync($sendMailRaw, string $contentType = self::contentTypes['rawMail'][0])
     {
-        return $this->rawMailAsyncWithHttpInfo($rawMail, $contentType)
+        return $this->rawMailAsyncWithHttpInfo($sendMailRaw, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -306,16 +306,16 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $rawMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $sendMailRaw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function rawMailAsyncWithHttpInfo($rawMail, string $contentType = self::contentTypes['rawMail'][0])
+    public function rawMailAsyncWithHttpInfo($sendMailRaw, string $contentType = self::contentTypes['rawMail'][0])
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->rawMailRequest($rawMail, $contentType);
+        $request = $this->rawMailRequest($sendMailRaw, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -356,19 +356,19 @@ class SendingApi
     /**
      * Create request for operation 'rawMail'
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $rawMail (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $sendMailRaw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function rawMailRequest($rawMail, string $contentType = self::contentTypes['rawMail'][0])
+    public function rawMailRequest($sendMailRaw, string $contentType = self::contentTypes['rawMail'][0])
     {
 
-        // verify the required parameter 'rawMail' is set
-        if ($rawMail === null || (is_array($rawMail) && count($rawMail) === 0)) {
+        // verify the required parameter 'sendMailRaw' is set
+        if ($sendMailRaw === null || (is_array($sendMailRaw) && count($sendMailRaw) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $rawMail when calling rawMail'
+                'Missing the required parameter $sendMailRaw when calling rawMail'
             );
         }
 
@@ -391,12 +391,12 @@ class SendingApi
         );
 
         // for model (json/xml)
-        if (isset($rawMail)) {
+        if (isset($sendMailRaw)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($rawMail));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($sendMailRaw));
             } else {
-                $httpBody = $rawMail;
+                $httpBody = $sendMailRaw;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -848,15 +848,16 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage
      */
-    public function sendMail($to, $from, $subject, $body, string $contentType = self::contentTypes['sendMail'][0])
+    public function sendMail($to, $from, $subject, $body, $id = null, string $contentType = self::contentTypes['sendMail'][0])
     {
-        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body, $contentType);
+        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body, $id, $contentType);
         return $response;
     }
 
@@ -869,15 +870,16 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage|\Interserver\Mailbaby\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailWithHttpInfo($to, $from, $subject, $body, string $contentType = self::contentTypes['sendMail'][0])
+    public function sendMailWithHttpInfo($to, $from, $subject, $body, $id = null, string $contentType = self::contentTypes['sendMail'][0])
     {
-        $request = $this->sendMailRequest($to, $from, $subject, $body, $contentType);
+        $request = $this->sendMailRequest($to, $from, $subject, $body, $id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -999,14 +1001,15 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsync($to, $from, $subject, $body, string $contentType = self::contentTypes['sendMail'][0])
+    public function sendMailAsync($to, $from, $subject, $body, $id = null, string $contentType = self::contentTypes['sendMail'][0])
     {
-        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $contentType)
+        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1023,15 +1026,16 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsyncWithHttpInfo($to, $from, $subject, $body, string $contentType = self::contentTypes['sendMail'][0])
+    public function sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $id = null, string $contentType = self::contentTypes['sendMail'][0])
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailRequest($to, $from, $subject, $body, $contentType);
+        $request = $this->sendMailRequest($to, $from, $subject, $body, $id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1076,12 +1080,13 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function sendMailRequest($to, $from, $subject, $body, string $contentType = self::contentTypes['sendMail'][0])
+    public function sendMailRequest($to, $from, $subject, $body, $id = null, string $contentType = self::contentTypes['sendMail'][0])
     {
 
         // verify the required parameter 'to' is set
@@ -1113,6 +1118,7 @@ class SendingApi
         }
 
 
+
         $resourcePath = '/mail/send';
         $formParams = [];
         $queryParams = [];
@@ -1131,6 +1137,7 @@ class SendingApi
             'from' => $from,
             'subject' => $subject,
             'body' => $body,
+            'id' => $id,
         ]);
 
         $formParams = $formDataProcessor->flatten($formData);

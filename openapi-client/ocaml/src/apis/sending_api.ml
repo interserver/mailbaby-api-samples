@@ -5,7 +5,7 @@
  *
  *)
 
-let raw_mail ~raw_mail_t =
+let raw_mail ~send_mail_raw_t =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/rawsend" in
     let headers = Request.default_headers in
@@ -19,11 +19,11 @@ let raw_mail ~raw_mail_t =
     
     
     
-                Raw_mail.to_yojson
+                Send_mail_raw.to_yojson
     
     
     
- raw_mail_t
+ send_mail_raw_t
     in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
@@ -174,7 +174,7 @@ let send_adv_mail ~subject ~body ~from ~_to ?replyto ?cc ?bcc ?(attachments = []
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body
 
-let send_mail ~_to ~from ~subject ~body =
+let send_mail ~_to ~from ~subject ~body ?id () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/send" in
     let headers = Request.default_headers in
@@ -240,6 +240,21 @@ let send_mail ~_to ~from ~subject ~body =
         
         
  body in
+    let body = Request.maybe_add_form_encoded_body_param body "id"     
+    Int32.to_string
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+ id in
     let body = Request.finalize_form_encoded_body body in
     Cohttp_lwt_unix.Client.call `POST uri ~headers ~body >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Generic_response.of_yojson) resp body

@@ -30,7 +30,7 @@ $apiInstance = new Interserver\Mailbaby\Api\SendingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$body = new \Interserver\Mailbaby\Model\RawMail(); // \Interserver\Mailbaby\Model\RawMail | 
+$body = new \Interserver\Mailbaby\Model\SendMailRaw(); // \Interserver\Mailbaby\Model\SendMailRaw | 
 
 try {
     $result = $apiInstance->rawMail($body);
@@ -45,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\Interserver\Mailbaby\Model\RawMail**](../Model/RawMail.md)|  |
+ **body** | [**\Interserver\Mailbaby\Model\SendMailRaw**](../Model/SendMailRaw.md)|  |
 
 ### Return type
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **rawMail**
-> \Interserver\Mailbaby\Model\GenericResponse rawMail($rawEmail)
+> \Interserver\Mailbaby\Model\GenericResponse rawMail($rawEmail, $id)
 
 Sends a raw email
 
@@ -85,9 +85,10 @@ $apiInstance = new Interserver\Mailbaby\Api\SendingApi(
     $config
 );
 $rawEmail = "rawEmail_example"; // string | 
+$id = 56; // int | 
 
 try {
-    $result = $apiInstance->rawMail($rawEmail);
+    $result = $apiInstance->rawMail($rawEmail, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->rawMail: ', $e->getMessage(), PHP_EOL;
@@ -100,6 +101,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **rawEmail** | **string**|  |
+ **id** | **int**|  |
 
 ### Return type
 
@@ -241,7 +243,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **sendMail**
-> \Interserver\Mailbaby\Model\GenericResponse sendMail($to, $from, $subject, $body)
+> \Interserver\Mailbaby\Model\GenericResponse sendMail($to, $from, $subject, $body, $id)
 
 Sends an Email
 
@@ -266,9 +268,10 @@ $to = "to_example"; // string |
 $from = "from_example"; // string | 
 $subject = "subject_example"; // string | 
 $body = "body_example"; // string | 
+$id = 56; // int | 
 
 try {
-    $result = $apiInstance->sendMail($to, $from, $subject, $body);
+    $result = $apiInstance->sendMail($to, $from, $subject, $body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -284,6 +287,7 @@ Name | Type | Description  | Notes
  **from** | **string**|  |
  **subject** | **string**|  |
  **body** | **string**|  |
+ **id** | **int**|  |
 
 ### Return type
 

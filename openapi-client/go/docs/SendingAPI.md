@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## RawMail
 
-> GenericResponse RawMail(ctx).RawMail(rawMail).Execute()
+> GenericResponse RawMail(ctx).SendMailRaw(sendMailRaw).Execute()
 
 Sends a raw email
 
@@ -31,11 +31,11 @@ import (
 )
 
 func main() {
-	rawMail := *openapiclient.NewRawMail("RawEmail_example") // RawMail | 
+	sendMailRaw := *openapiclient.NewSendMailRaw("RawEmail_example") // SendMailRaw | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SendingAPI.RawMail(context.Background()).RawMail(rawMail).Execute()
+	resp, r, err := apiClient.SendingAPI.RawMail(context.Background()).SendMailRaw(sendMailRaw).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SendingAPI.RawMail``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,7 +56,7 @@ Other parameters are passed through a pointer to a apiRawMailRequest struct via 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rawMail** | [**RawMail**](RawMail.md) |  | 
+ **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md) |  | 
 
 ### Return type
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ## SendMail
 
-> GenericResponse SendMail(ctx).To(to).From(from).Subject(subject).Body(body).Execute()
+> GenericResponse SendMail(ctx).To(to).From(from).Subject(subject).Body(body).Id(id).Execute()
 
 Sends an Email
 
@@ -183,10 +183,11 @@ func main() {
 	from := "from_example" // string | The contact whom is the this email is from.
 	subject := "subject_example" // string | The subject or title of the email
 	body := "body_example" // string | The main email contents.
+	id := int32(56) // int32 | Optional Order ID (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SendingAPI.SendMail(context.Background()).To(to).From(from).Subject(subject).Body(body).Execute()
+	resp, r, err := apiClient.SendingAPI.SendMail(context.Background()).To(to).From(from).Subject(subject).Body(body).Id(id).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SendingAPI.SendMail``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -211,6 +212,7 @@ Name | Type | Description  | Notes
  **from** | **string** | The contact whom is the this email is from. | 
  **subject** | **string** | The subject or title of the email | 
  **body** | **string** | The main email contents. | 
+ **id** | **int32** | Optional Order ID | 
 
 ### Return type
 

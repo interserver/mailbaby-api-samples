@@ -26,9 +26,9 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/MailStatsTypeVolumeFrom.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/MailStatsTypeVolumeIp.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/MailStatsTypeVolumeTo.js
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/RawMail.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/SendMail.js
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/SendMailAdv.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/SendMailRaw.js
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/javascript-closure-angular/API/Client/BlockingApi.js

@@ -14,7 +14,7 @@ All URIs are relative to https://api.mailbaby.net, except if the operation defin
 ## `rawMail()`
 
 ```php
-rawMail($rawMail): \Interserver\Mailbaby\Model\GenericResponse
+rawMail($sendMailRaw): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends a raw email
@@ -40,10 +40,10 @@ $apiInstance = new Interserver\Mailbaby\Api\SendingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$rawMail = new \Interserver\Mailbaby\Model\RawMail(); // \Interserver\Mailbaby\Model\RawMail
+$sendMailRaw = new \Interserver\Mailbaby\Model\SendMailRaw(); // \Interserver\Mailbaby\Model\SendMailRaw
 
 try {
-    $result = $apiInstance->rawMail($rawMail);
+    $result = $apiInstance->rawMail($sendMailRaw);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->rawMail: ', $e->getMessage(), PHP_EOL;
@@ -54,7 +54,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **rawMail** | [**\Interserver\Mailbaby\Model\RawMail**](../Model/RawMail.md)|  | |
+| **sendMailRaw** | [**\Interserver\Mailbaby\Model\SendMailRaw**](../Model/SendMailRaw.md)|  | |
 
 ### Return type
 
@@ -154,7 +154,7 @@ try {
 ## `sendMail()`
 
 ```php
-sendMail($to, $from, $subject, $body): \Interserver\Mailbaby\Model\GenericResponse
+sendMail($to, $from, $subject, $body, $id): \Interserver\Mailbaby\Model\GenericResponse
 ```
 
 Sends an Email
@@ -184,9 +184,10 @@ $to = 'to_example'; // string | The Contact whom is the primary recipient of thi
 $from = 'from_example'; // string | The contact whom is the this email is from.
 $subject = 'subject_example'; // string | The subject or title of the email
 $body = 'body_example'; // string | The main email contents.
+$id = 56; // int | Optional Order ID
 
 try {
-    $result = $apiInstance->sendMail($to, $from, $subject, $body);
+    $result = $apiInstance->sendMail($to, $from, $subject, $body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -201,6 +202,7 @@ try {
 | **from** | **string**| The contact whom is the this email is from. | |
 | **subject** | **string**| The subject or title of the email | |
 | **body** | **string**| The main email contents. | |
+| **id** | **int**| Optional Order ID | [optional] |
 
 ### Return type
 

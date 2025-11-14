@@ -33,6 +33,6 @@ models/MailStatsTypeVolume.gd
 models/MailStatsTypeVolumeFrom.gd
 models/MailStatsTypeVolumeIp.gd
 models/MailStatsTypeVolumeTo.gd
-models/RawMail.gd
 models/SendMail.gd
 models/SendMailAdv.gd
+models/SendMailRaw.gd

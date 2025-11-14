@@ -53,11 +53,11 @@ sub new {
 #
 # Sends a raw email
 #
-# @param RawMail $raw_mail  (required)
+# @param SendMailRaw $send_mail_raw  (required)
 {
     my $params = {
-    'raw_mail' => {
-        data_type => 'RawMail',
+    'send_mail_raw' => {
+        data_type => 'SendMailRaw',
         description => '',
         required => '1',
     },
@@ -73,9 +73,9 @@ sub new {
 sub raw_mail {
     my ($self, %args) = @_;
 
-    # verify the required parameter 'raw_mail' is set
-    unless (exists $args{'raw_mail'}) {
-      croak("Missing the required parameter 'raw_mail' when calling raw_mail");
+    # verify the required parameter 'send_mail_raw' is set
+    unless (exists $args{'send_mail_raw'}) {
+      croak("Missing the required parameter 'send_mail_raw' when calling raw_mail");
     }
 
     # parse inputs
@@ -95,8 +95,8 @@ sub raw_mail {
 
     my $_body_data;
     # body params
-    if ( exists $args{'raw_mail'}) {
-        $_body_data = $args{'raw_mail'};
+    if ( exists $args{'send_mail_raw'}) {
+        $_body_data = $args{'send_mail_raw'};
     }
 
     # authentication setting, if any
@@ -290,6 +290,7 @@ sub send_adv_mail {
 # @param string $from The contact whom is the this email is from. (required)
 # @param string $subject The subject or title of the email (required)
 # @param string $body The main email contents. (required)
+# @param int $id Optional Order ID (optional)
 {
     my $params = {
     'to' => {
@@ -311,6 +312,11 @@ sub send_adv_mail {
         data_type => 'string',
         description => 'The main email contents.',
         required => '1',
+    },
+    'id' => {
+        data_type => 'int',
+        description => 'Optional Order ID',
+        required => '0',
     },
     };
     __PACKAGE__->method_documentation->{ 'send_mail' } = {
@@ -377,6 +383,11 @@ sub send_mail {
     # form params
     if ( exists $args{'body'} ) {
                 $form_params->{'body'} = $self->{api_client}->to_form_value($args{'body'});
+    }
+
+    # form params
+    if ( exists $args{'id'} ) {
+                $form_params->{'id'} = $self->{api_client}->to_form_value($args{'id'});
     }
 
     my $_body_data;

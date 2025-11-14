@@ -798,7 +798,7 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#RawMail">RawMail</a> (required)</div>
+      <div class="param">body <a href="#SendMailRaw">SendMailRaw</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
                 </div>  <!-- field-items -->
@@ -808,6 +808,8 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Form parameters</h3>
     <div class="field-items">
       <div class="param">raw_email (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
@@ -1095,6 +1097,8 @@ We support several different authentication methods but the preferred method is 
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
       
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
+      
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
@@ -1260,9 +1264,9 @@ We support several different authentication methods but the preferred method is 
     <li><a href="#MailStatsType_volume_from"><code>MailStatsType_volume_from</code></a></li>
     <li><a href="#MailStatsType_volume_ip"><code>MailStatsType_volume_ip</code></a></li>
     <li><a href="#MailStatsType_volume_to"><code>MailStatsType_volume_to</code></a></li>
-    <li><a href="#RawMail"><code>RawMail</code> - Root Type for RawMail</a></li>
     <li><a href="#SendMail"><code>SendMail</code> - SendMail</a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
+    <li><a href="#SendMailRaw"><code>SendMailRaw</code> - Root Type for RawMail</a></li>
   </ol>
 
   <div class="model">
@@ -1545,13 +1549,6 @@ We support several different authentication methods but the preferred method is 
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="RawMail"><code>RawMail</code> - Root Type for RawMail</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Raw Email Object</div>
-    <div class="field-items">
-      <div class="param">raw_email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The entire email contents </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3><a name="SendMail"><code>SendMail</code> - SendMail</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Details for an Email</div>
     <div class="field-items">
@@ -1563,6 +1560,7 @@ We support several different authentication methods but the preferred method is 
           <div class="param-desc"><span class="param-type">example: Attention Client</span></div>
 <div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
           <div class="param-desc"><span class="param-type">example: This is an email to inform you that something noteworthy happened.</span></div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Optional Order ID </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1587,6 +1585,14 @@ We support several different authentication methods but the preferred method is 
 ]</span></div>
 <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> (optional)  ID of the Mail order within our system to use as the Mail Account. format: int64</div>
           <div class="param-desc"><span class="param-type">example: 5000</span></div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SendMailRaw"><code>SendMailRaw</code> - Root Type for RawMail</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Raw Email Object</div>
+    <div class="field-items">
+      <div class="param">raw_email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The entire email contents </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Optional order id </div>
     </div>  <!-- field-items -->
   </div>
   </body>

@@ -17,9 +17,9 @@ import io.swagger.client.model.EmailAddressesTypes;
 import io.swagger.client.model.ErrorMessage;
 import io.swagger.client.model.GenericResponse;
 import io.swagger.client.model.MailAttachment;
-import io.swagger.client.model.RawMail;
 import io.swagger.client.model.SendMail;
 import io.swagger.client.model.SendMailAdv;
+import io.swagger.client.model.SendMailRaw;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -48,7 +48,7 @@ public class SendingApiTest {
      */
     @Test
     public void rawMailTest() throws Exception {
-        RawMail body = null;
+        SendMailRaw body = null;
         GenericResponse response = api.rawMail(body);
 
         // TODO: test validations
@@ -90,7 +90,8 @@ public class SendingApiTest {
         String from = null;
         String subject = null;
         String body = null;
-        GenericResponse response = api.sendMail(to, from, subject, body);
+        Integer id = null;
+        GenericResponse response = api.sendMail(to, from, subject, body, id);
 
         // TODO: test validations
     }

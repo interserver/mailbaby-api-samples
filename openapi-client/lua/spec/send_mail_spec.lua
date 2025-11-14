@@ -44,4 +44,11 @@ describe("send_mail", function()
     end)
   end)
 
+  -- unit tests for the property 'id'
+  describe("property id test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
 end)

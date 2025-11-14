@@ -10,9 +10,9 @@ import io.swagger.server.model.EmailAddressesTypes
 import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailAttachment
-import io.swagger.server.model.RawMail
 import io.swagger.server.model.SendMail
 import io.swagger.server.model.SendMailAdv
+import io.swagger.server.model.SendMailRaw
 
 class SendingApi(
     sendingService: SendingApiService,
@@ -25,10 +25,10 @@ class SendingApi(
       post {
         
           
-            formFields("raw_email".as[String]) { (rawEmail) =>
+            formFields("raw_email".as[String], "id".as[Int]) { (rawEmail, id) =>
               
-                entity(as[RawMail]){ body =>
-                  sendingService.rawMail(body = body, rawEmail = rawEmail)
+                entity(as[SendMailRaw]){ body =>
+                  sendingService.rawMail(body = body, rawEmail = rawEmail, id = id)
                 }
              
             }
@@ -55,10 +55,10 @@ class SendingApi(
       post {
         
           
-            formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String]) { (to, from, subject, body) =>
+            formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String], "id".as[Int]) { (to, from, subject, body, id) =>
               
                 entity(as[SendMail]){ body =>
-                  sendingService.sendMail(to = to, from = from, subject = subject, body = body, body = body)
+                  sendingService.sendMail(to = to, from = from, subject = subject, body = body, id = id, body = body)
                 }
              
             }
@@ -84,7 +84,7 @@ trait SendingApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorMessage
    * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
    */
-  def rawMail(body: RawMail, rawEmail: String)
+  def rawMail(body: SendMailRaw, rawEmail: String, id: Int)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def sendAdvMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
@@ -118,15 +118,15 @@ trait SendingApiService {
    * Code: 401, Message: Unauthorized, DataType: ErrorMessage
    * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
    */
-  def sendMail(to: String, from: String, subject: String, body: String, body: String)
+  def sendMail(to: String, from: String, subject: String, body: String, id: Int, body: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }
 
 trait SendingApiMarshaller {
-  implicit def fromRequestUnmarshallerSendMailAdv: FromRequestUnmarshaller[SendMailAdv]
+  implicit def fromRequestUnmarshallerSendMailRaw: FromRequestUnmarshaller[SendMailRaw]
 
-  implicit def fromRequestUnmarshallerRawMail: FromRequestUnmarshaller[RawMail]
+  implicit def fromRequestUnmarshallerSendMailAdv: FromRequestUnmarshaller[SendMailAdv]
 
   implicit def fromRequestUnmarshallerSendMail: FromRequestUnmarshaller[SendMail]
 

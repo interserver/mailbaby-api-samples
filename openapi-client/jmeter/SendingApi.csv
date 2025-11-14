@@ -1,2 +1,2 @@
-testCase,httpStatusCode,rawMail,subject,body,from,to,replyto,cc,bcc,attachments,id,to,from,subject,body
-Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+testCase,httpStatusCode,sendMailRaw,subject,body,from,to,replyto,cc,bcc,attachments,id,to,from,subject,body,id
+Success,200,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

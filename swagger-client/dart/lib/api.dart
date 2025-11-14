@@ -39,8 +39,8 @@ part 'model/mail_stats_type_volume.dart';
 part 'model/mail_stats_type_volume_from.dart';
 part 'model/mail_stats_type_volume_ip.dart';
 part 'model/mail_stats_type_volume_to.dart';
-part 'model/raw_mail.dart';
 part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
+part 'model/send_mail_raw.dart';
 
 ApiClient defaultApiClient = new ApiClient();

@@ -24,13 +24,13 @@ class SendingApi {
   ///
   /// Parameters:
   ///
-  /// * [RawMail] rawMail (required):
-  Future<Response> rawMailWithHttpInfo(RawMail rawMail,) async {
+  /// * [SendMailRaw] sendMailRaw (required):
+  Future<Response> rawMailWithHttpInfo(SendMailRaw sendMailRaw,) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/rawsend';
 
     // ignore: prefer_final_locals
-    Object? postBody = rawMail;
+    Object? postBody = sendMailRaw;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
@@ -56,9 +56,9 @@ class SendingApi {
   ///
   /// Parameters:
   ///
-  /// * [RawMail] rawMail (required):
-  Future<GenericResponse?> rawMail(RawMail rawMail,) async {
-    final response = await rawMailWithHttpInfo(rawMail,);
+  /// * [SendMailRaw] sendMailRaw (required):
+  Future<GenericResponse?> rawMail(SendMailRaw sendMailRaw,) async {
+    final response = await rawMailWithHttpInfo(sendMailRaw,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -214,7 +214,10 @@ class SendingApi {
   ///
   /// * [String] body (required):
   ///   The main email contents.
-  Future<Response> sendMailWithHttpInfo(String to, String from, String subject, String body,) async {
+  ///
+  /// * [int] id:
+  ///   Optional Order ID
+  Future<Response> sendMailWithHttpInfo(String to, String from, String subject, String body, { int? id, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/send';
 
@@ -238,6 +241,9 @@ class SendingApi {
     }
     if (body != null) {
       formParams[r'body'] = parameterToString(body);
+    }
+    if (id != null) {
+      formParams[r'id'] = parameterToString(id);
     }
 
     return apiClient.invokeAPI(
@@ -268,8 +274,11 @@ class SendingApi {
   ///
   /// * [String] body (required):
   ///   The main email contents.
-  Future<GenericResponse?> sendMail(String to, String from, String subject, String body,) async {
-    final response = await sendMailWithHttpInfo(to, from, subject, body,);
+  ///
+  /// * [int] id:
+  ///   Optional Order ID
+  Future<GenericResponse?> sendMail(String to, String from, String subject, String body, { int? id, }) async {
+    final response = await sendMailWithHttpInfo(to, from, subject, body,  id: id, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

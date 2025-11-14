@@ -16,7 +16,7 @@ import org.openapitools.client.model.EmailAddressesTypes
 import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.GenericResponse
 import org.openapitools.client.model.MailAttachment
-import org.openapitools.client.model.RawMail
+import org.openapitools.client.model.SendMailRaw
 import org.openapitools.client.core.JsonSupport._
 import sttp.client4._
 import sttp.model.Method
@@ -39,14 +39,14 @@ class SendingApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param rawMail 
+   * @param sendMailRaw 
    */
-  def rawMail(apiKeyHeader: String)(rawMail: RawMail): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def rawMail(apiKeyHeader: String)(sendMailRaw: SendMailRaw): Request[Either[ResponseException[String, Exception], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/rawsend")
       .contentType("application/json")
       .header("X-API-KEY", apiKeyHeader)
-      .body(rawMail)
+      .body(sendMailRaw)
       .response(asJson[GenericResponse])
 
   /**
@@ -105,8 +105,9 @@ class SendingApi(baseUrl: String) {
    * @param from The contact whom is the this email is from.
    * @param subject The subject or title of the email
    * @param body The main email contents.
+   * @param id Optional Order ID
    */
-  def sendMail(apiKeyHeader: String)(to: String, from: String, subject: String, body: String): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def sendMail(apiKeyHeader: String)(to: String, from: String, subject: String, body: String, id: Option[Int] = None): Request[Either[ResponseException[String, Exception], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")
       .contentType("application/x-www-form-urlencoded")
@@ -115,7 +116,8 @@ class SendingApi(baseUrl: String) {
         "to" -> to,
         "from" -> from,
         "subject" -> subject,
-        "body" -> body
+        "body" -> body,
+        "id" -> id
       ))
       .response(asJson[GenericResponse])
 

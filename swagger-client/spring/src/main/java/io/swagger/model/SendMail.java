@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Details for an Email")
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T05:52:58.531972048-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class SendMail   {
@@ -38,6 +38,12 @@ public class SendMail   {
   @JsonProperty("body")
 
   private String body = null;
+
+  @JsonProperty("id")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
+  private Integer id = null;
 
 
   public SendMail to(String to) { 
@@ -140,6 +146,29 @@ public class SendMail   {
     this.body = body;
   }
 
+  public SendMail id(Integer id) { 
+
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Optional Order ID
+   * @return id
+   **/
+  
+  @Schema(description = "Optional Order ID")
+  
+  public Integer getId() {  
+    return id;
+  }
+
+
+
+  public void setId(Integer id) { 
+    this.id = id;
+  }
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -152,12 +181,13 @@ public class SendMail   {
     return Objects.equals(this.to, sendMail.to) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body);
+        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -169,6 +199,7 @@ public class SendMail   {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

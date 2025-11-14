@@ -14,4 +14,6 @@ class SendMail {
     String subject
     /* The main email contents. */
     String body
+    /* Optional Order ID */
+    Integer id
 }

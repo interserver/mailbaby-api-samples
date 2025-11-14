@@ -49,5 +49,11 @@ class SendMailTest : ShouldSpec() {
             //modelInstance.body shouldBe ("TODO")
         }
 
+        // to test the property `id` - Optional Order ID
+        should("test id") {
+            // uncomment below to test the property
+            //modelInstance.id shouldBe ("TODO")
+        }
+
     }
 }

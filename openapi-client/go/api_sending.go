@@ -26,11 +26,11 @@ type SendingAPIService service
 type ApiRawMailRequest struct {
 	ctx context.Context
 	ApiService *SendingAPIService
-	rawMail *RawMail
+	sendMailRaw *SendMailRaw
 }
 
-func (r ApiRawMailRequest) RawMail(rawMail RawMail) ApiRawMailRequest {
-	r.rawMail = &rawMail
+func (r ApiRawMailRequest) SendMailRaw(sendMailRaw SendMailRaw) ApiRawMailRequest {
+	r.sendMailRaw = &sendMailRaw
 	return r
 }
 
@@ -73,8 +73,8 @@ func (a *SendingAPIService) RawMailExecute(r ApiRawMailRequest) (*GenericRespons
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.rawMail == nil {
-		return localVarReturnValue, nil, reportError("rawMail is required and must be specified")
+	if r.sendMailRaw == nil {
+		return localVarReturnValue, nil, reportError("sendMailRaw is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -95,7 +95,7 @@ func (a *SendingAPIService) RawMailExecute(r ApiRawMailRequest) (*GenericRespons
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.rawMail
+	localVarPostBody = r.sendMailRaw
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -544,6 +544,7 @@ type ApiSendMailRequest struct {
 	from *string
 	subject *string
 	body *string
+	id *int32
 }
 
 // The Contact whom is the primary recipient of this email.
@@ -567,6 +568,12 @@ func (r ApiSendMailRequest) Subject(subject string) ApiSendMailRequest {
 // The main email contents.
 func (r ApiSendMailRequest) Body(body string) ApiSendMailRequest {
 	r.body = &body
+	return r
+}
+
+// Optional Order ID
+func (r ApiSendMailRequest) Id(id int32) ApiSendMailRequest {
+	r.id = &id
 	return r
 }
 
@@ -646,6 +653,9 @@ func (a *SendingAPIService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "", "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "", "")
 	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "", "")
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "id", r.id, "", "")
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

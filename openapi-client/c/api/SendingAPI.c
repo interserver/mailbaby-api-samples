@@ -14,7 +14,7 @@
 // This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
 //
 generic_response_t*
-SendingAPI_rawMail(apiClient_t *apiClient, raw_mail_t *raw_mail)
+SendingAPI_rawMail(apiClient_t *apiClient, send_mail_raw_t *send_mail_raw)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -35,12 +35,12 @@ SendingAPI_rawMail(apiClient_t *apiClient, raw_mail_t *raw_mail)
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_raw_mail = NULL;
-    if (raw_mail != NULL)
+    cJSON *localVarSingleItemJSON_send_mail_raw = NULL;
+    if (send_mail_raw != NULL)
     {
         //not string, not binary
-        localVarSingleItemJSON_raw_mail = raw_mail_convertToJSON(raw_mail);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_raw_mail);
+        localVarSingleItemJSON_send_mail_raw = send_mail_raw_convertToJSON(send_mail_raw);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_send_mail_raw);
         localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -96,9 +96,9 @@ SendingAPI_rawMail(apiClient_t *apiClient, raw_mail_t *raw_mail)
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_raw_mail) {
-        cJSON_Delete(localVarSingleItemJSON_raw_mail);
-        localVarSingleItemJSON_raw_mail = NULL;
+    if (localVarSingleItemJSON_send_mail_raw) {
+        cJSON_Delete(localVarSingleItemJSON_send_mail_raw);
+        localVarSingleItemJSON_send_mail_raw = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -358,7 +358,7 @@ end:
 // Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 //
 generic_response_t*
-SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject, char *body)
+SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject, char *body, int *id)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -424,6 +424,19 @@ SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject,
         valueForm_body = strdup((body));
         keyPairForm_body = keyValuePair_create(keyForm_body,valueForm_body);
         list_addElement(localVarFormParameters,keyPairForm_body);
+    }
+
+    // form parameters
+    char *keyForm_id = NULL;
+    int valueForm_id = 0;
+    keyValuePair_t *keyPairForm_id = 0;
+    if (id != NULL)
+    {
+        keyForm_id = strdup("id");
+        valueForm_id = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueForm_id, MAX_NUMBER_LENGTH, "%d", *id);
+        keyPairForm_id = keyValuePair_create(keyForm_id,&valueForm_id);
+        list_addElement(localVarFormParameters,keyPairForm_id);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/x-www-form-urlencoded"); //consumes
@@ -514,6 +527,11 @@ SendingAPI_sendMail(apiClient_t *apiClient, char *to, char *from, char *subject,
         valueForm_body = NULL;
     }
     free(keyPairForm_body);
+    if (keyForm_id) {
+        free(keyForm_id);
+        keyForm_id = NULL;
+    }
+    free(keyPairForm_id);
     return elementToReturn;
 end:
     free(localVarPath);

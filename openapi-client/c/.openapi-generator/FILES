@@ -37,9 +37,9 @@ docs/mail_stats_type_volume.md
 docs/mail_stats_type_volume_from.md
 docs/mail_stats_type_volume_ip.md
 docs/mail_stats_type_volume_to.md
-docs/raw_mail.md
 docs/send_mail.md
 docs/send_mail_adv.md
+docs/send_mail_raw.md
 external/cJSON.c
 external/cJSON.h
 external/cJSON.licence
@@ -89,12 +89,12 @@ model/mail_stats_type_volume_to.c
 model/mail_stats_type_volume_to.h
 model/object.c
 model/object.h
-model/raw_mail.c
-model/raw_mail.h
 model/send_mail.c
 model/send_mail.h
 model/send_mail_adv.c
 model/send_mail_adv.h
+model/send_mail_raw.c
+model/send_mail_raw.h
 src/apiClient.c
 src/apiKey.c
 src/binary.c
@@ -119,6 +119,6 @@ unit-test/test_mail_stats_type_volume.c
 unit-test/test_mail_stats_type_volume_from.c
 unit-test/test_mail_stats_type_volume_ip.c
 unit-test/test_mail_stats_type_volume_to.c
-unit-test/test_raw_mail.c
 unit-test/test_send_mail.c
 unit-test/test_send_mail_adv.c
+unit-test/test_send_mail_raw.c

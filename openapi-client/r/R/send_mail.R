@@ -11,6 +11,7 @@
 #' @field from The contact whom is the this email is from. character
 #' @field subject The subject or title of the email character
 #' @field body The main email contents. character
+#' @field id Optional Order ID integer [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,6 +22,7 @@ SendMail <- R6::R6Class(
     `from` = NULL,
     `subject` = NULL,
     `body` = NULL,
+    `id` = NULL,
 
     #' @description
     #' Initialize a new SendMail class.
@@ -29,8 +31,9 @@ SendMail <- R6::R6Class(
     #' @param from The contact whom is the this email is from.
     #' @param subject The subject or title of the email
     #' @param body The main email contents.
+    #' @param id Optional Order ID
     #' @param ... Other optional arguments.
-    initialize = function(`to`, `from`, `subject`, `body`, ...) {
+    initialize = function(`to`, `from`, `subject`, `body`, `id` = NULL, ...) {
       if (!missing(`to`)) {
         if (!(is.character(`to`) && length(`to`) == 1)) {
           stop(paste("Error! Invalid data for `to`. Must be a string:", `to`))
@@ -54,6 +57,12 @@ SendMail <- R6::R6Class(
           stop(paste("Error! Invalid data for `body`. Must be a string:", `body`))
         }
         self$`body` <- `body`
+      }
+      if (!is.null(`id`)) {
+        if (!(is.numeric(`id`) && length(`id`) == 1)) {
+          stop(paste("Error! Invalid data for `id`. Must be an integer:", `id`))
+        }
+        self$`id` <- `id`
       }
     },
 
@@ -104,6 +113,10 @@ SendMail <- R6::R6Class(
         SendMailObject[["body"]] <-
           self$`body`
       }
+      if (!is.null(self$`id`)) {
+        SendMailObject[["id"]] <-
+          self$`id`
+      }
       return(SendMailObject)
     },
 
@@ -125,6 +138,9 @@ SendMail <- R6::R6Class(
       }
       if (!is.null(this_object$`body`)) {
         self$`body` <- this_object$`body`
+      }
+      if (!is.null(this_object$`id`)) {
+        self$`id` <- this_object$`id`
       }
       self
     },
@@ -151,6 +167,7 @@ SendMail <- R6::R6Class(
       self$`from` <- this_object$`from`
       self$`subject` <- this_object$`subject`
       self$`body` <- this_object$`body`
+      self$`id` <- this_object$`id`
       self
     },
 

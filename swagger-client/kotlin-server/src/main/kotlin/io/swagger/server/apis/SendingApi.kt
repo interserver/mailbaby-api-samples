@@ -39,9 +39,9 @@ import io.swagger.server.models.EmailAddressesTypes
 import io.swagger.server.models.ErrorMessage
 import io.swagger.server.models.GenericResponse
 import io.swagger.server.models.MailAttachment
-import io.swagger.server.models.RawMail
 import io.swagger.server.models.SendMail
 import io.swagger.server.models.SendMailAdv
+import io.swagger.server.models.SendMailRaw
 
 @KtorExperimentalLocationsAPI
 fun Route.SendingApi() {

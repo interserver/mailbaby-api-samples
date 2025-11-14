@@ -37,6 +37,8 @@ public:
 	FString Subject;
 	/* The main email contents. */
 	FString Body;
+	/* Optional Order ID */
+	TOptional<int32> Id;
 };
 
 }

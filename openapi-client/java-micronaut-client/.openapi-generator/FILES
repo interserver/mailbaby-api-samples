@@ -30,9 +30,9 @@ docs/models/MailStatsTypeVolume.md
 docs/models/MailStatsTypeVolumeFrom.md
 docs/models/MailStatsTypeVolumeIp.md
 docs/models/MailStatsTypeVolumeTo.md
-docs/models/RawMail.md
 docs/models/SendMail.md
 docs/models/SendMailAdv.md
+docs/models/SendMailRaw.md
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
@@ -66,9 +66,9 @@ src/main/java/org/openapitools/model/MailStatsTypeVolume.java
 src/main/java/org/openapitools/model/MailStatsTypeVolumeFrom.java
 src/main/java/org/openapitools/model/MailStatsTypeVolumeIp.java
 src/main/java/org/openapitools/model/MailStatsTypeVolumeTo.java
-src/main/java/org/openapitools/model/RawMail.java
 src/main/java/org/openapitools/model/SendMail.java
 src/main/java/org/openapitools/model/SendMailAdv.java
+src/main/java/org/openapitools/model/SendMailRaw.java
 src/main/resources/application.yml
 src/main/resources/logback.xml
 src/test/java/org/openapitools/api/BlockingApiTest.java
@@ -95,6 +95,6 @@ src/test/java/org/openapitools/model/MailStatsTypeVolumeFromTest.java
 src/test/java/org/openapitools/model/MailStatsTypeVolumeIpTest.java
 src/test/java/org/openapitools/model/MailStatsTypeVolumeTest.java
 src/test/java/org/openapitools/model/MailStatsTypeVolumeToTest.java
-src/test/java/org/openapitools/model/RawMailTest.java
 src/test/java/org/openapitools/model/SendMailAdvTest.java
+src/test/java/org/openapitools/model/SendMailRawTest.java
 src/test/java/org/openapitools/model/SendMailTest.java

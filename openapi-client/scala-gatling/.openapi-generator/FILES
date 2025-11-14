@@ -31,6 +31,6 @@ src/gatling/scala/org/openapitools/client/model/MailStatsTypeVolume.scala
 src/gatling/scala/org/openapitools/client/model/MailStatsTypeVolumeFrom.scala
 src/gatling/scala/org/openapitools/client/model/MailStatsTypeVolumeIp.scala
 src/gatling/scala/org/openapitools/client/model/MailStatsTypeVolumeTo.scala
-src/gatling/scala/org/openapitools/client/model/RawMail.scala
 src/gatling/scala/org/openapitools/client/model/SendMail.scala
 src/gatling/scala/org/openapitools/client/model/SendMailAdv.scala
+src/gatling/scala/org/openapitools/client/model/SendMailRaw.scala

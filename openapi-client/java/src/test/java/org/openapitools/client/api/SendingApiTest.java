@@ -19,7 +19,7 @@ import org.openapitools.client.model.EmailAddressesTypes;
 import org.openapitools.client.model.ErrorMessage;
 import org.openapitools.client.model.GenericResponse;
 import org.openapitools.client.model.MailAttachment;
-import org.openapitools.client.model.RawMail;
+import org.openapitools.client.model.SendMailRaw;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -45,8 +45,8 @@ public class SendingApiTest {
      */
     @Test
     public void rawMailTest() throws ApiException {
-        RawMail rawMail = null;
-        GenericResponse response = api.rawMail(rawMail);
+        SendMailRaw sendMailRaw = null;
+        GenericResponse response = api.rawMail(sendMailRaw);
         // TODO: test validations
     }
 
@@ -85,7 +85,8 @@ public class SendingApiTest {
         String from = null;
         String subject = null;
         String body = null;
-        GenericResponse response = api.sendMail(to, from, subject, body);
+        Integer id = null;
+        GenericResponse response = api.sendMail(to, from, subject, body, id);
         // TODO: test validations
     }
 

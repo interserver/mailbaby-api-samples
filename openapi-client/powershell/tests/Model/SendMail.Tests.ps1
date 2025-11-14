@@ -10,7 +10,7 @@ Describe -tag 'PSOpenAPITools' -name 'SendMail' {
     Context 'SendMail' {
         It 'Initialize-SendMail' {
             # a simple test to create an object
-            #$NewObject = Initialize-SendMail -To "TEST_VALUE" -VarFrom "TEST_VALUE" -Subject "TEST_VALUE" -Body "TEST_VALUE"
+            #$NewObject = Initialize-SendMail -To "TEST_VALUE" -VarFrom "TEST_VALUE" -Subject "TEST_VALUE" -Body "TEST_VALUE" -Id "TEST_VALUE"
             #$NewObject | Should -BeOfType SendMail
             #$NewObject.property | Should -Be 0
         }

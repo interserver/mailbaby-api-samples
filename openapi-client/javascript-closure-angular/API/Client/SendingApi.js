@@ -20,7 +20,7 @@ goog.require('API.Client.EmailAddressesTypes');
 goog.require('API.Client.ErrorMessage');
 goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailAttachment');
-goog.require('API.Client.RawMail');
+goog.require('API.Client.SendMailRaw');
 
 /**
  * @constructor
@@ -52,11 +52,11 @@ API.Client.SendingApi.$inject = ['$http', '$httpParamSerializer', '$injector'];
 /**
  * Sends a raw email
  * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
- * @param {!RawMail} rawMail 
+ * @param {!SendMailRaw} sendMailRaw 
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.SendingApi.prototype.rawMail = function(rawMail, opt_extraHttpRequestParams) {
+API.Client.SendingApi.prototype.rawMail = function(sendMailRaw, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/rawsend';
 
@@ -65,16 +65,16 @@ API.Client.SendingApi.prototype.rawMail = function(rawMail, opt_extraHttpRequest
 
   /** @type {!Object} */
   var headerParams = angular.extend({}, this.defaultHeaders_);
-  // verify required parameter 'rawMail' is set
-  if (!rawMail) {
-    throw new Error('Missing required parameter rawMail when calling rawMail');
+  // verify required parameter 'sendMailRaw' is set
+  if (!sendMailRaw) {
+    throw new Error('Missing required parameter sendMailRaw when calling rawMail');
   }
   /** @type {!Object} */
   var httpRequestParams = {
     method: 'POST',
     url: path,
     json: true,
-    data: rawMail,
+    data: sendMailRaw,
         params: queryParameters,
     headers: headerParams
   };
@@ -173,10 +173,11 @@ API.Client.SendingApi.prototype.sendAdvMail = function(subject, body, from, to, 
  * @param {!string} from The contact whom is the this email is from.
  * @param {!string} subject The subject or title of the email
  * @param {!string} body The main email contents.
+ * @param {!number=} opt_id Optional Order ID
  * @param {!angular.$http.Config=} opt_extraHttpRequestParams Extra HTTP parameters to send.
  * @return {!angular.$q.Promise<!API.Client.GenericResponse>}
  */
-API.Client.SendingApi.prototype.sendMail = function(to, from, subject, body, opt_extraHttpRequestParams) {
+API.Client.SendingApi.prototype.sendMail = function(to, from, subject, body, opt_id, opt_extraHttpRequestParams) {
   /** @const {string} */
   var path = this.basePath_ + '/mail/send';
 
@@ -213,6 +214,8 @@ API.Client.SendingApi.prototype.sendMail = function(to, from, subject, body, opt
   formParams['subject'] = subject;
 
   formParams['body'] = body;
+
+  formParams['id'] = opt_id;
 
   /** @type {!Object} */
   var httpRequestParams = {

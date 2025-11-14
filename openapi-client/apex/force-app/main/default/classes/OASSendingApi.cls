@@ -28,18 +28,18 @@ public class OASSendingApi {
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param oaSRawMail  (required)
+     * @param oaSSendMailRaw  (required)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
     public OASGenericResponse rawMail(Map<String, Object> params) {
-        client.assertNotNull(params.get('oaSRawMail'), 'oaSRawMail');
+        client.assertNotNull(params.get('oaSSendMailRaw'), 'oaSSendMailRaw');
         List<OAS.Param> query = new List<OAS.Param>();
         List<OAS.Param> form = new List<OAS.Param>();
 
         return (OASGenericResponse) client.invoke(
             'POST', '/mail/rawsend',
-            (OASRawMail) params.get('oaSRawMail'),
+            (OASSendMailRaw) params.get('oaSSendMailRaw'),
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
@@ -101,6 +101,7 @@ public class OASSendingApi {
      * @param r_from The contact whom is the this email is from. (required)
      * @param subject The subject or title of the email (required)
      * @param body The main email contents. (required)
+     * @param id Optional Order ID (optional)
      * @return OASGenericResponse
      * @throws OAS.ApiException if fails to make API call
      */
@@ -117,6 +118,7 @@ public class OASSendingApi {
         form.addAll(client.makeParam('from', (String) params.get('r_from')));
         form.addAll(client.makeParam('subject', (String) params.get('subject')));
         form.addAll(client.makeParam('body', (String) params.get('body')));
+        form.addAll(client.makeParam('id', (Integer) params.get('id')));
 
         return (OASGenericResponse) client.invoke(
             'POST', '/mail/send', '',

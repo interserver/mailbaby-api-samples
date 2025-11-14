@@ -22,9 +22,9 @@ import { EmailAddressesTypes } from '../models';
 import { ErrorMessage } from '../models';
 import { GenericResponse } from '../models';
 import { MailAttachment } from '../models';
-import { RawMail } from '../models';
 import { SendMail } from '../models';
 import { SendMailAdv } from '../models';
+import { SendMailRaw } from '../models';
 /**
  * SendingApi - axios parameter creator
  * @export
@@ -34,11 +34,11 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
-         * @param {RawMail} body 
+         * @param {SendMailRaw} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail: async (body: RawMail, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        rawMail: async (body: SendMailRaw, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling rawMail.');
@@ -87,13 +87,18 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
          * @param {string} rawEmail 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMailForm: async (rawEmail: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        rawMailForm: async (rawEmail: string, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'rawEmail' is not null or undefined
             if (rawEmail === null || rawEmail === undefined) {
                 throw new RequiredError('rawEmail','Required parameter rawEmail was null or undefined when calling rawMailForm.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling rawMailForm.');
             }
             const localVarPath = `/mail/rawsend`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -118,6 +123,10 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
 
             if (rawEmail !== undefined) { 
                 localVarFormParams.append('raw_email', rawEmail as any);
+            }
+
+            if (id !== undefined) { 
+                localVarFormParams.append('id', id as any);
             }
 
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
@@ -324,10 +333,11 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailForm: async (to: string, from: string, subject: string, body: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sendMailForm: async (to: string, from: string, subject: string, body: string, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMailForm.');
@@ -343,6 +353,10 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendMailForm.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMailForm.');
             }
             const localVarPath = `/mail/send`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -379,6 +393,10 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
 
             if (body !== undefined) { 
                 localVarFormParams.set('body', body as any);
+            }
+
+            if (id !== undefined) { 
+                localVarFormParams.set('id', id as any);
             }
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -462,11 +480,11 @@ export const SendingApiFp = function(configuration?: Configuration) {
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
-         * @param {RawMail} body 
+         * @param {SendMailRaw} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rawMail(body: RawMail, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
+        async rawMail(body: SendMailRaw, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
             const localVarAxiosArgs = await SendingApiAxiosParamCreator(configuration).rawMail(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -477,11 +495,12 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
          * @param {string} rawEmail 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rawMailForm(rawEmail: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
-            const localVarAxiosArgs = await SendingApiAxiosParamCreator(configuration).rawMailForm(rawEmail, options);
+        async rawMailForm(rawEmail: string, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
+            const localVarAxiosArgs = await SendingApiAxiosParamCreator(configuration).rawMailForm(rawEmail, id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -530,11 +549,12 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailForm(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
-            const localVarAxiosArgs = await SendingApiAxiosParamCreator(configuration).sendMailForm(to, from, subject, body, options);
+        async sendMailForm(to: string, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
+            const localVarAxiosArgs = await SendingApiAxiosParamCreator(configuration).sendMailForm(to, from, subject, body, id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -566,22 +586,23 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
-         * @param {RawMail} body 
+         * @param {SendMailRaw} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rawMail(body: RawMail, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
+        async rawMail(body: SendMailRaw, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
             return SendingApiFp(configuration).rawMail(body, options).then((request) => request(axios, basePath));
         },
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
          * @param {string} rawEmail 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rawMailForm(rawEmail: string, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
-            return SendingApiFp(configuration).rawMailForm(rawEmail, options).then((request) => request(axios, basePath));
+        async rawMailForm(rawEmail: string, id: number, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
+            return SendingApiFp(configuration).rawMailForm(rawEmail, id, options).then((request) => request(axios, basePath));
         },
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
@@ -618,11 +639,12 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailForm(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
-            return SendingApiFp(configuration).sendMailForm(to, from, subject, body, options).then((request) => request(axios, basePath));
+        async sendMailForm(to: string, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
+            return SendingApiFp(configuration).sendMailForm(to, from, subject, body, id, options).then((request) => request(axios, basePath));
         },
         /**
          * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
@@ -647,12 +669,12 @@ export class SendingApi extends BaseAPI {
     /**
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @summary Sends a raw email
-     * @param {RawMail} body 
+     * @param {SendMailRaw} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public async rawMail(body: RawMail, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
+    public async rawMail(body: SendMailRaw, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
         return SendingApiFp(this.configuration).rawMail(body, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -660,12 +682,13 @@ export class SendingApi extends BaseAPI {
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @summary Sends a raw email
      * @param {string} rawEmail 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public async rawMailForm(rawEmail: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
-        return SendingApiFp(this.configuration).rawMailForm(rawEmail, options).then((request) => request(this.axios, this.basePath));
+    public async rawMailForm(rawEmail: string, id: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
+        return SendingApiFp(this.configuration).rawMailForm(rawEmail, id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
@@ -705,12 +728,13 @@ export class SendingApi extends BaseAPI {
      * @param {string} from 
      * @param {string} subject 
      * @param {string} body 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public async sendMailForm(to: string, from: string, subject: string, body: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
-        return SendingApiFp(this.configuration).sendMailForm(to, from, subject, body, options).then((request) => request(this.axios, this.basePath));
+    public async sendMailForm(to: string, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
+        return SendingApiFp(this.configuration).sendMailForm(to, from, subject, body, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

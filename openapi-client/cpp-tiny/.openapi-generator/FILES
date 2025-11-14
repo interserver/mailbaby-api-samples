@@ -40,12 +40,12 @@ lib/Models/MailStatsTypeVolumeIp.cpp
 lib/Models/MailStatsTypeVolumeIp.h
 lib/Models/MailStatsTypeVolumeTo.cpp
 lib/Models/MailStatsTypeVolumeTo.h
-lib/Models/RawMail.cpp
-lib/Models/RawMail.h
 lib/Models/SendMail.cpp
 lib/Models/SendMail.h
 lib/Models/SendMailAdv.cpp
 lib/Models/SendMailAdv.h
+lib/Models/SendMailRaw.cpp
+lib/Models/SendMailRaw.h
 lib/TestFiles/DenyRuleNewTest.cpp
 lib/TestFiles/DenyRuleRecordTest.cpp
 lib/TestFiles/EmailAddressNameTest.cpp
@@ -65,8 +65,8 @@ lib/TestFiles/MailStatsTypeVolumeFromTest.cpp
 lib/TestFiles/MailStatsTypeVolumeIpTest.cpp
 lib/TestFiles/MailStatsTypeVolumeTest.cpp
 lib/TestFiles/MailStatsTypeVolumeToTest.cpp
-lib/TestFiles/RawMailTest.cpp
 lib/TestFiles/SendMailAdvTest.cpp
+lib/TestFiles/SendMailRawTest.cpp
 lib/TestFiles/SendMailTest.cpp
 lib/service/BlockingApi.cpp
 lib/service/BlockingApi.h

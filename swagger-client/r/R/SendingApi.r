@@ -41,13 +41,14 @@ SendingApi <- R6::R6Class(
         self$apiClient <- ApiClient$new()
       }
     },
-    raw_mail = function(body, raw_email, ...){
+    raw_mail = function(body, raw_email, id, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
 
       body <- list(
-          "raw_email" = raw_email
+          "raw_email" = raw_email,
+          "id" = id
       )
 
       if (!missing(`body`)) {
@@ -117,7 +118,7 @@ SendingApi <- R6::R6Class(
       }
 
     }
-    send_mail = function(to, from, subject, body, body, ...){
+    send_mail = function(to, from, subject, body, id, body, ...){
       args <- list(...)
       queryParams <- list()
       headerParams <- character()
@@ -126,7 +127,8 @@ SendingApi <- R6::R6Class(
           "to" = to,
           "from" = from,
           "subject" = subject,
-          "body" = body
+          "body" = body,
+          "id" = id
       )
 
       if (!missing(`body`)) {

@@ -50,7 +50,6 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeFrom.gd
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeIp.gd
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeTo.gd
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/RawMail.gd
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMail.gd
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
 {{modelNamePrefix}}
@@ -75,6 +74,7 @@
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
 {{modelNamePrefix}}
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMailAdv.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMailRaw.gd
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:

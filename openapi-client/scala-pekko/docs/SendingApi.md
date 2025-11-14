@@ -46,9 +46,9 @@ object Example extends App {
 
     val apiInvoker = ApiInvoker()
     val apiInstance = SendingApi("https://api.mailbaby.net")
-    val rawMail: RawMail =  // RawMail | 
+    val sendMailRaw: SendMailRaw =  // SendMailRaw | 
     
-    val request = apiInstance.rawMail(rawMail)
+    val request = apiInstance.rawMail(sendMailRaw)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -76,7 +76,7 @@ object Example extends App {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rawMail** | [**RawMail**](RawMail.md)|  |
+ **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  |
 
 ### Return type
 
@@ -254,8 +254,10 @@ object Example extends App {
     val subject: String = subject_example // String | The subject or title of the email
 
     val body: String = body_example // String | The main email contents.
+
+    val id: Int = 56 // Int | Optional Order ID
     
-    val request = apiInstance.sendMail(to, from, subject, body)
+    val request = apiInstance.sendMail(to, from, subject, body, id)
     val response = apiInvoker.execute(request)
 
     response.onComplete {
@@ -287,6 +289,7 @@ Name | Type | Description  | Notes
  **from** | **String**| The contact whom is the this email is from. |
  **subject** | **String**| The subject or title of the email |
  **body** | **String**| The main email contents. |
+ **id** | **Int**| Optional Order ID | [optional]
 
 ### Return type
 

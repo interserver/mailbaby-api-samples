@@ -31,7 +31,7 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::SendingApi.new
-body = SwaggerClient::RawMail.new # RawMail | 
+body = SwaggerClient::SendMailRaw.new # SendMailRaw | 
 
 
 begin
@@ -47,7 +47,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  | 
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 
 # **raw_mail**
-> GenericResponse raw_mail(raw_email)
+> GenericResponse raw_mail(raw_emailid)
 
 Sends a raw email
 
@@ -85,11 +85,12 @@ end
 
 api_instance = SwaggerClient::SendingApi.new
 raw_email = 'raw_email_example' # String | 
+id = 56 # Integer | 
 
 
 begin
   #Sends a raw email
-  result = api_instance.raw_mail(raw_email)
+  result = api_instance.raw_mail(raw_emailid)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling SendingApi->raw_mail: #{e}"
@@ -101,6 +102,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **raw_email** | **String**|  | 
+ **id** | **Integer**|  | 
 
 ### Return type
 
@@ -240,7 +242,7 @@ Name | Type | Description  | Notes
 
 
 # **send_mail**
-> GenericResponse send_mail(tofromsubjectbody)
+> GenericResponse send_mail(tofromsubjectbodyid)
 
 Sends an Email
 
@@ -263,11 +265,12 @@ to = 'to_example' # String |
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
+id = 56 # Integer | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail(tofromsubjectbody)
+  result = api_instance.send_mail(tofromsubjectbodyid)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling SendingApi->send_mail: #{e}"
@@ -282,6 +285,7 @@ Name | Type | Description  | Notes
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
+ **id** | **Integer**|  | 
 
 ### Return type
 

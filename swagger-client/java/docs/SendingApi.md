@@ -34,7 +34,7 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 SendingApi apiInstance = new SendingApi();
-RawMail body = new RawMail(); // RawMail | 
+SendMailRaw body = new SendMailRaw(); // SendMailRaw | 
 try {
     GenericResponse result = apiInstance.rawMail(body);
     System.out.println(result);
@@ -48,7 +48,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  |
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  |
 
 ### Return type
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 <a name="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(rawEmail)
+> GenericResponse rawMail(rawEmail, id)
 
 Sends a raw email
 
@@ -90,8 +90,9 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 
 SendingApi apiInstance = new SendingApi();
 String rawEmail = "rawEmail_example"; // String | 
+Integer id = 56; // Integer | 
 try {
-    GenericResponse result = apiInstance.rawMail(rawEmail);
+    GenericResponse result = apiInstance.rawMail(rawEmail, id);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SendingApi#rawMail");
@@ -104,6 +105,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **rawEmail** | **String**|  |
+ **id** | **Integer**|  |
 
 ### Return type
 
@@ -246,7 +248,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, id)
 
 Sends an Email
 
@@ -274,8 +276,9 @@ String to = "to_example"; // String |
 String from = "from_example"; // String | 
 String subject = "subject_example"; // String | 
 String body = "body_example"; // String | 
+Integer id = 56; // Integer | 
 try {
-    GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+    GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SendingApi#sendMail");
@@ -291,6 +294,7 @@ Name | Type | Description  | Notes
  **from** | **String**|  |
  **subject** | **String**|  |
  **body** | **String**|  |
+ **id** | **Integer**|  |
 
 ### Return type
 

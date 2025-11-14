@@ -101,9 +101,9 @@ Category | Method | HTTP request | Description
  - [mail_stats_type_volume_from_t](docs/mail_stats_type_volume_from.md)
  - [mail_stats_type_volume_ip_t](docs/mail_stats_type_volume_ip.md)
  - [mail_stats_type_volume_to_t](docs/mail_stats_type_volume_to.md)
- - [raw_mail_t](docs/raw_mail.md)
  - [send_mail_t](docs/send_mail.md)
  - [send_mail_adv_t](docs/send_mail_adv.md)
+ - [send_mail_raw_t](docs/send_mail_raw.md)
 
 
 ## Documentation for Authorization

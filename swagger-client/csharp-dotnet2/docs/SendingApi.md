@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="rawmail"></a>
 # **RawMail**
-> GenericResponse RawMail (RawMail body)
+> GenericResponse RawMail (SendMailRaw body)
 
 Sends a raw email
 
@@ -37,7 +37,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new SendingApi();
-            var body = new RawMail(); // RawMail | 
+            var body = new SendMailRaw(); // SendMailRaw | 
 
             try
             {
@@ -58,7 +58,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  | 
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 <a name="sendmail"></a>
 # **SendMail**
-> GenericResponse SendMail (string to, string from, string subject, string body)
+> GenericResponse SendMail (string to, string from, string subject, string body, int? id)
 
 Sends an Email
 
@@ -191,11 +191,12 @@ namespace Example
             var from = from_example;  // string | 
             var subject = subject_example;  // string | 
             var body = body_example;  // string | 
+            var id = 56;  // int? | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.SendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.SendMail(to, from, subject, body, id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -215,6 +216,7 @@ Name | Type | Description  | Notes
  **from** | **string**|  | 
  **subject** | **string**|  | 
  **body** | **string**|  | 
+ **id** | **int?**|  | 
 
 ### Return type
 

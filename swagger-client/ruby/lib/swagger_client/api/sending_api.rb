@@ -55,6 +55,7 @@ module SwaggerClient
       # form parameters
       form_params = opts[:form_params] || {}
       form_params['raw_email'] = raw_email
+      form_params['id'] = id
 
       # http body (model)
       post_body = opts[:body] || @api_client.object_to_http_body(body) 
@@ -78,25 +79,31 @@ module SwaggerClient
     # Sends a raw email
     # This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
     # @param raw_email 
+    # @param id 
     # @param [Hash] opts the optional parameters
     # @return [GenericResponse]
-    def raw_mail(raw_email, opts = {})
-      data, _status_code, _headers = raw_mail_with_http_info(raw_email, opts)
+    def raw_mail(raw_email, id, opts = {})
+      data, _status_code, _headers = raw_mail_with_http_info(raw_email, id, opts)
       data
     end
 
     # Sends a raw email
     # This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
     # @param raw_email 
+    # @param id 
     # @param [Hash] opts the optional parameters
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def raw_mail_with_http_info(raw_email, opts = {})
+    def raw_mail_with_http_info(raw_email, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: SendingApi.raw_mail ...'
       end
       # verify the required parameter 'raw_email' is set
       if @api_client.config.client_side_validation && raw_email.nil?
         fail ArgumentError, "Missing the required parameter 'raw_email' when calling SendingApi.raw_mail"
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling SendingApi.raw_mail"
       end
       # resource path
       local_var_path = '/mail/rawsend'
@@ -114,6 +121,7 @@ module SwaggerClient
       # form parameters
       form_params = opts[:form_params] || {}
       form_params['raw_email'] = raw_email
+      form_params['id'] = id
 
       # http body (model)
       post_body = opts[:body] || @api_client.object_to_http_body(body) 
@@ -322,10 +330,11 @@ module SwaggerClient
     # @param from 
     # @param subject 
     # @param body 
+    # @param id 
     # @param [Hash] opts the optional parameters
     # @return [GenericResponse]
-    def send_mail(to, from, subject, body, opts = {})
-      data, _status_code, _headers = send_mail_with_http_info(to, from, subject, body, opts)
+    def send_mail(to, from, subject, body, id, opts = {})
+      data, _status_code, _headers = send_mail_with_http_info(to, from, subject, body, id, opts)
       data
     end
 
@@ -335,9 +344,10 @@ module SwaggerClient
     # @param from 
     # @param subject 
     # @param body 
+    # @param id 
     # @param [Hash] opts the optional parameters
     # @return [Array<(GenericResponse, Integer, Hash)>] GenericResponse data, response status code and response headers
-    def send_mail_with_http_info(to, from, subject, body, opts = {})
+    def send_mail_with_http_info(to, from, subject, body, id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: SendingApi.send_mail ...'
       end
@@ -356,6 +366,10 @@ module SwaggerClient
       # verify the required parameter 'body' is set
       if @api_client.config.client_side_validation && body.nil?
         fail ArgumentError, "Missing the required parameter 'body' when calling SendingApi.send_mail"
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling SendingApi.send_mail"
       end
       # resource path
       local_var_path = '/mail/send'
@@ -376,6 +390,7 @@ module SwaggerClient
       form_params['from'] = from
       form_params['subject'] = subject
       form_params['body'] = body
+      form_params['id'] = id
 
       # http body (model)
       post_body = opts[:body] || @api_client.object_to_http_body(body) 
@@ -438,6 +453,7 @@ module SwaggerClient
       form_params['from'] = from
       form_params['subject'] = subject
       form_params['body'] = body
+      form_params['id'] = id
 
       # http body (model)
       post_body = opts[:body] || @api_client.object_to_http_body(body) 

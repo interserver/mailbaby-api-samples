@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **raw_mail**
-> GenericResponse raw_mail(raw_mail => $raw_mail)
+> GenericResponse raw_mail(send_mail_raw => $send_mail_raw)
 
 Sends a raw email
 
@@ -33,10 +33,10 @@ my $api_instance = OpenAPIClient::SendingApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $raw_mail = OpenAPIClient::Object::RawMail->new(); # RawMail | 
+my $send_mail_raw = OpenAPIClient::Object::SendMailRaw->new(); # SendMailRaw | 
 
 eval {
-    my $result = $api_instance->raw_mail(raw_mail => $raw_mail);
+    my $result = $api_instance->raw_mail(send_mail_raw => $send_mail_raw);
     print Dumper($result);
 };
 if ($@) {
@@ -48,7 +48,7 @@ if ($@) {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **raw_mail** | [**RawMail**](RawMail.md)|  | 
+ **send_mail_raw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> GenericResponse send_mail(to => $to, from => $from, subject => $subject, body => $body)
+> GenericResponse send_mail(to => $to, from => $from, subject => $subject, body => $body, id => $id)
 
 Sends an Email
 
@@ -155,9 +155,10 @@ my $to = "to_example"; # string | The Contact whom is the primary recipient of t
 my $from = "from_example"; # string | The contact whom is the this email is from.
 my $subject = "subject_example"; # string | The subject or title of the email
 my $body = "body_example"; # string | The main email contents.
+my $id = 56; # int | Optional Order ID
 
 eval {
-    my $result = $api_instance->send_mail(to => $to, from => $from, subject => $subject, body => $body);
+    my $result = $api_instance->send_mail(to => $to, from => $from, subject => $subject, body => $body, id => $id);
     print Dumper($result);
 };
 if ($@) {
@@ -173,6 +174,7 @@ Name | Type | Description  | Notes
  **from** | **string**| The contact whom is the this email is from. | 
  **subject** | **string**| The subject or title of the email | 
  **body** | **string**| The main email contents. | 
+ **id** | **int**| Optional Order ID | [optional] 
 
 ### Return type
 

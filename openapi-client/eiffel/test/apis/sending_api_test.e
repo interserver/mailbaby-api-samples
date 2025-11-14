@@ -19,12 +19,12 @@ feature -- Test routines
             -- This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
         local
             l_response: GENERIC_RESPONSE
-            l_raw_mail: RAW_MAIL
+            l_send_mail_raw: SEND_MAIL_RAW
         do
             -- TODO: Initialize required params.
-            -- l_raw_mail
+            -- l_send_mail_raw
 
-            -- l_response := api.raw_mail(l_raw_mail)
+            -- l_response := api.raw_mail(l_send_mail_raw)
             assert ("not_implemented", False)
         end
 
@@ -64,6 +64,7 @@ feature -- Test routines
             l_var_from: STRING_32
             l_subject: STRING_32
             l_body: STRING_32
+            l_id: INTEGER_32
         do
             -- TODO: Initialize required params.
             -- l_to
@@ -71,7 +72,7 @@ feature -- Test routines
             -- l_subject
             -- l_body
 
-            -- l_response := api.send_mail(l_to, l_var_from, l_subject, l_body)
+            -- l_response := api.send_mail(l_to, l_var_from, l_subject, l_body, l_id)
             assert ("not_implemented", False)
         end
 

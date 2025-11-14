@@ -27,9 +27,9 @@ import openapiclient/models/model_mail_stats_type_volume
 import openapiclient/models/model_mail_stats_type_volume_from
 import openapiclient/models/model_mail_stats_type_volume_ip
 import openapiclient/models/model_mail_stats_type_volume_to
-import openapiclient/models/model_raw_mail
 import openapiclient/models/model_send_mail
 import openapiclient/models/model_send_mail_adv
+import openapiclient/models/model_send_mail_raw
 
 export model_deny_rule_new
 export model_deny_rule_record
@@ -50,9 +50,9 @@ export model_mail_stats_type_volume
 export model_mail_stats_type_volume_from
 export model_mail_stats_type_volume_ip
 export model_mail_stats_type_volume_to
-export model_raw_mail
 export model_send_mail
 export model_send_mail_adv
+export model_send_mail_raw
 
 # APIs
 import openapiclient/apis/api_blocking

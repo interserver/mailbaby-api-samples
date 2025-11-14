@@ -24,11 +24,11 @@ object JsonSupport extends AdditionalTypeSerializers:
     JsonCodecMaker.make(config)
 
   given mailLogCodec: JsonValueCodec[MailLog] = deriveJsonCodec
+  given sendMailRawCodec: JsonValueCodec[SendMailRaw] = deriveJsonCodec
   given stringCodec: JsonValueCodec[String] = deriveJsonCodec
   given mailBlocksCodec: JsonValueCodec[MailBlocks] = deriveJsonCodec
   given genericResponseCodec: JsonValueCodec[GenericResponse] = deriveJsonCodec
   given mailStatsTypeCodec: JsonValueCodec[MailStatsType] = deriveJsonCodec
-  given rawMailCodec: JsonValueCodec[RawMail] = deriveJsonCodec
   given seqMailOrderCodec: JsonValueCodec[Seq[MailOrder]] = deriveJsonCodec
   given seqDenyRuleRecordCodec: JsonValueCodec[Seq[DenyRuleRecord]] = deriveJsonCodec
 

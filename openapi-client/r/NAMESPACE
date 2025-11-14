@@ -32,9 +32,9 @@ export(MailStatsTypeVolume)
 export(MailStatsTypeVolumeFrom)
 export(MailStatsTypeVolumeIp)
 export(MailStatsTypeVolumeTo)
-export(RawMail)
 export(SendMail)
 export(SendMailAdv)
+export(SendMailRaw)
 
 # APIs
 export(BlockingApi)

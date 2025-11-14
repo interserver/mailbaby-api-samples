@@ -833,16 +833,19 @@ package body .Models is
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in .Models.RawMail_Type) is
+                        Value : in .Models.SendMailRaw_Type) is
    begin
       Into.Start_Entity (Name);
       Into.Write_Entity ("raw_email", Value.Raw_Email);
+      if not Value.Id.Is_Null then
+         Into.Write_Entity ("id", Value.Id);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in RawMail_Type_Vectors.Vector) is
+                        Value : in SendMailRaw_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -853,18 +856,19 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out .Models.RawMail_Type) is
+                          Value : out .Models.SendMailRaw_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
       Swagger.Streams.Deserialize (Object, "raw_email", Value.Raw_Email);
+      Swagger.Streams.Deserialize (Object, "id", Value.Id);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : in out RawMail_Type_Vectors.Vector) is
+                          Value : in out SendMailRaw_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : .Models.RawMail_Type;
+      Item : .Models.SendMailRaw_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);
@@ -883,6 +887,9 @@ package body .Models is
       Into.Write_Entity ("from", Value.From);
       Into.Write_Entity ("subject", Value.Subject);
       Into.Write_Entity ("body", Value.P_Body);
+      if not Value.Id.Is_Null then
+         Into.Write_Entity ("id", Value.Id);
+      end if;
       Into.End_Entity (Name);
    end Serialize;
 
@@ -907,6 +914,7 @@ package body .Models is
       Swagger.Streams.Deserialize (Object, "from", Value.From);
       Swagger.Streams.Deserialize (Object, "subject", Value.Subject);
       Swagger.Streams.Deserialize (Object, "body", Value.P_Body);
+      Swagger.Streams.Deserialize (Object, "id", Value.Id);
    end Deserialize;
 
    procedure Deserialize (From  : in Swagger.Value_Type;

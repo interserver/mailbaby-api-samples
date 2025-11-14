@@ -55,4 +55,12 @@ export interface SendMail {
      * @example This is an email to inform you that something noteworthy happened.
      */
     body: string;
+
+    /**
+     * Optional Order ID
+     *
+     * @type {number}
+     * @memberof SendMail
+     */
+    id?: number;
 }

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **From** | **string** | The contact whom is the this email is from. | 
 **Subject** | **string** | The subject or title of the email | 
 **Body** | **string** | The main email contents. | 
+**Id** | **int?** | Optional Order ID | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

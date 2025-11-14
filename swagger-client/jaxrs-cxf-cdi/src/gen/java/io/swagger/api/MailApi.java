@@ -11,9 +11,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 import io.swagger.api.MailApiService;
 
 import javax.ws.rs.*;
@@ -45,7 +45,7 @@ import javax.validation.constraints.*;
 
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2025-11-14T05:52:33.024034470-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2025-11-14T07:22:22.579512004-05:00[America/New_York]")
 
 public class MailApi  {
 
@@ -191,7 +191,7 @@ public class MailApi  {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
     public Response rawMail(
-@Parameter(description = "" ,required=true) RawMail body
+@Parameter(description = "" ,required=true) SendMailRaw body
 ) {
         return delegate.rawMail(body, securityContext);
     }
@@ -207,8 +207,8 @@ public class MailApi  {
         @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public Response rawMail(@Multipart(value = "raw_email")  String rawEmail) {
-        return delegate.rawMail(rawEmail, securityContext);
+    public Response rawMail(@Multipart(value = "raw_email")  String rawEmail, @Multipart(value = "id")  Integer id) {
+        return delegate.rawMail(rawEmail, id, securityContext);
     }
 
     @POST
@@ -254,8 +254,8 @@ public class MailApi  {
         @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public Response sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body) {
-        return delegate.sendMail(to, from, subject, body, securityContext);
+    public Response sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "id")  Integer id) {
+        return delegate.sendMail(to, from, subject, body, id, securityContext);
     }
 
     @POST

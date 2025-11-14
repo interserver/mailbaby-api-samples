@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## rawMail
 
-> GenericResponse rawMail(rawMail)
+> GenericResponse rawMail(sendMailRaw)
 
 Sends a raw email
 
@@ -30,8 +30,8 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
-let rawMail = new MailBabyEmailDeliveryAndManagementServiceApi.RawMail(); // RawMail | 
-apiInstance.rawMail(rawMail, (error, data, response) => {
+let sendMailRaw = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw(); // SendMailRaw | 
+apiInstance.rawMail(sendMailRaw, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -45,7 +45,7 @@ apiInstance.rawMail(rawMail, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rawMail** | [**RawMail**](RawMail.md)|  | 
+ **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ## sendMail
 
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, opts)
 
 Sends an Email
 
@@ -154,7 +154,10 @@ let to = "to_example"; // String | The Contact whom is the primary recipient of 
 let from = "from_example"; // String | The contact whom is the this email is from.
 let subject = "subject_example"; // String | The subject or title of the email
 let body = "body_example"; // String | The main email contents.
-apiInstance.sendMail(to, from, subject, body, (error, data, response) => {
+let opts = {
+  'id': 56 // Number | Optional Order ID
+};
+apiInstance.sendMail(to, from, subject, body, opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -172,6 +175,7 @@ Name | Type | Description  | Notes
  **from** | **String**| The contact whom is the this email is from. | 
  **subject** | **String**| The subject or title of the email | 
  **body** | **String**| The main email contents. | 
+ **id** | **Number**| Optional Order ID | [optional] 
 
 ### Return type
 

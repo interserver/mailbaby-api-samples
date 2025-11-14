@@ -78,15 +78,15 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/MailStatsTypeVolumeTo.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/MailStatsTypeVolumeToTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/MailStatsTypeVolumeTo.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/RawMail.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/RawMailTest.java
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/RawMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/SendMail.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/SendMailTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/SendMailAdv.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/SendMailAdvTest.java
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/SendMailAdv.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/model/SendMailRaw.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/test/java/org/openapitools/model/SendMailRawTest.java
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/docs/models/SendMailRaw.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/java-micronaut-client/src/main/java/org/openapitools/api/BlockingApi.java

@@ -121,15 +121,15 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/MailStatsTypeVolumeTo.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/MailStatsTypeVolumeTo.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/MailStatsTypeVolumeTo.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/RawMail.ps1
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/RawMail.Tests.ps1
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/RawMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMail.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMail.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMailAdv.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMailAdv.Tests.ps1
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMailAdv.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/src/PSOpenAPITools/Model/SendMailRaw.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/tests/Model/SendMailRaw.Tests.ps1
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/powershell/docs/SendMailRaw.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.c.l.PowerShellClientCodegen - Local (reserved word or special variable name) cannot be used in naming. Renamed to VarLocal
 [main] WARN  o.o.c.l.PowerShellClientCodegen - Local (reserved word or special variable name) cannot be used in naming. Renamed to VarLocal

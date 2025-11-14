@@ -31,7 +31,7 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = swagger_client.SendingApi(swagger_client.ApiClient(configuration))
-body = swagger_client.RawMail() # RawMail | 
+body = swagger_client.SendMailRaw() # SendMailRaw | 
 
 try:
     # Sends a raw email
@@ -45,7 +45,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  | 
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> GenericResponse send_mail(to, _from, subject, body)
+> GenericResponse send_mail(to, _from, subject, body, id)
 
 Sends an Email
 
@@ -159,10 +159,11 @@ to = 'to_example' # str |
 _from = '_from_example' # str | 
 subject = 'subject_example' # str | 
 body = 'body_example' # str | 
+id = 56 # int | 
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail(to, _from, subject, body)
+    api_response = api_instance.send_mail(to, _from, subject, body, id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SendingApi->send_mail: %s\n" % e)
@@ -176,6 +177,7 @@ Name | Type | Description  | Notes
  **_from** | **str**|  | 
  **subject** | **str**|  | 
  **body** | **str**|  | 
+ **id** | **int**|  | 
 
 ### Return type
 

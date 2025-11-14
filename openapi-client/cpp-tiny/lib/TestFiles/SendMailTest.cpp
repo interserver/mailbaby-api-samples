@@ -94,6 +94,27 @@ void test_SendMail_body_is_assigned_from_json()
 }
 
 
+void test_SendMail_id_is_assigned_from_json()
+{
+    bourne::json input =
+    {
+        "id", 1
+    };
+
+    SendMail obj(input.dump());
+
+    TEST_ASSERT_EQUAL_INT(1, obj.getId());
+
+
+
+
+
+
+
+
+}
+
+
 
 void test_SendMail_to_is_converted_to_json()
 {
@@ -173,6 +194,27 @@ void test_SendMail_body_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["body"] == output["body"]);
+
+
+
+}
+
+
+void test_SendMail_id_is_converted_to_json()
+{
+    bourne::json input =
+    {
+        "id", 1
+    };
+
+    SendMail obj(input.dump());
+
+    bourne::json output = bourne::json::object();
+
+    output = obj.toJson();
+
+    TEST_ASSERT(input["id"] == output["id"]);
+
 
 
 

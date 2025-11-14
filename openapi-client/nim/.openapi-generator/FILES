@@ -26,7 +26,7 @@ openapiclient/models/model_mail_stats_type_volume.nim
 openapiclient/models/model_mail_stats_type_volume_from.nim
 openapiclient/models/model_mail_stats_type_volume_ip.nim
 openapiclient/models/model_mail_stats_type_volume_to.nim
-openapiclient/models/model_raw_mail.nim
 openapiclient/models/model_send_mail.nim
 openapiclient/models/model_send_mail_adv.nim
+openapiclient/models/model_send_mail_raw.nim
 sample_client.nim

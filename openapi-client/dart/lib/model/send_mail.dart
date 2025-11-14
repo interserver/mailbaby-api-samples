@@ -17,6 +17,7 @@ class SendMail {
     required this.from,
     required this.subject,
     required this.body,
+    this.id,
   });
 
   /// The Contact whom is the primary recipient of this email.
@@ -31,12 +32,22 @@ class SendMail {
   /// The main email contents.
   String body;
 
+  /// Optional Order ID
+  ///
+  /// Please note: This property should have been non-nullable! Since the specification file
+  /// does not include a default value (using the "default:" property), however, the generated
+  /// source code must fall back to having a nullable type.
+  /// Consider adding a "default:" property in the specification file to hide this note.
+  ///
+  int? id;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is SendMail &&
     other.to == to &&
     other.from == from &&
     other.subject == subject &&
-    other.body == body;
+    other.body == body &&
+    other.id == id;
 
   @override
   int get hashCode =>
@@ -44,10 +55,11 @@ class SendMail {
     (to.hashCode) +
     (from.hashCode) +
     (subject.hashCode) +
-    (body.hashCode);
+    (body.hashCode) +
+    (id == null ? 0 : id!.hashCode);
 
   @override
-  String toString() => 'SendMail[to=$to, from=$from, subject=$subject, body=$body]';
+  String toString() => 'SendMail[to=$to, from=$from, subject=$subject, body=$body, id=$id]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -55,6 +67,11 @@ class SendMail {
       json[r'from'] = this.from;
       json[r'subject'] = this.subject;
       json[r'body'] = this.body;
+    if (this.id != null) {
+      json[r'id'] = this.id;
+    } else {
+      json[r'id'] = null;
+    }
     return json;
   }
 
@@ -81,6 +98,7 @@ class SendMail {
         from: mapValueOfType<String>(json, r'from')!,
         subject: mapValueOfType<String>(json, r'subject')!,
         body: mapValueOfType<String>(json, r'body')!,
+        id: mapValueOfType<int>(json, r'id'),
       );
     }
     return null;

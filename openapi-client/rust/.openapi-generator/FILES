@@ -24,9 +24,9 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
-docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -59,6 +59,6 @@ src/models/mail_stats_type_volume_from.rs
 src/models/mail_stats_type_volume_ip.rs
 src/models/mail_stats_type_volume_to.rs
 src/models/mod.rs
-src/models/raw_mail.rs
 src/models/send_mail.rs
 src/models/send_mail_adv.rs
+src/models/send_mail_raw.rs

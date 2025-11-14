@@ -14,7 +14,7 @@ class SendMail(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, to: str=None, _from: str=None, subject: str=None, body: str=None):  # noqa: E501
+    def __init__(self, to: str=None, _from: str=None, subject: str=None, body: str=None, id: int=None):  # noqa: E501
         """SendMail - a model defined in Swagger
 
         :param to: The to of this SendMail.  # noqa: E501
@@ -25,24 +25,29 @@ class SendMail(Model):
         :type subject: str
         :param body: The body of this SendMail.  # noqa: E501
         :type body: str
+        :param id: The id of this SendMail.  # noqa: E501
+        :type id: int
         """
         self.swagger_types = {
             'to': str,
             '_from': str,
             'subject': str,
-            'body': str
+            'body': str,
+            'id': int
         }
 
         self.attribute_map = {
             'to': 'to',
             '_from': 'from',
             'subject': 'subject',
-            'body': 'body'
+            'body': 'body',
+            'id': 'id'
         }
         self._to = to
         self.__from = _from
         self._subject = subject
         self._body = body
+        self._id = id
 
     @classmethod
     def from_dict(cls, dikt) -> 'SendMail':
@@ -154,3 +159,26 @@ class SendMail(Model):
             raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
 
         self._body = body
+
+    @property
+    def id(self) -> int:
+        """Gets the id of this SendMail.
+
+        Optional Order ID  # noqa: E501
+
+        :return: The id of this SendMail.
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id: int):
+        """Sets the id of this SendMail.
+
+        Optional Order ID  # noqa: E501
+
+        :param id: The id of this SendMail.
+        :type id: int
+        """
+
+        self._id = id

@@ -26,6 +26,9 @@ pub struct SendMail {
     /// The main email contents.
     #[serde(rename = "body")]
     pub body: String,
+    /// Optional Order ID
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<i32>,
 }
 
 impl SendMail {
@@ -36,6 +39,7 @@ impl SendMail {
             from,
             subject,
             body,
+            id: None,
         }
     }
 }

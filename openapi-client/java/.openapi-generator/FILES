@@ -27,9 +27,9 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
-docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -84,9 +84,9 @@ src/main/java/org/openapitools/client/model/MailStatsTypeVolume.java
 src/main/java/org/openapitools/client/model/MailStatsTypeVolumeFrom.java
 src/main/java/org/openapitools/client/model/MailStatsTypeVolumeIp.java
 src/main/java/org/openapitools/client/model/MailStatsTypeVolumeTo.java
-src/main/java/org/openapitools/client/model/RawMail.java
 src/main/java/org/openapitools/client/model/SendMail.java
 src/main/java/org/openapitools/client/model/SendMailAdv.java
+src/main/java/org/openapitools/client/model/SendMailRaw.java
 src/test/java/org/openapitools/client/api/BlockingApiTest.java
 src/test/java/org/openapitools/client/api/HistoryApiTest.java
 src/test/java/org/openapitools/client/api/SendingApiTest.java
@@ -111,6 +111,6 @@ src/test/java/org/openapitools/client/model/MailStatsTypeVolumeFromTest.java
 src/test/java/org/openapitools/client/model/MailStatsTypeVolumeIpTest.java
 src/test/java/org/openapitools/client/model/MailStatsTypeVolumeTest.java
 src/test/java/org/openapitools/client/model/MailStatsTypeVolumeToTest.java
-src/test/java/org/openapitools/client/model/RawMailTest.java
 src/test/java/org/openapitools/client/model/SendMailAdvTest.java
+src/test/java/org/openapitools/client/model/SendMailRawTest.java
 src/test/java/org/openapitools/client/model/SendMailTest.java

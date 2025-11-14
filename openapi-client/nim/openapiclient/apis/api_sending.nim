@@ -23,7 +23,7 @@ import ../models/model_email_addresses_types
 import ../models/model_error_message
 import ../models/model_generic_response
 import ../models/model_mail_attachment
-import ../models/model_raw_mail
+import ../models/model_send_mail_raw
 
 const basepath = "https://api.mailbaby.net"
 
@@ -43,11 +43,11 @@ template constructResult[T](response: Response): untyped =
     (none(T.typedesc), response)
 
 
-proc rawMail*(httpClient: HttpClient, rawMail: RawMail): (Option[GenericResponse], Response) =
+proc rawMail*(httpClient: HttpClient, sendMailRaw: SendMailRaw): (Option[GenericResponse], Response) =
   ## Sends a raw email
   httpClient.headers["Content-Type"] = "application/json"
 
-  let response = httpClient.post(basepath & "/mail/rawsend", $(%rawMail))
+  let response = httpClient.post(basepath & "/mail/rawsend", $(%sendMailRaw))
   constructResult[GenericResponse](response)
 
 
@@ -70,7 +70,7 @@ proc sendAdvMail*(httpClient: HttpClient, subject: string, body: string, `from`:
   constructResult[GenericResponse](response)
 
 
-proc sendMail*(httpClient: HttpClient, to: string, `from`: string, subject: string, body: string): (Option[GenericResponse], Response) =
+proc sendMail*(httpClient: HttpClient, to: string, `from`: string, subject: string, body: string, id: int): (Option[GenericResponse], Response) =
   ## Sends an Email
   httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
   let form_data = encodeQuery([
@@ -78,6 +78,7 @@ proc sendMail*(httpClient: HttpClient, to: string, `from`: string, subject: stri
     ("from", $`from`), # The contact whom is the this email is from.
     ("subject", $subject), # The subject or title of the email
     ("body", $body), # The main email contents.
+    ("id", $id), # Optional Order ID
   ])
 
   let response = httpClient.post(basepath & "/mail/send", $form_data)

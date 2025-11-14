@@ -63,6 +63,14 @@ namespace IO.Swagger.Models
         public string Body { get; set; }
 
         /// <summary>
+        /// Optional Order ID
+        /// </summary>
+        /// <value>Optional Order ID</value>
+
+        [DataMember(Name="id")]
+        public int? Id { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -74,6 +82,7 @@ namespace IO.Swagger.Models
             sb.Append("  From: ").Append(From).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -129,6 +138,11 @@ namespace IO.Swagger.Models
                     Body == other.Body ||
                     Body != null &&
                     Body.Equals(other.Body)
+                ) && 
+                (
+                    Id == other.Id ||
+                    Id != null &&
+                    Id.Equals(other.Id)
                 );
         }
 
@@ -150,6 +164,8 @@ namespace IO.Swagger.Models
                     hashCode = hashCode * 59 + Subject.GetHashCode();
                     if (Body != null)
                     hashCode = hashCode * 59 + Body.GetHashCode();
+                    if (Id != null)
+                    hashCode = hashCode * 59 + Id.GetHashCode();
                 return hashCode;
             }
         }

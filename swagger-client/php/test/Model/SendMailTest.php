@@ -104,4 +104,11 @@ class SendMailTest extends TestCase
     public function testPropertyBody()
     {
     }
+
+    /**
+     * Test attribute "id"
+     */
+    public function testPropertyId()
+    {
+    }
 }

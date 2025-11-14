@@ -12,6 +12,7 @@
 #' @field from 
 #' @field subject 
 #' @field body 
+#' @field id 
 #'
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -23,7 +24,8 @@ SendMail <- R6::R6Class(
     `from` = NULL,
     `subject` = NULL,
     `body` = NULL,
-    initialize = function(`to`, `from`, `subject`, `body`){
+    `id` = NULL,
+    initialize = function(`to`, `from`, `subject`, `body`, `id`){
       if (!missing(`to`)) {
         stopifnot(is.character(`to`), length(`to`) == 1)
         self$`to` <- `to`
@@ -40,6 +42,10 @@ SendMail <- R6::R6Class(
         stopifnot(is.character(`body`), length(`body`) == 1)
         self$`body` <- `body`
       }
+      if (!missing(`id`)) {
+        stopifnot(is.numeric(`id`), length(`id`) == 1)
+        self$`id` <- `id`
+      }
     },
     toJSON = function() {
       SendMailObject <- list()
@@ -54,6 +60,9 @@ SendMail <- R6::R6Class(
       }
       if (!is.null(self$`body`)) {
         SendMailObject[['body']] <- self$`body`
+      }
+      if (!is.null(self$`id`)) {
+        SendMailObject[['id']] <- self$`id`
       }
 
       SendMailObject
@@ -72,6 +81,9 @@ SendMail <- R6::R6Class(
       if (!is.null(SendMailObject$`body`)) {
         self$`body` <- SendMailObject$`body`
       }
+      if (!is.null(SendMailObject$`id`)) {
+        self$`id` <- SendMailObject$`id`
+      }
     },
     toJSONString = function() {
        sprintf(
@@ -79,12 +91,14 @@ SendMail <- R6::R6Class(
            "to": %s,
            "from": %s,
            "subject": %s,
-           "body": %s
+           "body": %s,
+           "id": %d
         }',
         self$`to`,
         self$`from`,
         self$`subject`,
-        self$`body`
+        self$`body`,
+        self$`id`
       )
     },
     fromJSONString = function(SendMailJson) {
@@ -93,6 +107,7 @@ SendMail <- R6::R6Class(
       self$`from` <- SendMailObject$`from`
       self$`subject` <- SendMailObject$`subject`
       self$`body` <- SendMailObject$`body`
+      self$`id` <- SendMailObject$`id`
     }
   )
 )

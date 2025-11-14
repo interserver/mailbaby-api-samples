@@ -11,7 +11,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 <a name="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(RawMail)
+> GenericResponse rawMail(SendMailRaw)
 
 Sends a raw email
 
@@ -21,7 +21,7 @@ Sends a raw email
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **RawMail** | [**RawMail**](../Models/RawMail.md)|  | |
+| **SendMailRaw** | [**SendMailRaw**](../Models/SendMailRaw.md)|  | |
 
 ### Return type
 
@@ -73,7 +73,7 @@ Sends an Email with Advanced Options
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, id)
 
 Sends an Email
 
@@ -87,6 +87,7 @@ Sends an Email
 | **from** | **String**| The contact whom is the this email is from. | [default to null] |
 | **subject** | **String**| The subject or title of the email | [default to null] |
 | **body** | **String**| The main email contents. | [default to null] |
+| **id** | **Integer**| Optional Order ID | [optional] [default to null] |
 
 ### Return type
 

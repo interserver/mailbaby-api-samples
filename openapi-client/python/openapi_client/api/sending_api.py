@@ -24,7 +24,7 @@ from openapi_client.models.email_address_types import EmailAddressTypes
 from openapi_client.models.email_addresses_types import EmailAddressesTypes
 from openapi_client.models.generic_response import GenericResponse
 from openapi_client.models.mail_attachment import MailAttachment
-from openapi_client.models.raw_mail import RawMail
+from openapi_client.models.send_mail_raw import SendMailRaw
 
 from openapi_client.api_client import ApiClient, RequestSerialized
 from openapi_client.api_response import ApiResponse
@@ -47,7 +47,7 @@ class SendingApi:
     @validate_call
     def raw_mail(
         self,
-        raw_mail: RawMail,
+        send_mail_raw: SendMailRaw,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -65,8 +65,8 @@ class SendingApi:
 
         This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
 
-        :param raw_mail: (required)
-        :type raw_mail: RawMail
+        :param send_mail_raw: (required)
+        :type send_mail_raw: SendMailRaw
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -90,7 +90,7 @@ class SendingApi:
         """ # noqa: E501
 
         _param = self._raw_mail_serialize(
-            raw_mail=raw_mail,
+            send_mail_raw=send_mail_raw,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -117,7 +117,7 @@ class SendingApi:
     @validate_call
     def raw_mail_with_http_info(
         self,
-        raw_mail: RawMail,
+        send_mail_raw: SendMailRaw,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -135,8 +135,8 @@ class SendingApi:
 
         This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
 
-        :param raw_mail: (required)
-        :type raw_mail: RawMail
+        :param send_mail_raw: (required)
+        :type send_mail_raw: SendMailRaw
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -160,7 +160,7 @@ class SendingApi:
         """ # noqa: E501
 
         _param = self._raw_mail_serialize(
-            raw_mail=raw_mail,
+            send_mail_raw=send_mail_raw,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -187,7 +187,7 @@ class SendingApi:
     @validate_call
     def raw_mail_without_preload_content(
         self,
-        raw_mail: RawMail,
+        send_mail_raw: SendMailRaw,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -205,8 +205,8 @@ class SendingApi:
 
         This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
 
-        :param raw_mail: (required)
-        :type raw_mail: RawMail
+        :param send_mail_raw: (required)
+        :type send_mail_raw: SendMailRaw
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -230,7 +230,7 @@ class SendingApi:
         """ # noqa: E501
 
         _param = self._raw_mail_serialize(
-            raw_mail=raw_mail,
+            send_mail_raw=send_mail_raw,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -252,7 +252,7 @@ class SendingApi:
 
     def _raw_mail_serialize(
         self,
-        raw_mail,
+        send_mail_raw,
         _request_auth,
         _content_type,
         _headers,
@@ -278,8 +278,8 @@ class SendingApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if raw_mail is not None:
-            _body_params = raw_mail
+        if send_mail_raw is not None:
+            _body_params = send_mail_raw
 
 
         # set the HTTP header `Accept`
@@ -740,6 +740,7 @@ class SendingApi:
         var_from: Annotated[StrictStr, Field(description="The contact whom is the this email is from.")],
         subject: Annotated[StrictStr, Field(description="The subject or title of the email")],
         body: Annotated[StrictStr, Field(description="The main email contents.")],
+        id: Annotated[Optional[StrictInt], Field(description="Optional Order ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -765,6 +766,8 @@ class SendingApi:
         :type subject: str
         :param body: The main email contents. (required)
         :type body: str
+        :param id: Optional Order ID
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -792,6 +795,7 @@ class SendingApi:
             var_from=var_from,
             subject=subject,
             body=body,
+            id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -822,6 +826,7 @@ class SendingApi:
         var_from: Annotated[StrictStr, Field(description="The contact whom is the this email is from.")],
         subject: Annotated[StrictStr, Field(description="The subject or title of the email")],
         body: Annotated[StrictStr, Field(description="The main email contents.")],
+        id: Annotated[Optional[StrictInt], Field(description="Optional Order ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -847,6 +852,8 @@ class SendingApi:
         :type subject: str
         :param body: The main email contents. (required)
         :type body: str
+        :param id: Optional Order ID
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -874,6 +881,7 @@ class SendingApi:
             var_from=var_from,
             subject=subject,
             body=body,
+            id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -904,6 +912,7 @@ class SendingApi:
         var_from: Annotated[StrictStr, Field(description="The contact whom is the this email is from.")],
         subject: Annotated[StrictStr, Field(description="The subject or title of the email")],
         body: Annotated[StrictStr, Field(description="The main email contents.")],
+        id: Annotated[Optional[StrictInt], Field(description="Optional Order ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -929,6 +938,8 @@ class SendingApi:
         :type subject: str
         :param body: The main email contents. (required)
         :type body: str
+        :param id: Optional Order ID
+        :type id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -956,6 +967,7 @@ class SendingApi:
             var_from=var_from,
             subject=subject,
             body=body,
+            id=id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -981,6 +993,7 @@ class SendingApi:
         var_from,
         subject,
         body,
+        id,
         _request_auth,
         _content_type,
         _headers,
@@ -1013,6 +1026,8 @@ class SendingApi:
             _form_params.append(('subject', subject))
         if body is not None:
             _form_params.append(('body', body))
+        if id is not None:
+            _form_params.append(('id', id))
         # process the body parameter
 
 

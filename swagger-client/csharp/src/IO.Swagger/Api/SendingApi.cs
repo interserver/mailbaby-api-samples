@@ -32,7 +32,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse RawMail (RawMail body);
+        GenericResponse RawMail (SendMailRaw body);
 
         /// <summary>
         /// Sends a raw email
@@ -43,7 +43,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> RawMailWithHttpInfo (RawMail body);
+        ApiResponse<GenericResponse> RawMailWithHttpInfo (SendMailRaw body);
         /// <summary>
         /// Sends a raw email
         /// </summary>
@@ -52,8 +52,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse RawMail (string rawEmail);
+        GenericResponse RawMail (string rawEmail, int? id);
 
         /// <summary>
         /// Sends a raw email
@@ -63,8 +64,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> RawMailWithHttpInfo (string rawEmail);
+        ApiResponse<GenericResponse> RawMailWithHttpInfo (string rawEmail, int? id);
         /// <summary>
         /// Sends an Email with Advanced Options
         /// </summary>
@@ -134,8 +136,9 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMail (string to, string from, string subject, string body);
+        GenericResponse SendMail (string to, string from, string subject, string body, int? id);
 
         /// <summary>
         /// Sends an Email
@@ -148,8 +151,9 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        ApiResponse<GenericResponse> SendMailWithHttpInfo (string to, string from, string subject, string body);
+        ApiResponse<GenericResponse> SendMailWithHttpInfo (string to, string from, string subject, string body, int? id);
         /// <summary>
         /// Sends an Email
         /// </summary>
@@ -182,7 +186,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> RawMailAsync (RawMail body);
+        System.Threading.Tasks.Task<GenericResponse> RawMailAsync (SendMailRaw body);
 
         /// <summary>
         /// Sends a raw email
@@ -193,7 +197,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (RawMail body);
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (SendMailRaw body);
         /// <summary>
         /// Sends a raw email
         /// </summary>
@@ -202,8 +206,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> RawMailAsync (string rawEmail);
+        System.Threading.Tasks.Task<GenericResponse> RawMailAsync (string rawEmail, int? id);
 
         /// <summary>
         /// Sends a raw email
@@ -213,8 +218,9 @@ namespace IO.Swagger.Api
         /// </remarks>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (string rawEmail);
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (string rawEmail, int? id);
         /// <summary>
         /// Sends an Email with Advanced Options
         /// </summary>
@@ -284,8 +290,9 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>Task of GenericResponse</returns>
-        System.Threading.Tasks.Task<GenericResponse> SendMailAsync (string to, string from, string subject, string body);
+        System.Threading.Tasks.Task<GenericResponse> SendMailAsync (string to, string from, string subject, string body, int? id);
 
         /// <summary>
         /// Sends an Email
@@ -298,8 +305,9 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (string to, string from, string subject, string body);
+        System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (string to, string from, string subject, string body, int? id);
         /// <summary>
         /// Sends an Email
         /// </summary>
@@ -438,7 +446,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse RawMail (RawMail body)
+        public GenericResponse RawMail (SendMailRaw body)
         {
              ApiResponse<GenericResponse> localVarResponse = RawMailWithHttpInfo(body);
              return localVarResponse.Data;
@@ -450,7 +458,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse< GenericResponse > RawMailWithHttpInfo (RawMail body)
+        public ApiResponse< GenericResponse > RawMailWithHttpInfo (SendMailRaw body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -517,7 +525,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> RawMailAsync (RawMail body)
+        public async System.Threading.Tasks.Task<GenericResponse> RawMailAsync (SendMailRaw body)
         {
              ApiResponse<GenericResponse> localVarResponse = await RawMailAsyncWithHttpInfo(body);
              return localVarResponse.Data;
@@ -530,7 +538,7 @@ namespace IO.Swagger.Api
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (RawMail body)
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (SendMailRaw body)
         {
             // verify the required parameter 'body' is set
             if (body == null)
@@ -596,10 +604,11 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse RawMail (string rawEmail)
+        public GenericResponse RawMail (string rawEmail, int? id)
         {
-             ApiResponse<GenericResponse> localVarResponse = RawMailWithHttpInfo(rawEmail);
+             ApiResponse<GenericResponse> localVarResponse = RawMailWithHttpInfo(rawEmail, id);
              return localVarResponse.Data;
         }
 
@@ -608,12 +617,16 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse< GenericResponse > RawMailWithHttpInfo (string rawEmail)
+        public ApiResponse< GenericResponse > RawMailWithHttpInfo (string rawEmail, int? id)
         {
             // verify the required parameter 'rawEmail' is set
             if (rawEmail == null)
                 throw new ApiException(400, "Missing required parameter 'rawEmail' when calling SendingApi->RawMail");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SendingApi->RawMail");
 
             var localVarPath = "/mail/rawsend";
             var localVarPathParams = new Dictionary<String, String>();
@@ -639,6 +652,7 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (rawEmail != null) localVarFormParams.Add("raw_email", this.Configuration.ApiClient.ParameterToString(rawEmail)); // form parameter
+            if (id != null) localVarFormParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // form parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
@@ -668,10 +682,11 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> RawMailAsync (string rawEmail)
+        public async System.Threading.Tasks.Task<GenericResponse> RawMailAsync (string rawEmail, int? id)
         {
-             ApiResponse<GenericResponse> localVarResponse = await RawMailAsyncWithHttpInfo(rawEmail);
+             ApiResponse<GenericResponse> localVarResponse = await RawMailAsyncWithHttpInfo(rawEmail, id);
              return localVarResponse.Data;
 
         }
@@ -681,12 +696,16 @@ namespace IO.Swagger.Api
         /// </summary>
         /// <exception cref="IO.Swagger.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="rawEmail"></param>
+        /// <param name="id"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (string rawEmail)
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> RawMailAsyncWithHttpInfo (string rawEmail, int? id)
         {
             // verify the required parameter 'rawEmail' is set
             if (rawEmail == null)
                 throw new ApiException(400, "Missing required parameter 'rawEmail' when calling SendingApi->RawMail");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SendingApi->RawMail");
 
             var localVarPath = "/mail/rawsend";
             var localVarPathParams = new Dictionary<String, String>();
@@ -712,6 +731,7 @@ namespace IO.Swagger.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (rawEmail != null) localVarFormParams.Add("raw_email", this.Configuration.ApiClient.ParameterToString(rawEmail)); // form parameter
+            if (id != null) localVarFormParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // form parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
@@ -1144,10 +1164,11 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMail (string to, string from, string subject, string body)
+        public GenericResponse SendMail (string to, string from, string subject, string body, int? id)
         {
-             ApiResponse<GenericResponse> localVarResponse = SendMailWithHttpInfo(to, from, subject, body);
+             ApiResponse<GenericResponse> localVarResponse = SendMailWithHttpInfo(to, from, subject, body, id);
              return localVarResponse.Data;
         }
 
@@ -1159,8 +1180,9 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>ApiResponse of GenericResponse</returns>
-        public ApiResponse< GenericResponse > SendMailWithHttpInfo (string to, string from, string subject, string body)
+        public ApiResponse< GenericResponse > SendMailWithHttpInfo (string to, string from, string subject, string body, int? id)
         {
             // verify the required parameter 'to' is set
             if (to == null)
@@ -1174,6 +1196,9 @@ namespace IO.Swagger.Api
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling SendingApi->SendMail");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SendingApi->SendMail");
 
             var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1202,6 +1227,7 @@ namespace IO.Swagger.Api
             if (from != null) localVarFormParams.Add("from", this.Configuration.ApiClient.ParameterToString(from)); // form parameter
             if (subject != null) localVarFormParams.Add("subject", this.Configuration.ApiClient.ParameterToString(subject)); // form parameter
             if (body != null) localVarFormParams.Add("body", this.Configuration.ApiClient.ParameterToString(body)); // form parameter
+            if (id != null) localVarFormParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // form parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {
@@ -1234,10 +1260,11 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>Task of GenericResponse</returns>
-        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync (string to, string from, string subject, string body)
+        public async System.Threading.Tasks.Task<GenericResponse> SendMailAsync (string to, string from, string subject, string body, int? id)
         {
-             ApiResponse<GenericResponse> localVarResponse = await SendMailAsyncWithHttpInfo(to, from, subject, body);
+             ApiResponse<GenericResponse> localVarResponse = await SendMailAsyncWithHttpInfo(to, from, subject, body, id);
              return localVarResponse.Data;
 
         }
@@ -1250,8 +1277,9 @@ namespace IO.Swagger.Api
         /// <param name="from"></param>
         /// <param name="subject"></param>
         /// <param name="body"></param>
+        /// <param name="id"></param>
         /// <returns>Task of ApiResponse (GenericResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (string to, string from, string subject, string body)
+        public async System.Threading.Tasks.Task<ApiResponse<GenericResponse>> SendMailAsyncWithHttpInfo (string to, string from, string subject, string body, int? id)
         {
             // verify the required parameter 'to' is set
             if (to == null)
@@ -1265,6 +1293,9 @@ namespace IO.Swagger.Api
             // verify the required parameter 'body' is set
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling SendingApi->SendMail");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling SendingApi->SendMail");
 
             var localVarPath = "/mail/send";
             var localVarPathParams = new Dictionary<String, String>();
@@ -1293,6 +1324,7 @@ namespace IO.Swagger.Api
             if (from != null) localVarFormParams.Add("from", this.Configuration.ApiClient.ParameterToString(from)); // form parameter
             if (subject != null) localVarFormParams.Add("subject", this.Configuration.ApiClient.ParameterToString(subject)); // form parameter
             if (body != null) localVarFormParams.Add("body", this.Configuration.ApiClient.ParameterToString(body)); // form parameter
+            if (id != null) localVarFormParams.Add("id", this.Configuration.ApiClient.ParameterToString(id)); // form parameter
             // authentication (apiKeyAuth) required
             if (!String.IsNullOrEmpty(this.Configuration.GetApiKeyWithPrefix("X-API-KEY")))
             {

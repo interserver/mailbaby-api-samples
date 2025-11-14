@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**SendMail**](SendingApi.md#SendMail) | **Post** /mail/send | Sends an Email
 
 # **RawMail**
-> GenericResponse RawMail(ctx, body, rawEmail)
+> GenericResponse RawMail(ctx, body, rawEmail, id)
 Sends a raw email
 
 This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
@@ -19,8 +19,9 @@ This call will let you pass the raw / complete email contents (including headers
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **body** | [**RawMail**](RawMail.md)|  | 
+  **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
   **rawEmail** | **string**|  | 
+  **id** | **int32**|  | 
 
 ### Return type
 
@@ -75,7 +76,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SendMail**
-> GenericResponse SendMail(ctx, to, from, subject, body, body)
+> GenericResponse SendMail(ctx, to, from, subject, body, id, body)
 Sends an Email
 
 Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
@@ -89,6 +90,7 @@ Name | Type | Description  | Notes
   **from** | **string**|  | 
   **subject** | **string**|  | 
   **body** | **string**|  | 
+  **id** | **int32**|  | 
   **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type

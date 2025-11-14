@@ -12,7 +12,7 @@ Method | HTTP request | Description
 <a id="Invoke-RawMail"></a>
 # **Invoke-RawMail**
 > GenericResponse Invoke-RawMail<br>
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-RawMail] <PSCustomObject><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SendMailRaw] <PSCustomObject><br>
 
 Sends a raw email
 
@@ -27,11 +27,11 @@ $Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 #$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-$RawMail = Initialize-RawMail -RawEmail "MyRawEmail" # RawMail | 
+$SendMailRaw = Initialize-SendMailRaw -RawEmail "MyRawEmail" -Id 0 # SendMailRaw | 
 
 # Sends a raw email
 try {
-    $Result = Invoke-RawMail -RawMail $RawMail
+    $Result = Invoke-RawMail -SendMailRaw $SendMailRaw
 } catch {
     Write-Host ("Exception occurred when calling Invoke-RawMail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -42,7 +42,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **RawMail** | [**RawMail**](RawMail.md)|  | 
+ **SendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -140,6 +140,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Subject] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int32]><br>
 
 Sends an Email
 
@@ -158,10 +159,11 @@ $To = "MyTo" # String | The Contact whom is the primary recipient of this email.
 $From = "MyFrom" # String | The contact whom is the this email is from.
 $Subject = "MySubject" # String | The subject or title of the email
 $Body = "MyBody" # String | The main email contents.
+$Id = 56 # Int32 | Optional Order ID (optional)
 
 # Sends an Email
 try {
-    $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body
+    $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body -Id $Id
 } catch {
     Write-Host ("Exception occurred when calling Send-Mail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -176,6 +178,7 @@ Name | Type | Description  | Notes
  **From** | **String**| The contact whom is the this email is from. | 
  **Subject** | **String**| The subject or title of the email | 
  **Body** | **String**| The main email contents. | 
+ **Id** | **Int32**| Optional Order ID | [optional] 
 
 ### Return type
 

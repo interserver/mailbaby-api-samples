@@ -210,13 +210,14 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::SendingApi.new
-body = SwaggerClient::RawMail.new # RawMail | 
+body = SwaggerClient::SendMailRaw.new # SendMailRaw | 
 raw_email = 'raw_email_example' # String | 
+id = 56 # Integer | 
 
 
 begin
   #Sends a raw email
-  result = api_instance.raw_mail(body, raw_email)
+  result = api_instance.raw_mail(body, raw_email, id)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling SendingApi->raw_mail: #{e}"
@@ -262,12 +263,13 @@ to = 'to_example' # String |
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
+id = 56 # Integer | 
 body = SwaggerClient::SendMail.new # SendMail | 
 
 
 begin
   #Sends an Email
-  result = api_instance.send_mail(to, from, subject, body, body)
+  result = api_instance.send_mail(to, from, subject, body, id, body)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling SendingApi->send_mail: #{e}"
@@ -349,9 +351,9 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [SwaggerClient::MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [SwaggerClient::MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [SwaggerClient::RawMail](docs/RawMail.md)
  - [SwaggerClient::SendMail](docs/SendMail.md)
  - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
+ - [SwaggerClient::SendMailRaw](docs/SendMailRaw.md)
 
 ## Documentation for Authorization
 

@@ -10,7 +10,7 @@ Feature | HTTP request | Description
 
 
 # **raw_mail**
-> raw_mail (raw_mail: RAW_MAIL ): detachable GENERIC_RESPONSE
+> raw_mail (send_mail_raw: SEND_MAIL_RAW ): detachable GENERIC_RESPONSE
 
 
 Sends a raw email
@@ -22,7 +22,7 @@ This call will let you pass the raw / complete email contents (including headers
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **raw_mail** | [**RAW_MAIL**](RAW_MAIL.md)|  | 
+ **send_mail_raw** | [**SEND_MAIL_RAW**](SEND_MAIL_RAW.md)|  | 
 
 ### Return type
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> send_mail (to: STRING_32 ; var_from: STRING_32 ; subject: STRING_32 ; body: STRING_32 ): detachable GENERIC_RESPONSE
+> send_mail (to: STRING_32 ; var_from: STRING_32 ; subject: STRING_32 ; body: STRING_32 ; id:  detachable INTEGER_32 ): detachable GENERIC_RESPONSE
 
 
 Sends an Email
@@ -94,6 +94,7 @@ Name | Type | Description  | Notes
  **var_from** | **STRING_32**| The contact whom is the this email is from. | [default to null]
  **subject** | **STRING_32**| The subject or title of the email | [default to null]
  **body** | **STRING_32**| The main email contents. | [default to null]
+ **id** | **INTEGER_32**| Optional Order ID | [optional] [default to null]
 
 ### Return type
 

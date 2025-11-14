@@ -38,4 +38,11 @@ class SendMail
     #[DTA\Validator("Scalar", ["type" => "string"])]
     public string|null $body = null;
 
+    /**
+     * Optional Order ID
+     */
+    #[DTA\Data(field: "id", nullable: true)]
+    #[DTA\Validator("Scalar", ["type" => "int"])]
+    public int|null $id = null;
+
 }

@@ -5,7 +5,7 @@ import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailAttachment;
-import org.openapitools.model.RawMail;
+import org.openapitools.model.SendMailRaw;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -37,10 +37,10 @@ public class SendingApiTest {
     @Disabled("Not Implemented")
     public void rawMailTest() {
         // given
-        RawMail rawMail = new RawMail("example");
+        SendMailRaw sendMailRaw = new SendMailRaw("example");
 
         // when
-        GenericResponse body = api.rawMail(rawMail).block();
+        GenericResponse body = api.rawMail(sendMailRaw).block();
 
         // then
         // TODO implement the rawMailTest()
@@ -87,9 +87,10 @@ public class SendingApiTest {
         String from = "example";
         String subject = "example";
         String _body = "example";
+        Integer id = 56;
 
         // when
-        GenericResponse body = api.sendMail(to, from, subject, _body).block();
+        GenericResponse body = api.sendMail(to, from, subject, _body, id).block();
 
         // then
         // TODO implement the sendMailTest()

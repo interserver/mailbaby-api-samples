@@ -13,7 +13,7 @@
 #include "ErrorMessage.h"
 #include "GenericResponse.h"
 #include "MailAttachment.h"
-#include "RawMail.h"
+#include "SendMailRaw.h"
 
 namespace Tiny {
 
@@ -32,14 +32,14 @@ public:
     * Sends a raw email.
     *
     * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-    * \param rawMail  *Required*
+    * \param sendMailRaw  *Required*
     */
     Response<
                 GenericResponse
         >
     rawMail(
             
-            RawMail rawMail
+            SendMailRaw sendMailRaw
             
     );
     /**
@@ -96,6 +96,7 @@ public:
     * \param from The contact whom is the this email is from. *Required*
     * \param subject The subject or title of the email *Required*
     * \param body The main email contents. *Required*
+    * \param id Optional Order ID
     */
     Response<
                 GenericResponse
@@ -112,6 +113,9 @@ public:
             , 
             
             std::string body
+            , 
+            
+            int id
             
     );
 }; 

@@ -6,9 +6,9 @@ from swagger_server.models.email_addresses_types import EmailAddressesTypes  # n
 from swagger_server.models.error_message import ErrorMessage  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
-from swagger_server.models.raw_mail import RawMail  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
 from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
+from swagger_server.models.send_mail_raw import SendMailRaw  # noqa: E501
 from swagger_server import util
 
 
@@ -23,17 +23,19 @@ def raw_mail(body):  # noqa: E501
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        body = RawMail.from_dict(connexion.request.get_json())  # noqa: E501
+        body = SendMailRaw.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 
-def raw_mail(raw_email):  # noqa: E501
+def raw_mail(raw_email, id):  # noqa: E501
     """Sends a raw email
 
     This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages. # noqa: E501
 
     :param raw_email: 
     :type raw_email: str
+    :param id: 
+    :type id: int
 
     :rtype: GenericResponse
     """
@@ -96,7 +98,7 @@ def send_adv_mail(body):  # noqa: E501
     return 'do some magic!'
 
 
-def send_mail(to, _from, subject, body):  # noqa: E501
+def send_mail(to, _from, subject, body, id):  # noqa: E501
     """Sends an Email
 
     Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.  # noqa: E501
@@ -109,6 +111,8 @@ def send_mail(to, _from, subject, body):  # noqa: E501
     :type subject: str
     :param body: 
     :type body: str
+    :param id: 
+    :type id: int
 
     :rtype: GenericResponse
     """

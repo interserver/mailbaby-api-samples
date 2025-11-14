@@ -17,6 +17,7 @@
  * @param from The contact whom is the this email is from.
  * @param subject The subject or title of the email
  * @param body The main email contents.
+ * @param id Optional Order ID
  */
 data class SendMail (
 
@@ -27,6 +28,8 @@ data class SendMail (
     /* The subject or title of the email */
     val subject: kotlin.String,
     /* The main email contents. */
-    val body: kotlin.String
+    val body: kotlin.String,
+    /* Optional Order ID */
+    val id: kotlin.Int? = null
 ) {
 }

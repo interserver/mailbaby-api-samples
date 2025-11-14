@@ -941,10 +941,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RawMail"
+              $ref: "#/components/schemas/SendMailRaw"
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/RawMail"
+              $ref: "#/components/schemas/SendMailRaw"
         required: true
       responses:
         "200":
@@ -1330,6 +1330,9 @@ components:
           type: string
           description: The main email contents.
           example: This is an email to inform you that something noteworthy happened.
+        id:
+          type: integer
+          description: Optional Order ID
       description: Details for an Email
     EmailAddressNames:
       title: EmailAddressNames
@@ -1620,7 +1623,7 @@ components:
             "2.2.2.2": 132
             "3.3.3.3": 129
             "4.4.4.4": 105
-    RawMail:
+    SendMailRaw:
       title: Root Type for RawMail
       required:
       - raw_email
@@ -1629,6 +1632,9 @@ components:
         raw_email:
           type: string
           description: The entire email contents
+        id:
+          type: integer
+          description: Optional order id
       description: Raw Email Object
       example:
         raw_email: <email contents here>

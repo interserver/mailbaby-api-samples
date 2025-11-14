@@ -8,16 +8,19 @@
     #{ 'to' := binary(),
        'from' := binary(),
        'subject' := binary(),
-       'body' := binary()
+       'body' := binary(),
+       'id' => integer()
      }.
 
 encode(#{ 'to' := To,
           'from' := From,
           'subject' := Subject,
-          'body' := Body
+          'body' := Body,
+          'id' := Id
         }) ->
     #{ 'to' => To,
        'from' => From,
        'subject' => Subject,
-       'body' => Body
+       'body' => Body,
+       'id' => Id
      }.

@@ -10,7 +10,7 @@ test_that("RawMail", {
   # base path: https://api.mailbaby.net
   # Sends a raw email
   # This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-  # @param raw_mail RawMail 
+  # @param send_mail_raw SendMailRaw 
   # @return [GenericResponse]
 
   # uncomment below to test the operation
@@ -46,6 +46,7 @@ test_that("SendMail", {
   # @param from character The contact whom is the this email is from.
   # @param subject character The subject or title of the email
   # @param body character The main email contents.
+  # @param id integer Optional Order ID (optional)
   # @return [GenericResponse]
 
   # uncomment below to test the operation

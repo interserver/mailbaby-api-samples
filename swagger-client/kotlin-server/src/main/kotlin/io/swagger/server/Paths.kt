@@ -100,7 +100,7 @@ object Paths {
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @param body  
      */
-    @Location("/mail/rawsend") class rawMail(val body: RawMail)
+    @Location("/mail/rawsend") class rawMail(val body: SendMailRaw)
 
     /**
      * Sends an Email with Advanced Options
@@ -239,8 +239,9 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
      * @param from  
      * @param subject  
      * @param body  
+     * @param id  
      */
-    @Location("/mail/send") class sendMail(val to: kotlin.String, val from: kotlin.String, val subject: kotlin.String, val body: kotlin.String)
+    @Location("/mail/send") class sendMail(val to: kotlin.String, val from: kotlin.String, val subject: kotlin.String, val body: kotlin.String, val id: kotlin.Int)
 
     /**
      * displays a list of mail service orders

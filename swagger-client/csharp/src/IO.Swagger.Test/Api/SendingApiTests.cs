@@ -69,7 +69,7 @@ namespace IO.Swagger.Test
         public void RawMailTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //RawMail body = null;
+            //SendMailRaw body = null;
             //var response = instance.RawMail(body);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
@@ -103,7 +103,8 @@ namespace IO.Swagger.Test
             //string from = null;
             //string subject = null;
             //string body = null;
-            //var response = instance.SendMail(to, from, subject, body);
+            //int? id = null;
+            //var response = instance.SendMail(to, from, subject, body, id);
             //Assert.IsInstanceOf<GenericResponse> (response, "response is GenericResponse");
         }
     }

@@ -32,7 +32,7 @@ import org.openapitools.client.model.EmailAddressesTypes;
 import org.openapitools.client.model.ErrorMessage;
 import org.openapitools.client.model.GenericResponse;
 import org.openapitools.client.model.MailAttachment;
-import org.openapitools.client.model.RawMail;
+import org.openapitools.client.model.SendMailRaw;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class SendingApi {
 
     /**
      * Build call for rawMail
-     * @param rawMail  (required)
+     * @param sendMailRaw  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -93,7 +93,7 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call rawMailCall(@javax.annotation.Nonnull RawMail rawMail, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call rawMailCall(@javax.annotation.Nonnull SendMailRaw sendMailRaw, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -107,7 +107,7 @@ public class SendingApi {
             basePath = null;
         }
 
-        Object localVarPostBody = rawMail;
+        Object localVarPostBody = sendMailRaw;
 
         // create path and map variables
         String localVarPath = "/mail/rawsend";
@@ -140,20 +140,20 @@ public class SendingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call rawMailValidateBeforeCall(@javax.annotation.Nonnull RawMail rawMail, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'rawMail' is set
-        if (rawMail == null) {
-            throw new ApiException("Missing the required parameter 'rawMail' when calling rawMail(Async)");
+    private okhttp3.Call rawMailValidateBeforeCall(@javax.annotation.Nonnull SendMailRaw sendMailRaw, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'sendMailRaw' is set
+        if (sendMailRaw == null) {
+            throw new ApiException("Missing the required parameter 'sendMailRaw' when calling rawMail(Async)");
         }
 
-        return rawMailCall(rawMail, _callback);
+        return rawMailCall(sendMailRaw, _callback);
 
     }
 
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param rawMail  (required)
+     * @param sendMailRaw  (required)
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -166,15 +166,15 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse rawMail(@javax.annotation.Nonnull RawMail rawMail) throws ApiException {
-        ApiResponse<GenericResponse> localVarResp = rawMailWithHttpInfo(rawMail);
+    public GenericResponse rawMail(@javax.annotation.Nonnull SendMailRaw sendMailRaw) throws ApiException {
+        ApiResponse<GenericResponse> localVarResp = rawMailWithHttpInfo(sendMailRaw);
         return localVarResp.getData();
     }
 
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param rawMail  (required)
+     * @param sendMailRaw  (required)
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -187,8 +187,8 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> rawMailWithHttpInfo(@javax.annotation.Nonnull RawMail rawMail) throws ApiException {
-        okhttp3.Call localVarCall = rawMailValidateBeforeCall(rawMail, null);
+    public ApiResponse<GenericResponse> rawMailWithHttpInfo(@javax.annotation.Nonnull SendMailRaw sendMailRaw) throws ApiException {
+        okhttp3.Call localVarCall = rawMailValidateBeforeCall(sendMailRaw, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -196,7 +196,7 @@ public class SendingApi {
     /**
      * Sends a raw email (asynchronously)
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param rawMail  (required)
+     * @param sendMailRaw  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -210,9 +210,9 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call rawMailAsync(@javax.annotation.Nonnull RawMail rawMail, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call rawMailAsync(@javax.annotation.Nonnull SendMailRaw sendMailRaw, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = rawMailValidateBeforeCall(rawMail, _callback);
+        okhttp3.Call localVarCall = rawMailValidateBeforeCall(sendMailRaw, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -446,6 +446,7 @@ public class SendingApi {
      * @param from The contact whom is the this email is from. (required)
      * @param subject The subject or title of the email (required)
      * @param body The main email contents. (required)
+     * @param id Optional Order ID (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -459,7 +460,7 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendMailCall(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call sendMailCall(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, @javax.annotation.Nullable Integer id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -500,6 +501,10 @@ public class SendingApi {
             localVarFormParams.put("body", body);
         }
 
+        if (id != null) {
+            localVarFormParams.put("id", id);
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -522,7 +527,7 @@ public class SendingApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sendMailValidateBeforeCall(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call sendMailValidateBeforeCall(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, @javax.annotation.Nullable Integer id, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'to' is set
         if (to == null) {
             throw new ApiException("Missing the required parameter 'to' when calling sendMail(Async)");
@@ -543,7 +548,7 @@ public class SendingApi {
             throw new ApiException("Missing the required parameter 'body' when calling sendMail(Async)");
         }
 
-        return sendMailCall(to, from, subject, body, _callback);
+        return sendMailCall(to, from, subject, body, id, _callback);
 
     }
 
@@ -554,6 +559,7 @@ public class SendingApi {
      * @param from The contact whom is the this email is from. (required)
      * @param subject The subject or title of the email (required)
      * @param body The main email contents. (required)
+     * @param id Optional Order ID (optional)
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -566,8 +572,8 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public GenericResponse sendMail(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body) throws ApiException {
-        ApiResponse<GenericResponse> localVarResp = sendMailWithHttpInfo(to, from, subject, body);
+    public GenericResponse sendMail(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, @javax.annotation.Nullable Integer id) throws ApiException {
+        ApiResponse<GenericResponse> localVarResp = sendMailWithHttpInfo(to, from, subject, body, id);
         return localVarResp.getData();
     }
 
@@ -578,6 +584,7 @@ public class SendingApi {
      * @param from The contact whom is the this email is from. (required)
      * @param subject The subject or title of the email (required)
      * @param body The main email contents. (required)
+     * @param id Optional Order ID (optional)
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -590,8 +597,8 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GenericResponse> sendMailWithHttpInfo(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body) throws ApiException {
-        okhttp3.Call localVarCall = sendMailValidateBeforeCall(to, from, subject, body, null);
+    public ApiResponse<GenericResponse> sendMailWithHttpInfo(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, @javax.annotation.Nullable Integer id) throws ApiException {
+        okhttp3.Call localVarCall = sendMailValidateBeforeCall(to, from, subject, body, id, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -603,6 +610,7 @@ public class SendingApi {
      * @param from The contact whom is the this email is from. (required)
      * @param subject The subject or title of the email (required)
      * @param body The main email contents. (required)
+     * @param id Optional Order ID (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -616,9 +624,9 @@ public class SendingApi {
         <tr><td> 404 </td><td> The specified resource was not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sendMailAsync(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, final ApiCallback<GenericResponse> _callback) throws ApiException {
+    public okhttp3.Call sendMailAsync(@javax.annotation.Nonnull String to, @javax.annotation.Nonnull String from, @javax.annotation.Nonnull String subject, @javax.annotation.Nonnull String body, @javax.annotation.Nullable Integer id, final ApiCallback<GenericResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sendMailValidateBeforeCall(to, from, subject, body, _callback);
+        okhttp3.Call localVarCall = sendMailValidateBeforeCall(to, from, subject, body, id, _callback);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

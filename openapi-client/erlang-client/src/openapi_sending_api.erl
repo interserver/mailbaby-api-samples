@@ -8,12 +8,12 @@
 
 %% @doc Sends a raw email
 %% This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
--spec raw_mail(ctx:ctx(), openapi_raw_mail:openapi_raw_mail()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-raw_mail(Ctx, OpenapiRawMail) ->
-    raw_mail(Ctx, OpenapiRawMail, #{}).
+-spec raw_mail(ctx:ctx(), openapi_send_mail_raw:openapi_send_mail_raw()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+raw_mail(Ctx, OpenapiSendMailRaw) ->
+    raw_mail(Ctx, OpenapiSendMailRaw, #{}).
 
--spec raw_mail(ctx:ctx(), openapi_raw_mail:openapi_raw_mail(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
-raw_mail(Ctx, OpenapiRawMail, Optional) ->
+-spec raw_mail(ctx:ctx(), openapi_send_mail_raw:openapi_send_mail_raw(), maps:map()) -> {ok, openapi_generic_response:openapi_generic_response(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+raw_mail(Ctx, OpenapiSendMailRaw, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
@@ -21,7 +21,7 @@ raw_mail(Ctx, OpenapiRawMail, Optional) ->
     Path = [?BASE_URL, "/mail/rawsend"],
     QS = [],
     Headers = [],
-    Body1 = OpenapiRawMail,
+    Body1 = OpenapiSendMailRaw,
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"multipart/form-data">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
@@ -63,7 +63,7 @@ send_mail(Ctx, To, From, Subject, Body, Optional) ->
     Path = [?BASE_URL, "/mail/send"],
     QS = [],
     Headers = [],
-    Body1 = {form, [{<<"to">>, To}, {<<"from">>, From}, {<<"subject">>, Subject}, {<<"body">>, Body}]++openapi_utils:optional_params([], _OptionalParams)},
+    Body1 = {form, [{<<"to">>, To}, {<<"from">>, From}, {<<"subject">>, Subject}, {<<"body">>, Body}]++openapi_utils:optional_params(['id'], _OptionalParams)},
     ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/x-www-form-urlencoded">>, <<"application/json">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 

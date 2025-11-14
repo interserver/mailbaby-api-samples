@@ -23,9 +23,9 @@ src/openapi_mail_stats_type_volume.erl
 src/openapi_mail_stats_type_volume_from.erl
 src/openapi_mail_stats_type_volume_ip.erl
 src/openapi_mail_stats_type_volume_to.erl
-src/openapi_raw_mail.erl
 src/openapi_send_mail.erl
 src/openapi_send_mail_adv.erl
+src/openapi_send_mail_raw.erl
 src/openapi_sending_api.erl
 src/openapi_services_api.erl
 src/openapi_status_api.erl

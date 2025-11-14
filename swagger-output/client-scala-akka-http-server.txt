@@ -1,110 +1,110 @@
-05:53:30.578 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-05:53:30.581 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
-05:53:30.636 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-05:53:30.636 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@562b6be9
-05:53:31.344 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-05:53:31.600 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/DenyRuleNew.scala
-05:53:31.612 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/DenyRuleRecord.scala
-05:53:31.619 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddress.scala
-05:53:31.625 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressName.scala
-05:53:31.631 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressNames.scala
-05:53:31.637 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressTypes.scala
-05:53:31.642 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressesTypes.scala
-05:53:31.648 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/ErrorMessage.scala
-05:53:31.653 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/GenericResponse.scala
-05:53:31.659 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailAttachment.scala
-05:53:31.673 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailBlockClickHouse.scala
-05:53:31.677 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailBlockRspamd.scala
-05:53:31.681 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailBlocks.scala
-05:53:31.685 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailLog.scala
-05:53:31.690 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailLogEntry.scala
-05:53:31.694 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailOrder.scala
-05:53:31.698 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType.scala
-05:53:31.702 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume.scala
-05:53:31.706 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume_from.scala
-05:53:31.710 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume_ip.scala
-05:53:31.714 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume_to.scala
-05:53:31.719 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/RawMail.scala
-05:53:31.723 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/SendMail.scala
-05:53:31.727 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/SendMailAdv.scala
-05:53:31.728 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.729 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.743 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.744 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.754 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.755 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.755 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.755 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.756 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.758 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.758 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.759 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.759 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.759 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.759 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.760 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.760 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.773 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.773 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.776 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.776 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.776 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.776 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.777 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.777 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.784 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.784 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.784 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.797 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.797 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.798 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.798 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.798 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.798 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.798 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.799 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.799 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.799 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.801 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.801 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.801 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.802 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.802 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.805 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.805 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.805 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.805 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.805 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.806 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.806 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.806 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.810 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.810 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.811 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.811 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.812 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.812 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.816 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.816 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.816 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.817 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.817 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.820 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.820 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.820 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.820 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.820 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.821 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.821 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.821 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.824 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
-05:53:31.885 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/BlockingApi.scala
-05:53:31.899 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/HistoryApi.scala
-05:53:31.913 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/SendingApi.scala
-05:53:31.924 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/ServicesApi.scala
-05:53:31.932 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/StatusApi.scala
-05:53:31.934 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/build.sbt
-05:53:31.937 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/Controller.scala
-05:53:31.941 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/AkkaHttpHelper.scala
-05:53:31.946 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen-ignore
-05:53:31.946 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen/VERSION
+07:23:21.093 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+07:23:21.096 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
+07:23:21.150 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+07:23:21.150 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@7788e231
+07:23:21.840 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+07:23:22.100 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/DenyRuleNew.scala
+07:23:22.113 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/DenyRuleRecord.scala
+07:23:22.120 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddress.scala
+07:23:22.125 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressName.scala
+07:23:22.131 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressNames.scala
+07:23:22.136 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressTypes.scala
+07:23:22.141 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/EmailAddressesTypes.scala
+07:23:22.146 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/ErrorMessage.scala
+07:23:22.152 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/GenericResponse.scala
+07:23:22.158 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailAttachment.scala
+07:23:22.171 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailBlockClickHouse.scala
+07:23:22.176 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailBlockRspamd.scala
+07:23:22.180 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailBlocks.scala
+07:23:22.185 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailLog.scala
+07:23:22.190 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailLogEntry.scala
+07:23:22.194 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailOrder.scala
+07:23:22.199 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType.scala
+07:23:22.203 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume.scala
+07:23:22.206 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume_from.scala
+07:23:22.211 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume_ip.scala
+07:23:22.214 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/MailStatsType_volume_to.scala
+07:23:22.220 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/SendMail.scala
+07:23:22.224 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/SendMailAdv.scala
+07:23:22.227 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/model/SendMailRaw.scala
+07:23:22.227 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.229 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.242 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.243 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.252 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.253 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.253 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.254 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.254 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.257 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.257 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.257 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.257 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.257 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.258 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.258 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.259 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.271 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.271 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.273 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.273 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.273 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.273 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.274 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.274 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.281 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.281 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.281 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.293 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.293 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.293 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.293 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.294 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.294 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.294 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.294 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.295 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.295 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.296 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.297 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.297 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.297 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.298 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.300 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.300 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.300 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.300 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.300 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.301 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.301 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.302 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.305 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.305 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.305 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.305 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.306 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.306 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.309 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.309 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.309 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.310 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.310 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.313 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.313 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.313 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.313 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.313 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.314 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.314 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.315 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.317 [Thread-0] WARN  i.s.c.v.g.DefaultCodegenConfig - escapeQuotationMark should be overridden in the code generator with proper logic to escape single/double quote
+07:23:22.370 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/BlockingApi.scala
+07:23:22.387 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/HistoryApi.scala
+07:23:22.404 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/SendingApi.scala
+07:23:22.417 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/ServicesApi.scala
+07:23:22.426 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/api/StatusApi.scala
+07:23:22.428 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/build.sbt
+07:23:22.431 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/Controller.scala
+07:23:22.435 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/src/main/scala/io/swagger/server/AkkaHttpHelper.scala
+07:23:22.441 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen-ignore
+07:23:22.441 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/scala-akka-http-server/.swagger-codegen/VERSION

@@ -247,20 +247,29 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'id' => {
+        datatype => 'int',
+        base_name => 'id',
+        description => 'Optional Order ID',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
     'to' => 'string',
     'from' => 'string',
     'subject' => 'string',
-    'body' => 'string'
+    'body' => 'string',
+    'id' => 'int'
 } );
 
 __PACKAGE__->attribute_map( {
     'to' => 'to',
     'from' => 'from',
     'subject' => 'subject',
-    'body' => 'body'
+    'body' => 'body',
+    'id' => 'id'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

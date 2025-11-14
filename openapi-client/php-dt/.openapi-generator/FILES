@@ -32,7 +32,7 @@ src/App/DTO/MailStatsTypeVolume.php
 src/App/DTO/MailStatsTypeVolumeFrom.php
 src/App/DTO/MailStatsTypeVolumeIp.php
 src/App/DTO/MailStatsTypeVolumeTo.php
-src/App/DTO/RawMail.php
 src/App/DTO/SendMail.php
 src/App/DTO/SendMailAdv.php
+src/App/DTO/SendMailRaw.php
 src/App/DTO/ViewMailLogParameterData.php

@@ -83,7 +83,7 @@ describe("SendingApi", () => {
   });
 
   test("rawMail", () => {
-    const body: api.RawMail = undefined
+    const body: api.SendMailRaw = undefined
     return expect(instance.rawMail(body, {})).resolves.toBe(null)
   })
   test("sendAdvMail", () => {
@@ -103,7 +103,8 @@ describe("SendingApi", () => {
     const from: string = "from_example"
     const subject: string = "subject_example"
     const body: string = "body_example"
-    return expect(instance.sendMail(to, from, subject, body, {})).resolves.toBe(null)
+    const id: number = 56
+    return expect(instance.sendMail(to, from, subject, body, id, {})).resolves.toBe(null)
   })
 })
 

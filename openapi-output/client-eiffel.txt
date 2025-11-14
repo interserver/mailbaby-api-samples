@@ -45,12 +45,12 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/docs/MAIL_STATS_TYPE_VOLUME_IP.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/src/domain/mail_stats_type_volume_to.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/docs/MAIL_STATS_TYPE_VOLUME_TO.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/src/domain/raw_mail.e
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/docs/RAW_MAIL.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/src/domain/send_mail.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/docs/SEND_MAIL.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/src/domain/send_mail_adv.e
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/docs/SEND_MAIL_ADV.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/src/domain/send_mail_raw.e
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/eiffel/docs/SEND_MAIL_RAW.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] WARN  o.o.c.l.AbstractEiffelCodegen - from (reserved word) cannot be used as model name. Renamed to model_from

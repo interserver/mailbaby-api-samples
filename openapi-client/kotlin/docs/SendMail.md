@@ -8,6 +8,7 @@
 | **from** | **kotlin.String** | The contact whom is the this email is from. |  |
 | **subject** | **kotlin.String** | The subject or title of the email |  |
 | **body** | **kotlin.String** | The main email contents. |  |
+| **id** | **kotlin.Int** | Optional Order ID |  [optional] |
 
 
 

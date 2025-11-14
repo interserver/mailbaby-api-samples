@@ -68,6 +68,9 @@ class SendMail {
             if (data.hasOwnProperty('body')) {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
+            if (data.hasOwnProperty('id')) {
+                obj['id'] = ApiClient.convertToType(data['id'], 'Number');
+            }
         }
         return obj;
     }
@@ -132,6 +135,12 @@ SendMail.prototype['subject'] = undefined;
  * @member {String} body
  */
 SendMail.prototype['body'] = undefined;
+
+/**
+ * Optional Order ID
+ * @member {Number} id
+ */
+SendMail.prototype['id'] = undefined;
 
 
 

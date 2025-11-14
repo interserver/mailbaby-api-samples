@@ -47,12 +47,12 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAIMailStatsType_volume_ip.cpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAIMailStatsType_volume_to.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAIMailStatsType_volume_to.cpp
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAIRawMail.h
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAIRawMail.cpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAISendMail.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAISendMail.cpp
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAISendMailAdv.h
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAISendMailAdv.cpp
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAISendMailRaw.h
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAISendMailRaw.cpp
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from OAIMailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/cpp-qt-client/client/OAIBlockingApi.cpp

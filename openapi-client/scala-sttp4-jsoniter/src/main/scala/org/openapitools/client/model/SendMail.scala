@@ -25,6 +25,8 @@ case class SendMail(
   /* The subject or title of the email */
   @named("subject") subject: String,
   /* The main email contents. */
-  @named("body") body: String
+  @named("body") body: String,
+  /* Optional Order ID */
+  @named("id") id: Option[Int] = scala.None
 )
 

@@ -15,7 +15,7 @@ open class SendingAPI: APIBase {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func rawMail(body: RawMail, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+    open class func rawMail(body: SendMailRaw, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
         rawMailWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -36,7 +36,7 @@ open class SendingAPI: APIBase {
      - parameter body: (body)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func rawMailWithRequestBuilder(body: RawMail) -> RequestBuilder<GenericResponse> {
+    open class func rawMailWithRequestBuilder(body: SendMailRaw) -> RequestBuilder<GenericResponse> {
         let path = "/mail/rawsend"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()
@@ -51,10 +51,11 @@ open class SendingAPI: APIBase {
     /**
      Sends a raw email
      - parameter rawEmail: (form)  
+     - parameter id: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func rawMail(rawEmail: String, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        rawMailWithRequestBuilder(rawEmail: rawEmail).execute { (response, error) -> Void in
+    open class func rawMail(rawEmail: String, id: Int32, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+        rawMailWithRequestBuilder(rawEmail: rawEmail, id: id).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -72,9 +73,10 @@ open class SendingAPI: APIBase {
   "status" : "ok"
 }}]
      - parameter rawEmail: (form)  
+     - parameter id: (form)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func rawMailWithRequestBuilder(rawEmail: String) -> RequestBuilder<GenericResponse> {
+    open class func rawMailWithRequestBuilder(rawEmail: String, id: Int32) -> RequestBuilder<GenericResponse> {
         let path = "/mail/rawsend"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()
@@ -184,10 +186,11 @@ open class SendingAPI: APIBase {
      - parameter from: (form)  
      - parameter subject: (form)  
      - parameter body: (form)  
+     - parameter id: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendMail(to: String, from: String, subject: String, body: String, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
-        sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body).execute { (response, error) -> Void in
+    open class func sendMail(to: String, from: String, subject: String, body: String, id: Int32, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+        sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body, id: id).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -208,9 +211,10 @@ open class SendingAPI: APIBase {
      - parameter from: (form)  
      - parameter subject: (form)  
      - parameter body: (form)  
+     - parameter id: (form)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendMailWithRequestBuilder(to: String, from: String, subject: String, body: String) -> RequestBuilder<GenericResponse> {
+    open class func sendMailWithRequestBuilder(to: String, from: String, subject: String, body: String, id: Int32) -> RequestBuilder<GenericResponse> {
         let path = "/mail/send"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()

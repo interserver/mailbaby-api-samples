@@ -29,7 +29,7 @@
 #include "ErrorMessage.hpp"
 #include "GenericResponse.hpp"
 #include "MailAttachment.hpp"
-#include "RawMail.hpp"
+#include "SendMailRaw.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiClient) ///< Begin code-gen section
 
@@ -47,8 +47,8 @@ public:
   /// <remarks>
   /// This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
   /// </remarks>
-  /// <param name="rawMail"></param>
-  API_CALL("POST", "/mail/rawsend", raw_mail, BODY_DTO(oatpp::Object<org::openapitools::client::model::RawMail>, rawMail))
+  /// <param name="sendMailRaw"></param>
+  API_CALL("POST", "/mail/rawsend", raw_mail, BODY_DTO(oatpp::Object<org::openapitools::client::model::SendMailRaw>, sendMailRaw))
   /// <summary>
   /// Sends an Email with Advanced Options
   /// </summary>
@@ -75,6 +75,7 @@ public:
   /// <param name="from">The contact whom is the this email is from.</param>
   /// <param name="subject">The subject or title of the email</param>
   /// <param name="body">The main email contents.</param>
+  /// <param name="id">Optional Order ID (optional, default to 0)</param>
   API_CALL("POST", "/mail/send", send_mail, BODY(std::shared_ptr<oatpp::web::protocol::http::outgoing::MultipartBody>, formData))
 };
 

@@ -27,6 +27,10 @@ void OpenAPISendMail::WriteJson(JsonWriter& Writer) const
 	Writer->WriteIdentifierPrefix(TEXT("from")); WriteJsonValue(Writer, From);
 	Writer->WriteIdentifierPrefix(TEXT("subject")); WriteJsonValue(Writer, Subject);
 	Writer->WriteIdentifierPrefix(TEXT("body")); WriteJsonValue(Writer, Body);
+	if (Id.IsSet())
+	{
+		Writer->WriteIdentifierPrefix(TEXT("id")); WriteJsonValue(Writer, Id.GetValue());
+	}
 	Writer->WriteObjectEnd();
 }
 
@@ -42,6 +46,7 @@ bool OpenAPISendMail::FromJson(const TSharedPtr<FJsonValue>& JsonValue)
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("from"), From);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("subject"), Subject);
 	ParseSuccess &= TryGetJsonValue(*Object, TEXT("body"), Body);
+	ParseSuccess &= TryGetJsonValue(*Object, TEXT("id"), Id);
 
 	return ParseSuccess;
 }

@@ -62,7 +62,8 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to' => 'string',
         'from' => 'string',
         'subject' => 'string',
-        'body' => 'string'
+        'body' => 'string',
+        'id' => 'int'
     ];
 
     /**
@@ -76,7 +77,8 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to' => null,
         'from' => null,
         'subject' => null,
-        'body' => null
+        'body' => null,
+        'id' => null
     ];
 
     /**
@@ -88,7 +90,8 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to' => false,
         'from' => false,
         'subject' => false,
-        'body' => false
+        'body' => false,
+        'id' => false
     ];
 
     /**
@@ -180,7 +183,8 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to' => 'to',
         'from' => 'from',
         'subject' => 'subject',
-        'body' => 'body'
+        'body' => 'body',
+        'id' => 'id'
     ];
 
     /**
@@ -192,7 +196,8 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to' => 'setTo',
         'from' => 'setFrom',
         'subject' => 'setSubject',
-        'body' => 'setBody'
+        'body' => 'setBody',
+        'id' => 'setId'
     ];
 
     /**
@@ -204,7 +209,8 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         'to' => 'getTo',
         'from' => 'getFrom',
         'subject' => 'getSubject',
-        'body' => 'getBody'
+        'body' => 'getBody',
+        'id' => 'getId'
     ];
 
     /**
@@ -268,6 +274,7 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('from', $data ?? [], null);
         $this->setIfExists('subject', $data ?? [], null);
         $this->setIfExists('body', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
     }
 
     /**
@@ -428,6 +435,33 @@ class SendMail implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable body cannot be null');
         }
         $this->container['body'] = $body;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id Optional Order ID
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
 
         return $this;
     }

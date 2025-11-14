@@ -31,7 +31,7 @@ This call will let you pass the raw / complete email contents (including headers
  * @param body
 @return GenericResponse
 */
-func (a *SendingApiService) RawMail(ctx context.Context, body RawMail) (GenericResponse, *http.Response, error) {
+func (a *SendingApiService) RawMail(ctx context.Context, body SendMailRaw) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -298,9 +298,10 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
  * @param from
  * @param subject
  * @param body
+ * @param id
 @return GenericResponse
 */
-func (a *SendingApiService) SendMail(ctx context.Context, to string, from string, subject string, body string) (GenericResponse, *http.Response, error) {
+func (a *SendingApiService) SendMail(ctx context.Context, to string, from string, subject string, body string, id int32) (GenericResponse, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}

@@ -33,7 +33,7 @@ from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume
 from openapi_client.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom
 from openapi_client.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp
 from openapi_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo
-from openapi_client.models.raw_mail import RawMail
 from openapi_client.models.send_mail import SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv
+from openapi_client.models.send_mail_raw import SendMailRaw
 

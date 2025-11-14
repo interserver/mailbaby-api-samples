@@ -22,7 +22,7 @@ import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailAttachment;
-import org.openapitools.model.RawMail;
+import org.openapitools.model.SendMailRaw;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,21 +31,21 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T05:49:32.766208726-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Client("${openapi-micronaut-client-base-path}")
 public interface SendingApi {
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      *
-     * @param rawMail  (required)
+     * @param sendMailRaw  (required)
      * @return GenericResponse
      */
     @Post(uri="/mail/rawsend")
     @Consumes({"application/json"})
     @Produces({"application/json", "multipart/form-data"})
     Mono<GenericResponse> rawMail(
-        @Body @NotNull @Valid RawMail rawMail
+        @Body @NotNull @Valid SendMailRaw sendMailRaw
     );
 
     /**
@@ -86,6 +86,7 @@ public interface SendingApi {
      * @param from The contact whom is the this email is from. (required)
      * @param subject The subject or title of the email (required)
      * @param _body The main email contents. (required)
+     * @param id Optional Order ID (optional)
      * @return GenericResponse
      */
     @Post(uri="/mail/send")
@@ -95,7 +96,8 @@ public interface SendingApi {
         @NotNull String to, 
         @NotNull String from, 
         @NotNull String subject, 
-        @NotNull String _body
+        @NotNull String _body, 
+        @Nullable Integer id
     );
 
 }

@@ -26,7 +26,7 @@ import javax.validation.Valid;
  * Mail log records
  */
 @Schema(description = "Mail log records")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2025-11-14T05:52:42.959057461-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyDIServerCodegen", date = "2025-11-14T07:22:32.762418077-05:00[America/New_York]")
 public class MailLog   {
   @JsonProperty("total")
   private Integer total = null;

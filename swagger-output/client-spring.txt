@@ -1,57 +1,57 @@
-05:52:57.704 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-05:52:57.706 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
-05:52:57.775 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-05:52:57.775 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@201eea0f
-05:52:58.524 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-05:52:58.691 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
-05:52:58.693 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _1111 (model name starts with number) cannot be used as model name. Renamed to Model1111
-05:52:58.693 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _2222 (model name starts with number) cannot be used as model name. Renamed to Model2222
-05:52:58.693 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _3333 (model name starts with number) cannot be used as model name. Renamed to Model3333
-05:52:58.693 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _4444 (model name starts with number) cannot be used as model name. Renamed to Model4444
-05:52:59.030 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/DenyRuleNew.java
-05:52:59.174 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/DenyRuleRecord.java
-05:52:59.327 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressName.java
-05:52:59.347 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressNames.java
-05:52:59.354 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressTypes.java
-05:52:59.359 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressesTypes.java
-05:52:59.426 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/ErrorMessage.java
-05:52:59.486 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/GenericResponse.java
-05:52:59.542 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailAttachment.java
-05:52:59.632 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailBlockClickHouse.java
-05:52:59.670 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailBlockRspamd.java
-05:52:59.708 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailBlocks.java
-05:52:59.761 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailLog.java
-05:53:00.013 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailLogEntry.java
-05:53:00.058 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailOrder.java
-05:53:00.150 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsType.java
-05:53:00.185 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolume.java
-05:53:00.211 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolumeFrom.java
-05:53:00.253 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolumeIp.java
-05:53:00.297 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolumeTo.java
-05:53:00.314 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/RawMail.java
-05:53:00.355 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/SendMail.java
-05:53:00.440 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/SendMailAdv.java
-05:53:00.836 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/MailApiController.java
-05:53:01.080 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/MailApi.java
-05:53:01.086 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/PingApiController.java
-05:53:01.093 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/PingApi.java
-05:53:01.095 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/NotUndefined.java
-05:53:01.095 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/NotUndefinedValidator.java
-05:53:01.098 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/pom.xml
-05:53:01.099 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/README.md
-05:53:01.100 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/HomeController.java
-05:53:01.102 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/Swagger2SpringBoot.java
-05:53:01.102 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/RFC3339DateFormat.java
-05:53:01.103 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/SwaggerUiConfiguration.java
-05:53:01.105 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/resources/application.properties
-05:53:01.106 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/ApiException.java
-05:53:01.107 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/ApiResponseMessage.java
-05:53:01.108 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/NotFoundException.java
-05:53:01.110 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/ApiOriginFilter.java
-05:53:01.112 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java
-05:53:01.112 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/LocalDateConverter.java
-05:53:01.113 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/LocalDateTimeConverter.java
-05:53:01.114 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/CustomInstantDeserializer.java
-05:53:01.115 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/JacksonConfiguration.java
-05:53:01.120 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/.swagger-codegen-ignore
-05:53:01.120 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/.swagger-codegen/VERSION
+07:22:47.564 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+07:22:47.567 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
+07:22:47.635 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+07:22:47.635 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@74904ef4
+07:22:48.316 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+07:22:48.486 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - Interface (reserved word) cannot be used as model name. Renamed to ModelInterface
+07:22:48.488 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _1111 (model name starts with number) cannot be used as model name. Renamed to Model1111
+07:22:48.488 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _2222 (model name starts with number) cannot be used as model name. Renamed to Model2222
+07:22:48.488 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _3333 (model name starts with number) cannot be used as model name. Renamed to Model3333
+07:22:48.488 [Thread-0] WARN  i.s.c.v.g.java.AbstractJavaCodegen - _4444 (model name starts with number) cannot be used as model name. Renamed to Model4444
+07:22:48.808 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/DenyRuleNew.java
+07:22:48.956 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/DenyRuleRecord.java
+07:22:49.026 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressName.java
+07:22:49.047 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressNames.java
+07:22:49.054 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressTypes.java
+07:22:49.060 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/EmailAddressesTypes.java
+07:22:49.123 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/ErrorMessage.java
+07:22:49.192 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/GenericResponse.java
+07:22:49.251 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailAttachment.java
+07:22:49.366 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailBlockClickHouse.java
+07:22:49.400 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailBlockRspamd.java
+07:22:49.440 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailBlocks.java
+07:22:49.499 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailLog.java
+07:22:49.758 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailLogEntry.java
+07:22:49.808 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailOrder.java
+07:22:49.908 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsType.java
+07:22:49.946 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolume.java
+07:22:49.974 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolumeFrom.java
+07:22:50.021 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolumeIp.java
+07:22:50.064 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/MailStatsTypeVolumeTo.java
+07:22:50.126 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/SendMail.java
+07:22:50.220 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/SendMailAdv.java
+07:22:50.245 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/model/SendMailRaw.java
+07:22:50.694 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/MailApiController.java
+07:22:50.969 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/MailApi.java
+07:22:50.974 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/PingApiController.java
+07:22:50.981 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/PingApi.java
+07:22:50.983 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/NotUndefined.java
+07:22:50.984 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/NotUndefinedValidator.java
+07:22:50.987 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/pom.xml
+07:22:50.988 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/README.md
+07:22:50.989 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/HomeController.java
+07:22:50.991 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/Swagger2SpringBoot.java
+07:22:50.991 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/RFC3339DateFormat.java
+07:22:50.992 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/SwaggerUiConfiguration.java
+07:22:50.994 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/resources/application.properties
+07:22:50.995 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/ApiException.java
+07:22:50.996 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/ApiResponseMessage.java
+07:22:50.997 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/NotFoundException.java
+07:22:50.998 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/api/ApiOriginFilter.java
+07:22:51.000 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/SwaggerDocumentationConfig.java
+07:22:51.001 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/LocalDateConverter.java
+07:22:51.002 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/LocalDateTimeConverter.java
+07:22:51.003 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/CustomInstantDeserializer.java
+07:22:51.004 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/src/main/java/io/swagger/configuration/JacksonConfiguration.java
+07:22:51.009 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/.swagger-codegen-ignore
+07:22:51.010 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/spring/.swagger-codegen/VERSION

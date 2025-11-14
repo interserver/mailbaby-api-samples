@@ -184,7 +184,7 @@ package body .Clients is
    --  This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
    procedure Raw_Mail
       (Client : in out Client_Type;
-       Raw_Mail_Type : in .Models.RawMail_Type;
+       Send_Mail_Raw_Type : in .Models.SendMailRaw_Type;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
@@ -192,7 +192,7 @@ package body .Clients is
    begin
       Client.Set_Accept (Media_List_1);
       Client.Initialize (Req, Media_List_3);
-      .Models.Serialize (Req.Stream, "", Raw_Mail_Type);
+      .Models.Serialize (Req.Stream, "", Send_Mail_Raw_Type);
 
       URI.Set_Path ("/mail/rawsend");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);
@@ -356,6 +356,7 @@ package body .Clients is
        From : in Swagger.UString;
        Subject : in Swagger.UString;
        P_Body : in Swagger.UString;
+       Id : in Swagger.Nullable_Integer;
        Result : out .Models.GenericResponse_Type) is
       URI   : Swagger.Clients.URI_Type;
       Req   : Swagger.Clients.Request_Type;
@@ -368,6 +369,7 @@ package body .Clients is
       .Models.Serialize (Req.Stream, "from", From);
       .Models.Serialize (Req.Stream, "subject", Subject);
       .Models.Serialize (Req.Stream, "body", P_Body);
+      .Models.Serialize (Req.Stream, "id", Id);
 
       URI.Set_Path ("/mail/send");
       Client.Call (Swagger.Clients.POST, URI, Req, Reply);

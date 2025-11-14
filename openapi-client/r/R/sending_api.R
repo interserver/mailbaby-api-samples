@@ -17,7 +17,7 @@
 #' ####################  RawMail  ####################
 #'
 #' library(openapi)
-#' var_raw_mail <- RawMail$new("raw_email_example") # RawMail | 
+#' var_send_mail_raw <- SendMailRaw$new("raw_email_example", 123) # SendMailRaw | 
 #'
 #' #Sends a raw email
 #' api_instance <- SendingApi$new()
@@ -26,8 +26,8 @@
 #' api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$RawMail(var_raw_maildata_file = "result.txt")
-#' result <- api_instance$RawMail(var_raw_mail)
+#' # result <- api_instance$RawMail(var_send_mail_rawdata_file = "result.txt")
+#' result <- api_instance$RawMail(var_send_mail_raw)
 #' dput(result)
 #'
 #'
@@ -63,6 +63,7 @@
 #' var_from <- "from_example" # character | The contact whom is the this email is from.
 #' var_subject <- "subject_example" # character | The subject or title of the email
 #' var_body <- "body_example" # character | The main email contents.
+#' var_id <- 56 # integer | Optional Order ID (Optional)
 #'
 #' #Sends an Email
 #' api_instance <- SendingApi$new()
@@ -71,8 +72,8 @@
 #' api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 #'
 #' # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-#' # result <- api_instance$SendMail(var_to, var_from, var_subject, var_bodydata_file = "result.txt")
-#' result <- api_instance$SendMail(var_to, var_from, var_subject, var_body)
+#' # result <- api_instance$SendMail(var_to, var_from, var_subject, var_body, id = var_iddata_file = "result.txt")
+#' result <- api_instance$SendMail(var_to, var_from, var_subject, var_body, id = var_id)
 #' dput(result)
 #'
 #'
@@ -100,13 +101,13 @@ SendingApi <- R6::R6Class(
     #' @description
     #' Sends a raw email
     #'
-    #' @param raw_mail 
+    #' @param send_mail_raw 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return GenericResponse
-    RawMail = function(raw_mail, data_file = NULL, ...) {
-      local_var_response <- self$RawMailWithHttpInfo(raw_mail, data_file = data_file, ...)
+    RawMail = function(send_mail_raw, data_file = NULL, ...) {
+      local_var_response <- self$RawMailWithHttpInfo(send_mail_raw, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -121,12 +122,12 @@ SendingApi <- R6::R6Class(
     #' @description
     #' Sends a raw email
     #'
-    #' @param raw_mail 
+    #' @param send_mail_raw 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    RawMailWithHttpInfo = function(raw_mail, data_file = NULL, ...) {
+    RawMailWithHttpInfo = function(send_mail_raw, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -136,16 +137,16 @@ SendingApi <- R6::R6Class(
       oauth_scopes <- NULL
       is_oauth <- FALSE
 
-      if (missing(`raw_mail`)) {
-        stop("Missing required parameter `raw_mail`.")
+      if (missing(`send_mail_raw`)) {
+        stop("Missing required parameter `send_mail_raw`.")
       }
 
-      if (!missing(`raw_mail`) && is.null(`raw_mail`)) {
-        stop("Invalid value for `raw_mail` when calling SendingApi$RawMail, `raw_mail` is not nullable")
+      if (!missing(`send_mail_raw`) && is.null(`send_mail_raw`)) {
+        stop("Invalid value for `send_mail_raw` when calling SendingApi$RawMail, `send_mail_raw` is not nullable")
       }
 
-      if (!is.null(`raw_mail`)) {
-        local_var_body <- `raw_mail`$toJSONString()
+      if (!is.null(`send_mail_raw`)) {
+        local_var_body <- `send_mail_raw`$toJSONString()
       } else {
         local_var_body <- NULL
       }
@@ -381,12 +382,13 @@ SendingApi <- R6::R6Class(
     #' @param from The contact whom is the this email is from.
     #' @param subject The subject or title of the email
     #' @param body The main email contents.
+    #' @param id (optional) Optional Order ID
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return GenericResponse
-    SendMail = function(to, from, subject, body, data_file = NULL, ...) {
-      local_var_response <- self$SendMailWithHttpInfo(to, from, subject, body, data_file = data_file, ...)
+    SendMail = function(to, from, subject, body, id = NULL, data_file = NULL, ...) {
+      local_var_response <- self$SendMailWithHttpInfo(to, from, subject, body, id, data_file = data_file, ...)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -405,11 +407,12 @@ SendingApi <- R6::R6Class(
     #' @param from The contact whom is the this email is from.
     #' @param subject The subject or title of the email
     #' @param body The main email contents.
+    #' @param id (optional) Optional Order ID
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    SendMailWithHttpInfo = function(to, from, subject, body, data_file = NULL, ...) {
+    SendMailWithHttpInfo = function(to, from, subject, body, id = NULL, data_file = NULL, ...) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -451,10 +454,15 @@ SendingApi <- R6::R6Class(
         stop("Invalid value for `body` when calling SendingApi$SendMail, `body` is not nullable")
       }
 
+      if (!missing(`id`) && is.null(`id`)) {
+        stop("Invalid value for `id` when calling SendingApi$SendMail, `id` is not nullable")
+      }
+
       form_params["to"] <- `to`
       form_params["from"] <- `from`
       form_params["subject"] <- `subject`
       form_params["body"] <- `body`
+      form_params["id"] <- `id`
       local_var_url_path <- "/mail/send"
       # API key authentication
       if ("X-API-KEY" %in% names(self$api_client$api_keys) && nchar(self$api_client$api_keys["X-API-KEY"]) > 0) {

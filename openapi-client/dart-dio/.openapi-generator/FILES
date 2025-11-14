@@ -23,9 +23,9 @@ doc/MailStatsTypeVolume.md
 doc/MailStatsTypeVolumeFrom.md
 doc/MailStatsTypeVolumeIp.md
 doc/MailStatsTypeVolumeTo.md
-doc/RawMail.md
 doc/SendMail.md
 doc/SendMailAdv.md
+doc/SendMailRaw.md
 doc/SendingApi.md
 doc/ServicesApi.md
 doc/StatusApi.md
@@ -63,9 +63,9 @@ lib/src/model/mail_stats_type_volume.dart
 lib/src/model/mail_stats_type_volume_from.dart
 lib/src/model/mail_stats_type_volume_ip.dart
 lib/src/model/mail_stats_type_volume_to.dart
-lib/src/model/raw_mail.dart
 lib/src/model/send_mail.dart
 lib/src/model/send_mail_adv.dart
+lib/src/model/send_mail_raw.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/blocking_api_test.dart
@@ -89,8 +89,8 @@ test/mail_stats_type_volume_from_test.dart
 test/mail_stats_type_volume_ip_test.dart
 test/mail_stats_type_volume_test.dart
 test/mail_stats_type_volume_to_test.dart
-test/raw_mail_test.dart
 test/send_mail_adv_test.dart
+test/send_mail_raw_test.dart
 test/send_mail_test.dart
 test/sending_api_test.dart
 test/services_api_test.dart

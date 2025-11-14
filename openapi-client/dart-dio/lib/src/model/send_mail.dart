@@ -15,6 +15,7 @@ part 'send_mail.g.dart';
 /// * [from] - The contact whom is the this email is from.
 /// * [subject] - The subject or title of the email
 /// * [body] - The main email contents.
+/// * [id] - Optional Order ID
 @BuiltValue()
 abstract class SendMail implements Built<SendMail, SendMailBuilder> {
   /// The Contact whom is the primary recipient of this email.
@@ -32,6 +33,10 @@ abstract class SendMail implements Built<SendMail, SendMailBuilder> {
   /// The main email contents.
   @BuiltValueField(wireName: r'body')
   String get body;
+
+  /// Optional Order ID
+  @BuiltValueField(wireName: r'id')
+  int? get id;
 
   SendMail._();
 
@@ -76,6 +81,13 @@ class _$SendMailSerializer implements PrimitiveSerializer<SendMail> {
       object.body,
       specifiedType: const FullType(String),
     );
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(int),
+      );
+    }
   }
 
   @override
@@ -126,6 +138,13 @@ class _$SendMailSerializer implements PrimitiveSerializer<SendMail> {
             specifiedType: const FullType(String),
           ) as String;
           result.body = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.id = valueDes;
           break;
         default:
           unhandled.add(key);

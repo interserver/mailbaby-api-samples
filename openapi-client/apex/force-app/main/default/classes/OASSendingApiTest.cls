@@ -13,7 +13,7 @@ private class OASSendingApiTest {
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
         Map<String, Object> params = new Map<String, Object>{
-            'oaSRawMail' => ''
+            'oaSSendMailRaw' => ''
         };
 
         OASClient client;
@@ -142,7 +142,8 @@ private class OASSendingApiTest {
             'to' => 'null',
             'r_from' => 'null',
             'subject' => 'null',
-            'body' => 'null'
+            'body' => 'null',
+            'id' => ''
         };
 
         OASClient client;

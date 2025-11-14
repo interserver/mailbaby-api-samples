@@ -51,6 +51,15 @@ var __subject__was__set := false
 		body = value
 var __body__was__set := false
 
+# Optional Order ID
+# Required: False
+# isArray: false
+@export var id: int:
+	set(value):
+		__id__was__set = true
+		id = value
+var __id__was__set := false
+
 
 func bzz_collect_missing_properties() -> Array:
 	var bzz_missing_properties := Array()
@@ -75,6 +84,8 @@ func bzz_normalize() -> Dictionary:
 		bzz_dictionary["subject"] = self.subject
 	if self.__body__was__set:
 		bzz_dictionary["body"] = self.body
+	if self.__id__was__set:
+		bzz_dictionary["id"] = self.id
 	return bzz_dictionary
 
 
@@ -89,6 +100,8 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 		me.subject = from_dict["subject"]
 	if from_dict.has("body"):
 		me.body = from_dict["body"]
+	if from_dict.has("id"):
+		me.id = from_dict["id"]
 	return me
 
 

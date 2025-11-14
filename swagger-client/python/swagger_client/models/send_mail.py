@@ -31,27 +31,32 @@ class SendMail(object):
         'to': 'str',
         '_from': 'str',
         'subject': 'str',
-        'body': 'str'
+        'body': 'str',
+        'id': 'int'
     }
 
     attribute_map = {
         'to': 'to',
         '_from': 'from',
         'subject': 'subject',
-        'body': 'body'
+        'body': 'body',
+        'id': 'id'
     }
 
-    def __init__(self, to=None, _from=None, subject=None, body=None):  # noqa: E501
+    def __init__(self, to=None, _from=None, subject=None, body=None, id=None):  # noqa: E501
         """SendMail - a model defined in Swagger"""  # noqa: E501
         self._to = None
         self.__from = None
         self._subject = None
         self._body = None
+        self._id = None
         self.discriminator = None
         self.to = to
         self._from = _from
         self.subject = subject
         self.body = body
+        if id is not None:
+            self.id = id
 
     @property
     def to(self):
@@ -152,6 +157,29 @@ class SendMail(object):
             raise ValueError("Invalid value for `body`, must not be `None`")  # noqa: E501
 
         self._body = body
+
+    @property
+    def id(self):
+        """Gets the id of this SendMail.  # noqa: E501
+
+        Optional Order ID  # noqa: E501
+
+        :return: The id of this SendMail.  # noqa: E501
+        :rtype: int
+        """
+        return self._id
+
+    @id.setter
+    def id(self, id):
+        """Sets the id of this SendMail.
+
+        Optional Order ID  # noqa: E501
+
+        :param id: The id of this SendMail.  # noqa: E501
+        :type: int
+        """
+
+        self._id = id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

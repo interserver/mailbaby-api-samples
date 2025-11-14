@@ -51,13 +51,13 @@ src/MailStatsTypeVolumeTo.h
 src/NetClient.cpp
 src/NetClient.h
 src/Object.h
-src/RawMail.cpp
-src/RawMail.h
 src/RequestInfo.h
 src/SendMail.cpp
 src/SendMail.h
 src/SendMailAdv.cpp
 src/SendMailAdv.h
+src/SendMailRaw.cpp
+src/SendMailRaw.h
 src/SendingManager.cpp
 src/SendingManager.h
 src/ServicesManager.cpp

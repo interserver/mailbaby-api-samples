@@ -36,7 +36,7 @@ import javax.annotation.Generated;
   MailLog.JSON_PROPERTY_EMAILS
 })
 @JsonTypeName("MailLog")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T05:49:32.766208726-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Introspected
 public class MailLog {
     public static final String JSON_PROPERTY_TOTAL = "total";

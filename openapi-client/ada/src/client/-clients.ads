@@ -80,7 +80,7 @@ package .Clients is
    --  This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
    procedure Raw_Mail
       (Client : in out Client_Type;
-       Raw_Mail_Type : in .Models.RawMail_Type;
+       Send_Mail_Raw_Type : in .Models.SendMailRaw_Type;
        Result : out .Models.GenericResponse_Type);
 
    --  Sends an Email with Advanced Options
@@ -219,6 +219,7 @@ package .Clients is
        From : in Swagger.UString;
        Subject : in Swagger.UString;
        P_Body : in Swagger.UString;
+       Id : in Swagger.Nullable_Integer;
        Result : out .Models.GenericResponse_Type);
 
    --  displays a list of mail service orders

@@ -22,9 +22,9 @@ import { EmailAddressesTypes } from '../model/emailAddressesTypes';
 import { ErrorMessage } from '../model/errorMessage';
 import { GenericResponse } from '../model/genericResponse';
 import { MailAttachment } from '../model/mailAttachment';
-import { RawMail } from '../model/rawMail';
 import { SendMail } from '../model/sendMail';
 import { SendMailAdv } from '../model/sendMailAdv';
+import { SendMailRaw } from '../model/sendMailRaw';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -69,10 +69,10 @@ export class SendingService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public rawMail(body: RawMail, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public rawMail(body: RawMail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public rawMail(body: RawMail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public rawMail(body: RawMail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public rawMail(body: SendMailRaw, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public rawMail(body: SendMailRaw, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public rawMail(body: SendMailRaw, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public rawMail(body: SendMailRaw, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling rawMail.');
@@ -119,16 +119,21 @@ export class SendingService {
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @param rawEmail 
+     * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public rawMailForm(rawEmail: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public rawMailForm(rawEmail: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public rawMailForm(rawEmail: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public rawMailForm(rawEmail: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public rawMailForm(rawEmail: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public rawMailForm(rawEmail: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public rawMailForm(rawEmail: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public rawMailForm(rawEmail: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (rawEmail === null || rawEmail === undefined) {
             throw new Error('Required parameter rawEmail was null or undefined when calling rawMail.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling rawMail.');
         }
 
         let headers = this.defaultHeaders;
@@ -166,6 +171,9 @@ export class SendingService {
 
         if (rawEmail !== undefined) {
             formParams = formParams.append('raw_email', <any>rawEmail) as any || formParams;
+        }
+        if (id !== undefined) {
+            formParams = formParams.append('id', <any>id) as any || formParams;
         }
 
         return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/rawsend`,
@@ -369,13 +377,14 @@ export class SendingService {
      * @param from 
      * @param subject 
      * @param body 
+     * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailForm(to: string, from: string, subject: string, body: string, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMailForm(to: string, from: string, subject: string, body: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMailForm(to: string, from: string, subject: string, body: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMailForm(to: string, from: string, subject: string, body: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendMailForm(to: string, from: string, subject: string, body: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMailForm(to: string, from: string, subject: string, body: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMailForm(to: string, from: string, subject: string, body: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMailForm(to: string, from: string, subject: string, body: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (to === null || to === undefined) {
             throw new Error('Required parameter to was null or undefined when calling sendMail.');
@@ -391,6 +400,10 @@ export class SendingService {
 
         if (body === null || body === undefined) {
             throw new Error('Required parameter body was null or undefined when calling sendMail.');
+        }
+
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling sendMail.');
         }
 
         let headers = this.defaultHeaders;
@@ -437,6 +450,9 @@ export class SendingService {
         }
         if (body !== undefined) {
             formParams = formParams.append('body', <any>body) as any || formParams;
+        }
+        if (id !== undefined) {
+            formParams = formParams.append('id', <any>id) as any || formParams;
         }
 
         return this.httpClient.request<GenericResponse>('post',`${this.basePath}/mail/send`,

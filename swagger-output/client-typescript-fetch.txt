@@ -1,14 +1,14 @@
-05:53:45.972 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-05:53:45.975 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
-05:53:46.031 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
-05:53:46.031 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@7788e231
-05:53:46.678 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
-05:53:47.057 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/index.ts
-05:53:47.252 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/api.ts
-05:53:47.302 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/api_test.spec.ts
-05:53:47.305 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/configuration.ts
-05:53:47.306 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/custom.d.ts
-05:53:47.307 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/git_push.sh
-05:53:47.308 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/.gitignore
-05:53:47.319 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/.swagger-codegen-ignore
-05:53:47.320 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/.swagger-codegen/VERSION
+07:23:36.940 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+07:23:36.943 [main] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@56f6d40b
+07:23:36.998 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template folder: null
+07:23:36.998 [Thread-0] INFO  i.s.c.v.g.t.AbstractTypeScriptClientCodegen - Template engine: io.swagger.codegen.v3.templates.HandlebarTemplateEngine@7788e231
+07:23:37.753 [Thread-0] INFO  i.s.c.v.i.CodegenIgnoreProcessor - No .swagger-codegen-ignore file found.
+07:23:38.176 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/index.ts
+07:23:38.384 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/api.ts
+07:23:38.434 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/api_test.spec.ts
+07:23:38.436 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/configuration.ts
+07:23:38.437 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/custom.d.ts
+07:23:38.439 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/git_push.sh
+07:23:38.439 [Thread-0] INFO  i.s.codegen.v3.DefaultGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/.gitignore
+07:23:38.450 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/.swagger-codegen-ignore
+07:23:38.451 [Thread-0] INFO  i.s.codegen.v3.AbstractGenerator - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/swagger-client/typescript-fetch/.swagger-codegen/VERSION

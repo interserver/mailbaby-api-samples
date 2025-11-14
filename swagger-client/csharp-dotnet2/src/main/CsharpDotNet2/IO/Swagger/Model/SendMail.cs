@@ -44,6 +44,14 @@ namespace IO.Swagger.Model {
     [JsonProperty(PropertyName = "body")]
     public string Body { get; set; }
 
+    /// <summary>
+    /// Optional Order ID
+    /// </summary>
+    /// <value>Optional Order ID</value>
+    [DataMember(Name="id", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "id")]
+    public int? Id { get; set; }
+
 
     /// <summary>
     /// Get the string presentation of the object
@@ -56,6 +64,7 @@ namespace IO.Swagger.Model {
       sb.Append("  From: ").Append(From).Append("\n");
       sb.Append("  Subject: ").Append(Subject).Append("\n");
       sb.Append("  Body: ").Append(Body).Append("\n");
+      sb.Append("  Id: ").Append(Id).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

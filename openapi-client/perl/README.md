@@ -267,9 +267,9 @@ use OpenAPIClient::Object::MailStatsTypeVolume;
 use OpenAPIClient::Object::MailStatsTypeVolumeFrom;
 use OpenAPIClient::Object::MailStatsTypeVolumeIp;
 use OpenAPIClient::Object::MailStatsTypeVolumeTo;
-use OpenAPIClient::Object::RawMail;
 use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
+use OpenAPIClient::Object::SendMailRaw;
 
 ````
 
@@ -307,9 +307,9 @@ use OpenAPIClient::Object::MailStatsTypeVolume;
 use OpenAPIClient::Object::MailStatsTypeVolumeFrom;
 use OpenAPIClient::Object::MailStatsTypeVolumeIp;
 use OpenAPIClient::Object::MailStatsTypeVolumeTo;
-use OpenAPIClient::Object::RawMail;
 use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
+use OpenAPIClient::Object::SendMailRaw;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -376,9 +376,9 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient::Object::MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [OpenAPIClient::Object::MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [OpenAPIClient::Object::MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [OpenAPIClient::Object::RawMail](docs/RawMail.md)
  - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
  - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
+ - [OpenAPIClient::Object::SendMailRaw](docs/SendMailRaw.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

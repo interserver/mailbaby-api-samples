@@ -30,9 +30,9 @@ src/main/scala/org/openapitools/client/models/MailStatsTypeVolume.scala
 src/main/scala/org/openapitools/client/models/MailStatsTypeVolumeFrom.scala
 src/main/scala/org/openapitools/client/models/MailStatsTypeVolumeIp.scala
 src/main/scala/org/openapitools/client/models/MailStatsTypeVolumeTo.scala
-src/main/scala/org/openapitools/client/models/RawMail.scala
 src/main/scala/org/openapitools/client/models/SendMail.scala
 src/main/scala/org/openapitools/client/models/SendMailAdv.scala
+src/main/scala/org/openapitools/client/models/SendMailRaw.scala
 src/main/scala/org/openapitools/client/models/ViewMailLogDeliveredParameter.scala
 src/main/scala/org/openapitools/client/models/_Authorization.scala
 src/main/scala/org/openapitools/client/models/_FailedRequest.scala

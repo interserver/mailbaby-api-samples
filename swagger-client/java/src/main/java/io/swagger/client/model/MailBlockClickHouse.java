@@ -26,7 +26,7 @@ import org.threeten.bp.LocalDate;
  * A block entry from the clickhouse mailblocks server.
  */
 @Schema(description = "A block entry from the clickhouse mailblocks server.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-11-14T05:52:20.926249542-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-11-14T07:22:10.000992292-05:00[America/New_York]")
 
 public class MailBlockClickHouse {
   @SerializedName("date")

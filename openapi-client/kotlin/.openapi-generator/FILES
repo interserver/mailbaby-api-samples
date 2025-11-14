@@ -22,9 +22,9 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
-docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -74,9 +74,9 @@ src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolume.kt
 src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeFrom.kt
 src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeIp.kt
 src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeTo.kt
-src/main/kotlin/org/openapitools/client/models/RawMail.kt
 src/main/kotlin/org/openapitools/client/models/SendMail.kt
 src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
+src/main/kotlin/org/openapitools/client/models/SendMailRaw.kt
 src/test/kotlin/org/openapitools/client/apis/BlockingApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/HistoryApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/SendingApiTest.kt
@@ -101,6 +101,6 @@ src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeFromTest.kt
 src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeIpTest.kt
 src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeTest.kt
 src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeToTest.kt
-src/test/kotlin/org/openapitools/client/models/RawMailTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailAdvTest.kt
+src/test/kotlin/org/openapitools/client/models/SendMailRawTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailTest.kt

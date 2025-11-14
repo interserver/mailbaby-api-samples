@@ -11,7 +11,7 @@ void main() {
     //
     // This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
     //
-    //Future<GenericResponse> rawMail(RawMail body, String rawEmail) async
+    //Future<GenericResponse> rawMail(SendMailRaw body, String rawEmail, int id) async
     test('test rawMail', () async {
       // TODO
     });
@@ -29,7 +29,7 @@ void main() {
     //
     // Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
     //
-    //Future<GenericResponse> sendMail(String to, String from, String subject, String body, SendMail body) async
+    //Future<GenericResponse> sendMail(String to, String from, String subject, String body, int id, SendMail body) async
     test('test sendMail', () async {
       // TODO
     });

@@ -11,9 +11,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -34,7 +34,7 @@ import javax.validation.Valid;
 
 @Path("/mail")
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2025-11-14T05:52:36.468173267-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSSpecServerCodegen", date = "2025-11-14T07:22:26.007108567-05:00[America/New_York]")
 public class MailApi {
 
     @POST
@@ -165,7 +165,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
     })
-    public Response rawMail(@Valid RawMail body) {
+    public Response rawMail(@Valid SendMailRaw body) {
         return Response.ok().entity("magic!").build();
     }
     @POST
@@ -180,7 +180,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
     })
-    public Response rawMail(@FormParam(value = "raw_email")  String rawEmail) {
+    public Response rawMail(@FormParam(value = "raw_email")  String rawEmail,@FormParam(value = "id")  Integer id) {
         return Response.ok().entity("magic!").build();
     }
     @POST
@@ -225,7 +225,7 @@ public class MailApi {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
     })
-    public Response sendMail(@FormParam(value = "to")  String to,@FormParam(value = "from")  String from,@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body) {
+    public Response sendMail(@FormParam(value = "to")  String to,@FormParam(value = "from")  String from,@FormParam(value = "subject")  String subject,@FormParam(value = "body")  String body,@FormParam(value = "id")  Integer id) {
         return Response.ok().entity("magic!").build();
     }
     @POST

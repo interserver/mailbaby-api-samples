@@ -27,7 +27,7 @@ This call will let you pass the raw / complete email contents (including headers
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rawMail** | [**RawMail**](RawMail.md) |  |
+ **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md) |  |
 
 ### Return type
 
@@ -222,6 +222,7 @@ Name | Type | Description  | Notes
  **from** | **string** | The contact whom is the this email is from. | [default to null]
  **subject** | **string** | The subject or title of the email | [default to null]
  **body** | **string** | The main email contents. | [default to null]
+ **id** | **integer** | Optional Order ID | [optional] [default to null]
 
 ### Return type
 

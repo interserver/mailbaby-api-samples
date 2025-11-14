@@ -16,7 +16,7 @@ import org.openapitools.client.model.EmailAddressesTypes
 import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.GenericResponse
 import org.openapitools.client.model.MailAttachment
-import org.openapitools.client.model.RawMail
+import org.openapitools.client.model.SendMailRaw
 import org.openapitools.client.core._
 import org.openapitools.client.core.CollectionFormats._
 import org.openapitools.client.core.ApiKeyLocations._
@@ -40,12 +40,12 @@ class SendingApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param rawMail 
+   * @param sendMailRaw 
    */
-  def rawMail(rawMail: RawMail)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
+  def rawMail(sendMailRaw: SendMailRaw)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
     ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/rawsend", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
-      .withBody(rawMail)
+      .withBody(sendMailRaw)
       .withSuccessResponse[GenericResponse](200)
       .withErrorResponse[ErrorMessage](400)
       .withErrorResponse[ErrorMessage](401)
@@ -108,14 +108,16 @@ class SendingApi(baseUrl: String) {
    * @param from The contact whom is the this email is from.
    * @param subject The subject or title of the email
    * @param body The main email contents.
+   * @param id Optional Order ID
    */
-  def sendMail(to: String, from: String, subject: String, body: String)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
+  def sendMail(to: String, from: String, subject: String, body: String, id: Option[Int] = None)(implicit apiKey: ApiKeyValue): ApiRequest[GenericResponse] =
     ApiRequest[GenericResponse](ApiMethods.POST, baseUrl, "/mail/send", "application/x-www-form-urlencoded")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
       .withFormParam("to", to)
       .withFormParam("from", from)
       .withFormParam("subject", subject)
       .withFormParam("body", body)
+      .withFormParam("id", id)
       .withSuccessResponse[GenericResponse](200)
       .withErrorResponse[ErrorMessage](400)
       .withErrorResponse[ErrorMessage](401)

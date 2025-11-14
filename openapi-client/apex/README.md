@@ -102,9 +102,9 @@ Class | Method | HTTP request | Description
  - [OASMailStatsTypeVolumeFrom](OASMailStatsTypeVolumeFrom.md)
  - [OASMailStatsTypeVolumeIp](OASMailStatsTypeVolumeIp.md)
  - [OASMailStatsTypeVolumeTo](OASMailStatsTypeVolumeTo.md)
- - [OASRawMail](OASRawMail.md)
  - [OASSendMail](OASSendMail.md)
  - [OASSendMailAdv](OASSendMailAdv.md)
+ - [OASSendMailRaw](OASSendMailRaw.md)
 
 
 ## Documentation for Authorization

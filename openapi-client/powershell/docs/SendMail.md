@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **VarFrom** | **String** | The contact whom is the this email is from. | 
 **Subject** | **String** | The subject or title of the email | 
 **Body** | **String** | The main email contents. | 
+**Id** | **Int32** | Optional Order ID | [optional] 
 
 ## Examples
 
@@ -15,7 +16,8 @@ Name | Type | Description | Notes
 $SendMail = Initialize-PSOpenAPIToolsSendMail  -To johndoe@company.com `
  -VarFrom janedoe@company.com `
  -Subject Attention Client `
- -Body This is an email to inform you that something noteworthy happened.
+ -Body This is an email to inform you that something noteworthy happened. `
+ -Id null
 ```
 
 - Convert the resource to JSON

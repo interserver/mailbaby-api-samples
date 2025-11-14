@@ -40,6 +40,13 @@ public class SendMail  {
   @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The main email contents.")
 
   private String body;
+
+ /**
+  * Optional Order ID
+  */
+  @ApiModelProperty(value = "Optional Order ID")
+
+  private Integer id;
  /**
    * The Contact whom is the primary recipient of this email.
    * @return to
@@ -112,6 +119,24 @@ public class SendMail  {
     return this;
   }
 
+ /**
+   * Optional Order ID
+   * @return id
+  **/
+  @JsonProperty("id")
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -124,12 +149,13 @@ public class SendMail  {
     return Objects.equals(this.to, sendMail.to) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body);
+        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -141,6 +167,7 @@ public class SendMail  {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -89,10 +89,6 @@ force-app/main/default/classes/OASMailStatsTypeVolumeTo.cls
 force-app/main/default/classes/OASMailStatsTypeVolumeTo.cls-meta.xml
 force-app/main/default/classes/OASMailStatsTypeVolumeToTest.cls
 force-app/main/default/classes/OASMailStatsTypeVolumeToTest.cls-meta.xml
-force-app/main/default/classes/OASRawMail.cls
-force-app/main/default/classes/OASRawMail.cls-meta.xml
-force-app/main/default/classes/OASRawMailTest.cls
-force-app/main/default/classes/OASRawMailTest.cls-meta.xml
 force-app/main/default/classes/OASResponseMock.cls
 force-app/main/default/classes/OASResponseMock.cls-meta.xml
 force-app/main/default/classes/OASSendMail.cls
@@ -101,6 +97,10 @@ force-app/main/default/classes/OASSendMailAdv.cls
 force-app/main/default/classes/OASSendMailAdv.cls-meta.xml
 force-app/main/default/classes/OASSendMailAdvTest.cls
 force-app/main/default/classes/OASSendMailAdvTest.cls-meta.xml
+force-app/main/default/classes/OASSendMailRaw.cls
+force-app/main/default/classes/OASSendMailRaw.cls-meta.xml
+force-app/main/default/classes/OASSendMailRawTest.cls
+force-app/main/default/classes/OASSendMailRawTest.cls-meta.xml
 force-app/main/default/classes/OASSendMailTest.cls
 force-app/main/default/classes/OASSendMailTest.cls-meta.xml
 force-app/main/default/classes/OASSendingApi.cls

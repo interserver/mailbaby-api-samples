@@ -11,7 +11,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 <a id="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(rawMail)
+> GenericResponse rawMail(sendMailRaw)
 
 Sends a raw email
 
@@ -39,9 +39,9 @@ public class Example {
     //apiKeyAuth.setApiKeyPrefix("Token");
 
     SendingApi apiInstance = new SendingApi(defaultClient);
-    RawMail rawMail = new RawMail(); // RawMail | 
+    SendMailRaw sendMailRaw = new SendMailRaw(); // SendMailRaw | 
     try {
-      GenericResponse result = apiInstance.rawMail(rawMail);
+      GenericResponse result = apiInstance.rawMail(sendMailRaw);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SendingApi#rawMail");
@@ -58,7 +58,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **rawMail** | [**RawMail**](RawMail.md)|  | |
+| **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | |
 
 ### Return type
 
@@ -171,7 +171,7 @@ public class Example {
 
 <a id="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, id)
 
 Sends an Email
 
@@ -203,8 +203,9 @@ public class Example {
     String from = "from_example"; // String | The contact whom is the this email is from.
     String subject = "subject_example"; // String | The subject or title of the email
     String body = "body_example"; // String | The main email contents.
+    Integer id = 56; // Integer | Optional Order ID
     try {
-      GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+      GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling SendingApi#sendMail");
@@ -225,6 +226,7 @@ public class Example {
 | **from** | **String**| The contact whom is the this email is from. | |
 | **subject** | **String**| The subject or title of the email | |
 | **body** | **String**| The main email contents. | |
+| **id** | **Integer**| Optional Order ID | [optional] |
 
 ### Return type
 

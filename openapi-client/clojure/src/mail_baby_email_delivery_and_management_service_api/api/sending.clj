@@ -18,10 +18,10 @@
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log-entry :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.send-mail-raw :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.generic-response :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-block-rspamd :refer :all]
-            [mail-baby-email-delivery-and-management-service-api.specs.raw-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume-from :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]
@@ -33,14 +33,14 @@
 (defn-spec raw-mail-with-http-info any?
   "Sends a raw email
   This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages."
-  [raw-mail raw-mail]
-  (check-required-params raw-mail)
+  [send-mail-raw send-mail-raw]
+  (check-required-params send-mail-raw)
   (call-api "/mail/rawsend" :post
             {:path-params   {}
              :header-params {}
              :query-params  {}
              :form-params   {}
-             :body-param    raw-mail
+             :body-param    send-mail-raw
              :content-types ["application/json" "multipart/form-data"]
              :accepts       ["application/json"]
              :auth-names    ["apiKeyAuth"]}))
@@ -48,8 +48,8 @@
 (defn-spec raw-mail generic-response-spec
   "Sends a raw email
   This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages."
-  [raw-mail raw-mail]
-  (let [res (:data (raw-mail-with-http-info raw-mail))]
+  [send-mail-raw send-mail-raw]
+  (let [res (:data (raw-mail-with-http-info send-mail-raw))]
     (if (:decode-models *api-context*)
        (st/decode generic-response-spec res st/string-transformer)
        res)))
@@ -308,26 +308,28 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
   Sends an email through one of your mail orders.
 
 *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead."
-  [to string?, from string?, subject string?, body string?]
-  (check-required-params to from subject body)
-  (call-api "/mail/send" :post
-            {:path-params   {}
-             :header-params {}
-             :query-params  {}
-             :form-params   {"to" to "from" from "subject" subject "body" body }
-             :content-types ["application/x-www-form-urlencoded" "application/json"]
-             :accepts       ["application/json"]
-             :auth-names    ["apiKeyAuth"]}))
+  ([to string?, from string?, subject string?, body string?, ] (send-mail-with-http-info to from subject body nil))
+  ([to string?, from string?, subject string?, body string?, {:keys [id]} (s/map-of keyword? any?)]
+   (check-required-params to from subject body)
+   (call-api "/mail/send" :post
+             {:path-params   {}
+              :header-params {}
+              :query-params  {}
+              :form-params   {"to" to "from" from "subject" subject "body" body "id" id }
+              :content-types ["application/x-www-form-urlencoded" "application/json"]
+              :accepts       ["application/json"]
+              :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec send-mail generic-response-spec
   "Sends an Email
   Sends an email through one of your mail orders.
 
 *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead."
-  [to string?, from string?, subject string?, body string?]
-  (let [res (:data (send-mail-with-http-info to from subject body))]
-    (if (:decode-models *api-context*)
-       (st/decode generic-response-spec res st/string-transformer)
-       res)))
+  ([to string?, from string?, subject string?, body string?, ] (send-mail to from subject body nil))
+  ([to string?, from string?, subject string?, body string?, optional-params any?]
+   (let [res (:data (send-mail-with-http-info to from subject body optional-params))]
+     (if (:decode-models *api-context*)
+        (st/decode generic-response-spec res st/string-transformer)
+        res))))
 
 

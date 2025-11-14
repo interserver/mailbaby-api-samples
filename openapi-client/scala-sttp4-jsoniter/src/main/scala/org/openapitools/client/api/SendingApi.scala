@@ -16,7 +16,7 @@ import org.openapitools.client.model.EmailAddressesTypes
 import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.GenericResponse
 import org.openapitools.client.model.MailAttachment
-import org.openapitools.client.model.RawMail
+import org.openapitools.client.model.SendMailRaw
 import org.openapitools.client.core.JsonSupport.{*, given}
 import org.openapitools.client.core.FormSerializable
 import org.openapitools.client.core.FormStyleFormat
@@ -66,9 +66,9 @@ case class SendingApi[Auth <: org.openapitools.client.core.Authorization] privat
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    * 
-   * @param rawMail 
+   * @param sendMailRaw 
    */
-  def rawMail(rawMail: RawMail)(using Auth <:< org.openapitools.client.core.Authorization.ApiKey): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
+  def rawMail(sendMailRaw: SendMailRaw)(using Auth <:< org.openapitools.client.core.Authorization.ApiKey): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     val requestURL =
       uri"$baseUrl/mail/rawsend"
 
@@ -76,7 +76,7 @@ case class SendingApi[Auth <: org.openapitools.client.core.Authorization] privat
       .method(Method.POST, requestURL)
       .contentType("application/json")
       .auth(authConfig, org.openapitools.client.core.ApiKeyLocation.HEADER, "X-API-KEY")
-      .body(asJson(rawMail))
+      .body(asJson(sendMailRaw))
       .response(asJson[GenericResponse])
 
   /**
@@ -139,8 +139,9 @@ case class SendingApi[Auth <: org.openapitools.client.core.Authorization] privat
    * @param from The contact whom is the this email is from.
    * @param subject The subject or title of the email
    * @param body The main email contents.
+   * @param id Optional Order ID
    */
-  def sendMail(to: String, from: String, subject: String, body: String)(using Auth <:< org.openapitools.client.core.Authorization.ApiKey): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
+  def sendMail(to: String, from: String, subject: String, body: String, id: Option[Int] = scala.None)(using Auth <:< org.openapitools.client.core.Authorization.ApiKey): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     val requestURL =
       uri"$baseUrl/mail/send"
 
@@ -152,7 +153,8 @@ case class SendingApi[Auth <: org.openapitools.client.core.Authorization] privat
         FormSerializable.serialize("to", to, FormStyleFormat.FORM, false) ++ 
         FormSerializable.serialize("from", from, FormStyleFormat.FORM, false) ++ 
         FormSerializable.serialize("subject", subject, FormStyleFormat.FORM, false) ++ 
-        FormSerializable.serialize("body", body, FormStyleFormat.FORM, false),
+        FormSerializable.serialize("body", body, FormStyleFormat.FORM, false) ++ 
+        FormSerializable.serialize("id", id, FormStyleFormat.FORM, false),
         "utf-8"
       )
       .response(asJson[GenericResponse])

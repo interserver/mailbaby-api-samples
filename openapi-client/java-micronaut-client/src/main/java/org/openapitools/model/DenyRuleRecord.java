@@ -34,7 +34,7 @@ import javax.annotation.Generated;
   DenyRuleRecord.JSON_PROPERTY_USER
 })
 @JsonTypeName("DenyRuleRecord")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T05:49:32.766208726-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Introspected
 public class DenyRuleRecord {
     /**

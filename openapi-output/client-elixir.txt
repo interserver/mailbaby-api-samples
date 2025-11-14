@@ -26,9 +26,9 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/mail_stats_type_volume_from.ex
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/mail_stats_type_volume_ip.ex
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/mail_stats_type_volume_to.ex
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/raw_mail.ex
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/send_mail.ex
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/send_mail_adv.ex
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/model/send_mail_raw.ex
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/elixir/lib/mail_baby_email_delivery_and_management_service_api/api/blocking.ex

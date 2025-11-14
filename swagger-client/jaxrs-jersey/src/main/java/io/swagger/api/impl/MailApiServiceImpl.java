@@ -14,9 +14,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import java.util.Map;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-11-14T05:52:39.519386602-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-11-14T07:22:29.151466073-05:00[America/New_York]")
 public class MailApiServiceImpl extends MailApiService {
     @Override
     public Response addRule(String user, String type, String data, SecurityContext securityContext) throws NotFoundException {
@@ -72,12 +72,12 @@ public class MailApiServiceImpl extends MailApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response rawMail(RawMail body, SecurityContext securityContext) throws NotFoundException {
+    public Response rawMail(SendMailRaw body, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response rawMail(String rawEmail, SecurityContext securityContext) throws NotFoundException {
+    public Response rawMail(String rawEmail, Integer id, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
@@ -92,7 +92,7 @@ public class MailApiServiceImpl extends MailApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response sendMail(String to, String from, String subject, String body, SecurityContext securityContext) throws NotFoundException {
+    public Response sendMail(String to, String from, String subject, String body, Integer id, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }

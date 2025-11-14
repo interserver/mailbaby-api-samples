@@ -32,9 +32,9 @@ import MailStatsTypeVolume from './model/MailStatsTypeVolume';
 import MailStatsTypeVolumeFrom from './model/MailStatsTypeVolumeFrom';
 import MailStatsTypeVolumeIp from './model/MailStatsTypeVolumeIp';
 import MailStatsTypeVolumeTo from './model/MailStatsTypeVolumeTo';
-import RawMail from './model/RawMail';
 import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
+import SendMailRaw from './model/SendMailRaw';
 import BlockingApi from './api/BlockingApi';
 import HistoryApi from './api/HistoryApi';
 import SendingApi from './api/SendingApi';
@@ -195,12 +195,6 @@ export {
     MailStatsTypeVolumeTo,
 
     /**
-     * The RawMail model constructor.
-     * @property {module:model/RawMail}
-     */
-    RawMail,
-
-    /**
      * The SendMail model constructor.
      * @property {module:model/SendMail}
      */
@@ -211,6 +205,12 @@ export {
      * @property {module:model/SendMailAdv}
      */
     SendMailAdv,
+
+    /**
+     * The SendMailRaw model constructor.
+     * @property {module:model/SendMailRaw}
+     */
+    SendMailRaw,
 
     /**
     * The BlockingApi service constructor.

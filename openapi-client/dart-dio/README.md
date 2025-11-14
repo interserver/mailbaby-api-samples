@@ -109,9 +109,9 @@ Class | Method | HTTP request | Description
  - [MailStatsTypeVolumeFrom](doc/MailStatsTypeVolumeFrom.md)
  - [MailStatsTypeVolumeIp](doc/MailStatsTypeVolumeIp.md)
  - [MailStatsTypeVolumeTo](doc/MailStatsTypeVolumeTo.md)
- - [RawMail](doc/RawMail.md)
  - [SendMail](doc/SendMail.md)
  - [SendMailAdv](doc/SendMailAdv.md)
+ - [SendMailRaw](doc/SendMailRaw.md)
 
 
 ## Documentation For Authorization

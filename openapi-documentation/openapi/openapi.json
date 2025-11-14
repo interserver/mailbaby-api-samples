@@ -1144,12 +1144,12 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/RawMail"
+                "$ref" : "#/components/schemas/SendMailRaw"
               }
             },
             "multipart/form-data" : {
               "schema" : {
-                "$ref" : "#/components/schemas/RawMail"
+                "$ref" : "#/components/schemas/SendMailRaw"
               }
             }
           },
@@ -1634,6 +1634,10 @@
             "description" : "The main email contents.",
             "example" : "This is an email to inform you that something noteworthy happened.",
             "type" : "string"
+          },
+          "id" : {
+            "description" : "Optional Order ID",
+            "type" : "integer"
           }
         },
         "required" : [ "body", "from", "subject", "to" ],
@@ -1953,7 +1957,7 @@
         "title" : "Root Type for MailStatsType",
         "type" : "object"
       },
-      "RawMail" : {
+      "SendMailRaw" : {
         "description" : "Raw Email Object",
         "example" : {
           "raw_email" : "<email contents here>"
@@ -1962,6 +1966,10 @@
           "raw_email" : {
             "description" : "The entire email contents",
             "type" : "string"
+          },
+          "id" : {
+            "description" : "Optional order id",
+            "type" : "integer"
           }
         },
         "required" : [ "raw_email" ],

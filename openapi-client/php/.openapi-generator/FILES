@@ -28,9 +28,9 @@ docs/Model/MailStatsTypeVolume.md
 docs/Model/MailStatsTypeVolumeFrom.md
 docs/Model/MailStatsTypeVolumeIp.md
 docs/Model/MailStatsTypeVolumeTo.md
-docs/Model/RawMail.md
 docs/Model/SendMail.md
 docs/Model/SendMailAdv.md
+docs/Model/SendMailRaw.md
 git_push.sh
 phpunit.xml.dist
 src/Api/BlockingApi.php
@@ -62,9 +62,9 @@ src/Model/MailStatsTypeVolumeFrom.php
 src/Model/MailStatsTypeVolumeIp.php
 src/Model/MailStatsTypeVolumeTo.php
 src/Model/ModelInterface.php
-src/Model/RawMail.php
 src/Model/SendMail.php
 src/Model/SendMailAdv.php
+src/Model/SendMailRaw.php
 src/ObjectSerializer.php
 test/Api/BlockingApiTest.php
 test/Api/HistoryApiTest.php
@@ -90,6 +90,6 @@ test/Model/MailStatsTypeVolumeFromTest.php
 test/Model/MailStatsTypeVolumeIpTest.php
 test/Model/MailStatsTypeVolumeTest.php
 test/Model/MailStatsTypeVolumeToTest.php
-test/Model/RawMailTest.php
 test/Model/SendMailAdvTest.php
+test/Model/SendMailRawTest.php
 test/Model/SendMailTest.php

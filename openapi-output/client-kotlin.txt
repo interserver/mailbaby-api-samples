@@ -67,15 +67,15 @@
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolumeTo.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeToTest.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/MailStatsTypeVolumeTo.md
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/RawMail.kt
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/test/kotlin/org/openapitools/client/models/RawMailTest.kt
-[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/RawMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/SendMail.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/test/kotlin/org/openapitools/client/models/SendMailTest.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/SendMail.md
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/test/kotlin/org/openapitools/client/models/SendMailAdvTest.kt
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/SendMailAdv.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/models/SendMailRaw.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/test/kotlin/org/openapitools/client/models/SendMailRawTest.kt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/docs/SendMailRaw.md
 [main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
 [main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
 [main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/kotlin/src/main/kotlin/org/openapitools/client/apis/BlockingApi.kt

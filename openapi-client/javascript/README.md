@@ -173,9 +173,9 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.RawMail](docs/RawMail.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMail](docs/SendMail.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailAdv](docs/SendMailAdv.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw](docs/SendMailRaw.md)
 
 
 ## Documentation for Authorization

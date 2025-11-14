@@ -11,14 +11,16 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.SendMail do
     :to,
     :from,
     :subject,
-    :body
+    :body,
+    :id
   ]
 
   @type t :: %__MODULE__{
     :to => String.t,
     :from => String.t,
     :subject => String.t,
-    :body => String.t
+    :body => String.t,
+    :id => integer() | nil
   }
 
   def decode(value) do

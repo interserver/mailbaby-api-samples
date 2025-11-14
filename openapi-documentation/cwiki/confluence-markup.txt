@@ -802,7 +802,7 @@ h4. Parameters
 
 h5. Body Parameter
         ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |RawMail | | RawMail | (/) | |  |  |
+        |SendMailRaw | | SendMailRaw | (/) | |  |  |
 
 
 ----
@@ -1655,15 +1655,6 @@ h2. Models
          |sales@company.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          |client@anothersite.com |(x) |{noformat:nopanel=true}Integer{noformat} |  |  | null
          
-        {anchor:RawMailModelAnchor}
-        h3. RawMail
-
-        Raw Email Object
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         |raw_email |(/) |{noformat:nopanel=true}String{noformat} | The entire email contents |  | null
-         
         {anchor:SendMailModelAnchor}
         h3. SendMail
 
@@ -1675,6 +1666,7 @@ h2. Models
          |from |(/) |{noformat:nopanel=true}String{noformat} | The contact whom is the this email is from. |  | janedoe@company.com
          |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject or title of the email |  | Attention Client
          |body |(/) |{noformat:nopanel=true}String{noformat} | The main email contents. |  | This is an email to inform you that something noteworthy happened.
+         |id |(x) |{noformat:nopanel=true}Integer{noformat} | Optional Order ID |  | null
          
         {anchor:SendMailAdvModelAnchor}
         h3. SendMailAdv
@@ -1697,4 +1689,14 @@ h2. Models
         }
 ]
          |id |(x) |{noformat:nopanel=true}Long{noformat} | (optional)  ID of the Mail order within our system to use as the Mail Account. |  | 5000
+         
+        {anchor:SendMailRawModelAnchor}
+        h3. SendMailRaw
+
+        Raw Email Object
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         |raw_email |(/) |{noformat:nopanel=true}String{noformat} | The entire email contents |  | null
+         |id |(x) |{noformat:nopanel=true}Integer{noformat} | Optional order id |  | null
          

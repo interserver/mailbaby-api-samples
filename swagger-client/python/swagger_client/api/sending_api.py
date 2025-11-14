@@ -42,7 +42,7 @@ class SendingApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param RawMail body: (required)
+        :param SendMailRaw body: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -64,7 +64,7 @@ class SendingApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param RawMail body: (required)
+        :param SendMailRaw body: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -102,6 +102,8 @@ class SendingApi(object):
         local_var_files = {}
         if 'raw_email' in params:
             form_params.append(('raw_email', params['raw_email']))  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
 
         body_params = None
         if 'body' in params:
@@ -133,45 +135,47 @@ class SendingApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def raw_mail(self, raw_email, **kwargs):  # noqa: E501
+    def raw_mail(self, raw_email, id, **kwargs):  # noqa: E501
         """Sends a raw email  # noqa: E501
 
         This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.raw_mail(raw_email, async_req=True)
+        >>> thread = api.raw_mail(raw_email, id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str raw_email: (required)
+        :param int id: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.raw_mail_with_http_info(raw_email, **kwargs)  # noqa: E501
+            return self.raw_mail_with_http_info(raw_email, id, **kwargs)  # noqa: E501
         else:
-            (data) = self.raw_mail_with_http_info(raw_email, **kwargs)  # noqa: E501
+            (data) = self.raw_mail_with_http_info(raw_email, id, **kwargs)  # noqa: E501
             return data
 
-    def raw_mail_with_http_info(self, raw_email, **kwargs):  # noqa: E501
+    def raw_mail_with_http_info(self, raw_email, id, **kwargs):  # noqa: E501
         """Sends a raw email  # noqa: E501
 
         This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.raw_mail_with_http_info(raw_email, async_req=True)
+        >>> thread = api.raw_mail_with_http_info(raw_email, id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
         :param str raw_email: (required)
+        :param int id: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['raw_email']  # noqa: E501
+        all_params = ['raw_email', 'id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -190,6 +194,10 @@ class SendingApi(object):
         if ('raw_email' not in params or
                 params['raw_email'] is None):
             raise ValueError("Missing the required parameter `raw_email` when calling `raw_mail`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if ('id' not in params or
+                params['id'] is None):
+            raise ValueError("Missing the required parameter `id` when calling `raw_mail`")  # noqa: E501
 
         collection_formats = {}
 
@@ -203,6 +211,8 @@ class SendingApi(object):
         local_var_files = {}
         if 'raw_email' in params:
             form_params.append(('raw_email', params['raw_email']))  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
 
         body_params = None
         if 'body' in params:
@@ -518,13 +528,13 @@ class SendingApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def send_mail(self, to, _from, subject, body, **kwargs):  # noqa: E501
+    def send_mail(self, to, _from, subject, body, id, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail(to, _from, subject, body, async_req=True)
+        >>> thread = api.send_mail(to, _from, subject, body, id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -532,24 +542,25 @@ class SendingApi(object):
         :param str _from: (required)
         :param str subject: (required)
         :param str body: (required)
+        :param int id: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.send_mail_with_http_info(to, _from, subject, body, **kwargs)  # noqa: E501
+            return self.send_mail_with_http_info(to, _from, subject, body, id, **kwargs)  # noqa: E501
         else:
-            (data) = self.send_mail_with_http_info(to, _from, subject, body, **kwargs)  # noqa: E501
+            (data) = self.send_mail_with_http_info(to, _from, subject, body, id, **kwargs)  # noqa: E501
             return data
 
-    def send_mail_with_http_info(self, to, _from, subject, body, **kwargs):  # noqa: E501
+    def send_mail_with_http_info(self, to, _from, subject, body, id, **kwargs):  # noqa: E501
         """Sends an Email  # noqa: E501
 
         Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.send_mail_with_http_info(to, _from, subject, body, async_req=True)
+        >>> thread = api.send_mail_with_http_info(to, _from, subject, body, id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
@@ -557,12 +568,13 @@ class SendingApi(object):
         :param str _from: (required)
         :param str subject: (required)
         :param str body: (required)
+        :param int id: (required)
         :return: GenericResponse
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['to', '_from', 'subject', 'body']  # noqa: E501
+        all_params = ['to', '_from', 'subject', 'body', 'id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -593,6 +605,10 @@ class SendingApi(object):
         if ('body' not in params or
                 params['body'] is None):
             raise ValueError("Missing the required parameter `body` when calling `send_mail`")  # noqa: E501
+        # verify the required parameter 'id' is set
+        if ('id' not in params or
+                params['id'] is None):
+            raise ValueError("Missing the required parameter `id` when calling `send_mail`")  # noqa: E501
 
         collection_formats = {}
 
@@ -612,6 +628,8 @@ class SendingApi(object):
             form_params.append(('subject', params['subject']))  # noqa: E501
         if 'body' in params:
             form_params.append(('body', params['body']))  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
 
         body_params = None
         if 'body' in params:
@@ -719,6 +737,8 @@ class SendingApi(object):
             form_params.append(('subject', params['subject']))  # noqa: E501
         if 'body' in params:
             form_params.append(('body', params['body']))  # noqa: E501
+        if 'id' in params:
+            form_params.append(('id', params['id']))  # noqa: E501
 
         body_params = None
         if 'body' in params:

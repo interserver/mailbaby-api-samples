@@ -84,7 +84,7 @@ export default function() {
         {
             let url = BASE_URL + `/mail/send`;
             // TODO: edit the parameters of the request body.
-            let body = {"to": "string", "from": "string", "subject": "string", "body": "string"};
+            let body = {"to": "string", "from": "string", "subject": "string", "body": "string", "id": "integer"};
             let params = {
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded", "X-API-KEY": `${X_API_KEY}`, "Accept": "application/json"
@@ -174,7 +174,7 @@ export default function() {
         {
             let url = BASE_URL + `/mail/rawsend`;
             // TODO: edit the parameters of the request body.
-            let body = {"rawEmail": "string"};
+            let body = {"rawEmail": "string", "id": "integer"};
             let params = {
                 headers: {
                     "Content-Type": "application/json", "X-API-KEY": `${X_API_KEY}`, "Accept": "application/json"

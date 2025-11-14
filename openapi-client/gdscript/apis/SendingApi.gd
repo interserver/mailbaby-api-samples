@@ -19,8 +19,8 @@ func _bzz_get_api_name() -> String:
 #
 # This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
 func raw_mail(
-	# rawMail: RawMail
-	rawMail: RawMail,
+	# sendMailRaw: SendMailRaw
+	sendMailRaw: SendMailRaw,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -57,7 +57,7 @@ func raw_mail(
 	var bzz_query := Dictionary()
 
 	var bzz_body = null
-	bzz_body = rawMail
+	bzz_body = sendMailRaw
 
 	self._bzz_request(
 		bzz_method, bzz_path, bzz_headers, bzz_query, bzz_body,
@@ -72,15 +72,15 @@ func raw_mail(
 
 
 func raw_mail_threaded(
-	# rawMail: RawMail
-	rawMail: RawMail,
+	# sendMailRaw: SendMailRaw
+	sendMailRaw: SendMailRaw,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
 	var bzz_thread := Thread.new()
 	var bzz_callable := Callable(self, "raw_mail")
 	bzz_callable.bind(
-		rawMail,
+		sendMailRaw,
 		on_success,
 		on_failure,
 	)
@@ -236,6 +236,9 @@ func send_mail(
 	# body: String = ""   Eg: body_example
 	# The main email contents.
 	body: String,
+	# id: int   Eg: 56
+	# Optional Order ID
+	id = null,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -277,6 +280,7 @@ func send_mail(
 	bzz_body["from"] = from
 	bzz_body["subject"] = subject
 	bzz_body["body"] = body
+	bzz_body["id"] = id
 
 	self._bzz_request(
 		bzz_method, bzz_path, bzz_headers, bzz_query, bzz_body,
@@ -303,6 +307,9 @@ func send_mail_threaded(
 	# body: String = ""   Eg: body_example
 	# The main email contents.
 	body: String,
+	# id: int   Eg: 56
+	# Optional Order ID
+	id = null,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
@@ -313,6 +320,7 @@ func send_mail_threaded(
 		from,
 		subject,
 		body,
+		id,
 		on_success,
 		on_failure,
 	)

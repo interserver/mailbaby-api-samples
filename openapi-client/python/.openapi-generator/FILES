@@ -25,9 +25,9 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
-docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -63,9 +63,9 @@ openapi_client/models/mail_stats_type_volume.py
 openapi_client/models/mail_stats_type_volume_from.py
 openapi_client/models/mail_stats_type_volume_ip.py
 openapi_client/models/mail_stats_type_volume_to.py
-openapi_client/models/raw_mail.py
 openapi_client/models/send_mail.py
 openapi_client/models/send_mail_adv.py
+openapi_client/models/send_mail_raw.py
 openapi_client/py.typed
 openapi_client/rest.py
 pyproject.toml
@@ -95,9 +95,9 @@ test/test_mail_stats_type_volume.py
 test/test_mail_stats_type_volume_from.py
 test/test_mail_stats_type_volume_ip.py
 test/test_mail_stats_type_volume_to.py
-test/test_raw_mail.py
 test/test_send_mail.py
 test/test_send_mail_adv.py
+test/test_send_mail_raw.py
 test/test_sending_api.py
 test/test_services_api.py
 test/test_status_api.py

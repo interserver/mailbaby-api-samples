@@ -33,7 +33,7 @@ import javax.annotation.Generated;
   MailStatsTypeVolumeTo.JSON_PROPERTY_CLIENT_AT_ANOTHERSITE_COM
 })
 @JsonTypeName("MailStatsType_volume_to")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T05:49:32.766208726-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Introspected
 public class MailStatsTypeVolumeTo {
     public static final String JSON_PROPERTY_CLIENT_AT_DOMAIN_COM = "client@domain.com";

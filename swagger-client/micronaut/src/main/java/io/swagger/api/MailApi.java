@@ -16,9 +16,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.http.*;
 import io.micronaut.http.annotation.*;
@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-11-14T05:52:54.856137132-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-11-14T07:22:44.937966794-05:00[America/New_York]")
 public interface MailApi {
 
 
@@ -143,7 +143,7 @@ public interface MailApi {
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/rawsend", produces = { "application/json" }, consumes = {"application/json", "multipart/form-data"})
-    default Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Valid @Parameter(description = "") @Body RawMail body) {
+    default Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Valid @Parameter(description = "") @Body SendMailRaw body) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });
@@ -156,7 +156,7 @@ public interface MailApi {
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/rawsend", produces = { "application/json" }, consumes = {"application/json", "multipart/form-data"})
-    default Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Parameter(description = "") @Body(value = "raw_email")  String rawEmail) {
+    default Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Parameter(description = "") @Body(value = "raw_email")  String rawEmail,@NotNull @Parameter(description = "") @Body(value = "id")  Integer id) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });
@@ -195,7 +195,7 @@ public interface MailApi {
     @ApiResponse(responseCode = "401", description = "Unauthorized")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found")
     @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})
-    default Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Parameter(description = "") @Body(value = "to")  String to,@NotNull @Parameter(description = "") @Body(value = "from")  String from,@NotNull @Parameter(description = "") @Body(value = "subject")  String subject,@NotNull @Parameter(description = "") @Body(value = "body")  String body) {
+    default Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Parameter(description = "") @Body(value = "to")  String to,@NotNull @Parameter(description = "") @Body(value = "from")  String from,@NotNull @Parameter(description = "") @Body(value = "subject")  String subject,@NotNull @Parameter(description = "") @Body(value = "body")  String body,@NotNull @Parameter(description = "") @Body(value = "id")  Integer id) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });

@@ -24,7 +24,7 @@ import org.openapitools.client.models.EmailAddressesTypes
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailAttachment
-import org.openapitools.client.models.RawMail
+import org.openapitools.client.models.SendMailRaw
 
 import com.squareup.moshi.Json
 
@@ -54,7 +54,7 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * POST /mail/rawsend
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param rawMail 
+     * @param sendMailRaw 
      * @return GenericResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -64,8 +64,8 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun rawMail(rawMail: RawMail) : GenericResponse {
-        val localVarResponse = rawMailWithHttpInfo(rawMail = rawMail)
+    fun rawMail(sendMailRaw: SendMailRaw) : GenericResponse {
+        val localVarResponse = rawMailWithHttpInfo(sendMailRaw = sendMailRaw)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GenericResponse
@@ -86,17 +86,17 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * POST /mail/rawsend
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param rawMail 
+     * @param sendMailRaw 
      * @return ApiResponse<GenericResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun rawMailWithHttpInfo(rawMail: RawMail) : ApiResponse<GenericResponse?> {
-        val localVariableConfig = rawMailRequestConfig(rawMail = rawMail)
+    fun rawMailWithHttpInfo(sendMailRaw: SendMailRaw) : ApiResponse<GenericResponse?> {
+        val localVariableConfig = rawMailRequestConfig(sendMailRaw = sendMailRaw)
 
-        return request<RawMail, GenericResponse>(
+        return request<SendMailRaw, GenericResponse>(
             localVariableConfig
         )
     }
@@ -104,11 +104,11 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
     /**
      * To obtain the request config of the operation rawMail
      *
-     * @param rawMail 
+     * @param sendMailRaw 
      * @return RequestConfig
      */
-    fun rawMailRequestConfig(rawMail: RawMail) : RequestConfig<RawMail> {
-        val localVariableBody = rawMail
+    fun rawMailRequestConfig(sendMailRaw: SendMailRaw) : RequestConfig<SendMailRaw> {
+        val localVariableBody = sendMailRaw
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Content-Type"] = "application/json"
@@ -238,6 +238,7 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
+     * @param id Optional Order ID (optional)
      * @return GenericResponse
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -247,8 +248,8 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String) : GenericResponse {
-        val localVarResponse = sendMailWithHttpInfo(to = to, from = from, subject = subject, body = body)
+    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String, id: kotlin.Int? = null) : GenericResponse {
+        val localVarResponse = sendMailWithHttpInfo(to = to, from = from, subject = subject, body = body, id = id)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GenericResponse
@@ -273,14 +274,15 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
+     * @param id Optional Order ID (optional)
      * @return ApiResponse<GenericResponse?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun sendMailWithHttpInfo(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String) : ApiResponse<GenericResponse?> {
-        val localVariableConfig = sendMailRequestConfig(to = to, from = from, subject = subject, body = body)
+    fun sendMailWithHttpInfo(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String, id: kotlin.Int?) : ApiResponse<GenericResponse?> {
+        val localVariableConfig = sendMailRequestConfig(to = to, from = from, subject = subject, body = body, id = id)
 
         return request<Map<String, PartConfig<*>>, GenericResponse>(
             localVariableConfig
@@ -294,14 +296,16 @@ class SendingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory
      * @param from The contact whom is the this email is from.
      * @param subject The subject or title of the email
      * @param body The main email contents.
+     * @param id Optional Order ID (optional)
      * @return RequestConfig
      */
-    fun sendMailRequestConfig(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String) : RequestConfig<Map<String, PartConfig<*>>> {
+    fun sendMailRequestConfig(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String, id: kotlin.Int?) : RequestConfig<Map<String, PartConfig<*>>> {
         val localVariableBody = mapOf(
             "to" to PartConfig(body = to, headers = mutableMapOf()),
             "from" to PartConfig(body = from, headers = mutableMapOf()),
             "subject" to PartConfig(body = subject, headers = mutableMapOf()),
-            "body" to PartConfig(body = body, headers = mutableMapOf()),)
+            "body" to PartConfig(body = body, headers = mutableMapOf()),
+            "id" to PartConfig(body = id, headers = mutableMapOf()),)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
         localVariableHeaders["Accept"] = "application/json"

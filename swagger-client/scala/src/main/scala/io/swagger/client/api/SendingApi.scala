@@ -18,9 +18,9 @@ import io.swagger.client.model.EmailAddressesTypes
 import io.swagger.client.model.ErrorMessage
 import io.swagger.client.model.GenericResponse
 import io.swagger.client.model.MailAttachment
-import io.swagger.client.model.RawMail
 import io.swagger.client.model.SendMail
 import io.swagger.client.model.SendMailAdv
+import io.swagger.client.model.SendMailRaw
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -91,10 +91,11 @@ class SendingApi(
    *
    * @param body  
    * @param rawEmail  
+   * @param id  
    * @return GenericResponse
    */
-  def rawMail(body: RawMail, rawEmail: String): Option[GenericResponse] = {
-    val await = Try(Await.result(rawMailAsync(body, rawEmail), Duration.Inf))
+  def rawMail(body: SendMailRaw, rawEmail: String, id: Integer): Option[GenericResponse] = {
+    val await = Try(Await.result(rawMailAsync(body, rawEmail, id), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -107,10 +108,11 @@ class SendingApi(
    *
    * @param body  
    * @param rawEmail  
+   * @param id  
    * @return Future(GenericResponse)
    */
-  def rawMailAsync(body: RawMail, rawEmail: String): Future[GenericResponse] = {
-      helper.rawMail(body, rawEmail)
+  def rawMailAsync(body: SendMailRaw, rawEmail: String, id: Integer): Future[GenericResponse] = {
+      helper.rawMail(body, rawEmail, id)
   }
 
   /**
@@ -165,11 +167,12 @@ class SendingApi(
    * @param from  
    * @param subject  
    * @param body  
+   * @param id  
    * @param body  
    * @return GenericResponse
    */
-  def sendMail(to: String, from: String, subject: String, body: String, body: SendMail): Option[GenericResponse] = {
-    val await = Try(Await.result(sendMailAsync(to, from, subject, body, body), Duration.Inf))
+  def sendMail(to: String, from: String, subject: String, body: String, id: Integer, body: SendMail): Option[GenericResponse] = {
+    val await = Try(Await.result(sendMailAsync(to, from, subject, body, id, body), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -184,19 +187,21 @@ class SendingApi(
    * @param from  
    * @param subject  
    * @param body  
+   * @param id  
    * @param body  
    * @return Future(GenericResponse)
    */
-  def sendMailAsync(to: String, from: String, subject: String, body: String, body: SendMail): Future[GenericResponse] = {
-      helper.sendMail(to, from, subject, body, body)
+  def sendMailAsync(to: String, from: String, subject: String, body: String, id: Integer, body: SendMail): Future[GenericResponse] = {
+      helper.sendMail(to, from, subject, body, id, body)
   }
 
 }
 
 class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
-  def rawMail(body: RawMail,
-    rawEmail: String)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[RawMail]): Future[GenericResponse] = {
+  def rawMail(body: SendMailRaw,
+    rawEmail: String,
+    id: Integer)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMailRaw]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/rawsend"))
 
@@ -253,6 +258,7 @@ class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     from: String,
     subject: String,
     body: String,
+    id: Integer,
     body: SendMail)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMail]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/send"))

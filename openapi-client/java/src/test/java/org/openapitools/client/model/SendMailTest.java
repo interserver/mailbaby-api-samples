@@ -69,4 +69,12 @@ public class SendMailTest {
         // TODO: test body
     }
 
+    /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
 }

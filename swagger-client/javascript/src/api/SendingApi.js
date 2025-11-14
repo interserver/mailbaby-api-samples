@@ -19,9 +19,9 @@ import EmailAddressesTypes from '../model/EmailAddressesTypes';
 import ErrorMessage from '../model/ErrorMessage';
 import GenericResponse from '../model/GenericResponse';
 import MailAttachment from '../model/MailAttachment';
-import RawMail from '../model/RawMail';
 import SendMail from '../model/SendMail';
 import SendMailAdv from '../model/SendMailAdv';
+import SendMailRaw from '../model/SendMailRaw';
 
 /**
 * Sending service.
@@ -53,12 +53,13 @@ export default class SendingApi {
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param {module:model/RawMail} body 
+     * @param {module:model/SendMailRaw} body 
      * @param {String} rawEmail 
+     * @param {Number} id 
      * @param {module:api/SendingApi~rawMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    rawMail(body, rawEmail, callback) {
+    rawMail(body, rawEmail, id, callback) {
       
       let postBody = body;
       // verify the required parameter 'body' is set
@@ -68,6 +69,10 @@ export default class SendingApi {
       // verify the required parameter 'rawEmail' is set
       if (rawEmail === undefined || rawEmail === null) {
         throw new Error("Missing the required parameter 'rawEmail' when calling rawMail");
+      }
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling rawMail");
       }
 
       let pathParams = {
@@ -80,7 +85,7 @@ export default class SendingApi {
         
       };
       let formParams = {
-        'raw_email': rawEmail
+        'raw_email': rawEmail,'id': id
       };
 
       let authNames = ['apiKeyAuth'];
@@ -201,11 +206,12 @@ export default class SendingApi {
      * @param {String} from 
      * @param {String} subject 
      * @param {String} body 
+     * @param {Number} id 
      * @param {module:model/SendMail} body 
      * @param {module:api/SendingApi~sendMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    sendMail(to, from, subject, body, body, callback) {
+    sendMail(to, from, subject, body, id, body, callback) {
       
       let postBody = body;
       // verify the required parameter 'to' is set
@@ -224,6 +230,10 @@ export default class SendingApi {
       if (body === undefined || body === null) {
         throw new Error("Missing the required parameter 'body' when calling sendMail");
       }
+      // verify the required parameter 'id' is set
+      if (id === undefined || id === null) {
+        throw new Error("Missing the required parameter 'id' when calling sendMail");
+      }
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
         throw new Error("Missing the required parameter 'body' when calling sendMail");
@@ -239,7 +249,7 @@ export default class SendingApi {
         
       };
       let formParams = {
-        'to': to,'from': from,'subject': subject,'body': body
+        'to': to,'from': from,'subject': subject,'body': body,'id': id
       };
 
       let authNames = ['apiKeyAuth'];

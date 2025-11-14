@@ -663,7 +663,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     //region rawMail
     /**
      * Sends a raw email
-     * @param \App\DTO\RawMail $requestContent
+     * @param \App\DTO\SendMailRaw $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -672,7 +672,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      */
     public function rawMailRaw(
-        \App\DTO\RawMail $requestContent,
+        \App\DTO\SendMailRaw $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -687,7 +687,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Sends a raw email
-     * @param \App\DTO\RawMail $requestContent
+     * @param \App\DTO\SendMailRaw $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -697,7 +697,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
     public function rawMail(
-        \App\DTO\RawMail $requestContent,
+        \App\DTO\SendMailRaw $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -732,7 +732,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     /**
      * Sends a raw email
-     * @param \App\DTO\RawMail $requestContent
+     * @param \App\DTO\SendMailRaw $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -743,7 +743,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
     public function rawMailResult(
-        \App\DTO\RawMail $requestContent,
+        \App\DTO\SendMailRaw $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'

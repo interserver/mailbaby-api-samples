@@ -23,7 +23,7 @@ This call will let you pass the raw / complete email contents (including headers
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
-val body : RawMail =  // RawMail | 
+val body : SendMailRaw =  // SendMailRaw | 
 try {
     val result : GenericResponse = apiInstance.rawMail(body)
     println(result)
@@ -40,7 +40,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  |
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  |
 
 ### Return type
 
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 <a name="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(rawEmail)
+> GenericResponse rawMail(rawEmail, id)
 
 Sends a raw email
 
@@ -71,8 +71,9 @@ This call will let you pass the raw / complete email contents (including headers
 
 val apiInstance = SendingApi()
 val rawEmail : kotlin.String = rawEmail_example // kotlin.String | 
+val id : kotlin.Int = 56 // kotlin.Int | 
 try {
-    val result : GenericResponse = apiInstance.rawMail(rawEmail)
+    val result : GenericResponse = apiInstance.rawMail(rawEmail, id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SendingApi#rawMail")
@@ -88,6 +89,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **rawEmail** | **kotlin.String**|  |
+ **id** | **kotlin.Int**|  |
 
 ### Return type
 
@@ -231,7 +233,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, id)
 
 Sends an Email
 
@@ -248,8 +250,9 @@ val to : kotlin.String = to_example // kotlin.String |
 val from : kotlin.String = from_example // kotlin.String | 
 val subject : kotlin.String = subject_example // kotlin.String | 
 val body : kotlin.String = body_example // kotlin.String | 
+val id : kotlin.Int = 56 // kotlin.Int | 
 try {
-    val result : GenericResponse = apiInstance.sendMail(to, from, subject, body)
+    val result : GenericResponse = apiInstance.sendMail(to, from, subject, body, id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SendingApi#sendMail")
@@ -268,6 +271,7 @@ Name | Type | Description  | Notes
  **from** | **kotlin.String**|  |
  **subject** | **kotlin.String**|  |
  **body** | **kotlin.String**|  |
+ **id** | **kotlin.Int**|  |
 
 ### Return type
 

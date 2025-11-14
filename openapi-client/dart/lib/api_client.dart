@@ -220,12 +220,12 @@ class ApiClient {
           return MailStatsTypeVolumeIp.fromJson(value);
         case 'MailStatsTypeVolumeTo':
           return MailStatsTypeVolumeTo.fromJson(value);
-        case 'RawMail':
-          return RawMail.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
         case 'SendMailAdv':
           return SendMailAdv.fromJson(value);
+        case 'SendMailRaw':
+          return SendMailRaw.fromJson(value);
         default:
           dynamic match;
           if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {

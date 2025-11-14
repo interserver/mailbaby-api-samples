@@ -27,6 +27,8 @@ feature --Access
       -- The subject or title of the email
     body: detachable STRING_32
       -- The main email contents.
+    id: INTEGER_32
+      -- Optional Order ID
 
 feature -- Change Element
 
@@ -62,6 +64,14 @@ feature -- Change Element
         body_set: body = a_name
       end
 
+    set_id (a_name: like id)
+        -- Set 'id' with 'a_name'.
+      do
+        id := a_name
+      ensure
+        id_set: id = a_name
+      end
+
 
  feature -- Status Report
 
@@ -88,6 +98,11 @@ feature -- Change Element
         if attached body as l_body then
           Result.append ("%Nbody:")
           Result.append (l_body.out)
+          Result.append ("%N")
+        end
+        if attached id as l_id then
+          Result.append ("%Nid:")
+          Result.append (l_id.out)
           Result.append ("%N")
         end
       end

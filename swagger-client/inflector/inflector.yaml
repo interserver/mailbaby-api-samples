@@ -24,9 +24,9 @@ MailStatsTypeVolume : io.swagger.model.MailStatsTypeVolume
 MailStatsTypeVolumeFrom : io.swagger.model.MailStatsTypeVolumeFrom
 MailStatsTypeVolumeIp : io.swagger.model.MailStatsTypeVolumeIp
 MailStatsTypeVolumeTo : io.swagger.model.MailStatsTypeVolumeTo
-RawMail : io.swagger.model.RawMail
 SendMail : io.swagger.model.SendMail
 SendMailAdv : io.swagger.model.SendMailAdv
+SendMailRaw : io.swagger.model.SendMailRaw
 
 entityProcessors:
   - json

@@ -876,24 +876,6 @@ class Decoders {
                 return .failure(.typeMismatch(expected: "MailStatsTypeVolumeTo", actual: "\(source)"))
             }
         }
-        // Decoder for [RawMail]
-        Decoders.addDecoder(clazz: [RawMail].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[RawMail]> in
-            return Decoders.decode(clazz: [RawMail].self, source: source)
-        }
-
-        // Decoder for RawMail
-        Decoders.addDecoder(clazz: RawMail.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<RawMail> in
-            if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? RawMail() : instance as! RawMail
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["raw_email"] as AnyObject?) {
-                case let .success(value): _result.rawEmail = value
-                case let .failure(error): break
-                }
-                return .success(_result)
-            } else {
-                return .failure(.typeMismatch(expected: "RawMail", actual: "\(source)"))
-            }
-        }
         // Decoder for [SendMail]
         Decoders.addDecoder(clazz: [SendMail].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[SendMail]> in
             return Decoders.decode(clazz: [SendMail].self, source: source)
@@ -917,6 +899,10 @@ class Decoders {
                 }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["body"] as AnyObject?) {
                 case let .success(value): _result.body = value
+                case let .failure(error): break
+                }
+                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"] as AnyObject?) {
+                case let .success(value): _result.id = value
                 case let .failure(error): break
                 }
                 return .success(_result)
@@ -972,6 +958,28 @@ class Decoders {
                 return .success(_result)
             } else {
                 return .failure(.typeMismatch(expected: "SendMailAdv", actual: "\(source)"))
+            }
+        }
+        // Decoder for [SendMailRaw]
+        Decoders.addDecoder(clazz: [SendMailRaw].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[SendMailRaw]> in
+            return Decoders.decode(clazz: [SendMailRaw].self, source: source)
+        }
+
+        // Decoder for SendMailRaw
+        Decoders.addDecoder(clazz: SendMailRaw.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<SendMailRaw> in
+            if let sourceDictionary = source as? [AnyHashable: Any] {
+                let _result = instance == nil ? SendMailRaw() : instance as! SendMailRaw
+                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["raw_email"] as AnyObject?) {
+                case let .success(value): _result.rawEmail = value
+                case let .failure(error): break
+                }
+                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["id"] as AnyObject?) {
+                case let .success(value): _result.id = value
+                case let .failure(error): break
+                }
+                return .success(_result)
+            } else {
+                return .failure(.typeMismatch(expected: "SendMailRaw", actual: "\(source)"))
             }
         }
     }()

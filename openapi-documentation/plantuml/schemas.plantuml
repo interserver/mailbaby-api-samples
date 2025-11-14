@@ -134,15 +134,12 @@ entity MailStatsTypeVolumeTo {
     client@anothersite.com: Integer
 }
 
-entity RawMail {
-    * raw_email: String
-}
-
 entity SendMail {
     * to: String
     * from: String
     * subject: String
     * body: String
+    id: Integer
 }
 
 entity SendMailAdv {
@@ -155,6 +152,11 @@ entity SendMailAdv {
     bcc: EmailAddressesTypes
     attachments: List<MailAttachment>
     id: Long
+}
+
+entity SendMailRaw {
+    * raw_email: String
+    id: Integer
 }
 
 DenyRuleNew <|--- DenyRuleRecord

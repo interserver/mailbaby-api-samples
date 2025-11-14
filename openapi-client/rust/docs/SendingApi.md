@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## raw_mail
 
-> models::GenericResponse raw_mail(raw_mail)
+> models::GenericResponse raw_mail(send_mail_raw)
 Sends a raw email
 
 This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
@@ -22,7 +22,7 @@ This call will let you pass the raw / complete email contents (including headers
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**raw_mail** | [**RawMail**](RawMail.md) |  | [required] |
+**send_mail_raw** | [**SendMailRaw**](SendMailRaw.md) |  | [required] |
 
 ### Return type
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ## send_mail
 
-> models::GenericResponse send_mail(to, from, subject, body)
+> models::GenericResponse send_mail(to, from, subject, body, id)
 Sends an Email
 
 Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
@@ -94,6 +94,7 @@ Name | Type | Description  | Required | Notes
 **from** | **String** | The contact whom is the this email is from. | [required] |
 **subject** | **String** | The subject or title of the email | [required] |
 **body** | **String** | The main email contents. | [required] |
+**id** | Option<**i32**> | Optional Order ID |  |
 
 ### Return type
 

@@ -64,9 +64,9 @@ Class | Method | HTTP request | Description
  - [MAIL_STATS_TYPE_VOLUME_FROM](docs/MAIL_STATS_TYPE_VOLUME_FROM.md)
  - [MAIL_STATS_TYPE_VOLUME_IP](docs/MAIL_STATS_TYPE_VOLUME_IP.md)
  - [MAIL_STATS_TYPE_VOLUME_TO](docs/MAIL_STATS_TYPE_VOLUME_TO.md)
- - [RAW_MAIL](docs/RAW_MAIL.md)
  - [SEND_MAIL](docs/SEND_MAIL.md)
  - [SEND_MAIL_ADV](docs/SEND_MAIL_ADV.md)
+ - [SEND_MAIL_RAW](docs/SEND_MAIL_RAW.md)
 
 
 ## Documentation For Authorization

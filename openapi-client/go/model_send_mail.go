@@ -30,6 +30,8 @@ type SendMail struct {
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
+	// Optional Order ID
+	Id *int32 `json:"id,omitempty"`
 }
 
 type _SendMail SendMail
@@ -151,6 +153,38 @@ func (o *SendMail) SetBody(v string) {
 	o.Body = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SendMail) GetId() int32 {
+	if o == nil || IsNil(o.Id) {
+		var ret int32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SendMail) GetIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SendMail) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *SendMail) SetId(v int32) {
+	o.Id = &v
+}
+
 func (o SendMail) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -165,6 +199,9 @@ func (o SendMail) ToMap() (map[string]interface{}, error) {
 	toSerialize["from"] = o.From
 	toSerialize["subject"] = o.Subject
 	toSerialize["body"] = o.Body
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	return toSerialize, nil
 }
 

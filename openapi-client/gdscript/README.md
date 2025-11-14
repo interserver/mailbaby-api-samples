@@ -121,9 +121,9 @@ Class | Method | HTTP request | Description
 - [MailStatsTypeVolumeFrom](models/MailStatsTypeVolumeFrom.md)
 - [MailStatsTypeVolumeIp](models/MailStatsTypeVolumeIp.md)
 - [MailStatsTypeVolumeTo](models/MailStatsTypeVolumeTo.md)
-- [RawMail](models/RawMail.md)
 - [SendMail](models/SendMail.md)
 - [SendMailAdv](models/SendMailAdv.md)
+- [SendMailRaw](models/SendMailRaw.md)
 
 
 ## Documentation For Authorization

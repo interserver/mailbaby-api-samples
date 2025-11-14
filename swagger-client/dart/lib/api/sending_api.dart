@@ -10,7 +10,7 @@ class SendingApi {
   /// Sends a raw email
   ///
   /// This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-  Future<GenericResponse> rawMail(RawMail body) async {
+  Future<GenericResponse> rawMail(SendMailRaw body) async {
     Object postBody = body;
 
     // verify required params are set
@@ -38,12 +38,18 @@ class SendingApi {
         hasFields = true;
         mp.fields['raw_email'] = parameterToString(rawEmail);
       }
+      if (id != null) {
+        hasFields = true;
+        mp.fields['id'] = parameterToString(id);
+      }
       if(hasFields)
         postBody = mp;
     }
     else {
       if (rawEmail != null)
         formParams['raw_email'] = parameterToString(rawEmail);
+if (id != null)
+        formParams['id'] = parameterToString(id);
     }
 
     var response = await apiClient.invokeAPI(path,
@@ -196,7 +202,7 @@ if (id != null)
   /// Sends an Email
   ///
   /// Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-  Future<GenericResponse> sendMail(String to, String from, String subject, String body) async {
+  Future<GenericResponse> sendMail(String to, String from, String subject, String body, int id) async {
     Object postBody = body;
 
     // verify required params are set
@@ -211,6 +217,9 @@ if (id != null)
     }
     if(body == null) {
      throw new ApiException(400, "Missing required param: body");
+    }
+    if(id == null) {
+     throw new ApiException(400, "Missing required param: id");
     }
 
     // create path and map variables
@@ -245,6 +254,10 @@ if (id != null)
         hasFields = true;
         mp.fields['body'] = parameterToString(body);
       }
+      if (id != null) {
+        hasFields = true;
+        mp.fields['id'] = parameterToString(id);
+      }
       if(hasFields)
         postBody = mp;
     }
@@ -257,6 +270,8 @@ if (subject != null)
         formParams['subject'] = parameterToString(subject);
 if (body != null)
         formParams['body'] = parameterToString(body);
+if (id != null)
+        formParams['id'] = parameterToString(id);
     }
 
     var response = await apiClient.invokeAPI(path,

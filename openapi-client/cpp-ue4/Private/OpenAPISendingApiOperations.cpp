@@ -43,7 +43,7 @@ void OpenAPISendingApi::RawMailRequest::SetupHttpRequest(const FHttpRequestRef& 
 		FString JsonBody;
 		JsonWriter Writer = TJsonWriterFactory<>::Create(&JsonBody);
 
-		WriteJsonValue(Writer, OpenAPIRawMail);
+		WriteJsonValue(Writer, OpenAPISendMailRaw);
 		Writer->Close();
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -51,11 +51,11 @@ void OpenAPISendingApi::RawMailRequest::SetupHttpRequest(const FHttpRequestRef& 
 	}
 	else if (Consumes.Contains(TEXT("multipart/form-data")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPIRawMail) was ignored, not supported in multipart form"));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMailRaw) was ignored, not supported in multipart form"));
 	}
 	else if (Consumes.Contains(TEXT("application/x-www-form-urlencoded")))
 	{
-		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPIRawMail) was ignored, not supported in urlencoded requests"));
+		UE_LOG(LogOpenAPI, Error, TEXT("Body parameter (OpenAPISendMailRaw) was ignored, not supported in urlencoded requests"));
 	}
 	else
 	{
@@ -255,6 +255,10 @@ void OpenAPISendingApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef&
 		WriteJsonValue(Writer, Subject);
 		Writer->WriteIdentifierPrefix(TEXT("body"));
 		WriteJsonValue(Writer, Body);
+		if (Id.IsSet()){
+			Writer->WriteIdentifierPrefix(TEXT("id"));
+			WriteJsonValue(Writer, Id.GetValue());
+		}
 		Writer->WriteObjectEnd();
 		Writer->Close();
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/json; charset=utf-8"));
@@ -267,6 +271,10 @@ void OpenAPISendingApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef&
 		FormData.AddStringPart(TEXT("from"), *ToUrlString(From));
 		FormData.AddStringPart(TEXT("subject"), *ToUrlString(Subject));
 		FormData.AddStringPart(TEXT("body"), *ToUrlString(Body));
+		if(Id.IsSet())
+		{
+			FormData.AddStringPart(TEXT("id"), *ToUrlString(Id.GetValue()));
+		}
 
 		FormData.SetupHttpRequest(HttpRequest);
 	}
@@ -277,6 +285,10 @@ void OpenAPISendingApi::SendMailRequest::SetupHttpRequest(const FHttpRequestRef&
 		FormParams.Add(FString(TEXT("from=")) + ToUrlString(From));
 		FormParams.Add(FString(TEXT("subject=")) + ToUrlString(Subject));
 		FormParams.Add(FString(TEXT("body=")) + ToUrlString(Body));
+		if(Id.IsSet())
+		{
+			FormParams.Add(FString(TEXT("id=")) + ToUrlString(Id.GetValue()));
+		}
 
 		HttpRequest->SetHeader(TEXT("Content-Type"), TEXT("application/x-www-form-urlencoded; charset=utf-8"));
 		HttpRequest->SetContentAsString(FString::Join(FormParams, TEXT("&")));

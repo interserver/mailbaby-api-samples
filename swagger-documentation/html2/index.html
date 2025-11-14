@@ -1318,21 +1318,6 @@
     }
   }
 };
-            defs["RawMail"] = {
-  "title" : "Root Type for RawMail",
-  "required" : [ "raw_email" ],
-  "type" : "object",
-  "properties" : {
-    "raw_email" : {
-      "type" : "string",
-      "description" : "The entire email contents"
-    }
-  },
-  "description" : "Raw Email Object",
-  "example" : {
-    "raw_email" : "<email contents here>"
-  }
-};
             defs["SendMail"] = {
   "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
@@ -1357,6 +1342,10 @@
       "type" : "string",
       "description" : "The main email contents.",
       "example" : "This is an email to inform you that something noteworthy happened."
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "Optional Order ID"
     }
   },
   "description" : "Details for an Email"
@@ -1424,6 +1413,25 @@
       "data" : "base64_encoded_contents"
     } ],
     "id" : 66
+  }
+};
+            defs["SendMailRaw"] = {
+  "title" : "Root Type for RawMail",
+  "required" : [ "raw_email" ],
+  "type" : "object",
+  "properties" : {
+    "raw_email" : {
+      "type" : "string",
+      "description" : "The entire email contents"
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "Optional order id"
+    }
+  },
+  "description" : "Raw Email Object",
+  "example" : {
+    "raw_email" : "<email contents here>"
   }
 };
   </script>
@@ -5367,7 +5375,7 @@ public class SendingApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         SendingApi apiInstance = new SendingApi();
-        RawMail body = ; // RawMail | 
+        SendMailRaw body = ; // SendMailRaw | 
         try {
             GenericResponse result = apiInstance.rawMail(body);
             System.out.println(result);
@@ -5386,7 +5394,7 @@ public class SendingApiExample {
 
     public static void main(String[] args) {
         SendingApi apiInstance = new SendingApi();
-        RawMail body = ; // RawMail | 
+        SendMailRaw body = ; // SendMailRaw | 
         try {
             GenericResponse result = apiInstance.rawMail(body);
             System.out.println(result);
@@ -5407,7 +5415,7 @@ public class SendingApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-RawMail *body = ; // 
+SendMailRaw *body = ; // 
 
 SendingApi *apiInstance = [[SendingApi alloc] init];
 
@@ -5435,7 +5443,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
-var body = ; // {{RawMail}} 
+var body = ; // {{SendMailRaw}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -5471,7 +5479,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new SendingApi();
-            var body = new RawMail(); // RawMail | 
+            var body = new SendMailRaw(); // SendMailRaw | 
 
             try
             {
@@ -5499,7 +5507,7 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiSendingApi();
-$body = ; // RawMail | 
+$body = ; // SendMailRaw | 
 
 try {
     $result = $api_instance->rawMail($body);
@@ -5521,7 +5529,7 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::SendingApi->new();
-my $body = MailBabyApi::Object::RawMail->new(); # RawMail | 
+my $body = MailBabyApi::Object::SendMailRaw->new(); # SendMailRaw | 
 
 eval { 
     my $result = $api_instance->rawMail(body => $body);
@@ -5546,7 +5554,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.SendingApi()
-body =  # RawMail | 
+body =  # SendMailRaw | 
 
 try: 
     # Sends a raw email
@@ -5577,12 +5585,12 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/RawMail"
+        "$ref" : "#/components/schemas/SendMailRaw"
       }
     },
     "multipart/form-data" : {
       "schema" : {
-        "$ref" : "#/components/schemas/RawMail"
+        "$ref" : "#/components/schemas/SendMailRaw"
       }
     }
   },
@@ -5625,6 +5633,25 @@ except ApiException as e:
                                               <div class="primitive">
                                                   <span class="type">
                                                       String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_rawMail_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
                                                   </span>
                                   
                                               </div>
@@ -6853,8 +6880,9 @@ public class SendingApiExample {
         String from = from_example; // String | 
         String subject = subject_example; // String | 
         String body = body_example; // String | 
+        Integer id = 56; // Integer | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#sendMail");
@@ -6875,8 +6903,9 @@ public class SendingApiExample {
         String from = from_example; // String | 
         String subject = subject_example; // String | 
         String body = body_example; // String | 
+        Integer id = 56; // Integer | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#sendMail");
@@ -6899,6 +6928,7 @@ String *to = to_example; //
 String *from = from_example; // 
 String *subject = subject_example; // 
 String *body = body_example; // 
+Integer *id = 56; // 
 
 SendingApi *apiInstance = [[SendingApi alloc] init];
 
@@ -6907,6 +6937,7 @@ SendingApi *apiInstance = [[SendingApi alloc] init];
     from:from
     subject:subject
     body:body
+    id:id
               completionHandler: ^(GenericResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -6933,6 +6964,7 @@ var to = to_example; // {{String}}
 var from = from_example; // {{String}} 
 var subject = subject_example; // {{String}} 
 var body = body_example; // {{String}} 
+var id = 56; // {{Integer}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -6941,7 +6973,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMail(tofromsubjectbody, callback);
+api.sendMail(tofromsubjectbodyid, callback);
 </code></pre>
                             </div>
 
@@ -6972,11 +7004,12 @@ namespace Example
             var from = from_example;  // String | 
             var subject = subject_example;  // String | 
             var body = body_example;  // String | 
+            var id = 56;  // Integer | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -7003,9 +7036,10 @@ $to = to_example; // String |
 $from = from_example; // String | 
 $subject = subject_example; // String | 
 $body = body_example; // String | 
+$id = 56; // Integer | 
 
 try {
-    $result = $api_instance->sendMail($to, $from, $subject, $body);
+    $result = $api_instance->sendMail($to, $from, $subject, $body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -7028,9 +7062,10 @@ my $to = to_example; # String |
 my $from = from_example; # String | 
 my $subject = subject_example; # String | 
 my $body = body_example; # String | 
+my $id = 56; # Integer | 
 
 eval { 
-    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body);
+    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body, id => $id);
     print Dumper($result);
 };
 if ($@) {
@@ -7056,10 +7091,11 @@ to = to_example # String |
 from = from_example # String | 
 subject = subject_example # String | 
 body = body_example # String | 
+id = 56 # Integer | 
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail(to, from, subject, body)
+    api_response = api_instance.send_mail(to, from, subject, body, id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SendingApi->sendMail: %s\n" % e)</code></pre>
@@ -7191,6 +7227,25 @@ except ApiException as e:
                                               <div class="primitive">
                                                   <span class="type">
                                                       String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMail_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
                                                   </span>
                                   
                                               </div>

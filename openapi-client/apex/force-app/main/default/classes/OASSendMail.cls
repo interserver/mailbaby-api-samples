@@ -38,6 +38,12 @@ public class OASSendMail implements OAS.MappedProperties {
      */
     public String body { get; set; }
 
+    /**
+     * Optional Order ID
+     * @return id
+     */
+    public Integer id { get; set; }
+
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'from' => 'r_from'
     };
@@ -52,6 +58,7 @@ public class OASSendMail implements OAS.MappedProperties {
           sendMail.r_from = 'janedoe@company.com';
           sendMail.subject = 'Attention Client';
           sendMail.body = 'This is an email to inform you that something noteworthy happened.';
+          sendMail.id = 0;
         return sendMail;
     }
 
@@ -61,7 +68,8 @@ public class OASSendMail implements OAS.MappedProperties {
             return this.to == sendMail.to
                 && this.r_from == sendMail.r_from
                 && this.subject == sendMail.subject
-                && this.body == sendMail.body;
+                && this.body == sendMail.body
+                && this.id == sendMail.id;
         }
         return false;
     }
@@ -72,6 +80,7 @@ public class OASSendMail implements OAS.MappedProperties {
         hashCode = (17 * hashCode) + (r_from == null ? 0 : System.hashCode(r_from));
         hashCode = (17 * hashCode) + (subject == null ? 0 : System.hashCode(subject));
         hashCode = (17 * hashCode) + (body == null ? 0 : System.hashCode(body));
+        hashCode = (17 * hashCode) + (id == null ? 0 : System.hashCode(id));
         return hashCode;
     }
 }

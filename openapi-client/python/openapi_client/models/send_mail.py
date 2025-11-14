@@ -18,8 +18,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +31,8 @@ class SendMail(BaseModel):
     var_from: StrictStr = Field(description="The contact whom is the this email is from.", alias="from")
     subject: StrictStr = Field(description="The subject or title of the email")
     body: StrictStr = Field(description="The main email contents.")
-    __properties: ClassVar[List[str]] = ["to", "from", "subject", "body"]
+    id: Optional[StrictInt] = Field(default=None, description="Optional Order ID")
+    __properties: ClassVar[List[str]] = ["to", "from", "subject", "body", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,7 +88,8 @@ class SendMail(BaseModel):
             "to": obj.get("to"),
             "from": obj.get("from"),
             "subject": obj.get("subject"),
-            "body": obj.get("body")
+            "body": obj.get("body"),
+            "id": obj.get("id")
         })
         return _obj
 

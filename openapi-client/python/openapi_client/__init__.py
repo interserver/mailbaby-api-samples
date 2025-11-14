@@ -52,9 +52,9 @@ __all__ = [
     "MailStatsTypeVolumeFrom",
     "MailStatsTypeVolumeIp",
     "MailStatsTypeVolumeTo",
-    "RawMail",
     "SendMail",
     "SendMailAdv",
+    "SendMailRaw",
 ]
 
 # import apis into sdk package
@@ -95,7 +95,7 @@ from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume as 
 from openapi_client.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom as MailStatsTypeVolumeFrom
 from openapi_client.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp as MailStatsTypeVolumeIp
 from openapi_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo as MailStatsTypeVolumeTo
-from openapi_client.models.raw_mail import RawMail as RawMail
 from openapi_client.models.send_mail import SendMail as SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv as SendMailAdv
+from openapi_client.models.send_mail_raw import SendMailRaw as SendMailRaw
 

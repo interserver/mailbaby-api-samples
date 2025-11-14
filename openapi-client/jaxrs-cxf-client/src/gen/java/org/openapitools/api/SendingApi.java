@@ -5,7 +5,7 @@ import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailAttachment;
-import org.openapitools.model.RawMail;
+import org.openapitools.model.SendMailRaw;
 
 import java.util.List;
 import java.util.Map;
@@ -44,7 +44,7 @@ public interface SendingApi  {
         @ApiResponse(code = 400, message = "Error message when there was a problem with the input parameters.", response = ErrorMessage.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorMessage.class) })
-    public GenericResponse rawMail(RawMail rawMail);
+    public GenericResponse rawMail(SendMailRaw sendMailRaw);
 
     /**
      * Sends an Email with Advanced Options
@@ -80,5 +80,5 @@ public interface SendingApi  {
         @ApiResponse(code = 400, message = "Error message when there was a problem with the input parameters.", response = ErrorMessage.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = ErrorMessage.class) })
-    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body);
+    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "id", required = false)  Integer id);
 }

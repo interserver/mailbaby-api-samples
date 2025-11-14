@@ -9,7 +9,7 @@
 Describe -tag 'PSOpenAPITools' -name 'SendingApi' {
     Context 'Invoke-RawMail' {
         It 'Test Invoke-RawMail' {
-            #$TestResult = Invoke-RawMail -RawMail "TEST_VALUE"
+            #$TestResult = Invoke-RawMail -SendMailRaw "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }
@@ -25,7 +25,7 @@ Describe -tag 'PSOpenAPITools' -name 'SendingApi' {
 
     Context 'Send-Mail' {
         It 'Test Send-Mail' {
-            #$TestResult = Send-Mail -To "TEST_VALUE" -From "TEST_VALUE" -Subject "TEST_VALUE" -Body "TEST_VALUE"
+            #$TestResult = Send-Mail -To "TEST_VALUE" -From "TEST_VALUE" -Subject "TEST_VALUE" -Body "TEST_VALUE" -Id "TEST_VALUE"
             #$TestResult | Should -BeOfType TODO
             #$TestResult.property | Should -Be 0
         }

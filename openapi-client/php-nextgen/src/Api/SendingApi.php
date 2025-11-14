@@ -140,7 +140,7 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \OpenAPI\Client\Model\RawMail $raw_mail raw_mail (required)
+     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw send_mail_raw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -148,11 +148,11 @@ class SendingApi
      * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage
      */
     public function rawMail(
-        \OpenAPI\Client\Model\RawMail $raw_mail,
+        \OpenAPI\Client\Model\SendMailRaw $send_mail_raw,
         string $contentType = self::contentTypes['rawMail'][0]
     ): \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage
     {
-        list($response) = $this->rawMailWithHttpInfo($raw_mail, $contentType);
+        list($response) = $this->rawMailWithHttpInfo($send_mail_raw, $contentType);
         return $response;
     }
 
@@ -161,7 +161,7 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \OpenAPI\Client\Model\RawMail $raw_mail (required)
+     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -169,11 +169,11 @@ class SendingApi
      * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function rawMailWithHttpInfo(
-        \OpenAPI\Client\Model\RawMail $raw_mail,
+        \OpenAPI\Client\Model\SendMailRaw $send_mail_raw,
         string $contentType = self::contentTypes['rawMail'][0]
     ): array
     {
-        $request = $this->rawMailRequest($raw_mail, $contentType);
+        $request = $this->rawMailRequest($send_mail_raw, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -288,18 +288,18 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \OpenAPI\Client\Model\RawMail $raw_mail (required)
+     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function rawMailAsync(
-        \OpenAPI\Client\Model\RawMail $raw_mail,
+        \OpenAPI\Client\Model\SendMailRaw $send_mail_raw,
         string $contentType = self::contentTypes['rawMail'][0]
     ): PromiseInterface
     {
-        return $this->rawMailAsyncWithHttpInfo($raw_mail, $contentType)
+        return $this->rawMailAsyncWithHttpInfo($send_mail_raw, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -312,19 +312,19 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \OpenAPI\Client\Model\RawMail $raw_mail (required)
+     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
     public function rawMailAsyncWithHttpInfo(
-        \OpenAPI\Client\Model\RawMail $raw_mail,
+        \OpenAPI\Client\Model\SendMailRaw $send_mail_raw,
         string $contentType = self::contentTypes['rawMail'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\GenericResponse';
-        $request = $this->rawMailRequest($raw_mail, $contentType);
+        $request = $this->rawMailRequest($send_mail_raw, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -365,22 +365,22 @@ class SendingApi
     /**
      * Create request for operation 'rawMail'
      *
-     * @param  \OpenAPI\Client\Model\RawMail $raw_mail (required)
+     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rawMail'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
     public function rawMailRequest(
-        \OpenAPI\Client\Model\RawMail $raw_mail,
+        \OpenAPI\Client\Model\SendMailRaw $send_mail_raw,
         string $contentType = self::contentTypes['rawMail'][0]
     ): Request
     {
 
-        // verify the required parameter 'raw_mail' is set
-        if ($raw_mail === null || (is_array($raw_mail) && count($raw_mail) === 0)) {
+        // verify the required parameter 'send_mail_raw' is set
+        if ($send_mail_raw === null || (is_array($send_mail_raw) && count($send_mail_raw) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $raw_mail when calling rawMail'
+                'Missing the required parameter $send_mail_raw when calling rawMail'
             );
         }
 
@@ -403,12 +403,12 @@ class SendingApi
         );
 
         // for model (json/xml)
-        if (isset($raw_mail)) {
+        if (isset($send_mail_raw)) {
             if (stripos($headers['Content-Type'], 'application/json') !== false) {
                 # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($raw_mail));
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($send_mail_raw));
             } else {
-                $httpBody = $raw_mail;
+                $httpBody = $send_mail_raw;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -912,6 +912,7 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -923,10 +924,11 @@ class SendingApi
         string $from,
         string $subject,
         string $body,
+        ?int $id = null,
         string $contentType = self::contentTypes['sendMail'][0]
     ): \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage
     {
-        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body, $contentType);
+        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body, $id, $contentType);
         return $response;
     }
 
@@ -939,6 +941,7 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
@@ -950,10 +953,11 @@ class SendingApi
         string $from,
         string $subject,
         string $body,
+        ?int $id = null,
         string $contentType = self::contentTypes['sendMail'][0]
     ): array
     {
-        $request = $this->sendMailRequest($to, $from, $subject, $body, $contentType);
+        $request = $this->sendMailRequest($to, $from, $subject, $body, $id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1072,6 +1076,7 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1082,10 +1087,11 @@ class SendingApi
         string $from,
         string $subject,
         string $body,
+        ?int $id = null,
         string $contentType = self::contentTypes['sendMail'][0]
     ): PromiseInterface
     {
-        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $contentType)
+        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1102,6 +1108,7 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1112,11 +1119,12 @@ class SendingApi
         string $from,
         string $subject,
         string $body,
+        ?int $id = null,
         string $contentType = self::contentTypes['sendMail'][0]
     ): PromiseInterface
     {
         $returnType = '\OpenAPI\Client\Model\GenericResponse';
-        $request = $this->sendMailRequest($to, $from, $subject, $body, $contentType);
+        $request = $this->sendMailRequest($to, $from, $subject, $body, $id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1161,6 +1169,7 @@ class SendingApi
      * @param  string $from The contact whom is the this email is from. (required)
      * @param  string $subject The subject or title of the email (required)
      * @param  string $body The main email contents. (required)
+     * @param  int|null $id Optional Order ID (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendMail'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
@@ -1171,6 +1180,7 @@ class SendingApi
         string $from,
         string $subject,
         string $body,
+        ?int $id = null,
         string $contentType = self::contentTypes['sendMail'][0]
     ): Request
     {
@@ -1204,6 +1214,7 @@ class SendingApi
         }
 
 
+
         $resourcePath = '/mail/send';
         $formParams = [];
         $queryParams = [];
@@ -1222,6 +1233,7 @@ class SendingApi
             'from' => $from,
             'subject' => $subject,
             'body' => $body,
+            'id' => $id,
         ]);
 
         $formParams = $formDataProcessor->flatten($formData);

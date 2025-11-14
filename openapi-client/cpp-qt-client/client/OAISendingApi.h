@@ -23,7 +23,7 @@
 #include "OAIErrorMessage.h"
 #include "OAIGenericResponse.h"
 #include "OAIMailAttachment.h"
-#include "OAIRawMail.h"
+#include "OAISendMailRaw.h"
 #include <QString>
 
 #include <QObject>
@@ -63,9 +63,9 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
     /**
-    * @param[in]  oai_raw_mail OAIRawMail [required]
+    * @param[in]  oai_send_mail_raw OAISendMailRaw [required]
     */
-    virtual void rawMail(const OAIRawMail &oai_raw_mail);
+    virtual void rawMail(const OAISendMailRaw &oai_send_mail_raw);
 
     /**
     * @param[in]  subject QString [required]
@@ -85,8 +85,9 @@ public:
     * @param[in]  from QString [required]
     * @param[in]  subject QString [required]
     * @param[in]  body QString [required]
+    * @param[in]  id qint32 [optional]
     */
-    virtual void sendMail(const QString &to, const QString &from, const QString &subject, const QString &body);
+    virtual void sendMail(const QString &to, const QString &from, const QString &subject, const QString &body, const ::OpenAPI::OptionalParam<qint32> &id = ::OpenAPI::OptionalParam<qint32>());
 
 
 private:

@@ -39,7 +39,8 @@ class TestSendMail(unittest.TestCase):
                 to = 'johndoe@company.com',
                 var_from = 'janedoe@company.com',
                 subject = 'Attention Client',
-                body = 'This is an email to inform you that something noteworthy happened.'
+                body = 'This is an email to inform you that something noteworthy happened.',
+                id = 56
             )
         else:
             return SendMail(

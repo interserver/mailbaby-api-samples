@@ -20,12 +20,14 @@ import io.circe.{Decoder, Encoder}
   * @param from The contact whom is the this email is from.
   * @param subject The subject or title of the email
   * @param body The main email contents.
+  * @param id Optional Order ID
   */
 case class SendMail(
     to: String,
     from: String,
     subject: String,
-    body: String
+    body: String,
+    id: Option[Int] = None
 )
   
 object SendMail {
@@ -35,7 +37,8 @@ object SendMail {
         Some("to" -> t.to.asJson),
         Some("from" -> t.from.asJson),
         Some("subject" -> t.subject.asJson),
-        Some("body" -> t.body.asJson)
+        Some("body" -> t.body.asJson),
+        t.id.map(v => "id" -> v.asJson)
       ).flatten
     }
   }
@@ -45,11 +48,13 @@ object SendMail {
       from <- c.downField("from").as[String]
       subject <- c.downField("subject").as[String]
       body <- c.downField("body").as[String]
+      id <- c.downField("id").as[Option[Int]]
     } yield SendMail(
       to = to,
       from = from,
       subject = subject,
-      body = body
+      body = body,
+      id = id
     )
   }
 }

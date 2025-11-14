@@ -16,9 +16,9 @@ import io.swagger.client.models.EmailAddressesTypes
 import io.swagger.client.models.ErrorMessage
 import io.swagger.client.models.GenericResponse
 import io.swagger.client.models.MailAttachment
-import io.swagger.client.models.RawMail
 import io.swagger.client.models.SendMail
 import io.swagger.client.models.SendMailAdv
+import io.swagger.client.models.SendMailRaw
 
 import io.swagger.client.infrastructure.*
 
@@ -31,7 +31,7 @@ class SendingApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun rawMail(body: RawMail): GenericResponse {
+    fun rawMail(body: SendMailRaw): GenericResponse {
         val localVariableBody: kotlin.Any? = body
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/json")
         localVariableHeaders["Accept"] = "application/json"
@@ -55,11 +55,12 @@ class SendingApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @param rawEmail  
+     * @param id  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun rawMail(rawEmail: kotlin.String): GenericResponse {
-        val localVariableBody: kotlin.Any? = mapOf("raw_email" to "$rawEmail")
+    fun rawMail(rawEmail: kotlin.String, id: kotlin.Int): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("raw_email" to "$rawEmail", "id" to "$id")
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/json")
         localVariableHeaders["Accept"] = "application/json"
         val localVariableConfig = RequestConfig(
@@ -147,11 +148,12 @@ class SendingApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @param from  
      * @param subject  
      * @param body  
+     * @param id  
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String): GenericResponse {
-        val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body")
+    fun sendMail(to: kotlin.String, from: kotlin.String, subject: kotlin.String, body: kotlin.String, id: kotlin.Int): GenericResponse {
+        val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body", "id" to "$id")
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
         localVariableHeaders["Accept"] = "application/json"
         val localVariableConfig = RequestConfig(

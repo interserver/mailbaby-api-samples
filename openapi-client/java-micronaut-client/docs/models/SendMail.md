@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **from** | `String` | The contact whom is the this email is from. | 
 **subject** | `String` | The subject or title of the email | 
 **_body** | `String` | The main email contents. | 
+**id** | `Integer` | Optional Order ID |  [optional property]
+
 
 
 

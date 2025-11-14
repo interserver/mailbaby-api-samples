@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **RawMail**
-> GenericResponse RawMail(raw_mail)
+> GenericResponse RawMail(send_mail_raw)
 
 Sends a raw email
 
@@ -23,14 +23,14 @@ library(openapi)
 # Sends a raw email
 #
 # prepare function argument(s)
-var_raw_mail <- RawMail$new("raw_email_example") # RawMail | 
+var_send_mail_raw <- SendMailRaw$new("raw_email_example", 123) # SendMailRaw | 
 
 api_instance <- SendingApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$RawMail(var_raw_maildata_file = "result.txt")
-result <- api_instance$RawMail(var_raw_mail)
+# result <- api_instance$RawMail(var_send_mail_rawdata_file = "result.txt")
+result <- api_instance$RawMail(var_send_mail_raw)
 dput(result)
 ```
 
@@ -38,7 +38,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **raw_mail** | [**RawMail**](RawMail.md)|  | 
+ **send_mail_raw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 | **404** | The specified resource was not found |  -  |
 
 # **SendMail**
-> GenericResponse SendMail(to, from, subject, body)
+> GenericResponse SendMail(to, from, subject, body, id = var.id)
 
 Sends an Email
 
@@ -147,13 +147,14 @@ var_to <- "to_example" # character | The Contact whom is the primary recipient o
 var_from <- "from_example" # character | The contact whom is the this email is from.
 var_subject <- "subject_example" # character | The subject or title of the email
 var_body <- "body_example" # character | The main email contents.
+var_id <- 56 # integer | Optional Order ID (Optional)
 
 api_instance <- SendingApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
-# result <- api_instance$SendMail(var_to, var_from, var_subject, var_bodydata_file = "result.txt")
-result <- api_instance$SendMail(var_to, var_from, var_subject, var_body)
+# result <- api_instance$SendMail(var_to, var_from, var_subject, var_body, id = var_iddata_file = "result.txt")
+result <- api_instance$SendMail(var_to, var_from, var_subject, var_body, id = var_id)
 dput(result)
 ```
 
@@ -165,6 +166,7 @@ Name | Type | Description  | Notes
  **from** | **character**| The contact whom is the this email is from. | 
  **subject** | **character**| The subject or title of the email | 
  **body** | **character**| The main email contents. | 
+ **id** | **integer**| Optional Order ID | [optional] 
 
 ### Return type
 

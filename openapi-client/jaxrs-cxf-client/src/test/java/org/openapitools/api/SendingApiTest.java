@@ -18,7 +18,7 @@ import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.GenericResponse;
 import org.openapitools.model.MailAttachment;
-import org.openapitools.model.RawMail;
+import org.openapitools.model.SendMailRaw;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -74,8 +74,8 @@ public class SendingApiTest {
      */
     @Test
     public void rawMailTest() {
-        RawMail rawMail = null;
-        //GenericResponse response = api.rawMail(rawMail);
+        SendMailRaw sendMailRaw = null;
+        //GenericResponse response = api.rawMail(sendMailRaw);
         //assertNotNull(response);
         // TODO: test validations
 
@@ -122,7 +122,8 @@ public class SendingApiTest {
         String from = null;
         String subject = null;
         String body = null;
-        //GenericResponse response = api.sendMail(to, from, subject, body);
+        Integer id = null;
+        //GenericResponse response = api.sendMail(to, from, subject, body, id);
         //assertNotNull(response);
         // TODO: test validations
 

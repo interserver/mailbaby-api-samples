@@ -23,6 +23,8 @@ The contact whom is the this email is from.
 The subject or title of the email
 .PARAMETER Body
 The main email contents.
+.PARAMETER Id
+Optional Order ID
 .OUTPUTS
 
 SendMail<PSCustomObject>
@@ -42,7 +44,10 @@ function Initialize-SendMail {
         ${Subject},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Body}
+        ${Body},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [System.Nullable[Int32]]
+        ${Id}
     )
 
     Process {
@@ -71,6 +76,7 @@ function Initialize-SendMail {
             "from" = ${VarFrom}
             "subject" = ${Subject}
             "body" = ${Body}
+            "id" = ${Id}
         }
 
 
@@ -108,7 +114,7 @@ function ConvertFrom-JsonToSendMail {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in SendMail
-        $AllProperties = ("to", "from", "subject", "body")
+        $AllProperties = ("to", "from", "subject", "body", "id")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -143,11 +149,18 @@ function ConvertFrom-JsonToSendMail {
             $Body = $JsonParameters.PSobject.Properties["body"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "id"))) { #optional property not found
+            $Id = $null
+        } else {
+            $Id = $JsonParameters.PSobject.Properties["id"].value
+        }
+
         $PSO = [PSCustomObject]@{
             "to" = ${To}
             "from" = ${VarFrom}
             "subject" = ${Subject}
             "body" = ${Body}
+            "id" = ${Id}
         }
 
         return $PSO

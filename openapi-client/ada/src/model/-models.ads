@@ -491,28 +491,29 @@ package .Models is
    --  Root Type for RawMail
    --  Raw Email Object
    --  ------------------------------
-   type RawMail_Type is
+   type SendMailRaw_Type is
      record
        Raw_Email : Swagger.UString;
+       Id : Swagger.Nullable_Integer;
      end record;
 
 
-   package RawMail_Type_Vectors is
+   package SendMailRaw_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => .Models.RawMail_Type);
+                                  Element_Type => .Models.SendMailRaw_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in .Models.RawMail_Type);
+                        Value : in .Models.SendMailRaw_Type);
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in RawMail_Type_Vectors.Vector);
+                        Value : in SendMailRaw_Type_Vectors.Vector);
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out .Models.RawMail_Type);
+                          Value : out .Models.SendMailRaw_Type);
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : in out RawMail_Type_Vectors.Vector);
+                          Value : in out SendMailRaw_Type_Vectors.Vector);
 
 
    --  ------------------------------
@@ -525,6 +526,7 @@ package .Models is
        From : Swagger.UString;
        Subject : Swagger.UString;
        P_Body : Swagger.UString;
+       Id : Swagger.Nullable_Integer;
      end record;
 
 

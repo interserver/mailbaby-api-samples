@@ -5,9 +5,9 @@ import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -52,7 +52,7 @@ public interface SendingApi  {
         @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public GenericResponse rawMail(@Valid RawMail body);
+    public GenericResponse rawMail(@Valid SendMailRaw body);
 
     /**
      * Sends a raw email
@@ -70,7 +70,7 @@ public interface SendingApi  {
         @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public GenericResponse rawMail(@Multipart(value = "raw_email")  String rawEmail);
+    public GenericResponse rawMail(@Multipart(value = "raw_email")  String rawEmail, @Multipart(value = "id")  Integer id);
 
     /**
      * Sends an Email with Advanced Options
@@ -124,7 +124,7 @@ public interface SendingApi  {
         @ApiResponse(responseCode = "400", description = "Error message when there was a problem with the input parameters.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body);
+    public GenericResponse sendMail(@Multipart(value = "to")  String to, @Multipart(value = "from")  String from, @Multipart(value = "subject")  String subject, @Multipart(value = "body")  String body, @Multipart(value = "id")  Integer id);
 
     /**
      * Sends an Email

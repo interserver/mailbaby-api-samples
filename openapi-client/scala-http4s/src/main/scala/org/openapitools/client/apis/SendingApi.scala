@@ -19,14 +19,14 @@ import org.openapitools.client.models.EmailAddressesTypes
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailAttachment
-import org.openapitools.client.models.RawMail
+import org.openapitools.client.models.SendMailRaw
 import org.openapitools.client.models.*
 
 trait SendingApiEndpoints[F[*]] {
 
-  def rawMail(rawMail: RawMail)(using auth: _Authorization.ApiKey): F[GenericResponse]
+  def rawMail(sendMailRaw: SendMailRaw)(using auth: _Authorization.ApiKey): F[GenericResponse]
   def sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: Option[EmailAddressesTypes] = None, cc: Option[EmailAddressesTypes] = None, bcc: Option[EmailAddressesTypes] = None, attachments: Option[Seq[MailAttachment]] = None, id: Option[Long] = None)(using auth: _Authorization.ApiKey): F[GenericResponse]
-  def sendMail(to: String, from: String, subject: String, body: String)(using auth: _Authorization.ApiKey): F[GenericResponse]
+  def sendMail(to: String, from: String, subject: String, body: String, id: Option[Int] = None)(using auth: _Authorization.ApiKey): F[GenericResponse]
 
 }
 
@@ -40,15 +40,15 @@ class SendingApiEndpointsImpl[F[*]: Concurrent](
   import io.circe.syntax.EncoderOps
   import cats.implicits.toFlatMapOps
 
-  override def rawMail(rawMail: RawMail)(using auth: _Authorization.ApiKey): F[GenericResponse] = {
+  override def rawMail(sendMailRaw: SendMailRaw)(using auth: _Authorization.ApiKey): F[GenericResponse] = {
     val requestHeaders = Seq(
       Some("Content-Type" -> "application/json")
     ).flatten
 
-    _executeRequest[RawMail, GenericResponse](
+    _executeRequest[SendMailRaw, GenericResponse](
       method = "POST",
       path = s"/mail/rawsend",
-      body = Some(rawMail),
+      body = Some(sendMailRaw),
       formParameters = None,
       queryParameters = Nil,
       requestHeaders = requestHeaders,
@@ -93,7 +93,7 @@ class SendingApiEndpointsImpl[F[*]: Concurrent](
     }
   }
 
-  override def sendMail(to: String, from: String, subject: String, body: String)(using auth: _Authorization.ApiKey): F[GenericResponse] = {
+  override def sendMail(to: String, from: String, subject: String, body: String, id: Option[Int] = None)(using auth: _Authorization.ApiKey): F[GenericResponse] = {
     val requestHeaders = Seq(
       Some("Content-Type" -> "application/x-www-form-urlencoded")
     ).flatten
@@ -101,7 +101,8 @@ class SendingApiEndpointsImpl[F[*]: Concurrent](
       Some(Seq("to" -> to)) ++ 
       Some(Seq("from" -> from)) ++ 
       Some(Seq("subject" -> subject)) ++ 
-      Some(Seq("body" -> body))
+      Some(Seq("body" -> body)) ++ 
+      id.map("id" -> _).map(Seq(_))
     ).toSeq.flatten)
 
     _executeRequest[Unit, GenericResponse](

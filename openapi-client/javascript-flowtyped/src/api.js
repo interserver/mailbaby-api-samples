@@ -689,19 +689,6 @@ export type MailStatsTypeVolumeTo = {
 }
 
 /**
- * Raw Email Object
- * @export
- */
-export type RawMail = {
-    /**
-     * The entire email contents
-     * @type {string}
-     * @memberof RawMail
-     */
-    raw_email: string;
-}
-
-/**
  * Details for an Email
  * @export
  */
@@ -730,6 +717,12 @@ export type SendMail = {
      * @memberof SendMail
      */
     body: string;
+    /**
+     * Optional Order ID
+     * @type {number}
+     * @memberof SendMail
+     */
+    id?: number;
 }
 
 /**
@@ -789,6 +782,25 @@ export type SendMailAdv = {
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
      * @memberof SendMailAdv
+     */
+    id?: number;
+}
+
+/**
+ * Raw Email Object
+ * @export
+ */
+export type SendMailRaw = {
+    /**
+     * The entire email contents
+     * @type {string}
+     * @memberof SendMailRaw
+     */
+    raw_email: string;
+    /**
+     * Optional order id
+     * @type {number}
+     * @memberof SendMailRaw
      */
     id?: number;
 }
@@ -1274,10 +1286,10 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends a raw email
          * @throws {RequiredError}
          */
-        rawMail(rawMail: RawMail, options: RequestOptions): FetchArgs {
-            // verify required parameter 'rawMail' is not null or undefined
-            if (rawMail === null || rawMail === undefined) {
-                throw new RequiredError('rawMail','Required parameter rawMail was null or undefined when calling rawMail.');
+        rawMail(sendMailRaw: SendMailRaw, options: RequestOptions): FetchArgs {
+            // verify required parameter 'sendMailRaw' is not null or undefined
+            if (sendMailRaw === null || sendMailRaw === undefined) {
+                throw new RequiredError('sendMailRaw','Required parameter sendMailRaw was null or undefined when calling rawMail.');
             }
             const localVarPath = `/mail/rawsend`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1299,8 +1311,8 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (typeof rawMail !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(rawMail != null ? rawMail : {}) : (((rawMail:any):string) || "");
+            const needsSerialization = (typeof sendMailRaw !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(sendMailRaw != null ? sendMailRaw : {}) : (((sendMailRaw:any):string) || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -1396,7 +1408,7 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, options: RequestOptions): FetchArgs {
+        sendMail(to: string, from: string, subject: string, body: string, id?: number, options: RequestOptions): FetchArgs {
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
@@ -1444,6 +1456,10 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
                 localVarFormParams.set('body', ((body:any):string));
             }
 
+            if (id !== undefined) {
+                localVarFormParams.set('id', ((id:any):string));
+            }
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             localVarUrlObj.search = null;
@@ -1459,11 +1475,11 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
 };
 
 export type SendingApiType = { 
-    rawMail(rawMail: RawMail, options?: RequestOptions): Promise<GenericResponse>,
+    rawMail(sendMailRaw: SendMailRaw, options?: RequestOptions): Promise<GenericResponse>,
 
     sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, options?: RequestOptions): Promise<GenericResponse>,
 
-    sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions): Promise<GenericResponse>,
+    sendMail(to: string, from: string, subject: string, body: string, id?: number, options?: RequestOptions): Promise<GenericResponse>,
 }
 
 /**
@@ -1478,8 +1494,8 @@ export const SendingApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends a raw email
          * @throws {RequiredError}
          */
-        rawMail(rawMail: RawMail, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(rawMail, options);
+        rawMail(sendMailRaw: SendMailRaw, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(sendMailRaw, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();
@@ -1508,8 +1524,8 @@ export const SendingApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Sends an Email
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, options?: RequestOptions = {}): Promise<GenericResponse> {
-            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendMail(to, from, subject, body, options);
+        sendMail(to: string, from: string, subject: string, body: string, id?: number, options?: RequestOptions = {}): Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendMail(to, from, subject, body, id, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {
                     return response.json();

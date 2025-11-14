@@ -25,7 +25,7 @@ import java.io.IOException;
  * Details for an Email
  */
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-11-14T05:52:20.926249542-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-11-14T07:22:10.000992292-05:00[America/New_York]")
 
 public class SendMail {
   @SerializedName("to")
@@ -39,6 +39,9 @@ public class SendMail {
 
   @SerializedName("body")
   private String body = null;
+
+  @SerializedName("id")
+  private Integer id = null;
 
   public SendMail to(String to) {
     this.to = to;
@@ -112,6 +115,24 @@ public class SendMail {
     this.body = body;
   }
 
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Optional Order ID
+   * @return id
+  **/
+  @Schema(description = "Optional Order ID")
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -125,12 +146,13 @@ public class SendMail {
     return Objects.equals(this.to, sendMail.to) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body);
+        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
 
@@ -143,6 +165,7 @@ public class SendMail {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

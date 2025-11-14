@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="A mail order record")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T05:52:46.271658002-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T07:22:36.127557706-05:00[America/New_York]")
 public class MailOrder   {
   private Integer id = null;
   private String status = null;

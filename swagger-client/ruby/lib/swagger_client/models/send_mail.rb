@@ -26,13 +26,17 @@ module SwaggerClient
     # The main email contents.
     attr_accessor :body
 
+    # Optional Order ID
+    attr_accessor :id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'to' => :'to',
         :'from' => :'from',
         :'subject' => :'subject',
-        :'body' => :'body'
+        :'body' => :'body',
+        :'id' => :'id'
       }
     end
 
@@ -42,7 +46,8 @@ module SwaggerClient
         :'to' => :'Object',
         :'from' => :'Object',
         :'subject' => :'Object',
-        :'body' => :'Object'
+        :'body' => :'Object',
+        :'id' => :'Object'
       }
     end
 
@@ -81,6 +86,10 @@ module SwaggerClient
 
       if attributes.key?(:'body')
         self.body = attributes[:'body']
+      end
+
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
     end
 
@@ -125,7 +134,8 @@ module SwaggerClient
           to == o.to &&
           from == o.from &&
           subject == o.subject &&
-          body == o.body
+          body == o.body &&
+          id == o.id
     end
 
     # @see the `==` method
@@ -137,7 +147,7 @@ module SwaggerClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [to, from, subject, body].hash
+      [to, from, subject, body, id].hash
     end
 
     # Builds the object from hash

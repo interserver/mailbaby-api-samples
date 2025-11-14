@@ -45,7 +45,7 @@ namespace IO.Swagger.Controllers
         [SwaggerResponse(statusCode: 400, type: typeof(ErrorMessage), description: "Error message when there was a problem with the input parameters.")]
         [SwaggerResponse(statusCode: 401, type: typeof(ErrorMessage), description: "Unauthorized")]
         [SwaggerResponse(statusCode: 404, type: typeof(ErrorMessage), description: "The specified resource was not found")]
-        public virtual IActionResult RawMail([FromBody]RawMail body)
+        public virtual IActionResult RawMail([FromBody]SendMailRaw body)
         { 
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(GenericResponse));

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **rawMail**
-> GenericResponse rawMail(rawMail)
+> GenericResponse rawMail(sendMailRaw)
 
 Sends a raw email
 
@@ -30,10 +30,10 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api = Openapi().getSendingApi();
-final RawMail rawMail = ; // RawMail | 
+final SendMailRaw sendMailRaw = ; // SendMailRaw | 
 
 try {
-    final response = api.rawMail(rawMail);
+    final response = api.rawMail(sendMailRaw);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling SendingApi->rawMail: $e\n');
@@ -44,7 +44,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rawMail** | [**RawMail**](RawMail.md)|  | 
+ **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, id)
 
 Sends an Email
 
@@ -144,9 +144,10 @@ final String to = to_example; // String | The Contact whom is the primary recipi
 final String from = from_example; // String | The contact whom is the this email is from.
 final String subject = subject_example; // String | The subject or title of the email
 final String body = body_example; // String | The main email contents.
+final int id = 56; // int | Optional Order ID
 
 try {
-    final response = api.sendMail(to, from, subject, body);
+    final response = api.sendMail(to, from, subject, body, id);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling SendingApi->sendMail: $e\n');
@@ -161,6 +162,7 @@ Name | Type | Description  | Notes
  **from** | **String**| The contact whom is the this email is from. | 
  **subject** | **String**| The subject or title of the email | 
  **body** | **String**| The main email contents. | 
+ **id** | **int**| Optional Order ID | [optional] 
 
 ### Return type
 

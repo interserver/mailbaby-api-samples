@@ -24,7 +24,7 @@ import org.openapitools.client.models.EmailAddressesTypes
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailAttachment
-import org.openapitools.client.models.RawMail
+import org.openapitools.client.models.SendMailRaw
 
 class SendingApiTest : ShouldSpec() {
     init {
@@ -34,8 +34,8 @@ class SendingApiTest : ShouldSpec() {
         // to test rawMail
         should("test rawMail") {
             // uncomment below to test rawMail
-            //val rawMail : RawMail =  // RawMail | 
-            //val result : GenericResponse = apiInstance.rawMail(rawMail)
+            //val sendMailRaw : SendMailRaw =  // SendMailRaw | 
+            //val result : GenericResponse = apiInstance.rawMail(sendMailRaw)
             //result shouldBe ("TODO")
         }
 
@@ -62,7 +62,8 @@ class SendingApiTest : ShouldSpec() {
             //val from : kotlin.String = from_example // kotlin.String | The contact whom is the this email is from.
             //val subject : kotlin.String = subject_example // kotlin.String | The subject or title of the email
             //val body : kotlin.String = body_example // kotlin.String | The main email contents.
-            //val result : GenericResponse = apiInstance.sendMail(to, from, subject, body)
+            //val id : kotlin.Int = 56 // kotlin.Int | Optional Order ID
+            //val result : GenericResponse = apiInstance.sendMail(to, from, subject, body, id)
             //result shouldBe ("TODO")
         }
 

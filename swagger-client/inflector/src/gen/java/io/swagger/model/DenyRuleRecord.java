@@ -12,7 +12,7 @@ import java.util.Date;
  * The data for a email deny rule record.
  **/
 @Schema(description = "The data for a email deny rule record.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-11-14T05:52:30.119517379-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-11-14T07:22:19.646134809-05:00[America/New_York]")
 
 public class DenyRuleRecord   {
   @JsonProperty("id")

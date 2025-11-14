@@ -33,9 +33,9 @@ src/models/mail_stats_type_volume.ml
 src/models/mail_stats_type_volume_from.ml
 src/models/mail_stats_type_volume_ip.ml
 src/models/mail_stats_type_volume_to.ml
-src/models/raw_mail.ml
 src/models/send_mail.ml
 src/models/send_mail_adv.ml
+src/models/send_mail_raw.ml
 src/support/enums.ml
 src/support/jsonSupport.ml
 src/support/request.ml

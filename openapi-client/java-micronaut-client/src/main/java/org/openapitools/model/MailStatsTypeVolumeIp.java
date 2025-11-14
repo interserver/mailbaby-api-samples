@@ -33,7 +33,7 @@ import javax.annotation.Generated;
   MailStatsTypeVolumeIp.JSON_PROPERTY_4444
 })
 @JsonTypeName("MailStatsType_volume_ip")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T05:49:32.766208726-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Introspected
 public class MailStatsTypeVolumeIp {
     public static final String JSON_PROPERTY_1111 = "1.1.1.1";

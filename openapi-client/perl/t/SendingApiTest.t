@@ -33,8 +33,8 @@ isa_ok($api, 'OpenAPIClient::SendingApi');
 # raw_mail test
 #
 # uncomment below and update the test
-#my $raw_mail_raw_mail = undef; # replace NULL with a proper value
-#my $raw_mail_result = $api->raw_mail(raw_mail => $raw_mail_raw_mail);
+#my $raw_mail_send_mail_raw = undef; # replace NULL with a proper value
+#my $raw_mail_result = $api->raw_mail(send_mail_raw => $raw_mail_send_mail_raw);
 
 #
 # send_adv_mail test
@@ -59,7 +59,8 @@ isa_ok($api, 'OpenAPIClient::SendingApi');
 #my $send_mail_from = undef; # replace NULL with a proper value
 #my $send_mail_subject = undef; # replace NULL with a proper value
 #my $send_mail_body = undef; # replace NULL with a proper value
-#my $send_mail_result = $api->send_mail(to => $send_mail_to, from => $send_mail_from, subject => $send_mail_subject, body => $send_mail_body);
+#my $send_mail_id = undef; # replace NULL with a proper value
+#my $send_mail_result = $api->send_mail(to => $send_mail_to, from => $send_mail_from, subject => $send_mail_subject, body => $send_mail_body, id => $send_mail_id);
 
 
 done_testing();

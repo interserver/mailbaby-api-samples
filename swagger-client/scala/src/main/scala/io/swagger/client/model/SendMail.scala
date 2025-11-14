@@ -21,11 +21,13 @@ package io.swagger.client.model
  * @param from The contact whom is the this email is from. for example: '''janedoe@company.com'''
  * @param subject The subject or title of the email for example: '''Attention Client'''
  * @param body The main email contents. for example: '''This is an email to inform you that something noteworthy happened.'''
+ * @param id Optional Order ID
  */
 case class SendMail (
   to: String,
   from: String,
   subject: String,
-  body: String
+  body: String,
+  id: Option[Integer] = None
 )
 

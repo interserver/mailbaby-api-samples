@@ -37,9 +37,9 @@ require 'swagger_client/models/mail_stats_type_volume'
 require 'swagger_client/models/mail_stats_type_volume_from'
 require 'swagger_client/models/mail_stats_type_volume_ip'
 require 'swagger_client/models/mail_stats_type_volume_to'
-require 'swagger_client/models/raw_mail'
 require 'swagger_client/models/send_mail'
 require 'swagger_client/models/send_mail_adv'
+require 'swagger_client/models/send_mail_raw'
 
 # APIs
 require 'swagger_client/api/blocking_api'

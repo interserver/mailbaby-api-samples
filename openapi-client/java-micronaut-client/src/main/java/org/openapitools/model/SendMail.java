@@ -29,10 +29,11 @@ import javax.annotation.Generated;
   SendMail.JSON_PROPERTY_TO,
   SendMail.JSON_PROPERTY_FROM,
   SendMail.JSON_PROPERTY_SUBJECT,
-  SendMail.JSON_PROPERTY_BODY
+  SendMail.JSON_PROPERTY_BODY,
+  SendMail.JSON_PROPERTY_ID
 })
 @JsonTypeName("SendMail")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T05:49:32.766208726-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 @Introspected
 public class SendMail {
     public static final String JSON_PROPERTY_TO = "to";
@@ -46,6 +47,9 @@ public class SendMail {
 
     public static final String JSON_PROPERTY_BODY = "body";
     private String _body;
+
+    public static final String JSON_PROPERTY_ID = "id";
+    private Integer id;
 
     public SendMail(String to, String from, String subject, String _body) {
         this.to = to;
@@ -142,6 +146,28 @@ public class SendMail {
         this._body = _body;
     }
 
+    public SendMail id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Optional Order ID
+     * @return id
+     */
+    @Nullable
+    @JsonProperty(JSON_PROPERTY_ID)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getId() {
+        return id;
+    }
+
+    @JsonProperty(JSON_PROPERTY_ID)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -154,12 +180,13 @@ public class SendMail {
         return Objects.equals(this.to, sendMail.to) &&
             Objects.equals(this.from, sendMail.from) &&
             Objects.equals(this.subject, sendMail.subject) &&
-            Objects.equals(this._body, sendMail._body);
+            Objects.equals(this._body, sendMail._body) &&
+            Objects.equals(this.id, sendMail.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(to, from, subject, _body);
+        return Objects.hash(to, from, subject, _body, id);
     }
 
     @Override
@@ -170,6 +197,7 @@ public class SendMail {
         sb.append("    from: ").append(toIndentedString(from)).append("\n");
         sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
         sb.append("    _body: ").append(toIndentedString(_body)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("}");
         return sb.toString();
     }

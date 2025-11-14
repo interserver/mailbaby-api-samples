@@ -94,9 +94,9 @@ Class | Method | HTTP request | Description
  - [PSOpenAPITools\Model.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [PSOpenAPITools\Model.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [PSOpenAPITools\Model.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [PSOpenAPITools\Model.RawMail](docs/RawMail.md)
  - [PSOpenAPITools\Model.SendMail](docs/SendMail.md)
  - [PSOpenAPITools\Model.SendMailAdv](docs/SendMailAdv.md)
+ - [PSOpenAPITools\Model.SendMailRaw](docs/SendMailRaw.md)
 
 
 <a id="documentation-for-authorization"></a>

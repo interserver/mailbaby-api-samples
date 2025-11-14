@@ -8,5 +8,6 @@ Name | Type | Description | Notes
 **from** | **String** | The contact whom is the this email is from. | 
 **subject** | **String** | The subject or title of the email | 
 **body** | **String** | The main email contents. | 
+**id** | **Number** | Optional Order ID | [optional] 
 
 

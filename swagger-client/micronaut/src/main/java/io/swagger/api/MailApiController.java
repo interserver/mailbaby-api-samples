@@ -22,11 +22,11 @@ import io.swagger.model.MailOrder;
 
 import io.swagger.model.MailStatsType;
 
-import io.swagger.model.RawMail;
-
 import io.swagger.model.SendMail;
 
 import io.swagger.model.SendMailAdv;
+
+import io.swagger.model.SendMailRaw;
 
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.HttpResponse;
@@ -90,15 +90,15 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Valid RawMail body) {
+    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull @Valid SendMailRaw body) {
         // TODO: Implement me
         return MailApi.super.rawMail(body);
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull String rawEmail) {
+    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull String rawEmail, @NotNull Integer id) {
         // TODO: Implement me
-        return MailApi.super.rawMail(rawEmail);
+        return MailApi.super.rawMail(rawEmail, id);
     }
 
     @Override
@@ -114,9 +114,9 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> sendMail(@NotNull String to, @NotNull String from, @NotNull String subject, @NotNull String body) {
+    public Single<HttpResponse<GenericResponse>> sendMail(@NotNull String to, @NotNull String from, @NotNull String subject, @NotNull String body, @NotNull Integer id) {
         // TODO: Implement me
-        return MailApi.super.sendMail(to, from, subject, body);
+        return MailApi.super.sendMail(to, from, subject, body, id);
     }
 
     @Override

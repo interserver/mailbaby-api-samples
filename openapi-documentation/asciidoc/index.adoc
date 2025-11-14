@@ -784,8 +784,8 @@ This call will let you pass the raw / complete email contents (including headers
 |===
 |Name| Description| Required| Default| Pattern
 
-| RawMail
-|  <<RawMail>>
+| SendMailRaw
+|  <<SendMailRaw>>
 | X
 | 
 | 
@@ -1048,6 +1048,12 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 | body
 | The main email contents. <<string>>
 | X
+| null
+| 
+
+| id
+| Optional Order ID <<integer>>
+| -
 | null
 | 
 
@@ -2124,28 +2130,6 @@ Statistics about the mail usage including volume by IP, To address, and From add
 
 
 
-[#RawMail]
-=== _RawMail_ Root Type for RawMail
-
-Raw Email Object
-
-
-[.fields-RawMail]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
-
-| raw_email
-| X
-| 
-|   String  
-| The entire email contents
-|     
-
-|===
-
-
-
 [#SendMail]
 === _SendMail_ SendMail
 
@@ -2183,6 +2167,13 @@ Details for an Email
 | 
 |   String  
 | The main email contents.
+|     
+
+| id
+| 
+| 
+|   Integer  
+| Optional Order ID
 |     
 
 |===
@@ -2262,6 +2253,35 @@ Details for an Email
 |   Long  
 | (optional)  ID of the Mail order within our system to use as the Mail Account.
 | int64    
+
+|===
+
+
+
+[#SendMailRaw]
+=== _SendMailRaw_ Root Type for RawMail
+
+Raw Email Object
+
+
+[.fields-SendMailRaw]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| raw_email
+| X
+| 
+|   String  
+| The entire email contents
+|     
+
+| id
+| 
+| 
+|   Integer  
+| Optional order id
+|     
 
 |===
 

@@ -119,7 +119,7 @@ static bool rawMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg, 
 }
 
 static bool rawMailHelper(char * accessToken,
-	std::shared_ptr<RawMail> rawMail, 
+	std::shared_ptr<SendMailRaw> sendMailRaw, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -141,11 +141,11 @@ static bool rawMailHelper(char * accessToken,
 	JsonNode* node;
 	JsonArray* json_array;
 
-	if (isprimitive("RawMail")) {
-		node = converttoJson(&rawMail, "RawMail", "");
+	if (isprimitive("SendMailRaw")) {
+		node = converttoJson(&sendMailRaw, "SendMailRaw", "");
 	}
 	
-	char *jsonStr =  rawMail.toJson();
+	char *jsonStr =  sendMailRaw.toJson();
 	node = json_from_string(jsonStr, NULL);
 	g_free(static_cast<gpointer>(jsonStr));
 	
@@ -204,22 +204,22 @@ static bool rawMailHelper(char * accessToken,
 
 
 bool SendingManager::rawMailAsync(char * accessToken,
-	std::shared_ptr<RawMail> rawMail, 
+	std::shared_ptr<SendMailRaw> sendMailRaw, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return rawMailHelper(accessToken,
-	rawMail, 
+	sendMailRaw, 
 	handler, userData, true);
 }
 
 bool SendingManager::rawMailSync(char * accessToken,
-	std::shared_ptr<RawMail> rawMail, 
+	std::shared_ptr<SendMailRaw> sendMailRaw, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return rawMailHelper(accessToken,
-	rawMail, 
+	sendMailRaw, 
 	handler, userData, false);
 }
 
@@ -456,7 +456,7 @@ static bool sendMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg,
 }
 
 static bool sendMailHelper(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, 
+	std::string to, std::string from, std::string subject, std::string body, int id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -528,22 +528,22 @@ static bool sendMailHelper(char * accessToken,
 
 
 bool SendingManager::sendMailAsync(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, 
+	std::string to, std::string from, std::string subject, std::string body, int id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailHelper(accessToken,
-	to, from, subject, body, 
+	to, from, subject, body, id, 
 	handler, userData, true);
 }
 
 bool SendingManager::sendMailSync(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, 
+	std::string to, std::string from, std::string subject, std::string body, int id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return sendMailHelper(accessToken,
-	to, from, subject, body, 
+	to, from, subject, body, id, 
 	handler, userData, false);
 }
 

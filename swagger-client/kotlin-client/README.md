@@ -72,9 +72,9 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [io.swagger.client.models.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [io.swagger.client.models.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [io.swagger.client.models.RawMail](docs/RawMail.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
  - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
+ - [io.swagger.client.models.SendMailRaw](docs/SendMailRaw.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

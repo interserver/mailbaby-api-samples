@@ -14,9 +14,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T05:52:49.510724097-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T07:22:39.375224310-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApiService {
       public Response addRule(String user,String type,String data,SecurityContext securityContext)
       throws NotFoundException {
@@ -71,12 +71,12 @@ public class MailApiServiceImpl implements MailApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response rawMail(RawMail body,SecurityContext securityContext)
+      public Response rawMail(SendMailRaw body,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response rawMail(String rawEmail,SecurityContext securityContext)
+      public Response rawMail(String rawEmail,Integer id,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
@@ -91,7 +91,7 @@ public class MailApiServiceImpl implements MailApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext)
+      public Response sendMail(String to,String from,String subject,String body,Integer id,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

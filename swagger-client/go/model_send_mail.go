@@ -19,4 +19,6 @@ type SendMail struct {
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
+	// Optional Order ID
+	Id int32 `json:"id,omitempty"`
 }

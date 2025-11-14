@@ -116,7 +116,7 @@ operation_parameters_minimum_occurrences["viewMailLog:::endDate"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::replyto"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::headerfrom"]=0
 operation_parameters_minimum_occurrences["viewMailLog:::delivered"]=0
-operation_parameters_minimum_occurrences["rawMail:::RawMail"]=1
+operation_parameters_minimum_occurrences["rawMail:::SendMailRaw"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::body"]=1
 operation_parameters_minimum_occurrences["sendAdvMail:::from"]=1
@@ -130,6 +130,7 @@ operation_parameters_minimum_occurrences["sendMail:::to"]=1
 operation_parameters_minimum_occurrences["sendMail:::from"]=1
 operation_parameters_minimum_occurrences["sendMail:::subject"]=1
 operation_parameters_minimum_occurrences["sendMail:::body"]=1
+operation_parameters_minimum_occurrences["sendMail:::id"]=0
 
 ##
 # This array stores the maximum number of allowed occurrences for parameter
@@ -158,7 +159,7 @@ operation_parameters_maximum_occurrences["viewMailLog:::endDate"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::replyto"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::headerfrom"]=0
 operation_parameters_maximum_occurrences["viewMailLog:::delivered"]=0
-operation_parameters_maximum_occurrences["rawMail:::RawMail"]=0
+operation_parameters_maximum_occurrences["rawMail:::SendMailRaw"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::body"]=0
 operation_parameters_maximum_occurrences["sendAdvMail:::from"]=0
@@ -172,6 +173,7 @@ operation_parameters_maximum_occurrences["sendMail:::to"]=0
 operation_parameters_maximum_occurrences["sendMail:::from"]=0
 operation_parameters_maximum_occurrences["sendMail:::subject"]=0
 operation_parameters_maximum_occurrences["sendMail:::body"]=0
+operation_parameters_maximum_occurrences["sendMail:::id"]=0
 
 ##
 # The type of collection for specifying multiple values for parameter:
@@ -197,7 +199,7 @@ operation_parameters_collection_type["viewMailLog:::endDate"]=""
 operation_parameters_collection_type["viewMailLog:::replyto"]=""
 operation_parameters_collection_type["viewMailLog:::headerfrom"]=""
 operation_parameters_collection_type["viewMailLog:::delivered"]=""
-operation_parameters_collection_type["rawMail:::RawMail"]=""
+operation_parameters_collection_type["rawMail:::SendMailRaw"]=""
 operation_parameters_collection_type["sendAdvMail:::subject"]=""
 operation_parameters_collection_type["sendAdvMail:::body"]=""
 operation_parameters_collection_type["sendAdvMail:::from"]=""
@@ -211,6 +213,7 @@ operation_parameters_collection_type["sendMail:::to"]=""
 operation_parameters_collection_type["sendMail:::from"]=""
 operation_parameters_collection_type["sendMail:::subject"]=""
 operation_parameters_collection_type["sendMail:::body"]=""
+operation_parameters_collection_type["sendMail:::id"]=""
 
 
 ##

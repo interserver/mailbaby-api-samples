@@ -36,9 +36,14 @@ module OpenAPIClient
     @[JSON::Field(key: "body", type: String, nillable: false, emit_null: false)]
     property body : String
 
+    # Optional properties
+    # Optional Order ID
+    @[JSON::Field(key: "id", type: Int32?, nillable: true, emit_null: false)]
+    property id : Int32?
+
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@to : String, @from : String, @subject : String, @body : String)
+    def initialize(@to : String, @from : String, @subject : String, @body : String, @id : Int32?)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -62,7 +67,8 @@ module OpenAPIClient
           to == other.to &&
           from == other.from &&
           subject == other.subject &&
-          body == other.body
+          body == other.body &&
+          id == other.id
     end
 
     # @see the `==` method
@@ -74,7 +80,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [to, from, subject, body].hash
+      [to, from, subject, body, id].hash
     end
 
     # Builds the object from hash

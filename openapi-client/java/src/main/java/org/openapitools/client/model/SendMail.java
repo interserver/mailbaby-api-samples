@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * Details for an Email
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-14T05:49:28.499504527-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-14T07:18:59.381478113-05:00[America/New_York]", comments = "Generator version: 7.17.0")
 public class SendMail {
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
@@ -71,6 +71,11 @@ public class SendMail {
   @SerializedName(SERIALIZED_NAME_BODY)
   @javax.annotation.Nonnull
   private String body;
+
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
+  private Integer id;
 
   public SendMail() {
   }
@@ -151,6 +156,25 @@ public class SendMail {
   }
 
 
+  public SendMail id(@javax.annotation.Nullable Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Optional Order ID
+   * @return id
+   */
+  @javax.annotation.Nullable
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(@javax.annotation.Nullable Integer id) {
+    this.id = id;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -164,12 +188,13 @@ public class SendMail {
     return Objects.equals(this.to, sendMail.to) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body);
+        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -180,6 +205,7 @@ public class SendMail {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -201,7 +227,7 @@ public class SendMail {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>(Arrays.asList("to", "from", "subject", "body"));
+    openapiFields = new HashSet<String>(Arrays.asList("to", "from", "subject", "body", "id"));
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>(Arrays.asList("to", "from", "subject", "body"));

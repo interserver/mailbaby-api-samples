@@ -15,7 +15,7 @@ Sends a raw email
 
 No description available.
 
-.PARAMETER RawMail
+.PARAMETER SendMailRaw
 No description available.
 
 .PARAMETER WithHttpInfo
@@ -31,7 +31,7 @@ function Invoke-RawMail {
     Param (
         [Parameter(Position = 0, ValueFromPipeline = $true, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [PSCustomObject]
-        ${RawMail},
+        ${SendMailRaw},
         [Switch]
         $WithHttpInfo
     )
@@ -58,11 +58,11 @@ function Invoke-RawMail {
 
         $LocalVarUri = '/mail/rawsend'
 
-        if (!$RawMail) {
-            throw "Error! The required parameter `RawMail` missing when calling rawMail."
+        if (!$SendMailRaw) {
+            throw "Error! The required parameter `SendMailRaw` missing when calling rawMail."
         }
 
-        $LocalVarBodyParameter = $RawMail | ConvertTo-Json -Depth 100
+        $LocalVarBodyParameter = $SendMailRaw | ConvertTo-Json -Depth 100
 
         if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
             $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]
@@ -285,6 +285,9 @@ The subject or title of the email
 .PARAMETER Body
 The main email contents.
 
+.PARAMETER Id
+Optional Order ID
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -308,6 +311,9 @@ function Send-Mail {
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [String]
         ${Body},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
+        [System.Nullable[Int32]]
+        ${Id},
         [Switch]
         $WithHttpInfo
     )
@@ -353,6 +359,10 @@ function Send-Mail {
             throw "Error! The required parameter `Body` missing when calling sendMail."
         }
         $LocalVarFormParameters['body'] = $Body
+
+        if ($Id) {
+            $LocalVarFormParameters['id'] = $Id
+        }
 
         if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
             $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]

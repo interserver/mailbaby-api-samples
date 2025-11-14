@@ -16,9 +16,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -45,7 +45,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T05:52:58.531972048-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 @Validated
 public interface MailApi {
 
@@ -177,7 +177,7 @@ public interface MailApi {
         produces = { "application/json" }, 
         consumes = { "application/json", "multipart/form-data" }, 
         method = RequestMethod.POST)
-    ResponseEntity<GenericResponse> rawMail(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody RawMail body
+    ResponseEntity<GenericResponse> rawMail(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody SendMailRaw body
 );
 
 
@@ -225,6 +225,7 @@ public interface MailApi {
 , @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="from", required=true)  String from
 , @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="subject", required=true)  String subject
 , @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="body", required=true)  String body
+, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="id", required=true)  Integer id
 );
 
 

@@ -211,7 +211,7 @@ QString OAISendingApi::getParamStyleDelimiter(const QString &style, const QStrin
     }
 }
 
-void OAISendingApi::rawMail(const OAIRawMail &oai_raw_mail) {
+void OAISendingApi::rawMail(const OAISendMailRaw &oai_send_mail_raw) {
     QString fullPath = QString(_serverConfigs["rawMail"][_serverIndices.value("rawMail")].URL()+"/mail/rawsend");
     
     if (_apiKeys.contains("apiKeyAuth")) {
@@ -226,7 +226,7 @@ void OAISendingApi::rawMail(const OAIRawMail &oai_raw_mail) {
     {
 
         
-        QByteArray output = oai_raw_mail.asJson().toUtf8();
+        QByteArray output = oai_send_mail_raw.asJson().toUtf8();
         input.request_body.append(output);
     }
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
@@ -400,7 +400,7 @@ void OAISendingApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAISendingApi::sendMail(const QString &to, const QString &from, const QString &subject, const QString &body) {
+void OAISendingApi::sendMail(const QString &to, const QString &from, const QString &subject, const QString &body, const ::OpenAPI::OptionalParam<qint32> &id) {
     QString fullPath = QString(_serverConfigs["sendMail"][_serverIndices.value("sendMail")].URL()+"/mail/send");
     
     if (_apiKeys.contains("apiKeyAuth")) {
@@ -427,6 +427,10 @@ void OAISendingApi::sendMail(const QString &to, const QString &from, const QStri
     
     {
         input.add_var("body", ::OpenAPI::toStringValue(body));
+    }
+    if (id.hasValue())
+    {
+        input.add_var("id", ::OpenAPI::toStringValue(id.value()));
     }
 
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {

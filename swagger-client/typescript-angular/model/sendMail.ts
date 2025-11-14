@@ -30,4 +30,8 @@ export interface SendMail {
      * The main email contents.
      */
     body: string;
+    /**
+     * Optional Order ID
+     */
+    id?: number;
 }

@@ -15,7 +15,7 @@ import 'package:openapi/src/model/email_addresses_types.dart';
 import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/generic_response.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
-import 'package:openapi/src/model/raw_mail.dart';
+import 'package:openapi/src/model/send_mail_raw.dart';
 
 class SendingApi {
 
@@ -29,7 +29,7 @@ class SendingApi {
   /// This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
   ///
   /// Parameters:
-  /// * [rawMail] 
+  /// * [sendMailRaw] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -40,7 +40,7 @@ class SendingApi {
   /// Returns a [Future] containing a [Response] with a [GenericResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<GenericResponse>> rawMail({ 
-    required RawMail rawMail,
+    required SendMailRaw sendMailRaw,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -72,8 +72,8 @@ class SendingApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(RawMail);
-      _bodyData = _serializers.serialize(rawMail, specifiedType: _type);
+      const _type = FullType(SendMailRaw);
+      _bodyData = _serializers.serialize(sendMailRaw, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -262,6 +262,7 @@ class SendingApi {
   /// * [from] - The contact whom is the this email is from.
   /// * [subject] - The subject or title of the email
   /// * [body] - The main email contents.
+  /// * [id] - Optional Order ID
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -276,6 +277,7 @@ class SendingApi {
     required String from,
     required String subject,
     required String body,
+    int? id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -312,6 +314,7 @@ class SendingApi {
         r'from': encodeQueryParameter(_serializers, from, const FullType(String)),
         r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
         r'body': encodeQueryParameter(_serializers, body, const FullType(String)),
+        if (id != null) r'id': encodeQueryParameter(_serializers, id, const FullType(int)),
       };
 
     } catch(error, stackTrace) {

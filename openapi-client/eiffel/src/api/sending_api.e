@@ -24,11 +24,11 @@ inherit
 feature -- API Access
 
 
-	raw_mail (raw_mail: RAW_MAIL): detachable GENERIC_RESPONSE
+	raw_mail (send_mail_raw: SEND_MAIL_RAW): detachable GENERIC_RESPONSE
 			-- Sends a raw email
 			-- This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
 			-- 
-			-- argument: raw_mail  (required)
+			-- argument: send_mail_raw  (required)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE
@@ -40,7 +40,7 @@ feature -- API Access
 		do
 			reset_error
 			create l_request
-			l_request.set_body(raw_mail)
+			l_request.set_body(send_mail_raw)
 			l_path := "/mail/rawsend"
 
 
@@ -137,7 +137,7 @@ feature -- API Access
 			end
 		end
 
-	send_mail (to: STRING_32; var_from: STRING_32; subject: STRING_32; body: STRING_32): detachable GENERIC_RESPONSE
+	send_mail (to: STRING_32; var_from: STRING_32; subject: STRING_32; body: STRING_32; id: INTEGER_32): detachable GENERIC_RESPONSE
 			-- Sends an Email
 			-- Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
 			-- 
@@ -148,6 +148,8 @@ feature -- API Access
 			-- argument: subject The subject or title of the email (required)
 			-- 
 			-- argument: body The main email contents. (required)
+			-- 
+			-- argument: id Optional Order ID (optional, default to null)
 			-- 
 			-- 
 			-- Result GENERIC_RESPONSE
@@ -173,6 +175,9 @@ feature -- API Access
 			end
 			if attached body as l_body then
 				l_request.add_form(l_body,"body");
+			end
+			if attached id as l_id then
+				l_request.add_form(l_id,"id");
 			end
 
 			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"application/json">>)  as l_accept then

@@ -16,7 +16,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Sending do
   ### Parameters
 
   - `connection` (MailBabyEmailDeliveryAndManagementServiceAPI.Connection): Connection to server
-  - `raw_mail` (RawMail): 
+  - `send_mail_raw` (SendMailRaw): 
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -24,13 +24,13 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Sending do
   - `{:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec raw_mail(Tesla.Env.client, MailBabyEmailDeliveryAndManagementServiceAPI.Model.RawMail.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
-  def raw_mail(connection, raw_mail, _opts \\ []) do
+  @spec raw_mail(Tesla.Env.client, MailBabyEmailDeliveryAndManagementServiceAPI.Model.SendMailRaw.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  def raw_mail(connection, send_mail_raw, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/mail/rawsend")
-      |> add_param(:body, :body, raw_mail)
+      |> add_param(:body, :body, send_mail_raw)
       |> Enum.into([])
 
     connection
@@ -109,6 +109,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Sending do
   - `subject` (String.t): The subject or title of the email
   - `body` (String.t): The main email contents.
   - `opts` (keyword): Optional parameters
+    - `:id` (integer()): Optional Order ID
 
   ### Returns
 
@@ -116,7 +117,11 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Sending do
   - `{:error, Tesla.Env.t}` on failure
   """
   @spec send_mail(Tesla.Env.client, String.t, String.t, String.t, String.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
-  def send_mail(connection, to, from, subject, body, _opts \\ []) do
+  def send_mail(connection, to, from, subject, body, opts \\ []) do
+    optional_params = %{
+      :id => :form
+    }
+
     request =
       %{}
       |> method(:post)
@@ -125,6 +130,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Sending do
       |> add_param(:form, :from, from)
       |> add_param(:form, :subject, subject)
       |> add_param(:form, :body, body)
+      |> add_optional_params(optional_params, opts)
       |> Enum.into([])
 
     connection

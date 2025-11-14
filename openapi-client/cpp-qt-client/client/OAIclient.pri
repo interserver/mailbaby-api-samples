@@ -21,9 +21,9 @@ HEADERS += \
     $${PWD}/OAIMailStatsType_volume_from.h \
     $${PWD}/OAIMailStatsType_volume_ip.h \
     $${PWD}/OAIMailStatsType_volume_to.h \
-    $${PWD}/OAIRawMail.h \
     $${PWD}/OAISendMail.h \
     $${PWD}/OAISendMailAdv.h \
+    $${PWD}/OAISendMailRaw.h \
 # APIs
     $${PWD}/OAIBlockingApi.h \
     $${PWD}/OAIHistoryApi.h \
@@ -61,9 +61,9 @@ SOURCES += \
     $${PWD}/OAIMailStatsType_volume_from.cpp \
     $${PWD}/OAIMailStatsType_volume_ip.cpp \
     $${PWD}/OAIMailStatsType_volume_to.cpp \
-    $${PWD}/OAIRawMail.cpp \
     $${PWD}/OAISendMail.cpp \
     $${PWD}/OAISendMailAdv.cpp \
+    $${PWD}/OAISendMailRaw.cpp \
 # APIs
     $${PWD}/OAIBlockingApi.cpp \
     $${PWD}/OAIHistoryApi.cpp \

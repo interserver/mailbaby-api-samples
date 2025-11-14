@@ -1,22 +1,59 @@
-jq: error (at <stdin>:1): Cannot index string with string "prerelease"
-[[1;34mINFO[m] Scanning for projects...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m------------------< [0;36morg.apache.maven:standalone-pom[0;1m >-------------------[m
-[[1;34mINFO[m] [1mBuilding Maven Stub Project (No POM) 1[m
-[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:2.9:get[m [1m(default-cli)[m @ [36mstandalone-pom[0;1m ---[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] [1;31mBUILD FAILURE[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  0.877 s
-[[1;34mINFO[m] Finished at: 2025-11-14T05:51:30-05:00
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-dependency-plugin:2.9:get[m [1m(default-cli)[m on project [36mstandalone-pom[m: [1;31mInvalid artifact, you must specify groupId:artifactId:version[:packaging][:classifier] org.openapitools:openapi-generator-cli:[m -> [1m[Help 1][m
-[[1;31mERROR[m] 
-[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
-[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
-[[1;31mERROR[m] 
-[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
-[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
-Error: Unable to access jarfile /home/sites/mailbaby-mail-api/openapi-generator-cli-.jar
+[main] INFO  o.o.c.l.PythonFastAPIServerCodegen - Skipping sorting of path operations, order matters, let the developer decide via their specification file.
+[main] INFO  o.o.c.l.PythonFastAPIServerCodegen - Skipping sorting of path operations, order matters, let the developer decide via their specification file.
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: zapier (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'zapier' is considered beta.
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/DenyRuleNew.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/DenyRuleRecord.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/EmailAddressName.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/EmailAddressTypes.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/EmailAddressesTypes.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/ErrorMessage.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/GenericResponse.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailAttachment.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailBlockClickHouse.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailBlockRspamd.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailBlocks.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailLog.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailLogEntry.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailOrder.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailStatsType.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailStatsType_volume.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailStatsType_volume_from.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailStatsType_volume_ip.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/MailStatsType_volume_to.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/SendMail.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/SendMailAdv.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/models/SendMailRaw.js
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/apis/BlockingApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/samples/BlockingApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/apis/HistoryApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/samples/HistoryApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/apis/SendingApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/samples/SendingApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/apis/ServicesApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/samples/ServicesApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/apis/StatusApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/samples/StatusApi.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/operations/actions.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/utils/utils.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/index.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/authentication.js
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/package.json
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/zapier/.openapi-generator/FILES
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

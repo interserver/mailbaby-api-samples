@@ -60,7 +60,8 @@ class SendMail implements ModelInterface, ArrayAccess
         'to' => 'string',
         'from' => 'string',
         'subject' => 'string',
-        'body' => 'string'
+        'body' => 'string',
+        'id' => 'int'
     ];
 
     /**
@@ -72,7 +73,8 @@ class SendMail implements ModelInterface, ArrayAccess
         'to' => null,
         'from' => null,
         'subject' => null,
-        'body' => null
+        'body' => null,
+        'id' => null
     ];
 
     /**
@@ -105,7 +107,8 @@ class SendMail implements ModelInterface, ArrayAccess
         'to' => 'to',
         'from' => 'from',
         'subject' => 'subject',
-        'body' => 'body'
+        'body' => 'body',
+        'id' => 'id'
     ];
 
     /**
@@ -117,7 +120,8 @@ class SendMail implements ModelInterface, ArrayAccess
         'to' => 'setTo',
         'from' => 'setFrom',
         'subject' => 'setSubject',
-        'body' => 'setBody'
+        'body' => 'setBody',
+        'id' => 'setId'
     ];
 
     /**
@@ -129,7 +133,8 @@ class SendMail implements ModelInterface, ArrayAccess
         'to' => 'getTo',
         'from' => 'getFrom',
         'subject' => 'getSubject',
-        'body' => 'getBody'
+        'body' => 'getBody',
+        'id' => 'getId'
     ];
 
     /**
@@ -194,6 +199,7 @@ class SendMail implements ModelInterface, ArrayAccess
         $this->container['from'] = isset($data['from']) ? $data['from'] : null;
         $this->container['subject'] = isset($data['subject']) ? $data['subject'] : null;
         $this->container['body'] = isset($data['body']) ? $data['body'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
     }
 
     /**
@@ -324,6 +330,30 @@ class SendMail implements ModelInterface, ArrayAccess
     public function setBody($body)
     {
         $this->container['body'] = $body;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int $id Optional Order ID
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
 
         return $this;
     }

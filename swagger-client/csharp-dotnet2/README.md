@@ -200,9 +200,9 @@ Class | Method | HTTP request | Description
  - [IO.Swagger.Model.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [IO.Swagger.Model.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [IO.Swagger.Model.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [IO.Swagger.Model.RawMail](docs/RawMail.md)
  - [IO.Swagger.Model.SendMail](docs/SendMail.md)
  - [IO.Swagger.Model.SendMailAdv](docs/SendMailAdv.md)
+ - [IO.Swagger.Model.SendMailRaw](docs/SendMailRaw.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(body, rawEmail)
+> GenericResponse rawMail(body, rawEmail, id)
 
 Sends a raw email
 
@@ -28,10 +28,11 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
-let body = new MailBabyEmailDeliveryAndManagementServiceApi.RawMail(); // RawMail | 
+let body = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw(); // SendMailRaw | 
 let rawEmail = "rawEmail_example"; // String | 
+let id = 56; // Number | 
 
-apiInstance.rawMail(body, rawEmail, (error, data, response) => {
+apiInstance.rawMail(body, rawEmail, id, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -44,8 +45,9 @@ apiInstance.rawMail(body, rawEmail, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  | 
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
  **rawEmail** | **String**|  | 
+ **id** | **Number**|  | 
 
 ### Return type
 
@@ -130,7 +132,7 @@ Name | Type | Description  | Notes
 
 <a name="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body, body)
+> GenericResponse sendMail(to, from, subject, body, id, body)
 
 Sends an Email
 
@@ -152,9 +154,10 @@ let to = "to_example"; // String |
 let from = "from_example"; // String | 
 let subject = "subject_example"; // String | 
 let body = "body_example"; // String | 
+let id = 56; // Number | 
 let body = new MailBabyEmailDeliveryAndManagementServiceApi.SendMail(); // SendMail | 
 
-apiInstance.sendMail(to, from, subject, body, body, (error, data, response) => {
+apiInstance.sendMail(to, from, subject, body, id, body, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -171,6 +174,7 @@ Name | Type | Description  | Notes
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
+ **id** | **Number**|  | 
  **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type

@@ -91,7 +91,7 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $body body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $body body (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -108,7 +108,7 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $body (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -207,7 +207,7 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -227,7 +227,7 @@ class SendingApi
      *
      * Sends a raw email
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -277,7 +277,7 @@ class SendingApi
     /**
      * Create request for operation 'rawMail'
      *
-     * @param  \Interserver\Mailbaby\Model\RawMail $body (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailRaw $body (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -303,6 +303,10 @@ class SendingApi
         // form params
         if ($rawEmail !== null) {
             $formParams['raw_email'] = ObjectSerializer::toFormValue($rawEmail);
+        }
+        // form params
+        if ($id !== null) {
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
         }
         // body params
         $_tempBody = null;
@@ -382,14 +386,15 @@ class SendingApi
      * Sends a raw email
      *
      * @param  string $rawEmail rawEmail (required)
+     * @param  int $id id (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse
      */
-    public function rawMail($rawEmail)
+    public function rawMail($rawEmail, $id)
     {
-        list($response) = $this->rawMailWithHttpInfo($rawEmail);
+        list($response) = $this->rawMailWithHttpInfo($rawEmail, $id);
         return $response;
     }
 
@@ -399,15 +404,16 @@ class SendingApi
      * Sends a raw email
      *
      * @param  string $rawEmail (required)
+     * @param  int $id (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function rawMailWithHttpInfo($rawEmail)
+    public function rawMailWithHttpInfo($rawEmail, $id)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->rawMailRequest($rawEmail);
+        $request = $this->rawMailRequest($rawEmail, $id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -498,13 +504,14 @@ class SendingApi
      * Sends a raw email
      *
      * @param  string $rawEmail (required)
+     * @param  int $id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function rawMailAsync($rawEmail)
+    public function rawMailAsync($rawEmail, $id)
     {
-        return $this->rawMailAsyncWithHttpInfo($rawEmail)
+        return $this->rawMailAsyncWithHttpInfo($rawEmail, $id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -518,14 +525,15 @@ class SendingApi
      * Sends a raw email
      *
      * @param  string $rawEmail (required)
+     * @param  int $id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function rawMailAsyncWithHttpInfo($rawEmail)
+    public function rawMailAsyncWithHttpInfo($rawEmail, $id)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->rawMailRequest($rawEmail);
+        $request = $this->rawMailRequest($rawEmail, $id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -568,16 +576,23 @@ class SendingApi
      * Create request for operation 'rawMail'
      *
      * @param  string $rawEmail (required)
+     * @param  int $id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function rawMailRequest($rawEmail)
+    protected function rawMailRequest($rawEmail, $id)
     {
         // verify the required parameter 'rawEmail' is set
         if ($rawEmail === null || (is_array($rawEmail) && count($rawEmail) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $rawEmail when calling rawMail'
+            );
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling rawMail'
             );
         }
 
@@ -593,6 +608,10 @@ class SendingApi
         // form params
         if ($rawEmail !== null) {
             $formParams['raw_email'] = ObjectSerializer::toFormValue($rawEmail);
+        }
+        // form params
+        if ($id !== null) {
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
         }
         // body params
         $_tempBody = null;
@@ -1407,14 +1426,15 @@ class SendingApi
      * @param  string $from from (required)
      * @param  string $subject subject (required)
      * @param  string $body body (required)
+     * @param  int $id id (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Interserver\Mailbaby\Model\GenericResponse
      */
-    public function sendMail($to, $from, $subject, $body)
+    public function sendMail($to, $from, $subject, $body, $id)
     {
-        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body);
+        list($response) = $this->sendMailWithHttpInfo($to, $from, $subject, $body, $id);
         return $response;
     }
 
@@ -1427,15 +1447,16 @@ class SendingApi
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
+     * @param  int $id (required)
      *
      * @throws \Interserver\Mailbaby\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Interserver\Mailbaby\Model\GenericResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendMailWithHttpInfo($to, $from, $subject, $body)
+    public function sendMailWithHttpInfo($to, $from, $subject, $body, $id)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailRequest($to, $from, $subject, $body);
+        $request = $this->sendMailRequest($to, $from, $subject, $body, $id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1529,13 +1550,14 @@ class SendingApi
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
+     * @param  int $id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsync($to, $from, $subject, $body)
+    public function sendMailAsync($to, $from, $subject, $body, $id)
     {
-        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body)
+        return $this->sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1552,14 +1574,15 @@ class SendingApi
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
+     * @param  int $id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendMailAsyncWithHttpInfo($to, $from, $subject, $body)
+    public function sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $id)
     {
         $returnType = '\Interserver\Mailbaby\Model\GenericResponse';
-        $request = $this->sendMailRequest($to, $from, $subject, $body);
+        $request = $this->sendMailRequest($to, $from, $subject, $body, $id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1605,11 +1628,12 @@ class SendingApi
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
+     * @param  int $id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function sendMailRequest($to, $from, $subject, $body)
+    protected function sendMailRequest($to, $from, $subject, $body, $id)
     {
         // verify the required parameter 'to' is set
         if ($to === null || (is_array($to) && count($to) === 0)) {
@@ -1633,6 +1657,12 @@ class SendingApi
         if ($body === null || (is_array($body) && count($body) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $body when calling sendMail'
+            );
+        }
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling sendMail'
             );
         }
 
@@ -1660,6 +1690,10 @@ class SendingApi
         // form params
         if ($body !== null) {
             $formParams['body'] = ObjectSerializer::toFormValue($body);
+        }
+        // form params
+        if ($id !== null) {
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
         }
         // body params
         $_tempBody = null;
@@ -1962,6 +1996,10 @@ class SendingApi
         // form params
         if ($body !== null) {
             $formParams['body'] = ObjectSerializer::toFormValue($body);
+        }
+        // form params
+        if ($id !== null) {
+            $formParams['id'] = ObjectSerializer::toFormValue($id);
         }
         // body params
         $_tempBody = null;

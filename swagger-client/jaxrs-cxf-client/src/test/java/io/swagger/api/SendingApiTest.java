@@ -29,9 +29,9 @@ import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -86,7 +86,7 @@ public class SendingApiTest {
      */
     @Test
     public void rawMailTest() {
-        RawMail body = null;
+        SendMailRaw body = null;
         //GenericResponse response = api.rawMail(body);
         //assertNotNull(response);
         // TODO: test validations
@@ -132,7 +132,8 @@ public class SendingApiTest {
         String from = null;
         String subject = null;
         String body = null;
-        //GenericResponse response = api.sendMail(to, from, subject, body);
+        Integer id = null;
+        //GenericResponse response = api.sendMail(to, from, subject, body, id);
         //assertNotNull(response);
         // TODO: test validations
         

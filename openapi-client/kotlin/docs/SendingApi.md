@@ -11,7 +11,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 <a id="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(rawMail)
+> GenericResponse rawMail(sendMailRaw)
 
 Sends a raw email
 
@@ -24,9 +24,9 @@ This call will let you pass the raw / complete email contents (including headers
 //import org.openapitools.client.models.*
 
 val apiInstance = SendingApi()
-val rawMail : RawMail =  // RawMail | 
+val sendMailRaw : SendMailRaw =  // SendMailRaw | 
 try {
-    val result : GenericResponse = apiInstance.rawMail(rawMail)
+    val result : GenericResponse = apiInstance.rawMail(sendMailRaw)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SendingApi#rawMail")
@@ -40,7 +40,7 @@ try {
 ### Parameters
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **rawMail** | [**RawMail**](RawMail.md)|  | |
+| **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | |
 
 ### Return type
 
@@ -125,7 +125,7 @@ Configure apiKeyAuth:
 
 <a id="sendMail"></a>
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body)
+> GenericResponse sendMail(to, from, subject, body, id)
 
 Sends an Email
 
@@ -142,8 +142,9 @@ val to : kotlin.String = to_example // kotlin.String | The Contact whom is the p
 val from : kotlin.String = from_example // kotlin.String | The contact whom is the this email is from.
 val subject : kotlin.String = subject_example // kotlin.String | The subject or title of the email
 val body : kotlin.String = body_example // kotlin.String | The main email contents.
+val id : kotlin.Int = 56 // kotlin.Int | Optional Order ID
 try {
-    val result : GenericResponse = apiInstance.sendMail(to, from, subject, body)
+    val result : GenericResponse = apiInstance.sendMail(to, from, subject, body, id)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling SendingApi#sendMail")
@@ -158,9 +159,10 @@ try {
 | **to** | **kotlin.String**| The Contact whom is the primary recipient of this email. | |
 | **from** | **kotlin.String**| The contact whom is the this email is from. | |
 | **subject** | **kotlin.String**| The subject or title of the email | |
+| **body** | **kotlin.String**| The main email contents. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **body** | **kotlin.String**| The main email contents. | |
+| **id** | **kotlin.Int**| Optional Order ID | [optional] |
 
 ### Return type
 

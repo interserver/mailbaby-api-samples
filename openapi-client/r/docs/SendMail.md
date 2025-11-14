@@ -9,5 +9,6 @@ Name | Type | Description | Notes
 **from** | **character** | The contact whom is the this email is from. | 
 **subject** | **character** | The subject or title of the email | 
 **body** | **character** | The main email contents. | 
+**id** | **integer** | Optional Order ID | [optional] 
 
 

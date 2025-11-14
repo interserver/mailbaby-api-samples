@@ -35,6 +35,6 @@ from swagger_client.models.mail_stats_type_volume import MailStatsTypeVolume
 from swagger_client.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom
 from swagger_client.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp
 from swagger_client.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo
-from swagger_client.models.raw_mail import RawMail
 from swagger_client.models.send_mail import SendMail
 from swagger_client.models.send_mail_adv import SendMailAdv
+from swagger_client.models.send_mail_raw import SendMailRaw

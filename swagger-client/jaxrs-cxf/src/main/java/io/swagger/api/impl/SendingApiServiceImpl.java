@@ -6,9 +6,9 @@ import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,7 +35,7 @@ public class SendingApiServiceImpl implements SendingApi {
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      *
      */
-    public GenericResponse rawMail(RawMail body) {
+    public GenericResponse rawMail(SendMailRaw body) {
         // TODO: Implement...
         
         return null;
@@ -47,7 +47,7 @@ public class SendingApiServiceImpl implements SendingApi {
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      *
      */
-    public GenericResponse rawMail(String rawEmail) {
+    public GenericResponse rawMail(String rawEmail, Integer id) {
         // TODO: Implement...
         
         return null;
@@ -83,7 +83,7 @@ public class SendingApiServiceImpl implements SendingApi {
      * Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
      *
      */
-    public GenericResponse sendMail(String to, String from, String subject, String body) {
+    public GenericResponse sendMail(String to, String from, String subject, String body, Integer id) {
         // TODO: Implement...
         
         return null;

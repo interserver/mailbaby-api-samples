@@ -21,7 +21,7 @@ local openapiclient_email_addresses_types = require "openapiclient.model.email_a
 local openapiclient_error_message = require "openapiclient.model.error_message"
 local openapiclient_generic_response = require "openapiclient.model.generic_response"
 local openapiclient_mail_attachment = require "openapiclient.model.mail_attachment"
-local openapiclient_raw_mail = require "openapiclient.model.raw_mail"
+local openapiclient_send_mail_raw = require "openapiclient.model.send_mail_raw"
 
 local sending_api = {}
 local sending_api_mt = {
@@ -49,7 +49,7 @@ local function new_sending_api(authority, basePath, schemes)
 	}, sending_api_mt)
 end
 
-function sending_api:raw_mail(raw_mail)
+function sending_api:raw_mail(send_mail_raw)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -68,7 +68,7 @@ function sending_api:raw_mail(raw_mail)
 	--local var_accept = { "application/json" }
 	req.headers:upsert("content-type", "application/json")
 
-	req:set_body(dkjson.encode(raw_mail))
+	req:set_body(dkjson.encode(send_mail_raw))
 
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then
@@ -170,7 +170,7 @@ function sending_api:send_adv_mail(subject, body, from, to, replyto, cc, bcc, at
 	end
 end
 
-function sending_api:send_mail(to, from, subject, body)
+function sending_api:send_mail(to, from, subject, body, id)
 	local req = http_request.new_from_uri({
 		scheme = self.default_scheme;
 		host = self.host;
@@ -194,6 +194,7 @@ function sending_api:send_mail(to, from, subject, body)
 		["from"] = from;
 		["subject"] = subject;
 		["body"] = body;
+		["id"] = id;
 	}))
 	-- api key in headers 'X-API-KEY'
 	if self.api_key['X-API-KEY'] then

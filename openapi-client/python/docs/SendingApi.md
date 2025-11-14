@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **raw_mail**
-> GenericResponse raw_mail(raw_mail)
+> GenericResponse raw_mail(send_mail_raw)
 
 Sends a raw email
 
@@ -23,7 +23,7 @@ This call will let you pass the raw / complete email contents (including headers
 ```python
 import openapi_client
 from openapi_client.models.generic_response import GenericResponse
-from openapi_client.models.raw_mail import RawMail
+from openapi_client.models.send_mail_raw import SendMailRaw
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -48,11 +48,11 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.SendingApi(api_client)
-    raw_mail = openapi_client.RawMail() # RawMail | 
+    send_mail_raw = openapi_client.SendMailRaw() # SendMailRaw | 
 
     try:
         # Sends a raw email
-        api_response = api_instance.raw_mail(raw_mail)
+        api_response = api_instance.raw_mail(send_mail_raw)
         print("The response of SendingApi->raw_mail:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,7 +66,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **raw_mail** | [**RawMail**](RawMail.md)|  | 
+ **send_mail_raw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **send_mail**
-> GenericResponse send_mail(to, var_from, subject, body)
+> GenericResponse send_mail(to, var_from, subject, body, id=id)
 
 Sends an Email
 
@@ -350,10 +350,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     var_from = 'var_from_example' # str | The contact whom is the this email is from.
     subject = 'subject_example' # str | The subject or title of the email
     body = 'body_example' # str | The main email contents.
+    id = 56 # int | Optional Order ID (optional)
 
     try:
         # Sends an Email
-        api_response = api_instance.send_mail(to, var_from, subject, body)
+        api_response = api_instance.send_mail(to, var_from, subject, body, id=id)
         print("The response of SendingApi->send_mail:\n")
         pprint(api_response)
     except Exception as e:
@@ -371,6 +372,7 @@ Name | Type | Description  | Notes
  **var_from** | **str**| The contact whom is the this email is from. | 
  **subject** | **str**| The subject or title of the email | 
  **body** | **str**| The main email contents. | 
+ **id** | **int**| Optional Order ID | [optional] 
 
 ### Return type
 

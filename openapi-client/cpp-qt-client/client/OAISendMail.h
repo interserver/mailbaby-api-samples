@@ -59,6 +59,11 @@ public:
     bool is_body_Set() const;
     bool is_body_Valid() const;
 
+    qint32 getId() const;
+    void setId(const qint32 &id);
+    bool is_id_Set() const;
+    bool is_id_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -80,6 +85,10 @@ private:
     QString m_body;
     bool m_body_isSet;
     bool m_body_isValid;
+
+    qint32 m_id;
+    bool m_id_isSet;
+    bool m_id_isValid;
 };
 
 } // namespace OpenAPI

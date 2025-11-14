@@ -13,6 +13,7 @@
   | {'from', binary() }
   | {'subject', binary() }
   | {'body', binary() }
+  | {'id', integer() }
   ].
 
 
@@ -24,6 +25,7 @@ openapi_send_mail(Fields) ->
             , {'from', binary() }
             , {'subject', binary() }
             , {'body', binary() }
+            , {'id', integer() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

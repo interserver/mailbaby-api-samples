@@ -1472,21 +1472,6 @@ ul.nav-tabs {
     }
   }
 };
-    defs["RawMail"] = {
-  "title" : "Root Type for RawMail",
-  "required" : [ "raw_email" ],
-  "type" : "object",
-  "properties" : {
-    "raw_email" : {
-      "type" : "string",
-      "description" : "The entire email contents"
-    }
-  },
-  "description" : "Raw Email Object",
-  "example" : {
-    "raw_email" : "<email contents here>"
-  }
-};
     defs["SendMail"] = {
   "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
@@ -1511,6 +1496,10 @@ ul.nav-tabs {
       "type" : "string",
       "description" : "The main email contents.",
       "example" : "This is an email to inform you that something noteworthy happened."
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "Optional Order ID"
     }
   },
   "description" : "Details for an Email"
@@ -1578,6 +1567,25 @@ ul.nav-tabs {
       "data" : "base64_encoded_contents"
     } ],
     "id" : 66
+  }
+};
+    defs["SendMailRaw"] = {
+  "title" : "Root Type for RawMail",
+  "required" : [ "raw_email" ],
+  "type" : "object",
+  "properties" : {
+    "raw_email" : {
+      "type" : "string",
+      "description" : "The entire email contents"
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "Optional order id"
+    }
+  },
+  "description" : "Raw Email Object",
+  "example" : {
+    "raw_email" : "<email contents here>"
   }
 };
 
@@ -6541,10 +6549,10 @@ public class SendingApiExample {
 
         // Create an instance of the API class
         SendingApi apiInstance = new SendingApi();
-        RawMail rawMail = ; // RawMail | 
+        SendMailRaw sendMailRaw = ; // SendMailRaw | 
 
         try {
-            GenericResponse result = apiInstance.rawMail(rawMail);
+            GenericResponse result = apiInstance.rawMail(sendMailRaw);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#rawMail");
@@ -6560,10 +6568,10 @@ public class SendingApiExample {
 
 final api_instance = DefaultApi();
 
-final RawMail rawMail = new RawMail(); // RawMail | 
+final SendMailRaw sendMailRaw = new SendMailRaw(); // SendMailRaw | 
 
 try {
-    final result = await api_instance.rawMail(rawMail);
+    final result = await api_instance.rawMail(sendMailRaw);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->rawMail: $e\n');
@@ -6578,10 +6586,10 @@ try {
 public class SendingApiExample {
     public static void main(String[] args) {
         SendingApi apiInstance = new SendingApi();
-        RawMail rawMail = ; // RawMail | 
+        SendMailRaw sendMailRaw = ; // SendMailRaw | 
 
         try {
-            GenericResponse result = apiInstance.rawMail(rawMail);
+            GenericResponse result = apiInstance.rawMail(sendMailRaw);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#rawMail");
@@ -6605,10 +6613,10 @@ public class SendingApiExample {
 
 // Create an instance of the API class
 SendingApi *apiInstance = [[SendingApi alloc] init];
-RawMail *rawMail = ; // 
+SendMailRaw *sendMailRaw = ; // 
 
 // Sends a raw email
-[apiInstance rawMailWith:rawMail
+[apiInstance rawMailWith:sendMailRaw
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -6632,7 +6640,7 @@ apiKeyAuth.apiKey = "YOUR API KEY";
 
 // Create an instance of the API class
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
-var rawMail = ; // {RawMail} 
+var sendMailRaw = ; // {SendMailRaw} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -6641,7 +6649,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.rawMail(rawMail, callback);
+api.rawMail(sendMailRaw, callback);
 </code></pre>
                             </div>
 
@@ -6668,11 +6676,11 @@ namespace Example
 
             // Create an instance of the API class
             var apiInstance = new SendingApi();
-            var rawMail = new RawMail(); // RawMail | 
+            var sendMailRaw = new SendMailRaw(); // SendMailRaw | 
 
             try {
                 // Sends a raw email
-                GenericResponse result = apiInstance.rawMail(rawMail);
+                GenericResponse result = apiInstance.rawMail(sendMailRaw);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling SendingApi.rawMail: " + e.Message );
@@ -6694,10 +6702,10 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\SendingApi();
-$rawMail = ; // RawMail | 
+$sendMailRaw = ; // SendMailRaw | 
 
 try {
-    $result = $api_instance->rawMail($rawMail);
+    $result = $api_instance->rawMail($sendMailRaw);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->rawMail: ', $e->getMessage(), PHP_EOL;
@@ -6717,10 +6725,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::SendingApi->new();
-my $rawMail = MailBabyApi::Object::RawMail->new(); # RawMail | 
+my $sendMailRaw = MailBabyApi::Object::SendMailRaw->new(); # SendMailRaw | 
 
 eval {
-    my $result = $api_instance->rawMail(rawMail => $rawMail);
+    my $result = $api_instance->rawMail(sendMailRaw => $sendMailRaw);
     print Dumper($result);
 };
 if ($@) {
@@ -6742,11 +6750,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # Create an instance of the API class
 api_instance = MailBabyApi.SendingApi()
-rawMail =  # RawMail | 
+sendMailRaw =  # SendMailRaw | 
 
 try:
     # Sends a raw email
-    api_response = api_instance.raw_mail(rawMail)
+    api_response = api_instance.raw_mail(sendMailRaw)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SendingApi->rawMail: %s\n" % e)</code></pre>
@@ -6756,10 +6764,10 @@ except ApiException as e:
                               <pre class="prettyprint"><code class="language-rust">extern crate SendingApi;
 
 pub fn main() {
-    let rawMail = ; // RawMail
+    let sendMailRaw = ; // SendMailRaw
 
     let mut context = SendingApi::Context::default();
-    let result = client.rawMail(rawMail, &context).wait();
+    let result = client.rawMail(sendMailRaw, &context).wait();
 
     println!("{:?}", result);
 }
@@ -6782,7 +6790,7 @@ pub fn main() {
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">rawMail <span style="color:red;">*</span></td>
+                                <tr><td style="width:150px;">sendMailRaw <span style="color:red;">*</span></td>
 <td>
 <p class="marked"></p>
 <script>
@@ -6791,12 +6799,12 @@ $(document).ready(function() {
   "content" : {
     "application/json" : {
       "schema" : {
-        "$ref" : "#/components/schemas/RawMail"
+        "$ref" : "#/components/schemas/SendMailRaw"
       }
     },
     "multipart/form-data" : {
       "schema" : {
-        "$ref" : "#/components/schemas/RawMail"
+        "$ref" : "#/components/schemas/SendMailRaw"
       }
     }
   },
@@ -6819,12 +6827,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_rawMail_rawMail');
+  var result = $('#d2e199_rawMail_sendMailRaw');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_rawMail_rawMail"></div>
+<div id="d2e199_rawMail_sendMailRaw"></div>
 </td>
 </tr>
 
@@ -8272,9 +8280,10 @@ public class SendingApiExample {
         String from = from_example; // String | The contact whom is the this email is from.
         String subject = subject_example; // String | The subject or title of the email
         String body = body_example; // String | The main email contents.
+        Integer id = 56; // Integer | Optional Order ID
 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#sendMail");
@@ -8294,9 +8303,10 @@ final String to = new String(); // String | The Contact whom is the primary reci
 final String from = new String(); // String | The contact whom is the this email is from.
 final String subject = new String(); // String | The subject or title of the email
 final String body = new String(); // String | The main email contents.
+final Integer id = new Integer(); // Integer | Optional Order ID
 
 try {
-    final result = await api_instance.sendMail(to, from, subject, body);
+    final result = await api_instance.sendMail(to, from, subject, body, id);
     print(result);
 } catch (e) {
     print('Exception when calling DefaultApi->sendMail: $e\n');
@@ -8315,9 +8325,10 @@ public class SendingApiExample {
         String from = from_example; // String | The contact whom is the this email is from.
         String subject = subject_example; // String | The subject or title of the email
         String body = body_example; // String | The main email contents.
+        Integer id = 56; // Integer | Optional Order ID
 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#sendMail");
@@ -8345,12 +8356,14 @@ String *to = to_example; // The Contact whom is the primary recipient of this em
 String *from = from_example; // The contact whom is the this email is from. (default to null)
 String *subject = subject_example; // The subject or title of the email (default to null)
 String *body = body_example; // The main email contents. (default to null)
+Integer *id = 56; // Optional Order ID (optional) (default to null)
 
 // Sends an Email
 [apiInstance sendMailWith:to
     from:from
     subject:subject
     body:body
+    id:id
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
         NSLog(@"%@", output);
@@ -8378,6 +8391,9 @@ var to = to_example; // {String} The Contact whom is the primary recipient of th
 var from = from_example; // {String} The contact whom is the this email is from.
 var subject = subject_example; // {String} The subject or title of the email
 var body = body_example; // {String} The main email contents.
+var opts = {
+  'id': 56 // {Integer} Optional Order ID
+};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -8386,7 +8402,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMail(to, from, subject, body, callback);
+api.sendMail(to, from, subject, body, opts, callback);
 </code></pre>
                             </div>
 
@@ -8417,10 +8433,11 @@ namespace Example
             var from = from_example;  // String | The contact whom is the this email is from. (default to null)
             var subject = subject_example;  // String | The subject or title of the email (default to null)
             var body = body_example;  // String | The main email contents. (default to null)
+            var id = 56;  // Integer | Optional Order ID (optional)  (default to null)
 
             try {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
                 Debug.WriteLine(result);
             } catch (Exception e) {
                 Debug.Print("Exception when calling SendingApi.sendMail: " + e.Message );
@@ -8446,9 +8463,10 @@ $to = to_example; // String | The Contact whom is the primary recipient of this 
 $from = from_example; // String | The contact whom is the this email is from.
 $subject = subject_example; // String | The subject or title of the email
 $body = body_example; // String | The main email contents.
+$id = 56; // Integer | Optional Order ID
 
 try {
-    $result = $api_instance->sendMail($to, $from, $subject, $body);
+    $result = $api_instance->sendMail($to, $from, $subject, $body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -8472,9 +8490,10 @@ my $to = to_example; # String | The Contact whom is the primary recipient of thi
 my $from = from_example; # String | The contact whom is the this email is from.
 my $subject = subject_example; # String | The subject or title of the email
 my $body = body_example; # String | The main email contents.
+my $id = 56; # Integer | Optional Order ID
 
 eval {
-    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body);
+    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body, id => $id);
     print Dumper($result);
 };
 if ($@) {
@@ -8500,10 +8519,11 @@ to = to_example # String | The Contact whom is the primary recipient of this ema
 from = from_example # String | The contact whom is the this email is from. (default to null)
 subject = subject_example # String | The subject or title of the email (default to null)
 body = body_example # String | The main email contents. (default to null)
+id = 56 # Integer | Optional Order ID (optional) (default to null)
 
 try:
     # Sends an Email
-    api_response = api_instance.send_mail(to, from, subject, body)
+    api_response = api_instance.send_mail(to, from, subject, body, id=id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SendingApi->sendMail: %s\n" % e)</code></pre>
@@ -8517,9 +8537,10 @@ pub fn main() {
     let from = from_example; // String
     let subject = subject_example; // String
     let body = body_example; // String
+    let id = 56; // Integer
 
     let mut context = SendingApi::Context::default();
-    let result = client.sendMail(to, from, subject, body, &context).wait();
+    let result = client.sendMail(to, from, subject, body, id, &context).wait();
 
     println!("{:?}", result);
 }
@@ -8630,6 +8651,26 @@ The main email contents.
                 <div class="inner required">
                     Required
                 </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                  <tr><td style="width:150px;">id</td>
+<td>
+
+
+    <div id="d2e199_sendMail_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description marked">
+Optional Order ID
+                    </div>
+            </div>
         </div>
     </div>
 </td>

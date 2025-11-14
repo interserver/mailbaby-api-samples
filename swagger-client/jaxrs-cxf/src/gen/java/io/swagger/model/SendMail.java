@@ -44,6 +44,12 @@ public class SendMail   {
    * The main email contents.  
   **/
   private String body = null;
+  
+  @Schema(description = "Optional Order ID")
+ /**
+   * Optional Order ID  
+  **/
+  private Integer id = null;
  /**
    * The Contact whom is the primary recipient of this email.
    * @return to
@@ -120,6 +126,25 @@ public class SendMail   {
     return this;
   }
 
+ /**
+   * Optional Order ID
+   * @return id
+  **/
+  @JsonProperty("id")
+  @NotNull
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -130,6 +155,7 @@ public class SendMail   {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

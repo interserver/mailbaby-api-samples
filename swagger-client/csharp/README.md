@@ -144,9 +144,9 @@ Class | Method | HTTP request | Description
  - [Model.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [Model.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [Model.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [Model.RawMail](docs/RawMail.md)
  - [Model.SendMail](docs/SendMail.md)
  - [Model.SendMailAdv](docs/SendMailAdv.md)
+ - [Model.SendMailRaw](docs/SendMailRaw.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

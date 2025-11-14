@@ -10,9 +10,9 @@ from swagger_server.models.email_addresses_types import EmailAddressesTypes  # n
 from swagger_server.models.error_message import ErrorMessage  # noqa: E501
 from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
-from swagger_server.models.raw_mail import RawMail  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
 from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
+from swagger_server.models.send_mail_raw import SendMailRaw  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -24,8 +24,9 @@ class TestSendingController(BaseTestCase):
 
         Sends a raw email
         """
-        body = RawMail()
-        data = dict(raw_email='raw_email_example')
+        body = SendMailRaw()
+        data = dict(raw_email='raw_email_example',
+                    id=56)
         response = self.client.open(
             '/mail/rawsend',
             method='POST',
@@ -68,7 +69,8 @@ class TestSendingController(BaseTestCase):
         data = dict(to='to_example',
                     _from='_from_example',
                     subject='subject_example',
-                    body='body_example')
+                    body='body_example',
+                    id=56)
         response = self.client.open(
             '/mail/send',
             method='POST',

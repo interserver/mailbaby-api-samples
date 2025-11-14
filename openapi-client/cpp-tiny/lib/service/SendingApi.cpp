@@ -10,7 +10,7 @@ using namespace Tiny;
         SendingApi::
         rawMail(
             
-            RawMail rawMail
+            SendMailRaw sendMailRaw
             
         )
         {
@@ -31,11 +31,11 @@ using namespace Tiny;
             std::string payload = "";
             // Send Request
             // METHOD | POST
-            // Body     | rawMail
+            // Body     | sendMailRaw
 
 
 
-            payload = rawMail.toJson().dump();
+            payload = sendMailRaw.toJson().dump();
 
             int httpCode = sendRequest(url, "POST", reinterpret_cast<uint8_t*>(&payload[0]), payload.length());
 
@@ -148,6 +148,9 @@ using namespace Tiny;
             , 
             
             std::string body
+            , 
+            
+            int id
             
         )
         {
@@ -158,13 +161,14 @@ using namespace Tiny;
 
             // Query    | 
 
-            // Form     | to from subject body 
+            // Form     | to from subject body id 
             addHeader("Content-Type", "application/x-www-form-urlencoded");
 
             addFormParam("to",to);
             addFormParam("from",from);
             addFormParam("subject",subject);
             addFormParam("body",body);
+            addFormParam("id",id);
 
 
 

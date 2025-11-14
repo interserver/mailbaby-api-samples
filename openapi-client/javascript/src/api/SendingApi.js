@@ -18,7 +18,7 @@ import EmailAddressesTypes from '../model/EmailAddressesTypes';
 import ErrorMessage from '../model/ErrorMessage';
 import GenericResponse from '../model/GenericResponse';
 import MailAttachment from '../model/MailAttachment';
-import RawMail from '../model/RawMail';
+import SendMailRaw from '../model/SendMailRaw';
 
 /**
 * Sending service.
@@ -50,15 +50,15 @@ export default class SendingApi {
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param {module:model/RawMail} rawMail 
+     * @param {module:model/SendMailRaw} sendMailRaw 
      * @param {module:api/SendingApi~rawMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    rawMail(rawMail, callback) {
-      let postBody = rawMail;
-      // verify the required parameter 'rawMail' is set
-      if (rawMail === undefined || rawMail === null) {
-        throw new Error("Missing the required parameter 'rawMail' when calling rawMail");
+    rawMail(sendMailRaw, callback) {
+      let postBody = sendMailRaw;
+      // verify the required parameter 'sendMailRaw' is set
+      if (sendMailRaw === undefined || sendMailRaw === null) {
+        throw new Error("Missing the required parameter 'sendMailRaw' when calling rawMail");
       }
 
       let pathParams = {
@@ -169,10 +169,13 @@ export default class SendingApi {
      * @param {String} from The contact whom is the this email is from.
      * @param {String} subject The subject or title of the email
      * @param {String} body The main email contents.
+     * @param {Object} opts Optional parameters
+     * @param {Number} [id] Optional Order ID
      * @param {module:api/SendingApi~sendMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    sendMail(to, from, subject, body, callback) {
+    sendMail(to, from, subject, body, opts, callback) {
+      opts = opts || {};
       let postBody = null;
       // verify the required parameter 'to' is set
       if (to === undefined || to === null) {
@@ -201,7 +204,8 @@ export default class SendingApi {
         'to': to,
         'from': from,
         'subject': subject,
-        'body': body
+        'body': body,
+        'id': opts['id']
       };
 
       let authNames = ['apiKeyAuth'];

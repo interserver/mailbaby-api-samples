@@ -13,7 +13,7 @@ Method | HTTP request | Description
 # **raw_mail**   { #raw_mail }
 <a name="raw_mail"></a>
 
-> `raw_mail(rawMail: RawMail, on_success: Callable, on_failure: Callable)`
+> `raw_mail(sendMailRaw: SendMailRaw, on_success: Callable, on_failure: Callable)`
 
 Sends a raw email
 
@@ -37,13 +37,13 @@ var api = SendingApi.new(config)
 # You can also provide your own HTTPClient, to re-use it across apis.
 #var api = SendingApi.new(config, client)
 
-var rawMail = RawMail.new()
-# … fill model rawMail with data
+var sendMailRaw = SendMailRaw.new()
+# … fill model sendMailRaw with data
 
 # Invoke an endpoint
 api.raw_mail(
-	# rawMail: RawMail
-	rawMail,
+	# sendMailRaw: SendMailRaw
+	sendMailRaw,
 	# On Success
 	func(response):  # response is ApiResponse
 		prints("Success!", "raw_mail", response)
@@ -127,7 +127,7 @@ api.send_adv_mail(
 # **send_mail**   { #send_mail }
 <a name="send_mail"></a>
 
-> `send_mail(to: String,from: String,subject: String,body: String, on_success: Callable, on_failure: Callable)`
+> `send_mail(to: String,from: String,subject: String,body: String,id = null, on_success: Callable, on_failure: Callable)`
 
 Sends an Email
 
@@ -166,6 +166,9 @@ api.send_mail(
 	# body: String = ""   Eg: body_example
 	# The main email contents.
 	body,
+	# id: int   Eg: 56
+	# Optional Order ID
+	id,
 	# On Success
 	func(response):  # response is ApiResponse
 		prints("Success!", "send_mail", response)

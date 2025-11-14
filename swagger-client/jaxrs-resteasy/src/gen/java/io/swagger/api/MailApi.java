@@ -23,9 +23,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import java.util.Map;
 import java.util.List;
@@ -43,7 +43,7 @@ import javax.validation.constraints.*;
 @Path("/mail")
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T05:52:49.510724097-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T07:22:39.375224310-05:00[America/New_York]")
 public class MailApi  {
 
     @Inject MailApiService service;
@@ -213,7 +213,7 @@ public class MailApi  {
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
     public Response rawMail(
-@Parameter(description = "" ,required=true) RawMail body
+@Parameter(description = "" ,required=true) SendMailRaw body
 ,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.rawMail(body,securityContext);
@@ -233,9 +233,9 @@ public class MailApi  {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public Response rawMail(@Parameter(description = "", required=true)@FormParam("raw_email")  String rawEmail,@Context SecurityContext securityContext)
+    public Response rawMail(@Parameter(description = "", required=true)@FormParam("raw_email")  String rawEmail,@Parameter(description = "", required=true)@FormParam("id")  Integer id,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.rawMail(rawEmail,securityContext);
+        return service.rawMail(rawEmail,id,securityContext);
     }
     @POST
     @Path("/advsend")
@@ -292,9 +292,9 @@ public class MailApi  {
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         
         @ApiResponse(responseCode = "404", description = "The specified resource was not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  String to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Context SecurityContext securityContext)
+    public Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  String to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("id")  Integer id,@Context SecurityContext securityContext)
     throws NotFoundException {
-        return service.sendMail(to,from,subject,body,securityContext);
+        return service.sendMail(to,from,subject,body,id,securityContext);
     }
     @POST
     @Path("/send")

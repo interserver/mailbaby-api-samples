@@ -11,9 +11,9 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.RawMail;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -102,7 +102,7 @@ class MailApiControllerTest {
 
     @Test
     void rawMailTest() {
-        RawMail body = null;
+        SendMailRaw body = null;
         try {
             //TODO: api.rawMail(body).blockingGet();
         } catch (UnsupportedOperationException e) {
@@ -134,8 +134,9 @@ class MailApiControllerTest {
         String from = null;
         String subject = null;
         String body = null;
+        Integer id = null;
         try {
-            //TODO: api.sendMail(to, from, subject, body).blockingGet();
+            //TODO: api.sendMail(to, from, subject, body, id).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

@@ -35,7 +35,8 @@ namespace IO.Swagger.Model
         /// <param name="from">The contact whom is the this email is from. (required).</param>
         /// <param name="subject">The subject or title of the email (required).</param>
         /// <param name="body">The main email contents. (required).</param>
-        public SendMail(string to = default(string), string from = default(string), string subject = default(string), string body = default(string))
+        /// <param name="id">Optional Order ID.</param>
+        public SendMail(string to = default(string), string from = default(string), string subject = default(string), string body = default(string), int? id = default(int?))
         {
             // to ensure "to" is required (not null)
             if (to == null)
@@ -73,6 +74,7 @@ namespace IO.Swagger.Model
             {
                 this.Body = body;
             }
+            this.Id = id;
         }
         
         /// <summary>
@@ -104,6 +106,13 @@ namespace IO.Swagger.Model
         public string Body { get; set; }
 
         /// <summary>
+        /// Optional Order ID
+        /// </summary>
+        /// <value>Optional Order ID</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public int? Id { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -115,6 +124,7 @@ namespace IO.Swagger.Model
             sb.Append("  From: ").Append(From).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -168,6 +178,11 @@ namespace IO.Swagger.Model
                     this.Body == input.Body ||
                     (this.Body != null &&
                     this.Body.Equals(input.Body))
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 );
         }
 
@@ -188,6 +203,8 @@ namespace IO.Swagger.Model
                     hashCode = hashCode * 59 + this.Subject.GetHashCode();
                 if (this.Body != null)
                     hashCode = hashCode * 59 + this.Body.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
                 return hashCode;
             }
         }

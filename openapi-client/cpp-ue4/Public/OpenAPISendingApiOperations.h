@@ -20,7 +20,7 @@
 #include "OpenAPIErrorMessage.h"
 #include "OpenAPIGenericResponse.h"
 #include "OpenAPIMailAttachment.h"
-#include "OpenAPIRawMail.h"
+#include "OpenAPISendMailRaw.h"
 
 namespace OpenAPI
 {
@@ -36,7 +36,7 @@ public:
 	void SetupHttpRequest(const FHttpRequestRef& HttpRequest) const final;
 	FString ComputePath() const final;
 
-	OpenAPIRawMail OpenAPIRawMail;
+	OpenAPISendMailRaw OpenAPISendMailRaw;
 };
 
 class OPENAPI_API OpenAPISendingApi::RawMailResponse : public Response
@@ -104,6 +104,8 @@ public:
 	FString Subject;
 	/* The main email contents. */
 	FString Body;
+	/* Optional Order ID */
+	TOptional<int32> Id;
 };
 
 class OPENAPI_API OpenAPISendingApi::SendMailResponse : public Response

@@ -1,22 +1,55 @@
-jq: error (at <stdin>:1): Cannot index string with string "prerelease"
-[[1;34mINFO[m] Scanning for projects...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m------------------< [0;36morg.apache.maven:standalone-pom[0;1m >-------------------[m
-[[1;34mINFO[m] [1mBuilding Maven Stub Project (No POM) 1[m
-[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:2.9:get[m [1m(default-cli)[m @ [36mstandalone-pom[0;1m ---[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] [1;31mBUILD FAILURE[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  0.882 s
-[[1;34mINFO[m] Finished at: 2025-11-14T05:50:54-05:00
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-dependency-plugin:2.9:get[m [1m(default-cli)[m on project [36mstandalone-pom[m: [1;31mInvalid artifact, you must specify groupId:artifactId:version[:packaging][:classifier] org.openapitools:openapi-generator-cli:[m -> [1m[Help 1][m
-[[1;31mERROR[m] 
-[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
-[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
-[[1;31mERROR[m] 
-[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
-[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
-Error: Unable to access jarfile /home/sites/mailbaby-mail-api/openapi-generator-cli-.jar
+[main] INFO  o.o.c.l.PythonFastAPIServerCodegen - Skipping sorting of path operations, order matters, let the developer decide via their specification file.
+[main] INFO  o.o.c.l.PythonFastAPIServerCodegen - Skipping sorting of path operations, order matters, let the developer decide via their specification file.
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: scalaz (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'scalaz' is considered stable.
+[main] INFO  o.o.c.languages.AbstractScalaCodegen - Environment variable SCALA_POST_PROCESS_FILE not defined so the Scala code may not be properly formatted. To define it, try 'export SCALA_POST_PROCESS_FILE=/usr/local/bin/scalafmt' (Linux/Mac)
+[main] INFO  o.o.c.languages.AbstractScalaCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/DenyRuleNew.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/DenyRuleRecord.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/EmailAddressName.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/EmailAddressTypes.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/EmailAddressesTypes.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/ErrorMessage.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/GenericResponse.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailAttachment.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailBlockClickHouse.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailBlockRspamd.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailBlocks.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailLog.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailLogEntry.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailOrder.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailStatsType.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailStatsTypeVolume.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailStatsTypeVolumeFrom.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailStatsTypeVolumeIp.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/MailStatsTypeVolumeTo.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/SendMail.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/SendMailAdv.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/SendMailRaw.scala
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/BlockingApi.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/HistoryApi.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/SendingApi.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/ServicesApi.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/StatusApi.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/project/build.properties
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/build.sbt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/DateTimeCodecs.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/HelperCodecs.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/src/main/scala/org/openapitools/client/api/QueryParamTypeclass.scala
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/scalaz/.openapi-generator/FILES
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

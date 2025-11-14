@@ -10,9 +10,9 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T05:52:49.510724097-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T07:22:39.375224310-05:00[America/New_York]")
 public class SendMail   {
-  private String to = null;  private String from = null;  private String subject = null;  private String body = null;
+  private String to = null;  private String from = null;  private String subject = null;  private String body = null;  private Integer id = null;
 
   /**
    * The Contact whom is the primary recipient of this email.
@@ -70,6 +70,20 @@ public class SendMail   {
     this.body = body;
   }
 
+  /**
+   * Optional Order ID
+   **/
+  
+  @Schema(description = "Optional Order ID")
+  @JsonProperty("id")
+  @NotNull
+  public Integer getId() {
+    return id;
+  }
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -83,12 +97,13 @@ public class SendMail   {
     return Objects.equals(to, sendMail.to) &&
         Objects.equals(from, sendMail.from) &&
         Objects.equals(subject, sendMail.subject) &&
-        Objects.equals(body, sendMail.body);
+        Objects.equals(body, sendMail.body) &&
+        Objects.equals(id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -100,6 +115,7 @@ public class SendMail   {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

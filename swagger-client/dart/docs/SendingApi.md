@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
 
 # **rawMail**
-> GenericResponse rawMail(body, rawEmail)
+> GenericResponse rawMail(body, rawEmail, id)
 
 Sends a raw email
 
@@ -29,11 +29,12 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new SendingApi();
-var body = new RawMail(); // RawMail | 
+var body = new SendMailRaw(); // SendMailRaw | 
 var rawEmail = rawEmail_example; // String | 
+var id = 56; // int | 
 
 try {
-    var result = api_instance.rawMail(body, rawEmail);
+    var result = api_instance.rawMail(body, rawEmail, id);
     print(result);
 } catch (e) {
     print("Exception when calling SendingApi->rawMail: $e\n");
@@ -44,8 +45,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RawMail**](RawMail.md)|  | 
+ **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
  **rawEmail** | **String**|  | 
+ **id** | **int**|  | 
 
 ### Return type
 
@@ -128,7 +130,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sendMail**
-> GenericResponse sendMail(to, from, subject, body, body)
+> GenericResponse sendMail(to, from, subject, body, id, body)
 
 Sends an Email
 
@@ -147,10 +149,11 @@ var to = to_example; // String |
 var from = from_example; // String | 
 var subject = subject_example; // String | 
 var body = body_example; // String | 
+var id = 56; // int | 
 var body = new SendMail(); // SendMail | 
 
 try {
-    var result = api_instance.sendMail(to, from, subject, body, body);
+    var result = api_instance.sendMail(to, from, subject, body, id, body);
     print(result);
 } catch (e) {
     print("Exception when calling SendingApi->sendMail: $e\n");
@@ -165,6 +168,7 @@ Name | Type | Description  | Notes
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 
+ **id** | **int**|  | 
  **body** | [**SendMail**](SendMail.md)|  | 
 
 ### Return type

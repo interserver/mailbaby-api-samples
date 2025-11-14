@@ -25,9 +25,9 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
-docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -56,9 +56,9 @@ lib/OpenAPIClient/Object/MailStatsTypeVolume.pm
 lib/OpenAPIClient/Object/MailStatsTypeVolumeFrom.pm
 lib/OpenAPIClient/Object/MailStatsTypeVolumeIp.pm
 lib/OpenAPIClient/Object/MailStatsTypeVolumeTo.pm
-lib/OpenAPIClient/Object/RawMail.pm
 lib/OpenAPIClient/Object/SendMail.pm
 lib/OpenAPIClient/Object/SendMailAdv.pm
+lib/OpenAPIClient/Object/SendMailRaw.pm
 lib/OpenAPIClient/Role.pm
 lib/OpenAPIClient/Role/AutoDoc.pm
 lib/OpenAPIClient/SendingApi.pm
@@ -85,8 +85,8 @@ t/MailStatsTypeVolumeFromTest.t
 t/MailStatsTypeVolumeIpTest.t
 t/MailStatsTypeVolumeTest.t
 t/MailStatsTypeVolumeToTest.t
-t/RawMailTest.t
 t/SendMailAdvTest.t
+t/SendMailRawTest.t
 t/SendMailTest.t
 t/SendingApiTest.t
 t/ServicesApiTest.t

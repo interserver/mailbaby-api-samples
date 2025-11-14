@@ -23,9 +23,9 @@ docs/MailStatsTypeVolume.md
 docs/MailStatsTypeVolumeFrom.md
 docs/MailStatsTypeVolumeIp.md
 docs/MailStatsTypeVolumeTo.md
-docs/RawMail.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -54,9 +54,9 @@ src/PSOpenAPITools/Model/MailStatsTypeVolume.ps1
 src/PSOpenAPITools/Model/MailStatsTypeVolumeFrom.ps1
 src/PSOpenAPITools/Model/MailStatsTypeVolumeIp.ps1
 src/PSOpenAPITools/Model/MailStatsTypeVolumeTo.ps1
-src/PSOpenAPITools/Model/RawMail.ps1
 src/PSOpenAPITools/Model/SendMail.ps1
 src/PSOpenAPITools/Model/SendMailAdv.ps1
+src/PSOpenAPITools/Model/SendMailRaw.ps1
 src/PSOpenAPITools/PSOpenAPITools.psm1
 src/PSOpenAPITools/Private/ApiClient.ps1
 src/PSOpenAPITools/Private/Get-CommonParameters.ps1
@@ -88,6 +88,6 @@ tests/Model/MailStatsTypeVolume.Tests.ps1
 tests/Model/MailStatsTypeVolumeFrom.Tests.ps1
 tests/Model/MailStatsTypeVolumeIp.Tests.ps1
 tests/Model/MailStatsTypeVolumeTo.Tests.ps1
-tests/Model/RawMail.Tests.ps1
 tests/Model/SendMail.Tests.ps1
 tests/Model/SendMailAdv.Tests.ps1
+tests/Model/SendMailRaw.Tests.ps1

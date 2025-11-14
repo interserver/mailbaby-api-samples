@@ -1,22 +1,58 @@
-jq: error (at <stdin>:1): Cannot index string with string "prerelease"
-[[1;34mINFO[m] Scanning for projects...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m------------------< [0;36morg.apache.maven:standalone-pom[0;1m >-------------------[m
-[[1;34mINFO[m] [1mBuilding Maven Stub Project (No POM) 1[m
-[[1;34mINFO[m] [1m--------------------------------[ pom ]---------------------------------[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:2.9:get[m [1m(default-cli)[m @ [36mstandalone-pom[0;1m ---[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] [1;31mBUILD FAILURE[m
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;34mINFO[m] Total time:  0.930 s
-[[1;34mINFO[m] Finished at: 2025-11-14T05:50:57-05:00
-[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
-[[1;31mERROR[m] Failed to execute goal [32morg.apache.maven.plugins:maven-dependency-plugin:2.9:get[m [1m(default-cli)[m on project [36mstandalone-pom[m: [1;31mInvalid artifact, you must specify groupId:artifactId:version[:packaging][:classifier] org.openapitools:openapi-generator-cli:[m -> [1m[Help 1][m
-[[1;31mERROR[m] 
-[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
-[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
-[[1;31mERROR[m] 
-[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
-[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
-Error: Unable to access jarfile /home/sites/mailbaby-mail-api/openapi-generator-cli-.jar
+[main] INFO  o.o.c.l.PythonFastAPIServerCodegen - Skipping sorting of path operations, order matters, let the developer decide via their specification file.
+[main] INFO  o.o.c.l.PythonFastAPIServerCodegen - Skipping sorting of path operations, order matters, let the developer decide via their specification file.
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: swift-combine (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'swift-combine' is considered stable.
+[main] INFO  o.o.c.l.SwiftCombineClientCodegen - Environment variable SWIFT_POST_PROCESS_FILE not defined so the Swift code may not be properly formatted. To define it, try 'export SWIFT_POST_PROCESS_FILE=/usr/local/bin/swiftformat' (Linux/Mac)
+[main] INFO  o.o.c.l.SwiftCombineClientCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/DenyRuleNew.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/DenyRuleRecord.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressName.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressTypes.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/EmailAddressesTypes.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/ErrorMessage.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/GenericResponse.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailAttachment.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlockClickHouse.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlockRspamd.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailBlocks.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailLog.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailLogEntry.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailOrder.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailStatsType.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailStatsTypeVolume.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailStatsTypeVolumeFrom.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailStatsTypeVolumeIp.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/MailStatsTypeVolumeTo.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMail.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMailAdv.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Models/SendMailRaw.swift
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] WARN  o.o.c.l.SwiftCombineClientCodegen - Type (reserved word) cannot be used as model name. Renamed to ModelType
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/BlockingAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/HistoryAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/SendingAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/ServicesAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/APIs/StatusAPI.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Package.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPITransport/Package.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPITransport/Sources/OpenAPITransport.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Private/OpenISO8601DateFormatter.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/OpenAPIClient/Sources/Private/AnyDecodable.swift
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/swift-combine/.openapi-generator/FILES
+################################################################################
+# Thanks for using OpenAPI Generator.                                          #
+# swift combine generator is contributed by @dydus0x14 and @ptiz.          #
+################################################################################

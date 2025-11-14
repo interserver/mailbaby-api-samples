@@ -88,9 +88,9 @@ All URIs are relative to *https://api.mailbaby.net*
  - [org.openapitools.client.models.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
  - [org.openapitools.client.models.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
  - [org.openapitools.client.models.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [org.openapitools.client.models.RawMail](docs/RawMail.md)
  - [org.openapitools.client.models.SendMail](docs/SendMail.md)
  - [org.openapitools.client.models.SendMailAdv](docs/SendMailAdv.md)
+ - [org.openapitools.client.models.SendMailRaw](docs/SendMailRaw.md)
 
 
 <a id="documentation-for-authorization"></a>

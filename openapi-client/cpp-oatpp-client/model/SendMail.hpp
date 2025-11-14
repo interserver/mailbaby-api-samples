@@ -43,6 +43,8 @@ class SendMail : public oatpp::DTO {
 
   DTO_FIELD(oatpp::String, body);
 
+  DTO_FIELD(oatpp::Int32, id);
+  DTO_FIELD(oatpp::Boolean, idIsSet);
 
 };
 

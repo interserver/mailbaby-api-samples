@@ -743,19 +743,6 @@ export interface MailStatsTypeVolumeTo {
     clientanothersiteCom?: number;
 }
 /**
- * Raw Email Object
- * @export
- * @interface RawMail
- */
-export interface RawMail {
-    /**
-     * The entire email contents
-     * @type {string}
-     * @memberof RawMail
-     */
-    rawEmail: string;
-}
-/**
  * Details for an Email
  * @export
  * @interface SendMail
@@ -785,6 +772,12 @@ export interface SendMail {
      * @memberof SendMail
      */
     body: string;
+    /**
+     * Optional Order ID
+     * @type {number}
+     * @memberof SendMail
+     */
+    id?: number;
 }
 /**
  * Details for an Email
@@ -844,6 +837,25 @@ export interface SendMailAdv {
      * (optional)  ID of the Mail order within our system to use as the Mail Account.
      * @type {number}
      * @memberof SendMailAdv
+     */
+    id?: number;
+}
+/**
+ * Raw Email Object
+ * @export
+ * @interface SendMailRaw
+ */
+export interface SendMailRaw {
+    /**
+     * The entire email contents
+     * @type {string}
+     * @memberof SendMailRaw
+     */
+    rawEmail: string;
+    /**
+     * Optional order id
+     * @type {number}
+     * @memberof SendMailRaw
      */
     id?: number;
 }
@@ -1602,12 +1614,13 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
-         * @param {RawMail} body 
+         * @param {SendMailRaw} body 
          * @param {string} rawEmail 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: RawMail, rawEmail: string, options: any = {}): FetchArgs {
+        rawMail(body: SendMailRaw, rawEmail: string, id: number, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling rawMail.');
@@ -1615,6 +1628,10 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
             // verify required parameter 'rawEmail' is not null or undefined
             if (rawEmail === null || rawEmail === undefined) {
                 throw new RequiredError('rawEmail','Required parameter rawEmail was null or undefined when calling rawMail.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling rawMail.');
             }
             const localVarPath = `/mail/rawsend`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -1635,6 +1652,10 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
                 localVarFormParams.set('raw_email', rawEmail as any);
             }
 
+            if (id !== undefined) {
+                localVarFormParams.set('id', id as any);
+            }
+
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -1644,7 +1665,7 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
             localVarUrlObj.search = null;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             localVarRequestOptions.body = localVarFormParams.toString();
-            const needsSerialization = (<any>"RawMail" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            const needsSerialization = (<any>"SendMailRaw" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(body || {}) : (body || "");
 
             return {
@@ -1786,11 +1807,12 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
+         * @param {number} id 
          * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options: any = {}): FetchArgs {
+        sendMail(to: string, from: string, subject: string, body: string, id: number, body: SendMail, options: any = {}): FetchArgs {
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
@@ -1806,6 +1828,10 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling sendMail.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling sendMail.');
             }
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
@@ -1842,6 +1868,10 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
                 localVarFormParams.set('body', body as any);
             }
 
+            if (id !== undefined) {
+                localVarFormParams.set('id', id as any);
+            }
+
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
 
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -1871,13 +1901,14 @@ export const SendingApiFp = function(configuration?: Configuration) {
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
-         * @param {RawMail} body 
+         * @param {SendMailRaw} body 
          * @param {string} rawEmail 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: RawMail, rawEmail: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(body, rawEmail, options);
+        rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(body, rawEmail, id, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1923,12 +1954,13 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
+         * @param {number} id 
          * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendMail(to, from, subject, body, body, options);
+        sendMail(to: string, from: string, subject: string, body: string, id: number, body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendMail(to, from, subject, body, id, body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1951,13 +1983,14 @@ export const SendingApiFactory = function (configuration?: Configuration, fetch?
         /**
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
-         * @param {RawMail} body 
+         * @param {SendMailRaw} body 
          * @param {string} rawEmail 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: RawMail, rawEmail: string, options?: any) {
-            return SendingApiFp(configuration).rawMail(body, rawEmail, options)(fetch, basePath);
+        rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any) {
+            return SendingApiFp(configuration).rawMail(body, rawEmail, id, options)(fetch, basePath);
         },
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
@@ -1985,12 +2018,13 @@ export const SendingApiFactory = function (configuration?: Configuration, fetch?
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
+         * @param {number} id 
          * @param {SendMail} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options?: any) {
-            return SendingApiFp(configuration).sendMail(to, from, subject, body, body, options)(fetch, basePath);
+        sendMail(to: string, from: string, subject: string, body: string, id: number, body: SendMail, options?: any) {
+            return SendingApiFp(configuration).sendMail(to, from, subject, body, id, body, options)(fetch, basePath);
         },
     };
 };
@@ -2005,14 +2039,15 @@ export class SendingApi extends BaseAPI {
     /**
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @summary Sends a raw email
-     * @param {RawMail} body 
+     * @param {SendMailRaw} body 
      * @param {string} rawEmail 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public rawMail(body: RawMail, rawEmail: string, options?: any) {
-        return SendingApiFp(this.configuration).rawMail(body, rawEmail, options)(this.fetch, this.basePath);
+    public rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any) {
+        return SendingApiFp(this.configuration).rawMail(body, rawEmail, id, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -2043,13 +2078,14 @@ export class SendingApi extends BaseAPI {
      * @param {string} from 
      * @param {string} subject 
      * @param {string} body 
+     * @param {number} id 
      * @param {SendMail} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public sendMail(to: string, from: string, subject: string, body: string, body: SendMail, options?: any) {
-        return SendingApiFp(this.configuration).sendMail(to, from, subject, body, body, options)(this.fetch, this.basePath);
+    public sendMail(to: string, from: string, subject: string, body: string, id: number, body: SendMail, options?: any) {
+        return SendingApiFp(this.configuration).sendMail(to, from, subject, body, id, body, options)(this.fetch, this.basePath);
     }
 
 }

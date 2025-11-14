@@ -20,9 +20,9 @@ API/Client/MailStatsTypeVolume.js
 API/Client/MailStatsTypeVolumeFrom.js
 API/Client/MailStatsTypeVolumeIp.js
 API/Client/MailStatsTypeVolumeTo.js
-API/Client/RawMail.js
 API/Client/SendMail.js
 API/Client/SendMailAdv.js
+API/Client/SendMailRaw.js
 API/Client/SendingApi.js
 API/Client/ServicesApi.js
 API/Client/StatusApi.js

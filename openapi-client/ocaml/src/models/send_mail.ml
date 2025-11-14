@@ -38,6 +38,13 @@
                 
                 ; [@key "body"]
                     (** The main email contents. *)
+                                      id: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                    (** Optional Order ID *)
                 } [@@deriving yojson { strict = false }, show, eq ];;
         
         (** Details for an Email *)
@@ -46,6 +53,7 @@
             from = from;
             subject = subject;
             body = body;
+            id = None;
         }
     
 

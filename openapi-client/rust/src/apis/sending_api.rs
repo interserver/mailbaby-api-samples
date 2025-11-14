@@ -47,9 +47,9 @@ pub enum SendMailError {
 
 
 /// This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-pub async fn raw_mail(configuration: &configuration::Configuration, raw_mail: models::RawMail) -> Result<models::GenericResponse, Error<RawMailError>> {
+pub async fn raw_mail(configuration: &configuration::Configuration, send_mail_raw: models::SendMailRaw) -> Result<models::GenericResponse, Error<RawMailError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_body_raw_mail = raw_mail;
+    let p_body_send_mail_raw = send_mail_raw;
 
     let uri_str = format!("{}/mail/rawsend", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -65,7 +65,7 @@ pub async fn raw_mail(configuration: &configuration::Configuration, raw_mail: mo
         };
         req_builder = req_builder.header("X-API-KEY", value);
     };
-    req_builder = req_builder.json(&p_body_raw_mail);
+    req_builder = req_builder.json(&p_body_send_mail_raw);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -167,12 +167,13 @@ pub async fn send_adv_mail(configuration: &configuration::Configuration, subject
 }
 
 /// Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
-pub async fn send_mail(configuration: &configuration::Configuration, to: &str, from: &str, subject: &str, body: &str) -> Result<models::GenericResponse, Error<SendMailError>> {
+pub async fn send_mail(configuration: &configuration::Configuration, to: &str, from: &str, subject: &str, body: &str, id: Option<i32>) -> Result<models::GenericResponse, Error<SendMailError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_to = to;
     let p_form_from = from;
     let p_form_subject = subject;
     let p_form_body = body;
+    let p_form_id = id;
 
     let uri_str = format!("{}/mail/send", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::POST, &uri_str);
@@ -193,6 +194,9 @@ pub async fn send_mail(configuration: &configuration::Configuration, to: &str, f
     multipart_form_params.insert("from", p_form_from.to_string());
     multipart_form_params.insert("subject", p_form_subject.to_string());
     multipart_form_params.insert("body", p_form_body.to_string());
+    if let Some(param_value) = p_form_id {
+        multipart_form_params.insert("id", param_value.to_string());
+    }
     req_builder = req_builder.form(&multipart_form_params);
 
     let req = req_builder.build()?;

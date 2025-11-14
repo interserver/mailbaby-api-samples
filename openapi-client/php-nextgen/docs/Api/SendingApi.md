@@ -12,7 +12,7 @@ All URIs are relative to https://api.mailbaby.net, except if the operation defin
 ## `rawMail()`
 
 ```php
-rawMail($raw_mail): \OpenAPI\Client\Model\GenericResponse
+rawMail($send_mail_raw): \OpenAPI\Client\Model\GenericResponse
 ```
 
 Sends a raw email
@@ -38,10 +38,10 @@ $apiInstance = new OpenAPI\Client\Api\SendingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$raw_mail = new \OpenAPI\Client\Model\RawMail(); // \OpenAPI\Client\Model\RawMail
+$send_mail_raw = new \OpenAPI\Client\Model\SendMailRaw(); // \OpenAPI\Client\Model\SendMailRaw
 
 try {
-    $result = $apiInstance->rawMail($raw_mail);
+    $result = $apiInstance->rawMail($send_mail_raw);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->rawMail: ', $e->getMessage(), PHP_EOL;
@@ -52,7 +52,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **raw_mail** | [**\OpenAPI\Client\Model\RawMail**](../Model/RawMail.md)|  | |
+| **send_mail_raw** | [**\OpenAPI\Client\Model\SendMailRaw**](../Model/SendMailRaw.md)|  | |
 
 ### Return type
 
@@ -152,7 +152,7 @@ try {
 ## `sendMail()`
 
 ```php
-sendMail($to, $from, $subject, $body): \OpenAPI\Client\Model\GenericResponse
+sendMail($to, $from, $subject, $body, $id): \OpenAPI\Client\Model\GenericResponse
 ```
 
 Sends an Email
@@ -182,9 +182,10 @@ $to = 'to_example'; // string | The Contact whom is the primary recipient of thi
 $from = 'from_example'; // string | The contact whom is the this email is from.
 $subject = 'subject_example'; // string | The subject or title of the email
 $body = 'body_example'; // string | The main email contents.
+$id = 56; // int | Optional Order ID
 
 try {
-    $result = $apiInstance->sendMail($to, $from, $subject, $body);
+    $result = $apiInstance->sendMail($to, $from, $subject, $body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -199,6 +200,7 @@ try {
 | **from** | **string**| The contact whom is the this email is from. | |
 | **subject** | **string**| The subject or title of the email | |
 | **body** | **string**| The main email contents. | |
+| **id** | **int**| Optional Order ID | [optional] |
 
 ### Return type
 

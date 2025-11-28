@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getStats"></a>
 # **getStats**
-> [InlineResponse200] getStats()
+> MailStatsType getStats(opts)
 
 Account usage statistics.
 
@@ -27,7 +27,10 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi();
-apiInstance.getStats((error, data, response) => {
+let opts = { 
+  'time': "time_example" // String | The timeframe for the statistics.
+};
+apiInstance.getStats(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -37,11 +40,14 @@ apiInstance.getStats((error, data, response) => {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**[InlineResponse200]**](InlineResponse200.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -83,7 +89,10 @@ let opts = {
   'skip': 0, // Number | number of records to skip for pagination
   'limit': 100, // Number | maximum number of records to return
   'startDate': 789, // Number | earliest date to get emails in unix timestamp format
-  'endDate': 789 // Number | earliest date to get emails in unix timestamp format
+  'endDate': 789, // Number | earliest date to get emails in unix timestamp format
+  'replyto': "replyto_example", // String | Reply-To Email Address
+  'headerfrom': "headerfrom_example", // String | Header From Email Address
+  'delivered': "delivered_example" // String | Limiting the emails to wether or not they were delivered.
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -109,6 +118,9 @@ Name | Type | Description  | Notes
  **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

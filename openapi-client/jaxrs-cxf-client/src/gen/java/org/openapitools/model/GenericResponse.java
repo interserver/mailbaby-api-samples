@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class GenericResponse  {
   
   @ApiModelProperty(example = "ok", value = "")
+
   private String status;
 
   @ApiModelProperty(example = "The command completed successfully.", value = "")
+
   private String text;
  /**
    * Get status
@@ -58,8 +60,8 @@ public class GenericResponse  {
       return false;
     }
     GenericResponse genericResponse = (GenericResponse) o;
-    return Objects.equals(status, genericResponse.status) &&
-        Objects.equals(text, genericResponse.text);
+    return Objects.equals(this.status, genericResponse.status) &&
+        Objects.equals(this.text, genericResponse.text);
   }
 
   @Override

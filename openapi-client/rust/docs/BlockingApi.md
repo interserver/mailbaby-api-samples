@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## add_rule
 
-> crate::models::GenericResponse add_rule(r#type, data, user)
+> models::GenericResponse add_rule(r#type, data, user)
 Creates a new email deny rule.
 
 Adds a new email deny rule into the system to block new emails that match the given criteria
@@ -30,7 +30,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GenericResponse**](GenericResponse.md)
+[**models::GenericResponse**](GenericResponse.md)
 
 ### Authorization
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_rule
 
-> crate::models::GenericResponse delete_rule(rule_id)
+> models::GenericResponse delete_rule(rule_id)
 Removes an deny mail rule.
 
 Removes one of the configured deny mail rules from the system.
@@ -60,7 +60,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GenericResponse**](GenericResponse.md)
+[**models::GenericResponse**](GenericResponse.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 
 ## delist_block
 
-> crate::models::GenericResponse delist_block(body)
+> models::GenericResponse delist_block(body)
 Removes an email address from the blocked list
 
 Removes an email address from the various block lists. 
@@ -90,7 +90,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GenericResponse**](GenericResponse.md)
+[**models::GenericResponse**](GenericResponse.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_mail_blocks
 
-> crate::models::MailBlocks get_mail_blocks()
+> models::MailBlocks get_mail_blocks()
 displays a list of blocked email addresses
 
 ### Parameters
@@ -115,7 +115,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::MailBlocks**](MailBlocks.md)
+[**models::MailBlocks**](MailBlocks.md)
 
 ### Authorization
 
@@ -131,7 +131,7 @@ This endpoint does not need any parameter.
 
 ## get_rules
 
-> Vec<crate::models::DenyRuleRecord> get_rules()
+> Vec<models::DenyRuleRecord> get_rules()
 Displays a listing of deny email rules.
 
 Returns a listing of all the deny block rules you have configured.
@@ -142,7 +142,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::DenyRuleRecord>**](DenyRuleRecord.md)
+[**Vec<models::DenyRuleRecord>**](DenyRuleRecord.md)
 
 ### Authorization
 

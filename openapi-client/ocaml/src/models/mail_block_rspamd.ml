@@ -6,14 +6,28 @@
  * Schema Mail_block_rspamd.t : This is a block entry from the rspamd block list.
  *)
 
-type t = {
-    from: string;
-    subject: string;
-} [@@deriving yojson { strict = false }, show ];;
 
-(** This is a block entry from the rspamd block list. *)
-let create (from : string) (subject : string) : t = {
-    from = from;
-    subject = subject;
-}
+
+    
+        type t = {
+                              from: string
+                  
+                  
+                
+                
+                ; [@key "from"]
+                                              subject: string
+                  
+                  
+                
+                
+                ; [@key "subject"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** This is a block entry from the rspamd block list. *)
+        let create (from : string) (subject : string) : t = {
+            from = from;
+            subject = subject;
+        }
+    
 

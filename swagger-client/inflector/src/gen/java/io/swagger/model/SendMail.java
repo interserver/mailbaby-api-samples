@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * Details for an Email
  **/
 @Schema(description = "Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-02-20T06:54:20.194183-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-11-14T07:22:19.646134809-05:00[America/New_York]")
 
 public class SendMail   {
   @JsonProperty("to")
@@ -20,6 +20,8 @@ public class SendMail   {
   private String subject = null;
   @JsonProperty("body")
   private String body = null;
+  @JsonProperty("id")
+  private Integer id = null;
   /**
    * The Contact whom is the primary recipient of this email.
    **/
@@ -92,6 +94,24 @@ public class SendMail   {
     this.body = body;
   }
 
+  /**
+   * Optional Order ID
+   **/
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  
+  @Schema(description = "Optional Order ID")
+  @JsonProperty("id")
+  public Integer getId() {
+    return id;
+  }
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -105,12 +125,13 @@ public class SendMail   {
     return Objects.equals(to, sendMail.to) &&
         Objects.equals(from, sendMail.from) &&
         Objects.equals(subject, sendMail.subject) &&
-        Objects.equals(body, sendMail.body);
+        Objects.equals(body, sendMail.body) &&
+        Objects.equals(id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -121,6 +142,7 @@ public class SendMail   {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

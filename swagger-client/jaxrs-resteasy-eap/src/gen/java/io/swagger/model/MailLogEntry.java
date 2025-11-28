@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="An email record")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T07:22:36.127557706-05:00[America/New_York]")
 public class MailLogEntry   {
   private Integer _id = null;
   private String id = null;
@@ -112,6 +112,7 @@ public class MailLogEntry   {
   
   @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "message id")
   @JsonProperty("messageId")
+  @NotNull
   public String getMessageId() {
     return messageId;
   }

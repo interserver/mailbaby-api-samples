@@ -16,15 +16,16 @@ import io.swagger.model.EmailAddressTypes;
 import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
-import io.swagger.model.InlineResponse200;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
+import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-02-20T06:54:20.194183-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-11-14T07:22:19.646134809-05:00[America/New_York]")
 public class MailController  {
   /** 
    * Uncomment and implement as you see fit.  These operations will map
@@ -81,7 +82,23 @@ public class MailController  {
   */
 
   /*
-    public ResponseContext getStats(RequestContext request ) {
+    public ResponseContext getStats(RequestContext request , String time 
+) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext rawMail(RequestContext request , SendMailRaw body 
+) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext rawMail(RequestContext request ,  String rawEmail
+,  Integer id
+) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
@@ -113,6 +130,7 @@ public class MailController  {
 ,  String from
 ,  String subject
 ,  String body
+,  Integer id
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
@@ -137,6 +155,9 @@ public class MailController  {
 , Integer limit 
 , Long startDate 
 , Long endDate 
+, String replyto 
+, String headerfrom 
+, String delivered 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }

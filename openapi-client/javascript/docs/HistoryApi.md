@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## getStats
 
-> [GetStats200ResponseInner] getStats()
+> MailStatsType getStats(opts)
 
 Account usage statistics.
 
@@ -29,7 +29,10 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi();
-apiInstance.getStats((error, data, response) => {
+let opts = {
+  'time': "time_example" // String | The timeframe for the statistics.
+};
+apiInstance.getStats(opts, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -40,11 +43,14 @@ apiInstance.getStats((error, data, response) => {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**[GetStats200ResponseInner]**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -78,16 +84,19 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi();
 let opts = {
   'id': 2604, // Number | The ID of your mail order this will be sent through.
-  'origin': 1.2.3.4, // String | originating ip address sending mail
-  'mx': mx.google.com, // String | mx record mail was sent to
-  'from': me@sender.com, // String | from email address
-  'to': you@receiver.com, // String | to/destination email address
-  'subject': Support, // String | subject containing this string
-  'mailid': 185997065c60008840, // String | mail id
+  'origin': "1.2.3.4", // String | originating ip address sending mail
+  'mx': "mx.google.com", // String | mx record mail was sent to
+  'from': "me@sender.com", // String | from email address
+  'to': "you@receiver.com", // String | to/destination email address
+  'subject': "Support", // String | subject containing this string
+  'mailid': "185997065c60008840", // String | mail id
   'skip': 1000, // Number | number of records to skip for pagination
   'limit': 1000, // Number | maximum number of records to return
   'startDate': 1641781008, // Number | earliest date to get emails in unix timestamp format
-  'endDate': 1673317008 // Number | earliest date to get emails in unix timestamp format
+  'endDate': 1673317008, // Number | earliest date to get emails in unix timestamp format
+  'replyto': "replyto_example", // String | Reply-To Email Address
+  'headerfrom': "headerfrom_example", // String | Header From Email Address
+  'delivered': "delivered_example" // String | Limiting the emails to wether or not they were delivered.
 };
 apiInstance.viewMailLog(opts, (error, data, response) => {
   if (error) {
@@ -114,6 +123,9 @@ Name | Type | Description  | Notes
  **limit** | **Number**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **Number**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

@@ -15,7 +15,6 @@ model/EmailAddressTypes.ts
 model/EmailAddressesTypes.ts
 model/ErrorMessage.ts
 model/GenericResponse.ts
-model/GetStats200ResponseInner.ts
 model/MailAttachment.ts
 model/MailBlockClickHouse.ts
 model/MailBlockRspamd.ts
@@ -23,7 +22,13 @@ model/MailBlocks.ts
 model/MailLog.ts
 model/MailLogEntry.ts
 model/MailOrder.ts
+model/MailStatsType.ts
+model/MailStatsTypeVolume.ts
+model/MailStatsTypeVolumeFrom.ts
+model/MailStatsTypeVolumeIp.ts
+model/MailStatsTypeVolumeTo.ts
 model/SendMail.ts
 model/SendMailAdv.ts
+model/SendMailRaw.ts
 model/models.ts
 variables.ts

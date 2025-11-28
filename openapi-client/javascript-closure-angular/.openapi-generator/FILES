@@ -7,7 +7,6 @@ API/Client/EmailAddressTypes.js
 API/Client/EmailAddressesTypes.js
 API/Client/ErrorMessage.js
 API/Client/GenericResponse.js
-API/Client/GetStats200ResponseInner.js
 API/Client/HistoryApi.js
 API/Client/MailAttachment.js
 API/Client/MailBlockClickHouse.js
@@ -16,8 +15,14 @@ API/Client/MailBlocks.js
 API/Client/MailLog.js
 API/Client/MailLogEntry.js
 API/Client/MailOrder.js
+API/Client/MailStatsType.js
+API/Client/MailStatsTypeVolume.js
+API/Client/MailStatsTypeVolumeFrom.js
+API/Client/MailStatsTypeVolumeIp.js
+API/Client/MailStatsTypeVolumeTo.js
 API/Client/SendMail.js
 API/Client/SendMailAdv.js
+API/Client/SendMailRaw.js
 API/Client/SendingApi.js
 API/Client/ServicesApi.js
 API/Client/StatusApi.js

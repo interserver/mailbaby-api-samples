@@ -1,154 +1,177 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * An email record
- **/
+ * An email record
+ */
 @ApiModel(description="An email record")
 
 public class MailLogEntry  {
   
-  @ApiModelProperty(example = "103172", required = true, value = "internal db id")
  /**
-   * internal db id
-  **/
+  * internal db id
+  */
+  @ApiModelProperty(example = "103172", required = true, value = "internal db id")
+
   private Integer id;
 
-  @ApiModelProperty(example = "17c7eda538e0005d03", required = true, value = "mail id")
  /**
-   * mail id
-  **/
+  * mail id
+  */
+  @ApiModelProperty(example = "17c7eda538e0005d03", required = true, value = "mail id")
+
   private String id;
 
-  @ApiModelProperty(example = "person@mysite.com", required = true, value = "from address")
  /**
-   * from address
-  **/
+  * from address
+  */
+  @ApiModelProperty(example = "person@mysite.com", required = true, value = "from address")
+
   private String from;
 
-  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address")
  /**
-   * to address
-  **/
+  * to address
+  */
+  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address")
+
   private String to;
 
-  @ApiModelProperty(example = "sell 0.005 shares", required = true, value = "email subject")
  /**
-   * email subject
-  **/
+  * email subject
+  */
+  @ApiModelProperty(example = "sell 0.005 shares", required = true, value = "email subject")
+
   private String subject;
 
-  @ApiModelProperty(example = "2021-10-14 08:50:10", required = true, value = "creation date")
  /**
-   * creation date
-  **/
+  * creation date
+  */
+  @ApiModelProperty(example = "2021-10-14 08:50:10", required = true, value = "creation date")
+
   private String created;
 
-  @ApiModelProperty(example = "1634215809", required = true, value = "creation timestamp")
  /**
-   * creation timestamp
-  **/
+  * creation timestamp
+  */
+  @ApiModelProperty(example = "1634215809", required = true, value = "creation timestamp")
+
   private Integer time;
 
-  @ApiModelProperty(example = "mb5658", required = true, value = "user account")
  /**
-   * user account
-  **/
+  * user account
+  */
+  @ApiModelProperty(example = "mb5658", required = true, value = "user account")
+
   private String user;
 
-  @ApiModelProperty(example = "ESMTPSA", required = true, value = "transaction type")
  /**
-   * transaction type
-  **/
+  * transaction type
+  */
+  @ApiModelProperty(example = "ESMTPSA", required = true, value = "transaction type")
+
   private String transtype;
 
-  @ApiModelProperty(example = "199.231.189.154", required = true, value = "origin ip")
  /**
-   * origin ip
-  **/
+  * origin ip
+  */
+  @ApiModelProperty(example = "199.231.189.154", required = true, value = "origin ip")
+
   private String origin;
 
-  @ApiModelProperty(example = "feeder", required = true, value = "interface name")
  /**
-   * interface name
-  **/
+  * interface name
+  */
+  @ApiModelProperty(example = "feeder", required = true, value = "interface name")
+
   private String _interface;
 
-  @ApiModelProperty(example = "interserver", required = true, value = "sending zone")
  /**
-   * sending zone
-  **/
+  * sending zone
+  */
+  @ApiModelProperty(example = "interserver", required = true, value = "sending zone")
+
   private String sendingZone;
 
-  @ApiModelProperty(example = "63", required = true, value = "email body size in bytes")
  /**
-   * email body size in bytes
-  **/
+  * email body size in bytes
+  */
+  @ApiModelProperty(example = "63", required = true, value = "email body size in bytes")
+
   private Integer bodySize;
 
-  @ApiModelProperty(example = "1", required = true, value = "index of email in the to adderess list")
  /**
-   * index of email in the to adderess list
-  **/
+  * index of email in the to adderess list
+  */
+  @ApiModelProperty(example = "1", required = true, value = "index of email in the to adderess list")
+
   private Integer seq;
 
-  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address this email is being sent to")
  /**
-   * to address this email is being sent to
-  **/
+  * to address this email is being sent to
+  */
+  @ApiModelProperty(example = "client@isp.com", required = true, value = "to address this email is being sent to")
+
   private String recipient;
 
-  @ApiModelProperty(example = "interserver.net", required = true, value = "to address domain")
  /**
-   * to address domain
-  **/
+  * to address domain
+  */
+  @ApiModelProperty(example = "interserver.net", required = true, value = "to address domain")
+
   private String domain;
 
-  @ApiModelProperty(example = "1", required = true, value = "locked status")
  /**
-   * locked status
-  **/
+  * locked status
+  */
+  @ApiModelProperty(example = "1", required = true, value = "locked status")
+
   private Integer locked;
 
-  @ApiModelProperty(example = "1634215818533", required = true, value = "lock timestamp")
  /**
-   * lock timestamp
-  **/
+  * lock timestamp
+  */
+  @ApiModelProperty(example = "1634215818533", required = true, value = "lock timestamp")
+
   private String lockTime;
 
-  @ApiModelProperty(example = "relay1", required = true, value = "assigned server")
  /**
-   * assigned server
-  **/
+  * assigned server
+  */
+  @ApiModelProperty(example = "relay1", required = true, value = "assigned server")
+
   private String assigned;
 
-  @ApiModelProperty(example = "2021-10-14T12:50:15.487Z", required = true, value = "queued timestamp")
  /**
-   * queued timestamp
-  **/
+  * queued timestamp
+  */
+  @ApiModelProperty(example = "2021-10-14T12:50:15.487Z", required = true, value = "queued timestamp")
+
   private String queued;
 
-  @ApiModelProperty(example = "mx.j.is.cc", required = true, value = "mx hostname")
  /**
-   * mx hostname
-  **/
+  * mx hostname
+  */
+  @ApiModelProperty(example = "mx.j.is.cc", required = true, value = "mx hostname")
+
   private String mxHostname;
 
-  @ApiModelProperty(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, value = "mail delivery response")
  /**
-   * mail delivery response
-  **/
+  * mail delivery response
+  */
+  @ApiModelProperty(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, value = "mail delivery response")
+
   private String response;
 
-  @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", value = "message id")
  /**
-   * message id
-  **/
+  * message id
+  */
+  @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", value = "message id")
+
   private String messageId;
  /**
    * internal db id
@@ -573,29 +596,29 @@ public class MailLogEntry  {
       return false;
     }
     MailLogEntry mailLogEntry = (MailLogEntry) o;
-    return Objects.equals(id, mailLogEntry.id) &&
-        Objects.equals(id, mailLogEntry.id) &&
-        Objects.equals(from, mailLogEntry.from) &&
-        Objects.equals(to, mailLogEntry.to) &&
-        Objects.equals(subject, mailLogEntry.subject) &&
-        Objects.equals(created, mailLogEntry.created) &&
-        Objects.equals(time, mailLogEntry.time) &&
-        Objects.equals(user, mailLogEntry.user) &&
-        Objects.equals(transtype, mailLogEntry.transtype) &&
-        Objects.equals(origin, mailLogEntry.origin) &&
-        Objects.equals(_interface, mailLogEntry._interface) &&
-        Objects.equals(sendingZone, mailLogEntry.sendingZone) &&
-        Objects.equals(bodySize, mailLogEntry.bodySize) &&
-        Objects.equals(seq, mailLogEntry.seq) &&
-        Objects.equals(recipient, mailLogEntry.recipient) &&
-        Objects.equals(domain, mailLogEntry.domain) &&
-        Objects.equals(locked, mailLogEntry.locked) &&
-        Objects.equals(lockTime, mailLogEntry.lockTime) &&
-        Objects.equals(assigned, mailLogEntry.assigned) &&
-        Objects.equals(queued, mailLogEntry.queued) &&
-        Objects.equals(mxHostname, mailLogEntry.mxHostname) &&
-        Objects.equals(response, mailLogEntry.response) &&
-        Objects.equals(messageId, mailLogEntry.messageId);
+    return Objects.equals(this.id, mailLogEntry.id) &&
+        Objects.equals(this.id, mailLogEntry.id) &&
+        Objects.equals(this.from, mailLogEntry.from) &&
+        Objects.equals(this.to, mailLogEntry.to) &&
+        Objects.equals(this.subject, mailLogEntry.subject) &&
+        Objects.equals(this.created, mailLogEntry.created) &&
+        Objects.equals(this.time, mailLogEntry.time) &&
+        Objects.equals(this.user, mailLogEntry.user) &&
+        Objects.equals(this.transtype, mailLogEntry.transtype) &&
+        Objects.equals(this.origin, mailLogEntry.origin) &&
+        Objects.equals(this._interface, mailLogEntry._interface) &&
+        Objects.equals(this.sendingZone, mailLogEntry.sendingZone) &&
+        Objects.equals(this.bodySize, mailLogEntry.bodySize) &&
+        Objects.equals(this.seq, mailLogEntry.seq) &&
+        Objects.equals(this.recipient, mailLogEntry.recipient) &&
+        Objects.equals(this.domain, mailLogEntry.domain) &&
+        Objects.equals(this.locked, mailLogEntry.locked) &&
+        Objects.equals(this.lockTime, mailLogEntry.lockTime) &&
+        Objects.equals(this.assigned, mailLogEntry.assigned) &&
+        Objects.equals(this.queued, mailLogEntry.queued) &&
+        Objects.equals(this.mxHostname, mailLogEntry.mxHostname) &&
+        Objects.equals(this.response, mailLogEntry.response) &&
+        Objects.equals(this.messageId, mailLogEntry.messageId);
   }
 
   @Override

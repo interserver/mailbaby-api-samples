@@ -10,18 +10,21 @@ All URIs are relative to *https://api.mailbaby.net*
 
 <a name="getStats"></a>
 # **getStats**
-> List getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
     Returns information about the usage on your mail accounts.
 
 ### Parameters
-This endpoint does not need any parameter.
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **time** | **String**| The timeframe for the statistics. | [optional] [default to null] [enum: all, billing, month, 7d, 24h, 1d, 1h] |
 
 ### Return type
 
-[**List**](../Models/getStats_200_response_inner.md)
+[**MailStatsType**](../Models/MailStatsType.md)
 
 ### Authorization
 
@@ -34,7 +37,7 @@ This endpoint does not need any parameter.
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -55,6 +58,9 @@ displays the mail log
 | **limit** | **Integer**| maximum number of records to return | [optional] [default to 100] |
 | **startDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] [default to null] |
 | **endDate** | **Long**| earliest date to get emails in unix timestamp format | [optional] [default to null] |
+| **replyto** | **String**| Reply-To Email Address | [optional] [default to null] |
+| **headerfrom** | **String**| Header From Email Address | [optional] [default to null] |
+| **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] [default to null] [enum: 0, 1] |
 
 ### Return type
 

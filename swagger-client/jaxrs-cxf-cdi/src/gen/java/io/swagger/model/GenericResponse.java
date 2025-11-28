@@ -26,6 +26,7 @@ public class GenericResponse   {
   
   @Schema(example = "ok", description = "")
   @JsonProperty("status")
+  @NotNull
   public String getStatus() {
     return status;
   }
@@ -44,6 +45,7 @@ public class GenericResponse   {
   
   @Schema(example = "The command completed successfully.", description = "")
   @JsonProperty("text")
+  @NotNull
   public String getText() {
     return text;
   }

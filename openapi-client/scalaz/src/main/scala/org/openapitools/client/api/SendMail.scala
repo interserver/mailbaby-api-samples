@@ -19,7 +19,9 @@ case class SendMail (
 /* The subject or title of the email */
   subject: String,
 /* The main email contents. */
-  body: String)
+  body: String,
+/* Optional Order ID */
+  id: Option[Integer])
 
 object SendMail {
   import DateTimeCodecs._

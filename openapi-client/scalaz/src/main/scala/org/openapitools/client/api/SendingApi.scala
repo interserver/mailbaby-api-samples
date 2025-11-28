@@ -26,12 +26,34 @@ import org.openapitools.client.api.EmailAddressesTypes
 import org.openapitools.client.api.ErrorMessage
 import org.openapitools.client.api.GenericResponse
 import org.openapitools.client.api.MailAttachment
+import org.openapitools.client.api.SendMailRaw
 
 object SendingApi {
 
   val client = PooledHttp1Client()
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
+
+  def rawMail(host: String, sendMailRaw: SendMailRaw): Task[GenericResponse] = {
+    implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
+
+    val path = "/mail/rawsend"
+
+    val httpMethod = Method.POST
+    val contentType = `Content-Type`(MediaType.`application/json`)
+    val headers = Headers(
+      )
+    val queryParams = Query(
+      )
+
+    for {
+      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
+      uriWithParams =  uri.copy(query = queryParams)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMailRaw)
+      resp          <- client.expect[GenericResponse](req)
+
+    } yield resp
+  }
 
   def sendAdvMail(host: String, subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: List[MailAttachment], id: Long): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
@@ -54,7 +76,7 @@ object SendingApi {
     } yield resp
   }
 
-  def sendMail(host: String, to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
+  def sendMail(host: String, to: String, from: String, subject: String, body: String, id: Integer): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -82,6 +104,27 @@ class HttpServiceSendingApi(service: HttpService) {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
+  def rawMail(sendMailRaw: SendMailRaw): Task[GenericResponse] = {
+    implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
+
+    val path = "/mail/rawsend"
+
+    val httpMethod = Method.POST
+    val contentType = `Content-Type`(MediaType.`application/json`)
+    val headers = Headers(
+      )
+    val queryParams = Query(
+      )
+
+    for {
+      uri           <- Task.fromDisjunction(Uri.fromString(path))
+      uriWithParams =  uri.copy(query = queryParams)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMailRaw)
+      resp          <- client.expect[GenericResponse](req)
+
+    } yield resp
+  }
+
   def sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: List[MailAttachment], id: Long): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
@@ -103,7 +146,7 @@ class HttpServiceSendingApi(service: HttpService) {
     } yield resp
   }
 
-  def sendMail(to: String, from: String, subject: String, body: String): Task[GenericResponse] = {
+  def sendMail(to: String, from: String, subject: String, body: String, id: Integer): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"

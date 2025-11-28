@@ -2,9 +2,9 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**pingServer**](StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**pingServer**](StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running |
 
 
 <a id="pingServer"></a>

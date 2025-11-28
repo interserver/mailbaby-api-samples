@@ -7,3 +7,4 @@ Name | Type | Description | Notes
 **from** | [**kotlin.String**](.md) | The contact whom is the this email is from. | 
 **subject** | [**kotlin.String**](.md) | The subject or title of the email | 
 **body** | [**kotlin.String**](.md) | The main email contents. | 
+**id** | [**kotlin.Int**](.md) | Optional Order ID |  [optional]

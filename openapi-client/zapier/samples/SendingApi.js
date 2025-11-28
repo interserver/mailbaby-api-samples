@@ -3,4 +3,6 @@ module.exports = {
         { data: {} },
     "GenericResponseSample": 
         { data: {} },
+    "GenericResponseSample": 
+        { data: {} },
 }

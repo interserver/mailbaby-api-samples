@@ -1,7 +1,8 @@
 # openapi-client
 
 MailBaby Email Delivery and Management Service API
-- API version: 1.1.0
+- API version: 1.3.0
+  - Generator version: 7.17.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 # Overview
@@ -79,6 +80,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | **getRules** | **GET** /mail/rules | Displays a listing of deny email rules.
 *HistoryApi* | **getStats** | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | **viewMailLog** | **GET** /mail/log | displays the mail log
+*SendingApi* | **rawMail** | **POST** /mail/rawsend | Sends a raw email
 *SendingApi* | **sendAdvMail** | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | **sendMail** | **POST** /mail/send | Sends an Email
 *ServicesApi* | **getMailOrders** | **GET** /mail | displays a list of mail service orders
@@ -94,7 +96,6 @@ Class | Method | HTTP request | Description
  - [EmailAddressesTypes](EmailAddressesTypes.md)
  - [ErrorMessage](ErrorMessage.md)
  - [GenericResponse](GenericResponse.md)
- - [GetStats200ResponseInner](GetStats200ResponseInner.md)
  - [MailAttachment](MailAttachment.md)
  - [MailBlockClickHouse](MailBlockClickHouse.md)
  - [MailBlockRspamd](MailBlockRspamd.md)
@@ -102,8 +103,14 @@ Class | Method | HTTP request | Description
  - [MailLog](MailLog.md)
  - [MailLogEntry](MailLogEntry.md)
  - [MailOrder](MailOrder.md)
+ - [MailStatsType](MailStatsType.md)
+ - [MailStatsTypeVolume](MailStatsTypeVolume.md)
+ - [MailStatsTypeVolumeFrom](MailStatsTypeVolumeFrom.md)
+ - [MailStatsTypeVolumeIp](MailStatsTypeVolumeIp.md)
+ - [MailStatsTypeVolumeTo](MailStatsTypeVolumeTo.md)
  - [SendMail](SendMail.md)
  - [SendMailAdv](SendMailAdv.md)
+ - [SendMailRaw](SendMailRaw.md)
 
 
 <a id="documentation-for-authorization"></a>

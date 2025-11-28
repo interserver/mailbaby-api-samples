@@ -1,0 +1,676 @@
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - No .openapi-generator-ignore file found.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: gdscript (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'gdscript' is considered stable.
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_to. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_to=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_from. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_from=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume_ip. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume_ip=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.InlineModelResolver - Inline schema created as MailStatsType_volume. To have complete control of the model name, set the `title` field or use the modelNameMapping option (e.g. --model-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI) or inlineSchemaNameMapping option (--inline-schema-name-mappings MailStatsType_volume=NewModel,ModelA=NewModelA in CLI).
+[main] INFO  o.o.codegen.DefaultGenerator - Model EmailAddressNames not generated since it's an alias to array (without property) and `generateAliasAsModel` is set to false (default)
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/DenyRuleNew.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/DenyRuleRecord.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/EmailAddressName.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/EmailAddressTypes.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/EmailAddressesTypes.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/ErrorMessage.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/GenericResponse.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailAttachment.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailBlockClickHouse.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailBlockRspamd.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailBlocks.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailLog.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailLogEntry.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailOrder.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsType.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolume.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeFrom.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeIp.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/MailStatsTypeVolumeTo.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMail.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMailAdv.gd
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/models/SendMailRaw.gd
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
+[main] WARN  o.o.codegen.DefaultCodegen - Could not compute datatypeWithEnum from MailAttachment, null
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/BlockingApi.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/BlockingApi.md
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/HistoryApi.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/HistoryApi.md
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/SendingApi.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/SendingApi.md
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/ServicesApi.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/ServicesApi.md
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/StatusApi.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/apis/StatusApi.md
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/core/NullApiBeeNull.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/core/NullApiErrorNull.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/core/NullApiConfigNull.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/core/NullApiResponseNull.gd
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'modelNamePrefix', processing template:
+{{modelNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNamePrefix', processing template:
+{{coreNamePrefix}}
+[main] WARN  o.o.c.t.HandlebarsEngineAdapter - Unregistered helper name 'coreNameSuffix', processing template:
+{{coreNameSuffix}}
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/sites/mailbaby-mail-api/mailbaby-api-samples/openapi-client/gdscript/.openapi-generator/FILES
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################

@@ -9,13 +9,14 @@ import io.swagger.model.EmailAddressTypes;
 import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
-import io.swagger.model.InlineResponse200;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
+import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T07:22:36.127557706-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApi {
       public Response addRule(String user,String type,String data,SecurityContext securityContext) {
       // do some magic!
@@ -55,7 +56,15 @@ public class MailApiServiceImpl implements MailApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response getStats(SecurityContext securityContext) {
+      public Response getStats(String time,SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().build();
+  }
+      public Response rawMail(SendMailRaw body,SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().build();
+  }
+      public Response rawMail(String rawEmail,Integer id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
@@ -67,7 +76,7 @@ public class MailApiServiceImpl implements MailApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendMail(String to,String from,String subject,String body,SecurityContext securityContext) {
+      public Response sendMail(String to,String from,String subject,String body,Integer id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
@@ -75,7 +84,7 @@ public class MailApiServiceImpl implements MailApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext) {
+      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,Integer skip,Integer limit,Long startDate,Long endDate,String replyto,String headerfrom,String delivered,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

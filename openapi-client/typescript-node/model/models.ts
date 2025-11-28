@@ -7,7 +7,6 @@ export * from './emailAddressTypes';
 export * from './emailAddressesTypes';
 export * from './errorMessage';
 export * from './genericResponse';
-export * from './getStats200ResponseInner';
 export * from './mailAttachment';
 export * from './mailBlockClickHouse';
 export * from './mailBlockRspamd';
@@ -15,8 +14,14 @@ export * from './mailBlocks';
 export * from './mailLog';
 export * from './mailLogEntry';
 export * from './mailOrder';
+export * from './mailStatsType';
+export * from './mailStatsTypeVolume';
+export * from './mailStatsTypeVolumeFrom';
+export * from './mailStatsTypeVolumeIp';
+export * from './mailStatsTypeVolumeTo';
 export * from './sendMail';
 export * from './sendMailAdv';
+export * from './sendMailRaw';
 
 import * as fs from 'fs';
 
@@ -38,7 +43,6 @@ import { EmailAddressTypes } from './emailAddressTypes';
 import { EmailAddressesTypes } from './emailAddressesTypes';
 import { ErrorMessage } from './errorMessage';
 import { GenericResponse } from './genericResponse';
-import { GetStats200ResponseInner } from './getStats200ResponseInner';
 import { MailAttachment } from './mailAttachment';
 import { MailBlockClickHouse } from './mailBlockClickHouse';
 import { MailBlockRspamd } from './mailBlockRspamd';
@@ -46,8 +50,14 @@ import { MailBlocks } from './mailBlocks';
 import { MailLog } from './mailLog';
 import { MailLogEntry } from './mailLogEntry';
 import { MailOrder } from './mailOrder';
+import { MailStatsType } from './mailStatsType';
+import { MailStatsTypeVolume } from './mailStatsTypeVolume';
+import { MailStatsTypeVolumeFrom } from './mailStatsTypeVolumeFrom';
+import { MailStatsTypeVolumeIp } from './mailStatsTypeVolumeIp';
+import { MailStatsTypeVolumeTo } from './mailStatsTypeVolumeTo';
 import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
+import { SendMailRaw } from './sendMailRaw';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -64,6 +74,7 @@ let primitives = [
 let enumsMap: {[index: string]: any} = {
         "DenyRuleNew.TypeEnum": DenyRuleNew.TypeEnum,
         "DenyRuleRecord.TypeEnum": DenyRuleRecord.TypeEnum,
+        "MailStatsType.TimeEnum": MailStatsType.TimeEnum,
 }
 
 let typeMap: {[index: string]: any} = {
@@ -74,7 +85,6 @@ let typeMap: {[index: string]: any} = {
     "EmailAddressesTypes": EmailAddressesTypes,
     "ErrorMessage": ErrorMessage,
     "GenericResponse": GenericResponse,
-    "GetStats200ResponseInner": GetStats200ResponseInner,
     "MailAttachment": MailAttachment,
     "MailBlockClickHouse": MailBlockClickHouse,
     "MailBlockRspamd": MailBlockRspamd,
@@ -82,9 +92,32 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailLogEntry": MailLogEntry,
     "MailOrder": MailOrder,
+    "MailStatsType": MailStatsType,
+    "MailStatsTypeVolume": MailStatsTypeVolume,
+    "MailStatsTypeVolumeFrom": MailStatsTypeVolumeFrom,
+    "MailStatsTypeVolumeIp": MailStatsTypeVolumeIp,
+    "MailStatsTypeVolumeTo": MailStatsTypeVolumeTo,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
+    "SendMailRaw": SendMailRaw,
 }
+
+// Check if a string starts with another string without using es6 features
+function startsWith(str: string, match: string): boolean {
+    return str.substring(0, match.length) === match;
+}
+
+// Check if a string ends with another string without using es6 features
+function endsWith(str: string, match: string): boolean {
+    return str.length >= match.length && str.substring(str.length - match.length) === match;
+}
+
+const nullableSuffix = " | null";
+const optionalSuffix = " | undefined";
+const arrayPrefix = "Array<";
+const arraySuffix = ">";
+const mapPrefix = "{ [key: string]: ";
+const mapSuffix = "; }";
 
 export class ObjectSerializer {
     public static findCorrectType(data: any, expectedType: string) {
@@ -122,18 +155,33 @@ export class ObjectSerializer {
         }
     }
 
-    public static serialize(data: any, type: string) {
+    public static serialize(data: any, type: string): any {
         if (data == undefined) {
             return data;
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
             return data;
-        } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
-            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
-            subType = subType.substring(0, subType.length - 1); // Type> => Type
+        } else if (endsWith(type, nullableSuffix)) {
+            let subType: string = type.slice(0, -nullableSuffix.length); // Type | null => Type
+            return ObjectSerializer.serialize(data, subType);
+        } else if (endsWith(type, optionalSuffix)) {
+            let subType: string = type.slice(0, -optionalSuffix.length); // Type | undefined => Type
+            return ObjectSerializer.serialize(data, subType);
+        } else if (startsWith(type, arrayPrefix)) {
+            let subType: string = type.slice(arrayPrefix.length, -arraySuffix.length); // Array<Type> => Type
             let transformedData: any[] = [];
             for (let index = 0; index < data.length; index++) {
                 let datum = data[index];
                 transformedData.push(ObjectSerializer.serialize(datum, subType));
+            }
+            return transformedData;
+        } else if (startsWith(type, mapPrefix)) {
+            let subType: string = type.slice(mapPrefix.length, -mapSuffix.length); // { [key: string]: Type; } => Type
+            let transformedData: { [key: string]: any } = {};
+            for (let key in data) {
+                transformedData[key] = ObjectSerializer.serialize(
+                    data[key],
+                    subType,
+                );
             }
             return transformedData;
         } else if (type === "Date") {
@@ -160,20 +208,35 @@ export class ObjectSerializer {
         }
     }
 
-    public static deserialize(data: any, type: string) {
+    public static deserialize(data: any, type: string): any {
         // polymorphism may change the actual type.
         type = ObjectSerializer.findCorrectType(data, type);
         if (data == undefined) {
             return data;
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
             return data;
-        } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
-            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
-            subType = subType.substring(0, subType.length - 1); // Type> => Type
+        } else if (endsWith(type, nullableSuffix)) {
+            let subType: string = type.slice(0, -nullableSuffix.length); // Type | null => Type
+            return ObjectSerializer.deserialize(data, subType);
+        } else if (endsWith(type, optionalSuffix)) {
+            let subType: string = type.slice(0, -optionalSuffix.length); // Type | undefined => Type
+            return ObjectSerializer.deserialize(data, subType);
+        } else if (startsWith(type, arrayPrefix)) {
+            let subType: string = type.slice(arrayPrefix.length, -arraySuffix.length); // Array<Type> => Type
             let transformedData: any[] = [];
             for (let index = 0; index < data.length; index++) {
                 let datum = data[index];
                 transformedData.push(ObjectSerializer.deserialize(datum, subType));
+            }
+            return transformedData;
+        } else if (startsWith(type, mapPrefix)) {
+            let subType: string = type.slice(mapPrefix.length, -mapSuffix.length); // { [key: string]: Type; } => Type
+            let transformedData: { [key: string]: any } = {};
+            for (let key in data) {
+                transformedData[key] = ObjectSerializer.deserialize(
+                    data[key],
+                    subType,
+                );
             }
             return transformedData;
         } else if (type === "Date") {

@@ -10,7 +10,7 @@ class HistoryApi {
   /// Account usage statistics.
   ///
   /// Returns information about the usage on your mail accounts.
-  Future<List<InlineResponse200>> getStats() async {
+  Future<MailStatsType> getStats({ String time }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -22,6 +22,9 @@ class HistoryApi {
     List<QueryParam> queryParams = [];
     Map<String, String> headerParams = {};
     Map<String, String> formParams = {};
+    if(time != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "time", time));
+    }
     
     List<String> contentTypes = [];
 
@@ -50,7 +53,7 @@ class HistoryApi {
       throw new ApiException(response.statusCode, response.body);
     } else if(response.body != null) {
       return
-        (apiClient.deserialize(response.body, 'List<InlineResponse200>') as List).map((item) => item as InlineResponse200).toList();
+          apiClient.deserialize(response.body, 'MailStatsType') as MailStatsType ;
     } else {
       return null;
     }
@@ -58,7 +61,7 @@ class HistoryApi {
   /// displays the mail log
   ///
   /// Get a listing of the emails sent through this system 
-  Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate }) async {
+  Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate, String replyto, String headerfrom, String delivered }) async {
     Object postBody = null;
 
     // verify required params are set
@@ -102,6 +105,15 @@ class HistoryApi {
     }
     if(endDate != null) {
       queryParams.addAll(_convertParametersForCollectionFormat("", "endDate", endDate));
+    }
+    if(replyto != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "replyto", replyto));
+    }
+    if(headerfrom != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "headerfrom", headerfrom));
+    }
+    if(delivered != null) {
+      queryParams.addAll(_convertParametersForCollectionFormat("", "delivered", delivered));
     }
     
     List<String> contentTypes = [];

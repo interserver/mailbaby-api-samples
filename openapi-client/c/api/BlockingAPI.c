@@ -1,15 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "BlockingAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
+#define MAX_NUMBER_LENGTH_LONG 21
 
 // Functions for enum TYPE for BlockingAPI_addRule
 
@@ -69,7 +66,7 @@ end:
 // Adds a new email deny rule into the system to block new emails that match the given criteria
 //
 generic_response_t*
-BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type , char * data , char * user )
+BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type, char *data, char *user)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -77,11 +74,14 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/rules")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/rules");
+    char *localVarPath = strdup("/mail/rules");
+
 
 
 
@@ -102,7 +102,7 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
     char *keyForm_type = NULL;
     mailbaby_email_delivery_and_management_service_api_addRule_type_e valueForm_type = 0;
     keyValuePair_t *keyPairForm_type = 0;
-    if (type != NULL)
+    if (type != 0)
     {
         keyForm_type = strdup("type");
         valueForm_type = (type);
@@ -132,6 +132,7 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -151,11 +152,14 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
     //    printf("%s\n","The specified resource was not found");
     //}
     //nonprimitive not container
-    cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    generic_response_t *elementToReturn = generic_response_parseFromJSON(BlockingAPIlocalVarJSON);
-    cJSON_Delete(BlockingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    generic_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = generic_response_parseFromJSON(BlockingAPIlocalVarJSON);
+        cJSON_Delete(BlockingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -184,8 +188,7 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
         keyForm_type = NULL;
     }
     if (valueForm_type) {
-        free(valueForm_type);
-        valueForm_type = NULL;
+        valueForm_type = 0;
     }
     free(keyPairForm_type);
     if (keyForm_data) {
@@ -209,7 +212,7 @@ end:
 // Removes one of the configured deny mail rules from the system.
 //
 generic_response_t*
-BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
+BlockingAPI_deleteRule(apiClient_t *apiClient, int *ruleId)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -217,15 +220,18 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/rules/{ruleId}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/rules/{ruleId}");
+    char *localVarPath = strdup("/mail/rules/{ruleId}");
+
 
 
     // Path Params
-    long sizeOfPathParams_ruleId =  + strlen("{ ruleId }");
+    long sizeOfPathParams_ruleId =  + sizeof("{ ruleId }") - 1;
     if(ruleId == 0){
         goto end;
     }
@@ -233,7 +239,7 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
     snprintf(localVarToReplace_ruleId, sizeOfPathParams_ruleId, "{%s}", "ruleId");
 
     char localVarBuff_ruleId[256];
-    intToStr(localVarBuff_ruleId, ruleId);
+    snprintf(localVarBuff_ruleId, sizeof localVarBuff_ruleId, "%ld", (long)*ruleId);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_ruleId, localVarBuff_ruleId);
 
@@ -248,6 +254,7 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -267,11 +274,14 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId )
     //    printf("%s\n","The specified resource was not found");
     //}
     //nonprimitive not container
-    cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    generic_response_t *elementToReturn = generic_response_parseFromJSON(BlockingAPIlocalVarJSON);
-    cJSON_Delete(BlockingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    generic_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = generic_response_parseFromJSON(BlockingAPIlocalVarJSON);
+        cJSON_Delete(BlockingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -299,7 +309,7 @@ end:
 // Removes an email address from the various block lists. 
 //
 generic_response_t*
-BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
+BlockingAPI_delistBlock(apiClient_t *apiClient, char *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -307,23 +317,21 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/blocks/delete")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/blocks/delete");
+    char *localVarPath = strdup("/mail/blocks/delete");
+
 
 
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_body = NULL;
-    if (body != NULL)
-    {
-        //string
-        localVarSingleItemJSON_body = char_convertToJSON(body);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
-    }
+    localVarBodyParameters = strdup(body);
+    localVarBodyLength = strlen(localVarBodyParameters);
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
     list_addElement(localVarContentType,"multipart/form-data"); //consumes
@@ -335,6 +343,7 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -354,11 +363,14 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
     //    printf("%s\n","The specified resource was not found");
     //}
     //nonprimitive not container
-    cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    generic_response_t *elementToReturn = generic_response_parseFromJSON(BlockingAPIlocalVarJSON);
-    cJSON_Delete(BlockingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    generic_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = generic_response_parseFromJSON(BlockingAPIlocalVarJSON);
+        cJSON_Delete(BlockingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -373,10 +385,6 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, char * body )
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_body) {
-        cJSON_Delete(localVarSingleItemJSON_body);
-        localVarSingleItemJSON_body = NULL;
-    }
     free(localVarBodyParameters);
     return elementToReturn;
 end:
@@ -396,11 +404,14 @@ BlockingAPI_getMailBlocks(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/blocks")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/blocks");
+    char *localVarPath = strdup("/mail/blocks");
+
 
 
 
@@ -413,6 +424,7 @@ BlockingAPI_getMailBlocks(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -428,11 +440,14 @@ BlockingAPI_getMailBlocks(apiClient_t *apiClient)
     //    printf("%s\n","Unauthorized");
     //}
     //nonprimitive not container
-    cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    mail_blocks_t *elementToReturn = mail_blocks_parseFromJSON(BlockingAPIlocalVarJSON);
-    cJSON_Delete(BlockingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    mail_blocks_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = mail_blocks_parseFromJSON(BlockingAPIlocalVarJSON);
+        cJSON_Delete(BlockingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -467,11 +482,14 @@ BlockingAPI_getRules(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/rules")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/rules");
+    char *localVarPath = strdup("/mail/rules");
+
 
 
 
@@ -484,6 +502,7 @@ BlockingAPI_getRules(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -498,24 +517,27 @@ BlockingAPI_getRules(apiClient_t *apiClient)
     //if (apiClient->response_code == 404) {
     //    printf("%s\n","Unauthorized");
     //}
-    cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(BlockingAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, BlockingAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *BlockingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        if(!cJSON_IsArray(BlockingAPIlocalVarJSON)) {
+            return 0;//nonprimitive container
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
-    }
+        elementToReturn = list_createList();
+        cJSON *VarJSON;
+        cJSON_ArrayForEach(VarJSON, BlockingAPIlocalVarJSON)
+        {
+            if(!cJSON_IsObject(VarJSON))
+            {
+               // return 0;
+            }
+            char *localVarJSONToChar = cJSON_Print(VarJSON);
+            list_addElement(elementToReturn , localVarJSONToChar);
+        }
 
-    cJSON_Delete( BlockingAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
+        cJSON_Delete( BlockingAPIlocalVarJSON);
+        cJSON_Delete( VarJSON);
+    }
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);

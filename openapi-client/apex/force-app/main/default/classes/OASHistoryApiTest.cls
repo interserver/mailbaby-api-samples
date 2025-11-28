@@ -12,10 +12,14 @@ private class OASHistoryApiTest {
         res.setStatus('OK');
         Test.setMock(HttpCalloutMock.class, new OASResponseMock(res));
 
+        Map<String, Object> params = new Map<String, Object>{
+            'r_time' => all
+        };
+
         OASClient client;
         OASHistoryApi api;
-        List<OASGetStats200ResponseInner> response;
-        List<OASGetStats200ResponseInner> expectedResponse;
+        OASMailStatsType response;
+        OASMailStatsType expectedResponse;
         String js = '';
 
         client = new OASClient();
@@ -23,11 +27,27 @@ private class OASHistoryApiTest {
         ((OAS.ApiKeyAuth)client.getAuthentication('apiKeyAuth')).setApiKey('foo-bar-api-key');
 
 
-        js = JSON.serialize(new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()});
+        js = JSON.serialize(OASMailStatsType.getExample());
         res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
-        expectedResponse = new List<OASGetStats200ResponseInner>{OASGetStats200ResponseInner.getExample()};
-        response = (List<OASGetStats200ResponseInner>) api.getStats();
+        expectedResponse = OASMailStatsType.getExample();
+        response = (OASMailStatsType) api.getStats(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASMailStatsType.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASMailStatsType.getExample();
+        response = (OASMailStatsType) api.getStats(params);
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(OASMailStatsType.getExample());
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = OASMailStatsType.getExample();
+        response = (OASMailStatsType) api.getStats(params);
         System.assertEquals(expectedResponse, response);
     }
 
@@ -54,7 +74,10 @@ private class OASHistoryApiTest {
             'skip' => 1000,
             'r_limit' => 1000,
             'startDate' => 1641781008,
-            'endDate' => 1673317008
+            'endDate' => 1673317008,
+            'replyto' => 'null',
+            'headerfrom' => 'null',
+            'delivered' => 0
         };
 
         OASClient client;

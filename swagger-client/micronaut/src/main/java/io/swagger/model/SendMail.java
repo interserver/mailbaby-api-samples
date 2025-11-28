@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Details for an Email")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-02-20T06:54:40.647644-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-11-14T07:22:44.937966794-05:00[America/New_York]")
 public class SendMail   {
   @JsonProperty("to")
   private String to = null;
@@ -28,6 +28,9 @@ public class SendMail   {
 
   @JsonProperty("body")
   private String body = null;
+
+  @JsonProperty("id")
+  private Integer id = null;
 
   public SendMail to(String to) {
     this.to = to;
@@ -109,6 +112,26 @@ public class SendMail   {
     this.body = body;
   }
 
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Optional Order ID
+   * @return id
+  **/
+  @Schema(description = "Optional Order ID")
+  @NotNull
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -122,12 +145,13 @@ public class SendMail   {
     return Objects.equals(this.to, sendMail.to) &&
         Objects.equals(this.from, sendMail.from) &&
         Objects.equals(this.subject, sendMail.subject) &&
-        Objects.equals(this.body, sendMail.body);
+        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -139,6 +163,7 @@ public class SendMail   {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

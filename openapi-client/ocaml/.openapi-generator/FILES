@@ -1,3 +1,4 @@
+.ocamlformat
 .openapi-generator-ignore
 README.md
 dune
@@ -20,7 +21,6 @@ src/models/email_address_types.ml
 src/models/email_addresses_types.ml
 src/models/error_message.ml
 src/models/generic_response.ml
-src/models/get_stats_200_response_inner.ml
 src/models/mail_attachment.ml
 src/models/mail_block_click_house.ml
 src/models/mail_block_rspamd.ml
@@ -28,8 +28,14 @@ src/models/mail_blocks.ml
 src/models/mail_log.ml
 src/models/mail_log_entry.ml
 src/models/mail_order.ml
+src/models/mail_stats_type.ml
+src/models/mail_stats_type_volume.ml
+src/models/mail_stats_type_volume_from.ml
+src/models/mail_stats_type_volume_ip.ml
+src/models/mail_stats_type_volume_to.ml
 src/models/send_mail.ml
 src/models/send_mail_adv.ml
+src/models/send_mail_raw.ml
 src/support/enums.ml
 src/support/jsonSupport.ml
 src/support/request.ml

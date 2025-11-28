@@ -18,11 +18,12 @@ feature -- Test routines
             --
             -- Returns information about the usage on your mail accounts.
         local
-            l_response: LIST [GET_STATS_200_RESPONSE_INNER]
+            l_response: MAIL_STATS_TYPE
+            l_time: STRING_32
         do
             -- TODO: Initialize required params.
 
-            -- l_response := api.stats
+            -- l_response := api.stats(l_time)
             assert ("not_implemented", False)
         end
 
@@ -43,10 +44,13 @@ feature -- Test routines
             l_limit: INTEGER_32
             l_start_date: INTEGER_64
             l_end_date: INTEGER_64
+            l_replyto: STRING_32
+            l_headerfrom: STRING_32
+            l_delivered: STRING_32
         do
             -- TODO: Initialize required params.
 
-            -- l_response := api.view_mail_log(l_id, l_origin, l_mx, l_var_from, l_to, l_subject, l_mailid, l_skip, l_limit, l_start_date, l_end_date)
+            -- l_response := api.view_mail_log(l_id, l_origin, l_mx, l_var_from, l_to, l_subject, l_mailid, l_skip, l_limit, l_start_date, l_end_date, l_replyto, l_headerfrom, l_delivered)
             assert ("not_implemented", False)
         end
 

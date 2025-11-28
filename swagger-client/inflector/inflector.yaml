@@ -12,7 +12,6 @@ EmailAddressTypes : io.swagger.model.EmailAddressTypes
 EmailAddressesTypes : io.swagger.model.EmailAddressesTypes
 ErrorMessage : io.swagger.model.ErrorMessage
 GenericResponse : io.swagger.model.GenericResponse
-InlineResponse200 : io.swagger.model.InlineResponse200
 MailAttachment : io.swagger.model.MailAttachment
 MailBlockClickHouse : io.swagger.model.MailBlockClickHouse
 MailBlockRspamd : io.swagger.model.MailBlockRspamd
@@ -20,8 +19,14 @@ MailBlocks : io.swagger.model.MailBlocks
 MailLog : io.swagger.model.MailLog
 MailLogEntry : io.swagger.model.MailLogEntry
 MailOrder : io.swagger.model.MailOrder
+MailStatsType : io.swagger.model.MailStatsType
+MailStatsTypeVolume : io.swagger.model.MailStatsTypeVolume
+MailStatsTypeVolumeFrom : io.swagger.model.MailStatsTypeVolumeFrom
+MailStatsTypeVolumeIp : io.swagger.model.MailStatsTypeVolumeIp
+MailStatsTypeVolumeTo : io.swagger.model.MailStatsTypeVolumeTo
 SendMail : io.swagger.model.SendMail
 SendMailAdv : io.swagger.model.SendMailAdv
+SendMailRaw : io.swagger.model.SendMailRaw
 
 entityProcessors:
   - json

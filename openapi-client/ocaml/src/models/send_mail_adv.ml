@@ -6,32 +6,79 @@
  * Schema Send_mail_adv.t : Details for an Email
  *)
 
-type t = {
-    (* The subject or title of the email *)
-    subject: string;
-    (* The main email contents. *)
-    body: string;
-    from: Email_address_types.t;
-    _to: Email_addresses_types.t;
-    replyto: Email_addresses_types.t option [@default None];
-    cc: Email_addresses_types.t option [@default None];
-    bcc: Email_addresses_types.t option [@default None];
-    (* (optional) File attachments to include in the email.  The file contents must be base64 encoded! *)
-    attachments: Mail_attachment.t list;
-    (* (optional)  ID of the Mail order within our system to use as the Mail Account. *)
-    id: int64 option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-(** Details for an Email *)
-let create (subject : string) (body : string) (from : Email_address_types.t) (_to : Email_addresses_types.t) : t = {
-    subject = subject;
-    body = body;
-    from = from;
-    _to = _to;
-    replyto = None;
-    cc = None;
-    bcc = None;
-    attachments = [];
-    id = None;
-}
+
+    
+        type t = {
+                              subject: string
+                  
+                  
+                
+                
+                ; [@key "subject"]
+                    (** The subject or title of the email *)
+                                      body: string
+                  
+                  
+                
+                
+                ; [@key "body"]
+                    (** The main email contents. *)
+                                      from: Email_address_types.t
+                  
+                  
+                
+                
+                ; [@key "from"]
+                                              _to: Email_addresses_types.t
+                  
+                  
+                
+                
+                ; [@key "to"]
+                                              replyto: Email_addresses_types.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "replyto"]
+                                              cc: Email_addresses_types.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "cc"]
+                                              bcc: Email_addresses_types.t
+                  
+                   option [@default None]
+                
+                
+                ; [@key "bcc"]
+                                              attachments: Mail_attachment.t list
+                 [@default []]
+                
+                ; [@key "attachments"]
+                    (** (optional) File attachments to include in the email.  The file contents must be base64 encoded! *)
+                                      id: int64
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                    (** (optional)  ID of the Mail order within our system to use as the Mail Account. *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** Details for an Email *)
+        let create (subject : string) (body : string) (from : Email_address_types.t) (_to : Email_addresses_types.t) : t = {
+            subject = subject;
+            body = body;
+            from = from;
+            _to = _to;
+            replyto = None;
+            cc = None;
+            bcc = None;
+            attachments = [];
+            id = None;
+        }
+    
 

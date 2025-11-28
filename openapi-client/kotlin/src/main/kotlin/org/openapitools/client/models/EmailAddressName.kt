@@ -37,5 +37,8 @@ data class EmailAddressName (
     @Json(name = "name")
     val name: kotlin.String? = null
 
-)
+) {
+
+
+}
 

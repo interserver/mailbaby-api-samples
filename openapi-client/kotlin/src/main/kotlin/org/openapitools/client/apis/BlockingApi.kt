@@ -16,7 +16,7 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
-import okhttp3.OkHttpClient
+import okhttp3.Call
 import okhttp3.HttpUrl
 
 import org.openapitools.client.models.DenyRuleRecord
@@ -40,7 +40,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class BlockingApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -55,10 +55,20 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
          @Json(name = "domain") domain("domain"),
          @Json(name = "email") email("email"),
          @Json(name = "startswith") startswith("startswith"),
-         @Json(name = "destination") destination("destination")
+         @Json(name = "destination") destination("destination");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
      }
 
     /**
+     * POST /mail/rules
      * Creates a new email deny rule.
      * Adds a new email deny rule into the system to block new emails that match the given criteria
      * @param type The type of deny rule.
@@ -92,6 +102,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * POST /mail/rules
      * Creates a new email deny rule.
      * Adds a new email deny rule into the system to block new emails that match the given criteria
      * @param type The type of deny rule.
@@ -139,6 +150,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * DELETE /mail/rules/{ruleId}
      * Removes an deny mail rule.
      * Removes one of the configured deny mail rules from the system.
      * @param ruleId The ID of the Rules entry.
@@ -170,6 +182,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * DELETE /mail/rules/{ruleId}
      * Removes an deny mail rule.
      * Removes one of the configured deny mail rules from the system.
      * @param ruleId The ID of the Rules entry.
@@ -210,6 +223,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * POST /mail/blocks/delete
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
      * @param body 
@@ -241,6 +255,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * POST /mail/blocks/delete
      * Removes an email address from the blocked list
      * Removes an email address from the various block lists. 
      * @param body 
@@ -282,6 +297,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * GET /mail/blocks
      * displays a list of blocked email addresses
      * 
      * @return MailBlocks
@@ -312,6 +328,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * GET /mail/blocks
      * displays a list of blocked email addresses
      * 
      * @return ApiResponse<MailBlocks?>
@@ -350,6 +367,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * GET /mail/rules
      * Displays a listing of deny email rules.
      * Returns a listing of all the deny block rules you have configured.
      * @return kotlin.collections.List<DenyRuleRecord>
@@ -380,6 +398,7 @@ class BlockingApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClien
     }
 
     /**
+     * GET /mail/rules
      * Displays a listing of deny email rules.
      * Returns a listing of all the deny block rules you have configured.
      * @return ApiResponse<kotlin.collections.List<DenyRuleRecord>?>

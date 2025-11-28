@@ -3,7 +3,7 @@ MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.1.0
+API version: 1.3.0
 Contact: support@interserver.net
 */
 
@@ -26,9 +26,16 @@ type HistoryAPIService service
 type ApiGetStatsRequest struct {
 	ctx context.Context
 	ApiService *HistoryAPIService
+	time *string
 }
 
-func (r ApiGetStatsRequest) Execute() ([]GetStats200ResponseInner, *http.Response, error) {
+// The timeframe for the statistics.
+func (r ApiGetStatsRequest) Time(time string) ApiGetStatsRequest {
+	r.time = &time
+	return r
+}
+
+func (r ApiGetStatsRequest) Execute() (*MailStatsType, *http.Response, error) {
 	return r.ApiService.GetStatsExecute(r)
 }
 
@@ -48,13 +55,13 @@ func (a *HistoryAPIService) GetStats(ctx context.Context) ApiGetStatsRequest {
 }
 
 // Execute executes the request
-//  @return []GetStats200ResponseInner
-func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200ResponseInner, *http.Response, error) {
+//  @return MailStatsType
+func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) (*MailStatsType, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []GetStats200ResponseInner
+		localVarReturnValue  *MailStatsType
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HistoryAPIService.GetStats")
@@ -68,6 +75,9 @@ func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) ([]GetStats200
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.time != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "time", r.time, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -171,6 +181,9 @@ type ApiViewMailLogRequest struct {
 	limit *int32
 	startDate *int64
 	endDate *int64
+	replyto *string
+	headerfrom *string
+	delivered *string
 }
 
 // The ID of your mail order this will be sent through.
@@ -239,6 +252,24 @@ func (r ApiViewMailLogRequest) EndDate(endDate int64) ApiViewMailLogRequest {
 	return r
 }
 
+// Reply-To Email Address
+func (r ApiViewMailLogRequest) Replyto(replyto string) ApiViewMailLogRequest {
+	r.replyto = &replyto
+	return r
+}
+
+// Header From Email Address
+func (r ApiViewMailLogRequest) Headerfrom(headerfrom string) ApiViewMailLogRequest {
+	r.headerfrom = &headerfrom
+	return r
+}
+
+// Limiting the emails to wether or not they were delivered.
+func (r ApiViewMailLogRequest) Delivered(delivered string) ApiViewMailLogRequest {
+	r.delivered = &delivered
+	return r
+}
+
 func (r ApiViewMailLogRequest) Execute() (*MailLog, *http.Response, error) {
 	return r.ApiService.ViewMailLogExecute(r)
 }
@@ -281,43 +312,54 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	localVarFormParams := url.Values{}
 
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
 	if r.origin != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "origin", r.origin, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "origin", r.origin, "form", "")
 	}
 	if r.mx != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mx", r.mx, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mx", r.mx, "form", "")
 	}
 	if r.from != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from", r.from, "form", "")
 	}
 	if r.to != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to", r.to, "form", "")
 	}
 	if r.subject != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subject", r.subject, "form", "")
 	}
 	if r.mailid != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "mailid", r.mailid, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "mailid", r.mailid, "form", "")
 	}
 	if r.skip != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "form", "")
 	} else {
-		var defaultValue int32 = 0
-		r.skip = &defaultValue
+        var defaultValue int32 = 0
+        parameterAddToHeaderOrQuery(localVarQueryParams, "skip", defaultValue, "form", "")
+        r.skip = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	} else {
-		var defaultValue int32 = 100
-		r.limit = &defaultValue
+        var defaultValue int32 = 100
+        parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
+        r.limit = &defaultValue
 	}
 	if r.startDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "startDate", r.startDate, "form", "")
 	}
 	if r.endDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "form", "")
+	}
+	if r.replyto != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "replyto", r.replyto, "form", "")
+	}
+	if r.headerfrom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "form", "")
+	}
+	if r.delivered != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "delivered", r.delivered, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

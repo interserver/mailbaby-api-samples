@@ -17,11 +17,14 @@ public struct SendMail: Codable {
     public var subject: String
     /// The main email contents.
     public var body: String
+    /// Optional Order ID
+    public var id: Int?
 
-    public init(to: String, from: String, subject: String, body: String) {
+    public init(to: String, from: String, subject: String, body: String, id: Int? = nil) {
         self.to = to
         self.from = from
         self.subject = subject
         self.body = body
+        self.id = id
     }
 }

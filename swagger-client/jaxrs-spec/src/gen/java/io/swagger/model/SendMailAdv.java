@@ -125,6 +125,7 @@ public class SendMailAdv   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("replyto")
+  @NotNull
 
   public EmailAddressesTypes getReplyto() {
     return replyto;
@@ -143,6 +144,7 @@ public class SendMailAdv   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("cc")
+  @NotNull
 
   public EmailAddressesTypes getCc() {
     return cc;
@@ -161,6 +163,7 @@ public class SendMailAdv   {
   
   @ApiModelProperty(value = "")
   @JsonProperty("bcc")
+  @NotNull
 
   public EmailAddressesTypes getBcc() {
     return bcc;
@@ -180,6 +183,7 @@ public class SendMailAdv   {
   
   @ApiModelProperty(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", value = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
   @JsonProperty("attachments")
+  @NotNull
 
   public List<MailAttachment> getAttachments() {
     return attachments;
@@ -199,6 +203,7 @@ public class SendMailAdv   {
   
   @ApiModelProperty(example = "5000", value = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
   @JsonProperty("id")
+  @NotNull
 
   public Long getId() {
     return id;

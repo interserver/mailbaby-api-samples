@@ -1,6 +1,5 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,54 +7,64 @@ import org.openapitools.model.EmailAddressTypes;
 import org.openapitools.model.EmailAddressesTypes;
 import org.openapitools.model.MailAttachment;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * Details for an Email
- **/
+ * Details for an Email
+ */
 @ApiModel(description="Details for an Email")
 
 public class SendMailAdv  {
   
-  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
  /**
-   * The subject or title of the email
-  **/
+  * The subject or title of the email
+  */
+  @ApiModelProperty(example = "Your Package has been Delivered!", required = true, value = "The subject or title of the email")
+
   private String subject;
 
-  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", required = true, value = "The main email contents.")
  /**
-   * The main email contents.
-  **/
+  * The main email contents.
+  */
+  @ApiModelProperty(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", required = true, value = "The main email contents.")
+
   private String body;
 
   @ApiModelProperty(required = true, value = "")
+
   private EmailAddressTypes from;
 
   @ApiModelProperty(required = true, value = "")
+
   private EmailAddressesTypes to;
 
   @ApiModelProperty(value = "")
+
   private EmailAddressesTypes replyto;
 
   @ApiModelProperty(value = "")
+
   private EmailAddressesTypes cc;
 
   @ApiModelProperty(value = "")
+
   private EmailAddressesTypes bcc;
 
+ /**
+  * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+  */
   @ApiModelProperty(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", value = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
- /**
-   * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-  **/
-  private List<MailAttachment> attachments;
 
-  @ApiModelProperty(example = "5000", value = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
+  private List<MailAttachment> attachments = new ArrayList<>();
+
  /**
-   * (optional)  ID of the Mail order within our system to use as the Mail Account.
-  **/
+  * (optional)  ID of the Mail order within our system to use as the Mail Account.
+  */
+  @ApiModelProperty(example = "5000", value = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
+
   private Long id;
  /**
    * The subject or title of the email
@@ -233,15 +242,15 @@ public class SendMailAdv  {
       return false;
     }
     SendMailAdv sendMailAdv = (SendMailAdv) o;
-    return Objects.equals(subject, sendMailAdv.subject) &&
-        Objects.equals(body, sendMailAdv.body) &&
-        Objects.equals(from, sendMailAdv.from) &&
-        Objects.equals(to, sendMailAdv.to) &&
-        Objects.equals(replyto, sendMailAdv.replyto) &&
-        Objects.equals(cc, sendMailAdv.cc) &&
-        Objects.equals(bcc, sendMailAdv.bcc) &&
-        Objects.equals(attachments, sendMailAdv.attachments) &&
-        Objects.equals(id, sendMailAdv.id);
+    return Objects.equals(this.subject, sendMailAdv.subject) &&
+        Objects.equals(this.body, sendMailAdv.body) &&
+        Objects.equals(this.from, sendMailAdv.from) &&
+        Objects.equals(this.to, sendMailAdv.to) &&
+        Objects.equals(this.replyto, sendMailAdv.replyto) &&
+        Objects.equals(this.cc, sendMailAdv.cc) &&
+        Objects.equals(this.bcc, sendMailAdv.bcc) &&
+        Objects.equals(this.attachments, sendMailAdv.attachments) &&
+        Objects.equals(this.id, sendMailAdv.id);
   }
 
   @Override

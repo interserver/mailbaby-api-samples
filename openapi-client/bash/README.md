@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
 *BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
 *HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
 *HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email
 *SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
 *ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
@@ -125,7 +126,6 @@ Class | Method | HTTP request | Description
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)
  - [ErrorMessage](docs/ErrorMessage.md)
  - [GenericResponse](docs/GenericResponse.md)
- - [GetStats200ResponseInner](docs/GetStats200ResponseInner.md)
  - [MailAttachment](docs/MailAttachment.md)
  - [MailBlockClickHouse](docs/MailBlockClickHouse.md)
  - [MailBlockRspamd](docs/MailBlockRspamd.md)
@@ -133,8 +133,14 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
  - [MailOrder](docs/MailOrder.md)
+ - [MailStatsType](docs/MailStatsType.md)
+ - [MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
+ - [MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
+ - [MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
+ - [MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
+ - [SendMailRaw](docs/SendMailRaw.md)
 
 
 ## Documentation For Authorization

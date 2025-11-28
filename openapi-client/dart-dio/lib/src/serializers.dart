@@ -21,7 +21,6 @@ import 'package:openapi/src/model/email_address_types.dart';
 import 'package:openapi/src/model/email_addresses_types.dart';
 import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/generic_response.dart';
-import 'package:openapi/src/model/get_stats200_response_inner.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
 import 'package:openapi/src/model/mail_block_click_house.dart';
 import 'package:openapi/src/model/mail_block_rspamd.dart';
@@ -29,8 +28,14 @@ import 'package:openapi/src/model/mail_blocks.dart';
 import 'package:openapi/src/model/mail_log.dart';
 import 'package:openapi/src/model/mail_log_entry.dart';
 import 'package:openapi/src/model/mail_order.dart';
+import 'package:openapi/src/model/mail_stats_type.dart';
+import 'package:openapi/src/model/mail_stats_type_volume.dart';
+import 'package:openapi/src/model/mail_stats_type_volume_from.dart';
+import 'package:openapi/src/model/mail_stats_type_volume_ip.dart';
+import 'package:openapi/src/model/mail_stats_type_volume_to.dart';
 import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
+import 'package:openapi/src/model/send_mail_raw.dart';
 
 part 'serializers.g.dart';
 
@@ -42,7 +47,6 @@ part 'serializers.g.dart';
   EmailAddressesTypes,
   ErrorMessage,
   GenericResponse,
-  GetStats200ResponseInner,
   MailAttachment,
   MailBlockClickHouse,
   MailBlockRspamd,
@@ -50,8 +54,14 @@ part 'serializers.g.dart';
   MailLog,
   MailLogEntry,
   MailOrder,
+  MailStatsType,
+  MailStatsTypeVolume,
+  MailStatsTypeVolumeFrom,
+  MailStatsTypeVolumeIp,
+  MailStatsTypeVolumeTo,
   SendMail,
   SendMailAdv,
+  SendMailRaw,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
@@ -63,10 +73,6 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<MailAttachment>(),
       )
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(GetStats200ResponseInner)]),
-        () => ListBuilder<GetStats200ResponseInner>(),
-      )
-      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(MailOrder)]),
         () => ListBuilder<MailOrder>(),
       )
@@ -74,8 +80,8 @@ Serializers serializers = (_$serializers.toBuilder()
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
       ..add(const DateSerializer())
-      ..add(Iso8601DateTimeSerializer()))
-    .build();
+      ..add(Iso8601DateTimeSerializer())
+    ).build();
 
 Serializers standardSerializers =
     (serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

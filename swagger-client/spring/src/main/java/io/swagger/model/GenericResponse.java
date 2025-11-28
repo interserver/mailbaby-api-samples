@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -12,17 +17,26 @@ import javax.validation.constraints.*;
  * GenericResponse
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class GenericResponse   {
   @JsonProperty("status")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String status = null;
 
   @JsonProperty("text")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String text = null;
 
-  public GenericResponse status(String status) {
+
+  public GenericResponse status(String status) { 
+
     this.status = status;
     return this;
   }
@@ -31,17 +45,21 @@ public class GenericResponse   {
    * Get status
    * @return status
    **/
+  
   @Schema(example = "ok", description = "")
   
-    public String getStatus() {
+  public String getStatus() {  
     return status;
   }
 
-  public void setStatus(String status) {
+
+
+  public void setStatus(String status) { 
     this.status = status;
   }
 
-  public GenericResponse text(String text) {
+  public GenericResponse text(String text) { 
+
     this.text = text;
     return this;
   }
@@ -50,16 +68,18 @@ public class GenericResponse   {
    * Get text
    * @return text
    **/
+  
   @Schema(example = "The command completed successfully.", description = "")
   
-    public String getText() {
+  public String getText() {  
     return text;
   }
 
-  public void setText(String text) {
+
+
+  public void setText(String text) { 
     this.text = text;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

@@ -12,7 +12,6 @@ from swagger_server.models.email_address_types import EmailAddressTypes
 from swagger_server.models.email_addresses_types import EmailAddressesTypes
 from swagger_server.models.error_message import ErrorMessage
 from swagger_server.models.generic_response import GenericResponse
-from swagger_server.models.inline_response200 import InlineResponse200
 from swagger_server.models.mail_attachment import MailAttachment
 from swagger_server.models.mail_block_click_house import MailBlockClickHouse
 from swagger_server.models.mail_block_rspamd import MailBlockRspamd
@@ -20,5 +19,11 @@ from swagger_server.models.mail_blocks import MailBlocks
 from swagger_server.models.mail_log import MailLog
 from swagger_server.models.mail_log_entry import MailLogEntry
 from swagger_server.models.mail_order import MailOrder
+from swagger_server.models.mail_stats_type import MailStatsType
+from swagger_server.models.mail_stats_type_volume import MailStatsTypeVolume
+from swagger_server.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom
+from swagger_server.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp
+from swagger_server.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo
 from swagger_server.models.send_mail import SendMail
 from swagger_server.models.send_mail_adv import SendMailAdv
+from swagger_server.models.send_mail_raw import SendMailRaw

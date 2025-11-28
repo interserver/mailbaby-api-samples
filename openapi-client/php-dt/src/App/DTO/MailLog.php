@@ -32,8 +32,8 @@ class MailLog
     public int|null $limit = null;
 
     #[DTA\Data(field: "emails")]
-    #[DTA\Strategy("Object", ["type" => \App\DTO\Collection6::class])]
-    #[DTA\Validator("TypeCompliant", ["type" => \App\DTO\Collection6::class])]
-    public \App\DTO\Collection6|null $emails = null;
+    #[DTA\Strategy("Object", ["type" => \App\DTO\Collection5::class])]
+    #[DTA\Validator("TypeCompliant", ["type" => \App\DTO\Collection5::class])]
+    public \App\DTO\Collection5|null $emails = null;
 
 }

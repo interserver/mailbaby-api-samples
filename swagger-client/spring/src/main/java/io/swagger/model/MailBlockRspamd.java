@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,17 +18,22 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "This is a block entry from the rspamd block list.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class MailBlockRspamd   {
   @JsonProperty("from")
+
   private String from = null;
 
   @JsonProperty("subject")
+
   private String subject = null;
 
-  public MailBlockRspamd from(String from) {
+
+  public MailBlockRspamd from(String from) { 
+
     this.from = from;
     return this;
   }
@@ -32,18 +42,23 @@ public class MailBlockRspamd   {
    * Get from
    * @return from
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    public String getFrom() {
+  
+  @NotNull
+  public String getFrom() {  
     return from;
   }
 
-  public void setFrom(String from) {
+
+
+  public void setFrom(String from) { 
+
     this.from = from;
   }
 
-  public MailBlockRspamd subject(String subject) {
+  public MailBlockRspamd subject(String subject) { 
+
     this.subject = subject;
     return this;
   }
@@ -52,17 +67,20 @@ public class MailBlockRspamd   {
    * Get subject
    * @return subject
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    public String getSubject() {
+  
+  @NotNull
+  public String getSubject() {  
     return subject;
   }
 
-  public void setSubject(String subject) {
+
+
+  public void setSubject(String subject) { 
+
     this.subject = subject;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

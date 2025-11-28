@@ -7,18 +7,18 @@
 
 %% @doc Account usage statistics.
 %% Returns information about the usage on your mail accounts.
--spec get_stats(ctx:ctx()) -> {ok, [openapi_get_stats_200_response_inner:openapi_get_stats_200_response_inner()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_stats(ctx:ctx()) -> {ok, openapi_mail_stats_type:openapi_mail_stats_type(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_stats(Ctx) ->
     get_stats(Ctx, #{}).
 
--spec get_stats(ctx:ctx(), maps:map()) -> {ok, [openapi_get_stats_200_response_inner:openapi_get_stats_200_response_inner()], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
+-spec get_stats(ctx:ctx(), maps:map()) -> {ok, openapi_mail_stats_type:openapi_mail_stats_type(), openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 get_stats(Ctx, Optional) ->
     _OptionalParams = maps:get(params, Optional, #{}),
     Cfg = maps:get(cfg, Optional, application:get_env(openapi_api, config, #{})),
 
     Method = get,
     Path = [?BASE_URL, "/mail/stats"],
-    QS = [],
+    QS = lists:flatten([])++openapi_utils:optional_params(['time'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),
@@ -39,7 +39,7 @@ view_mail_log(Ctx, Optional) ->
 
     Method = get,
     Path = [?BASE_URL, "/mail/log"],
-    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'origin', 'mx', 'from', 'to', 'subject', 'mailid', 'skip', 'limit', 'startDate', 'endDate'], _OptionalParams),
+    QS = lists:flatten([])++openapi_utils:optional_params(['id', 'origin', 'mx', 'from', 'to', 'subject', 'mailid', 'skip', 'limit', 'startDate', 'endDate', 'replyto', 'headerfrom', 'delivered'], _OptionalParams),
     Headers = [],
     Body1 = [],
     ContentTypeHeader = openapi_utils:select_header_content_type([]),

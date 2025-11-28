@@ -1,41 +1,52 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * Details for an Email
- **/
+ * Details for an Email
+ */
 @ApiModel(description="Details for an Email")
 
 public class SendMail  {
   
-  @ApiModelProperty(example = "johndoe@company.com", required = true, value = "The Contact whom is the primary recipient of this email.")
  /**
-   * The Contact whom is the primary recipient of this email.
-  **/
+  * The Contact whom is the primary recipient of this email.
+  */
+  @ApiModelProperty(example = "johndoe@company.com", required = true, value = "The Contact whom is the primary recipient of this email.")
+
   private String to;
 
-  @ApiModelProperty(example = "janedoe@company.com", required = true, value = "The contact whom is the this email is from.")
  /**
-   * The contact whom is the this email is from.
-  **/
+  * The contact whom is the this email is from.
+  */
+  @ApiModelProperty(example = "janedoe@company.com", required = true, value = "The contact whom is the this email is from.")
+
   private String from;
 
-  @ApiModelProperty(example = "Attention Client", required = true, value = "The subject or title of the email")
  /**
-   * The subject or title of the email
-  **/
+  * The subject or title of the email
+  */
+  @ApiModelProperty(example = "Attention Client", required = true, value = "The subject or title of the email")
+
   private String subject;
 
-  @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The main email contents.")
  /**
-   * The main email contents.
-  **/
+  * The main email contents.
+  */
+  @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The main email contents.")
+
   private String body;
+
+ /**
+  * Optional Order ID
+  */
+  @ApiModelProperty(value = "Optional Order ID")
+
+  private Integer id;
  /**
    * The Contact whom is the primary recipient of this email.
    * @return to
@@ -108,6 +119,24 @@ public class SendMail  {
     return this;
   }
 
+ /**
+   * Optional Order ID
+   * @return id
+  **/
+  @JsonProperty("id")
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -117,15 +146,16 @@ public class SendMail  {
       return false;
     }
     SendMail sendMail = (SendMail) o;
-    return Objects.equals(to, sendMail.to) &&
-        Objects.equals(from, sendMail.from) &&
-        Objects.equals(subject, sendMail.subject) &&
-        Objects.equals(body, sendMail.body);
+    return Objects.equals(this.to, sendMail.to) &&
+        Objects.equals(this.from, sendMail.from) &&
+        Objects.equals(this.subject, sendMail.subject) &&
+        Objects.equals(this.body, sendMail.body) &&
+        Objects.equals(this.id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -137,6 +167,7 @@ public class SendMail  {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

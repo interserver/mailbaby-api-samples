@@ -26,7 +26,7 @@ class SendMailAdv {
     
     EmailAddressesTypes bcc
     /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
-    List<MailAttachment> attachments
+    List<MailAttachment> attachments = new ArrayList<>()
     /* (optional)  ID of the Mail order within our system to use as the Mail Account. */
     Long id
 }

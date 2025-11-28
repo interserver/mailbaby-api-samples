@@ -6,8 +6,8 @@ from flask import json
 from six import BytesIO
 
 from swagger_server.models.error_message import ErrorMessage  # noqa: E501
-from swagger_server.models.inline_response200 import InlineResponse200  # noqa: E501
 from swagger_server.models.mail_log import MailLog  # noqa: E501
+from swagger_server.models.mail_stats_type import MailStatsType  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -19,9 +19,11 @@ class TestHistoryController(BaseTestCase):
 
         Account usage statistics.
         """
+        query_string = [('time', 'time_example')]
         response = self.client.open(
             '/mail/stats',
-            method='GET')
+            method='GET',
+            query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
@@ -40,7 +42,10 @@ class TestHistoryController(BaseTestCase):
                         ('skip', 1),
                         ('limit', 10000),
                         ('start_date', 9999999999),
-                        ('end_date', 9999999999)]
+                        ('end_date', 9999999999),
+                        ('replyto', 'replyto_example'),
+                        ('headerfrom', 'headerfrom_example'),
+                        ('delivered', 'delivered_example')]
         response = self.client.open(
             '/mail/log',
             method='GET',

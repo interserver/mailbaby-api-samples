@@ -11,11 +11,25 @@ import Alamofire
 
 open class HistoryAPI: APIBase {
     /**
+     * enum for parameter time
+     */
+    public enum Time_getStats: String { 
+        case all = "all"
+        case billing = "billing"
+        case month = "month"
+        case _7d = "7d"
+        case _24h = "24h"
+        case _1d = "1d"
+        case _1h = "1h"
+    }
+
+    /**
      Account usage statistics.
+     - parameter time: (query) The timeframe for the statistics. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func getStats(completion: @escaping ((_ data: [InlineResponse200]?, _ error: ErrorResponse?) -> Void)) {
-        getStatsWithRequestBuilder().execute { (response, error) -> Void in
+    open class func getStats(time: Time_getStats? = nil, completion: @escaping ((_ data: MailStatsType?, _ error: ErrorResponse?) -> Void)) {
+        getStatsWithRequestBuilder(time: time).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -28,31 +42,56 @@ open class HistoryAPI: APIBase {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - examples: [{contentType=application/json, example=[ {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}, {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-} ]}]
-     - returns: RequestBuilder<[InlineResponse200]> 
+     - examples: [{contentType=application/json, example={
+  "time" : "all",
+  "usage" : 55,
+  "currency" : "USD",
+  "currencySymbol" : "$",
+  "cost" : 1.02,
+  "received" : 508,
+  "sent" : 495,
+  "volume" : {
+    "to" : {
+      "client@domain.com" : 395,
+      "user@site.net" : 57,
+      "sales@company.com" : 47,
+      "client@anothersite.com" : 9
+    },
+    "from" : {
+      "billing@somedomain.com" : 369,
+      "sales@somedomain.com" : 139
+    },
+    "ip" : {
+      "1.1.1.1" : 142,
+      "2.2.2.2" : 132,
+      "3.3.3.3" : 129,
+      "4.4.4.4" : 105
+    }
+  }
+}}]
+     - parameter time: (query) The timeframe for the statistics. (optional)
+     - returns: RequestBuilder<MailStatsType> 
      */
-    open class func getStatsWithRequestBuilder() -> RequestBuilder<[InlineResponse200]> {
+    open class func getStatsWithRequestBuilder(time: Time_getStats? = nil) -> RequestBuilder<MailStatsType> {
         let path = "/mail/stats"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems(values:[
+                        "time": time?.rawValue
+        ])
 
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<[InlineResponse200]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<MailStatsType>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     * enum for parameter delivered
+     */
+    public enum Delivered_viewMailLog: String { 
+        case _0 = "0"
+        case _1 = "1"
     }
 
     /**
@@ -68,10 +107,13 @@ open class HistoryAPI: APIBase {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
+     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping ((_ data: MailLog?, _ error: ErrorResponse?) -> Void)) {
-        viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute { (response, error) -> Void in
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, completion: @escaping ((_ data: MailLog?, _ error: ErrorResponse?) -> Void)) {
+        viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
@@ -104,6 +146,7 @@ open class HistoryAPI: APIBase {
     "sendingZone" : "interserver",
     "bodySize" : 63,
     "seq" : 1,
+    "delivered" : 1,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -125,9 +168,12 @@ open class HistoryAPI: APIBase {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
+     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int32? = nil, limit: Int32? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil) -> RequestBuilder<MailLog> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -143,7 +189,10 @@ open class HistoryAPI: APIBase {
                         "skip": skip?.encodeToJSON(),
                         "limit": limit?.encodeToJSON(),
                         "startDate": startDate?.encodeToJSON(),
-                        "endDate": endDate?.encodeToJSON()
+                        "endDate": endDate?.encodeToJSON(),
+                        "replyto": replyto,
+                        "headerfrom": headerfrom,
+                        "delivered": delivered?.rawValue
         ])
 
         let requestBuilder: RequestBuilder<MailLog>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

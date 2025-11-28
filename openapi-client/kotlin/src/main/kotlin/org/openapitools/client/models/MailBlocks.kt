@@ -41,5 +41,8 @@ data class MailBlocks (
     @Json(name = "subject")
     val subject: kotlin.collections.List<MailBlockRspamd>
 
-)
+) {
+
+
+}
 

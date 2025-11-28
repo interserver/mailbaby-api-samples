@@ -1,13 +1,31 @@
 ## SendingApi
 
+### Sends a raw email
+## Sends a raw email
+POST https://api.mailbaby.net/mail/rawsend
+Content-Type: application/json
+Content-Type: multipart/form-data
+Accept: application/json
+X-API-KEY: {{apiKey}}
+
+{
+ "raw_email": "<string>",
+ "id": "<number>"
+}
+
+
 ### Sends an Email with Advanced Options
-# @name sendAdvMail
+## Sends an Email with Advanced Options
 POST https://api.mailbaby.net/mail/advsend
 Content-Type: application/x-www-form-urlencoded
 Content-Type: application/json
+Accept: application/json
+X-API-KEY: {{apiKey}}
 
 ### Sends an Email
-# @name sendMail
+## Sends an Email
 POST https://api.mailbaby.net/mail/send
 Content-Type: application/x-www-form-urlencoded
 Content-Type: application/json
+Accept: application/json
+X-API-KEY: {{apiKey}}

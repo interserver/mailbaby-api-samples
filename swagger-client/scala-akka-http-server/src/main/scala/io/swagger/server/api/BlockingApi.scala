@@ -18,9 +18,9 @@ class BlockingApi(
   import blockingMarshaller._
 
   lazy val route: Route =
-    path() { () => 
+    path() { 
       post {
-        parameters() { () =>
+        
           
             formFields("user".as[String], "type".as[String], "data".as[String]) { (user, &#x60;type&#x60;, data) =>
               
@@ -30,67 +30,67 @@ class BlockingApi(
              
             }
          
-        }
+       
       }
     } ~
     path() { (ruleId) => 
       delete {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 
                   blockingService.deleteRule(ruleId = ruleId)
                
              
-            }
+           
          
-        }
+       
       }
     } ~
-    path() { () => 
+    path() { 
       post {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 entity(as[String]){ body =>
                   blockingService.delistBlock(body = body)
                 }
              
-            }
+           
          
-        }
+       
       }
     } ~
-    path() { () => 
+    path() { 
       get {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 
                   blockingService.getMailBlocks()
                
              
-            }
+           
          
-        }
+       
       }
     } ~
-    path() { () => 
+    path() { 
       get {
-        parameters() { () =>
+        
           
-            formFields() { () =>
+            
               
                 
                   blockingService.getRules()
                
              
-            }
+           
          
-        }
+       
       }
     }
 }

@@ -12,11 +12,29 @@ from swagger_server.models.generic_response import GenericResponse  # noqa: E501
 from swagger_server.models.mail_attachment import MailAttachment  # noqa: E501
 from swagger_server.models.send_mail import SendMail  # noqa: E501
 from swagger_server.models.send_mail_adv import SendMailAdv  # noqa: E501
+from swagger_server.models.send_mail_raw import SendMailRaw  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
 class TestSendingController(BaseTestCase):
     """SendingController integration test stubs"""
+
+    def test_raw_mail(self):
+        """Test case for raw_mail
+
+        Sends a raw email
+        """
+        body = SendMailRaw()
+        data = dict(raw_email='raw_email_example',
+                    id=56)
+        response = self.client.open(
+            '/mail/rawsend',
+            method='POST',
+            data=json.dumps(body),
+            data=data,
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
 
     def test_send_adv_mail(self):
         """Test case for send_adv_mail
@@ -51,7 +69,8 @@ class TestSendingController(BaseTestCase):
         data = dict(to='to_example',
                     _from='_from_example',
                     subject='subject_example',
-                    body='body_example')
+                    body='body_example',
+                    id=56)
         response = self.client.open(
             '/mail/send',
             method='POST',

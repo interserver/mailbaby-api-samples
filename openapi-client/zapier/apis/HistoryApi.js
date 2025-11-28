@@ -1,7 +1,7 @@
 const samples = require('../samples/HistoryApi');
 const ErrorMessage = require('../models/ErrorMessage');
 const MailLog = require('../models/MailLog');
-const getStats_200_response_inner = require('../models/getStats_200_response_inner');
+const MailStatsType = require('../models/MailStatsType');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -15,8 +15,23 @@ module.exports = {
         },
         operation: {
             inputFields: [
+                {
+                    key: 'time',
+                    label: 'The timeframe for the statistics.',
+                    type: 'string',
+                    choices: [
+                        'all',
+                        'billing',
+                        'month',
+                        '7d',
+                        '24h',
+                        '1d',
+                        '1h',
+                    ],
+                },
             ],
             outputFields: [
+                ...MailStatsType.fields('', false),
             ],
             perform: async (z, bundle) => {
                 const options = {
@@ -24,22 +39,22 @@ module.exports = {
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': 'application/json',
                     },
                     params: {
+                        'time': bundle.inputData?.['time'],
                     },
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'getStats', response.json);
                     return results;
                 })
             },
-            sample: samples['getStats_200_response_innerSample']
+            sample: samples['MailStatsTypeSample']
         }
     },
     viewMailLog: {
@@ -107,6 +122,25 @@ module.exports = {
                     label: 'earliest date to get emails in unix timestamp format',
                     type: 'number',
                 },
+                {
+                    key: 'replyto',
+                    label: 'Reply-To Email Address',
+                    type: 'string',
+                },
+                {
+                    key: 'headerfrom',
+                    label: 'Header From Email Address',
+                    type: 'string',
+                },
+                {
+                    key: 'delivered',
+                    label: 'Limiting the emails to wether or not they were delivered.',
+                    type: 'string',
+                    choices: [
+                        '0',
+                        '1',
+                    ],
+                },
             ],
             outputFields: [
                 ...MailLog.fields('', false),
@@ -117,7 +151,6 @@ module.exports = {
                     method: 'GET',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Authorization': 'Bearer {{bundle.authData.access_token}}',
                         'Content-Type': '',
                         'Accept': 'application/json',
                     },
@@ -133,13 +166,16 @@ module.exports = {
                         'limit': bundle.inputData?.['limit'],
                         'startDate': bundle.inputData?.['startDate'],
                         'endDate': bundle.inputData?.['endDate'],
+                        'replyto': bundle.inputData?.['replyto'],
+                        'headerfrom': bundle.inputData?.['headerfrom'],
+                        'delivered': bundle.inputData?.['delivered'],
                     },
                     body: {
                     },
                 }
-                return z.request(options).then((response) => {
+                return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
-                    const results = response.json;
+                    const results = utils.responseOptionsMiddleware(z, bundle, 'viewMailLog', response.json);
                     return results;
                 })
             },

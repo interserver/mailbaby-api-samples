@@ -8,16 +8,19 @@ module.exports = {
             {
                 key: `${keyPrefix}total`,
                 label: `total number of mail log entries - [${labelPrefix}total]`,
+                required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}skip`,
                 label: `number of emails skipped in listing - [${labelPrefix}skip]`,
+                required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}limit`,
                 label: `number of emails to return - [${labelPrefix}limit]`,
+                required: true,
                 type: 'integer',
             },
             {

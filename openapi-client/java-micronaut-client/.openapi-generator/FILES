@@ -18,7 +18,6 @@ docs/models/EmailAddressTypes.md
 docs/models/EmailAddressesTypes.md
 docs/models/ErrorMessage.md
 docs/models/GenericResponse.md
-docs/models/GetStats200ResponseInner.md
 docs/models/MailAttachment.md
 docs/models/MailBlockClickHouse.md
 docs/models/MailBlockRspamd.md
@@ -26,8 +25,14 @@ docs/models/MailBlocks.md
 docs/models/MailLog.md
 docs/models/MailLogEntry.md
 docs/models/MailOrder.md
+docs/models/MailStatsType.md
+docs/models/MailStatsTypeVolume.md
+docs/models/MailStatsTypeVolumeFrom.md
+docs/models/MailStatsTypeVolumeIp.md
+docs/models/MailStatsTypeVolumeTo.md
 docs/models/SendMail.md
 docs/models/SendMailAdv.md
+docs/models/SendMailRaw.md
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
@@ -49,7 +54,6 @@ src/main/java/org/openapitools/model/EmailAddressTypes.java
 src/main/java/org/openapitools/model/EmailAddressesTypes.java
 src/main/java/org/openapitools/model/ErrorMessage.java
 src/main/java/org/openapitools/model/GenericResponse.java
-src/main/java/org/openapitools/model/GetStats200ResponseInner.java
 src/main/java/org/openapitools/model/MailAttachment.java
 src/main/java/org/openapitools/model/MailBlockClickHouse.java
 src/main/java/org/openapitools/model/MailBlockRspamd.java
@@ -57,8 +61,14 @@ src/main/java/org/openapitools/model/MailBlocks.java
 src/main/java/org/openapitools/model/MailLog.java
 src/main/java/org/openapitools/model/MailLogEntry.java
 src/main/java/org/openapitools/model/MailOrder.java
+src/main/java/org/openapitools/model/MailStatsType.java
+src/main/java/org/openapitools/model/MailStatsTypeVolume.java
+src/main/java/org/openapitools/model/MailStatsTypeVolumeFrom.java
+src/main/java/org/openapitools/model/MailStatsTypeVolumeIp.java
+src/main/java/org/openapitools/model/MailStatsTypeVolumeTo.java
 src/main/java/org/openapitools/model/SendMail.java
 src/main/java/org/openapitools/model/SendMailAdv.java
+src/main/java/org/openapitools/model/SendMailRaw.java
 src/main/resources/application.yml
 src/main/resources/logback.xml
 src/test/java/org/openapitools/api/BlockingApiTest.java
@@ -73,7 +83,6 @@ src/test/java/org/openapitools/model/EmailAddressTypesTest.java
 src/test/java/org/openapitools/model/EmailAddressesTypesTest.java
 src/test/java/org/openapitools/model/ErrorMessageTest.java
 src/test/java/org/openapitools/model/GenericResponseTest.java
-src/test/java/org/openapitools/model/GetStats200ResponseInnerTest.java
 src/test/java/org/openapitools/model/MailAttachmentTest.java
 src/test/java/org/openapitools/model/MailBlockClickHouseTest.java
 src/test/java/org/openapitools/model/MailBlockRspamdTest.java
@@ -81,5 +90,11 @@ src/test/java/org/openapitools/model/MailBlocksTest.java
 src/test/java/org/openapitools/model/MailLogEntryTest.java
 src/test/java/org/openapitools/model/MailLogTest.java
 src/test/java/org/openapitools/model/MailOrderTest.java
+src/test/java/org/openapitools/model/MailStatsTypeTest.java
+src/test/java/org/openapitools/model/MailStatsTypeVolumeFromTest.java
+src/test/java/org/openapitools/model/MailStatsTypeVolumeIpTest.java
+src/test/java/org/openapitools/model/MailStatsTypeVolumeTest.java
+src/test/java/org/openapitools/model/MailStatsTypeVolumeToTest.java
 src/test/java/org/openapitools/model/SendMailAdvTest.java
+src/test/java/org/openapitools/model/SendMailRawTest.java
 src/test/java/org/openapitools/model/SendMailTest.java

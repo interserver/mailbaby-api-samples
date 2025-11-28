@@ -6,22 +6,46 @@
  * Schema Mail_order.t : A mail order record
  *)
 
-type t = {
-    (* The ID of the order. *)
-    id: int32;
-    (* The order status. *)
-    status: string;
-    (* The username to use for this order. *)
-    username: string;
-    (* Optional order comment. *)
-    comment: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-(** A mail order record *)
-let create (id : int32) (status : string) (username : string) : t = {
-    id = id;
-    status = status;
-    username = username;
-    comment = None;
-}
+
+    
+        type t = {
+                              id: int32
+                  
+                  
+                
+                
+                ; [@key "id"]
+                    (** The ID of the order. *)
+                                      status: string
+                  
+                  
+                
+                
+                ; [@key "status"]
+                    (** The order status. *)
+                                      username: string
+                  
+                  
+                
+                
+                ; [@key "username"]
+                    (** The username to use for this order. *)
+                                      comment: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "comment"]
+                    (** Optional order comment. *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** A mail order record *)
+        let create (id : int32) (status : string) (username : string) : t = {
+            id = id;
+            status = status;
+            username = username;
+            comment = None;
+        }
+    
 

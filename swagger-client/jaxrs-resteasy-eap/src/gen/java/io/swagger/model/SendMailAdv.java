@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="Details for an Email")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T07:22:36.127557706-05:00[America/New_York]")
 public class SendMailAdv   {
   private String subject = null;
   private String body = null;
@@ -85,6 +85,7 @@ public class SendMailAdv   {
   
   @Schema(description = "")
   @JsonProperty("replyto")
+  @NotNull
   public EmailAddressesTypes getReplyto() {
     return replyto;
   }
@@ -97,6 +98,7 @@ public class SendMailAdv   {
   
   @Schema(description = "")
   @JsonProperty("cc")
+  @NotNull
   public EmailAddressesTypes getCc() {
     return cc;
   }
@@ -109,6 +111,7 @@ public class SendMailAdv   {
   
   @Schema(description = "")
   @JsonProperty("bcc")
+  @NotNull
   public EmailAddressesTypes getBcc() {
     return bcc;
   }
@@ -122,6 +125,7 @@ public class SendMailAdv   {
   
   @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
   @JsonProperty("attachments")
+  @NotNull
   public List<MailAttachment> getAttachments() {
     return attachments;
   }
@@ -135,6 +139,7 @@ public class SendMailAdv   {
   
   @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
   @JsonProperty("id")
+  @NotNull
   public Long getId() {
     return id;
   }

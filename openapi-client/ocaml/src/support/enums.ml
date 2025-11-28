@@ -10,10 +10,53 @@ type denyrulenew_type = [
 | `Email [@printer fun fmt _ -> Format.pp_print_string fmt "email"] [@name "email"]
 | `Startswith [@printer fun fmt _ -> Format.pp_print_string fmt "startswith"] [@name "startswith"]
 | `Destination [@printer fun fmt _ -> Format.pp_print_string fmt "destination"] [@name "destination"]
-] [@@deriving yojson, show { with_path = false }];;
+] [@@deriving yojson, show { with_path = false }, eq];;
 
 let denyrulenew_type_of_yojson json = denyrulenew_type_of_yojson (`List [json])
 let denyrulenew_type_to_yojson e =
     match denyrulenew_type_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
+type delivered = [
+| `_0 [@printer fun fmt _ -> Format.pp_print_string fmt "0"] [@name "0"]
+| `_1 [@printer fun fmt _ -> Format.pp_print_string fmt "1"] [@name "1"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let delivered_of_yojson json = delivered_of_yojson (`List [json])
+let delivered_to_yojson e =
+    match delivered_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
+type time = [
+| `All [@printer fun fmt _ -> Format.pp_print_string fmt "all"] [@name "all"]
+| `Billing [@printer fun fmt _ -> Format.pp_print_string fmt "billing"] [@name "billing"]
+| `Month [@printer fun fmt _ -> Format.pp_print_string fmt "month"] [@name "month"]
+| `_7d [@printer fun fmt _ -> Format.pp_print_string fmt "7d"] [@name "7d"]
+| `_24h [@printer fun fmt _ -> Format.pp_print_string fmt "24h"] [@name "24h"]
+| `_1d [@printer fun fmt _ -> Format.pp_print_string fmt "1d"] [@name "1d"]
+| `_1h [@printer fun fmt _ -> Format.pp_print_string fmt "1h"] [@name "1h"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let time_of_yojson json = time_of_yojson (`List [json])
+let time_to_yojson e =
+    match time_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
+type mailstatstype_time = [
+| `All [@printer fun fmt _ -> Format.pp_print_string fmt "all"] [@name "all"]
+| `Billing [@printer fun fmt _ -> Format.pp_print_string fmt "billing"] [@name "billing"]
+| `Month [@printer fun fmt _ -> Format.pp_print_string fmt "month"] [@name "month"]
+| `_7d [@printer fun fmt _ -> Format.pp_print_string fmt "7d"] [@name "7d"]
+| `_24h [@printer fun fmt _ -> Format.pp_print_string fmt "24h"] [@name "24h"]
+| `Today [@printer fun fmt _ -> Format.pp_print_string fmt "today"] [@name "today"]
+| `_1h [@printer fun fmt _ -> Format.pp_print_string fmt "1h"] [@name "1h"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let mailstatstype_time_of_yojson json = mailstatstype_time_of_yojson (`List [json])
+let mailstatstype_time_to_yojson e =
+    match mailstatstype_time_to_yojson e with
     | `List [json] -> json
     | json -> json

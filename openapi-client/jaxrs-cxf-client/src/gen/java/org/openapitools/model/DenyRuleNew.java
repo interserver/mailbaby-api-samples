@@ -1,14 +1,14 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * The data for a email deny rule record.
- **/
+ * The data for a email deny rule record.
+ */
 @ApiModel(description="The data for a email deny rule record.")
 
 public class DenyRuleNew  {
@@ -43,22 +43,25 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
     }
 }
 
-  @ApiModelProperty(example = "email", required = true, value = "The type of deny rule.")
  /**
-   * The type of deny rule.
-  **/
+  * The type of deny rule.
+  */
+  @ApiModelProperty(example = "email", required = true, value = "The type of deny rule.")
+
   private TypeEnum type;
 
-  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
  /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-  **/
+  * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+  */
+  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
+
   private String data;
 
-  @ApiModelProperty(example = "mb20682", value = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
  /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-  **/
+  * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+  */
+  @ApiModelProperty(example = "mb20682", value = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+
   private String user;
  /**
    * The type of deny rule.
@@ -126,9 +129,9 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
       return false;
     }
     DenyRuleNew denyRuleNew = (DenyRuleNew) o;
-    return Objects.equals(type, denyRuleNew.type) &&
-        Objects.equals(data, denyRuleNew.data) &&
-        Objects.equals(user, denyRuleNew.user);
+    return Objects.equals(this.type, denyRuleNew.type) &&
+        Objects.equals(this.data, denyRuleNew.data) &&
+        Objects.equals(this.user, denyRuleNew.user);
   }
 
   @Override

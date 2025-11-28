@@ -2,8 +2,8 @@ package io.swagger.api.impl;
 
 import io.swagger.api.*;
 import io.swagger.model.ErrorMessage;
-import io.swagger.model.InlineResponse200;
 import io.swagger.model.MailLog;
+import io.swagger.model.MailStatsType;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -30,7 +30,7 @@ public class HistoryApiServiceImpl implements HistoryApi {
      * Returns information about the usage on your mail accounts.
      *
      */
-    public List<InlineResponse200> getStats() {
+    public MailStatsType getStats(String time) {
         // TODO: Implement...
         
         return null;
@@ -42,7 +42,7 @@ public class HistoryApiServiceImpl implements HistoryApi {
      * Get a listing of the emails sent through this system 
      *
      */
-    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate) {
+    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, String delivered) {
         // TODO: Implement...
         
         return null;

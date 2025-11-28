@@ -92,6 +92,7 @@ public class MailOrder   {
   
   @Schema(description = "Optional order comment.")
   @JsonProperty("comment")
+  @NotNull
   public String getComment() {
     return comment;
   }

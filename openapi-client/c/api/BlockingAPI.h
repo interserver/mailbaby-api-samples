@@ -19,7 +19,7 @@ typedef enum  { mailbaby_email_delivery_and_management_service_api_addRule_TYPE_
 // Adds a new email deny rule into the system to block new emails that match the given criteria
 //
 generic_response_t*
-BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type , char * data , char * user );
+BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_addRule_type_e type, char *data, char *user);
 
 
 // Removes an deny mail rule.
@@ -27,7 +27,7 @@ BlockingAPI_addRule(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
 // Removes one of the configured deny mail rules from the system.
 //
 generic_response_t*
-BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId );
+BlockingAPI_deleteRule(apiClient_t *apiClient, int *ruleId);
 
 
 // Removes an email address from the blocked list
@@ -35,7 +35,7 @@ BlockingAPI_deleteRule(apiClient_t *apiClient, int ruleId );
 // Removes an email address from the various block lists. 
 //
 generic_response_t*
-BlockingAPI_delistBlock(apiClient_t *apiClient, char * body );
+BlockingAPI_delistBlock(apiClient_t *apiClient, char *body);
 
 
 // displays a list of blocked email addresses

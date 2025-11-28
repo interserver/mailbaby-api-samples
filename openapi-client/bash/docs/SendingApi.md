@@ -4,9 +4,45 @@ All URIs are relative to **
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**rawMail**](SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 [**sendAdvMail**](SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**sendMail**](SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
 
+
+
+## rawMail
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+
+```bash
+ rawMail
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md) |  |
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## sendAdvMail
@@ -17,7 +53,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-'''
+'''BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -28,7 +64,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=support@interserver.net
 '''
 
-'''
+'''ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -40,7 +76,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[0][email]=support@interserver.net\"
 '''
 
-'''
+'''NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -51,7 +87,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data to=\"Joe <support@interserver.net>\"
 '''
 
-'''
+'''MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -62,7 +98,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=support@interserver.net, support@interserver.net\"
 '''
 
-'''
+'''MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -73,7 +109,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\"
 '''
 
-'''
+'''MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/x-www-form-urlencoded' \\
@@ -87,7 +123,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --data \"to[1][email]=support@interserver.net\"
 '''
 
-'''
+'''BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -100,7 +136,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 '''
 
-'''
+'''ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -113,7 +149,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 }'
 '''
 
-'''
+'''NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\
 --header 'Accept: application/json' \\
 --header 'Content-Type: application/json' \\
@@ -186,6 +222,7 @@ Name | Type | Description  | Notes
  **from** | **string** | The contact whom is the this email is from. | [default to null]
  **subject** | **string** | The subject or title of the email | [default to null]
  **body** | **string** | The main email contents. | [default to null]
+ **id** | **integer** | Optional Order ID | [optional] [default to null]
 
 ### Return type
 

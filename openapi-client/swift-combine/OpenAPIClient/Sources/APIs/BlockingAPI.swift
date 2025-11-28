@@ -60,7 +60,7 @@ open class BlockingAPI {
     /// - POST /mail/rules
     /// - Adds a new email deny rule into the system to block new emails that match the given criteria
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - parameter type: (form) The type of deny rule. 
     /// - parameter data: (form) The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. 
@@ -72,9 +72,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/rules"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/rules"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -148,7 +148,7 @@ open class BlockingAPI {
     /// - DELETE /mail/rules/{ruleId}
     /// - Removes one of the configured deny mail rules from the system.
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - parameter ruleId: (path) The ID of the Rules entry. 
     /// - returns: AnyPublisher<GenericResponse, Error> 
@@ -158,10 +158,10 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                var path = "/mail/rules/{ruleId}"
-                path = path.replacingOccurrences(of: "{ruleId}", with: "\(ruleId)")
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                var localVarPath = "/mail/rules/{ruleId}"
+                localVarPath = localVarPath.replacingOccurrences(of: "{ruleId}", with: "\(ruleId)")
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -229,7 +229,7 @@ open class BlockingAPI {
     /// - POST /mail/blocks/delete
     /// - Removes an email address from the various block lists. 
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - parameter body: (body)  
     /// - returns: AnyPublisher<GenericResponse, Error> 
@@ -239,9 +239,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/blocks/delete"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/blocks/delete"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -306,7 +306,7 @@ open class BlockingAPI {
     /// displays a list of blocked email addresses
     /// - GET /mail/blocks
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - returns: AnyPublisher<MailBlocks, Error> 
     open func getMailBlocks() -> AnyPublisher<MailBlocks, Error> {
@@ -315,9 +315,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/blocks"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/blocks"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }
@@ -373,7 +373,7 @@ open class BlockingAPI {
     /// - GET /mail/rules
     /// - Returns a listing of all the deny block rules you have configured.
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - returns: AnyPublisher<[DenyRuleRecord], Error> 
     open func getRules() -> AnyPublisher<[DenyRuleRecord], Error> {
@@ -382,9 +382,9 @@ open class BlockingAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/mail/rules"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/mail/rules"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }

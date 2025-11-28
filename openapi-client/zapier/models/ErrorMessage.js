@@ -7,11 +7,13 @@ module.exports = {
             {
                 key: `${keyPrefix}code`,
                 label: `The response code associated with the error. - [${labelPrefix}code]`,
+                required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}message`,
                 label: `The details or description of the error. - [${labelPrefix}message]`,
+                required: true,
                 type: 'string',
             },
         ]

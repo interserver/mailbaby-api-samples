@@ -14,8 +14,9 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Account usage statistics. Returns information about the usage on your mail accounts.
         /// </summary>
-        /// <returns>List&lt;InlineResponse200&gt;</returns>
-        List<InlineResponse200> GetStats ();
+        /// <param name="time">The timeframe for the statistics.</param>
+        /// <returns>MailStatsType</returns>
+        MailStatsType GetStats (string time);
         /// <summary>
         /// displays the mail log Get a listing of the emails sent through this system 
         /// </summary>
@@ -30,8 +31,11 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
+        /// <param name="replyto">Reply-To Email Address</param>
+        /// <param name="headerfrom">Header From Email Address</param>
+        /// <param name="delivered">Limiting the emails to wether or not they were delivered.</param>
         /// <returns>MailLog</returns>
-        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate);
+        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate, string replyto, string headerfrom, string delivered);
     }
   
     /// <summary>
@@ -90,8 +94,9 @@ namespace IO.Swagger.Api
         /// <summary>
         /// Account usage statistics. Returns information about the usage on your mail accounts.
         /// </summary>
-        /// <returns>List&lt;InlineResponse200&gt;</returns>
-        public List<InlineResponse200> GetStats ()
+        /// <param name="time">The timeframe for the statistics.</param>
+        /// <returns>MailStatsType</returns>
+        public MailStatsType GetStats (string time)
         {
     
             var path = "/mail/stats";
@@ -103,7 +108,8 @@ namespace IO.Swagger.Api
             var fileParams = new Dictionary<String, FileParameter>();
             String postBody = null;
     
-                                    
+             if (time != null) queryParams.Add("time", ApiClient.ParameterToString(time)); // query parameter
+                        
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };
     
@@ -115,7 +121,7 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling GetStats: " + response.ErrorMessage, response.ErrorMessage);
     
-            return (List<InlineResponse200>) ApiClient.Deserialize(response.Content, typeof(List<InlineResponse200>), response.Headers);
+            return (MailStatsType) ApiClient.Deserialize(response.Content, typeof(MailStatsType), response.Headers);
         }
     
         /// <summary>
@@ -132,8 +138,11 @@ namespace IO.Swagger.Api
         /// <param name="limit">maximum number of records to return</param>
         /// <param name="startDate">earliest date to get emails in unix timestamp format</param>
         /// <param name="endDate">earliest date to get emails in unix timestamp format</param>
+        /// <param name="replyto">Reply-To Email Address</param>
+        /// <param name="headerfrom">Header From Email Address</param>
+        /// <param name="delivered">Limiting the emails to wether or not they were delivered.</param>
         /// <returns>MailLog</returns>
-        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate)
+        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate, string replyto, string headerfrom, string delivered)
         {
     
             var path = "/mail/log";
@@ -156,6 +165,9 @@ namespace IO.Swagger.Api
  if (limit != null) queryParams.Add("limit", ApiClient.ParameterToString(limit)); // query parameter
  if (startDate != null) queryParams.Add("startDate", ApiClient.ParameterToString(startDate)); // query parameter
  if (endDate != null) queryParams.Add("endDate", ApiClient.ParameterToString(endDate)); // query parameter
+ if (replyto != null) queryParams.Add("replyto", ApiClient.ParameterToString(replyto)); // query parameter
+ if (headerfrom != null) queryParams.Add("headerfrom", ApiClient.ParameterToString(headerfrom)); // query parameter
+ if (delivered != null) queryParams.Add("delivered", ApiClient.ParameterToString(delivered)); // query parameter
                         
             // authentication setting, if any
             String[] authSettings = new String[] { "apiKeyAuth" };

@@ -8,6 +8,55 @@ using namespace Tiny;
             GenericResponse
         >
         SendingApi::
+        rawMail(
+            
+            SendMailRaw sendMailRaw
+            
+        )
+        {
+            std::string url = basepath + "/mail/rawsend"; //
+
+
+            // Headers  | 
+
+            // Query    | 
+
+            // Form     | 
+            addHeader("Content-Type", "application/json");
+
+
+
+
+
+            std::string payload = "";
+            // Send Request
+            // METHOD | POST
+            // Body     | sendMailRaw
+
+
+
+            payload = sendMailRaw.toJson().dump();
+
+            int httpCode = sendRequest(url, "POST", reinterpret_cast<uint8_t*>(&payload[0]), payload.length());
+
+            // Handle Request
+            String output = getResponseBody();
+            std::string output_string = output.c_str();
+
+
+
+
+            GenericResponse obj(output_string);
+
+
+            Response<GenericResponse> response(obj, httpCode);
+            return response;
+        }
+
+        Response<
+            GenericResponse
+        >
+        SendingApi::
         sendAdvMail(
             
             std::string subject
@@ -99,6 +148,9 @@ using namespace Tiny;
             , 
             
             std::string body
+            , 
+            
+            int id
             
         )
         {
@@ -109,13 +161,14 @@ using namespace Tiny;
 
             // Query    | 
 
-            // Form     | to from subject body 
+            // Form     | to from subject body id 
             addHeader("Content-Type", "application/x-www-form-urlencoded");
 
             addFormParam("to",to);
             addFormParam("from",from);
             addFormParam("subject",subject);
             addFormParam("body",body);
+            addFormParam("id",id);
 
 
 

@@ -9,12 +9,14 @@ class SendMail {
   String subject = null;
 /* The main email contents. */
   String body = null;
+/* Optional Order ID */
+  int id = null;
 
   SendMail();
 
   @override
   String toString() {
-    return 'SendMail[to=$to, from=$from, subject=$subject, body=$body, ]';
+    return 'SendMail[to=$to, from=$from, subject=$subject, body=$body, id=$id, ]';
   }
 
   SendMail.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class SendMail {
     from = json['from'];
     subject = json['subject'];
     body = json['body'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -30,7 +33,8 @@ class SendMail {
       'to': to,
       'from': from,
       'subject': subject,
-      'body': body
+      'body': body,
+      'id': id
      };
   }
 

@@ -26,6 +26,7 @@ import com.squareup.moshi.JsonClass
  * @param from The contact whom is the this email is from.
  * @param subject The subject or title of the email
  * @param body The main email contents.
+ * @param id Optional Order ID
  */
 
 
@@ -45,7 +46,14 @@ data class SendMail (
 
     /* The main email contents. */
     @Json(name = "body")
-    val body: kotlin.String
+    val body: kotlin.String,
 
-)
+    /* Optional Order ID */
+    @Json(name = "id")
+    val id: kotlin.Int? = null
+
+) {
+
+
+}
 

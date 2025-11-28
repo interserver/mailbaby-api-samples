@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "A mail order record")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-02-20T06:54:40.647644-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-11-14T07:22:44.937966794-05:00[America/New_York]")
 public class MailOrder   {
   @JsonProperty("id")
   private Integer id = null;
@@ -99,6 +99,7 @@ public class MailOrder   {
    * @return comment
   **/
   @Schema(description = "Optional order comment.")
+  @NotNull
 
   public String getComment() {
     return comment;

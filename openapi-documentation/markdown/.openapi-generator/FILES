@@ -18,7 +18,12 @@ Models/MailBlocks.md
 Models/MailLog.md
 Models/MailLogEntry.md
 Models/MailOrder.md
+Models/MailStatsType.md
+Models/MailStatsType_volume.md
+Models/MailStatsType_volume_from.md
+Models/MailStatsType_volume_ip.md
+Models/MailStatsType_volume_to.md
 Models/SendMail.md
 Models/SendMailAdv.md
-Models/getStats_200_response_inner.md
+Models/SendMailRaw.md
 README.md

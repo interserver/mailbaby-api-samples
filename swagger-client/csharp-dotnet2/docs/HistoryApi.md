@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getstats"></a>
 # **GetStats**
-> List<InlineResponse200> GetStats ()
+> MailStatsType GetStats (string time)
 
 Account usage statistics.
 
@@ -36,11 +36,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new HistoryApi();
+            var time = time_example;  // string | The timeframe for the statistics. (optional) 
 
             try
             {
                 // Account usage statistics.
-                List&lt;InlineResponse200&gt; result = apiInstance.GetStats();
+                MailStatsType result = apiInstance.GetStats(time);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -53,11 +54,14 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **string**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**List<InlineResponse200>**](InlineResponse200.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -72,7 +76,7 @@ This endpoint does not need any parameter.
 
 <a name="viewmaillog"></a>
 # **ViewMailLog**
-> MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate)
+> MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, int? skip, int? limit, long? startDate, long? endDate, string replyto, string headerfrom, string delivered)
 
 displays the mail log
 
@@ -110,11 +114,14 @@ namespace Example
             var limit = 56;  // int? | maximum number of records to return (optional)  (default to 100)
             var startDate = 789;  // long? | earliest date to get emails in unix timestamp format (optional) 
             var endDate = 789;  // long? | earliest date to get emails in unix timestamp format (optional) 
+            var replyto = replyto_example;  // string | Reply-To Email Address (optional) 
+            var headerfrom = headerfrom_example;  // string | Header From Email Address (optional) 
+            var delivered = delivered_example;  // string | Limiting the emails to wether or not they were delivered. (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.ViewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -141,6 +148,9 @@ Name | Type | Description  | Notes
  **limit** | **int?**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **long?**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **long?**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **string**| Reply-To Email Address | [optional] 
+ **headerfrom** | **string**| Header From Email Address | [optional] 
+ **delivered** | **string**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

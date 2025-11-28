@@ -8,6 +8,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -16,24 +21,29 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Mail log records")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class MailLog   {
   @JsonProperty("total")
+
   private Integer total = null;
 
   @JsonProperty("skip")
+
   private Integer skip = null;
 
   @JsonProperty("limit")
+
   private Integer limit = null;
 
   @JsonProperty("emails")
   @Valid
   private List<MailLogEntry> emails = new ArrayList<MailLogEntry>();
 
-  public MailLog total(Integer total) {
+  public MailLog total(Integer total) { 
+
     this.total = total;
     return this;
   }
@@ -42,18 +52,23 @@ public class MailLog   {
    * total number of mail log entries
    * @return total
    **/
+  
   @Schema(example = "10234", required = true, description = "total number of mail log entries")
-      @NotNull
-
-    public Integer getTotal() {
+  
+  @NotNull
+  public Integer getTotal() {  
     return total;
   }
 
-  public void setTotal(Integer total) {
+
+
+  public void setTotal(Integer total) { 
+
     this.total = total;
   }
 
-  public MailLog skip(Integer skip) {
+  public MailLog skip(Integer skip) { 
+
     this.skip = skip;
     return this;
   }
@@ -62,18 +77,23 @@ public class MailLog   {
    * number of emails skipped in listing
    * @return skip
    **/
+  
   @Schema(example = "0", required = true, description = "number of emails skipped in listing")
-      @NotNull
-
-    public Integer getSkip() {
+  
+  @NotNull
+  public Integer getSkip() {  
     return skip;
   }
 
-  public void setSkip(Integer skip) {
+
+
+  public void setSkip(Integer skip) { 
+
     this.skip = skip;
   }
 
-  public MailLog limit(Integer limit) {
+  public MailLog limit(Integer limit) { 
+
     this.limit = limit;
     return this;
   }
@@ -82,18 +102,23 @@ public class MailLog   {
    * number of emails to return
    * @return limit
    **/
+  
   @Schema(example = "100", required = true, description = "number of emails to return")
-      @NotNull
-
-    public Integer getLimit() {
+  
+  @NotNull
+  public Integer getLimit() {  
     return limit;
   }
 
-  public void setLimit(Integer limit) {
+
+
+  public void setLimit(Integer limit) { 
+
     this.limit = limit;
   }
 
-  public MailLog emails(List<MailLogEntry> emails) {
+  public MailLog emails(List<MailLogEntry> emails) { 
+
     this.emails = emails;
     return this;
   }
@@ -107,17 +132,21 @@ public class MailLog   {
    * Get emails
    * @return emails
    **/
+  
   @Schema(example = "[{     \"_id\": 103172,     \"id\": \"17c7eda538e0005d03\",     \"from\": \"person@mysite.com\",     \"to\": \"client@isp.com\",     \"subject\": \"sell 0.005 shares\",     \"messageId\": \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",     \"created\": \"2021-10-14 08:50:10\",     \"time\": 1634215809,     \"user\": \"mb5658\",     \"transtype\": \"ESMTPSA\",     \"origin\": \"199.231.189.154\",     \"interface\": \"feeder\",     \"sendingZone\": \"interserver\",     \"bodySize\": 63,     \"seq\": 1,     \"recipient\": \"client@isp.com\",     \"domain\": \"interserver.net\",     \"locked\": 1,     \"lockTime\": \"1634215818533\",     \"assigned\": \"relay1\",     \"queued\": \"2021-10-14T12:50:15.487Z\",     \"mxHostname\": \"mx.j.is.cc\",     \"response\": \"250 2.0.0 Ok queued as C91D83E128C\" }]", required = true, description = "")
-      @NotNull
-    @Valid
-    public List<MailLogEntry> getEmails() {
+  
+@Valid
+  @NotNull
+  public List<MailLogEntry> getEmails() {  
     return emails;
   }
 
-  public void setEmails(List<MailLogEntry> emails) {
+
+
+  public void setEmails(List<MailLogEntry> emails) { 
+
     this.emails = emails;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

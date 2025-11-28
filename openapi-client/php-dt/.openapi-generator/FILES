@@ -11,7 +11,6 @@ src/App/DTO/Collection3.php
 src/App/DTO/Collection4.php
 src/App/DTO/Collection5.php
 src/App/DTO/Collection6.php
-src/App/DTO/Collection7.php
 src/App/DTO/DeleteRuleParameterData.php
 src/App/DTO/DenyRuleNew.php
 src/App/DTO/DenyRuleRecord.php
@@ -20,7 +19,7 @@ src/App/DTO/EmailAddressTypes.php
 src/App/DTO/EmailAddressesTypes.php
 src/App/DTO/ErrorMessage.php
 src/App/DTO/GenericResponse.php
-src/App/DTO/GetStats200ResponseInner.php
+src/App/DTO/GetStatsParameterData.php
 src/App/DTO/MailAttachment.php
 src/App/DTO/MailBlockClickHouse.php
 src/App/DTO/MailBlockRspamd.php
@@ -28,6 +27,12 @@ src/App/DTO/MailBlocks.php
 src/App/DTO/MailLog.php
 src/App/DTO/MailLogEntry.php
 src/App/DTO/MailOrder.php
+src/App/DTO/MailStatsType.php
+src/App/DTO/MailStatsTypeVolume.php
+src/App/DTO/MailStatsTypeVolumeFrom.php
+src/App/DTO/MailStatsTypeVolumeIp.php
+src/App/DTO/MailStatsTypeVolumeTo.php
 src/App/DTO/SendMail.php
 src/App/DTO/SendMailAdv.php
+src/App/DTO/SendMailRaw.php
 src/App/DTO/ViewMailLogParameterData.php

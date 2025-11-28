@@ -1,8 +1,8 @@
 package io.swagger.api;
 
 import io.swagger.model.ErrorMessage;
-import io.swagger.model.InlineResponse200;
 import io.swagger.model.MailLog;
+import io.swagger.model.MailStatsType;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -40,10 +40,10 @@ public interface HistoryApi  {
     @Produces({ "application/json" })
     @Operation(summary = "Account usage statistics.", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = InlineResponse200.class)))),
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailStatsType.class))),
         @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "404", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public List<InlineResponse200> getStats();
+    public MailStatsType getStats(@QueryParam("time")String time);
 
     /**
      * displays the mail log
@@ -58,5 +58,5 @@ public interface HistoryApi  {
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "search results matching criteria", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         @ApiResponse(responseCode = "400", description = "bad input parameter") })
-    public MailLog viewMailLog(@QueryParam("id")Long id, @QueryParam("origin")String origin, @QueryParam("mx")String mx, @QueryParam("from")String from, @QueryParam("to")String to, @QueryParam("subject")String subject, @QueryParam("mailid")String mailid, @QueryParam("skip")@DefaultValue("0") Integer skip, @QueryParam("limit")@DefaultValue("100") Integer limit, @QueryParam("startDate")Long startDate, @QueryParam("endDate")Long endDate);
+    public MailLog viewMailLog(@QueryParam("id")Long id, @QueryParam("origin")String origin, @QueryParam("mx")String mx, @QueryParam("from")String from, @QueryParam("to")String to, @QueryParam("subject")String subject, @QueryParam("mailid")String mailid, @QueryParam("skip")@DefaultValue("0") Integer skip, @QueryParam("limit")@DefaultValue("100") Integer limit, @QueryParam("startDate")Long startDate, @QueryParam("endDate")Long endDate, @QueryParam("replyto")String replyto, @QueryParam("headerfrom")String headerfrom, @QueryParam("delivered")String delivered);
 }

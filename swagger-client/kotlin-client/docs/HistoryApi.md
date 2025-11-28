@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 <a name="getStats"></a>
 # **getStats**
-> kotlin.Array&lt;InlineResponse200&gt; getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
@@ -22,8 +22,9 @@ Returns information about the usage on your mail accounts.
 //import io.swagger.client.models.*;
 
 val apiInstance = HistoryApi()
+val time : kotlin.String = time_example // kotlin.String | The timeframe for the statistics.
 try {
-    val result : kotlin.Array<InlineResponse200> = apiInstance.getStats()
+    val result : MailStatsType = apiInstance.getStats(time)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#getStats")
@@ -35,11 +36,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **kotlin.String**| The timeframe for the statistics. | [optional] [enum: all, billing, month, 7d, 24h, 1d, 1h]
 
 ### Return type
 
-[**kotlin.Array&lt;InlineResponse200&gt;**](InlineResponse200.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -52,7 +56,7 @@ This endpoint does not need any parameter.
 
 <a name="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -76,8 +80,11 @@ val skip : kotlin.Int = 56 // kotlin.Int | number of records to skip for paginat
 val limit : kotlin.Int = 56 // kotlin.Int | maximum number of records to return
 val startDate : kotlin.Long = 789 // kotlin.Long | earliest date to get emails in unix timestamp format
 val endDate : kotlin.Long = 789 // kotlin.Long | earliest date to get emails in unix timestamp format
+val replyto : kotlin.String = replyto_example // kotlin.String | Reply-To Email Address
+val headerfrom : kotlin.String = headerfrom_example // kotlin.String | Header From Email Address
+val delivered : kotlin.String = delivered_example // kotlin.String | Limiting the emails to wether or not they were delivered.
 try {
-    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#viewMailLog")
@@ -99,10 +106,13 @@ Name | Type | Description  | Notes
  **to** | **kotlin.String**| to/destination email address | [optional]
  **subject** | **kotlin.String**| subject containing this string | [optional]
  **mailid** | **kotlin.String**| mail id | [optional]
- **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0] [enum: ]
- **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100] [enum: ]
- **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] [enum: ]
- **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] [enum: ]
+ **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0] [enum: 0]
+ **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100] [enum: 1, 10000]
+ **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] [enum: 0, 9999999999]
+ **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] [enum: 0, 9999999999]
+ **replyto** | **kotlin.String**| Reply-To Email Address | [optional]
+ **headerfrom** | **kotlin.String**| Header From Email Address | [optional]
+ **delivered** | **kotlin.String**| Limiting the emails to wether or not they were delivered. | [optional] [enum: 0, 1]
 
 ### Return type
 

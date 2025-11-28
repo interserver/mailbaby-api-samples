@@ -1,7 +1,10 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 
 project(QtOpenAPIClient)
 
+set(CMAKE_AUTOMOC ON)
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Network Gui)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Network Gui)
 
 include(GNUInstallDirs)
@@ -15,7 +18,6 @@ add_library(${PROJECT_NAME}
   OAIEmailAddressesTypes.h
   OAIErrorMessage.h
   OAIGenericResponse.h
-  OAIGetStats_200_response_inner.h
   OAIMailAttachment.h
   OAIMailBlockClickHouse.h
   OAIMailBlockRspamd.h
@@ -23,8 +25,14 @@ add_library(${PROJECT_NAME}
   OAIMailLog.h
   OAIMailLogEntry.h
   OAIMailOrder.h
+  OAIMailStatsType.h
+  OAIMailStatsType_volume.h
+  OAIMailStatsType_volume_from.h
+  OAIMailStatsType_volume_ip.h
+  OAIMailStatsType_volume_to.h
   OAISendMail.h
   OAISendMailAdv.h
+  OAISendMailRaw.h
   OAIBlockingApi.h
   OAIHistoryApi.h
   OAISendingApi.h
@@ -45,7 +53,6 @@ add_library(${PROJECT_NAME}
   OAIEmailAddressesTypes.cpp
   OAIErrorMessage.cpp
   OAIGenericResponse.cpp
-  OAIGetStats_200_response_inner.cpp
   OAIMailAttachment.cpp
   OAIMailBlockClickHouse.cpp
   OAIMailBlockRspamd.cpp
@@ -53,8 +60,14 @@ add_library(${PROJECT_NAME}
   OAIMailLog.cpp
   OAIMailLogEntry.cpp
   OAIMailOrder.cpp
+  OAIMailStatsType.cpp
+  OAIMailStatsType_volume.cpp
+  OAIMailStatsType_volume_from.cpp
+  OAIMailStatsType_volume_ip.cpp
+  OAIMailStatsType_volume_to.cpp
   OAISendMail.cpp
   OAISendMailAdv.cpp
+  OAISendMailRaw.cpp
   OAIBlockingApi.cpp
   OAIHistoryApi.cpp
   OAISendingApi.cpp

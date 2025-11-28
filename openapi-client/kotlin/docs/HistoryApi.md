@@ -2,15 +2,15 @@
 
 All URIs are relative to *https://api.mailbaby.net*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
-[**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics. |
+| [**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log |
 
 
 <a id="getStats"></a>
 # **getStats**
-> kotlin.collections.List&lt;GetStats200ResponseInner&gt; getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
@@ -23,8 +23,9 @@ Returns information about the usage on your mail accounts.
 //import org.openapitools.client.models.*
 
 val apiInstance = HistoryApi()
+val time : kotlin.String = time_example // kotlin.String | The timeframe for the statistics.
 try {
-    val result : kotlin.collections.List<GetStats200ResponseInner> = apiInstance.getStats()
+    val result : MailStatsType = apiInstance.getStats(time)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#getStats")
@@ -36,11 +37,13 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **time** | **kotlin.String**| The timeframe for the statistics. | [optional] [enum: all, billing, month, 7d, 24h, 1d, 1h] |
 
 ### Return type
 
-[**kotlin.collections.List&lt;GetStats200ResponseInner&gt;**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -56,7 +59,7 @@ Configure apiKeyAuth:
 
 <a id="viewMailLog"></a>
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -80,8 +83,11 @@ val skip : kotlin.Int = 1000 // kotlin.Int | number of records to skip for pagin
 val limit : kotlin.Int = 1000 // kotlin.Int | maximum number of records to return
 val startDate : kotlin.Long = 1641781008 // kotlin.Long | earliest date to get emails in unix timestamp format
 val endDate : kotlin.Long = 1673317008 // kotlin.Long | earliest date to get emails in unix timestamp format
+val replyto : kotlin.String = replyto_example // kotlin.String | Reply-To Email Address
+val headerfrom : kotlin.String = headerfrom_example // kotlin.String | Header From Email Address
+val delivered : kotlin.String = delivered_example // kotlin.String | Limiting the emails to wether or not they were delivered.
 try {
-    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+    val result : MailLog = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling HistoryApi#viewMailLog")
@@ -93,20 +99,22 @@ try {
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional]
- **origin** | **kotlin.String**| originating ip address sending mail | [optional]
- **mx** | **kotlin.String**| mx record mail was sent to | [optional]
- **from** | **kotlin.String**| from email address | [optional]
- **to** | **kotlin.String**| to/destination email address | [optional]
- **subject** | **kotlin.String**| subject containing this string | [optional]
- **mailid** | **kotlin.String**| mail id | [optional]
- **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0]
- **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100]
- **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
- **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional]
+| **id** | **kotlin.Long**| The ID of your mail order this will be sent through. | [optional] |
+| **origin** | **kotlin.String**| originating ip address sending mail | [optional] |
+| **mx** | **kotlin.String**| mx record mail was sent to | [optional] |
+| **from** | **kotlin.String**| from email address | [optional] |
+| **to** | **kotlin.String**| to/destination email address | [optional] |
+| **subject** | **kotlin.String**| subject containing this string | [optional] |
+| **mailid** | **kotlin.String**| mail id | [optional] |
+| **skip** | **kotlin.Int**| number of records to skip for pagination | [optional] [default to 0] |
+| **limit** | **kotlin.Int**| maximum number of records to return | [optional] [default to 100] |
+| **startDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] |
+| **endDate** | **kotlin.Long**| earliest date to get emails in unix timestamp format | [optional] |
+| **replyto** | **kotlin.String**| Reply-To Email Address | [optional] |
+| **headerfrom** | **kotlin.String**| Header From Email Address | [optional] |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **delivered** | **kotlin.String**| Limiting the emails to wether or not they were delivered. | [optional] [enum: 0, 1] |
 
 ### Return type
 

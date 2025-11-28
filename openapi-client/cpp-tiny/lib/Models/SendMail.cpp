@@ -10,6 +10,7 @@ SendMail::SendMail()
 	from = std::string();
 	subject = std::string();
 	body = std::string();
+	id = int(0);
 }
 
 SendMail::SendMail(std::string jsonString)
@@ -79,6 +80,19 @@ SendMail::fromJson(std::string jsonObj)
 
     }
 
+    const char *idKey = "id";
+
+    if(object.has_key(idKey))
+    {
+        bourne::json value = object[idKey];
+
+
+
+        jsonToValue(&id, value, "int");
+
+
+    }
+
 
 }
 
@@ -113,6 +127,13 @@ SendMail::toJson()
 
 
     object["body"] = getBody();
+
+
+
+
+
+
+    object["id"] = getId();
 
 
 
@@ -166,6 +187,18 @@ void
 SendMail::setBody(std::string  body)
 {
 	this->body = body;
+}
+
+int
+SendMail::getId()
+{
+	return id;
+}
+
+void
+SendMail::setId(int  id)
+{
+	this->id = id;
 }
 
 

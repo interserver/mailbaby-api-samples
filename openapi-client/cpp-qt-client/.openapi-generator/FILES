@@ -19,8 +19,6 @@ client/OAIErrorMessage.cpp
 client/OAIErrorMessage.h
 client/OAIGenericResponse.cpp
 client/OAIGenericResponse.h
-client/OAIGetStats_200_response_inner.cpp
-client/OAIGetStats_200_response_inner.h
 client/OAIHelpers.cpp
 client/OAIHelpers.h
 client/OAIHistoryApi.cpp
@@ -43,6 +41,16 @@ client/OAIMailLogEntry.cpp
 client/OAIMailLogEntry.h
 client/OAIMailOrder.cpp
 client/OAIMailOrder.h
+client/OAIMailStatsType.cpp
+client/OAIMailStatsType.h
+client/OAIMailStatsType_volume.cpp
+client/OAIMailStatsType_volume.h
+client/OAIMailStatsType_volume_from.cpp
+client/OAIMailStatsType_volume_from.h
+client/OAIMailStatsType_volume_ip.cpp
+client/OAIMailStatsType_volume_ip.h
+client/OAIMailStatsType_volume_to.cpp
+client/OAIMailStatsType_volume_to.h
 client/OAIOauth.cpp
 client/OAIOauth.h
 client/OAIObject.h
@@ -50,6 +58,8 @@ client/OAISendMail.cpp
 client/OAISendMail.h
 client/OAISendMailAdv.cpp
 client/OAISendMailAdv.h
+client/OAISendMailRaw.cpp
+client/OAISendMailRaw.h
 client/OAISendingApi.cpp
 client/OAISendingApi.h
 client/OAIServerConfiguration.h

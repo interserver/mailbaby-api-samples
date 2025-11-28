@@ -6,9 +6,8 @@
 #include <list>
 #include <glib.h>
 #include "ErrorMessage.h"
-#include "GetStats_200_response_inner.h"
 #include "MailLog.h"
-#include <list>
+#include "MailStatsType.h"
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -30,25 +29,27 @@ public:
 /*! \brief Account usage statistics.. *Synchronous*
  *
  * Returns information about the usage on your mail accounts.
+ * \param time The timeframe for the statistics.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getStatsSync(char * accessToken,
-	
-	void(* handler)(std::list<GetStats_200_response_inner>, Error, void* )
+	std::string time, 
+	void(* handler)(MailStatsType, Error, void* )
 	, void* userData);
 
 /*! \brief Account usage statistics.. *Asynchronous*
  *
  * Returns information about the usage on your mail accounts.
+ * \param time The timeframe for the statistics.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool getStatsAsync(char * accessToken,
-	
-	void(* handler)(std::list<GetStats_200_response_inner>, Error, void* )
+	std::string time, 
+	void(* handler)(MailStatsType, Error, void* )
 	, void* userData);
 
 
@@ -66,12 +67,15 @@ bool getStatsAsync(char * accessToken,
  * \param limit maximum number of records to return
  * \param startDate earliest date to get emails in unix timestamp format
  * \param endDate earliest date to get emails in unix timestamp format
+ * \param replyto Reply-To Email Address
+ * \param headerfrom Header From Email Address
+ * \param delivered Limiting the emails to wether or not they were delivered.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogSync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, std::string delivered, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 
@@ -89,12 +93,15 @@ bool viewMailLogSync(char * accessToken,
  * \param limit maximum number of records to return
  * \param startDate earliest date to get emails in unix timestamp format
  * \param endDate earliest date to get emails in unix timestamp format
+ * \param replyto Reply-To Email Address
+ * \param headerfrom Header From Email Address
+ * \param delivered Limiting the emails to wether or not they were delivered.
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogAsync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, std::string delivered, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 

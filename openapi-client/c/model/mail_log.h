@@ -25,9 +25,10 @@ typedef struct mail_log_t {
     int limit; //numeric
     list_t *emails; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_log_t;
 
-mail_log_t *mail_log_create(
+__attribute__((deprecated)) mail_log_t *mail_log_create(
     int total,
     int skip,
     int limit,

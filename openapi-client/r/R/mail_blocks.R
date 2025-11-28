@@ -19,8 +19,7 @@ MailBlocks <- R6::R6Class(
     `local` = NULL,
     `mbtrap` = NULL,
     `subject` = NULL,
-    #' Initialize a new MailBlocks class.
-    #'
+
     #' @description
     #' Initialize a new MailBlocks class.
     #'
@@ -28,7 +27,6 @@ MailBlocks <- R6::R6Class(
     #' @param mbtrap mbtrap
     #' @param subject subject
     #' @param ... Other optional arguments.
-    #' @export
     initialize = function(`local`, `mbtrap`, `subject`, ...) {
       if (!missing(`local`)) {
         stopifnot(is.vector(`local`), length(`local`) != 0)
@@ -46,37 +44,58 @@ MailBlocks <- R6::R6Class(
         self$`subject` <- `subject`
       }
     },
-    #' To JSON string
-    #'
+
     #' @description
-    #' To JSON String
-    #'
-    #' @return MailBlocks in JSON format
-    #' @export
+    #' Convert to an R object. This method is deprecated. Use `toSimpleType()` instead.
     toJSON = function() {
+      .Deprecated(new = "toSimpleType", msg = "Use the '$toSimpleType()' method instead since that is more clearly named. Use '$toJSONString()' to get a JSON string")
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert to a List
+    #'
+    #' Convert the R6 object to a list to work more easily with other tooling.
+    #'
+    #' @return MailBlocks as a base R list.
+    #' @examples
+    #' # convert array of MailBlocks (x) to a data frame
+    #' \dontrun{
+    #' library(purrr)
+    #' library(tibble)
+    #' df <- x |> map(\(y)y$toList()) |> map(as_tibble) |> list_rbind()
+    #' df
+    #' }
+    toList = function() {
+      return(self$toSimpleType())
+    },
+
+    #' @description
+    #' Convert MailBlocks to a base R type
+    #'
+    #' @return A base R type, e.g. a list or numeric/character array.
+    toSimpleType = function() {
       MailBlocksObject <- list()
       if (!is.null(self$`local`)) {
         MailBlocksObject[["local"]] <-
-          lapply(self$`local`, function(x) x$toJSON())
+          lapply(self$`local`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`mbtrap`)) {
         MailBlocksObject[["mbtrap"]] <-
-          lapply(self$`mbtrap`, function(x) x$toJSON())
+          lapply(self$`mbtrap`, function(x) x$toSimpleType())
       }
       if (!is.null(self$`subject`)) {
         MailBlocksObject[["subject"]] <-
-          lapply(self$`subject`, function(x) x$toJSON())
+          lapply(self$`subject`, function(x) x$toSimpleType())
       }
-      MailBlocksObject
+      return(MailBlocksObject)
     },
-    #' Deserialize JSON string into an instance of MailBlocks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MailBlocks
     #'
     #' @param input_json the JSON input
     #' @return the instance of MailBlocks
-    #' @export
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`local`)) {
@@ -90,51 +109,23 @@ MailBlocks <- R6::R6Class(
       }
       self
     },
-    #' To JSON string
-    #'
+
     #' @description
     #' To JSON String
-    #'
+    #' 
+    #' @param ... Parameters passed to `jsonlite::toJSON`
     #' @return MailBlocks in JSON format
-    #' @export
-    toJSONString = function() {
-      jsoncontent <- c(
-        if (!is.null(self$`local`)) {
-          sprintf(
-          '"local":
-          [%s]
-',
-          paste(sapply(self$`local`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`mbtrap`)) {
-          sprintf(
-          '"mbtrap":
-          [%s]
-',
-          paste(sapply(self$`mbtrap`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        },
-        if (!is.null(self$`subject`)) {
-          sprintf(
-          '"subject":
-          [%s]
-',
-          paste(sapply(self$`subject`, function(x) jsonlite::toJSON(x$toJSON(), auto_unbox = TRUE, digits = NA)), collapse = ",")
-          )
-        }
-      )
-      jsoncontent <- paste(jsoncontent, collapse = ",")
-      json_string <- as.character(jsonlite::minify(paste("{", jsoncontent, "}", sep = "")))
+    toJSONString = function(...) {
+      simple <- self$toSimpleType()
+      json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
+      return(as.character(jsonlite::minify(json)))
     },
-    #' Deserialize JSON string into an instance of MailBlocks
-    #'
+
     #' @description
     #' Deserialize JSON string into an instance of MailBlocks
     #'
     #' @param input_json the JSON input
     #' @return the instance of MailBlocks
-    #' @export
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`local` <- ApiClient$new()$deserializeObj(this_object$`local`, "array[MailBlockClickHouse]", loadNamespace("openapi"))
@@ -142,13 +133,11 @@ MailBlocks <- R6::R6Class(
       self$`subject` <- ApiClient$new()$deserializeObj(this_object$`subject`, "array[MailBlockRspamd]", loadNamespace("openapi"))
       self
     },
-    #' Validate JSON input with respect to MailBlocks
-    #'
+
     #' @description
     #' Validate JSON input with respect to MailBlocks and throw an exception if invalid
     #'
     #' @param input the JSON input
-    #' @export
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
       # check the required field `local`
@@ -173,23 +162,19 @@ MailBlocks <- R6::R6Class(
         stop(paste("The JSON input `", input, "` is invalid for MailBlocks: the required field `subject` is missing."))
       }
     },
-    #' To string (JSON format)
-    #'
+
     #' @description
     #' To string (JSON format)
     #'
     #' @return String representation of MailBlocks
-    #' @export
     toString = function() {
       self$toJSONString()
     },
-    #' Return true if the values in all fields are valid.
-    #'
+
     #' @description
     #' Return true if the values in all fields are valid.
     #'
     #' @return true if the values in all fields are valid.
-    #' @export
     isValid = function() {
       # check if the required `local` is null
       if (is.null(self$`local`)) {
@@ -208,13 +193,11 @@ MailBlocks <- R6::R6Class(
 
       TRUE
     },
-    #' Return a list of invalid fields (if any).
-    #'
+
     #' @description
     #' Return a list of invalid fields (if any).
     #'
     #' @return A list of invalid fields (if any).
-    #' @export
     getInvalidFields = function() {
       invalid_fields <- list()
       # check if the required `local` is null
@@ -234,12 +217,9 @@ MailBlocks <- R6::R6Class(
 
       invalid_fields
     },
-    #' Print the object
-    #'
+
     #' @description
     #' Print the object
-    #'
-    #' @export
     print = function() {
       print(jsonlite::prettify(self$toJSONString()))
       invisible(self)

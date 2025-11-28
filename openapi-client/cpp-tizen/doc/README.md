@@ -1,4 +1,4 @@
-# Documentation for MailBaby Email Delivery and Management Service API 1.1.0 Tizen Client SDK
+# Documentation for MailBaby Email Delivery and Management Service API 1.3.0 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`
@@ -66,6 +66,8 @@ Method | HTTP request | Description
 ### SendingManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+*rawMailSync* | *POST* /mail/rawsend | Sends a raw email.
+*rawMailASync* | *POST* /mail/rawsend | Sends a raw email.
 *sendAdvMailSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
 *sendAdvMailASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
 *sendMailSync* | *POST* /mail/send | Sends an Email.
@@ -96,7 +98,6 @@ Class | Description
  *EmailAddressesTypes* | 
  *ErrorMessage* | The resposne when an error occurs.
  *GenericResponse* | 
- *GetStats_200_response_inner* | 
  *MailAttachment* | (optional) File attachments to include in the email.  The file contents must be base64
  *MailBlockClickHouse* | A block entry from the clickhouse mailblocks server.
  *MailBlockRspamd* | This is a block entry from the rspamd block list.
@@ -104,6 +105,12 @@ Class | Description
  *MailLog* | Mail log records
  *MailLogEntry* | An email record
  *MailOrder* | A mail order record
+ *MailStatsType* | Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ *MailStatsType_volume* | 
+ *MailStatsType_volume_from* | 
+ *MailStatsType_volume_ip* | 
+ *MailStatsType_volume_to* | 
  *SendMail* | Details for an Email
  *SendMailAdv* | Details for an Email
+ *SendMailRaw* | Raw Email Object
 

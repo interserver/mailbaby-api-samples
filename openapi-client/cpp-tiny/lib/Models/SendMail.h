@@ -73,6 +73,13 @@ public:
 	/*! \brief Set The main email contents.
 	 */
 	void setBody(std::string  body);
+	/*! \brief Get Optional Order ID
+	 */
+	int getId();
+
+	/*! \brief Set Optional Order ID
+	 */
+	void setId(int  id);
 
 
     private:
@@ -80,6 +87,7 @@ public:
     std::string from{};
     std::string subject{};
     std::string body{};
+    int id{};
 };
 }
 

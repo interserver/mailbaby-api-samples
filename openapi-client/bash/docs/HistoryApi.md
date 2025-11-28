@@ -18,16 +18,19 @@ Returns information about the usage on your mail accounts.
 ### Example
 
 ```bash
- getStats
+ getStats  time=value
 ```
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_time** | **string** | The timeframe for the statistics. | [optional] [default to null]
 
 ### Return type
 
-[**array[GetStats200ResponseInner]**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -50,7 +53,7 @@ Get a listing of the emails sent through this system
 ### Example
 
 ```bash
- viewMailLog  id=value  origin=value  mx=value  from=value  to=value  subject=value  mailid=value  skip=value  limit=value  startDate=value  endDate=value
+ viewMailLog  id=value  origin=value  mx=value  from=value  to=value  subject=value  mailid=value  skip=value  limit=value  startDate=value  endDate=value  replyto=value  headerfrom=value  delivered=value
 ```
 
 ### Parameters
@@ -69,6 +72,9 @@ Name | Type | Description  | Notes
  **limit** | **integer** | maximum number of records to return | [optional] [default to 100]
  **startDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
  **endDate** | **integer** | earliest date to get emails in unix timestamp format | [optional] [default to null]
+ **replyto** | **string** | Reply-To Email Address | [optional] [default to null]
+ **headerfrom** | **string** | Header From Email Address | [optional] [default to null]
+ **delivered** | **string** | Limiting the emails to wether or not they were delivered. | [optional] [default to null]
 
 ### Return type
 

@@ -27,6 +27,7 @@ SendMail::__init()
 	//from = std::string();
 	//subject = std::string();
 	//body = std::string();
+	//id = int(0);
 }
 
 void
@@ -51,6 +52,11 @@ SendMail::__cleanup()
 	//
 	//delete body;
 	//body = NULL;
+	//}
+	//if(id != NULL) {
+	//
+	//delete id;
+	//id = NULL;
 	//}
 	//
 }
@@ -104,6 +110,17 @@ SendMail::fromJson(char* jsonStr)
 			
 		}
 	}
+	const gchar *idKey = "id";
+	node = json_object_get_member(pJsonObject, idKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("int")) {
+			jsonToValue(&id, node, "int", "");
+		} else {
+			
+		}
+	}
 }
 
 SendMail::SendMail(char* json)
@@ -152,6 +169,15 @@ SendMail::toJson()
 	}
 	const gchar *bodyKey = "body";
 	json_object_set_member(pJsonObject, bodyKey, node);
+	if (isprimitive("int")) {
+		int obj = getId();
+		node = converttoJson(&obj, "int", "");
+	}
+	else {
+		
+	}
+	const gchar *idKey = "id";
+	json_object_set_member(pJsonObject, idKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -206,6 +232,18 @@ void
 SendMail::setBody(std::string  body)
 {
 	this->body = body;
+}
+
+int
+SendMail::getId()
+{
+	return id;
+}
+
+void
+SendMail::setId(int  id)
+{
+	this->id = id;
 }
 
 

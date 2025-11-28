@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2024-02-20T06:54:33.446635-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-11-14T07:22:36.127557706-05:00[America/New_York]")
 public class GenericResponse   {
   private String status = null;
   private String text = null;
@@ -19,6 +19,7 @@ public class GenericResponse   {
   
   @Schema(example = "ok", description = "")
   @JsonProperty("status")
+  @NotNull
   public String getStatus() {
     return status;
   }
@@ -31,6 +32,7 @@ public class GenericResponse   {
   
   @Schema(example = "The command completed successfully.", description = "")
   @JsonProperty("text")
+  @NotNull
   public String getText() {
     return text;
   }

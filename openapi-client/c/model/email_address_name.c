@@ -5,7 +5,7 @@
 
 
 
-email_address_name_t *email_address_name_create(
+static email_address_name_t *email_address_name_create_internal(
     char *email,
     char *name
     ) {
@@ -16,12 +16,26 @@ email_address_name_t *email_address_name_create(
     email_address_name_local_var->email = email;
     email_address_name_local_var->name = name;
 
+    email_address_name_local_var->_library_owned = 1;
     return email_address_name_local_var;
 }
 
+__attribute__((deprecated)) email_address_name_t *email_address_name_create(
+    char *email,
+    char *name
+    ) {
+    return email_address_name_create_internal (
+        email,
+        name
+        );
+}
 
 void email_address_name_free(email_address_name_t *email_address_name) {
     if(NULL == email_address_name){
+        return ;
+    }
+    if(email_address_name->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "email_address_name_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -69,6 +83,9 @@ email_address_name_t *email_address_name_parseFromJSON(cJSON *email_address_name
 
     // email_address_name->email
     cJSON *email = cJSON_GetObjectItemCaseSensitive(email_address_nameJSON, "email");
+    if (cJSON_IsNull(email)) {
+        email = NULL;
+    }
     if (!email) {
         goto end;
     }
@@ -81,6 +98,9 @@ email_address_name_t *email_address_name_parseFromJSON(cJSON *email_address_name
 
     // email_address_name->name
     cJSON *name = cJSON_GetObjectItemCaseSensitive(email_address_nameJSON, "name");
+    if (cJSON_IsNull(name)) {
+        name = NULL;
+    }
     if (name) { 
     if(!cJSON_IsString(name) && !cJSON_IsNull(name))
     {
@@ -89,7 +109,7 @@ email_address_name_t *email_address_name_parseFromJSON(cJSON *email_address_name
     }
 
 
-    email_address_name_local_var = email_address_name_create (
+    email_address_name_local_var = email_address_name_create_internal (
         strdup(email->valuestring),
         name && !cJSON_IsNull(name) ? strdup(name->valuestring) : NULL
         );

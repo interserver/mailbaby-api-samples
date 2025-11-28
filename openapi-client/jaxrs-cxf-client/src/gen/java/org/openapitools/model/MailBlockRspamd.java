@@ -1,22 +1,24 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * This is a block entry from the rspamd block list.
- **/
+ * This is a block entry from the rspamd block list.
+ */
 @ApiModel(description="This is a block entry from the rspamd block list.")
 
 public class MailBlockRspamd  {
   
   @ApiModelProperty(required = true, value = "")
+
   private String from;
 
   @ApiModelProperty(required = true, value = "")
+
   private String subject;
  /**
    * Get from
@@ -63,8 +65,8 @@ public class MailBlockRspamd  {
       return false;
     }
     MailBlockRspamd mailBlockRspamd = (MailBlockRspamd) o;
-    return Objects.equals(from, mailBlockRspamd.from) &&
-        Objects.equals(subject, mailBlockRspamd.subject);
+    return Objects.equals(this.from, mailBlockRspamd.from) &&
+        Objects.equals(this.subject, mailBlockRspamd.subject);
   }
 
   @Override

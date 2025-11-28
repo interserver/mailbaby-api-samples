@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -41,7 +41,6 @@ part 'model/email_address_types.dart';
 part 'model/email_addresses_types.dart';
 part 'model/error_message.dart';
 part 'model/generic_response.dart';
-part 'model/get_stats200_response_inner.dart';
 part 'model/mail_attachment.dart';
 part 'model/mail_block_click_house.dart';
 part 'model/mail_block_rspamd.dart';
@@ -49,8 +48,14 @@ part 'model/mail_blocks.dart';
 part 'model/mail_log.dart';
 part 'model/mail_log_entry.dart';
 part 'model/mail_order.dart';
+part 'model/mail_stats_type.dart';
+part 'model/mail_stats_type_volume.dart';
+part 'model/mail_stats_type_volume_from.dart';
+part 'model/mail_stats_type_volume_ip.dart';
+part 'model/mail_stats_type_volume_to.dart';
 part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
+part 'model/send_mail_raw.dart';
 
 
 /// An [ApiClient] instance that uses the default values obtained from

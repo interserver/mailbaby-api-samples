@@ -10,6 +10,7 @@
 # !
 # ! Based on: https://github.com/Valodim/zsh-curl-completion/blob/master/_curl
 # !
+# ! Generator version: 7.17.0
 # !
 # !
 # ! Installation:
@@ -301,7 +302,8 @@ case $state in
             "delistBlock[Removes an email address from the blocked list]" \
             "getMailBlocks[displays a list of blocked email addresses]" \
             "getRules[Displays a listing of deny email rules.]"             "getStats[Account usage statistics.]" \
-            "viewMailLog[displays the mail log]"             "sendAdvMail[Sends an Email with Advanced Options]" \
+            "viewMailLog[displays the mail log]"             "rawMail[Sends a raw email]" \
+            "sendAdvMail[Sends an Email with Advanced Options]" \
             "sendMail[Sends an Email]"             "getMailOrders[displays a list of mail service orders]"             "pingServer[Checks if the server is running]" \
 
     _arguments "(--help)--help[Print information about operation]"
@@ -344,7 +346,8 @@ case $state in
       getStats)
         local -a _op_arguments
         _op_arguments=(
-                              )
+                    "time=:[QUERY] The timeframe for the statistics."
+          )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       viewMailLog)
@@ -361,7 +364,16 @@ case $state in
 "limit=:[QUERY] maximum number of records to return"
 "startDate=:[QUERY] earliest date to get emails in unix timestamp format"
 "endDate=:[QUERY] earliest date to get emails in unix timestamp format"
+"replyto=:[QUERY] Reply-To Email Address"
+"headerfrom=:[QUERY] Header From Email Address"
+"delivered=:[QUERY] Limiting the emails to wether or not they were delivered."
           )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      rawMail)
+        local -a _op_arguments
+        _op_arguments=(
+                              )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       sendAdvMail)

@@ -10,7 +10,7 @@ import java.util.Date;
  * A block entry from the clickhouse mailblocks server.
  **/
 @Schema(description = "A block entry from the clickhouse mailblocks server.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2024-02-20T06:54:20.194183-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2025-11-14T07:22:19.646134809-05:00[America/New_York]")
 
 public class MailBlockClickHouse   {
   @JsonProperty("date")

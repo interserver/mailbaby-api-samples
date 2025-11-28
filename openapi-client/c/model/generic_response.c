@@ -5,7 +5,7 @@
 
 
 
-generic_response_t *generic_response_create(
+static generic_response_t *generic_response_create_internal(
     char *status,
     char *text
     ) {
@@ -16,12 +16,26 @@ generic_response_t *generic_response_create(
     generic_response_local_var->status = status;
     generic_response_local_var->text = text;
 
+    generic_response_local_var->_library_owned = 1;
     return generic_response_local_var;
 }
 
+__attribute__((deprecated)) generic_response_t *generic_response_create(
+    char *status,
+    char *text
+    ) {
+    return generic_response_create_internal (
+        status,
+        text
+        );
+}
 
 void generic_response_free(generic_response_t *generic_response) {
     if(NULL == generic_response){
+        return ;
+    }
+    if(generic_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "generic_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
 
     // generic_response->status
     cJSON *status = cJSON_GetObjectItemCaseSensitive(generic_responseJSON, "status");
+    if (cJSON_IsNull(status)) {
+        status = NULL;
+    }
     if (status) { 
     if(!cJSON_IsString(status) && !cJSON_IsNull(status))
     {
@@ -77,6 +94,9 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
 
     // generic_response->text
     cJSON *text = cJSON_GetObjectItemCaseSensitive(generic_responseJSON, "text");
+    if (cJSON_IsNull(text)) {
+        text = NULL;
+    }
     if (text) { 
     if(!cJSON_IsString(text) && !cJSON_IsNull(text))
     {
@@ -85,7 +105,7 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
     }
 
 
-    generic_response_local_var = generic_response_create (
+    generic_response_local_var = generic_response_create_internal (
         status && !cJSON_IsNull(status) ? strdup(status->valuestring) : NULL,
         text && !cJSON_IsNull(text) ? strdup(text->valuestring) : NULL
         );

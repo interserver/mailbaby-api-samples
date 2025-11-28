@@ -1,16 +1,12 @@
 package org.openapitools.api;
 
 import org.openapitools.model.ErrorMessage;
-import org.openapitools.model.GetStats200ResponseInner;
 import org.openapitools.model.MailLog;
+import org.openapitools.model.MailStatsType;
 
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.MediaType;
 import org.apache.cxf.jaxrs.ext.multipart.*;
 
 import io.swagger.annotations.Api;
@@ -40,10 +36,10 @@ public interface HistoryApi  {
     @Produces({ "application/json" })
     @ApiOperation(value = "Account usage statistics.", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = GetStats200ResponseInner.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "OK", response = MailStatsType.class),
         @ApiResponse(code = 401, message = "Unauthorized", response = ErrorMessage.class),
         @ApiResponse(code = 404, message = "Unauthorized", response = ErrorMessage.class) })
-    public List<GetStats200ResponseInner> getStats();
+    public MailStatsType getStats(@QueryParam("time") String time);
 
     /**
      * displays the mail log
@@ -58,5 +54,5 @@ public interface HistoryApi  {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "search results matching criteria", response = MailLog.class),
         @ApiResponse(code = 400, message = "bad input parameter") })
-    public MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") String mailid, @QueryParam("skip") @DefaultValue("0")Integer skip, @QueryParam("limit") @DefaultValue("100")Integer limit, @QueryParam("startDate") Long startDate, @QueryParam("endDate") Long endDate);
+    public MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") String mailid, @QueryParam("skip") @DefaultValue("0")Integer skip, @QueryParam("limit") @DefaultValue("100")Integer limit, @QueryParam("startDate") Long startDate, @QueryParam("endDate") Long endDate, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") String delivered);
 }

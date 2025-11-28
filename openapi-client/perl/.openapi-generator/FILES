@@ -3,6 +3,7 @@
 .travis.yml
 README.md
 bin/autodoc
+cpanfile
 docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
@@ -11,7 +12,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -20,8 +20,14 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -38,7 +44,6 @@ lib/OpenAPIClient/Object/EmailAddressTypes.pm
 lib/OpenAPIClient/Object/EmailAddressesTypes.pm
 lib/OpenAPIClient/Object/ErrorMessage.pm
 lib/OpenAPIClient/Object/GenericResponse.pm
-lib/OpenAPIClient/Object/GetStats200ResponseInner.pm
 lib/OpenAPIClient/Object/MailAttachment.pm
 lib/OpenAPIClient/Object/MailBlockClickHouse.pm
 lib/OpenAPIClient/Object/MailBlockRspamd.pm
@@ -46,8 +51,14 @@ lib/OpenAPIClient/Object/MailBlocks.pm
 lib/OpenAPIClient/Object/MailLog.pm
 lib/OpenAPIClient/Object/MailLogEntry.pm
 lib/OpenAPIClient/Object/MailOrder.pm
+lib/OpenAPIClient/Object/MailStatsType.pm
+lib/OpenAPIClient/Object/MailStatsTypeVolume.pm
+lib/OpenAPIClient/Object/MailStatsTypeVolumeFrom.pm
+lib/OpenAPIClient/Object/MailStatsTypeVolumeIp.pm
+lib/OpenAPIClient/Object/MailStatsTypeVolumeTo.pm
 lib/OpenAPIClient/Object/SendMail.pm
 lib/OpenAPIClient/Object/SendMailAdv.pm
+lib/OpenAPIClient/Object/SendMailRaw.pm
 lib/OpenAPIClient/Role.pm
 lib/OpenAPIClient/Role/AutoDoc.pm
 lib/OpenAPIClient/SendingApi.pm
@@ -61,7 +72,6 @@ t/EmailAddressTypesTest.t
 t/EmailAddressesTypesTest.t
 t/ErrorMessageTest.t
 t/GenericResponseTest.t
-t/GetStats200ResponseInnerTest.t
 t/HistoryApiTest.t
 t/MailAttachmentTest.t
 t/MailBlockClickHouseTest.t
@@ -70,7 +80,13 @@ t/MailBlocksTest.t
 t/MailLogEntryTest.t
 t/MailLogTest.t
 t/MailOrderTest.t
+t/MailStatsTypeTest.t
+t/MailStatsTypeVolumeFromTest.t
+t/MailStatsTypeVolumeIpTest.t
+t/MailStatsTypeVolumeTest.t
+t/MailStatsTypeVolumeToTest.t
 t/SendMailAdvTest.t
+t/SendMailRawTest.t
 t/SendMailTest.t
 t/SendingApiTest.t
 t/ServicesApiTest.t

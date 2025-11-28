@@ -33,6 +33,14 @@ Protected Class SendMail
 	#tag EndProperty
 
 
+	#tag Property, Flags = &h0
+		#tag Note
+			Optional Order ID
+		#tag EndNote
+		id As Xoson.O.OptionalInteger
+	#tag EndProperty
+
+
 
 
 
@@ -99,6 +107,14 @@ Protected Class SendMail
 			Group="Behavior"
 			InitialValue=""
 			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="id"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

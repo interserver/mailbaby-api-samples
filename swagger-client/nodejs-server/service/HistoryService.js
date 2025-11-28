@@ -5,24 +5,39 @@
  * Account usage statistics.
  * Returns information about the usage on your mail accounts.
  *
- * returns List
+ * time String The timeframe for the statistics. (optional)
+ * returns MailStatsType
  **/
-exports.getStats = function() {
+exports.getStats = function(time) {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-}, {
-  "password" : "guest123",
-  "comment" : "main mail account",
-  "id" : 1234,
-  "status" : "active",
-  "username" : "mb1234"
-} ];
+    examples['application/json'] = {
+  "time" : "all",
+  "usage" : 55,
+  "currency" : "USD",
+  "currencySymbol" : "$",
+  "cost" : 1.02,
+  "received" : 508,
+  "sent" : 495,
+  "volume" : {
+    "to" : {
+      "client@domain.com" : 395,
+      "user@site.net" : 57,
+      "sales@company.com" : 47,
+      "client@anothersite.com" : 9
+    },
+    "from" : {
+      "billing@somedomain.com" : 369,
+      "sales@somedomain.com" : 139
+    },
+    "ip" : {
+      "1.1.1.1" : 142,
+      "2.2.2.2" : 132,
+      "3.3.3.3" : 129,
+      "4.4.4.4" : 105
+    }
+  }
+};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
@@ -47,9 +62,12 @@ exports.getStats = function() {
  * limit Integer maximum number of records to return (optional)
  * startDate Long earliest date to get emails in unix timestamp format (optional)
  * endDate Long earliest date to get emails in unix timestamp format (optional)
+ * replyto String Reply-To Email Address (optional)
+ * headerfrom String Header From Email Address (optional)
+ * delivered String Limiting the emails to wether or not they were delivered. (optional)
  * returns MailLog
  **/
-exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate) {
+exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom,delivered) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -72,6 +90,7 @@ exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,st
     "sendingZone" : "interserver",
     "bodySize" : 63,
     "seq" : 1,
+    "delivered" : 1,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,

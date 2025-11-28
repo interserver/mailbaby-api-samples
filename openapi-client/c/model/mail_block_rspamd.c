@@ -5,7 +5,7 @@
 
 
 
-mail_block_rspamd_t *mail_block_rspamd_create(
+static mail_block_rspamd_t *mail_block_rspamd_create_internal(
     char *from,
     char *subject
     ) {
@@ -16,12 +16,26 @@ mail_block_rspamd_t *mail_block_rspamd_create(
     mail_block_rspamd_local_var->from = from;
     mail_block_rspamd_local_var->subject = subject;
 
+    mail_block_rspamd_local_var->_library_owned = 1;
     return mail_block_rspamd_local_var;
 }
 
+__attribute__((deprecated)) mail_block_rspamd_t *mail_block_rspamd_create(
+    char *from,
+    char *subject
+    ) {
+    return mail_block_rspamd_create_internal (
+        from,
+        subject
+        );
+}
 
 void mail_block_rspamd_free(mail_block_rspamd_t *mail_block_rspamd) {
     if(NULL == mail_block_rspamd){
+        return ;
+    }
+    if(mail_block_rspamd->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "mail_block_rspamd_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +84,9 @@ mail_block_rspamd_t *mail_block_rspamd_parseFromJSON(cJSON *mail_block_rspamdJSO
 
     // mail_block_rspamd->from
     cJSON *from = cJSON_GetObjectItemCaseSensitive(mail_block_rspamdJSON, "from");
+    if (cJSON_IsNull(from)) {
+        from = NULL;
+    }
     if (!from) {
         goto end;
     }
@@ -82,6 +99,9 @@ mail_block_rspamd_t *mail_block_rspamd_parseFromJSON(cJSON *mail_block_rspamdJSO
 
     // mail_block_rspamd->subject
     cJSON *subject = cJSON_GetObjectItemCaseSensitive(mail_block_rspamdJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
+    }
     if (!subject) {
         goto end;
     }
@@ -93,7 +113,7 @@ mail_block_rspamd_t *mail_block_rspamd_parseFromJSON(cJSON *mail_block_rspamdJSO
     }
 
 
-    mail_block_rspamd_local_var = mail_block_rspamd_create (
+    mail_block_rspamd_local_var = mail_block_rspamd_create_internal (
         strdup(from->valuestring),
         strdup(subject->valuestring)
         );

@@ -18,6 +18,8 @@ open class SendMail: JSONEncodable {
     public var subject: String?
     /** The main email contents. */
     public var body: String?
+    /** Optional Order ID */
+    public var id: Int32?
 
     public init() {}
 
@@ -28,6 +30,7 @@ open class SendMail: JSONEncodable {
         nillableDictionary["from"] = self.from
         nillableDictionary["subject"] = self.subject
         nillableDictionary["body"] = self.body
+        nillableDictionary["id"] = self.id?.encodeToJSON()
 
         let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary

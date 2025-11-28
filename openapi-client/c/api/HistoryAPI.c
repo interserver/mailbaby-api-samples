@@ -1,38 +1,155 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "HistoryAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
+#define MAX_NUMBER_LENGTH_LONG 21
+
+// Functions for enum TIME for HistoryAPI_getStats
+
+static char* getStats_TIME_ToString(mailbaby_email_delivery_and_management_service_api_getStats_time_e TIME){
+    char *TIMEArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "1d", "1h" };
+    return TIMEArray[TIME];
+}
+
+static mailbaby_email_delivery_and_management_service_api_getStats_time_e getStats_TIME_FromString(char* TIME){
+    int stringToReturn = 0;
+    char *TIMEArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "1d", "1h" };
+    size_t sizeofArray = sizeof(TIMEArray) / sizeof(TIMEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(TIME, TIMEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function getStats_TIME_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *getStats_TIME_convertToJSON(mailbaby_email_delivery_and_management_service_api_getStats_time_e TIME) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "time", getStats_TIME_ToString(TIME)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function getStats_TIME_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static mailbaby_email_delivery_and_management_service_api_getStats_time_e getStats_TIME_parseFromJSON(cJSON* TIMEJSON) {
+    mailbaby_email_delivery_and_management_service_api_getStats_time_e TIMEVariable = 0;
+    cJSON *TIMEVar = cJSON_GetObjectItemCaseSensitive(TIMEJSON, "time");
+    if(!cJSON_IsString(TIMEVar) || (TIMEVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    TIMEVariable = getStats_TIME_FromString(TIMEVar->valuestring);
+    return TIMEVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum DELIVERED for HistoryAPI_viewMailLog
+
+static char* viewMailLog_DELIVERED_ToString(mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e DELIVERED){
+    char *DELIVEREDArray[] =  { "NULL", "0", "1" };
+    return DELIVEREDArray[DELIVERED];
+}
+
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e viewMailLog_DELIVERED_FromString(char* DELIVERED){
+    int stringToReturn = 0;
+    char *DELIVEREDArray[] =  { "NULL", "0", "1" };
+    size_t sizeofArray = sizeof(DELIVEREDArray) / sizeof(DELIVEREDArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(DELIVERED, DELIVEREDArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function viewMailLog_DELIVERED_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *viewMailLog_DELIVERED_convertToJSON(mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e DELIVERED) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "delivered", viewMailLog_DELIVERED_ToString(DELIVERED)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function viewMailLog_DELIVERED_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e viewMailLog_DELIVERED_parseFromJSON(cJSON* DELIVEREDJSON) {
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e DELIVEREDVariable = 0;
+    cJSON *DELIVEREDVar = cJSON_GetObjectItemCaseSensitive(DELIVEREDJSON, "delivered");
+    if(!cJSON_IsString(DELIVEREDVar) || (DELIVEREDVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    DELIVEREDVariable = viewMailLog_DELIVERED_FromString(DELIVEREDVar->valuestring);
+    return DELIVEREDVariable;
+end:
+    return 0;
+}
+*/
 
 
 // Account usage statistics.
 //
 // Returns information about the usage on your mail accounts.
 //
-list_t*
-HistoryAPI_getStats(apiClient_t *apiClient)
+mail_stats_type_t*
+HistoryAPI_getStats(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_getStats_time_e time)
 {
-    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/stats")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/stats");
+    char *localVarPath = strdup("/mail/stats");
 
 
 
+
+
+    // query parameters
+    char *keyQuery_time = NULL;
+    mailbaby_email_delivery_and_management_service_api_getStats_time_e valueQuery_time ;
+    keyValuePair_t *keyPairQuery_time = 0;
+    if (time)
+    {
+        keyQuery_time = strdup("time");
+        valueQuery_time = (time);
+        keyPairQuery_time = keyValuePair_create(keyQuery_time, strdup(getStats_TIME_ToString(
+        valueQuery_time)));
+        list_addElement(localVarQueryParameters,keyPairQuery_time);
+    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
@@ -42,6 +159,7 @@ HistoryAPI_getStats(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -56,36 +174,37 @@ HistoryAPI_getStats(apiClient_t *apiClient)
     //if (apiClient->response_code == 404) {
     //    printf("%s\n","Unauthorized");
     //}
-    cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    if(!cJSON_IsArray(HistoryAPIlocalVarJSON)) {
-        return 0;//nonprimitive container
-    }
-    list_t *elementToReturn = list_createList();
-    cJSON *VarJSON;
-    cJSON_ArrayForEach(VarJSON, HistoryAPIlocalVarJSON)
-    {
-        if(!cJSON_IsObject(VarJSON))
-        {
-           // return 0;
+    //nonprimitive not container
+    mail_stats_type_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = mail_stats_type_parseFromJSON(HistoryAPIlocalVarJSON);
+        cJSON_Delete(HistoryAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
         }
-        char *localVarJSONToChar = cJSON_Print(VarJSON);
-        list_addElement(elementToReturn , localVarJSONToChar);
     }
 
-    cJSON_Delete( HistoryAPIlocalVarJSON);
-    cJSON_Delete( VarJSON);
     //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    
+    list_freeList(localVarQueryParameters);
     
     
     list_freeList(localVarHeaderType);
     
     free(localVarPath);
+    if(keyQuery_time){
+        free(keyQuery_time);
+        keyQuery_time = NULL;
+    }
+    if(keyPairQuery_time){
+        keyValuePair_free(keyPairQuery_time);
+        keyPairQuery_time = NULL;
+    }
     return elementToReturn;
 end:
     free(localVarPath);
@@ -98,7 +217,7 @@ end:
 // Get a listing of the emails sent through this system 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * mx , char * from , char * to , char * subject , char * mailid , int skip , int limit , long startDate , long endDate )
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, int *skip, int *limit, long startDate, long endDate, char *replyto, char *headerfrom, mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e delivered)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -106,24 +225,27 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/mail/log")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/mail/log");
+    char *localVarPath = strdup("/mail/log");
+
 
 
 
 
     // query parameters
     char *keyQuery_id = NULL;
-    long valueQuery_id ;
+    char * valueQuery_id ;
     keyValuePair_t *keyPairQuery_id = 0;
-    if (id)
     {
         keyQuery_id = strdup("id");
-        valueQuery_id = (id);
-        keyPairQuery_id = keyValuePair_create(keyQuery_id, &valueQuery_id);
+        valueQuery_id = calloc(1,MAX_NUMBER_LENGTH_LONG);
+        snprintf(valueQuery_id, MAX_NUMBER_LENGTH_LONG, "%d", id);
+        keyPairQuery_id = keyValuePair_create(keyQuery_id, valueQuery_id);
         list_addElement(localVarQueryParameters,keyPairQuery_id);
     }
 
@@ -203,11 +325,11 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     char *keyQuery_skip = NULL;
     char * valueQuery_skip = NULL;
     keyValuePair_t *keyPairQuery_skip = 0;
-    if (1) // Always send integer parameters to the API server
+    if (skip)
     {
         keyQuery_skip = strdup("skip");
         valueQuery_skip = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_skip, MAX_NUMBER_LENGTH, "%d", skip);
+        snprintf(valueQuery_skip, MAX_NUMBER_LENGTH, "%d", *skip);
         keyPairQuery_skip = keyValuePair_create(keyQuery_skip, valueQuery_skip);
         list_addElement(localVarQueryParameters,keyPairQuery_skip);
     }
@@ -216,37 +338,74 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     char *keyQuery_limit = NULL;
     char * valueQuery_limit = NULL;
     keyValuePair_t *keyPairQuery_limit = 0;
-    if (1) // Always send integer parameters to the API server
+    if (limit)
     {
         keyQuery_limit = strdup("limit");
         valueQuery_limit = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", limit);
+        snprintf(valueQuery_limit, MAX_NUMBER_LENGTH, "%d", *limit);
         keyPairQuery_limit = keyValuePair_create(keyQuery_limit, valueQuery_limit);
         list_addElement(localVarQueryParameters,keyPairQuery_limit);
     }
 
     // query parameters
     char *keyQuery_startDate = NULL;
-    long valueQuery_startDate ;
+    char * valueQuery_startDate ;
     keyValuePair_t *keyPairQuery_startDate = 0;
-    if (startDate)
     {
         keyQuery_startDate = strdup("startDate");
-        valueQuery_startDate = (startDate);
-        keyPairQuery_startDate = keyValuePair_create(keyQuery_startDate, &valueQuery_startDate);
+        valueQuery_startDate = calloc(1,MAX_NUMBER_LENGTH_LONG);
+        snprintf(valueQuery_startDate, MAX_NUMBER_LENGTH_LONG, "%d", startDate);
+        keyPairQuery_startDate = keyValuePair_create(keyQuery_startDate, valueQuery_startDate);
         list_addElement(localVarQueryParameters,keyPairQuery_startDate);
     }
 
     // query parameters
     char *keyQuery_endDate = NULL;
-    long valueQuery_endDate ;
+    char * valueQuery_endDate ;
     keyValuePair_t *keyPairQuery_endDate = 0;
-    if (endDate)
     {
         keyQuery_endDate = strdup("endDate");
-        valueQuery_endDate = (endDate);
-        keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, &valueQuery_endDate);
+        valueQuery_endDate = calloc(1,MAX_NUMBER_LENGTH_LONG);
+        snprintf(valueQuery_endDate, MAX_NUMBER_LENGTH_LONG, "%d", endDate);
+        keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, valueQuery_endDate);
         list_addElement(localVarQueryParameters,keyPairQuery_endDate);
+    }
+
+    // query parameters
+    char *keyQuery_replyto = NULL;
+    char * valueQuery_replyto = NULL;
+    keyValuePair_t *keyPairQuery_replyto = 0;
+    if (replyto)
+    {
+        keyQuery_replyto = strdup("replyto");
+        valueQuery_replyto = strdup((replyto));
+        keyPairQuery_replyto = keyValuePair_create(keyQuery_replyto, valueQuery_replyto);
+        list_addElement(localVarQueryParameters,keyPairQuery_replyto);
+    }
+
+    // query parameters
+    char *keyQuery_headerfrom = NULL;
+    char * valueQuery_headerfrom = NULL;
+    keyValuePair_t *keyPairQuery_headerfrom = 0;
+    if (headerfrom)
+    {
+        keyQuery_headerfrom = strdup("headerfrom");
+        valueQuery_headerfrom = strdup((headerfrom));
+        keyPairQuery_headerfrom = keyValuePair_create(keyQuery_headerfrom, valueQuery_headerfrom);
+        list_addElement(localVarQueryParameters,keyPairQuery_headerfrom);
+    }
+
+    // query parameters
+    char *keyQuery_delivered = NULL;
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e valueQuery_delivered ;
+    keyValuePair_t *keyPairQuery_delivered = 0;
+    if (delivered)
+    {
+        keyQuery_delivered = strdup("delivered");
+        valueQuery_delivered = (delivered);
+        keyPairQuery_delivered = keyValuePair_create(keyQuery_delivered, strdup(viewMailLog_DELIVERED_ToString(
+        valueQuery_delivered)));
+        list_addElement(localVarQueryParameters,keyPairQuery_delivered);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
@@ -257,6 +416,7 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -268,11 +428,14 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     //    printf("%s\n","bad input parameter");
     //}
     //nonprimitive not container
-    cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    mail_log_t *elementToReturn = mail_log_parseFromJSON(HistoryAPIlocalVarJSON);
-    cJSON_Delete(HistoryAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    mail_log_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *HistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = mail_log_parseFromJSON(HistoryAPIlocalVarJSON);
+        cJSON_Delete(HistoryAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -406,6 +569,38 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id , char * origin , char * 
     if(keyPairQuery_endDate){
         keyValuePair_free(keyPairQuery_endDate);
         keyPairQuery_endDate = NULL;
+    }
+    if(keyQuery_replyto){
+        free(keyQuery_replyto);
+        keyQuery_replyto = NULL;
+    }
+    if(valueQuery_replyto){
+        free(valueQuery_replyto);
+        valueQuery_replyto = NULL;
+    }
+    if(keyPairQuery_replyto){
+        keyValuePair_free(keyPairQuery_replyto);
+        keyPairQuery_replyto = NULL;
+    }
+    if(keyQuery_headerfrom){
+        free(keyQuery_headerfrom);
+        keyQuery_headerfrom = NULL;
+    }
+    if(valueQuery_headerfrom){
+        free(valueQuery_headerfrom);
+        valueQuery_headerfrom = NULL;
+    }
+    if(keyPairQuery_headerfrom){
+        keyValuePair_free(keyPairQuery_headerfrom);
+        keyPairQuery_headerfrom = NULL;
+    }
+    if(keyQuery_delivered){
+        free(keyQuery_delivered);
+        keyQuery_delivered = NULL;
+    }
+    if(keyPairQuery_delivered){
+        keyValuePair_free(keyPairQuery_delivered);
+        keyPairQuery_delivered = NULL;
     }
     return elementToReturn;
 end:

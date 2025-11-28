@@ -3,7 +3,7 @@ MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.1.0
+API version: 1.3.0
 Contact: support@interserver.net
 */
 
@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SendMail type satisfies the MappedNullable interface at compile time
@@ -28,7 +30,11 @@ type SendMail struct {
 	Subject string `json:"subject"`
 	// The main email contents.
 	Body string `json:"body"`
+	// Optional Order ID
+	Id *int32 `json:"id,omitempty"`
 }
+
+type _SendMail SendMail
 
 // NewSendMail instantiates a new SendMail object
 // This constructor will assign default values to properties that have it defined,
@@ -147,6 +153,38 @@ func (o *SendMail) SetBody(v string) {
 	o.Body = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SendMail) GetId() int32 {
+	if o == nil || IsNil(o.Id) {
+		var ret int32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SendMail) GetIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.Id) {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SendMail) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
+func (o *SendMail) SetId(v int32) {
+	o.Id = &v
+}
+
 func (o SendMail) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -161,7 +199,50 @@ func (o SendMail) ToMap() (map[string]interface{}, error) {
 	toSerialize["from"] = o.From
 	toSerialize["subject"] = o.Subject
 	toSerialize["body"] = o.Body
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	return toSerialize, nil
+}
+
+func (o *SendMail) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"to",
+		"from",
+		"subject",
+		"body",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSendMail := _SendMail{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSendMail)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SendMail(varSendMail)
+
+	return err
 }
 
 type NullableSendMail struct {

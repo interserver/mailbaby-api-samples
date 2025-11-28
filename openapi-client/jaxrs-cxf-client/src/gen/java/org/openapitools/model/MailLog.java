@@ -1,41 +1,45 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.openapitools.model.MailLogEntry;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * Mail log records
- **/
+ * Mail log records
+ */
 @ApiModel(description="Mail log records")
 
 public class MailLog  {
   
-  @ApiModelProperty(example = "10234", required = true, value = "total number of mail log entries")
  /**
-   * total number of mail log entries
-  **/
+  * total number of mail log entries
+  */
+  @ApiModelProperty(example = "10234", required = true, value = "total number of mail log entries")
+
   private Integer total;
 
-  @ApiModelProperty(example = "0", required = true, value = "number of emails skipped in listing")
  /**
-   * number of emails skipped in listing
-  **/
+  * number of emails skipped in listing
+  */
+  @ApiModelProperty(example = "0", required = true, value = "number of emails skipped in listing")
+
   private Integer skip;
 
-  @ApiModelProperty(example = "100", required = true, value = "number of emails to return")
  /**
-   * number of emails to return
-  **/
+  * number of emails to return
+  */
+  @ApiModelProperty(example = "100", required = true, value = "number of emails to return")
+
   private Integer limit;
 
   @ApiModelProperty(example = "[{     \"_id\": 103172,     \"id\": \"17c7eda538e0005d03\",     \"from\": \"person@mysite.com\",     \"to\": \"client@isp.com\",     \"subject\": \"sell 0.005 shares\",     \"messageId\": \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",     \"created\": \"2021-10-14 08:50:10\",     \"time\": 1634215809,     \"user\": \"mb5658\",     \"transtype\": \"ESMTPSA\",     \"origin\": \"199.231.189.154\",     \"interface\": \"feeder\",     \"sendingZone\": \"interserver\",     \"bodySize\": 63,     \"seq\": 1,     \"recipient\": \"client@isp.com\",     \"domain\": \"interserver.net\",     \"locked\": 1,     \"lockTime\": \"1634215818533\",     \"assigned\": \"relay1\",     \"queued\": \"2021-10-14T12:50:15.487Z\",     \"mxHostname\": \"mx.j.is.cc\",     \"response\": \"250 2.0.0 Ok queued as C91D83E128C\" }]", required = true, value = "")
+
   private List<MailLogEntry> emails = new ArrayList<>();
  /**
    * total number of mail log entries
@@ -123,10 +127,10 @@ public class MailLog  {
       return false;
     }
     MailLog mailLog = (MailLog) o;
-    return Objects.equals(total, mailLog.total) &&
-        Objects.equals(skip, mailLog.skip) &&
-        Objects.equals(limit, mailLog.limit) &&
-        Objects.equals(emails, mailLog.emails);
+    return Objects.equals(this.total, mailLog.total) &&
+        Objects.equals(this.skip, mailLog.skip) &&
+        Objects.equals(this.limit, mailLog.limit) &&
+        Objects.equals(this.emails, mailLog.emails);
   }
 
   @Override

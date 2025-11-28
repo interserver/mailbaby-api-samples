@@ -1,5 +1,7 @@
 # Interserver\Mailbaby\BlockingApi
 
+Management of email blocking rules and block lists.
+
 All URIs are relative to https://api.mailbaby.net, except if the operation defines another base path.
 
 | Method | HTTP request | Description |

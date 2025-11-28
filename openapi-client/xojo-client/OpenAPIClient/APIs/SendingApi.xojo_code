@@ -1,6 +1,137 @@
 #tag Class
 Protected Class SendingApi
 	#tag Method, Flags = &h0
+		Sub RawMail(, sendMailRaw As OpenAPIClient.Models.SendMailRaw)
+		  // Operation rawMail
+		  // Sends a raw email
+		  // - 
+		  // - parameter sendMailRaw: (body)  
+		  //
+		  // Invokes SendingApiCallbackHandler.RawMailCallback(GenericResponse) on completion. 
+		  //
+		  // - POST /mail/rawsend
+		  // - This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+		  // - defaultResponse: Nil
+		  //
+		  // - API Key:
+		  //   - type: apiKey X-API-KEY (HEADER)
+		  //   - name: apiKeyAuth
+		  //
+		  
+		  Dim localVarHTTPSocket As New HTTPSecureSocket
+		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
+		  localVarHTTPSocket.SetRequestContent(Xoson.toJSON(sendMailRaw), "application/json")
+		  
+		  If me.ApiKeyapiKeyAuth = "" Then Raise New OpenAPIClient.OpenAPIClientException(kErrorCannotAuthenticate, "API key is unset. Please assign a value to `SendingApi.ApiKeyapiKeyAuth` before invoking `SendingApi.RawMail()`.")
+		  
+		  localVarHTTPSocket.SetRequestHeader(EncodeURLComponent("X-API-KEY"), EncodeURLComponent(me.ApiKeyapiKeyAuth))
+		  
+
+
+		  Dim localVarPath As String = "/mail/rawsend"
+		  
+		  
+		  
+		  AddHandler localVarHTTPSocket.PageReceived, addressof me.RawMail_handler
+		  AddHandler localVarHTTPSocket.Error, addressof Me.RawMail_error
+		  
+		  
+		  localVarHTTPSocket.SendRequest("POST", Me.BasePath + localVarPath)
+		  if localVarHTTPSocket.LastErrorCode <> 0 then
+		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
+			Raise localVarException
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function RawMailPrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.GenericResponse) As Boolean
+		  Dim contentType As String = Headers.Value("Content-Type")
+		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
+		  Content = DefineEncoding(Content, contentEncoding)
+		  
+		  If HTTPStatus > 199 and HTTPStatus < 300 then
+		    If contentType.LeftB(16) = "application/json" then
+		      
+			  outData = New OpenAPIClient.Models.GenericResponse
+			  Try
+		        Xoson.fromJSON(outData, Content.toText())
+
+		      Catch e As JSONException
+		        error.Message = error.Message + " with JSON parse exception: " + e.Message
+		        error.ErrorNumber = kErrorInvalidJSON
+		        Return False
+		        
+		      Catch e As Xojo.Data.InvalidJSONException
+		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
+		        error.ErrorNumber = kErrorInvalidJSON
+		        Return False
+		        
+		      Catch e As Xoson.XosonException
+		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
+		        error.ErrorNumber = kErrorXosonProblem
+		        Return False
+
+		      End Try
+		      
+		      
+		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    Else
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    End If
+		  Else
+		    error.Message = error.Message + ". " + Content
+			error.ErrorNumber = kErrorHTTPFail
+		    Return False
+		  End If
+		  
+		  Return True
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RawMail_error(sender As HTTPSecureSocket, Code As Integer)
+		  If sender <> nil Then sender.Close()
+
+		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
+		  Dim data As OpenAPIClient.Models.GenericResponse
+		  CallbackHandler.RawMailCallback(error, data)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub RawMail_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
+		  #Pragma Unused URL
+		  
+
+		  If sender <> nil Then sender.Close()
+		  
+		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
+		  
+		  Dim data As OpenAPIClient.Models.GenericResponse
+		  Call RawMailPrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
+		  
+		  CallbackHandler.RawMailCallback(error, data)
+		End Sub
+	#tag EndMethod
+
+
+
+
+	#tag Method, Flags = &h0
 		Sub SendAdvMail(, subject As String, body As String, from As OpenAPIClient.Models.EmailAddressTypes, Escapedto As OpenAPIClient.Models.EmailAddressesTypes, Optional replyto As OpenAPIClient.Models.EmailAddressesTypes, Optional cc As OpenAPIClient.Models.EmailAddressesTypes, Optional bcc As OpenAPIClient.Models.EmailAddressesTypes, attachments() As OpenAPIClient.Models.MailAttachment, Optional id As Xoson.O.OptionalInt64)
 		  // Operation sendAdvMail
 		  // Sends an Email with Advanced Options
@@ -18,7 +149,7 @@ Protected Class SendingApi
 		  // Invokes SendingApiCallbackHandler.SendAdvMailCallback(GenericResponse) on completion. 
 		  //
 		  // - POST /mail/advsend
-		  // - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to[0][name]=Joe"  --data "to[0][email]=support@interserver.net" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from="Joe <user@domain.com>"  --data to="Joe <support@interserver.net>" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to=support@interserver.net, support@interserver.net" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to=Joe <support@interserver.net>, Joe <support@interserver.net>" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to[0][name]=Joe"  --data "to[0][email]=support@interserver.net"  --data "to[1][name]=Joe"  --data "to[1][email]=support@interserver.net" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/json'  --header 'X-API-KEY: YOUR_API_KEY'  --data '{ "subject": "Welcome", "body": "Hello", "from": "user@domain.com", "to": "support@interserver.net" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/json'  --header 'X-API-KEY: YOUR_API_KEY'  --data '{ "subject": "Welcome", "body": "Hello", "from": {"name": "Joe", "email": "user@domain.com"}, "to": [{"name": "Joe", "email": "support@interserver.net"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/json'  --header 'X-API-KEY: YOUR_API_KEY'  --data '{ "subject": "Welcome", "body": "Hello", "from": "Joe <user@domain.com>", "to": "Joe <support@interserver.net>" }' ``` 
+		  // - Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to[0][name]=Joe"  --data "to[0][email]=support@interserver.net" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from="Joe <user@domain.com>"  --data to="Joe <support@interserver.net>" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to=support@interserver.net, support@interserver.net" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to=Joe <support@interserver.net>, Joe <support@interserver.net>" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/x-www-form-urlencoded'  --header 'X-API-KEY: YOUR_API_KEY'  --data 'subject=Welcome'  --data 'body=Hello'  --data from=user@domain.com  --data "to[0][name]=Joe"  --data "to[0][email]=support@interserver.net"  --data "to[1][name]=Joe"  --data "to[1][email]=support@interserver.net" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/json'  --header 'X-API-KEY: YOUR_API_KEY'  --data '{ "subject": "Welcome", "body": "Hello", "from": "user@domain.com", "to": "support@interserver.net" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/json'  --header 'X-API-KEY: YOUR_API_KEY'  --data '{ "subject": "Welcome", "body": "Hello", "from": {"name": "Joe", "email": "user@domain.com"}, "to": [{"name": "Joe", "email": "support@interserver.net"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend  --header 'Accept: application/json'  --header 'Content-Type: application/json'  --header 'X-API-KEY: YOUR_API_KEY'  --data '{ "subject": "Welcome", "body": "Hello", "from": "Joe <user@domain.com>", "to": "Joe <support@interserver.net>" }' ``` 
 		  // - defaultResponse: Nil
 		  //
 		  // - API Key:
@@ -151,7 +282,7 @@ If id <> nil Then localVarFormParams.Value("id") = id.ToString
 
 
 	#tag Method, Flags = &h0
-		Sub SendMail(, Escapedto As String, from As String, subject As String, body As String)
+		Sub SendMail(, Escapedto As String, from As String, subject As String, body As String, Optional id As Xoson.O.OptionalInteger)
 		  // Operation sendMail
 		  // Sends an Email
 		  // - 
@@ -159,6 +290,7 @@ If id <> nil Then localVarFormParams.Value("id") = id.ToString
 		  // - parameter from: (form) The contact whom is the this email is from. 
 		  // - parameter subject: (form) The subject or title of the email 
 		  // - parameter body: (form) The main email contents. 
+		  // - parameter id: (form) Optional Order ID (optional, default to 0)
 		  //
 		  // Invokes SendingApiCallbackHandler.SendMailCallback(GenericResponse) on completion. 
 		  //
@@ -178,6 +310,7 @@ If id <> nil Then localVarFormParams.Value("id") = id.ToString
 localVarFormParams.Value("from") = from
 localVarFormParams.Value("subject") = subject
 localVarFormParams.Value("body") = body
+If id <> nil Then localVarFormParams.Value("id") = id.ToString
 		  If localVarFormParams.Count > 0 Then localVarHTTPSocket.SetFormData(localVarFormParams)
 		  
 		  

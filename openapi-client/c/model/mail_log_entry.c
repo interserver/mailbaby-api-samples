@@ -5,7 +5,7 @@
 
 
 
-mail_log_entry_t *mail_log_entry_create(
+static mail_log_entry_t *mail_log_entry_create_internal(
     int _id,
     char *id,
     char *from,
@@ -58,12 +58,68 @@ mail_log_entry_t *mail_log_entry_create(
     mail_log_entry_local_var->response = response;
     mail_log_entry_local_var->message_id = message_id;
 
+    mail_log_entry_local_var->_library_owned = 1;
     return mail_log_entry_local_var;
 }
 
+__attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
+    int _id,
+    char *id,
+    char *from,
+    char *to,
+    char *subject,
+    char *created,
+    int time,
+    char *user,
+    char *transtype,
+    char *origin,
+    char *interface,
+    char *sending_zone,
+    int body_size,
+    int seq,
+    char *recipient,
+    char *domain,
+    int locked,
+    char *lock_time,
+    char *assigned,
+    char *queued,
+    char *mx_hostname,
+    char *response,
+    char *message_id
+    ) {
+    return mail_log_entry_create_internal (
+        _id,
+        id,
+        from,
+        to,
+        subject,
+        created,
+        time,
+        user,
+        transtype,
+        origin,
+        interface,
+        sending_zone,
+        body_size,
+        seq,
+        recipient,
+        domain,
+        locked,
+        lock_time,
+        assigned,
+        queued,
+        mx_hostname,
+        response,
+        message_id
+        );
+}
 
 void mail_log_entry_free(mail_log_entry_t *mail_log_entry) {
     if(NULL == mail_log_entry){
+        return ;
+    }
+    if(mail_log_entry->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "mail_log_entry_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -364,6 +420,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->_id
     cJSON *_id = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "_id");
+    if (cJSON_IsNull(_id)) {
+        _id = NULL;
+    }
     if (!_id) {
         goto end;
     }
@@ -376,6 +435,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (!id) {
         goto end;
     }
@@ -388,6 +450,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->from
     cJSON *from = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "from");
+    if (cJSON_IsNull(from)) {
+        from = NULL;
+    }
     if (!from) {
         goto end;
     }
@@ -400,6 +465,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "to");
+    if (cJSON_IsNull(to)) {
+        to = NULL;
+    }
     if (!to) {
         goto end;
     }
@@ -412,6 +480,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->subject
     cJSON *subject = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
+    }
     if (!subject) {
         goto end;
     }
@@ -424,6 +495,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->created
     cJSON *created = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "created");
+    if (cJSON_IsNull(created)) {
+        created = NULL;
+    }
     if (!created) {
         goto end;
     }
@@ -436,6 +510,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->time
     cJSON *time = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "time");
+    if (cJSON_IsNull(time)) {
+        time = NULL;
+    }
     if (!time) {
         goto end;
     }
@@ -448,6 +525,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->user
     cJSON *user = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "user");
+    if (cJSON_IsNull(user)) {
+        user = NULL;
+    }
     if (!user) {
         goto end;
     }
@@ -460,6 +540,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->transtype
     cJSON *transtype = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "transtype");
+    if (cJSON_IsNull(transtype)) {
+        transtype = NULL;
+    }
     if (!transtype) {
         goto end;
     }
@@ -472,6 +555,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->origin
     cJSON *origin = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "origin");
+    if (cJSON_IsNull(origin)) {
+        origin = NULL;
+    }
     if (!origin) {
         goto end;
     }
@@ -484,6 +570,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->interface
     cJSON *interface = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "interface");
+    if (cJSON_IsNull(interface)) {
+        interface = NULL;
+    }
     if (!interface) {
         goto end;
     }
@@ -496,6 +585,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->sending_zone
     cJSON *sending_zone = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "sendingZone");
+    if (cJSON_IsNull(sending_zone)) {
+        sending_zone = NULL;
+    }
     if (!sending_zone) {
         goto end;
     }
@@ -508,6 +600,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->body_size
     cJSON *body_size = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "bodySize");
+    if (cJSON_IsNull(body_size)) {
+        body_size = NULL;
+    }
     if (!body_size) {
         goto end;
     }
@@ -520,6 +615,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->seq
     cJSON *seq = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "seq");
+    if (cJSON_IsNull(seq)) {
+        seq = NULL;
+    }
     if (!seq) {
         goto end;
     }
@@ -532,6 +630,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->recipient
     cJSON *recipient = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "recipient");
+    if (cJSON_IsNull(recipient)) {
+        recipient = NULL;
+    }
     if (!recipient) {
         goto end;
     }
@@ -544,6 +645,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->domain
     cJSON *domain = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "domain");
+    if (cJSON_IsNull(domain)) {
+        domain = NULL;
+    }
     if (!domain) {
         goto end;
     }
@@ -556,6 +660,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->locked
     cJSON *locked = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "locked");
+    if (cJSON_IsNull(locked)) {
+        locked = NULL;
+    }
     if (!locked) {
         goto end;
     }
@@ -568,6 +675,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->lock_time
     cJSON *lock_time = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "lockTime");
+    if (cJSON_IsNull(lock_time)) {
+        lock_time = NULL;
+    }
     if (!lock_time) {
         goto end;
     }
@@ -580,6 +690,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->assigned
     cJSON *assigned = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "assigned");
+    if (cJSON_IsNull(assigned)) {
+        assigned = NULL;
+    }
     if (!assigned) {
         goto end;
     }
@@ -592,6 +705,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->queued
     cJSON *queued = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "queued");
+    if (cJSON_IsNull(queued)) {
+        queued = NULL;
+    }
     if (!queued) {
         goto end;
     }
@@ -604,6 +720,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->mx_hostname
     cJSON *mx_hostname = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "mxHostname");
+    if (cJSON_IsNull(mx_hostname)) {
+        mx_hostname = NULL;
+    }
     if (!mx_hostname) {
         goto end;
     }
@@ -616,6 +735,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->response
     cJSON *response = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "response");
+    if (cJSON_IsNull(response)) {
+        response = NULL;
+    }
     if (!response) {
         goto end;
     }
@@ -628,6 +750,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // mail_log_entry->message_id
     cJSON *message_id = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "messageId");
+    if (cJSON_IsNull(message_id)) {
+        message_id = NULL;
+    }
     if (message_id) { 
     if(!cJSON_IsString(message_id) && !cJSON_IsNull(message_id))
     {
@@ -636,7 +761,7 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
     }
 
 
-    mail_log_entry_local_var = mail_log_entry_create (
+    mail_log_entry_local_var = mail_log_entry_create_internal (
         _id->valuedouble,
         strdup(id->valuestring),
         strdup(from->valuestring),

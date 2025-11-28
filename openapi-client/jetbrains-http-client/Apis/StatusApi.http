@@ -1,5 +1,6 @@
 ## StatusApi
 
 ### Checks if the server is running
-# @name pingServer
+## Checks if the server is running
 GET https://api.mailbaby.net/ping
+X-API-KEY: {{apiKey}}

@@ -6,11 +6,38 @@ import org.openapitools.model.EmailAddressesTypes
 import org.openapitools.model.ErrorMessage
 import org.openapitools.model.GenericResponse
 import org.openapitools.model.MailAttachment
+import org.openapitools.model.SendMailRaw
 
 class SendingApi {
     String basePath = "https://api.mailbaby.net"
     String versionPath = ""
     ApiUtils apiUtils = new ApiUtils();
+
+    def rawMail ( SendMailRaw sendMailRaw, Closure onSuccess, Closure onFailure)  {
+        String resourcePath = "/mail/rawsend"
+
+        // params
+        def queryParams = [:]
+        def headerParams = [:]
+        def bodyParams
+        def contentType
+
+        // verify required params are set
+        if (sendMailRaw == null) {
+            throw new RuntimeException("missing required params sendMailRaw")
+        }
+
+
+
+        contentType = 'application/json';
+        bodyParams = sendMailRaw
+
+
+        apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
+                    "POST", "",
+                    GenericResponse.class )
+
+    }
 
     def sendAdvMail ( String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, List<MailAttachment> attachments, Long id, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/advsend"
@@ -59,7 +86,7 @@ class SendingApi {
 
     }
 
-    def sendMail ( String to, String from, String subject, String body, Closure onSuccess, Closure onFailure)  {
+    def sendMail ( String to, String from, String subject, String body, Integer id, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/send"
 
         // params
@@ -94,6 +121,7 @@ class SendingApi {
         bodyParams.put("from", from)
         bodyParams.put("subject", subject)
         bodyParams.put("body", body)
+        bodyParams.put("id", id)
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, contentType,
                     "POST", "",

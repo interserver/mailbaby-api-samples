@@ -1,8 +1,8 @@
 package org.openapitools.api;
 
 import org.openapitools.model.ErrorMessage;
-import org.openapitools.model.GetStats200ResponseInner;
 import org.openapitools.model.MailLog;
+import org.openapitools.model.MailStatsType;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -34,9 +34,10 @@ public class HistoryApiTest {
     @Disabled("Not Implemented")
     public void getStatsTest() {
         // given
+        String time = "example";
 
         // when
-        List<GetStats200ResponseInner> body = api.getStats().block();
+        MailStatsType body = api.getStats(time).block();
 
         // then
         // TODO implement the getStatsTest()
@@ -63,9 +64,12 @@ public class HistoryApiTest {
         Integer limit = 100;
         Long startDate = 1641781008L;
         Long endDate = 1673317008L;
+        String replyto = "example";
+        String headerfrom = "example";
+        String delivered = "example";
 
         // when
-        MailLog body = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate).block();
+        MailLog body = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered).block();
 
         // then
         // TODO implement the viewMailLogTest()

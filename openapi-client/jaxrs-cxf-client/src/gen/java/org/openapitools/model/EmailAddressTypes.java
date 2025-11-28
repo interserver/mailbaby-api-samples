@@ -1,29 +1,31 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import org.openapitools.model.EmailAddressName;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * 
- **/
+ * 
+ */
 @ApiModel(description="")
 
 public class EmailAddressTypes  {
   
-  @ApiModelProperty(example = "user@domain.com", required = true, value = "The email address.")
  /**
-   * The email address.
-  **/
+  * The email address.
+  */
+  @ApiModelProperty(example = "user@domain.com", required = true, value = "The email address.")
+
   private String email;
 
-  @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
  /**
-   * Name to use for the sending contact.
-  **/
+  * Name to use for the sending contact.
+  */
+  @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
+
   private String name;
  /**
    * The email address.
@@ -70,8 +72,8 @@ public class EmailAddressTypes  {
       return false;
     }
     EmailAddressTypes emailAddressTypes = (EmailAddressTypes) o;
-    return Objects.equals(email, emailAddressTypes.email) &&
-        Objects.equals(name, emailAddressTypes.name);
+    return Objects.equals(this.email, emailAddressTypes.email) &&
+        Objects.equals(this.name, emailAddressTypes.name);
   }
 
   @Override

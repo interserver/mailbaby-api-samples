@@ -5,7 +5,7 @@
 
 
 
-mail_log_t *mail_log_create(
+static mail_log_t *mail_log_create_internal(
     int total,
     int skip,
     int limit,
@@ -20,12 +20,30 @@ mail_log_t *mail_log_create(
     mail_log_local_var->limit = limit;
     mail_log_local_var->emails = emails;
 
+    mail_log_local_var->_library_owned = 1;
     return mail_log_local_var;
 }
 
+__attribute__((deprecated)) mail_log_t *mail_log_create(
+    int total,
+    int skip,
+    int limit,
+    list_t *emails
+    ) {
+    return mail_log_create_internal (
+        total,
+        skip,
+        limit,
+        emails
+        );
+}
 
 void mail_log_free(mail_log_t *mail_log) {
     if(NULL == mail_log){
+        return ;
+    }
+    if(mail_log->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "mail_log_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -106,6 +124,9 @@ mail_log_t *mail_log_parseFromJSON(cJSON *mail_logJSON){
 
     // mail_log->total
     cJSON *total = cJSON_GetObjectItemCaseSensitive(mail_logJSON, "total");
+    if (cJSON_IsNull(total)) {
+        total = NULL;
+    }
     if (!total) {
         goto end;
     }
@@ -118,6 +139,9 @@ mail_log_t *mail_log_parseFromJSON(cJSON *mail_logJSON){
 
     // mail_log->skip
     cJSON *skip = cJSON_GetObjectItemCaseSensitive(mail_logJSON, "skip");
+    if (cJSON_IsNull(skip)) {
+        skip = NULL;
+    }
     if (!skip) {
         goto end;
     }
@@ -130,6 +154,9 @@ mail_log_t *mail_log_parseFromJSON(cJSON *mail_logJSON){
 
     // mail_log->limit
     cJSON *limit = cJSON_GetObjectItemCaseSensitive(mail_logJSON, "limit");
+    if (cJSON_IsNull(limit)) {
+        limit = NULL;
+    }
     if (!limit) {
         goto end;
     }
@@ -142,6 +169,9 @@ mail_log_t *mail_log_parseFromJSON(cJSON *mail_logJSON){
 
     // mail_log->emails
     cJSON *emails = cJSON_GetObjectItemCaseSensitive(mail_logJSON, "emails");
+    if (cJSON_IsNull(emails)) {
+        emails = NULL;
+    }
     if (!emails) {
         goto end;
     }
@@ -165,7 +195,7 @@ mail_log_t *mail_log_parseFromJSON(cJSON *mail_logJSON){
     }
 
 
-    mail_log_local_var = mail_log_create (
+    mail_log_local_var = mail_log_create_internal (
         total->valuedouble,
         skip->valuedouble,
         limit->valuedouble,

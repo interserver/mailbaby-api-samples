@@ -6,21 +6,43 @@
  * Schema Mail_log.t : Mail log records
  *)
 
-type t = {
-    (* total number of mail log entries *)
-    total: int32;
-    (* number of emails skipped in listing *)
-    skip: int32;
-    (* number of emails to return *)
-    limit: int32;
-    emails: Mail_log_entry.t list;
-} [@@deriving yojson { strict = false }, show ];;
 
-(** Mail log records *)
-let create (total : int32) (skip : int32) (limit : int32) (emails : Mail_log_entry.t list) : t = {
-    total = total;
-    skip = skip;
-    limit = limit;
-    emails = emails;
-}
+
+    
+        type t = {
+                              total: int32
+                  
+                  
+                
+                
+                ; [@key "total"]
+                    (** total number of mail log entries *)
+                                      skip: int32
+                  
+                  
+                
+                
+                ; [@key "skip"]
+                    (** number of emails skipped in listing *)
+                                      limit: int32
+                  
+                  
+                
+                
+                ; [@key "limit"]
+                    (** number of emails to return *)
+                                      emails: Mail_log_entry.t list
+                
+                
+                ; [@key "emails"]
+                        } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** Mail log records *)
+        let create (total : int32) (skip : int32) (limit : int32) (emails : Mail_log_entry.t list) : t = {
+            total = total;
+            skip = skip;
+            limit = limit;
+            emails = emails;
+        }
+    
 

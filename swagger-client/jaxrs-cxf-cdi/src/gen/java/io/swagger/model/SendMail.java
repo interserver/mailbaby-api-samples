@@ -19,6 +19,7 @@ public class SendMail   {
   private String from = null;
   private String subject = null;
   private String body = null;
+  private Integer id = null;
 
   /**
    * The Contact whom is the primary recipient of this email.
@@ -100,6 +101,26 @@ public class SendMail   {
     this.body = body;
   }
 
+  /**
+   * Optional Order ID
+   **/
+  public SendMail id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  
+  
+  @Schema(description = "Optional Order ID")
+  @JsonProperty("id")
+  @NotNull
+  public Integer getId() {
+    return id;
+  }
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -113,12 +134,13 @@ public class SendMail   {
     return Objects.equals(to, sendMail.to) &&
         Objects.equals(from, sendMail.from) &&
         Objects.equals(subject, sendMail.subject) &&
-        Objects.equals(body, sendMail.body);
+        Objects.equals(body, sendMail.body) &&
+        Objects.equals(id, sendMail.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, from, subject, body);
+    return Objects.hash(to, from, subject, body, id);
   }
 
   @Override
@@ -130,6 +152,7 @@ public class SendMail   {
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -11,7 +11,6 @@ docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
 docs/GenericResponse.md
-docs/GetStats200ResponseInner.md
 docs/HistoryApi.md
 docs/MailAttachment.md
 docs/MailBlockClickHouse.md
@@ -20,8 +19,14 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailStatsType.md
+docs/MailStatsTypeVolume.md
+docs/MailStatsTypeVolumeFrom.md
+docs/MailStatsTypeVolumeIp.md
+docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
+docs/SendMailRaw.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -42,7 +47,6 @@ src/model/EmailAddressTypes.js
 src/model/EmailAddressesTypes.js
 src/model/ErrorMessage.js
 src/model/GenericResponse.js
-src/model/GetStats200ResponseInner.js
 src/model/MailAttachment.js
 src/model/MailBlockClickHouse.js
 src/model/MailBlockRspamd.js
@@ -50,8 +54,14 @@ src/model/MailBlocks.js
 src/model/MailLog.js
 src/model/MailLogEntry.js
 src/model/MailOrder.js
+src/model/MailStatsType.js
+src/model/MailStatsTypeVolume.js
+src/model/MailStatsTypeVolumeFrom.js
+src/model/MailStatsTypeVolumeIp.js
+src/model/MailStatsTypeVolumeTo.js
 src/model/SendMail.js
 src/model/SendMailAdv.js
+src/model/SendMailRaw.js
 test/api/BlockingApi.spec.js
 test/api/HistoryApi.spec.js
 test/api/SendingApi.spec.js
@@ -64,7 +74,6 @@ test/model/EmailAddressTypes.spec.js
 test/model/EmailAddressesTypes.spec.js
 test/model/ErrorMessage.spec.js
 test/model/GenericResponse.spec.js
-test/model/GetStats200ResponseInner.spec.js
 test/model/MailAttachment.spec.js
 test/model/MailBlockClickHouse.spec.js
 test/model/MailBlockRspamd.spec.js
@@ -72,5 +81,11 @@ test/model/MailBlocks.spec.js
 test/model/MailLog.spec.js
 test/model/MailLogEntry.spec.js
 test/model/MailOrder.spec.js
+test/model/MailStatsType.spec.js
+test/model/MailStatsTypeVolume.spec.js
+test/model/MailStatsTypeVolumeFrom.spec.js
+test/model/MailStatsTypeVolumeIp.spec.js
+test/model/MailStatsTypeVolumeTo.spec.js
 test/model/SendMail.spec.js
 test/model/SendMailAdv.spec.js
+test/model/SendMailRaw.spec.js

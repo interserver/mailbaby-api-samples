@@ -56,6 +56,7 @@ class SendingApiSimulation extends Simulation {
     }
 
     // Setup all the operations per second for the test to ultimately be generated from configs
+    val rawMailPerSecond = config.getDouble("performance.operationsPerSecond.rawMail") * rateMultiplier * instanceMultiplier
     val sendAdvMailPerSecond = config.getDouble("performance.operationsPerSecond.sendAdvMail") * rateMultiplier * instanceMultiplier
     val sendMailPerSecond = config.getDouble("performance.operationsPerSecond.sendMail") * rateMultiplier * instanceMultiplier
 
@@ -64,6 +65,19 @@ class SendingApiSimulation extends Simulation {
     // Set up CSV feeders
 
     // Setup all scenarios
+
+    
+    val scnrawMail = scenario("rawMailSimulation")
+        .exec(http("rawMail")
+        .httpRequest("POST","/mail/rawsend")
+)
+
+    // Run scnrawMail with warm up and reach a constant rate for entire duration
+    scenarioBuilders += scnrawMail.inject(
+        rampUsersPerSec(1) to(rawMailPerSecond) during(rampUpSeconds),
+        constantUsersPerSec(rawMailPerSecond) during(durationSeconds),
+        rampUsersPerSec(rawMailPerSecond) to(1) during(rampDownSeconds)
+    )
 
     
     val scnsendAdvMail = scenario("sendAdvMailSimulation")

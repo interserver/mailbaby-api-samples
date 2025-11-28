@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,17 +18,22 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "The resposne when an error occurs.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class ErrorMessage   {
   @JsonProperty("code")
+
   private Integer code = null;
 
   @JsonProperty("message")
+
   private String message = null;
 
-  public ErrorMessage code(Integer code) {
+
+  public ErrorMessage code(Integer code) { 
+
     this.code = code;
     return this;
   }
@@ -32,18 +42,23 @@ public class ErrorMessage   {
    * The response code associated with the error.
    * @return code
    **/
+  
   @Schema(example = "400", required = true, description = "The response code associated with the error.")
-      @NotNull
-
-    public Integer getCode() {
+  
+  @NotNull
+  public Integer getCode() {  
     return code;
   }
 
-  public void setCode(Integer code) {
+
+
+  public void setCode(Integer code) { 
+
     this.code = code;
   }
 
-  public ErrorMessage message(String message) {
+  public ErrorMessage message(String message) { 
+
     this.message = message;
     return this;
   }
@@ -52,17 +67,20 @@ public class ErrorMessage   {
    * The details or description of the error.
    * @return message
    **/
+  
   @Schema(example = "There was an error.", required = true, description = "The details or description of the error.")
-      @NotNull
-
-    public String getMessage() {
+  
+  @NotNull
+  public String getMessage() {  
     return message;
   }
 
-  public void setMessage(String message) {
+
+
+  public void setMessage(String message) { 
+
     this.message = message;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

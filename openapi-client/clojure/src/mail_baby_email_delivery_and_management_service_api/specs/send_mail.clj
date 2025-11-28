@@ -11,6 +11,7 @@
    (ds/req :from) string?
    (ds/req :subject) string?
    (ds/req :body) string?
+   (ds/opt :id) int?
    })
 
 (def send-mail-spec

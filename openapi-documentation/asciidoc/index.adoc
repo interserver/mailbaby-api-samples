@@ -1,6 +1,6 @@
 = MailBaby Email Delivery and Management Service API
 support@interserver.net
-1.1.0
+1.3.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -520,11 +520,24 @@ Returns information about the usage on your mail accounts.
 
 
 
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| time
+| The timeframe for the statistics. 
+| -
+| null
+| 
+
+|===
 
 
 ===== Return Type
 
-array[<<getStats_200_response_inner>>]
+<<MailStatsType>>
 
 
 ===== Content Type
@@ -541,7 +554,7 @@ array[<<getStats_200_response_inner>>]
 
 | 200
 | OK
-| List[<<getStats_200_response_inner>>] 
+|  <<MailStatsType>>
 
 
 | 401
@@ -671,6 +684,24 @@ Get a listing of the emails sent through this system
 | null
 | 
 
+| replyto
+| Reply-To Email Address 
+| -
+| null
+| 
+
+| headerfrom
+| Header From Email Address 
+| -
+| null
+| 
+
+| delivered
+| Limiting the emails to wether or not they were delivered. 
+| -
+| null
+| 
+
 |===
 
 
@@ -728,6 +759,103 @@ endif::internal-generation[]
 === Sending
 
 
+[.rawMail]
+==== rawMail
+
+`POST /mail/rawsend`
+
+Sends a raw email
+
+===== Description
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+
+// markup not found, no include::{specDir}mail/rawsend/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+====== Body Parameter
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| SendMailRaw
+|  <<SendMailRaw>>
+| X
+| 
+| 
+
+|===
+
+
+
+
+
+===== Return Type
+
+<<GenericResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| successful email response
+|  <<GenericResponse>>
+
+
+| 400
+| Error message when there was a problem with the input parameters.
+|  <<ErrorMessage>>
+
+
+| 401
+| Unauthorized
+|  <<ErrorMessage>>
+
+
+| 404
+| The specified resource was not found
+|  <<ErrorMessage>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/rawsend/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/rawsend/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/rawsend/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/rawsend/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
 [.sendAdvMail]
 ==== sendAdvMail
 
@@ -737,7 +865,7 @@ Sends an Email with Advanced Options
 
 ===== Description
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
 
 
 // markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
@@ -920,6 +1048,12 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 | body
 | The main email contents. <<string>>
 | X
+| null
+| 
+
+| id
+| Optional Order ID <<integer>>
+| -
 | null
 | 
 
@@ -1156,30 +1290,35 @@ endif::internal-generation[]
 
 The data for a email deny rule record.
 
+
 [.fields-DenyRuleNew]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | type
 | X
-| String 
+| 
+|  <<String>>  
 | The type of deny rule.
-|  _Enum:_ domain, email, startswith, destination, 
+|  _Enum:_ domain, email, startswith, destination,  
 
 | data
 | X
-| String 
+| 
+|   String  
 | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-|  
+|     
 
 | user
 | 
-| String 
+| 
+|   String  
 | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-|  
+|     
 
 |===
+
 
 
 [#DenyRuleRecord]
@@ -1187,42 +1326,49 @@ The data for a email deny rule record.
 
 The data for a email deny rule record.
 
+
 [.fields-DenyRuleRecord]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | type
 | X
-| String 
+| 
+|  <<String>>  
 | The type of deny rule.
-|  _Enum:_ domain, email, startswith, destination, 
+|  _Enum:_ domain, email, startswith, destination,  
 
 | data
 | X
-| String 
+| 
+|   String  
 | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-|  
+|     
 
 | id
 | X
-| String 
+| 
+|   String  
 | The deny rule Id number.
-|  
+|     
 
 | created
 | X
-| Date 
+| 
+|   Date  
 | the date the rule was created.
-| date-time 
+| date-time    
 
 | user
 | 
-| String 
+| 
+|   String  
 | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-|  
+|     
 
 |===
+
 
 
 [#EmailAddressName]
@@ -1230,24 +1376,28 @@ The data for a email deny rule record.
 
 An email contact.
 
+
 [.fields-EmailAddressName]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | email
 | X
-| String 
+| 
+|   String  
 | The email address.
-|  
+|     
 
 | name
 | 
-| String 
+| 
+|   String  
 | Name to use for the sending contact.
-|  
+|     
 
 |===
+
 
 
 [#EmailAddressTypes]
@@ -1255,24 +1405,28 @@ An email contact.
 
 
 
+
 [.fields-EmailAddressTypes]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | email
 | X
-| String 
+| 
+|   String  
 | The email address.
-|  
+|     
 
 | name
 | 
-| String 
+| 
+|   String  
 | Name to use for the sending contact.
-|  
+|     
 
 |===
+
 
 
 [#EmailAddressesTypes]
@@ -1280,12 +1434,14 @@ An email contact.
 
 
 
+
 [.fields-EmailAddressesTypes]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 |===
+
 
 
 [#ErrorMessage]
@@ -1293,24 +1449,28 @@ An email contact.
 
 The resposne when an error occurs.
 
+
 [.fields-ErrorMessage]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | code
 | X
-| Integer 
+| 
+|   Integer  
 | The response code associated with the error.
-| int32 
+| int32    
 
 | message
 | X
-| String 
+| 
+|   String  
 | The details or description of the error.
-|  
+|     
 
 |===
+
 
 
 [#GenericResponse]
@@ -1318,67 +1478,28 @@ The resposne when an error occurs.
 
 
 
+
 [.fields-GenericResponse]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | status
 | 
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | text
 | 
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
 
-
-[#GetStats200ResponseInner]
-=== _GetStats200ResponseInner_ 
-
-
-
-[.fields-GetStats200ResponseInner]
-[cols="2,1,2,4,1"]
-|===
-| Field Name| Required| Type| Description| Format
-
-| id
-| X
-| Integer 
-| 
-|  
-
-| status
-| X
-| String 
-| 
-|  
-
-| username
-| X
-| String 
-| 
-|  
-
-| password
-| 
-| String 
-| 
-|  
-
-| comment
-| 
-| String 
-| 
-|  
-
-|===
 
 
 [#MailAttachment]
@@ -1386,24 +1507,28 @@ The resposne when an error occurs.
 
 (optional) File attachments to include in the email.  The file contents must be base64
 
+
 [.fields-MailAttachment]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | filename
 | X
-| String 
+| 
+|   String  
 | The filename of the attached file.
-|  
+|     
 
 | data
 | X
-| String 
+| 
+|   String  
 | The file contents base64 encoded
-|  
+|     
 
 |===
+
 
 
 [#MailBlockClickHouse]
@@ -1411,42 +1536,49 @@ The resposne when an error occurs.
 
 A block entry from the clickhouse mailblocks server.
 
+
 [.fields-MailBlockClickHouse]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | date
 | X
-| date 
 | 
-| date 
+|   date  
+| 
+| date    
 
 | from
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | messageId
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | subject
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | to
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
+
 
 
 [#MailBlockRspamd]
@@ -1454,24 +1586,28 @@ A block entry from the clickhouse mailblocks server.
 
 This is a block entry from the rspamd block list.
 
+
 [.fields-MailBlockRspamd]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | from
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 | subject
 | X
-| String 
 | 
-|  
+|   String  
+| 
+|     
 
 |===
+
 
 
 [#MailBlocks]
@@ -1479,30 +1615,35 @@ This is a block entry from the rspamd block list.
 
 The listing of blocked emails.
 
+
 [.fields-MailBlocks]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | local
 | X
-| List  of <<MailBlockClickHouse>>
 | 
-|  
+|   List   of <<MailBlockClickHouse>>
+| 
+|     
 
 | mbtrap
 | X
-| List  of <<MailBlockClickHouse>>
 | 
-|  
+|   List   of <<MailBlockClickHouse>>
+| 
+|     
 
 | subject
 | X
-| List  of <<MailBlockRspamd>>
 | 
-|  
+|   List   of <<MailBlockRspamd>>
+| 
+|     
 
 |===
+
 
 
 [#MailLog]
@@ -1510,36 +1651,42 @@ The listing of blocked emails.
 
 Mail log records
 
+
 [.fields-MailLog]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | total
 | X
-| Integer 
+| 
+|   Integer  
 | total number of mail log entries
-|  
+|     
 
 | skip
 | X
-| Integer 
+| 
+|   Integer  
 | number of emails skipped in listing
-|  
+|     
 
 | limit
 | X
-| Integer 
+| 
+|   Integer  
 | number of emails to return
-|  
+|     
 
 | emails
 | X
-| List  of <<MailLogEntry>>
 | 
-|  
+|   List   of <<MailLogEntry>>
+| 
+|     
 
 |===
+
 
 
 [#MailLogEntry]
@@ -1547,150 +1694,175 @@ Mail log records
 
 An email record
 
+
 [.fields-MailLogEntry]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | _id
 | X
-| Integer 
+| 
+|   Integer  
 | internal db id
-|  
+|     
 
 | id
 | X
-| String 
+| 
+|   String  
 | mail id
-|  
+|     
 
 | from
 | X
-| String 
+| 
+|   String  
 | from address
-|  
+|     
 
 | to
 | X
-| String 
+| 
+|   String  
 | to address
-|  
+|     
 
 | subject
 | X
-| String 
+| 
+|   String  
 | email subject
-|  
+|     
 
 | created
 | X
-| String 
+| 
+|   String  
 | creation date
-|  
+|     
 
 | time
 | X
-| Integer 
+| 
+|   Integer  
 | creation timestamp
-|  
+|     
 
 | user
 | X
-| String 
+| 
+|   String  
 | user account
-|  
+|     
 
 | transtype
 | X
-| String 
+| 
+|   String  
 | transaction type
-|  
+|     
 
 | origin
 | X
-| String 
+| 
+|   String  
 | origin ip
-|  
+|     
 
 | interface
 | X
-| String 
+| 
+|   String  
 | interface name
-|  
+|     
 
 | sendingZone
 | X
-| String 
+| 
+|   String  
 | sending zone
-|  
+|     
 
 | bodySize
 | X
-| Integer 
+| 
+|   Integer  
 | email body size in bytes
-|  
+|     
 
 | seq
 | X
-| Integer 
+| 
+|   Integer  
 | index of email in the to adderess list
-|  
+|     
 
 | recipient
 | X
-| String 
+| 
+|   String  
 | to address this email is being sent to
-|  
+|     
 
 | domain
 | X
-| String 
+| 
+|   String  
 | to address domain
-|  
+|     
 
 | locked
 | X
-| Integer 
+| 
+|   Integer  
 | locked status
-|  
+|     
 
 | lockTime
 | X
-| String 
+| 
+|   String  
 | lock timestamp
-|  
+|     
 
 | assigned
 | X
-| String 
+| 
+|   String  
 | assigned server
-|  
+|     
 
 | queued
 | X
-| String 
+| 
+|   String  
 | queued timestamp
-|  
+|     
 
 | mxHostname
 | X
-| String 
+| 
+|   String  
 | mx hostname
-|  
+|     
 
 | response
 | X
-| String 
+| 
+|   String  
 | mail delivery response
-|  
+|     
 
 | messageId
 | 
-| String 
+| 
+|   String  
 | message id
-|  
+|     
 
 |===
+
 
 
 [#MailOrder]
@@ -1698,36 +1870,264 @@ An email record
 
 A mail order record
 
+
 [.fields-MailOrder]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | id
 | X
-| Integer 
+| 
+|   Integer  
 | The ID of the order.
-| int32 
+| int32    
 
 | status
 | X
-| String 
+| 
+|   String  
 | The order status.
-|  
+|     
 
 | username
 | X
-| String 
+| 
+|   String  
 | The username to use for this order.
-|  
+|     
 
 | comment
 | 
-| String 
+| 
+|   String  
 | Optional order comment.
-|  
+|     
 
 |===
+
+
+
+[#MailStatsType]
+=== _MailStatsType_ Root Type for MailStatsType
+
+Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+
+
+[.fields-MailStatsType]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| time
+| 
+| 
+|  <<String>>  
+| 
+|  _Enum:_ all, billing, month, 7d, 24h, today, 1h,  
+
+| usage
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| currency
+| 
+| 
+|   String  
+| 
+|     
+
+| currencySymbol
+| 
+| 
+|   String  
+| 
+|     
+
+| cost
+| 
+| 
+|   Double  
+| 
+| double    
+
+| received
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| sent
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| volume
+| 
+| 
+| <<MailStatsType_volume>>    
+| 
+|     
+
+|===
+
+
+
+[#MailStatsTypeVolume]
+=== _MailStatsTypeVolume_ 
+
+
+
+
+[.fields-MailStatsTypeVolume]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| to
+| 
+| 
+| <<MailStatsType_volume_to>>    
+| 
+|     
+
+| from
+| 
+| 
+| <<MailStatsType_volume_from>>    
+| 
+|     
+
+| ip
+| 
+| 
+| <<MailStatsType_volume_ip>>    
+| 
+|     
+
+|===
+
+
+
+[#MailStatsTypeVolumeFrom]
+=== _MailStatsTypeVolumeFrom_ 
+
+
+
+
+[.fields-MailStatsTypeVolumeFrom]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| billing@somedomain.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| sales@somedomain.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+|===
+
+
+
+[#MailStatsTypeVolumeIp]
+=== _MailStatsTypeVolumeIp_ 
+
+
+
+
+[.fields-MailStatsTypeVolumeIp]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| 1.1.1.1
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| 2.2.2.2
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| 3.3.3.3
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| 4.4.4.4
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+|===
+
+
+
+[#MailStatsTypeVolumeTo]
+=== _MailStatsTypeVolumeTo_ 
+
+
+
+
+[.fields-MailStatsTypeVolumeTo]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| client@domain.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| user@site.net
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| sales@company.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+| client@anothersite.com
+| 
+| 
+|   Integer  
+| 
+| int32    
+
+|===
+
 
 
 [#SendMail]
@@ -1735,36 +2135,49 @@ A mail order record
 
 Details for an Email
 
+
 [.fields-SendMail]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | to
 | X
-| String 
+| 
+|   String  
 | The Contact whom is the primary recipient of this email.
-|  
+|     
 
 | from
 | X
-| String 
+| 
+|   String  
 | The contact whom is the this email is from.
-|  
+|     
 
 | subject
 | X
-| String 
+| 
+|   String  
 | The subject or title of the email
-|  
+|     
 
 | body
 | X
-| String 
+| 
+|   String  
 | The main email contents.
-|  
+|     
+
+| id
+| 
+| 
+|   Integer  
+| Optional Order ID
+|     
 
 |===
+
 
 
 [#SendMailAdv]
@@ -1772,65 +2185,105 @@ Details for an Email
 
 Details for an Email
 
+
 [.fields-SendMailAdv]
-[cols="2,1,2,4,1"]
+[cols="2,1,1,2,4,1"]
 |===
-| Field Name| Required| Type| Description| Format
+| Field Name| Required| Nullable | Type| Description | Format
 
 | subject
 | X
-| String 
+| 
+|   String  
 | The subject or title of the email
-|  
+|     
 
 | body
 | X
-| String 
+| 
+|   String  
 | The main email contents.
-|  
+|     
 
 | from
 | X
-| EmailAddressTypes 
 | 
-|  
+| <<EmailAddressTypes>>    
+| 
+|     
 
 | to
 | X
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | replyto
 | 
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | cc
 | 
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | bcc
 | 
-| EmailAddressesTypes 
 | 
-|  
+| <<EmailAddressesTypes>>    
+| 
+|     
 
 | attachments
 | 
-| List  of <<MailAttachment>>
+| 
+|   List   of <<MailAttachment>>
 | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-|  
+|     
 
 | id
 | 
-| Long 
+| 
+|   Long  
 | (optional)  ID of the Mail order within our system to use as the Mail Account.
-| int64 
+| int64    
 
 |===
+
+
+
+[#SendMailRaw]
+=== _SendMailRaw_ Root Type for RawMail
+
+Raw Email Object
+
+
+[.fields-SendMailRaw]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| raw_email
+| X
+| 
+|   String  
+| The entire email contents
+|     
+
+| id
+| 
+| 
+|   Integer  
+| Optional order id
+|     
+
+|===
+
 
 

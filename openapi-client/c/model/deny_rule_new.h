@@ -31,9 +31,10 @@ typedef struct deny_rule_new_t {
     char *data; // string
     char *user; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } deny_rule_new_t;
 
-deny_rule_new_t *deny_rule_new_create(
+__attribute__((deprecated)) deny_rule_new_t *deny_rule_new_create(
     mailbaby_email_delivery_and_management_service_api_deny_rule_new_TYPE_e type,
     char *data,
     char *user

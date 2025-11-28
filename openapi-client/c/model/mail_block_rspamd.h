@@ -22,9 +22,10 @@ typedef struct mail_block_rspamd_t {
     char *from; // string
     char *subject; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } mail_block_rspamd_t;
 
-mail_block_rspamd_t *mail_block_rspamd_create(
+__attribute__((deprecated)) mail_block_rspamd_t *mail_block_rspamd_create(
     char *from,
     char *subject
 );

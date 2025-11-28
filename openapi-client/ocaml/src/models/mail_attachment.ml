@@ -6,16 +6,30 @@
  * Schema Mail_attachment.t : (optional) File attachments to include in the email.  The file contents must be base64
  *)
 
-type t = {
-    (* The filename of the attached file. *)
-    filename: string;
-    (* The file contents base64 encoded *)
-    data: string;
-} [@@deriving yojson { strict = false }, show ];;
 
-(** (optional) File attachments to include in the email.  The file contents must be base64 *)
-let create (filename : string) (data : string) : t = {
-    filename = filename;
-    data = data;
-}
+
+    
+        type t = {
+                              filename: string
+                  
+                  
+                
+                
+                ; [@key "filename"]
+                    (** The filename of the attached file. *)
+                                      data: string
+                  
+                  
+                
+                
+                ; [@key "data"]
+                    (** The file contents base64 encoded *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** (optional) File attachments to include in the email.  The file contents must be base64 *)
+        let create (filename : string) (data : string) : t = {
+            filename = filename;
+            data = data;
+        }
+    
 

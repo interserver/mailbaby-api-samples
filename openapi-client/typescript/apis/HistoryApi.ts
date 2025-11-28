@@ -9,8 +9,8 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ErrorMessage } from '../models/ErrorMessage';
-import { GetStats200ResponseInner } from '../models/GetStats200ResponseInner';
 import { MailLog } from '../models/MailLog';
+import { MailStatsType } from '../models/MailStatsType';
 
 /**
  * no description
@@ -20,9 +20,11 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Returns information about the usage on your mail accounts.
      * Account usage statistics.
+     * @param time The timeframe for the statistics.
      */
-    public async getStats(_options?: Configuration): Promise<RequestContext> {
+    public async getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
         // Path Params
         const localVarPath = '/mail/stats';
@@ -30,6 +32,11 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (time !== undefined) {
+            requestContext.setQueryParam("time", ObjectSerializer.serialize(time, "'all' | 'billing' | 'month' | '7d' | '24h' | '1d' | '1h'", ""));
+        }
 
 
         let authMethod: SecurityAuthentication | undefined;
@@ -39,7 +46,7 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
         
-        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
         if (defaultAuth?.applySecurityAuthentication) {
             await defaultAuth?.applySecurityAuthentication(requestContext);
         }
@@ -61,9 +68,15 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit maximum number of records to return
      * @param startDate earliest date to get emails in unix timestamp format
      * @param endDate earliest date to get emails in unix timestamp format
+     * @param replyto Reply-To Email Address
+     * @param headerfrom Header From Email Address
+     * @param delivered Limiting the emails to wether or not they were delivered.
      */
-    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, _options?: Configuration): Promise<RequestContext> {
+    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, skip?: number, limit?: number, startDate?: number, endDate?: number, replyto?: string, headerfrom?: string, delivered?: '0' | '1', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+
+
 
 
 
@@ -138,6 +151,21 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
             requestContext.setQueryParam("endDate", ObjectSerializer.serialize(endDate, "number", "int64"));
         }
 
+        // Query Params
+        if (replyto !== undefined) {
+            requestContext.setQueryParam("replyto", ObjectSerializer.serialize(replyto, "string", ""));
+        }
+
+        // Query Params
+        if (headerfrom !== undefined) {
+            requestContext.setQueryParam("headerfrom", ObjectSerializer.serialize(headerfrom, "string", ""));
+        }
+
+        // Query Params
+        if (delivered !== undefined) {
+            requestContext.setQueryParam("delivered", ObjectSerializer.serialize(delivered, "'0' | '1'", ""));
+        }
+
 
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
@@ -146,7 +174,7 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
         
-        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        const defaultAuth: SecurityAuthentication | undefined = _config?.authMethods?.default
         if (defaultAuth?.applySecurityAuthentication) {
             await defaultAuth?.applySecurityAuthentication(requestContext);
         }
@@ -165,13 +193,13 @@ export class HistoryApiResponseProcessor {
      * @params response Response returned by the server for a request to getStats
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getStatsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<GetStats200ResponseInner> >> {
+     public async getStatsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<MailStatsType >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<GetStats200ResponseInner> = ObjectSerializer.deserialize(
+            const body: MailStatsType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<GetStats200ResponseInner>", ""
-            ) as Array<GetStats200ResponseInner>;
+                "MailStatsType", ""
+            ) as MailStatsType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -191,10 +219,10 @@ export class HistoryApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<GetStats200ResponseInner> = ObjectSerializer.deserialize(
+            const body: MailStatsType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<GetStats200ResponseInner>", ""
-            ) as Array<GetStats200ResponseInner>;
+                "MailStatsType", ""
+            ) as MailStatsType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

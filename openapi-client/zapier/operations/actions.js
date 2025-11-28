@@ -3,7 +3,7 @@ const HistoryApi = require('../apis/HistoryApi');
 const SendingApi = require('../apis/SendingApi');
 const ServicesApi = require('../apis/ServicesApi');
 const StatusApi = require('../apis/StatusApi');
-const { searchMiddleware, hasSearchRequisites, isSearchAction } = require('../utils/utils');
+const { triggerMiddleware, isTrigger, searchMiddleware, hasSearchRequisites, isSearchAction, isCreateAction, createMiddleware } = require('../utils/utils');
 
 const actions = {
     [BlockingApi.addRule.key]: BlockingApi.addRule,
@@ -13,6 +13,7 @@ const actions = {
     [BlockingApi.getRules.key]: BlockingApi.getRules,
     [HistoryApi.getStats.key]: HistoryApi.getStats,
     [HistoryApi.viewMailLog.key]: HistoryApi.viewMailLog,
+    [SendingApi.rawMail.key]: SendingApi.rawMail,
     [SendingApi.sendAdvMail.key]: SendingApi.sendAdvMail,
     [SendingApi.sendMail.key]: SendingApi.sendMail,
     [ServicesApi.getMailOrders.key]: ServicesApi.getMailOrders,
@@ -21,5 +22,6 @@ const actions = {
 
 module.exports = {
     searchActions: () => Object.entries(actions).reduce((actions, [key, value]) => isSearchAction(key) && hasSearchRequisites(value) ? {...actions, [key]: searchMiddleware(value)} : actions, {}),
-    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => !isSearchAction(key) ? {...actions, [key]: value} : actions, {}),
+    createActions: () => Object.entries(actions).reduce((actions, [key, value]) => isCreateAction(key) ? {...actions, [key]: createMiddleware(value)} : actions, {}),
+    triggers: () => Object.entries(actions).reduce((actions, [key, value]) => isTrigger(key) ? {...actions, [key]: triggerMiddleware(value)} : actions, {}),
 }

@@ -16,12 +16,12 @@
 package org.openapitools.client.apis
 
 import java.io.IOException
-import okhttp3.OkHttpClient
+import okhttp3.Call
 import okhttp3.HttpUrl
 
 import org.openapitools.client.models.ErrorMessage
-import org.openapitools.client.models.GetStats200ResponseInner
 import org.openapitools.client.models.MailLog
+import org.openapitools.client.models.MailStatsType
 
 import com.squareup.moshi.Json
 
@@ -39,7 +39,7 @@ import org.openapitools.client.infrastructure.ResponseType
 import org.openapitools.client.infrastructure.Success
 import org.openapitools.client.infrastructure.toMultiValue
 
-class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient = ApiClient.defaultClient) : ApiClient(basePath, client) {
+class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Factory = ApiClient.defaultClient) : ApiClient(basePath, client) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -48,9 +48,33 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * enum for parameter time
+     */
+     enum class TimeGetStats(val value: kotlin.String) {
+         @Json(name = "all") all("all"),
+         @Json(name = "billing") billing("billing"),
+         @Json(name = "month") month("month"),
+         @Json(name = "7d") _7d("7d"),
+         @Json(name = "24h") _24h("24h"),
+         @Json(name = "1d") _1d("1d"),
+         @Json(name = "1h") _1h("1h");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /mail/stats
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
-     * @return kotlin.collections.List<GetStats200ResponseInner>
+     * @param time The timeframe for the statistics. (optional)
+     * @return MailStatsType
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      * @throws UnsupportedOperationException If the API returns an informational or redirection response
@@ -59,11 +83,11 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getStats() : kotlin.collections.List<GetStats200ResponseInner> {
-        val localVarResponse = getStatsWithHttpInfo()
+    fun getStats(time: TimeGetStats? = null) : MailStatsType {
+        val localVarResponse = getStatsWithHttpInfo(time = time)
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.collections.List<GetStats200ResponseInner>
+            ResponseType.Success -> (localVarResponse as Success<*>).data as MailStatsType
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -78,18 +102,20 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * GET /mail/stats
      * Account usage statistics.
      * Returns information about the usage on your mail accounts.
-     * @return ApiResponse<kotlin.collections.List<GetStats200ResponseInner>?>
+     * @param time The timeframe for the statistics. (optional)
+     * @return ApiResponse<MailStatsType?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun getStatsWithHttpInfo() : ApiResponse<kotlin.collections.List<GetStats200ResponseInner>?> {
-        val localVariableConfig = getStatsRequestConfig()
+    fun getStatsWithHttpInfo(time: TimeGetStats?) : ApiResponse<MailStatsType?> {
+        val localVariableConfig = getStatsRequestConfig(time = time)
 
-        return request<Unit, kotlin.collections.List<GetStats200ResponseInner>>(
+        return request<Unit, MailStatsType>(
             localVariableConfig
         )
     }
@@ -97,11 +123,17 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     /**
      * To obtain the request config of the operation getStats
      *
+     * @param time The timeframe for the statistics. (optional)
      * @return RequestConfig
      */
-    fun getStatsRequestConfig() : RequestConfig<Unit> {
+    fun getStatsRequestConfig(time: TimeGetStats?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+            .apply {
+                if (time != null) {
+                    put("time", listOf(time.value))
+                }
+            }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         localVariableHeaders["Accept"] = "application/json"
 
@@ -116,6 +148,24 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * enum for parameter delivered
+     */
+     enum class DeliveredViewMailLog(val value: kotlin.String) {
+         @Json(name = "0") _0("0"),
+         @Json(name = "1") _1("1");
+
+        /**
+         * Override [toString()] to avoid using the enum variable name as the value, and instead use
+         * the actual value defined in the API spec file.
+         *
+         * This solves a problem when the variable name and its value are different, and ensures that
+         * the client sends the correct enum values to the server always.
+         */
+        override fun toString(): kotlin.String = "$value"
+     }
+
+    /**
+     * GET /mail/log
      * displays the mail log
      * Get a listing of the emails sent through this system 
      * @param id The ID of your mail order this will be sent through. (optional)
@@ -129,6 +179,9 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return MailLog
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -138,8 +191,8 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null) : MailLog {
-        val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.Long? = null, endDate: kotlin.Long? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: DeliveredViewMailLog? = null) : MailLog {
+        val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate, replyto = replyto, headerfrom = headerfrom, delivered = delivered)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MailLog
@@ -157,6 +210,7 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
     }
 
     /**
+     * GET /mail/log
      * displays the mail log
      * Get a listing of the emails sent through this system 
      * @param id The ID of your mail order this will be sent through. (optional)
@@ -170,14 +224,17 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return ApiResponse<MailLog?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : ApiResponse<MailLog?> {
-        val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?) : ApiResponse<MailLog?> {
+        val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate, replyto = replyto, headerfrom = headerfrom, delivered = delivered)
 
         return request<Unit, MailLog>(
             localVariableConfig
@@ -198,9 +255,12 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
      * @param limit maximum number of records to return (optional, default to 100)
      * @param startDate earliest date to get emails in unix timestamp format (optional)
      * @param endDate earliest date to get emails in unix timestamp format (optional)
+     * @param replyto Reply-To Email Address (optional)
+     * @param headerfrom Header From Email Address (optional)
+     * @param delivered Limiting the emails to wether or not they were delivered. (optional)
      * @return RequestConfig
      */
-    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?) : RequestConfig<Unit> {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.Long?, endDate: kotlin.Long?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -236,6 +296,15 @@ class HistoryApi(basePath: kotlin.String = defaultBasePath, client: OkHttpClient
                 }
                 if (endDate != null) {
                     put("endDate", listOf(endDate.toString()))
+                }
+                if (replyto != null) {
+                    put("replyto", listOf(replyto.toString()))
+                }
+                if (headerfrom != null) {
+                    put("headerfrom", listOf(headerfrom.toString()))
+                }
+                if (delivered != null) {
+                    put("delivered", listOf(delivered.value))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()

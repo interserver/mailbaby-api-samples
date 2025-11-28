@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
 *OASBlockingApi* | [**getRules**](OASBlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
 *OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
 *OASHistoryApi* | [**viewMailLog**](OASHistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
+*OASSendingApi* | [**rawMail**](OASSendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
 *OASSendingApi* | [**sendAdvMail**](OASSendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *OASSendingApi* | [**sendMail**](OASSendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
 *OASServicesApi* | [**getMailOrders**](OASServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
@@ -89,7 +90,6 @@ Class | Method | HTTP request | Description
  - [OASEmailAddressesTypes](OASEmailAddressesTypes.md)
  - [OASErrorMessage](OASErrorMessage.md)
  - [OASGenericResponse](OASGenericResponse.md)
- - [OASGetStats200ResponseInner](OASGetStats200ResponseInner.md)
  - [OASMailAttachment](OASMailAttachment.md)
  - [OASMailBlockClickHouse](OASMailBlockClickHouse.md)
  - [OASMailBlockRspamd](OASMailBlockRspamd.md)
@@ -97,8 +97,14 @@ Class | Method | HTTP request | Description
  - [OASMailLog](OASMailLog.md)
  - [OASMailLogEntry](OASMailLogEntry.md)
  - [OASMailOrder](OASMailOrder.md)
+ - [OASMailStatsType](OASMailStatsType.md)
+ - [OASMailStatsTypeVolume](OASMailStatsTypeVolume.md)
+ - [OASMailStatsTypeVolumeFrom](OASMailStatsTypeVolumeFrom.md)
+ - [OASMailStatsTypeVolumeIp](OASMailStatsTypeVolumeIp.md)
+ - [OASMailStatsTypeVolumeTo](OASMailStatsTypeVolumeTo.md)
  - [OASSendMail](OASSendMail.md)
  - [OASSendMailAdv](OASSendMailAdv.md)
+ - [OASSendMailRaw](OASSendMailRaw.md)
 
 
 ## Documentation for Authorization

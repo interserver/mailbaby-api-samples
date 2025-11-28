@@ -12,7 +12,6 @@ OpenAPIClient/Sources/Models/EmailAddressTypes.swift
 OpenAPIClient/Sources/Models/EmailAddressesTypes.swift
 OpenAPIClient/Sources/Models/ErrorMessage.swift
 OpenAPIClient/Sources/Models/GenericResponse.swift
-OpenAPIClient/Sources/Models/GetStats200ResponseInner.swift
 OpenAPIClient/Sources/Models/MailAttachment.swift
 OpenAPIClient/Sources/Models/MailBlockClickHouse.swift
 OpenAPIClient/Sources/Models/MailBlockRspamd.swift
@@ -20,8 +19,14 @@ OpenAPIClient/Sources/Models/MailBlocks.swift
 OpenAPIClient/Sources/Models/MailLog.swift
 OpenAPIClient/Sources/Models/MailLogEntry.swift
 OpenAPIClient/Sources/Models/MailOrder.swift
+OpenAPIClient/Sources/Models/MailStatsType.swift
+OpenAPIClient/Sources/Models/MailStatsTypeVolume.swift
+OpenAPIClient/Sources/Models/MailStatsTypeVolumeFrom.swift
+OpenAPIClient/Sources/Models/MailStatsTypeVolumeIp.swift
+OpenAPIClient/Sources/Models/MailStatsTypeVolumeTo.swift
 OpenAPIClient/Sources/Models/SendMail.swift
 OpenAPIClient/Sources/Models/SendMailAdv.swift
+OpenAPIClient/Sources/Models/SendMailRaw.swift
 OpenAPIClient/Sources/Private/AnyDecodable.swift
 OpenAPIClient/Sources/Private/OpenISO8601DateFormatter.swift
 OpenAPITransport/Package.swift

@@ -31,7 +31,7 @@ open class StatusAPI {
     /// Checks if the server is running
     /// - GET /ping
     /// - API Key:
-    /// - type: apiKey X-API-KEY 
+    /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - returns: AnyPublisher<Void, Error> 
     open func pingServer() -> AnyPublisher<Void, Error> {
@@ -40,9 +40,9 @@ open class StatusAPI {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
                     throw OpenAPITransportError.badURLError()
                 }
-                let path = "/ping"
-                let url = baseURL.appendingPathComponent(path)
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                let localVarPath = "/ping"
+                let localVarURL = baseURL.appendingPathComponent(localVarPath)
+                let components = URLComponents(url: localVarURL, resolvingAgainstBaseURL: false)
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
                 }

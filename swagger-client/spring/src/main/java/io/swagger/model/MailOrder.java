@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -13,23 +18,32 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "A mail order record")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class MailOrder   {
   @JsonProperty("id")
+
   private Integer id = null;
 
   @JsonProperty("status")
+
   private String status = null;
 
   @JsonProperty("username")
+
   private String username = null;
 
   @JsonProperty("comment")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String comment = null;
 
-  public MailOrder id(Integer id) {
+
+  public MailOrder id(Integer id) { 
+
     this.id = id;
     return this;
   }
@@ -38,18 +52,23 @@ public class MailOrder   {
    * The ID of the order.
    * @return id
    **/
+  
   @Schema(example = "21472", required = true, description = "The ID of the order.")
-      @NotNull
-
-    public Integer getId() {
+  
+  @NotNull
+  public Integer getId() {  
     return id;
   }
 
-  public void setId(Integer id) {
+
+
+  public void setId(Integer id) { 
+
     this.id = id;
   }
 
-  public MailOrder status(String status) {
+  public MailOrder status(String status) { 
+
     this.status = status;
     return this;
   }
@@ -58,18 +77,23 @@ public class MailOrder   {
    * The order status.
    * @return status
    **/
+  
   @Schema(example = "active", required = true, description = "The order status.")
-      @NotNull
-
-    public String getStatus() {
+  
+  @NotNull
+  public String getStatus() {  
     return status;
   }
 
-  public void setStatus(String status) {
+
+
+  public void setStatus(String status) { 
+
     this.status = status;
   }
 
-  public MailOrder username(String username) {
+  public MailOrder username(String username) { 
+
     this.username = username;
     return this;
   }
@@ -78,18 +102,23 @@ public class MailOrder   {
    * The username to use for this order.
    * @return username
    **/
+  
   @Schema(example = "mb21472", required = true, description = "The username to use for this order.")
-      @NotNull
-
-    public String getUsername() {
+  
+  @NotNull
+  public String getUsername() {  
     return username;
   }
 
-  public void setUsername(String username) {
+
+
+  public void setUsername(String username) { 
+
     this.username = username;
   }
 
-  public MailOrder comment(String comment) {
+  public MailOrder comment(String comment) { 
+
     this.comment = comment;
     return this;
   }
@@ -98,16 +127,18 @@ public class MailOrder   {
    * Optional order comment.
    * @return comment
    **/
+  
   @Schema(description = "Optional order comment.")
   
-    public String getComment() {
+  public String getComment() {  
     return comment;
   }
 
-  public void setComment(String comment) {
+
+
+  public void setComment(String comment) { 
     this.comment = comment;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

@@ -3,7 +3,7 @@ MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.1.0
+API version: 1.3.0
 Contact: support@interserver.net
 */
 
@@ -22,6 +22,162 @@ import (
 
 // SendingAPIService SendingAPI service
 type SendingAPIService service
+
+type ApiRawMailRequest struct {
+	ctx context.Context
+	ApiService *SendingAPIService
+	sendMailRaw *SendMailRaw
+}
+
+func (r ApiRawMailRequest) SendMailRaw(sendMailRaw SendMailRaw) ApiRawMailRequest {
+	r.sendMailRaw = &sendMailRaw
+	return r
+}
+
+func (r ApiRawMailRequest) Execute() (*GenericResponse, *http.Response, error) {
+	return r.ApiService.RawMailExecute(r)
+}
+
+/*
+RawMail Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiRawMailRequest
+*/
+func (a *SendingAPIService) RawMail(ctx context.Context) ApiRawMailRequest {
+	return ApiRawMailRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GenericResponse
+func (a *SendingAPIService) RawMailExecute(r ApiRawMailRequest) (*GenericResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GenericResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SendingAPIService.RawMail")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/mail/rawsend"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.sendMailRaw == nil {
+		return localVarReturnValue, nil, reportError("sendMailRaw is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.sendMailRaw
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiSendAdvMailRequest struct {
 	ctx context.Context
@@ -97,7 +253,7 @@ Sends An email through one of your mail orders allowing additional options such 
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-```
+```BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -108,7 +264,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to=support@interserver.net
 ```
 
-```
+```ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -120,7 +276,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to[0][email]=support@interserver.net"
 ```
 
-```
+```NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -131,7 +287,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to="Joe <support@interserver.net>"
 ```
 
-```
+```MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -142,7 +298,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to=support@interserver.net, support@interserver.net"
 ```
 
-```
+```MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -153,7 +309,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to=Joe <support@interserver.net>, Joe <support@interserver.net>"
 ```
 
-```
+```MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -167,7 +323,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data "to[1][email]=support@interserver.net"
 ```
 
-```
+```BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
@@ -180,7 +336,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }'
 ```
 
-```
+```ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
@@ -193,7 +349,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }'
 ```
 
-```
+```NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header 'Accept: application/json' \
 --header 'Content-Type: application/json' \
@@ -267,10 +423,10 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "", "")
 	if r.replyto != nil {
 		paramJson, err := parameterToJson(*r.replyto)
 		if err != nil {
@@ -293,10 +449,10 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 		localVarFormParams.Add("bcc", paramJson)
 	}
 	if r.attachments != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "attachments", r.attachments, "csv")
+		parameterAddToHeaderOrQuery(localVarFormParams, "attachments", r.attachments, "", "csv")
 	}
 	if r.id != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "id", r.id, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "id", r.id, "", "")
 	}
 	if r.ctx != nil {
 		// API Key Authentication
@@ -388,6 +544,7 @@ type ApiSendMailRequest struct {
 	from *string
 	subject *string
 	body *string
+	id *int32
 }
 
 // The Contact whom is the primary recipient of this email.
@@ -411,6 +568,12 @@ func (r ApiSendMailRequest) Subject(subject string) ApiSendMailRequest {
 // The main email contents.
 func (r ApiSendMailRequest) Body(body string) ApiSendMailRequest {
 	r.body = &body
+	return r
+}
+
+// Optional Order ID
+func (r ApiSendMailRequest) Id(id int32) ApiSendMailRequest {
+	r.id = &id
 	return r
 }
 
@@ -486,10 +649,13 @@ func (a *SendingAPIService) SendMailExecute(r ApiSendMailRequest) (*GenericRespo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "to", r.to, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "from", r.from, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "subject", r.subject, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "body", r.body, "", "")
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "id", r.id, "", "")
+	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

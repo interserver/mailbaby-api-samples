@@ -21,12 +21,15 @@ public struct SendMail: Codable, JSONEncodable, Hashable {
     public var subject: String
     /** The main email contents. */
     public var body: String
+    /** Optional Order ID */
+    public var id: Int?
 
-    public init(to: String, from: String, subject: String, body: String) {
+    public init(to: String, from: String, subject: String, body: String, id: Int? = nil) {
         self.to = to
         self.from = from
         self.subject = subject
         self.body = body
+        self.id = id
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -34,6 +37,7 @@ public struct SendMail: Codable, JSONEncodable, Hashable {
         case from
         case subject
         case body
+        case id
     }
 
     // Encodable protocol methods
@@ -44,6 +48,10 @@ public struct SendMail: Codable, JSONEncodable, Hashable {
         try container.encode(from, forKey: .from)
         try container.encode(subject, forKey: .subject)
         try container.encode(body, forKey: .body)
+        try container.encodeIfPresent(id, forKey: .id)
     }
 }
 
+
+@available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
+extension SendMail: Identifiable {}

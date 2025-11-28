@@ -9,7 +9,6 @@ HEADERS += \
     $${PWD}/OAIEmailAddressesTypes.h \
     $${PWD}/OAIErrorMessage.h \
     $${PWD}/OAIGenericResponse.h \
-    $${PWD}/OAIGetStats_200_response_inner.h \
     $${PWD}/OAIMailAttachment.h \
     $${PWD}/OAIMailBlockClickHouse.h \
     $${PWD}/OAIMailBlockRspamd.h \
@@ -17,8 +16,14 @@ HEADERS += \
     $${PWD}/OAIMailLog.h \
     $${PWD}/OAIMailLogEntry.h \
     $${PWD}/OAIMailOrder.h \
+    $${PWD}/OAIMailStatsType.h \
+    $${PWD}/OAIMailStatsType_volume.h \
+    $${PWD}/OAIMailStatsType_volume_from.h \
+    $${PWD}/OAIMailStatsType_volume_ip.h \
+    $${PWD}/OAIMailStatsType_volume_to.h \
     $${PWD}/OAISendMail.h \
     $${PWD}/OAISendMailAdv.h \
+    $${PWD}/OAISendMailRaw.h \
 # APIs
     $${PWD}/OAIBlockingApi.h \
     $${PWD}/OAIHistoryApi.h \
@@ -44,7 +49,6 @@ SOURCES += \
     $${PWD}/OAIEmailAddressesTypes.cpp \
     $${PWD}/OAIErrorMessage.cpp \
     $${PWD}/OAIGenericResponse.cpp \
-    $${PWD}/OAIGetStats_200_response_inner.cpp \
     $${PWD}/OAIMailAttachment.cpp \
     $${PWD}/OAIMailBlockClickHouse.cpp \
     $${PWD}/OAIMailBlockRspamd.cpp \
@@ -52,8 +56,14 @@ SOURCES += \
     $${PWD}/OAIMailLog.cpp \
     $${PWD}/OAIMailLogEntry.cpp \
     $${PWD}/OAIMailOrder.cpp \
+    $${PWD}/OAIMailStatsType.cpp \
+    $${PWD}/OAIMailStatsType_volume.cpp \
+    $${PWD}/OAIMailStatsType_volume_from.cpp \
+    $${PWD}/OAIMailStatsType_volume_ip.cpp \
+    $${PWD}/OAIMailStatsType_volume_to.cpp \
     $${PWD}/OAISendMail.cpp \
     $${PWD}/OAISendMailAdv.cpp \
+    $${PWD}/OAISendMailRaw.cpp \
 # APIs
     $${PWD}/OAIBlockingApi.cpp \
     $${PWD}/OAIHistoryApi.cpp \

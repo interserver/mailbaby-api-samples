@@ -171,6 +171,7 @@ public class MailLogEntry   {
   
   @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", value = "message id")
   @JsonProperty("messageId")
+  @NotNull
 
   public String getMessageId() {
     return messageId;

@@ -13,14 +13,28 @@ import AnyCodable
 open class HistoryAPI {
 
     /**
+     * enum for parameter time
+     */
+    public enum Time_getStats: String, CaseIterable {
+        case all = "all"
+        case billing = "billing"
+        case month = "month"
+        case _7d = "7d"
+        case _24h = "24h"
+        case _1d = "1d"
+        case _1h = "1h"
+    }
+
+    /**
      Account usage statistics.
      
+     - parameter time: (query) The timeframe for the statistics. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getStats(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: [GetStats200ResponseInner]?, _ error: Error?) -> Void)) -> RequestTask {
-        return getStatsWithRequestBuilder().execute(apiResponseQueue) { result in
+    open class func getStats(time: Time_getStats? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailStatsType?, _ error: Error?) -> Void)) -> RequestTask {
+        return getStatsWithRequestBuilder(time: time).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -37,14 +51,18 @@ open class HistoryAPI {
      - API Key:
        - type: apiKey X-API-KEY (HEADER)
        - name: apiKeyAuth
-     - returns: RequestBuilder<[GetStats200ResponseInner]> 
+     - parameter time: (query) The timeframe for the statistics. (optional)
+     - returns: RequestBuilder<MailStatsType> 
      */
-    open class func getStatsWithRequestBuilder() -> RequestBuilder<[GetStats200ResponseInner]> {
+    open class func getStatsWithRequestBuilder(time: Time_getStats? = nil) -> RequestBuilder<MailStatsType> {
         let localVariablePath = "/mail/stats"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "time": (wrappedValue: time?.encodeToJSON(), isExplode: true),
+        ])
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -52,9 +70,17 @@ open class HistoryAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[GetStats200ResponseInner]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<MailStatsType>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     * enum for parameter delivered
+     */
+    public enum Delivered_viewMailLog: String, CaseIterable {
+        case _0 = "0"
+        case _1 = "1"
     }
 
     /**
@@ -71,12 +97,15 @@ open class HistoryAPI {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
+     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
-        return viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute(apiResponseQueue) { result in
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, completion: @escaping ((_ data: MailLog?, _ error: Error?) -> Void)) -> RequestTask {
+        return viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -104,9 +133,12 @@ open class HistoryAPI {
      - parameter limit: (query) maximum number of records to return (optional, default to 100)
      - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
      - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
+     - parameter replyto: (query) Reply-To Email Address (optional)
+     - parameter headerfrom: (query) Header From Email Address (optional)
+     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil) -> RequestBuilder<MailLog> {
         let localVariablePath = "/mail/log"
         let localVariableURLString = OpenAPIClientAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -124,6 +156,9 @@ open class HistoryAPI {
             "limit": (wrappedValue: limit?.encodeToJSON(), isExplode: true),
             "startDate": (wrappedValue: startDate?.encodeToJSON(), isExplode: true),
             "endDate": (wrappedValue: endDate?.encodeToJSON(), isExplode: true),
+            "replyto": (wrappedValue: replyto?.encodeToJSON(), isExplode: true),
+            "headerfrom": (wrappedValue: headerfrom?.encodeToJSON(), isExplode: true),
+            "delivered": (wrappedValue: delivered?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

@@ -6,7 +6,7 @@ After the client have been generated, you have to change these following variabl
 - src/main.cpp | Change wifi password
 - lib/service/AbstractService.h | Change to your url
 
-# Documentation for MailBaby Email Delivery and Management Service API 1.1.0 Tiny client cpp (Arduino) 
+# Documentation for MailBaby Email Delivery and Management Service API 1.3.0 Tiny client cpp (Arduino) 
 
 The project is structured like this:
 ```
@@ -45,6 +45,7 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 ### SendingApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
+|*rawMail* | *POST* /mail/rawsend | Sends a raw email.|
 |*sendAdvMail* | *POST* /mail/advsend | Sends an Email with Advanced Options.|
 |*sendMail* | *POST* /mail/send | Sends an Email.|
 
@@ -69,7 +70,6 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 |*EmailAddressesTypes* | |
 |*ErrorMessage* | The resposne when an error occurs.|
 |*GenericResponse* | |
-|*GetStats_200_response_inner* | |
 |*MailAttachment* | (optional) File attachments to include in the email.  The file contents must be base64|
 |*MailBlockClickHouse* | A block entry from the clickhouse mailblocks server.|
 |*MailBlockRspamd* | This is a block entry from the rspamd block list.|
@@ -77,6 +77,12 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 |*MailLog* | Mail log records|
 |*MailLogEntry* | An email record|
 |*MailOrder* | A mail order record|
+|*MailStatsType* | Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.|
+|*MailStatsType_volume* | |
+|*MailStatsType_volume_from* | |
+|*MailStatsType_volume_ip* | |
+|*MailStatsType_volume_to* | |
 |*SendMail* | Details for an Email|
 |*SendMailAdv* | Details for an Email|
+|*SendMailRaw* | Raw Email Object|
 

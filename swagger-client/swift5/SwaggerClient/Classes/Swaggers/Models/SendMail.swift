@@ -20,13 +20,23 @@ public struct SendMail: Codable {
     public var subject: String
     /** The main email contents. */
     public var body: String
+    /** Optional Order ID */
+    public var _id: Int?
 
-    public init(to: String, from: String, subject: String, body: String) {
+    public init(to: String, from: String, subject: String, body: String, _id: Int? = nil) {
         self.to = to
         self.from = from
         self.subject = subject
         self.body = body
+        self._id = _id
     }
 
+    public enum CodingKeys: String, CodingKey { 
+        case to
+        case from
+        case subject
+        case body
+        case _id = "id"
+    }
 
 }

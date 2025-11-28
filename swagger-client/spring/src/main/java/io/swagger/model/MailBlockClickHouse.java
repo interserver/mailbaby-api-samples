@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -14,26 +19,34 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "A block entry from the clickhouse mailblocks server.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class MailBlockClickHouse   {
   @JsonProperty("date")
+
   private LocalDate date = null;
 
   @JsonProperty("from")
+
   private String from = null;
 
   @JsonProperty("messageId")
+
   private String messageId = null;
 
   @JsonProperty("subject")
+
   private String subject = null;
 
   @JsonProperty("to")
+
   private String to = null;
 
-  public MailBlockClickHouse date(LocalDate date) {
+
+  public MailBlockClickHouse date(LocalDate date) { 
+
     this.date = date;
     return this;
   }
@@ -42,19 +55,24 @@ public class MailBlockClickHouse   {
    * Get date
    * @return date
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public LocalDate getDate() {
+  
+@Valid
+  @NotNull
+  public LocalDate getDate() {  
     return date;
   }
 
-  public void setDate(LocalDate date) {
+
+
+  public void setDate(LocalDate date) { 
+
     this.date = date;
   }
 
-  public MailBlockClickHouse from(String from) {
+  public MailBlockClickHouse from(String from) { 
+
     this.from = from;
     return this;
   }
@@ -63,18 +81,23 @@ public class MailBlockClickHouse   {
    * Get from
    * @return from
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    public String getFrom() {
+  
+  @NotNull
+  public String getFrom() {  
     return from;
   }
 
-  public void setFrom(String from) {
+
+
+  public void setFrom(String from) { 
+
     this.from = from;
   }
 
-  public MailBlockClickHouse messageId(String messageId) {
+  public MailBlockClickHouse messageId(String messageId) { 
+
     this.messageId = messageId;
     return this;
   }
@@ -83,18 +106,23 @@ public class MailBlockClickHouse   {
    * Get messageId
    * @return messageId
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    public String getMessageId() {
+  
+  @NotNull
+  public String getMessageId() {  
     return messageId;
   }
 
-  public void setMessageId(String messageId) {
+
+
+  public void setMessageId(String messageId) { 
+
     this.messageId = messageId;
   }
 
-  public MailBlockClickHouse subject(String subject) {
+  public MailBlockClickHouse subject(String subject) { 
+
     this.subject = subject;
     return this;
   }
@@ -103,18 +131,23 @@ public class MailBlockClickHouse   {
    * Get subject
    * @return subject
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    public String getSubject() {
+  
+  @NotNull
+  public String getSubject() {  
     return subject;
   }
 
-  public void setSubject(String subject) {
+
+
+  public void setSubject(String subject) { 
+
     this.subject = subject;
   }
 
-  public MailBlockClickHouse to(String to) {
+  public MailBlockClickHouse to(String to) { 
+
     this.to = to;
     return this;
   }
@@ -123,17 +156,20 @@ public class MailBlockClickHouse   {
    * Get to
    * @return to
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    public String getTo() {
+  
+  @NotNull
+  public String getTo() {  
     return to;
   }
 
-  public void setTo(String to) {
+
+
+  public void setTo(String to) { 
+
     this.to = to;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

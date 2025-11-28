@@ -29,5 +29,21 @@ private class OASServicesApiTest {
         expectedResponse = new List<OASMailOrder>{OASMailOrder.getExample()};
         response = (List<OASMailOrder>) api.getMailOrders();
         System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(new List<OASMailOrder>{OASMailOrder.getExample()});
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = new List<OASMailOrder>{OASMailOrder.getExample()};
+        response = (List<OASMailOrder>) api.getMailOrders();
+        System.assertEquals(expectedResponse, response);
+
+
+        js = JSON.serialize(new List<OASMailOrder>{OASMailOrder.getExample()});
+        res.setHeader('Content-Type', 'application/json');
+        res.setBody(js);
+        expectedResponse = new List<OASMailOrder>{OASMailOrder.getExample()};
+        response = (List<OASMailOrder>) api.getMailOrders();
+        System.assertEquals(expectedResponse, response);
     }
 }

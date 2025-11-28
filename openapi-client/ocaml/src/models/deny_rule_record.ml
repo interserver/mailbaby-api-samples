@@ -6,25 +6,51 @@
  * Schema Deny_rule_record.t : The data for a email deny rule record.
  *)
 
-type t = {
-    (* The type of deny rule. *)
-    _type: Enums.denyrulenew_type;
-    (* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. *)
-    data: string;
-    (* The deny rule Id number. *)
-    id: string;
-    (* the date the rule was created. *)
-    created: string;
-    (* Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. *)
-    user: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-(** The data for a email deny rule record. *)
-let create (_type : Enums.denyrulenew_type) (data : string) (id : string) (created : string) : t = {
-    _type = _type;
-    data = data;
-    id = id;
-    created = created;
-    user = None;
-}
+
+    
+        type t = {
+                      _type: Enums.denyrulenew_type
+                            
+                                                              ; [@key "type"]
+                            (** The type of deny rule. *)
+                                      data: string
+                  
+                  
+                
+                
+                ; [@key "data"]
+                    (** The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. *)
+                                      id: string
+                  
+                  
+                
+                
+                ; [@key "id"]
+                    (** The deny rule Id number. *)
+                                      created: string
+                  
+                  
+                
+                
+                ; [@key "created"]
+                    (** the date the rule was created. *)
+                                      user: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "user"]
+                    (** Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** The data for a email deny rule record. *)
+        let create (_type : Enums.denyrulenew_type) (data : string) (id : string) (created : string) : t = {
+            _type = _type;
+            data = data;
+            id = id;
+            created = created;
+            user = None;
+        }
+    
 

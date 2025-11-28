@@ -21,9 +21,14 @@ models/MailBlocks.js
 models/MailLog.js
 models/MailLogEntry.js
 models/MailOrder.js
+models/MailStatsType.js
+models/MailStatsType_volume.js
+models/MailStatsType_volume_from.js
+models/MailStatsType_volume_ip.js
+models/MailStatsType_volume_to.js
 models/SendMail.js
 models/SendMailAdv.js
-models/getStats_200_response_inner.js
+models/SendMailRaw.js
 operations/actions.js
 package.json
 samples/BlockingApi.js

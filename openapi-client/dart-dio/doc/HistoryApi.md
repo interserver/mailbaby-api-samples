@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **getStats**
-> BuiltList<GetStats200ResponseInner> getStats()
+> MailStatsType getStats(time)
 
 Account usage statistics.
 
@@ -29,9 +29,10 @@ import 'package:openapi/api.dart';
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
 final api = Openapi().getHistoryApi();
+final String time = time_example; // String | The timeframe for the statistics.
 
 try {
-    final response = api.getStats();
+    final response = api.getStats(time);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling HistoryApi->getStats: $e\n');
@@ -39,11 +40,14 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**BuiltList&lt;GetStats200ResponseInner&gt;**](GetStats200ResponseInner.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -57,7 +61,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **viewMailLog**
-> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate)
+> MailLog viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered)
 
 displays the mail log
 
@@ -83,9 +87,12 @@ final int skip = 1000; // int | number of records to skip for pagination
 final int limit = 1000; // int | maximum number of records to return
 final int startDate = 1641781008; // int | earliest date to get emails in unix timestamp format
 final int endDate = 1673317008; // int | earliest date to get emails in unix timestamp format
+final String replyto = replyto_example; // String | Reply-To Email Address
+final String headerfrom = headerfrom_example; // String | Header From Email Address
+final String delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
 
 try {
-    final response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+    final response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling HistoryApi->viewMailLog: $e\n');
@@ -107,6 +114,9 @@ Name | Type | Description  | Notes
  **limit** | **int**| maximum number of records to return | [optional] [default to 100]
  **startDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
  **endDate** | **int**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

@@ -20,8 +20,6 @@ src/ErrorMessage.cpp
 src/ErrorMessage.h
 src/GenericResponse.cpp
 src/GenericResponse.h
-src/GetStats200ResponseInner.cpp
-src/GetStats200ResponseInner.h
 src/Helpers.cpp
 src/Helpers.h
 src/HistoryManager.cpp
@@ -40,6 +38,16 @@ src/MailLogEntry.cpp
 src/MailLogEntry.h
 src/MailOrder.cpp
 src/MailOrder.h
+src/MailStatsType.cpp
+src/MailStatsType.h
+src/MailStatsTypeVolume.cpp
+src/MailStatsTypeVolume.h
+src/MailStatsTypeVolumeFrom.cpp
+src/MailStatsTypeVolumeFrom.h
+src/MailStatsTypeVolumeIp.cpp
+src/MailStatsTypeVolumeIp.h
+src/MailStatsTypeVolumeTo.cpp
+src/MailStatsTypeVolumeTo.h
 src/NetClient.cpp
 src/NetClient.h
 src/Object.h
@@ -48,6 +56,8 @@ src/SendMail.cpp
 src/SendMail.h
 src/SendMailAdv.cpp
 src/SendMailAdv.h
+src/SendMailRaw.cpp
+src/SendMailRaw.h
 src/SendingManager.cpp
 src/SendingManager.h
 src/ServicesManager.cpp

@@ -53,9 +53,9 @@ class SendMailAdv
      * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
      */
     #[DTA\Data(field: "attachments", nullable: true)]
-    #[DTA\Strategy("Object", ["type" => \App\DTO\Collection5::class])]
-    #[DTA\Validator("TypeCompliant", ["type" => \App\DTO\Collection5::class])]
-    public \App\DTO\Collection5|null $attachments = null;
+    #[DTA\Strategy("Object", ["type" => \App\DTO\Collection4::class])]
+    #[DTA\Validator("TypeCompliant", ["type" => \App\DTO\Collection4::class])]
+    public \App\DTO\Collection4|null $attachments = null;
 
     /**
      * (optional)  ID of the Mail order within our system to use as the Mail Account.

@@ -34,14 +34,6 @@ entity GenericResponse {
     text: String
 }
 
-entity GetStats200ResponseInner {
-    * id: Integer
-    * status: String
-    * username: String
-    password: String
-    comment: String
-}
-
 entity MailAttachment {
     * filename: String
     * data: String
@@ -106,11 +98,48 @@ entity MailOrder {
     comment: String
 }
 
+entity MailStatsType {
+    time: String
+    usage: Integer
+    currency: String
+    currencySymbol: String
+    cost: Double
+    received: Integer
+    sent: Integer
+    volume: MailStatsTypeVolume
+}
+
+entity MailStatsTypeVolume {
+    to: MailStatsTypeVolumeTo
+    from: MailStatsTypeVolumeFrom
+    ip: MailStatsTypeVolumeIp
+}
+
+entity MailStatsTypeVolumeFrom {
+    billing@somedomain.com: Integer
+    sales@somedomain.com: Integer
+}
+
+entity MailStatsTypeVolumeIp {
+    1.1.1.1: Integer
+    2.2.2.2: Integer
+    3.3.3.3: Integer
+    4.4.4.4: Integer
+}
+
+entity MailStatsTypeVolumeTo {
+    client@domain.com: Integer
+    user@site.net: Integer
+    sales@company.com: Integer
+    client@anothersite.com: Integer
+}
+
 entity SendMail {
     * to: String
     * from: String
     * subject: String
     * body: String
+    id: Integer
 }
 
 entity SendMailAdv {
@@ -125,8 +154,17 @@ entity SendMailAdv {
     id: Long
 }
 
+entity SendMailRaw {
+    * raw_email: String
+    id: Integer
+}
+
 DenyRuleNew <|--- DenyRuleRecord
 
+MailStatsTypeVolume -- MailStatsTypeVolumeTo : to
+MailStatsTypeVolume -- MailStatsTypeVolumeFrom : from
+MailStatsTypeVolume -- MailStatsTypeVolumeIp : ip
+MailStatsType -- MailStatsTypeVolume : volume
 SendMailAdv -- EmailAddressTypes : from
 SendMailAdv -- EmailAddressesTypes : to
 SendMailAdv -- EmailAddressesTypes : replyto

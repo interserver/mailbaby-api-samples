@@ -3,7 +3,7 @@ MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.1.0
+API version: 1.3.0
 Contact: support@interserver.net
 */
 
@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the SendMailAdv type satisfies the MappedNullable interface at compile time
@@ -34,6 +36,8 @@ type SendMailAdv struct {
 	// (optional)  ID of the Mail order within our system to use as the Mail Account.
 	Id *int64 `json:"id,omitempty"`
 }
+
+type _SendMailAdv SendMailAdv
 
 // NewSendMailAdv instantiates a new SendMailAdv object
 // This constructor will assign default values to properties that have it defined,
@@ -342,6 +346,46 @@ func (o SendMailAdv) ToMap() (map[string]interface{}, error) {
 		toSerialize["id"] = o.Id
 	}
 	return toSerialize, nil
+}
+
+func (o *SendMailAdv) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"subject",
+		"body",
+		"from",
+		"to",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varSendMailAdv := _SendMailAdv{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varSendMailAdv)
+
+	if err != nil {
+		return err
+	}
+
+	*o = SendMailAdv(varSendMailAdv)
+
+	return err
 }
 
 type NullableSendMailAdv struct {

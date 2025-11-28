@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## get_mail_orders
 
-> Vec<crate::models::MailOrder> get_mail_orders()
+> Vec<models::MailOrder> get_mail_orders()
 displays a list of mail service orders
 
 This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
@@ -21,7 +21,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::MailOrder>**](MailOrder.md)
+[**Vec<models::MailOrder>**](MailOrder.md)
 
 ### Authorization
 

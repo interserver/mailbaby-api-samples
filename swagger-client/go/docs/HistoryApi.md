@@ -8,17 +8,27 @@ Method | HTTP request | Description
 [**ViewMailLog**](HistoryApi.md#ViewMailLog) | **Get** /mail/log | displays the mail log
 
 # **GetStats**
-> []InlineResponse200 GetStats(ctx, )
+> MailStatsType GetStats(ctx, optional)
 Account usage statistics.
 
 Returns information about the usage on your mail accounts.
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***HistoryApiGetStatsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a HistoryApiGetStatsOpts struct
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **optional.String**| The timeframe for the statistics. | 
 
 ### Return type
 
-[**[]InlineResponse200**](inline_response_200.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -59,6 +69,9 @@ Name | Type | Description  | Notes
  **limit** | **optional.Int32**| maximum number of records to return | [default to 100]
  **startDate** | **optional.Int64**| earliest date to get emails in unix timestamp format | 
  **endDate** | **optional.Int64**| earliest date to get emails in unix timestamp format | 
+ **replyto** | **optional.String**| Reply-To Email Address | 
+ **headerfrom** | **optional.String**| Header From Email Address | 
+ **delivered** | **optional.String**| Limiting the emails to wether or not they were delivered. | 
 
 ### Return type
 

@@ -1,30 +1,26 @@
 cmake_minimum_required (VERSION 2.6...3.10.2)
-project (CGenerator)
+project (CGenerator C)
 
 cmake_policy(SET CMP0063 NEW)
 
 set(CMAKE_C_VISIBILITY_PRESET default)
-set(CMAKE_CXX_VISIBILITY_PRESET default)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN OFF)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=implicit-function-declaration")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=missing-declarations")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=int-conversion")
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 find_package(OpenSSL)
 
 if (OPENSSL_FOUND)
-    message (STATUS "OPENSSL found")
-
-    set(CMAKE_C_FLAGS "-DOPENSSL")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOPENSSL")
     if(CMAKE_VERSION VERSION_LESS 3.4)
         include_directories(${OPENSSL_INCLUDE_DIR})
         include_directories(${OPENSSL_INCLUDE_DIRS})
         link_directories(${OPENSSL_LIBRARIES})
     endif()
-
-    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
-else()
-    message (STATUS "OpenSSL Not found.")
 endif()
 
 set(pkgName "mailbaby_email_delivery_and_management_service_api")
@@ -42,8 +38,6 @@ else()
     if(CURL_FOUND)
         include_directories(${CURL_INCLUDE_DIR})
         set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} ${CURL_LIBRARIES} )
-    else(CURL_FOUND)
-        message(FATAL_ERROR "Could not find the CURL library and development files.")
     endif()
 endif()
 
@@ -61,7 +55,6 @@ set(SRCS
     model/email_addresses_types.c
     model/error_message.c
     model/generic_response.c
-    model/get_stats_200_response_inner.c
     model/mail_attachment.c
     model/mail_block_click_house.c
     model/mail_block_rspamd.c
@@ -69,8 +62,14 @@ set(SRCS
     model/mail_log.c
     model/mail_log_entry.c
     model/mail_order.c
+    model/mail_stats_type.c
+    model/mail_stats_type_volume.c
+    model/mail_stats_type_volume_from.c
+    model/mail_stats_type_volume_ip.c
+    model/mail_stats_type_volume_to.c
     model/send_mail.c
     model/send_mail_adv.c
+    model/send_mail_raw.c
     api/BlockingAPI.c
     api/HistoryAPI.c
     api/SendingAPI.c
@@ -86,6 +85,7 @@ set(HDRS
     include/keyValuePair.h
     external/cJSON.h
     model/object.h
+    model/any_type.h
     model/deny_rule_new.h
     model/deny_rule_record.h
     model/email_address_name.h
@@ -93,7 +93,6 @@ set(HDRS
     model/email_addresses_types.h
     model/error_message.h
     model/generic_response.h
-    model/get_stats_200_response_inner.h
     model/mail_attachment.h
     model/mail_block_click_house.h
     model/mail_block_rspamd.h
@@ -101,8 +100,14 @@ set(HDRS
     model/mail_log.h
     model/mail_log_entry.h
     model/mail_order.h
+    model/mail_stats_type.h
+    model/mail_stats_type_volume.h
+    model/mail_stats_type_volume_from.h
+    model/mail_stats_type_volume_ip.h
+    model/mail_stats_type_volume_to.h
     model/send_mail.h
     model/send_mail_adv.h
+    model/send_mail_raw.h
     api/BlockingAPI.h
     api/HistoryAPI.h
     api/SendingAPI.h
@@ -116,7 +121,11 @@ include(PreTarget.cmake OPTIONAL)
 set(PROJECT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
 # Add library with project file with project name as library name
-add_library(${pkgName} ${SRCS} ${HDRS})
+if(NOT BUILD_STATIC_LIBS)
+  add_library(${pkgName} ${SRCS} ${HDRS})
+else()
+  add_library(${pkgName} STATIC ${SRCS} ${HDRS})
+endif()
 # Link dependent libraries
 if(NOT CMAKE_VERSION VERSION_LESS 3.4)
     target_link_libraries(${pkgName} PRIVATE OpenSSL::SSL OpenSSL::Crypto)

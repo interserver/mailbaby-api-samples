@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -21,7 +21,7 @@ void main() {
     //
     // Returns information about the usage on your mail accounts.
     //
-    //Future<List<GetStats200ResponseInner>> getStats() async
+    //Future<MailStatsType> getStats({ String time }) async
     test('test getStats', () async {
       // TODO
     });
@@ -30,7 +30,7 @@ void main() {
     //
     // Get a listing of the emails sent through this system 
     //
-    //Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate }) async
+    //Future<MailLog> viewMailLog({ int id, String origin, String mx, String from, String to, String subject, String mailid, int skip, int limit, int startDate, int endDate, String replyto, String headerfrom, String delivered }) async
     test('test viewMailLog', () async {
       // TODO
     });

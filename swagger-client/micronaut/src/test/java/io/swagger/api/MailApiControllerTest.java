@@ -6,13 +6,14 @@ import io.swagger.model.EmailAddressTypes;
 import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
-import io.swagger.model.InlineResponse200;
 import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
+import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
+import io.swagger.model.SendMailRaw;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -91,8 +92,19 @@ class MailApiControllerTest {
 
     @Test
     void getStatsTest() {
+        String time = null;
         try {
-            //TODO: api.getStats().blockingGet();
+            //TODO: api.getStats(time).blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void rawMailTest() {
+        SendMailRaw body = null;
+        try {
+            //TODO: api.rawMail(body).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
@@ -122,8 +134,9 @@ class MailApiControllerTest {
         String from = null;
         String subject = null;
         String body = null;
+        Integer id = null;
         try {
-            //TODO: api.sendMail(to, from, subject, body).blockingGet();
+            //TODO: api.sendMail(to, from, subject, body, id).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
@@ -142,8 +155,11 @@ class MailApiControllerTest {
         Integer limit = null;
         Long startDate = null;
         Long endDate = null;
+        String replyto = null;
+        String headerfrom = null;
+        String delivered = null;
         try {
-            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate).blockingGet();
+            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

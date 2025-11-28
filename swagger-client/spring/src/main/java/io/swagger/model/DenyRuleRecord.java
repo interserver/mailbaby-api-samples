@@ -8,6 +8,11 @@ import io.swagger.model.DenyRuleNew;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -16,17 +21,23 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "The data for a email deny rule record.")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class DenyRuleRecord   {
   @JsonProperty("id")
+
   private String id = null;
 
   @JsonProperty("created")
+
   private OffsetDateTime created = null;
 
   @JsonProperty("user")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String user = null;
 
   /**
@@ -64,12 +75,16 @@ public class DenyRuleRecord   {
     }
   }
   @JsonProperty("type")
+
   private TypeEnum type = null;
 
   @JsonProperty("data")
+
   private String data = null;
 
-  public DenyRuleRecord id(String id) {
+
+  public DenyRuleRecord id(String id) { 
+
     this.id = id;
     return this;
   }
@@ -78,18 +93,23 @@ public class DenyRuleRecord   {
    * The deny rule Id number.
    * @return id
    **/
+  
   @Schema(example = "41124", required = true, description = "The deny rule Id number.")
-      @NotNull
-
-    public String getId() {
+  
+  @NotNull
+  public String getId() {  
     return id;
   }
 
-  public void setId(String id) {
+
+
+  public void setId(String id) { 
+
     this.id = id;
   }
 
-  public DenyRuleRecord created(OffsetDateTime created) {
+  public DenyRuleRecord created(OffsetDateTime created) { 
+
     this.created = created;
     return this;
   }
@@ -98,19 +118,24 @@ public class DenyRuleRecord   {
    * the date the rule was created.
    * @return created
    **/
+  
   @Schema(required = true, description = "the date the rule was created.")
-      @NotNull
-
-    @Valid
-    public OffsetDateTime getCreated() {
+  
+@Valid
+  @NotNull
+  public OffsetDateTime getCreated() {  
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+
+
+  public void setCreated(OffsetDateTime created) { 
+
     this.created = created;
   }
 
-  public DenyRuleRecord user(String user) {
+  public DenyRuleRecord user(String user) { 
+
     this.user = user;
     return this;
   }
@@ -119,17 +144,21 @@ public class DenyRuleRecord   {
    * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
    * @return user
    **/
+  
   @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
   
-    public String getUser() {
+  public String getUser() {  
     return user;
   }
 
-  public void setUser(String user) {
+
+
+  public void setUser(String user) { 
     this.user = user;
   }
 
-  public DenyRuleRecord type(TypeEnum type) {
+  public DenyRuleRecord type(TypeEnum type) { 
+
     this.type = type;
     return this;
   }
@@ -138,18 +167,23 @@ public class DenyRuleRecord   {
    * The type of deny rule.
    * @return type
    **/
+  
   @Schema(example = "email", required = true, description = "The type of deny rule.")
-      @NotNull
-
-    public TypeEnum getType() {
+  
+  @NotNull
+  public TypeEnum getType() {  
     return type;
   }
 
-  public void setType(TypeEnum type) {
+
+
+  public void setType(TypeEnum type) { 
+
     this.type = type;
   }
 
-  public DenyRuleRecord data(String data) {
+  public DenyRuleRecord data(String data) { 
+
     this.data = data;
     return this;
   }
@@ -158,17 +192,20 @@ public class DenyRuleRecord   {
    * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
    * @return data
    **/
+  
   @Schema(example = "domeinwo@server.guesshost.net", required = true, description = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
-      @NotNull
-
-    public String getData() {
+  
+  @NotNull
+  public String getData() {  
     return data;
   }
 
-  public void setData(String data) {
+
+
+  public void setData(String data) { 
+
     this.data = data;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

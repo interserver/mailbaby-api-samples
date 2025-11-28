@@ -825,32 +825,6 @@
     }
   }
 };
-            defs["inline_response_200"] = {
-  "required" : [ "id", "status", "username" ],
-  "type" : "object",
-  "properties" : {
-    "id" : {
-      "type" : "integer",
-      "example" : 1234
-    },
-    "status" : {
-      "type" : "string",
-      "example" : "active"
-    },
-    "username" : {
-      "type" : "string",
-      "example" : "mb1234"
-    },
-    "password" : {
-      "type" : "string",
-      "example" : "guest123"
-    },
-    "comment" : {
-      "type" : "string",
-      "example" : "main mail account"
-    }
-  }
-};
             defs["MailAttachment"] = {
   "title" : "MailAttachment",
   "required" : [ "data", "filename" ],
@@ -1017,6 +991,7 @@
       "sendingZone" : "interserver",
       "bodySize" : 63,
       "seq" : 1,
+      "delivered" : 1,
       "recipient" : "client@isp.com",
       "domain" : "interserver.net",
       "locked" : 1,
@@ -1166,6 +1141,7 @@
     "sendingZone" : "interserver",
     "bodySize" : 63,
     "seq" : 1,
+    "delivered" : 1,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -1209,6 +1185,139 @@
     "username" : "mb21472"
   }
 };
+            defs["MailStatsType"] = {
+  "title" : "Root Type for MailStatsType",
+  "type" : "object",
+  "properties" : {
+    "time" : {
+      "type" : "string",
+      "default" : "1h",
+      "enum" : [ "all", "billing", "month", "7d", "24h", "today", "1h" ]
+    },
+    "usage" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "currency" : {
+      "type" : "string"
+    },
+    "currencySymbol" : {
+      "type" : "string"
+    },
+    "cost" : {
+      "type" : "number",
+      "format" : "double"
+    },
+    "received" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sent" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "volume" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume"
+    }
+  },
+  "description" : "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.",
+  "example" : {
+    "time" : "all",
+    "usage" : 55,
+    "currency" : "USD",
+    "currencySymbol" : "$",
+    "cost" : 1.02,
+    "received" : 508,
+    "sent" : 495,
+    "volume" : {
+      "to" : {
+        "client@domain.com" : 395,
+        "user@site.net" : 57,
+        "sales@company.com" : 47,
+        "client@anothersite.com" : 9
+      },
+      "from" : {
+        "billing@somedomain.com" : 369,
+        "sales@somedomain.com" : 139
+      },
+      "ip" : {
+        "1.1.1.1" : 142,
+        "2.2.2.2" : 132,
+        "3.3.3.3" : 129,
+        "4.4.4.4" : 105
+      }
+    }
+  }
+};
+            defs["MailStatsType_volume"] = {
+  "type" : "object",
+  "properties" : {
+    "to" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume_to"
+    },
+    "from" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume_from"
+    },
+    "ip" : {
+      "$ref" : "#/components/schemas/MailStatsType_volume_ip"
+    }
+  }
+};
+            defs["MailStatsType_volume_from"] = {
+  "type" : "object",
+  "properties" : {
+    "billing@somedomain.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sales@somedomain.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
+  }
+};
+            defs["MailStatsType_volume_ip"] = {
+  "type" : "object",
+  "properties" : {
+    "1.1.1.1" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "2.2.2.2" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "3.3.3.3" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "4.4.4.4" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
+  }
+};
+            defs["MailStatsType_volume_to"] = {
+  "type" : "object",
+  "properties" : {
+    "client@domain.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "user@site.net" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "sales@company.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    },
+    "client@anothersite.com" : {
+      "type" : "integer",
+      "format" : "int32"
+    }
+  }
+};
             defs["SendMail"] = {
   "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
@@ -1233,6 +1342,10 @@
       "type" : "string",
       "description" : "The main email contents.",
       "example" : "This is an email to inform you that something noteworthy happened."
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "Optional Order ID"
     }
   },
   "description" : "Details for an Email"
@@ -1302,6 +1415,25 @@
     "id" : 66
   }
 };
+            defs["SendMailRaw"] = {
+  "title" : "Root Type for RawMail",
+  "required" : [ "raw_email" ],
+  "type" : "object",
+  "properties" : {
+    "raw_email" : {
+      "type" : "string",
+      "description" : "The entire email contents"
+    },
+    "id" : {
+      "type" : "integer",
+      "description" : "Optional order id"
+    }
+  },
+  "description" : "Raw Email Object",
+  "example" : {
+    "raw_email" : "<email contents here>"
+  }
+};
   </script>
 
   <div class="container-fluid">
@@ -1342,6 +1474,9 @@
                       <a href="#api-History-viewMailLog">viewMailLog</a>
                     </li>
                   <li class="nav-header" data-group="Sending"><a href="#api-Sending">API Methods - Sending</a></li>
+                    <li data-group="Sending" data-name="rawMail" class="">
+                      <a href="#api-Sending-rawMail">rawMail</a>
+                    </li>
                     <li data-group="Sending" data-name="sendAdvMail" class="">
                       <a href="#api-Sending-sendAdvMail">sendAdvMail</a>
                     </li>
@@ -1369,7 +1504,7 @@
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.1.0</div>
+              <div class="app-desc">Version: 1.3.0</div>
             <hr>
             <div><p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
 <h1>Overview</h1>
@@ -4001,7 +4136,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/stats"</code></pre>
+"https://api.mailbaby.net/mail/stats?time="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-getStats-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -4024,8 +4159,9 @@ public class HistoryApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         HistoryApi apiInstance = new HistoryApi();
+        String time = time_example; // String | The timeframe for the statistics.
         try {
-            array[inline_response_200] result = apiInstance.getStats();
+            MailStatsType result = apiInstance.getStats(time);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#getStats");
@@ -4042,8 +4178,9 @@ public class HistoryApiExample {
 
     public static void main(String[] args) {
         HistoryApi apiInstance = new HistoryApi();
+        String time = time_example; // String | The timeframe for the statistics.
         try {
-            array[inline_response_200] result = apiInstance.getStats();
+            MailStatsType result = apiInstance.getStats(time);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#getStats");
@@ -4062,12 +4199,13 @@ public class HistoryApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
+String *time = time_example; // The timeframe for the statistics. (optional)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
 // Account usage statistics.
-[apiInstance getStatsWithCompletionHandler: 
-              ^(array[inline_response_200] output, NSError* error) {
+[apiInstance getStatsWith:time
+              completionHandler: ^(MailStatsType output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -4089,6 +4227,9 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi()
+var opts = { 
+  'time': time_example // {{String}} The timeframe for the statistics.
+};
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
@@ -4096,7 +4237,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.getStats(callback);
+api.getStats(opts, callback);
 </code></pre>
                             </div>
 
@@ -4123,11 +4264,12 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new HistoryApi();
+            var time = time_example;  // String | The timeframe for the statistics. (optional) 
 
             try
             {
                 // Account usage statistics.
-                array[inline_response_200] result = apiInstance.getStats();
+                MailStatsType result = apiInstance.getStats(time);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4150,9 +4292,10 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiHistoryApi();
+$time = time_example; // String | The timeframe for the statistics.
 
 try {
-    $result = $api_instance->getStats();
+    $result = $api_instance->getStats($time);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->getStats: ', $e->getMessage(), PHP_EOL;
@@ -4171,9 +4314,10 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::HistoryApi->new();
+my $time = time_example; # String | The timeframe for the statistics.
 
 eval { 
-    my $result = $api_instance->getStats();
+    my $result = $api_instance->getStats(time => $time);
     print Dumper($result);
 };
 if ($@) {
@@ -4195,10 +4339,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.HistoryApi()
+time = time_example # String | The timeframe for the statistics. (optional)
 
 try: 
     # Account usage statistics.
-    api_response = api_instance.get_stats()
+    api_response = api_instance.get_stats(time=time)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->getStats: %s\n" % e)</code></pre>
@@ -4211,6 +4356,32 @@ except ApiException as e:
 
 
 
+                            <div class="methodsubtabletitle">Query parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">time</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_getStats_time">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        The timeframe for the statistics.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                            </table>
 
                           <h2>Responses</h2>
                             <h3> Status: 200 - OK </h3>
@@ -4232,11 +4403,7 @@ except ApiException as e:
   "content" : {
     "application/json" : {
       "schema" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/inline_response_200"
-        },
-        "x-content-type" : "application/json"
+        "$ref" : "#/components/schemas/MailStatsType"
       }
     }
   },
@@ -4425,7 +4592,7 @@ except ApiException as e:
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate="</code></pre>
+"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&skip=&limit=&startDate=&endDate=&replyto=&headerfrom=&delivered="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -4459,8 +4626,11 @@ public class HistoryApiExample {
         Integer limit = 56; // Integer | maximum number of records to return
         Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
+        String replyto = replyto_example; // String | Reply-To Email Address
+        String headerfrom = headerfrom_example; // String | Header From Email Address
+        String delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4488,8 +4658,11 @@ public class HistoryApiExample {
         Integer limit = 56; // Integer | maximum number of records to return
         Long startDate = 789; // Long | earliest date to get emails in unix timestamp format
         Long endDate = 789; // Long | earliest date to get emails in unix timestamp format
+        String replyto = replyto_example; // String | Reply-To Email Address
+        String headerfrom = headerfrom_example; // String | Header From Email Address
+        String delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4519,6 +4692,9 @@ Integer *skip = 56; // number of records to skip for pagination (optional) (defa
 Integer *limit = 56; // maximum number of records to return (optional) (default to 100)
 Long *startDate = 789; // earliest date to get emails in unix timestamp format (optional)
 Long *endDate = 789; // earliest date to get emails in unix timestamp format (optional)
+String *replyto = replyto_example; // Reply-To Email Address (optional)
+String *headerfrom = headerfrom_example; // Header From Email Address (optional)
+String *delivered = delivered_example; // Limiting the emails to wether or not they were delivered. (optional)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
@@ -4534,6 +4710,9 @@ HistoryApi *apiInstance = [[HistoryApi alloc] init];
     limit:limit
     startDate:startDate
     endDate:endDate
+    replyto:replyto
+    headerfrom:headerfrom
+    delivered:delivered
               completionHandler: ^(MailLog output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4567,7 +4746,10 @@ var opts = {
   'skip': 56, // {{Integer}} number of records to skip for pagination
   'limit': 56, // {{Integer}} maximum number of records to return
   'startDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
-  'endDate': 789 // {{Long}} earliest date to get emails in unix timestamp format
+  'endDate': 789, // {{Long}} earliest date to get emails in unix timestamp format
+  'replyto': replyto_example, // {{String}} Reply-To Email Address
+  'headerfrom': headerfrom_example, // {{String}} Header From Email Address
+  'delivered': delivered_example // {{String}} Limiting the emails to wether or not they were delivered.
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4614,11 +4796,14 @@ namespace Example
             var limit = 56;  // Integer | maximum number of records to return (optional)  (default to 100)
             var startDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
             var endDate = 789;  // Long | earliest date to get emails in unix timestamp format (optional) 
+            var replyto = replyto_example;  // String | Reply-To Email Address (optional) 
+            var headerfrom = headerfrom_example;  // String | Header From Email Address (optional) 
+            var delivered = delivered_example;  // String | Limiting the emails to wether or not they were delivered. (optional) 
 
             try
             {
                 // displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4652,9 +4837,12 @@ $skip = 56; // Integer | number of records to skip for pagination
 $limit = 56; // Integer | maximum number of records to return
 $startDate = 789; // Long | earliest date to get emails in unix timestamp format
 $endDate = 789; // Long | earliest date to get emails in unix timestamp format
+$replyto = replyto_example; // String | Reply-To Email Address
+$headerfrom = headerfrom_example; // String | Header From Email Address
+$delivered = delivered_example; // String | Limiting the emails to wether or not they were delivered.
 
 try {
-    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $skip, $limit, $startDate, $endDate, $replyto, $headerfrom, $delivered);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -4684,9 +4872,12 @@ my $skip = 56; # Integer | number of records to skip for pagination
 my $limit = 56; # Integer | maximum number of records to return
 my $startDate = 789; # Long | earliest date to get emails in unix timestamp format
 my $endDate = 789; # Long | earliest date to get emails in unix timestamp format
+my $replyto = replyto_example; # String | Reply-To Email Address
+my $headerfrom = headerfrom_example; # String | Header From Email Address
+my $delivered = delivered_example; # String | Limiting the emails to wether or not they were delivered.
 
 eval { 
-    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate, replyto => $replyto, headerfrom => $headerfrom, delivered => $delivered);
     print Dumper($result);
 };
 if ($@) {
@@ -4719,10 +4910,13 @@ skip = 56 # Integer | number of records to skip for pagination (optional) (defau
 limit = 56 # Integer | maximum number of records to return (optional) (default to 100)
 startDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
 endDate = 789 # Long | earliest date to get emails in unix timestamp format (optional)
+replyto = replyto_example # String | Reply-To Email Address (optional)
+headerfrom = headerfrom_example # String | Header From Email Address (optional)
+delivered = delivered_example # String | Limiting the emails to wether or not they were delivered. (optional)
 
 try: 
     # displays the mail log
-    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, skip=skip, limit=limit, startDate=startDate, endDate=endDate, replyto=replyto, headerfrom=headerfrom, delivered=delivered)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->viewMailLog: %s\n" % e)</code></pre>
@@ -4965,6 +5159,63 @@ except ApiException as e:
                                     </div>
                                 </td>
                                 </tr>
+                                <tr><td style="width:150px;">replyto</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_replyto">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Reply-To Email Address
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">headerfrom</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_headerfrom">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Header From Email Address
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">delivered</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_delivered">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Limiting the emails to wether or not they were delivered.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
                             </table>
 
                           <h2>Responses</h2>
@@ -5011,6 +5262,7 @@ except ApiException as e:
               "sendingZone" : "interserver",
               "bodySize" : 63,
               "seq" : 1,
+              "delivered" : 1,
               "recipient" : "client@isp.com",
               "domain" : "interserver.net",
               "locked" : 1,
@@ -5064,6 +5316,575 @@ except ApiException as e:
                   </section>
                 <section id="api-Sending">
                   <h1>Sending</h1>
+                    <div id="api-Sending-rawMail">
+                      <article id="api-Sending-rawMail-0" data-group="User" data-name="rawMail" data-version="0">
+                        <div class="pull-left">
+                          <h1>rawMail</h1>
+                          <p>Sends a raw email</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/mail/rawsend</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Sending-rawMail-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Sending-rawMail-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Sending-rawMail-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Sending-rawMail-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Sending-rawMail-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Sending-rawMail-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Sending-rawMail-0-curl">
+                           <pre class="prettyprint"><code class="language-bsh">curl -X POST\
+-H "X-API-KEY: [[apiKey]]"\
+-H "Accept: application/json"\
+-H "Content-Type: application/json,multipart/form-data"\
+"https://api.mailbaby.net/mail/rawsend"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Sending-rawMail-0-java">
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
+import MailBabyApi.auth.*;
+import MailBabyApi.model.*;
+import MailBabyApi.api.SendingApi;
+
+import java.io.File;
+import java.util.*;
+
+public class SendingApiExample {
+
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+        // Configure API key authorization: apiKeyAuth
+        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
+        apiKeyAuth.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //apiKeyAuth.setApiKeyPrefix("Token");
+
+        SendingApi apiInstance = new SendingApi();
+        SendMailRaw body = ; // SendMailRaw | 
+        try {
+            GenericResponse result = apiInstance.rawMail(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SendingApi#rawMail");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Sending-rawMail-0-android">
+                            <pre class="prettyprint"><code class="language-java">import MailBabyApi.api.SendingApi;
+
+public class SendingApiExample {
+
+    public static void main(String[] args) {
+        SendingApi apiInstance = new SendingApi();
+        SendMailRaw body = ; // SendMailRaw | 
+        try {
+            GenericResponse result = apiInstance.rawMail(body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SendingApi#rawMail");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Sending-rawMail-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
+// Configure API key authorization: (authentication scheme: apiKeyAuth)
+[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
+SendMailRaw *body = ; // 
+
+SendingApi *apiInstance = [[SendingApi alloc] init];
+
+// Sends a raw email
+[apiInstance rawMailWith:body
+              completionHandler: ^(GenericResponse output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryAndManagementServiceApi = require('mail_baby_email_delivery_and_management_service_api');
+var defaultClient = MailBabyEmailDeliveryAndManagementServiceApi.ApiClient.instance;
+
+// Configure API key authorization: apiKeyAuth
+var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
+apiKeyAuth.apiKey = "YOUR API KEY"
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
+
+var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
+var body = ; // {{SendMailRaw}} 
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.rawMail(body, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Sending-rawMail-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using MailBabyApi.Api;
+using MailBabyApi.Client;
+using MailBabyApi.Model;
+
+namespace Example
+{
+    public class rawMailExample
+    {
+        public void main()
+        {
+
+            // Configure API key authorization: apiKeyAuth
+            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
+
+            var apiInstance = new SendingApi();
+            var body = new SendMailRaw(); // SendMailRaw | 
+
+            try
+            {
+                // Sends a raw email
+                GenericResponse result = apiInstance.rawMail(body);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling SendingApi.rawMail: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+// Configure API key authorization: apiKeyAuth
+Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+
+$api_instance = new Swagger\Client\ApiSendingApi();
+$body = ; // SendMailRaw | 
+
+try {
+    $result = $api_instance->rawMail($body);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SendingApi->rawMail: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use MailBabyApi::Configuration;
+use MailBabyApi::SendingApi;
+
+# Configure API key authorization: apiKeyAuth
+$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+
+my $api_instance = MailBabyApi::SendingApi->new();
+my $body = MailBabyApi::Object::SendMailRaw->new(); # SendMailRaw | 
+
+eval { 
+    my $result = $api_instance->rawMail(body => $body);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling SendingApi->rawMail: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Sending-rawMail-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import MailBabyApi
+from MailBabyApi.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: apiKeyAuth
+MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = MailBabyApi.SendingApi()
+body =  # SendMailRaw | 
+
+try: 
+    # Sends a raw email
+    api_response = api_instance.raw_mail(body)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SendingApi->rawMail: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">body <span style="color:red;">*</span></td>
+                                <td>
+                                
+                                
+                                <script>
+                                $(document).ready(function() {
+                                  var schemaWrapper = {
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/SendMailRaw"
+      }
+    },
+    "multipart/form-data" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/SendMailRaw"
+      }
+    }
+  },
+  "required" : true
+};
+                                  var schema = schemaWrapper.content["application/json"].schema;
+                                  if (schema.$ref != null) {
+                                    schema = defsParser.$refs.get(schema.$ref);
+                                  } else {
+                                    schemaWrapper.components = {};
+                                    schemaWrapper.components.schemas = Object.assign({}, defs);
+                                    $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                      console.log(err);
+                                    });
+                                  }
+                                
+                                  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+                                  var result = $('#d2e199_rawMail_body');
+                                  result.empty();
+                                  result.append(view.render());
+                                });
+                                </script>
+                                <div id="d2e199_rawMail_body"></div>
+                                </td>
+                                </tr>
+                            </table>
+
+                            <div class="methodsubtabletitle">Form parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                  <tr><td style="width:150px;">raw_email*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_rawMail_rawEmail">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_rawMail_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                            </table>
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - successful email response </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-200-schema">
+                                  <div id='responses-rawMail-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "successful email response",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/GenericResponse"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - Error message when there was a problem with the input parameters. </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-400-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-400-schema">
+                                  <div id='responses-rawMail-400-schema-400' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Error message when there was a problem with the input parameters.",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "BadInputError" : {
+          "value" : {
+            "code" : 400,
+            "message" : "There was a problem with the input parameters."
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-400-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-400-schema-400');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-400-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 401 - Unauthorized </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-401-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-401-schema">
+                                  <div id='responses-rawMail-401-schema-401' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Unauthorized",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "UnauthorizedError" : {
+          "value" : {
+            "code" : 401,
+            "message" : "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-401-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-401-schema-401');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-401-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 404 - The specified resource was not found </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-rawMail-404-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-rawMail-404-schema">
+                                  <div id='responses-rawMail-404-schema-404' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "The specified resource was not found",
+  "content" : {
+    "application/json" : {
+      "schema" : {
+        "$ref" : "#/components/schemas/ErrorMessage"
+      },
+      "examples" : {
+        "NotFoundError" : {
+          "value" : {
+            "code" : 404,
+            "message" : "The specified resource was not found."
+          }
+        }
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["application/json"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-rawMail-404-schema-data').val(stringify(schema));
+                                        var result = $('#responses-rawMail-404-schema-404');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-rawMail-404-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
                     <div id="api-Sending-sendAdvMail">
                       <article id="api-Sending-sendAdvMail-0" data-group="User" data-name="sendAdvMail" data-version="0">
                         <div class="pull-left">
@@ -5077,7 +5898,7 @@ except ApiException as e:
 
 Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;BasicForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5088,7 +5909,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to&#x3D;support@interserver.net
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;ArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5100,7 +5921,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to[0][email]&#x3D;support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;NameEmailForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5111,7 +5932,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data to&#x3D;&quot;Joe &lt;support@interserver.net&gt;&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5122,7 +5943,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to&#x3D;support@interserver.net, support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToFullForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5133,7 +5954,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;MultToArrayForm
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/x-www-form-urlencoded&#x27; \
@@ -5147,7 +5968,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --data &quot;to[1][email]&#x3D;support@interserver.net&quot;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;BasicJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/json&#x27; \
@@ -5160,7 +5981,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }&#x27;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;ArrayJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/json&#x27; \
@@ -5173,7 +5994,7 @@ curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 }&#x27;
 &#x60;&#x60;&#x60;
 
-&#x60;&#x60;&#x60;
+&#x60;&#x60;&#x60;NameEmailJson
 curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
 --header &#x27;Accept: application/json&#x27; \
 --header &#x27;Content-Type: application/json&#x27; \
@@ -6059,8 +6880,9 @@ public class SendingApiExample {
         String from = from_example; // String | 
         String subject = subject_example; // String | 
         String body = body_example; // String | 
+        Integer id = 56; // Integer | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#sendMail");
@@ -6081,8 +6903,9 @@ public class SendingApiExample {
         String from = from_example; // String | 
         String subject = subject_example; // String | 
         String body = body_example; // String | 
+        Integer id = 56; // Integer | 
         try {
-            GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+            GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SendingApi#sendMail");
@@ -6105,6 +6928,7 @@ String *to = to_example; //
 String *from = from_example; // 
 String *subject = subject_example; // 
 String *body = body_example; // 
+Integer *id = 56; // 
 
 SendingApi *apiInstance = [[SendingApi alloc] init];
 
@@ -6113,6 +6937,7 @@ SendingApi *apiInstance = [[SendingApi alloc] init];
     from:from
     subject:subject
     body:body
+    id:id
               completionHandler: ^(GenericResponse output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -6139,6 +6964,7 @@ var to = to_example; // {{String}}
 var from = from_example; // {{String}} 
 var subject = subject_example; // {{String}} 
 var body = body_example; // {{String}} 
+var id = 56; // {{Integer}} 
 
 var callback = function(error, data, response) {
   if (error) {
@@ -6147,7 +6973,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.sendMail(tofromsubjectbody, callback);
+api.sendMail(tofromsubjectbodyid, callback);
 </code></pre>
                             </div>
 
@@ -6178,11 +7004,12 @@ namespace Example
             var from = from_example;  // String | 
             var subject = subject_example;  // String | 
             var body = body_example;  // String | 
+            var id = 56;  // Integer | 
 
             try
             {
                 // Sends an Email
-                GenericResponse result = apiInstance.sendMail(to, from, subject, body);
+                GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -6209,9 +7036,10 @@ $to = to_example; // String |
 $from = from_example; // String | 
 $subject = subject_example; // String | 
 $body = body_example; // String | 
+$id = 56; // Integer | 
 
 try {
-    $result = $api_instance->sendMail($to, $from, $subject, $body);
+    $result = $api_instance->sendMail($to, $from, $subject, $body, $id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SendingApi->sendMail: ', $e->getMessage(), PHP_EOL;
@@ -6234,9 +7062,10 @@ my $to = to_example; # String |
 my $from = from_example; # String | 
 my $subject = subject_example; # String | 
 my $body = body_example; # String | 
+my $id = 56; # Integer | 
 
 eval { 
-    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body);
+    my $result = $api_instance->sendMail(to => $to, from => $from, subject => $subject, body => $body, id => $id);
     print Dumper($result);
 };
 if ($@) {
@@ -6262,10 +7091,11 @@ to = to_example # String |
 from = from_example # String | 
 subject = subject_example # String | 
 body = body_example # String | 
+id = 56 # Integer | 
 
 try: 
     # Sends an Email
-    api_response = api_instance.send_mail(to, from, subject, body)
+    api_response = api_instance.send_mail(to, from, subject, body, id)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SendingApi->sendMail: %s\n" % e)</code></pre>
@@ -6397,6 +7227,25 @@ except ApiException as e:
                                               <div class="primitive">
                                                   <span class="type">
                                                       String
+                                                  </span>
+                                  
+                                              </div>
+                                                  <div class="inner required">
+                                                      Required
+                                                  </div>
+                                          </div>
+                                      </div>
+                                  </td>
+                                  </tr>
+                                  <tr><td style="width:150px;">id*</td>
+                                  <td>
+                                  
+                                  
+                                      <div id="d2e199_sendMail_id">
+                                          <div class="json-schema-view">
+                                              <div class="primitive">
+                                                  <span class="type">
+                                                      Integer
                                                   </span>
                                   
                                               </div>
@@ -8450,7 +9299,7 @@ except ApiException as e:
       this.isPrimitive = !this.isAny && !this.isArray && !this.isObject;
   
       //
-      this.showToggle = this.schema.description || this.schema.title || this.isPrimitive && (this.schema.minimum || this.schema.maximum || this.schema.exclusiveMinimum || this.schema.exclusiveMaximum);
+      this.showToggle = this.schema.description || this.schema.title || this.isPrimitive && (this.schema.minimum || this.schema.maximum || this.schema.exclusiveMinimum || this.schema.exclusiveMaximum || this.schema.maxLength || this.schema.minLength || this.schema.pattern || this.schema.format);
   
       // populate isRequired property down to properties
       if (this.schema && Array.isArray(this.schema.required)) {

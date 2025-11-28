@@ -6,79 +6,198 @@
  * Schema Mail_log_entry.t : An email record
  *)
 
-type t = {
-    (* internal db id *)
-    _id: int32;
-    (* mail id *)
-    id: string;
-    (* from address *)
-    from: string;
-    (* to address *)
-    _to: string;
-    (* email subject *)
-    subject: string;
-    (* creation date *)
-    created: string;
-    (* creation timestamp *)
-    time: int32;
-    (* user account *)
-    user: string;
-    (* transaction type *)
-    transtype: string;
-    (* origin ip *)
-    origin: string;
-    (* interface name *)
-    interface: string;
-    (* sending zone *)
-    sending_zone: string;
-    (* email body size in bytes *)
-    body_size: int32;
-    (* index of email in the to adderess list *)
-    seq: int32;
-    (* to address this email is being sent to *)
-    recipient: string;
-    (* to address domain *)
-    domain: string;
-    (* locked status *)
-    locked: int32;
-    (* lock timestamp *)
-    lock_time: string;
-    (* assigned server *)
-    assigned: string;
-    (* queued timestamp *)
-    queued: string;
-    (* mx hostname *)
-    mx_hostname: string;
-    (* mail delivery response *)
-    response: string;
-    (* message id *)
-    message_id: string option [@default None];
-} [@@deriving yojson { strict = false }, show ];;
 
-(** An email record *)
-let create (_id : int32) (id : string) (from : string) (_to : string) (subject : string) (created : string) (time : int32) (user : string) (transtype : string) (origin : string) (interface : string) (sending_zone : string) (body_size : int32) (seq : int32) (recipient : string) (domain : string) (locked : int32) (lock_time : string) (assigned : string) (queued : string) (mx_hostname : string) (response : string) : t = {
-    _id = _id;
-    id = id;
-    from = from;
-    _to = _to;
-    subject = subject;
-    created = created;
-    time = time;
-    user = user;
-    transtype = transtype;
-    origin = origin;
-    interface = interface;
-    sending_zone = sending_zone;
-    body_size = body_size;
-    seq = seq;
-    recipient = recipient;
-    domain = domain;
-    locked = locked;
-    lock_time = lock_time;
-    assigned = assigned;
-    queued = queued;
-    mx_hostname = mx_hostname;
-    response = response;
-    message_id = None;
-}
+
+    
+        type t = {
+                              _id: int32
+                  
+                  
+                
+                
+                ; [@key "_id"]
+                    (** internal db id *)
+                                      id: string
+                  
+                  
+                
+                
+                ; [@key "id"]
+                    (** mail id *)
+                                      from: string
+                  
+                  
+                
+                
+                ; [@key "from"]
+                    (** from address *)
+                                      _to: string
+                  
+                  
+                
+                
+                ; [@key "to"]
+                    (** to address *)
+                                      subject: string
+                  
+                  
+                
+                
+                ; [@key "subject"]
+                    (** email subject *)
+                                      created: string
+                  
+                  
+                
+                
+                ; [@key "created"]
+                    (** creation date *)
+                                      time: int32
+                  
+                  
+                
+                
+                ; [@key "time"]
+                    (** creation timestamp *)
+                                      user: string
+                  
+                  
+                
+                
+                ; [@key "user"]
+                    (** user account *)
+                                      transtype: string
+                  
+                  
+                
+                
+                ; [@key "transtype"]
+                    (** transaction type *)
+                                      origin: string
+                  
+                  
+                
+                
+                ; [@key "origin"]
+                    (** origin ip *)
+                                      interface: string
+                  
+                  
+                
+                
+                ; [@key "interface"]
+                    (** interface name *)
+                                      sending_zone: string
+                  
+                  
+                
+                
+                ; [@key "sendingZone"]
+                    (** sending zone *)
+                                      body_size: int32
+                  
+                  
+                
+                
+                ; [@key "bodySize"]
+                    (** email body size in bytes *)
+                                      seq: int32
+                  
+                  
+                
+                
+                ; [@key "seq"]
+                    (** index of email in the to adderess list *)
+                                      recipient: string
+                  
+                  
+                
+                
+                ; [@key "recipient"]
+                    (** to address this email is being sent to *)
+                                      domain: string
+                  
+                  
+                
+                
+                ; [@key "domain"]
+                    (** to address domain *)
+                                      locked: int32
+                  
+                  
+                
+                
+                ; [@key "locked"]
+                    (** locked status *)
+                                      lock_time: string
+                  
+                  
+                
+                
+                ; [@key "lockTime"]
+                    (** lock timestamp *)
+                                      assigned: string
+                  
+                  
+                
+                
+                ; [@key "assigned"]
+                    (** assigned server *)
+                                      queued: string
+                  
+                  
+                
+                
+                ; [@key "queued"]
+                    (** queued timestamp *)
+                                      mx_hostname: string
+                  
+                  
+                
+                
+                ; [@key "mxHostname"]
+                    (** mx hostname *)
+                                      response: string
+                  
+                  
+                
+                
+                ; [@key "response"]
+                    (** mail delivery response *)
+                                      message_id: string
+                  
+                   option [@default None]
+                
+                
+                ; [@key "messageId"]
+                    (** message id *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** An email record *)
+        let create (_id : int32) (id : string) (from : string) (_to : string) (subject : string) (created : string) (time : int32) (user : string) (transtype : string) (origin : string) (interface : string) (sending_zone : string) (body_size : int32) (seq : int32) (recipient : string) (domain : string) (locked : int32) (lock_time : string) (assigned : string) (queued : string) (mx_hostname : string) (response : string) : t = {
+            _id = _id;
+            id = id;
+            from = from;
+            _to = _to;
+            subject = subject;
+            created = created;
+            time = time;
+            user = user;
+            transtype = transtype;
+            origin = origin;
+            interface = interface;
+            sending_zone = sending_zone;
+            body_size = body_size;
+            seq = seq;
+            recipient = recipient;
+            domain = domain;
+            locked = locked;
+            lock_time = lock_time;
+            assigned = assigned;
+            queued = queued;
+            mx_hostname = mx_hostname;
+            response = response;
+            message_id = None;
+        }
+    
 

@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**view_mail_log**](HistoryApi.md#view_mail_log) | **GET** /mail/log | displays the mail log
 
 # **get_stats**
-> Array&lt;InlineResponse200&gt; get_stats
+> MailStatsType get_stats(opts)
 
 Account usage statistics.
 
@@ -27,10 +27,13 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::HistoryApi.new
+opts = { 
+  time: 'time_example' # String | The timeframe for the statistics.
+}
 
 begin
   #Account usage statistics.
-  result = api_instance.get_stats
+  result = api_instance.get_stats(opts)
   p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling HistoryApi->get_stats: #{e}"
@@ -38,11 +41,14 @@ end
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **time** | **String**| The timeframe for the statistics. | [optional] 
 
 ### Return type
 
-[**Array&lt;InlineResponse200&gt;**](InlineResponse200.md)
+[**MailStatsType**](MailStatsType.md)
 
 ### Authorization
 
@@ -86,7 +92,10 @@ opts = {
   skip: 0, # Integer | number of records to skip for pagination
   limit: 100, # Integer | maximum number of records to return
   start_date: 789, # Integer | earliest date to get emails in unix timestamp format
-  end_date: 789 # Integer | earliest date to get emails in unix timestamp format
+  end_date: 789, # Integer | earliest date to get emails in unix timestamp format
+  replyto: 'replyto_example', # String | Reply-To Email Address
+  headerfrom: 'headerfrom_example', # String | Header From Email Address
+  delivered: 'delivered_example' # String | Limiting the emails to wether or not they were delivered.
 }
 
 begin
@@ -113,6 +122,9 @@ Name | Type | Description  | Notes
  **limit** | **Integer**| maximum number of records to return | [optional] [default to 100]
  **start_date** | **Integer**| earliest date to get emails in unix timestamp format | [optional] 
  **end_date** | **Integer**| earliest date to get emails in unix timestamp format | [optional] 
+ **replyto** | **String**| Reply-To Email Address | [optional] 
+ **headerfrom** | **String**| Header From Email Address | [optional] 
+ **delivered** | **String**| Limiting the emails to wether or not they were delivered. | [optional] 
 
 ### Return type
 

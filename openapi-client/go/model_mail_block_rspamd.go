@@ -3,7 +3,7 @@ MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
-API version: 1.1.0
+API version: 1.3.0
 Contact: support@interserver.net
 */
 
@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MailBlockRspamd type satisfies the MappedNullable interface at compile time
@@ -23,6 +25,8 @@ type MailBlockRspamd struct {
 	From string `json:"from"`
 	Subject string `json:"subject"`
 }
+
+type _MailBlockRspamd MailBlockRspamd
 
 // NewMailBlockRspamd instantiates a new MailBlockRspamd object
 // This constructor will assign default values to properties that have it defined,
@@ -104,6 +108,44 @@ func (o MailBlockRspamd) ToMap() (map[string]interface{}, error) {
 	toSerialize["from"] = o.From
 	toSerialize["subject"] = o.Subject
 	return toSerialize, nil
+}
+
+func (o *MailBlockRspamd) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"from",
+		"subject",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMailBlockRspamd := _MailBlockRspamd{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMailBlockRspamd)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MailBlockRspamd(varMailBlockRspamd)
+
+	return err
 }
 
 type NullableMailBlockRspamd struct {

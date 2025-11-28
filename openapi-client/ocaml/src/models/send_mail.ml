@@ -6,22 +6,54 @@
  * Schema Send_mail.t : Details for an Email
  *)
 
-type t = {
-    (* The Contact whom is the primary recipient of this email. *)
-    _to: string;
-    (* The contact whom is the this email is from. *)
-    from: string;
-    (* The subject or title of the email *)
-    subject: string;
-    (* The main email contents. *)
-    body: string;
-} [@@deriving yojson { strict = false }, show ];;
 
-(** Details for an Email *)
-let create (_to : string) (from : string) (subject : string) (body : string) : t = {
-    _to = _to;
-    from = from;
-    subject = subject;
-    body = body;
-}
+
+    
+        type t = {
+                              _to: string
+                  
+                  
+                
+                
+                ; [@key "to"]
+                    (** The Contact whom is the primary recipient of this email. *)
+                                      from: string
+                  
+                  
+                
+                
+                ; [@key "from"]
+                    (** The contact whom is the this email is from. *)
+                                      subject: string
+                  
+                  
+                
+                
+                ; [@key "subject"]
+                    (** The subject or title of the email *)
+                                      body: string
+                  
+                  
+                
+                
+                ; [@key "body"]
+                    (** The main email contents. *)
+                                      id: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "id"]
+                    (** Optional Order ID *)
+                } [@@deriving yojson { strict = false }, show, eq ];;
+        
+        (** Details for an Email *)
+        let create (_to : string) (from : string) (subject : string) (body : string) : t = {
+            _to = _to;
+            from = from;
+            subject = subject;
+            body = body;
+            id = None;
+        }
+    
 

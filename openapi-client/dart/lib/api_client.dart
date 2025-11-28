@@ -1,7 +1,7 @@
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
-// @dart=2.12
+// @dart=2.18
 
 // ignore_for_file: unused_element, unused_import
 // ignore_for_file: always_put_required_named_parameters_first
@@ -196,8 +196,6 @@ class ApiClient {
           return ErrorMessage.fromJson(value);
         case 'GenericResponse':
           return GenericResponse.fromJson(value);
-        case 'GetStats200ResponseInner':
-          return GetStats200ResponseInner.fromJson(value);
         case 'MailAttachment':
           return MailAttachment.fromJson(value);
         case 'MailBlockClickHouse':
@@ -212,10 +210,22 @@ class ApiClient {
           return MailLogEntry.fromJson(value);
         case 'MailOrder':
           return MailOrder.fromJson(value);
+        case 'MailStatsType':
+          return MailStatsType.fromJson(value);
+        case 'MailStatsTypeVolume':
+          return MailStatsTypeVolume.fromJson(value);
+        case 'MailStatsTypeVolumeFrom':
+          return MailStatsTypeVolumeFrom.fromJson(value);
+        case 'MailStatsTypeVolumeIp':
+          return MailStatsTypeVolumeIp.fromJson(value);
+        case 'MailStatsTypeVolumeTo':
+          return MailStatsTypeVolumeTo.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
         case 'SendMailAdv':
           return SendMailAdv.fromJson(value);
+        case 'SendMailRaw':
+          return SendMailRaw.fromJson(value);
         default:
           dynamic match;
           if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {

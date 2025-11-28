@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "An email record")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2024-02-20T06:54:40.647644-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-11-14T07:22:44.937966794-05:00[America/New_York]")
 public class MailLogEntry   {
   @JsonProperty("_id")
   private Integer _id = null;
@@ -196,6 +196,7 @@ public class MailLogEntry   {
    * @return messageId
   **/
   @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "message id")
+  @NotNull
 
   public String getMessageId() {
     return messageId;

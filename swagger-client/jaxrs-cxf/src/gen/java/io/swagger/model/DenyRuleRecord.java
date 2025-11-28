@@ -124,6 +124,7 @@ public class DenyRuleRecord   {
    * @return user
   **/
   @JsonProperty("user")
+  @NotNull
   public String getUser() {
     return user;
   }

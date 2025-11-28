@@ -145,6 +145,7 @@ public class SendMailAdv   {
    * @return replyto
   **/
   @JsonProperty("replyto")
+  @NotNull
   public EmailAddressesTypes getReplyto() {
     return replyto;
   }
@@ -163,6 +164,7 @@ public class SendMailAdv   {
    * @return cc
   **/
   @JsonProperty("cc")
+  @NotNull
   public EmailAddressesTypes getCc() {
     return cc;
   }
@@ -181,6 +183,7 @@ public class SendMailAdv   {
    * @return bcc
   **/
   @JsonProperty("bcc")
+  @NotNull
   public EmailAddressesTypes getBcc() {
     return bcc;
   }
@@ -199,6 +202,7 @@ public class SendMailAdv   {
    * @return attachments
   **/
   @JsonProperty("attachments")
+  @NotNull
   public List<MailAttachment> getAttachments() {
     return attachments;
   }
@@ -222,6 +226,7 @@ public class SendMailAdv   {
    * @return id
   **/
   @JsonProperty("id")
+  @NotNull
   public Long getId() {
     return id;
   }

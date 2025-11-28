@@ -1,6 +1,12 @@
 #tag Interface
 Protected Interface SendingApiCallbackHandler
 	#tag Method, Flags = &h0
+		Sub RawMailCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.GenericResponse)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub SendAdvMailCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.GenericResponse)
 		  
 		End Sub

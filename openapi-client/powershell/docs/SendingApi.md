@@ -4,9 +4,60 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Invoke-RawMail**](SendingApi.md#Invoke-RawMail) | **POST** /mail/rawsend | Sends a raw email
 [**Send-AdvMail**](SendingApi.md#Send-AdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 [**Send-Mail**](SendingApi.md#Send-Mail) | **POST** /mail/send | Sends an Email
 
+
+<a id="Invoke-RawMail"></a>
+# **Invoke-RawMail**
+> GenericResponse Invoke-RawMail<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-SendMailRaw] <PSCustomObject><br>
+
+Sends a raw email
+
+This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+
+### Example
+```powershell
+# general setting of the PowerShell module, e.g. base URL, authentication, etc
+$Configuration = Get-Configuration
+# Configure API key authorization: apiKeyAuth
+$Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+#$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
+
+$SendMailRaw = Initialize-SendMailRaw -RawEmail "MyRawEmail" -Id 0 # SendMailRaw | 
+
+# Sends a raw email
+try {
+    $Result = Invoke-RawMail -SendMailRaw $SendMailRaw
+} catch {
+    Write-Host ("Exception occurred when calling Invoke-RawMail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
+    Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **SendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | 
+
+### Return type
+
+[**GenericResponse**](GenericResponse.md) (PSCustomObject)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="Send-AdvMail"></a>
 # **Send-AdvMail**
@@ -23,7 +74,7 @@ Method | HTTP request | Description
 
 Sends an Email with Advanced Options
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data to=support@interserver.net ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to[0][name]=Joe"" \ --data ""to[0][email]=support@interserver.net"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=""Joe <user@domain.com>"" \ --data to=""Joe <support@interserver.net>"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to=support@interserver.net, support@interserver.net"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to=Joe <support@interserver.net>, Joe <support@interserver.net>"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to[0][name]=Joe"" \ --data ""to[0][email]=support@interserver.net"" \ --data ""to[1][name]=Joe"" \ --data ""to[1][email]=support@interserver.net"" ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": ""user@domain.com"", ""to"": ""support@interserver.net"" }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": {""name"": ""Joe"", ""email"": ""user@domain.com""}, ""to"": [{""name"": ""Joe"", ""email"": ""support@interserver.net""}] }' ```  ``` curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": ""Joe <user@domain.com>"", ""to"": ""Joe <support@interserver.net>"" }' ``` 
+Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to[0][name]=Joe"" \ --data ""to[0][email]=support@interserver.net"" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=""Joe <user@domain.com>"" \ --data to=""Joe <support@interserver.net>"" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to=support@interserver.net, support@interserver.net"" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to=Joe <support@interserver.net>, Joe <support@interserver.net>"" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/x-www-form-urlencoded' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data 'subject=Welcome' \ --data 'body=Hello' \ --data from=user@domain.com \ --data ""to[0][name]=Joe"" \ --data ""to[0][email]=support@interserver.net"" \ --data ""to[1][name]=Joe"" \ --data ""to[1][email]=support@interserver.net"" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": ""user@domain.com"", ""to"": ""support@interserver.net"" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": {""name"": ""Joe"", ""email"": ""user@domain.com""}, ""to"": [{""name"": ""Joe"", ""email"": ""support@interserver.net""}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \ --header 'Accept: application/json' \ --header 'Content-Type: application/json' \ --header 'X-API-KEY: YOUR_API_KEY' \ --data '{ ""subject"": ""Welcome"", ""body"": ""Hello"", ""from"": ""Joe <user@domain.com>"", ""to"": ""Joe <support@interserver.net>"" }' ``` 
 
 ### Example
 ```powershell
@@ -89,6 +140,7 @@ Name | Type | Description  | Notes
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-From] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Subject] <String><br>
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Body] <String><br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-Id] <System.Nullable[Int32]><br>
 
 Sends an Email
 
@@ -107,10 +159,11 @@ $To = "MyTo" # String | The Contact whom is the primary recipient of this email.
 $From = "MyFrom" # String | The contact whom is the this email is from.
 $Subject = "MySubject" # String | The subject or title of the email
 $Body = "MyBody" # String | The main email contents.
+$Id = 56 # Int32 | Optional Order ID (optional)
 
 # Sends an Email
 try {
-    $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body
+    $Result = Send-Mail -To $To -From $From -Subject $Subject -Body $Body -Id $Id
 } catch {
     Write-Host ("Exception occurred when calling Send-Mail: {0}" -f ($_.ErrorDetails | ConvertFrom-Json))
     Write-Host ("Response headers: {0}" -f ($_.Exception.Response.Headers | ConvertTo-Json))
@@ -125,6 +178,7 @@ Name | Type | Description  | Notes
  **From** | **String**| The contact whom is the this email is from. | 
  **Subject** | **String**| The subject or title of the email | 
  **Body** | **String**| The main email contents. | 
+ **Id** | **Int32**| Optional Order ID | [optional] 
 
 ### Return type
 

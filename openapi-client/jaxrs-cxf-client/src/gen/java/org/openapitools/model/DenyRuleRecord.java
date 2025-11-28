@@ -1,15 +1,15 @@
 package org.openapitools.model;
 
-import io.swagger.annotations.ApiModel;
 import java.util.Date;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
-  * The data for a email deny rule record.
- **/
+ * The data for a email deny rule record.
+ */
 @ApiModel(description="The data for a email deny rule record.")
 
 public class DenyRuleRecord  {
@@ -44,34 +44,39 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
     }
 }
 
-  @ApiModelProperty(example = "email", required = true, value = "The type of deny rule.")
  /**
-   * The type of deny rule.
-  **/
+  * The type of deny rule.
+  */
+  @ApiModelProperty(example = "email", required = true, value = "The type of deny rule.")
+
   private TypeEnum type;
 
-  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
  /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-  **/
+  * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+  */
+  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
+
   private String data;
 
-  @ApiModelProperty(example = "41124", required = true, value = "The deny rule Id number.")
  /**
-   * The deny rule Id number.
-  **/
+  * The deny rule Id number.
+  */
+  @ApiModelProperty(example = "41124", required = true, value = "The deny rule Id number.")
+
   private String id;
 
-  @ApiModelProperty(required = true, value = "the date the rule was created.")
  /**
-   * the date the rule was created.
-  **/
+  * the date the rule was created.
+  */
+  @ApiModelProperty(required = true, value = "the date the rule was created.")
+
   private Date created;
 
-  @ApiModelProperty(example = "mb20682", value = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
  /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
-  **/
+  * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+  */
+  @ApiModelProperty(example = "mb20682", value = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+
   private String user;
  /**
    * The type of deny rule.
@@ -175,11 +180,11 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
       return false;
     }
     DenyRuleRecord denyRuleRecord = (DenyRuleRecord) o;
-    return Objects.equals(type, denyRuleRecord.type) &&
-        Objects.equals(data, denyRuleRecord.data) &&
-        Objects.equals(id, denyRuleRecord.id) &&
-        Objects.equals(created, denyRuleRecord.created) &&
-        Objects.equals(user, denyRuleRecord.user);
+    return Objects.equals(this.type, denyRuleRecord.type) &&
+        Objects.equals(this.data, denyRuleRecord.data) &&
+        Objects.equals(this.id, denyRuleRecord.id) &&
+        Objects.equals(this.created, denyRuleRecord.created) &&
+        Objects.equals(this.user, denyRuleRecord.user);
   }
 
   @Override

@@ -35,5 +35,8 @@ data class GenericResponse (
     @Json(name = "text")
     val text: kotlin.String? = null
 
-)
+) {
+
+
+}
 

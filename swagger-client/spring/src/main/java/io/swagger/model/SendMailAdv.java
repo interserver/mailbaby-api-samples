@@ -10,6 +10,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.validation.annotation.Validated;
+import org.openapitools.jackson.nullable.JsonNullable;
+import io.swagger.configuration.NotUndefined;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -18,39 +23,57 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Details for an Email")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-02-20T06:54:43.467691-05:00[America/New_York]")
+@NotUndefined
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
 
 
 public class SendMailAdv   {
   @JsonProperty("subject")
+
   private String subject = null;
 
   @JsonProperty("body")
+
   private String body = null;
 
   @JsonProperty("from")
+
   private EmailAddressTypes from = null;
 
   @JsonProperty("to")
+
   private EmailAddressesTypes to = null;
 
   @JsonProperty("replyto")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private EmailAddressesTypes replyto = null;
 
   @JsonProperty("cc")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private EmailAddressesTypes cc = null;
 
   @JsonProperty("bcc")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private EmailAddressesTypes bcc = null;
 
   @JsonProperty("attachments")
   @Valid
   private List<MailAttachment> attachments = null;
-
   @JsonProperty("id")
+
+  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
+  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private Long id = null;
 
-  public SendMailAdv subject(String subject) {
+
+  public SendMailAdv subject(String subject) { 
+
     this.subject = subject;
     return this;
   }
@@ -59,18 +82,23 @@ public class SendMailAdv   {
    * The subject or title of the email
    * @return subject
    **/
+  
   @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
-      @NotNull
-
-    public String getSubject() {
+  
+  @NotNull
+  public String getSubject() {  
     return subject;
   }
 
-  public void setSubject(String subject) {
+
+
+  public void setSubject(String subject) { 
+
     this.subject = subject;
   }
 
-  public SendMailAdv body(String body) {
+  public SendMailAdv body(String body) { 
+
     this.body = body;
     return this;
   }
@@ -79,18 +107,23 @@ public class SendMailAdv   {
    * The main email contents.
    * @return body
    **/
+  
   @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", required = true, description = "The main email contents.")
-      @NotNull
-
-    public String getBody() {
+  
+  @NotNull
+  public String getBody() {  
     return body;
   }
 
-  public void setBody(String body) {
+
+
+  public void setBody(String body) { 
+
     this.body = body;
   }
 
-  public SendMailAdv from(EmailAddressTypes from) {
+  public SendMailAdv from(EmailAddressTypes from) { 
+
     this.from = from;
     return this;
   }
@@ -99,19 +132,24 @@ public class SendMailAdv   {
    * Get from
    * @return from
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public EmailAddressTypes getFrom() {
+  
+@Valid
+  @NotNull
+  public EmailAddressTypes getFrom() {  
     return from;
   }
 
-  public void setFrom(EmailAddressTypes from) {
+
+
+  public void setFrom(EmailAddressTypes from) { 
+
     this.from = from;
   }
 
-  public SendMailAdv to(EmailAddressesTypes to) {
+  public SendMailAdv to(EmailAddressesTypes to) { 
+
     this.to = to;
     return this;
   }
@@ -120,19 +158,24 @@ public class SendMailAdv   {
    * Get to
    * @return to
    **/
+  
   @Schema(required = true, description = "")
-      @NotNull
-
-    @Valid
-    public EmailAddressesTypes getTo() {
+  
+@Valid
+  @NotNull
+  public EmailAddressesTypes getTo() {  
     return to;
   }
 
-  public void setTo(EmailAddressesTypes to) {
+
+
+  public void setTo(EmailAddressesTypes to) { 
+
     this.to = to;
   }
 
-  public SendMailAdv replyto(EmailAddressesTypes replyto) {
+  public SendMailAdv replyto(EmailAddressesTypes replyto) { 
+
     this.replyto = replyto;
     return this;
   }
@@ -141,18 +184,22 @@ public class SendMailAdv   {
    * Get replyto
    * @return replyto
    **/
+  
   @Schema(description = "")
   
-    @Valid
-    public EmailAddressesTypes getReplyto() {
+@Valid
+  public EmailAddressesTypes getReplyto() {  
     return replyto;
   }
 
-  public void setReplyto(EmailAddressesTypes replyto) {
+
+
+  public void setReplyto(EmailAddressesTypes replyto) { 
     this.replyto = replyto;
   }
 
-  public SendMailAdv cc(EmailAddressesTypes cc) {
+  public SendMailAdv cc(EmailAddressesTypes cc) { 
+
     this.cc = cc;
     return this;
   }
@@ -161,18 +208,22 @@ public class SendMailAdv   {
    * Get cc
    * @return cc
    **/
+  
   @Schema(description = "")
   
-    @Valid
-    public EmailAddressesTypes getCc() {
+@Valid
+  public EmailAddressesTypes getCc() {  
     return cc;
   }
 
-  public void setCc(EmailAddressesTypes cc) {
+
+
+  public void setCc(EmailAddressesTypes cc) { 
     this.cc = cc;
   }
 
-  public SendMailAdv bcc(EmailAddressesTypes bcc) {
+  public SendMailAdv bcc(EmailAddressesTypes bcc) { 
+
     this.bcc = bcc;
     return this;
   }
@@ -181,18 +232,22 @@ public class SendMailAdv   {
    * Get bcc
    * @return bcc
    **/
+  
   @Schema(description = "")
   
-    @Valid
-    public EmailAddressesTypes getBcc() {
+@Valid
+  public EmailAddressesTypes getBcc() {  
     return bcc;
   }
 
-  public void setBcc(EmailAddressesTypes bcc) {
+
+
+  public void setBcc(EmailAddressesTypes bcc) { 
     this.bcc = bcc;
   }
 
-  public SendMailAdv attachments(List<MailAttachment> attachments) {
+  public SendMailAdv attachments(List<MailAttachment> attachments) { 
+
     this.attachments = attachments;
     return this;
   }
@@ -209,17 +264,21 @@ public class SendMailAdv   {
    * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
    * @return attachments
    **/
+  
   @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
-      @Valid
-    public List<MailAttachment> getAttachments() {
+  @Valid
+  public List<MailAttachment> getAttachments() {  
     return attachments;
   }
 
-  public void setAttachments(List<MailAttachment> attachments) {
+
+
+  public void setAttachments(List<MailAttachment> attachments) { 
     this.attachments = attachments;
   }
 
-  public SendMailAdv id(Long id) {
+  public SendMailAdv id(Long id) { 
+
     this.id = id;
     return this;
   }
@@ -228,16 +287,18 @@ public class SendMailAdv   {
    * (optional)  ID of the Mail order within our system to use as the Mail Account.
    * @return id
    **/
+  
   @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
   
-    public Long getId() {
+  public Long getId() {  
     return id;
   }
 
-  public void setId(Long id) {
+
+
+  public void setId(Long id) { 
     this.id = id;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {

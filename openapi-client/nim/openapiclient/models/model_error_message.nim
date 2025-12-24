@@ -9,9 +9,12 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type ErrorMessage* = object
   ## The resposne when an error occurs.
   code*: int ## The response code associated with the error.
   message*: string ## The details or description of the error.
+

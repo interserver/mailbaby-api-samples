@@ -9,10 +9,35 @@
 
 import json
 import tables
+import marshal
+import options
 
 import model_email_address_name
 
+# OneOf type
+type EmailAddressTypesKind* {.pure.} = enum
+  EmailAddressVariant
+  EmailAddressNameVariant
+
 type EmailAddressTypes* = object
   ## 
-  email*: string ## The email address.
-  name*: string ## Name to use for the sending contact.
+  case kind*: EmailAddressTypesKind
+  of EmailAddressTypesKind.EmailAddressVariant:
+    EmailAddressValue*: string
+  of EmailAddressTypesKind.EmailAddressNameVariant:
+    EmailAddressNameValue*: EmailAddressName
+
+proc to*(node: JsonNode, T: typedesc[EmailAddressTypes]): EmailAddressTypes =
+  ## Custom deserializer for oneOf type - tries each variant
+  try:
+    return EmailAddressTypes(kind: EmailAddressTypesKind.EmailAddressVariant, EmailAddressValue: to(node, string))
+  except Exception as e:
+    when defined(debug):
+      echo "Failed to deserialize as string: ", e.msg
+  try:
+    return EmailAddressTypes(kind: EmailAddressTypesKind.EmailAddressNameVariant, EmailAddressNameValue: to(node, EmailAddressName))
+  except Exception as e:
+    when defined(debug):
+      echo "Failed to deserialize as EmailAddressName: ", e.msg
+  raise newException(ValueError, "Unable to deserialize into any variant of EmailAddressTypes. JSON: " & $node)
+

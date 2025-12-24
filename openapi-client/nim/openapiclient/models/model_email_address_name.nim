@@ -9,9 +9,12 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type EmailAddressName* = object
   ## An email contact.
   email*: string ## The email address.
-  name*: string ## Name to use for the sending contact.
+  name*: Option[string] ## Name to use for the sending contact.
+

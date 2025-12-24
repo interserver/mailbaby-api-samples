@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="A block entry from the clickhouse mailblocks server.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-11-14T07:22:39.375224310-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-12-23T19:40:58.473719863-05:00[America/New_York]")
 public class MailBlockClickHouse   {
   private Date date = null;  private String from = null;  private String messageId = null;  private String subject = null;  private String to = null;
 

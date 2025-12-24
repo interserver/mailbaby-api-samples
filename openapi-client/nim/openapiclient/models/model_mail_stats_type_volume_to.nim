@@ -9,11 +9,40 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailStatsTypeVolumeTo* = object
   ## 
-  client@domainCom*: int
-  user@siteNet*: int
-  sales@companyCom*: int
-  client@anothersiteCom*: int
+  client@domainCom*: Option[int]
+  user@siteNet*: Option[int]
+  sales@companyCom*: Option[int]
+  client@anothersiteCom*: Option[int]
+
+
+# Custom JSON deserialization for MailStatsTypeVolumeTo with custom field names
+proc to*(node: JsonNode, T: typedesc[MailStatsTypeVolumeTo]): MailStatsTypeVolumeTo =
+  result = MailStatsTypeVolumeTo()
+  if node.kind == JObject:
+    if node.hasKey("client@domain.com") and node["client@domain.com"].kind != JNull:
+      result.client@domainCom = some(to(node["client@domain.com"], typeof(result.client@domainCom.get())))
+    if node.hasKey("user@site.net") and node["user@site.net"].kind != JNull:
+      result.user@siteNet = some(to(node["user@site.net"], typeof(result.user@siteNet.get())))
+    if node.hasKey("sales@company.com") and node["sales@company.com"].kind != JNull:
+      result.sales@companyCom = some(to(node["sales@company.com"], typeof(result.sales@companyCom.get())))
+    if node.hasKey("client@anothersite.com") and node["client@anothersite.com"].kind != JNull:
+      result.client@anothersiteCom = some(to(node["client@anothersite.com"], typeof(result.client@anothersiteCom.get())))
+
+# Custom JSON serialization for MailStatsTypeVolumeTo with custom field names
+proc `%`*(obj: MailStatsTypeVolumeTo): JsonNode =
+  result = newJObject()
+  if obj.client@domainCom.isSome():
+    result["client@domain.com"] = %obj.client@domainCom.get()
+  if obj.user@siteNet.isSome():
+    result["user@site.net"] = %obj.user@siteNet.get()
+  if obj.sales@companyCom.isSome():
+    result["sales@company.com"] = %obj.sales@companyCom.get()
+  if obj.client@anothersiteCom.isSome():
+    result["client@anothersite.com"] = %obj.client@anothersiteCom.get()
+

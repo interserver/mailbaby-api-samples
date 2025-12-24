@@ -35,7 +35,7 @@ final SendMailRaw sendMailRaw = ; // SendMailRaw |
 try {
     final response = api.rawMail(sendMailRaw);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SendingApi->rawMail: $e\n');
 }
 ```
@@ -90,7 +90,7 @@ final int id = 789; // int | (optional)  ID of the Mail order within our system 
 try {
     final response = api.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SendingApi->sendAdvMail: $e\n');
 }
 ```
@@ -149,7 +149,7 @@ final int id = 56; // int | Optional Order ID
 try {
     final response = api.sendMail(to, from, subject, body, id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SendingApi->sendMail: $e\n');
 }
 ```

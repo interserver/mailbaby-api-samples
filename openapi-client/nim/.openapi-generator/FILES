@@ -7,6 +7,7 @@ openapiclient/apis/api_history.nim
 openapiclient/apis/api_sending.nim
 openapiclient/apis/api_services.nim
 openapiclient/apis/api_status.nim
+openapiclient/models/model_any_type.nim
 openapiclient/models/model_deny_rule_new.nim
 openapiclient/models/model_deny_rule_record.nim
 openapiclient/models/model_email_address_name.nim
@@ -26,6 +27,7 @@ openapiclient/models/model_mail_stats_type_volume.nim
 openapiclient/models/model_mail_stats_type_volume_from.nim
 openapiclient/models/model_mail_stats_type_volume_ip.nim
 openapiclient/models/model_mail_stats_type_volume_to.nim
+openapiclient/models/model_object.nim
 openapiclient/models/model_send_mail.nim
 openapiclient/models/model_send_mail_adv.nim
 openapiclient/models/model_send_mail_raw.nim

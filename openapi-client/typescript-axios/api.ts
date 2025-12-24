@@ -452,18 +452,17 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             if (user !== undefined) { 
                 localVarFormParams.set('user', user as any);
             }
-    
+
             if (type !== undefined) { 
                 localVarFormParams.set('type', type as any);
             }
-    
+
             if (data !== undefined) { 
                 localVarFormParams.set('data', data as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -500,8 +499,8 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -536,9 +535,8 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -572,8 +570,8 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -605,8 +603,8 @@ export const BlockingApiAxiosParamCreator = function (configuration?: Configurat
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -853,8 +851,8 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['time'] = time;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -956,8 +954,8 @@ export const HistoryApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['delivered'] = delivered;
             }
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1147,9 +1145,8 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -1205,42 +1202,41 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
             if (subject !== undefined) { 
                 localVarFormParams.set('subject', subject as any);
             }
-    
+
             if (body !== undefined) { 
                 localVarFormParams.set('body', body as any);
             }
-    
+
             if (from !== undefined) { 
                 localVarFormParams.set('from', from as any);
             }
-    
+
             if (to !== undefined) { 
                 localVarFormParams.set('to', to as any);
             }
-    
+
             if (replyto !== undefined) { 
                 localVarFormParams.set('replyto', replyto as any);
             }
-    
+
             if (cc !== undefined) { 
                 localVarFormParams.set('cc', cc as any);
             }
-    
+
             if (bcc !== undefined) { 
                 localVarFormParams.set('bcc', bcc as any);
             }
-                if (attachments) {
+            if (attachments) {
                 localVarFormParams.set('attachments', attachments.join(COLLECTION_FORMATS.csv));
             }
 
-    
+
             if (id !== undefined) { 
                 localVarFormParams.set('id', id as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1291,26 +1287,25 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
             if (to !== undefined) { 
                 localVarFormParams.set('to', to as any);
             }
-    
+
             if (from !== undefined) { 
                 localVarFormParams.set('from', from as any);
             }
-    
+
             if (subject !== undefined) { 
                 localVarFormParams.set('subject', subject as any);
             }
-    
+
             if (body !== undefined) { 
                 localVarFormParams.set('body', body as any);
             }
-    
+
             if (id !== undefined) { 
                 localVarFormParams.set('id', id as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'application/x-www-form-urlencoded';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1514,8 +1509,8 @@ export const ServicesApiAxiosParamCreator = function (configuration?: Configurat
             // authentication apiKeyAuth required
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -1612,7 +1607,6 @@ export const StatusApiAxiosParamCreator = function (configuration?: Configuratio
             await setApiKeyToObject(localVarHeaderParameter, "X-API-KEY", configuration)
 
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};

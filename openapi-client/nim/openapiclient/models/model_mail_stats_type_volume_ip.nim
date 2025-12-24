@@ -9,11 +9,40 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailStatsTypeVolumeIp* = object
   ## 
-  `1111`*: int
-  `2222`*: int
-  `3333`*: int
-  `4444`*: int
+  `1111`*: Option[int]
+  `2222`*: Option[int]
+  `3333`*: Option[int]
+  `4444`*: Option[int]
+
+
+# Custom JSON deserialization for MailStatsTypeVolumeIp with custom field names
+proc to*(node: JsonNode, T: typedesc[MailStatsTypeVolumeIp]): MailStatsTypeVolumeIp =
+  result = MailStatsTypeVolumeIp()
+  if node.kind == JObject:
+    if node.hasKey("1.1.1.1") and node["1.1.1.1"].kind != JNull:
+      result.`1111` = some(to(node["1.1.1.1"], typeof(result.`1111`.get())))
+    if node.hasKey("2.2.2.2") and node["2.2.2.2"].kind != JNull:
+      result.`2222` = some(to(node["2.2.2.2"], typeof(result.`2222`.get())))
+    if node.hasKey("3.3.3.3") and node["3.3.3.3"].kind != JNull:
+      result.`3333` = some(to(node["3.3.3.3"], typeof(result.`3333`.get())))
+    if node.hasKey("4.4.4.4") and node["4.4.4.4"].kind != JNull:
+      result.`4444` = some(to(node["4.4.4.4"], typeof(result.`4444`.get())))
+
+# Custom JSON serialization for MailStatsTypeVolumeIp with custom field names
+proc `%`*(obj: MailStatsTypeVolumeIp): JsonNode =
+  result = newJObject()
+  if obj.`1111`.isSome():
+    result["1.1.1.1"] = %obj.`1111`.get()
+  if obj.`2222`.isSome():
+    result["2.2.2.2"] = %obj.`2222`.get()
+  if obj.`3333`.isSome():
+    result["3.3.3.3"] = %obj.`3333`.get()
+  if obj.`4444`.isSome():
+    result["4.4.4.4"] = %obj.`4444`.get()
+

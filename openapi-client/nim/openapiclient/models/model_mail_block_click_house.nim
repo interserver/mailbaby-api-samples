@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailBlockClickHouse* = object
@@ -18,3 +20,4 @@ type MailBlockClickHouse* = object
   messageId*: string
   subject*: string
   to*: string
+

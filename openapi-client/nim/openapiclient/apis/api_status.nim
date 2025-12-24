@@ -24,10 +24,7 @@ const basepath = "https://api.mailbaby.net"
 template constructResult[T](response: Response): untyped =
   if response.code in {Http200, Http201, Http202, Http204, Http206}:
     try:
-      when name(stripGenericParams(T.typedesc).typedesc) == name(Table):
-        (some(json.to(parseJson(response.body), T.typedesc)), response)
-      else:
-        (some(marshal.to[T](response.body)), response)
+      (some(to(parseJson(response.body), T)), response)
     except JsonParsingError:
       # The server returned a malformed response though the response code is 2XX
       # TODO: need better error handling
@@ -40,4 +37,5 @@ template constructResult[T](response: Response): untyped =
 proc pingServer*(httpClient: HttpClient): Response =
   ## Checks if the server is running
   httpClient.get(basepath & "/ping")
+
 

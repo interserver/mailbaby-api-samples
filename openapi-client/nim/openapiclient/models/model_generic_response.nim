@@ -9,9 +9,12 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type GenericResponse* = object
   ## 
-  status*: string
-  text*: string
+  status*: Option[string]
+  text*: Option[string]
+

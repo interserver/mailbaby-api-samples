@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 @Schema(description = "An email contact.")
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-11-14T07:22:48.323271156-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-12-23T19:41:09.077744585-05:00[America/New_York]")
 
 
 public class EmailAddressName  implements EmailAddressTypes {

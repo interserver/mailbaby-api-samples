@@ -9,9 +9,29 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type SendMailRaw* = object
   ## Raw Email Object
   rawEmail*: string ## The entire email contents
-  id*: int ## Optional order id
+  id*: Option[int] ## Optional order id
+
+
+# Custom JSON deserialization for SendMailRaw with custom field names
+proc to*(node: JsonNode, T: typedesc[SendMailRaw]): SendMailRaw =
+  result = SendMailRaw()
+  if node.kind == JObject:
+    if node.hasKey("raw_email"):
+      result.rawEmail = to(node["raw_email"], string)
+    if node.hasKey("id") and node["id"].kind != JNull:
+      result.id = some(to(node["id"], typeof(result.id.get())))
+
+# Custom JSON serialization for SendMailRaw with custom field names
+proc `%`*(obj: SendMailRaw): JsonNode =
+  result = newJObject()
+  result["raw_email"] = %obj.rawEmail
+  if obj.id.isSome():
+    result["id"] = %obj.id.get()
+

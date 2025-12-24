@@ -9,9 +9,12 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailAttachment* = object
   ## (optional) File attachments to include in the email.  The file contents must be base64
   filename*: string ## The filename of the attached file.
   data*: string ## The file contents base64 encoded
+

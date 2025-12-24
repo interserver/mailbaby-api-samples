@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 import model_mail_stats_type_volume_from
 import model_mail_stats_type_volume_ip
@@ -16,6 +18,7 @@ import model_mail_stats_type_volume_to
 
 type MailStatsTypeVolume* = object
   ## 
-  to*: MailStatsType_volume_to
-  `from`*: MailStatsType_volume_from
-  ip*: MailStatsType_volume_ip
+  to*: Option[MailStatsType_volume_to]
+  `from`*: Option[MailStatsType_volume_from]
+  ip*: Option[MailStatsType_volume_ip]
+

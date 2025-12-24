@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 import model_mail_log_entry
 
@@ -18,3 +20,31 @@ type MailLog* = object
   skip*: int ## number of emails skipped in listing
   limit*: int ## number of emails to return
   emails*: seq[MailLogEntry]
+
+
+# Custom JSON deserialization for MailLog with custom field names
+proc to*(node: JsonNode, T: typedesc[MailLog]): MailLog =
+  result = MailLog()
+  if node.kind == JObject:
+    if node.hasKey("total"):
+      result.total = to(node["total"], int)
+    if node.hasKey("skip"):
+      result.skip = to(node["skip"], int)
+    if node.hasKey("limit"):
+      result.limit = to(node["limit"], int)
+    if node.hasKey("emails"):
+      # Array of types with custom JSON - manually iterate and deserialize
+      let arrayNode = node["emails"]
+      if arrayNode.kind == JArray:
+        result.emails = @[]
+        for item in arrayNode.items:
+          result.emails.add(to(item, MailLogEntry))
+
+# Custom JSON serialization for MailLog with custom field names
+proc `%`*(obj: MailLog): JsonNode =
+  result = newJObject()
+  result["total"] = %obj.total
+  result["skip"] = %obj.skip
+  result["limit"] = %obj.limit
+  result["emails"] = %obj.emails
+

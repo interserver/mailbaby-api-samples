@@ -27,10 +27,7 @@ const basepath = "https://api.mailbaby.net"
 template constructResult[T](response: Response): untyped =
   if response.code in {Http200, Http201, Http202, Http204, Http206}:
     try:
-      when name(stripGenericParams(T.typedesc).typedesc) == name(Table):
-        (some(json.to(parseJson(response.body), T.typedesc)), response)
-      else:
-        (some(marshal.to[T](response.body)), response)
+      (some(to(parseJson(response.body), T)), response)
     except JsonParsingError:
       # The server returned a malformed response though the response code is 2XX
       # TODO: need better error handling
@@ -42,9 +39,10 @@ template constructResult[T](response: Response): untyped =
 
 proc getStats*(httpClient: HttpClient, time: string): (Option[MailStatsType], Response) =
   ## Account usage statistics.
-  let url_encoded_query_params = encodeQuery([
-    ("time", $time), # The timeframe for the statistics.
-  ])
+  var query_params_list: seq[(string, string)] = @[]
+  if $time != "":
+    query_params_list.add(("time", $time))
+  let url_encoded_query_params = encodeQuery(query_params_list)
 
   let response = httpClient.get(basepath & "/mail/stats" & "?" & url_encoded_query_params)
   constructResult[MailStatsType](response)
@@ -52,22 +50,36 @@ proc getStats*(httpClient: HttpClient, time: string): (Option[MailStatsType], Re
 
 proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, skip: int, limit: int, startDate: int64, endDate: int64, replyto: string, headerfrom: string, delivered: string): (Option[MailLog], Response) =
   ## displays the mail log
-  let url_encoded_query_params = encodeQuery([
-    ("id", $id), # The ID of your mail order this will be sent through.
-    ("origin", $origin), # originating ip address sending mail
-    ("mx", $mx), # mx record mail was sent to
-    ("from", $`from`), # from email address
-    ("to", $to), # to/destination email address
-    ("subject", $subject), # subject containing this string
-    ("mailid", $mailid), # mail id
-    ("skip", $skip), # number of records to skip for pagination
-    ("limit", $limit), # maximum number of records to return
-    ("startDate", $startDate), # earliest date to get emails in unix timestamp format
-    ("endDate", $endDate), # earliest date to get emails in unix timestamp format
-    ("replyto", $replyto), # Reply-To Email Address
-    ("headerfrom", $headerfrom), # Header From Email Address
-    ("delivered", $delivered), # Limiting the emails to wether or not they were delivered.
-  ])
+  var query_params_list: seq[(string, string)] = @[]
+  if $id != "":
+    query_params_list.add(("id", $id))
+  if $origin != "":
+    query_params_list.add(("origin", $origin))
+  if $mx != "":
+    query_params_list.add(("mx", $mx))
+  if $`from` != "":
+    query_params_list.add(("from", $`from`))
+  if $to != "":
+    query_params_list.add(("to", $to))
+  if $subject != "":
+    query_params_list.add(("subject", $subject))
+  if $mailid != "":
+    query_params_list.add(("mailid", $mailid))
+  if $skip != "":
+    query_params_list.add(("skip", $skip))
+  if $limit != "":
+    query_params_list.add(("limit", $limit))
+  if $startDate != "":
+    query_params_list.add(("startDate", $startDate))
+  if $endDate != "":
+    query_params_list.add(("endDate", $endDate))
+  if $replyto != "":
+    query_params_list.add(("replyto", $replyto))
+  if $headerfrom != "":
+    query_params_list.add(("headerfrom", $headerfrom))
+  if $delivered != "":
+    query_params_list.add(("delivered", $delivered))
+  let url_encoded_query_params = encodeQuery(query_params_list)
 
   let response = httpClient.get(basepath & "/mail/log" & "?" & url_encoded_query_params)
   constructResult[MailLog](response)

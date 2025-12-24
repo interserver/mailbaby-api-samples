@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailLogEntry* = object
@@ -35,4 +37,85 @@ type MailLogEntry* = object
   queued*: string ## queued timestamp
   mxHostname*: string ## mx hostname
   response*: string ## mail delivery response
-  messageId*: string ## message id
+  messageId*: Option[string] ## message id
+
+
+# Custom JSON deserialization for MailLogEntry with custom field names
+proc to*(node: JsonNode, T: typedesc[MailLogEntry]): MailLogEntry =
+  result = MailLogEntry()
+  if node.kind == JObject:
+    if node.hasKey("_id"):
+      result.id = to(node["_id"], int)
+    if node.hasKey("id"):
+      result.id = to(node["id"], string)
+    if node.hasKey("from"):
+      result.`from` = to(node["from"], string)
+    if node.hasKey("to"):
+      result.to = to(node["to"], string)
+    if node.hasKey("subject"):
+      result.subject = to(node["subject"], string)
+    if node.hasKey("created"):
+      result.created = to(node["created"], string)
+    if node.hasKey("time"):
+      result.time = to(node["time"], int)
+    if node.hasKey("user"):
+      result.user = to(node["user"], string)
+    if node.hasKey("transtype"):
+      result.transtype = to(node["transtype"], string)
+    if node.hasKey("origin"):
+      result.origin = to(node["origin"], string)
+    if node.hasKey("interface"):
+      result.`interface` = to(node["interface"], string)
+    if node.hasKey("sendingZone"):
+      result.sendingZone = to(node["sendingZone"], string)
+    if node.hasKey("bodySize"):
+      result.bodySize = to(node["bodySize"], int)
+    if node.hasKey("seq"):
+      result.seq = to(node["seq"], int)
+    if node.hasKey("recipient"):
+      result.recipient = to(node["recipient"], string)
+    if node.hasKey("domain"):
+      result.domain = to(node["domain"], string)
+    if node.hasKey("locked"):
+      result.locked = to(node["locked"], int)
+    if node.hasKey("lockTime"):
+      result.lockTime = to(node["lockTime"], string)
+    if node.hasKey("assigned"):
+      result.assigned = to(node["assigned"], string)
+    if node.hasKey("queued"):
+      result.queued = to(node["queued"], string)
+    if node.hasKey("mxHostname"):
+      result.mxHostname = to(node["mxHostname"], string)
+    if node.hasKey("response"):
+      result.response = to(node["response"], string)
+    if node.hasKey("messageId") and node["messageId"].kind != JNull:
+      result.messageId = some(to(node["messageId"], typeof(result.messageId.get())))
+
+# Custom JSON serialization for MailLogEntry with custom field names
+proc `%`*(obj: MailLogEntry): JsonNode =
+  result = newJObject()
+  result["_id"] = %obj.id
+  result["id"] = %obj.id
+  result["from"] = %obj.`from`
+  result["to"] = %obj.to
+  result["subject"] = %obj.subject
+  result["created"] = %obj.created
+  result["time"] = %obj.time
+  result["user"] = %obj.user
+  result["transtype"] = %obj.transtype
+  result["origin"] = %obj.origin
+  result["interface"] = %obj.`interface`
+  result["sendingZone"] = %obj.sendingZone
+  result["bodySize"] = %obj.bodySize
+  result["seq"] = %obj.seq
+  result["recipient"] = %obj.recipient
+  result["domain"] = %obj.domain
+  result["locked"] = %obj.locked
+  result["lockTime"] = %obj.lockTime
+  result["assigned"] = %obj.assigned
+  result["queued"] = %obj.queued
+  result["mxHostname"] = %obj.mxHostname
+  result["response"] = %obj.response
+  if obj.messageId.isSome():
+    result["messageId"] = %obj.messageId.get()
+

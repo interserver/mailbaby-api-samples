@@ -14,7 +14,7 @@
   "dependencies": {
     "form-data": "^4.0.0",
     "lodash": "^4.17.21",
-    "zapier-platform-core": "^18.0.1"
+    "zapier-platform-core": "^18.0.5"
   },
   "devDependencies": {
     "mocha": "^10.2.0",

@@ -34,7 +34,7 @@ final String time = time_example; // String | The timeframe for the statistics.
 try {
     final response = api.getStats(time);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HistoryApi->getStats: $e\n');
 }
 ```
@@ -94,7 +94,7 @@ final String delivered = delivered_example; // String | Limiting the emails to w
 try {
     final response = api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HistoryApi->viewMailLog: $e\n');
 }
 ```

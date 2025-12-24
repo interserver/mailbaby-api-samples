@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 import model_email_address_types
 import model_email_addresses_types
@@ -20,8 +22,9 @@ type SendMailAdv* = object
   body*: string ## The main email contents.
   `from`*: EmailAddressTypes
   to*: EmailAddressesTypes
-  replyto*: EmailAddressesTypes
-  cc*: EmailAddressesTypes
-  bcc*: EmailAddressesTypes
-  attachments*: seq[MailAttachment] ## (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-  id*: int64 ## (optional)  ID of the Mail order within our system to use as the Mail Account.
+  replyto*: Option[EmailAddressesTypes]
+  cc*: Option[EmailAddressesTypes]
+  bcc*: Option[EmailAddressesTypes]
+  attachments*: Option[seq[MailAttachment]] ## (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+  id*: Option[int64] ## (optional)  ID of the Mail order within our system to use as the Mail Account.
+

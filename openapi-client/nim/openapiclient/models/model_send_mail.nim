@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type SendMail* = object
@@ -17,4 +19,5 @@ type SendMail* = object
   `from`*: string ## The contact whom is the this email is from.
   subject*: string ## The subject or title of the email
   body*: string ## The main email contents.
-  id*: int ## Optional Order ID
+  id*: Option[int] ## Optional Order ID
+

@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailOrder* = object
@@ -16,4 +18,5 @@ type MailOrder* = object
   id*: int ## The ID of the order.
   status*: string ## The order status.
   username*: string ## The username to use for this order.
-  comment*: string ## Optional order comment.
+  comment*: Option[string] ## Optional order comment.
+

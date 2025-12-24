@@ -37,4 +37,5 @@ model/sendMail.ts
 model/sendMailAdv.ts
 model/sendMailRaw.ts
 param.ts
+query.params.ts
 variables.ts

@@ -29,7 +29,7 @@ final api = Openapi().getStatusApi();
 
 try {
     api.pingServer();
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling StatusApi->pingServer: $e\n');
 }
 ```

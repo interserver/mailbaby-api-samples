@@ -29,7 +29,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
 @RequestScoped
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2025-11-14T07:22:22.579512004-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2025-12-23T19:40:39.136845795-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApiService {
       @Override
       public Response addRule(String user, String type, String data, SecurityContext securityContext) {

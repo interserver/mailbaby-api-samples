@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type `Type`* {.pure.} = enum
@@ -21,20 +23,34 @@ type DenyRuleNew* = object
   ## The data for a email deny rule record.
   `type`*: `Type` ## The type of deny rule.
   data*: string ## The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-  user*: string ## Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+  user*: Option[string] ## Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 
 func `%`*(v: `Type`): JsonNode =
-  let str = case v:
-    of `Type`.Domain: "domain"
-    of `Type`.Email: "email"
-    of `Type`.Startswith: "startswith"
-    of `Type`.Destination: "destination"
-
-  JsonNode(kind: JString, str: str)
-
+  result = case v:
+    of `Type`.Domain: %"domain"
+    of `Type`.Email: %"email"
+    of `Type`.Startswith: %"startswith"
+    of `Type`.Destination: %"destination"
 func `$`*(v: `Type`): string =
   result = case v:
-    of `Type`.Domain: "domain"
-    of `Type`.Email: "email"
-    of `Type`.Startswith: "startswith"
-    of `Type`.Destination: "destination"
+    of `Type`.Domain: $("domain")
+    of `Type`.Email: $("email")
+    of `Type`.Startswith: $("startswith")
+    of `Type`.Destination: $("destination")
+
+proc to*(node: JsonNode, T: typedesc[`Type`]): `Type` =
+  if node.kind != JString:
+    raise newException(ValueError, "Expected string for enum `Type`, got " & $node.kind)
+  let strVal = node.getStr()
+  case strVal:
+  of $("domain"):
+    return `Type`.Domain
+  of $("email"):
+    return `Type`.Email
+  of $("startswith"):
+    return `Type`.Startswith
+  of $("destination"):
+    return `Type`.Destination
+  else:
+    raise newException(ValueError, "Invalid enum value for `Type`: " & strVal)
+

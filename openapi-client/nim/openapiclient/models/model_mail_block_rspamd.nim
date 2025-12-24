@@ -9,9 +9,12 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailBlockRspamd* = object
   ## This is a block entry from the rspamd block list.
   `from`*: string
   subject*: string
+

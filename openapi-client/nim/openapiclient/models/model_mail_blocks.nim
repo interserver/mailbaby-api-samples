@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 import model_mail_block_click_house
 import model_mail_block_rspamd
@@ -18,3 +20,4 @@ type MailBlocks* = object
   local*: seq[MailBlockClickHouse]
   mbtrap*: seq[MailBlockClickHouse]
   subject*: seq[MailBlockRspamd]
+

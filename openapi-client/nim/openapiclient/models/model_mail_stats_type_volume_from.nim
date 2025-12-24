@@ -9,9 +9,30 @@
 
 import json
 import tables
+import marshal
+import options
 
 
 type MailStatsTypeVolumeFrom* = object
   ## 
-  billing@somedomainCom*: int
-  sales@somedomainCom*: int
+  billing@somedomainCom*: Option[int]
+  sales@somedomainCom*: Option[int]
+
+
+# Custom JSON deserialization for MailStatsTypeVolumeFrom with custom field names
+proc to*(node: JsonNode, T: typedesc[MailStatsTypeVolumeFrom]): MailStatsTypeVolumeFrom =
+  result = MailStatsTypeVolumeFrom()
+  if node.kind == JObject:
+    if node.hasKey("billing@somedomain.com") and node["billing@somedomain.com"].kind != JNull:
+      result.billing@somedomainCom = some(to(node["billing@somedomain.com"], typeof(result.billing@somedomainCom.get())))
+    if node.hasKey("sales@somedomain.com") and node["sales@somedomain.com"].kind != JNull:
+      result.sales@somedomainCom = some(to(node["sales@somedomain.com"], typeof(result.sales@somedomainCom.get())))
+
+# Custom JSON serialization for MailStatsTypeVolumeFrom with custom field names
+proc `%`*(obj: MailStatsTypeVolumeFrom): JsonNode =
+  result = newJObject()
+  if obj.billing@somedomainCom.isSome():
+    result["billing@somedomain.com"] = %obj.billing@somedomainCom.get()
+  if obj.sales@somedomainCom.isSome():
+    result["sales@somedomain.com"] = %obj.sales@somedomainCom.get()
+

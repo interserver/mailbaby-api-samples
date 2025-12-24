@@ -9,6 +9,8 @@
 
 import json
 import tables
+import marshal
+import options
 
 import model_mail_stats_type_volume
 
@@ -23,33 +25,53 @@ type Time* {.pure.} = enum
 
 type MailStatsType* = object
   ## Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
-  time*: Time
-  usage*: int
-  currency*: string
-  currencySymbol*: string
-  cost*: float64
-  received*: int
-  sent*: int
-  volume*: MailStatsType_volume
+  time*: Option[Time]
+  usage*: Option[int]
+  currency*: Option[string]
+  currencySymbol*: Option[string]
+  cost*: Option[float64]
+  received*: Option[int]
+  sent*: Option[int]
+  volume*: Option[MailStatsType_volume]
 
 func `%`*(v: Time): JsonNode =
-  let str = case v:
-    of Time.All: "all"
-    of Time.Billing: "billing"
-    of Time.Month: "month"
-    of Time.`7d`: "7d"
-    of Time.`24h`: "24h"
-    of Time.Today: "today"
-    of Time.`1h`: "1h"
-
-  JsonNode(kind: JString, str: str)
-
+  result = case v:
+    of Time.All: %"all"
+    of Time.Billing: %"billing"
+    of Time.Month: %"month"
+    of Time.`7d`: %"7d"
+    of Time.`24h`: %"24h"
+    of Time.Today: %"today"
+    of Time.`1h`: %"1h"
 func `$`*(v: Time): string =
   result = case v:
-    of Time.All: "all"
-    of Time.Billing: "billing"
-    of Time.Month: "month"
-    of Time.`7d`: "7d"
-    of Time.`24h`: "24h"
-    of Time.Today: "today"
-    of Time.`1h`: "1h"
+    of Time.All: $("all")
+    of Time.Billing: $("billing")
+    of Time.Month: $("month")
+    of Time.`7d`: $("7d")
+    of Time.`24h`: $("24h")
+    of Time.Today: $("today")
+    of Time.`1h`: $("1h")
+
+proc to*(node: JsonNode, T: typedesc[Time]): Time =
+  if node.kind != JString:
+    raise newException(ValueError, "Expected string for enum Time, got " & $node.kind)
+  let strVal = node.getStr()
+  case strVal:
+  of $("all"):
+    return Time.All
+  of $("billing"):
+    return Time.Billing
+  of $("month"):
+    return Time.Month
+  of $("7d"):
+    return Time.`7d`
+  of $("24h"):
+    return Time.`24h`
+  of $("today"):
+    return Time.Today
+  of $("1h"):
+    return Time.`1h`
+  else:
+    raise newException(ValueError, "Invalid enum value for Time: " & strVal)
+

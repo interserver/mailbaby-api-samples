@@ -14,7 +14,6 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import java.util.Locale;
 import org.openapitools.model.MailStatsTypeVolume;
 import com.fasterxml.jackson.annotation.*;
 
@@ -37,7 +36,7 @@ import javax.annotation.Generated;
   MailStatsType.JSON_PROPERTY_VOLUME
 })
 @JsonTypeName("MailStatsType")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-11-14T07:19:03.527046509-05:00[America/New_York]", comments = "Generator version: 7.17.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-12-23T19:36:52.719070104-05:00[America/New_York]", comments = "Generator version: 7.18.0")
 @Introspected
 public class MailStatsType {
     /**

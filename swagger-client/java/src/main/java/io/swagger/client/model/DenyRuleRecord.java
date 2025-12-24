@@ -27,7 +27,7 @@ import org.threeten.bp.OffsetDateTime;
  * The data for a email deny rule record.
  */
 @Schema(description = "The data for a email deny rule record.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-11-14T07:22:10.000992292-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2025-12-23T19:40:25.090607622-05:00[America/New_York]")
 
 public class DenyRuleRecord {
   @SerializedName("id")

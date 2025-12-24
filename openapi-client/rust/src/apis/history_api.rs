@@ -42,7 +42,7 @@ pub async fn get_stats(configuration: &configuration::Configuration, time: Optio
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref param_value) = p_query_time {
-        req_builder = req_builder.query(&[("time", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("time", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -142,7 +142,7 @@ pub async fn view_mail_log(configuration: &configuration::Configuration, id: Opt
         req_builder = req_builder.query(&[("headerfrom", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_delivered {
-        req_builder = req_builder.query(&[("delivered", &param_value.to_string())]);
+        req_builder = req_builder.query(&[("delivered", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

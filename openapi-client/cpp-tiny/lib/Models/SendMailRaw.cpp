@@ -85,7 +85,7 @@ SendMailRaw::getRawEmail()
 }
 
 void
-SendMailRaw::setRawEmail(std::string  raw_email)
+SendMailRaw::setRawEmail(std::string raw_email)
 {
 	this->raw_email = raw_email;
 }
@@ -97,7 +97,7 @@ SendMailRaw::getId()
 }
 
 void
-SendMailRaw::setId(int  id)
+SendMailRaw::setId(int id)
 {
 	this->id = id;
 }

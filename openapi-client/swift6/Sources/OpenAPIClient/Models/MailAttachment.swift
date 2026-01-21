@@ -8,7 +8,7 @@
 import Foundation
 
 /** (optional) File attachments to include in the email.  The file contents must be base64 */
-public struct MailAttachment: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailAttachment: Sendable, Codable, Hashable {
 
     /** The filename of the attached file. */
     public var filename: String

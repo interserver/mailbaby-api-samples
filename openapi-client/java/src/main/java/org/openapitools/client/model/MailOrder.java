@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * A mail order record
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-23T19:36:47.941126365-05:00[America/New_York]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-21T17:21:29.268903659-05:00[America/New_York]", comments = "Generator version: 7.19.0")
 public class MailOrder {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

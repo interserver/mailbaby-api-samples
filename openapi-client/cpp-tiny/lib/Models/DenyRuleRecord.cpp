@@ -148,7 +148,7 @@ DenyRuleRecord::getType()
 }
 
 void
-DenyRuleRecord::setType(std::string  type)
+DenyRuleRecord::setType(std::string type)
 {
 	this->type = type;
 }
@@ -160,7 +160,7 @@ DenyRuleRecord::getData()
 }
 
 void
-DenyRuleRecord::setData(std::string  data)
+DenyRuleRecord::setData(std::string data)
 {
 	this->data = data;
 }
@@ -172,7 +172,7 @@ DenyRuleRecord::getId()
 }
 
 void
-DenyRuleRecord::setId(std::string  id)
+DenyRuleRecord::setId(std::string id)
 {
 	this->id = id;
 }
@@ -184,7 +184,7 @@ DenyRuleRecord::getCreated()
 }
 
 void
-DenyRuleRecord::setCreated(std::string  created)
+DenyRuleRecord::setCreated(std::string created)
 {
 	this->created = created;
 }
@@ -196,7 +196,7 @@ DenyRuleRecord::getUser()
 }
 
 void
-DenyRuleRecord::setUser(std::string  user)
+DenyRuleRecord::setUser(std::string user)
 {
 	this->user = user;
 }

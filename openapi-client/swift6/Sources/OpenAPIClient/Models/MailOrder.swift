@@ -8,7 +8,7 @@
 import Foundation
 
 /** A mail order record */
-public struct MailOrder: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailOrder: Sendable, Codable, Hashable {
 
     /** The ID of the order. */
     public var id: Int

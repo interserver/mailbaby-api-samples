@@ -24,7 +24,7 @@ import javax.validation.Valid;
  * A block entry from the clickhouse mailblocks server.
  */
 @Schema(description = "A block entry from the clickhouse mailblocks server.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-12-23T19:40:46.610785004-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2026-01-21T17:25:28.684378848-05:00[America/New_York]")
 public class MailBlockClickHouse   {
   @JsonProperty("date")
   private Date date = null;

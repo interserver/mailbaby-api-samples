@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setFrom(std::string  from);
+	void setFrom(std::string from);
 	/*! \brief Get 
 	 */
 	std::string getSubject();
 
 	/*! \brief Set 
 	 */
-	void setSubject(std::string  subject);
+	void setSubject(std::string subject);
 
 
     private:

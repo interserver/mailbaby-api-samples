@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MailStatsTypeVolumeTo: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailStatsTypeVolumeTo: Sendable, Codable, Hashable {
 
     public var clientdomainCom: Int?
     public var usersiteNet: Int?

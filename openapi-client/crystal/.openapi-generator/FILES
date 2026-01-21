@@ -1,6 +1,5 @@
 .gitignore
 .openapi-generator-ignore
-.travis.yml
 README.md
 git_push.sh
 shard.yml

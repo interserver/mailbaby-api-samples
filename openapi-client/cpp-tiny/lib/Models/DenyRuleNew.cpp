@@ -106,7 +106,7 @@ DenyRuleNew::getType()
 }
 
 void
-DenyRuleNew::setType(std::string  type)
+DenyRuleNew::setType(std::string type)
 {
 	this->type = type;
 }
@@ -118,7 +118,7 @@ DenyRuleNew::getData()
 }
 
 void
-DenyRuleNew::setData(std::string  data)
+DenyRuleNew::setData(std::string data)
 {
 	this->data = data;
 }
@@ -130,7 +130,7 @@ DenyRuleNew::getUser()
 }
 
 void
-DenyRuleNew::setUser(std::string  user)
+DenyRuleNew::setUser(std::string user)
 {
 	this->user = user;
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /** This is a block entry from the rspamd block list. */
-public struct MailBlockRspamd: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailBlockRspamd: Sendable, Codable, Hashable {
 
     public var from: String
     public var subject: String

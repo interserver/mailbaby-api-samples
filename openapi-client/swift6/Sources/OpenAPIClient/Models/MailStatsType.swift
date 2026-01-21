@@ -8,7 +8,7 @@
 import Foundation
 
 /** Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost. */
-public struct MailStatsType: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailStatsType: Sendable, Codable, Hashable {
 
     public enum Time: String, Sendable, Codable, CaseIterable {
         case all = "all"

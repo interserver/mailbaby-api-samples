@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set The ID of the order.
 	 */
-	void setId(int  id);
+	void setId(int id);
 	/*! \brief Get The order status.
 	 */
 	std::string getStatus();
 
 	/*! \brief Set The order status.
 	 */
-	void setStatus(std::string  status);
+	void setStatus(std::string status);
 	/*! \brief Get The username to use for this order.
 	 */
 	std::string getUsername();
 
 	/*! \brief Set The username to use for this order.
 	 */
-	void setUsername(std::string  username);
+	void setUsername(std::string username);
 	/*! \brief Get Optional order comment.
 	 */
 	std::string getComment();
 
 	/*! \brief Set Optional order comment.
 	 */
-	void setComment(std::string  comment);
+	void setComment(std::string comment);
 
 
     private:

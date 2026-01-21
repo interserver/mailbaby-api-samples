@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setClientdomaincom(int  clientdomaincom);
+	void setClientdomaincom(int clientdomaincom);
 	/*! \brief Get 
 	 */
 	int getUsersitenet();
 
 	/*! \brief Set 
 	 */
-	void setUsersitenet(int  usersitenet);
+	void setUsersitenet(int usersitenet);
 	/*! \brief Get 
 	 */
 	int getSalescompanycom();
 
 	/*! \brief Set 
 	 */
-	void setSalescompanycom(int  salescompanycom);
+	void setSalescompanycom(int salescompanycom);
 	/*! \brief Get 
 	 */
 	int getClientanothersitecom();
 
 	/*! \brief Set 
 	 */
-	void setClientanothersitecom(int  clientanothersitecom);
+	void setClientanothersitecom(int clientanothersitecom);
 
 
     private:

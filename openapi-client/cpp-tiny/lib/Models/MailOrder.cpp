@@ -127,7 +127,7 @@ MailOrder::getId()
 }
 
 void
-MailOrder::setId(int  id)
+MailOrder::setId(int id)
 {
 	this->id = id;
 }
@@ -139,7 +139,7 @@ MailOrder::getStatus()
 }
 
 void
-MailOrder::setStatus(std::string  status)
+MailOrder::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -151,7 +151,7 @@ MailOrder::getUsername()
 }
 
 void
-MailOrder::setUsername(std::string  username)
+MailOrder::setUsername(std::string username)
 {
 	this->username = username;
 }
@@ -163,7 +163,7 @@ MailOrder::getComment()
 }
 
 void
-MailOrder::setComment(std::string  comment)
+MailOrder::setComment(std::string comment)
 {
 	this->comment = comment;
 }

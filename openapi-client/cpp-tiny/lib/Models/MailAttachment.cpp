@@ -85,7 +85,7 @@ MailAttachment::getFilename()
 }
 
 void
-MailAttachment::setFilename(std::string  filename)
+MailAttachment::setFilename(std::string filename)
 {
 	this->filename = filename;
 }
@@ -97,7 +97,7 @@ MailAttachment::getData()
 }
 
 void
-MailAttachment::setData(std::string  data)
+MailAttachment::setData(std::string data)
 {
 	this->data = data;
 }

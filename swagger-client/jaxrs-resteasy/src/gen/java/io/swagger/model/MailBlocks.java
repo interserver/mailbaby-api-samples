@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="The listing of blocked emails.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2025-12-23T19:40:58.473719863-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyServerCodegen", date = "2026-01-21T17:25:40.356180779-05:00[America/New_York]")
 public class MailBlocks   {
   private List<MailBlockClickHouse> local = new ArrayList<MailBlockClickHouse>();  private List<MailBlockClickHouse> mbtrap = new ArrayList<MailBlockClickHouse>();  private List<MailBlockRspamd> subject = new ArrayList<MailBlockRspamd>();
 

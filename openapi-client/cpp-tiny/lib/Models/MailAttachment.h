@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The filename of the attached file.
 	 */
-	void setFilename(std::string  filename);
+	void setFilename(std::string filename);
 	/*! \brief Get The file contents base64 encoded
 	 */
 	std::string getData();
 
 	/*! \brief Set The file contents base64 encoded
 	 */
-	void setData(std::string  data);
+	void setData(std::string data);
 
 
     private:

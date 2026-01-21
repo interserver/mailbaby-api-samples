@@ -53,28 +53,28 @@ public:
 
 	/*! \brief Set total number of mail log entries
 	 */
-	void setTotal(int  total);
+	void setTotal(int total);
 	/*! \brief Get number of emails skipped in listing
 	 */
 	int getSkip();
 
 	/*! \brief Set number of emails skipped in listing
 	 */
-	void setSkip(int  skip);
+	void setSkip(int skip);
 	/*! \brief Get number of emails to return
 	 */
 	int getLimit();
 
 	/*! \brief Set number of emails to return
 	 */
-	void setLimit(int  limit);
+	void setLimit(int limit);
 	/*! \brief Get 
 	 */
 	std::list<MailLogEntry> getEmails();
 
 	/*! \brief Set 
 	 */
-	void setEmails(std::list <MailLogEntry> emails);
+	void setEmails(std::list<MailLogEntry> emails);
 
 
     private:

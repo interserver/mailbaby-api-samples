@@ -85,7 +85,7 @@ EmailAddressTypes::getEmail()
 }
 
 void
-EmailAddressTypes::setEmail(std::string  email)
+EmailAddressTypes::setEmail(std::string email)
 {
 	this->email = email;
 }
@@ -97,7 +97,7 @@ EmailAddressTypes::getName()
 }
 
 void
-EmailAddressTypes::setName(std::string  name)
+EmailAddressTypes::setName(std::string name)
 {
 	this->name = name;
 }

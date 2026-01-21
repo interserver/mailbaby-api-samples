@@ -52,35 +52,35 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setDate(Date  date);
+	void setDate(Date date);
 	/*! \brief Get 
 	 */
 	std::string getFrom();
 
 	/*! \brief Set 
 	 */
-	void setFrom(std::string  from);
+	void setFrom(std::string from);
 	/*! \brief Get 
 	 */
 	std::string getMessageId();
 
 	/*! \brief Set 
 	 */
-	void setMessageId(std::string  messageId);
+	void setMessageId(std::string messageId);
 	/*! \brief Get 
 	 */
 	std::string getSubject();
 
 	/*! \brief Set 
 	 */
-	void setSubject(std::string  subject);
+	void setSubject(std::string subject);
 	/*! \brief Get 
 	 */
 	std::string getTo();
 
 	/*! \brief Set 
 	 */
-	void setTo(std::string  to);
+	void setTo(std::string to);
 
 
     private:

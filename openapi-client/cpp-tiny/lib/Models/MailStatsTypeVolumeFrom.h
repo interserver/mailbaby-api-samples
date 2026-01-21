@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setBillingsomedomaincom(int  billingsomedomaincom);
+	void setBillingsomedomaincom(int billingsomedomaincom);
 	/*! \brief Get 
 	 */
 	int getSalessomedomaincom();
 
 	/*! \brief Set 
 	 */
-	void setSalessomedomaincom(int  salessomedomaincom);
+	void setSalessomedomaincom(int salessomedomaincom);
 
 
     private:

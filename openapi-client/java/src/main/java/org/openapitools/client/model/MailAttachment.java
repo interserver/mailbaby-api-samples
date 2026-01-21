@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * (optional) File attachments to include in the email.  The file contents must be base64
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-12-23T19:36:47.941126365-05:00[America/New_York]", comments = "Generator version: 7.18.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-21T17:21:29.268903659-05:00[America/New_York]", comments = "Generator version: 7.19.0")
 public class MailAttachment {
   public static final String SERIALIZED_NAME_FILENAME = "filename";
   @SerializedName(SERIALIZED_NAME_FILENAME)

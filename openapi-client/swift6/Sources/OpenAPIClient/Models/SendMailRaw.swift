@@ -8,7 +8,7 @@
 import Foundation
 
 /** Raw Email Object */
-public struct SendMailRaw: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SendMailRaw: Sendable, Codable, Hashable {
 
     /** The entire email contents */
     public var rawEmail: String

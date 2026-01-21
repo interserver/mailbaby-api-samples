@@ -25,7 +25,7 @@ import javax.validation.Valid;
 /**
  * MailStatsTypeVolume
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2025-12-23T19:40:46.610785004-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2026-01-21T17:25:28.684378848-05:00[America/New_York]")
 public class MailStatsTypeVolume   {
   @JsonProperty("to")
   private MailStatsTypeVolumeTo to = null;

@@ -8,7 +8,7 @@
 import Foundation
 
 /** A block entry from the clickhouse mailblocks server. */
-public struct MailBlockClickHouse: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailBlockClickHouse: Sendable, Codable, Hashable {
 
     public var date: Date
     public var from: String

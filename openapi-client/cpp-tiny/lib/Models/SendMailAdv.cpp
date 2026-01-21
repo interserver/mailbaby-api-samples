@@ -254,7 +254,7 @@ SendMailAdv::getSubject()
 }
 
 void
-SendMailAdv::setSubject(std::string  subject)
+SendMailAdv::setSubject(std::string subject)
 {
 	this->subject = subject;
 }
@@ -266,7 +266,7 @@ SendMailAdv::getBody()
 }
 
 void
-SendMailAdv::setBody(std::string  body)
+SendMailAdv::setBody(std::string body)
 {
 	this->body = body;
 }
@@ -278,7 +278,7 @@ SendMailAdv::getFrom()
 }
 
 void
-SendMailAdv::setFrom(EmailAddressTypes  from)
+SendMailAdv::setFrom(EmailAddressTypes from)
 {
 	this->from = from;
 }
@@ -290,7 +290,7 @@ SendMailAdv::getTo()
 }
 
 void
-SendMailAdv::setTo(EmailAddressesTypes  to)
+SendMailAdv::setTo(EmailAddressesTypes to)
 {
 	this->to = to;
 }
@@ -302,7 +302,7 @@ SendMailAdv::getReplyto()
 }
 
 void
-SendMailAdv::setReplyto(EmailAddressesTypes  replyto)
+SendMailAdv::setReplyto(EmailAddressesTypes replyto)
 {
 	this->replyto = replyto;
 }
@@ -314,7 +314,7 @@ SendMailAdv::getCc()
 }
 
 void
-SendMailAdv::setCc(EmailAddressesTypes  cc)
+SendMailAdv::setCc(EmailAddressesTypes cc)
 {
 	this->cc = cc;
 }
@@ -326,7 +326,7 @@ SendMailAdv::getBcc()
 }
 
 void
-SendMailAdv::setBcc(EmailAddressesTypes  bcc)
+SendMailAdv::setBcc(EmailAddressesTypes bcc)
 {
 	this->bcc = bcc;
 }
@@ -338,7 +338,7 @@ SendMailAdv::getAttachments()
 }
 
 void
-SendMailAdv::setAttachments(std::list <MailAttachment> attachments)
+SendMailAdv::setAttachments(std::list<MailAttachment> attachments)
 {
 	this->attachments = attachments;
 }
@@ -350,7 +350,7 @@ SendMailAdv::getId()
 }
 
 void
-SendMailAdv::setId(long  id)
+SendMailAdv::setId(long id)
 {
 	this->id = id;
 }

@@ -52,56 +52,56 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setTime(std::string  time);
+	void setTime(std::string time);
 	/*! \brief Get 
 	 */
 	int getUsage();
 
 	/*! \brief Set 
 	 */
-	void setUsage(int  usage);
+	void setUsage(int usage);
 	/*! \brief Get 
 	 */
 	std::string getCurrency();
 
 	/*! \brief Set 
 	 */
-	void setCurrency(std::string  currency);
+	void setCurrency(std::string currency);
 	/*! \brief Get 
 	 */
 	std::string getCurrencySymbol();
 
 	/*! \brief Set 
 	 */
-	void setCurrencySymbol(std::string  currencySymbol);
+	void setCurrencySymbol(std::string currencySymbol);
 	/*! \brief Get 
 	 */
 	double getCost();
 
 	/*! \brief Set 
 	 */
-	void setCost(double  cost);
+	void setCost(double cost);
 	/*! \brief Get 
 	 */
 	int getReceived();
 
 	/*! \brief Set 
 	 */
-	void setReceived(int  received);
+	void setReceived(int received);
 	/*! \brief Get 
 	 */
 	int getSent();
 
 	/*! \brief Set 
 	 */
-	void setSent(int  sent);
+	void setSent(int sent);
 	/*! \brief Get 
 	 */
 	MailStatsType_volume getVolume();
 
 	/*! \brief Set 
 	 */
-	void setVolume(MailStatsType_volume  volume);
+	void setVolume(MailStatsType_volume volume);
 
 
     private:

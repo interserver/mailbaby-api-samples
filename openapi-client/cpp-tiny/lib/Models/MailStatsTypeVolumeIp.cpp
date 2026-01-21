@@ -127,7 +127,7 @@ MailStatsType_volume_ip::get1111()
 }
 
 void
-MailStatsType_volume_ip::set1111(int  1111)
+MailStatsType_volume_ip::set1111(int 1111)
 {
 	this->1111 = 1111;
 }
@@ -139,7 +139,7 @@ MailStatsType_volume_ip::get2222()
 }
 
 void
-MailStatsType_volume_ip::set2222(int  2222)
+MailStatsType_volume_ip::set2222(int 2222)
 {
 	this->2222 = 2222;
 }
@@ -151,7 +151,7 @@ MailStatsType_volume_ip::get3333()
 }
 
 void
-MailStatsType_volume_ip::set3333(int  3333)
+MailStatsType_volume_ip::set3333(int 3333)
 {
 	this->3333 = 3333;
 }
@@ -163,7 +163,7 @@ MailStatsType_volume_ip::get4444()
 }
 
 void
-MailStatsType_volume_ip::set4444(int  4444)
+MailStatsType_volume_ip::set4444(int 4444)
 {
 	this->4444 = 4444;
 }

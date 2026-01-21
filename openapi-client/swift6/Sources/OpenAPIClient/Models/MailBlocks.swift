@@ -8,7 +8,7 @@
 import Foundation
 
 /** The listing of blocked emails. */
-public struct MailBlocks: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailBlocks: Sendable, Codable, Hashable {
 
     public var local: [MailBlockClickHouse]
     public var mbtrap: [MailBlockClickHouse]

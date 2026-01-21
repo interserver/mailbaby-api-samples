@@ -8,7 +8,7 @@
 import Foundation
 
 /**  */
-public enum EmailAddressesTypes: Sendable, Codable, ParameterConvertible, Hashable {
+public enum EmailAddressesTypes: Sendable, Codable, Hashable {
     case typeString(String)
     case typeArrayOfEmailAddressName([EmailAddressName])
 

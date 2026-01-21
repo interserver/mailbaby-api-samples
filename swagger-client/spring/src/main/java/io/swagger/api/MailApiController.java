@@ -45,7 +45,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2025-12-23T19:41:09.077744585-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2026-01-21T17:25:50.770732117-05:00[America/New_York]")
 @RestController
 public class MailApiController implements MailApi {
 

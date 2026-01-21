@@ -85,7 +85,7 @@ ErrorMessage::getCode()
 }
 
 void
-ErrorMessage::setCode(int  code)
+ErrorMessage::setCode(int code)
 {
 	this->code = code;
 }
@@ -97,7 +97,7 @@ ErrorMessage::getMessage()
 }
 
 void
-ErrorMessage::setMessage(std::string  message)
+ErrorMessage::setMessage(std::string message)
 {
 	this->message = message;
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 /** The resposne when an error occurs. */
-public struct ErrorMessage: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ErrorMessage: Sendable, Codable, Hashable {
 
     /** The response code associated with the error. */
     public var code: Int

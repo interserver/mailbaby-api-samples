@@ -54,21 +54,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setLocal(std::list <MailBlockClickHouse> local);
+	void setLocal(std::list<MailBlockClickHouse> local);
 	/*! \brief Get 
 	 */
 	std::list<MailBlockClickHouse> getMbtrap();
 
 	/*! \brief Set 
 	 */
-	void setMbtrap(std::list <MailBlockClickHouse> mbtrap);
+	void setMbtrap(std::list<MailBlockClickHouse> mbtrap);
 	/*! \brief Get 
 	 */
 	std::list<MailBlockRspamd> getSubject();
 
 	/*! \brief Set 
 	 */
-	void setSubject(std::list <MailBlockRspamd> subject);
+	void setSubject(std::list<MailBlockRspamd> subject);
 
 
     private:

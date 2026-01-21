@@ -85,7 +85,7 @@ GenericResponse::getStatus()
 }
 
 void
-GenericResponse::setStatus(std::string  status)
+GenericResponse::setStatus(std::string status)
 {
 	this->status = status;
 }
@@ -97,7 +97,7 @@ GenericResponse::getText()
 }
 
 void
-GenericResponse::setText(std::string  text)
+GenericResponse::setText(std::string text)
 {
 	this->text = text;
 }

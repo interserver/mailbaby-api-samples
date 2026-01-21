@@ -54,21 +54,21 @@ public:
 
 	/*! \brief Set 
 	 */
-	void setTo(MailStatsType_volume_to  to);
+	void setTo(MailStatsType_volume_to to);
 	/*! \brief Get 
 	 */
 	MailStatsType_volume_from getFrom();
 
 	/*! \brief Set 
 	 */
-	void setFrom(MailStatsType_volume_from  from);
+	void setFrom(MailStatsType_volume_from from);
 	/*! \brief Get 
 	 */
 	MailStatsType_volume_ip getIp();
 
 	/*! \brief Set 
 	 */
-	void setIp(MailStatsType_volume_ip  ip);
+	void setIp(MailStatsType_volume_ip ip);
 
 
     private:

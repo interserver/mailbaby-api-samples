@@ -148,7 +148,7 @@ SendMail::getTo()
 }
 
 void
-SendMail::setTo(std::string  to)
+SendMail::setTo(std::string to)
 {
 	this->to = to;
 }
@@ -160,7 +160,7 @@ SendMail::getFrom()
 }
 
 void
-SendMail::setFrom(std::string  from)
+SendMail::setFrom(std::string from)
 {
 	this->from = from;
 }
@@ -172,7 +172,7 @@ SendMail::getSubject()
 }
 
 void
-SendMail::setSubject(std::string  subject)
+SendMail::setSubject(std::string subject)
 {
 	this->subject = subject;
 }
@@ -184,7 +184,7 @@ SendMail::getBody()
 }
 
 void
-SendMail::setBody(std::string  body)
+SendMail::setBody(std::string body)
 {
 	this->body = body;
 }
@@ -196,7 +196,7 @@ SendMail::getId()
 }
 
 void
-SendMail::setId(int  id)
+SendMail::setId(int id)
 {
 	this->id = id;
 }

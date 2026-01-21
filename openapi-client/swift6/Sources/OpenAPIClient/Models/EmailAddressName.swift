@@ -8,7 +8,7 @@
 import Foundation
 
 /** An email contact. */
-public struct EmailAddressName: Sendable, Codable, ParameterConvertible, Hashable {
+public struct EmailAddressName: Sendable, Codable, Hashable {
 
     /** The email address. */
     public var email: String

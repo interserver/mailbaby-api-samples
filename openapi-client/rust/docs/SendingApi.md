@@ -59,7 +59,7 @@ Name | Type | Description  | Required | Notes
 **replyto** | Option<[**models::EmailAddressesTypes**](EmailAddressesTypes.md)> |  |  |
 **cc** | Option<[**models::EmailAddressesTypes**](EmailAddressesTypes.md)> |  |  |
 **bcc** | Option<[**models::EmailAddressesTypes**](EmailAddressesTypes.md)> |  |  |
-**attachments** | Option<[**Vec<models::MailAttachment>**](models::MailAttachment.md)> | (optional) File attachments to include in the email.  The file contents must be base64 encoded! |  |
+**attachments** | Option<[**Vec<models::MailAttachment>**](Models__MailAttachment.md)> | (optional) File attachments to include in the email.  The file contents must be base64 encoded! |  |
 **id** | Option<**i64**> | (optional)  ID of the Mail order within our system to use as the Mail Account. |  |
 
 ### Return type

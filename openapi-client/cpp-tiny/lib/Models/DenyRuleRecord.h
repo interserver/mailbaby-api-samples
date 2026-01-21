@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set The type of deny rule.
 	 */
-	void setType(std::string  type);
+	void setType(std::string type);
 	/*! \brief Get The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
 	 */
 	std::string getData();
 
 	/*! \brief Set The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
 	 */
-	void setData(std::string  data);
+	void setData(std::string data);
 	/*! \brief Get The deny rule Id number.
 	 */
 	std::string getId();
 
 	/*! \brief Set The deny rule Id number.
 	 */
-	void setId(std::string  id);
+	void setId(std::string id);
 	/*! \brief Get the date the rule was created.
 	 */
 	std::string getCreated();
 
 	/*! \brief Set the date the rule was created.
 	 */
-	void setCreated(std::string  created);
+	void setCreated(std::string created);
 	/*! \brief Get Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 	 */
 	std::string getUser();
 
 	/*! \brief Set Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
 	 */
-	void setUser(std::string  user);
+	void setUser(std::string user);
 
 
     private:

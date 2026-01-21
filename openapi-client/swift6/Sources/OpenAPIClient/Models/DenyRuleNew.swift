@@ -8,7 +8,7 @@
 import Foundation
 
 /** The data for a email deny rule record. */
-public struct DenyRuleNew: Sendable, Codable, ParameterConvertible, Hashable {
+public struct DenyRuleNew: Sendable, Codable, Hashable {
 
     public enum ModelType: String, Sendable, Codable, CaseIterable {
         case domain = "domain"

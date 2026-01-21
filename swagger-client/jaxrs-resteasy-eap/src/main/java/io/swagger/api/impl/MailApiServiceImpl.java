@@ -26,7 +26,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2025-12-23T19:40:54.737940325-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2026-01-21T17:25:36.668572276-05:00[America/New_York]")
 public class MailApiServiceImpl implements MailApi {
       public Response addRule(String user,String type,String data,SecurityContext securityContext) {
       // do some magic!

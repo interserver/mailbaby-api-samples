@@ -8,7 +8,7 @@
 import Foundation
 
 /** Mail log records */
-public struct MailLog: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailLog: Sendable, Codable, Hashable {
 
     /** total number of mail log entries */
     public var total: Int

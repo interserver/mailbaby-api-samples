@@ -149,7 +149,7 @@ MailBlockClickHouse::getDate()
 }
 
 void
-MailBlockClickHouse::setDate(Date  date)
+MailBlockClickHouse::setDate(Date date)
 {
 	this->date = date;
 }
@@ -161,7 +161,7 @@ MailBlockClickHouse::getFrom()
 }
 
 void
-MailBlockClickHouse::setFrom(std::string  from)
+MailBlockClickHouse::setFrom(std::string from)
 {
 	this->from = from;
 }
@@ -173,7 +173,7 @@ MailBlockClickHouse::getMessageId()
 }
 
 void
-MailBlockClickHouse::setMessageId(std::string  messageId)
+MailBlockClickHouse::setMessageId(std::string messageId)
 {
 	this->messageId = messageId;
 }
@@ -185,7 +185,7 @@ MailBlockClickHouse::getSubject()
 }
 
 void
-MailBlockClickHouse::setSubject(std::string  subject)
+MailBlockClickHouse::setSubject(std::string subject)
 {
 	this->subject = subject;
 }
@@ -197,7 +197,7 @@ MailBlockClickHouse::getTo()
 }
 
 void
-MailBlockClickHouse::setTo(std::string  to)
+MailBlockClickHouse::setTo(std::string to)
 {
 	this->to = to;
 }

@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The entire email contents
 	 */
-	void setRawEmail(std::string  raw_email);
+	void setRawEmail(std::string raw_email);
 	/*! \brief Get Optional order id
 	 */
 	int getId();
 
 	/*! \brief Set Optional order id
 	 */
-	void setId(int  id);
+	void setId(int id);
 
 
     private:

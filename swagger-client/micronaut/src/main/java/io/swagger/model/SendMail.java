@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Details for an Email")
 @Validated
 @Introspected
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2025-12-23T19:41:05.319830183-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2026-01-21T17:25:46.931236432-05:00[America/New_York]")
 public class SendMail   {
   @JsonProperty("to")
   private String to = null;

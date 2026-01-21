@@ -85,7 +85,7 @@ MailBlockRspamd::getFrom()
 }
 
 void
-MailBlockRspamd::setFrom(std::string  from)
+MailBlockRspamd::setFrom(std::string from)
 {
 	this->from = from;
 }
@@ -97,7 +97,7 @@ MailBlockRspamd::getSubject()
 }
 
 void
-MailBlockRspamd::setSubject(std::string  subject)
+MailBlockRspamd::setSubject(std::string subject)
 {
 	this->subject = subject;
 }

@@ -127,7 +127,7 @@ MailStatsType_volume_to::getClientdomaincom()
 }
 
 void
-MailStatsType_volume_to::setClientdomaincom(int  clientdomaincom)
+MailStatsType_volume_to::setClientdomaincom(int clientdomaincom)
 {
 	this->clientdomaincom = clientdomaincom;
 }
@@ -139,7 +139,7 @@ MailStatsType_volume_to::getUsersitenet()
 }
 
 void
-MailStatsType_volume_to::setUsersitenet(int  usersitenet)
+MailStatsType_volume_to::setUsersitenet(int usersitenet)
 {
 	this->usersitenet = usersitenet;
 }
@@ -151,7 +151,7 @@ MailStatsType_volume_to::getSalescompanycom()
 }
 
 void
-MailStatsType_volume_to::setSalescompanycom(int  salescompanycom)
+MailStatsType_volume_to::setSalescompanycom(int salescompanycom)
 {
 	this->salescompanycom = salescompanycom;
 }
@@ -163,7 +163,7 @@ MailStatsType_volume_to::getClientanothersitecom()
 }
 
 void
-MailStatsType_volume_to::setClientanothersitecom(int  clientanothersitecom)
+MailStatsType_volume_to::setClientanothersitecom(int clientanothersitecom)
 {
 	this->clientanothersitecom = clientanothersitecom;
 }

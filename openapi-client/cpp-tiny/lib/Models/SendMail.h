@@ -51,35 +51,35 @@ public:
 
 	/*! \brief Set The Contact whom is the primary recipient of this email.
 	 */
-	void setTo(std::string  to);
+	void setTo(std::string to);
 	/*! \brief Get The contact whom is the this email is from.
 	 */
 	std::string getFrom();
 
 	/*! \brief Set The contact whom is the this email is from.
 	 */
-	void setFrom(std::string  from);
+	void setFrom(std::string from);
 	/*! \brief Get The subject or title of the email
 	 */
 	std::string getSubject();
 
 	/*! \brief Set The subject or title of the email
 	 */
-	void setSubject(std::string  subject);
+	void setSubject(std::string subject);
 	/*! \brief Get The main email contents.
 	 */
 	std::string getBody();
 
 	/*! \brief Set The main email contents.
 	 */
-	void setBody(std::string  body);
+	void setBody(std::string body);
 	/*! \brief Get Optional Order ID
 	 */
 	int getId();
 
 	/*! \brief Set Optional Order ID
 	 */
-	void setId(int  id);
+	void setId(int id);
 
 
     private:

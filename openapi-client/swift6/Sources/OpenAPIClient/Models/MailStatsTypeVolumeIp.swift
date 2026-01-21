@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MailStatsTypeVolumeIp: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailStatsTypeVolumeIp: Sendable, Codable, Hashable {
 
     public var _1111: Int?
     public var _2222: Int?

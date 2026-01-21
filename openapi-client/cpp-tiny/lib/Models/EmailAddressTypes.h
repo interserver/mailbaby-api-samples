@@ -52,14 +52,14 @@ public:
 
 	/*! \brief Set The email address.
 	 */
-	void setEmail(std::string  email);
+	void setEmail(std::string email);
 	/*! \brief Get Name to use for the sending contact.
 	 */
 	std::string getName();
 
 	/*! \brief Set Name to use for the sending contact.
 	 */
-	void setName(std::string  name);
+	void setName(std::string name);
 
 
     private:

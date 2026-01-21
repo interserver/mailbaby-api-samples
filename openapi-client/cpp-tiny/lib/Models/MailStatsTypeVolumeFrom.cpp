@@ -85,7 +85,7 @@ MailStatsType_volume_from::getBillingsomedomaincom()
 }
 
 void
-MailStatsType_volume_from::setBillingsomedomaincom(int  billingsomedomaincom)
+MailStatsType_volume_from::setBillingsomedomaincom(int billingsomedomaincom)
 {
 	this->billingsomedomaincom = billingsomedomaincom;
 }
@@ -97,7 +97,7 @@ MailStatsType_volume_from::getSalessomedomaincom()
 }
 
 void
-MailStatsType_volume_from::setSalessomedomaincom(int  salessomedomaincom)
+MailStatsType_volume_from::setSalessomedomaincom(int salessomedomaincom)
 {
 	this->salessomedomaincom = salessomedomaincom;
 }

@@ -212,7 +212,7 @@ MailStatsType::getTime()
 }
 
 void
-MailStatsType::setTime(std::string  time)
+MailStatsType::setTime(std::string time)
 {
 	this->time = time;
 }
@@ -224,7 +224,7 @@ MailStatsType::getUsage()
 }
 
 void
-MailStatsType::setUsage(int  usage)
+MailStatsType::setUsage(int usage)
 {
 	this->usage = usage;
 }
@@ -236,7 +236,7 @@ MailStatsType::getCurrency()
 }
 
 void
-MailStatsType::setCurrency(std::string  currency)
+MailStatsType::setCurrency(std::string currency)
 {
 	this->currency = currency;
 }
@@ -248,7 +248,7 @@ MailStatsType::getCurrencySymbol()
 }
 
 void
-MailStatsType::setCurrencySymbol(std::string  currencySymbol)
+MailStatsType::setCurrencySymbol(std::string currencySymbol)
 {
 	this->currencySymbol = currencySymbol;
 }
@@ -260,7 +260,7 @@ MailStatsType::getCost()
 }
 
 void
-MailStatsType::setCost(double  cost)
+MailStatsType::setCost(double cost)
 {
 	this->cost = cost;
 }
@@ -272,7 +272,7 @@ MailStatsType::getReceived()
 }
 
 void
-MailStatsType::setReceived(int  received)
+MailStatsType::setReceived(int received)
 {
 	this->received = received;
 }
@@ -284,7 +284,7 @@ MailStatsType::getSent()
 }
 
 void
-MailStatsType::setSent(int  sent)
+MailStatsType::setSent(int sent)
 {
 	this->sent = sent;
 }
@@ -296,7 +296,7 @@ MailStatsType::getVolume()
 }
 
 void
-MailStatsType::setVolume(MailStatsType_volume  volume)
+MailStatsType::setVolume(MailStatsType_volume volume)
 {
 	this->volume = volume;
 }

@@ -526,7 +526,7 @@ MailLogEntry::getId()
 }
 
 void
-MailLogEntry::setId(int  _id)
+MailLogEntry::setId(int _id)
 {
 	this->_id = _id;
 }
@@ -538,7 +538,7 @@ MailLogEntry::getId()
 }
 
 void
-MailLogEntry::setId(std::string  id)
+MailLogEntry::setId(std::string id)
 {
 	this->id = id;
 }
@@ -550,7 +550,7 @@ MailLogEntry::getFrom()
 }
 
 void
-MailLogEntry::setFrom(std::string  from)
+MailLogEntry::setFrom(std::string from)
 {
 	this->from = from;
 }
@@ -562,7 +562,7 @@ MailLogEntry::getTo()
 }
 
 void
-MailLogEntry::setTo(std::string  to)
+MailLogEntry::setTo(std::string to)
 {
 	this->to = to;
 }
@@ -574,7 +574,7 @@ MailLogEntry::getSubject()
 }
 
 void
-MailLogEntry::setSubject(std::string  subject)
+MailLogEntry::setSubject(std::string subject)
 {
 	this->subject = subject;
 }
@@ -586,7 +586,7 @@ MailLogEntry::getCreated()
 }
 
 void
-MailLogEntry::setCreated(std::string  created)
+MailLogEntry::setCreated(std::string created)
 {
 	this->created = created;
 }
@@ -598,7 +598,7 @@ MailLogEntry::getTime()
 }
 
 void
-MailLogEntry::setTime(int  time)
+MailLogEntry::setTime(int time)
 {
 	this->time = time;
 }
@@ -610,7 +610,7 @@ MailLogEntry::getUser()
 }
 
 void
-MailLogEntry::setUser(std::string  user)
+MailLogEntry::setUser(std::string user)
 {
 	this->user = user;
 }
@@ -622,7 +622,7 @@ MailLogEntry::getTranstype()
 }
 
 void
-MailLogEntry::setTranstype(std::string  transtype)
+MailLogEntry::setTranstype(std::string transtype)
 {
 	this->transtype = transtype;
 }
@@ -634,7 +634,7 @@ MailLogEntry::getOrigin()
 }
 
 void
-MailLogEntry::setOrigin(std::string  origin)
+MailLogEntry::setOrigin(std::string origin)
 {
 	this->origin = origin;
 }
@@ -646,7 +646,7 @@ MailLogEntry::getInterface()
 }
 
 void
-MailLogEntry::setInterface(std::string  interface)
+MailLogEntry::setInterface(std::string interface)
 {
 	this->interface = interface;
 }
@@ -658,7 +658,7 @@ MailLogEntry::getSendingZone()
 }
 
 void
-MailLogEntry::setSendingZone(std::string  sendingZone)
+MailLogEntry::setSendingZone(std::string sendingZone)
 {
 	this->sendingZone = sendingZone;
 }
@@ -670,7 +670,7 @@ MailLogEntry::getBodySize()
 }
 
 void
-MailLogEntry::setBodySize(int  bodySize)
+MailLogEntry::setBodySize(int bodySize)
 {
 	this->bodySize = bodySize;
 }
@@ -682,7 +682,7 @@ MailLogEntry::getSeq()
 }
 
 void
-MailLogEntry::setSeq(int  seq)
+MailLogEntry::setSeq(int seq)
 {
 	this->seq = seq;
 }
@@ -694,7 +694,7 @@ MailLogEntry::getRecipient()
 }
 
 void
-MailLogEntry::setRecipient(std::string  recipient)
+MailLogEntry::setRecipient(std::string recipient)
 {
 	this->recipient = recipient;
 }
@@ -706,7 +706,7 @@ MailLogEntry::getDomain()
 }
 
 void
-MailLogEntry::setDomain(std::string  domain)
+MailLogEntry::setDomain(std::string domain)
 {
 	this->domain = domain;
 }
@@ -718,7 +718,7 @@ MailLogEntry::getLocked()
 }
 
 void
-MailLogEntry::setLocked(int  locked)
+MailLogEntry::setLocked(int locked)
 {
 	this->locked = locked;
 }
@@ -730,7 +730,7 @@ MailLogEntry::getLockTime()
 }
 
 void
-MailLogEntry::setLockTime(std::string  lockTime)
+MailLogEntry::setLockTime(std::string lockTime)
 {
 	this->lockTime = lockTime;
 }
@@ -742,7 +742,7 @@ MailLogEntry::getAssigned()
 }
 
 void
-MailLogEntry::setAssigned(std::string  assigned)
+MailLogEntry::setAssigned(std::string assigned)
 {
 	this->assigned = assigned;
 }
@@ -754,7 +754,7 @@ MailLogEntry::getQueued()
 }
 
 void
-MailLogEntry::setQueued(std::string  queued)
+MailLogEntry::setQueued(std::string queued)
 {
 	this->queued = queued;
 }
@@ -766,7 +766,7 @@ MailLogEntry::getMxHostname()
 }
 
 void
-MailLogEntry::setMxHostname(std::string  mxHostname)
+MailLogEntry::setMxHostname(std::string mxHostname)
 {
 	this->mxHostname = mxHostname;
 }
@@ -778,7 +778,7 @@ MailLogEntry::getResponse()
 }
 
 void
-MailLogEntry::setResponse(std::string  response)
+MailLogEntry::setResponse(std::string response)
 {
 	this->response = response;
 }
@@ -790,7 +790,7 @@ MailLogEntry::getMessageId()
 }
 
 void
-MailLogEntry::setMessageId(std::string  messageId)
+MailLogEntry::setMessageId(std::string messageId)
 {
 	this->messageId = messageId;
 }

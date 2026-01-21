@@ -55,63 +55,63 @@ public:
 
 	/*! \brief Set The subject or title of the email
 	 */
-	void setSubject(std::string  subject);
+	void setSubject(std::string subject);
 	/*! \brief Get The main email contents.
 	 */
 	std::string getBody();
 
 	/*! \brief Set The main email contents.
 	 */
-	void setBody(std::string  body);
+	void setBody(std::string body);
 	/*! \brief Get 
 	 */
 	EmailAddressTypes getFrom();
 
 	/*! \brief Set 
 	 */
-	void setFrom(EmailAddressTypes  from);
+	void setFrom(EmailAddressTypes from);
 	/*! \brief Get 
 	 */
 	EmailAddressesTypes getTo();
 
 	/*! \brief Set 
 	 */
-	void setTo(EmailAddressesTypes  to);
+	void setTo(EmailAddressesTypes to);
 	/*! \brief Get 
 	 */
 	EmailAddressesTypes getReplyto();
 
 	/*! \brief Set 
 	 */
-	void setReplyto(EmailAddressesTypes  replyto);
+	void setReplyto(EmailAddressesTypes replyto);
 	/*! \brief Get 
 	 */
 	EmailAddressesTypes getCc();
 
 	/*! \brief Set 
 	 */
-	void setCc(EmailAddressesTypes  cc);
+	void setCc(EmailAddressesTypes cc);
 	/*! \brief Get 
 	 */
 	EmailAddressesTypes getBcc();
 
 	/*! \brief Set 
 	 */
-	void setBcc(EmailAddressesTypes  bcc);
+	void setBcc(EmailAddressesTypes bcc);
 	/*! \brief Get (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 	 */
 	std::list<MailAttachment> getAttachments();
 
 	/*! \brief Set (optional) File attachments to include in the email.  The file contents must be base64 encoded!
 	 */
-	void setAttachments(std::list <MailAttachment> attachments);
+	void setAttachments(std::list<MailAttachment> attachments);
 	/*! \brief Get (optional)  ID of the Mail order within our system to use as the Mail Account.
 	 */
 	long getId();
 
 	/*! \brief Set (optional)  ID of the Mail order within our system to use as the Mail Account.
 	 */
-	void setId(long  id);
+	void setId(long id);
 
 
     private:

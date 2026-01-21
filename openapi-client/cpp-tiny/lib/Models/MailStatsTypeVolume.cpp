@@ -109,7 +109,7 @@ MailStatsType_volume::getTo()
 }
 
 void
-MailStatsType_volume::setTo(MailStatsType_volume_to  to)
+MailStatsType_volume::setTo(MailStatsType_volume_to to)
 {
 	this->to = to;
 }
@@ -121,7 +121,7 @@ MailStatsType_volume::getFrom()
 }
 
 void
-MailStatsType_volume::setFrom(MailStatsType_volume_from  from)
+MailStatsType_volume::setFrom(MailStatsType_volume_from from)
 {
 	this->from = from;
 }
@@ -133,7 +133,7 @@ MailStatsType_volume::getIp()
 }
 
 void
-MailStatsType_volume::setIp(MailStatsType_volume_ip  ip)
+MailStatsType_volume::setIp(MailStatsType_volume_ip ip)
 {
 	this->ip = ip;
 }

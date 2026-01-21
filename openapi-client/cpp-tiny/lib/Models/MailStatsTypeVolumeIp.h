@@ -51,28 +51,28 @@ public:
 
 	/*! \brief Set 
 	 */
-	void set1111(int  1111);
+	void set1111(int 1111);
 	/*! \brief Get 
 	 */
 	int get2222();
 
 	/*! \brief Set 
 	 */
-	void set2222(int  2222);
+	void set2222(int 2222);
 	/*! \brief Get 
 	 */
 	int get3333();
 
 	/*! \brief Set 
 	 */
-	void set3333(int  3333);
+	void set3333(int 3333);
 	/*! \brief Get 
 	 */
 	int get4444();
 
 	/*! \brief Set 
 	 */
-	void set4444(int  4444);
+	void set4444(int 4444);
 
 
     private:

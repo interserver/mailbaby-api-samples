@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | [**String**](string.md) |  | 
+**date** | [**String**](String.md) |  | 
 **from** | **String** |  | 
 **message_id** | **String** |  | 
 **subject** | **String** |  | 

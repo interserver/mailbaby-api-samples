@@ -157,7 +157,7 @@ MailBlocks::getLocal()
 }
 
 void
-MailBlocks::setLocal(std::list <MailBlockClickHouse> local)
+MailBlocks::setLocal(std::list<MailBlockClickHouse> local)
 {
 	this->local = local;
 }
@@ -169,7 +169,7 @@ MailBlocks::getMbtrap()
 }
 
 void
-MailBlocks::setMbtrap(std::list <MailBlockClickHouse> mbtrap)
+MailBlocks::setMbtrap(std::list<MailBlockClickHouse> mbtrap)
 {
 	this->mbtrap = mbtrap;
 }
@@ -181,7 +181,7 @@ MailBlocks::getSubject()
 }
 
 void
-MailBlocks::setSubject(std::list <MailBlockRspamd> subject)
+MailBlocks::setSubject(std::list<MailBlockRspamd> subject)
 {
 	this->subject = subject;
 }

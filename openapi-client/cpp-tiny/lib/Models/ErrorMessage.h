@@ -51,14 +51,14 @@ public:
 
 	/*! \brief Set The response code associated with the error.
 	 */
-	void setCode(int  code);
+	void setCode(int code);
 	/*! \brief Get The details or description of the error.
 	 */
 	std::string getMessage();
 
 	/*! \brief Set The details or description of the error.
 	 */
-	void setMessage(std::string  message);
+	void setMessage(std::string message);
 
 
     private:

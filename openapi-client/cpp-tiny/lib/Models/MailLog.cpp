@@ -144,7 +144,7 @@ MailLog::getTotal()
 }
 
 void
-MailLog::setTotal(int  total)
+MailLog::setTotal(int total)
 {
 	this->total = total;
 }
@@ -156,7 +156,7 @@ MailLog::getSkip()
 }
 
 void
-MailLog::setSkip(int  skip)
+MailLog::setSkip(int skip)
 {
 	this->skip = skip;
 }
@@ -168,7 +168,7 @@ MailLog::getLimit()
 }
 
 void
-MailLog::setLimit(int  limit)
+MailLog::setLimit(int limit)
 {
 	this->limit = limit;
 }
@@ -180,7 +180,7 @@ MailLog::getEmails()
 }
 
 void
-MailLog::setEmails(std::list <MailLogEntry> emails)
+MailLog::setEmails(std::list<MailLogEntry> emails)
 {
 	this->emails = emails;
 }

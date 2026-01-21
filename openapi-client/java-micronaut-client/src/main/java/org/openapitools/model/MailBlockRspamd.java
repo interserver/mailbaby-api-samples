@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   MailBlockRspamd.JSON_PROPERTY_SUBJECT
 })
 @JsonTypeName("MailBlockRspamd")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2025-12-23T19:36:52.719070104-05:00[America/New_York]", comments = "Generator version: 7.18.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-01-21T17:21:34.228551039-05:00[America/New_York]", comments = "Generator version: 7.19.0")
 @Introspected
 public class MailBlockRspamd {
     public static final String JSON_PROPERTY_FROM = "from";

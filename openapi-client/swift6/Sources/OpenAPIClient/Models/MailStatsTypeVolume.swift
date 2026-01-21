@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MailStatsTypeVolume: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailStatsTypeVolume: Sendable, Codable, Hashable {
 
     public var to: MailStatsTypeVolumeTo?
     public var from: MailStatsTypeVolumeFrom?

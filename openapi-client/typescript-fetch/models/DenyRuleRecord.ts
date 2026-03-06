@@ -21,7 +21,7 @@ import { mapValues } from '../runtime';
 export interface DenyRuleRecord {
     /**
      * The type of deny rule.
-     * @type {string}
+     * @type {DenyRuleRecordTypeEnum}
      * @memberof DenyRuleRecord
      */
     type: DenyRuleRecordTypeEnum;

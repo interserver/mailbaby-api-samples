@@ -52,7 +52,7 @@ import org.openapitools.client.JSON;
 /**
  * The listing of blocked emails.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-21T17:21:29.268903659-05:00[America/New_York]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T14:41:55.966042264-05:00[America/New_York]", comments = "Generator version: 7.20.0")
 public class MailBlocks {
   public static final String SERIALIZED_NAME_LOCAL = "local";
   @SerializedName(SERIALIZED_NAME_LOCAL)
@@ -235,36 +235,36 @@ public class MailBlocks {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("local").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `local` to be an array in the JSON string but got `%s`", jsonObj.get("local").toString()));
+      if (jsonObj.get("local") != null) {
+        if (!jsonObj.get("local").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `local` to be an array in the JSON string but got `%s`", jsonObj.get("local").toString()));
+        }
+        JsonArray jsonArraylocal = jsonObj.getAsJsonArray("local");
+        // validate the required field `local` (array)
+        for (int i = 0; i < jsonArraylocal.size(); i++) {
+          MailBlockClickHouse.validateJsonElement(jsonArraylocal.get(i));
+        }
       }
-
-      JsonArray jsonArraylocal = jsonObj.getAsJsonArray("local");
-      // validate the required field `local` (array)
-      for (int i = 0; i < jsonArraylocal.size(); i++) {
-        MailBlockClickHouse.validateJsonElement(jsonArraylocal.get(i));
-      };
-      // ensure the json data is an array
-      if (!jsonObj.get("mbtrap").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `mbtrap` to be an array in the JSON string but got `%s`", jsonObj.get("mbtrap").toString()));
+      if (jsonObj.get("mbtrap") != null) {
+        if (!jsonObj.get("mbtrap").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `mbtrap` to be an array in the JSON string but got `%s`", jsonObj.get("mbtrap").toString()));
+        }
+        JsonArray jsonArraymbtrap = jsonObj.getAsJsonArray("mbtrap");
+        // validate the required field `mbtrap` (array)
+        for (int i = 0; i < jsonArraymbtrap.size(); i++) {
+          MailBlockClickHouse.validateJsonElement(jsonArraymbtrap.get(i));
+        }
       }
-
-      JsonArray jsonArraymbtrap = jsonObj.getAsJsonArray("mbtrap");
-      // validate the required field `mbtrap` (array)
-      for (int i = 0; i < jsonArraymbtrap.size(); i++) {
-        MailBlockClickHouse.validateJsonElement(jsonArraymbtrap.get(i));
-      };
-      // ensure the json data is an array
-      if (!jsonObj.get("subject").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `subject` to be an array in the JSON string but got `%s`", jsonObj.get("subject").toString()));
+      if (jsonObj.get("subject") != null) {
+        if (!jsonObj.get("subject").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `subject` to be an array in the JSON string but got `%s`", jsonObj.get("subject").toString()));
+        }
+        JsonArray jsonArraysubject = jsonObj.getAsJsonArray("subject");
+        // validate the required field `subject` (array)
+        for (int i = 0; i < jsonArraysubject.size(); i++) {
+          MailBlockRspamd.validateJsonElement(jsonArraysubject.get(i));
+        }
       }
-
-      JsonArray jsonArraysubject = jsonObj.getAsJsonArray("subject");
-      // validate the required field `subject` (array)
-      for (int i = 0; i < jsonArraysubject.size(); i++) {
-        MailBlockRspamd.validateJsonElement(jsonArraysubject.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

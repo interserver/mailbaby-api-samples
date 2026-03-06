@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * Mail log records
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-21T17:21:29.268903659-05:00[America/New_York]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T14:41:55.966042264-05:00[America/New_York]", comments = "Generator version: 7.20.0")
 public class MailLog {
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -244,16 +244,16 @@ public class MailLog {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the json data is an array
-      if (!jsonObj.get("emails").isJsonArray()) {
-        throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `emails` to be an array in the JSON string but got `%s`", jsonObj.get("emails").toString()));
+      if (jsonObj.get("emails") != null) {
+        if (!jsonObj.get("emails").isJsonArray()) {
+          throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected the field `emails` to be an array in the JSON string but got `%s`", jsonObj.get("emails").toString()));
+        }
+        JsonArray jsonArrayemails = jsonObj.getAsJsonArray("emails");
+        // validate the required field `emails` (array)
+        for (int i = 0; i < jsonArrayemails.size(); i++) {
+          MailLogEntry.validateJsonElement(jsonArrayemails.get(i));
+        }
       }
-
-      JsonArray jsonArrayemails = jsonObj.getAsJsonArray("emails");
-      // validate the required field `emails` (array)
-      for (int i = 0; i < jsonArrayemails.size(); i++) {
-        MailLogEntry.validateJsonElement(jsonArrayemails.get(i));
-      };
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

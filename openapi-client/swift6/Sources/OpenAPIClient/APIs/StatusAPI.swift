@@ -15,7 +15,6 @@ open class StatusAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func pingServer(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
         return try await pingServerWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }

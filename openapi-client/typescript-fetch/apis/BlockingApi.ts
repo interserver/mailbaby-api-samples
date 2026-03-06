@@ -51,10 +51,9 @@ export interface DelistBlockRequest {
 export class BlockingApi extends runtime.BaseAPI {
 
     /**
-     * Adds a new email deny rule into the system to block new emails that match the given criteria
-     * Creates a new email deny rule.
+     * Creates request options for addRule without sending the request
      */
-    async addRuleRaw(requestParameters: AddRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+    async addRuleRequestOpts(requestParameters: AddRuleRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['type'] == null) {
             throw new runtime.RequiredError(
                 'type',
@@ -107,13 +106,22 @@ export class BlockingApi extends runtime.BaseAPI {
 
         let urlPath = `/mail/rules`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: formParams,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Adds a new email deny rule into the system to block new emails that match the given criteria
+     * Creates a new email deny rule.
+     */
+    async addRuleRaw(requestParameters: AddRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+        const requestOptions = await this.addRuleRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));
     }
@@ -128,10 +136,9 @@ export class BlockingApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes one of the configured deny mail rules from the system.
-     * Removes an deny mail rule.
+     * Creates request options for deleteRule without sending the request
      */
-    async deleteRuleRaw(requestParameters: DeleteRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+    async deleteRuleRequestOpts(requestParameters: DeleteRuleRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['ruleId'] == null) {
             throw new runtime.RequiredError(
                 'ruleId',
@@ -151,12 +158,21 @@ export class BlockingApi extends runtime.BaseAPI {
         let urlPath = `/mail/rules/{ruleId}`;
         urlPath = urlPath.replace(`{${"ruleId"}}`, encodeURIComponent(String(requestParameters['ruleId'])));
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Removes one of the configured deny mail rules from the system.
+     * Removes an deny mail rule.
+     */
+    async deleteRuleRaw(requestParameters: DeleteRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+        const requestOptions = await this.deleteRuleRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));
     }
@@ -171,10 +187,9 @@ export class BlockingApi extends runtime.BaseAPI {
     }
 
     /**
-     * Removes an email address from the various block lists. 
-     * Removes an email address from the blocked list
+     * Creates request options for delistBlock without sending the request
      */
-    async delistBlockRaw(requestParameters: DelistBlockRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+    async delistBlockRequestOpts(requestParameters: DelistBlockRequest): Promise<runtime.RequestOpts> {
         if (requestParameters['body'] == null) {
             throw new runtime.RequiredError(
                 'body',
@@ -195,13 +210,22 @@ export class BlockingApi extends runtime.BaseAPI {
 
         let urlPath = `/mail/blocks/delete`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: requestParameters['body'] as any,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Removes an email address from the various block lists. 
+     * Removes an email address from the blocked list
+     */
+    async delistBlockRaw(requestParameters: DelistBlockRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GenericResponse>> {
+        const requestOptions = await this.delistBlockRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GenericResponseFromJSON(jsonValue));
     }
@@ -216,9 +240,9 @@ export class BlockingApi extends runtime.BaseAPI {
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Creates request options for getMailBlocks without sending the request
      */
-    async getMailBlocksRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailBlocks>> {
+    async getMailBlocksRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -230,12 +254,20 @@ export class BlockingApi extends runtime.BaseAPI {
 
         let urlPath = `/mail/blocks`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * displays a list of blocked email addresses
+     */
+    async getMailBlocksRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailBlocks>> {
+        const requestOptions = await this.getMailBlocksRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MailBlocksFromJSON(jsonValue));
     }
@@ -249,10 +281,9 @@ export class BlockingApi extends runtime.BaseAPI {
     }
 
     /**
-     * Returns a listing of all the deny block rules you have configured.
-     * Displays a listing of deny email rules.
+     * Creates request options for getRules without sending the request
      */
-    async getRulesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DenyRuleRecord>>> {
+    async getRulesRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -264,12 +295,21 @@ export class BlockingApi extends runtime.BaseAPI {
 
         let urlPath = `/mail/rules`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns a listing of all the deny block rules you have configured.
+     * Displays a listing of deny email rules.
+     */
+    async getRulesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<DenyRuleRecord>>> {
+        const requestOptions = await this.getRulesRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(DenyRuleRecordFromJSON));
     }

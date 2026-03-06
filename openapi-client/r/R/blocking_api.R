@@ -128,10 +128,11 @@ BlockingApi <- R6::R6Class(
     #' @param user (optional) Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return GenericResponse
-    AddRule = function(type, data, user = NULL, data_file = NULL, ...) {
-      local_var_response <- self$AddRuleWithHttpInfo(type, data, user, data_file = data_file, ...)
+    AddRule = function(type, data, user = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$AddRuleWithHttpInfo(type, data, user, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -151,9 +152,10 @@ BlockingApi <- R6::R6Class(
     #' @param user (optional) Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    AddRuleWithHttpInfo = function(type, data, user = NULL, data_file = NULL, ...) {
+    AddRuleWithHttpInfo = function(type, data, user = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -216,6 +218,10 @@ BlockingApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
@@ -250,10 +256,11 @@ BlockingApi <- R6::R6Class(
     #' @param rule_id The ID of the Rules entry.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return GenericResponse
-    DeleteRule = function(rule_id, data_file = NULL, ...) {
-      local_var_response <- self$DeleteRuleWithHttpInfo(rule_id, data_file = data_file, ...)
+    DeleteRule = function(rule_id, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$DeleteRuleWithHttpInfo(rule_id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -271,9 +278,10 @@ BlockingApi <- R6::R6Class(
     #' @param rule_id The ID of the Rules entry.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    DeleteRuleWithHttpInfo = function(rule_id, data_file = NULL, ...) {
+    DeleteRuleWithHttpInfo = function(rule_id, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -325,6 +333,10 @@ BlockingApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
@@ -359,10 +371,11 @@ BlockingApi <- R6::R6Class(
     #' @param body 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return GenericResponse
-    DelistBlock = function(body, data_file = NULL, ...) {
-      local_var_response <- self$DelistBlockWithHttpInfo(body, data_file = data_file, ...)
+    DelistBlock = function(body, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$DelistBlockWithHttpInfo(body, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -380,9 +393,10 @@ BlockingApi <- R6::R6Class(
     #' @param body 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    DelistBlockWithHttpInfo = function(body, data_file = NULL, ...) {
+    DelistBlockWithHttpInfo = function(body, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -436,6 +450,10 @@ BlockingApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
@@ -469,10 +487,11 @@ BlockingApi <- R6::R6Class(
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return MailBlocks
-    GetMailBlocks = function(data_file = NULL, ...) {
-      local_var_response <- self$GetMailBlocksWithHttpInfo(data_file = data_file, ...)
+    GetMailBlocks = function(data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$GetMailBlocksWithHttpInfo(data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -489,9 +508,10 @@ BlockingApi <- R6::R6Class(
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (MailBlocks) with additional information such as HTTP status code, headers
-    GetMailBlocksWithHttpInfo = function(data_file = NULL, ...) {
+    GetMailBlocksWithHttpInfo = function(data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -531,6 +551,10 @@ BlockingApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "MailBlocks"),
@@ -564,10 +588,11 @@ BlockingApi <- R6::R6Class(
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return array[DenyRuleRecord]
-    GetRules = function(data_file = NULL, ...) {
-      local_var_response <- self$GetRulesWithHttpInfo(data_file = data_file, ...)
+    GetRules = function(data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$GetRulesWithHttpInfo(data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -584,9 +609,10 @@ BlockingApi <- R6::R6Class(
     #'
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (array[DenyRuleRecord]) with additional information such as HTTP status code, headers
-    GetRulesWithHttpInfo = function(data_file = NULL, ...) {
+    GetRulesWithHttpInfo = function(data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -625,6 +651,10 @@ BlockingApi <- R6::R6Class(
         # save response in a file
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
+        }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
         }
 
         deserialized_resp_obj <- tryCatch(

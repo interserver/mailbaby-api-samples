@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     MailBaby Email Delivery and Management Service API
 

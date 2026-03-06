@@ -31,10 +31,9 @@ import {
 export class ServicesApi extends runtime.BaseAPI {
 
     /**
-     * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
-     * displays a list of mail service orders
+     * Creates request options for getMailOrders without sending the request
      */
-    async getMailOrdersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MailOrder>>> {
+    async getMailOrdersRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -46,12 +45,21 @@ export class ServicesApi extends runtime.BaseAPI {
 
         let urlPath = `/mail`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+     * displays a list of mail service orders
+     */
+    async getMailOrdersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<MailOrder>>> {
+        const requestOptions = await this.getMailOrdersRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(MailOrderFromJSON));
     }

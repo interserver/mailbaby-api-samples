@@ -173,7 +173,7 @@ import (
 )
 
 func main() {
-	body := "{"email":"client@domain.com"}" // string | 
+	body := "{\"email\":\"client@domain.com\"}" // string | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

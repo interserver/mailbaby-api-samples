@@ -55,10 +55,9 @@ export interface ViewMailLogRequest {
 export class HistoryApi extends runtime.BaseAPI {
 
     /**
-     * Returns information about the usage on your mail accounts.
-     * Account usage statistics.
+     * Creates request options for getStats without sending the request
      */
-    async getStatsRaw(requestParameters: GetStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailStatsType>> {
+    async getStatsRequestOpts(requestParameters: GetStatsRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['time'] != null) {
@@ -74,12 +73,21 @@ export class HistoryApi extends runtime.BaseAPI {
 
         let urlPath = `/mail/stats`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Returns information about the usage on your mail accounts.
+     * Account usage statistics.
+     */
+    async getStatsRaw(requestParameters: GetStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailStatsType>> {
+        const requestOptions = await this.getStatsRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MailStatsTypeFromJSON(jsonValue));
     }
@@ -94,10 +102,9 @@ export class HistoryApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get a listing of the emails sent through this system 
-     * displays the mail log
+     * Creates request options for viewMailLog without sending the request
      */
-    async viewMailLogRaw(requestParameters: ViewMailLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailLog>> {
+    async viewMailLogRequestOpts(requestParameters: ViewMailLogRequest): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         if (requestParameters['id'] != null) {
@@ -165,12 +172,21 @@ export class HistoryApi extends runtime.BaseAPI {
 
         let urlPath = `/mail/log`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Get a listing of the emails sent through this system 
+     * displays the mail log
+     */
+    async viewMailLogRaw(requestParameters: ViewMailLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<MailLog>> {
+        const requestOptions = await this.viewMailLogRequestOpts(requestParameters);
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => MailLogFromJSON(jsonValue));
     }

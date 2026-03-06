@@ -16,7 +16,6 @@ open class SendingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GenericResponse
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func rawMail(sendMailRaw: SendMailRaw, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse {
         return try await rawMailWithRequestBuilder(sendMailRaw: sendMailRaw, apiConfiguration: apiConfiguration).execute().body
     }
@@ -65,7 +64,6 @@ open class SendingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GenericResponse
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes? = nil, cc: EmailAddressesTypes? = nil, bcc: EmailAddressesTypes? = nil, attachments: [MailAttachment]? = nil, id: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse {
         return try await sendAdvMailWithRequestBuilder(subject: subject, body: body, from: from, to: to, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id, apiConfiguration: apiConfiguration).execute().body
     }
@@ -131,7 +129,6 @@ open class SendingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GenericResponse
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func sendMail(to: String, from: String, subject: String, body: String, id: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse {
         return try await sendMailWithRequestBuilder(to: to, from: from, subject: subject, body: body, id: id, apiConfiguration: apiConfiguration).execute().body
     }

@@ -80,7 +80,7 @@ public:
     int  getHttpResponseCode() const;
 
 Q_SIGNALS:
-    void on_execution_finished(OAIHttpRequestWorker *worker);
+    void on_execution_finished(OpenAPI::OAIHttpRequestWorker *worker);
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
 private:

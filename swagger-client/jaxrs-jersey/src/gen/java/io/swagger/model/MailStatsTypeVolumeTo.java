@@ -22,7 +22,7 @@ import javax.validation.Valid;
 /**
  * MailStatsTypeVolumeTo
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2026-01-21T17:25:28.684378848-05:00[America/New_York]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2026-03-06T14:46:44.724057075-05:00[America/New_York]")
 public class MailStatsTypeVolumeTo   {
   @JsonProperty("client@domain.com")
   private Integer clientAtDomainCom = null;

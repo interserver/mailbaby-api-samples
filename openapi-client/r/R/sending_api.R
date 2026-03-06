@@ -104,10 +104,11 @@ SendingApi <- R6::R6Class(
     #' @param send_mail_raw 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return GenericResponse
-    RawMail = function(send_mail_raw, data_file = NULL, ...) {
-      local_var_response <- self$RawMailWithHttpInfo(send_mail_raw, data_file = data_file, ...)
+    RawMail = function(send_mail_raw, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$RawMailWithHttpInfo(send_mail_raw, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -125,9 +126,10 @@ SendingApi <- R6::R6Class(
     #' @param send_mail_raw 
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    RawMailWithHttpInfo = function(send_mail_raw, data_file = NULL, ...) {
+    RawMailWithHttpInfo = function(send_mail_raw, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -181,6 +183,10 @@ SendingApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
@@ -223,10 +229,11 @@ SendingApi <- R6::R6Class(
     #' @param id (optional) (optional)  ID of the Mail order within our system to use as the Mail Account.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return GenericResponse
-    SendAdvMail = function(subject, body, from, to, replyto = NULL, cc = NULL, bcc = NULL, attachments = NULL, id = NULL, data_file = NULL, ...) {
-      local_var_response <- self$SendAdvMailWithHttpInfo(subject, body, from, to, replyto, cc, bcc, attachments, id, data_file = data_file, ...)
+    SendAdvMail = function(subject, body, from, to, replyto = NULL, cc = NULL, bcc = NULL, attachments = NULL, id = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$SendAdvMailWithHttpInfo(subject, body, from, to, replyto, cc, bcc, attachments, id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -252,9 +259,10 @@ SendingApi <- R6::R6Class(
     #' @param id (optional) (optional)  ID of the Mail order within our system to use as the Mail Account.
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    SendAdvMailWithHttpInfo = function(subject, body, from, to, replyto = NULL, cc = NULL, bcc = NULL, attachments = NULL, id = NULL, data_file = NULL, ...) {
+    SendAdvMailWithHttpInfo = function(subject, body, from, to, replyto = NULL, cc = NULL, bcc = NULL, attachments = NULL, id = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -355,6 +363,10 @@ SendingApi <- R6::R6Class(
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
         }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
+        }
 
         deserialized_resp_obj <- tryCatch(
           self$api_client$DeserializeResponse(local_var_resp, "GenericResponse"),
@@ -393,10 +405,11 @@ SendingApi <- R6::R6Class(
     #' @param id (optional) Optional Order ID
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return GenericResponse
-    SendMail = function(to, from, subject, body, id = NULL, data_file = NULL, ...) {
-      local_var_response <- self$SendMailWithHttpInfo(to, from, subject, body, id, data_file = data_file, ...)
+    SendMail = function(to, from, subject, body, id = NULL, data_file = NULL, ..., .parse = TRUE) {
+      local_var_response <- self$SendMailWithHttpInfo(to, from, subject, body, id, data_file = data_file, ..., .parse = .parse)
       if (local_var_response$status_code >= 200 && local_var_response$status_code <= 299) {
         return(local_var_response$content)
       } else if (local_var_response$status_code >= 300 && local_var_response$status_code <= 399) {
@@ -418,9 +431,10 @@ SendingApi <- R6::R6Class(
     #' @param id (optional) Optional Order ID
     #' @param data_file (optional) name of the data file to save the result
     #' @param ... Other optional arguments
+    #' @param .parse Logical. If \code{TRUE} then the response will be parsed to a generated type. If \code{FALSE} the response will be returned as unparsed text.
     #'
     #' @return API response (GenericResponse) with additional information such as HTTP status code, headers
-    SendMailWithHttpInfo = function(to, from, subject, body, id = NULL, data_file = NULL, ...) {
+    SendMailWithHttpInfo = function(to, from, subject, body, id = NULL, data_file = NULL, ..., .parse = TRUE) {
       args <- list(...)
       query_params <- list()
       header_params <- c()
@@ -500,6 +514,10 @@ SendingApi <- R6::R6Class(
         # save response in a file
         if (!is.null(data_file)) {
           self$api_client$WriteFile(local_var_resp, data_file)
+        }
+        if (!.parse) {
+          local_var_resp$content <- local_var_resp$response_as_text()
+          return(local_var_resp)
         }
 
         deserialized_resp_obj <- tryCatch(

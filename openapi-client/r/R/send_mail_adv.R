@@ -132,33 +132,56 @@ SendMailAdv <- R6::R6Class(
       }
       if (!is.null(self$`from`)) {
         SendMailAdvObject[["from"]] <-
-          self$`from`$toSimpleType()
+          self$extractSimpleType(self$`from`)
       }
       if (!is.null(self$`to`)) {
         SendMailAdvObject[["to"]] <-
-          self$`to`$toSimpleType()
+          self$extractSimpleType(self$`to`)
       }
       if (!is.null(self$`replyto`)) {
         SendMailAdvObject[["replyto"]] <-
-          self$`replyto`$toSimpleType()
+          self$extractSimpleType(self$`replyto`)
       }
       if (!is.null(self$`cc`)) {
         SendMailAdvObject[["cc"]] <-
-          self$`cc`$toSimpleType()
+          self$extractSimpleType(self$`cc`)
       }
       if (!is.null(self$`bcc`)) {
         SendMailAdvObject[["bcc"]] <-
-          self$`bcc`$toSimpleType()
+          self$extractSimpleType(self$`bcc`)
       }
       if (!is.null(self$`attachments`)) {
         SendMailAdvObject[["attachments"]] <-
-          lapply(self$`attachments`, function(x) x$toSimpleType())
+          self$extractSimpleType(self$`attachments`)
       }
       if (!is.null(self$`id`)) {
         SendMailAdvObject[["id"]] <-
           self$`id`
       }
       return(SendMailAdvObject)
+    },
+
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
     },
 
     #' @description

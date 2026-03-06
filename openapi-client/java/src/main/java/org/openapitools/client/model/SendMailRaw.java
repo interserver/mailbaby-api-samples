@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Raw Email Object
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-01-21T17:21:29.268903659-05:00[America/New_York]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T14:41:55.966042264-05:00[America/New_York]", comments = "Generator version: 7.20.0")
 public class SendMailRaw {
   public static final String SERIALIZED_NAME_RAW_EMAIL = "raw_email";
   @SerializedName(SERIALIZED_NAME_RAW_EMAIL)

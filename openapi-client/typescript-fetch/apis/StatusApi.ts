@@ -21,9 +21,9 @@ import * as runtime from '../runtime';
 export class StatusApi extends runtime.BaseAPI {
 
     /**
-     * Checks if the server is running
+     * Creates request options for pingServer without sending the request
      */
-    async pingServerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async pingServerRequestOpts(): Promise<runtime.RequestOpts> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -35,12 +35,20 @@ export class StatusApi extends runtime.BaseAPI {
 
         let urlPath = `/ping`;
 
-        const response = await this.request({
+        return {
             path: urlPath,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
-        }, initOverrides);
+        };
+    }
+
+    /**
+     * Checks if the server is running
+     */
+    async pingServerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const requestOptions = await this.pingServerRequestOpts();
+        const response = await this.request(requestOptions, initOverrides);
 
         return new runtime.VoidApiResponse(response);
     }

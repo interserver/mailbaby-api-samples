@@ -28,7 +28,6 @@ open class BlockingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GenericResponse
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func addRule(type: ModelType_addRule, data: String, user: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse {
         return try await addRuleWithRequestBuilder(type: type, data: data, user: user, apiConfiguration: apiConfiguration).execute().body
     }
@@ -78,7 +77,6 @@ open class BlockingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GenericResponse
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func deleteRule(ruleId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse {
         return try await deleteRuleWithRequestBuilder(ruleId: ruleId, apiConfiguration: apiConfiguration).execute().body
     }
@@ -122,7 +120,6 @@ open class BlockingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GenericResponse
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func delistBlock(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse {
         return try await delistBlockWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
     }
@@ -162,7 +159,6 @@ open class BlockingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: MailBlocks
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func getMailBlocks(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailBlocks {
         return try await getMailBlocksWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
@@ -200,7 +196,6 @@ open class BlockingAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: [DenyRuleRecord]
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func getRules(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [DenyRuleRecord] {
         return try await getRulesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }

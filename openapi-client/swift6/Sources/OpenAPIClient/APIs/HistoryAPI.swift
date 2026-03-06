@@ -29,7 +29,6 @@ open class HistoryAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: MailStatsType
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func getStats(time: Time_getStats? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailStatsType {
         return try await getStatsWithRequestBuilder(time: time, apiConfiguration: apiConfiguration).execute().body
     }
@@ -94,7 +93,6 @@ open class HistoryAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: MailLog
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailLog {
         return try await viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered, apiConfiguration: apiConfiguration).execute().body
     }

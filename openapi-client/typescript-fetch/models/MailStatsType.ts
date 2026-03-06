@@ -29,7 +29,7 @@ import {
 export interface MailStatsType {
     /**
      * 
-     * @type {string}
+     * @type {MailStatsTypeTimeEnum}
      * @memberof MailStatsType
      */
     time?: MailStatsTypeTimeEnum;

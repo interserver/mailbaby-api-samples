@@ -13,19 +13,19 @@
 import { RequestFile } from './models';
 
 export class MailStatsTypeVolumeFrom {
-    'billingsomedomainCom'?: number;
-    'salessomedomainCom'?: number;
+    'billingsomedomain_com'?: number;
+    'salessomedomain_com'?: number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "billingsomedomainCom",
+            "name": "billingsomedomain_com",
             "baseName": "billing@somedomain.com",
             "type": "number"
         },
         {
-            "name": "salessomedomainCom",
+            "name": "salessomedomain_com",
             "baseName": "sales@somedomain.com",
             "type": "number"
         }    ];

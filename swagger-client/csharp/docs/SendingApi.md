@@ -1,4 +1,4 @@
-# IO.Swagger.Api.SendingApi
+# mailbaby-client-csharp.Api.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -20,9 +20,9 @@ This call will let you pass the raw / complete email contents (including headers
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {
@@ -85,9 +85,9 @@ Sends An email through one of your mail orders allowing additional options such 
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {
@@ -166,9 +166,9 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {

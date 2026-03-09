@@ -1,4 +1,4 @@
-# swagger_client.BlockingApi
+# mailbaby-client-python.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -21,18 +21,18 @@ Adds a new email deny rule into the system to block new emails that match the gi
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.BlockingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
 user = 'user_example' # str | 
 type = 'type_example' # str | 
 data = 'data_example' # str | 
@@ -79,18 +79,18 @@ Removes one of the configured deny mail rules from the system.
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.BlockingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
 rule_id = 56 # int | The ID of the Rules entry.
 
 try:
@@ -133,18 +133,18 @@ Removes an email address from the various block lists.
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.BlockingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
 body = '{   \"value\" : {     \"email\" : \"client@domain.com\"   } }' # str | 
 
 try:
@@ -185,18 +185,18 @@ displays a list of blocked email addresses
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.BlockingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
 
 try:
     # displays a list of blocked email addresses
@@ -235,18 +235,18 @@ Returns a listing of all the deny block rules you have configured.
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.BlockingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
 
 try:
     # Displays a listing of deny email rules.

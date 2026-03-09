@@ -16,7 +16,7 @@ import io.circe.{Decoder, Encoder}
 
 
 /** An email record
-  * @param id internal db id
+  * @param _id internal db id
   * @param id mail id
   * @param from from address
   * @param to to address
@@ -41,7 +41,7 @@ import io.circe.{Decoder, Encoder}
   * @param messageId message id
   */
 case class MailLogEntry(
-    id: Int,
+    _id: Int,
     id: String,
     from: String,
     to: String,
@@ -70,7 +70,7 @@ object MailLogEntry {
   given encoderMailLogEntry: Encoder[MailLogEntry] = Encoder.instance { t =>
     Json.fromFields{
       Seq(
-        Some("_id" -> t.id.asJson),
+        Some("_id" -> t._id.asJson),
         Some("id" -> t.id.asJson),
         Some("from" -> t.from.asJson),
         Some("to" -> t.to.asJson),
@@ -98,7 +98,7 @@ object MailLogEntry {
   }
   given decoderMailLogEntry: Decoder[MailLogEntry] = Decoder.instance { c =>
     for {
-      id <- c.downField("_id").as[Int]
+      _id <- c.downField("_id").as[Int]
       id <- c.downField("id").as[String]
       from <- c.downField("from").as[String]
       to <- c.downField("to").as[String]
@@ -122,7 +122,7 @@ object MailLogEntry {
       response <- c.downField("response").as[String]
       messageId <- c.downField("messageId").as[Option[String]]
     } yield MailLogEntry(
-      id = id,
+      _id = _id,
       id = id,
       from = from,
       to = to,

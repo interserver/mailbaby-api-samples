@@ -28,7 +28,7 @@ import java.io.InputStream;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJAXRSCXFCDIServerCodegen", date = "2026-03-06T14:46:36.569040960-05:00[America/New_York]")
+
 public interface MailApiService {
       public Response addRule(String user, String type, String data, SecurityContext securityContext);
       public Response addRule(DenyRuleNew body, SecurityContext securityContext);

@@ -11,8 +11,8 @@
  */
 
 export interface MailStatsTypeVolumeTo { 
-    clientdomainCom?: number;
-    usersiteNet?: number;
-    salescompanyCom?: number;
-    clientanothersiteCom?: number;
+    clientdomain_com?: number;
+    usersite_net?: number;
+    salescompany_com?: number;
+    clientanothersite_com?: number;
 }

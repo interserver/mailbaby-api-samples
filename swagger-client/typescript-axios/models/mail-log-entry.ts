@@ -27,7 +27,7 @@ export interface MailLogEntry {
      * @memberof MailLogEntry
      * @example 103172
      */
-    id: number;
+    _id: number;
 
     /**
      * mail id

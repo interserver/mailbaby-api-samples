@@ -1,12 +1,12 @@
-# IO.Swagger.Model.MailStatsTypeVolumeTo
+# mailbaby-client-csharp.Model.MailStatsTypeVolumeTo
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientdomainCom** | **int?** |  | [optional] 
-**UsersiteNet** | **int?** |  | [optional] 
-**SalescompanyCom** | **int?** |  | [optional] 
-**ClientanothersiteCom** | **int?** |  | [optional] 
+**clientdomain_com** | **int?** |  | [optional] 
+**usersite_net** | **int?** |  | [optional] 
+**salescompany_com** | **int?** |  | [optional] 
+**clientanothersite_com** | **int?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

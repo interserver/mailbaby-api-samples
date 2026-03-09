@@ -16,40 +16,40 @@ import io.circe.{Decoder, Encoder}
 
 
 /** 
-  * @param clientdomainCom 
-  * @param usersiteNet 
-  * @param salescompanyCom 
-  * @param clientanothersiteCom 
+  * @param clientdomain_com 
+  * @param usersite_net 
+  * @param salescompany_com 
+  * @param clientanothersite_com 
   */
 case class MailStatsTypeVolumeTo(
-    clientdomainCom: Option[Int] = None,
-    usersiteNet: Option[Int] = None,
-    salescompanyCom: Option[Int] = None,
-    clientanothersiteCom: Option[Int] = None
+    clientdomain_com: Option[Int] = None,
+    usersite_net: Option[Int] = None,
+    salescompany_com: Option[Int] = None,
+    clientanothersite_com: Option[Int] = None
 )
   
 object MailStatsTypeVolumeTo {
   given encoderMailStatsTypeVolumeTo: Encoder[MailStatsTypeVolumeTo] = Encoder.instance { t =>
     Json.fromFields{
       Seq(
-        t.clientdomainCom.map(v => "client@domain.com" -> v.asJson),
-        t.usersiteNet.map(v => "user@site.net" -> v.asJson),
-        t.salescompanyCom.map(v => "sales@company.com" -> v.asJson),
-        t.clientanothersiteCom.map(v => "client@anothersite.com" -> v.asJson)
+        t.clientdomain_com.map(v => "client@domain.com" -> v.asJson),
+        t.usersite_net.map(v => "user@site.net" -> v.asJson),
+        t.salescompany_com.map(v => "sales@company.com" -> v.asJson),
+        t.clientanothersite_com.map(v => "client@anothersite.com" -> v.asJson)
       ).flatten
     }
   }
   given decoderMailStatsTypeVolumeTo: Decoder[MailStatsTypeVolumeTo] = Decoder.instance { c =>
     for {
-      clientdomainCom <- c.downField("client@domain.com").as[Option[Int]]
-      usersiteNet <- c.downField("user@site.net").as[Option[Int]]
-      salescompanyCom <- c.downField("sales@company.com").as[Option[Int]]
-      clientanothersiteCom <- c.downField("client@anothersite.com").as[Option[Int]]
+      clientdomain_com <- c.downField("client@domain.com").as[Option[Int]]
+      usersite_net <- c.downField("user@site.net").as[Option[Int]]
+      salescompany_com <- c.downField("sales@company.com").as[Option[Int]]
+      clientanothersite_com <- c.downField("client@anothersite.com").as[Option[Int]]
     } yield MailStatsTypeVolumeTo(
-      clientdomainCom = clientdomainCom,
-      usersiteNet = usersiteNet,
-      salescompanyCom = salescompanyCom,
-      clientanothersiteCom = clientanothersiteCom
+      clientdomain_com = clientdomain_com,
+      usersite_net = usersite_net,
+      salescompany_com = salescompany_com,
+      clientanothersite_com = clientanothersite_com
     )
   }
 }

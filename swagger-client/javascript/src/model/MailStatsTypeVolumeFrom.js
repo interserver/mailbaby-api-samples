@@ -40,21 +40,21 @@ export default class MailStatsTypeVolumeFrom {
     if (data) {
       obj = obj || new MailStatsTypeVolumeFrom();
       if (data.hasOwnProperty('billing@somedomain.com'))
-        obj.billingsomedomainCom = ApiClient.convertToType(data['billing@somedomain.com'], 'Number');
+        obj.billingsomedomain_com = ApiClient.convertToType(data['billing@somedomain.com'], 'Number');
       if (data.hasOwnProperty('sales@somedomain.com'))
-        obj.salessomedomainCom = ApiClient.convertToType(data['sales@somedomain.com'], 'Number');
+        obj.salessomedomain_com = ApiClient.convertToType(data['sales@somedomain.com'], 'Number');
     }
     return obj;
   }
 }
 
 /**
- * @member {Number} billingsomedomainCom
+ * @member {Number} billingsomedomain_com
  */
-MailStatsTypeVolumeFrom.prototype.billingsomedomainCom = undefined;
+MailStatsTypeVolumeFrom.prototype.billingsomedomain_com = undefined;
 
 /**
- * @member {Number} salessomedomainCom
+ * @member {Number} salessomedomain_com
  */
-MailStatsTypeVolumeFrom.prototype.salessomedomainCom = undefined;
+MailStatsTypeVolumeFrom.prototype.salessomedomain_com = undefined;
 

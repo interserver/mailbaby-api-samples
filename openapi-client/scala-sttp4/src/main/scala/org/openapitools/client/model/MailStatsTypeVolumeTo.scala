@@ -13,9 +13,9 @@ package org.openapitools.client.model
 
 
 case class MailStatsTypeVolumeTo(
-  clientdomainCom: Option[Int] = None,
-  usersiteNet: Option[Int] = None,
-  salescompanyCom: Option[Int] = None,
-  clientanothersiteCom: Option[Int] = None
+  clientdomain_com: Option[Int] = None,
+  usersite_net: Option[Int] = None,
+  salescompany_com: Option[Int] = None,
+  clientanothersite_com: Option[Int] = None
 )
 

@@ -24,13 +24,13 @@ export interface MailStatsTypeVolumeFrom {
      * @type {number}
      * @memberof MailStatsTypeVolumeFrom
      */
-    billingsomedomainCom?: number;
+    billingsomedomain_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeFrom
      */
-    salessomedomainCom?: number;
+    salessomedomain_com?: number;
 }
 
 /**
@@ -50,8 +50,8 @@ export function MailStatsTypeVolumeFromFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'billingsomedomainCom': json['billing@somedomain.com'] == null ? undefined : json['billing@somedomain.com'],
-        'salessomedomainCom': json['sales@somedomain.com'] == null ? undefined : json['sales@somedomain.com'],
+        'billingsomedomain_com': json['billing@somedomain.com'] == null ? undefined : json['billing@somedomain.com'],
+        'salessomedomain_com': json['sales@somedomain.com'] == null ? undefined : json['sales@somedomain.com'],
     };
 }
 
@@ -66,8 +66,8 @@ export function MailStatsTypeVolumeFromToJSONTyped(value?: MailStatsTypeVolumeFr
 
     return {
         
-        'billing@somedomain.com': value['billingsomedomainCom'],
-        'sales@somedomain.com': value['salessomedomainCom'],
+        'billing@somedomain.com': value['billingsomedomain_com'],
+        'sales@somedomain.com': value['salessomedomain_com'],
     };
 }
 

@@ -1,4 +1,4 @@
-# swagger_client.SendingApi
+# mailbaby-client-python.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,19 +19,19 @@ This call will let you pass the raw / complete email contents (including headers
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SendingApi(swagger_client.ApiClient(configuration))
-body = swagger_client.SendMailRaw() # SendMailRaw | 
+api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
+body = mailbaby-client-python.SendMailRaw() # SendMailRaw | 
 
 try:
     # Sends a raw email
@@ -73,26 +73,26 @@ Sends An email through one of your mail orders allowing additional options such 
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SendingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
 subject = 'subject_example' # str | 
 body = 'body_example' # str | 
-_from = swagger_client.EmailAddressTypes() # EmailAddressTypes | 
-to = swagger_client.EmailAddressesTypes() # EmailAddressesTypes | 
-replyto = swagger_client.EmailAddressesTypes() # EmailAddressesTypes | 
-cc = swagger_client.EmailAddressesTypes() # EmailAddressesTypes | 
-bcc = swagger_client.EmailAddressesTypes() # EmailAddressesTypes | 
-attachments = [swagger_client.MailAttachment()] # list[MailAttachment] | 
+_from = mailbaby-client-python.EmailAddressTypes() # EmailAddressTypes | 
+to = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
+replyto = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
+cc = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
+bcc = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
+attachments = [mailbaby-client-python.MailAttachment()] # list[MailAttachment] | 
 id = 789 # int | 
 
 try:
@@ -143,18 +143,18 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.SendingApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
 to = 'to_example' # str | 
 _from = '_from_example' # str | 
 subject = 'subject_example' # str | 

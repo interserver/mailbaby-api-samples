@@ -40,28 +40,28 @@
         expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo);
       });
 
-      it('should have the property clientdomainCom (base name: "client@domain.com")', function() {
-        // TODO: update the code to test the property clientdomainCom
-        expect(instance).to.have.property('clientdomainCom');
-        // expect(instance.clientdomainCom).to.be(expectedValueLiteral);
+      it('should have the property clientdomain_com (base name: "client@domain.com")', function() {
+        // TODO: update the code to test the property clientdomain_com
+        expect(instance).to.have.property('clientdomain_com');
+        // expect(instance.clientdomain_com).to.be(expectedValueLiteral);
       });
 
-      it('should have the property usersiteNet (base name: "user@site.net")', function() {
-        // TODO: update the code to test the property usersiteNet
-        expect(instance).to.have.property('usersiteNet');
-        // expect(instance.usersiteNet).to.be(expectedValueLiteral);
+      it('should have the property usersite_net (base name: "user@site.net")', function() {
+        // TODO: update the code to test the property usersite_net
+        expect(instance).to.have.property('usersite_net');
+        // expect(instance.usersite_net).to.be(expectedValueLiteral);
       });
 
-      it('should have the property salescompanyCom (base name: "sales@company.com")', function() {
-        // TODO: update the code to test the property salescompanyCom
-        expect(instance).to.have.property('salescompanyCom');
-        // expect(instance.salescompanyCom).to.be(expectedValueLiteral);
+      it('should have the property salescompany_com (base name: "sales@company.com")', function() {
+        // TODO: update the code to test the property salescompany_com
+        expect(instance).to.have.property('salescompany_com');
+        // expect(instance.salescompany_com).to.be(expectedValueLiteral);
       });
 
-      it('should have the property clientanothersiteCom (base name: "client@anothersite.com")', function() {
-        // TODO: update the code to test the property clientanothersiteCom
-        expect(instance).to.have.property('clientanothersiteCom');
-        // expect(instance.clientanothersiteCom).to.be(expectedValueLiteral);
+      it('should have the property clientanothersite_com (base name: "client@anothersite.com")', function() {
+        // TODO: update the code to test the property clientanothersite_com
+        expect(instance).to.have.property('clientanothersite_com');
+        // expect(instance.clientanothersite_com).to.be(expectedValueLiteral);
       });
 
     });

@@ -23,7 +23,7 @@ export interface SendMailRaw  {
      * @type {string}
      * @memberof SendMailRaw
      */
-    rawEmail: string;
+    raw_email: string;
     /**
      * Optional order id
      * @type {number}
@@ -34,7 +34,7 @@ export interface SendMailRaw  {
 
 export function SendMailRawFromJSON(json: any): SendMailRaw {
     return {
-        'rawEmail': json['raw_email'],
+        'raw_email': json['raw_email'],
         'id': !exists(json, 'id') ? undefined : json['id'],
     };
 }
@@ -44,7 +44,7 @@ export function SendMailRawToJSON(value?: SendMailRaw): any {
         return undefined;
     }
     return {
-        'raw_email': value.rawEmail,
+        'raw_email': value.raw_email,
         'id': value.id,
     };
 }

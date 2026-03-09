@@ -40,7 +40,7 @@
           // TODO: uncomment, update parameter values for rawMail call and complete the assertions
           /*
 
-          instance.rawMail(body, rawEmail, id, function(error, data, response) {
+          instance.rawMail(body, raw_email, id, function(error, data, response) {
             if (error) {
               done(error);
               return;

@@ -26,7 +26,7 @@ export interface SendMailRaw {
      * @type {string}
      * @memberof SendMailRaw
      */
-    rawEmail: string;
+    raw_email: string;
 
     /**
      * Optional order id

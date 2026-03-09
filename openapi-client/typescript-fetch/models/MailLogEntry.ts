@@ -24,7 +24,7 @@ export interface MailLogEntry {
      * @type {number}
      * @memberof MailLogEntry
      */
-    id: number;
+    _id: number;
     /**
      * mail id
      * @type {string}
@@ -163,7 +163,7 @@ export interface MailLogEntry {
  * Check if a given object implements the MailLogEntry interface.
  */
 export function instanceOfMailLogEntry(value: object): value is MailLogEntry {
-    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('_id' in value) || value['_id'] === undefined) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('from' in value) || value['from'] === undefined) return false;
     if (!('to' in value) || value['to'] === undefined) return false;
@@ -198,7 +198,7 @@ export function MailLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        'id': json['_id'],
+        '_id': json['_id'],
         'id': json['id'],
         'from': json['from'],
         'to': json['to'],
@@ -235,7 +235,7 @@ export function MailLogEntryToJSONTyped(value?: MailLogEntry | null, ignoreDiscr
 
     return {
         
-        '_id': value['id'],
+        '_id': value['_id'],
         'id': value['id'],
         'from': value['from'],
         'to': value['to'],

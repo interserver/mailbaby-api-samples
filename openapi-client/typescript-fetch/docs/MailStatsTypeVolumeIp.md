@@ -6,10 +6,10 @@
 
 Name | Type
 ------------ | -------------
-`_1111` | number
-`_2222` | number
-`_3333` | number
-`_4444` | number
+`_1_1_1_1` | number
+`_2_2_2_2` | number
+`_3_3_3_3` | number
+`_4_4_4_4` | number
 
 ## Example
 
@@ -18,10 +18,10 @@ import type { MailStatsTypeVolumeIp } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "_1111": null,
-  "_2222": null,
-  "_3333": null,
-  "_4444": null,
+  "_1_1_1_1": null,
+  "_2_2_2_2": null,
+  "_3_3_3_3": null,
+  "_4_4_4_4": null,
 } satisfies MailStatsTypeVolumeIp
 
 console.log(example)

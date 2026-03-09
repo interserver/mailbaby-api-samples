@@ -6,10 +6,10 @@
 
 Name | Type
 ------------ | -------------
-`clientdomainCom` | number
-`usersiteNet` | number
-`salescompanyCom` | number
-`clientanothersiteCom` | number
+`clientdomain_com` | number
+`usersite_net` | number
+`salescompany_com` | number
+`clientanothersite_com` | number
 
 ## Example
 
@@ -18,10 +18,10 @@ import type { MailStatsTypeVolumeTo } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "clientdomainCom": null,
-  "usersiteNet": null,
-  "salescompanyCom": null,
-  "clientanothersiteCom": null,
+  "clientdomain_com": null,
+  "usersite_net": null,
+  "salescompany_com": null,
+  "clientanothersite_com": null,
 } satisfies MailStatsTypeVolumeTo
 
 console.log(example)

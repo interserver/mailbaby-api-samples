@@ -26,10 +26,10 @@ export default class SendMailRaw {
    * Raw Email Object
    * @alias module:model/SendMailRaw
    * @class
-   * @param rawEmail {String} The entire email contents
+   * @param raw_email {String} The entire email contents
    */
-  constructor(rawEmail) {
-    this.rawEmail = rawEmail;
+  constructor(raw_email) {
+    this.raw_email = raw_email;
   }
 
   /**
@@ -43,7 +43,7 @@ export default class SendMailRaw {
     if (data) {
       obj = obj || new SendMailRaw();
       if (data.hasOwnProperty('raw_email'))
-        obj.rawEmail = ApiClient.convertToType(data['raw_email'], 'String');
+        obj.raw_email = ApiClient.convertToType(data['raw_email'], 'String');
       if (data.hasOwnProperty('id'))
         obj.id = ApiClient.convertToType(data['id'], 'Number');
     }
@@ -53,9 +53,9 @@ export default class SendMailRaw {
 
 /**
  * The entire email contents
- * @member {String} rawEmail
+ * @member {String} raw_email
  */
-SendMailRaw.prototype.rawEmail = undefined;
+SendMailRaw.prototype.raw_email = undefined;
 
 /**
  * Optional order id

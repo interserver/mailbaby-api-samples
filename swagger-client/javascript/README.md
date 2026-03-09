@@ -27,11 +27,11 @@ npm install mail_baby_email_delivery_and_management_service_api --save
 #### git
 #
 If the library is hosted at a git repository, e.g.
-https://github.com/GIT_USER_ID/GIT_REPO_ID
+https://github.com/interserver/mailbaby-client-javascript
 then install it via:
 
 ```shell
-    npm install GIT_USER_ID/GIT_REPO_ID --save
+    npm install interserver/mailbaby-client-javascript --save
 ```
 
 ### For browser

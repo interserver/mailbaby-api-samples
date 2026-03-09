@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
 @Schema(description = "Details for an Email")
 @Validated
 @NotUndefined
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2026-03-06T14:47:09.185281235-05:00[America/New_York]")
+
 
 
 public class SendMail   {

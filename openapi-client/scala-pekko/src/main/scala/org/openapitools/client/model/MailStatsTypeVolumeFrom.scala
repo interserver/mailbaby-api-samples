@@ -14,7 +14,7 @@ package org.openapitools.client.model
 import org.openapitools.client.core.ApiModel
 
 case class MailStatsTypeVolumeFrom (
-  billingsomedomainCom: Option[Int] = None,
-  salessomedomainCom: Option[Int] = None
+  billingsomedomain_com: Option[Int] = None,
+  salessomedomain_com: Option[Int] = None
 ) extends ApiModel
 

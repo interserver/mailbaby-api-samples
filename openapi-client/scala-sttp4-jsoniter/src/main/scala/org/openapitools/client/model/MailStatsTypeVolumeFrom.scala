@@ -14,7 +14,7 @@ package org.openapitools.client.model
 import com.github.plokhotnyuk.jsoniter_scala.macros.named
 
 case class MailStatsTypeVolumeFrom(
-  @named("billing@somedomain.com") billingsomedomainCom: Option[Int] = scala.None,
-  @named("sales@somedomain.com") salessomedomainCom: Option[Int] = scala.None
+  @named("billing@somedomain.com") billingsomedomain_com: Option[Int] = scala.None,
+  @named("sales@somedomain.com") salessomedomain_com: Option[Int] = scala.None
 )
 

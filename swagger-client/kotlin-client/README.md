@@ -1,4 +1,4 @@
-# io.swagger.client - Kotlin client library for MailBaby Email Delivery and Management Service API
+# mailbaby-client-kotlin-client - Kotlin client library for MailBaby Email Delivery and Management Service API
 
 ## Requires
 

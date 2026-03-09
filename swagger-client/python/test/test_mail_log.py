@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.mail_log import MailLog  # noqa: E501
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.models.mail_log import MailLog  # noqa: E501
+from mailbaby-client-python.rest import ApiException
 
 
 class TestMailLog(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestMailLog(unittest.TestCase):
     def testMailLog(self):
         """Test MailLog"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.mail_log.MailLog()  # noqa: E501
+        # model = mailbaby-client-python.models.mail_log.MailLog()  # noqa: E501
         pass
 
 

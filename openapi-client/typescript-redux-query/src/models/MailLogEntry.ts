@@ -23,7 +23,7 @@ export interface MailLogEntry  {
      * @type {number}
      * @memberof MailLogEntry
      */
-    id: number;
+    _id: number;
     /**
      * mail id
      * @type {string}
@@ -160,7 +160,7 @@ export interface MailLogEntry  {
 
 export function MailLogEntryFromJSON(json: any): MailLogEntry {
     return {
-        'id': json['_id'],
+        '_id': json['_id'],
         'id': json['id'],
         'from': json['from'],
         'to': json['to'],
@@ -191,7 +191,7 @@ export function MailLogEntryToJSON(value?: MailLogEntry): any {
         return undefined;
     }
     return {
-        '_id': value.id,
+        '_id': value._id,
         'id': value.id,
         'from': value.from,
         'to': value.to,

@@ -1,4 +1,4 @@
-# IO.Swagger.Model.EmailAddressTypes
+# mailbaby-client-csharp.Model.EmailAddressTypes
 ## Properties
 
 Name | Type | Description | Notes

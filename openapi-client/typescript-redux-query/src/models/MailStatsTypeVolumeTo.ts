@@ -23,33 +23,33 @@ export interface MailStatsTypeVolumeTo  {
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientdomainCom?: number;
+    clientdomain_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    usersiteNet?: number;
+    usersite_net?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    salescompanyCom?: number;
+    salescompany_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientanothersiteCom?: number;
+    clientanothersite_com?: number;
 }
 
 export function MailStatsTypeVolumeToFromJSON(json: any): MailStatsTypeVolumeTo {
     return {
-        'clientdomainCom': !exists(json, 'client@domain.com') ? undefined : json['client@domain.com'],
-        'usersiteNet': !exists(json, 'user@site.net') ? undefined : json['user@site.net'],
-        'salescompanyCom': !exists(json, 'sales@company.com') ? undefined : json['sales@company.com'],
-        'clientanothersiteCom': !exists(json, 'client@anothersite.com') ? undefined : json['client@anothersite.com'],
+        'clientdomain_com': !exists(json, 'client@domain.com') ? undefined : json['client@domain.com'],
+        'usersite_net': !exists(json, 'user@site.net') ? undefined : json['user@site.net'],
+        'salescompany_com': !exists(json, 'sales@company.com') ? undefined : json['sales@company.com'],
+        'clientanothersite_com': !exists(json, 'client@anothersite.com') ? undefined : json['client@anothersite.com'],
     };
 }
 
@@ -58,10 +58,10 @@ export function MailStatsTypeVolumeToToJSON(value?: MailStatsTypeVolumeTo): any 
         return undefined;
     }
     return {
-        'client@domain.com': value.clientdomainCom,
-        'user@site.net': value.usersiteNet,
-        'sales@company.com': value.salescompanyCom,
-        'client@anothersite.com': value.clientanothersiteCom,
+        'client@domain.com': value.clientdomain_com,
+        'user@site.net': value.usersite_net,
+        'sales@company.com': value.salescompany_com,
+        'client@anothersite.com': value.clientanothersite_com,
     };
 }
 

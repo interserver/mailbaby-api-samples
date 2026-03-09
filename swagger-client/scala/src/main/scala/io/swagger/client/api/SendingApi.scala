@@ -90,12 +90,12 @@ class SendingApi(
    * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
    *
    * @param body  
-   * @param rawEmail  
+   * @param raw_email  
    * @param id  
    * @return GenericResponse
    */
-  def rawMail(body: SendMailRaw, rawEmail: String, id: Integer): Option[GenericResponse] = {
-    val await = Try(Await.result(rawMailAsync(body, rawEmail, id), Duration.Inf))
+  def rawMail(body: SendMailRaw, raw_email: String, id: Integer): Option[GenericResponse] = {
+    val await = Try(Await.result(rawMailAsync(body, raw_email, id), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -107,12 +107,12 @@ class SendingApi(
    * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
    *
    * @param body  
-   * @param rawEmail  
+   * @param raw_email  
    * @param id  
    * @return Future(GenericResponse)
    */
-  def rawMailAsync(body: SendMailRaw, rawEmail: String, id: Integer): Future[GenericResponse] = {
-      helper.rawMail(body, rawEmail, id)
+  def rawMailAsync(body: SendMailRaw, raw_email: String, id: Integer): Future[GenericResponse] = {
+      helper.rawMail(body, raw_email, id)
   }
 
   /**
@@ -200,7 +200,7 @@ class SendingApi(
 class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   def rawMail(body: SendMailRaw,
-    rawEmail: String,
+    raw_email: String,
     id: Integer)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMailRaw]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/rawsend"))
@@ -210,7 +210,7 @@ class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val headerParams = new mutable.HashMap[String, String]
 
     if (body == null) throw new Exception("Missing required parameter 'body' when calling SendingApi->rawMail")
-    if (rawEmail == null) throw new Exception("Missing required parameter 'rawEmail' when calling SendingApi->rawMail")
+    if (raw_email == null) throw new Exception("Missing required parameter 'raw_email' when calling SendingApi->rawMail")
 
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))

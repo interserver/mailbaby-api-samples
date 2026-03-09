@@ -11,6 +11,6 @@
  */
 
 export interface MailStatsTypeVolumeFrom { 
-    billingsomedomainCom?: number;
-    salessomedomainCom?: number;
+    billingsomedomain_com?: number;
+    salessomedomain_com?: number;
 }

@@ -7,8 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billingsomedomainCom** | **Int** |  |  [optional]
-**salessomedomainCom** | **Int** |  |  [optional]
+**billingsomedomain_com** | **Int** |  |  [optional]
+**salessomedomain_com** | **Int** |  |  [optional]
 
 
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_1111** | **Number** |  | [optional] 
-**_2222** | **Number** |  | [optional] 
-**_3333** | **Number** |  | [optional] 
-**_4444** | **Number** |  | [optional] 
+**_1_1_1_1** | **Number** |  | [optional] 
+**_2_2_2_2** | **Number** |  | [optional] 
+**_3_3_3_3** | **Number** |  | [optional] 
+**_4_4_4_4** | **Number** |  | [optional] 
 
 

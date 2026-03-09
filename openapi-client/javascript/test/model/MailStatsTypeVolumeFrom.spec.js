@@ -54,14 +54,14 @@
       //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeFrom);
     });
 
-    it('should have the property billingsomedomainCom (base name: "billing@somedomain.com")', function() {
-      // uncomment below and update the code to test the property billingsomedomainCom
+    it('should have the property billingsomedomain_com (base name: "billing@somedomain.com")', function() {
+      // uncomment below and update the code to test the property billingsomedomain_com
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeFrom();
       //expect(instance).to.be();
     });
 
-    it('should have the property salessomedomainCom (base name: "sales@somedomain.com")', function() {
-      // uncomment below and update the code to test the property salessomedomainCom
+    it('should have the property salessomedomain_com (base name: "sales@somedomain.com")', function() {
+      // uncomment below and update the code to test the property salessomedomain_com
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeFrom();
       //expect(instance).to.be();
     });

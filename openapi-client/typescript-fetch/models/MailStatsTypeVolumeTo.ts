@@ -24,25 +24,25 @@ export interface MailStatsTypeVolumeTo {
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientdomainCom?: number;
+    clientdomain_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    usersiteNet?: number;
+    usersite_net?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    salescompanyCom?: number;
+    salescompany_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientanothersiteCom?: number;
+    clientanothersite_com?: number;
 }
 
 /**
@@ -62,10 +62,10 @@ export function MailStatsTypeVolumeToFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'clientdomainCom': json['client@domain.com'] == null ? undefined : json['client@domain.com'],
-        'usersiteNet': json['user@site.net'] == null ? undefined : json['user@site.net'],
-        'salescompanyCom': json['sales@company.com'] == null ? undefined : json['sales@company.com'],
-        'clientanothersiteCom': json['client@anothersite.com'] == null ? undefined : json['client@anothersite.com'],
+        'clientdomain_com': json['client@domain.com'] == null ? undefined : json['client@domain.com'],
+        'usersite_net': json['user@site.net'] == null ? undefined : json['user@site.net'],
+        'salescompany_com': json['sales@company.com'] == null ? undefined : json['sales@company.com'],
+        'clientanothersite_com': json['client@anothersite.com'] == null ? undefined : json['client@anothersite.com'],
     };
 }
 
@@ -80,10 +80,10 @@ export function MailStatsTypeVolumeToToJSONTyped(value?: MailStatsTypeVolumeTo |
 
     return {
         
-        'client@domain.com': value['clientdomainCom'],
-        'user@site.net': value['usersiteNet'],
-        'sales@company.com': value['salescompanyCom'],
-        'client@anothersite.com': value['clientanothersiteCom'],
+        'client@domain.com': value['clientdomain_com'],
+        'user@site.net': value['usersite_net'],
+        'sales@company.com': value['salescompany_com'],
+        'client@anothersite.com': value['clientanothersite_com'],
     };
 }
 

@@ -24,11 +24,11 @@ export interface MailStatsTypeVolumeFrom {
      * @type {number}
      * @memberof MailStatsTypeVolumeFrom
      */
-    billingsomedomainCom?: number;
+    billingsomedomain_com?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeFrom
      */
-    salessomedomainCom?: number;
+    salessomedomain_com?: number;
 }

@@ -13,8 +13,8 @@
 import { HttpFile } from '../http/http';
 
 export class MailStatsTypeVolumeFrom {
-    'billingsomedomainCom'?: number;
-    'salessomedomainCom'?: number;
+    'billingsomedomain_com'?: number;
+    'salessomedomain_com'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -22,13 +22,13 @@ export class MailStatsTypeVolumeFrom {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "billingsomedomainCom",
+            "name": "billingsomedomain_com",
             "baseName": "billing@somedomain.com",
             "type": "number",
             "format": "int32"
         },
         {
-            "name": "salessomedomainCom",
+            "name": "salessomedomain_com",
             "baseName": "sales@somedomain.com",
             "type": "number",
             "format": "int32"

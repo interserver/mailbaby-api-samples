@@ -54,26 +54,26 @@
       //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo);
     });
 
-    it('should have the property clientdomainCom (base name: "client@domain.com")', function() {
-      // uncomment below and update the code to test the property clientdomainCom
+    it('should have the property clientdomain_com (base name: "client@domain.com")', function() {
+      // uncomment below and update the code to test the property clientdomain_com
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo();
       //expect(instance).to.be();
     });
 
-    it('should have the property usersiteNet (base name: "user@site.net")', function() {
-      // uncomment below and update the code to test the property usersiteNet
+    it('should have the property usersite_net (base name: "user@site.net")', function() {
+      // uncomment below and update the code to test the property usersite_net
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo();
       //expect(instance).to.be();
     });
 
-    it('should have the property salescompanyCom (base name: "sales@company.com")', function() {
-      // uncomment below and update the code to test the property salescompanyCom
+    it('should have the property salescompany_com (base name: "sales@company.com")', function() {
+      // uncomment below and update the code to test the property salescompany_com
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo();
       //expect(instance).to.be();
     });
 
-    it('should have the property clientanothersiteCom (base name: "client@anothersite.com")', function() {
-      // uncomment below and update the code to test the property clientanothersiteCom
+    it('should have the property clientanothersite_com (base name: "client@anothersite.com")', function() {
+      // uncomment below and update the code to test the property clientanothersite_com
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeTo();
       //expect(instance).to.be();
     });

@@ -1,4 +1,4 @@
-# IO.Swagger.Api.StatusApi
+# mailbaby-client-csharp.Api.StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -16,9 +16,9 @@ Checks if the server is running
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {

@@ -10,7 +10,7 @@ import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description="This is a block entry from the rspamd block list.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaResteasyEapServerCodegen", date = "2026-03-06T14:46:53.178074988-05:00[America/New_York]")
+
 public class MailBlockRspamd   {
   private String from = null;
   private String subject = null;

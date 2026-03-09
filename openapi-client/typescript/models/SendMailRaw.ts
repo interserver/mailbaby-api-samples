@@ -19,7 +19,7 @@ export class SendMailRaw {
     /**
     * The entire email contents
     */
-    'rawEmail': string;
+    'raw_email': string;
     /**
     * Optional order id
     */
@@ -31,7 +31,7 @@ export class SendMailRaw {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "rawEmail",
+            "name": "raw_email",
             "baseName": "raw_email",
             "type": "string",
             "format": ""

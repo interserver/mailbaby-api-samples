@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.api.sending_api import SendingApi  # noqa: E501
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.api.sending_api import SendingApi  # noqa: E501
+from mailbaby-client-python.rest import ApiException
 
 
 class TestSendingApi(unittest.TestCase):

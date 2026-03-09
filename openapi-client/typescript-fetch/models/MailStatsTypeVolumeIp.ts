@@ -24,25 +24,25 @@ export interface MailStatsTypeVolumeIp {
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _1111?: number;
+    _1_1_1_1?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _2222?: number;
+    _2_2_2_2?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _3333?: number;
+    _3_3_3_3?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _4444?: number;
+    _4_4_4_4?: number;
 }
 
 /**
@@ -62,10 +62,10 @@ export function MailStatsTypeVolumeIpFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        '_1111': json['1.1.1.1'] == null ? undefined : json['1.1.1.1'],
-        '_2222': json['2.2.2.2'] == null ? undefined : json['2.2.2.2'],
-        '_3333': json['3.3.3.3'] == null ? undefined : json['3.3.3.3'],
-        '_4444': json['4.4.4.4'] == null ? undefined : json['4.4.4.4'],
+        '_1_1_1_1': json['1.1.1.1'] == null ? undefined : json['1.1.1.1'],
+        '_2_2_2_2': json['2.2.2.2'] == null ? undefined : json['2.2.2.2'],
+        '_3_3_3_3': json['3.3.3.3'] == null ? undefined : json['3.3.3.3'],
+        '_4_4_4_4': json['4.4.4.4'] == null ? undefined : json['4.4.4.4'],
     };
 }
 
@@ -80,10 +80,10 @@ export function MailStatsTypeVolumeIpToJSONTyped(value?: MailStatsTypeVolumeIp |
 
     return {
         
-        '1.1.1.1': value['_1111'],
-        '2.2.2.2': value['_2222'],
-        '3.3.3.3': value['_3333'],
-        '4.4.4.4': value['_4444'],
+        '1.1.1.1': value['_1_1_1_1'],
+        '2.2.2.2': value['_2_2_2_2'],
+        '3.3.3.3': value['_3_3_3_3'],
+        '4.4.4.4': value['_4_4_4_4'],
     };
 }
 

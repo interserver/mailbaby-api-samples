@@ -1753,7 +1753,8 @@
           "_id" : {
             "description" : "internal db id",
             "example" : 103172,
-            "type" : "integer"
+            "type" : "integer",
+            "x-codegen-property-name" : "internalId"
           },
           "id" : {
             "description" : "mail id",

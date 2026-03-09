@@ -16,11 +16,11 @@ import io.circe.{Decoder, Encoder}
 
 
 /** Raw Email Object
-  * @param rawEmail The entire email contents
+  * @param raw_email The entire email contents
   * @param id Optional order id
   */
 case class SendMailRaw(
-    rawEmail: String,
+    raw_email: String,
     id: Option[Int] = None
 )
   
@@ -28,17 +28,17 @@ object SendMailRaw {
   given encoderSendMailRaw: Encoder[SendMailRaw] = Encoder.instance { t =>
     Json.fromFields{
       Seq(
-        Some("raw_email" -> t.rawEmail.asJson),
+        Some("raw_email" -> t.raw_email.asJson),
         t.id.map(v => "id" -> v.asJson)
       ).flatten
     }
   }
   given decoderSendMailRaw: Decoder[SendMailRaw] = Decoder.instance { c =>
     for {
-      rawEmail <- c.downField("raw_email").as[String]
+      raw_email <- c.downField("raw_email").as[String]
       id <- c.downField("id").as[Option[Int]]
     } yield SendMailRaw(
-      rawEmail = rawEmail,
+      raw_email = raw_email,
       id = id
     )
   }

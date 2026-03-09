@@ -21,7 +21,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -72,7 +72,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -125,7 +125,7 @@ Removes one of the configured deny mail rules from the system.
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -172,7 +172,7 @@ Removes an email address from the various block lists.
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -221,7 +221,7 @@ displays a list of blocked email addresses
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -264,7 +264,7 @@ Returns a listing of all the deny block rules you have configured.
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()

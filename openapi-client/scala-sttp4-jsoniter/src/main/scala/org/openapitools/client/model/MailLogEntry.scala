@@ -19,7 +19,7 @@ import com.github.plokhotnyuk.jsoniter_scala.macros.named
    */
 case class MailLogEntry(
   /* internal db id */
-  @named("_id") id: Int,
+  @named("_id") _id: Int,
   /* mail id */
   @named("id") id: String,
   /* from address */

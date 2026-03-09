@@ -19,7 +19,7 @@ import com.github.plokhotnyuk.jsoniter_scala.macros.named
    */
 case class SendMailRaw(
   /* The entire email contents */
-  @named("raw_email") rawEmail: String,
+  @named("raw_email") raw_email: String,
   /* Optional order id */
   @named("id") id: Option[Int] = scala.None
 )

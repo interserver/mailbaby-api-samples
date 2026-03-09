@@ -30,8 +30,8 @@ import io.ktor.response.respondText
 import io.ktor.routing.Route
 import io.ktor.routing.route
 
-import io.swagger.server.Paths
-import io.swagger.server.infrastructure.ApiPrincipal
+import mailbaby-client-kotlin-server.Paths
+import mailbaby-client-kotlin-server.infrastructure.ApiPrincipal
 
 
 

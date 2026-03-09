@@ -54,8 +54,8 @@
       //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw);
     });
 
-    it('should have the property rawEmail (base name: "raw_email")', function() {
-      // uncomment below and update the code to test the property rawEmail
+    it('should have the property raw_email (base name: "raw_email")', function() {
+      // uncomment below and update the code to test the property raw_email
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw();
       //expect(instance).to.be();
     });

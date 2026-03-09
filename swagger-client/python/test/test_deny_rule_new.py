@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.deny_rule_new import DenyRuleNew  # noqa: E501
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.models.deny_rule_new import DenyRuleNew  # noqa: E501
+from mailbaby-client-python.rest import ApiException
 
 
 class TestDenyRuleNew(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestDenyRuleNew(unittest.TestCase):
     def testDenyRuleNew(self):
         """Test DenyRuleNew"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.deny_rule_new.DenyRuleNew()  # noqa: E501
+        # model = mailbaby-client-python.models.deny_rule_new.DenyRuleNew()  # noqa: E501
         pass
 
 

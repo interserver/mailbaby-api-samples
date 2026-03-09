@@ -17,7 +17,7 @@ import io.swagger.client.models.ErrorMessage
 import io.swagger.client.models.GenericResponse
 import io.swagger.client.models.MailBlocks
 
-import io.swagger.client.infrastructure.*
+import mailbaby-client-kotlin-client.infrastructure.*
 
 class BlockingApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
 

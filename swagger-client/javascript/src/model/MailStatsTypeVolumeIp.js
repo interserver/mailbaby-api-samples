@@ -40,35 +40,35 @@ export default class MailStatsTypeVolumeIp {
     if (data) {
       obj = obj || new MailStatsTypeVolumeIp();
       if (data.hasOwnProperty('1.1.1.1'))
-        obj._1111 = ApiClient.convertToType(data['1.1.1.1'], 'Number');
+        obj._1_1_1_1 = ApiClient.convertToType(data['1.1.1.1'], 'Number');
       if (data.hasOwnProperty('2.2.2.2'))
-        obj._2222 = ApiClient.convertToType(data['2.2.2.2'], 'Number');
+        obj._2_2_2_2 = ApiClient.convertToType(data['2.2.2.2'], 'Number');
       if (data.hasOwnProperty('3.3.3.3'))
-        obj._3333 = ApiClient.convertToType(data['3.3.3.3'], 'Number');
+        obj._3_3_3_3 = ApiClient.convertToType(data['3.3.3.3'], 'Number');
       if (data.hasOwnProperty('4.4.4.4'))
-        obj._4444 = ApiClient.convertToType(data['4.4.4.4'], 'Number');
+        obj._4_4_4_4 = ApiClient.convertToType(data['4.4.4.4'], 'Number');
     }
     return obj;
   }
 }
 
 /**
- * @member {Number} _1111
+ * @member {Number} _1_1_1_1
  */
-MailStatsTypeVolumeIp.prototype._1111 = undefined;
+MailStatsTypeVolumeIp.prototype._1_1_1_1 = undefined;
 
 /**
- * @member {Number} _2222
+ * @member {Number} _2_2_2_2
  */
-MailStatsTypeVolumeIp.prototype._2222 = undefined;
+MailStatsTypeVolumeIp.prototype._2_2_2_2 = undefined;
 
 /**
- * @member {Number} _3333
+ * @member {Number} _3_3_3_3
  */
-MailStatsTypeVolumeIp.prototype._3333 = undefined;
+MailStatsTypeVolumeIp.prototype._3_3_3_3 = undefined;
 
 /**
- * @member {Number} _4444
+ * @member {Number} _4_4_4_4
  */
-MailStatsTypeVolumeIp.prototype._4444 = undefined;
+MailStatsTypeVolumeIp.prototype._4_4_4_4 = undefined;
 

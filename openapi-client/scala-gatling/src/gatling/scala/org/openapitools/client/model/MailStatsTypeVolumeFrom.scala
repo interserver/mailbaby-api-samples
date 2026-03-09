@@ -3,14 +3,14 @@ package org.openapitools.client.model
 
 
 case class MailStatsTypeVolumeFrom (
-    _billingsomedomainCom: Option[Integer],
-    _salessomedomainCom: Option[Integer]
+    _billingsomedomain_com: Option[Integer],
+    _salessomedomain_com: Option[Integer]
 )
 object MailStatsTypeVolumeFrom {
-    def toStringBody(var_billingsomedomainCom: Object, var_salessomedomainCom: Object) =
+    def toStringBody(var_billingsomedomain_com: Object, var_salessomedomain_com: Object) =
         s"""
         | {
-        | "billingsomedomainCom":$var_billingsomedomainCom,"salessomedomainCom":$var_salessomedomainCom
+        | "billingsomedomain_com":$var_billingsomedomain_com,"salessomedomain_com":$var_salessomedomain_com
         | }
         """.stripMargin
 }

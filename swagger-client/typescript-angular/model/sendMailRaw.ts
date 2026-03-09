@@ -17,7 +17,7 @@ export interface SendMailRaw {
     /**
      * The entire email contents
      */
-    rawEmail: string;
+    raw_email: string;
     /**
      * Optional order id
      */

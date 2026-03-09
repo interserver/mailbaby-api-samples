@@ -24,7 +24,7 @@ export interface SendMailRaw {
      * @type {string}
      * @memberof SendMailRaw
      */
-    rawEmail: string;
+    raw_email: string;
     /**
      * Optional order id
      * @type {number}
@@ -37,7 +37,7 @@ export interface SendMailRaw {
  * Check if a given object implements the SendMailRaw interface.
  */
 export function instanceOfSendMailRaw(value: object): value is SendMailRaw {
-    if (!('rawEmail' in value) || value['rawEmail'] === undefined) return false;
+    if (!('raw_email' in value) || value['raw_email'] === undefined) return false;
     return true;
 }
 
@@ -51,7 +51,7 @@ export function SendMailRawFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'rawEmail': json['raw_email'],
+        'raw_email': json['raw_email'],
         'id': json['id'] == null ? undefined : json['id'],
     };
 }
@@ -67,7 +67,7 @@ export function SendMailRawToJSONTyped(value?: SendMailRaw | null, ignoreDiscrim
 
     return {
         
-        'raw_email': value['rawEmail'],
+        'raw_email': value['raw_email'],
         'id': value['id'],
     };
 }

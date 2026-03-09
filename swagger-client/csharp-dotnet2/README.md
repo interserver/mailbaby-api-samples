@@ -1,4 +1,4 @@
-# IO.Swagger - the C# library for the MailBaby Email Delivery and Management Service API
+# mailbaby-client-csharp-dotnet2 - the C# library for the MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
@@ -29,9 +29,9 @@ Run the following command to generate the DLL
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using IO.Swagger.Api;
+using mailbaby-client-csharp-dotnet2.Api;
 using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp-dotnet2.Model;
 ```
 <a name="getting-started"></a>
 ## Getting Started
@@ -39,9 +39,9 @@ using IO.Swagger.Model;
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
+using mailbaby-client-csharp-dotnet2.Api;
 using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp-dotnet2.Model;
 
 namespace Example
 {
@@ -180,29 +180,29 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
- - [IO.Swagger.Model.DenyRuleNew](docs/DenyRuleNew.md)
- - [IO.Swagger.Model.DenyRuleRecord](docs/DenyRuleRecord.md)
- - [IO.Swagger.Model.EmailAddressName](docs/EmailAddressName.md)
- - [IO.Swagger.Model.EmailAddressNames](docs/EmailAddressNames.md)
- - [IO.Swagger.Model.EmailAddressTypes](docs/EmailAddressTypes.md)
- - [IO.Swagger.Model.EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [IO.Swagger.Model.ErrorMessage](docs/ErrorMessage.md)
- - [IO.Swagger.Model.GenericResponse](docs/GenericResponse.md)
- - [IO.Swagger.Model.MailAttachment](docs/MailAttachment.md)
- - [IO.Swagger.Model.MailBlockClickHouse](docs/MailBlockClickHouse.md)
- - [IO.Swagger.Model.MailBlockRspamd](docs/MailBlockRspamd.md)
- - [IO.Swagger.Model.MailBlocks](docs/MailBlocks.md)
- - [IO.Swagger.Model.MailLog](docs/MailLog.md)
- - [IO.Swagger.Model.MailLogEntry](docs/MailLogEntry.md)
- - [IO.Swagger.Model.MailOrder](docs/MailOrder.md)
- - [IO.Swagger.Model.MailStatsType](docs/MailStatsType.md)
- - [IO.Swagger.Model.MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [IO.Swagger.Model.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
- - [IO.Swagger.Model.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
- - [IO.Swagger.Model.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
- - [IO.Swagger.Model.SendMail](docs/SendMail.md)
- - [IO.Swagger.Model.SendMailAdv](docs/SendMailAdv.md)
- - [IO.Swagger.Model.SendMailRaw](docs/SendMailRaw.md)
+ - [mailbaby-client-csharp-dotnet2.Model.DenyRuleNew](docs/DenyRuleNew.md)
+ - [mailbaby-client-csharp-dotnet2.Model.DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [mailbaby-client-csharp-dotnet2.Model.EmailAddressName](docs/EmailAddressName.md)
+ - [mailbaby-client-csharp-dotnet2.Model.EmailAddressNames](docs/EmailAddressNames.md)
+ - [mailbaby-client-csharp-dotnet2.Model.EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [mailbaby-client-csharp-dotnet2.Model.EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [mailbaby-client-csharp-dotnet2.Model.ErrorMessage](docs/ErrorMessage.md)
+ - [mailbaby-client-csharp-dotnet2.Model.GenericResponse](docs/GenericResponse.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailAttachment](docs/MailAttachment.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailBlocks](docs/MailBlocks.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailLog](docs/MailLog.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailLogEntry](docs/MailLogEntry.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailOrder](docs/MailOrder.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailStatsType](docs/MailStatsType.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
+ - [mailbaby-client-csharp-dotnet2.Model.SendMail](docs/SendMail.md)
+ - [mailbaby-client-csharp-dotnet2.Model.SendMailAdv](docs/SendMailAdv.md)
+ - [mailbaby-client-csharp-dotnet2.Model.SendMailRaw](docs/SendMailRaw.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

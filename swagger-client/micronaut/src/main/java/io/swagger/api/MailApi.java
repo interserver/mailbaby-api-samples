@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.MicronautCodegen", date = "2026-03-06T14:47:04.031703643-05:00[America/New_York]")
+
 public interface MailApi {
 
 

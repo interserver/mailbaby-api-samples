@@ -27,7 +27,7 @@ const apiInstance = new SendingApi(configuration);
 const request: SendingApiRawMailRequest = {
   
   sendMailRaw: {
-    rawEmail: "rawEmail_example",
+    raw_email: "raw_email_example",
     id: 1,
   },
 };

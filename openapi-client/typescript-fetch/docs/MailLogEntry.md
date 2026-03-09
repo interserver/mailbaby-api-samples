@@ -7,7 +7,7 @@ An email record
 
 Name | Type
 ------------ | -------------
-`id` | number
+`_id` | number
 `id` | string
 `from` | string
 `to` | string
@@ -38,7 +38,7 @@ import type { MailLogEntry } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "id": 103172,
+  "_id": 103172,
   "id": 17c7eda538e0005d03,
   "from": person@mysite.com,
   "to": client@isp.com,

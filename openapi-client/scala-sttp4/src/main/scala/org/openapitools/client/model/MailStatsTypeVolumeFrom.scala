@@ -13,7 +13,7 @@ package org.openapitools.client.model
 
 
 case class MailStatsTypeVolumeFrom(
-  billingsomedomainCom: Option[Int] = None,
-  salessomedomainCom: Option[Int] = None
+  billingsomedomain_com: Option[Int] = None,
+  salessomedomain_com: Option[Int] = None
 )
 

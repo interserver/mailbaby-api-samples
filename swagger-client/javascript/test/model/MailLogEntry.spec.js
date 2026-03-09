@@ -40,10 +40,10 @@
         expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry);
       });
 
-      it('should have the property id (base name: "_id")', function() {
-        // TODO: update the code to test the property id
-        expect(instance).to.have.property('id');
-        // expect(instance.id).to.be(expectedValueLiteral);
+      it('should have the property _id (base name: "_id")', function() {
+        // TODO: update the code to test the property _id
+        expect(instance).to.have.property('_id');
+        // expect(instance._id).to.be(expectedValueLiteral);
       });
 
       it('should have the property id (base name: "id")', function() {

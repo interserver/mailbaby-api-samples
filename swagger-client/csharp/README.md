@@ -1,4 +1,4 @@
-# IO.Swagger - the C# library for the MailBaby Email Delivery and Management Service API
+# mailbaby-client-csharp - the C# library for the MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
 
@@ -33,16 +33,16 @@ NOTE: RestSharp versions greater than 105.1.0 have a bug which causes file uploa
 
 Run the following commands to generate the DLL
 ```
-cd src/IO.Swagger
+cd src/mailbaby-client-csharp
 dotnet restore
 dotnet build
 ```
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 ```
 
 <a name="packaging"></a>
@@ -53,7 +53,7 @@ A `.nuspec` is included with the project. You can follow the Nuget quickstart to
 This `.nuspec` uses placeholders from the `.csproj`, so build the `.csproj` directly:
 
 ```
-nuget pack -Build -OutputDirectory out IO.Swagger.csproj
+nuget pack -Build -OutputDirectory out mailbaby-client-csharp.csproj
 ```
 
 Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consume the new package via Nuget as usual.
@@ -65,9 +65,9 @@ Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-p
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {

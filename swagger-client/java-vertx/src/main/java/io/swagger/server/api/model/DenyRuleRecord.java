@@ -13,7 +13,6 @@ import io.vertx.codegen.annotations.DataObject;
  * The data for a email deny rule record.
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaVertXServerCodegen", date = "2026-03-06T14:47:00.810054657-05:00[America/New_York]")
 
 
 

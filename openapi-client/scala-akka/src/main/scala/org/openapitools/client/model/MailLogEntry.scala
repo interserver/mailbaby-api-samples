@@ -15,7 +15,7 @@ import org.openapitools.client.core.ApiModel
 
 case class MailLogEntry (
   /* internal db id */
-  id: Int,
+  _id: Int,
   /* mail id */
   id: String,
   /* from address */

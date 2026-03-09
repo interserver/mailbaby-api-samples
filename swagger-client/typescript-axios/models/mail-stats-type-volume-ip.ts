@@ -24,23 +24,23 @@ export interface MailStatsTypeVolumeIp {
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _1111?: number;
+    _1_1_1_1?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _2222?: number;
+    _2_2_2_2?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _3333?: number;
+    _3_3_3_3?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _4444?: number;
+    _4_4_4_4?: number;
 }

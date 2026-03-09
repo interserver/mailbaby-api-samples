@@ -1448,6 +1448,7 @@ components:
           type: integer
           description: internal db id
           example: 103172
+          x-codegen-property-name: internalId
         id:
           type: string
           description: mail id

@@ -13,15 +13,15 @@ package io.swagger.client.model
 
 
 /**
- * @param `1111` 
- * @param `2222` 
- * @param `3333` 
- * @param `4444` 
+ * @param `1_1_1_1` 
+ * @param `2_2_2_2` 
+ * @param `3_3_3_3` 
+ * @param `4_4_4_4` 
  */
 case class MailStatsTypeVolumeIp (
-  `1111`: Option[Integer] = None,
-  `2222`: Option[Integer] = None,
-  `3333`: Option[Integer] = None,
-  `4444`: Option[Integer] = None
+  `1_1_1_1`: Option[Integer] = None,
+  `2_2_2_2`: Option[Integer] = None,
+  `3_3_3_3`: Option[Integer] = None,
+  `4_4_4_4`: Option[Integer] = None
 )
 

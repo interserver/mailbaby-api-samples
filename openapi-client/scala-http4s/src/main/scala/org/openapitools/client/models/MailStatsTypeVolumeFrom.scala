@@ -16,30 +16,30 @@ import io.circe.{Decoder, Encoder}
 
 
 /** 
-  * @param billingsomedomainCom 
-  * @param salessomedomainCom 
+  * @param billingsomedomain_com 
+  * @param salessomedomain_com 
   */
 case class MailStatsTypeVolumeFrom(
-    billingsomedomainCom: Option[Int] = None,
-    salessomedomainCom: Option[Int] = None
+    billingsomedomain_com: Option[Int] = None,
+    salessomedomain_com: Option[Int] = None
 )
   
 object MailStatsTypeVolumeFrom {
   given encoderMailStatsTypeVolumeFrom: Encoder[MailStatsTypeVolumeFrom] = Encoder.instance { t =>
     Json.fromFields{
       Seq(
-        t.billingsomedomainCom.map(v => "billing@somedomain.com" -> v.asJson),
-        t.salessomedomainCom.map(v => "sales@somedomain.com" -> v.asJson)
+        t.billingsomedomain_com.map(v => "billing@somedomain.com" -> v.asJson),
+        t.salessomedomain_com.map(v => "sales@somedomain.com" -> v.asJson)
       ).flatten
     }
   }
   given decoderMailStatsTypeVolumeFrom: Decoder[MailStatsTypeVolumeFrom] = Decoder.instance { c =>
     for {
-      billingsomedomainCom <- c.downField("billing@somedomain.com").as[Option[Int]]
-      salessomedomainCom <- c.downField("sales@somedomain.com").as[Option[Int]]
+      billingsomedomain_com <- c.downField("billing@somedomain.com").as[Option[Int]]
+      salessomedomain_com <- c.downField("sales@somedomain.com").as[Option[Int]]
     } yield MailStatsTypeVolumeFrom(
-      billingsomedomainCom = billingsomedomainCom,
-      salessomedomainCom = salessomedomainCom
+      billingsomedomain_com = billingsomedomain_com,
+      salessomedomain_com = salessomedomain_com
     )
   }
 }

@@ -26,7 +26,7 @@ export default class MailLogEntry {
    * An email record
    * @alias module:model/MailLogEntry
    * @class
-   * @param id {Number} internal db id
+   * @param _id {Number} internal db id
    * @param id {String} mail id
    * @param from {String} from address
    * @param to {String} to address
@@ -49,8 +49,8 @@ export default class MailLogEntry {
    * @param mxHostname {String} mx hostname
    * @param response {String} mail delivery response
    */
-  constructor(id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response) {
-    this.id = id;
+  constructor(_id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response) {
+    this._id = _id;
     this.id = id;
     this.from = from;
     this.to = to;
@@ -85,7 +85,7 @@ export default class MailLogEntry {
     if (data) {
       obj = obj || new MailLogEntry();
       if (data.hasOwnProperty('_id'))
-        obj.id = ApiClient.convertToType(data['_id'], 'Number');
+        obj._id = ApiClient.convertToType(data['_id'], 'Number');
       if (data.hasOwnProperty('id'))
         obj.id = ApiClient.convertToType(data['id'], 'String');
       if (data.hasOwnProperty('from'))
@@ -137,9 +137,9 @@ export default class MailLogEntry {
 
 /**
  * internal db id
- * @member {Number} id
+ * @member {Number} _id
  */
-MailLogEntry.prototype.id = undefined;
+MailLogEntry.prototype._id = undefined;
 
 /**
  * mail id

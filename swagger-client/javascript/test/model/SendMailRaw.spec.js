@@ -40,10 +40,10 @@
         expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw);
       });
 
-      it('should have the property rawEmail (base name: "raw_email")', function() {
-        // TODO: update the code to test the property rawEmail
-        expect(instance).to.have.property('rawEmail');
-        // expect(instance.rawEmail).to.be(expectedValueLiteral);
+      it('should have the property raw_email (base name: "raw_email")', function() {
+        // TODO: update the code to test the property raw_email
+        expect(instance).to.have.property('raw_email');
+        // expect(instance.raw_email).to.be(expectedValueLiteral);
       });
 
       it('should have the property id (base name: "id")', function() {

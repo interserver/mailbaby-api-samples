@@ -3,7 +3,7 @@ package io.swagger.api;
 import javax.xml.bind.annotation.XmlTransient;
 
 @javax.xml.bind.annotation.XmlRootElement
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaJerseyServerCodegen", date = "2026-03-06T14:46:44.724057075-05:00[America/New_York]")
+
 public class ApiResponseMessage {
     public static final int ERROR = 1;
     public static final int WARNING = 2;

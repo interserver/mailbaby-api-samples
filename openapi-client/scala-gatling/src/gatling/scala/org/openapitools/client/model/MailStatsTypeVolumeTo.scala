@@ -3,16 +3,16 @@ package org.openapitools.client.model
 
 
 case class MailStatsTypeVolumeTo (
-    _clientdomainCom: Option[Integer],
-    _usersiteNet: Option[Integer],
-    _salescompanyCom: Option[Integer],
-    _clientanothersiteCom: Option[Integer]
+    _clientdomain_com: Option[Integer],
+    _usersite_net: Option[Integer],
+    _salescompany_com: Option[Integer],
+    _clientanothersite_com: Option[Integer]
 )
 object MailStatsTypeVolumeTo {
-    def toStringBody(var_clientdomainCom: Object, var_usersiteNet: Object, var_salescompanyCom: Object, var_clientanothersiteCom: Object) =
+    def toStringBody(var_clientdomain_com: Object, var_usersite_net: Object, var_salescompany_com: Object, var_clientanothersite_com: Object) =
         s"""
         | {
-        | "clientdomainCom":$var_clientdomainCom,"usersiteNet":$var_usersiteNet,"salescompanyCom":$var_salescompanyCom,"clientanothersiteCom":$var_clientanothersiteCom
+        | "clientdomain_com":$var_clientdomain_com,"usersite_net":$var_usersite_net,"salescompany_com":$var_salescompany_com,"clientanothersite_com":$var_clientanothersite_com
         | }
         """.stripMargin
 }

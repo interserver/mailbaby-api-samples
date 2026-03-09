@@ -18,7 +18,7 @@ Returns information about the usage on your mail accounts.
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = HistoryApi()
@@ -65,7 +65,7 @@ Get a listing of the emails sent through this system
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = HistoryApi()

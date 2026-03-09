@@ -8,7 +8,7 @@ An email record
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Int** | internal db id | 
+**_id** | **Int** | internal db id | 
 **id** | **String** | mail id | 
 **from** | **String** | from address | 
 **to** | **String** | to address | 

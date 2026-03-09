@@ -50,15 +50,15 @@ export default class SendingApi {
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param {module:model/SendMailRaw} sendMailRaw 
+     * @param {module:model/SendMailRaw} SendMailRaw 
      * @param {module:api/SendingApi~rawMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    rawMail(sendMailRaw, callback) {
-      let postBody = sendMailRaw;
-      // verify the required parameter 'sendMailRaw' is set
-      if (sendMailRaw === undefined || sendMailRaw === null) {
-        throw new Error("Missing the required parameter 'sendMailRaw' when calling rawMail");
+    rawMail(SendMailRaw, callback) {
+      let postBody = SendMailRaw;
+      // verify the required parameter 'SendMailRaw' is set
+      if (SendMailRaw === undefined || SendMailRaw === null) {
+        throw new Error("Missing the required parameter 'SendMailRaw' when calling rawMail");
       }
 
       let pathParams = {

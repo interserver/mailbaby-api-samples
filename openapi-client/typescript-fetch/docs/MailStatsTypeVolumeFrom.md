@@ -6,8 +6,8 @@
 
 Name | Type
 ------------ | -------------
-`billingsomedomainCom` | number
-`salessomedomainCom` | number
+`billingsomedomain_com` | number
+`salessomedomain_com` | number
 
 ## Example
 
@@ -16,8 +16,8 @@ import type { MailStatsTypeVolumeFrom } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "billingsomedomainCom": null,
-  "salessomedomainCom": null,
+  "billingsomedomain_com": null,
+  "salessomedomain_com": null,
 } satisfies MailStatsTypeVolumeFrom
 
 console.log(example)

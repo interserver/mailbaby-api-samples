@@ -1,4 +1,4 @@
-# IO.Swagger.Api.HistoryApi
+# mailbaby-client-csharp.Api.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,9 +19,9 @@ Returns information about the usage on your mail accounts.
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {
@@ -84,9 +84,9 @@ Get a listing of the emails sent through this system
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {

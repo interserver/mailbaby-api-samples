@@ -1,4 +1,4 @@
-# IO.Swagger.Api.ServicesApi
+# mailbaby-client-csharp.Api.ServicesApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -18,9 +18,9 @@ This will return a list of the mail orders you have in our system including thei
 ```csharp
 using System;
 using System.Diagnostics;
-using IO.Swagger.Api;
-using IO.Swagger.Client;
-using IO.Swagger.Model;
+using mailbaby-client-csharp.Api;
+using mailbaby-client-csharp.Client;
+using mailbaby-client-csharp.Model;
 
 namespace Example
 {

@@ -40,28 +40,28 @@
         expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp);
       });
 
-      it('should have the property _1111 (base name: "1.1.1.1")', function() {
-        // TODO: update the code to test the property _1111
-        expect(instance).to.have.property('_1111');
-        // expect(instance._1111).to.be(expectedValueLiteral);
+      it('should have the property _1_1_1_1 (base name: "1.1.1.1")', function() {
+        // TODO: update the code to test the property _1_1_1_1
+        expect(instance).to.have.property('_1_1_1_1');
+        // expect(instance._1_1_1_1).to.be(expectedValueLiteral);
       });
 
-      it('should have the property _2222 (base name: "2.2.2.2")', function() {
-        // TODO: update the code to test the property _2222
-        expect(instance).to.have.property('_2222');
-        // expect(instance._2222).to.be(expectedValueLiteral);
+      it('should have the property _2_2_2_2 (base name: "2.2.2.2")', function() {
+        // TODO: update the code to test the property _2_2_2_2
+        expect(instance).to.have.property('_2_2_2_2');
+        // expect(instance._2_2_2_2).to.be(expectedValueLiteral);
       });
 
-      it('should have the property _3333 (base name: "3.3.3.3")', function() {
-        // TODO: update the code to test the property _3333
-        expect(instance).to.have.property('_3333');
-        // expect(instance._3333).to.be(expectedValueLiteral);
+      it('should have the property _3_3_3_3 (base name: "3.3.3.3")', function() {
+        // TODO: update the code to test the property _3_3_3_3
+        expect(instance).to.have.property('_3_3_3_3');
+        // expect(instance._3_3_3_3).to.be(expectedValueLiteral);
       });
 
-      it('should have the property _4444 (base name: "4.4.4.4")', function() {
-        // TODO: update the code to test the property _4444
-        expect(instance).to.have.property('_4444');
-        // expect(instance._4444).to.be(expectedValueLiteral);
+      it('should have the property _4_4_4_4 (base name: "4.4.4.4")', function() {
+        // TODO: update the code to test the property _4_4_4_4
+        expect(instance).to.have.property('_4_4_4_4');
+        // expect(instance._4_4_4_4).to.be(expectedValueLiteral);
       });
 
     });

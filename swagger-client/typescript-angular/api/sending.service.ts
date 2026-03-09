@@ -118,18 +118,18 @@ export class SendingService {
     /**
      * Sends a raw email
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
-     * @param rawEmail 
+     * @param raw_email 
      * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public rawMailForm(rawEmail: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public rawMailForm(rawEmail: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public rawMailForm(rawEmail: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public rawMailForm(rawEmail: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public rawMailForm(raw_email: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public rawMailForm(raw_email: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public rawMailForm(raw_email: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public rawMailForm(raw_email: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (rawEmail === null || rawEmail === undefined) {
-            throw new Error('Required parameter rawEmail was null or undefined when calling rawMail.');
+        if (raw_email === null || raw_email === undefined) {
+            throw new Error('Required parameter raw_email was null or undefined when calling rawMail.');
         }
 
         if (id === null || id === undefined) {
@@ -169,8 +169,8 @@ export class SendingService {
             formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         }
 
-        if (rawEmail !== undefined) {
-            formParams = formParams.append('raw_email', <any>rawEmail) as any || formParams;
+        if (raw_email !== undefined) {
+            formParams = formParams.append('raw_email', <any>raw_email) as any || formParams;
         }
         if (id !== undefined) {
             formParams = formParams.append('id', <any>id) as any || formParams;

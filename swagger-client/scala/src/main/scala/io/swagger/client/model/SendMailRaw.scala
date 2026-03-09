@@ -17,11 +17,11 @@ package io.swagger.client.model
  *
  * Raw Email Object
  *
- * @param rawEmail The entire email contents
+ * @param raw_email The entire email contents
  * @param id Optional order id
  */
 case class SendMailRaw (
-  rawEmail: String,
+  raw_email: String,
   id: Option[Integer] = None
 )
 

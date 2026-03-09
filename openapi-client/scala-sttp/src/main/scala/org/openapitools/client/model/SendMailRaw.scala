@@ -18,7 +18,7 @@ package org.openapitools.client.model
    */
 case class SendMailRaw(
   /* The entire email contents */
-  rawEmail: String,
+  raw_email: String,
   /* Optional order id */
   id: Option[Int] = None
 )

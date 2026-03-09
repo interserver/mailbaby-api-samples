@@ -15,7 +15,7 @@ Checks if the server is running
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = StatusApi()

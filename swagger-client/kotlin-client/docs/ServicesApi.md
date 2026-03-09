@@ -17,7 +17,7 @@ This will return a list of the mail orders you have in our system including thei
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = ServicesApi()

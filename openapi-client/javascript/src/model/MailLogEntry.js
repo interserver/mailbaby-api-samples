@@ -23,7 +23,7 @@ class MailLogEntry {
      * Constructs a new <code>MailLogEntry</code>.
      * An email record
      * @alias module:model/MailLogEntry
-     * @param id {Number} internal db id
+     * @param _id {Number} internal db id
      * @param id {String} mail id
      * @param from {String} from address
      * @param to {String} to address
@@ -46,9 +46,9 @@ class MailLogEntry {
      * @param mxHostname {String} mx hostname
      * @param response {String} mail delivery response
      */
-    constructor(id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response) { 
+    constructor(_id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response) { 
         
-        MailLogEntry.initialize(this, id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response);
+        MailLogEntry.initialize(this, _id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response);
     }
 
     /**
@@ -56,8 +56,8 @@ class MailLogEntry {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response) { 
-        obj['_id'] = id;
+    static initialize(obj, _id, id, from, to, subject, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response) { 
+        obj['_id'] = _id;
         obj['id'] = id;
         obj['from'] = from;
         obj['to'] = to;

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rawEmail** | **String** | The entire email contents | 
+**raw_email** | **String** | The entire email contents | 
 **id** | **Number** | Optional order id | [optional] 
 
 

@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2026-03-06T14:47:09.185281235-05:00[America/New_York]")
+
 @RestController
 public class PingApiController implements PingApi {
 

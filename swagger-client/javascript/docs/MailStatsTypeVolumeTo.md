@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clientdomainCom** | **Number** |  | [optional] 
-**usersiteNet** | **Number** |  | [optional] 
-**salescompanyCom** | **Number** |  | [optional] 
-**clientanothersiteCom** | **Number** |  | [optional] 
+**clientdomain_com** | **Number** |  | [optional] 
+**usersite_net** | **Number** |  | [optional] 
+**salescompany_com** | **Number** |  | [optional] 
+**clientanothersite_com** | **Number** |  | [optional] 

@@ -19,7 +19,7 @@ export class MailLogEntry {
     /**
     * internal db id
     */
-    'id': number;
+    '_id': number;
     /**
     * mail id
     */
@@ -115,7 +115,7 @@ export class MailLogEntry {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "id",
+            "name": "_id",
             "baseName": "_id",
             "type": "number",
             "format": ""

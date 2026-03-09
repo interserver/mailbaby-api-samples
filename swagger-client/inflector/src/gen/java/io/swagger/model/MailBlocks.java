@@ -13,7 +13,7 @@ import java.util.List;
  * The listing of blocked emails.
  **/
 @Schema(description = "The listing of blocked emails.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaInflectorServerCodegen", date = "2026-03-06T14:46:32.875094243-05:00[America/New_York]")
+
 
 public class MailBlocks   {
   @JsonProperty("local")

@@ -13,11 +13,11 @@ package io.swagger.client.model
 
 
 /**
- * @param billingsomedomainCom 
- * @param salessomedomainCom 
+ * @param billingsomedomain_com 
+ * @param salessomedomain_com 
  */
 case class MailStatsTypeVolumeFrom (
-  billingsomedomainCom: Option[Integer] = None,
-  salessomedomainCom: Option[Integer] = None
+  billingsomedomain_com: Option[Integer] = None,
+  salessomedomain_com: Option[Integer] = None
 )
 

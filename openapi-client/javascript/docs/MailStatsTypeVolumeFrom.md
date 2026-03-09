@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**billingsomedomainCom** | **Number** |  | [optional] 
-**salessomedomainCom** | **Number** |  | [optional] 
+**billingsomedomain_com** | **Number** |  | [optional] 
+**salessomedomain_com** | **Number** |  | [optional] 
 
 

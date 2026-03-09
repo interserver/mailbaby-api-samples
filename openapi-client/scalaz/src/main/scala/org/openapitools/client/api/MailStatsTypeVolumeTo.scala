@@ -12,10 +12,10 @@ import org.joda.time.DateTime
 import MailStatsTypeVolumeTo._
 
 case class MailStatsTypeVolumeTo (
-  clientdomainCom: Option[Integer],
-usersiteNet: Option[Integer],
-salescompanyCom: Option[Integer],
-clientanothersiteCom: Option[Integer])
+  clientdomain_com: Option[Integer],
+usersite_net: Option[Integer],
+salescompany_com: Option[Integer],
+clientanothersite_com: Option[Integer])
 
 object MailStatsTypeVolumeTo {
   import DateTimeCodecs._

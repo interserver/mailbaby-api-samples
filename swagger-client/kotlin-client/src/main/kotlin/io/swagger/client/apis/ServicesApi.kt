@@ -14,7 +14,7 @@ package io.swagger.client.apis
 import io.swagger.client.models.ErrorMessage
 import io.swagger.client.models.MailOrder
 
-import io.swagger.client.infrastructure.*
+import mailbaby-client-kotlin-client.infrastructure.*
 
 class ServicesApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
 

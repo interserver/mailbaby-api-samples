@@ -25,7 +25,7 @@ import java.io.IOException;
  * This is a block entry from the rspamd block list.
  */
 @Schema(description = "This is a block entry from the rspamd block list.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-03-06T14:46:18.757458635-05:00[America/New_York]")
+
 
 public class MailBlockRspamd {
   @SerializedName("from")

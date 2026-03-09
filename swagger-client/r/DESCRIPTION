@@ -1,4 +1,4 @@
-Package: swagger
+Package: mailbaby-client-r
 Title: R Package Client for MailBaby Email Delivery and Management Service API
 Version: 1.0.0
 Authors@R: person("Swagger Codegen community", email = "apiteam@swagger.io", role = c("aut", "cre"))

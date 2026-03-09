@@ -17,7 +17,7 @@ export interface MailLogEntry {
     /**
      * internal db id
      */
-    id: number;
+    _id: number;
     /**
      * mail id
      */

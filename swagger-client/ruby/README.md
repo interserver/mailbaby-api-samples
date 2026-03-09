@@ -36,9 +36,9 @@ Finally add this to the Gemfile:
 
 ### Install from Git
 
-If the Ruby gem is hosted at a git repository: https://github.com/GIT_USER_ID/GIT_REPO_ID, then add the following in the Gemfile:
+If the Ruby gem is hosted at a git repository: https://github.com/interserver/mailbaby-client-ruby, then add the following in the Gemfile:
 
-    gem 'swagger_client', :git => 'https://github.com/GIT_USER_ID/GIT_REPO_ID.git'
+    gem 'swagger_client', :git => 'https://github.com/interserver/mailbaby-client-ruby.git'
 
 ### Include the Ruby code directly
 

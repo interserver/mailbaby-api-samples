@@ -54,8 +54,8 @@
       //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry);
     });
 
-    it('should have the property id (base name: "_id")', function() {
-      // uncomment below and update the code to test the property id
+    it('should have the property _id (base name: "_id")', function() {
+      // uncomment below and update the code to test the property _id
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailLogEntry();
       //expect(instance).to.be();
     });

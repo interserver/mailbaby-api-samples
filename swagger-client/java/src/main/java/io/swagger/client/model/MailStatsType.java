@@ -26,7 +26,7 @@ import java.io.IOException;
  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
  */
 @Schema(description = "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2026-03-06T14:46:18.757458635-05:00[America/New_York]")
+
 
 public class MailStatsType {
   /**

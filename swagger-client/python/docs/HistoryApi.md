@@ -1,4 +1,4 @@
-# swagger_client.HistoryApi
+# mailbaby-client-python.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -18,18 +18,18 @@ Returns information about the usage on your mail accounts.
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.HistoryApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.HistoryApi(mailbaby-client-python.ApiClient(configuration))
 time = 'time_example' # str | The timeframe for the statistics. (optional)
 
 try:
@@ -72,18 +72,18 @@ Get a listing of the emails sent through this system
 ```python
 from __future__ import print_function
 import time
-import swagger_client
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = swagger_client.Configuration()
+configuration = mailbaby-client-python.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = swagger_client.HistoryApi(swagger_client.ApiClient(configuration))
+api_instance = mailbaby-client-python.HistoryApi(mailbaby-client-python.ApiClient(configuration))
 id = 789 # int | The ID of your mail order this will be sent through. (optional)
 origin = 'origin_example' # str | originating ip address sending mail (optional)
 mx = 'mx_example' # str | mx record mail was sent to (optional)

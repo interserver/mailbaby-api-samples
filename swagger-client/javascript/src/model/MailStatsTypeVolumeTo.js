@@ -40,35 +40,35 @@ export default class MailStatsTypeVolumeTo {
     if (data) {
       obj = obj || new MailStatsTypeVolumeTo();
       if (data.hasOwnProperty('client@domain.com'))
-        obj.clientdomainCom = ApiClient.convertToType(data['client@domain.com'], 'Number');
+        obj.clientdomain_com = ApiClient.convertToType(data['client@domain.com'], 'Number');
       if (data.hasOwnProperty('user@site.net'))
-        obj.usersiteNet = ApiClient.convertToType(data['user@site.net'], 'Number');
+        obj.usersite_net = ApiClient.convertToType(data['user@site.net'], 'Number');
       if (data.hasOwnProperty('sales@company.com'))
-        obj.salescompanyCom = ApiClient.convertToType(data['sales@company.com'], 'Number');
+        obj.salescompany_com = ApiClient.convertToType(data['sales@company.com'], 'Number');
       if (data.hasOwnProperty('client@anothersite.com'))
-        obj.clientanothersiteCom = ApiClient.convertToType(data['client@anothersite.com'], 'Number');
+        obj.clientanothersite_com = ApiClient.convertToType(data['client@anothersite.com'], 'Number');
     }
     return obj;
   }
 }
 
 /**
- * @member {Number} clientdomainCom
+ * @member {Number} clientdomain_com
  */
-MailStatsTypeVolumeTo.prototype.clientdomainCom = undefined;
+MailStatsTypeVolumeTo.prototype.clientdomain_com = undefined;
 
 /**
- * @member {Number} usersiteNet
+ * @member {Number} usersite_net
  */
-MailStatsTypeVolumeTo.prototype.usersiteNet = undefined;
+MailStatsTypeVolumeTo.prototype.usersite_net = undefined;
 
 /**
- * @member {Number} salescompanyCom
+ * @member {Number} salescompany_com
  */
-MailStatsTypeVolumeTo.prototype.salescompanyCom = undefined;
+MailStatsTypeVolumeTo.prototype.salescompany_com = undefined;
 
 /**
- * @member {Number} clientanothersiteCom
+ * @member {Number} clientanothersite_com
  */
-MailStatsTypeVolumeTo.prototype.clientanothersiteCom = undefined;
+MailStatsTypeVolumeTo.prototype.clientanothersite_com = undefined;
 

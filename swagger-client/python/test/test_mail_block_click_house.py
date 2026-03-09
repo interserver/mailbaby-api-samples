@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.mail_block_click_house import MailBlockClickHouse  # noqa: E501
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.models.mail_block_click_house import MailBlockClickHouse  # noqa: E501
+from mailbaby-client-python.rest import ApiException
 
 
 class TestMailBlockClickHouse(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestMailBlockClickHouse(unittest.TestCase):
     def testMailBlockClickHouse(self):
         """Test MailBlockClickHouse"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.mail_block_click_house.MailBlockClickHouse()  # noqa: E501
+        # model = mailbaby-client-python.models.mail_block_click_house.MailBlockClickHouse()  # noqa: E501
         pass
 
 

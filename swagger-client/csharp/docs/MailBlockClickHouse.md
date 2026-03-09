@@ -1,13 +1,13 @@
-# IO.Swagger.Model.MailBlockClickHouse
+# mailbaby-client-csharp.Model.MailBlockClickHouse
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Date** | **DateTime?** |  | 
-**From** | **string** |  | 
-**MessageId** | **string** |  | 
-**Subject** | **string** |  | 
-**To** | **string** |  | 
+**date** | **DateTime?** |  | 
+**from** | **string** |  | 
+**messageId** | **string** |  | 
+**subject** | **string** |  | 
+**to** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,7 +3,7 @@
 
 @echo off
 
-dotnet restore src\IO.Swagger
-dotnet build src\IO.Swagger
-echo Now, run the following to start the project: dotnet run -p src\IO.Swagger\IO.Swagger.csproj --launch-profile web.
+dotnet restore src\mailbaby-client-aspnetcore
+dotnet build src\mailbaby-client-aspnetcore
+echo Now, run the following to start the project: dotnet run -p src\mailbaby-client-aspnetcore\mailbaby-client-aspnetcore.csproj --launch-profile web.
 echo.

@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import swagger_client
-from swagger_client.models.error_message import ErrorMessage  # noqa: E501
-from swagger_client.rest import ApiException
+import mailbaby-client-python
+from mailbaby-client-python.models.error_message import ErrorMessage  # noqa: E501
+from mailbaby-client-python.rest import ApiException
 
 
 class TestErrorMessage(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestErrorMessage(unittest.TestCase):
     def testErrorMessage(self):
         """Test ErrorMessage"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = swagger_client.models.error_message.ErrorMessage()  # noqa: E501
+        # model = mailbaby-client-python.models.error_message.ErrorMessage()  # noqa: E501
         pass
 
 

@@ -17,7 +17,7 @@ package io.swagger.client.model
  *
  * An email record
  *
- * @param id internal db id for example: '''103172'''
+ * @param _id internal db id for example: '''103172'''
  * @param id mail id for example: '''17c7eda538e0005d03'''
  * @param from from address for example: '''person@mysite.com'''
  * @param to to address for example: '''client@isp.com'''
@@ -42,7 +42,7 @@ package io.swagger.client.model
  * @param response mail delivery response for example: '''250 2.0.0 Ok queued as C91D83E128C'''
  */
 case class MailLogEntry (
-  id: Integer,
+  _id: Integer,
   id: String,
   from: String,
   to: String,

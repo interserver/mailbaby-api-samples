@@ -396,7 +396,7 @@ export interface MailLogEntry {
      * @type {number}
      * @memberof MailLogEntry
      */
-    id: number;
+    _id: number;
     /**
      * mail id
      * @type {string}
@@ -672,13 +672,13 @@ export interface MailStatsTypeVolumeFrom {
      * @type {number}
      * @memberof MailStatsTypeVolumeFrom
      */
-    billingsomedomainCom?: number;
+    billingsomedomain_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeFrom
      */
-    salessomedomainCom?: number;
+    salessomedomain_com?: number;
 }
 /**
  * 
@@ -691,25 +691,25 @@ export interface MailStatsTypeVolumeIp {
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _1111?: number;
+    _1_1_1_1?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _2222?: number;
+    _2_2_2_2?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _3333?: number;
+    _3_3_3_3?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeIp
      */
-    _4444?: number;
+    _4_4_4_4?: number;
 }
 /**
  * 
@@ -722,25 +722,25 @@ export interface MailStatsTypeVolumeTo {
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientdomainCom?: number;
+    clientdomain_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    usersiteNet?: number;
+    usersite_net?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    salescompanyCom?: number;
+    salescompany_com?: number;
     /**
      * 
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientanothersiteCom?: number;
+    clientanothersite_com?: number;
 }
 /**
  * Details for an Email
@@ -851,7 +851,7 @@ export interface SendMailRaw {
      * @type {string}
      * @memberof SendMailRaw
      */
-    rawEmail: string;
+    raw_email: string;
     /**
      * Optional order id
      * @type {number}
@@ -1615,19 +1615,19 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
          * @param {SendMailRaw} body 
-         * @param {string} rawEmail 
+         * @param {string} raw_email 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: SendMailRaw, rawEmail: string, id: number, options: any = {}): FetchArgs {
+        rawMail(body: SendMailRaw, raw_email: string, id: number, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling rawMail.');
             }
-            // verify required parameter 'rawEmail' is not null or undefined
-            if (rawEmail === null || rawEmail === undefined) {
-                throw new RequiredError('rawEmail','Required parameter rawEmail was null or undefined when calling rawMail.');
+            // verify required parameter 'raw_email' is not null or undefined
+            if (raw_email === null || raw_email === undefined) {
+                throw new RequiredError('raw_email','Required parameter raw_email was null or undefined when calling rawMail.');
             }
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
@@ -1648,8 +1648,8 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            if (rawEmail !== undefined) {
-                localVarFormParams.set('raw_email', rawEmail as any);
+            if (raw_email !== undefined) {
+                localVarFormParams.set('raw_email', raw_email as any);
             }
 
             if (id !== undefined) {
@@ -1902,13 +1902,13 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
          * @param {SendMailRaw} body 
-         * @param {string} rawEmail 
+         * @param {string} raw_email 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(body, rawEmail, id, options);
+        rawMail(body: SendMailRaw, raw_email: string, id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(body, raw_email, id, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -1984,13 +1984,13 @@ export const SendingApiFactory = function (configuration?: Configuration, fetch?
          * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
          * @summary Sends a raw email
          * @param {SendMailRaw} body 
-         * @param {string} rawEmail 
+         * @param {string} raw_email 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any) {
-            return SendingApiFp(configuration).rawMail(body, rawEmail, id, options)(fetch, basePath);
+        rawMail(body: SendMailRaw, raw_email: string, id: number, options?: any) {
+            return SendingApiFp(configuration).rawMail(body, raw_email, id, options)(fetch, basePath);
         },
         /**
          * Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
@@ -2040,14 +2040,14 @@ export class SendingApi extends BaseAPI {
      * This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
      * @summary Sends a raw email
      * @param {SendMailRaw} body 
-     * @param {string} rawEmail 
+     * @param {string} raw_email 
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any) {
-        return SendingApiFp(this.configuration).rawMail(body, rawEmail, id, options)(this.fetch, this.basePath);
+    public rawMail(body: SendMailRaw, raw_email: string, id: number, options?: any) {
+        return SendingApiFp(this.configuration).rawMail(body, raw_email, id, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -13,7 +13,7 @@ import MailLogEntry._
 
 case class MailLogEntry (
   /* internal db id */
-  id: Integer,
+  _id: Integer,
 /* mail id */
   id: String,
 /* from address */

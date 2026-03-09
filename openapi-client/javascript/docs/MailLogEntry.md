@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Number** | internal db id | 
+**_id** | **Number** | internal db id | 
 **id** | **String** | mail id | 
 **from** | **String** | from address | 
 **to** | **String** | to address | 

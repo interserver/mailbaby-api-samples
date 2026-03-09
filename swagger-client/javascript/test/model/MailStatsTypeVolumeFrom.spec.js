@@ -40,16 +40,16 @@
         expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeFrom);
       });
 
-      it('should have the property billingsomedomainCom (base name: "billing@somedomain.com")', function() {
-        // TODO: update the code to test the property billingsomedomainCom
-        expect(instance).to.have.property('billingsomedomainCom');
-        // expect(instance.billingsomedomainCom).to.be(expectedValueLiteral);
+      it('should have the property billingsomedomain_com (base name: "billing@somedomain.com")', function() {
+        // TODO: update the code to test the property billingsomedomain_com
+        expect(instance).to.have.property('billingsomedomain_com');
+        // expect(instance.billingsomedomain_com).to.be(expectedValueLiteral);
       });
 
-      it('should have the property salessomedomainCom (base name: "sales@somedomain.com")', function() {
-        // TODO: update the code to test the property salessomedomainCom
-        expect(instance).to.have.property('salessomedomainCom');
-        // expect(instance.salessomedomainCom).to.be(expectedValueLiteral);
+      it('should have the property salessomedomain_com (base name: "sales@somedomain.com")', function() {
+        // TODO: update the code to test the property salessomedomain_com
+        expect(instance).to.have.property('salessomedomain_com');
+        // expect(instance.salessomedomain_com).to.be(expectedValueLiteral);
       });
 
     });

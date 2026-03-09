@@ -1,16 +1,16 @@
-# IO.Swagger.Model.MailStatsType
+# mailbaby-client-csharp.Model.MailStatsType
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | **string** |  | [optional] [default to TimeEnum._1h]
-**Usage** | **int?** |  | [optional] 
-**Currency** | **string** |  | [optional] 
-**CurrencySymbol** | **string** |  | [optional] 
-**Cost** | **double?** |  | [optional] 
-**Received** | **int?** |  | [optional] 
-**Sent** | **int?** |  | [optional] 
-**Volume** | [**MailStatsTypeVolume**](MailStatsTypeVolume.md) |  | [optional] 
+**time** | **string** |  | [optional] [default to TimeEnum._1h]
+**usage** | **int?** |  | [optional] 
+**currency** | **string** |  | [optional] 
+**currencySymbol** | **string** |  | [optional] 
+**cost** | **double?** |  | [optional] 
+**received** | **int?** |  | [optional] 
+**sent** | **int?** |  | [optional] 
+**volume** | [**MailStatsTypeVolume**](MailStatsTypeVolume.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

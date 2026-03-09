@@ -23,11 +23,11 @@ class SendMailRaw {
      * Constructs a new <code>SendMailRaw</code>.
      * Raw Email Object
      * @alias module:model/SendMailRaw
-     * @param rawEmail {String} The entire email contents
+     * @param raw_email {String} The entire email contents
      */
-    constructor(rawEmail) { 
+    constructor(raw_email) { 
         
-        SendMailRaw.initialize(this, rawEmail);
+        SendMailRaw.initialize(this, raw_email);
     }
 
     /**
@@ -35,8 +35,8 @@ class SendMailRaw {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, rawEmail) { 
-        obj['raw_email'] = rawEmail;
+    static initialize(obj, raw_email) { 
+        obj['raw_email'] = raw_email;
     }
 
     /**

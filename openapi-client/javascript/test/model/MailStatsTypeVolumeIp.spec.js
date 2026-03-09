@@ -54,26 +54,26 @@
       //expect(instance).to.be.a(MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp);
     });
 
-    it('should have the property _1111 (base name: "1.1.1.1")', function() {
-      // uncomment below and update the code to test the property _1111
+    it('should have the property _1_1_1_1 (base name: "1.1.1.1")', function() {
+      // uncomment below and update the code to test the property _1_1_1_1
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp();
       //expect(instance).to.be();
     });
 
-    it('should have the property _2222 (base name: "2.2.2.2")', function() {
-      // uncomment below and update the code to test the property _2222
+    it('should have the property _2_2_2_2 (base name: "2.2.2.2")', function() {
+      // uncomment below and update the code to test the property _2_2_2_2
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp();
       //expect(instance).to.be();
     });
 
-    it('should have the property _3333 (base name: "3.3.3.3")', function() {
-      // uncomment below and update the code to test the property _3333
+    it('should have the property _3_3_3_3 (base name: "3.3.3.3")', function() {
+      // uncomment below and update the code to test the property _3_3_3_3
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp();
       //expect(instance).to.be();
     });
 
-    it('should have the property _4444 (base name: "4.4.4.4")', function() {
-      // uncomment below and update the code to test the property _4444
+    it('should have the property _4_4_4_4 (base name: "4.4.4.4")', function() {
+      // uncomment below and update the code to test the property _4_4_4_4
       //var instance = new MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolumeIp();
       //expect(instance).to.be();
     });

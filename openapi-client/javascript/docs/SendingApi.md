@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## rawMail
 
-> GenericResponse rawMail(sendMailRaw)
+> GenericResponse rawMail(SendMailRaw)
 
 Sends a raw email
 
@@ -30,8 +30,8 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
-let sendMailRaw = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw(); // SendMailRaw | 
-apiInstance.rawMail(sendMailRaw, (error, data, response) => {
+let SendMailRaw = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw(); // SendMailRaw | 
+apiInstance.rawMail(SendMailRaw, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -45,7 +45,7 @@ apiInstance.rawMail(sendMailRaw, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **sendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | 
+ **SendMailRaw** | [**SendMailRaw**](SendMailRaw.md)|  | 
 
 ### Return type
 

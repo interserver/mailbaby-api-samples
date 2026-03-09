@@ -19,7 +19,7 @@ This call will let you pass the raw / complete email contents (including headers
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -66,7 +66,7 @@ This call will let you pass the raw / complete email contents (including headers
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -115,7 +115,7 @@ Sends An email through one of your mail orders allowing additional options such 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -178,7 +178,7 @@ Sends An email through one of your mail orders allowing additional options such 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -242,7 +242,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -297,7 +297,7 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 ### Example
 ```kotlin
 // Import classes:
-//import io.swagger.client.infrastructure.*
+//import mailbaby-client-kotlin-client.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()

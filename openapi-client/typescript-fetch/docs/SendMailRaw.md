@@ -7,7 +7,7 @@ Raw Email Object
 
 Name | Type
 ------------ | -------------
-`rawEmail` | string
+`raw_email` | string
 `id` | number
 
 ## Example
@@ -17,7 +17,7 @@ import type { SendMailRaw } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "rawEmail": null,
+  "raw_email": null,
   "id": null,
 } satisfies SendMailRaw
 

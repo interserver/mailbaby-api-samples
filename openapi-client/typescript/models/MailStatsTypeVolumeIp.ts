@@ -13,10 +13,10 @@
 import { HttpFile } from '../http/http';
 
 export class MailStatsTypeVolumeIp {
-    '_1111'?: number;
-    '_2222'?: number;
-    '_3333'?: number;
-    '_4444'?: number;
+    '_1_1_1_1'?: number;
+    '_2_2_2_2'?: number;
+    '_3_3_3_3'?: number;
+    '_4_4_4_4'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,25 +24,25 @@ export class MailStatsTypeVolumeIp {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "_1111",
+            "name": "_1_1_1_1",
             "baseName": "1.1.1.1",
             "type": "number",
             "format": "int32"
         },
         {
-            "name": "_2222",
+            "name": "_2_2_2_2",
             "baseName": "2.2.2.2",
             "type": "number",
             "format": "int32"
         },
         {
-            "name": "_3333",
+            "name": "_3_3_3_3",
             "baseName": "3.3.3.3",
             "type": "number",
             "format": "int32"
         },
         {
-            "name": "_4444",
+            "name": "_4_4_4_4",
             "baseName": "4.4.4.4",
             "type": "number",
             "format": "int32"

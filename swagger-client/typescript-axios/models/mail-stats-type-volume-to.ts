@@ -24,23 +24,23 @@ export interface MailStatsTypeVolumeTo {
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientdomainCom?: number;
+    clientdomain_com?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    usersiteNet?: number;
+    usersite_net?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    salescompanyCom?: number;
+    salescompany_com?: number;
 
     /**
      * @type {number}
      * @memberof MailStatsTypeVolumeTo
      */
-    clientanothersiteCom?: number;
+    clientanothersite_com?: number;
 }

@@ -1,5 +1,5 @@
 # Description: Go package name (convention: lowercase).
-packageName: openapi
+packageName: mailbaby
 
 # Description: Go package version.
 packageVersion: 1.0.0

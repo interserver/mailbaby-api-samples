@@ -21,6 +21,10 @@ force-app/main/default/classes/OASEmailAddressName.cls
 force-app/main/default/classes/OASEmailAddressName.cls-meta.xml
 force-app/main/default/classes/OASEmailAddressNameTest.cls
 force-app/main/default/classes/OASEmailAddressNameTest.cls-meta.xml
+force-app/main/default/classes/OASEmailAddressNames.cls
+force-app/main/default/classes/OASEmailAddressNames.cls-meta.xml
+force-app/main/default/classes/OASEmailAddressNamesTest.cls
+force-app/main/default/classes/OASEmailAddressNamesTest.cls-meta.xml
 force-app/main/default/classes/OASEmailAddressParam.cls
 force-app/main/default/classes/OASEmailAddressParam.cls-meta.xml
 force-app/main/default/classes/OASEmailAddressParamTest.cls
@@ -81,10 +85,10 @@ force-app/main/default/classes/OASMailStatsType.cls
 force-app/main/default/classes/OASMailStatsType.cls-meta.xml
 force-app/main/default/classes/OASMailStatsTypeTest.cls
 force-app/main/default/classes/OASMailStatsTypeTest.cls-meta.xml
-force-app/main/default/classes/OASMailStatsTypeVolume.cls
-force-app/main/default/classes/OASMailStatsTypeVolume.cls-meta.xml
-force-app/main/default/classes/OASMailStatsTypeVolumeTest.cls
-force-app/main/default/classes/OASMailStatsTypeVolumeTest.cls-meta.xml
+force-app/main/default/classes/OASMailStatsVolume.cls
+force-app/main/default/classes/OASMailStatsVolume.cls-meta.xml
+force-app/main/default/classes/OASMailStatsVolumeTest.cls
+force-app/main/default/classes/OASMailStatsVolumeTest.cls-meta.xml
 force-app/main/default/classes/OASResponseMock.cls
 force-app/main/default/classes/OASResponseMock.cls-meta.xml
 force-app/main/default/classes/OASSendMail.cls

@@ -67,7 +67,7 @@ public class OASMailStatsType implements OAS.MappedProperties {
      * Get volume
      * @return volume
      */
-    public OASMailStatsTypeVolume volume { get; set; }
+    public OASMailStatsVolume volume { get; set; }
 
     private static final Map<String, String> propertyMappings = new Map<String, String>{
         'time' => 'r_time',
@@ -99,7 +99,7 @@ public class OASMailStatsType implements OAS.MappedProperties {
           mailStatsType.cost = 1.3579;
           mailStatsType.received = 0;
           mailStatsType.sent = 0;
-          mailStatsType.volume = OASMailStatsTypeVolume.getExample();
+          mailStatsType.volume = OASMailStatsVolume.getExample();
         return mailStatsType;
     }
 

@@ -1,5 +1,5 @@
 # Description: Rust package name (convention: lowercase).
-packageName: openapi
+packageName: mailbaby
 
 # Description: Rust package version.
 packageVersion: 1.0.0

@@ -164,6 +164,7 @@ package body .Models is
       end loop;
    end Deserialize;
 
+
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
                         Value : in .Models.EmailAddressParam_Type) is
@@ -680,7 +681,7 @@ package body .Models is
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in .Models.MailStatsTypeVolume_Type) is
+                        Value : in .Models.MailStatsVolume_Type) is
    begin
       Into.Start_Entity (Name);
       Serialize (Into, "to", Value.To);
@@ -691,7 +692,7 @@ package body .Models is
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailStatsTypeVolume_Type_Vectors.Vector) is
+                        Value : in MailStatsVolume_Type_Vectors.Vector) is
    begin
       Into.Start_Array (Name);
       for Item of Value loop
@@ -702,7 +703,7 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out .Models.MailStatsTypeVolume_Type) is
+                          Value : out .Models.MailStatsVolume_Type) is
       Object : Swagger.Value_Type;
    begin
       Swagger.Streams.Deserialize (From, Name, Object);
@@ -713,9 +714,9 @@ package body .Models is
 
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : in out MailStatsTypeVolume_Type_Vectors.Vector) is
+                          Value : in out MailStatsVolume_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
-      Item : .Models.MailStatsTypeVolume_Type;
+      Item : .Models.MailStatsVolume_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);

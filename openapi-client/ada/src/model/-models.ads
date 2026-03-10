@@ -105,6 +105,9 @@ package .Models is
                           Value : in out EmailAddressName_Type_Vectors.Vector);
 
 
+   subtype EmailAddressNames_Type is EmailAddressName_Type_Vectors.Vector;
+
+
    --  ------------------------------
    --  EmailAddressParam
    --  A single email address parameter used as the body of `POST /mail/blocks/delete`.
@@ -166,7 +169,7 @@ package .Models is
    --  EmailAddressesTypes
    --  A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma_separated list of RFC 822 addresses (supporting the `\"Name <email>\"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.
    --  ------------------------------
-   type EmailAddressesTypes_Type is new oneOf<string,array>;
+   type EmailAddressesTypes_Type is new oneOf<string,EmailAddressNames>;
 
 
    package EmailAddressesTypes_Type_Vectors is
@@ -420,8 +423,11 @@ package .Models is
                           Value : in out MailOrder_Type_Vectors.Vector);
 
 
-
-   type MailStatsTypeVolume_Type is
+   --  ------------------------------
+   --  MailStatsVolume
+   --  Top_500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
+   --  ------------------------------
+   type MailStatsVolume_Type is
      record
        To : Swagger.Integer_Map;
        From : Swagger.Integer_Map;
@@ -429,22 +435,22 @@ package .Models is
      end record;
 
 
-   package MailStatsTypeVolume_Type_Vectors is
+   package MailStatsVolume_Type_Vectors is
       new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => .Models.MailStatsTypeVolume_Type);
+                                  Element_Type => .Models.MailStatsVolume_Type);
 
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in .Models.MailStatsTypeVolume_Type);
+                        Value : in .Models.MailStatsVolume_Type);
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
-                        Value : in MailStatsTypeVolume_Type_Vectors.Vector);
+                        Value : in MailStatsVolume_Type_Vectors.Vector);
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : out .Models.MailStatsTypeVolume_Type);
+                          Value : out .Models.MailStatsVolume_Type);
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
-                          Value : in out MailStatsTypeVolume_Type_Vectors.Vector);
+                          Value : in out MailStatsVolume_Type_Vectors.Vector);
 
 
    --  ------------------------------
@@ -476,7 +482,10 @@ package .Models is
                           Value : in out SendMailRaw_Type_Vectors.Vector);
 
 
-
+   --  ------------------------------
+   --  SendMailTo
+   --  The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
+   --  ------------------------------
    type SendMailTo_Type is new oneOf<string,array>;
 
 
@@ -570,7 +579,7 @@ package .Models is
        Cost : Swagger.Number;
        Received : Swagger.Nullable_Integer;
        Sent : Swagger.Nullable_Integer;
-       Volume : .Models.MailStatsTypeVolume_Type;
+       Volume : .Models.MailStatsVolume_Type;
      end record;
 
 

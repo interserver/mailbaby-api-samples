@@ -4,8 +4,10 @@
   "allowUnicodeIdentifiers": "true",
   "hideGenerationTimestamp": "true",
   "artifactVersion": "1.0.0",
-  "packageName": "mailbaby-client-csharp",
+  "packageName": "Interserver.MailBaby.Client",
   "gitUserId": "interserver",
-  "gitRepoId": "mailbaby-client-csharp"
+  "gitRepoId": "mailbaby-client-csharp",
+  "packageTitle": "MailBaby C# Client",
+  "packageDescription": "MailBaby Email API client for C#",
+  "targetFramework": "net8.0"
 }
-

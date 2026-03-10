@@ -4,8 +4,7 @@
   "allowUnicodeIdentifiers": "true",
   "hideGenerationTimestamp": "true",
   "artifactVersion": "1.0.0",
-  "packageName": "mailbaby-client-go",
+  "packageName": "mailbaby",
   "gitUserId": "interserver",
   "gitRepoId": "mailbaby-client-go"
 }
-

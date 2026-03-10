@@ -11,41 +11,23 @@
  */
 
 /**
- * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
+ * An array of email contacts, each with an email address and optional display name.
  */
-public class OASMailAttachment {
-    /**
-     * The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
-     * @return filename
-     */
-    public String filename { get; set; }
-
-    /**
-     * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
-     * @return data
-     */
-    public Blob data { get; set; }
-
-    public static OASMailAttachment getExample() {
-        OASMailAttachment mailAttachment = new OASMailAttachment();
-          mailAttachment.filename = 'message.txt';
-          mailAttachment.data = EncodingUtil.base64Decode('[B@7f353d99');
-        return mailAttachment;
+public class OASEmailAddressNames extends List<OASEmailAddressName> {
+    public static OASEmailAddressNames getExample() {
+        OASEmailAddressNames emailAddressNames = new OASEmailAddressNames();
+        return emailAddressNames;
     }
 
     public Boolean equals(Object obj) {
-        if (obj instanceof OASMailAttachment) {           
-            OASMailAttachment mailAttachment = (OASMailAttachment) obj;
-            return this.filename == mailAttachment.filename
-                && this.data == mailAttachment.data;
+        if (obj instanceof OASEmailAddressNames) {           
+                return true;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (filename == null ? 0 : System.hashCode(filename));
-        hashCode = (17 * hashCode) + (data == null ? 0 : System.hashCode(data));
         return hashCode;
     }
 }

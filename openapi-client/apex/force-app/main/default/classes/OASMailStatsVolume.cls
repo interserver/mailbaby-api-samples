@@ -11,41 +11,64 @@
  */
 
 /**
- * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
+ * Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
  */
-public class OASMailAttachment {
+public class OASMailStatsVolume implements OAS.MappedProperties {
     /**
-     * The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
-     * @return filename
+     * Message counts keyed by destination (envelope `to`) email address.
+     * @return to
      */
-    public String filename { get; set; }
+    public Map<String, Integer> to { get; set; }
 
     /**
-     * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
-     * @return data
+     * Message counts keyed by sender (envelope `from`) email address.
+     * @return r_from
      */
-    public Blob data { get; set; }
+    public Map<String, Integer> r_from { get; set; }
 
-    public static OASMailAttachment getExample() {
-        OASMailAttachment mailAttachment = new OASMailAttachment();
-          mailAttachment.filename = 'message.txt';
-          mailAttachment.data = EncodingUtil.base64Decode('[B@7f353d99');
-        return mailAttachment;
+    /**
+     * Message counts keyed by originating client IP address.
+     * @return ip
+     */
+    public Map<String, Integer> ip { get; set; }
+
+    private static final Map<String, String> propertyMappings = new Map<String, String>{
+        'from' => 'r_from'
+    };
+
+    public Map<String, String> getPropertyMappings() {
+        return propertyMappings;
+    }
+
+    public OASMailStatsVolume() {
+        to = new Map<String, Integer>();
+        r_from = new Map<String, Integer>();
+        ip = new Map<String, Integer>();
+    }
+
+    public static OASMailStatsVolume getExample() {
+        OASMailStatsVolume mailStatsVolume = new OASMailStatsVolume();
+          mailStatsVolume.to = new Map<String, Integer>{'key'=>0};
+          mailStatsVolume.r_from = new Map<String, Integer>{'key'=>0};
+          mailStatsVolume.ip = new Map<String, Integer>{'key'=>0};
+        return mailStatsVolume;
     }
 
     public Boolean equals(Object obj) {
-        if (obj instanceof OASMailAttachment) {           
-            OASMailAttachment mailAttachment = (OASMailAttachment) obj;
-            return this.filename == mailAttachment.filename
-                && this.data == mailAttachment.data;
+        if (obj instanceof OASMailStatsVolume) {           
+            OASMailStatsVolume mailStatsVolume = (OASMailStatsVolume) obj;
+            return this.to == mailStatsVolume.to
+                && this.r_from == mailStatsVolume.r_from
+                && this.ip == mailStatsVolume.ip;
         }
         return false;
     }
 
     public Integer hashCode() {
         Integer hashCode = 43;
-        hashCode = (17 * hashCode) + (filename == null ? 0 : System.hashCode(filename));
-        hashCode = (17 * hashCode) + (data == null ? 0 : System.hashCode(data));
+        hashCode = (17 * hashCode) + (to == null ? 0 : System.hashCode(to));
+        hashCode = (17 * hashCode) + (r_from == null ? 0 : System.hashCode(r_from));
+        hashCode = (17 * hashCode) + (ip == null ? 0 : System.hashCode(ip));
         return hashCode;
     }
 }

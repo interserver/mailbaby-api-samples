@@ -47,7 +47,7 @@ public class MailAttachment   {
   }
 
   
-  @ApiModelProperty(example = "[B@42b3321", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  @ApiModelProperty(example = "[B@37d9f5e3", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
   @JsonProperty("data")
   @NotNull
 

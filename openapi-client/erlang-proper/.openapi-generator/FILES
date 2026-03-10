@@ -4,6 +4,7 @@ rebar.config
 src/model/openapi_deny_rule_new.erl
 src/model/openapi_deny_rule_record.erl
 src/model/openapi_email_address_name.erl
+src/model/openapi_email_address_param.erl
 src/model/openapi_email_address_types.erl
 src/model/openapi_email_addresses_types.erl
 src/model/openapi_error_message.erl
@@ -15,14 +16,13 @@ src/model/openapi_mail_blocks.erl
 src/model/openapi_mail_log.erl
 src/model/openapi_mail_log_entry.erl
 src/model/openapi_mail_order.erl
+src/model/openapi_mail_order_detail.erl
 src/model/openapi_mail_stats_type.erl
 src/model/openapi_mail_stats_type_volume.erl
-src/model/openapi_mail_stats_type_volume_from.erl
-src/model/openapi_mail_stats_type_volume_ip.erl
-src/model/openapi_mail_stats_type_volume_to.erl
 src/model/openapi_send_mail.erl
 src/model/openapi_send_mail_adv.erl
 src/model/openapi_send_mail_raw.erl
+src/model/openapi_send_mail_to.erl
 src/openapi.app.src
 src/openapi.hrl
 src/openapi_api.erl

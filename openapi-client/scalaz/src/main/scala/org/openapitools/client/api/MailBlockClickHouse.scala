@@ -13,11 +13,16 @@ import java.time.LocalDate
 import MailBlockClickHouse._
 
 case class MailBlockClickHouse (
+  /* The date the block event was recorded. */
   date: LocalDate,
-from: String,
-messageId: String,
-subject: String,
-to: String)
+/* The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it. */
+  from: String,
+/* The `Subject` header of the blocked message. */
+  subject: String,
+/* The serialized list of recipients of the blocked message. */
+  to: String,
+/* The `Message-ID` header of the blocked message, or `null` if not present. */
+  messageId: Option[String])
 
 object MailBlockClickHouse {
   import DateTimeCodecs._

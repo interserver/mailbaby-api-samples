@@ -10,7 +10,7 @@
 
 
 /**
- * An email contact.
+ * An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
  */
 export interface EmailAddressName { 
     /**
@@ -18,7 +18,7 @@ export interface EmailAddressName {
      */
     email: string;
     /**
-     * Name to use for the sending contact.
+     * Optional display name shown to recipients (e.g. in the `From:` header).
      */
     name?: string;
 }

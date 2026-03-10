@@ -14,6 +14,7 @@ add_library(${PROJECT_NAME}
   OAIDenyRuleNew.h
   OAIDenyRuleRecord.h
   OAIEmailAddressName.h
+  OAIEmailAddressParam.h
   OAIEmailAddressTypes.h
   OAIEmailAddressesTypes.h
   OAIErrorMessage.h
@@ -25,14 +26,13 @@ add_library(${PROJECT_NAME}
   OAIMailLog.h
   OAIMailLogEntry.h
   OAIMailOrder.h
+  OAIMailOrderDetail.h
   OAIMailStatsType.h
   OAIMailStatsType_volume.h
-  OAIMailStatsType_volume_from.h
-  OAIMailStatsType_volume_ip.h
-  OAIMailStatsType_volume_to.h
   OAISendMail.h
   OAISendMailAdv.h
   OAISendMailRaw.h
+  OAISendMail_to.h
   OAIBlockingApi.h
   OAIHistoryApi.h
   OAISendingApi.h
@@ -49,6 +49,7 @@ add_library(${PROJECT_NAME}
   OAIDenyRuleNew.cpp
   OAIDenyRuleRecord.cpp
   OAIEmailAddressName.cpp
+  OAIEmailAddressParam.cpp
   OAIEmailAddressTypes.cpp
   OAIEmailAddressesTypes.cpp
   OAIErrorMessage.cpp
@@ -60,14 +61,13 @@ add_library(${PROJECT_NAME}
   OAIMailLog.cpp
   OAIMailLogEntry.cpp
   OAIMailOrder.cpp
+  OAIMailOrderDetail.cpp
   OAIMailStatsType.cpp
   OAIMailStatsType_volume.cpp
-  OAIMailStatsType_volume_from.cpp
-  OAIMailStatsType_volume_ip.cpp
-  OAIMailStatsType_volume_to.cpp
   OAISendMail.cpp
   OAISendMailAdv.cpp
   OAISendMailRaw.cpp
+  OAISendMail_to.cpp
   OAIBlockingApi.cpp
   OAIHistoryApi.cpp
   OAISendingApi.cpp

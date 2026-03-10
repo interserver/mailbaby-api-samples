@@ -89,11 +89,6 @@ static bool getStatsProcessor(MemoryStruct_s p_chunk, long code, char* errormsg,
 			printf("\n%s\n", jsonStr);
 			g_free(static_cast<gpointer>(jsonStr));
 			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
-			
 		}
 		handler(out, error, userData);
 		return true;
@@ -247,6 +242,16 @@ static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 			printf("\n%s\n", jsonStr);
 			g_free(static_cast<gpointer>(jsonStr));
 			
+			out.fromJson(data);
+			char *jsonStr =  out.toJson();
+			printf("\n%s\n", jsonStr);
+			g_free(static_cast<gpointer>(jsonStr));
+			
+			out.fromJson(data);
+			char *jsonStr =  out.toJson();
+			printf("\n%s\n", jsonStr);
+			g_free(static_cast<gpointer>(jsonStr));
+			
 		}
 		handler(out, error, userData);
 		return true;
@@ -267,7 +272,7 @@ static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool viewMailLogHelper(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, std::string delivered, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -334,6 +339,34 @@ static bool viewMailLogHelper(char * accessToken,
 	}
 
 
+	itemAtq = stringify(&messageId, "std::string");
+	queryParams.insert(pair<string, string>("messageId", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("messageId");
+	}
+
+
+	itemAtq = stringify(&replyto, "std::string");
+	queryParams.insert(pair<string, string>("replyto", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("replyto");
+	}
+
+
+	itemAtq = stringify(&headerfrom, "std::string");
+	queryParams.insert(pair<string, string>("headerfrom", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("headerfrom");
+	}
+
+
+	itemAtq = stringify(&delivered, "int");
+	queryParams.insert(pair<string, string>("delivered", itemAtq));
+	if( itemAtq.empty()==true){
+		queryParams.erase("delivered");
+	}
+
+
 	itemAtq = stringify(&skip, "int");
 	queryParams.insert(pair<string, string>("skip", itemAtq));
 	if( itemAtq.empty()==true){
@@ -359,27 +392,6 @@ static bool viewMailLogHelper(char * accessToken,
 	queryParams.insert(pair<string, string>("endDate", itemAtq));
 	if( itemAtq.empty()==true){
 		queryParams.erase("endDate");
-	}
-
-
-	itemAtq = stringify(&replyto, "std::string");
-	queryParams.insert(pair<string, string>("replyto", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("replyto");
-	}
-
-
-	itemAtq = stringify(&headerfrom, "std::string");
-	queryParams.insert(pair<string, string>("headerfrom", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("headerfrom");
-	}
-
-
-	itemAtq = stringify(&delivered, "std::string");
-	queryParams.insert(pair<string, string>("delivered", itemAtq));
-	if( itemAtq.empty()==true){
-		queryParams.erase("delivered");
 	}
 
 	string mBody = "";
@@ -436,22 +448,22 @@ static bool viewMailLogHelper(char * accessToken,
 
 
 bool HistoryManager::viewMailLogAsync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, std::string delivered, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, 
+	id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, 
 	handler, userData, true);
 }
 
 bool HistoryManager::viewMailLogSync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, int skip, int limit, long long startDate, long long endDate, std::string replyto, std::string headerfrom, std::string delivered, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, long long startDate, long long endDate, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
 	return viewMailLogHelper(accessToken,
-	id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered, 
+	id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, 
 	handler, userData, false);
 }
 

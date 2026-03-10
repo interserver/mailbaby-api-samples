@@ -2,7 +2,7 @@
 <h2>MailStatsType</h2>
 <ul class="parameter">
   <li class="param-required-false">time : String
-    <br/>
+    <br/>The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
       <dl class="param-enum">
         <dt>Enum:
             <dd>all</dd>
@@ -10,7 +10,7 @@
             <dd>month</dd>
             <dd>7d</dd>
             <dd>24h</dd>
-            <dd>today</dd>
+            <dd>day</dd>
             <dd>1h</dd>
         </dt>
       </dl>
@@ -18,32 +18,27 @@
 </ul>
 <ul class="parameter">
   <li class="param-required-false">usage : Integer
-    <br/>
+    <br/>Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-false">currency : String
-    <br/>
-  </li>
-</ul>
-<ul class="parameter">
-  <li class="param-required-false">currencySymbol : String
-    <br/>
+    <br/>The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;).
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-false">cost : Double
-    <br/>
+    <br/>Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-false">received : Integer
-    <br/>
+    <br/>Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-false">sent : Integer
-    <br/>
+    <br/>Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;.
   </li>
 </ul>
 <ul class="parameter">

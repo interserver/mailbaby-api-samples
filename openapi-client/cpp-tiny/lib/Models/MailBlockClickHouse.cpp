@@ -8,9 +8,9 @@ MailBlockClickHouse::MailBlockClickHouse()
 {
 	date = std::string();
 	from = std::string();
-	messageId = std::string();
 	subject = std::string();
 	to = std::string();
+	messageId = std::string();
 }
 
 MailBlockClickHouse::MailBlockClickHouse(std::string jsonString)
@@ -55,19 +55,6 @@ MailBlockClickHouse::fromJson(std::string jsonObj)
 
     }
 
-    const char *messageIdKey = "messageId";
-
-    if(object.has_key(messageIdKey))
-    {
-        bourne::json value = object[messageIdKey];
-
-
-
-        jsonToValue(&messageId, value, "std::string");
-
-
-    }
-
     const char *subjectKey = "subject";
 
     if(object.has_key(subjectKey))
@@ -90,6 +77,19 @@ MailBlockClickHouse::fromJson(std::string jsonObj)
 
 
         jsonToValue(&to, value, "std::string");
+
+
+    }
+
+    const char *messageIdKey = "messageId";
+
+    if(object.has_key(messageIdKey))
+    {
+        bourne::json value = object[messageIdKey];
+
+
+
+        jsonToValue(&messageId, value, "std::string");
 
 
     }
@@ -120,13 +120,6 @@ MailBlockClickHouse::toJson()
 
 
 
-    object["messageId"] = getMessageId();
-
-
-
-
-
-
     object["subject"] = getSubject();
 
 
@@ -135,6 +128,13 @@ MailBlockClickHouse::toJson()
 
 
     object["to"] = getTo();
+
+
+
+
+
+
+    object["messageId"] = getMessageId();
 
 
 
@@ -167,18 +167,6 @@ MailBlockClickHouse::setFrom(std::string from)
 }
 
 std::string
-MailBlockClickHouse::getMessageId()
-{
-	return messageId;
-}
-
-void
-MailBlockClickHouse::setMessageId(std::string messageId)
-{
-	this->messageId = messageId;
-}
-
-std::string
 MailBlockClickHouse::getSubject()
 {
 	return subject;
@@ -200,6 +188,18 @@ void
 MailBlockClickHouse::setTo(std::string to)
 {
 	this->to = to;
+}
+
+std::string
+MailBlockClickHouse::getMessageId()
+{
+	return messageId;
+}
+
+void
+MailBlockClickHouse::setMessageId(std::string messageId)
+{
+	this->messageId = messageId;
 }
 
 

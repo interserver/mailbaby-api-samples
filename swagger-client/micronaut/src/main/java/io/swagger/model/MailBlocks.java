@@ -14,9 +14,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * The listing of blocked emails.
+ * The complete set of blocked addresses and message patterns returned by &#x60;GET /mail/blocks&#x60;.  Three independent block sources are combined into one response. Use &#x60;POST /mail/blocks/delete&#x60; with a &#x60;from&#x60; address from any entry to delist it.
  */
-@Schema(description = "The listing of blocked emails.")
+@Schema(description = "The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`.  Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.")
 @Validated
 @Introspected
 
@@ -44,10 +44,10 @@ public class MailBlocks   {
   }
 
   /**
-   * Get local
+   * Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
    * @return local
   **/
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.")
   @NotNull
   @Valid
   public List<MailBlockClickHouse> getLocal() {
@@ -69,10 +69,10 @@ public class MailBlocks   {
   }
 
   /**
-   * Get mbtrap
+   * Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
    * @return mbtrap
   **/
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.")
   @NotNull
   @Valid
   public List<MailBlockClickHouse> getMbtrap() {
@@ -94,10 +94,10 @@ public class MailBlocks   {
   }
 
   /**
-   * Get subject
+   * Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
    * @return subject
   **/
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.")
   @NotNull
   @Valid
   public List<MailBlockRspamd> getSubject() {

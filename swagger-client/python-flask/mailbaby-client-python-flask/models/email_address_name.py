@@ -74,7 +74,7 @@ class EmailAddressName(Model):
     def name(self) -> str:
         """Gets the name of this EmailAddressName.
 
-        Name to use for the sending contact.  # noqa: E501
+        Optional display name shown to recipients (e.g. in the `From:` header).  # noqa: E501
 
         :return: The name of this EmailAddressName.
         :rtype: str
@@ -85,7 +85,7 @@ class EmailAddressName(Model):
     def name(self, name: str):
         """Sets the name of this EmailAddressName.
 
-        Name to use for the sending contact.  # noqa: E501
+        Optional display name shown to recipients (e.g. in the `From:` header).  # noqa: E501
 
         :param name: The name of this EmailAddressName.
         :type name: str

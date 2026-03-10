@@ -7,19 +7,19 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}total`,
-                label: `total number of mail log entries - [${labelPrefix}total]`,
+                label: `Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`. - [${labelPrefix}total]`,
                 required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}skip`,
-                label: `number of emails skipped in listing - [${labelPrefix}skip]`,
+                label: `The `skip` value used for this page (echoed from the request). - [${labelPrefix}skip]`,
                 required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}limit`,
-                label: `number of emails to return - [${labelPrefix}limit]`,
+                label: `The `limit` value used for this page (echoed from the request). - [${labelPrefix}limit]`,
                 required: true,
                 type: 'integer',
             },

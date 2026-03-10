@@ -29,7 +29,6 @@ open class StatusAPI {
     /**
      Checks if the server is running
      - GET /ping
-     - 
 
      - API Key:
        - type: apiKey X-API-KEY 

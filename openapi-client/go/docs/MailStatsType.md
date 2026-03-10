@@ -4,13 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Time** | Pointer to **string** |  | [optional] [default to "1h"]
-**Usage** | Pointer to **int32** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
-**CurrencySymbol** | Pointer to **string** |  | [optional] 
-**Cost** | Pointer to **float64** |  | [optional] 
-**Received** | Pointer to **int32** |  | [optional] 
-**Sent** | Pointer to **int32** |  | [optional] 
+**Time** | Pointer to **string** | The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover. | [optional] [default to "1h"]
+**Usage** | Pointer to **int32** | Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value. | [optional] 
+**Currency** | Pointer to **string** | The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;). | [optional] 
+**Cost** | Pointer to **float64** | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). | [optional] 
+**Received** | Pointer to **int32** | Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue. | [optional] 
+**Sent** | Pointer to **int32** | Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. | [optional] 
 **Volume** | Pointer to [**MailStatsTypeVolume**](MailStatsTypeVolume.md) |  | [optional] 
 
 ## Methods
@@ -106,31 +105,6 @@ SetCurrency sets Currency field to given value.
 `func (o *MailStatsType) HasCurrency() bool`
 
 HasCurrency returns a boolean if a field has been set.
-
-### GetCurrencySymbol
-
-`func (o *MailStatsType) GetCurrencySymbol() string`
-
-GetCurrencySymbol returns the CurrencySymbol field if non-nil, zero value otherwise.
-
-### GetCurrencySymbolOk
-
-`func (o *MailStatsType) GetCurrencySymbolOk() (*string, bool)`
-
-GetCurrencySymbolOk returns a tuple with the CurrencySymbol field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCurrencySymbol
-
-`func (o *MailStatsType) SetCurrencySymbol(v string)`
-
-SetCurrencySymbol sets CurrencySymbol field to given value.
-
-### HasCurrencySymbol
-
-`func (o *MailStatsType) HasCurrencySymbol() bool`
-
-HasCurrencySymbol returns a boolean if a field has been set.
 
 ### GetCost
 

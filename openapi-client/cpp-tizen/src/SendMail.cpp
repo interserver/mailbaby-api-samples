@@ -23,11 +23,11 @@ SendMail::~SendMail()
 void
 SendMail::__init()
 {
-	//to = std::string();
+	//to = new SendMail_to();
 	//from = std::string();
 	//subject = std::string();
 	//body = std::string();
-	//id = int(0);
+	//id = long(0);
 }
 
 void
@@ -71,9 +71,12 @@ SendMail::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&to, node, "std::string", "");
+		if (isprimitive("SendMail_to")) {
+			jsonToValue(&to, node, "SendMail_to", "SendMail_to");
 		} else {
+			
+			SendMail_to* obj = static_cast<SendMail_to*> (&to);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -115,8 +118,8 @@ SendMail::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("int")) {
-			jsonToValue(&id, node, "int", "");
+		if (isprimitive("long long")) {
+			jsonToValue(&id, node, "long long", "");
 		} else {
 			
 		}
@@ -133,11 +136,16 @@ SendMail::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("std::string")) {
-		std::string obj = getTo();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("SendMail_to")) {
+		SendMail_to obj = getTo();
+		node = converttoJson(&obj, "SendMail_to", "");
 	}
 	else {
+		
+		SendMail_to obj = static_cast<SendMail_to> (getTo());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
 	const gchar *toKey = "to";
@@ -169,9 +177,9 @@ SendMail::toJson()
 	}
 	const gchar *bodyKey = "body";
 	json_object_set_member(pJsonObject, bodyKey, node);
-	if (isprimitive("int")) {
-		int obj = getId();
-		node = converttoJson(&obj, "int", "");
+	if (isprimitive("long long")) {
+		long long obj = getId();
+		node = converttoJson(&obj, "long long", "");
 	}
 	else {
 		
@@ -186,14 +194,14 @@ SendMail::toJson()
 	return ret;
 }
 
-std::string
+SendMail_to
 SendMail::getTo()
 {
 	return to;
 }
 
 void
-SendMail::setTo(std::string  to)
+SendMail::setTo(SendMail_to  to)
 {
 	this->to = to;
 }
@@ -234,14 +242,14 @@ SendMail::setBody(std::string  body)
 	this->body = body;
 }
 
-int
+long long
 SendMail::getId()
 {
 	return id;
 }
 
 void
-SendMail::setId(int  id)
+SendMail::setId(long long  id)
 {
 	this->id = id;
 }

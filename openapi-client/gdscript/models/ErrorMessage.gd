@@ -8,10 +8,10 @@ class_name ErrorMessage
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # ErrorMessage Model
-# The resposne when an error occurs.
+# The response body returned when an error occurs.
 
 
-# The response code associated with the error.
+# The HTTP-style status code associated with the error.
 # Required: True
 # Example: 400
 # isArray: false
@@ -21,9 +21,9 @@ class_name ErrorMessage
 		code = value
 var __code__was__set := false
 
-# The details or description of the error.
+# A human-readable description of the error.
 # Required: True
-# Example: There was an error.
+# Example: The specified ID was invalid.
 # isArray: false
 @export var message: String = "":
 	set(value):

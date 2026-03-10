@@ -14,7 +14,7 @@ import EmailAddressTypes._
 case class EmailAddressTypes (
   /* The email address. */
   email: String,
-/* Name to use for the sending contact. */
+/* Optional display name shown to recipients (e.g. in the `From:` header). */
   name: Option[String])
 
 object EmailAddressTypes {

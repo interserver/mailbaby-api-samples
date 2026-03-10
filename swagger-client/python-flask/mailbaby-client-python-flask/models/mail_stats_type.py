@@ -15,7 +15,7 @@ class MailStatsType(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, time: str='1h', usage: int=None, currency: str=None, currency_symbol: str=None, cost: float=None, received: int=None, sent: int=None, volume: MailStatsTypeVolume=None):  # noqa: E501
+    def __init__(self, time: str='1h', usage: int=None, currency: str=None, cost: float=None, received: int=None, sent: int=None, volume: MailStatsTypeVolume=None):  # noqa: E501
         """MailStatsType - a model defined in Swagger
 
         :param time: The time of this MailStatsType.  # noqa: E501
@@ -24,8 +24,6 @@ class MailStatsType(Model):
         :type usage: int
         :param currency: The currency of this MailStatsType.  # noqa: E501
         :type currency: str
-        :param currency_symbol: The currency_symbol of this MailStatsType.  # noqa: E501
-        :type currency_symbol: str
         :param cost: The cost of this MailStatsType.  # noqa: E501
         :type cost: float
         :param received: The received of this MailStatsType.  # noqa: E501
@@ -39,7 +37,6 @@ class MailStatsType(Model):
             'time': str,
             'usage': int,
             'currency': str,
-            'currency_symbol': str,
             'cost': float,
             'received': int,
             'sent': int,
@@ -50,7 +47,6 @@ class MailStatsType(Model):
             'time': 'time',
             'usage': 'usage',
             'currency': 'currency',
-            'currency_symbol': 'currencySymbol',
             'cost': 'cost',
             'received': 'received',
             'sent': 'sent',
@@ -59,7 +55,6 @@ class MailStatsType(Model):
         self._time = time
         self._usage = usage
         self._currency = currency
-        self._currency_symbol = currency_symbol
         self._cost = cost
         self._received = received
         self._sent = sent
@@ -80,6 +75,7 @@ class MailStatsType(Model):
     def time(self) -> str:
         """Gets the time of this MailStatsType.
 
+        The time window these `received`, `sent`, and `volume` statistics cover.  # noqa: E501
 
         :return: The time of this MailStatsType.
         :rtype: str
@@ -90,11 +86,12 @@ class MailStatsType(Model):
     def time(self, time: str):
         """Sets the time of this MailStatsType.
 
+        The time window these `received`, `sent`, and `volume` statistics cover.  # noqa: E501
 
         :param time: The time of this MailStatsType.
         :type time: str
         """
-        allowed_values = ["all", "billing", "month", "7d", "24h", "today", "1h"]  # noqa: E501
+        allowed_values = ["all", "billing", "month", "7d", "24h", "day", "1h"]  # noqa: E501
         if time not in allowed_values:
             raise ValueError(
                 "Invalid value for `time` ({0}), must be one of {1}"
@@ -107,6 +104,7 @@ class MailStatsType(Model):
     def usage(self) -> int:
         """Gets the usage of this MailStatsType.
 
+        Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.  # noqa: E501
 
         :return: The usage of this MailStatsType.
         :rtype: int
@@ -117,6 +115,7 @@ class MailStatsType(Model):
     def usage(self, usage: int):
         """Sets the usage of this MailStatsType.
 
+        Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.  # noqa: E501
 
         :param usage: The usage of this MailStatsType.
         :type usage: int
@@ -128,6 +127,7 @@ class MailStatsType(Model):
     def currency(self) -> str:
         """Gets the currency of this MailStatsType.
 
+        The ISO 4217 currency code for this account (e.g. `USD`).  # noqa: E501
 
         :return: The currency of this MailStatsType.
         :rtype: str
@@ -138,6 +138,7 @@ class MailStatsType(Model):
     def currency(self, currency: str):
         """Sets the currency of this MailStatsType.
 
+        The ISO 4217 currency code for this account (e.g. `USD`).  # noqa: E501
 
         :param currency: The currency of this MailStatsType.
         :type currency: str
@@ -146,30 +147,10 @@ class MailStatsType(Model):
         self._currency = currency
 
     @property
-    def currency_symbol(self) -> str:
-        """Gets the currency_symbol of this MailStatsType.
-
-
-        :return: The currency_symbol of this MailStatsType.
-        :rtype: str
-        """
-        return self._currency_symbol
-
-    @currency_symbol.setter
-    def currency_symbol(self, currency_symbol: str):
-        """Sets the currency_symbol of this MailStatsType.
-
-
-        :param currency_symbol: The currency_symbol of this MailStatsType.
-        :type currency_symbol: str
-        """
-
-        self._currency_symbol = currency_symbol
-
-    @property
     def cost(self) -> float:
         """Gets the cost of this MailStatsType.
 
+        Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).  # noqa: E501
 
         :return: The cost of this MailStatsType.
         :rtype: float
@@ -180,6 +161,7 @@ class MailStatsType(Model):
     def cost(self, cost: float):
         """Sets the cost of this MailStatsType.
 
+        Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).  # noqa: E501
 
         :param cost: The cost of this MailStatsType.
         :type cost: float
@@ -191,6 +173,7 @@ class MailStatsType(Model):
     def received(self) -> int:
         """Gets the received of this MailStatsType.
 
+        Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.  # noqa: E501
 
         :return: The received of this MailStatsType.
         :rtype: int
@@ -201,6 +184,7 @@ class MailStatsType(Model):
     def received(self, received: int):
         """Sets the received of this MailStatsType.
 
+        Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.  # noqa: E501
 
         :param received: The received of this MailStatsType.
         :type received: int
@@ -212,6 +196,7 @@ class MailStatsType(Model):
     def sent(self) -> int:
         """Gets the sent of this MailStatsType.
 
+        Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.  # noqa: E501
 
         :return: The sent of this MailStatsType.
         :rtype: int
@@ -222,6 +207,7 @@ class MailStatsType(Model):
     def sent(self, sent: int):
         """Sets the sent of this MailStatsType.
 
+        Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.  # noqa: E501
 
         :param sent: The sent of this MailStatsType.
         :type sent: int

@@ -21,7 +21,7 @@ open class BlockingAPI {
     }
 
     /**
-     Creates a new email deny rule.
+     Creates a new email deny rule
 
      - parameter user: (form)  
      - parameter type: (form)  
@@ -36,14 +36,14 @@ open class BlockingAPI {
 
 
     /**
-     Creates a new email deny rule.
+     Creates a new email deny rule
      - POST /mail/rules
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }}]
      - parameter user: (form)  
@@ -64,9 +64,9 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Creates a new email deny rule.
+     Creates a new email deny rule
 
-     - parameter body: (body) These are the fields needed to create a new email deny rule. 
+     - parameter body: (body) Fields required to create a new email deny rule. 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func addRule(body: DenyRuleNew, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
@@ -77,17 +77,17 @@ open class BlockingAPI {
 
 
     /**
-     Creates a new email deny rule.
+     Creates a new email deny rule
      - POST /mail/rules
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }}]
-     - parameter body: (body) These are the fields needed to create a new email deny rule. 
+     - parameter body: (body) Fields required to create a new email deny rule. 
 
      - returns: RequestBuilder<GenericResponse> 
      */
@@ -103,9 +103,9 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Removes an deny mail rule.
+     Removes a deny mail rule
 
-     - parameter ruleId: (path) The ID of the Rules entry. 
+     - parameter ruleId: (path) The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func deleteRule(ruleId: Int, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
@@ -116,17 +116,17 @@ open class BlockingAPI {
 
 
     /**
-     Removes an deny mail rule.
+     Removes a deny mail rule
      - DELETE /mail/rules/{ruleId}
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }}]
-     - parameter ruleId: (path) The ID of the Rules entry. 
+     - parameter ruleId: (path) The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. 
 
      - returns: RequestBuilder<GenericResponse> 
      */
@@ -145,12 +145,12 @@ open class BlockingAPI {
         return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Removes an email address from the blocked list
+     Removes an email address from the block lists
 
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func delistBlock(body: String, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+    open class func delistBlock(body: EmailAddressParam, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
         delistBlockWithRequestBuilder(body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -158,21 +158,21 @@ open class BlockingAPI {
 
 
     /**
-     Removes an email address from the blocked list
+     Removes an email address from the block lists
      - POST /mail/blocks/delete
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }}]
      - parameter body: (body)  
 
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func delistBlockWithRequestBuilder(body: String) -> RequestBuilder<GenericResponse> {
+    open class func delistBlockWithRequestBuilder(body: EmailAddressParam) -> RequestBuilder<GenericResponse> {
         let path = "/mail/blocks/delete"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
@@ -184,7 +184,46 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     displays a list of blocked email addresses
+     Removes an email address from the block lists
+
+     - parameter email: (form)  
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func delistBlock(email: String, completion: @escaping ((_ data: GenericResponse?,_ error: Error?) -> Void)) {
+        delistBlockWithRequestBuilder(email: email).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Removes an email address from the block lists
+     - POST /mail/blocks/delete
+
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "text" : "185caa69ff7000f47c",
+  "status" : "ok"
+}}]
+     - parameter email: (form)  
+
+     - returns: RequestBuilder<GenericResponse> 
+     */
+    open class func delistBlockWithRequestBuilder(email: String) -> RequestBuilder<GenericResponse> {
+        let path = "/mail/blocks/delete"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+        let url = URLComponents(string: URLString)
+
+
+        let requestBuilder: RequestBuilder<GenericResponse>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+    /**
+     Displays a list of blocked email addresses
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -196,31 +235,33 @@ open class BlockingAPI {
 
 
     /**
-     displays a list of blocked email addresses
+     Displays a list of blocked email addresses
      - GET /mail/blocks
-     - 
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
+  "subject" : [ {
+    "from" : "user@domain.com",
+    "subject" : "Test email"
+  }, {
+    "from" : "user@domain.com",
+    "subject" : "Test email"
+  } ],
+  "mbtrap" : [ null, null ],
   "local" : [ {
     "date" : "2023-08-07",
     "from" : "user@domain.com",
     "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
     "subject" : "Test Email",
     "to" : "['client@site.com']"
-  } ],
-  "mbtrap" : [ {
+  }, {
     "date" : "2023-08-07",
     "from" : "user@domain.com",
     "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
     "subject" : "Test Email",
     "to" : "['client@site.com']"
-  } ],
-  "subject" : [ {
-    "from" : "user@domain.com",
-    "subject" : "Test Email"
   } ]
 }}]
 
@@ -238,7 +279,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Displays a listing of deny email rules.
+     Displays a listing of deny email rules
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -250,20 +291,20 @@ open class BlockingAPI {
 
 
     /**
-     Displays a listing of deny email rules.
+     Displays a listing of deny email rules
      - GET /mail/rules
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example=[ {
-  "id" : 14,
+  "id" : "14",
   "user" : "mb20682",
   "type" : "email",
   "data" : "domeinwo@server.guesshost.net",
   "created" : "2022-03-22 19:16:35"
 }, {
-  "id" : 14,
+  "id" : "14",
   "user" : "mb20682",
   "type" : "email",
   "data" : "domeinwo@server.guesshost.net",

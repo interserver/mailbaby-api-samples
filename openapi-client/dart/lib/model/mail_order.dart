@@ -19,16 +19,16 @@ class MailOrder {
     this.comment,
   });
 
-  /// The ID of the order.
+  /// The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
   int id;
 
-  /// The order status.
+  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   String status;
 
-  /// The username to use for this order.
+  /// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
   String username;
 
-  /// Optional order comment.
+  /// Optional human-readable note associated with the order.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated

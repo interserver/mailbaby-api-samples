@@ -8,10 +8,14 @@
 import Foundation
 
 
+/** Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window. */
 open class MailStatsTypeVolume: JSONEncodable {
-    public var to: MailStatsTypeVolumeTo?
-    public var from: MailStatsTypeVolumeFrom?
-    public var ip: MailStatsTypeVolumeIp?
+    /** Message counts keyed by destination (envelope &#x60;to&#x60;) email address. */
+    public var to: [String:Int32]?
+    /** Message counts keyed by sender (envelope &#x60;from&#x60;) email address. */
+    public var from: [String:Int32]?
+    /** Message counts keyed by originating client IP address. */
+    public var ip: [String:Int32]?
 
     public init() {}
 

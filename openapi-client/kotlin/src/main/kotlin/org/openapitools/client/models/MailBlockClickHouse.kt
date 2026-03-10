@@ -20,32 +20,37 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * A block entry from the clickhouse mailblocks server.
+ * A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
  *
- * @param date 
- * @param from 
- * @param messageId 
- * @param subject 
- * @param to 
+ * @param date The date the block event was recorded.
+ * @param from The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
+ * @param subject The `Subject` header of the blocked message.
+ * @param to The serialized list of recipients of the blocked message.
+ * @param messageId The `Message-ID` header of the blocked message, or `null` if not present.
  */
 
 
 data class MailBlockClickHouse (
 
+    /* The date the block event was recorded. */
     @Json(name = "date")
     val date: java.time.LocalDate,
 
+    /* The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it. */
     @Json(name = "from")
     val from: kotlin.String,
 
-    @Json(name = "messageId")
-    val messageId: kotlin.String,
-
+    /* The `Subject` header of the blocked message. */
     @Json(name = "subject")
     val subject: kotlin.String,
 
+    /* The serialized list of recipients of the blocked message. */
     @Json(name = "to")
-    val to: kotlin.String
+    val to: kotlin.String,
+
+    /* The `Message-ID` header of the blocked message, or `null` if not present. */
+    @Json(name = "messageId")
+    val messageId: kotlin.String? = null
 
 ) {
 

@@ -10,15 +10,16 @@ import java.util.Date;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description="A block entry from the clickhouse mailblocks server.")
+@Schema(description="A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 
 public class MailBlockClickHouse   {
   private Date date = null;  private String from = null;  private String messageId = null;  private String subject = null;  private String to = null;
 
   /**
+   * The date the block event was recorded.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(example = "Sun Aug 06 20:00:00 EDT 2023", required = true, description = "The date the block event was recorded.")
   @JsonProperty("date")
   @NotNull
   public Date getDate() {
@@ -29,9 +30,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(example = "user@domain.com", required = true, description = "The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.")
   @JsonProperty("from")
   @NotNull
   public String getFrom() {
@@ -42,11 +44,11 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(example = "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com", description = "The `Message-ID` header of the blocked message, or `null` if not present.")
   @JsonProperty("messageId")
-  @NotNull
   public String getMessageId() {
     return messageId;
   }
@@ -55,9 +57,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The &#x60;Subject&#x60; header of the blocked message.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(example = "Test Email", required = true, description = "The `Subject` header of the blocked message.")
   @JsonProperty("subject")
   @NotNull
   public String getSubject() {
@@ -68,9 +71,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The serialized list of recipients of the blocked message.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(example = "['client@site.com']", required = true, description = "The serialized list of recipients of the blocked message.")
   @JsonProperty("to")
   @NotNull
   public String getTo() {

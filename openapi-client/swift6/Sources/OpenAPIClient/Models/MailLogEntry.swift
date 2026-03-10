@@ -7,71 +7,76 @@
 
 import Foundation
 
-/** An email record */
+/** A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The &#x60;id&#x60; field matches the &#x60;mailid&#x60; query parameter on &#x60;GET /mail/log&#x60; and   the &#x60;text&#x60; field of a successful send response. - The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist a   flagged sender. - The &#x60;user&#x60; field is the SMTP username (e.g. &#x60;mb5658&#x60;) corresponding to the   &#x60;username&#x60; field in &#x60;GET /mail&#x60; / &#x60;GET /mail/{id}&#x60;. */
 public struct MailLogEntry: Sendable, Codable, Hashable {
 
-    /** internal db id */
+    /** Internal auto-increment database row ID.  Not meaningful outside the API. */
     public var id: Int
-    /** mail id */
+    /** The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`. */
     public var id: String
-    /** from address */
+    /** SMTP envelope `MAIL FROM` address (may differ from the `From:` header). */
     public var from: String
-    /** to address */
+    /** SMTP envelope `RCPT TO` address. */
     public var to: String
-    /** email subject */
-    public var subject: String
-    /** creation date */
+    /** Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format. */
     public var created: String
-    /** creation timestamp */
+    /** Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`. */
     public var time: Int
-    /** user account */
+    /** The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders. */
     public var user: String
-    /** transaction type */
+    /** SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`). */
     public var transtype: String
-    /** origin ip */
+    /** IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`. */
     public var origin: String
-    /** interface name */
+    /** Relay interface name that accepted the message (e.g. `feeder`). */
     public var interface: String
-    /** sending zone */
-    public var sendingZone: String
-    /** email body size in bytes */
-    public var bodySize: Int
-    /** index of email in the to adderess list */
-    public var seq: Int
-    /** to address this email is being sent to */
-    public var recipient: String
-    /** to address domain */
-    public var domain: String
-    /** locked status */
-    public var locked: Int
-    /** lock timestamp */
-    public var lockTime: String
-    /** assigned server */
-    public var assigned: String
-    /** queued timestamp */
-    public var queued: String
-    /** mx hostname */
-    public var mxHostname: String
-    /** mail delivery response */
-    public var response: String
-    /** message id */
+    /** The `Subject` header value, if available. */
+    public var subject: String?
+    /** The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups. */
     public var messageId: String?
+    /** The sending zone assigned by the relay for outbound delivery. */
+    public var sendingZone: String?
+    /** Size of the message body in bytes. */
+    public var bodySize: Int?
+    /** Sequence index of this recipient in a multi-recipient message. Starts at 1. */
+    public var seq: Int?
+    /** Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. */
+    public var delivered: Int?
+    /** The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). */
+    public var response: String?
+    /** The specific recipient address this delivery record is for. */
+    public var recipient: String?
+    /** The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`. */
+    public var domain: String?
+    /** Whether the queue entry is currently locked for delivery processing. */
+    public var locked: Int?
+    /** Millisecond-precision timestamp of the last queue lock acquisition. */
+    public var lockTime: String?
+    /** The relay server node assigned to deliver this message. */
+    public var assigned: String?
+    /** ISO 8601 timestamp when the message was placed into the delivery queue. */
+    public var queued: String?
+    /** The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`. */
+    public var mxHostname: String?
 
-    public init(id: Int, id: String, from: String, to: String, subject: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, sendingZone: String, bodySize: Int, seq: Int, recipient: String, domain: String, locked: Int, lockTime: String, assigned: String, queued: String, mxHostname: String, response: String, messageId: String? = nil) {
+    public init(id: Int, id: String, from: String, to: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, subject: String? = nil, messageId: String? = nil, sendingZone: String? = nil, bodySize: Int? = nil, seq: Int? = nil, delivered: Int? = nil, response: String? = nil, recipient: String? = nil, domain: String? = nil, locked: Int? = nil, lockTime: String? = nil, assigned: String? = nil, queued: String? = nil, mxHostname: String? = nil) {
         self.id = id
         self.id = id
         self.from = from
         self.to = to
-        self.subject = subject
         self.created = created
         self.time = time
         self.user = user
         self.transtype = transtype
         self.origin = origin
         self.interface = interface
+        self.subject = subject
+        self.messageId = messageId
         self.sendingZone = sendingZone
         self.bodySize = bodySize
         self.seq = seq
+        self.delivered = delivered
+        self.response = response
         self.recipient = recipient
         self.domain = domain
         self.locked = locked
@@ -79,8 +84,6 @@ public struct MailLogEntry: Sendable, Codable, Hashable {
         self.assigned = assigned
         self.queued = queued
         self.mxHostname = mxHostname
-        self.response = response
-        self.messageId = messageId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -88,16 +91,19 @@ public struct MailLogEntry: Sendable, Codable, Hashable {
         case id
         case from
         case to
-        case subject
         case created
         case time
         case user
         case transtype
         case origin
         case interface
+        case subject
+        case messageId
         case sendingZone
         case bodySize
         case seq
+        case delivered
+        case response
         case recipient
         case domain
         case locked
@@ -105,8 +111,6 @@ public struct MailLogEntry: Sendable, Codable, Hashable {
         case assigned
         case queued
         case mxHostname
-        case response
-        case messageId
     }
 
     // Encodable protocol methods
@@ -117,25 +121,26 @@ public struct MailLogEntry: Sendable, Codable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(from, forKey: .from)
         try container.encode(to, forKey: .to)
-        try container.encode(subject, forKey: .subject)
         try container.encode(created, forKey: .created)
         try container.encode(time, forKey: .time)
         try container.encode(user, forKey: .user)
         try container.encode(transtype, forKey: .transtype)
         try container.encode(origin, forKey: .origin)
         try container.encode(interface, forKey: .interface)
-        try container.encode(sendingZone, forKey: .sendingZone)
-        try container.encode(bodySize, forKey: .bodySize)
-        try container.encode(seq, forKey: .seq)
-        try container.encode(recipient, forKey: .recipient)
-        try container.encode(domain, forKey: .domain)
-        try container.encode(locked, forKey: .locked)
-        try container.encode(lockTime, forKey: .lockTime)
-        try container.encode(assigned, forKey: .assigned)
-        try container.encode(queued, forKey: .queued)
-        try container.encode(mxHostname, forKey: .mxHostname)
-        try container.encode(response, forKey: .response)
+        try container.encodeIfPresent(subject, forKey: .subject)
         try container.encodeIfPresent(messageId, forKey: .messageId)
+        try container.encodeIfPresent(sendingZone, forKey: .sendingZone)
+        try container.encodeIfPresent(bodySize, forKey: .bodySize)
+        try container.encodeIfPresent(seq, forKey: .seq)
+        try container.encodeIfPresent(delivered, forKey: .delivered)
+        try container.encodeIfPresent(response, forKey: .response)
+        try container.encodeIfPresent(recipient, forKey: .recipient)
+        try container.encodeIfPresent(domain, forKey: .domain)
+        try container.encodeIfPresent(locked, forKey: .locked)
+        try container.encodeIfPresent(lockTime, forKey: .lockTime)
+        try container.encodeIfPresent(assigned, forKey: .assigned)
+        try container.encodeIfPresent(queued, forKey: .queued)
+        try container.encodeIfPresent(mxHostname, forKey: .mxHostname)
     }
 }
 

@@ -297,14 +297,15 @@ case $state in
   ops)
     # Operations
     _values "Operations" \
-            "addRule[Creates a new email deny rule.]" \
-            "deleteRule[Removes an deny mail rule.]" \
-            "delistBlock[Removes an email address from the blocked list]" \
-            "getMailBlocks[displays a list of blocked email addresses]" \
-            "getRules[Displays a listing of deny email rules.]"             "getStats[Account usage statistics.]" \
-            "viewMailLog[displays the mail log]"             "rawMail[Sends a raw email]" \
+            "addRule[Creates a new email deny rule]" \
+            "deleteRule[Removes a deny mail rule]" \
+            "delistBlock[Removes an email address from the block lists]" \
+            "getMailBlocks[Displays a list of blocked email addresses]" \
+            "getRules[Displays a listing of deny email rules]"             "getStats[Account usage statistics]" \
+            "viewMailLog[Displays the mail log]"             "rawMail[Sends a raw RFC 822 email]" \
             "sendAdvMail[Sends an Email with Advanced Options]" \
-            "sendMail[Sends an Email]"             "getMailOrders[displays a list of mail service orders]"             "pingServer[Checks if the server is running]" \
+            "sendMail[Sends an Email]"             "getMailOrderById[Displays details for a single mail order]" \
+            "getMailOrders[Displays a list of mail service orders]"             "pingServer[Checks if the server is running]" \
 
     _arguments "(--help)--help[Print information about operation]"
 
@@ -321,7 +322,7 @@ case $state in
       deleteRule)
         local -a _op_arguments
         _op_arguments=(
-          "ruleId=:[PATH] The ID of the Rules entry."
+          "ruleId=:[PATH] The numeric ID of the deny rule to delete.  Obtain this from the &#39;id&#39; field in &#39;GET /mail/rules&#39; or the &#39;text&#39; field of a &#39;POST /mail/rules&#39; response."
                     )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -346,27 +347,28 @@ case $state in
       getStats)
         local -a _op_arguments
         _op_arguments=(
-                    "time=:[QUERY] The timeframe for the statistics."
+                    "time=:[QUERY] The time window to scope &#39;received&#39;, &#39;sent&#39;, and &#39;volume&#39; statistics. Does not affect &#39;usage&#39; or &#39;cost&#39;, which are always calculated over the current billing cycle.  Defaults to &#39;1h&#39;."
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       viewMailLog)
         local -a _op_arguments
         _op_arguments=(
-                    "id=:[QUERY] The ID of your mail order this will be sent through."
-"origin=:[QUERY] originating ip address sending mail"
-"mx=:[QUERY] mx record mail was sent to"
-"from=:[QUERY] from email address"
-"to=:[QUERY] to/destination email address"
-"subject=:[QUERY] subject containing this string"
-"mailid=:[QUERY] mail id"
-"skip=:[QUERY] number of records to skip for pagination"
-"limit=:[QUERY] maximum number of records to return"
-"startDate=:[QUERY] earliest date to get emails in unix timestamp format"
-"endDate=:[QUERY] earliest date to get emails in unix timestamp format"
-"replyto=:[QUERY] Reply-To Email Address"
-"headerfrom=:[QUERY] Header From Email Address"
-"delivered=:[QUERY] Limiting the emails to wether or not they were delivered."
+                    "id=:[QUERY] The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#39;GET /mail&#39; or &#39;GET /mail/{id}&#39;."
+"origin=:[QUERY] Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address."
+"mx=:[QUERY] Filter by the MX hostname the relay attempted delivery to.  For example &#39;mx.google.com&#39; would return messages destined for Gmail recipients. Maps to &#39;mxHostname&#39; in the &#39;MailLogEntry&#39; response."
+"from=:[QUERY] Filter by SMTP envelope &#39;MAIL FROM&#39; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#39;From:&#39; message header.  For header-level filtering use &#39;headerfrom&#39;."
+"to=:[QUERY] Filter by SMTP envelope &#39;RCPT TO&#39; address (exact match).  This is the delivery address used by the relay and may differ from the &#39;To:&#39; header when BCC recipients are involved."
+"subject=:[QUERY] Filter by email &#39;Subject&#39; header (exact match).  To search for a substring, include it in the full subject text."
+"mailid=:[QUERY] Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#39;id&#39; field in &#39;MailLogEntry&#39; and to the &#39;text&#39; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#39;185997065c60008840&#39;."
+"messageId=:[QUERY] Filter by the &#39;Message-ID&#39; email header using a substring (case-insensitive) match.  The &#39;Message-ID&#39; is assigned by the sending mail client and is visible in the &#39;messageId&#39; field of &#39;MailLogEntry&#39;.  Useful when you know the message ID generated by your application but not the relay &#39;mailid&#39;."
+"replyto=:[QUERY] Filter by the &#39;Reply-To&#39; message header address (exact match).  Only returns messages where this header was explicitly set."
+"headerfrom=:[QUERY] Filter by the &#39;From&#39; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#39;from&#39; parameter when sending on behalf of another address."
+"delivered=:[QUERY] Filter by delivery status.  &#39;1&#39; returns only messages that were successfully delivered to the destination MX.  &#39;0&#39; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status."
+"skip=:[QUERY] Number of records to skip for pagination.  Use in combination with &#39;limit&#39; to page through large result sets.  Defaults to &#39;0&#39; (no skip)."
+"limit=:[QUERY] Maximum number of records to return per page.  Defaults to &#39;100&#39;. Maximum allowed value is &#39;10000&#39;.  The response also includes a &#39;total&#39; field with the full matched count so you can calculate the number of pages."
+"startDate=:[QUERY] Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#39;time&#39; value **greater than or equal to** this value will be included."
+"endDate=:[QUERY] Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#39;time&#39; value **less than or equal to** this value will be included."
           )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
@@ -386,6 +388,13 @@ case $state in
         local -a _op_arguments
         _op_arguments=(
                               )
+        _describe -t actions 'operations' _op_arguments -S '' && ret=0
+        ;;
+      getMailOrderById)
+        local -a _op_arguments
+        _op_arguments=(
+          "id=:[PATH] The numeric ID of the mail order."
+                    )
         _describe -t actions 'operations' _op_arguments -S '' && ret=0
         ;;
       getMailOrders)

@@ -17,6 +17,7 @@ import 'package:openapi/src/model/date.dart';
 import 'package:openapi/src/model/deny_rule_new.dart';
 import 'package:openapi/src/model/deny_rule_record.dart';
 import 'package:openapi/src/model/email_address_name.dart';
+import 'package:openapi/src/model/email_address_param.dart';
 import 'package:openapi/src/model/email_address_types.dart';
 import 'package:openapi/src/model/email_addresses_types.dart';
 import 'package:openapi/src/model/error_message.dart';
@@ -28,14 +29,13 @@ import 'package:openapi/src/model/mail_blocks.dart';
 import 'package:openapi/src/model/mail_log.dart';
 import 'package:openapi/src/model/mail_log_entry.dart';
 import 'package:openapi/src/model/mail_order.dart';
+import 'package:openapi/src/model/mail_order_detail.dart';
 import 'package:openapi/src/model/mail_stats_type.dart';
 import 'package:openapi/src/model/mail_stats_type_volume.dart';
-import 'package:openapi/src/model/mail_stats_type_volume_from.dart';
-import 'package:openapi/src/model/mail_stats_type_volume_ip.dart';
-import 'package:openapi/src/model/mail_stats_type_volume_to.dart';
 import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
 import 'package:openapi/src/model/send_mail_raw.dart';
+import 'package:openapi/src/model/send_mail_to.dart';
 
 part 'serializers.g.dart';
 
@@ -43,6 +43,7 @@ part 'serializers.g.dart';
   DenyRuleNew,$DenyRuleNew,
   DenyRuleRecord,
   EmailAddressName,
+  EmailAddressParam,
   EmailAddressTypes,
   EmailAddressesTypes,
   ErrorMessage,
@@ -53,15 +54,14 @@ part 'serializers.g.dart';
   MailBlocks,
   MailLog,
   MailLogEntry,
-  MailOrder,
+  MailOrder,$MailOrder,
+  MailOrderDetail,
   MailStatsType,
   MailStatsTypeVolume,
-  MailStatsTypeVolumeFrom,
-  MailStatsTypeVolumeIp,
-  MailStatsTypeVolumeTo,
   SendMail,
   SendMailAdv,
   SendMailRaw,
+  SendMailTo,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
@@ -77,6 +77,7 @@ Serializers serializers = (_$serializers.toBuilder()
         () => ListBuilder<MailOrder>(),
       )
       ..add(DenyRuleNew.serializer)
+      ..add(MailOrder.serializer)
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())
       ..add(const DateSerializer())

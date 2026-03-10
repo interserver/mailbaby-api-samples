@@ -10,14 +10,14 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.
- * The version of the OpenAPI document: 1.3.0
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call.
+ * The version of the OpenAPI document: 1.4.0
  */
 class ApiClient extends OAGAC\AbstractApiClient
 {
     //region addRule
     /**
-     * Creates a new email deny rule.
+     * Creates a new email deny rule
      * @param \App\DTO\DenyRuleNew $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -41,7 +41,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Creates a new email deny rule.
+     * Creates a new email deny rule
      * @param \App\DTO\DenyRuleNew $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -65,19 +65,19 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* search results matching criteria */
+                /* Rule created successfully */
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* Error message when there was a problem with the input parameters. */
+                /* Bad request — one or more input parameters were missing or invalid. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
-                /* The specified resource was not found */
+                /* The specified resource was not found or does not belong to your account. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -86,7 +86,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Creates a new email deny rule.
+     * Creates a new email deny rule
      * @param \App\DTO\DenyRuleNew $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -110,7 +110,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region deleteRule
     /**
-     * Removes an deny mail rule.
+     * Removes a deny mail rule
      * @param \App\DTO\DeleteRuleParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -131,7 +131,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Removes an deny mail rule.
+     * Removes a deny mail rule
      * @param \App\DTO\DeleteRuleParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -153,19 +153,19 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* search results matching criteria */
+                /* Rule deleted successfully */
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* Error message when there was a problem with the input parameters. */
+                /* Bad request — one or more input parameters were missing or invalid. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
-                /* The specified resource was not found */
+                /* The specified resource was not found or does not belong to your account. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -174,7 +174,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Removes an deny mail rule.
+     * Removes a deny mail rule
      * @param \App\DTO\DeleteRuleParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -196,8 +196,8 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region delistBlock
     /**
-     * Removes an email address from the blocked list
-     * @param string $requestContent
+     * Removes an email address from the block lists
+     * @param \App\DTO\EmailAddressParam $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -206,7 +206,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws DT\Exception\InvalidData
      */
     public function delistBlockRaw(
-        string $requestContent,
+        \App\DTO\EmailAddressParam $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -220,8 +220,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Removes an email address from the blocked list
-     * @param string $requestContent
+     * Removes an email address from the block lists
+     * @param \App\DTO\EmailAddressParam $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -231,7 +231,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\InvalidResponseBodySchema
      */
     public function delistBlock(
-        string $requestContent,
+        \App\DTO\EmailAddressParam $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -244,19 +244,19 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* search results matching criteria */
+                /* Address successfully delisted */
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* Error message when there was a problem with the input parameters. */
+                /* Bad request — one or more input parameters were missing or invalid. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
-                /* The specified resource was not found */
+                /* The specified resource was not found or does not belong to your account. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -265,8 +265,8 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Removes an email address from the blocked list
-     * @param string $requestContent
+     * Removes an email address from the block lists
+     * @param \App\DTO\EmailAddressParam $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
      * @param string $responseMediaType
@@ -277,7 +277,7 @@ class ApiClient extends OAGAC\AbstractApiClient
      * @throws OAGAC\Exception\UnsuccessfulResponse
      */
     public function delistBlockResult(
-        string $requestContent,
+        \App\DTO\EmailAddressParam $requestContent,
         iterable $security = ['apiKeyAuth' => []],
         string $requestMediaType = 'application/json',
         string $responseMediaType = 'application/json'
@@ -289,7 +289,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getMailBlocks
     /**
-     * displays a list of blocked email addresses
+     * Displays a list of blocked email addresses
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -308,7 +308,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Displays a list of blocked email addresses
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
@@ -332,11 +332,7 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\MailBlocks();
                 break;
             case 401:
-                /* Unauthorized */
-                $responseContent = new \App\DTO\ErrorMessage();
-                break;
-            case 404:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -345,7 +341,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays a list of blocked email addresses
+     * Displays a list of blocked email addresses
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\MailBlocks
@@ -363,9 +359,95 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
     //endregion
 
+    //region getMailOrderById
+    /**
+     * Displays details for a single mail order
+     * @param \App\DTO\GetMailOrderByIdParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return ResponseInterface
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     */
+    public function getMailOrderByIdRaw(
+        \App\DTO\GetMailOrderByIdParameterData $parameters,
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): ResponseInterface
+    {
+        $request = $this->createRequest('GET', '/mail/{id}', $this->getPathParameters($parameters), []);
+        $request = $this->addAcceptHeader($request, $responseMediaType);
+        $request = $this->addSecurity($request, $security);
+        return $this->httpClient->sendRequest($request);
+    }
+
+    /**
+     * Displays details for a single mail order
+     * @param \App\DTO\GetMailOrderByIdParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return array
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     */
+    public function getMailOrderById(
+        \App\DTO\GetMailOrderByIdParameterData $parameters,
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): array
+    {
+        $response = $this->getMailOrderByIdRaw($parameters, $security, $responseMediaType);
+        $responseContent = null;
+        $contentStrategy = null;
+        $contentValidator = null;
+        switch ($response->getStatusCode())
+        {
+            case 200:
+                /* OK */
+                $responseContent = new \App\DTO\MailOrderDetail();
+                break;
+            case 400:
+                /* Bad request — one or more input parameters were missing or invalid. */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+            case 401:
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+            case 404:
+                /* The specified resource was not found or does not belong to your account. */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+        }
+        $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
+        return [$responseContent, $response->getHeaders(), $response->getStatusCode(), $response->getReasonPhrase()];
+    }
+
+    /**
+     * Displays details for a single mail order
+     * @param \App\DTO\GetMailOrderByIdParameterData $parameters
+     * @param iterable<string, string[]> $security
+     * @param string $responseMediaType
+     * @return \App\DTO\MailOrderDetail
+     * @throws ClientExceptionInterface
+     * @throws DT\Exception\InvalidData
+     * @throws OAGAC\Exception\InvalidResponseBodySchema
+     * @throws OAGAC\Exception\UnsuccessfulResponse
+     */
+    public function getMailOrderByIdResult(
+        \App\DTO\GetMailOrderByIdParameterData $parameters,
+        iterable $security = ['apiKeyAuth' => []],
+        string $responseMediaType = 'application/json'
+    ): \App\DTO\MailOrderDetail
+    {
+        return $this->getSuccessfulContent(...$this->getMailOrderById($parameters, $security, $responseMediaType));
+    }
+    //endregion
+
     //region getMailOrders
     /**
-     * displays a list of mail service orders
+     * Displays a list of mail service orders
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -384,7 +466,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays a list of mail service orders
+     * Displays a list of mail service orders
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
@@ -408,11 +490,7 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\Collection();
                 break;
             case 401:
-                /* Unauthorized */
-                $responseContent = new \App\DTO\ErrorMessage();
-                break;
-            case 404:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -421,7 +499,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays a list of mail service orders
+     * Displays a list of mail service orders
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return \App\DTO\Collection
@@ -441,7 +519,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getRules
     /**
-     * Displays a listing of deny email rules.
+     * Displays a listing of deny email rules
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return ResponseInterface
@@ -460,7 +538,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Displays a listing of deny email rules.
+     * Displays a listing of deny email rules
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
      * @return array
@@ -481,14 +559,10 @@ class ApiClient extends OAGAC\AbstractApiClient
         {
             case 200:
                 /* OK */
-                $responseContent = new \App\DTO\Collection6();
+                $responseContent = new \App\DTO\Collection9();
                 break;
             case 401:
-                /* Unauthorized */
-                $responseContent = new \App\DTO\ErrorMessage();
-                break;
-            case 404:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -497,10 +571,10 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Displays a listing of deny email rules.
+     * Displays a listing of deny email rules
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
-     * @return \App\DTO\Collection6
+     * @return \App\DTO\Collection9
      * @throws ClientExceptionInterface
      * @throws DT\Exception\InvalidData
      * @throws OAGAC\Exception\InvalidResponseBodySchema
@@ -509,7 +583,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     public function getRulesResult(
         iterable $security = ['apiKeyAuth' => []],
         string $responseMediaType = 'application/json'
-    ): \App\DTO\Collection6
+    ): \App\DTO\Collection9
     {
         return $this->getSuccessfulContent(...$this->getRules($security, $responseMediaType));
     }
@@ -517,7 +591,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region getStats
     /**
-     * Account usage statistics.
+     * Account usage statistics
      * @param \App\DTO\GetStatsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -538,7 +612,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Account usage statistics.
+     * Account usage statistics
      * @param \App\DTO\GetStatsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -564,11 +638,7 @@ class ApiClient extends OAGAC\AbstractApiClient
                 $responseContent = new \App\DTO\MailStatsType();
                 break;
             case 401:
-                /* Unauthorized */
-                $responseContent = new \App\DTO\ErrorMessage();
-                break;
-            case 404:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -577,7 +647,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Account usage statistics.
+     * Account usage statistics
      * @param \App\DTO\GetStatsParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -662,7 +732,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region rawMail
     /**
-     * Sends a raw email
+     * Sends a raw RFC 822 email
      * @param \App\DTO\SendMailRaw $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -686,7 +756,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Sends a raw email
+     * Sends a raw RFC 822 email
      * @param \App\DTO\SendMailRaw $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -710,19 +780,19 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* successful email response */
+                /* Email accepted for delivery */
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* Error message when there was a problem with the input parameters. */
+                /* Bad request — one or more input parameters were missing or invalid. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
-                /* The specified resource was not found */
+                /* The specified resource was not found or does not belong to your account. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -731,7 +801,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * Sends a raw email
+     * Sends a raw RFC 822 email
      * @param \App\DTO\SendMailRaw $requestContent
      * @param iterable<string, string[]> $security
      * @param string $requestMediaType
@@ -803,19 +873,19 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* search results matching criteria */
+                /* Email accepted for delivery */
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* Error message when there was a problem with the input parameters. */
+                /* Bad request — one or more input parameters were missing or invalid. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
-                /* The specified resource was not found */
+                /* The specified resource was not found or does not belong to your account. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -896,19 +966,19 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* search results matching criteria */
+                /* Email accepted for delivery */
                 $responseContent = new \App\DTO\GenericResponse();
                 break;
             case 400:
-                /* Error message when there was a problem with the input parameters. */
+                /* Bad request — one or more input parameters were missing or invalid. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 401:
-                /* Unauthorized */
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
             case 404:
-                /* The specified resource was not found */
+                /* The specified resource was not found or does not belong to your account. */
                 $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
@@ -941,7 +1011,7 @@ class ApiClient extends OAGAC\AbstractApiClient
 
     //region viewMailLog
     /**
-     * displays the mail log
+     * Displays the mail log
      * @param \App\DTO\ViewMailLogParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -962,7 +1032,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays the mail log
+     * Displays the mail log
      * @param \App\DTO\ViewMailLogParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType
@@ -984,11 +1054,16 @@ class ApiClient extends OAGAC\AbstractApiClient
         switch ($response->getStatusCode())
         {
             case 200:
-                /* search results matching criteria */
+                /* Paginated list of mail log entries */
                 $responseContent = new \App\DTO\MailLog();
                 break;
             case 400:
-                /* bad input parameter */
+                /* Bad request — one or more input parameters were missing or invalid. */
+                $responseContent = new \App\DTO\ErrorMessage();
+                break;
+            case 401:
+                /* Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). */
+                $responseContent = new \App\DTO\ErrorMessage();
                 break;
         }
         $this->parseBody($response, $responseContent, $contentStrategy, $contentValidator);
@@ -996,7 +1071,7 @@ class ApiClient extends OAGAC\AbstractApiClient
     }
 
     /**
-     * displays the mail log
+     * Displays the mail log
      * @param \App\DTO\ViewMailLogParameterData $parameters
      * @param iterable<string, string[]> $security
      * @param string $responseMediaType

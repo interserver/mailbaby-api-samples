@@ -26,43 +26,37 @@ class MailStatsTypeTest : ShouldSpec() {
         // uncomment below to create an instance of MailStatsType
         //val modelInstance = MailStatsType()
 
-        // to test the property `time`
+        // to test the property `time` - The time window these `received`, `sent`, and `volume` statistics cover.
         should("test time") {
             // uncomment below to test the property
             //modelInstance.time shouldBe ("TODO")
         }
 
-        // to test the property `usage`
+        // to test the property `usage` - Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
         should("test usage") {
             // uncomment below to test the property
             //modelInstance.usage shouldBe ("TODO")
         }
 
-        // to test the property `currency`
+        // to test the property `currency` - The ISO 4217 currency code for this account (e.g. `USD`).
         should("test currency") {
             // uncomment below to test the property
             //modelInstance.currency shouldBe ("TODO")
         }
 
-        // to test the property `currencySymbol`
-        should("test currencySymbol") {
-            // uncomment below to test the property
-            //modelInstance.currencySymbol shouldBe ("TODO")
-        }
-
-        // to test the property `cost`
+        // to test the property `cost` - Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
         should("test cost") {
             // uncomment below to test the property
             //modelInstance.cost shouldBe ("TODO")
         }
 
-        // to test the property `received`
+        // to test the property `received` - Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
         should("test received") {
             // uncomment below to test the property
             //modelInstance.received shouldBe ("TODO")
         }
 
-        // to test the property `sent`
+        // to test the property `sent` - Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
         should("test sent") {
             // uncomment below to test the property
             //modelInstance.sent shouldBe ("TODO")

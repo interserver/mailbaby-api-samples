@@ -1,13 +1,13 @@
 # openapi::MailOrder
 
-A mail order record
+A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **integer** | The ID of the order. | 
-**status** | **character** | The order status. | 
-**username** | **character** | The username to use for this order. | 
-**comment** | **character** | Optional order comment. | [optional] 
+**id** | **integer** | The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries. | 
+**status** | **character** | The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. | 
+**username** | **character** | The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed. | 
+**comment** | **character** | Optional human-readable note associated with the order. | [optional] 
 
 

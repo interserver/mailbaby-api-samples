@@ -2,17 +2,26 @@
 Protected Class MailStatsTypeVolume
 
 	#tag Property, Flags = &h0
-		Escapedto As OpenAPIClient.Models.MailStatsTypeVolumeTo
+		#tag Note
+			Message counts keyed by destination (envelope `to`) email address.
+		#tag EndNote
+		Escapedto As Dictionary
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		from As OpenAPIClient.Models.MailStatsTypeVolumeFrom
+		#tag Note
+			Message counts keyed by sender (envelope `from`) email address.
+		#tag EndNote
+		from As Dictionary
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		ip As OpenAPIClient.Models.MailStatsTypeVolumeIp
+		#tag Note
+			Message counts keyed by originating client IP address.
+		#tag EndNote
+		ip As Dictionary
 	#tag EndProperty
 
 
@@ -57,7 +66,7 @@ Protected Class MailStatsTypeVolume
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="MailStatsTypeVolumeTo"
+			Type="Dictionary"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -65,7 +74,7 @@ Protected Class MailStatsTypeVolume
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="MailStatsTypeVolumeFrom"
+			Type="Dictionary"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -73,7 +82,7 @@ Protected Class MailStatsTypeVolume
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="MailStatsTypeVolumeIp"
+			Type="Dictionary"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

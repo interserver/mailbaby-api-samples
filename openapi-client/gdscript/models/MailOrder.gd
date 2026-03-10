@@ -8,10 +8,10 @@ class_name MailOrder
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # MailOrder Model
-# A mail order record
+# A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 
 
-# The ID of the order.
+# The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
 # Required: True
 # Example: 21472
 # isArray: false
@@ -21,7 +21,7 @@ class_name MailOrder
 		id = value
 var __id__was__set := false
 
-# The order status.
+# The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 # Required: True
 # Example: active
 # isArray: false
@@ -31,7 +31,7 @@ var __id__was__set := false
 		status = value
 var __status__was__set := false
 
-# The username to use for this order.
+# The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 # Required: True
 # Example: mb21472
 # isArray: false
@@ -41,7 +41,7 @@ var __status__was__set := false
 		username = value
 var __username__was__set := false
 
-# Optional order comment.
+# Optional human-readable note associated with the order.
 # Required: False
 # isArray: false
 @export var comment: String = "":

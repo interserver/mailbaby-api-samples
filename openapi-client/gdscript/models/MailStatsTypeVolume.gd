@@ -8,27 +8,31 @@ class_name MailStatsTypeVolume
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # MailStatsTypeVolume Model
+# Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 
 
+# Message counts keyed by destination (envelope `to`) email address.
 # Required: False
 # isArray: false
-@export var to: MailStatsTypeVolumeTo:
+@export var to: Dictionary:
 	set(value):
 		__to__was__set = true
 		to = value
 var __to__was__set := false
 
+# Message counts keyed by sender (envelope `from`) email address.
 # Required: False
 # isArray: false
-@export var from: MailStatsTypeVolumeFrom:
+@export var from: Dictionary:
 	set(value):
 		__from__was__set = true
 		from = value
 var __from__was__set := false
 
+# Message counts keyed by originating client IP address.
 # Required: False
 # isArray: false
-@export var some_ipnull: MailStatsTypeVolumeIp:
+@export var some_ipnull: Dictionary:
 	set(value):
 		__some_ipnull__was__set = true
 		some_ipnull = value
@@ -55,11 +59,11 @@ func bzz_normalize() -> Dictionary:
 static func bzz_denormalize_single(from_dict: Dictionary):
 	var me := new()
 	if from_dict.has("to"):
-		me.to = MailStatsType_volume_to.bzz_denormalize_single(from_dict["to"])
+		me.to = from_dict["to"]
 	if from_dict.has("from"):
-		me.from = MailStatsType_volume_from.bzz_denormalize_single(from_dict["from"])
+		me.from = from_dict["from"]
 	if from_dict.has("some_ipnull"):
-		me.some_ipnull = MailStatsType_volume_ip.bzz_denormalize_single(from_dict["some_ipnull"])
+		me.some_ipnull = from_dict["some_ipnull"]
 	return me
 
 

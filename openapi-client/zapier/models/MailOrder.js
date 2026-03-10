@@ -6,25 +6,25 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}id`,
-                label: `The ID of the order. - [${labelPrefix}id]`,
+                label: `The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. - [${labelPrefix}id]`,
                 required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}status`,
-                label: `The order status. - [${labelPrefix}status]`,
+                label: `The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. - [${labelPrefix}status]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}username`,
-                label: `The username to use for this order. - [${labelPrefix}username]`,
+                label: `The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. - [${labelPrefix}username]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}comment`,
-                label: `Optional order comment. - [${labelPrefix}comment]`,
+                label: `Optional human-readable note associated with the order. - [${labelPrefix}comment]`,
                 type: 'string',
             },
         ]

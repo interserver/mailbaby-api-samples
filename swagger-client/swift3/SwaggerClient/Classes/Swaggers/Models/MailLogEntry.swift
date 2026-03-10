@@ -8,54 +8,56 @@
 import Foundation
 
 
-/** An email record */
+/** A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The &#x60;id&#x60; field matches the &#x60;mailid&#x60; query parameter on &#x60;GET /mail/log&#x60; and   the &#x60;text&#x60; field of a successful send response. - The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist a   flagged sender. - The &#x60;user&#x60; field is the SMTP username (e.g. &#x60;mb5658&#x60;) corresponding to the   &#x60;username&#x60; field in &#x60;GET /mail&#x60; / &#x60;GET /mail/{id}&#x60;. */
 open class MailLogEntry: JSONEncodable {
-    /** internal db id */
+    /** Internal auto-increment database row ID.  Not meaningful outside the API. */
     public var id: Int32?
-    /** mail id */
+    /** The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. */
     public var id: String?
-    /** from address */
+    /** SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). */
     public var from: String?
-    /** to address */
+    /** SMTP envelope &#x60;RCPT TO&#x60; address. */
     public var to: String?
-    /** email subject */
+    /** The &#x60;Subject&#x60; header value, if available. */
     public var subject: String?
-    /** message id */
+    /** The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. */
     public var messageId: String?
-    /** creation date */
+    /** Human-readable creation timestamp in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format. */
     public var created: String?
-    /** creation timestamp */
+    /** Unix timestamp of message acceptance.  Corresponds to the &#x60;startDate&#x60; and &#x60;endDate&#x60; filter parameters on &#x60;GET /mail/log&#x60;. */
     public var time: Int32?
-    /** user account */
+    /** The SMTP AUTH username used to submit the message (e.g. &#x60;mb5658&#x60;). Corresponds to the &#x60;username&#x60; field in &#x60;GET /mail&#x60; orders. */
     public var user: String?
-    /** transaction type */
+    /** SMTP transaction type negotiated with the relay (e.g. &#x60;ESMTPSA&#x60;). */
     public var transtype: String?
-    /** origin ip */
+    /** IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;. */
     public var origin: String?
-    /** interface name */
+    /** Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;). */
     public var interface: String?
-    /** sending zone */
+    /** The sending zone assigned by the relay for outbound delivery. */
     public var sendingZone: String?
-    /** email body size in bytes */
+    /** Size of the message body in bytes. */
     public var bodySize: Int32?
-    /** index of email in the to adderess list */
+    /** Sequence index of this recipient in a multi-recipient message. Starts at 1. */
     public var seq: Int32?
-    /** to address this email is being sent to */
-    public var recipient: String?
-    /** to address domain */
-    public var domain: String?
-    /** locked status */
-    public var locked: Int32?
-    /** lock timestamp */
-    public var lockTime: String?
-    /** assigned server */
-    public var assigned: String?
-    /** queued timestamp */
-    public var queued: String?
-    /** mx hostname */
-    public var mxHostname: String?
-    /** mail delivery response */
+    /** Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. */
+    public var delivered: Int32?
+    /** The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;). */
     public var response: String?
+    /** The specific recipient address this delivery record is for. */
+    public var recipient: String?
+    /** The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;. */
+    public var domain: String?
+    /** Whether the queue entry is currently locked for delivery processing. */
+    public var locked: Int32?
+    /** Millisecond-precision timestamp of the last queue lock acquisition. */
+    public var lockTime: String?
+    /** The relay server node assigned to deliver this message. */
+    public var assigned: String?
+    /** ISO 8601 timestamp when the message was placed into the delivery queue. */
+    public var queued: String?
+    /** The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;. */
+    public var mxHostname: String?
 
     public init() {}
 
@@ -77,6 +79,8 @@ open class MailLogEntry: JSONEncodable {
         nillableDictionary["sendingZone"] = self.sendingZone
         nillableDictionary["bodySize"] = self.bodySize?.encodeToJSON()
         nillableDictionary["seq"] = self.seq?.encodeToJSON()
+        nillableDictionary["delivered"] = self.delivered?.encodeToJSON()
+        nillableDictionary["response"] = self.response
         nillableDictionary["recipient"] = self.recipient
         nillableDictionary["domain"] = self.domain
         nillableDictionary["locked"] = self.locked?.encodeToJSON()
@@ -84,7 +88,6 @@ open class MailLogEntry: JSONEncodable {
         nillableDictionary["assigned"] = self.assigned
         nillableDictionary["queued"] = self.queued
         nillableDictionary["mxHostname"] = self.mxHostname
-        nillableDictionary["response"] = self.response
 
         let dictionary: [String:Any] = APIHelper.rejectNil(nillableDictionary) ?? [:]
         return dictionary

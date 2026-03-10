@@ -7,6 +7,7 @@ import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
+import io.swagger.model.EmailAddressParam;
 import io.swagger.model.EmailAddressTypes;
 import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
@@ -15,6 +16,7 @@ import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
+import io.swagger.model.MailOrderDetail;
 import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
@@ -47,12 +49,22 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response delistBlock(String body, SecurityContext securityContext) {
+      public Response delistBlock(EmailAddressParam body, SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response delistBlock(String email, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
       @Override
       public Response getMailBlocks(SecurityContext securityContext) {
+      // do some magic!
+      return Response.ok().entity("magic!").build();
+  }
+      @Override
+      public Response getMailOrderById(Long id, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
@@ -77,7 +89,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response rawMail(String rawEmail, Integer id, SecurityContext securityContext) {
+      public Response rawMail(String rawEmail, Long id, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
@@ -92,7 +104,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendMail(String to, String from, String subject, String body, Integer id, SecurityContext securityContext) {
+      public Response sendMail(Object to, String from, String subject, String body, Long id, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }
@@ -102,7 +114,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, String delivered, SecurityContext securityContext) {
+      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, Long startDate, Long endDate, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

@@ -1,7 +1,7 @@
 
 # MailBlockClickHouse
 
-A block entry from the clickhouse mailblocks server.
+A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 
 ## Properties
 
@@ -9,9 +9,9 @@ Name | Type
 ------------ | -------------
 `date` | Date
 `from` | string
-`messageId` | string
 `subject` | string
 `to` | string
+`messageId` | string
 
 ## Example
 
@@ -20,11 +20,11 @@ import type { MailBlockClickHouse } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "date": null,
-  "from": null,
-  "messageId": null,
-  "subject": null,
-  "to": null,
+  "date": Sun Aug 06 20:00:00 EDT 2023,
+  "from": user@domain.com,
+  "subject": Test Email,
+  "to": ['client@site.com'],
+  "messageId": pFaRqFUEWkucjhTuIzYuoAgWU@domain.com,
 } satisfies MailBlockClickHouse
 
 console.log(example)

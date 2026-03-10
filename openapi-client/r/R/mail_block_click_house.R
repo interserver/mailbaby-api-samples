@@ -1,17 +1,17 @@
 #' Create a new MailBlockClickHouse
 #'
 #' @description
-#' A block entry from the clickhouse mailblocks server.
+#' A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 #'
 #' @docType class
 #' @title MailBlockClickHouse
 #' @description MailBlockClickHouse Class
 #' @format An \code{R6Class} generator object
-#' @field date  character
-#' @field from  character
-#' @field messageId  character
-#' @field subject  character
-#' @field to  character
+#' @field date The date the block event was recorded. character
+#' @field from The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it. character
+#' @field messageId The `Message-ID` header of the blocked message, or `null` if not present. character [optional]
+#' @field subject The `Subject` header of the blocked message. character
+#' @field to The serialized list of recipients of the blocked message. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -27,13 +27,13 @@ MailBlockClickHouse <- R6::R6Class(
     #' @description
     #' Initialize a new MailBlockClickHouse class.
     #'
-    #' @param date date
-    #' @param from from
-    #' @param messageId messageId
-    #' @param subject subject
-    #' @param to to
+    #' @param date The date the block event was recorded.
+    #' @param from The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
+    #' @param subject The `Subject` header of the blocked message.
+    #' @param to The serialized list of recipients of the blocked message.
+    #' @param messageId The `Message-ID` header of the blocked message, or `null` if not present.
     #' @param ... Other optional arguments.
-    initialize = function(`date`, `from`, `messageId`, `subject`, `to`, ...) {
+    initialize = function(`date`, `from`, `subject`, `to`, `messageId` = NULL, ...) {
       if (!missing(`date`)) {
         if (!(is.character(`date`) && length(`date`) == 1)) {
           stop(paste("Error! Invalid data for `date`. Must be a string:", `date`))
@@ -46,12 +46,6 @@ MailBlockClickHouse <- R6::R6Class(
         }
         self$`from` <- `from`
       }
-      if (!missing(`messageId`)) {
-        if (!(is.character(`messageId`) && length(`messageId`) == 1)) {
-          stop(paste("Error! Invalid data for `messageId`. Must be a string:", `messageId`))
-        }
-        self$`messageId` <- `messageId`
-      }
       if (!missing(`subject`)) {
         if (!(is.character(`subject`) && length(`subject`) == 1)) {
           stop(paste("Error! Invalid data for `subject`. Must be a string:", `subject`))
@@ -63,6 +57,12 @@ MailBlockClickHouse <- R6::R6Class(
           stop(paste("Error! Invalid data for `to`. Must be a string:", `to`))
         }
         self$`to` <- `to`
+      }
+      if (!is.null(`messageId`)) {
+        if (!(is.character(`messageId`) && length(`messageId`) == 1)) {
+          stop(paste("Error! Invalid data for `messageId`. Must be a string:", `messageId`))
+        }
+        self$`messageId` <- `messageId`
       }
     },
 
@@ -193,14 +193,6 @@ MailBlockClickHouse <- R6::R6Class(
       } else {
         stop(paste("The JSON input `", input, "` is invalid for MailBlockClickHouse: the required field `from` is missing."))
       }
-      # check the required field `messageId`
-      if (!is.null(input_json$`messageId`)) {
-        if (!(is.character(input_json$`messageId`) && length(input_json$`messageId`) == 1)) {
-          stop(paste("Error! Invalid data for `messageId`. Must be a string:", input_json$`messageId`))
-        }
-      } else {
-        stop(paste("The JSON input `", input, "` is invalid for MailBlockClickHouse: the required field `messageId` is missing."))
-      }
       # check the required field `subject`
       if (!is.null(input_json$`subject`)) {
         if (!(is.character(input_json$`subject`) && length(input_json$`subject`) == 1)) {
@@ -242,11 +234,6 @@ MailBlockClickHouse <- R6::R6Class(
         return(FALSE)
       }
 
-      # check if the required `messageId` is null
-      if (is.null(self$`messageId`)) {
-        return(FALSE)
-      }
-
       # check if the required `subject` is null
       if (is.null(self$`subject`)) {
         return(FALSE)
@@ -274,11 +261,6 @@ MailBlockClickHouse <- R6::R6Class(
       # check if the required `from` is null
       if (is.null(self$`from`)) {
         invalid_fields["from"] <- "Non-nullable required field `from` cannot be null."
-      }
-
-      # check if the required `messageId` is null
-      if (is.null(self$`messageId`)) {
-        invalid_fields["messageId"] <- "Non-nullable required field `messageId` cannot be null."
       }
 
       # check if the required `subject` is null

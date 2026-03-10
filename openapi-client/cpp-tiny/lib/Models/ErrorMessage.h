@@ -2,7 +2,7 @@
 /*
  * ErrorMessage.h
  *
- * The resposne when an error occurs.
+ * The response body returned when an error occurs.
  */
 
 #ifndef TINY_CPP_CLIENT_ErrorMessage_H_
@@ -16,7 +16,7 @@
 namespace Tiny {
 
 
-/*! \brief The resposne when an error occurs.
+/*! \brief The response body returned when an error occurs.
  *
  *  \ingroup Models
  *
@@ -45,18 +45,18 @@ public:
 	 */
     void fromJson(std::string jsonObj);
 
-	/*! \brief Get The response code associated with the error.
+	/*! \brief Get The HTTP-style status code associated with the error.
 	 */
 	int getCode();
 
-	/*! \brief Set The response code associated with the error.
+	/*! \brief Set The HTTP-style status code associated with the error.
 	 */
 	void setCode(int code);
-	/*! \brief Get The details or description of the error.
+	/*! \brief Get A human-readable description of the error.
 	 */
 	std::string getMessage();
 
-	/*! \brief Set The details or description of the error.
+	/*! \brief Set A human-readable description of the error.
 	 */
 	void setMessage(std::string message);
 

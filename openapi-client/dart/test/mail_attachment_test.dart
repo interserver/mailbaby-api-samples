@@ -16,13 +16,13 @@ void main() {
   // final instance = MailAttachment();
 
   group('test MailAttachment', () {
-    // The filename of the attached file.
+    // The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
     // String filename
     test('to test the property `filename`', () async {
       // TODO
     });
 
-    // The file contents base64 encoded
+    // The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
     // String data
     test('to test the property `data`', () async {
       // TODO

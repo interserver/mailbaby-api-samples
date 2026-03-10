@@ -19,9 +19,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Details for an Email
+ * Request body for &#x60;POST /mail/advsend&#x60;.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;replyto&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;) each accept either a plain RFC 822 string (e.g. &#x60;\&quot;Joe &lt;joe@example.com&gt;\&quot;&#x60; or a comma-separated list) or a structured array of &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; objects.  HTML detection is automatic based on whether &#x60;body&#x60; contains HTML tags.
  */
-@Schema(description = "Details for an Email")
+@Schema(description = "Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.")
 @Validated
 @NotUndefined
 
@@ -79,11 +79,11 @@ public class SendMailAdv   {
   }
 
   /**
-   * The subject or title of the email
+   * The subject line of the email.
    * @return subject
    **/
   
-  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject or title of the email")
+  @Schema(example = "Your Package has been Delivered!", required = true, description = "The subject line of the email.")
   
   @NotNull
   public String getSubject() {  
@@ -104,11 +104,11 @@ public class SendMailAdv   {
   }
 
   /**
-   * The main email contents.
+   * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
    * @return body
    **/
   
-  @Schema(example = "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.", required = true, description = "The main email contents.")
+  @Schema(example = "The package you ordered on 2021-01-23 has been delivered.", required = true, description = "The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.")
   
   @NotNull
   public String getBody() {  
@@ -261,11 +261,11 @@ public class SendMailAdv   {
   }
 
   /**
-   * (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+   * Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
    * @return attachments
    **/
   
-  @Schema(example = "[         {             \"filename\": \"text.txt\",             \"data\": \"base64_encoded_contents\"         } ]", description = "(optional) File attachments to include in the email.  The file contents must be base64 encoded!")
+  @Schema(description = "Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.")
   @Valid
   public List<MailAttachment> getAttachments() {  
     return attachments;
@@ -284,11 +284,11 @@ public class SendMailAdv   {
   }
 
   /**
-   * (optional)  ID of the Mail order within our system to use as the Mail Account.
+   * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
    * @return id
    **/
   
-  @Schema(example = "5000", description = "(optional)  ID of the Mail order within our system to use as the Mail Account.")
+  @Schema(example = "5000", description = "Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.")
   
   public Long getId() {  
     return id;

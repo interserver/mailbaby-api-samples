@@ -1,13 +1,13 @@
 # ErrorMessage
 
-The resposne when an error occurs.
+The response body returned when an error occurs.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **number** | The response code associated with the error. | [default to undefined]
-**message** | **string** | The details or description of the error. | [default to undefined]
+**code** | **number** | The HTTP-style status code associated with the error. | [default to undefined]
+**message** | **string** | A human-readable description of the error. | [default to undefined]
 
 ## Example
 

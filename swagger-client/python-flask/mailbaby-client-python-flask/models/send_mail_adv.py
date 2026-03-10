@@ -87,7 +87,7 @@ class SendMailAdv(Model):
     def subject(self) -> str:
         """Gets the subject of this SendMailAdv.
 
-        The subject or title of the email  # noqa: E501
+        The subject line of the email.  # noqa: E501
 
         :return: The subject of this SendMailAdv.
         :rtype: str
@@ -98,7 +98,7 @@ class SendMailAdv(Model):
     def subject(self, subject: str):
         """Sets the subject of this SendMailAdv.
 
-        The subject or title of the email  # noqa: E501
+        The subject line of the email.  # noqa: E501
 
         :param subject: The subject of this SendMailAdv.
         :type subject: str
@@ -112,7 +112,7 @@ class SendMailAdv(Model):
     def body(self) -> str:
         """Gets the body of this SendMailAdv.
 
-        The main email contents.  # noqa: E501
+        The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.  # noqa: E501
 
         :return: The body of this SendMailAdv.
         :rtype: str
@@ -123,7 +123,7 @@ class SendMailAdv(Model):
     def body(self, body: str):
         """Sets the body of this SendMailAdv.
 
-        The main email contents.  # noqa: E501
+        The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.  # noqa: E501
 
         :param body: The body of this SendMailAdv.
         :type body: str
@@ -246,7 +246,7 @@ class SendMailAdv(Model):
     def attachments(self) -> List[MailAttachment]:
         """Gets the attachments of this SendMailAdv.
 
-        (optional) File attachments to include in the email.  The file contents must be base64 encoded!  # noqa: E501
+        Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.  # noqa: E501
 
         :return: The attachments of this SendMailAdv.
         :rtype: List[MailAttachment]
@@ -257,7 +257,7 @@ class SendMailAdv(Model):
     def attachments(self, attachments: List[MailAttachment]):
         """Sets the attachments of this SendMailAdv.
 
-        (optional) File attachments to include in the email.  The file contents must be base64 encoded!  # noqa: E501
+        Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.  # noqa: E501
 
         :param attachments: The attachments of this SendMailAdv.
         :type attachments: List[MailAttachment]
@@ -269,7 +269,7 @@ class SendMailAdv(Model):
     def id(self) -> int:
         """Gets the id of this SendMailAdv.
 
-        (optional)  ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
+        Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.  # noqa: E501
 
         :return: The id of this SendMailAdv.
         :rtype: int
@@ -280,7 +280,7 @@ class SendMailAdv(Model):
     def id(self, id: int):
         """Sets the id of this SendMailAdv.
 
-        (optional)  ID of the Mail order within our system to use as the Mail Account.  # noqa: E501
+        Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.  # noqa: E501
 
         :param id: The id of this SendMailAdv.
         :type id: int

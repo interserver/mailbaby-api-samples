@@ -15,6 +15,7 @@ import {SecurityAuthentication} from '../auth/auth';
 export class StatusApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
+     * A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
      * Checks if the server is running
      */
     public async pingServer(_options?: Configuration): Promise<RequestContext> {

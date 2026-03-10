@@ -8,20 +8,20 @@ class_name EmailAddressName
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # EmailAddressName Model
-# An email contact.
+# An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
 
 
 # The email address.
 # Required: True
 # Example: user@domain.com
 # isArray: false
-@export var email: String = "":
+@export var email: String:
 	set(value):
 		__email__was__set = true
 		email = value
 var __email__was__set := false
 
-# Name to use for the sending contact.
+# Optional display name shown to recipients (e.g. in the `From:` header).
 # Required: False
 # Example: John Smith
 # isArray: false

@@ -32,27 +32,6 @@ void test_MailBlockClickHouse_from_is_assigned_from_json()
 }
 
 
-void test_MailBlockClickHouse_messageId_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "messageId", "hello"
-    };
-
-    MailBlockClickHouse obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getMessageId().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailBlockClickHouse_subject_is_assigned_from_json()
 {
 
@@ -95,6 +74,27 @@ void test_MailBlockClickHouse_to_is_assigned_from_json()
 }
 
 
+void test_MailBlockClickHouse_messageId_is_assigned_from_json()
+{
+
+
+    bourne::json input =
+    {
+        "messageId", "hello"
+    };
+
+    MailBlockClickHouse obj(input.dump());
+
+    TEST_ASSERT_EQUAL_STRING("hello", obj.getMessageId().c_str());
+
+
+
+
+
+
+}
+
+
 
 
 void test_MailBlockClickHouse_from_is_converted_to_json()
@@ -112,27 +112,6 @@ void test_MailBlockClickHouse_from_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["from"] == output["from"]);
-
-
-
-}
-
-
-void test_MailBlockClickHouse_messageId_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "messageId", "hello"
-    };
-
-    MailBlockClickHouse obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["messageId"] == output["messageId"]);
 
 
 
@@ -175,6 +154,27 @@ void test_MailBlockClickHouse_to_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["to"] == output["to"]);
+
+
+
+}
+
+
+void test_MailBlockClickHouse_messageId_is_converted_to_json()
+{
+
+    bourne::json input =
+    {
+        "messageId", "hello"
+    };
+
+    MailBlockClickHouse obj(input.dump());
+
+    bourne::json output = bourne::json::object();
+
+    output = obj.toJson();
+
+    TEST_ASSERT(input["messageId"] == output["messageId"]);
 
 
 

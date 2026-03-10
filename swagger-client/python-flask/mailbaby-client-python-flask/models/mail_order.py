@@ -59,7 +59,7 @@ class MailOrder(Model):
     def id(self) -> int:
         """Gets the id of this MailOrder.
 
-        The ID of the order.  # noqa: E501
+        The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.  # noqa: E501
 
         :return: The id of this MailOrder.
         :rtype: int
@@ -70,7 +70,7 @@ class MailOrder(Model):
     def id(self, id: int):
         """Sets the id of this MailOrder.
 
-        The ID of the order.  # noqa: E501
+        The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.  # noqa: E501
 
         :param id: The id of this MailOrder.
         :type id: int
@@ -84,7 +84,7 @@ class MailOrder(Model):
     def status(self) -> str:
         """Gets the status of this MailOrder.
 
-        The order status.  # noqa: E501
+        The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.  # noqa: E501
 
         :return: The status of this MailOrder.
         :rtype: str
@@ -95,7 +95,7 @@ class MailOrder(Model):
     def status(self, status: str):
         """Sets the status of this MailOrder.
 
-        The order status.  # noqa: E501
+        The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.  # noqa: E501
 
         :param status: The status of this MailOrder.
         :type status: str
@@ -109,7 +109,7 @@ class MailOrder(Model):
     def username(self) -> str:
         """Gets the username of this MailOrder.
 
-        The username to use for this order.  # noqa: E501
+        The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.  # noqa: E501
 
         :return: The username of this MailOrder.
         :rtype: str
@@ -120,7 +120,7 @@ class MailOrder(Model):
     def username(self, username: str):
         """Sets the username of this MailOrder.
 
-        The username to use for this order.  # noqa: E501
+        The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.  # noqa: E501
 
         :param username: The username of this MailOrder.
         :type username: str
@@ -134,7 +134,7 @@ class MailOrder(Model):
     def comment(self) -> str:
         """Gets the comment of this MailOrder.
 
-        Optional order comment.  # noqa: E501
+        Optional human-readable note associated with the order.  # noqa: E501
 
         :return: The comment of this MailOrder.
         :rtype: str
@@ -145,7 +145,7 @@ class MailOrder(Model):
     def comment(self, comment: str):
         """Sets the comment of this MailOrder.
 
-        Optional order comment.  # noqa: E501
+        Optional human-readable note associated with the order.  # noqa: E501
 
         :param comment: The comment of this MailOrder.
         :type comment: str

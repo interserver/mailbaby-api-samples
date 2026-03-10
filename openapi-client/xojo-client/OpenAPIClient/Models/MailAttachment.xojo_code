@@ -3,7 +3,7 @@ Protected Class MailAttachment
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The filename of the attached file.
+			The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
 		#tag EndNote
 		filename As String
 	#tag EndProperty
@@ -11,9 +11,9 @@ Protected Class MailAttachment
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The file contents base64 encoded
+			The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 		#tag EndNote
-		data As String
+		data As MemoryBlock
 	#tag EndProperty
 
 
@@ -55,14 +55,6 @@ Protected Class MailAttachment
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="filename"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="data"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

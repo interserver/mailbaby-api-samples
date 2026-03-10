@@ -22,22 +22,25 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The listing of blocked emails.
+ * The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`.  Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.
  *
- * @param local 
- * @param mbtrap 
- * @param subject 
+ * @param local Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
+ * @param mbtrap Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
+ * @param subject Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
  */
 
 
 data class MailBlocks (
 
+    /* Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list. */
     @Json(name = "local")
     val local: kotlin.collections.List<MailBlockClickHouse>,
 
+    /* Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection. */
     @Json(name = "mbtrap")
     val mbtrap: kotlin.collections.List<MailBlockClickHouse>,
 
+    /* Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days. */
     @Json(name = "subject")
     val subject: kotlin.collections.List<MailBlockRspamd>
 

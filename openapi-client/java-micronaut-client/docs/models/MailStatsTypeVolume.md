@@ -2,15 +2,17 @@
 
 # MailStatsTypeVolume
 
+Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
+
 The class is defined in **[MailStatsTypeVolume.java](../../src/main/java/org/openapitools/model/MailStatsTypeVolume.java)**
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [`MailStatsTypeVolumeTo`](MailStatsTypeVolumeTo.md) |  |  [optional property]
-**from** | [`MailStatsTypeVolumeFrom`](MailStatsTypeVolumeFrom.md) |  |  [optional property]
-**ip** | [`MailStatsTypeVolumeIp`](MailStatsTypeVolumeIp.md) |  |  [optional property]
+**to** | `Map&lt;String, Integer&gt;` | Message counts keyed by destination (envelope &#x60;to&#x60;) email address. |  [optional property]
+**from** | `Map&lt;String, Integer&gt;` | Message counts keyed by sender (envelope &#x60;from&#x60;) email address. |  [optional property]
+**ip** | `Map&lt;String, Integer&gt;` | Message counts keyed by originating client IP address. |  [optional property]
 
 
 

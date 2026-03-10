@@ -8,18 +8,18 @@ import 'package:built_value/serializer.dart';
 
 part 'email_address_name.g.dart';
 
-/// An email contact.
+/// An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
 ///
 /// Properties:
 /// * [email] - The email address.
-/// * [name] - Name to use for the sending contact.
+/// * [name] - Optional display name shown to recipients (e.g. in the `From:` header).
 @BuiltValue()
 abstract class EmailAddressName implements Built<EmailAddressName, EmailAddressNameBuilder> {
   /// The email address.
   @BuiltValueField(wireName: r'email')
   String get email;
 
-  /// Name to use for the sending contact.
+  /// Optional display name shown to recipients (e.g. in the `From:` header).
   @BuiltValueField(wireName: r'name')
   String? get name;
 

@@ -25,6 +25,7 @@ import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailAttachment
 import org.openapitools.client.models.SendMailRaw
+import org.openapitools.client.models.SendMailTo
 
 class SendingApiTest : ShouldSpec() {
     init {
@@ -42,15 +43,15 @@ class SendingApiTest : ShouldSpec() {
         // to test sendAdvMail
         should("test sendAdvMail") {
             // uncomment below to test sendAdvMail
-            //val subject : kotlin.String = subject_example // kotlin.String | The subject or title of the email
-            //val body : kotlin.String = body_example // kotlin.String | The main email contents.
+            //val subject : kotlin.String = subject_example // kotlin.String | The subject line of the email.
+            //val body : kotlin.String = body_example // kotlin.String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
             //val from : EmailAddressTypes =  // EmailAddressTypes | 
             //val to : EmailAddressesTypes =  // EmailAddressesTypes | 
             //val replyto : EmailAddressesTypes =  // EmailAddressesTypes | 
             //val cc : EmailAddressesTypes =  // EmailAddressesTypes | 
             //val bcc : EmailAddressesTypes =  // EmailAddressesTypes | 
-            //val attachments : kotlin.collections.List<MailAttachment> =  // kotlin.collections.List<MailAttachment> | (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-            //val id : kotlin.Long = 789 // kotlin.Long | (optional)  ID of the Mail order within our system to use as the Mail Account.
+            //val attachments : kotlin.collections.List<MailAttachment> =  // kotlin.collections.List<MailAttachment> | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+            //val id : kotlin.Long = 789 // kotlin.Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
             //val result : GenericResponse = apiInstance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id)
             //result shouldBe ("TODO")
         }
@@ -58,11 +59,11 @@ class SendingApiTest : ShouldSpec() {
         // to test sendMail
         should("test sendMail") {
             // uncomment below to test sendMail
-            //val to : kotlin.String = to_example // kotlin.String | The Contact whom is the primary recipient of this email.
-            //val from : kotlin.String = from_example // kotlin.String | The contact whom is the this email is from.
-            //val subject : kotlin.String = subject_example // kotlin.String | The subject or title of the email
-            //val body : kotlin.String = body_example // kotlin.String | The main email contents.
-            //val id : kotlin.Int = 56 // kotlin.Int | Optional Order ID
+            //val to : SendMailTo =  // SendMailTo | 
+            //val from : kotlin.String = from_example // kotlin.String | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+            //val subject : kotlin.String = subject_example // kotlin.String | The subject line of the email.
+            //val body : kotlin.String = body_example // kotlin.String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+            //val id : kotlin.Long = 789 // kotlin.Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
             //val result : GenericResponse = apiInstance.sendMail(to, from, subject, body, id)
             //result shouldBe ("TODO")
         }

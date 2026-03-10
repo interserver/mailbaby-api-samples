@@ -6,11 +6,11 @@
 
 
 static send_mail_t *send_mail_create_internal(
-    char *to,
+    send_mail_to_t *to,
     char *from,
     char *subject,
     char *body,
-    int id
+    long id
     ) {
     send_mail_t *send_mail_local_var = malloc(sizeof(send_mail_t));
     if (!send_mail_local_var) {
@@ -27,11 +27,11 @@ static send_mail_t *send_mail_create_internal(
 }
 
 __attribute__((deprecated)) send_mail_t *send_mail_create(
-    char *to,
+    send_mail_to_t *to,
     char *from,
     char *subject,
     char *body,
-    int id
+    long id
     ) {
     return send_mail_create_internal (
         to,
@@ -52,7 +52,7 @@ void send_mail_free(send_mail_t *send_mail) {
     }
     listEntry_t *listEntry;
     if (send_mail->to) {
-        free(send_mail->to);
+        send_mail_to_free(send_mail->to);
         send_mail->to = NULL;
     }
     if (send_mail->from) {
@@ -77,8 +77,13 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
     if (!send_mail->to) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "to", send_mail->to) == NULL) {
-    goto fail; //String
+    cJSON *to_local_JSON = send_mail_to_convertToJSON(send_mail->to);
+    if(to_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "to", to_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
@@ -128,6 +133,9 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     send_mail_t *send_mail_local_var = NULL;
 
+    // define the local variable for send_mail->to
+    send_mail_to_t *to_local_nonprim = NULL;
+
     // send_mail->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "to");
     if (cJSON_IsNull(to)) {
@@ -138,10 +146,7 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
     }
 
     
-    if(!cJSON_IsString(to))
-    {
-    goto end; //String
-    }
+    to_local_nonprim = send_mail_to_parseFromJSON(to); //nonprimitive
 
     // send_mail->from
     cJSON *from = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "from");
@@ -202,7 +207,7 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
 
     send_mail_local_var = send_mail_create_internal (
-        strdup(to->valuestring),
+        to_local_nonprim,
         strdup(from->valuestring),
         strdup(subject->valuestring),
         strdup(body->valuestring),
@@ -211,6 +216,10 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     return send_mail_local_var;
 end:
+    if (to_local_nonprim) {
+        send_mail_to_free(to_local_nonprim);
+        to_local_nonprim = NULL;
+    }
     return NULL;
 
 }

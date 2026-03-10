@@ -10,8 +10,41 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Services do
   import MailBabyEmailDeliveryAndManagementServiceAPI.RequestBuilder
 
   @doc """
-  displays a list of mail service orders
-  This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+  Displays details for a single mail order
+  Returns the full detail record for one specific mail order identified by its numeric `id`.  In addition to the fields returned by `GET /mail`, this endpoint also includes the current **SMTP password** for the order.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. 
+
+  ### Parameters
+
+  - `connection` (MailBabyEmailDeliveryAndManagementServiceAPI.Connection): Connection to server
+  - `id` (integer()): The numeric ID of the mail order.
+  - `opts` (keyword): Optional parameters
+
+  ### Returns
+
+  - `{:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailOrderDetail.t}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec get_mail_order_by_id(Tesla.Env.client, integer(), keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailOrderDetail.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  def get_mail_order_by_id(connection, id, _opts \\ []) do
+    request =
+      %{}
+      |> method(:get)
+      |> url("/mail/#{id}")
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+    |> evaluate_response([
+      {200, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailOrderDetail},
+      {400, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage},
+      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage},
+      {404, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
+    ])
+  end
+
+  @doc """
+  Displays a list of mail service orders
+  Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional human-readable `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
 
   ### Parameters
 
@@ -35,8 +68,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Services do
     |> Connection.request(request)
     |> evaluate_response([
       {200, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailOrder},
-      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage},
-      {404, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
+      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
     ])
   end
 end

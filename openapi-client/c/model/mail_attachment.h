@@ -1,7 +1,7 @@
 /*
  * mail_attachment.h
  *
- * (optional) File attachments to include in the email.  The file contents must be base64
+ * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
  */
 
 #ifndef _mail_attachment_H_
@@ -20,7 +20,7 @@ typedef struct mail_attachment_t mail_attachment_t;
 
 typedef struct mail_attachment_t {
     char *filename; // string
-    char *data; // string
+    char *data; //ByteArray
 
     int _library_owned; // Is the library responsible for freeing this object?
 } mail_attachment_t;

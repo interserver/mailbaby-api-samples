@@ -3,38 +3,38 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/send_mail_to.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
 part 'send_mail.g.dart';
 
-/// Details for an Email
+/// Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
 ///
 /// Properties:
-/// * [to] - The Contact whom is the primary recipient of this email.
-/// * [from] - The contact whom is the this email is from.
-/// * [subject] - The subject or title of the email
-/// * [body] - The main email contents.
-/// * [id] - Optional Order ID
+/// * [to] 
+/// * [from] - The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+/// * [subject] - The subject line of the email.
+/// * [body] - The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+/// * [id] - Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 @BuiltValue()
 abstract class SendMail implements Built<SendMail, SendMailBuilder> {
-  /// The Contact whom is the primary recipient of this email.
   @BuiltValueField(wireName: r'to')
-  String get to;
+  SendMailTo get to;
 
-  /// The contact whom is the this email is from.
+  /// The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
   @BuiltValueField(wireName: r'from')
   String get from;
 
-  /// The subject or title of the email
+  /// The subject line of the email.
   @BuiltValueField(wireName: r'subject')
   String get subject;
 
-  /// The main email contents.
+  /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
   @BuiltValueField(wireName: r'body')
   String get body;
 
-  /// Optional Order ID
+  /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
   @BuiltValueField(wireName: r'id')
   int? get id;
 
@@ -64,7 +64,7 @@ class _$SendMailSerializer implements PrimitiveSerializer<SendMail> {
     yield r'to';
     yield serializers.serialize(
       object.to,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(SendMailTo),
     );
     yield r'from';
     yield serializers.serialize(
@@ -114,9 +114,9 @@ class _$SendMailSerializer implements PrimitiveSerializer<SendMail> {
         case r'to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.to = valueDes;
+            specifiedType: const FullType(SendMailTo),
+          ) as SendMailTo;
+          result.to.replace(valueDes);
           break;
         case r'from':
           final valueDes = serializers.deserialize(

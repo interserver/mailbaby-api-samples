@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **Number** | The response code associated with the error. | 
-**message** | **String** | The details or description of the error. | 
+**code** | **Number** | The HTTP-style status code associated with the error. | 
+**message** | **String** | A human-readable description of the error. | 
 
 

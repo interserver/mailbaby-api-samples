@@ -7,4 +7,4 @@
 
 import Foundation
 
-/** Array of Email Addresses */public typealias EmailAddressNames = [EmailAddressName]
+/** An array of email contacts, each with an email address and optional display name. */public typealias EmailAddressNames = [EmailAddressName]

@@ -3,7 +3,7 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolume do
   @moduledoc """
-  
+  Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
   """
 
   @derive JSON.Encoder
@@ -14,18 +14,13 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolume
   ]
 
   @type t :: %__MODULE__{
-    :to => MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolumeTo.t | nil,
-    :from => MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolumeFrom.t | nil,
-    :ip => MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolumeIp.t | nil
+    :to => %{optional(String.t) => integer()} | nil,
+    :from => %{optional(String.t) => integer()} | nil,
+    :ip => %{optional(String.t) => integer()} | nil
   }
-
-  alias MailBabyEmailDeliveryAndManagementServiceAPI.Deserializer
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:to, :struct, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolumeTo)
-     |> Deserializer.deserialize(:from, :struct, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolumeFrom)
-     |> Deserializer.deserialize(:ip, :struct, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolumeIp)
   end
 end
 

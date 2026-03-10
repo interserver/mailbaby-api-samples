@@ -73,27 +73,6 @@ void test_MailStatsType_currency_is_assigned_from_json()
 }
 
 
-void test_MailStatsType_currencySymbol_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "currencySymbol", "hello"
-    };
-
-    MailStatsType obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getCurrencySymbol().c_str());
-
-
-
-
-
-
-}
-
-
 void test_MailStatsType_cost_is_assigned_from_json()
 {
 
@@ -208,27 +187,6 @@ void test_MailStatsType_currency_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["currency"] == output["currency"]);
-
-
-
-}
-
-
-void test_MailStatsType_currencySymbol_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "currencySymbol", "hello"
-    };
-
-    MailStatsType obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["currencySymbol"] == output["currencySymbol"]);
 
 
 

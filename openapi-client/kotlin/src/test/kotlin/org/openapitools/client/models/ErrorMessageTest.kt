@@ -25,13 +25,13 @@ class ErrorMessageTest : ShouldSpec() {
         // uncomment below to create an instance of ErrorMessage
         //val modelInstance = ErrorMessage()
 
-        // to test the property `code` - The response code associated with the error.
+        // to test the property `code` - The HTTP-style status code associated with the error.
         should("test code") {
             // uncomment below to test the property
             //modelInstance.code shouldBe ("TODO")
         }
 
-        // to test the property `message` - The details or description of the error.
+        // to test the property `message` - A human-readable description of the error.
         should("test message") {
             // uncomment below to test the property
             //modelInstance.message shouldBe ("TODO")

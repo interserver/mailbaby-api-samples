@@ -1,7 +1,7 @@
 /*
  * DenyRuleRecord.h
  *
- * The data for a email deny rule record.
+ * A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;.
  */
 
 #ifndef _DenyRuleRecord_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief The data for a email deny rule record.
+/*! \brief A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
  *
  *  \ingroup Models
  *
@@ -52,32 +52,32 @@ public:
 	/*! \brief Set The type of deny rule.
 	 */
 	void setType(std::string  type);
-	/*! \brief Get The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	/*! \brief Get The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 	 */
 	std::string getData();
 
-	/*! \brief Set The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	/*! \brief Set The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 	 */
 	void setData(std::string  data);
-	/*! \brief Get The deny rule Id number.
+	/*! \brief Get The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
 	 */
 	std::string getId();
 
-	/*! \brief Set The deny rule Id number.
+	/*! \brief Set The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
 	 */
 	void setId(std::string  id);
-	/*! \brief Get the date the rule was created.
+	/*! \brief Get The timestamp when the rule was created.
 	 */
 	std::string getCreated();
 
-	/*! \brief Set the date the rule was created.
+	/*! \brief Set The timestamp when the rule was created.
 	 */
 	void setCreated(std::string  created);
-	/*! \brief Get Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+	/*! \brief Get Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 	 */
 	std::string getUser();
 
-	/*! \brief Set Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+	/*! \brief Set Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 	 */
 	void setUser(std::string  user);
 

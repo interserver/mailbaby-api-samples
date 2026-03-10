@@ -1,15 +1,149 @@
 #tag Class
 Protected Class ServicesApi
 	#tag Method, Flags = &h0
+		Sub GetMailOrderById(, id As Int64)
+		  // Operation getMailOrderById
+		  // Displays details for a single mail order
+		  // - 
+		  // - parameter id: (path) The numeric ID of the mail order. 
+		  //
+		  // Invokes ServicesApiCallbackHandler.GetMailOrderByIdCallback(MailOrderDetail) on completion. 
+		  //
+		  // - GET /mail/{id}
+		  // - Returns the full detail record for one specific mail order identified by its numeric `id`.  In addition to the fields returned by `GET /mail`, this endpoint also includes the current **SMTP password** for the order.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. 
+		  // - defaultResponse: Nil
+		  //
+		  // - API Key:
+		  //   - type: apiKey X-API-KEY (HEADER)
+		  //   - name: apiKeyAuth
+		  //
+		  
+		  Dim localVarHTTPSocket As New HTTPSecureSocket
+		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
+		  
+		  
+		  If me.ApiKeyapiKeyAuth = "" Then Raise New OpenAPIClient.OpenAPIClientException(kErrorCannotAuthenticate, "API key is unset. Please assign a value to `ServicesApi.ApiKeyapiKeyAuth` before invoking `ServicesApi.GetMailOrderById()`.")
+		  
+		  localVarHTTPSocket.SetRequestHeader(EncodeURLComponent("X-API-KEY"), EncodeURLComponent(me.ApiKeyapiKeyAuth))
+		  
+
+
+		  Dim localVarPath As String = "/mail/{id}"
+		  
+		  Dim localVarPathStringid As String = id.ToString
+		  
+		  localVarPath = localVarPath.ReplaceAllB("{id}", localVarPathStringid)
+		  
+		  
+		  AddHandler localVarHTTPSocket.PageReceived, addressof me.GetMailOrderById_handler
+		  AddHandler localVarHTTPSocket.Error, addressof Me.GetMailOrderById_error
+		  
+		  
+		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath)
+		  if localVarHTTPSocket.LastErrorCode <> 0 then
+		    Dim localVarException As New OpenAPIClient.OpenAPIClientException(localVarHTTPSocket.LastErrorCode)
+			Raise localVarException
+		  end if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function GetMailOrderByIdPrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As OpenAPIClient.Models.MailOrderDetail) As Boolean
+		  Dim contentType As String = Headers.Value("Content-Type")
+		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
+		  Content = DefineEncoding(Content, contentEncoding)
+		  
+		  If HTTPStatus > 199 and HTTPStatus < 300 then
+		    If contentType.LeftB(16) = "application/json" then
+		      
+			  outData = New OpenAPIClient.Models.MailOrderDetail
+			  Try
+		        Xoson.fromJSON(outData, Content.toText())
+
+		      Catch e As JSONException
+		        error.Message = error.Message + " with JSON parse exception: " + e.Message
+		        error.ErrorNumber = kErrorInvalidJSON
+		        Return False
+		        
+		      Catch e As Xojo.Data.InvalidJSONException
+		        error.Message = error.Message + " with Xojo.Data.JSON parse exception: " + e.Message
+		        error.ErrorNumber = kErrorInvalidJSON
+		        Return False
+		        
+		      Catch e As Xoson.XosonException
+		        error.Message = error.Message + " with Xoson parse exception: " + e.Message
+		        error.ErrorNumber = kErrorXosonProblem
+		        Return False
+
+		      End Try
+		      
+		      
+		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    Else
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    End If
+		  Else
+		    error.Message = error.Message + ". " + Content
+			error.ErrorNumber = kErrorHTTPFail
+		    Return False
+		  End If
+		  
+		  Return True
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub GetMailOrderById_error(sender As HTTPSecureSocket, Code As Integer)
+		  If sender <> nil Then sender.Close()
+
+		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
+		  Dim data As OpenAPIClient.Models.MailOrderDetail
+		  CallbackHandler.GetMailOrderByIdCallback(error, data)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub GetMailOrderById_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
+		  #Pragma Unused URL
+		  
+
+		  If sender <> nil Then sender.Close()
+		  
+		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
+		  
+		  Dim data As OpenAPIClient.Models.MailOrderDetail
+		  Call GetMailOrderByIdPrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
+		  
+		  CallbackHandler.GetMailOrderByIdCallback(error, data)
+		End Sub
+	#tag EndMethod
+
+
+
+
+	#tag Method, Flags = &h0
 		Sub GetMailOrders()
 		  // Operation getMailOrders
-		  // displays a list of mail service orders
+		  // Displays a list of mail service orders
 		  // - 
 		  //
 		  // Invokes ServicesApiCallbackHandler.GetMailOrdersCallback(MailOrder) on completion. 
 		  //
 		  // - GET /mail
-		  // - This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+		  // - Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional human-readable `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
 		  // - defaultResponse: Nil
 		  //
 		  // - API Key:

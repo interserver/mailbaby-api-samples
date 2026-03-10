@@ -1,27 +1,27 @@
 goog.provide('API.Client.MailLog');
 
 /**
- * Mail log records
+ * Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.
  * @record
  */
 API.Client.MailLog = function() {}
 
 /**
- * total number of mail log entries
+ * Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
  * @type {!number}
  * @export
  */
 API.Client.MailLog.prototype.total;
 
 /**
- * number of emails skipped in listing
+ * The `skip` value used for this page (echoed from the request).
  * @type {!number}
  * @export
  */
 API.Client.MailLog.prototype.skip;
 
 /**
- * number of emails to return
+ * The `limit` value used for this page (echoed from the request).
  * @type {!number}
  * @export
  */

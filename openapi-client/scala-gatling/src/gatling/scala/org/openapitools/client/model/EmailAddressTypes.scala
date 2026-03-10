@@ -5,7 +5,7 @@ package org.openapitools.client.model
 case class EmailAddressTypes (
     /* The email address. */
     _email: String,
-    /* Name to use for the sending contact. */
+    /* Optional display name shown to recipients (e.g. in the `From:` header). */
     _name: Option[String]
 )
 object EmailAddressTypes {

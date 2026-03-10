@@ -25,13 +25,13 @@ class GenericResponseTest : ShouldSpec() {
         // uncomment below to create an instance of GenericResponse
         //val modelInstance = GenericResponse()
 
-        // to test the property `status`
+        // to test the property `status` - Always `\"ok\"` on success.
         should("test status") {
             // uncomment below to test the property
             //modelInstance.status shouldBe ("TODO")
         }
 
-        // to test the property `text`
+        // to test the property `text` - Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
         should("test text") {
             // uncomment below to test the property
             //modelInstance.text shouldBe ("TODO")

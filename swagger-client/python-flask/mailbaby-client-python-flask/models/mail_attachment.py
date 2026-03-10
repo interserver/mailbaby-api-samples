@@ -14,17 +14,17 @@ class MailAttachment(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, filename: str=None, data: str=None):  # noqa: E501
+    def __init__(self, filename: str=None, data: bytearray=None):  # noqa: E501
         """MailAttachment - a model defined in Swagger
 
         :param filename: The filename of this MailAttachment.  # noqa: E501
         :type filename: str
         :param data: The data of this MailAttachment.  # noqa: E501
-        :type data: str
+        :type data: bytearray
         """
         self.swagger_types = {
             'filename': str,
-            'data': str
+            'data': bytearray
         }
 
         self.attribute_map = {
@@ -49,7 +49,7 @@ class MailAttachment(Model):
     def filename(self) -> str:
         """Gets the filename of this MailAttachment.
 
-        The filename of the attached file.  # noqa: E501
+        The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).  # noqa: E501
 
         :return: The filename of this MailAttachment.
         :rtype: str
@@ -60,7 +60,7 @@ class MailAttachment(Model):
     def filename(self, filename: str):
         """Sets the filename of this MailAttachment.
 
-        The filename of the attached file.  # noqa: E501
+        The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).  # noqa: E501
 
         :param filename: The filename of this MailAttachment.
         :type filename: str
@@ -71,24 +71,24 @@ class MailAttachment(Model):
         self._filename = filename
 
     @property
-    def data(self) -> str:
+    def data(self) -> bytearray:
         """Gets the data of this MailAttachment.
 
-        The file contents base64 encoded  # noqa: E501
+        The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.  # noqa: E501
 
         :return: The data of this MailAttachment.
-        :rtype: str
+        :rtype: bytearray
         """
         return self._data
 
     @data.setter
-    def data(self, data: str):
+    def data(self, data: bytearray):
         """Sets the data of this MailAttachment.
 
-        The file contents base64 encoded  # noqa: E501
+        The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.  # noqa: E501
 
         :param data: The data of this MailAttachment.
-        :type data: str
+        :type data: bytearray
         """
         if data is None:
             raise ValueError("Invalid value for `data`, must not be `None`")  # noqa: E501

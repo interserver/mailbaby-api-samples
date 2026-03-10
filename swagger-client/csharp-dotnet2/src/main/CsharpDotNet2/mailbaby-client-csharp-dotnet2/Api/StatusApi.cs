@@ -11,7 +11,7 @@ namespace IO.Swagger.Api
     public interface IStatusApi
     {
         /// <summary>
-        /// Checks if the server is running 
+        /// Checks if the server is running A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
         /// </summary>
         /// <returns></returns>
         void PingServer ();
@@ -71,7 +71,7 @@ namespace IO.Swagger.Api
         public ApiClient ApiClient {get; set;}
     
         /// <summary>
-        /// Checks if the server is running 
+        /// Checks if the server is running A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
         /// </summary>
         /// <returns></returns>
         public void PingServer ()

@@ -49,7 +49,7 @@ class SendMailRaw(Model):
     def raw_email(self) -> str:
         """Gets the raw_email of this SendMailRaw.
 
-        The entire email contents  # noqa: E501
+        The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.  # noqa: E501
 
         :return: The raw_email of this SendMailRaw.
         :rtype: str
@@ -60,7 +60,7 @@ class SendMailRaw(Model):
     def raw_email(self, raw_email: str):
         """Sets the raw_email of this SendMailRaw.
 
-        The entire email contents  # noqa: E501
+        The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.  # noqa: E501
 
         :param raw_email: The raw_email of this SendMailRaw.
         :type raw_email: str
@@ -74,7 +74,7 @@ class SendMailRaw(Model):
     def id(self) -> int:
         """Gets the id of this SendMailRaw.
 
-        Optional order id  # noqa: E501
+        Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.  # noqa: E501
 
         :return: The id of this SendMailRaw.
         :rtype: int
@@ -85,7 +85,7 @@ class SendMailRaw(Model):
     def id(self, id: int):
         """Sets the id of this SendMailRaw.
 
-        Optional order id  # noqa: E501
+        Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.  # noqa: E501
 
         :param id: The id of this SendMailRaw.
         :type id: int

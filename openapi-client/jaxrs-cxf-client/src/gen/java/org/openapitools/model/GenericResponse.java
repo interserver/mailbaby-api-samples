@@ -1,22 +1,33 @@
 package org.openapitools.model;
 
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Standard success response returned by write operations (send, add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.  The `text` field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.
+ */
+@ApiModel(description="Standard success response returned by write operations (send, add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.  The `text` field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.")
 
 public class GenericResponse  {
   
-  @ApiModelProperty(example = "ok", value = "")
+ /**
+  * Always `\"ok\"` on success.
+  */
+  @ApiModelProperty(example = "ok", value = "Always `\"ok\"` on success.")
 
   private String status;
 
-  @ApiModelProperty(example = "The command completed successfully.", value = "")
+ /**
+  * Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
+  */
+  @ApiModelProperty(example = "185caa69ff7000f47c", value = "Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.")
 
   private String text;
  /**
-   * Get status
+   * Always &#x60;\&quot;ok\&quot;&#x60; on success.
    * @return status
   **/
   @JsonProperty("status")
@@ -34,7 +45,7 @@ public class GenericResponse  {
   }
 
  /**
-   * Get text
+   * Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#39;s numeric ID.  For delete operations this is a human-readable confirmation.
    * @return text
   **/
   @JsonProperty("text")

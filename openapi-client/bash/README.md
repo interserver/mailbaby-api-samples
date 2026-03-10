@@ -103,17 +103,18 @@ All URIs are relative to **
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlockingApi* | [**addRule**](docs/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
-*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
-*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
-*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
-*BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
-*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
-*SendingApi* | [**rawMail**](docs/SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | Displays the mail log
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
 *SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getmailorderbyid) | **GET** /mail/{id} | Displays details for a single mail order
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | Displays a list of mail service orders
 *StatusApi* | [**pingServer**](docs/StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 
@@ -122,6 +123,7 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
+ - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)
  - [ErrorMessage](docs/ErrorMessage.md)
@@ -133,14 +135,13 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
  - [MailOrder](docs/MailOrder.md)
+ - [MailOrderDetail](docs/MailOrderDetail.md)
  - [MailStatsType](docs/MailStatsType.md)
  - [MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
- - [MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
- - [MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailRaw](docs/SendMailRaw.md)
+ - [SendMailTo](docs/SendMailTo.md)
 
 
 ## Documentation For Authorization

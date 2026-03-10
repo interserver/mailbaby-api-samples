@@ -23,26 +23,26 @@ MailStatsType_volume::~MailStatsType_volume()
 void
 MailStatsType_volume::__init()
 {
-	//to = new MailStatsType_volume_to();
-	//from = new MailStatsType_volume_from();
-	//ip = new MailStatsType_volume_ip();
+	//new std::map()std::map> to;
+	//new std::map()std::map> from;
+	//new std::map()std::map> ip;
 }
 
 void
 MailStatsType_volume::__cleanup()
 {
 	//if(to != NULL) {
-	//
+	//to.RemoveAll(true);
 	//delete to;
 	//to = NULL;
 	//}
 	//if(from != NULL) {
-	//
+	//from.RemoveAll(true);
 	//delete from;
 	//from = NULL;
 	//}
 	//if(ip != NULL) {
-	//
+	//ip.RemoveAll(true);
 	//delete ip;
 	//ip = NULL;
 	//}
@@ -58,43 +58,37 @@ MailStatsType_volume::fromJson(char* jsonStr)
 	node = json_object_get_member(pJsonObject, toKey);
 	if (node !=NULL) {
 	
-
-		if (isprimitive("MailStatsType_volume_to")) {
-			jsonToValue(&to, node, "MailStatsType_volume_to", "MailStatsType_volume_to");
-		} else {
-			
-			MailStatsType_volume_to* obj = static_cast<MailStatsType_volume_to*> (&to);
-			obj->fromJson(json_to_string(node, false));
-			
+		{
+			JsonObject* json_obj = json_node_get_object(node);
+			map<string,string> new_map;
+			json_object_foreach_member(json_obj,helper_func,&new_map);
+			to = new_map;
 		}
+		
 	}
 	const gchar *fromKey = "from";
 	node = json_object_get_member(pJsonObject, fromKey);
 	if (node !=NULL) {
 	
-
-		if (isprimitive("MailStatsType_volume_from")) {
-			jsonToValue(&from, node, "MailStatsType_volume_from", "MailStatsType_volume_from");
-		} else {
-			
-			MailStatsType_volume_from* obj = static_cast<MailStatsType_volume_from*> (&from);
-			obj->fromJson(json_to_string(node, false));
-			
+		{
+			JsonObject* json_obj = json_node_get_object(node);
+			map<string,string> new_map;
+			json_object_foreach_member(json_obj,helper_func,&new_map);
+			from = new_map;
 		}
+		
 	}
 	const gchar *ipKey = "ip";
 	node = json_object_get_member(pJsonObject, ipKey);
 	if (node !=NULL) {
 	
-
-		if (isprimitive("MailStatsType_volume_ip")) {
-			jsonToValue(&ip, node, "MailStatsType_volume_ip", "MailStatsType_volume_ip");
-		} else {
-			
-			MailStatsType_volume_ip* obj = static_cast<MailStatsType_volume_ip*> (&ip);
-			obj->fromJson(json_to_string(node, false));
-			
+		{
+			JsonObject* json_obj = json_node_get_object(node);
+			map<string,string> new_map;
+			json_object_foreach_member(json_obj,helper_func,&new_map);
+			ip = new_map;
 		}
+		
 	}
 }
 
@@ -108,46 +102,61 @@ MailStatsType_volume::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("MailStatsType_volume_to")) {
-		MailStatsType_volume_to obj = getTo();
-		node = converttoJson(&obj, "MailStatsType_volume_to", "");
+
+
+	{
+		JsonObject* json_obj;
+		map<string, string> new_list = static_cast<map <string, string> > (getTo());
+		json_obj = json_object_new();
+		for (map<string, string>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+			string obj = (*it).first;
+			string obj2 = (*it).second;
+			JsonNode* tempnode = json_from_string(obj2.c_str(),NULL);
+			json_object_set_member(json_obj, obj.c_str(), tempnode);
+		}
+	node = json_node_alloc();
+	json_node_init_object(node, json_obj);
+	json_object_unref(json_obj);
 	}
-	else {
-		
-		MailStatsType_volume_to obj = static_cast<MailStatsType_volume_to> (getTo());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
-	}
+
 	const gchar *toKey = "to";
 	json_object_set_member(pJsonObject, toKey, node);
-	if (isprimitive("MailStatsType_volume_from")) {
-		MailStatsType_volume_from obj = getFrom();
-		node = converttoJson(&obj, "MailStatsType_volume_from", "");
+
+
+	{
+		JsonObject* json_obj;
+		map<string, string> new_list = static_cast<map <string, string> > (getFrom());
+		json_obj = json_object_new();
+		for (map<string, string>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+			string obj = (*it).first;
+			string obj2 = (*it).second;
+			JsonNode* tempnode = json_from_string(obj2.c_str(),NULL);
+			json_object_set_member(json_obj, obj.c_str(), tempnode);
+		}
+	node = json_node_alloc();
+	json_node_init_object(node, json_obj);
+	json_object_unref(json_obj);
 	}
-	else {
-		
-		MailStatsType_volume_from obj = static_cast<MailStatsType_volume_from> (getFrom());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
-	}
+
 	const gchar *fromKey = "from";
 	json_object_set_member(pJsonObject, fromKey, node);
-	if (isprimitive("MailStatsType_volume_ip")) {
-		MailStatsType_volume_ip obj = getIp();
-		node = converttoJson(&obj, "MailStatsType_volume_ip", "");
+
+
+	{
+		JsonObject* json_obj;
+		map<string, string> new_list = static_cast<map <string, string> > (getIp());
+		json_obj = json_object_new();
+		for (map<string, string>::iterator it = new_list.begin(); it != new_list.end(); it++) {
+			string obj = (*it).first;
+			string obj2 = (*it).second;
+			JsonNode* tempnode = json_from_string(obj2.c_str(),NULL);
+			json_object_set_member(json_obj, obj.c_str(), tempnode);
+		}
+	node = json_node_alloc();
+	json_node_init_object(node, json_obj);
+	json_object_unref(json_obj);
 	}
-	else {
-		
-		MailStatsType_volume_ip obj = static_cast<MailStatsType_volume_ip> (getIp());
-		GError *mygerror;
-		mygerror = NULL;
-		node = json_from_string(obj.toJson(), &mygerror);
-		
-	}
+
 	const gchar *ipKey = "ip";
 	json_object_set_member(pJsonObject, ipKey, node);
 	node = json_node_alloc();
@@ -158,38 +167,38 @@ MailStatsType_volume::toJson()
 	return ret;
 }
 
-MailStatsType_volume_to
+std::map<string, string>
 MailStatsType_volume::getTo()
 {
 	return to;
 }
 
 void
-MailStatsType_volume::setTo(MailStatsType_volume_to  to)
+MailStatsType_volume::setTo(std::map <string, string> to)
 {
 	this->to = to;
 }
 
-MailStatsType_volume_from
+std::map<string, string>
 MailStatsType_volume::getFrom()
 {
 	return from;
 }
 
 void
-MailStatsType_volume::setFrom(MailStatsType_volume_from  from)
+MailStatsType_volume::setFrom(std::map <string, string> from)
 {
 	this->from = from;
 }
 
-MailStatsType_volume_ip
+std::map<string, string>
 MailStatsType_volume::getIp()
 {
 	return ip;
 }
 
 void
-MailStatsType_volume::setIp(MailStatsType_volume_ip  ip)
+MailStatsType_volume::setIp(std::map <string, string> ip)
 {
 	this->ip = ip;
 }

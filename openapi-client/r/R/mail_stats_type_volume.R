@@ -1,15 +1,15 @@
 #' Create a new MailStatsTypeVolume
 #'
 #' @description
-#' MailStatsTypeVolume Class
+#' Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 #'
 #' @docType class
 #' @title MailStatsTypeVolume
 #' @description MailStatsTypeVolume Class
 #' @format An \code{R6Class} generator object
-#' @field to  \link{MailStatsTypeVolumeTo} [optional]
-#' @field from  \link{MailStatsTypeVolumeFrom} [optional]
-#' @field ip  \link{MailStatsTypeVolumeIp} [optional]
+#' @field to Message counts keyed by destination (envelope `to`) email address. named list(integer) [optional]
+#' @field from Message counts keyed by sender (envelope `from`) email address. named list(integer) [optional]
+#' @field ip Message counts keyed by originating client IP address. named list(integer) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -23,21 +23,24 @@ MailStatsTypeVolume <- R6::R6Class(
     #' @description
     #' Initialize a new MailStatsTypeVolume class.
     #'
-    #' @param to to
-    #' @param from from
-    #' @param ip ip
+    #' @param to Message counts keyed by destination (envelope `to`) email address.
+    #' @param from Message counts keyed by sender (envelope `from`) email address.
+    #' @param ip Message counts keyed by originating client IP address.
     #' @param ... Other optional arguments.
     initialize = function(`to` = NULL, `from` = NULL, `ip` = NULL, ...) {
       if (!is.null(`to`)) {
-        stopifnot(R6::is.R6(`to`))
+        stopifnot(is.vector(`to`), length(`to`) != 0)
+        sapply(`to`, function(x) stopifnot(is.character(x)))
         self$`to` <- `to`
       }
       if (!is.null(`from`)) {
-        stopifnot(R6::is.R6(`from`))
+        stopifnot(is.vector(`from`), length(`from`) != 0)
+        sapply(`from`, function(x) stopifnot(is.character(x)))
         self$`from` <- `from`
       }
       if (!is.null(`ip`)) {
-        stopifnot(R6::is.R6(`ip`))
+        stopifnot(is.vector(`ip`), length(`ip`) != 0)
+        sapply(`ip`, function(x) stopifnot(is.character(x)))
         self$`ip` <- `ip`
       }
     },
@@ -75,40 +78,17 @@ MailStatsTypeVolume <- R6::R6Class(
       MailStatsTypeVolumeObject <- list()
       if (!is.null(self$`to`)) {
         MailStatsTypeVolumeObject[["to"]] <-
-          self$extractSimpleType(self$`to`)
+          self$`to`
       }
       if (!is.null(self$`from`)) {
         MailStatsTypeVolumeObject[["from"]] <-
-          self$extractSimpleType(self$`from`)
+          self$`from`
       }
       if (!is.null(self$`ip`)) {
         MailStatsTypeVolumeObject[["ip"]] <-
-          self$extractSimpleType(self$`ip`)
+          self$`ip`
       }
       return(MailStatsTypeVolumeObject)
-    },
-
-    extractSimpleType = function(x) {
-      if (R6::is.R6(x)) {
-        return(x$toSimpleType())
-      } else if (!self$hasNestedR6(x)) {
-        return(x)
-      }
-      lapply(x, self$extractSimpleType)
-    },
-
-    hasNestedR6 = function(x) {
-      if (R6::is.R6(x)) {
-        return(TRUE)
-      }
-      if (is.list(x)) {
-        for (item in x) {
-          if (self$hasNestedR6(item)) {
-            return(TRUE)
-          }
-        }
-      }
-      FALSE
     },
 
     #' @description
@@ -119,19 +99,13 @@ MailStatsTypeVolume <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`to`)) {
-        `to_object` <- MailStatsTypeVolumeTo$new()
-        `to_object`$fromJSON(jsonlite::toJSON(this_object$`to`, auto_unbox = TRUE, digits = NA))
-        self$`to` <- `to_object`
+        self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "map(integer)", loadNamespace("openapi"))
       }
       if (!is.null(this_object$`from`)) {
-        `from_object` <- MailStatsTypeVolumeFrom$new()
-        `from_object`$fromJSON(jsonlite::toJSON(this_object$`from`, auto_unbox = TRUE, digits = NA))
-        self$`from` <- `from_object`
+        self$`from` <- ApiClient$new()$deserializeObj(this_object$`from`, "map(integer)", loadNamespace("openapi"))
       }
       if (!is.null(this_object$`ip`)) {
-        `ip_object` <- MailStatsTypeVolumeIp$new()
-        `ip_object`$fromJSON(jsonlite::toJSON(this_object$`ip`, auto_unbox = TRUE, digits = NA))
-        self$`ip` <- `ip_object`
+        self$`ip` <- ApiClient$new()$deserializeObj(this_object$`ip`, "map(integer)", loadNamespace("openapi"))
       }
       self
     },
@@ -154,9 +128,9 @@ MailStatsTypeVolume <- R6::R6Class(
     #' @return the instance of MailStatsTypeVolume
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`to` <- MailStatsTypeVolumeTo$new()$fromJSON(jsonlite::toJSON(this_object$`to`, auto_unbox = TRUE, digits = NA))
-      self$`from` <- MailStatsTypeVolumeFrom$new()$fromJSON(jsonlite::toJSON(this_object$`from`, auto_unbox = TRUE, digits = NA))
-      self$`ip` <- MailStatsTypeVolumeIp$new()$fromJSON(jsonlite::toJSON(this_object$`ip`, auto_unbox = TRUE, digits = NA))
+      self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "map(integer)", loadNamespace("openapi"))
+      self$`from` <- ApiClient$new()$deserializeObj(this_object$`from`, "map(integer)", loadNamespace("openapi"))
+      self$`ip` <- ApiClient$new()$deserializeObj(this_object$`ip`, "map(integer)", loadNamespace("openapi"))
       self
     },
 

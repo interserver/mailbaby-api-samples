@@ -31,13 +31,13 @@ class DenyRuleNewTest : ShouldSpec() {
             //modelInstance.type shouldBe ("TODO")
         }
 
-        // to test the property ``data`` - The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+        // to test the property ``data`` - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
         should("test `data`") {
             // uncomment below to test the property
             //modelInstance.`data` shouldBe ("TODO")
         }
 
-        // to test the property `user` - Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+        // to test the property `user` - Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
         should("test user") {
             // uncomment below to test the property
             //modelInstance.user shouldBe ("TODO")

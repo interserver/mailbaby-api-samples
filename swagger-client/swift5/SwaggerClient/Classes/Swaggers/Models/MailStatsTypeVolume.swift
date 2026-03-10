@@ -8,14 +8,18 @@
 import Foundation
 
 
+/** Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window. */
 
 public struct MailStatsTypeVolume: Codable {
 
-    public var to: MailStatsTypeVolumeTo?
-    public var from: MailStatsTypeVolumeFrom?
-    public var ip: MailStatsTypeVolumeIp?
+    /** Message counts keyed by destination (envelope &#x60;to&#x60;) email address. */
+    public var to: [String:Int]?
+    /** Message counts keyed by sender (envelope &#x60;from&#x60;) email address. */
+    public var from: [String:Int]?
+    /** Message counts keyed by originating client IP address. */
+    public var ip: [String:Int]?
 
-    public init(to: MailStatsTypeVolumeTo? = nil, from: MailStatsTypeVolumeFrom? = nil, ip: MailStatsTypeVolumeIp? = nil) {
+    public init(to: [String:Int]? = nil, from: [String:Int]? = nil, ip: [String:Int]? = nil) {
         self.to = to
         self.from = from
         self.ip = ip

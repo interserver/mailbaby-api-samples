@@ -10,16 +10,19 @@ MailLogEntry::MailLogEntry()
 	id = std::string();
 	from = std::string();
 	to = std::string();
-	subject = std::string();
 	created = std::string();
 	time = int(0);
 	user = std::string();
 	transtype = std::string();
 	origin = std::string();
 	interface = std::string();
+	subject = std::string();
+	messageId = std::string();
 	sendingZone = std::string();
 	bodySize = int(0);
 	seq = int(0);
+	delivered = int(0);
+	response = std::string();
 	recipient = std::string();
 	domain = std::string();
 	locked = int(0);
@@ -27,8 +30,6 @@ MailLogEntry::MailLogEntry()
 	assigned = std::string();
 	queued = std::string();
 	mxHostname = std::string();
-	response = std::string();
-	messageId = std::string();
 }
 
 MailLogEntry::MailLogEntry(std::string jsonString)
@@ -94,19 +95,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
 
         jsonToValue(&to, value, "std::string");
-
-
-    }
-
-    const char *subjectKey = "subject";
-
-    if(object.has_key(subjectKey))
-    {
-        bourne::json value = object[subjectKey];
-
-
-
-        jsonToValue(&subject, value, "std::string");
 
 
     }
@@ -189,6 +177,32 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
+    const char *subjectKey = "subject";
+
+    if(object.has_key(subjectKey))
+    {
+        bourne::json value = object[subjectKey];
+
+
+
+        jsonToValue(&subject, value, "std::string");
+
+
+    }
+
+    const char *messageIdKey = "messageId";
+
+    if(object.has_key(messageIdKey))
+    {
+        bourne::json value = object[messageIdKey];
+
+
+
+        jsonToValue(&messageId, value, "std::string");
+
+
+    }
+
     const char *sendingZoneKey = "sendingZone";
 
     if(object.has_key(sendingZoneKey))
@@ -224,6 +238,32 @@ MailLogEntry::fromJson(std::string jsonObj)
 
 
         jsonToValue(&seq, value, "int");
+
+
+    }
+
+    const char *deliveredKey = "delivered";
+
+    if(object.has_key(deliveredKey))
+    {
+        bourne::json value = object[deliveredKey];
+
+
+
+        jsonToValue(&delivered, value, "int");
+
+
+    }
+
+    const char *responseKey = "response";
+
+    if(object.has_key(responseKey))
+    {
+        bourne::json value = object[responseKey];
+
+
+
+        jsonToValue(&response, value, "std::string");
 
 
     }
@@ -319,32 +359,6 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
-    const char *responseKey = "response";
-
-    if(object.has_key(responseKey))
-    {
-        bourne::json value = object[responseKey];
-
-
-
-        jsonToValue(&response, value, "std::string");
-
-
-    }
-
-    const char *messageIdKey = "messageId";
-
-    if(object.has_key(messageIdKey))
-    {
-        bourne::json value = object[messageIdKey];
-
-
-
-        jsonToValue(&messageId, value, "std::string");
-
-
-    }
-
 
 }
 
@@ -379,13 +393,6 @@ MailLogEntry::toJson()
 
 
     object["to"] = getTo();
-
-
-
-
-
-
-    object["subject"] = getSubject();
 
 
 
@@ -434,6 +441,20 @@ MailLogEntry::toJson()
 
 
 
+    object["subject"] = getSubject();
+
+
+
+
+
+
+    object["messageId"] = getMessageId();
+
+
+
+
+
+
     object["sendingZone"] = getSendingZone();
 
 
@@ -449,6 +470,20 @@ MailLogEntry::toJson()
 
 
     object["seq"] = getSeq();
+
+
+
+
+
+
+    object["delivered"] = getDelivered();
+
+
+
+
+
+
+    object["response"] = getResponse();
 
 
 
@@ -498,20 +533,6 @@ MailLogEntry::toJson()
 
 
     object["mxHostname"] = getMxHostname();
-
-
-
-
-
-
-    object["response"] = getResponse();
-
-
-
-
-
-
-    object["messageId"] = getMessageId();
 
 
 
@@ -565,18 +586,6 @@ void
 MailLogEntry::setTo(std::string to)
 {
 	this->to = to;
-}
-
-std::string
-MailLogEntry::getSubject()
-{
-	return subject;
-}
-
-void
-MailLogEntry::setSubject(std::string subject)
-{
-	this->subject = subject;
 }
 
 std::string
@@ -652,6 +661,30 @@ MailLogEntry::setInterface(std::string interface)
 }
 
 std::string
+MailLogEntry::getSubject()
+{
+	return subject;
+}
+
+void
+MailLogEntry::setSubject(std::string subject)
+{
+	this->subject = subject;
+}
+
+std::string
+MailLogEntry::getMessageId()
+{
+	return messageId;
+}
+
+void
+MailLogEntry::setMessageId(std::string messageId)
+{
+	this->messageId = messageId;
+}
+
+std::string
 MailLogEntry::getSendingZone()
 {
 	return sendingZone;
@@ -685,6 +718,30 @@ void
 MailLogEntry::setSeq(int seq)
 {
 	this->seq = seq;
+}
+
+int
+MailLogEntry::getDelivered()
+{
+	return delivered;
+}
+
+void
+MailLogEntry::setDelivered(int delivered)
+{
+	this->delivered = delivered;
+}
+
+std::string
+MailLogEntry::getResponse()
+{
+	return response;
+}
+
+void
+MailLogEntry::setResponse(std::string response)
+{
+	this->response = response;
 }
 
 std::string
@@ -769,30 +826,6 @@ void
 MailLogEntry::setMxHostname(std::string mxHostname)
 {
 	this->mxHostname = mxHostname;
-}
-
-std::string
-MailLogEntry::getResponse()
-{
-	return response;
-}
-
-void
-MailLogEntry::setResponse(std::string response)
-{
-	this->response = response;
-}
-
-std::string
-MailLogEntry::getMessageId()
-{
-	return messageId;
-}
-
-void
-MailLogEntry::setMessageId(std::string messageId)
-{
-	this->messageId = messageId;
 }
 
 

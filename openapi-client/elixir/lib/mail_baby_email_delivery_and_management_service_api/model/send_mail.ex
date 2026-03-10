@@ -3,7 +3,7 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.SendMail do
   @moduledoc """
-  Details for an Email
+  Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,18 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.SendMail do
   ]
 
   @type t :: %__MODULE__{
-    :to => String.t,
+    :to => MailBabyEmailDeliveryAndManagementServiceAPI.Model.SendMailTo.t,
     :from => String.t,
     :subject => String.t,
     :body => String.t,
     :id => integer() | nil
   }
 
+  alias MailBabyEmailDeliveryAndManagementServiceAPI.Deserializer
+
   def decode(value) do
     value
+     |> Deserializer.deserialize(:to, :struct, MailBabyEmailDeliveryAndManagementServiceAPI.Model.SendMailTo)
   end
 end
 

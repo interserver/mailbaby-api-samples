@@ -16,13 +16,13 @@ void main() {
   // final instance = SendMailAdv();
 
   group('test SendMailAdv', () {
-    // The subject or title of the email
+    // The subject line of the email.
     // String subject
     test('to test the property `subject`', () async {
       // TODO
     });
 
-    // The main email contents.
+    // The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
     // String body
     test('to test the property `body`', () async {
       // TODO
@@ -53,13 +53,13 @@ void main() {
       // TODO
     });
 
-    // (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+    // Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
     // List<MailAttachment> attachments (default value: const [])
     test('to test the property `attachments`', () async {
       // TODO
     });
 
-    // (optional)  ID of the Mail order within our system to use as the Mail Account.
+    // Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
     // int id
     test('to test the property `id`', () async {
       // TODO

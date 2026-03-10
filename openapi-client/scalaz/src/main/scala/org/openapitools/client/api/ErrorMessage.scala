@@ -12,9 +12,9 @@ import org.joda.time.DateTime
 import ErrorMessage._
 
 case class ErrorMessage (
-  /* The response code associated with the error. */
+  /* The HTTP-style status code associated with the error. */
   code: Integer,
-/* The details or description of the error. */
+/* A human-readable description of the error. */
   message: String)
 
 object ErrorMessage {

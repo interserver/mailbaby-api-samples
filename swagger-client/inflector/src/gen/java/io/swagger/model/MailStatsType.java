@@ -8,14 +8,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 
 /**
- * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  **/
-@Schema(description = "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
+@Schema(description = "Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.")
 
 
 public class MailStatsType   {
   /**
-   * Gets or Sets time
+   * The time window these `received`, `sent`, and `volume` statistics cover.
    */
   public enum TimeEnum {
     ALL("all"),
@@ -28,7 +28,7 @@ public class MailStatsType   {
     
     _24H("24h"),
     
-    TODAY("today"),
+    DAY("day"),
     
     _1H("1h");
 
@@ -60,8 +60,6 @@ public class MailStatsType   {
   private Integer usage = null;
   @JsonProperty("currency")
   private String currency = null;
-  @JsonProperty("currencySymbol")
-  private String currencySymbol = null;
   @JsonProperty("cost")
   private Double cost = null;
   @JsonProperty("received")
@@ -71,6 +69,7 @@ public class MailStatsType   {
   @JsonProperty("volume")
   private MailStatsTypeVolume volume = null;
   /**
+   * The time window these `received`, `sent`, and `volume` statistics cover.
    **/
   public MailStatsType time(TimeEnum time) {
     this.time = time;
@@ -78,7 +77,7 @@ public class MailStatsType   {
   }
 
   
-  @Schema(description = "")
+  @Schema(description = "The time window these `received`, `sent`, and `volume` statistics cover.")
   @JsonProperty("time")
   public TimeEnum getTime() {
     return time;
@@ -88,6 +87,7 @@ public class MailStatsType   {
   }
 
   /**
+   * Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
    **/
   public MailStatsType usage(Integer usage) {
     this.usage = usage;
@@ -95,7 +95,7 @@ public class MailStatsType   {
   }
 
   
-  @Schema(description = "")
+  @Schema(description = "Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.")
   @JsonProperty("usage")
   public Integer getUsage() {
     return usage;
@@ -105,6 +105,7 @@ public class MailStatsType   {
   }
 
   /**
+   * The ISO 4217 currency code for this account (e.g. `USD`).
    **/
   public MailStatsType currency(String currency) {
     this.currency = currency;
@@ -112,7 +113,7 @@ public class MailStatsType   {
   }
 
   
-  @Schema(description = "")
+  @Schema(description = "The ISO 4217 currency code for this account (e.g. `USD`).")
   @JsonProperty("currency")
   public String getCurrency() {
     return currency;
@@ -122,23 +123,7 @@ public class MailStatsType   {
   }
 
   /**
-   **/
-  public MailStatsType currencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-    return this;
-  }
-
-  
-  @Schema(description = "")
-  @JsonProperty("currencySymbol")
-  public String getCurrencySymbol() {
-    return currencySymbol;
-  }
-  public void setCurrencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-  }
-
-  /**
+   * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
    **/
   public MailStatsType cost(Double cost) {
     this.cost = cost;
@@ -146,7 +131,7 @@ public class MailStatsType   {
   }
 
   
-  @Schema(description = "")
+  @Schema(description = "Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).")
   @JsonProperty("cost")
   public Double getCost() {
     return cost;
@@ -156,6 +141,7 @@ public class MailStatsType   {
   }
 
   /**
+   * Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
    **/
   public MailStatsType received(Integer received) {
     this.received = received;
@@ -163,7 +149,7 @@ public class MailStatsType   {
   }
 
   
-  @Schema(description = "")
+  @Schema(description = "Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.")
   @JsonProperty("received")
   public Integer getReceived() {
     return received;
@@ -173,6 +159,7 @@ public class MailStatsType   {
   }
 
   /**
+   * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
    **/
   public MailStatsType sent(Integer sent) {
     this.sent = sent;
@@ -180,7 +167,7 @@ public class MailStatsType   {
   }
 
   
-  @Schema(description = "")
+  @Schema(description = "Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.")
   @JsonProperty("sent")
   public Integer getSent() {
     return sent;
@@ -219,7 +206,6 @@ public class MailStatsType   {
     return Objects.equals(time, mailStatsType.time) &&
         Objects.equals(usage, mailStatsType.usage) &&
         Objects.equals(currency, mailStatsType.currency) &&
-        Objects.equals(currencySymbol, mailStatsType.currencySymbol) &&
         Objects.equals(cost, mailStatsType.cost) &&
         Objects.equals(received, mailStatsType.received) &&
         Objects.equals(sent, mailStatsType.sent) &&
@@ -228,7 +214,7 @@ public class MailStatsType   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(time, usage, currency, currencySymbol, cost, received, sent, volume);
+    return Objects.hash(time, usage, currency, cost, received, sent, volume);
   }
 
   @Override
@@ -238,7 +224,6 @@ public class MailStatsType   {
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    currencySymbol: ").append(toIndentedString(currencySymbol)).append("\n");
     sb.append("    cost: ").append(toIndentedString(cost)).append("\n");
     sb.append("    received: ").append(toIndentedString(received)).append("\n");
     sb.append("    sent: ").append(toIndentedString(sent)).append("\n");

@@ -8,8 +8,10 @@ class_name GenericResponse
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # GenericResponse Model
+# Standard success response returned by write operations (send, add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.  The `text` field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.
 
 
+# Always `\"ok\"` on success.
 # Required: False
 # Example: ok
 # isArray: false
@@ -19,8 +21,9 @@ class_name GenericResponse
 		status = value
 var __status__was__set := false
 
+# Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
 # Required: False
-# Example: The command completed successfully.
+# Example: 185caa69ff7000f47c
 # isArray: false
 @export var text: String = "":
 	set(value):

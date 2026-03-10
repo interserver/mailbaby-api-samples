@@ -17,9 +17,9 @@ class TestHistoryController(BaseTestCase):
     def test_get_stats(self):
         """Test case for get_stats
 
-        Account usage statistics.
+        Account usage statistics
         """
-        query_string = [('time', 'time_example')]
+        query_string = [('time', '1h')]
         response = self.client.open(
             '/mail/stats',
             method='GET',
@@ -30,7 +30,7 @@ class TestHistoryController(BaseTestCase):
     def test_view_mail_log(self):
         """Test case for view_mail_log
 
-        displays the mail log
+        Displays the mail log
         """
         query_string = [('id', 789),
                         ('origin', 'origin_example'),
@@ -39,13 +39,14 @@ class TestHistoryController(BaseTestCase):
                         ('to', 'to_example'),
                         ('subject', 'subject_example'),
                         ('mailid', 'mailid_example'),
+                        ('message_id', 'message_id_example'),
+                        ('replyto', 'replyto_example'),
+                        ('headerfrom', 'headerfrom_example'),
+                        ('delivered', 56),
                         ('skip', 1),
                         ('limit', 10000),
                         ('start_date', 9999999999),
-                        ('end_date', 9999999999),
-                        ('replyto', 'replyto_example'),
-                        ('headerfrom', 'headerfrom_example'),
-                        ('delivered', 'delivered_example')]
+                        ('end_date', 9999999999)]
         response = self.client.open(
             '/mail/log',
             method='GET',

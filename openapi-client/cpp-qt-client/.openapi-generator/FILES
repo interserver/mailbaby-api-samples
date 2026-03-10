@@ -10,6 +10,8 @@ client/OAIDenyRuleRecord.cpp
 client/OAIDenyRuleRecord.h
 client/OAIEmailAddressName.cpp
 client/OAIEmailAddressName.h
+client/OAIEmailAddressParam.cpp
+client/OAIEmailAddressParam.h
 client/OAIEmailAddressTypes.cpp
 client/OAIEmailAddressTypes.h
 client/OAIEmailAddressesTypes.cpp
@@ -41,16 +43,12 @@ client/OAIMailLogEntry.cpp
 client/OAIMailLogEntry.h
 client/OAIMailOrder.cpp
 client/OAIMailOrder.h
+client/OAIMailOrderDetail.cpp
+client/OAIMailOrderDetail.h
 client/OAIMailStatsType.cpp
 client/OAIMailStatsType.h
 client/OAIMailStatsType_volume.cpp
 client/OAIMailStatsType_volume.h
-client/OAIMailStatsType_volume_from.cpp
-client/OAIMailStatsType_volume_from.h
-client/OAIMailStatsType_volume_ip.cpp
-client/OAIMailStatsType_volume_ip.h
-client/OAIMailStatsType_volume_to.cpp
-client/OAIMailStatsType_volume_to.h
 client/OAIOauth.cpp
 client/OAIOauth.h
 client/OAIObject.h
@@ -60,6 +58,8 @@ client/OAISendMailAdv.cpp
 client/OAISendMailAdv.h
 client/OAISendMailRaw.cpp
 client/OAISendMailRaw.h
+client/OAISendMail_to.cpp
+client/OAISendMail_to.h
 client/OAISendingApi.cpp
 client/OAISendingApi.h
 client/OAIServerConfiguration.h

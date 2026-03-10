@@ -1,11 +1,11 @@
 # openapi::ErrorMessage
 
-The resposne when an error occurs.
+The response body returned when an error occurs.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **integer** | The response code associated with the error. | 
-**message** | **character** | The details or description of the error. | 
+**code** | **integer** | The HTTP-style status code associated with the error. | 
+**message** | **character** | A human-readable description of the error. | 
 
 

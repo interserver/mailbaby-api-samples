@@ -3,9 +3,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | [**MailStatsTypeVolumeTo**](MailStatsTypeVolumeTo.md) |  | [optional] 
-**VarFrom** | [**MailStatsTypeVolumeFrom**](MailStatsTypeVolumeFrom.md) |  | [optional] 
-**Ip** | [**MailStatsTypeVolumeIp**](MailStatsTypeVolumeIp.md) |  | [optional] 
+**To** | **System.Collections.Hashtable** | Message counts keyed by destination (envelope &#x60;to&#x60;) email address. | [optional] 
+**VarFrom** | **System.Collections.Hashtable** | Message counts keyed by sender (envelope &#x60;from&#x60;) email address. | [optional] 
+**Ip** | **System.Collections.Hashtable** | Message counts keyed by originating client IP address. | [optional] 
 
 ## Examples
 

@@ -12,25 +12,25 @@ import 'package:built_value/serializer.dart';
 
 part 'send_mail_adv.g.dart';
 
-/// Details for an Email
+/// Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.
 ///
 /// Properties:
-/// * [subject] - The subject or title of the email
-/// * [body] - The main email contents.
+/// * [subject] - The subject line of the email.
+/// * [body] - The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 /// * [from] 
 /// * [to] 
 /// * [replyto] 
 /// * [cc] 
 /// * [bcc] 
-/// * [attachments] - (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-/// * [id] - (optional)  ID of the Mail order within our system to use as the Mail Account.
+/// * [attachments] - Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+/// * [id] - Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 @BuiltValue()
 abstract class SendMailAdv implements Built<SendMailAdv, SendMailAdvBuilder> {
-  /// The subject or title of the email
+  /// The subject line of the email.
   @BuiltValueField(wireName: r'subject')
   String get subject;
 
-  /// The main email contents.
+  /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
   @BuiltValueField(wireName: r'body')
   String get body;
 
@@ -49,11 +49,11 @@ abstract class SendMailAdv implements Built<SendMailAdv, SendMailAdvBuilder> {
   @BuiltValueField(wireName: r'bcc')
   EmailAddressesTypes? get bcc;
 
-  /// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+  /// Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
   @BuiltValueField(wireName: r'attachments')
   BuiltList<MailAttachment>? get attachments;
 
-  /// (optional)  ID of the Mail order within our system to use as the Mail Account.
+  /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
   @BuiltValueField(wireName: r'id')
   int? get id;
 

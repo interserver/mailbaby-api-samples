@@ -6,13 +6,13 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}from`,
-                label: `[${labelPrefix}from]`,
+                label: `The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender. - [${labelPrefix}from]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}subject`,
-                label: `[${labelPrefix}subject]`,
+                label: `The suspicious subject pattern that triggered the block. - [${labelPrefix}subject]`,
                 required: true,
                 type: 'string',
             },

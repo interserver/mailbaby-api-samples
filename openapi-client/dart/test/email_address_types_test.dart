@@ -22,7 +22,7 @@ void main() {
       // TODO
     });
 
-    // Name to use for the sending contact.
+    // Optional display name shown to recipients (e.g. in the `From:` header).
     // String name
     test('to test the property `name`', () async {
       // TODO

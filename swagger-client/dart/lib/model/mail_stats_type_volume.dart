@@ -1,12 +1,12 @@
 part of swagger.api;
 
 class MailStatsTypeVolume {
-  
-  MailStatsTypeVolumeTo to = null;
-
-  MailStatsTypeVolumeFrom from = null;
-
-  MailStatsTypeVolumeIp ip = null;
+  /* Message counts keyed by destination (envelope `to`) email address. */
+  Map<String, int> to = {};
+/* Message counts keyed by sender (envelope `from`) email address. */
+  Map<String, int> from = {};
+/* Message counts keyed by originating client IP address. */
+  Map<String, int> ip = {};
 
   MailStatsTypeVolume();
 
@@ -17,9 +17,9 @@ class MailStatsTypeVolume {
 
   MailStatsTypeVolume.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    to = new MailStatsTypeVolumeTo.fromJson(json['to']);
-    from = new MailStatsTypeVolumeFrom.fromJson(json['from']);
-    ip = new MailStatsTypeVolumeIp.fromJson(json['ip']);
+    to = json['to'];
+    from = json['from'];
+    ip = json['ip'];
   }
 
   Map<String, dynamic> toJson() {

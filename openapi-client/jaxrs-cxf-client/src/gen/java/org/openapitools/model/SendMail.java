@@ -1,5 +1,6 @@
 package org.openapitools.model;
 
+import org.openapitools.model.SendMailTo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,66 +8,63 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Details for an Email
+ * Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
  */
-@ApiModel(description="Details for an Email")
+@ApiModel(description="Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.")
 
 public class SendMail  {
   
- /**
-  * The Contact whom is the primary recipient of this email.
-  */
-  @ApiModelProperty(example = "johndoe@company.com", required = true, value = "The Contact whom is the primary recipient of this email.")
+  @ApiModelProperty(required = true, value = "")
 
-  private String to;
+  private SendMailTo to;
 
  /**
-  * The contact whom is the this email is from.
+  * The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
   */
-  @ApiModelProperty(example = "janedoe@company.com", required = true, value = "The contact whom is the this email is from.")
+  @ApiModelProperty(example = "janedoe@company.com", required = true, value = "The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.")
 
   private String from;
 
  /**
-  * The subject or title of the email
+  * The subject line of the email.
   */
-  @ApiModelProperty(example = "Attention Client", required = true, value = "The subject or title of the email")
+  @ApiModelProperty(example = "Attention Client", required = true, value = "The subject line of the email.")
 
   private String subject;
 
  /**
-  * The main email contents.
+  * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
   */
-  @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The main email contents.")
+  @ApiModelProperty(example = "This is an email to inform you that something noteworthy happened.", required = true, value = "The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.")
 
   private String body;
 
  /**
-  * Optional Order ID
+  * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
   */
-  @ApiModelProperty(value = "Optional Order ID")
+  @ApiModelProperty(example = "2604", value = "Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.")
 
-  private Integer id;
+  private Long id;
  /**
-   * The Contact whom is the primary recipient of this email.
+   * Get to
    * @return to
   **/
   @JsonProperty("to")
-  public String getTo() {
+  public SendMailTo getTo() {
     return to;
   }
 
-  public void setTo(String to) {
+  public void setTo(SendMailTo to) {
     this.to = to;
   }
 
-  public SendMail to(String to) {
+  public SendMail to(SendMailTo to) {
     this.to = to;
     return this;
   }
 
  /**
-   * The contact whom is the this email is from.
+   * The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.
    * @return from
   **/
   @JsonProperty("from")
@@ -84,7 +82,7 @@ public class SendMail  {
   }
 
  /**
-   * The subject or title of the email
+   * The subject line of the email.
    * @return subject
   **/
   @JsonProperty("subject")
@@ -102,7 +100,7 @@ public class SendMail  {
   }
 
  /**
-   * The main email contents.
+   * The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
    * @return body
   **/
   @JsonProperty("body")
@@ -120,19 +118,19 @@ public class SendMail  {
   }
 
  /**
-   * Optional Order ID
+   * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
    * @return id
   **/
   @JsonProperty("id")
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public SendMail id(Integer id) {
+  public SendMail id(Long id) {
     this.id = id;
     return this;
   }

@@ -9,7 +9,6 @@ MailStatsType::MailStatsType()
 	time = std::string();
 	usage = int(0);
 	currency = std::string();
-	currencySymbol = std::string();
 	cost = float(0);
 	received = int(0);
 	sent = int(0);
@@ -66,19 +65,6 @@ MailStatsType::fromJson(std::string jsonObj)
 
 
         jsonToValue(&currency, value, "std::string");
-
-
-    }
-
-    const char *currencySymbolKey = "currencySymbol";
-
-    if(object.has_key(currencySymbolKey))
-    {
-        bourne::json value = object[currencySymbolKey];
-
-
-
-        jsonToValue(&currencySymbol, value, "std::string");
 
 
     }
@@ -169,13 +155,6 @@ MailStatsType::toJson()
 
 
 
-    object["currencySymbol"] = getCurrencySymbol();
-
-
-
-
-
-
     object["cost"] = getCost();
 
 
@@ -239,18 +218,6 @@ void
 MailStatsType::setCurrency(std::string currency)
 {
 	this->currency = currency;
-}
-
-std::string
-MailStatsType::getCurrencySymbol()
-{
-	return currencySymbol;
-}
-
-void
-MailStatsType::setCurrencySymbol(std::string currencySymbol)
-{
-	this->currencySymbol = currencySymbol;
 }
 
 double

@@ -22,19 +22,19 @@ mail_block_click_house_t* instantiate_mail_block_click_house(int include_optiona
   mail_block_click_house_t* mail_block_click_house = NULL;
   if (include_optional) {
     mail_block_click_house = mail_block_click_house_create(
-      "2013-10-20",
-      "0",
-      "0",
-      "0",
-      "0"
+      "Sun Aug 06 20:00:00 EDT 2023",
+      "user@domain.com",
+      "Test Email",
+      "['client@site.com']",
+      "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com"
     );
   } else {
     mail_block_click_house = mail_block_click_house_create(
-      "2013-10-20",
-      "0",
-      "0",
-      "0",
-      "0"
+      "Sun Aug 06 20:00:00 EDT 2023",
+      "user@domain.com",
+      "Test Email",
+      "['client@site.com']",
+      "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com"
     );
   }
 

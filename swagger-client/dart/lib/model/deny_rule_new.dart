@@ -1,12 +1,12 @@
 part of swagger.api;
 
 class DenyRuleNew {
-  /* Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. */
+  /* Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. */
   String user = null;
 /* The type of deny rule. */
   String type = null;
   //enum typeEnum {  domain,  email,  startswith,  destination,  };
-/* The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. */
+/* The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`. */
   String data = null;
 
   DenyRuleNew();

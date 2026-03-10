@@ -23,12 +23,34 @@ import HelperCodecs._
 
 import org.openapitools.client.api.ErrorMessage
 import org.openapitools.client.api.MailOrder
+import org.openapitools.client.api.MailOrderDetail
 
 object ServicesApi {
 
   val client = PooledHttp1Client()
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
+
+  def getMailOrderById(host: String, id: Long): Task[MailOrderDetail] = {
+    implicit val returnTypeDecoder: EntityDecoder[MailOrderDetail] = jsonOf[MailOrderDetail]
+
+    val path = "/mail/{id}".replaceAll("\\{" + "id" + "\\}",escape(id.toString))
+
+    val httpMethod = Method.GET
+    val contentType = `Content-Type`(MediaType.`application/json`)
+    val headers = Headers(
+      )
+    val queryParams = Query(
+      )
+
+    for {
+      uri           <- Task.fromDisjunction(Uri.fromString(host + path))
+      uriWithParams =  uri.copy(query = queryParams)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
+      resp          <- client.expect[MailOrderDetail](req)
+
+    } yield resp
+  }
 
   def getMailOrders(host: String): Task[List[MailOrder]] = {
     implicit val returnTypeDecoder: EntityDecoder[List[MailOrder]] = jsonOf[List[MailOrder]]
@@ -57,6 +79,27 @@ class HttpServiceServicesApi(service: HttpService) {
   val client = Client.fromHttpService(service)
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
+
+  def getMailOrderById(id: Long): Task[MailOrderDetail] = {
+    implicit val returnTypeDecoder: EntityDecoder[MailOrderDetail] = jsonOf[MailOrderDetail]
+
+    val path = "/mail/{id}".replaceAll("\\{" + "id" + "\\}",escape(id.toString))
+
+    val httpMethod = Method.GET
+    val contentType = `Content-Type`(MediaType.`application/json`)
+    val headers = Headers(
+      )
+    val queryParams = Query(
+      )
+
+    for {
+      uri           <- Task.fromDisjunction(Uri.fromString(path))
+      uriWithParams =  uri.copy(query = queryParams)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType))
+      resp          <- client.expect[MailOrderDetail](req)
+
+    } yield resp
+  }
 
   def getMailOrders(): Task[List[MailOrder]] = {
     implicit val returnTypeDecoder: EntityDecoder[List[MailOrder]] = jsonOf[List[MailOrder]]

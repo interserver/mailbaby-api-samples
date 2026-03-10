@@ -31,26 +31,6 @@ void test_MailAttachment_filename_is_assigned_from_json()
 }
 
 
-void test_MailAttachment_data_is_assigned_from_json()
-{
-
-
-    bourne::json input =
-    {
-        "data", "hello"
-    };
-
-    MailAttachment obj(input.dump());
-
-    TEST_ASSERT_EQUAL_STRING("hello", obj.getData().c_str());
-
-
-
-
-
-
-}
-
 
 
 void test_MailAttachment_filename_is_converted_to_json()
@@ -73,25 +53,5 @@ void test_MailAttachment_filename_is_converted_to_json()
 
 }
 
-
-void test_MailAttachment_data_is_converted_to_json()
-{
-
-    bourne::json input =
-    {
-        "data", "hello"
-    };
-
-    MailAttachment obj(input.dump());
-
-    bourne::json output = bourne::json::object();
-
-    output = obj.toJson();
-
-    TEST_ASSERT(input["data"] == output["data"]);
-
-
-
-}
 
 

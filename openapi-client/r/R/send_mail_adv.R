@@ -1,21 +1,21 @@
 #' Create a new SendMailAdv
 #'
 #' @description
-#' Details for an Email
+#' Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.
 #'
 #' @docType class
 #' @title SendMailAdv
 #' @description SendMailAdv Class
 #' @format An \code{R6Class} generator object
-#' @field subject The subject or title of the email character
-#' @field body The main email contents. character
+#' @field subject The subject line of the email. character
+#' @field body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. character
 #' @field from  \link{EmailAddressTypes}
 #' @field to  \link{EmailAddressesTypes}
 #' @field replyto  \link{EmailAddressesTypes} [optional]
 #' @field cc  \link{EmailAddressesTypes} [optional]
 #' @field bcc  \link{EmailAddressesTypes} [optional]
-#' @field attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded! list(\link{MailAttachment}) [optional]
-#' @field id (optional)  ID of the Mail order within our system to use as the Mail Account. integer [optional]
+#' @field attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. list(\link{MailAttachment}) [optional]
+#' @field id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. integer [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -35,15 +35,15 @@ SendMailAdv <- R6::R6Class(
     #' @description
     #' Initialize a new SendMailAdv class.
     #'
-    #' @param subject The subject or title of the email
-    #' @param body The main email contents.
+    #' @param subject The subject line of the email.
+    #' @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
     #' @param from from
     #' @param to to
     #' @param replyto replyto
     #' @param cc cc
     #' @param bcc bcc
-    #' @param attachments (optional) File attachments to include in the email.  The file contents must be base64 encoded!
-    #' @param id (optional)  ID of the Mail order within our system to use as the Mail Account.
+    #' @param attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+    #' @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
     #' @param ... Other optional arguments.
     initialize = function(`subject`, `body`, `from`, `to`, `replyto` = NULL, `cc` = NULL, `bcc` = NULL, `attachments` = NULL, `id` = NULL, ...) {
       if (!missing(`subject`)) {

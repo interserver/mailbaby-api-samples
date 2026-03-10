@@ -8,23 +8,25 @@ class_name MailStatsType
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # MailStatsType Model
-# Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+# Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 
 
+# The time window these `received`, `sent`, and `volume` statistics cover.
 # Required: False
 # isArray: false
-# Allowed values: "all", "billing", "month", "7d", "24h", "today", "1h"
+# Allowed values: "all", "billing", "month", "7d", "24h", "day", "1h"
 @export var some_timenull: String = "1h":
 	set(value):
 		if str(value) != "" and not (str(value) in __some_timenull__allowable__values):
 			push_error("MailStatsType: tried to set property `some_timenull` to a value that is not allowed." +
-				"  Allowed values: `all`, `billing`, `month`, `7d`, `24h`, `today`, `1h`")
+				"  Allowed values: `all`, `billing`, `month`, `7d`, `24h`, `day`, `1h`")
 			return
 		__some_timenull__was__set = true
 		some_timenull = value
 var __some_timenull__was__set := false
-var __some_timenull__allowable__values := ["all", "billing", "month", "7d", "24h", "today", "1h"]
+var __some_timenull__allowable__values := ["all", "billing", "month", "7d", "24h", "day", "1h"]
 
+# Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
 # Required: False
 # isArray: false
 @export var usage: int:
@@ -33,6 +35,7 @@ var __some_timenull__allowable__values := ["all", "billing", "month", "7d", "24h
 		usage = value
 var __usage__was__set := false
 
+# The ISO 4217 currency code for this account (e.g. `USD`).
 # Required: False
 # isArray: false
 @export var currency: String = "":
@@ -41,14 +44,7 @@ var __usage__was__set := false
 		currency = value
 var __currency__was__set := false
 
-# Required: False
-# isArray: false
-@export var currencySymbol: String = "":
-	set(value):
-		__currencySymbol__was__set = true
-		currencySymbol = value
-var __currencySymbol__was__set := false
-
+# Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
 # Required: False
 # isArray: false
 @export var cost: int:
@@ -57,6 +53,7 @@ var __currencySymbol__was__set := false
 		cost = value
 var __cost__was__set := false
 
+# Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
 # Required: False
 # isArray: false
 @export var received: int:
@@ -65,6 +62,7 @@ var __cost__was__set := false
 		received = value
 var __received__was__set := false
 
+# Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
 # Required: False
 # isArray: false
 @export var sent: int:
@@ -95,8 +93,6 @@ func bzz_normalize() -> Dictionary:
 		bzz_dictionary["usage"] = self.usage
 	if self.__currency__was__set:
 		bzz_dictionary["currency"] = self.currency
-	if self.__currencySymbol__was__set:
-		bzz_dictionary["currencySymbol"] = self.currencySymbol
 	if self.__cost__was__set:
 		bzz_dictionary["cost"] = self.cost
 	if self.__received__was__set:
@@ -117,8 +113,6 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 		me.usage = from_dict["usage"]
 	if from_dict.has("currency"):
 		me.currency = from_dict["currency"]
-	if from_dict.has("currencySymbol"):
-		me.currencySymbol = from_dict["currencySymbol"]
 	if from_dict.has("cost"):
 		me.cost = from_dict["cost"]
 	if from_dict.has("received"):

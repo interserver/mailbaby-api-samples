@@ -2,12 +2,11 @@
 
 package client
 
-// MailStatsType - Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+// MailStatsType - Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 type MailStatsType struct {
 	Time string `json:"time,omitempty"`
 	Usage int32 `json:"usage,omitempty"`
 	Currency string `json:"currency,omitempty"`
-	CurrencySymbol string `json:"currencySymbol,omitempty"`
 	Cost float64 `json:"cost,omitempty"`
 	Received int32 `json:"received,omitempty"`
 	Sent int32 `json:"sent,omitempty"`

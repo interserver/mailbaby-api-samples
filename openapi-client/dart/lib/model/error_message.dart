@@ -17,10 +17,10 @@ class ErrorMessage {
     required this.message,
   });
 
-  /// The response code associated with the error.
+  /// The HTTP-style status code associated with the error.
   int code;
 
-  /// The details or description of the error.
+  /// A human-readable description of the error.
   String message;
 
   @override

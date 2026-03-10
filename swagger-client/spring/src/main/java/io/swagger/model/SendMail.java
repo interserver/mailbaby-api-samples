@@ -14,9 +14,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Details for an Email
+ * Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead.
  */
-@Schema(description = "Details for an Email")
+@Schema(description = "Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.")
 @Validated
 @NotUndefined
 
@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 public class SendMail   {
   @JsonProperty("to")
 
-  private String to = null;
+  private OneOfSendMailTo to = null;
 
   @JsonProperty("from")
 
@@ -43,30 +43,30 @@ public class SendMail   {
 
   @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private Integer id = null;
+  private Long id = null;
 
 
-  public SendMail to(String to) { 
+  public SendMail to(OneOfSendMailTo to) { 
 
     this.to = to;
     return this;
   }
 
   /**
-   * The Contact whom is the primary recipient of this email.
+   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
    * @return to
    **/
   
-  @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
+  @Schema(required = true, description = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
   
   @NotNull
-  public String getTo() {  
+  public OneOfSendMailTo getTo() {  
     return to;
   }
 
 
 
-  public void setTo(String to) { 
+  public void setTo(OneOfSendMailTo to) { 
 
     this.to = to;
   }
@@ -78,11 +78,11 @@ public class SendMail   {
   }
 
   /**
-   * The contact whom is the this email is from.
+   * The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
    * @return from
    **/
   
-  @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
+  @Schema(example = "janedoe@company.com", required = true, description = "The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.")
   
   @NotNull
   public String getFrom() {  
@@ -103,11 +103,11 @@ public class SendMail   {
   }
 
   /**
-   * The subject or title of the email
+   * The subject line of the email.
    * @return subject
    **/
   
-  @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
+  @Schema(example = "Attention Client", required = true, description = "The subject line of the email.")
   
   @NotNull
   public String getSubject() {  
@@ -128,11 +128,11 @@ public class SendMail   {
   }
 
   /**
-   * The main email contents.
+   * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
    * @return body
    **/
   
-  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
+  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.")
   
   @NotNull
   public String getBody() {  
@@ -146,26 +146,26 @@ public class SendMail   {
     this.body = body;
   }
 
-  public SendMail id(Integer id) { 
+  public SendMail id(Long id) { 
 
     this.id = id;
     return this;
   }
 
   /**
-   * Optional Order ID
+   * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
    * @return id
    **/
   
-  @Schema(description = "Optional Order ID")
+  @Schema(example = "2604", description = "Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.")
   
-  public Integer getId() {  
+  public Long getId() {  
     return id;
   }
 
 
 
-  public void setId(Integer id) { 
+  public void setId(Long id) { 
     this.id = id;
   }
 

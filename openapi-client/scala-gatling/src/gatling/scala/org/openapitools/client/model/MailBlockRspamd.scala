@@ -3,7 +3,9 @@ package org.openapitools.client.model
 
 
 case class MailBlockRspamd (
+    /* The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender. */
     _from: String,
+    /* The suspicious subject pattern that triggered the block. */
     _subject: String
 )
 object MailBlockRspamd {

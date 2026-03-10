@@ -2,7 +2,7 @@
 
 # ErrorMessage
 
-The resposne when an error occurs.
+The response body returned when an error occurs.
 
 The class is defined in **[ErrorMessage.java](../../src/main/java/org/openapitools/model/ErrorMessage.java)**
 
@@ -10,8 +10,8 @@ The class is defined in **[ErrorMessage.java](../../src/main/java/org/openapitoo
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | `Integer` | The response code associated with the error. | 
-**message** | `String` | The details or description of the error. | 
+**code** | `Integer` | The HTTP-style status code associated with the error. | 
+**message** | `String` | A human-readable description of the error. | 
 
 
 

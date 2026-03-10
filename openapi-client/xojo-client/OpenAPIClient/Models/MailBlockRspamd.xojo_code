@@ -2,11 +2,17 @@
 Protected Class MailBlockRspamd
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
+		#tag EndNote
 		from As String
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The suspicious subject pattern that triggered the block.
+		#tag EndNote
 		subject As String
 	#tag EndProperty
 

@@ -4,4 +4,4 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | [**kotlin.String**](.md) | The email address. | 
-**name** | [**kotlin.String**](.md) | Name to use for the sending contact. |  [optional]
+**name** | [**kotlin.String**](.md) | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). |  [optional]

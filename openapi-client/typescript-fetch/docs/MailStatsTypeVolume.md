@@ -1,14 +1,15 @@
 
 # MailStatsTypeVolume
 
+Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`to` | [MailStatsTypeVolumeTo](MailStatsTypeVolumeTo.md)
-`from` | [MailStatsTypeVolumeFrom](MailStatsTypeVolumeFrom.md)
-`ip` | [MailStatsTypeVolumeIp](MailStatsTypeVolumeIp.md)
+`to` | { [key: string]: number; }
+`from` | { [key: string]: number; }
+`ip` | { [key: string]: number; }
 
 ## Example
 

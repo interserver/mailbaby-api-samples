@@ -47,7 +47,7 @@ open class StatusApi(basePath: kotlin.String = defaultBasePath, client: Call.Fac
     /**
      * GET /ping
      * Checks if the server is running
-     * 
+     * A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
      * @return void
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception
@@ -77,7 +77,7 @@ open class StatusApi(basePath: kotlin.String = defaultBasePath, client: Call.Fac
     /**
      * GET /ping
      * Checks if the server is running
-     * 
+     * A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
      * @return ApiResponse<Unit?>
      * @throws IllegalStateException If the request is not correctly configured
      * @throws IOException Rethrows the OkHttp execute method exception

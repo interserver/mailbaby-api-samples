@@ -4,11 +4,11 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddRule**](BlockingAPI.md#AddRule) | **Post** /mail/rules | Creates a new email deny rule.
-[**DeleteRule**](BlockingAPI.md#DeleteRule) | **Delete** /mail/rules/{ruleId} | Removes an deny mail rule.
-[**DelistBlock**](BlockingAPI.md#DelistBlock) | **Post** /mail/blocks/delete | Removes an email address from the blocked list
-[**GetMailBlocks**](BlockingAPI.md#GetMailBlocks) | **Get** /mail/blocks | displays a list of blocked email addresses
-[**GetRules**](BlockingAPI.md#GetRules) | **Get** /mail/rules | Displays a listing of deny email rules.
+[**AddRule**](BlockingAPI.md#AddRule) | **Post** /mail/rules | Creates a new email deny rule
+[**DeleteRule**](BlockingAPI.md#DeleteRule) | **Delete** /mail/rules/{ruleId} | Removes a deny mail rule
+[**DelistBlock**](BlockingAPI.md#DelistBlock) | **Post** /mail/blocks/delete | Removes an email address from the block lists
+[**GetMailBlocks**](BlockingAPI.md#GetMailBlocks) | **Get** /mail/blocks | Displays a list of blocked email addresses
+[**GetRules**](BlockingAPI.md#GetRules) | **Get** /mail/rules | Displays a listing of deny email rules
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > GenericResponse AddRule(ctx).Type_(type_).Data(data).User(user).Execute()
 
-Creates a new email deny rule.
+Creates a new email deny rule
 
 
 
@@ -34,8 +34,8 @@ import (
 
 func main() {
 	type_ := "type__example" // string | The type of deny rule.
-	data := "data_example" // string | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-	user := "user_example" // string | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. (optional)
+	data := "data_example" // string | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+	user := "user_example" // string | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -61,8 +61,8 @@ Other parameters are passed through a pointer to a apiAddRuleRequest struct via 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type_** | **string** | The type of deny rule. | 
- **data** | **string** | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. | 
- **user** | **string** | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. | 
+ **data** | **string** | The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. | 
+ **user** | **string** | Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. | 
 
 ### Return type
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 > GenericResponse DeleteRule(ctx, ruleId).Execute()
 
-Removes an deny mail rule.
+Removes a deny mail rule
 
 
 
@@ -103,7 +103,7 @@ import (
 )
 
 func main() {
-	ruleId := int32(34) // int32 | The ID of the Rules entry.
+	ruleId := int32(34) // int32 | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -123,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**ruleId** | **int32** | The ID of the Rules entry. | 
+**ruleId** | **int32** | The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. | 
 
 ### Other Parameters
 
@@ -154,9 +154,9 @@ Name | Type | Description  | Notes
 
 ## DelistBlock
 
-> GenericResponse DelistBlock(ctx).Body(body).Execute()
+> GenericResponse DelistBlock(ctx).EmailAddressParam(emailAddressParam).Execute()
 
-Removes an email address from the blocked list
+Removes an email address from the block lists
 
 
 
@@ -173,11 +173,11 @@ import (
 )
 
 func main() {
-	body := "{\"email\":\"client@domain.com\"}" // string | 
+	emailAddressParam := *openapiclient.NewEmailAddressParam("user@domain.com") // EmailAddressParam | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.BlockingAPI.DelistBlock(context.Background()).Body(body).Execute()
+	resp, r, err := apiClient.BlockingAPI.DelistBlock(context.Background()).EmailAddressParam(emailAddressParam).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `BlockingAPI.DelistBlock``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -198,7 +198,7 @@ Other parameters are passed through a pointer to a apiDelistBlockRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **string** |  | 
+ **emailAddressParam** | [**EmailAddressParam**](EmailAddressParam.md) |  | 
 
 ### Return type
 
@@ -222,7 +222,9 @@ Name | Type | Description  | Notes
 
 > MailBlocks GetMailBlocks(ctx).Execute()
 
-displays a list of blocked email addresses
+Displays a list of blocked email addresses
+
+
 
 ### Example
 
@@ -281,7 +283,7 @@ Other parameters are passed through a pointer to a apiGetMailBlocksRequest struc
 
 > []DenyRuleRecord GetRules(ctx).Execute()
 
-Displays a listing of deny email rules.
+Displays a listing of deny email rules
 
 
 

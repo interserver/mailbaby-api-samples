@@ -5,21 +5,21 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * (optional) File attachments to include in the email.  The file contents must be base64
+ * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "(optional) File attachments to include in the email.  The file contents must be base64")
+@Schema(description = "A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.")
 
 public class MailAttachment   {
 
   private @Valid String filename = null;
 
-  private @Valid String data = null;
+  private @Valid byte[] data = null;
 
   /**
-   * The filename of the attached file.
+   * The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;).
    **/
   public MailAttachment filename(String filename) {
     this.filename = filename;
@@ -27,7 +27,7 @@ public class MailAttachment   {
   }
 
   
-  @ApiModelProperty(example = "message.txt", required = true, value = "The filename of the attached file.")
+  @ApiModelProperty(example = "message.txt", required = true, value = "The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).")
   @JsonProperty("filename")
   @NotNull
 
@@ -39,22 +39,22 @@ public class MailAttachment   {
   }
 
   /**
-   * The file contents base64 encoded
+   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
    **/
-  public MailAttachment data(String data) {
+  public MailAttachment data(byte[] data) {
     this.data = data;
     return this;
   }
 
   
-  @ApiModelProperty(example = "aGVsbG8gdGhlcmUK", required = true, value = "The file contents base64 encoded")
+  @ApiModelProperty(example = "[B@1a3dcadb", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
   @JsonProperty("data")
   @NotNull
 
-  public String getData() {
+  public byte[] getData() {
     return data;
   }
-  public void setData(String data) {
+  public void setData(byte[] data) {
     this.data = data;
   }
 

@@ -7,17 +7,20 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(MailStatsTypeVolume, () {
-    // MailStatsTypeVolumeTo to
+    // Message counts keyed by destination (envelope `to`) email address.
+    // BuiltMap<String, int> to
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // MailStatsTypeVolumeFrom from
+    // Message counts keyed by sender (envelope `from`) email address.
+    // BuiltMap<String, int> from
     test('to test the property `from`', () async {
       // TODO
     });
 
-    // MailStatsTypeVolumeIp ip
+    // Message counts keyed by originating client IP address.
+    // BuiltMap<String, int> ip
     test('to test the property `ip`', () async {
       // TODO
     });

@@ -8,11 +8,11 @@
 import Foundation
 
 
-/** The resposne when an error occurs. */
+/** The response body returned when an error occurs. */
 open class ErrorMessage: JSONEncodable {
-    /** The response code associated with the error. */
+    /** The HTTP-style status code associated with the error. */
     public var code: Int32?
-    /** The details or description of the error. */
+    /** A human-readable description of the error. */
     public var message: String?
 
     public init() {}

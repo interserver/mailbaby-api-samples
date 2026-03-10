@@ -8,20 +8,22 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// This is a block entry from the rspamd block list.
+  /// A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
   /// </summary>
   [DataContract]
   public class MailBlockRspamd {
     /// <summary>
-    /// Gets or Sets From
+    /// The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
     /// </summary>
+    /// <value>The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.</value>
     [DataMember(Name="from", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "from")]
     public string From { get; set; }
 
     /// <summary>
-    /// Gets or Sets Subject
+    /// The suspicious subject pattern that triggered the block.
     /// </summary>
+    /// <value>The suspicious subject pattern that triggered the block.</value>
     [DataMember(Name="subject", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "subject")]
     public string Subject { get; set; }

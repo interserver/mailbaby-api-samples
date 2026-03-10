@@ -26,7 +26,6 @@ MailStatsType::__init()
 	//time = std::string();
 	//usage = int(0);
 	//currency = std::string();
-	//currencySymbol = std::string();
 	//cost = double(0);
 	//received = int(0);
 	//sent = int(0);
@@ -50,11 +49,6 @@ MailStatsType::__cleanup()
 	//
 	//delete currency;
 	//currency = NULL;
-	//}
-	//if(currencySymbol != NULL) {
-	//
-	//delete currencySymbol;
-	//currencySymbol = NULL;
 	//}
 	//if(cost != NULL) {
 	//
@@ -113,17 +107,6 @@ MailStatsType::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&currency, node, "std::string", "");
-		} else {
-			
-		}
-	}
-	const gchar *currencySymbolKey = "currencySymbol";
-	node = json_object_get_member(pJsonObject, currencySymbolKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&currencySymbol, node, "std::string", "");
 		} else {
 			
 		}
@@ -214,15 +197,6 @@ MailStatsType::toJson()
 	}
 	const gchar *currencyKey = "currency";
 	json_object_set_member(pJsonObject, currencyKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getCurrencySymbol();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *currencySymbolKey = "currencySymbol";
-	json_object_set_member(pJsonObject, currencySymbolKey, node);
 	if (isprimitive("double")) {
 		double obj = getCost();
 		node = converttoJson(&obj, "double", "");
@@ -306,18 +280,6 @@ void
 MailStatsType::setCurrency(std::string  currency)
 {
 	this->currency = currency;
-}
-
-std::string
-MailStatsType::getCurrencySymbol()
-{
-	return currencySymbol;
-}
-
-void
-MailStatsType::setCurrencySymbol(std::string  currencySymbol)
-{
-	this->currencySymbol = currencySymbol;
 }
 
 double

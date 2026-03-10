@@ -2,16 +2,13 @@
 Protected Class SendMail
 
 	#tag Property, Flags = &h0
-		#tag Note
-			The Contact whom is the primary recipient of this email.
-		#tag EndNote
-		Escapedto As String
+		Escapedto As OpenAPIClient.Models.SendMailTo
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The contact whom is the this email is from.
+			The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 		#tag EndNote
 		from As String
 	#tag EndProperty
@@ -19,7 +16,7 @@ Protected Class SendMail
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The subject or title of the email
+			The subject line of the email.
 		#tag EndNote
 		subject As String
 	#tag EndProperty
@@ -27,7 +24,7 @@ Protected Class SendMail
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The main email contents.
+			The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 		#tag EndNote
 		body As String
 	#tag EndProperty
@@ -35,9 +32,9 @@ Protected Class SendMail
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Optional Order ID
+			Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 		#tag EndNote
-		id As Xoson.O.OptionalInteger
+		id As Xoson.O.OptionalInt64
 	#tag EndProperty
 
 
@@ -82,7 +79,7 @@ Protected Class SendMail
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="String"
+			Type="SendMailTo"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -114,7 +111,7 @@ Protected Class SendMail
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Int64"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

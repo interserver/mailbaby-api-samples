@@ -1,7 +1,7 @@
 /*
  * mail_stats_type.h
  *
- * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  */
 
 #ifndef _mail_stats_type_H_
@@ -19,7 +19,7 @@ typedef struct mail_stats_type_t mail_stats_type_t;
 
 // Enum TIME for mail_stats_type
 
-typedef enum  { mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_NULL = 0, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_all, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_billing, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_month, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME__7d, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME__24h, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_today, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME__1h } mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e;
+typedef enum  { mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_NULL = 0, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_all, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_billing, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_month, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME__7d, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME__24h, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_day, mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME__1h } mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e;
 
 char* mail_stats_type_time_ToString(mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time);
 
@@ -31,7 +31,6 @@ typedef struct mail_stats_type_t {
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time; //enum
     int usage; //numeric
     char *currency; // string
-    char *currency_symbol; // string
     double cost; //numeric
     int received; //numeric
     int sent; //numeric
@@ -44,7 +43,6 @@ __attribute__((deprecated)) mail_stats_type_t *mail_stats_type_create(
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time,
     int usage,
     char *currency,
-    char *currency_symbol,
     double cost,
     int received,
     int sent,

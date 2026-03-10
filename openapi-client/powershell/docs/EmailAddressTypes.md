@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **String** | The email address. | 
-**Name** | **String** | Name to use for the sending contact. | [optional] 
+**Name** | **String** | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). | [optional] 
 
 ## Examples
 

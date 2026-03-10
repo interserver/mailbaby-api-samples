@@ -3,7 +3,7 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailAttachment do
   @moduledoc """
-  (optional) File attachments to include in the email.  The file contents must be base64
+  A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
   """
 
   @derive JSON.Encoder
@@ -14,7 +14,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailAttachment do
 
   @type t :: %__MODULE__{
     :filename => String.t,
-    :data => String.t
+    :data => binary()
   }
 
   def decode(value) do

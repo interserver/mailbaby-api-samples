@@ -8,38 +8,38 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// A mail order record
+  /// A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;.
   /// </summary>
   [DataContract]
   public class MailOrder {
     /// <summary>
-    /// The ID of the order.
+    /// The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
     /// </summary>
-    /// <value>The ID of the order.</value>
+    /// <value>The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.</value>
     [DataMember(Name="id", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "id")]
     public int? Id { get; set; }
 
     /// <summary>
-    /// The order status.
+    /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
     /// </summary>
-    /// <value>The order status.</value>
+    /// <value>The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.</value>
     [DataMember(Name="status", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "status")]
     public string Status { get; set; }
 
     /// <summary>
-    /// The username to use for this order.
+    /// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
     /// </summary>
-    /// <value>The username to use for this order.</value>
+    /// <value>The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.</value>
     [DataMember(Name="username", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "username")]
     public string Username { get; set; }
 
     /// <summary>
-    /// Optional order comment.
+    /// Optional human-readable note associated with the order.
     /// </summary>
-    /// <value>Optional order comment.</value>
+    /// <value>Optional human-readable note associated with the order.</value>
     [DataMember(Name="comment", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "comment")]
     public string Comment { get; set; }

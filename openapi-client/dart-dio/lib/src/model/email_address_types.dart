@@ -11,11 +11,11 @@ import 'package:one_of/one_of.dart';
 
 part 'email_address_types.g.dart';
 
-/// 
+/// A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
 ///
 /// Properties:
 /// * [email] - The email address.
-/// * [name] - Name to use for the sending contact.
+/// * [name] - Optional display name shown to recipients (e.g. in the `From:` header).
 @BuiltValue()
 abstract class EmailAddressTypes implements Built<EmailAddressTypes, EmailAddressTypesBuilder> {
   /// One Of [EmailAddressName], [String]

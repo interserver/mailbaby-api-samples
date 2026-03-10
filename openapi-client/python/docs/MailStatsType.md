@@ -1,18 +1,17 @@
 # MailStatsType
 
-Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**time** | **str** |  | [optional] [default to '1h']
-**usage** | **int** |  | [optional] 
-**currency** | **str** |  | [optional] 
-**currency_symbol** | **str** |  | [optional] 
-**cost** | **float** |  | [optional] 
-**received** | **int** |  | [optional] 
-**sent** | **int** |  | [optional] 
+**time** | **str** | The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover. | [optional] [default to '1h']
+**usage** | **int** | Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value. | [optional] 
+**currency** | **str** | The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;). | [optional] 
+**cost** | **float** | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). | [optional] 
+**received** | **int** | Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue. | [optional] 
+**sent** | **int** | Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. | [optional] 
 **volume** | [**MailStatsTypeVolume**](MailStatsTypeVolume.md) |  | [optional] 
 
 ## Example

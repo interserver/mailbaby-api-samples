@@ -25,25 +25,25 @@ class MailOrderTest : ShouldSpec() {
         // uncomment below to create an instance of MailOrder
         //val modelInstance = MailOrder()
 
-        // to test the property `id` - The ID of the order.
+        // to test the property `id` - The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `status` - The order status.
+        // to test the property `status` - The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
         should("test status") {
             // uncomment below to test the property
             //modelInstance.status shouldBe ("TODO")
         }
 
-        // to test the property `username` - The username to use for this order.
+        // to test the property `username` - The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
         should("test username") {
             // uncomment below to test the property
             //modelInstance.username shouldBe ("TODO")
         }
 
-        // to test the property `comment` - Optional order comment.
+        // to test the property `comment` - Optional human-readable note associated with the order.
         should("test comment") {
             // uncomment below to test the property
             //modelInstance.comment shouldBe ("TODO")

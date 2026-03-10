@@ -7,11 +7,14 @@
 
 import Foundation
 
-/** The listing of blocked emails. */
+/** The complete set of blocked addresses and message patterns returned by &#x60;GET /mail/blocks&#x60;.  Three independent block sources are combined into one response. Use &#x60;POST /mail/blocks/delete&#x60; with a &#x60;from&#x60; address from any entry to delist it. */
 public struct MailBlocks: Sendable, Codable, Hashable {
 
+    /** Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list. */
     public var local: [MailBlockClickHouse]
+    /** Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection. */
     public var mbtrap: [MailBlockClickHouse]
+    /** Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days. */
     public var subject: [MailBlockRspamd]
 
     public init(local: [MailBlockClickHouse], mbtrap: [MailBlockClickHouse], subject: [MailBlockRspamd]) {

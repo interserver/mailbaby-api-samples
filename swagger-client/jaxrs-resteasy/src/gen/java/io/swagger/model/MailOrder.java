@@ -9,16 +9,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description="A mail order record")
+@Schema(description="A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.")
 
 public class MailOrder   {
   private Integer id = null;  private String status = null;  private String username = null;  private String comment = null;
 
   /**
-   * The ID of the order.
+   * The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
    **/
   
-  @Schema(example = "21472", required = true, description = "The ID of the order.")
+  @Schema(example = "21472", required = true, description = "The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.")
   @JsonProperty("id")
   @NotNull
   public Integer getId() {
@@ -29,10 +29,10 @@ public class MailOrder   {
   }
 
   /**
-   * The order status.
+   * The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
    **/
   
-  @Schema(example = "active", required = true, description = "The order status.")
+  @Schema(example = "active", required = true, description = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
   @JsonProperty("status")
   @NotNull
   public String getStatus() {
@@ -43,10 +43,10 @@ public class MailOrder   {
   }
 
   /**
-   * The username to use for this order.
+   * The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed.
    **/
   
-  @Schema(example = "mb21472", required = true, description = "The username to use for this order.")
+  @Schema(example = "mb21472", required = true, description = "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
   @JsonProperty("username")
   @NotNull
   public String getUsername() {
@@ -57,10 +57,10 @@ public class MailOrder   {
   }
 
   /**
-   * Optional order comment.
+   * Optional human-readable note associated with the order.
    **/
   
-  @Schema(description = "Optional order comment.")
+  @Schema(description = "Optional human-readable note associated with the order.")
   @JsonProperty("comment")
   @NotNull
   public String getComment() {

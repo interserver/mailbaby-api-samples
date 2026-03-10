@@ -16,6 +16,7 @@ const actions = {
     [SendingApi.rawMail.key]: SendingApi.rawMail,
     [SendingApi.sendAdvMail.key]: SendingApi.sendAdvMail,
     [SendingApi.sendMail.key]: SendingApi.sendMail,
+    [ServicesApi.getMailOrderById.key]: ServicesApi.getMailOrderById,
     [ServicesApi.getMailOrders.key]: ServicesApi.getMailOrders,
     [StatusApi.pingServer.key]: StatusApi.pingServer,
 }

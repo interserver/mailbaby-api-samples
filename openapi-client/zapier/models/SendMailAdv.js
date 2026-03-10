@@ -9,13 +9,13 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}subject`,
-                label: `The subject or title of the email - [${labelPrefix}subject]`,
+                label: `The subject line of the email. - [${labelPrefix}subject]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}body`,
-                label: `The main email contents. - [${labelPrefix}body]`,
+                label: `The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. - [${labelPrefix}body]`,
                 required: true,
                 type: 'string',
             },
@@ -31,7 +31,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}id`,
-                label: `(optional)  ID of the Mail order within our system to use as the Mail Account. - [${labelPrefix}id]`,
+                label: `Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. - [${labelPrefix}id]`,
                 type: 'number',
             },
         ]

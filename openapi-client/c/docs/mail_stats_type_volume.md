@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [**mail_stats_type_volume_to_t**](mail_stats_type_volume_to.md) \* |  | [optional] 
-**from** | [**mail_stats_type_volume_from_t**](mail_stats_type_volume_from.md) \* |  | [optional] 
-**ip** | [**mail_stats_type_volume_ip_t**](mail_stats_type_volume_ip.md) \* |  | [optional] 
+**to** | **list_t*** | Message counts keyed by destination (envelope &#x60;to&#x60;) email address. | [optional] 
+**from** | **list_t*** | Message counts keyed by sender (envelope &#x60;from&#x60;) email address. | [optional] 
+**ip** | **list_t*** | Message counts keyed by originating client IP address. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

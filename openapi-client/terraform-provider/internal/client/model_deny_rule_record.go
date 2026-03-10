@@ -2,7 +2,7 @@
 
 package client
 
-// DenyRuleRecord - The data for a email deny rule record.
+// DenyRuleRecord - A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
 type DenyRuleRecord struct {
 	User string `json:"user,omitempty"`
 	Type string `json:"type"`

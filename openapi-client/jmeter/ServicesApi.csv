@@ -1,2 +1,2 @@
-testCase,httpStatusCode
-Success,200
+testCase,httpStatusCode,id
+Success,200,0

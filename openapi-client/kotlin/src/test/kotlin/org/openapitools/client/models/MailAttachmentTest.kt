@@ -25,13 +25,13 @@ class MailAttachmentTest : ShouldSpec() {
         // uncomment below to create an instance of MailAttachment
         //val modelInstance = MailAttachment()
 
-        // to test the property `filename` - The filename of the attached file.
+        // to test the property `filename` - The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
         should("test filename") {
             // uncomment below to test the property
             //modelInstance.filename shouldBe ("TODO")
         }
 
-        // to test the property ``data`` - The file contents base64 encoded
+        // to test the property ``data`` - The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
         should("test `data`") {
             // uncomment below to test the property
             //modelInstance.`data` shouldBe ("TODO")

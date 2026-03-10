@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(ErrorMessage, () {
-    // The response code associated with the error.
+    // The HTTP-style status code associated with the error.
     // int code
     test('to test the property `code`', () async {
       // TODO
     });
 
-    // The details or description of the error.
+    // A human-readable description of the error.
     // String message
     test('to test the property `message`', () async {
       // TODO

@@ -20,22 +20,22 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * (optional) File attachments to include in the email.  The file contents must be base64
+ * A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
  *
- * @param filename The filename of the attached file.
- * @param `data` The file contents base64 encoded
+ * @param filename The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
+ * @param `data` The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
  */
 
 
 data class MailAttachment (
 
-    /* The filename of the attached file. */
+    /* The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`). */
     @Json(name = "filename")
     val filename: kotlin.String,
 
-    /* The file contents base64 encoded */
+    /* The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. */
     @Json(name = "data")
-    val `data`: kotlin.String
+    val `data`: kotlin.ByteArray
 
 ) {
 

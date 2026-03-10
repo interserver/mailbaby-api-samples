@@ -25,142 +25,148 @@ class MailLogEntryTest : ShouldSpec() {
         // uncomment below to create an instance of MailLogEntry
         //val modelInstance = MailLogEntry()
 
-        // to test the property `id` - internal db id
+        // to test the property `id` - Internal auto-increment database row ID.  Not meaningful outside the API.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `id` - mail id
+        // to test the property `id` - The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")
         }
 
-        // to test the property `from` - from address
+        // to test the property `from` - SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
         should("test from") {
             // uncomment below to test the property
             //modelInstance.from shouldBe ("TODO")
         }
 
-        // to test the property `to` - to address
+        // to test the property `to` - SMTP envelope `RCPT TO` address.
         should("test to") {
             // uncomment below to test the property
             //modelInstance.to shouldBe ("TODO")
         }
 
-        // to test the property `subject` - email subject
-        should("test subject") {
-            // uncomment below to test the property
-            //modelInstance.subject shouldBe ("TODO")
-        }
-
-        // to test the property `created` - creation date
+        // to test the property `created` - Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
         should("test created") {
             // uncomment below to test the property
             //modelInstance.created shouldBe ("TODO")
         }
 
-        // to test the property `time` - creation timestamp
+        // to test the property `time` - Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
         should("test time") {
             // uncomment below to test the property
             //modelInstance.time shouldBe ("TODO")
         }
 
-        // to test the property `user` - user account
+        // to test the property `user` - The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
         should("test user") {
             // uncomment below to test the property
             //modelInstance.user shouldBe ("TODO")
         }
 
-        // to test the property `transtype` - transaction type
+        // to test the property `transtype` - SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
         should("test transtype") {
             // uncomment below to test the property
             //modelInstance.transtype shouldBe ("TODO")
         }
 
-        // to test the property `origin` - origin ip
+        // to test the property `origin` - IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
         should("test origin") {
             // uncomment below to test the property
             //modelInstance.origin shouldBe ("TODO")
         }
 
-        // to test the property ``interface`` - interface name
+        // to test the property ``interface`` - Relay interface name that accepted the message (e.g. `feeder`).
         should("test `interface`") {
             // uncomment below to test the property
             //modelInstance.`interface` shouldBe ("TODO")
         }
 
-        // to test the property `sendingZone` - sending zone
+        // to test the property `subject` - The `Subject` header value, if available.
+        should("test subject") {
+            // uncomment below to test the property
+            //modelInstance.subject shouldBe ("TODO")
+        }
+
+        // to test the property `messageId` - The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
+        should("test messageId") {
+            // uncomment below to test the property
+            //modelInstance.messageId shouldBe ("TODO")
+        }
+
+        // to test the property `sendingZone` - The sending zone assigned by the relay for outbound delivery.
         should("test sendingZone") {
             // uncomment below to test the property
             //modelInstance.sendingZone shouldBe ("TODO")
         }
 
-        // to test the property `bodySize` - email body size in bytes
+        // to test the property `bodySize` - Size of the message body in bytes.
         should("test bodySize") {
             // uncomment below to test the property
             //modelInstance.bodySize shouldBe ("TODO")
         }
 
-        // to test the property `seq` - index of email in the to adderess list
+        // to test the property `seq` - Sequence index of this recipient in a multi-recipient message. Starts at 1.
         should("test seq") {
             // uncomment below to test the property
             //modelInstance.seq shouldBe ("TODO")
         }
 
-        // to test the property `recipient` - to address this email is being sent to
-        should("test recipient") {
+        // to test the property `delivered` - Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+        should("test delivered") {
             // uncomment below to test the property
-            //modelInstance.recipient shouldBe ("TODO")
+            //modelInstance.delivered shouldBe ("TODO")
         }
 
-        // to test the property `domain` - to address domain
-        should("test domain") {
-            // uncomment below to test the property
-            //modelInstance.domain shouldBe ("TODO")
-        }
-
-        // to test the property `locked` - locked status
-        should("test locked") {
-            // uncomment below to test the property
-            //modelInstance.locked shouldBe ("TODO")
-        }
-
-        // to test the property `lockTime` - lock timestamp
-        should("test lockTime") {
-            // uncomment below to test the property
-            //modelInstance.lockTime shouldBe ("TODO")
-        }
-
-        // to test the property `assigned` - assigned server
-        should("test assigned") {
-            // uncomment below to test the property
-            //modelInstance.assigned shouldBe ("TODO")
-        }
-
-        // to test the property `queued` - queued timestamp
-        should("test queued") {
-            // uncomment below to test the property
-            //modelInstance.queued shouldBe ("TODO")
-        }
-
-        // to test the property `mxHostname` - mx hostname
-        should("test mxHostname") {
-            // uncomment below to test the property
-            //modelInstance.mxHostname shouldBe ("TODO")
-        }
-
-        // to test the property `response` - mail delivery response
+        // to test the property `response` - The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
         should("test response") {
             // uncomment below to test the property
             //modelInstance.response shouldBe ("TODO")
         }
 
-        // to test the property `messageId` - message id
-        should("test messageId") {
+        // to test the property `recipient` - The specific recipient address this delivery record is for.
+        should("test recipient") {
             // uncomment below to test the property
-            //modelInstance.messageId shouldBe ("TODO")
+            //modelInstance.recipient shouldBe ("TODO")
+        }
+
+        // to test the property `domain` - The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
+        should("test domain") {
+            // uncomment below to test the property
+            //modelInstance.domain shouldBe ("TODO")
+        }
+
+        // to test the property `locked` - Whether the queue entry is currently locked for delivery processing.
+        should("test locked") {
+            // uncomment below to test the property
+            //modelInstance.locked shouldBe ("TODO")
+        }
+
+        // to test the property `lockTime` - Millisecond-precision timestamp of the last queue lock acquisition.
+        should("test lockTime") {
+            // uncomment below to test the property
+            //modelInstance.lockTime shouldBe ("TODO")
+        }
+
+        // to test the property `assigned` - The relay server node assigned to deliver this message.
+        should("test assigned") {
+            // uncomment below to test the property
+            //modelInstance.assigned shouldBe ("TODO")
+        }
+
+        // to test the property `queued` - ISO 8601 timestamp when the message was placed into the delivery queue.
+        should("test queued") {
+            // uncomment below to test the property
+            //modelInstance.queued shouldBe ("TODO")
+        }
+
+        // to test the property `mxHostname` - The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
+        should("test mxHostname") {
+            // uncomment below to test the property
+            //modelInstance.mxHostname shouldBe ("TODO")
         }
 
     }

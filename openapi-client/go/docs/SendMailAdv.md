@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subject** | **string** | The subject or title of the email | 
-**Body** | **string** | The main email contents. | 
+**Subject** | **string** | The subject line of the email. | 
+**Body** | **string** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
 **From** | [**EmailAddressTypes**](EmailAddressTypes.md) |  | 
 **To** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
 **Replyto** | Pointer to [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
 **Cc** | Pointer to [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
 **Bcc** | Pointer to [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
-**Attachments** | Pointer to [**[]MailAttachment**](MailAttachment.md) | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
-**Id** | Pointer to **int64** | (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
+**Attachments** | Pointer to [**[]MailAttachment**](MailAttachment.md) | Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [optional] 
+**Id** | Pointer to **int64** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional] 
 
 ## Methods
 

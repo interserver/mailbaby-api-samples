@@ -35,17 +35,18 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlockingApi* | [**addRule**](docs/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule.
-*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
-*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
-*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | displays a list of blocked email addresses
-*BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics.
-*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | displays the mail log
-*SendingApi* | [**rawMail**](docs/SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addrule) | **POST** /mail/rules | Creates a new email deny rule
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleterule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistblock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getmailblocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getrules) | **GET** /mail/rules | Displays a listing of deny email rules
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getstats) | **GET** /mail/stats | Account usage statistics
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewmaillog) | **GET** /mail/log | Displays the mail log
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
 *SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email
-*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | displays a list of mail service orders
+*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getmailorderbyid) | **GET** /mail/{id} | Displays details for a single mail order
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getmailorders) | **GET** /mail | Displays a list of mail service orders
 *StatusApi* | [**pingServer**](docs/StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 <a name="documentation-for-models"></a>
@@ -53,9 +54,9 @@ Class | Method | HTTP request | Description
 
  - [io.swagger.client.models.DenyRuleNew](docs/DenyRuleNew.md)
  - [io.swagger.client.models.DenyRuleRecord](docs/DenyRuleRecord.md)
- - [io.swagger.client.models.EmailAddress](docs/EmailAddress.md)
  - [io.swagger.client.models.EmailAddressName](docs/EmailAddressName.md)
  - [io.swagger.client.models.EmailAddressNames](docs/EmailAddressNames.md)
+ - [io.swagger.client.models.EmailAddressParam](docs/EmailAddressParam.md)
  - [io.swagger.client.models.EmailAddressTypes](docs/EmailAddressTypes.md)
  - [io.swagger.client.models.EmailAddressesTypes](docs/EmailAddressesTypes.md)
  - [io.swagger.client.models.ErrorMessage](docs/ErrorMessage.md)
@@ -67,11 +68,10 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailLog](docs/MailLog.md)
  - [io.swagger.client.models.MailLogEntry](docs/MailLogEntry.md)
  - [io.swagger.client.models.MailOrder](docs/MailOrder.md)
+ - [io.swagger.client.models.MailOrderDetail](docs/MailOrderDetail.md)
  - [io.swagger.client.models.MailStatsType](docs/MailStatsType.md)
  - [io.swagger.client.models.MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [io.swagger.client.models.MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
- - [io.swagger.client.models.MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
- - [io.swagger.client.models.MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
+ - [io.swagger.client.models.OneOfSendMailTo](docs/OneOfSendMailTo.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
  - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
  - [io.swagger.client.models.SendMailRaw](docs/SendMailRaw.md)

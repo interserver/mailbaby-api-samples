@@ -4,7 +4,7 @@ package io.swagger.server.model
 /**
  * = EmailAddressNames =
  *
- * Array of Email Addresses
+ * An array of email contacts, each with an email address and optional display name.
  *
  */
 case class EmailAddressNames (

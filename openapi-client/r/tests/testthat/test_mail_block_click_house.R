@@ -7,6 +7,7 @@ model_instance <- MailBlockClickHouse$new()
 
 test_that("date", {
   # tests for the property `date` (character)
+  # The date the block event was recorded.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`date`, "EXPECTED_RESULT")
@@ -14,6 +15,7 @@ test_that("date", {
 
 test_that("from", {
   # tests for the property `from` (character)
+  # The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
@@ -21,6 +23,7 @@ test_that("from", {
 
 test_that("messageId", {
   # tests for the property `messageId` (character)
+  # The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`messageId`, "EXPECTED_RESULT")
@@ -28,6 +31,7 @@ test_that("messageId", {
 
 test_that("subject", {
   # tests for the property `subject` (character)
+  # The &#x60;Subject&#x60; header of the blocked message.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`subject`, "EXPECTED_RESULT")
@@ -35,6 +39,7 @@ test_that("subject", {
 
 test_that("to", {
   # tests for the property `to` (character)
+  # The serialized list of recipients of the blocked message.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")

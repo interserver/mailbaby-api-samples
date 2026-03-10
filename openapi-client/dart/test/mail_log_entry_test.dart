@@ -16,141 +16,147 @@ void main() {
   // final instance = MailLogEntry();
 
   group('test MailLogEntry', () {
-    // internal db id
+    // Internal auto-increment database row ID.  Not meaningful outside the API.
     // int id
     test('to test the property `id`', () async {
       // TODO
     });
 
-    // mail id
+    // The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
     // String id
     test('to test the property `id`', () async {
       // TODO
     });
 
-    // from address
+    // SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
     // String from
     test('to test the property `from`', () async {
       // TODO
     });
 
-    // to address
+    // SMTP envelope `RCPT TO` address.
     // String to
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // email subject
-    // String subject
-    test('to test the property `subject`', () async {
-      // TODO
-    });
-
-    // creation date
+    // Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
     // String created
     test('to test the property `created`', () async {
       // TODO
     });
 
-    // creation timestamp
+    // Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
     // int time
     test('to test the property `time`', () async {
       // TODO
     });
 
-    // user account
+    // The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
     // String user
     test('to test the property `user`', () async {
       // TODO
     });
 
-    // transaction type
+    // SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
     // String transtype
     test('to test the property `transtype`', () async {
       // TODO
     });
 
-    // origin ip
+    // IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
     // String origin
     test('to test the property `origin`', () async {
       // TODO
     });
 
-    // interface name
+    // Relay interface name that accepted the message (e.g. `feeder`).
     // String interface_
     test('to test the property `interface_`', () async {
       // TODO
     });
 
-    // sending zone
+    // The `Subject` header value, if available.
+    // String subject
+    test('to test the property `subject`', () async {
+      // TODO
+    });
+
+    // The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
+    // String messageId
+    test('to test the property `messageId`', () async {
+      // TODO
+    });
+
+    // The sending zone assigned by the relay for outbound delivery.
     // String sendingZone
     test('to test the property `sendingZone`', () async {
       // TODO
     });
 
-    // email body size in bytes
+    // Size of the message body in bytes.
     // int bodySize
     test('to test the property `bodySize`', () async {
       // TODO
     });
 
-    // index of email in the to adderess list
+    // Sequence index of this recipient in a multi-recipient message. Starts at 1.
     // int seq
     test('to test the property `seq`', () async {
       // TODO
     });
 
-    // to address this email is being sent to
-    // String recipient
-    test('to test the property `recipient`', () async {
+    // Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+    // int delivered
+    test('to test the property `delivered`', () async {
       // TODO
     });
 
-    // to address domain
-    // String domain
-    test('to test the property `domain`', () async {
-      // TODO
-    });
-
-    // locked status
-    // int locked
-    test('to test the property `locked`', () async {
-      // TODO
-    });
-
-    // lock timestamp
-    // String lockTime
-    test('to test the property `lockTime`', () async {
-      // TODO
-    });
-
-    // assigned server
-    // String assigned
-    test('to test the property `assigned`', () async {
-      // TODO
-    });
-
-    // queued timestamp
-    // String queued
-    test('to test the property `queued`', () async {
-      // TODO
-    });
-
-    // mx hostname
-    // String mxHostname
-    test('to test the property `mxHostname`', () async {
-      // TODO
-    });
-
-    // mail delivery response
+    // The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
     // String response
     test('to test the property `response`', () async {
       // TODO
     });
 
-    // message id
-    // String messageId
-    test('to test the property `messageId`', () async {
+    // The specific recipient address this delivery record is for.
+    // String recipient
+    test('to test the property `recipient`', () async {
+      // TODO
+    });
+
+    // The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
+    // String domain
+    test('to test the property `domain`', () async {
+      // TODO
+    });
+
+    // Whether the queue entry is currently locked for delivery processing.
+    // int locked
+    test('to test the property `locked`', () async {
+      // TODO
+    });
+
+    // Millisecond-precision timestamp of the last queue lock acquisition.
+    // String lockTime
+    test('to test the property `lockTime`', () async {
+      // TODO
+    });
+
+    // The relay server node assigned to deliver this message.
+    // String assigned
+    test('to test the property `assigned`', () async {
+      // TODO
+    });
+
+    // ISO 8601 timestamp when the message was placed into the delivery queue.
+    // String queued
+    test('to test the property `queued`', () async {
+      // TODO
+    });
+
+    // The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
+    // String mxHostname
+    test('to test the property `mxHostname`', () async {
       // TODO
     });
 

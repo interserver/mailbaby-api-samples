@@ -6,12 +6,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * A block entry from the clickhouse mailblocks server.
+ * A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (&#x60;LOCAL_BL_RCPT&#x60; or &#x60;MBTRAP&#x60;). The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "A block entry from the clickhouse mailblocks server.")
+@Schema(description = "A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 
 public class MailBlockClickHouse   {
 
@@ -26,6 +26,7 @@ public class MailBlockClickHouse   {
   private @Valid String to = null;
 
   /**
+   * The date the block event was recorded.
    **/
   public MailBlockClickHouse date(LocalDate date) {
     this.date = date;
@@ -33,7 +34,7 @@ public class MailBlockClickHouse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Sun Aug 06 20:00:00 EDT 2023", required = true, value = "The date the block event was recorded.")
   @JsonProperty("date")
   @NotNull
 
@@ -45,6 +46,7 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it.
    **/
   public MailBlockClickHouse from(String from) {
     this.from = from;
@@ -52,7 +54,7 @@ public class MailBlockClickHouse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "user@domain.com", required = true, value = "The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.")
   @JsonProperty("from")
   @NotNull
 
@@ -64,6 +66,7 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
    **/
   public MailBlockClickHouse messageId(String messageId) {
     this.messageId = messageId;
@@ -71,9 +74,8 @@ public class MailBlockClickHouse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com", value = "The `Message-ID` header of the blocked message, or `null` if not present.")
   @JsonProperty("messageId")
-  @NotNull
 
   public String getMessageId() {
     return messageId;
@@ -83,6 +85,7 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The &#x60;Subject&#x60; header of the blocked message.
    **/
   public MailBlockClickHouse subject(String subject) {
     this.subject = subject;
@@ -90,7 +93,7 @@ public class MailBlockClickHouse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Test Email", required = true, value = "The `Subject` header of the blocked message.")
   @JsonProperty("subject")
   @NotNull
 
@@ -102,6 +105,7 @@ public class MailBlockClickHouse   {
   }
 
   /**
+   * The serialized list of recipients of the blocked message.
    **/
   public MailBlockClickHouse to(String to) {
     this.to = to;
@@ -109,7 +113,7 @@ public class MailBlockClickHouse   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "['client@site.com']", required = true, value = "The serialized list of recipients of the blocked message.")
   @JsonProperty("to")
   @NotNull
 

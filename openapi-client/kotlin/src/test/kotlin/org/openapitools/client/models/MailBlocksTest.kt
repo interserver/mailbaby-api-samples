@@ -27,19 +27,19 @@ class MailBlocksTest : ShouldSpec() {
         // uncomment below to create an instance of MailBlocks
         //val modelInstance = MailBlocks()
 
-        // to test the property `local`
+        // to test the property `local` - Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
         should("test local") {
             // uncomment below to test the property
             //modelInstance.local shouldBe ("TODO")
         }
 
-        // to test the property `mbtrap`
+        // to test the property `mbtrap` - Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
         should("test mbtrap") {
             // uncomment below to test the property
             //modelInstance.mbtrap shouldBe ("TODO")
         }
 
-        // to test the property `subject`
+        // to test the property `subject` - Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
         should("test subject") {
             // uncomment below to test the property
             //modelInstance.subject shouldBe ("TODO")

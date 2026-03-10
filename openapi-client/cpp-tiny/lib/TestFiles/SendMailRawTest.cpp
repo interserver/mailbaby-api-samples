@@ -33,6 +33,12 @@ void test_SendMailRaw_raw_email_is_assigned_from_json()
 
 void test_SendMailRaw_id_is_assigned_from_json()
 {
+
+
+
+
+
+
     bourne::json input =
     {
         "id", 1
@@ -41,12 +47,6 @@ void test_SendMailRaw_id_is_assigned_from_json()
     SendMailRaw obj(input.dump());
 
     TEST_ASSERT_EQUAL_INT(1, obj.getId());
-
-
-
-
-
-
 
 
 }
@@ -76,6 +76,9 @@ void test_SendMailRaw_raw_email_is_converted_to_json()
 
 void test_SendMailRaw_id_is_converted_to_json()
 {
+
+
+
     bourne::json input =
     {
         "id", 1
@@ -88,9 +91,6 @@ void test_SendMailRaw_id_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["id"] == output["id"]);
-
-
-
 
 }
 

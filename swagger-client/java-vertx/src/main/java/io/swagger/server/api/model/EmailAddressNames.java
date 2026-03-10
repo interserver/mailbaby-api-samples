@@ -8,7 +8,7 @@ import java.util.List;
 import io.vertx.core.json.JsonObject;
 import io.vertx.codegen.annotations.DataObject;
 /**
- * Array of Email Addresses
+ * An array of email contacts, each with an email address and optional display name.
  */
 
 

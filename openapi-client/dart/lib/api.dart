@@ -37,6 +37,7 @@ part 'api/status_api.dart';
 part 'model/deny_rule_new.dart';
 part 'model/deny_rule_record.dart';
 part 'model/email_address_name.dart';
+part 'model/email_address_param.dart';
 part 'model/email_address_types.dart';
 part 'model/email_addresses_types.dart';
 part 'model/error_message.dart';
@@ -48,14 +49,13 @@ part 'model/mail_blocks.dart';
 part 'model/mail_log.dart';
 part 'model/mail_log_entry.dart';
 part 'model/mail_order.dart';
+part 'model/mail_order_detail.dart';
 part 'model/mail_stats_type.dart';
 part 'model/mail_stats_type_volume.dart';
-part 'model/mail_stats_type_volume_from.dart';
-part 'model/mail_stats_type_volume_ip.dart';
-part 'model/mail_stats_type_volume_to.dart';
 part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
 part 'model/send_mail_raw.dart';
+part 'model/send_mail_to.dart';
 
 
 /// An [ApiClient] instance that uses the default values obtained from

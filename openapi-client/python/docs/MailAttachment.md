@@ -1,13 +1,13 @@
 # MailAttachment
 
-(optional) File attachments to include in the email.  The file contents must be base64
+A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filename** | **str** | The filename of the attached file. | 
-**data** | **str** | The file contents base64 encoded | 
+**filename** | **str** | The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). | 
+**data** | **bytearray** | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. | 
 
 ## Example
 

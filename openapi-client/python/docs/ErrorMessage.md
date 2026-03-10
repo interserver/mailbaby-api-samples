@@ -1,13 +1,13 @@
 # ErrorMessage
 
-The resposne when an error occurs.
+The response body returned when an error occurs.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **int** | The response code associated with the error. | 
-**message** | **str** | The details or description of the error. | 
+**code** | **int** | The HTTP-style status code associated with the error. | 
+**message** | **str** | A human-readable description of the error. | 
 
 ## Example
 

@@ -3,30 +3,31 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/mail_stats_type_volume_to.dart';
-import 'package:openapi/src/model/mail_stats_type_volume_ip.dart';
-import 'package:openapi/src/model/mail_stats_type_volume_from.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
 part 'mail_stats_type_volume.g.dart';
 
-/// MailStatsTypeVolume
+/// Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 ///
 /// Properties:
-/// * [to] 
-/// * [from] 
-/// * [ip] 
+/// * [to] - Message counts keyed by destination (envelope `to`) email address.
+/// * [from] - Message counts keyed by sender (envelope `from`) email address.
+/// * [ip] - Message counts keyed by originating client IP address.
 @BuiltValue()
 abstract class MailStatsTypeVolume implements Built<MailStatsTypeVolume, MailStatsTypeVolumeBuilder> {
+  /// Message counts keyed by destination (envelope `to`) email address.
   @BuiltValueField(wireName: r'to')
-  MailStatsTypeVolumeTo? get to;
+  BuiltMap<String, int>? get to;
 
+  /// Message counts keyed by sender (envelope `from`) email address.
   @BuiltValueField(wireName: r'from')
-  MailStatsTypeVolumeFrom? get from;
+  BuiltMap<String, int>? get from;
 
+  /// Message counts keyed by originating client IP address.
   @BuiltValueField(wireName: r'ip')
-  MailStatsTypeVolumeIp? get ip;
+  BuiltMap<String, int>? get ip;
 
   MailStatsTypeVolume._();
 
@@ -55,21 +56,21 @@ class _$MailStatsTypeVolumeSerializer implements PrimitiveSerializer<MailStatsTy
       yield r'to';
       yield serializers.serialize(
         object.to,
-        specifiedType: const FullType(MailStatsTypeVolumeTo),
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
       );
     }
     if (object.from != null) {
       yield r'from';
       yield serializers.serialize(
         object.from,
-        specifiedType: const FullType(MailStatsTypeVolumeFrom),
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
       );
     }
     if (object.ip != null) {
       yield r'ip';
       yield serializers.serialize(
         object.ip,
-        specifiedType: const FullType(MailStatsTypeVolumeIp),
+        specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
       );
     }
   }
@@ -98,22 +99,22 @@ class _$MailStatsTypeVolumeSerializer implements PrimitiveSerializer<MailStatsTy
         case r'to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MailStatsTypeVolumeTo),
-          ) as MailStatsTypeVolumeTo;
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
+          ) as BuiltMap<String, int>;
           result.to.replace(valueDes);
           break;
         case r'from':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MailStatsTypeVolumeFrom),
-          ) as MailStatsTypeVolumeFrom;
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
+          ) as BuiltMap<String, int>;
           result.from.replace(valueDes);
           break;
         case r'ip':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MailStatsTypeVolumeIp),
-          ) as MailStatsTypeVolumeIp;
+            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
+          ) as BuiltMap<String, int>;
           result.ip.replace(valueDes);
           break;
         default:

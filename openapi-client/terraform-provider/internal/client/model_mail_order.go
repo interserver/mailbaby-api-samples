@@ -2,7 +2,7 @@
 
 package client
 
-// MailOrder - A mail order record
+// MailOrder - A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 type MailOrder struct {
 	Id int32 `json:"id"`
 	Status string `json:"status"`

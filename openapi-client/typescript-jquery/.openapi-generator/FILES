@@ -11,6 +11,7 @@ index.ts
 model/DenyRuleNew.ts
 model/DenyRuleRecord.ts
 model/EmailAddressName.ts
+model/EmailAddressParam.ts
 model/EmailAddressTypes.ts
 model/EmailAddressesTypes.ts
 model/ErrorMessage.ts
@@ -22,13 +23,12 @@ model/MailBlocks.ts
 model/MailLog.ts
 model/MailLogEntry.ts
 model/MailOrder.ts
+model/MailOrderDetail.ts
 model/MailStatsType.ts
 model/MailStatsTypeVolume.ts
-model/MailStatsTypeVolumeFrom.ts
-model/MailStatsTypeVolumeIp.ts
-model/MailStatsTypeVolumeTo.ts
 model/SendMail.ts
 model/SendMailAdv.ts
 model/SendMailRaw.ts
+model/SendMailTo.ts
 model/models.ts
 variables.ts

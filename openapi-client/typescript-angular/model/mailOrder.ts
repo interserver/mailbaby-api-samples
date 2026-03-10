@@ -10,23 +10,23 @@
 
 
 /**
- * A mail order record
+ * A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
  */
 export interface MailOrder { 
     /**
-     * The ID of the order.
+     * The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
      */
     id: number;
     /**
-     * The order status.
+     * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
      */
     status: string;
     /**
-     * The username to use for this order.
+     * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
      */
     username: string;
     /**
-     * Optional order comment.
+     * Optional human-readable note associated with the order.
      */
     comment?: string;
 }

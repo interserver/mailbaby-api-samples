@@ -5,12 +5,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * A mail order record
+ * A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "A mail order record")
+@Schema(description = "A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.")
 
 public class MailOrder   {
 
@@ -23,7 +23,7 @@ public class MailOrder   {
   private @Valid String comment = null;
 
   /**
-   * The ID of the order.
+   * The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
    **/
   public MailOrder id(Integer id) {
     this.id = id;
@@ -31,7 +31,7 @@ public class MailOrder   {
   }
 
   
-  @ApiModelProperty(example = "21472", required = true, value = "The ID of the order.")
+  @ApiModelProperty(example = "21472", required = true, value = "The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.")
   @JsonProperty("id")
   @NotNull
 
@@ -43,7 +43,7 @@ public class MailOrder   {
   }
 
   /**
-   * The order status.
+   * The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
    **/
   public MailOrder status(String status) {
     this.status = status;
@@ -51,7 +51,7 @@ public class MailOrder   {
   }
 
   
-  @ApiModelProperty(example = "active", required = true, value = "The order status.")
+  @ApiModelProperty(example = "active", required = true, value = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
   @JsonProperty("status")
   @NotNull
 
@@ -63,7 +63,7 @@ public class MailOrder   {
   }
 
   /**
-   * The username to use for this order.
+   * The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed.
    **/
   public MailOrder username(String username) {
     this.username = username;
@@ -71,7 +71,7 @@ public class MailOrder   {
   }
 
   
-  @ApiModelProperty(example = "mb21472", required = true, value = "The username to use for this order.")
+  @ApiModelProperty(example = "mb21472", required = true, value = "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
   @JsonProperty("username")
   @NotNull
 
@@ -83,7 +83,7 @@ public class MailOrder   {
   }
 
   /**
-   * Optional order comment.
+   * Optional human-readable note associated with the order.
    **/
   public MailOrder comment(String comment) {
     this.comment = comment;
@@ -91,7 +91,7 @@ public class MailOrder   {
   }
 
   
-  @ApiModelProperty(value = "Optional order comment.")
+  @ApiModelProperty(value = "Optional human-readable note associated with the order.")
   @JsonProperty("comment")
   @NotNull
 

@@ -45,14 +45,6 @@ public class MailStatsTypeTest {
     }
 
     /**
-     * Test the property 'currencySymbol'
-     */
-    @Test
-    public void currencySymbolTest() {
-        // TODO: test currencySymbol
-    }
-
-    /**
      * Test the property 'cost'
      */
     @Test

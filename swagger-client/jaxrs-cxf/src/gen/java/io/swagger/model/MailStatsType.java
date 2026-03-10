@@ -17,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
-  * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+  * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  **/
-@Schema(description="Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
+@Schema(description="Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.")
 public class MailStatsType   {
   public enum TimeEnum {
     ALL("all"),
@@ -27,7 +27,7 @@ public class MailStatsType   {
     MONTH("month"),
     _7D("7d"),
     _24H("24h"),
-    TODAY("today"),
+    DAY("day"),
     _1H("1h");
 
     private String value;
@@ -54,31 +54,46 @@ public class MailStatsType   {
       return null;
     }
   }  
-  @Schema(description = "")
+  @Schema(description = "The time window these `received`, `sent`, and `volume` statistics cover.")
+ /**
+   * The time window these `received`, `sent`, and `volume` statistics cover.  
+  **/
   private TimeEnum time = TimeEnum._1H;
   
-  @Schema(description = "")
+  @Schema(description = "Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.")
+ /**
+   * Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.  
+  **/
   private Integer usage = null;
   
-  @Schema(description = "")
+  @Schema(description = "The ISO 4217 currency code for this account (e.g. `USD`).")
+ /**
+   * The ISO 4217 currency code for this account (e.g. `USD`).  
+  **/
   private String currency = null;
   
-  @Schema(description = "")
-  private String currencySymbol = null;
-  
-  @Schema(description = "")
+  @Schema(description = "Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).")
+ /**
+   * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).  
+  **/
   private Double cost = null;
   
-  @Schema(description = "")
+  @Schema(description = "Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.")
+ /**
+   * Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.  
+  **/
   private Integer received = null;
   
-  @Schema(description = "")
+  @Schema(description = "Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.")
+ /**
+   * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.  
+  **/
   private Integer sent = null;
   
   @Schema(description = "")
   private MailStatsTypeVolume volume = null;
  /**
-   * Get time
+   * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
    * @return time
   **/
   @JsonProperty("time")
@@ -100,7 +115,7 @@ public class MailStatsType   {
   }
 
  /**
-   * Get usage
+   * Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value.
    * @return usage
   **/
   @JsonProperty("usage")
@@ -119,7 +134,7 @@ public class MailStatsType   {
   }
 
  /**
-   * Get currency
+   * The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;).
    * @return currency
   **/
   @JsonProperty("currency")
@@ -138,26 +153,7 @@ public class MailStatsType   {
   }
 
  /**
-   * Get currencySymbol
-   * @return currencySymbol
-  **/
-  @JsonProperty("currencySymbol")
-  @NotNull
-  public String getCurrencySymbol() {
-    return currencySymbol;
-  }
-
-  public void setCurrencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-  }
-
-  public MailStatsType currencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-    return this;
-  }
-
- /**
-   * Get cost
+   * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
    * @return cost
   **/
   @JsonProperty("cost")
@@ -176,7 +172,7 @@ public class MailStatsType   {
   }
 
  /**
-   * Get received
+   * Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue.
    * @return received
   **/
   @JsonProperty("received")
@@ -195,7 +191,7 @@ public class MailStatsType   {
   }
 
  /**
-   * Get sent
+   * Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;.
    * @return sent
   **/
   @JsonProperty("sent")
@@ -241,7 +237,6 @@ public class MailStatsType   {
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    currencySymbol: ").append(toIndentedString(currencySymbol)).append("\n");
     sb.append("    cost: ").append(toIndentedString(cost)).append("\n");
     sb.append("    received: ").append(toIndentedString(received)).append("\n");
     sb.append("    sent: ").append(toIndentedString(sent)).append("\n");

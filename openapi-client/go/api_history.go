@@ -1,9 +1,9 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
-API version: 1.3.0
+API version: 1.4.0
 Contact: support@interserver.net
 */
 
@@ -29,7 +29,7 @@ type ApiGetStatsRequest struct {
 	time *string
 }
 
-// The timeframe for the statistics.
+// The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;.
 func (r ApiGetStatsRequest) Time(time string) ApiGetStatsRequest {
 	r.time = &time
 	return r
@@ -40,9 +40,24 @@ func (r ApiGetStatsRequest) Execute() (*MailStatsType, *http.Response, error) {
 }
 
 /*
-GetStats Account usage statistics.
+GetStats Account usage statistics
 
-Returns information about the usage on your mail accounts.
+Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.
+
+The response includes:
+- **`usage`** — total messages accepted by the relay during the current billing
+  cycle (used for cost calculation).
+- **`cost`** — estimated cost for the billing cycle based on the base plan price
+  plus per-email charges.
+- **`received`** / **`sent`** — count of messages accepted by the relay /
+  successfully delivered to the destination MX within the selected `time` window.
+- **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),
+  destination address (`to`), and sender address (`from`) within the selected window.
+
+
+**Time windows** (controlled by the `time` parameter):
+| Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time |
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetStatsRequest
@@ -77,6 +92,10 @@ func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) (*MailStatsTyp
 
 	if r.time != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "time", r.time, "form", "")
+	} else {
+		var defaultValue string = "1h"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "time", defaultValue, "form", "")
+		r.time = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -140,17 +159,6 @@ func (a *HistoryAPIService) GetStatsExecute(r ApiGetStatsRequest) (*MailStatsTyp
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -177,96 +185,103 @@ type ApiViewMailLogRequest struct {
 	to *string
 	subject *string
 	mailid *string
+	messageId *string
+	replyto *string
+	headerfrom *string
+	delivered *int32
 	skip *int32
 	limit *int32
 	startDate *int64
 	endDate *int64
-	replyto *string
-	headerfrom *string
-	delivered *string
 }
 
-// The ID of your mail order this will be sent through.
+// The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/{id}&#x60;.
 func (r ApiViewMailLogRequest) Id(id int64) ApiViewMailLogRequest {
 	r.id = &id
 	return r
 }
 
-// originating ip address sending mail
+// Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address.
 func (r ApiViewMailLogRequest) Origin(origin string) ApiViewMailLogRequest {
 	r.origin = &origin
 	return r
 }
 
-// mx record mail was sent to
+// Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response.
 func (r ApiViewMailLogRequest) Mx(mx string) ApiViewMailLogRequest {
 	r.mx = &mx
 	return r
 }
 
-// from email address
+// Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;.
 func (r ApiViewMailLogRequest) From(from string) ApiViewMailLogRequest {
 	r.from = &from
 	return r
 }
 
-// to/destination email address
+// Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved.
 func (r ApiViewMailLogRequest) To(to string) ApiViewMailLogRequest {
 	r.to = &to
 	return r
 }
 
-// subject containing this string
+// Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text.
 func (r ApiViewMailLogRequest) Subject(subject string) ApiViewMailLogRequest {
 	r.subject = &subject
 	return r
 }
 
-// mail id
+// Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;.
 func (r ApiViewMailLogRequest) Mailid(mailid string) ApiViewMailLogRequest {
 	r.mailid = &mailid
 	return r
 }
 
-// number of records to skip for pagination
-func (r ApiViewMailLogRequest) Skip(skip int32) ApiViewMailLogRequest {
-	r.skip = &skip
+// Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;.
+func (r ApiViewMailLogRequest) MessageId(messageId string) ApiViewMailLogRequest {
+	r.messageId = &messageId
 	return r
 }
 
-// maximum number of records to return
-func (r ApiViewMailLogRequest) Limit(limit int32) ApiViewMailLogRequest {
-	r.limit = &limit
-	return r
-}
-
-// earliest date to get emails in unix timestamp format
-func (r ApiViewMailLogRequest) StartDate(startDate int64) ApiViewMailLogRequest {
-	r.startDate = &startDate
-	return r
-}
-
-// earliest date to get emails in unix timestamp format
-func (r ApiViewMailLogRequest) EndDate(endDate int64) ApiViewMailLogRequest {
-	r.endDate = &endDate
-	return r
-}
-
-// Reply-To Email Address
+// Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set.
 func (r ApiViewMailLogRequest) Replyto(replyto string) ApiViewMailLogRequest {
 	r.replyto = &replyto
 	return r
 }
 
-// Header From Email Address
+// Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address.
 func (r ApiViewMailLogRequest) Headerfrom(headerfrom string) ApiViewMailLogRequest {
 	r.headerfrom = &headerfrom
 	return r
 }
 
-// Limiting the emails to wether or not they were delivered.
-func (r ApiViewMailLogRequest) Delivered(delivered string) ApiViewMailLogRequest {
+// Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
+func (r ApiViewMailLogRequest) Delivered(delivered int32) ApiViewMailLogRequest {
 	r.delivered = &delivered
+	return r
+}
+
+// Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip).
+func (r ApiViewMailLogRequest) Skip(skip int32) ApiViewMailLogRequest {
+	r.skip = &skip
+	return r
+}
+
+// Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages.
+func (r ApiViewMailLogRequest) Limit(limit int32) ApiViewMailLogRequest {
+	r.limit = &limit
+	return r
+}
+
+// Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included.
+func (r ApiViewMailLogRequest) StartDate(startDate int64) ApiViewMailLogRequest {
+	r.startDate = &startDate
+	return r
+}
+
+// Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included.
+func (r ApiViewMailLogRequest) EndDate(endDate int64) ApiViewMailLogRequest {
+	r.endDate = &endDate
 	return r
 }
 
@@ -275,9 +290,21 @@ func (r ApiViewMailLogRequest) Execute() (*MailLog, *http.Response, error) {
 }
 
 /*
-ViewMailLog displays the mail log
+ViewMailLog Displays the mail log
 
-Get a listing of the emails sent through this system
+Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
+
+**Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.
+
+**Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.
+
+**Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.
+
+**Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.
+
+The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.
+
+The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match).
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -332,6 +359,18 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	if r.mailid != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "mailid", r.mailid, "form", "")
 	}
+	if r.messageId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "messageId", r.messageId, "form", "")
+	}
+	if r.replyto != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "replyto", r.replyto, "form", "")
+	}
+	if r.headerfrom != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "form", "")
+	}
+	if r.delivered != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "delivered", r.delivered, "form", "")
+	}
 	if r.skip != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "form", "")
 	} else {
@@ -351,15 +390,6 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 	}
 	if r.endDate != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "endDate", r.endDate, "form", "")
-	}
-	if r.replyto != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "replyto", r.replyto, "form", "")
-	}
-	if r.headerfrom != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "headerfrom", r.headerfrom, "form", "")
-	}
-	if r.delivered != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "delivered", r.delivered, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -413,6 +443,27 @@ func (a *HistoryAPIService) ViewMailLogExecute(r ApiViewMailLogRequest) (*MailLo
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorMessage
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

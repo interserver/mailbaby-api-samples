@@ -3,7 +3,7 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage do
   @moduledoc """
-  The resposne when an error occurs.
+  The response body returned when an error occurs.
   """
 
   @derive JSON.Encoder

@@ -64,6 +64,7 @@ class MailBlockClickHouse(Model):
     def _date(self) -> date:
         """Gets the _date of this MailBlockClickHouse.
 
+        The date the block event was recorded.  # noqa: E501
 
         :return: The _date of this MailBlockClickHouse.
         :rtype: date
@@ -74,6 +75,7 @@ class MailBlockClickHouse(Model):
     def _date(self, _date: date):
         """Sets the _date of this MailBlockClickHouse.
 
+        The date the block event was recorded.  # noqa: E501
 
         :param _date: The _date of this MailBlockClickHouse.
         :type _date: date
@@ -87,6 +89,7 @@ class MailBlockClickHouse(Model):
     def _from(self) -> str:
         """Gets the _from of this MailBlockClickHouse.
 
+        The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.  # noqa: E501
 
         :return: The _from of this MailBlockClickHouse.
         :rtype: str
@@ -97,6 +100,7 @@ class MailBlockClickHouse(Model):
     def _from(self, _from: str):
         """Sets the _from of this MailBlockClickHouse.
 
+        The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.  # noqa: E501
 
         :param _from: The _from of this MailBlockClickHouse.
         :type _from: str
@@ -110,6 +114,7 @@ class MailBlockClickHouse(Model):
     def message_id(self) -> str:
         """Gets the message_id of this MailBlockClickHouse.
 
+        The `Message-ID` header of the blocked message, or `null` if not present.  # noqa: E501
 
         :return: The message_id of this MailBlockClickHouse.
         :rtype: str
@@ -120,12 +125,11 @@ class MailBlockClickHouse(Model):
     def message_id(self, message_id: str):
         """Sets the message_id of this MailBlockClickHouse.
 
+        The `Message-ID` header of the blocked message, or `null` if not present.  # noqa: E501
 
         :param message_id: The message_id of this MailBlockClickHouse.
         :type message_id: str
         """
-        if message_id is None:
-            raise ValueError("Invalid value for `message_id`, must not be `None`")  # noqa: E501
 
         self._message_id = message_id
 
@@ -133,6 +137,7 @@ class MailBlockClickHouse(Model):
     def subject(self) -> str:
         """Gets the subject of this MailBlockClickHouse.
 
+        The `Subject` header of the blocked message.  # noqa: E501
 
         :return: The subject of this MailBlockClickHouse.
         :rtype: str
@@ -143,6 +148,7 @@ class MailBlockClickHouse(Model):
     def subject(self, subject: str):
         """Sets the subject of this MailBlockClickHouse.
 
+        The `Subject` header of the blocked message.  # noqa: E501
 
         :param subject: The subject of this MailBlockClickHouse.
         :type subject: str
@@ -156,6 +162,7 @@ class MailBlockClickHouse(Model):
     def to(self) -> str:
         """Gets the to of this MailBlockClickHouse.
 
+        The serialized list of recipients of the blocked message.  # noqa: E501
 
         :return: The to of this MailBlockClickHouse.
         :rtype: str
@@ -166,6 +173,7 @@ class MailBlockClickHouse(Model):
     def to(self, to: str):
         """Sets the to of this MailBlockClickHouse.
 
+        The serialized list of recipients of the blocked message.  # noqa: E501
 
         :param to: The to of this MailBlockClickHouse.
         :type to: str

@@ -1,7 +1,7 @@
 
 # MailAttachment
 
-(optional) File attachments to include in the email.  The file contents must be base64
+A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
 
 ## Properties
 
@@ -18,7 +18,7 @@ import type { MailAttachment } from ''
 // TODO: Update the object below with actual values
 const example = {
   "filename": message.txt,
-  "data": aGVsbG8gdGhlcmUK,
+  "data": [B@66f28a1f,
 } satisfies MailAttachment
 
 console.log(example)

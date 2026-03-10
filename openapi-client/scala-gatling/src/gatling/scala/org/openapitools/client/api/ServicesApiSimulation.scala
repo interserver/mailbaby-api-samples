@@ -56,13 +56,29 @@ class ServicesApiSimulation extends Simulation {
     }
 
     // Setup all the operations per second for the test to ultimately be generated from configs
+    val getMailOrderByIdPerSecond = config.getDouble("performance.operationsPerSecond.getMailOrderById") * rateMultiplier * instanceMultiplier
     val getMailOrdersPerSecond = config.getDouble("performance.operationsPerSecond.getMailOrders") * rateMultiplier * instanceMultiplier
 
     val scenarioBuilders: mutable.MutableList[PopulationBuilder] = new mutable.MutableList[PopulationBuilder]()
 
     // Set up CSV feeders
+    val getMailOrderByIdPATHFeeder = csv(userDataDirectory + File.separator + "getMailOrderById-pathParams.csv").random
 
     // Setup all scenarios
+
+    
+    val scngetMailOrderById = scenario("getMailOrderByIdSimulation")
+        .feed(getMailOrderByIdPATHFeeder)
+        .exec(http("getMailOrderById")
+        .httpRequest("GET","/mail/${id}")
+)
+
+    // Run scngetMailOrderById with warm up and reach a constant rate for entire duration
+    scenarioBuilders += scngetMailOrderById.inject(
+        rampUsersPerSec(1) to(getMailOrderByIdPerSecond) during(rampUpSeconds),
+        constantUsersPerSec(getMailOrderByIdPerSecond) during(durationSeconds),
+        rampUsersPerSec(getMailOrderByIdPerSecond) to(1) during(rampDownSeconds)
+    )
 
     
     val scngetMailOrders = scenario("getMailOrdersSimulation")

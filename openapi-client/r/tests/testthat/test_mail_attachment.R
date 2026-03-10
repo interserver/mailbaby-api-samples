@@ -7,7 +7,7 @@ model_instance <- MailAttachment$new()
 
 test_that("filename", {
   # tests for the property `filename` (character)
-  # The filename of the attached file.
+  # The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;).
 
   # uncomment below to test the property
   #expect_equal(model.instance$`filename`, "EXPECTED_RESULT")
@@ -15,7 +15,7 @@ test_that("filename", {
 
 test_that("data", {
   # tests for the property `data` (character)
-  # The file contents base64 encoded
+  # The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`data`, "EXPECTED_RESULT")

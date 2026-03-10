@@ -1,14 +1,14 @@
 #' Create a new MailAttachment
 #'
 #' @description
-#' (optional) File attachments to include in the email.  The file contents must be base64
+#' A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
 #'
 #' @docType class
 #' @title MailAttachment
 #' @description MailAttachment Class
 #' @format An \code{R6Class} generator object
-#' @field filename The filename of the attached file. character
-#' @field data The file contents base64 encoded character
+#' @field filename The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`). character
+#' @field data The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,8 +21,8 @@ MailAttachment <- R6::R6Class(
     #' @description
     #' Initialize a new MailAttachment class.
     #'
-    #' @param filename The filename of the attached file.
-    #' @param data The file contents base64 encoded
+    #' @param filename The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
+    #' @param data The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
     #' @param ... Other optional arguments.
     initialize = function(`filename`, `data`, ...) {
       if (!missing(`filename`)) {
@@ -32,9 +32,6 @@ MailAttachment <- R6::R6Class(
         self$`filename` <- `filename`
       }
       if (!missing(`data`)) {
-        if (!(is.character(`data`) && length(`data`) == 1)) {
-          stop(paste("Error! Invalid data for `data`. Must be a string:", `data`))
-        }
         self$`data` <- `data`
       }
     },
@@ -136,9 +133,6 @@ MailAttachment <- R6::R6Class(
       }
       # check the required field `data`
       if (!is.null(input_json$`data`)) {
-        if (!(is.character(input_json$`data`) && length(input_json$`data`) == 1)) {
-          stop(paste("Error! Invalid data for `data`. Must be a string:", input_json$`data`))
-        }
       } else {
         stop(paste("The JSON input `", input, "` is invalid for MailAttachment: the required field `data` is missing."))
       }

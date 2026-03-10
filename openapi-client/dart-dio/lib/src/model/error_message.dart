@@ -8,18 +8,18 @@ import 'package:built_value/serializer.dart';
 
 part 'error_message.g.dart';
 
-/// The resposne when an error occurs.
+/// The response body returned when an error occurs.
 ///
 /// Properties:
-/// * [code] - The response code associated with the error.
-/// * [message] - The details or description of the error.
+/// * [code] - The HTTP-style status code associated with the error.
+/// * [message] - A human-readable description of the error.
 @BuiltValue()
 abstract class ErrorMessage implements Built<ErrorMessage, ErrorMessageBuilder> {
-  /// The response code associated with the error.
+  /// The HTTP-style status code associated with the error.
   @BuiltValueField(wireName: r'code')
   int get code;
 
-  /// The details or description of the error.
+  /// A human-readable description of the error.
   @BuiltValueField(wireName: r'message')
   String get message;
 

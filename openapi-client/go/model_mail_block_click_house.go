@@ -1,9 +1,9 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
-API version: 1.3.0
+API version: 1.4.0
 Contact: support@interserver.net
 */
 
@@ -20,12 +20,17 @@ import (
 // checks if the MailBlockClickHouse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MailBlockClickHouse{}
 
-// MailBlockClickHouse A block entry from the clickhouse mailblocks server.
+// MailBlockClickHouse A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 type MailBlockClickHouse struct {
+	// The date the block event was recorded.
 	Date string `json:"date"`
+	// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
 	From string `json:"from"`
-	MessageId string `json:"messageId"`
+	// The `Message-ID` header of the blocked message, or `null` if not present.
+	MessageId NullableString `json:"messageId,omitempty"`
+	// The `Subject` header of the blocked message.
 	Subject string `json:"subject"`
+	// The serialized list of recipients of the blocked message.
 	To string `json:"to"`
 }
 
@@ -35,11 +40,10 @@ type _MailBlockClickHouse MailBlockClickHouse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMailBlockClickHouse(date string, from string, messageId string, subject string, to string) *MailBlockClickHouse {
+func NewMailBlockClickHouse(date string, from string, subject string, to string) *MailBlockClickHouse {
 	this := MailBlockClickHouse{}
 	this.Date = date
 	this.From = from
-	this.MessageId = messageId
 	this.Subject = subject
 	this.To = to
 	return &this
@@ -101,28 +105,46 @@ func (o *MailBlockClickHouse) SetFrom(v string) {
 	o.From = v
 }
 
-// GetMessageId returns the MessageId field value
+// GetMessageId returns the MessageId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MailBlockClickHouse) GetMessageId() string {
-	if o == nil {
+	if o == nil || IsNil(o.MessageId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.MessageId
+	return *o.MessageId.Get()
 }
 
-// GetMessageIdOk returns a tuple with the MessageId field value
+// GetMessageIdOk returns a tuple with the MessageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MailBlockClickHouse) GetMessageIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.MessageId, true
+	return o.MessageId.Get(), o.MessageId.IsSet()
 }
 
-// SetMessageId sets field value
+// HasMessageId returns a boolean if a field has been set.
+func (o *MailBlockClickHouse) HasMessageId() bool {
+	if o != nil && o.MessageId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMessageId gets a reference to the given NullableString and assigns it to the MessageId field.
 func (o *MailBlockClickHouse) SetMessageId(v string) {
-	o.MessageId = v
+	o.MessageId.Set(&v)
+}
+// SetMessageIdNil sets the value for MessageId to be an explicit nil
+func (o *MailBlockClickHouse) SetMessageIdNil() {
+	o.MessageId.Set(nil)
+}
+
+// UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
+func (o *MailBlockClickHouse) UnsetMessageId() {
+	o.MessageId.Unset()
 }
 
 // GetSubject returns the Subject field value
@@ -185,7 +207,9 @@ func (o MailBlockClickHouse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["date"] = o.Date
 	toSerialize["from"] = o.From
-	toSerialize["messageId"] = o.MessageId
+	if o.MessageId.IsSet() {
+		toSerialize["messageId"] = o.MessageId.Get()
+	}
 	toSerialize["subject"] = o.Subject
 	toSerialize["to"] = o.To
 	return toSerialize, nil
@@ -198,7 +222,6 @@ func (o *MailBlockClickHouse) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"date",
 		"from",
-		"messageId",
 		"subject",
 		"to",
 	}

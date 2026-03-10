@@ -9,30 +9,35 @@ import 'package:built_value/serializer.dart';
 
 part 'mail_block_click_house.g.dart';
 
-/// A block entry from the clickhouse mailblocks server.
+/// A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 ///
 /// Properties:
-/// * [date] 
-/// * [from] 
-/// * [messageId] 
-/// * [subject] 
-/// * [to] 
+/// * [date] - The date the block event was recorded.
+/// * [from] - The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
+/// * [subject] - The `Subject` header of the blocked message.
+/// * [to] - The serialized list of recipients of the blocked message.
+/// * [messageId] - The `Message-ID` header of the blocked message, or `null` if not present.
 @BuiltValue()
 abstract class MailBlockClickHouse implements Built<MailBlockClickHouse, MailBlockClickHouseBuilder> {
+  /// The date the block event was recorded.
   @BuiltValueField(wireName: r'date')
   Date get date;
 
+  /// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
   @BuiltValueField(wireName: r'from')
   String get from;
 
-  @BuiltValueField(wireName: r'messageId')
-  String get messageId;
-
+  /// The `Subject` header of the blocked message.
   @BuiltValueField(wireName: r'subject')
   String get subject;
 
+  /// The serialized list of recipients of the blocked message.
   @BuiltValueField(wireName: r'to')
   String get to;
+
+  /// The `Message-ID` header of the blocked message, or `null` if not present.
+  @BuiltValueField(wireName: r'messageId')
+  String? get messageId;
 
   MailBlockClickHouse._();
 
@@ -67,11 +72,6 @@ class _$MailBlockClickHouseSerializer implements PrimitiveSerializer<MailBlockCl
       object.from,
       specifiedType: const FullType(String),
     );
-    yield r'messageId';
-    yield serializers.serialize(
-      object.messageId,
-      specifiedType: const FullType(String),
-    );
     yield r'subject';
     yield serializers.serialize(
       object.subject,
@@ -82,6 +82,13 @@ class _$MailBlockClickHouseSerializer implements PrimitiveSerializer<MailBlockCl
       object.to,
       specifiedType: const FullType(String),
     );
+    if (object.messageId != null) {
+      yield r'messageId';
+      yield serializers.serialize(
+        object.messageId,
+        specifiedType: const FullType.nullable(String),
+      );
+    }
   }
 
   @override
@@ -119,13 +126,6 @@ class _$MailBlockClickHouseSerializer implements PrimitiveSerializer<MailBlockCl
           ) as String;
           result.from = valueDes;
           break;
-        case r'messageId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.messageId = valueDes;
-          break;
         case r'subject':
           final valueDes = serializers.deserialize(
             value,
@@ -139,6 +139,14 @@ class _$MailBlockClickHouseSerializer implements PrimitiveSerializer<MailBlockCl
             specifiedType: const FullType(String),
           ) as String;
           result.to = valueDes;
+          break;
+        case r'messageId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
+          result.messageId = valueDes;
           break;
         default:
           unhandled.add(key);

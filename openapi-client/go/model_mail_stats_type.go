@@ -1,9 +1,9 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
-API version: 1.3.0
+API version: 1.4.0
 Contact: support@interserver.net
 */
 
@@ -18,14 +18,19 @@ import (
 // checks if the MailStatsType type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MailStatsType{}
 
-// MailStatsType Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+// MailStatsType Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 type MailStatsType struct {
+	// The time window these `received`, `sent`, and `volume` statistics cover.
 	Time *string `json:"time,omitempty"`
+	// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
 	Usage *int32 `json:"usage,omitempty"`
+	// The ISO 4217 currency code for this account (e.g. `USD`).
 	Currency *string `json:"currency,omitempty"`
-	CurrencySymbol *string `json:"currencySymbol,omitempty"`
+	// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
 	Cost *float64 `json:"cost,omitempty"`
+	// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
 	Received *int32 `json:"received,omitempty"`
+	// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
 	Sent *int32 `json:"sent,omitempty"`
 	Volume *MailStatsTypeVolume `json:"volume,omitempty"`
 }
@@ -145,38 +150,6 @@ func (o *MailStatsType) HasCurrency() bool {
 // SetCurrency gets a reference to the given string and assigns it to the Currency field.
 func (o *MailStatsType) SetCurrency(v string) {
 	o.Currency = &v
-}
-
-// GetCurrencySymbol returns the CurrencySymbol field value if set, zero value otherwise.
-func (o *MailStatsType) GetCurrencySymbol() string {
-	if o == nil || IsNil(o.CurrencySymbol) {
-		var ret string
-		return ret
-	}
-	return *o.CurrencySymbol
-}
-
-// GetCurrencySymbolOk returns a tuple with the CurrencySymbol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *MailStatsType) GetCurrencySymbolOk() (*string, bool) {
-	if o == nil || IsNil(o.CurrencySymbol) {
-		return nil, false
-	}
-	return o.CurrencySymbol, true
-}
-
-// HasCurrencySymbol returns a boolean if a field has been set.
-func (o *MailStatsType) HasCurrencySymbol() bool {
-	if o != nil && !IsNil(o.CurrencySymbol) {
-		return true
-	}
-
-	return false
-}
-
-// SetCurrencySymbol gets a reference to the given string and assigns it to the CurrencySymbol field.
-func (o *MailStatsType) SetCurrencySymbol(v string) {
-	o.CurrencySymbol = &v
 }
 
 // GetCost returns the Cost field value if set, zero value otherwise.
@@ -325,9 +298,6 @@ func (o MailStatsType) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
-	}
-	if !IsNil(o.CurrencySymbol) {
-		toSerialize["currencySymbol"] = o.CurrencySymbol
 	}
 	if !IsNil(o.Cost) {
 		toSerialize["cost"] = o.Cost

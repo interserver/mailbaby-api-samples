@@ -1,14 +1,14 @@
 #' Create a new ErrorMessage
 #'
 #' @description
-#' The resposne when an error occurs.
+#' The response body returned when an error occurs.
 #'
 #' @docType class
 #' @title ErrorMessage
 #' @description ErrorMessage Class
 #' @format An \code{R6Class} generator object
-#' @field code The response code associated with the error. integer
-#' @field message The details or description of the error. character
+#' @field code The HTTP-style status code associated with the error. integer
+#' @field message A human-readable description of the error. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,8 +21,8 @@ ErrorMessage <- R6::R6Class(
     #' @description
     #' Initialize a new ErrorMessage class.
     #'
-    #' @param code The response code associated with the error.
-    #' @param message The details or description of the error.
+    #' @param code The HTTP-style status code associated with the error.
+    #' @param message A human-readable description of the error.
     #' @param ... Other optional arguments.
     initialize = function(`code`, `message`, ...) {
       if (!missing(`code`)) {

@@ -4,7 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**rawMail**](SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw email |
+| [**rawMail**](SendingApi.md#rawmail) | **POST** /mail/rawsend | Sends a raw RFC 822 email |
 | [**sendAdvMail**](SendingApi.md#sendadvmail) | **POST** /mail/advsend | Sends an Email with Advanced Options |
 | [**sendMail**](SendingApi.md#sendmail) | **POST** /mail/send | Sends an Email |
 
@@ -14,9 +14,9 @@ All URIs are relative to *https://api.mailbaby.net*
 
 > GenericResponse rawMail(sendMailRaw)
 
-Sends a raw email
+Sends a raw RFC 822 email
 
-This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
 
 ### Example
 
@@ -76,10 +76,10 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | successful email response |  -  |
-| **400** | Error message when there was a problem with the input parameters. |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | The specified resource was not found |  -  |
+| **200** | Email accepted for delivery |  -  |
+| **400** | Bad request — one or more input parameters were missing or invalid. |  -  |
+| **401** | Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). |  -  |
+| **404** | The specified resource was not found or does not belong to your account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -90,7 +90,7 @@ example().catch(console.error);
 
 Sends an Email with Advanced Options
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  &#x60;&#x60;&#x60;BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data to&#x3D;support@interserver.net &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;\&quot;Joe &lt;user@domain.com&gt;\&quot; \\ --data to&#x3D;\&quot;Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;support@interserver.net, support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to&#x3D;Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;subject&#x3D;Welcome\&#39; \\ --data \&#39;body&#x3D;Hello\&#39; \\ --data from&#x3D;user@domain.com \\ --data \&quot;to[0][name]&#x3D;Joe\&quot; \\ --data \&quot;to[0][email]&#x3D;support@interserver.net\&quot; \\ --data \&quot;to[1][name]&#x3D;Joe\&quot; \\ --data \&quot;to[1][email]&#x3D;support@interserver.net\&quot; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;user@domain.com\&quot;, \&quot;to\&quot;: \&quot;support@interserver.net\&quot; }\&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: {\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;user@domain.com\&quot;}, \&quot;to\&quot;: [{\&quot;name\&quot;: \&quot;Joe\&quot;, \&quot;email\&quot;: \&quot;support@interserver.net\&quot;}] }\&#39; &#x60;&#x60;&#x60;  &#x60;&#x60;&#x60;NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header \&#39;Accept: application/json\&#39; \\ --header \&#39;Content-Type: application/json\&#39; \\ --header \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\ --data \&#39;{ \&quot;subject\&quot;: \&quot;Welcome\&quot;, \&quot;body\&quot;: \&quot;Hello\&quot;, \&quot;from\&quot;: \&quot;Joe &lt;user@domain.com&gt;\&quot;, \&quot;to\&quot;: \&quot;Joe &lt;support@interserver.net&gt;\&quot; }\&#39; &#x60;&#x60;&#x60; 
+Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.  **Content-type flexibility** — the request body may be submitted as either &#x60;application/x-www-form-urlencoded&#x60; or &#x60;application/json&#x60;.  When using form encoding, address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;replyto&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;) accept both a plain RFC 822 comma-separated string (e.g. &#x60;\&quot;Joe &lt;joe@example.com&gt;, jane@example.com\&quot;&#x60;) and the structured &#x60;[{\&quot;email\&quot;:\&quot;...\&quot;,\&quot;name\&quot;:\&quot;...\&quot;}]&#x60; array format.  When using JSON, both formats are equally supported.  **HTML detection** is automatic — if &#x60;body&#x60; contains HTML tags the &#x60;Content-Type&#x60; is set to &#x60;text/html&#x60;; otherwise &#x60;text/plain&#x60;.  **Attachments** must be base64-encoded.  Each attachment requires at least a &#x60;data&#x60; field; the optional &#x60;filename&#x60; field controls the attachment name shown to recipients.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  On success the response &#x60;text&#x60; field contains the relay transaction ID which can be looked up in &#x60;GET /mail/log&#x60; via the &#x60;mailid&#x60; query parameter.  ## Examples  ### Form — basic string addresses &#x60;&#x60;&#x60;sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\   -H \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\   -d \&#39;subject&#x3D;Welcome\&#39; \\   -d \&#39;body&#x3D;Hello\&#39; \\   -d from&#x3D;user@domain.com \\   -d to&#x3D;support@interserver.net &#x60;&#x60;&#x60; ### Form — RFC 822 named addresses &#x60;&#x60;&#x60;sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\   -H \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\   -d \&#39;subject&#x3D;Welcome\&#39; \\   -d \&#39;body&#x3D;Hello\&#39; \\   -d \&#39;from&#x3D;Joe &lt;user@domain.com&gt;\&#39; \\   -d \&#39;to&#x3D;Jane &lt;support@interserver.net&gt;\&#39; &#x60;&#x60;&#x60; ### Form — multiple recipients as array &#x60;&#x60;&#x60;sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\   -H \&#39;Content-Type: application/x-www-form-urlencoded\&#39; \\   -d \&#39;subject&#x3D;Welcome\&#39; -d \&#39;body&#x3D;Hello\&#39; \\   -d from&#x3D;user@domain.com \\   -d \&#39;to[0][name]&#x3D;Joe\&#39; -d \&#39;to[0][email]&#x3D;support@interserver.net\&#39; \\   -d \&#39;to[1][name]&#x3D;Jane\&#39; -d \&#39;to[1][email]&#x3D;jane@interserver.net\&#39; &#x60;&#x60;&#x60; ### JSON — structured objects &#x60;&#x60;&#x60;sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H \&#39;X-API-KEY: YOUR_API_KEY\&#39; \\   -H \&#39;Content-Type: application/json\&#39; \\   -d \&#39;{     \&quot;subject\&quot;: \&quot;Welcome\&quot;,     \&quot;body\&quot;: \&quot;&lt;h1&gt;Hello&lt;/h1&gt;\&quot;,     \&quot;from\&quot;: {\&quot;email\&quot;: \&quot;user@domain.com\&quot;, \&quot;name\&quot;: \&quot;Sender Name\&quot;},     \&quot;to\&quot;: [{\&quot;email\&quot;: \&quot;joe@client.com\&quot;, \&quot;name\&quot;: \&quot;Joe Client\&quot;}],     \&quot;cc\&quot;: [{\&quot;email\&quot;: \&quot;manager@client.com\&quot;}],     \&quot;attachments\&quot;: [{\&quot;filename\&quot;: \&quot;report.pdf\&quot;, \&quot;data\&quot;: \&quot;BASE64_DATA\&quot;}]   }\&#39; &#x60;&#x60;&#x60; 
 
 ### Example
 
@@ -110,9 +110,9 @@ async function example() {
   const api = new SendingApi(config);
 
   const body = {
-    // string | The subject or title of the email
+    // string | The subject line of the email.
     subject: subject_example,
-    // string | The main email contents.
+    // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
     body: body_example,
     // EmailAddressTypes
     from: ...,
@@ -124,9 +124,9 @@ async function example() {
     cc: ...,
     // EmailAddressesTypes (optional)
     bcc: ...,
-    // Array<MailAttachment> | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
+    // Array<MailAttachment> | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
     attachments: ...,
-    // number | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
+    // number | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
     id: 789,
   } satisfies SendAdvMailRequest;
 
@@ -147,15 +147,15 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **subject** | `string` | The subject or title of the email | [Defaults to `undefined`] |
-| **body** | `string` | The main email contents. | [Defaults to `undefined`] |
+| **subject** | `string` | The subject line of the email. | [Defaults to `undefined`] |
+| **body** | `string` | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | [Defaults to `undefined`] |
 | **from** | [EmailAddressTypes](EmailAddressTypes.md) |  | [Defaults to `undefined`] |
 | **to** | [EmailAddressesTypes](EmailAddressesTypes.md) |  | [Defaults to `undefined`] |
 | **replyto** | [EmailAddressesTypes](EmailAddressesTypes.md) |  | [Optional] [Defaults to `undefined`] |
 | **cc** | [EmailAddressesTypes](EmailAddressesTypes.md) |  | [Optional] [Defaults to `undefined`] |
 | **bcc** | [EmailAddressesTypes](EmailAddressesTypes.md) |  | [Optional] [Defaults to `undefined`] |
-| **attachments** | `Array<MailAttachment>` | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [Optional] |
-| **id** | `number` | (optional)  ID of the Mail order within our system to use as the Mail Account. | [Optional] [Defaults to `undefined`] |
+| **attachments** | `Array<MailAttachment>` | Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [Optional] |
+| **id** | `number` | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -174,10 +174,10 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | search results matching criteria |  -  |
-| **400** | Error message when there was a problem with the input parameters. |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | The specified resource was not found |  -  |
+| **200** | Email accepted for delivery |  -  |
+| **400** | Bad request — one or more input parameters were missing or invalid. |  -  |
+| **401** | Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). |  -  |
+| **404** | The specified resource was not found or does not belong to your account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -188,7 +188,7 @@ example().catch(console.error);
 
 Sends an Email
 
-Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the &#x60;body&#x60; value contains any HTML tags the message will be sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is also automatically set as the &#x60;Reply-To&#x60; header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use &#x60;POST /mail/advsend&#x60; instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use &#x60;POST /mail/rawsend&#x60;.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
 
 ### Example
 
@@ -208,16 +208,16 @@ async function example() {
   const api = new SendingApi(config);
 
   const body = {
-    // string | The Contact whom is the primary recipient of this email.
-    to: to_example,
-    // string | The contact whom is the this email is from.
+    // SendMailTo
+    to: ...,
+    // string | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
     from: from_example,
-    // string | The subject or title of the email
+    // string | The subject line of the email.
     subject: subject_example,
-    // string | The main email contents.
+    // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
     body: body_example,
-    // number | Optional Order ID (optional)
-    id: 56,
+    // number | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
+    id: 789,
   } satisfies SendMailRequest;
 
   try {
@@ -237,11 +237,11 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **to** | `string` | The Contact whom is the primary recipient of this email. | [Defaults to `undefined`] |
-| **from** | `string` | The contact whom is the this email is from. | [Defaults to `undefined`] |
-| **subject** | `string` | The subject or title of the email | [Defaults to `undefined`] |
-| **body** | `string` | The main email contents. | [Defaults to `undefined`] |
-| **id** | `number` | Optional Order ID | [Optional] [Defaults to `undefined`] |
+| **to** | [SendMailTo](SendMailTo.md) |  | [Defaults to `undefined`] |
+| **from** | `string` | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | [Defaults to `undefined`] |
+| **subject** | `string` | The subject line of the email. | [Defaults to `undefined`] |
+| **body** | `string` | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | [Defaults to `undefined`] |
+| **id** | `number` | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -260,10 +260,10 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | search results matching criteria |  -  |
-| **400** | Error message when there was a problem with the input parameters. |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | The specified resource was not found |  -  |
+| **200** | Email accepted for delivery |  -  |
+| **400** | Bad request — one or more input parameters were missing or invalid. |  -  |
+| **401** | Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security). |  -  |
+| **404** | The specified resource was not found or does not belong to your account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

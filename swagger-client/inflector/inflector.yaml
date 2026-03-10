@@ -8,6 +8,7 @@ modelMappings:
 DenyRuleRecord : io.swagger.model.DenyRuleRecord
 EmailAddressName : io.swagger.model.EmailAddressName
 EmailAddressNames : io.swagger.model.EmailAddressNames
+EmailAddressParam : io.swagger.model.EmailAddressParam
 EmailAddressTypes : io.swagger.model.EmailAddressTypes
 EmailAddressesTypes : io.swagger.model.EmailAddressesTypes
 ErrorMessage : io.swagger.model.ErrorMessage
@@ -19,11 +20,10 @@ MailBlocks : io.swagger.model.MailBlocks
 MailLog : io.swagger.model.MailLog
 MailLogEntry : io.swagger.model.MailLogEntry
 MailOrder : io.swagger.model.MailOrder
+MailOrderDetail : io.swagger.model.MailOrderDetail
 MailStatsType : io.swagger.model.MailStatsType
 MailStatsTypeVolume : io.swagger.model.MailStatsTypeVolume
-MailStatsTypeVolumeFrom : io.swagger.model.MailStatsTypeVolumeFrom
-MailStatsTypeVolumeIp : io.swagger.model.MailStatsTypeVolumeIp
-MailStatsTypeVolumeTo : io.swagger.model.MailStatsTypeVolumeTo
+OneOfSendMailTo : io.swagger.model.OneOfSendMailTo
 SendMail : io.swagger.model.SendMail
 SendMailAdv : io.swagger.model.SendMailAdv
 SendMailRaw : io.swagger.model.SendMailRaw

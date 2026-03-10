@@ -1,8 +1,8 @@
 module.exports = {
     "GenericResponseSample": 
-        { data: {} },
+        {"status":"ok","text":"185caa69ff7000f47c"},
     "GenericResponseSample": 
-        { data: {} },
+        {"status":"ok","text":"185caa69ff7000f47c"},
     "GenericResponseSample": 
-        { data: {} },
+        {"status":"ok","text":"185caa69ff7000f47c"},
 }

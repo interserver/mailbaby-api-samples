@@ -7,6 +7,7 @@ model_instance <- MailBlockRspamd$new()
 
 test_that("from", {
   # tests for the property `from` (character)
+  # The sender email address.  Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist the sender.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
@@ -14,6 +15,7 @@ test_that("from", {
 
 test_that("subject", {
   # tests for the property `subject` (character)
+  # The suspicious subject pattern that triggered the block.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`subject`, "EXPECTED_RESULT")

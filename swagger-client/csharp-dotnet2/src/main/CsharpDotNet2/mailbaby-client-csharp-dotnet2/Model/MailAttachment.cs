@@ -8,25 +8,25 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// (optional) File attachments to include in the email.  The file contents must be base64
+  /// A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
   /// </summary>
   [DataContract]
   public class MailAttachment {
     /// <summary>
-    /// The filename of the attached file.
+    /// The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
     /// </summary>
-    /// <value>The filename of the attached file.</value>
+    /// <value>The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).</value>
     [DataMember(Name="filename", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "filename")]
     public string Filename { get; set; }
 
     /// <summary>
-    /// The file contents base64 encoded
+    /// The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
     /// </summary>
-    /// <value>The file contents base64 encoded</value>
+    /// <value>The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.</value>
     [DataMember(Name="data", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "data")]
-    public string Data { get; set; }
+    public byte[] Data { get; set; }
 
 
     /// <summary>

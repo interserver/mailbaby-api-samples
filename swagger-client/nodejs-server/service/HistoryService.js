@@ -2,10 +2,10 @@
 
 
 /**
- * Account usage statistics.
- * Returns information about the usage on your mail accounts.
+ * Account usage statistics
+ * Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | 
  *
- * time String The timeframe for the statistics. (optional)
+ * time String The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`. (optional)
  * returns MailStatsType
  **/
 exports.getStats = function(time) {
@@ -15,7 +15,6 @@ exports.getStats = function(time) {
   "time" : "all",
   "usage" : 55,
   "currency" : "USD",
-  "currencySymbol" : "$",
   "cost" : 1.02,
   "received" : 508,
   "sent" : 495,
@@ -23,8 +22,7 @@ exports.getStats = function(time) {
     "to" : {
       "client@domain.com" : 395,
       "user@site.net" : 57,
-      "sales@company.com" : 47,
-      "client@anothersite.com" : 9
+      "sales@company.com" : 47
     },
     "from" : {
       "billing@somedomain.com" : 369,
@@ -33,8 +31,7 @@ exports.getStats = function(time) {
     "ip" : {
       "1.1.1.1" : 142,
       "2.2.2.2" : 132,
-      "3.3.3.3" : 129,
-      "4.4.4.4" : 105
+      "3.3.3.3" : 129
     }
   }
 };
@@ -48,32 +45,30 @@ exports.getStats = function(time) {
 
 
 /**
- * displays the mail log
- * Get a listing of the emails sent through this system 
+ * Displays the mail log
+ * Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
  *
- * id Long The ID of your mail order this will be sent through. (optional)
- * origin String originating ip address sending mail (optional)
- * mx String mx record mail was sent to (optional)
- * from String from email address (optional)
- * to String to/destination email address (optional)
- * subject String subject containing this string (optional)
- * mailid String mail id (optional)
- * skip Integer number of records to skip for pagination (optional)
- * limit Integer maximum number of records to return (optional)
- * startDate Long earliest date to get emails in unix timestamp format (optional)
- * endDate Long earliest date to get emails in unix timestamp format (optional)
- * replyto String Reply-To Email Address (optional)
- * headerfrom String Header From Email Address (optional)
- * delivered String Limiting the emails to wether or not they were delivered. (optional)
+ * id Long The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`. (optional)
+ * origin String Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
+ * mx String Filter by the MX hostname the relay attempted delivery to.  For example `mx.google.com` would return messages destined for Gmail recipients. Maps to `mxHostname` in the `MailLogEntry` response. (optional)
+ * from String Filter by SMTP envelope `MAIL FROM` address (exact match).  This is the address the relay used for bounce handling and may differ from the `From:` message header.  For header-level filtering use `headerfrom`. (optional)
+ * to String Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved. (optional)
+ * subject String Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text. (optional)
+ * mailid String Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`. (optional)
+ * messageId String Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional)
+ * replyto String Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set. (optional)
+ * headerfrom String Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address. (optional)
+ * delivered Integer Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
+ * skip Integer Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional)
+ * limit Integer Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional)
+ * startDate Long Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+ * endDate Long Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included. (optional)
  * returns MailLog
  **/
-exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,startDate,endDate,replyto,headerfrom,delivered) {
+exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,messageId,replyto,headerfrom,delivered,skip,limit,startDate,endDate) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
-  "total" : 1,
-  "skip" : 0,
-  "limit" : 100,
   "emails" : [ {
     "_id" : 103172,
     "id" : "17c7eda538e0005d03",
@@ -81,7 +76,7 @@ exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,st
     "to" : "client@isp.com",
     "subject" : "sell 0.005 shares",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
-    "created" : "2021-10-14T08:50:10.000Z",
+    "created" : "2021-10-14 08:50:10",
     "time" : 1634215809,
     "user" : "mb5658",
     "transtype" : "ESMTPSA",
@@ -99,7 +94,35 @@ exports.viewMailLog = function(id,origin,mx,from,to,subject,mailid,skip,limit,st
     "queued" : "2021-10-14T12:50:15.487Z",
     "mxHostname" : "mx.j.is.cc",
     "response" : "250 2.0.0 Ok queued as C91D83E128C"
-  } ]
+  }, {
+    "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
+    "from" : "person@mysite.com",
+    "to" : "client@isp.com",
+    "subject" : "sell 0.005 shares",
+    "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+    "created" : "2021-10-14 08:50:10",
+    "time" : 1634215809,
+    "user" : "mb5658",
+    "transtype" : "ESMTPSA",
+    "origin" : "199.231.189.154",
+    "interface" : "feeder",
+    "sendingZone" : "interserver",
+    "bodySize" : 63,
+    "seq" : 1,
+    "delivered" : 1,
+    "recipient" : "client@isp.com",
+    "domain" : "interserver.net",
+    "locked" : 1,
+    "lockTime" : "1634215818533",
+    "assigned" : "relay1",
+    "queued" : "2021-10-14T12:50:15.487Z",
+    "mxHostname" : "mx.j.is.cc",
+    "response" : "250 2.0.0 Ok queued as C91D83E128C"
+  } ],
+  "total" : 10234,
+  "limit" : 100,
+  "skip" : 0
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

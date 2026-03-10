@@ -1,9 +1,9 @@
 part of swagger.api;
 
 class ErrorMessage {
-  /* The response code associated with the error. */
+  /* The HTTP-style status code associated with the error. */
   int code = null;
-/* The details or description of the error. */
+/* A human-readable description of the error. */
   String message = null;
 
   ErrorMessage();

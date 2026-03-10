@@ -6,9 +6,6 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from mailbaby-client-python-flask.models.base_model_ import Model
-from mailbaby-client-python-flask.models.mail_stats_type_volume_from import MailStatsTypeVolumeFrom  # noqa: F401,E501
-from mailbaby-client-python-flask.models.mail_stats_type_volume_ip import MailStatsTypeVolumeIp  # noqa: F401,E501
-from mailbaby-client-python-flask.models.mail_stats_type_volume_to import MailStatsTypeVolumeTo  # noqa: F401,E501
 from mailbaby-client-python-flask import util
 
 
@@ -17,20 +14,20 @@ class MailStatsTypeVolume(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, to: MailStatsTypeVolumeTo=None, _from: MailStatsTypeVolumeFrom=None, ip: MailStatsTypeVolumeIp=None):  # noqa: E501
+    def __init__(self, to: Dict[str, int]=None, _from: Dict[str, int]=None, ip: Dict[str, int]=None):  # noqa: E501
         """MailStatsTypeVolume - a model defined in Swagger
 
         :param to: The to of this MailStatsTypeVolume.  # noqa: E501
-        :type to: MailStatsTypeVolumeTo
+        :type to: Dict[str, int]
         :param _from: The _from of this MailStatsTypeVolume.  # noqa: E501
-        :type _from: MailStatsTypeVolumeFrom
+        :type _from: Dict[str, int]
         :param ip: The ip of this MailStatsTypeVolume.  # noqa: E501
-        :type ip: MailStatsTypeVolumeIp
+        :type ip: Dict[str, int]
         """
         self.swagger_types = {
-            'to': MailStatsTypeVolumeTo,
-            '_from': MailStatsTypeVolumeFrom,
-            'ip': MailStatsTypeVolumeIp
+            'to': Dict[str, int],
+            '_from': Dict[str, int],
+            'ip': Dict[str, int]
         }
 
         self.attribute_map = {
@@ -54,64 +51,70 @@ class MailStatsTypeVolume(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def to(self) -> MailStatsTypeVolumeTo:
+    def to(self) -> Dict[str, int]:
         """Gets the to of this MailStatsTypeVolume.
 
+        Message counts keyed by destination (envelope `to`) email address.  # noqa: E501
 
         :return: The to of this MailStatsTypeVolume.
-        :rtype: MailStatsTypeVolumeTo
+        :rtype: Dict[str, int]
         """
         return self._to
 
     @to.setter
-    def to(self, to: MailStatsTypeVolumeTo):
+    def to(self, to: Dict[str, int]):
         """Sets the to of this MailStatsTypeVolume.
 
+        Message counts keyed by destination (envelope `to`) email address.  # noqa: E501
 
         :param to: The to of this MailStatsTypeVolume.
-        :type to: MailStatsTypeVolumeTo
+        :type to: Dict[str, int]
         """
 
         self._to = to
 
     @property
-    def _from(self) -> MailStatsTypeVolumeFrom:
+    def _from(self) -> Dict[str, int]:
         """Gets the _from of this MailStatsTypeVolume.
 
+        Message counts keyed by sender (envelope `from`) email address.  # noqa: E501
 
         :return: The _from of this MailStatsTypeVolume.
-        :rtype: MailStatsTypeVolumeFrom
+        :rtype: Dict[str, int]
         """
         return self.__from
 
     @_from.setter
-    def _from(self, _from: MailStatsTypeVolumeFrom):
+    def _from(self, _from: Dict[str, int]):
         """Sets the _from of this MailStatsTypeVolume.
 
+        Message counts keyed by sender (envelope `from`) email address.  # noqa: E501
 
         :param _from: The _from of this MailStatsTypeVolume.
-        :type _from: MailStatsTypeVolumeFrom
+        :type _from: Dict[str, int]
         """
 
         self.__from = _from
 
     @property
-    def ip(self) -> MailStatsTypeVolumeIp:
+    def ip(self) -> Dict[str, int]:
         """Gets the ip of this MailStatsTypeVolume.
 
+        Message counts keyed by originating client IP address.  # noqa: E501
 
         :return: The ip of this MailStatsTypeVolume.
-        :rtype: MailStatsTypeVolumeIp
+        :rtype: Dict[str, int]
         """
         return self._ip
 
     @ip.setter
-    def ip(self, ip: MailStatsTypeVolumeIp):
+    def ip(self, ip: Dict[str, int]):
         """Sets the ip of this MailStatsTypeVolume.
 
+        Message counts keyed by originating client IP address.  # noqa: E501
 
         :param ip: The ip of this MailStatsTypeVolume.
-        :type ip: MailStatsTypeVolumeIp
+        :type ip: Dict[str, int]
         """
 
         self._ip = ip

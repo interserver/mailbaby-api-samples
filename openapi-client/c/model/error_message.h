@@ -1,7 +1,7 @@
 /*
  * error_message.h
  *
- * The resposne when an error occurs.
+ * The response body returned when an error occurs.
  */
 
 #ifndef _error_message_H_

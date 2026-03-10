@@ -16,61 +16,61 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
-  * Details for an Email
+  * Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
  **/
-@Schema(description="Details for an Email")
+@Schema(description="Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.")
 public class SendMail   {
   
-  @Schema(example = "johndoe@company.com", required = true, description = "The Contact whom is the primary recipient of this email.")
+  @Schema(required = true, description = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
  /**
-   * The Contact whom is the primary recipient of this email.  
+   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  
   **/
-  private String to = null;
+  private OneOfSendMailTo to = null;
   
-  @Schema(example = "janedoe@company.com", required = true, description = "The contact whom is the this email is from.")
+  @Schema(example = "janedoe@company.com", required = true, description = "The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.")
  /**
-   * The contact whom is the this email is from.  
+   * The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.  
   **/
   private String from = null;
   
-  @Schema(example = "Attention Client", required = true, description = "The subject or title of the email")
+  @Schema(example = "Attention Client", required = true, description = "The subject line of the email.")
  /**
-   * The subject or title of the email  
+   * The subject line of the email.  
   **/
   private String subject = null;
   
-  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The main email contents.")
+  @Schema(example = "This is an email to inform you that something noteworthy happened.", required = true, description = "The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.")
  /**
-   * The main email contents.  
+   * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.  
   **/
   private String body = null;
   
-  @Schema(description = "Optional Order ID")
+  @Schema(example = "2604", description = "Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.")
  /**
-   * Optional Order ID  
+   * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.  
   **/
-  private Integer id = null;
+  private Long id = null;
  /**
-   * The Contact whom is the primary recipient of this email.
+   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
    * @return to
   **/
   @JsonProperty("to")
   @NotNull
-  public String getTo() {
+  public OneOfSendMailTo getTo() {
     return to;
   }
 
-  public void setTo(String to) {
+  public void setTo(OneOfSendMailTo to) {
     this.to = to;
   }
 
-  public SendMail to(String to) {
+  public SendMail to(OneOfSendMailTo to) {
     this.to = to;
     return this;
   }
 
  /**
-   * The contact whom is the this email is from.
+   * The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.
    * @return from
   **/
   @JsonProperty("from")
@@ -89,7 +89,7 @@ public class SendMail   {
   }
 
  /**
-   * The subject or title of the email
+   * The subject line of the email.
    * @return subject
   **/
   @JsonProperty("subject")
@@ -108,7 +108,7 @@ public class SendMail   {
   }
 
  /**
-   * The main email contents.
+   * The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
    * @return body
   **/
   @JsonProperty("body")
@@ -127,20 +127,20 @@ public class SendMail   {
   }
 
  /**
-   * Optional Order ID
+   * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
    * @return id
   **/
   @JsonProperty("id")
   @NotNull
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public SendMail id(Integer id) {
+  public SendMail id(Long id) {
     this.id = id;
     return this;
   }

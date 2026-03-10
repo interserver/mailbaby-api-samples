@@ -28,13 +28,13 @@ class SendMailAdvTest : ShouldSpec() {
         // uncomment below to create an instance of SendMailAdv
         //val modelInstance = SendMailAdv()
 
-        // to test the property `subject` - The subject or title of the email
+        // to test the property `subject` - The subject line of the email.
         should("test subject") {
             // uncomment below to test the property
             //modelInstance.subject shouldBe ("TODO")
         }
 
-        // to test the property `body` - The main email contents.
+        // to test the property `body` - The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
         should("test body") {
             // uncomment below to test the property
             //modelInstance.body shouldBe ("TODO")
@@ -70,13 +70,13 @@ class SendMailAdvTest : ShouldSpec() {
             //modelInstance.bcc shouldBe ("TODO")
         }
 
-        // to test the property `attachments` - (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+        // to test the property `attachments` - Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
         should("test attachments") {
             // uncomment below to test the property
             //modelInstance.attachments shouldBe ("TODO")
         }
 
-        // to test the property `id` - (optional)  ID of the Mail order within our system to use as the Mail Account.
+        // to test the property `id` - Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")

@@ -25,7 +25,7 @@ class SendingApi(
       post {
         
           
-            formFields("raw_email".as[String], "id".as[Int]) { (rawEmail, id) =>
+            formFields("raw_email".as[String], "id".as[Long]) { (rawEmail, id) =>
               
                 entity(as[SendMailRaw]){ body =>
                   sendingService.rawMail(body = body, rawEmail = rawEmail, id = id)
@@ -55,7 +55,7 @@ class SendingApi(
       post {
         
           
-            formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String], "id".as[Int]) { (to, from, subject, body, id) =>
+            formFields("to".as[String], "from".as[String], "subject".as[String], "body".as[String], "id".as[Long]) { (to, from, subject, body, id) =>
               
                 entity(as[SendMail]){ body =>
                   sendingService.sendMail(to = to, from = from, subject = subject, body = body, id = id, body = body)
@@ -79,12 +79,12 @@ trait SendingApiService {
   def rawMail404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((404, responseErrorMessage))
   /**
-   * Code: 200, Message: successful email response, DataType: GenericResponse
-   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   * Code: 200, Message: Email accepted for delivery, DataType: GenericResponse
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found or does not belong to your account., DataType: ErrorMessage
    */
-  def rawMail(body: SendMailRaw, rawEmail: String, id: Int)
+  def rawMail(body: SendMailRaw, rawEmail: String, id: Long)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def sendAdvMail200(responseGenericResponse: GenericResponse)(implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse]): Route =
@@ -96,10 +96,10 @@ trait SendingApiService {
   def sendAdvMail404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((404, responseErrorMessage))
   /**
-   * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   * Code: 200, Message: Email accepted for delivery, DataType: GenericResponse
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found or does not belong to your account., DataType: ErrorMessage
    */
   def sendAdvMail(subject: String, body: String, from: String, to: String, replyto: String, cc: String, bcc: String, attachments: String, id: Long, body: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
@@ -113,12 +113,12 @@ trait SendingApiService {
   def sendMail404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((404, responseErrorMessage))
   /**
-   * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   * Code: 200, Message: Email accepted for delivery, DataType: GenericResponse
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found or does not belong to your account., DataType: ErrorMessage
    */
-  def sendMail(to: String, from: String, subject: String, body: String, id: Int, body: String)
+  def sendMail(to: String, from: String, subject: String, body: String, id: Long, body: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }

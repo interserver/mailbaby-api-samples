@@ -456,7 +456,7 @@ static bool sendMailProcessor(MemoryStruct_s p_chunk, long code, char* errormsg,
 }
 
 static bool sendMailHelper(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, int id, 
+	SendMail_to to, std::string from, std::string subject, std::string body, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -528,7 +528,7 @@ static bool sendMailHelper(char * accessToken,
 
 
 bool SendingManager::sendMailAsync(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, int id, 
+	SendMail_to to, std::string from, std::string subject, std::string body, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
@@ -538,7 +538,7 @@ bool SendingManager::sendMailAsync(char * accessToken,
 }
 
 bool SendingManager::sendMailSync(char * accessToken,
-	std::string to, std::string from, std::string subject, std::string body, int id, 
+	SendMail_to to, std::string from, std::string subject, std::string body, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {

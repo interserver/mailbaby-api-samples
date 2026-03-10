@@ -83,7 +83,6 @@ private class OASMailStatsTypeTest {
         System.assertEquals(RTimeEnum._1H, mailStatsType.r_time);
         System.assertEquals(null, mailStatsType.usage);
         System.assertEquals(null, mailStatsType.r_currency);
-        System.assertEquals(null, mailStatsType.currencySymbol);
         System.assertEquals(null, mailStatsType.cost);
         System.assertEquals(null, mailStatsType.received);
         System.assertEquals(null, mailStatsType.sent);

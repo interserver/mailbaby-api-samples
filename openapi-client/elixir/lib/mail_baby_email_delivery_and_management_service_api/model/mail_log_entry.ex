@@ -3,7 +3,7 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailLogEntry do
   @moduledoc """
-  An email record
+  A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
   """
 
   @derive JSON.Encoder
@@ -12,25 +12,26 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailLogEntry do
     :id,
     :from,
     :to,
-    :subject,
     :created,
     :time,
     :user,
     :transtype,
     :origin,
     :interface,
+    :subject,
+    :messageId,
     :sendingZone,
     :bodySize,
     :seq,
+    :delivered,
+    :response,
     :recipient,
     :domain,
     :locked,
     :lockTime,
     :assigned,
     :queued,
-    :mxHostname,
-    :response,
-    :messageId
+    :mxHostname
   ]
 
   @type t :: %__MODULE__{
@@ -38,25 +39,26 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailLogEntry do
     :id => String.t,
     :from => String.t,
     :to => String.t,
-    :subject => String.t,
     :created => String.t,
     :time => integer(),
     :user => String.t,
     :transtype => String.t,
     :origin => String.t,
     :interface => String.t,
-    :sendingZone => String.t,
-    :bodySize => integer(),
-    :seq => integer(),
-    :recipient => String.t,
-    :domain => String.t,
-    :locked => integer(),
-    :lockTime => String.t,
-    :assigned => String.t,
-    :queued => String.t,
-    :mxHostname => String.t,
-    :response => String.t,
-    :messageId => String.t | nil
+    :subject => String.t | nil,
+    :messageId => String.t | nil,
+    :sendingZone => String.t | nil,
+    :bodySize => integer() | nil,
+    :seq => integer() | nil,
+    :delivered => integer() | nil,
+    :response => String.t | nil,
+    :recipient => String.t | nil,
+    :domain => String.t | nil,
+    :locked => integer() | nil,
+    :lockTime => String.t | nil,
+    :assigned => String.t | nil,
+    :queued => String.t | nil,
+    :mxHostname => String.t | nil
   }
 
   def decode(value) do

@@ -1,17 +1,17 @@
 #' Create a new SendMail
 #'
 #' @description
-#' Details for an Email
+#' Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
 #'
 #' @docType class
 #' @title SendMail
 #' @description SendMail Class
 #' @format An \code{R6Class} generator object
-#' @field to The Contact whom is the primary recipient of this email. character
-#' @field from The contact whom is the this email is from. character
-#' @field subject The subject or title of the email character
-#' @field body The main email contents. character
-#' @field id Optional Order ID integer [optional]
+#' @field to  \link{SendMailTo}
+#' @field from The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. character
+#' @field subject The subject line of the email. character
+#' @field body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. character
+#' @field id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. integer [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -27,17 +27,15 @@ SendMail <- R6::R6Class(
     #' @description
     #' Initialize a new SendMail class.
     #'
-    #' @param to The Contact whom is the primary recipient of this email.
-    #' @param from The contact whom is the this email is from.
-    #' @param subject The subject or title of the email
-    #' @param body The main email contents.
-    #' @param id Optional Order ID
+    #' @param to to
+    #' @param from The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+    #' @param subject The subject line of the email.
+    #' @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+    #' @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
     #' @param ... Other optional arguments.
     initialize = function(`to`, `from`, `subject`, `body`, `id` = NULL, ...) {
       if (!missing(`to`)) {
-        if (!(is.character(`to`) && length(`to`) == 1)) {
-          stop(paste("Error! Invalid data for `to`. Must be a string:", `to`))
-        }
+        stopifnot(R6::is.R6(`to`))
         self$`to` <- `to`
       }
       if (!missing(`from`)) {
@@ -99,7 +97,7 @@ SendMail <- R6::R6Class(
       SendMailObject <- list()
       if (!is.null(self$`to`)) {
         SendMailObject[["to"]] <-
-          self$`to`
+          self$extractSimpleType(self$`to`)
       }
       if (!is.null(self$`from`)) {
         SendMailObject[["from"]] <-
@@ -120,6 +118,29 @@ SendMail <- R6::R6Class(
       return(SendMailObject)
     },
 
+    extractSimpleType = function(x) {
+      if (R6::is.R6(x)) {
+        return(x$toSimpleType())
+      } else if (!self$hasNestedR6(x)) {
+        return(x)
+      }
+      lapply(x, self$extractSimpleType)
+    },
+
+    hasNestedR6 = function(x) {
+      if (R6::is.R6(x)) {
+        return(TRUE)
+      }
+      if (is.list(x)) {
+        for (item in x) {
+          if (self$hasNestedR6(item)) {
+            return(TRUE)
+          }
+        }
+      }
+      FALSE
+    },
+
     #' @description
     #' Deserialize JSON string into an instance of SendMail
     #'
@@ -128,7 +149,9 @@ SendMail <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`to`)) {
-        self$`to` <- this_object$`to`
+        `to_object` <- SendMailTo$new()
+        `to_object`$fromJSON(jsonlite::toJSON(this_object$`to`, auto_unbox = TRUE, digits = NA))
+        self$`to` <- `to_object`
       }
       if (!is.null(this_object$`from`)) {
         self$`from` <- this_object$`from`
@@ -163,7 +186,7 @@ SendMail <- R6::R6Class(
     #' @return the instance of SendMail
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`to` <- this_object$`to`
+      self$`to` <- SendMailTo$new()$fromJSON(jsonlite::toJSON(this_object$`to`, auto_unbox = TRUE, digits = NA))
       self$`from` <- this_object$`from`
       self$`subject` <- this_object$`subject`
       self$`body` <- this_object$`body`
@@ -179,9 +202,7 @@ SendMail <- R6::R6Class(
       input_json <- jsonlite::fromJSON(input)
       # check the required field `to`
       if (!is.null(input_json$`to`)) {
-        if (!(is.character(input_json$`to`) && length(input_json$`to`) == 1)) {
-          stop(paste("Error! Invalid data for `to`. Must be a string:", input_json$`to`))
-        }
+        stopifnot(R6::is.R6(input_json$`to`))
       } else {
         stop(paste("The JSON input `", input, "` is invalid for SendMail: the required field `to` is missing."))
       }

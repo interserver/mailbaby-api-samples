@@ -13,9 +13,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * The data for a email deny rule record.
+ * A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;.
  */
-@Schema(description = "The data for a email deny rule record.")
+@Schema(description = "A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.")
 @Validated
 @Introspected
 
@@ -72,10 +72,10 @@ public class DenyRuleRecord   {
   }
 
   /**
-   * The deny rule Id number.
+   * The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
    * @return id
   **/
-  @Schema(example = "41124", required = true, description = "The deny rule Id number.")
+  @Schema(example = "41124", required = true, description = "The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.")
   @NotNull
 
   public String getId() {
@@ -92,10 +92,10 @@ public class DenyRuleRecord   {
   }
 
   /**
-   * the date the rule was created.
+   * The timestamp when the rule was created.
    * @return created
   **/
-  @Schema(required = true, description = "the date the rule was created.")
+  @Schema(required = true, description = "The timestamp when the rule was created.")
   @NotNull
 
   @Valid
@@ -113,10 +113,10 @@ public class DenyRuleRecord   {
   }
 
   /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+   * Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
    * @return user
   **/
-  @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+  @Schema(example = "mb20682", description = "Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.")
   @NotNull
 
   public String getUser() {
@@ -153,10 +153,10 @@ public class DenyRuleRecord   {
   }
 
   /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   * The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
    * @return data
   **/
-  @Schema(example = "domeinwo@server.guesshost.net", required = true, description = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
+  @Schema(example = "domeinwo@server.guesshost.net", required = true, description = "The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.")
   @NotNull
 
   public String getData() {

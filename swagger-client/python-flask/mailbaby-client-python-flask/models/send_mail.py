@@ -6,6 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from mailbaby-client-python-flask.models.base_model_ import Model
+from mailbaby-client-python-flask.models.one_of_send_mail_to import OneOfSendMailTo  # noqa: F401,E501
 from mailbaby-client-python-flask import util
 
 
@@ -14,11 +15,11 @@ class SendMail(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, to: str=None, _from: str=None, subject: str=None, body: str=None, id: int=None):  # noqa: E501
+    def __init__(self, to: OneOfSendMailTo=None, _from: str=None, subject: str=None, body: str=None, id: int=None):  # noqa: E501
         """SendMail - a model defined in Swagger
 
         :param to: The to of this SendMail.  # noqa: E501
-        :type to: str
+        :type to: OneOfSendMailTo
         :param _from: The _from of this SendMail.  # noqa: E501
         :type _from: str
         :param subject: The subject of this SendMail.  # noqa: E501
@@ -29,7 +30,7 @@ class SendMail(Model):
         :type id: int
         """
         self.swagger_types = {
-            'to': str,
+            'to': OneOfSendMailTo,
             '_from': str,
             'subject': str,
             'body': str,
@@ -61,24 +62,24 @@ class SendMail(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def to(self) -> str:
+    def to(self) -> OneOfSendMailTo:
         """Gets the to of this SendMail.
 
-        The Contact whom is the primary recipient of this email.  # noqa: E501
+        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  # noqa: E501
 
         :return: The to of this SendMail.
-        :rtype: str
+        :rtype: OneOfSendMailTo
         """
         return self._to
 
     @to.setter
-    def to(self, to: str):
+    def to(self, to: OneOfSendMailTo):
         """Sets the to of this SendMail.
 
-        The Contact whom is the primary recipient of this email.  # noqa: E501
+        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  # noqa: E501
 
         :param to: The to of this SendMail.
-        :type to: str
+        :type to: OneOfSendMailTo
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
@@ -89,7 +90,7 @@ class SendMail(Model):
     def _from(self) -> str:
         """Gets the _from of this SendMail.
 
-        The contact whom is the this email is from.  # noqa: E501
+        The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.  # noqa: E501
 
         :return: The _from of this SendMail.
         :rtype: str
@@ -100,7 +101,7 @@ class SendMail(Model):
     def _from(self, _from: str):
         """Sets the _from of this SendMail.
 
-        The contact whom is the this email is from.  # noqa: E501
+        The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.  # noqa: E501
 
         :param _from: The _from of this SendMail.
         :type _from: str
@@ -114,7 +115,7 @@ class SendMail(Model):
     def subject(self) -> str:
         """Gets the subject of this SendMail.
 
-        The subject or title of the email  # noqa: E501
+        The subject line of the email.  # noqa: E501
 
         :return: The subject of this SendMail.
         :rtype: str
@@ -125,7 +126,7 @@ class SendMail(Model):
     def subject(self, subject: str):
         """Sets the subject of this SendMail.
 
-        The subject or title of the email  # noqa: E501
+        The subject line of the email.  # noqa: E501
 
         :param subject: The subject of this SendMail.
         :type subject: str
@@ -139,7 +140,7 @@ class SendMail(Model):
     def body(self) -> str:
         """Gets the body of this SendMail.
 
-        The main email contents.  # noqa: E501
+        The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.  # noqa: E501
 
         :return: The body of this SendMail.
         :rtype: str
@@ -150,7 +151,7 @@ class SendMail(Model):
     def body(self, body: str):
         """Sets the body of this SendMail.
 
-        The main email contents.  # noqa: E501
+        The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.  # noqa: E501
 
         :param body: The body of this SendMail.
         :type body: str
@@ -164,7 +165,7 @@ class SendMail(Model):
     def id(self) -> int:
         """Gets the id of this SendMail.
 
-        Optional Order ID  # noqa: E501
+        Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.  # noqa: E501
 
         :return: The id of this SendMail.
         :rtype: int
@@ -175,7 +176,7 @@ class SendMail(Model):
     def id(self, id: int):
         """Sets the id of this SendMail.
 
-        Optional Order ID  # noqa: E501
+        Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.  # noqa: E501
 
         :param id: The id of this SendMail.
         :type id: int

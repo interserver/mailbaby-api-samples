@@ -12,7 +12,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}name`,
-                label: `Name to use for the sending contact. - [${labelPrefix}name]`,
+                label: `Optional display name shown to recipients (e.g. in the `From:` header). - [${labelPrefix}name]`,
                 type: 'string',
             },
         ]

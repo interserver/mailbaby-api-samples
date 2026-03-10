@@ -25,34 +25,34 @@ class MailBlockClickHouseTest : ShouldSpec() {
         // uncomment below to create an instance of MailBlockClickHouse
         //val modelInstance = MailBlockClickHouse()
 
-        // to test the property `date`
+        // to test the property `date` - The date the block event was recorded.
         should("test date") {
             // uncomment below to test the property
             //modelInstance.date shouldBe ("TODO")
         }
 
-        // to test the property `from`
+        // to test the property `from` - The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
         should("test from") {
             // uncomment below to test the property
             //modelInstance.from shouldBe ("TODO")
         }
 
-        // to test the property `messageId`
-        should("test messageId") {
-            // uncomment below to test the property
-            //modelInstance.messageId shouldBe ("TODO")
-        }
-
-        // to test the property `subject`
+        // to test the property `subject` - The `Subject` header of the blocked message.
         should("test subject") {
             // uncomment below to test the property
             //modelInstance.subject shouldBe ("TODO")
         }
 
-        // to test the property `to`
+        // to test the property `to` - The serialized list of recipients of the blocked message.
         should("test to") {
             // uncomment below to test the property
             //modelInstance.to shouldBe ("TODO")
+        }
+
+        // to test the property `messageId` - The `Message-ID` header of the blocked message, or `null` if not present.
+        should("test messageId") {
+            // uncomment below to test the property
+            //modelInstance.messageId shouldBe ("TODO")
         }
 
     }

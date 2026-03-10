@@ -2,6 +2,7 @@ package io.swagger.api;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
+import io.swagger.model.EmailAddressParam;
 import io.swagger.model.EmailAddressTypes;
 import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
@@ -10,6 +11,7 @@ import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
+import io.swagger.model.MailOrderDetail;
 import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
@@ -55,7 +57,7 @@ class MailApiControllerTest {
 
     @Test
     void delistBlockTest() {
-        String body = null;
+        EmailAddressParam body = null;
         try {
             //TODO: api.delistBlock(body).blockingGet();
         } catch (UnsupportedOperationException e) {
@@ -67,6 +69,16 @@ class MailApiControllerTest {
     void getMailBlocksTest() {
         try {
             //TODO: api.getMailBlocks().blockingGet();
+        } catch (UnsupportedOperationException e) {
+            assumeTrue(false, "API is not yet implemented");
+        }
+    }
+
+    @Test
+    void getMailOrderByIdTest() {
+        Long id = null;
+        try {
+            //TODO: api.getMailOrderById(id).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }
@@ -130,11 +142,11 @@ class MailApiControllerTest {
 
     @Test
     void sendMailFormTest() {
-        String to = null;
+        Object to = null;
         String from = null;
         String subject = null;
         String body = null;
-        Integer id = null;
+        Long id = null;
         try {
             //TODO: api.sendMail(to, from, subject, body, id).blockingGet();
         } catch (UnsupportedOperationException e) {
@@ -151,15 +163,16 @@ class MailApiControllerTest {
         String to = null;
         String subject = null;
         String mailid = null;
+        String messageId = null;
+        String replyto = null;
+        String headerfrom = null;
+        Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
         Long startDate = null;
         Long endDate = null;
-        String replyto = null;
-        String headerfrom = null;
-        String delivered = null;
         try {
-            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered).blockingGet();
+            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

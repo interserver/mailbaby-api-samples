@@ -8,19 +8,20 @@ class_name EmailAddressTypes
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # EmailAddressTypes Model
+# A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
 
 
 # The email address.
 # Required: True
 # Example: user@domain.com
 # isArray: false
-@export var email: String = "":
+@export var email: String:
 	set(value):
 		__email__was__set = true
 		email = value
 var __email__was__set := false
 
-# Name to use for the sending contact.
+# Optional display name shown to recipients (e.g. in the `From:` header).
 # Required: False
 # Example: John Smith
 # isArray: false

@@ -8,49 +8,49 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// Details for an Email
+  /// Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead.
   /// </summary>
   [DataContract]
   public class SendMail {
     /// <summary>
-    /// The Contact whom is the primary recipient of this email.
+    /// The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
     /// </summary>
-    /// <value>The Contact whom is the primary recipient of this email.</value>
+    /// <value>The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.</value>
     [DataMember(Name="to", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "to")]
-    public string To { get; set; }
+    public OneOfSendMailTo To { get; set; }
 
     /// <summary>
-    /// The contact whom is the this email is from.
+    /// The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
     /// </summary>
-    /// <value>The contact whom is the this email is from.</value>
+    /// <value>The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.</value>
     [DataMember(Name="from", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "from")]
     public string From { get; set; }
 
     /// <summary>
-    /// The subject or title of the email
+    /// The subject line of the email.
     /// </summary>
-    /// <value>The subject or title of the email</value>
+    /// <value>The subject line of the email.</value>
     [DataMember(Name="subject", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "subject")]
     public string Subject { get; set; }
 
     /// <summary>
-    /// The main email contents.
+    /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
     /// </summary>
-    /// <value>The main email contents.</value>
+    /// <value>The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.</value>
     [DataMember(Name="body", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "body")]
     public string Body { get; set; }
 
     /// <summary>
-    /// Optional Order ID
+    /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
     /// </summary>
-    /// <value>Optional Order ID</value>
+    /// <value>Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.</value>
     [DataMember(Name="id", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "id")]
-    public int? Id { get; set; }
+    public long? Id { get; set; }
 
 
     /// <summary>

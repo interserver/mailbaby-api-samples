@@ -1,7 +1,7 @@
 /*
  * mail_log.h
  *
- * Mail log records
+ * Paginated mail log response returned by &#x60;GET /mail/log&#x60;.  Contains the full matched count (&#x60;total&#x60;) plus a page of &#x60;MailLogEntry&#x60; records.  Use &#x60;skip&#x60; and &#x60;limit&#x60; to page through large result sets.
  */
 
 #ifndef _mail_log_H_

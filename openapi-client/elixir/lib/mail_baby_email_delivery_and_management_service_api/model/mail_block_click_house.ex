@@ -3,24 +3,24 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailBlockClickHouse do
   @moduledoc """
-  A block entry from the clickhouse mailblocks server.
+  A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
   """
 
   @derive JSON.Encoder
   defstruct [
     :date,
     :from,
-    :messageId,
     :subject,
-    :to
+    :to,
+    :messageId
   ]
 
   @type t :: %__MODULE__{
     :date => Date.t,
     :from => String.t,
-    :messageId => String.t,
     :subject => String.t,
-    :to => String.t
+    :to => String.t,
+    :messageId => String.t | nil
   }
 
   def decode(value) do

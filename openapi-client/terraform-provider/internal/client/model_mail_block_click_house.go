@@ -2,11 +2,11 @@
 
 package client
 
-// MailBlockClickHouse - A block entry from the clickhouse mailblocks server.
+// MailBlockClickHouse - A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 type MailBlockClickHouse struct {
 	Date string `json:"date"`
 	From string `json:"from"`
-	MessageId string `json:"messageId"`
+	MessageId string `json:"messageId,omitempty"`
 	Subject string `json:"subject"`
 	To string `json:"to"`
 }

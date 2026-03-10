@@ -1,16 +1,16 @@
 #' Create a new MailOrder
 #'
 #' @description
-#' A mail order record
+#' A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 #'
 #' @docType class
 #' @title MailOrder
 #' @description MailOrder Class
 #' @format An \code{R6Class} generator object
-#' @field id The ID of the order. integer
-#' @field status The order status. character
-#' @field username The username to use for this order. character
-#' @field comment Optional order comment. character [optional]
+#' @field id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. integer
+#' @field status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. character
+#' @field username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. character
+#' @field comment Optional human-readable note associated with the order. character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -25,10 +25,10 @@ MailOrder <- R6::R6Class(
     #' @description
     #' Initialize a new MailOrder class.
     #'
-    #' @param id The ID of the order.
-    #' @param status The order status.
-    #' @param username The username to use for this order.
-    #' @param comment Optional order comment.
+    #' @param id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
+    #' @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+    #' @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
+    #' @param comment Optional human-readable note associated with the order.
     #' @param ... Other optional arguments.
     initialize = function(`id`, `status`, `username`, `comment` = NULL, ...) {
       if (!missing(`id`)) {

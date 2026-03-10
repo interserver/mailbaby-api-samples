@@ -3,6 +3,7 @@ import localVarRequest from 'request';
 export * from './denyRuleNew';
 export * from './denyRuleRecord';
 export * from './emailAddressName';
+export * from './emailAddressParam';
 export * from './emailAddressTypes';
 export * from './emailAddressesTypes';
 export * from './errorMessage';
@@ -14,14 +15,13 @@ export * from './mailBlocks';
 export * from './mailLog';
 export * from './mailLogEntry';
 export * from './mailOrder';
+export * from './mailOrderDetail';
 export * from './mailStatsType';
 export * from './mailStatsTypeVolume';
-export * from './mailStatsTypeVolumeFrom';
-export * from './mailStatsTypeVolumeIp';
-export * from './mailStatsTypeVolumeTo';
 export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailRaw';
+export * from './sendMailTo';
 
 import * as fs from 'fs';
 
@@ -39,6 +39,7 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 import { DenyRuleNew } from './denyRuleNew';
 import { DenyRuleRecord } from './denyRuleRecord';
 import { EmailAddressName } from './emailAddressName';
+import { EmailAddressParam } from './emailAddressParam';
 import { EmailAddressTypes } from './emailAddressTypes';
 import { EmailAddressesTypes } from './emailAddressesTypes';
 import { ErrorMessage } from './errorMessage';
@@ -50,14 +51,13 @@ import { MailBlocks } from './mailBlocks';
 import { MailLog } from './mailLog';
 import { MailLogEntry } from './mailLogEntry';
 import { MailOrder } from './mailOrder';
+import { MailOrderDetail } from './mailOrderDetail';
 import { MailStatsType } from './mailStatsType';
 import { MailStatsTypeVolume } from './mailStatsTypeVolume';
-import { MailStatsTypeVolumeFrom } from './mailStatsTypeVolumeFrom';
-import { MailStatsTypeVolumeIp } from './mailStatsTypeVolumeIp';
-import { MailStatsTypeVolumeTo } from './mailStatsTypeVolumeTo';
 import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
 import { SendMailRaw } from './sendMailRaw';
+import { SendMailTo } from './sendMailTo';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -81,6 +81,7 @@ let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
     "EmailAddressName": EmailAddressName,
+    "EmailAddressParam": EmailAddressParam,
     "EmailAddressTypes": EmailAddressTypes,
     "EmailAddressesTypes": EmailAddressesTypes,
     "ErrorMessage": ErrorMessage,
@@ -92,14 +93,13 @@ let typeMap: {[index: string]: any} = {
     "MailLog": MailLog,
     "MailLogEntry": MailLogEntry,
     "MailOrder": MailOrder,
+    "MailOrderDetail": MailOrderDetail,
     "MailStatsType": MailStatsType,
     "MailStatsTypeVolume": MailStatsTypeVolume,
-    "MailStatsTypeVolumeFrom": MailStatsTypeVolumeFrom,
-    "MailStatsTypeVolumeIp": MailStatsTypeVolumeIp,
-    "MailStatsTypeVolumeTo": MailStatsTypeVolumeTo,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
     "SendMailRaw": SendMailRaw,
+    "SendMailTo": SendMailTo,
 }
 
 // Check if a string starts with another string without using es6 features

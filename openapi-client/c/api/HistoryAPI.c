@@ -11,13 +11,13 @@
 // Functions for enum TIME for HistoryAPI_getStats
 
 static char* getStats_TIME_ToString(mailbaby_email_delivery_and_management_service_api_getStats_time_e TIME){
-    char *TIMEArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "1d", "1h" };
+    char *TIMEArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "day", "1h" };
     return TIMEArray[TIME];
 }
 
 static mailbaby_email_delivery_and_management_service_api_getStats_time_e getStats_TIME_FromString(char* TIME){
     int stringToReturn = 0;
-    char *TIMEArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "1d", "1h" };
+    char *TIMEArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "day", "1h" };
     size_t sizeofArray = sizeof(TIMEArray) / sizeof(TIMEArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(TIME, TIMEArray[stringToReturn]) == 0) {
@@ -86,9 +86,6 @@ static mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_
 //
 static cJSON *viewMailLog_DELIVERED_convertToJSON(mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e DELIVERED) {
     cJSON *item = cJSON_CreateObject();
-    if(cJSON_AddStringToObject(item, "delivered", viewMailLog_DELIVERED_ToString(DELIVERED)) == NULL) {
-        goto fail;
-    }
     return item;
     fail:
     cJSON_Delete(item);
@@ -100,12 +97,6 @@ static cJSON *viewMailLog_DELIVERED_convertToJSON(mailbaby_email_delivery_and_ma
 //
 static mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e viewMailLog_DELIVERED_parseFromJSON(cJSON* DELIVEREDJSON) {
     mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e DELIVEREDVariable = 0;
-    cJSON *DELIVEREDVar = cJSON_GetObjectItemCaseSensitive(DELIVEREDJSON, "delivered");
-    if(!cJSON_IsString(DELIVEREDVar) || (DELIVEREDVar->valuestring == NULL))
-    {
-        goto end;
-    }
-    DELIVEREDVariable = viewMailLog_DELIVERED_FromString(DELIVEREDVar->valuestring);
     return DELIVEREDVariable;
 end:
     return 0;
@@ -113,9 +104,9 @@ end:
 */
 
 
-// Account usage statistics.
+// Account usage statistics
 //
-// Returns information about the usage on your mail accounts.
+// Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | 
 //
 mail_stats_type_t*
 HistoryAPI_getStats(apiClient_t *apiClient, mailbaby_email_delivery_and_management_service_api_getStats_time_e time)
@@ -168,11 +159,7 @@ HistoryAPI_getStats(apiClient_t *apiClient, mailbaby_email_delivery_and_manageme
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 401) {
-    //    printf("%s\n","Unauthorized");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 404) {
-    //    printf("%s\n","Unauthorized");
+    //    printf("%s\n","Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).");
     //}
     //nonprimitive not container
     mail_stats_type_t *elementToReturn = NULL;
@@ -212,12 +199,12 @@ end:
 
 }
 
-// displays the mail log
+// Displays the mail log
 //
-// Get a listing of the emails sent through this system 
+// Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, int *skip, int *limit, long startDate, long endDate, char *replyto, char *headerfrom, mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e delivered)
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, char *messageId, char *replyto, char *headerfrom, int *delivered, int *skip, int *limit, long startDate, long endDate)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -322,6 +309,56 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
     }
 
     // query parameters
+    char *keyQuery_messageId = NULL;
+    char * valueQuery_messageId = NULL;
+    keyValuePair_t *keyPairQuery_messageId = 0;
+    if (messageId)
+    {
+        keyQuery_messageId = strdup("messageId");
+        valueQuery_messageId = strdup((messageId));
+        keyPairQuery_messageId = keyValuePair_create(keyQuery_messageId, valueQuery_messageId);
+        list_addElement(localVarQueryParameters,keyPairQuery_messageId);
+    }
+
+    // query parameters
+    char *keyQuery_replyto = NULL;
+    char * valueQuery_replyto = NULL;
+    keyValuePair_t *keyPairQuery_replyto = 0;
+    if (replyto)
+    {
+        keyQuery_replyto = strdup("replyto");
+        valueQuery_replyto = strdup((replyto));
+        keyPairQuery_replyto = keyValuePair_create(keyQuery_replyto, valueQuery_replyto);
+        list_addElement(localVarQueryParameters,keyPairQuery_replyto);
+    }
+
+    // query parameters
+    char *keyQuery_headerfrom = NULL;
+    char * valueQuery_headerfrom = NULL;
+    keyValuePair_t *keyPairQuery_headerfrom = 0;
+    if (headerfrom)
+    {
+        keyQuery_headerfrom = strdup("headerfrom");
+        valueQuery_headerfrom = strdup((headerfrom));
+        keyPairQuery_headerfrom = keyValuePair_create(keyQuery_headerfrom, valueQuery_headerfrom);
+        list_addElement(localVarQueryParameters,keyPairQuery_headerfrom);
+    }
+
+    // query parameters
+    char *keyQuery_delivered = NULL;
+    char * valueQuery_delivered = NULL;
+    keyValuePair_t *keyPairQuery_delivered = 0;
+    if (delivered)
+    {
+        keyQuery_delivered = strdup("delivered");
+        valueQuery_delivered = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_delivered, MAX_NUMBER_LENGTH, "%d", *delivered);
+        keyPairQuery_delivered = keyValuePair_create(keyQuery_delivered, strdup(viewMailLog_DELIVERED_ToString(
+        valueQuery_delivered)));
+        list_addElement(localVarQueryParameters,keyPairQuery_delivered);
+    }
+
+    // query parameters
     char *keyQuery_skip = NULL;
     char * valueQuery_skip = NULL;
     keyValuePair_t *keyPairQuery_skip = 0;
@@ -370,43 +407,6 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
         keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, valueQuery_endDate);
         list_addElement(localVarQueryParameters,keyPairQuery_endDate);
     }
-
-    // query parameters
-    char *keyQuery_replyto = NULL;
-    char * valueQuery_replyto = NULL;
-    keyValuePair_t *keyPairQuery_replyto = 0;
-    if (replyto)
-    {
-        keyQuery_replyto = strdup("replyto");
-        valueQuery_replyto = strdup((replyto));
-        keyPairQuery_replyto = keyValuePair_create(keyQuery_replyto, valueQuery_replyto);
-        list_addElement(localVarQueryParameters,keyPairQuery_replyto);
-    }
-
-    // query parameters
-    char *keyQuery_headerfrom = NULL;
-    char * valueQuery_headerfrom = NULL;
-    keyValuePair_t *keyPairQuery_headerfrom = 0;
-    if (headerfrom)
-    {
-        keyQuery_headerfrom = strdup("headerfrom");
-        valueQuery_headerfrom = strdup((headerfrom));
-        keyPairQuery_headerfrom = keyValuePair_create(keyQuery_headerfrom, valueQuery_headerfrom);
-        list_addElement(localVarQueryParameters,keyPairQuery_headerfrom);
-    }
-
-    // query parameters
-    char *keyQuery_delivered = NULL;
-    mailbaby_email_delivery_and_management_service_api_viewMailLog_delivered_e valueQuery_delivered ;
-    keyValuePair_t *keyPairQuery_delivered = 0;
-    if (delivered)
-    {
-        keyQuery_delivered = strdup("delivered");
-        valueQuery_delivered = (delivered);
-        keyPairQuery_delivered = keyValuePair_create(keyQuery_delivered, strdup(viewMailLog_DELIVERED_ToString(
-        valueQuery_delivered)));
-        list_addElement(localVarQueryParameters,keyPairQuery_delivered);
-    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
@@ -421,11 +421,15 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
 
     // uncomment below to debug the error response
     //if (apiClient->response_code == 200) {
-    //    printf("%s\n","search results matching criteria");
+    //    printf("%s\n","Paginated list of mail log entries");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 400) {
-    //    printf("%s\n","bad input parameter");
+    //    printf("%s\n","Bad request — one or more input parameters were missing or invalid.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 401) {
+    //    printf("%s\n","Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).");
     //}
     //nonprimitive not container
     mail_log_t *elementToReturn = NULL;
@@ -530,6 +534,54 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
         keyValuePair_free(keyPairQuery_mailid);
         keyPairQuery_mailid = NULL;
     }
+    if(keyQuery_messageId){
+        free(keyQuery_messageId);
+        keyQuery_messageId = NULL;
+    }
+    if(valueQuery_messageId){
+        free(valueQuery_messageId);
+        valueQuery_messageId = NULL;
+    }
+    if(keyPairQuery_messageId){
+        keyValuePair_free(keyPairQuery_messageId);
+        keyPairQuery_messageId = NULL;
+    }
+    if(keyQuery_replyto){
+        free(keyQuery_replyto);
+        keyQuery_replyto = NULL;
+    }
+    if(valueQuery_replyto){
+        free(valueQuery_replyto);
+        valueQuery_replyto = NULL;
+    }
+    if(keyPairQuery_replyto){
+        keyValuePair_free(keyPairQuery_replyto);
+        keyPairQuery_replyto = NULL;
+    }
+    if(keyQuery_headerfrom){
+        free(keyQuery_headerfrom);
+        keyQuery_headerfrom = NULL;
+    }
+    if(valueQuery_headerfrom){
+        free(valueQuery_headerfrom);
+        valueQuery_headerfrom = NULL;
+    }
+    if(keyPairQuery_headerfrom){
+        keyValuePair_free(keyPairQuery_headerfrom);
+        keyPairQuery_headerfrom = NULL;
+    }
+    if(keyQuery_delivered){
+        free(keyQuery_delivered);
+        keyQuery_delivered = NULL;
+    }
+    if(valueQuery_delivered){
+        free(valueQuery_delivered);
+        valueQuery_delivered = NULL;
+    }
+    if(keyPairQuery_delivered){
+        keyValuePair_free(keyPairQuery_delivered);
+        keyPairQuery_delivered = NULL;
+    }
     if(keyQuery_skip){
         free(keyQuery_skip);
         keyQuery_skip = NULL;
@@ -569,38 +621,6 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
     if(keyPairQuery_endDate){
         keyValuePair_free(keyPairQuery_endDate);
         keyPairQuery_endDate = NULL;
-    }
-    if(keyQuery_replyto){
-        free(keyQuery_replyto);
-        keyQuery_replyto = NULL;
-    }
-    if(valueQuery_replyto){
-        free(valueQuery_replyto);
-        valueQuery_replyto = NULL;
-    }
-    if(keyPairQuery_replyto){
-        keyValuePair_free(keyPairQuery_replyto);
-        keyPairQuery_replyto = NULL;
-    }
-    if(keyQuery_headerfrom){
-        free(keyQuery_headerfrom);
-        keyQuery_headerfrom = NULL;
-    }
-    if(valueQuery_headerfrom){
-        free(valueQuery_headerfrom);
-        valueQuery_headerfrom = NULL;
-    }
-    if(keyPairQuery_headerfrom){
-        keyValuePair_free(keyPairQuery_headerfrom);
-        keyPairQuery_headerfrom = NULL;
-    }
-    if(keyQuery_delivered){
-        free(keyQuery_delivered);
-        keyQuery_delivered = NULL;
-    }
-    if(keyPairQuery_delivered){
-        keyValuePair_free(keyPairQuery_delivered);
-        keyPairQuery_delivered = NULL;
     }
     return elementToReturn;
 end:

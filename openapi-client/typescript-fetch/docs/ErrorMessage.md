@@ -1,7 +1,7 @@
 
 # ErrorMessage
 
-The resposne when an error occurs.
+The response body returned when an error occurs.
 
 ## Properties
 
@@ -18,7 +18,7 @@ import type { ErrorMessage } from ''
 // TODO: Update the object below with actual values
 const example = {
   "code": 400,
-  "message": There was an error.,
+  "message": The specified ID was invalid.,
 } satisfies ErrorMessage
 
 console.log(example)

@@ -8,7 +8,7 @@
 import Foundation
 
 
-/** Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost. */
+/** Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address. */
 open class MailStatsType: JSONEncodable {
     public enum Time: String {
         case all = "all"
@@ -16,15 +16,20 @@ open class MailStatsType: JSONEncodable {
         case month = "month"
         case _7d = "7d"
         case _24h = "24h"
-        case today = "today"
+        case day = "day"
         case _1h = "1h"
     }
-        public var time: Time?
+    /** The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover. */
+    public var time: Time?
+    /** Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value. */
     public var usage: Int32?
+    /** The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;). */
     public var currency: String?
-    public var currencySymbol: String?
+    /** Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). */
     public var cost: Double?
+    /** Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue. */
     public var received: Int32?
+    /** Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. */
     public var sent: Int32?
     public var volume: MailStatsTypeVolume?
 
@@ -36,7 +41,6 @@ open class MailStatsType: JSONEncodable {
         nillableDictionary["time"] = self.time?.rawValue
         nillableDictionary["usage"] = self.usage?.encodeToJSON()
         nillableDictionary["currency"] = self.currency
-        nillableDictionary["currencySymbol"] = self.currencySymbol
         nillableDictionary["cost"] = self.cost
         nillableDictionary["received"] = self.received?.encodeToJSON()
         nillableDictionary["sent"] = self.sent?.encodeToJSON()

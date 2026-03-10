@@ -8,7 +8,7 @@
 (def mail-attachment-data
   {
    (ds/req :filename) string?
-   (ds/req :data) string?
+   (ds/req :data) any?
    })
 
 (def mail-attachment-spec

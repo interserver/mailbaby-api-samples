@@ -1,16 +1,16 @@
 # MailBlockClickHouse
 
-A block entry from the clickhouse mailblocks server.
+A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_date** | **date** |  | 
-**var_from** | **str** |  | 
-**message_id** | **str** |  | 
-**subject** | **str** |  | 
-**to** | **str** |  | 
+**var_date** | **date** | The date the block event was recorded. | 
+**var_from** | **str** | The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it. | 
+**message_id** | **str** | The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present. | [optional] 
+**subject** | **str** | The &#x60;Subject&#x60; header of the blocked message. | 
+**to** | **str** | The serialized list of recipients of the blocked message. | 
 
 ## Example
 

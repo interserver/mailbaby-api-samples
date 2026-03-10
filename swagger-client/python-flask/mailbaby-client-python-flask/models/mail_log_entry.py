@@ -14,7 +14,7 @@ class MailLogEntry(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id: int=None, id: str=None, _from: str=None, to: str=None, subject: str=None, message_id: str=None, created: str=None, time: int=None, user: str=None, transtype: str=None, origin: str=None, interface: str=None, sending_zone: str=None, body_size: int=None, seq: int=None, recipient: str=None, domain: str=None, locked: int=None, lock_time: str=None, assigned: str=None, queued: str=None, mx_hostname: str=None, response: str=None):  # noqa: E501
+    def __init__(self, id: int=None, id: str=None, _from: str=None, to: str=None, subject: str=None, message_id: str=None, created: str=None, time: int=None, user: str=None, transtype: str=None, origin: str=None, interface: str=None, sending_zone: str=None, body_size: int=None, seq: int=None, delivered: int=None, response: str=None, recipient: str=None, domain: str=None, locked: int=None, lock_time: str=None, assigned: str=None, queued: str=None, mx_hostname: str=None):  # noqa: E501
         """MailLogEntry - a model defined in Swagger
 
         :param id: The id of this MailLogEntry.  # noqa: E501
@@ -47,6 +47,10 @@ class MailLogEntry(Model):
         :type body_size: int
         :param seq: The seq of this MailLogEntry.  # noqa: E501
         :type seq: int
+        :param delivered: The delivered of this MailLogEntry.  # noqa: E501
+        :type delivered: int
+        :param response: The response of this MailLogEntry.  # noqa: E501
+        :type response: str
         :param recipient: The recipient of this MailLogEntry.  # noqa: E501
         :type recipient: str
         :param domain: The domain of this MailLogEntry.  # noqa: E501
@@ -61,8 +65,6 @@ class MailLogEntry(Model):
         :type queued: str
         :param mx_hostname: The mx_hostname of this MailLogEntry.  # noqa: E501
         :type mx_hostname: str
-        :param response: The response of this MailLogEntry.  # noqa: E501
-        :type response: str
         """
         self.swagger_types = {
             'id': int,
@@ -80,14 +82,15 @@ class MailLogEntry(Model):
             'sending_zone': str,
             'body_size': int,
             'seq': int,
+            'delivered': int,
+            'response': str,
             'recipient': str,
             'domain': str,
             'locked': int,
             'lock_time': str,
             'assigned': str,
             'queued': str,
-            'mx_hostname': str,
-            'response': str
+            'mx_hostname': str
         }
 
         self.attribute_map = {
@@ -106,14 +109,15 @@ class MailLogEntry(Model):
             'sending_zone': 'sendingZone',
             'body_size': 'bodySize',
             'seq': 'seq',
+            'delivered': 'delivered',
+            'response': 'response',
             'recipient': 'recipient',
             'domain': 'domain',
             'locked': 'locked',
             'lock_time': 'lockTime',
             'assigned': 'assigned',
             'queued': 'queued',
-            'mx_hostname': 'mxHostname',
-            'response': 'response'
+            'mx_hostname': 'mxHostname'
         }
         self._id = id
         self._id = id
@@ -130,6 +134,8 @@ class MailLogEntry(Model):
         self._sending_zone = sending_zone
         self._body_size = body_size
         self._seq = seq
+        self._delivered = delivered
+        self._response = response
         self._recipient = recipient
         self._domain = domain
         self._locked = locked
@@ -137,7 +143,6 @@ class MailLogEntry(Model):
         self._assigned = assigned
         self._queued = queued
         self._mx_hostname = mx_hostname
-        self._response = response
 
     @classmethod
     def from_dict(cls, dikt) -> 'MailLogEntry':
@@ -154,7 +159,7 @@ class MailLogEntry(Model):
     def id(self) -> int:
         """Gets the id of this MailLogEntry.
 
-        internal db id  # noqa: E501
+        Internal auto-increment database row ID.  Not meaningful outside the API.  # noqa: E501
 
         :return: The id of this MailLogEntry.
         :rtype: int
@@ -165,7 +170,7 @@ class MailLogEntry(Model):
     def id(self, id: int):
         """Sets the id of this MailLogEntry.
 
-        internal db id  # noqa: E501
+        Internal auto-increment database row ID.  Not meaningful outside the API.  # noqa: E501
 
         :param id: The id of this MailLogEntry.
         :type id: int
@@ -179,7 +184,7 @@ class MailLogEntry(Model):
     def id(self) -> str:
         """Gets the id of this MailLogEntry.
 
-        mail id  # noqa: E501
+        The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.  # noqa: E501
 
         :return: The id of this MailLogEntry.
         :rtype: str
@@ -190,7 +195,7 @@ class MailLogEntry(Model):
     def id(self, id: str):
         """Sets the id of this MailLogEntry.
 
-        mail id  # noqa: E501
+        The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.  # noqa: E501
 
         :param id: The id of this MailLogEntry.
         :type id: str
@@ -204,7 +209,7 @@ class MailLogEntry(Model):
     def _from(self) -> str:
         """Gets the _from of this MailLogEntry.
 
-        from address  # noqa: E501
+        SMTP envelope `MAIL FROM` address (may differ from the `From:` header).  # noqa: E501
 
         :return: The _from of this MailLogEntry.
         :rtype: str
@@ -215,7 +220,7 @@ class MailLogEntry(Model):
     def _from(self, _from: str):
         """Sets the _from of this MailLogEntry.
 
-        from address  # noqa: E501
+        SMTP envelope `MAIL FROM` address (may differ from the `From:` header).  # noqa: E501
 
         :param _from: The _from of this MailLogEntry.
         :type _from: str
@@ -229,7 +234,7 @@ class MailLogEntry(Model):
     def to(self) -> str:
         """Gets the to of this MailLogEntry.
 
-        to address  # noqa: E501
+        SMTP envelope `RCPT TO` address.  # noqa: E501
 
         :return: The to of this MailLogEntry.
         :rtype: str
@@ -240,7 +245,7 @@ class MailLogEntry(Model):
     def to(self, to: str):
         """Sets the to of this MailLogEntry.
 
-        to address  # noqa: E501
+        SMTP envelope `RCPT TO` address.  # noqa: E501
 
         :param to: The to of this MailLogEntry.
         :type to: str
@@ -254,7 +259,7 @@ class MailLogEntry(Model):
     def subject(self) -> str:
         """Gets the subject of this MailLogEntry.
 
-        email subject  # noqa: E501
+        The `Subject` header value, if available.  # noqa: E501
 
         :return: The subject of this MailLogEntry.
         :rtype: str
@@ -265,13 +270,11 @@ class MailLogEntry(Model):
     def subject(self, subject: str):
         """Sets the subject of this MailLogEntry.
 
-        email subject  # noqa: E501
+        The `Subject` header value, if available.  # noqa: E501
 
         :param subject: The subject of this MailLogEntry.
         :type subject: str
         """
-        if subject is None:
-            raise ValueError("Invalid value for `subject`, must not be `None`")  # noqa: E501
 
         self._subject = subject
 
@@ -279,7 +282,7 @@ class MailLogEntry(Model):
     def message_id(self) -> str:
         """Gets the message_id of this MailLogEntry.
 
-        message id  # noqa: E501
+        The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.  # noqa: E501
 
         :return: The message_id of this MailLogEntry.
         :rtype: str
@@ -290,7 +293,7 @@ class MailLogEntry(Model):
     def message_id(self, message_id: str):
         """Sets the message_id of this MailLogEntry.
 
-        message id  # noqa: E501
+        The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.  # noqa: E501
 
         :param message_id: The message_id of this MailLogEntry.
         :type message_id: str
@@ -302,7 +305,7 @@ class MailLogEntry(Model):
     def created(self) -> str:
         """Gets the created of this MailLogEntry.
 
-        creation date  # noqa: E501
+        Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.  # noqa: E501
 
         :return: The created of this MailLogEntry.
         :rtype: str
@@ -313,7 +316,7 @@ class MailLogEntry(Model):
     def created(self, created: str):
         """Sets the created of this MailLogEntry.
 
-        creation date  # noqa: E501
+        Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.  # noqa: E501
 
         :param created: The created of this MailLogEntry.
         :type created: str
@@ -327,7 +330,7 @@ class MailLogEntry(Model):
     def time(self) -> int:
         """Gets the time of this MailLogEntry.
 
-        creation timestamp  # noqa: E501
+        Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.  # noqa: E501
 
         :return: The time of this MailLogEntry.
         :rtype: int
@@ -338,7 +341,7 @@ class MailLogEntry(Model):
     def time(self, time: int):
         """Sets the time of this MailLogEntry.
 
-        creation timestamp  # noqa: E501
+        Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.  # noqa: E501
 
         :param time: The time of this MailLogEntry.
         :type time: int
@@ -352,7 +355,7 @@ class MailLogEntry(Model):
     def user(self) -> str:
         """Gets the user of this MailLogEntry.
 
-        user account  # noqa: E501
+        The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.  # noqa: E501
 
         :return: The user of this MailLogEntry.
         :rtype: str
@@ -363,7 +366,7 @@ class MailLogEntry(Model):
     def user(self, user: str):
         """Sets the user of this MailLogEntry.
 
-        user account  # noqa: E501
+        The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.  # noqa: E501
 
         :param user: The user of this MailLogEntry.
         :type user: str
@@ -377,7 +380,7 @@ class MailLogEntry(Model):
     def transtype(self) -> str:
         """Gets the transtype of this MailLogEntry.
 
-        transaction type  # noqa: E501
+        SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).  # noqa: E501
 
         :return: The transtype of this MailLogEntry.
         :rtype: str
@@ -388,7 +391,7 @@ class MailLogEntry(Model):
     def transtype(self, transtype: str):
         """Sets the transtype of this MailLogEntry.
 
-        transaction type  # noqa: E501
+        SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).  # noqa: E501
 
         :param transtype: The transtype of this MailLogEntry.
         :type transtype: str
@@ -402,7 +405,7 @@ class MailLogEntry(Model):
     def origin(self) -> str:
         """Gets the origin of this MailLogEntry.
 
-        origin ip  # noqa: E501
+        IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.  # noqa: E501
 
         :return: The origin of this MailLogEntry.
         :rtype: str
@@ -413,7 +416,7 @@ class MailLogEntry(Model):
     def origin(self, origin: str):
         """Sets the origin of this MailLogEntry.
 
-        origin ip  # noqa: E501
+        IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.  # noqa: E501
 
         :param origin: The origin of this MailLogEntry.
         :type origin: str
@@ -427,7 +430,7 @@ class MailLogEntry(Model):
     def interface(self) -> str:
         """Gets the interface of this MailLogEntry.
 
-        interface name  # noqa: E501
+        Relay interface name that accepted the message (e.g. `feeder`).  # noqa: E501
 
         :return: The interface of this MailLogEntry.
         :rtype: str
@@ -438,7 +441,7 @@ class MailLogEntry(Model):
     def interface(self, interface: str):
         """Sets the interface of this MailLogEntry.
 
-        interface name  # noqa: E501
+        Relay interface name that accepted the message (e.g. `feeder`).  # noqa: E501
 
         :param interface: The interface of this MailLogEntry.
         :type interface: str
@@ -452,7 +455,7 @@ class MailLogEntry(Model):
     def sending_zone(self) -> str:
         """Gets the sending_zone of this MailLogEntry.
 
-        sending zone  # noqa: E501
+        The sending zone assigned by the relay for outbound delivery.  # noqa: E501
 
         :return: The sending_zone of this MailLogEntry.
         :rtype: str
@@ -463,13 +466,11 @@ class MailLogEntry(Model):
     def sending_zone(self, sending_zone: str):
         """Sets the sending_zone of this MailLogEntry.
 
-        sending zone  # noqa: E501
+        The sending zone assigned by the relay for outbound delivery.  # noqa: E501
 
         :param sending_zone: The sending_zone of this MailLogEntry.
         :type sending_zone: str
         """
-        if sending_zone is None:
-            raise ValueError("Invalid value for `sending_zone`, must not be `None`")  # noqa: E501
 
         self._sending_zone = sending_zone
 
@@ -477,7 +478,7 @@ class MailLogEntry(Model):
     def body_size(self) -> int:
         """Gets the body_size of this MailLogEntry.
 
-        email body size in bytes  # noqa: E501
+        Size of the message body in bytes.  # noqa: E501
 
         :return: The body_size of this MailLogEntry.
         :rtype: int
@@ -488,13 +489,11 @@ class MailLogEntry(Model):
     def body_size(self, body_size: int):
         """Sets the body_size of this MailLogEntry.
 
-        email body size in bytes  # noqa: E501
+        Size of the message body in bytes.  # noqa: E501
 
         :param body_size: The body_size of this MailLogEntry.
         :type body_size: int
         """
-        if body_size is None:
-            raise ValueError("Invalid value for `body_size`, must not be `None`")  # noqa: E501
 
         self._body_size = body_size
 
@@ -502,7 +501,7 @@ class MailLogEntry(Model):
     def seq(self) -> int:
         """Gets the seq of this MailLogEntry.
 
-        index of email in the to adderess list  # noqa: E501
+        Sequence index of this recipient in a multi-recipient message. Starts at 1.  # noqa: E501
 
         :return: The seq of this MailLogEntry.
         :rtype: int
@@ -513,196 +512,42 @@ class MailLogEntry(Model):
     def seq(self, seq: int):
         """Sets the seq of this MailLogEntry.
 
-        index of email in the to adderess list  # noqa: E501
+        Sequence index of this recipient in a multi-recipient message. Starts at 1.  # noqa: E501
 
         :param seq: The seq of this MailLogEntry.
         :type seq: int
         """
-        if seq is None:
-            raise ValueError("Invalid value for `seq`, must not be `None`")  # noqa: E501
 
         self._seq = seq
 
     @property
-    def recipient(self) -> str:
-        """Gets the recipient of this MailLogEntry.
+    def delivered(self) -> int:
+        """Gets the delivered of this MailLogEntry.
 
-        to address this email is being sent to  # noqa: E501
+        Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.  # noqa: E501
 
-        :return: The recipient of this MailLogEntry.
-        :rtype: str
-        """
-        return self._recipient
-
-    @recipient.setter
-    def recipient(self, recipient: str):
-        """Sets the recipient of this MailLogEntry.
-
-        to address this email is being sent to  # noqa: E501
-
-        :param recipient: The recipient of this MailLogEntry.
-        :type recipient: str
-        """
-        if recipient is None:
-            raise ValueError("Invalid value for `recipient`, must not be `None`")  # noqa: E501
-
-        self._recipient = recipient
-
-    @property
-    def domain(self) -> str:
-        """Gets the domain of this MailLogEntry.
-
-        to address domain  # noqa: E501
-
-        :return: The domain of this MailLogEntry.
-        :rtype: str
-        """
-        return self._domain
-
-    @domain.setter
-    def domain(self, domain: str):
-        """Sets the domain of this MailLogEntry.
-
-        to address domain  # noqa: E501
-
-        :param domain: The domain of this MailLogEntry.
-        :type domain: str
-        """
-        if domain is None:
-            raise ValueError("Invalid value for `domain`, must not be `None`")  # noqa: E501
-
-        self._domain = domain
-
-    @property
-    def locked(self) -> int:
-        """Gets the locked of this MailLogEntry.
-
-        locked status  # noqa: E501
-
-        :return: The locked of this MailLogEntry.
+        :return: The delivered of this MailLogEntry.
         :rtype: int
         """
-        return self._locked
+        return self._delivered
 
-    @locked.setter
-    def locked(self, locked: int):
-        """Sets the locked of this MailLogEntry.
+    @delivered.setter
+    def delivered(self, delivered: int):
+        """Sets the delivered of this MailLogEntry.
 
-        locked status  # noqa: E501
+        Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.  # noqa: E501
 
-        :param locked: The locked of this MailLogEntry.
-        :type locked: int
+        :param delivered: The delivered of this MailLogEntry.
+        :type delivered: int
         """
-        if locked is None:
-            raise ValueError("Invalid value for `locked`, must not be `None`")  # noqa: E501
 
-        self._locked = locked
-
-    @property
-    def lock_time(self) -> str:
-        """Gets the lock_time of this MailLogEntry.
-
-        lock timestamp  # noqa: E501
-
-        :return: The lock_time of this MailLogEntry.
-        :rtype: str
-        """
-        return self._lock_time
-
-    @lock_time.setter
-    def lock_time(self, lock_time: str):
-        """Sets the lock_time of this MailLogEntry.
-
-        lock timestamp  # noqa: E501
-
-        :param lock_time: The lock_time of this MailLogEntry.
-        :type lock_time: str
-        """
-        if lock_time is None:
-            raise ValueError("Invalid value for `lock_time`, must not be `None`")  # noqa: E501
-
-        self._lock_time = lock_time
-
-    @property
-    def assigned(self) -> str:
-        """Gets the assigned of this MailLogEntry.
-
-        assigned server  # noqa: E501
-
-        :return: The assigned of this MailLogEntry.
-        :rtype: str
-        """
-        return self._assigned
-
-    @assigned.setter
-    def assigned(self, assigned: str):
-        """Sets the assigned of this MailLogEntry.
-
-        assigned server  # noqa: E501
-
-        :param assigned: The assigned of this MailLogEntry.
-        :type assigned: str
-        """
-        if assigned is None:
-            raise ValueError("Invalid value for `assigned`, must not be `None`")  # noqa: E501
-
-        self._assigned = assigned
-
-    @property
-    def queued(self) -> str:
-        """Gets the queued of this MailLogEntry.
-
-        queued timestamp  # noqa: E501
-
-        :return: The queued of this MailLogEntry.
-        :rtype: str
-        """
-        return self._queued
-
-    @queued.setter
-    def queued(self, queued: str):
-        """Sets the queued of this MailLogEntry.
-
-        queued timestamp  # noqa: E501
-
-        :param queued: The queued of this MailLogEntry.
-        :type queued: str
-        """
-        if queued is None:
-            raise ValueError("Invalid value for `queued`, must not be `None`")  # noqa: E501
-
-        self._queued = queued
-
-    @property
-    def mx_hostname(self) -> str:
-        """Gets the mx_hostname of this MailLogEntry.
-
-        mx hostname  # noqa: E501
-
-        :return: The mx_hostname of this MailLogEntry.
-        :rtype: str
-        """
-        return self._mx_hostname
-
-    @mx_hostname.setter
-    def mx_hostname(self, mx_hostname: str):
-        """Sets the mx_hostname of this MailLogEntry.
-
-        mx hostname  # noqa: E501
-
-        :param mx_hostname: The mx_hostname of this MailLogEntry.
-        :type mx_hostname: str
-        """
-        if mx_hostname is None:
-            raise ValueError("Invalid value for `mx_hostname`, must not be `None`")  # noqa: E501
-
-        self._mx_hostname = mx_hostname
+        self._delivered = delivered
 
     @property
     def response(self) -> str:
         """Gets the response of this MailLogEntry.
 
-        mail delivery response  # noqa: E501
+        The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).  # noqa: E501
 
         :return: The response of this MailLogEntry.
         :rtype: str
@@ -713,12 +558,171 @@ class MailLogEntry(Model):
     def response(self, response: str):
         """Sets the response of this MailLogEntry.
 
-        mail delivery response  # noqa: E501
+        The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).  # noqa: E501
 
         :param response: The response of this MailLogEntry.
         :type response: str
         """
-        if response is None:
-            raise ValueError("Invalid value for `response`, must not be `None`")  # noqa: E501
 
         self._response = response
+
+    @property
+    def recipient(self) -> str:
+        """Gets the recipient of this MailLogEntry.
+
+        The specific recipient address this delivery record is for.  # noqa: E501
+
+        :return: The recipient of this MailLogEntry.
+        :rtype: str
+        """
+        return self._recipient
+
+    @recipient.setter
+    def recipient(self, recipient: str):
+        """Sets the recipient of this MailLogEntry.
+
+        The specific recipient address this delivery record is for.  # noqa: E501
+
+        :param recipient: The recipient of this MailLogEntry.
+        :type recipient: str
+        """
+
+        self._recipient = recipient
+
+    @property
+    def domain(self) -> str:
+        """Gets the domain of this MailLogEntry.
+
+        The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.  # noqa: E501
+
+        :return: The domain of this MailLogEntry.
+        :rtype: str
+        """
+        return self._domain
+
+    @domain.setter
+    def domain(self, domain: str):
+        """Sets the domain of this MailLogEntry.
+
+        The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.  # noqa: E501
+
+        :param domain: The domain of this MailLogEntry.
+        :type domain: str
+        """
+
+        self._domain = domain
+
+    @property
+    def locked(self) -> int:
+        """Gets the locked of this MailLogEntry.
+
+        Whether the queue entry is currently locked for delivery processing.  # noqa: E501
+
+        :return: The locked of this MailLogEntry.
+        :rtype: int
+        """
+        return self._locked
+
+    @locked.setter
+    def locked(self, locked: int):
+        """Sets the locked of this MailLogEntry.
+
+        Whether the queue entry is currently locked for delivery processing.  # noqa: E501
+
+        :param locked: The locked of this MailLogEntry.
+        :type locked: int
+        """
+
+        self._locked = locked
+
+    @property
+    def lock_time(self) -> str:
+        """Gets the lock_time of this MailLogEntry.
+
+        Millisecond-precision timestamp of the last queue lock acquisition.  # noqa: E501
+
+        :return: The lock_time of this MailLogEntry.
+        :rtype: str
+        """
+        return self._lock_time
+
+    @lock_time.setter
+    def lock_time(self, lock_time: str):
+        """Sets the lock_time of this MailLogEntry.
+
+        Millisecond-precision timestamp of the last queue lock acquisition.  # noqa: E501
+
+        :param lock_time: The lock_time of this MailLogEntry.
+        :type lock_time: str
+        """
+
+        self._lock_time = lock_time
+
+    @property
+    def assigned(self) -> str:
+        """Gets the assigned of this MailLogEntry.
+
+        The relay server node assigned to deliver this message.  # noqa: E501
+
+        :return: The assigned of this MailLogEntry.
+        :rtype: str
+        """
+        return self._assigned
+
+    @assigned.setter
+    def assigned(self, assigned: str):
+        """Sets the assigned of this MailLogEntry.
+
+        The relay server node assigned to deliver this message.  # noqa: E501
+
+        :param assigned: The assigned of this MailLogEntry.
+        :type assigned: str
+        """
+
+        self._assigned = assigned
+
+    @property
+    def queued(self) -> str:
+        """Gets the queued of this MailLogEntry.
+
+        ISO 8601 timestamp when the message was placed into the delivery queue.  # noqa: E501
+
+        :return: The queued of this MailLogEntry.
+        :rtype: str
+        """
+        return self._queued
+
+    @queued.setter
+    def queued(self, queued: str):
+        """Sets the queued of this MailLogEntry.
+
+        ISO 8601 timestamp when the message was placed into the delivery queue.  # noqa: E501
+
+        :param queued: The queued of this MailLogEntry.
+        :type queued: str
+        """
+
+        self._queued = queued
+
+    @property
+    def mx_hostname(self) -> str:
+        """Gets the mx_hostname of this MailLogEntry.
+
+        The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.  # noqa: E501
+
+        :return: The mx_hostname of this MailLogEntry.
+        :rtype: str
+        """
+        return self._mx_hostname
+
+    @mx_hostname.setter
+    def mx_hostname(self, mx_hostname: str):
+        """Sets the mx_hostname of this MailLogEntry.
+
+        The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.  # noqa: E501
+
+        :param mx_hostname: The mx_hostname of this MailLogEntry.
+        :type mx_hostname: str
+        """
+
+        self._mx_hostname = mx_hostname

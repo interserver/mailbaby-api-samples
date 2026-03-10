@@ -1,7 +1,7 @@
 /*
  * MailAttachment.h
  *
- * (optional) File attachments to include in the email.  The file contents must be base64
+ * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
  */
 
 #ifndef _MailAttachment_H_
@@ -9,6 +9,7 @@
 
 
 #include <string>
+#include "ByteArray.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -20,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief (optional) File attachments to include in the email.  The file contents must be base64
+/*! \brief A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
  *
  *  \ingroup Models
  *
@@ -45,24 +46,24 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get The filename of the attached file.
+	/*! \brief Get The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
 	 */
 	std::string getFilename();
 
-	/*! \brief Set The filename of the attached file.
+	/*! \brief Set The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
 	 */
 	void setFilename(std::string  filename);
-	/*! \brief Get The file contents base64 encoded
+	/*! \brief Get The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 	 */
-	std::string getData();
+	ByteArray getData();
 
-	/*! \brief Set The file contents base64 encoded
+	/*! \brief Set The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 	 */
-	void setData(std::string  data);
+	void setData(ByteArray  data);
 
 private:
 	std::string filename;
-	std::string data;
+	ByteArray data;
 	void __init();
 	void __cleanup();
 

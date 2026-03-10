@@ -24,7 +24,7 @@ void
 SendMailRaw::__init()
 {
 	//raw_email = std::string();
-	//id = int(0);
+	//id = long(0);
 }
 
 void
@@ -64,8 +64,8 @@ SendMailRaw::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("int")) {
-			jsonToValue(&id, node, "int", "");
+		if (isprimitive("long long")) {
+			jsonToValue(&id, node, "long long", "");
 		} else {
 			
 		}
@@ -91,9 +91,9 @@ SendMailRaw::toJson()
 	}
 	const gchar *raw_emailKey = "raw_email";
 	json_object_set_member(pJsonObject, raw_emailKey, node);
-	if (isprimitive("int")) {
-		int obj = getId();
-		node = converttoJson(&obj, "int", "");
+	if (isprimitive("long long")) {
+		long long obj = getId();
+		node = converttoJson(&obj, "long long", "");
 	}
 	else {
 		
@@ -120,14 +120,14 @@ SendMailRaw::setRawEmail(std::string  raw_email)
 	this->raw_email = raw_email;
 }
 
-int
+long long
 SendMailRaw::getId()
 {
 	return id;
 }
 
 void
-SendMailRaw::setId(int  id)
+SendMailRaw::setId(long long  id)
 {
 	this->id = id;
 }

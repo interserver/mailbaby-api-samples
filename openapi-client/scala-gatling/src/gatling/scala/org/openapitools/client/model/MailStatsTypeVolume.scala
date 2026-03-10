@@ -3,9 +3,12 @@ package org.openapitools.client.model
 
 
 case class MailStatsTypeVolume (
-    _to: Option[MailStatsTypeVolumeTo],
-    _from: Option[MailStatsTypeVolumeFrom],
-    _ip: Option[MailStatsTypeVolumeIp]
+    /* Message counts keyed by destination (envelope `to`) email address. */
+    _to: Option[Map[String, Integer]],
+    /* Message counts keyed by sender (envelope `from`) email address. */
+    _from: Option[Map[String, Integer]],
+    /* Message counts keyed by originating client IP address. */
+    _ip: Option[Map[String, Integer]]
 )
 object MailStatsTypeVolume {
     def toStringBody(var_to: Object, var_from: Object, var_ip: Object) =

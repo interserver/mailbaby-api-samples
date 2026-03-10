@@ -75,6 +75,18 @@ using namespace Tiny;
             std::string mailid
             , 
             
+            std::string messageId
+            , 
+            
+            std::string replyto
+            , 
+            
+            std::string headerfrom
+            , 
+            
+            int delivered
+            , 
+            
             int skip
             , 
             
@@ -85,15 +97,6 @@ using namespace Tiny;
             , 
             
             long endDate
-            , 
-            
-            std::string replyto
-            , 
-            
-            std::string headerfrom
-            , 
-            
-            std::string delivered
             
         )
         {
@@ -102,7 +105,7 @@ using namespace Tiny;
 
             // Headers  | 
 
-            // Query    | id origin mx from to subject mailid skip limit startDate endDate replyto headerfrom delivered 
+            // Query    | id origin mx from to subject mailid messageId replyto headerfrom delivered skip limit startDate endDate 
             addQueryParam("id",id);
             addQueryParam("origin",origin);
             addQueryParam("mx",mx);
@@ -110,13 +113,14 @@ using namespace Tiny;
             addQueryParam("to",to);
             addQueryParam("subject",subject);
             addQueryParam("mailid",mailid);
+            addQueryParam("messageId",messageId);
+            addQueryParam("replyto",replyto);
+            addQueryParam("headerfrom",headerfrom);
+            addQueryParam("delivered",delivered);
             addQueryParam("skip",skip);
             addQueryParam("limit",limit);
             addQueryParam("startDate",startDate);
             addQueryParam("endDate",endDate);
-            addQueryParam("replyto",replyto);
-            addQueryParam("headerfrom",headerfrom);
-            addQueryParam("delivered",delivered);
 
             // Form     | 
 

@@ -36,32 +36,28 @@ open class HistoryAPI {
         case month = "month"
         case _7d = "7d"
         case _24h = "24h"
-        case _1d = "1d"
+        case day = "day"
         case _1h = "1h"
     }
     public enum GetStatsError: Error, CustomStringConvertible {
-        // Unauthorized
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
         case code401Error(ErrorMessage)
-        // Unauthorized
-        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code401Error(let object):
-                return "GetStatsError: Unauthorized: \(object)"
-            case .code404Error(let object):
-                return "GetStatsError: Unauthorized: \(object)"
+                return "GetStatsError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             }
         }
     }
 
-    /// Account usage statistics.
+    /// Account usage statistics
     /// - GET /mail/stats
-    /// - Returns information about the usage on your mail accounts.
+    /// - Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
-    /// - parameter time: (query) The timeframe for the statistics. (optional)
+    /// - parameter time: (query) The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;. (optional, default to ._1h)
     /// - returns: AnyPublisher<MailStatsType, Error> 
     open func getStats(time: GetStatsTime? = nil) -> AnyPublisher<MailStatsType, Error> {
         Deferred {
@@ -93,14 +89,6 @@ open class HistoryAPI {
                             return error
                         }
                     }
-                    if transportError.statusCode == 404 {
-                        do {
-                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
-                            return GetStatsError.code404Error(error)
-                        } catch {
-                            return error
-                        }
-                    }
                     return transportError
                 }
                 .tryMap { response in
@@ -113,44 +101,49 @@ open class HistoryAPI {
     ///
     /// Enum for parameter delivered
     ///
-    public enum ViewMailLogDelivered: String, Codable, CaseIterable {
-        case _0 = "0"
-        case _1 = "1"
+    public enum ViewMailLogDelivered: Int, Codable, CaseIterable {
+        case _0 = 0
+        case _1 = 1
     }
     public enum ViewMailLogError: Error, CustomStringConvertible {
-        // bad input parameter
-        case code400Error
+        // Bad request — one or more input parameters were missing or invalid.
+        case code400Error(ErrorMessage)
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
+        case code401Error(ErrorMessage)
 
         public var description: String {
             switch self {
-            case .code400Error:
-                return "ViewMailLogError: bad input parameter"
+            case .code400Error(let object):
+                return "ViewMailLogError: Bad request — one or more input parameters were missing or invalid.: \(object)"
+            case .code401Error(let object):
+                return "ViewMailLogError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             }
         }
     }
 
-    /// displays the mail log
+    /// Displays the mail log
     /// - GET /mail/log
-    /// - Get a listing of the emails sent through this system 
+    /// - Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
-    /// - parameter id: (query) The ID of your mail order this will be sent through. (optional)
-    /// - parameter origin: (query) originating ip address sending mail (optional)
-    /// - parameter mx: (query) mx record mail was sent to (optional)
-    /// - parameter from: (query) from email address (optional)
-    /// - parameter to: (query) to/destination email address (optional)
-    /// - parameter subject: (query) subject containing this string (optional)
-    /// - parameter mailid: (query) mail id (optional)
-    /// - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
-    /// - parameter limit: (query) maximum number of records to return (optional, default to 100)
-    /// - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
-    /// - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
-    /// - parameter replyto: (query) Reply-To Email Address (optional)
-    /// - parameter headerfrom: (query) Header From Email Address (optional)
-    /// - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
+    /// - parameter id: (query) The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/{id}&#x60;. (optional)
+    /// - parameter origin: (query) Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
+    /// - parameter mx: (query) Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response. (optional)
+    /// - parameter from: (query) Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;. (optional)
+    /// - parameter to: (query) Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved. (optional)
+    /// - parameter subject: (query) Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text. (optional)
+    /// - parameter mailid: (query) Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;. (optional)
+    /// - parameter messageId: (query) Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;. (optional)
+    /// - parameter replyto: (query) Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set. (optional)
+    /// - parameter headerfrom: (query) Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address. (optional)
+    /// - parameter delivered: (query) Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
+    /// - parameter skip: (query) Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). (optional, default to 0)
+    /// - parameter limit: (query) Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. (optional, default to 100)
+    /// - parameter startDate: (query) Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. (optional)
+    /// - parameter endDate: (query) Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. (optional)
     /// - returns: AnyPublisher<MailLog, Error> 
-    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil) -> AnyPublisher<MailLog, Error> {
+    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> AnyPublisher<MailLog, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -167,13 +160,14 @@ open class HistoryAPI {
                 if let to = to { queryItems.append(URLQueryItem(name: "to", value: to)) } 
                 if let subject = subject { queryItems.append(URLQueryItem(name: "subject", value: subject)) } 
                 if let mailid = mailid { queryItems.append(URLQueryItem(name: "mailid", value: mailid)) } 
+                if let messageId = messageId { queryItems.append(URLQueryItem(name: "messageId", value: messageId)) } 
+                if let replyto = replyto { queryItems.append(URLQueryItem(name: "replyto", value: replyto)) } 
+                if let headerfrom = headerfrom { queryItems.append(URLQueryItem(name: "headerfrom", value: headerfrom)) } 
+                if let delivered = delivered { queryItems.append(URLQueryItem(name: "delivered", value: delivered.rawValue)) } 
                 if let skip = skip { queryItems.append(URLQueryItem(name: "skip", value: "\(skip)")) } 
                 if let limit = limit { queryItems.append(URLQueryItem(name: "limit", value: "\(limit)")) } 
                 if let startDate = startDate { queryItems.append(URLQueryItem(name: "startDate", value: "\(startDate)")) } 
                 if let endDate = endDate { queryItems.append(URLQueryItem(name: "endDate", value: "\(endDate)")) } 
-                if let replyto = replyto { queryItems.append(URLQueryItem(name: "replyto", value: replyto)) } 
-                if let headerfrom = headerfrom { queryItems.append(URLQueryItem(name: "headerfrom", value: headerfrom)) } 
-                if let delivered = delivered { queryItems.append(URLQueryItem(name: "delivered", value: delivered.rawValue)) } 
                 components?.queryItems = queryItems
                 guard let requestURL = components?.url else {
                     throw OpenAPITransportError.badURLError()
@@ -186,7 +180,20 @@ open class HistoryAPI {
             return self.transport.send(request: request)
                 .mapError { transportError -> Error in 
                     if transportError.statusCode == 400 {
-                        return ViewMailLogError.code400Error
+                        do {
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
+                            return ViewMailLogError.code400Error(error)
+                        } catch {
+                            return error
+                        }
+                    }
+                    if transportError.statusCode == 401 {
+                        do {
+                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
+                            return ViewMailLogError.code401Error(error)
+                        } catch {
+                            return error
+                        }
                     }
                     return transportError
                 }

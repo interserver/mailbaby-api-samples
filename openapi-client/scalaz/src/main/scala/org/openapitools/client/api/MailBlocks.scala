@@ -12,9 +12,12 @@ import org.joda.time.DateTime
 import MailBlocks._
 
 case class MailBlocks (
+  /* Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list. */
   local: List[MailBlockClickHouse],
-mbtrap: List[MailBlockClickHouse],
-subject: List[MailBlockRspamd])
+/* Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection. */
+  mbtrap: List[MailBlockClickHouse],
+/* Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days. */
+  subject: List[MailBlockRspamd])
 
 object MailBlocks {
   import DateTimeCodecs._

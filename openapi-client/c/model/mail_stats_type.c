@@ -5,13 +5,13 @@
 
 
 char* mail_stats_type_time_ToString(mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time) {
-    char* timeArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "today", "1h" };
+    char* timeArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "day", "1h" };
     return timeArray[time];
 }
 
 mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e mail_stats_type_time_FromString(char* time){
     int stringToReturn = 0;
-    char *timeArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "today", "1h" };
+    char *timeArray[] =  { "NULL", "all", "billing", "month", "7d", "24h", "day", "1h" };
     size_t sizeofArray = sizeof(timeArray) / sizeof(timeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(time, timeArray[stringToReturn]) == 0) {
@@ -26,7 +26,6 @@ static mail_stats_type_t *mail_stats_type_create_internal(
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time,
     int usage,
     char *currency,
-    char *currency_symbol,
     double cost,
     int received,
     int sent,
@@ -39,7 +38,6 @@ static mail_stats_type_t *mail_stats_type_create_internal(
     mail_stats_type_local_var->time = time;
     mail_stats_type_local_var->usage = usage;
     mail_stats_type_local_var->currency = currency;
-    mail_stats_type_local_var->currency_symbol = currency_symbol;
     mail_stats_type_local_var->cost = cost;
     mail_stats_type_local_var->received = received;
     mail_stats_type_local_var->sent = sent;
@@ -53,7 +51,6 @@ __attribute__((deprecated)) mail_stats_type_t *mail_stats_type_create(
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time,
     int usage,
     char *currency,
-    char *currency_symbol,
     double cost,
     int received,
     int sent,
@@ -63,7 +60,6 @@ __attribute__((deprecated)) mail_stats_type_t *mail_stats_type_create(
         time,
         usage,
         currency,
-        currency_symbol,
         cost,
         received,
         sent,
@@ -83,10 +79,6 @@ void mail_stats_type_free(mail_stats_type_t *mail_stats_type) {
     if (mail_stats_type->currency) {
         free(mail_stats_type->currency);
         mail_stats_type->currency = NULL;
-    }
-    if (mail_stats_type->currency_symbol) {
-        free(mail_stats_type->currency_symbol);
-        mail_stats_type->currency_symbol = NULL;
     }
     if (mail_stats_type->volume) {
         mail_stats_type_volume_free(mail_stats_type->volume);
@@ -118,14 +110,6 @@ cJSON *mail_stats_type_convertToJSON(mail_stats_type_t *mail_stats_type) {
     // mail_stats_type->currency
     if(mail_stats_type->currency) {
     if(cJSON_AddStringToObject(item, "currency", mail_stats_type->currency) == NULL) {
-    goto fail; //String
-    }
-    }
-
-
-    // mail_stats_type->currency_symbol
-    if(mail_stats_type->currency_symbol) {
-    if(cJSON_AddStringToObject(item, "currencySymbol", mail_stats_type->currency_symbol) == NULL) {
     goto fail; //String
     }
     }
@@ -220,18 +204,6 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
     }
     }
 
-    // mail_stats_type->currency_symbol
-    cJSON *currency_symbol = cJSON_GetObjectItemCaseSensitive(mail_stats_typeJSON, "currencySymbol");
-    if (cJSON_IsNull(currency_symbol)) {
-        currency_symbol = NULL;
-    }
-    if (currency_symbol) { 
-    if(!cJSON_IsString(currency_symbol) && !cJSON_IsNull(currency_symbol))
-    {
-    goto end; //String
-    }
-    }
-
     // mail_stats_type->cost
     cJSON *cost = cJSON_GetObjectItemCaseSensitive(mail_stats_typeJSON, "cost");
     if (cJSON_IsNull(cost)) {
@@ -282,7 +254,6 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
         time ? timeVariable : mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_NULL,
         usage ? usage->valuedouble : 0,
         currency && !cJSON_IsNull(currency) ? strdup(currency->valuestring) : NULL,
-        currency_symbol && !cJSON_IsNull(currency_symbol) ? strdup(currency_symbol->valuestring) : NULL,
         cost ? cost->valuedouble : 0,
         received ? received->valuedouble : 0,
         sent ? sent->valuedouble : 0,

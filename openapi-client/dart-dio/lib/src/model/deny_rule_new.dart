@@ -9,12 +9,12 @@ import 'package:built_value/serializer.dart';
 
 part 'deny_rule_new.g.dart';
 
-/// The data for a email deny rule record.
+/// The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
 ///
 /// Properties:
 /// * [type] - The type of deny rule.
-/// * [data] - The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-/// * [user] - Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+/// * [data] - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+/// * [user] - Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 @BuiltValue(instantiable: false)
 abstract class DenyRuleNew  {
   /// The type of deny rule.
@@ -22,11 +22,11 @@ abstract class DenyRuleNew  {
   DenyRuleNewTypeEnum get type;
   // enum typeEnum {  domain,  email,  startswith,  destination,  };
 
-  /// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+  /// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
   @BuiltValueField(wireName: r'data')
   String get data;
 
-  /// Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+  /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
   @BuiltValueField(wireName: r'user')
   String? get user;
 

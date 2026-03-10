@@ -3,17 +3,18 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.openapitools.model.SendMailTo;
 
 @Canonical
 class SendMail {
-    /* The Contact whom is the primary recipient of this email. */
-    String to
-    /* The contact whom is the this email is from. */
+    
+    SendMailTo to
+    /* The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. */
     String from
-    /* The subject or title of the email */
+    /* The subject line of the email. */
     String subject
-    /* The main email contents. */
+    /* The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. */
     String body
-    /* Optional Order ID */
-    Integer id
+    /* Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. */
+    Long id
 }

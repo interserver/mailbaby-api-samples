@@ -1,7 +1,7 @@
 /*
  * deny_rule_record.h
  *
- * The data for a email deny rule record.
+ * A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;.
  */
 
 #ifndef _deny_rule_record_H_

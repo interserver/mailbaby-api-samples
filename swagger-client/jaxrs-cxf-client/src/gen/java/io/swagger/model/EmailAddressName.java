@@ -15,9 +15,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
-  * An email contact.
+  * An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
  **/
-@Schema(description="An email contact.")
+@Schema(description="An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.")
 public class EmailAddressName  implements EmailAddressTypes  {
   
   @Schema(example = "user@domain.com", required = true, description = "The email address.")
@@ -26,9 +26,9 @@ public class EmailAddressName  implements EmailAddressTypes  {
   **/
   private String email = null;
   
-  @Schema(example = "John Smith", description = "Name to use for the sending contact.")
+  @Schema(example = "John Smith", description = "Optional display name shown to recipients (e.g. in the `From:` header).")
  /**
-   * Name to use for the sending contact.  
+   * Optional display name shown to recipients (e.g. in the `From:` header).  
   **/
   private String name = null;
  /**
@@ -50,7 +50,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
   }
 
  /**
-   * Name to use for the sending contact.
+   * Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
    * @return name
   **/
   @JsonProperty("name")

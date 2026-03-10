@@ -1,23 +1,32 @@
 const utils = require('../utils/utils');
-const MailStatsType_volume_from = require('../models/MailStatsType_volume_from');
-const MailStatsType_volume_ip = require('../models/MailStatsType_volume_ip');
-const MailStatsType_volume_to = require('../models/MailStatsType_volume_to');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
-            ...MailStatsType_volume_to.fields(`${keyPrefix}to`, isInput),
-            ...MailStatsType_volume_from.fields(`${keyPrefix}from`, isInput),
-            ...MailStatsType_volume_ip.fields(`${keyPrefix}ip`, isInput),
+            {
+                key: `${keyPrefix}to`,
+                label: `Message counts keyed by destination (envelope `to`) email address. - [${labelPrefix}to]`,
+                type: 'object',
+            },
+            {
+                key: `${keyPrefix}from`,
+                label: `Message counts keyed by sender (envelope `from`) email address. - [${labelPrefix}from]`,
+                type: 'object',
+            },
+            {
+                key: `${keyPrefix}ip`,
+                label: `Message counts keyed by originating client IP address. - [${labelPrefix}ip]`,
+                type: 'object',
+            },
         ]
     },
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'to': utils.removeIfEmpty(MailStatsType_volume_to.mapping(bundle, `${keyPrefix}to`)),
-            'from': utils.removeIfEmpty(MailStatsType_volume_from.mapping(bundle, `${keyPrefix}from`)),
-            'ip': utils.removeIfEmpty(MailStatsType_volume_ip.mapping(bundle, `${keyPrefix}ip`)),
+            'to': bundle.inputData?.[`${keyPrefix}to`],
+            'from': bundle.inputData?.[`${keyPrefix}from`],
+            'ip': bundle.inputData?.[`${keyPrefix}ip`],
         }
     },
 }

@@ -8,16 +8,18 @@ import 'package:built_value/serializer.dart';
 
 part 'mail_block_rspamd.g.dart';
 
-/// This is a block entry from the rspamd block list.
+/// A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 ///
 /// Properties:
-/// * [from] 
-/// * [subject] 
+/// * [from] - The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
+/// * [subject] - The suspicious subject pattern that triggered the block.
 @BuiltValue()
 abstract class MailBlockRspamd implements Built<MailBlockRspamd, MailBlockRspamdBuilder> {
+  /// The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
   @BuiltValueField(wireName: r'from')
   String get from;
 
+  /// The suspicious subject pattern that triggered the block.
   @BuiltValueField(wireName: r'subject')
   String get subject;
 

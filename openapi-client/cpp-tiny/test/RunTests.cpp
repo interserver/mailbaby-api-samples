@@ -5,6 +5,8 @@
 
 #include "EmailAddressNameTest.cpp"
 
+#include "EmailAddressParamTest.cpp"
+
 #include "EmailAddressTypesTest.cpp"
 
 #include "EmailAddressesTypesTest.cpp"
@@ -27,21 +29,19 @@
 
 #include "MailOrderTest.cpp"
 
+#include "MailOrderDetailTest.cpp"
+
 #include "MailStatsTypeTest.cpp"
 
 #include "MailStatsType_volumeTest.cpp"
-
-#include "MailStatsType_volume_fromTest.cpp"
-
-#include "MailStatsType_volume_ipTest.cpp"
-
-#include "MailStatsType_volume_toTest.cpp"
 
 #include "SendMailTest.cpp"
 
 #include "SendMailAdvTest.cpp"
 
 #include "SendMailRawTest.cpp"
+
+#include "SendMail_toTest.cpp"
 
 
 
@@ -85,6 +85,10 @@ void runTests(){
     
     
     
+    RUN_TEST(test_EmailAddressParam_email_is_assigned_from_json);
+    
+    
+    
     RUN_TEST(test_EmailAddressTypes_email_is_assigned_from_json);
     
     
@@ -110,21 +114,19 @@ void runTests(){
     RUN_TEST(test_MailAttachment_filename_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailAttachment_data_is_assigned_from_json);
-    
     
     
     
     RUN_TEST(test_MailBlockClickHouse_from_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailBlockClickHouse_messageId_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailBlockClickHouse_subject_is_assigned_from_json);
     
     
     RUN_TEST(test_MailBlockClickHouse_to_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_messageId_is_assigned_from_json);
     
     
     
@@ -162,9 +164,6 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_to_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_subject_is_assigned_from_json);
-    
-    
     RUN_TEST(test_MailLogEntry_created_is_assigned_from_json);
     
     
@@ -183,6 +182,12 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_interface_is_assigned_from_json);
     
     
+    RUN_TEST(test_MailLogEntry_subject_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_messageId_is_assigned_from_json);
+    
+    
     RUN_TEST(test_MailLogEntry_sendingZone_is_assigned_from_json);
     
     
@@ -190,6 +195,12 @@ void runTests(){
     
     
     RUN_TEST(test_MailLogEntry_seq_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_delivered_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_response_is_assigned_from_json);
     
     
     RUN_TEST(test_MailLogEntry_recipient_is_assigned_from_json);
@@ -213,12 +224,6 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_mxHostname_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailLogEntry_response_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_messageId_is_assigned_from_json);
-    
-    
     
     RUN_TEST(test_MailOrder_id_is_assigned_from_json);
     
@@ -233,6 +238,22 @@ void runTests(){
     
     
     
+    RUN_TEST(test_MailOrderDetail_id_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_status_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_username_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_password_is_assigned_from_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_comment_is_assigned_from_json);
+    
+    
+    
     RUN_TEST(test_MailStatsType_time_is_assigned_from_json);
     
     
@@ -240,9 +261,6 @@ void runTests(){
     
     
     RUN_TEST(test_MailStatsType_currency_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_currencySymbol_is_assigned_from_json);
     
     
     RUN_TEST(test_MailStatsType_cost_is_assigned_from_json);
@@ -256,44 +274,15 @@ void runTests(){
     
     
     
+    RUN_TEST(test_MailStatsType_volume_to_is_assigned_from_json);
     
     
+    RUN_TEST(test_MailStatsType_volume_from_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_from_billingsomedomaincom_is_assigned_from_json);
+    RUN_TEST(test_MailStatsType_volume_ip_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_from_salessomedomaincom_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_1111_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_2222_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_3333_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_4444_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_clientdomaincom_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_usersitenet_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_salescompanycom_is_assigned_from_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_clientanothersitecom_is_assigned_from_json);
-    
-    
-    
-    RUN_TEST(test_SendMail_to_is_assigned_from_json);
     
     
     RUN_TEST(test_SendMail_from_is_assigned_from_json);
@@ -329,6 +318,7 @@ void runTests(){
     
     
     RUN_TEST(test_SendMailRaw_id_is_assigned_from_json);
+    
     
     
 
@@ -367,6 +357,10 @@ void runTests(){
     
     
     
+    RUN_TEST(test_EmailAddressParam_email_is_converted_to_json);
+    
+    
+    
     RUN_TEST(test_EmailAddressTypes_email_is_converted_to_json);
     
     
@@ -392,21 +386,19 @@ void runTests(){
     RUN_TEST(test_MailAttachment_filename_is_converted_to_json);
     
     
-    RUN_TEST(test_MailAttachment_data_is_converted_to_json);
-    
     
     
     
     RUN_TEST(test_MailBlockClickHouse_from_is_converted_to_json);
     
     
-    RUN_TEST(test_MailBlockClickHouse_messageId_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailBlockClickHouse_subject_is_converted_to_json);
     
     
     RUN_TEST(test_MailBlockClickHouse_to_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailBlockClickHouse_messageId_is_converted_to_json);
     
     
     
@@ -444,9 +436,6 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_to_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_subject_is_converted_to_json);
-    
-    
     RUN_TEST(test_MailLogEntry_created_is_converted_to_json);
     
     
@@ -465,6 +454,12 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_interface_is_converted_to_json);
     
     
+    RUN_TEST(test_MailLogEntry_subject_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_messageId_is_converted_to_json);
+    
+    
     RUN_TEST(test_MailLogEntry_sendingZone_is_converted_to_json);
     
     
@@ -472,6 +467,12 @@ void runTests(){
     
     
     RUN_TEST(test_MailLogEntry_seq_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_delivered_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailLogEntry_response_is_converted_to_json);
     
     
     RUN_TEST(test_MailLogEntry_recipient_is_converted_to_json);
@@ -495,12 +496,6 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_mxHostname_is_converted_to_json);
     
     
-    RUN_TEST(test_MailLogEntry_response_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailLogEntry_messageId_is_converted_to_json);
-    
-    
     
     RUN_TEST(test_MailOrder_id_is_converted_to_json);
     
@@ -515,6 +510,22 @@ void runTests(){
     
     
     
+    RUN_TEST(test_MailOrderDetail_id_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_status_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_username_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_password_is_converted_to_json);
+    
+    
+    RUN_TEST(test_MailOrderDetail_comment_is_converted_to_json);
+    
+    
+    
     RUN_TEST(test_MailStatsType_time_is_converted_to_json);
     
     
@@ -522,9 +533,6 @@ void runTests(){
     
     
     RUN_TEST(test_MailStatsType_currency_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_currencySymbol_is_converted_to_json);
     
     
     RUN_TEST(test_MailStatsType_cost_is_converted_to_json);
@@ -538,44 +546,15 @@ void runTests(){
     
     
     
+    RUN_TEST(test_MailStatsType_volume_to_is_converted_to_json);
     
     
+    RUN_TEST(test_MailStatsType_volume_from_is_converted_to_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_from_billingsomedomaincom_is_converted_to_json);
+    RUN_TEST(test_MailStatsType_volume_ip_is_converted_to_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_from_salessomedomaincom_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_1111_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_2222_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_3333_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_ip_4444_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_clientdomaincom_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_usersitenet_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_salescompanycom_is_converted_to_json);
-    
-    
-    RUN_TEST(test_MailStatsType_volume_to_clientanothersitecom_is_converted_to_json);
-    
-    
-    
-    RUN_TEST(test_SendMail_to_is_converted_to_json);
     
     
     RUN_TEST(test_SendMail_from_is_converted_to_json);
@@ -611,6 +590,7 @@ void runTests(){
     
     
     RUN_TEST(test_SendMailRaw_id_is_converted_to_json);
+    
     
     
 

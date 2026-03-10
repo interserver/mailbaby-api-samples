@@ -1,14 +1,14 @@
 #' Create a new MailBlockRspamd
 #'
 #' @description
-#' This is a block entry from the rspamd block list.
+#' A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 #'
 #' @docType class
 #' @title MailBlockRspamd
 #' @description MailBlockRspamd Class
 #' @format An \code{R6Class} generator object
-#' @field from  character
-#' @field subject  character
+#' @field from The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender. character
+#' @field subject The suspicious subject pattern that triggered the block. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,8 +21,8 @@ MailBlockRspamd <- R6::R6Class(
     #' @description
     #' Initialize a new MailBlockRspamd class.
     #'
-    #' @param from from
-    #' @param subject subject
+    #' @param from The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
+    #' @param subject The suspicious subject pattern that triggered the block.
     #' @param ... Other optional arguments.
     initialize = function(`from`, `subject`, ...) {
       if (!missing(`from`)) {

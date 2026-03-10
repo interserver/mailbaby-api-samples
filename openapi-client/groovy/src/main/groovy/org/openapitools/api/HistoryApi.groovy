@@ -36,7 +36,7 @@ class HistoryApi {
 
     }
 
-    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, Integer skip, Integer limit, Long startDate, Long endDate, String replyto, String headerfrom, String delivered, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, Long startDate, Long endDate, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params
@@ -68,6 +68,18 @@ class HistoryApi {
         if (mailid != null) {
             queryParams.put("mailid", mailid)
         }
+        if (messageId != null) {
+            queryParams.put("messageId", messageId)
+        }
+        if (replyto != null) {
+            queryParams.put("replyto", replyto)
+        }
+        if (headerfrom != null) {
+            queryParams.put("headerfrom", headerfrom)
+        }
+        if (delivered != null) {
+            queryParams.put("delivered", delivered)
+        }
         if (skip != null) {
             queryParams.put("skip", skip)
         }
@@ -79,15 +91,6 @@ class HistoryApi {
         }
         if (endDate != null) {
             queryParams.put("endDate", endDate)
-        }
-        if (replyto != null) {
-            queryParams.put("replyto", replyto)
-        }
-        if (headerfrom != null) {
-            queryParams.put("headerfrom", headerfrom)
-        }
-        if (delivered != null) {
-            queryParams.put("delivered", delivered)
         }
 
 

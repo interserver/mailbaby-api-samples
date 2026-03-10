@@ -7,7 +7,7 @@
 -type openapi_mail_block_click_house() ::
     #{ 'date' := calendar:date(),
        'from' := binary(),
-       'messageId' := binary(),
+       'messageId' => binary(),
        'subject' := binary(),
        'to' := binary()
      }.

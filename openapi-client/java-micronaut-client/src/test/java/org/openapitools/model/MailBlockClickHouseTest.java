@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import java.time.LocalDate;
+import org.openapitools.jackson.nullable.JsonNullable;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -37,14 +38,6 @@ public class MailBlockClickHouseTest {
     }
 
     /**
-     * Test the property 'messageId'
-     */
-    @Test
-    public void messageIdTest() {
-        // TODO: test messageId
-    }
-
-    /**
      * Test the property 'subject'
      */
     @Test
@@ -58,6 +51,14 @@ public class MailBlockClickHouseTest {
     @Test
     public void toTest() {
         // TODO: test to
+    }
+
+    /**
+     * Test the property 'messageId'
+     */
+    @Test
+    public void messageIdTest() {
+        // TODO: test messageId
     }
 
 }

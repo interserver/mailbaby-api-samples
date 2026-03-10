@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VarFrom** | **String** |  | 
-**Subject** | **String** |  | 
+**VarFrom** | **String** | The sender email address.  Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist the sender. | 
+**Subject** | **String** | The suspicious subject pattern that triggered the block. | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
-$MailBlockRspamd = Initialize-PSOpenAPIToolsMailBlockRspamd  -VarFrom null `
- -Subject null
+$MailBlockRspamd = Initialize-PSOpenAPIToolsMailBlockRspamd  -VarFrom user@domain.com `
+ -Subject Test email
 ```
 
 - Convert the resource to JSON

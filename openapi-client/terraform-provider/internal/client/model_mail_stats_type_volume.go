@@ -2,9 +2,9 @@
 
 package client
 
-// MailStatsTypeVolume - MailStatsTypeVolume struct
+// MailStatsTypeVolume - Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 type MailStatsTypeVolume struct {
-	To MailStatsTypeVolumeTo `json:"to,omitempty"`
-	From MailStatsTypeVolumeFrom `json:"from,omitempty"`
-	Ip MailStatsTypeVolumeIp `json:"ip,omitempty"`
+	To map[string]int32 `json:"to,omitempty"`
+	From map[string]int32 `json:"from,omitempty"`
+	Ip map[string]int32 `json:"ip,omitempty"`
 }

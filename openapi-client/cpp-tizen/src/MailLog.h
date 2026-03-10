@@ -1,7 +1,7 @@
 /*
  * MailLog.h
  *
- * Mail log records
+ * Paginated mail log response returned by &#x60;GET /mail/log&#x60;.  Contains the full matched count (&#x60;total&#x60;) plus a page of &#x60;MailLogEntry&#x60; records.  Use &#x60;skip&#x60; and &#x60;limit&#x60; to page through large result sets.
  */
 
 #ifndef _MailLog_H_
@@ -22,7 +22,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Mail log records
+/*! \brief Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.
  *
  *  \ingroup Models
  *
@@ -47,25 +47,25 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get total number of mail log entries
+	/*! \brief Get Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
 	 */
 	int getTotal();
 
-	/*! \brief Set total number of mail log entries
+	/*! \brief Set Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
 	 */
 	void setTotal(int  total);
-	/*! \brief Get number of emails skipped in listing
+	/*! \brief Get The `skip` value used for this page (echoed from the request).
 	 */
 	int getSkip();
 
-	/*! \brief Set number of emails skipped in listing
+	/*! \brief Set The `skip` value used for this page (echoed from the request).
 	 */
 	void setSkip(int  skip);
-	/*! \brief Get number of emails to return
+	/*! \brief Get The `limit` value used for this page (echoed from the request).
 	 */
 	int getLimit();
 
-	/*! \brief Set number of emails to return
+	/*! \brief Set The `limit` value used for this page (echoed from the request).
 	 */
 	void setLimit(int  limit);
 	/*! \brief Get 

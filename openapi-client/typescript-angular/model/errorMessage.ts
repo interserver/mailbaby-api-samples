@@ -10,15 +10,15 @@
 
 
 /**
- * The resposne when an error occurs.
+ * The response body returned when an error occurs.
  */
 export interface ErrorMessage { 
     /**
-     * The response code associated with the error.
+     * The HTTP-style status code associated with the error.
      */
     code: number;
     /**
-     * The details or description of the error.
+     * A human-readable description of the error.
      */
     message: string;
 }

@@ -38,7 +38,7 @@ public class PingApi  {
     
     
     
-    @Operation(summary = "Checks if the server is running", description = "", security = {
+    @Operation(summary = "Checks if the server is running", description = "A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. ", security = {
         @SecurityRequirement(name = "apiKeyAuth")
     }, tags={ "Status" })
     @ApiResponses(value = { 

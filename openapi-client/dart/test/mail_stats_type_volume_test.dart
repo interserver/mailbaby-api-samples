@@ -16,17 +16,20 @@ void main() {
   // final instance = MailStatsTypeVolume();
 
   group('test MailStatsTypeVolume', () {
-    // MailStatsTypeVolumeTo to
+    // Message counts keyed by destination (envelope `to`) email address.
+    // Map<String, int> to (default value: const {})
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // MailStatsTypeVolumeFrom from
+    // Message counts keyed by sender (envelope `from`) email address.
+    // Map<String, int> from (default value: const {})
     test('to test the property `from`', () async {
       // TODO
     });
 
-    // MailStatsTypeVolumeIp ip
+    // Message counts keyed by originating client IP address.
+    // Map<String, int> ip (default value: const {})
     test('to test the property `ip`', () async {
       // TODO
     });

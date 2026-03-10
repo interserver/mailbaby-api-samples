@@ -1,7 +1,7 @@
 ## SendingApi
 
-### Sends a raw email
-## Sends a raw email
+### Sends a raw RFC 822 email
+## Sends a raw RFC 822 email
 POST https://api.mailbaby.net/mail/rawsend
 Content-Type: application/json
 Content-Type: multipart/form-data

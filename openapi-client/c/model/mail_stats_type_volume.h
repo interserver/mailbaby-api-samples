@@ -1,7 +1,7 @@
 /*
  * mail_stats_type_volume.h
  *
- * 
+ * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window.
  */
 
 #ifndef _mail_stats_type_volume_H_
@@ -15,24 +15,21 @@
 
 typedef struct mail_stats_type_volume_t mail_stats_type_volume_t;
 
-#include "mail_stats_type_volume_from.h"
-#include "mail_stats_type_volume_ip.h"
-#include "mail_stats_type_volume_to.h"
 
 
 
 typedef struct mail_stats_type_volume_t {
-    struct mail_stats_type_volume_to_t *to; //model
-    struct mail_stats_type_volume_from_t *from; //model
-    struct mail_stats_type_volume_ip_t *ip; //model
+    list_t* to; //map
+    list_t* from; //map
+    list_t* ip; //map
 
     int _library_owned; // Is the library responsible for freeing this object?
 } mail_stats_type_volume_t;
 
 __attribute__((deprecated)) mail_stats_type_volume_t *mail_stats_type_volume_create(
-    mail_stats_type_volume_to_t *to,
-    mail_stats_type_volume_from_t *from,
-    mail_stats_type_volume_ip_t *ip
+    list_t* to,
+    list_t* from,
+    list_t* ip
 );
 
 void mail_stats_type_volume_free(mail_stats_type_volume_t *mail_stats_type_volume);

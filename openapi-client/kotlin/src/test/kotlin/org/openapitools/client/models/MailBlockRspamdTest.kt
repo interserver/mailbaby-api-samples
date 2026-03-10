@@ -25,13 +25,13 @@ class MailBlockRspamdTest : ShouldSpec() {
         // uncomment below to create an instance of MailBlockRspamd
         //val modelInstance = MailBlockRspamd()
 
-        // to test the property `from`
+        // to test the property `from` - The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
         should("test from") {
             // uncomment below to test the property
             //modelInstance.from shouldBe ("TODO")
         }
 
-        // to test the property `subject`
+        // to test the property `subject` - The suspicious subject pattern that triggered the block.
         should("test subject") {
             // uncomment below to test the property
             //modelInstance.subject shouldBe ("TODO")

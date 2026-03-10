@@ -19,28 +19,25 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.MailStatsTypeVolume
-import org.openapitools.client.models.MailStatsTypeVolumeFrom
-import org.openapitools.client.models.MailStatsTypeVolumeIp
-import org.openapitools.client.models.MailStatsTypeVolumeTo
 
 class MailStatsTypeVolumeTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of MailStatsTypeVolume
         //val modelInstance = MailStatsTypeVolume()
 
-        // to test the property `to`
+        // to test the property `to` - Message counts keyed by destination (envelope `to`) email address.
         should("test to") {
             // uncomment below to test the property
             //modelInstance.to shouldBe ("TODO")
         }
 
-        // to test the property `from`
+        // to test the property `from` - Message counts keyed by sender (envelope `from`) email address.
         should("test from") {
             // uncomment below to test the property
             //modelInstance.from shouldBe ("TODO")
         }
 
-        // to test the property `ip`
+        // to test the property `ip` - Message counts keyed by originating client IP address.
         should("test ip") {
             // uncomment below to test the property
             //modelInstance.ip shouldBe ("TODO")

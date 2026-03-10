@@ -16,24 +16,24 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
-  * The resposne when an error occurs.
+  * The response body returned when an error occurs.
  **/
-@Schema(description="The resposne when an error occurs.")
+@Schema(description="The response body returned when an error occurs.")
 public class ErrorMessage   {
   
-  @Schema(example = "400", required = true, description = "The response code associated with the error.")
+  @Schema(example = "400", required = true, description = "The HTTP-style status code associated with the error.")
  /**
-   * The response code associated with the error.  
+   * The HTTP-style status code associated with the error.  
   **/
   private Integer code = null;
   
-  @Schema(example = "There was an error.", required = true, description = "The details or description of the error.")
+  @Schema(example = "The specified ID was invalid.", required = true, description = "A human-readable description of the error.")
  /**
-   * The details or description of the error.  
+   * A human-readable description of the error.  
   **/
   private String message = null;
  /**
-   * The response code associated with the error.
+   * The HTTP-style status code associated with the error.
    * @return code
   **/
   @JsonProperty("code")
@@ -52,7 +52,7 @@ public class ErrorMessage   {
   }
 
  /**
-   * The details or description of the error.
+   * A human-readable description of the error.
    * @return message
   **/
   @JsonProperty("message")

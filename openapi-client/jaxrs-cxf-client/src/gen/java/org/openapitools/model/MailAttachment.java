@@ -7,27 +7,27 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * (optional) File attachments to include in the email.  The file contents must be base64
+ * A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
  */
-@ApiModel(description="(optional) File attachments to include in the email.  The file contents must be base64")
+@ApiModel(description="A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.")
 
 public class MailAttachment  {
   
  /**
-  * The filename of the attached file.
+  * The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
   */
-  @ApiModelProperty(example = "message.txt", required = true, value = "The filename of the attached file.")
+  @ApiModelProperty(example = "message.txt", required = true, value = "The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).")
 
   private String filename;
 
  /**
-  * The file contents base64 encoded
+  * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
   */
-  @ApiModelProperty(example = "aGVsbG8gdGhlcmUK", required = true, value = "The file contents base64 encoded")
+  @ApiModelProperty(example = "[B@10c72a6f", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
 
-  private String data;
+  private byte[] data;
  /**
-   * The filename of the attached file.
+   * The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;).
    * @return filename
   **/
   @JsonProperty("filename")
@@ -45,19 +45,19 @@ public class MailAttachment  {
   }
 
  /**
-   * The file contents base64 encoded
+   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
    * @return data
   **/
   @JsonProperty("data")
-  public String getData() {
+  public byte[] getData() {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(byte[] data) {
     this.data = data;
   }
 
-  public MailAttachment data(String data) {
+  public MailAttachment data(byte[] data) {
     this.data = data;
     return this;
   }

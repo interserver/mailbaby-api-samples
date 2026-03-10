@@ -2,7 +2,7 @@
 /*
  * EmailAddressTypes.h
  *
- * 
+ * A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a structured contact object.
  */
 
 #ifndef TINY_CPP_CLIENT_EmailAddressTypes_H_
@@ -17,7 +17,7 @@
 namespace Tiny {
 
 
-/*! \brief 
+/*! \brief A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
  *
  *  \ingroup Models
  *
@@ -53,11 +53,11 @@ public:
 	/*! \brief Set The email address.
 	 */
 	void setEmail(std::string email);
-	/*! \brief Get Name to use for the sending contact.
+	/*! \brief Get Optional display name shown to recipients (e.g. in the `From:` header).
 	 */
 	std::string getName();
 
-	/*! \brief Set Name to use for the sending contact.
+	/*! \brief Set Optional display name shown to recipients (e.g. in the `From:` header).
 	 */
 	void setName(std::string name);
 

@@ -1,14 +1,14 @@
 #' Create a new EmailAddressName
 #'
 #' @description
-#' An email contact.
+#' An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
 #'
 #' @docType class
 #' @title EmailAddressName
 #' @description EmailAddressName Class
 #' @format An \code{R6Class} generator object
 #' @field email The email address. character
-#' @field name Name to use for the sending contact. character [optional]
+#' @field name Optional display name shown to recipients (e.g. in the `From:` header). character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -22,7 +22,7 @@ EmailAddressName <- R6::R6Class(
     #' Initialize a new EmailAddressName class.
     #'
     #' @param email The email address.
-    #' @param name Name to use for the sending contact.
+    #' @param name Optional display name shown to recipients (e.g. in the `From:` header).
     #' @param ... Other optional arguments.
     initialize = function(`email`, `name` = NULL, ...) {
       if (!missing(`email`)) {

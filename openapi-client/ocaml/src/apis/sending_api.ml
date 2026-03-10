@@ -189,11 +189,9 @@ let send_mail ~_to ~from ~subject ~body ?id () =
     
     
     
-    (fun x -> x)
     
     
-        
-        
+    .show
  _to in
     let body = Request.add_form_encoded_body_param body "from"     
     
@@ -240,8 +238,8 @@ let send_mail ~_to ~from ~subject ~body ?id () =
         
         
  body in
-    let body = Request.maybe_add_form_encoded_body_param body "id"     
-    Int32.to_string
+    let body = Request.maybe_add_form_encoded_body_param body "id"     Int64.to_string
+    
     
     
     

@@ -21,39 +21,41 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  *
- * @param time 
- * @param usage 
- * @param currency 
- * @param currencySymbol 
- * @param cost 
- * @param received 
- * @param sent 
+ * @param time The time window these `received`, `sent`, and `volume` statistics cover.
+ * @param usage Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+ * @param currency The ISO 4217 currency code for this account (e.g. `USD`).
+ * @param cost Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+ * @param received Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+ * @param sent Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
  * @param volume 
  */
 
 
 data class MailStatsType (
 
+    /* The time window these `received`, `sent`, and `volume` statistics cover. */
     @Json(name = "time")
     val time: MailStatsType.Time? = Time._1h,
 
+    /* Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. */
     @Json(name = "usage")
     val usage: kotlin.Int? = null,
 
+    /* The ISO 4217 currency code for this account (e.g. `USD`). */
     @Json(name = "currency")
     val currency: kotlin.String? = null,
 
-    @Json(name = "currencySymbol")
-    val currencySymbol: kotlin.String? = null,
-
+    /* Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). */
     @Json(name = "cost")
     val cost: kotlin.Double? = null,
 
+    /* Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue. */
     @Json(name = "received")
     val received: kotlin.Int? = null,
 
+    /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
     @Json(name = "sent")
     val sent: kotlin.Int? = null,
 
@@ -63,9 +65,9 @@ data class MailStatsType (
 ) {
 
     /**
-     * 
+     * The time window these `received`, `sent`, and `volume` statistics cover.
      *
-     * Values: all,billing,month,_7d,_24h,today,_1h
+     * Values: all,billing,month,_7d,_24h,day,_1h
      */
     @JsonClass(generateAdapter = false)
     enum class Time(val value: kotlin.String) {
@@ -74,7 +76,7 @@ data class MailStatsType (
         @Json(name = "month") month("month"),
         @Json(name = "7d") _7d("7d"),
         @Json(name = "24h") _24h("24h"),
-        @Json(name = "today") today("today"),
+        @Json(name = "day") day("day"),
         @Json(name = "1h") _1h("1h");
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description="The listing of blocked emails.")
+@Schema(description="The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`.  Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.")
 
 public class MailBlocks   {
   private List<MailBlockClickHouse> local = new ArrayList<MailBlockClickHouse>();
@@ -20,9 +20,10 @@ public class MailBlocks   {
   private List<MailBlockRspamd> subject = new ArrayList<MailBlockRspamd>();
 
   /**
+   * Messages flagged by the &#x60;LOCAL_BL_RCPT&#x60; rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.")
   @JsonProperty("local")
   @NotNull
   public List<MailBlockClickHouse> getLocal() {
@@ -33,9 +34,10 @@ public class MailBlocks   {
   }
 
   /**
+   * Messages flagged by the &#x60;MBTRAP&#x60; rspamd rule in the last 5 days. These triggered MailBaby&#x27;s honeypot / trap address detection.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.")
   @JsonProperty("mbtrap")
   @NotNull
   public List<MailBlockClickHouse> getMbtrap() {
@@ -46,9 +48,10 @@ public class MailBlocks   {
   }
 
   /**
+   * Senders whose messages contained spam-indicative subjects (containing &#x60;@&#x60;, &#x60;smtp&#x60;, &#x60;socks4&#x60;, or &#x60;socks5&#x60;) with more than 4 occurrences of the same subject in the last 3 days.
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.")
   @JsonProperty("subject")
   @NotNull
   public List<MailBlockRspamd> getSubject() {

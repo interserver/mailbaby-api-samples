@@ -10,25 +10,26 @@ static mail_log_entry_t *mail_log_entry_create_internal(
     char *id,
     char *from,
     char *to,
-    char *subject,
     char *created,
     int time,
     char *user,
     char *transtype,
     char *origin,
     char *interface,
+    char *subject,
+    char *message_id,
     char *sending_zone,
     int body_size,
     int seq,
+    int delivered,
+    char *response,
     char *recipient,
     char *domain,
     int locked,
     char *lock_time,
     char *assigned,
     char *queued,
-    char *mx_hostname,
-    char *response,
-    char *message_id
+    char *mx_hostname
     ) {
     mail_log_entry_t *mail_log_entry_local_var = malloc(sizeof(mail_log_entry_t));
     if (!mail_log_entry_local_var) {
@@ -38,16 +39,19 @@ static mail_log_entry_t *mail_log_entry_create_internal(
     mail_log_entry_local_var->id = id;
     mail_log_entry_local_var->from = from;
     mail_log_entry_local_var->to = to;
-    mail_log_entry_local_var->subject = subject;
     mail_log_entry_local_var->created = created;
     mail_log_entry_local_var->time = time;
     mail_log_entry_local_var->user = user;
     mail_log_entry_local_var->transtype = transtype;
     mail_log_entry_local_var->origin = origin;
     mail_log_entry_local_var->interface = interface;
+    mail_log_entry_local_var->subject = subject;
+    mail_log_entry_local_var->message_id = message_id;
     mail_log_entry_local_var->sending_zone = sending_zone;
     mail_log_entry_local_var->body_size = body_size;
     mail_log_entry_local_var->seq = seq;
+    mail_log_entry_local_var->delivered = delivered;
+    mail_log_entry_local_var->response = response;
     mail_log_entry_local_var->recipient = recipient;
     mail_log_entry_local_var->domain = domain;
     mail_log_entry_local_var->locked = locked;
@@ -55,8 +59,6 @@ static mail_log_entry_t *mail_log_entry_create_internal(
     mail_log_entry_local_var->assigned = assigned;
     mail_log_entry_local_var->queued = queued;
     mail_log_entry_local_var->mx_hostname = mx_hostname;
-    mail_log_entry_local_var->response = response;
-    mail_log_entry_local_var->message_id = message_id;
 
     mail_log_entry_local_var->_library_owned = 1;
     return mail_log_entry_local_var;
@@ -67,50 +69,52 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
     char *id,
     char *from,
     char *to,
-    char *subject,
     char *created,
     int time,
     char *user,
     char *transtype,
     char *origin,
     char *interface,
+    char *subject,
+    char *message_id,
     char *sending_zone,
     int body_size,
     int seq,
+    int delivered,
+    char *response,
     char *recipient,
     char *domain,
     int locked,
     char *lock_time,
     char *assigned,
     char *queued,
-    char *mx_hostname,
-    char *response,
-    char *message_id
+    char *mx_hostname
     ) {
     return mail_log_entry_create_internal (
         _id,
         id,
         from,
         to,
-        subject,
         created,
         time,
         user,
         transtype,
         origin,
         interface,
+        subject,
+        message_id,
         sending_zone,
         body_size,
         seq,
+        delivered,
+        response,
         recipient,
         domain,
         locked,
         lock_time,
         assigned,
         queued,
-        mx_hostname,
-        response,
-        message_id
+        mx_hostname
         );
 }
 
@@ -135,10 +139,6 @@ void mail_log_entry_free(mail_log_entry_t *mail_log_entry) {
         free(mail_log_entry->to);
         mail_log_entry->to = NULL;
     }
-    if (mail_log_entry->subject) {
-        free(mail_log_entry->subject);
-        mail_log_entry->subject = NULL;
-    }
     if (mail_log_entry->created) {
         free(mail_log_entry->created);
         mail_log_entry->created = NULL;
@@ -159,9 +159,21 @@ void mail_log_entry_free(mail_log_entry_t *mail_log_entry) {
         free(mail_log_entry->interface);
         mail_log_entry->interface = NULL;
     }
+    if (mail_log_entry->subject) {
+        free(mail_log_entry->subject);
+        mail_log_entry->subject = NULL;
+    }
+    if (mail_log_entry->message_id) {
+        free(mail_log_entry->message_id);
+        mail_log_entry->message_id = NULL;
+    }
     if (mail_log_entry->sending_zone) {
         free(mail_log_entry->sending_zone);
         mail_log_entry->sending_zone = NULL;
+    }
+    if (mail_log_entry->response) {
+        free(mail_log_entry->response);
+        mail_log_entry->response = NULL;
     }
     if (mail_log_entry->recipient) {
         free(mail_log_entry->recipient);
@@ -186,14 +198,6 @@ void mail_log_entry_free(mail_log_entry_t *mail_log_entry) {
     if (mail_log_entry->mx_hostname) {
         free(mail_log_entry->mx_hostname);
         mail_log_entry->mx_hostname = NULL;
-    }
-    if (mail_log_entry->response) {
-        free(mail_log_entry->response);
-        mail_log_entry->response = NULL;
-    }
-    if (mail_log_entry->message_id) {
-        free(mail_log_entry->message_id);
-        mail_log_entry->message_id = NULL;
     }
     free(mail_log_entry);
 }
@@ -233,15 +237,6 @@ cJSON *mail_log_entry_convertToJSON(mail_log_entry_t *mail_log_entry) {
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "to", mail_log_entry->to) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->subject
-    if (!mail_log_entry->subject) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "subject", mail_log_entry->subject) == NULL) {
     goto fail; //String
     }
 
@@ -300,108 +295,113 @@ cJSON *mail_log_entry_convertToJSON(mail_log_entry_t *mail_log_entry) {
     }
 
 
-    // mail_log_entry->sending_zone
-    if (!mail_log_entry->sending_zone) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "sendingZone", mail_log_entry->sending_zone) == NULL) {
+    // mail_log_entry->subject
+    if(mail_log_entry->subject) {
+    if(cJSON_AddStringToObject(item, "subject", mail_log_entry->subject) == NULL) {
     goto fail; //String
     }
-
-
-    // mail_log_entry->body_size
-    if (!mail_log_entry->body_size) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "bodySize", mail_log_entry->body_size) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // mail_log_entry->seq
-    if (!mail_log_entry->seq) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "seq", mail_log_entry->seq) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // mail_log_entry->recipient
-    if (!mail_log_entry->recipient) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "recipient", mail_log_entry->recipient) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->domain
-    if (!mail_log_entry->domain) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "domain", mail_log_entry->domain) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->locked
-    if (!mail_log_entry->locked) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "locked", mail_log_entry->locked) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // mail_log_entry->lock_time
-    if (!mail_log_entry->lock_time) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "lockTime", mail_log_entry->lock_time) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->assigned
-    if (!mail_log_entry->assigned) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "assigned", mail_log_entry->assigned) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->queued
-    if (!mail_log_entry->queued) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "queued", mail_log_entry->queued) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->mx_hostname
-    if (!mail_log_entry->mx_hostname) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "mxHostname", mail_log_entry->mx_hostname) == NULL) {
-    goto fail; //String
-    }
-
-
-    // mail_log_entry->response
-    if (!mail_log_entry->response) {
-        goto fail;
-    }
-    if(cJSON_AddStringToObject(item, "response", mail_log_entry->response) == NULL) {
-    goto fail; //String
     }
 
 
     // mail_log_entry->message_id
     if(mail_log_entry->message_id) {
     if(cJSON_AddStringToObject(item, "messageId", mail_log_entry->message_id) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->sending_zone
+    if(mail_log_entry->sending_zone) {
+    if(cJSON_AddStringToObject(item, "sendingZone", mail_log_entry->sending_zone) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->body_size
+    if(mail_log_entry->body_size) {
+    if(cJSON_AddNumberToObject(item, "bodySize", mail_log_entry->body_size) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // mail_log_entry->seq
+    if(mail_log_entry->seq) {
+    if(cJSON_AddNumberToObject(item, "seq", mail_log_entry->seq) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // mail_log_entry->delivered
+    if(mail_log_entry->delivered) {
+    if(cJSON_AddNumberToObject(item, "delivered", mail_log_entry->delivered) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // mail_log_entry->response
+    if(mail_log_entry->response) {
+    if(cJSON_AddStringToObject(item, "response", mail_log_entry->response) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->recipient
+    if(mail_log_entry->recipient) {
+    if(cJSON_AddStringToObject(item, "recipient", mail_log_entry->recipient) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->domain
+    if(mail_log_entry->domain) {
+    if(cJSON_AddStringToObject(item, "domain", mail_log_entry->domain) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->locked
+    if(mail_log_entry->locked) {
+    if(cJSON_AddNumberToObject(item, "locked", mail_log_entry->locked) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // mail_log_entry->lock_time
+    if(mail_log_entry->lock_time) {
+    if(cJSON_AddStringToObject(item, "lockTime", mail_log_entry->lock_time) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->assigned
+    if(mail_log_entry->assigned) {
+    if(cJSON_AddStringToObject(item, "assigned", mail_log_entry->assigned) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->queued
+    if(mail_log_entry->queued) {
+    if(cJSON_AddStringToObject(item, "queued", mail_log_entry->queued) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // mail_log_entry->mx_hostname
+    if(mail_log_entry->mx_hostname) {
+    if(cJSON_AddStringToObject(item, "mxHostname", mail_log_entry->mx_hostname) == NULL) {
     goto fail; //String
     }
     }
@@ -474,21 +474,6 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     
     if(!cJSON_IsString(to))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->subject
-    cJSON *subject = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "subject");
-    if (cJSON_IsNull(subject)) {
-        subject = NULL;
-    }
-    if (!subject) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(subject))
     {
     goto end; //String
     }
@@ -583,169 +568,16 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
     goto end; //String
     }
 
-    // mail_log_entry->sending_zone
-    cJSON *sending_zone = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "sendingZone");
-    if (cJSON_IsNull(sending_zone)) {
-        sending_zone = NULL;
+    // mail_log_entry->subject
+    cJSON *subject = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "subject");
+    if (cJSON_IsNull(subject)) {
+        subject = NULL;
     }
-    if (!sending_zone) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(sending_zone))
+    if (subject) { 
+    if(!cJSON_IsString(subject) && !cJSON_IsNull(subject))
     {
     goto end; //String
     }
-
-    // mail_log_entry->body_size
-    cJSON *body_size = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "bodySize");
-    if (cJSON_IsNull(body_size)) {
-        body_size = NULL;
-    }
-    if (!body_size) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(body_size))
-    {
-    goto end; //Numeric
-    }
-
-    // mail_log_entry->seq
-    cJSON *seq = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "seq");
-    if (cJSON_IsNull(seq)) {
-        seq = NULL;
-    }
-    if (!seq) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(seq))
-    {
-    goto end; //Numeric
-    }
-
-    // mail_log_entry->recipient
-    cJSON *recipient = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "recipient");
-    if (cJSON_IsNull(recipient)) {
-        recipient = NULL;
-    }
-    if (!recipient) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(recipient))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->domain
-    cJSON *domain = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "domain");
-    if (cJSON_IsNull(domain)) {
-        domain = NULL;
-    }
-    if (!domain) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(domain))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->locked
-    cJSON *locked = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "locked");
-    if (cJSON_IsNull(locked)) {
-        locked = NULL;
-    }
-    if (!locked) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(locked))
-    {
-    goto end; //Numeric
-    }
-
-    // mail_log_entry->lock_time
-    cJSON *lock_time = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "lockTime");
-    if (cJSON_IsNull(lock_time)) {
-        lock_time = NULL;
-    }
-    if (!lock_time) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(lock_time))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->assigned
-    cJSON *assigned = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "assigned");
-    if (cJSON_IsNull(assigned)) {
-        assigned = NULL;
-    }
-    if (!assigned) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(assigned))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->queued
-    cJSON *queued = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "queued");
-    if (cJSON_IsNull(queued)) {
-        queued = NULL;
-    }
-    if (!queued) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(queued))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->mx_hostname
-    cJSON *mx_hostname = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "mxHostname");
-    if (cJSON_IsNull(mx_hostname)) {
-        mx_hostname = NULL;
-    }
-    if (!mx_hostname) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(mx_hostname))
-    {
-    goto end; //String
-    }
-
-    // mail_log_entry->response
-    cJSON *response = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "response");
-    if (cJSON_IsNull(response)) {
-        response = NULL;
-    }
-    if (!response) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(response))
-    {
-    goto end; //String
     }
 
     // mail_log_entry->message_id
@@ -760,31 +592,176 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
     }
     }
 
+    // mail_log_entry->sending_zone
+    cJSON *sending_zone = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "sendingZone");
+    if (cJSON_IsNull(sending_zone)) {
+        sending_zone = NULL;
+    }
+    if (sending_zone) { 
+    if(!cJSON_IsString(sending_zone) && !cJSON_IsNull(sending_zone))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->body_size
+    cJSON *body_size = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "bodySize");
+    if (cJSON_IsNull(body_size)) {
+        body_size = NULL;
+    }
+    if (body_size) { 
+    if(!cJSON_IsNumber(body_size))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // mail_log_entry->seq
+    cJSON *seq = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "seq");
+    if (cJSON_IsNull(seq)) {
+        seq = NULL;
+    }
+    if (seq) { 
+    if(!cJSON_IsNumber(seq))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // mail_log_entry->delivered
+    cJSON *delivered = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "delivered");
+    if (cJSON_IsNull(delivered)) {
+        delivered = NULL;
+    }
+    if (delivered) { 
+    if(!cJSON_IsNumber(delivered))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // mail_log_entry->response
+    cJSON *response = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "response");
+    if (cJSON_IsNull(response)) {
+        response = NULL;
+    }
+    if (response) { 
+    if(!cJSON_IsString(response) && !cJSON_IsNull(response))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->recipient
+    cJSON *recipient = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "recipient");
+    if (cJSON_IsNull(recipient)) {
+        recipient = NULL;
+    }
+    if (recipient) { 
+    if(!cJSON_IsString(recipient) && !cJSON_IsNull(recipient))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->domain
+    cJSON *domain = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "domain");
+    if (cJSON_IsNull(domain)) {
+        domain = NULL;
+    }
+    if (domain) { 
+    if(!cJSON_IsString(domain) && !cJSON_IsNull(domain))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->locked
+    cJSON *locked = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "locked");
+    if (cJSON_IsNull(locked)) {
+        locked = NULL;
+    }
+    if (locked) { 
+    if(!cJSON_IsNumber(locked))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // mail_log_entry->lock_time
+    cJSON *lock_time = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "lockTime");
+    if (cJSON_IsNull(lock_time)) {
+        lock_time = NULL;
+    }
+    if (lock_time) { 
+    if(!cJSON_IsString(lock_time) && !cJSON_IsNull(lock_time))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->assigned
+    cJSON *assigned = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "assigned");
+    if (cJSON_IsNull(assigned)) {
+        assigned = NULL;
+    }
+    if (assigned) { 
+    if(!cJSON_IsString(assigned) && !cJSON_IsNull(assigned))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->queued
+    cJSON *queued = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "queued");
+    if (cJSON_IsNull(queued)) {
+        queued = NULL;
+    }
+    if (queued) { 
+    if(!cJSON_IsString(queued) && !cJSON_IsNull(queued))
+    {
+    goto end; //String
+    }
+    }
+
+    // mail_log_entry->mx_hostname
+    cJSON *mx_hostname = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "mxHostname");
+    if (cJSON_IsNull(mx_hostname)) {
+        mx_hostname = NULL;
+    }
+    if (mx_hostname) { 
+    if(!cJSON_IsString(mx_hostname) && !cJSON_IsNull(mx_hostname))
+    {
+    goto end; //String
+    }
+    }
+
 
     mail_log_entry_local_var = mail_log_entry_create_internal (
         _id->valuedouble,
         strdup(id->valuestring),
         strdup(from->valuestring),
         strdup(to->valuestring),
-        strdup(subject->valuestring),
         strdup(created->valuestring),
         time->valuedouble,
         strdup(user->valuestring),
         strdup(transtype->valuestring),
         strdup(origin->valuestring),
         strdup(interface->valuestring),
-        strdup(sending_zone->valuestring),
-        body_size->valuedouble,
-        seq->valuedouble,
-        strdup(recipient->valuestring),
-        strdup(domain->valuestring),
-        locked->valuedouble,
-        strdup(lock_time->valuestring),
-        strdup(assigned->valuestring),
-        strdup(queued->valuestring),
-        strdup(mx_hostname->valuestring),
-        strdup(response->valuestring),
-        message_id && !cJSON_IsNull(message_id) ? strdup(message_id->valuestring) : NULL
+        subject && !cJSON_IsNull(subject) ? strdup(subject->valuestring) : NULL,
+        message_id && !cJSON_IsNull(message_id) ? strdup(message_id->valuestring) : NULL,
+        sending_zone && !cJSON_IsNull(sending_zone) ? strdup(sending_zone->valuestring) : NULL,
+        body_size ? body_size->valuedouble : 0,
+        seq ? seq->valuedouble : 0,
+        delivered ? delivered->valuedouble : 0,
+        response && !cJSON_IsNull(response) ? strdup(response->valuestring) : NULL,
+        recipient && !cJSON_IsNull(recipient) ? strdup(recipient->valuestring) : NULL,
+        domain && !cJSON_IsNull(domain) ? strdup(domain->valuestring) : NULL,
+        locked ? locked->valuedouble : 0,
+        lock_time && !cJSON_IsNull(lock_time) ? strdup(lock_time->valuestring) : NULL,
+        assigned && !cJSON_IsNull(assigned) ? strdup(assigned->valuestring) : NULL,
+        queued && !cJSON_IsNull(queued) ? strdup(queued->valuestring) : NULL,
+        mx_hostname && !cJSON_IsNull(mx_hostname) ? strdup(mx_hostname->valuestring) : NULL
         );
 
     return mail_log_entry_local_var;

@@ -3,7 +3,7 @@ Protected Class MailOrder
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The ID of the order.
+			The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
 		#tag EndNote
 		id As Integer
 	#tag EndProperty
@@ -11,7 +11,7 @@ Protected Class MailOrder
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The order status.
+			The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 		#tag EndNote
 		status As String
 	#tag EndProperty
@@ -19,7 +19,7 @@ Protected Class MailOrder
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The username to use for this order.
+			The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 		#tag EndNote
 		username As String
 	#tag EndProperty
@@ -27,7 +27,7 @@ Protected Class MailOrder
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Optional order comment.
+			Optional human-readable note associated with the order.
 		#tag EndNote
 		comment As Xoson.O.OptionalString
 	#tag EndProperty

@@ -6,9 +6,9 @@ using namespace Tiny;
 
 MailStatsType_volume::MailStatsType_volume()
 {
-	to = MailStatsType_volume_to();
-	from = MailStatsType_volume_from();
-	ip = MailStatsType_volume_ip();
+	to = null<int>();
+	from = null<int>();
+	ip = null<int>();
 }
 
 MailStatsType_volume::MailStatsType_volume(std::string jsonString)
@@ -33,11 +33,6 @@ MailStatsType_volume::fromJson(std::string jsonObj)
         bourne::json value = object[toKey];
 
 
-
-
-        MailStatsType_volume_to* obj = &to;
-		obj->fromJson(value.dump());
-
     }
 
     const char *fromKey = "from";
@@ -47,11 +42,6 @@ MailStatsType_volume::fromJson(std::string jsonObj)
         bourne::json value = object[fromKey];
 
 
-
-
-        MailStatsType_volume_from* obj = &from;
-		obj->fromJson(value.dump());
-
     }
 
     const char *ipKey = "ip";
@@ -60,11 +50,6 @@ MailStatsType_volume::fromJson(std::string jsonObj)
     {
         bourne::json value = object[ipKey];
 
-
-
-
-        MailStatsType_volume_ip* obj = &ip;
-		obj->fromJson(value.dump());
 
     }
 
@@ -81,59 +66,47 @@ MailStatsType_volume::toJson()
 
 
 
-	object["to"] = getTo().toJson();
 
 
 
-
-
-
-	object["from"] = getFrom().toJson();
-
-
-
-
-
-
-	object["ip"] = getIp().toJson();
 
 
     return object;
 
 }
 
-MailStatsType_volume_to
+std::map<std::string, int>
 MailStatsType_volume::getTo()
 {
 	return to;
 }
 
 void
-MailStatsType_volume::setTo(MailStatsType_volume_to to)
+MailStatsType_volume::setTo(std::map<std::string, int> to)
 {
 	this->to = to;
 }
 
-MailStatsType_volume_from
+std::map<std::string, int>
 MailStatsType_volume::getFrom()
 {
 	return from;
 }
 
 void
-MailStatsType_volume::setFrom(MailStatsType_volume_from from)
+MailStatsType_volume::setFrom(std::map<std::string, int> from)
 {
 	this->from = from;
 }
 
-MailStatsType_volume_ip
+std::map<std::string, int>
 MailStatsType_volume::getIp()
 {
 	return ip;
 }
 
 void
-MailStatsType_volume::setIp(MailStatsType_volume_ip ip)
+MailStatsType_volume::setIp(std::map<std::string, int> ip)
 {
 	this->ip = ip;
 }

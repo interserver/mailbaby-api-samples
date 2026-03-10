@@ -27,6 +27,7 @@ import org.openapitools.client.api.ErrorMessage
 import org.openapitools.client.api.GenericResponse
 import org.openapitools.client.api.MailAttachment
 import org.openapitools.client.api.SendMailRaw
+import org.openapitools.client.api.SendMailTo
 
 object SendingApi {
 
@@ -76,7 +77,7 @@ object SendingApi {
     } yield resp
   }
 
-  def sendMail(host: String, to: String, from: String, subject: String, body: String, id: Integer): Task[GenericResponse] = {
+  def sendMail(host: String, to: SendMailTo, from: String, subject: String, body: String, id: Long): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"
@@ -146,7 +147,7 @@ class HttpServiceSendingApi(service: HttpService) {
     } yield resp
   }
 
-  def sendMail(to: String, from: String, subject: String, body: String, id: Integer): Task[GenericResponse] = {
+  def sendMail(to: SendMailTo, from: String, subject: String, body: String, id: Long): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/send"

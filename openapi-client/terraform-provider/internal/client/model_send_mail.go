@@ -2,11 +2,11 @@
 
 package client
 
-// SendMail - Details for an Email
+// SendMail - Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
 type SendMail struct {
-	To string `json:"to"`
+	To SendMailTo `json:"to"`
 	From string `json:"from"`
 	Subject string `json:"subject"`
 	Body string `json:"body"`
-	Id int32 `json:"id,omitempty"`
+	Id int64 `json:"id,omitempty"`
 }

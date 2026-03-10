@@ -75,4 +75,12 @@ private class OASMailStatsTypeVolumeTest {
         Map<String, String> x-property-mappings = mailStatsTypeVolume.getx-property-mappings();
         System.assertEquals('r_from', x-property-mappings.get('from'));
     }
+
+    @isTest
+    private static void defaultValuesPopulated() {
+        OASMailStatsTypeVolume mailStatsTypeVolume = new OASMailStatsTypeVolume();
+        System.assertEquals(new Map<String, Integer>(), mailStatsTypeVolume.to);
+        System.assertEquals(new Map<String, Integer>(), mailStatsTypeVolume.r_from);
+        System.assertEquals(new Map<String, Integer>(), mailStatsTypeVolume.ip);
+    }
 }

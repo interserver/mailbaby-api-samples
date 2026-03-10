@@ -6,32 +6,31 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}date`,
-                label: `[${labelPrefix}date]`,
+                label: `The date the block event was recorded. - [${labelPrefix}date]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}from`,
-                label: `[${labelPrefix}from]`,
-                required: true,
-                type: 'string',
-            },
-            {
-                key: `${keyPrefix}messageId`,
-                label: `[${labelPrefix}messageId]`,
+                label: `The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it. - [${labelPrefix}from]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}subject`,
-                label: `[${labelPrefix}subject]`,
+                label: `The `Subject` header of the blocked message. - [${labelPrefix}subject]`,
                 required: true,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}to`,
-                label: `[${labelPrefix}to]`,
+                label: `The serialized list of recipients of the blocked message. - [${labelPrefix}to]`,
                 required: true,
+                type: 'string',
+            },
+            {
+                key: `${keyPrefix}messageId`,
+                label: `The `Message-ID` header of the blocked message, or `null` if not present. - [${labelPrefix}messageId]`,
                 type: 'string',
             },
         ]
@@ -41,9 +40,9 @@ module.exports = {
         return {
             'date': bundle.inputData?.[`${keyPrefix}date`],
             'from': bundle.inputData?.[`${keyPrefix}from`],
-            'messageId': bundle.inputData?.[`${keyPrefix}messageId`],
             'subject': bundle.inputData?.[`${keyPrefix}subject`],
             'to': bundle.inputData?.[`${keyPrefix}to`],
+            'messageId': bundle.inputData?.[`${keyPrefix}messageId`],
         }
     },
 }

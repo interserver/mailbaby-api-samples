@@ -11,6 +11,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Status do
 
   @doc """
   Checks if the server is running
+  A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
 
   ### Parameters
 

@@ -8,11 +8,13 @@ class_name MailBlockClickHouse
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # MailBlockClickHouse Model
-# A block entry from the clickhouse mailblocks server.
+# A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 
 
+# The date the block event was recorded.
 #       (but it's actually a Date ; no timezones support in Gdscript)
 # Required: True
+# Example: Sun Aug 06 20:00:00 EDT 2023
 # isArray: false
 @export var date: String:
 	set(value):
@@ -20,7 +22,9 @@ class_name MailBlockClickHouse
 		date = value
 var __date__was__set := false
 
+# The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
 # Required: True
+# Example: user@domain.com
 # isArray: false
 @export var from: String = "":
 	set(value):
@@ -28,15 +32,9 @@ var __date__was__set := false
 		from = value
 var __from__was__set := false
 
+# The `Subject` header of the blocked message.
 # Required: True
-# isArray: false
-@export var messageId: String = "":
-	set(value):
-		__messageId__was__set = true
-		messageId = value
-var __messageId__was__set := false
-
-# Required: True
+# Example: Test Email
 # isArray: false
 @export var subject: String = "":
 	set(value):
@@ -44,13 +42,25 @@ var __messageId__was__set := false
 		subject = value
 var __subject__was__set := false
 
+# The serialized list of recipients of the blocked message.
 # Required: True
+# Example: ['client@site.com']
 # isArray: false
 @export var to: String = "":
 	set(value):
 		__to__was__set = true
 		to = value
 var __to__was__set := false
+
+# The `Message-ID` header of the blocked message, or `null` if not present.
+# Required: False
+# Example: pFaRqFUEWkucjhTuIzYuoAgWU@domain.com
+# isArray: false
+@export var messageId: String = "":
+	set(value):
+		__messageId__was__set = true
+		messageId = value
+var __messageId__was__set := false
 
 
 func bzz_collect_missing_properties() -> Array:
@@ -59,8 +69,6 @@ func bzz_collect_missing_properties() -> Array:
 		bzz_missing_properties.append("date")
 	if not self.__from__was__set:
 		bzz_missing_properties.append("from")
-	if not self.__messageId__was__set:
-		bzz_missing_properties.append("messageId")
 	if not self.__subject__was__set:
 		bzz_missing_properties.append("subject")
 	if not self.__to__was__set:
@@ -74,12 +82,12 @@ func bzz_normalize() -> Dictionary:
 		bzz_dictionary["date"] = self.date
 	if self.__from__was__set:
 		bzz_dictionary["from"] = self.from
-	if self.__messageId__was__set:
-		bzz_dictionary["messageId"] = self.messageId
 	if self.__subject__was__set:
 		bzz_dictionary["subject"] = self.subject
 	if self.__to__was__set:
 		bzz_dictionary["to"] = self.to
+	if self.__messageId__was__set:
+		bzz_dictionary["messageId"] = self.messageId
 	return bzz_dictionary
 
 
@@ -90,12 +98,12 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 		me.date = from_dict["date"]
 	if from_dict.has("from"):
 		me.from = from_dict["from"]
-	if from_dict.has("messageId"):
-		me.messageId = from_dict["messageId"]
 	if from_dict.has("subject"):
 		me.subject = from_dict["subject"]
 	if from_dict.has("to"):
 		me.to = from_dict["to"]
+	if from_dict.has("messageId"):
+		me.messageId = from_dict["messageId"]
 	return me
 
 

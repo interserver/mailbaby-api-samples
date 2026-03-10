@@ -67,7 +67,7 @@ cJSON *mail_attachment_convertToJSON(mail_attachment_t *mail_attachment) {
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "data", mail_attachment->data) == NULL) {
-    goto fail; //String
+    goto fail; //ByteArray
     }
 
     return item;
@@ -109,7 +109,7 @@ mail_attachment_t *mail_attachment_parseFromJSON(cJSON *mail_attachmentJSON){
     
     if(!cJSON_IsString(data))
     {
-    goto end; //String
+    goto end; //ByteArray
     }
 
 

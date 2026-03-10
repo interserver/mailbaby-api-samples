@@ -7,9 +7,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The data for a email deny rule record.
+ * The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
  */
-@ApiModel(description="The data for a email deny rule record.")
+@ApiModel(description="The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)")
 
 public class DenyRuleNew  {
   
@@ -51,16 +51,16 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
   private TypeEnum type;
 
  /**
-  * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+  * The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
   */
-  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
+  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.")
 
   private String data;
 
  /**
-  * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+  * Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
   */
-  @ApiModelProperty(example = "mb20682", value = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+  @ApiModelProperty(example = "mb20682", value = "Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.")
 
   private String user;
  /**
@@ -85,7 +85,7 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
   }
 
  /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   * The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
    * @return data
   **/
   @JsonProperty("data")
@@ -103,7 +103,7 @@ DOMAIN(String.valueOf("domain")), EMAIL(String.valueOf("email")), STARTSWITH(Str
   }
 
  /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+   * Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
    * @return user
   **/
   @JsonProperty("user")

@@ -7,14 +7,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MailStatsTypeVolumeTo } from './mailStatsTypeVolumeTo';
-import { MailStatsTypeVolumeIp } from './mailStatsTypeVolumeIp';
-import { MailStatsTypeVolumeFrom } from './mailStatsTypeVolumeFrom';
 
 
+/**
+ * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
+ */
 export interface MailStatsTypeVolume { 
-    to?: MailStatsTypeVolumeTo;
-    from?: MailStatsTypeVolumeFrom;
-    ip?: MailStatsTypeVolumeIp;
+    /**
+     * Message counts keyed by destination (envelope `to`) email address.
+     */
+    to?: { [key: string]: number; };
+    /**
+     * Message counts keyed by sender (envelope `from`) email address.
+     */
+    from?: { [key: string]: number; };
+    /**
+     * Message counts keyed by originating client IP address.
+     */
+    ip?: { [key: string]: number; };
 }
 

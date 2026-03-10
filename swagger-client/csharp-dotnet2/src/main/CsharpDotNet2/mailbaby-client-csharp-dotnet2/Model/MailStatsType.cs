@@ -8,55 +8,54 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+  /// Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
   /// </summary>
   [DataContract]
   public class MailStatsType {
     /// <summary>
-    /// Gets or Sets Time
+    /// The time window these `received`, `sent`, and `volume` statistics cover.
     /// </summary>
+    /// <value>The time window these `received`, `sent`, and `volume` statistics cover.</value>
     [DataMember(Name="time", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "time")]
     public string Time { get; set; }
 
     /// <summary>
-    /// Gets or Sets Usage
+    /// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
     /// </summary>
+    /// <value>Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.</value>
     [DataMember(Name="usage", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "usage")]
     public int? Usage { get; set; }
 
     /// <summary>
-    /// Gets or Sets Currency
+    /// The ISO 4217 currency code for this account (e.g. `USD`).
     /// </summary>
+    /// <value>The ISO 4217 currency code for this account (e.g. `USD`).</value>
     [DataMember(Name="currency", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "currency")]
     public string Currency { get; set; }
 
     /// <summary>
-    /// Gets or Sets CurrencySymbol
+    /// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
     /// </summary>
-    [DataMember(Name="currencySymbol", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "currencySymbol")]
-    public string CurrencySymbol { get; set; }
-
-    /// <summary>
-    /// Gets or Sets Cost
-    /// </summary>
+    /// <value>Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).</value>
     [DataMember(Name="cost", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "cost")]
     public double? Cost { get; set; }
 
     /// <summary>
-    /// Gets or Sets Received
+    /// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
     /// </summary>
+    /// <value>Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.</value>
     [DataMember(Name="received", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "received")]
     public int? Received { get; set; }
 
     /// <summary>
-    /// Gets or Sets Sent
+    /// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
     /// </summary>
+    /// <value>Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.</value>
     [DataMember(Name="sent", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "sent")]
     public int? Sent { get; set; }
@@ -79,7 +78,6 @@ namespace IO.Swagger.Model {
       sb.Append("  Time: ").Append(Time).Append("\n");
       sb.Append("  Usage: ").Append(Usage).Append("\n");
       sb.Append("  Currency: ").Append(Currency).Append("\n");
-      sb.Append("  CurrencySymbol: ").Append(CurrencySymbol).Append("\n");
       sb.Append("  Cost: ").Append(Cost).Append("\n");
       sb.Append("  Received: ").Append(Received).Append("\n");
       sb.Append("  Sent: ").Append(Sent).Append("\n");

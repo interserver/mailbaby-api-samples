@@ -138,7 +138,7 @@ using namespace Tiny;
         SendingApi::
         sendMail(
             
-            std::string to
+            SendMail_to to
             , 
             
             std::string from
@@ -150,7 +150,7 @@ using namespace Tiny;
             std::string body
             , 
             
-            int id
+            long id
             
         )
         {

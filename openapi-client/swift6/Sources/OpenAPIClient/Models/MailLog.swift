@@ -7,14 +7,14 @@
 
 import Foundation
 
-/** Mail log records */
+/** Paginated mail log response returned by &#x60;GET /mail/log&#x60;.  Contains the full matched count (&#x60;total&#x60;) plus a page of &#x60;MailLogEntry&#x60; records.  Use &#x60;skip&#x60; and &#x60;limit&#x60; to page through large result sets. */
 public struct MailLog: Sendable, Codable, Hashable {
 
-    /** total number of mail log entries */
+    /** Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`. */
     public var total: Int
-    /** number of emails skipped in listing */
+    /** The `skip` value used for this page (echoed from the request). */
     public var skip: Int
-    /** number of emails to return */
+    /** The `limit` value used for this page (echoed from the request). */
     public var limit: Int
     public var emails: [MailLogEntry]
 

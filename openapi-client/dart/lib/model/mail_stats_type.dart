@@ -16,15 +16,16 @@ class MailStatsType {
     this.time = const MailStatsTypeTimeEnum._('1h'),
     this.usage,
     this.currency,
-    this.currencySymbol,
     this.cost,
     this.received,
     this.sent,
     this.volume,
   });
 
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   MailStatsTypeTimeEnum time;
 
+  /// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -33,6 +34,7 @@ class MailStatsType {
   ///
   int? usage;
 
+  /// The ISO 4217 currency code for this account (e.g. `USD`).
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -41,14 +43,7 @@ class MailStatsType {
   ///
   String? currency;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? currencySymbol;
-
+  /// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -57,6 +52,7 @@ class MailStatsType {
   ///
   double? cost;
 
+  /// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -65,6 +61,7 @@ class MailStatsType {
   ///
   int? received;
 
+  /// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -86,7 +83,6 @@ class MailStatsType {
     other.time == time &&
     other.usage == usage &&
     other.currency == currency &&
-    other.currencySymbol == currencySymbol &&
     other.cost == cost &&
     other.received == received &&
     other.sent == sent &&
@@ -98,14 +94,13 @@ class MailStatsType {
     (time.hashCode) +
     (usage == null ? 0 : usage!.hashCode) +
     (currency == null ? 0 : currency!.hashCode) +
-    (currencySymbol == null ? 0 : currencySymbol!.hashCode) +
     (cost == null ? 0 : cost!.hashCode) +
     (received == null ? 0 : received!.hashCode) +
     (sent == null ? 0 : sent!.hashCode) +
     (volume == null ? 0 : volume!.hashCode);
 
   @override
-  String toString() => 'MailStatsType[time=$time, usage=$usage, currency=$currency, currencySymbol=$currencySymbol, cost=$cost, received=$received, sent=$sent, volume=$volume]';
+  String toString() => 'MailStatsType[time=$time, usage=$usage, currency=$currency, cost=$cost, received=$received, sent=$sent, volume=$volume]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -119,11 +114,6 @@ class MailStatsType {
       json[r'currency'] = this.currency;
     } else {
       json[r'currency'] = null;
-    }
-    if (this.currencySymbol != null) {
-      json[r'currencySymbol'] = this.currencySymbol;
-    } else {
-      json[r'currencySymbol'] = null;
     }
     if (this.cost != null) {
       json[r'cost'] = this.cost;
@@ -170,7 +160,6 @@ class MailStatsType {
         time: MailStatsTypeTimeEnum.fromJson(json[r'time']) ?? '1h',
         usage: mapValueOfType<int>(json, r'usage'),
         currency: mapValueOfType<String>(json, r'currency'),
-        currencySymbol: mapValueOfType<String>(json, r'currencySymbol'),
         cost: mapValueOfType<double>(json, r'cost'),
         received: mapValueOfType<int>(json, r'received'),
         sent: mapValueOfType<int>(json, r'sent'),
@@ -225,7 +214,7 @@ class MailStatsType {
   };
 }
 
-
+/// The time window these `received`, `sent`, and `volume` statistics cover.
 class MailStatsTypeTimeEnum {
   /// Instantiate a new enum with the provided [value].
   const MailStatsTypeTimeEnum._(this.value);
@@ -243,7 +232,7 @@ class MailStatsTypeTimeEnum {
   static const month = MailStatsTypeTimeEnum._(r'month');
   static const n7d = MailStatsTypeTimeEnum._(r'7d');
   static const n24h = MailStatsTypeTimeEnum._(r'24h');
-  static const today = MailStatsTypeTimeEnum._(r'today');
+  static const day = MailStatsTypeTimeEnum._(r'day');
   static const n1h = MailStatsTypeTimeEnum._(r'1h');
 
   /// List of all possible values in this [enum][MailStatsTypeTimeEnum].
@@ -253,7 +242,7 @@ class MailStatsTypeTimeEnum {
     month,
     n7d,
     n24h,
-    today,
+    day,
     n1h,
   ];
 
@@ -298,7 +287,7 @@ class MailStatsTypeTimeEnumTypeTransformer {
         case r'month': return MailStatsTypeTimeEnum.month;
         case r'7d': return MailStatsTypeTimeEnum.n7d;
         case r'24h': return MailStatsTypeTimeEnum.n24h;
-        case r'today': return MailStatsTypeTimeEnum.today;
+        case r'day': return MailStatsTypeTimeEnum.day;
         case r'1h': return MailStatsTypeTimeEnum.n1h;
         default:
           if (!allowNull) {

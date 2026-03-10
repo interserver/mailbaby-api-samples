@@ -7,7 +7,7 @@ model_instance <- DenyRuleNew$new()
 
 test_that("user", {
   # tests for the property `user` (character)
-  # Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+  # Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`user`, "EXPECTED_RESULT")
@@ -23,7 +23,7 @@ test_that("type", {
 
 test_that("data", {
   # tests for the property `data` (character)
-  # The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+  # The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`data`, "EXPECTED_RESULT")

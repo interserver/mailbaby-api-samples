@@ -10,7 +10,50 @@ import Foundation
 open class ServicesAPI {
 
     /**
-     displays a list of mail service orders
+     Displays details for a single mail order
+     
+     - parameter id: (path) The numeric ID of the mail order. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: MailOrderDetail
+     */
+    open class func getMailOrderById(id: Int64, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailOrderDetail {
+        return try await getMailOrderByIdWithRequestBuilder(id: id, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Displays details for a single mail order
+     - GET /mail/{id}
+     - Returns the full detail record for one specific mail order identified by its numeric `id`.  In addition to the fields returned by `GET /mail`, this endpoint also includes the current **SMTP password** for the order.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. 
+     - API Key:
+       - type: apiKey X-API-KEY (HEADER)
+       - name: apiKeyAuth
+     - parameter id: (path) The numeric ID of the mail order. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<MailOrderDetail> 
+     */
+    open class func getMailOrderByIdWithRequestBuilder(id: Int64, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailOrderDetail> {
+        var localVariablePath = "/mail/{id}"
+        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
+        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<MailOrderDetail>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Displays a list of mail service orders
      
      - parameter apiConfiguration: The configuration for the http request.
      - returns: [MailOrder]
@@ -20,9 +63,9 @@ open class ServicesAPI {
     }
 
     /**
-     displays a list of mail service orders
+     Displays a list of mail service orders
      - GET /mail
-     - This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+     - Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional human-readable `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
      - API Key:
        - type: apiKey X-API-KEY (HEADER)
        - name: apiKeyAuth

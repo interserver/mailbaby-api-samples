@@ -10,9 +10,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * An email record
+ * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The &#x60;id&#x60; field matches the &#x60;mailid&#x60; query parameter on &#x60;GET /mail/log&#x60; and   the &#x60;text&#x60; field of a successful send response. - The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist a   flagged sender. - The &#x60;user&#x60; field is the SMTP username (e.g. &#x60;mb5658&#x60;) corresponding to the   &#x60;username&#x60; field in &#x60;GET /mail&#x60; / &#x60;GET /mail/{id}&#x60;.
  */
-@Schema(description = "An email record")
+@Schema(description = "A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.")
 @Validated
 @Introspected
 
@@ -62,6 +62,12 @@ public class MailLogEntry   {
   @JsonProperty("seq")
   private Integer seq = null;
 
+  @JsonProperty("delivered")
+  private Integer delivered = null;
+
+  @JsonProperty("response")
+  private String response = null;
+
   @JsonProperty("recipient")
   private String recipient = null;
 
@@ -83,19 +89,16 @@ public class MailLogEntry   {
   @JsonProperty("mxHostname")
   private String mxHostname = null;
 
-  @JsonProperty("response")
-  private String response = null;
-
   public MailLogEntry _id(Integer _id) {
     this._id = _id;
     return this;
   }
 
   /**
-   * internal db id
+   * Internal auto-increment database row ID.  Not meaningful outside the API.
    * @return _id
   **/
-  @Schema(example = "103172", required = true, description = "internal db id")
+  @Schema(example = "103172", required = true, description = "Internal auto-increment database row ID.  Not meaningful outside the API.")
   @NotNull
 
   public Integer getId() {
@@ -112,10 +115,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * mail id
+   * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
    * @return id
   **/
-  @Schema(example = "17c7eda538e0005d03", required = true, description = "mail id")
+  @Schema(example = "17c7eda538e0005d03", required = true, description = "The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.")
   @NotNull
 
   public String getId() {
@@ -132,10 +135,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * from address
+   * SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
    * @return from
   **/
-  @Schema(example = "person@mysite.com", required = true, description = "from address")
+  @Schema(example = "person@mysite.com", required = true, description = "SMTP envelope `MAIL FROM` address (may differ from the `From:` header).")
   @NotNull
 
   public String getFrom() {
@@ -152,10 +155,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * to address
+   * SMTP envelope `RCPT TO` address.
    * @return to
   **/
-  @Schema(example = "client@isp.com", required = true, description = "to address")
+  @Schema(example = "client@isp.com", required = true, description = "SMTP envelope `RCPT TO` address.")
   @NotNull
 
   public String getTo() {
@@ -172,11 +175,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * email subject
+   * The `Subject` header value, if available.
    * @return subject
   **/
-  @Schema(example = "sell 0.005 shares", required = true, description = "email subject")
-  @NotNull
+  @Schema(example = "sell 0.005 shares", description = "The `Subject` header value, if available.")
 
   public String getSubject() {
     return subject;
@@ -192,11 +194,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * message id
+   * The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
    * @return messageId
   **/
-  @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "message id")
-  @NotNull
+  @Schema(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", description = "The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.")
 
   public String getMessageId() {
     return messageId;
@@ -212,10 +213,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * creation date
+   * Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
    * @return created
   **/
-  @Schema(example = "2021-10-14 08:50:10", required = true, description = "creation date")
+  @Schema(example = "2021-10-14 08:50:10", required = true, description = "Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.")
   @NotNull
 
   public String getCreated() {
@@ -232,10 +233,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * creation timestamp
+   * Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
    * @return time
   **/
-  @Schema(example = "1634215809", required = true, description = "creation timestamp")
+  @Schema(example = "1634215809", required = true, description = "Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.")
   @NotNull
 
   public Integer getTime() {
@@ -252,10 +253,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * user account
+   * The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
    * @return user
   **/
-  @Schema(example = "mb5658", required = true, description = "user account")
+  @Schema(example = "mb5658", required = true, description = "The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.")
   @NotNull
 
   public String getUser() {
@@ -272,10 +273,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * transaction type
+   * SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
    * @return transtype
   **/
-  @Schema(example = "ESMTPSA", required = true, description = "transaction type")
+  @Schema(example = "ESMTPSA", required = true, description = "SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).")
   @NotNull
 
   public String getTranstype() {
@@ -292,10 +293,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * origin ip
+   * IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
    * @return origin
   **/
-  @Schema(example = "199.231.189.154", required = true, description = "origin ip")
+  @Schema(example = "199.231.189.154", required = true, description = "IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.")
   @NotNull
 
   public String getOrigin() {
@@ -312,10 +313,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * interface name
+   * Relay interface name that accepted the message (e.g. `feeder`).
    * @return _interface
   **/
-  @Schema(example = "feeder", required = true, description = "interface name")
+  @Schema(example = "feeder", required = true, description = "Relay interface name that accepted the message (e.g. `feeder`).")
   @NotNull
 
   public String getInterface() {
@@ -332,11 +333,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * sending zone
+   * The sending zone assigned by the relay for outbound delivery.
    * @return sendingZone
   **/
-  @Schema(example = "interserver", required = true, description = "sending zone")
-  @NotNull
+  @Schema(example = "interserver", description = "The sending zone assigned by the relay for outbound delivery.")
 
   public String getSendingZone() {
     return sendingZone;
@@ -352,11 +352,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * email body size in bytes
+   * Size of the message body in bytes.
    * @return bodySize
   **/
-  @Schema(example = "63", required = true, description = "email body size in bytes")
-  @NotNull
+  @Schema(example = "63", description = "Size of the message body in bytes.")
 
   public Integer getBodySize() {
     return bodySize;
@@ -372,11 +371,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * index of email in the to adderess list
+   * Sequence index of this recipient in a multi-recipient message. Starts at 1.
    * @return seq
   **/
-  @Schema(example = "1", required = true, description = "index of email in the to adderess list")
-  @NotNull
+  @Schema(example = "1", description = "Sequence index of this recipient in a multi-recipient message. Starts at 1.")
 
   public Integer getSeq() {
     return seq;
@@ -386,17 +384,54 @@ public class MailLogEntry   {
     this.seq = seq;
   }
 
+  public MailLogEntry delivered(Integer delivered) {
+    this.delivered = delivered;
+    return this;
+  }
+
+  /**
+   * Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+   * @return delivered
+  **/
+  @Schema(example = "1", description = "Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.")
+
+  public Integer getDelivered() {
+    return delivered;
+  }
+
+  public void setDelivered(Integer delivered) {
+    this.delivered = delivered;
+  }
+
+  public MailLogEntry response(String response) {
+    this.response = response;
+    return this;
+  }
+
+  /**
+   * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
+   * @return response
+  **/
+  @Schema(example = "250 2.0.0 Ok queued as C91D83E128C", description = "The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).")
+
+  public String getResponse() {
+    return response;
+  }
+
+  public void setResponse(String response) {
+    this.response = response;
+  }
+
   public MailLogEntry recipient(String recipient) {
     this.recipient = recipient;
     return this;
   }
 
   /**
-   * to address this email is being sent to
+   * The specific recipient address this delivery record is for.
    * @return recipient
   **/
-  @Schema(example = "client@isp.com", required = true, description = "to address this email is being sent to")
-  @NotNull
+  @Schema(example = "client@isp.com", description = "The specific recipient address this delivery record is for.")
 
   public String getRecipient() {
     return recipient;
@@ -412,11 +447,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * to address domain
+   * The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
    * @return domain
   **/
-  @Schema(example = "interserver.net", required = true, description = "to address domain")
-  @NotNull
+  @Schema(example = "interserver.net", description = "The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.")
 
   public String getDomain() {
     return domain;
@@ -432,11 +466,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * locked status
+   * Whether the queue entry is currently locked for delivery processing.
    * @return locked
   **/
-  @Schema(example = "1", required = true, description = "locked status")
-  @NotNull
+  @Schema(example = "1", description = "Whether the queue entry is currently locked for delivery processing.")
 
   public Integer getLocked() {
     return locked;
@@ -452,11 +485,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * lock timestamp
+   * Millisecond-precision timestamp of the last queue lock acquisition.
    * @return lockTime
   **/
-  @Schema(example = "1634215818533", required = true, description = "lock timestamp")
-  @NotNull
+  @Schema(example = "1634215818533", description = "Millisecond-precision timestamp of the last queue lock acquisition.")
 
   public String getLockTime() {
     return lockTime;
@@ -472,11 +504,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * assigned server
+   * The relay server node assigned to deliver this message.
    * @return assigned
   **/
-  @Schema(example = "relay1", required = true, description = "assigned server")
-  @NotNull
+  @Schema(example = "relay1", description = "The relay server node assigned to deliver this message.")
 
   public String getAssigned() {
     return assigned;
@@ -492,11 +523,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * queued timestamp
+   * ISO 8601 timestamp when the message was placed into the delivery queue.
    * @return queued
   **/
-  @Schema(example = "2021-10-14T12:50:15.487Z", required = true, description = "queued timestamp")
-  @NotNull
+  @Schema(example = "2021-10-14T12:50:15.487Z", description = "ISO 8601 timestamp when the message was placed into the delivery queue.")
 
   public String getQueued() {
     return queued;
@@ -512,11 +542,10 @@ public class MailLogEntry   {
   }
 
   /**
-   * mx hostname
+   * The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
    * @return mxHostname
   **/
-  @Schema(example = "mx.j.is.cc", required = true, description = "mx hostname")
-  @NotNull
+  @Schema(example = "mx.j.is.cc", description = "The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.")
 
   public String getMxHostname() {
     return mxHostname;
@@ -524,26 +553,6 @@ public class MailLogEntry   {
 
   public void setMxHostname(String mxHostname) {
     this.mxHostname = mxHostname;
-  }
-
-  public MailLogEntry response(String response) {
-    this.response = response;
-    return this;
-  }
-
-  /**
-   * mail delivery response
-   * @return response
-  **/
-  @Schema(example = "250 2.0.0 Ok queued as C91D83E128C", required = true, description = "mail delivery response")
-  @NotNull
-
-  public String getResponse() {
-    return response;
-  }
-
-  public void setResponse(String response) {
-    this.response = response;
   }
 
 
@@ -571,19 +580,20 @@ public class MailLogEntry   {
         Objects.equals(this.sendingZone, mailLogEntry.sendingZone) &&
         Objects.equals(this.bodySize, mailLogEntry.bodySize) &&
         Objects.equals(this.seq, mailLogEntry.seq) &&
+        Objects.equals(this.delivered, mailLogEntry.delivered) &&
+        Objects.equals(this.response, mailLogEntry.response) &&
         Objects.equals(this.recipient, mailLogEntry.recipient) &&
         Objects.equals(this.domain, mailLogEntry.domain) &&
         Objects.equals(this.locked, mailLogEntry.locked) &&
         Objects.equals(this.lockTime, mailLogEntry.lockTime) &&
         Objects.equals(this.assigned, mailLogEntry.assigned) &&
         Objects.equals(this.queued, mailLogEntry.queued) &&
-        Objects.equals(this.mxHostname, mailLogEntry.mxHostname) &&
-        Objects.equals(this.response, mailLogEntry.response);
+        Objects.equals(this.mxHostname, mailLogEntry.mxHostname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, recipient, domain, locked, lockTime, assigned, queued, mxHostname, response);
+    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, delivered, response, recipient, domain, locked, lockTime, assigned, queued, mxHostname);
   }
 
   @Override
@@ -606,6 +616,8 @@ public class MailLogEntry   {
     sb.append("    sendingZone: ").append(toIndentedString(sendingZone)).append("\n");
     sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
     sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
+    sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
+    sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
     sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    locked: ").append(toIndentedString(locked)).append("\n");
@@ -613,7 +625,6 @@ public class MailLogEntry   {
     sb.append("    assigned: ").append(toIndentedString(assigned)).append("\n");
     sb.append("    queued: ").append(toIndentedString(queued)).append("\n");
     sb.append("    mxHostname: ").append(toIndentedString(mxHostname)).append("\n");
-    sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("}");
     return sb.toString();
   }

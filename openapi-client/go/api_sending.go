@@ -1,9 +1,9 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
-API version: 1.3.0
+API version: 1.4.0
 Contact: support@interserver.net
 */
 
@@ -39,9 +39,18 @@ func (r ApiRawMailRequest) Execute() (*GenericResponse, *http.Response, error) {
 }
 
 /*
-RawMail Sends a raw email
+RawMail Sends a raw RFC 822 email
 
-This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+
+The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.
+
+If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.
+
+On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRawMailRequest
@@ -193,13 +202,13 @@ type ApiSendAdvMailRequest struct {
 	id *int64
 }
 
-// The subject or title of the email
+// The subject line of the email.
 func (r ApiSendAdvMailRequest) Subject(subject string) ApiSendAdvMailRequest {
 	r.subject = &subject
 	return r
 }
 
-// The main email contents.
+// The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
 func (r ApiSendAdvMailRequest) Body(body string) ApiSendAdvMailRequest {
 	r.body = &body
 	return r
@@ -230,13 +239,13 @@ func (r ApiSendAdvMailRequest) Bcc(bcc EmailAddressesTypes) ApiSendAdvMailReques
 	return r
 }
 
-// (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+// Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name.
 func (r ApiSendAdvMailRequest) Attachments(attachments []MailAttachment) ApiSendAdvMailRequest {
 	r.attachments = &attachments
 	return r
 }
 
-// (optional)  ID of the Mail order within our system to use as the Mail Account.
+// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
 func (r ApiSendAdvMailRequest) Id(id int64) ApiSendAdvMailRequest {
 	r.id = &id
 	return r
@@ -249,117 +258,59 @@ func (r ApiSendAdvMailRequest) Execute() (*GenericResponse, *http.Response, erro
 /*
 SendAdvMail Sends an Email with Advanced Options
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.
+Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
 
-Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.
+**Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `"Joe <joe@example.com>, jane@example.com"`) and the structured `[{"email":"...","name":"..."}]` array format.  When using JSON, both formats are equally supported.
 
-```BasicForm
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data to=support@interserver.net
+**HTML detection** is automatic — if `body` contains HTML tags the `Content-Type` is set to `text/html`; otherwise `text/plain`.
+
+**Attachments** must be base64-encoded.  Each attachment requires at least a `data` field; the optional `filename` field controls the attachment name shown to recipients.
+
+If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.
+
+On success the response `text` field contains the relay transaction ID which can be looked up in `GET /mail/log` via the `mailid` query parameter.
+
+## Examples
+
+### Form — basic string addresses
+```sh curl -X POST https://api.mailbaby.net/mail/advsend \
+  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'subject=Welcome' \
+  -d 'body=Hello' \
+  -d from=user@domain.com \
+  -d to=support@interserver.net
 ```
-
-```ArrayForm
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data "to[0][name]=Joe" \
---data "to[0][email]=support@interserver.net"
+### Form — RFC 822 named addresses
+```sh curl -X POST https://api.mailbaby.net/mail/advsend \
+  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'subject=Welcome' \
+  -d 'body=Hello' \
+  -d 'from=Joe <user@domain.com>' \
+  -d 'to=Jane <support@interserver.net>'
 ```
-
-```NameEmailForm
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from="Joe <user@domain.com>" \
---data to="Joe <support@interserver.net>"
+### Form — multiple recipients as array
+```sh curl -X POST https://api.mailbaby.net/mail/advsend \
+  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'subject=Welcome' -d 'body=Hello' \
+  -d from=user@domain.com \
+  -d 'to[0][name]=Joe' -d 'to[0][email]=support@interserver.net' \
+  -d 'to[1][name]=Jane' -d 'to[1][email]=jane@interserver.net'
 ```
-
-```MultToForm
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data "to=support@interserver.net, support@interserver.net"
-```
-
-```MultToFullForm
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data "to=Joe <support@interserver.net>, Joe <support@interserver.net>"
-```
-
-```MultToArrayForm
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data "to[0][name]=Joe" \
---data "to[0][email]=support@interserver.net" \
---data "to[1][name]=Joe" \
---data "to[1][email]=support@interserver.net"
-```
-
-```BasicJson
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data '{
-"subject": "Welcome",
-"body": "Hello",
-"from": "user@domain.com",
-"to": "support@interserver.net"
-}'
-```
-
-```ArrayJson
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data '{
-"subject": "Welcome",
-"body": "Hello",
-"from": {"name": "Joe", "email": "user@domain.com"},
-"to": [{"name": "Joe", "email": "support@interserver.net"}]
-}'
-```
-
-```NameEmailJson
-curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data '{
-"subject": "Welcome",
-"body": "Hello",
-"from": "Joe <user@domain.com>",
-"to": "Joe <support@interserver.net>"
-}'
+### JSON — structured objects
+```sh curl -X POST https://api.mailbaby.net/mail/advsend \
+  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "subject": "Welcome",
+    "body": "<h1>Hello</h1>",
+    "from": {"email": "user@domain.com", "name": "Sender Name"},
+    "to": [{"email": "joe@client.com", "name": "Joe Client"}],
+    "cc": [{"email": "manager@client.com"}],
+    "attachments": [{"filename": "report.pdf", "data": "BASE64_DATA"}]
+  }'
 ```
 
 
@@ -540,39 +491,38 @@ func (a *SendingAPIService) SendAdvMailExecute(r ApiSendAdvMailRequest) (*Generi
 type ApiSendMailRequest struct {
 	ctx context.Context
 	ApiService *SendingAPIService
-	to *string
+	to *SendMailTo
 	from *string
 	subject *string
 	body *string
-	id *int32
+	id *int64
 }
 
-// The Contact whom is the primary recipient of this email.
-func (r ApiSendMailRequest) To(to string) ApiSendMailRequest {
+func (r ApiSendMailRequest) To(to SendMailTo) ApiSendMailRequest {
 	r.to = &to
 	return r
 }
 
-// The contact whom is the this email is from.
+// The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.
 func (r ApiSendMailRequest) From(from string) ApiSendMailRequest {
 	r.from = &from
 	return r
 }
 
-// The subject or title of the email
+// The subject line of the email.
 func (r ApiSendMailRequest) Subject(subject string) ApiSendMailRequest {
 	r.subject = &subject
 	return r
 }
 
-// The main email contents.
+// The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
 func (r ApiSendMailRequest) Body(body string) ApiSendMailRequest {
 	r.body = &body
 	return r
 }
 
-// Optional Order ID
-func (r ApiSendMailRequest) Id(id int32) ApiSendMailRequest {
+// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
+func (r ApiSendMailRequest) Id(id int64) ApiSendMailRequest {
 	r.id = &id
 	return r
 }
@@ -584,9 +534,15 @@ func (r ApiSendMailRequest) Execute() (*GenericResponse, *http.Response, error) 
 /*
 SendMail Sends an Email
 
-Sends an email through one of your mail orders.
+Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
 
-*Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.
+**HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.
+
+The `from` address is also automatically set as the `Reply-To` header.
+
+*Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.
+
+On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record.
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

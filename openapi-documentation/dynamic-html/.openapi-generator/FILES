@@ -10,6 +10,7 @@ docs/index.html
 docs/models/DenyRuleNew.html
 docs/models/DenyRuleRecord.html
 docs/models/EmailAddressName.html
+docs/models/EmailAddressParam.html
 docs/models/EmailAddressTypes.html
 docs/models/EmailAddressesTypes.html
 docs/models/ErrorMessage.html
@@ -21,14 +22,13 @@ docs/models/MailBlocks.html
 docs/models/MailLog.html
 docs/models/MailLogEntry.html
 docs/models/MailOrder.html
+docs/models/MailOrderDetail.html
 docs/models/MailStatsType.html
 docs/models/MailStatsTypeVolume.html
-docs/models/MailStatsTypeVolumeFrom.html
-docs/models/MailStatsTypeVolumeIp.html
-docs/models/MailStatsTypeVolumeTo.html
 docs/models/SendMail.html
 docs/models/SendMailAdv.html
 docs/models/SendMailRaw.html
+docs/models/SendMailTo.html
 docs/operations/BlockingApi.html
 docs/operations/HistoryApi.html
 docs/operations/SendingApi.html

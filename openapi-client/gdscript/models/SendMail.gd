@@ -8,30 +8,28 @@ class_name SendMail
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # SendMail Model
-# Details for an Email
+# Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
 
 
-# The Contact whom is the primary recipient of this email.
 # Required: True
-# Example: johndoe@company.com
 # isArray: false
-@export var to: String = "":
+@export var to: SendMailTo:
 	set(value):
 		__to__was__set = true
 		to = value
 var __to__was__set := false
 
-# The contact whom is the this email is from.
+# The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 # Required: True
 # Example: janedoe@company.com
 # isArray: false
-@export var from: String = "":
+@export var from: String:
 	set(value):
 		__from__was__set = true
 		from = value
 var __from__was__set := false
 
-# The subject or title of the email
+# The subject line of the email.
 # Required: True
 # Example: Attention Client
 # isArray: false
@@ -41,7 +39,7 @@ var __from__was__set := false
 		subject = value
 var __subject__was__set := false
 
-# The main email contents.
+# The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 # Required: True
 # Example: This is an email to inform you that something noteworthy happened.
 # isArray: false
@@ -51,10 +49,11 @@ var __subject__was__set := false
 		body = value
 var __body__was__set := false
 
-# Optional Order ID
+# Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 # Required: False
+# Example: 2604
 # isArray: false
-@export var id: int:
+@export var id: float:
 	set(value):
 		__id__was__set = true
 		id = value
@@ -93,7 +92,7 @@ func bzz_normalize() -> Dictionary:
 static func bzz_denormalize_single(from_dict: Dictionary):
 	var me := new()
 	if from_dict.has("to"):
-		me.to = from_dict["to"]
+		me.to = SendMail_to.bzz_denormalize_single(from_dict["to"])
 	if from_dict.has("from"):
 		me.from = from_dict["from"]
 	if from_dict.has("subject"):

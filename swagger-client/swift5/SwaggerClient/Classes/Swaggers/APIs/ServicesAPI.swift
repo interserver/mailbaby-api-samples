@@ -11,7 +11,51 @@ import Alamofire
 
 open class ServicesAPI {
     /**
-     displays a list of mail service orders
+     Displays details for a single mail order
+
+     - parameter _id: (path) The numeric ID of the mail order. 
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func getMailOrderById(_id: Int64, completion: @escaping ((_ data: MailOrderDetail?,_ error: Error?) -> Void)) {
+        getMailOrderByIdWithRequestBuilder(_id: _id).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Displays details for a single mail order
+     - GET /mail/{id}
+
+     - API Key:
+       - type: apiKey X-API-KEY 
+       - name: apiKeyAuth
+     - examples: [{contentType=application/json, example={
+  "id" : 21472,
+  "status" : "active",
+  "username" : "mb21472",
+  "password" : "s3cr3tpassword"
+}}]
+     - parameter _id: (path) The numeric ID of the mail order. 
+
+     - returns: RequestBuilder<MailOrderDetail> 
+     */
+    open class func getMailOrderByIdWithRequestBuilder(_id: Int64) -> RequestBuilder<MailOrderDetail> {
+        var path = "/mail/{id}"
+        let _idPreEscape = "\(_id)"
+        let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{id}", with: _idPostEscape, options: .literal, range: nil)
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        let url = URLComponents(string: URLString)
+
+
+        let requestBuilder: RequestBuilder<MailOrderDetail>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+    /**
+     Displays a list of mail service orders
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -23,7 +67,7 @@ open class ServicesAPI {
 
 
     /**
-     displays a list of mail service orders
+     Displays a list of mail service orders
      - GET /mail
 
      - API Key:

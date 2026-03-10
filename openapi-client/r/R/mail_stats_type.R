@@ -1,19 +1,18 @@
 #' Create a new MailStatsType
 #'
 #' @description
-#' Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+#' Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 #'
 #' @docType class
 #' @title MailStatsType
 #' @description MailStatsType Class
 #' @format An \code{R6Class} generator object
-#' @field time  character [optional]
-#' @field usage  integer [optional]
-#' @field currency  character [optional]
-#' @field currencySymbol  character [optional]
-#' @field cost  numeric [optional]
-#' @field received  integer [optional]
-#' @field sent  integer [optional]
+#' @field time The time window these `received`, `sent`, and `volume` statistics cover. character [optional]
+#' @field usage Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. integer [optional]
+#' @field currency The ISO 4217 currency code for this account (e.g. `USD`). character [optional]
+#' @field cost Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). numeric [optional]
+#' @field received Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue. integer [optional]
+#' @field sent Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. integer [optional]
 #' @field volume  \link{MailStatsTypeVolume} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
@@ -24,7 +23,6 @@ MailStatsType <- R6::R6Class(
     `time` = NULL,
     `usage` = NULL,
     `currency` = NULL,
-    `currencySymbol` = NULL,
     `cost` = NULL,
     `received` = NULL,
     `sent` = NULL,
@@ -33,19 +31,18 @@ MailStatsType <- R6::R6Class(
     #' @description
     #' Initialize a new MailStatsType class.
     #'
-    #' @param time time. Default to "1h".
-    #' @param usage usage
-    #' @param currency currency
-    #' @param currencySymbol currencySymbol
-    #' @param cost cost
-    #' @param received received
-    #' @param sent sent
+    #' @param time The time window these `received`, `sent`, and `volume` statistics cover.. Default to "1h".
+    #' @param usage Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+    #' @param currency The ISO 4217 currency code for this account (e.g. `USD`).
+    #' @param cost Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+    #' @param received Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+    #' @param sent Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
     #' @param volume volume
     #' @param ... Other optional arguments.
-    initialize = function(`time` = "1h", `usage` = NULL, `currency` = NULL, `currencySymbol` = NULL, `cost` = NULL, `received` = NULL, `sent` = NULL, `volume` = NULL, ...) {
+    initialize = function(`time` = "1h", `usage` = NULL, `currency` = NULL, `cost` = NULL, `received` = NULL, `sent` = NULL, `volume` = NULL, ...) {
       if (!is.null(`time`)) {
-        if (!(`time` %in% c("all", "billing", "month", "7d", "24h", "today", "1h"))) {
-          stop(paste("Error! \"", `time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"today\", \"1h\".", sep = ""))
+        if (!(`time` %in% c("all", "billing", "month", "7d", "24h", "day", "1h"))) {
+          stop(paste("Error! \"", `time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"day\", \"1h\".", sep = ""))
         }
         if (!(is.character(`time`) && length(`time`) == 1)) {
           stop(paste("Error! Invalid data for `time`. Must be a string:", `time`))
@@ -63,12 +60,6 @@ MailStatsType <- R6::R6Class(
           stop(paste("Error! Invalid data for `currency`. Must be a string:", `currency`))
         }
         self$`currency` <- `currency`
-      }
-      if (!is.null(`currencySymbol`)) {
-        if (!(is.character(`currencySymbol`) && length(`currencySymbol`) == 1)) {
-          stop(paste("Error! Invalid data for `currencySymbol`. Must be a string:", `currencySymbol`))
-        }
-        self$`currencySymbol` <- `currencySymbol`
       }
       if (!is.null(`cost`)) {
         if (!(is.numeric(`cost`) && length(`cost`) == 1)) {
@@ -137,10 +128,6 @@ MailStatsType <- R6::R6Class(
         MailStatsTypeObject[["currency"]] <-
           self$`currency`
       }
-      if (!is.null(self$`currencySymbol`)) {
-        MailStatsTypeObject[["currencySymbol"]] <-
-          self$`currencySymbol`
-      }
       if (!is.null(self$`cost`)) {
         MailStatsTypeObject[["cost"]] <-
           self$`cost`
@@ -191,8 +178,8 @@ MailStatsType <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`time`)) {
-        if (!is.null(this_object$`time`) && !(this_object$`time` %in% c("all", "billing", "month", "7d", "24h", "today", "1h"))) {
-          stop(paste("Error! \"", this_object$`time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"today\", \"1h\".", sep = ""))
+        if (!is.null(this_object$`time`) && !(this_object$`time` %in% c("all", "billing", "month", "7d", "24h", "day", "1h"))) {
+          stop(paste("Error! \"", this_object$`time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"day\", \"1h\".", sep = ""))
         }
         self$`time` <- this_object$`time`
       }
@@ -201,9 +188,6 @@ MailStatsType <- R6::R6Class(
       }
       if (!is.null(this_object$`currency`)) {
         self$`currency` <- this_object$`currency`
-      }
-      if (!is.null(this_object$`currencySymbol`)) {
-        self$`currencySymbol` <- this_object$`currencySymbol`
       }
       if (!is.null(this_object$`cost`)) {
         self$`cost` <- this_object$`cost`
@@ -240,13 +224,12 @@ MailStatsType <- R6::R6Class(
     #' @return the instance of MailStatsType
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      if (!is.null(this_object$`time`) && !(this_object$`time` %in% c("all", "billing", "month", "7d", "24h", "today", "1h"))) {
-        stop(paste("Error! \"", this_object$`time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"today\", \"1h\".", sep = ""))
+      if (!is.null(this_object$`time`) && !(this_object$`time` %in% c("all", "billing", "month", "7d", "24h", "day", "1h"))) {
+        stop(paste("Error! \"", this_object$`time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"day\", \"1h\".", sep = ""))
       }
       self$`time` <- this_object$`time`
       self$`usage` <- this_object$`usage`
       self$`currency` <- this_object$`currency`
-      self$`currencySymbol` <- this_object$`currencySymbol`
       self$`cost` <- this_object$`cost`
       self$`received` <- this_object$`received`
       self$`sent` <- this_object$`sent`

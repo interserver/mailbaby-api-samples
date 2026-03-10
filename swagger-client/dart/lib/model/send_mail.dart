@@ -1,15 +1,15 @@
 part of swagger.api;
 
 class SendMail {
-  /* The Contact whom is the primary recipient of this email. */
-  String to = null;
-/* The contact whom is the this email is from. */
+  /* The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. */
+  OneOfSendMailTo to = null;
+/* The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. */
   String from = null;
-/* The subject or title of the email */
+/* The subject line of the email. */
   String subject = null;
-/* The main email contents. */
+/* The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. */
   String body = null;
-/* Optional Order ID */
+/* Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. */
   int id = null;
 
   SendMail();
@@ -21,7 +21,7 @@ class SendMail {
 
   SendMail.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    to = json['to'];
+    to = new OneOfSendMailTo.fromJson(json['to']);
     from = json['from'];
     subject = json['subject'];
     body = json['body'];

@@ -7,12 +7,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * The data for a email deny rule record.
+ * A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "The data for a email deny rule record.")
+@Schema(description = "A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.")
 
 public class DenyRuleRecord   {
 
@@ -58,7 +58,7 @@ public enum TypeEnum {
   private @Valid String data = null;
 
   /**
-   * The deny rule Id number.
+   * The numeric ID of the deny rule, as a string.  Pass this as &#x60;ruleId&#x60; to &#x60;DELETE /mail/rules/{ruleId}&#x60; to remove the rule.
    **/
   public DenyRuleRecord id(String id) {
     this.id = id;
@@ -66,7 +66,7 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(example = "41124", required = true, value = "The deny rule Id number.")
+  @ApiModelProperty(example = "41124", required = true, value = "The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.")
   @JsonProperty("id")
   @NotNull
 
@@ -78,7 +78,7 @@ public enum TypeEnum {
   }
 
   /**
-   * the date the rule was created.
+   * The timestamp when the rule was created.
    **/
   public DenyRuleRecord created(Date created) {
     this.created = created;
@@ -86,7 +86,7 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(required = true, value = "the date the rule was created.")
+  @ApiModelProperty(required = true, value = "The timestamp when the rule was created.")
   @JsonProperty("created")
   @NotNull
 
@@ -98,7 +98,7 @@ public enum TypeEnum {
   }
 
   /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+   * Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
    **/
   public DenyRuleRecord user(String user) {
     this.user = user;
@@ -106,7 +106,7 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(example = "mb20682", value = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+  @ApiModelProperty(example = "mb20682", value = "Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.")
   @JsonProperty("user")
   @NotNull
 
@@ -138,7 +138,7 @@ public enum TypeEnum {
   }
 
   /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   * The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
    **/
   public DenyRuleRecord data(String data) {
     this.data = data;
@@ -146,7 +146,7 @@ public enum TypeEnum {
   }
 
   
-  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
+  @ApiModelProperty(example = "domeinwo@server.guesshost.net", required = true, value = "The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.")
   @JsonProperty("data")
   @NotNull
 

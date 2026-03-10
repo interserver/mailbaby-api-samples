@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// Array of Email Addresses
+  /// An array of email contacts, each with an email address and optional display name.
   /// </summary>
   [DataContract]
   public class EmailAddressNames : List<EmailAddressName> {

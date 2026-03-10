@@ -2,27 +2,42 @@
 Protected Class MailBlockClickHouse
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The date the block event was recorded.
+		#tag EndNote
 		date As Date
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
+		#tag EndNote
 		from As String
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		messageId As String
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
+		#tag Note
+			The `Subject` header of the blocked message.
+		#tag EndNote
 		subject As String
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The serialized list of recipients of the blocked message.
+		#tag EndNote
 		Escapedto As String
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
+			The `Message-ID` header of the blocked message, or `null` if not present.
+		#tag EndNote
+		messageId As Xoson.O.OptionalString
 	#tag EndProperty
 
 
@@ -79,14 +94,6 @@ Protected Class MailBlockClickHouse
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="messageId"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="subject"
 			Visible=false
 			Group="Behavior"
@@ -96,6 +103,14 @@ Protected Class MailBlockClickHouse
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Escapedto"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="messageId"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

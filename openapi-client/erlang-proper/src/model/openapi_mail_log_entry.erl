@@ -24,6 +24,8 @@
   | {'sendingZone', binary() }
   | {'bodySize', integer() }
   | {'seq', integer() }
+  | {'delivered', integer() }
+  | {'response', binary() }
   | {'recipient', binary() }
   | {'domain', binary() }
   | {'locked', integer() }
@@ -31,7 +33,6 @@
   | {'assigned', binary() }
   | {'queued', binary() }
   | {'mxHostname', binary() }
-  | {'response', binary() }
   ].
 
 
@@ -54,6 +55,8 @@ openapi_mail_log_entry(Fields) ->
             , {'sendingZone', binary() }
             , {'bodySize', integer() }
             , {'seq', integer() }
+            , {'delivered', integer() }
+            , {'response', binary() }
             , {'recipient', binary() }
             , {'domain', binary() }
             , {'locked', integer() }
@@ -61,7 +64,6 @@ openapi_mail_log_entry(Fields) ->
             , {'assigned', binary() }
             , {'queued', binary() }
             , {'mxHostname', binary() }
-            , {'response', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

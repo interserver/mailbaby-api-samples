@@ -1,9 +1,8 @@
 package org.openapitools.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import org.openapitools.model.MailStatsTypeVolumeFrom;
-import org.openapitools.model.MailStatsTypeVolumeIp;
-import org.openapitools.model.MailStatsTypeVolumeTo;
+import java.util.HashMap;
+import java.util.Map;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;

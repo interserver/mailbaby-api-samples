@@ -3,10 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **INTEGER_32** | The ID of the order. | [default to null]
-**status** | [**STRING_32**](STRING_32.md) | The order status. | [default to null]
-**username** | [**STRING_32**](STRING_32.md) | The username to use for this order. | [default to null]
-**comment** | [**STRING_32**](STRING_32.md) | Optional order comment. | [optional] [default to null]
+**id** | **INTEGER_32** | The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries. | [default to null]
+**status** | [**STRING_32**](STRING_32.md) | The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. | [default to null]
+**username** | [**STRING_32**](STRING_32.md) | The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed. | [default to null]
+**comment** | [**STRING_32**](STRING_32.md) | Optional human-readable note associated with the order. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

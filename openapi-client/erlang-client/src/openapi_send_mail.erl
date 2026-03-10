@@ -5,7 +5,7 @@
 -export_type([openapi_send_mail/0]).
 
 -type openapi_send_mail() ::
-    #{ 'to' := binary(),
+    #{ 'to' := openapi_send_mail_to:openapi_send_mail_to(),
        'from' := binary(),
        'subject' := binary(),
        'body' := binary(),

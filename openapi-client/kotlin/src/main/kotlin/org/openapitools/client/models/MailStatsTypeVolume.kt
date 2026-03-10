@@ -15,32 +15,32 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.MailStatsTypeVolumeFrom
-import org.openapitools.client.models.MailStatsTypeVolumeIp
-import org.openapitools.client.models.MailStatsTypeVolumeTo
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * 
+ * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
  *
- * @param to 
- * @param from 
- * @param ip 
+ * @param to Message counts keyed by destination (envelope `to`) email address.
+ * @param from Message counts keyed by sender (envelope `from`) email address.
+ * @param ip Message counts keyed by originating client IP address.
  */
 
 
 data class MailStatsTypeVolume (
 
+    /* Message counts keyed by destination (envelope `to`) email address. */
     @Json(name = "to")
-    val to: MailStatsTypeVolumeTo? = null,
+    val to: kotlin.collections.Map<kotlin.String, kotlin.Int>? = null,
 
+    /* Message counts keyed by sender (envelope `from`) email address. */
     @Json(name = "from")
-    val from: MailStatsTypeVolumeFrom? = null,
+    val from: kotlin.collections.Map<kotlin.String, kotlin.Int>? = null,
 
+    /* Message counts keyed by originating client IP address. */
     @Json(name = "ip")
-    val ip: MailStatsTypeVolumeIp? = null
+    val ip: kotlin.collections.Map<kotlin.String, kotlin.Int>? = null
 
 ) {
 

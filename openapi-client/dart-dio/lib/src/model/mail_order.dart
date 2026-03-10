@@ -8,37 +8,30 @@ import 'package:built_value/serializer.dart';
 
 part 'mail_order.g.dart';
 
-/// A mail order record
+/// A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 ///
 /// Properties:
-/// * [id] - The ID of the order.
-/// * [status] - The order status.
-/// * [username] - The username to use for this order.
-/// * [comment] - Optional order comment.
-@BuiltValue()
-abstract class MailOrder implements Built<MailOrder, MailOrderBuilder> {
-  /// The ID of the order.
+/// * [id] - The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
+/// * [status] - The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+/// * [username] - The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
+/// * [comment] - Optional human-readable note associated with the order.
+@BuiltValue(instantiable: false)
+abstract class MailOrder  {
+  /// The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
   @BuiltValueField(wireName: r'id')
   int get id;
 
-  /// The order status.
+  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   @BuiltValueField(wireName: r'status')
   String get status;
 
-  /// The username to use for this order.
+  /// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
   @BuiltValueField(wireName: r'username')
   String get username;
 
-  /// Optional order comment.
+  /// Optional human-readable note associated with the order.
   @BuiltValueField(wireName: r'comment')
   String? get comment;
-
-  MailOrder._();
-
-  factory MailOrder([void updates(MailOrderBuilder b)]) = _$MailOrder;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MailOrderBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<MailOrder> get serializer => _$MailOrderSerializer();
@@ -46,7 +39,7 @@ abstract class MailOrder implements Built<MailOrder, MailOrderBuilder> {
 
 class _$MailOrderSerializer implements PrimitiveSerializer<MailOrder> {
   @override
-  final Iterable<Type> types = const [MailOrder, _$MailOrder];
+  final Iterable<Type> types = const [MailOrder];
 
   @override
   final String wireName = r'MailOrder';
@@ -87,6 +80,46 @@ class _$MailOrderSerializer implements PrimitiveSerializer<MailOrder> {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
+  }
+
+  @override
+  MailOrder deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.deserialize(serialized, specifiedType: FullType($MailOrder)) as $MailOrder;
+  }
+}
+
+/// a concrete implementation of [MailOrder], since [MailOrder] is not instantiable
+@BuiltValue(instantiable: true)
+abstract class $MailOrder implements MailOrder, Built<$MailOrder, $MailOrderBuilder> {
+  $MailOrder._();
+
+  factory $MailOrder([void Function($MailOrderBuilder)? updates]) = _$$MailOrder;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults($MailOrderBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<$MailOrder> get serializer => _$$MailOrderSerializer();
+}
+
+class _$$MailOrderSerializer implements PrimitiveSerializer<$MailOrder> {
+  @override
+  final Iterable<Type> types = const [$MailOrder, _$$MailOrder];
+
+  @override
+  final String wireName = r'$MailOrder';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    $MailOrder object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return serializers.serialize(object, specifiedType: FullType(MailOrder))!;
   }
 
   void _deserializeProperties(
@@ -138,12 +171,12 @@ class _$MailOrderSerializer implements PrimitiveSerializer<MailOrder> {
   }
 
   @override
-  MailOrder deserialize(
+  $MailOrder deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = MailOrderBuilder();
+    final result = $MailOrderBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

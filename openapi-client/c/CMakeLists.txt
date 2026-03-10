@@ -51,6 +51,7 @@ set(SRCS
     model/deny_rule_new.c
     model/deny_rule_record.c
     model/email_address_name.c
+    model/email_address_param.c
     model/email_address_types.c
     model/email_addresses_types.c
     model/error_message.c
@@ -62,14 +63,13 @@ set(SRCS
     model/mail_log.c
     model/mail_log_entry.c
     model/mail_order.c
+    model/mail_order_detail.c
     model/mail_stats_type.c
     model/mail_stats_type_volume.c
-    model/mail_stats_type_volume_from.c
-    model/mail_stats_type_volume_ip.c
-    model/mail_stats_type_volume_to.c
     model/send_mail.c
     model/send_mail_adv.c
     model/send_mail_raw.c
+    model/send_mail_to.c
     api/BlockingAPI.c
     api/HistoryAPI.c
     api/SendingAPI.c
@@ -89,6 +89,7 @@ set(HDRS
     model/deny_rule_new.h
     model/deny_rule_record.h
     model/email_address_name.h
+    model/email_address_param.h
     model/email_address_types.h
     model/email_addresses_types.h
     model/error_message.h
@@ -100,14 +101,13 @@ set(HDRS
     model/mail_log.h
     model/mail_log_entry.h
     model/mail_order.h
+    model/mail_order_detail.h
     model/mail_stats_type.h
     model/mail_stats_type_volume.h
-    model/mail_stats_type_volume_from.h
-    model/mail_stats_type_volume_ip.h
-    model/mail_stats_type_volume_to.h
     model/send_mail.h
     model/send_mail_adv.h
     model/send_mail_raw.h
+    model/send_mail_to.h
     api/BlockingAPI.h
     api/HistoryAPI.h
     api/SendingAPI.h

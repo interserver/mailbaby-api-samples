@@ -4,11 +4,11 @@
 ## Properties
 | Name | Type | Description | Notes |
 | ------------ | ------------- | ------------- | ------------- |
-| **to** | **kotlin.String** | The Contact whom is the primary recipient of this email. |  |
-| **from** | **kotlin.String** | The contact whom is the this email is from. |  |
-| **subject** | **kotlin.String** | The subject or title of the email |  |
-| **body** | **kotlin.String** | The main email contents. |  |
-| **id** | **kotlin.Int** | Optional Order ID |  [optional] |
+| **to** | [**SendMailTo**](SendMailTo.md) |  |  |
+| **from** | **kotlin.String** | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. |  |
+| **subject** | **kotlin.String** | The subject line of the email. |  |
+| **body** | **kotlin.String** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. |  |
+| **id** | **kotlin.Long** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. |  [optional] |
 
 
 

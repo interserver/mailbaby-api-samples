@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | **string** |  | [default to null]
+**to** | [**SendMailTo**](SendMailTo.md) |  | [default to null]
 **from** | **string** |  | [default to null]
 **subject** | **string** |  | [default to null]
 **body** | **string** |  | [default to null]

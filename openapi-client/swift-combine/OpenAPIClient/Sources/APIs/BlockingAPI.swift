@@ -37,34 +37,34 @@ open class BlockingAPI {
         case destination = "destination"
     }
     public enum AddRuleError: Error, CustomStringConvertible {
-        // Error message when there was a problem with the input parameters.
+        // Bad request — one or more input parameters were missing or invalid.
         case code400Error(ErrorMessage)
-        // Unauthorized
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
         case code401Error(ErrorMessage)
-        // The specified resource was not found
+        // The specified resource was not found or does not belong to your account.
         case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "AddRuleError: Error message when there was a problem with the input parameters.: \(object)"
+                return "AddRuleError: Bad request — one or more input parameters were missing or invalid.: \(object)"
             case .code401Error(let object):
-                return "AddRuleError: Unauthorized: \(object)"
+                return "AddRuleError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             case .code404Error(let object):
-                return "AddRuleError: The specified resource was not found: \(object)"
+                return "AddRuleError: The specified resource was not found or does not belong to your account.: \(object)"
             }
         }
     }
 
-    /// Creates a new email deny rule.
+    /// Creates a new email deny rule
     /// - POST /mail/rules
-    /// - Adds a new email deny rule into the system to block new emails that match the given criteria
+    /// - Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
     /// - parameter type: (form) The type of deny rule. 
-    /// - parameter data: (form) The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. 
-    /// - parameter user: (form) Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. (optional)
+    /// - parameter data: (form) The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. 
+    /// - parameter user: (form) Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. (optional)
     /// - returns: AnyPublisher<GenericResponse, Error> 
     open func addRule(type: AddRuleModelType, data: String, user: String? = nil) -> AnyPublisher<GenericResponse, Error> {
         Deferred {
@@ -125,32 +125,32 @@ open class BlockingAPI {
     }
 
     public enum DeleteRuleError: Error, CustomStringConvertible {
-        // Error message when there was a problem with the input parameters.
+        // Bad request — one or more input parameters were missing or invalid.
         case code400Error(ErrorMessage)
-        // Unauthorized
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
         case code401Error(ErrorMessage)
-        // The specified resource was not found
+        // The specified resource was not found or does not belong to your account.
         case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "DeleteRuleError: Error message when there was a problem with the input parameters.: \(object)"
+                return "DeleteRuleError: Bad request — one or more input parameters were missing or invalid.: \(object)"
             case .code401Error(let object):
-                return "DeleteRuleError: Unauthorized: \(object)"
+                return "DeleteRuleError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             case .code404Error(let object):
-                return "DeleteRuleError: The specified resource was not found: \(object)"
+                return "DeleteRuleError: The specified resource was not found or does not belong to your account.: \(object)"
             }
         }
     }
 
-    /// Removes an deny mail rule.
+    /// Removes a deny mail rule
     /// - DELETE /mail/rules/{ruleId}
-    /// - Removes one of the configured deny mail rules from the system.
+    /// - Permanently removes a single deny rule identified by its numeric `ruleId`.  The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.  Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
-    /// - parameter ruleId: (path) The ID of the Rules entry. 
+    /// - parameter ruleId: (path) The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. 
     /// - returns: AnyPublisher<GenericResponse, Error> 
     open func deleteRule(ruleId: Int) -> AnyPublisher<GenericResponse, Error> {
         Deferred {
@@ -206,34 +206,34 @@ open class BlockingAPI {
     }
 
     public enum DelistBlockError: Error, CustomStringConvertible {
-        // Error message when there was a problem with the input parameters.
+        // Bad request — one or more input parameters were missing or invalid.
         case code400Error(ErrorMessage)
-        // Unauthorized
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
         case code401Error(ErrorMessage)
-        // The specified resource was not found
+        // The specified resource was not found or does not belong to your account.
         case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code400Error(let object):
-                return "DelistBlockError: Error message when there was a problem with the input parameters.: \(object)"
+                return "DelistBlockError: Bad request — one or more input parameters were missing or invalid.: \(object)"
             case .code401Error(let object):
-                return "DelistBlockError: Unauthorized: \(object)"
+                return "DelistBlockError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             case .code404Error(let object):
-                return "DelistBlockError: The specified resource was not found: \(object)"
+                return "DelistBlockError: The specified resource was not found or does not belong to your account.: \(object)"
             }
         }
     }
 
-    /// Removes an email address from the blocked list
+    /// Removes an email address from the block lists
     /// - POST /mail/blocks/delete
-    /// - Removes an email address from the various block lists. 
+    /// - Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
-    /// - parameter body: (body)  
+    /// - parameter emailAddressParam: (body)  
     /// - returns: AnyPublisher<GenericResponse, Error> 
-    open func delistBlock(body: String) -> AnyPublisher<GenericResponse, Error> {
+    open func delistBlock(emailAddressParam: EmailAddressParam) -> AnyPublisher<GenericResponse, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -247,7 +247,7 @@ open class BlockingAPI {
                 }
                 var request = URLRequest(url: requestURL)
                 request.httpMethod = "POST"
-                request.httpBody = try self.encoder.encode(body)
+                request.httpBody = try self.encoder.encode(emailAddressParam)
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 return request
             }.publisher
@@ -288,23 +288,20 @@ open class BlockingAPI {
     }
 
     public enum GetMailBlocksError: Error, CustomStringConvertible {
-        // Unauthorized
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
         case code401Error(ErrorMessage)
-        // Unauthorized
-        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code401Error(let object):
-                return "GetMailBlocksError: Unauthorized: \(object)"
-            case .code404Error(let object):
-                return "GetMailBlocksError: Unauthorized: \(object)"
+                return "GetMailBlocksError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             }
         }
     }
 
-    /// displays a list of blocked email addresses
+    /// Displays a list of blocked email addresses
     /// - GET /mail/blocks
+    /// - Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
@@ -336,14 +333,6 @@ open class BlockingAPI {
                             return error
                         }
                     }
-                    if transportError.statusCode == 404 {
-                        do {
-                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
-                            return GetMailBlocksError.code404Error(error)
-                        } catch {
-                            return error
-                        }
-                    }
                     return transportError
                 }
                 .tryMap { response in
@@ -354,24 +343,20 @@ open class BlockingAPI {
     }
 
     public enum GetRulesError: Error, CustomStringConvertible {
-        // Unauthorized
+        // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
         case code401Error(ErrorMessage)
-        // Unauthorized
-        case code404Error(ErrorMessage)
 
         public var description: String {
             switch self {
             case .code401Error(let object):
-                return "GetRulesError: Unauthorized: \(object)"
-            case .code404Error(let object):
-                return "GetRulesError: Unauthorized: \(object)"
+                return "GetRulesError: Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).: \(object)"
             }
         }
     }
 
-    /// Displays a listing of deny email rules.
+    /// Displays a listing of deny email rules
     /// - GET /mail/rules
-    /// - Returns a listing of all the deny block rules you have configured.
+    /// - Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
@@ -399,14 +384,6 @@ open class BlockingAPI {
                         do {
                             let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
                             return GetRulesError.code401Error(error)
-                        } catch {
-                            return error
-                        }
-                    }
-                    if transportError.statusCode == 404 {
-                        do {
-                            let error = try self.decoder.decode(ErrorMessage.self, from: transportError.data)
-                            return GetRulesError.code404Error(error)
                         } catch {
                             return error
                         }

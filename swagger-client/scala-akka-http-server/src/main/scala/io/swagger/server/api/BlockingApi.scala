@@ -7,6 +7,7 @@ import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
 import io.swagger.server.model.DenyRuleNew
 import io.swagger.server.model.DenyRuleRecord
+import io.swagger.server.model.EmailAddressParam
 import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.GenericResponse
 import io.swagger.server.model.MailBlocks
@@ -52,13 +53,13 @@ class BlockingApi(
       post {
         
           
-            
+            formFields("email".as[String]) { (email) =>
               
-                entity(as[String]){ body =>
-                  blockingService.delistBlock(body = body)
+                entity(as[EmailAddressParam]){ body =>
+                  blockingService.delistBlock(body = body, email = email)
                 }
              
-           
+            }
          
        
       }
@@ -106,10 +107,10 @@ trait BlockingApiService {
   def addRule404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((404, responseErrorMessage))
   /**
-   * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   * Code: 200, Message: Rule created successfully, DataType: GenericResponse
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found or does not belong to your account., DataType: ErrorMessage
    */
   def addRule(user: String, &#x60;type&#x60;: String, data: String, body: DenyRuleNew)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
@@ -123,10 +124,10 @@ trait BlockingApiService {
   def deleteRule404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((404, responseErrorMessage))
   /**
-   * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   * Code: 200, Message: Rule deleted successfully, DataType: GenericResponse
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found or does not belong to your account., DataType: ErrorMessage
    */
   def deleteRule(ruleId: Int)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
@@ -140,46 +141,40 @@ trait BlockingApiService {
   def delistBlock404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((404, responseErrorMessage))
   /**
-   * Code: 200, Message: search results matching criteria, DataType: GenericResponse
-   * Code: 400, Message: Error message when there was a problem with the input parameters., DataType: ErrorMessage
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: The specified resource was not found, DataType: ErrorMessage
+   * Code: 200, Message: Address successfully delisted, DataType: GenericResponse
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
+   * Code: 404, Message: The specified resource was not found or does not belong to your account., DataType: ErrorMessage
    */
-  def delistBlock(body: String)
+  def delistBlock(body: EmailAddressParam, email: String)
       (implicit toEntityMarshallerGenericResponse: ToEntityMarshaller[GenericResponse], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def getMailBlocks200(responseMailBlocks: MailBlocks)(implicit toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks]): Route =
     complete((200, responseMailBlocks))
   def getMailBlocks401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((401, responseErrorMessage))
-  def getMailBlocks404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
-    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: MailBlocks
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
    */
   def getMailBlocks()
-      (implicit toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
+      (implicit toEntityMarshallerMailBlocks: ToEntityMarshaller[MailBlocks], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def getRules200(responseDenyRuleRecordarray: List[DenyRuleRecord])(implicit toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]]): Route =
     complete((200, responseDenyRuleRecordarray))
   def getRules401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((401, responseErrorMessage))
-  def getRules404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
-    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: List[DenyRuleRecord]
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
    */
   def getRules()
-      (implicit toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
+      (implicit toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }
 
 trait BlockingApiMarshaller {
-  implicit def fromRequestUnmarshallerString: FromRequestUnmarshaller[String]
+  implicit def fromRequestUnmarshallerEmailAddressParam: FromRequestUnmarshaller[EmailAddressParam]
 
   implicit def fromRequestUnmarshallerDenyRuleNew: FromRequestUnmarshaller[DenyRuleNew]
 
@@ -212,11 +207,7 @@ trait BlockingApiMarshaller {
 
   implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
-
   implicit def toEntityMarshallerDenyRuleRecordarray: ToEntityMarshaller[List[DenyRuleRecord]]
-
-  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
   implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 

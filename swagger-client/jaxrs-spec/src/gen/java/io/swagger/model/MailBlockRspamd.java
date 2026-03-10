@@ -5,12 +5,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * This is a block entry from the rspamd block list.
+ * A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "This is a block entry from the rspamd block list.")
+@Schema(description = "A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 
 public class MailBlockRspamd   {
 
@@ -19,6 +19,7 @@ public class MailBlockRspamd   {
   private @Valid String subject = null;
 
   /**
+   * The sender email address.  Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist the sender.
    **/
   public MailBlockRspamd from(String from) {
     this.from = from;
@@ -26,7 +27,7 @@ public class MailBlockRspamd   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "user@domain.com", required = true, value = "The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.")
   @JsonProperty("from")
   @NotNull
 
@@ -38,6 +39,7 @@ public class MailBlockRspamd   {
   }
 
   /**
+   * The suspicious subject pattern that triggered the block.
    **/
   public MailBlockRspamd subject(String subject) {
     this.subject = subject;
@@ -45,7 +47,7 @@ public class MailBlockRspamd   {
   }
 
   
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Test email", required = true, value = "The suspicious subject pattern that triggered the block.")
   @JsonProperty("subject")
   @NotNull
 

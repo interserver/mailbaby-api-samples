@@ -9,17 +9,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description="(optional) File attachments to include in the email.  The file contents must be base64")
+@Schema(description="A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.")
 
 public class MailAttachment   {
   private String filename = null;
-  private String data = null;
+  private byte[] data = null;
 
   /**
-   * The filename of the attached file.
+   * The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;).
    **/
   
-  @Schema(example = "message.txt", required = true, description = "The filename of the attached file.")
+  @Schema(example = "message.txt", required = true, description = "The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).")
   @JsonProperty("filename")
   @NotNull
   public String getFilename() {
@@ -30,16 +30,16 @@ public class MailAttachment   {
   }
 
   /**
-   * The file contents base64 encoded
+   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
    **/
   
-  @Schema(example = "aGVsbG8gdGhlcmUK", required = true, description = "The file contents base64 encoded")
+  @Schema(example = "[B@2a790f7e", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
   @JsonProperty("data")
   @NotNull
-  public String getData() {
+  public byte[] getData() {
     return data;
   }
-  public void setData(String data) {
+  public void setData(byte[] data) {
     this.data = data;
   }
 

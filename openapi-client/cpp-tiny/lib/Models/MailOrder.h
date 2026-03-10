@@ -2,7 +2,7 @@
 /*
  * MailOrder.h
  *
- * A mail order record
+ * A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;.
  */
 
 #ifndef TINY_CPP_CLIENT_MailOrder_H_
@@ -16,7 +16,7 @@
 namespace Tiny {
 
 
-/*! \brief A mail order record
+/*! \brief A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
  *
  *  \ingroup Models
  *
@@ -45,32 +45,32 @@ public:
 	 */
     void fromJson(std::string jsonObj);
 
-	/*! \brief Get The ID of the order.
+	/*! \brief Get The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
 	 */
 	int getId();
 
-	/*! \brief Set The ID of the order.
+	/*! \brief Set The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
 	 */
 	void setId(int id);
-	/*! \brief Get The order status.
+	/*! \brief Get The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 	 */
 	std::string getStatus();
 
-	/*! \brief Set The order status.
+	/*! \brief Set The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 	 */
 	void setStatus(std::string status);
-	/*! \brief Get The username to use for this order.
+	/*! \brief Get The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 	 */
 	std::string getUsername();
 
-	/*! \brief Set The username to use for this order.
+	/*! \brief Set The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 	 */
 	void setUsername(std::string username);
-	/*! \brief Get Optional order comment.
+	/*! \brief Get Optional human-readable note associated with the order.
 	 */
 	std::string getComment();
 
-	/*! \brief Set Optional order comment.
+	/*! \brief Set Optional human-readable note associated with the order.
 	 */
 	void setComment(std::string comment);
 

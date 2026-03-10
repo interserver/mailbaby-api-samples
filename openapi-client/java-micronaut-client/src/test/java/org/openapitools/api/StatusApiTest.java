@@ -24,6 +24,8 @@ public class StatusApiTest {
     
     /**
      * Checks if the server is running
+     *
+     * A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
      */
     @Test
     @Disabled("Not Implemented")

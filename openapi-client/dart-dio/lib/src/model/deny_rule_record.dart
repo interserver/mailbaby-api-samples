@@ -10,21 +10,21 @@ import 'package:built_value/serializer.dart';
 
 part 'deny_rule_record.g.dart';
 
-/// The data for a email deny rule record.
+/// A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
 ///
 /// Properties:
 /// * [type] - The type of deny rule.
-/// * [data] - The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-/// * [id] - The deny rule Id number.
-/// * [created] - the date the rule was created.
-/// * [user] - Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+/// * [data] - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+/// * [id] - The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
+/// * [created] - The timestamp when the rule was created.
+/// * [user] - Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 @BuiltValue()
 abstract class DenyRuleRecord implements DenyRuleNew, Built<DenyRuleRecord, DenyRuleRecordBuilder> {
-  /// the date the rule was created.
+  /// The timestamp when the rule was created.
   @BuiltValueField(wireName: r'created')
   DateTime get created;
 
-  /// The deny rule Id number.
+  /// The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
   @BuiltValueField(wireName: r'id')
   String get id;
 

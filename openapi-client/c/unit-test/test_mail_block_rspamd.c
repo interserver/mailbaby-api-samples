@@ -22,13 +22,13 @@ mail_block_rspamd_t* instantiate_mail_block_rspamd(int include_optional) {
   mail_block_rspamd_t* mail_block_rspamd = NULL;
   if (include_optional) {
     mail_block_rspamd = mail_block_rspamd_create(
-      "0",
-      "0"
+      "user@domain.com",
+      "Test email"
     );
   } else {
     mail_block_rspamd = mail_block_rspamd_create(
-      "0",
-      "0"
+      "user@domain.com",
+      "Test email"
     );
   }
 

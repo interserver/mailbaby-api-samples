@@ -64,9 +64,12 @@ MailAttachment::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("std::string")) {
-			jsonToValue(&data, node, "std::string", "");
+		if (isprimitive("ByteArray")) {
+			jsonToValue(&data, node, "ByteArray", "ByteArray");
 		} else {
+			
+			ByteArray* obj = static_cast<ByteArray*> (&data);
+			obj->fromJson(json_to_string(node, false));
 			
 		}
 	}
@@ -91,11 +94,16 @@ MailAttachment::toJson()
 	}
 	const gchar *filenameKey = "filename";
 	json_object_set_member(pJsonObject, filenameKey, node);
-	if (isprimitive("std::string")) {
-		std::string obj = getData();
-		node = converttoJson(&obj, "std::string", "");
+	if (isprimitive("ByteArray")) {
+		ByteArray obj = getData();
+		node = converttoJson(&obj, "ByteArray", "");
 	}
 	else {
+		
+		ByteArray obj = static_cast<ByteArray> (getData());
+		GError *mygerror;
+		mygerror = NULL;
+		node = json_from_string(obj.toJson(), &mygerror);
 		
 	}
 	const gchar *dataKey = "data";
@@ -120,14 +128,14 @@ MailAttachment::setFilename(std::string  filename)
 	this->filename = filename;
 }
 
-std::string
+ByteArray
 MailAttachment::getData()
 {
 	return data;
 }
 
 void
-MailAttachment::setData(std::string  data)
+MailAttachment::setData(ByteArray  data)
 {
 	this->data = data;
 }

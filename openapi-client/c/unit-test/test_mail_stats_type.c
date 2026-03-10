@@ -26,7 +26,6 @@ mail_stats_type_t* instantiate_mail_stats_type(int include_optional) {
       mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_"1h",
       56,
       "0",
-      "0",
       1.337,
       56,
       56,
@@ -37,7 +36,6 @@ mail_stats_type_t* instantiate_mail_stats_type(int include_optional) {
     mail_stats_type = mail_stats_type_create(
       mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_"1h",
       56,
-      "0",
       "0",
       1.337,
       56,

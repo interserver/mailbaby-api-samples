@@ -8,18 +8,18 @@ import 'package:built_value/serializer.dart';
 
 part 'mail_attachment.g.dart';
 
-/// (optional) File attachments to include in the email.  The file contents must be base64
+/// A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
 ///
 /// Properties:
-/// * [filename] - The filename of the attached file.
-/// * [data] - The file contents base64 encoded
+/// * [filename] - The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
+/// * [data] - The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 @BuiltValue()
 abstract class MailAttachment implements Built<MailAttachment, MailAttachmentBuilder> {
-  /// The filename of the attached file.
+  /// The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
   @BuiltValueField(wireName: r'filename')
   String get filename;
 
-  /// The file contents base64 encoded
+  /// The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
   @BuiltValueField(wireName: r'data')
   String get data;
 

@@ -5,4 +5,5 @@
  *
  *)
 
+val get_mail_order_by_id : id:int64 -> Mail_order_detail.t Lwt.t
 val get_mail_orders : unit -> Mail_order.t list Lwt.t

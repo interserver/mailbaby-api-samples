@@ -1,6 +1,12 @@
 #tag Interface
 Protected Interface ServicesApiCallbackHandler
 	#tag Method, Flags = &h0
+		Sub GetMailOrderByIdCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As OpenAPIClient.Models.MailOrderDetail)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetMailOrdersCallback(status As OpenAPIClient.OpenAPIClientException, data() As OpenAPIClient.Models.MailOrder)
 		  
 		End Sub

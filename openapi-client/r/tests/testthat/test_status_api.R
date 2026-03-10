@@ -9,6 +9,7 @@ test_that("PingServer", {
   # tests for PingServer
   # base path: https://api.mailbaby.net
   # Checks if the server is running
+  # A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
   # @return [Void]
 
   # uncomment below to test the operation

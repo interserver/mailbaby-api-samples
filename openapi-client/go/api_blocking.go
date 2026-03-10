@@ -1,9 +1,9 @@
 /*
 MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
-API version: 1.3.0
+API version: 1.4.0
 Contact: support@interserver.net
 */
 
@@ -38,13 +38,13 @@ func (r ApiAddRuleRequest) Type_(type_ string) ApiAddRuleRequest {
 	return r
 }
 
-// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+// The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
 func (r ApiAddRuleRequest) Data(data string) ApiAddRuleRequest {
 	r.data = &data
 	return r
 }
 
-// Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+// Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
 func (r ApiAddRuleRequest) User(user string) ApiAddRuleRequest {
 	r.user = &user
 	return r
@@ -55,9 +55,20 @@ func (r ApiAddRuleRequest) Execute() (*GenericResponse, *http.Response, error) {
 }
 
 /*
-AddRule Creates a new email deny rule.
+AddRule Creates a new email deny rule
 
-Adds a new email deny rule into the system to block new emails that match the given criteria
+Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+
+The `type` field selects the matching strategy:
+- **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion
+  before the `@`) starts with the given string.  Only alphanumeric characters
+  and `+`, `_`, `.`, `-` are permitted in the prefix.
+
+
+If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.
+
+On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAddRuleRequest
@@ -212,12 +223,17 @@ func (r ApiDeleteRuleRequest) Execute() (*GenericResponse, *http.Response, error
 }
 
 /*
-DeleteRule Removes an deny mail rule.
+DeleteRule Removes a deny mail rule
 
-Removes one of the configured deny mail rules from the system.
+Permanently removes a single deny rule identified by its numeric `ruleId`.
+
+The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.
+
+Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param ruleId The ID of the Rules entry.
+ @param ruleId The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
  @return ApiDeleteRuleRequest
 */
 func (a *BlockingAPIService) DeleteRule(ctx context.Context, ruleId int32) ApiDeleteRuleRequest {
@@ -353,11 +369,11 @@ func (a *BlockingAPIService) DeleteRuleExecute(r ApiDeleteRuleRequest) (*Generic
 type ApiDelistBlockRequest struct {
 	ctx context.Context
 	ApiService *BlockingAPIService
-	body *string
+	emailAddressParam *EmailAddressParam
 }
 
-func (r ApiDelistBlockRequest) Body(body string) ApiDelistBlockRequest {
-	r.body = &body
+func (r ApiDelistBlockRequest) EmailAddressParam(emailAddressParam EmailAddressParam) ApiDelistBlockRequest {
+	r.emailAddressParam = &emailAddressParam
 	return r
 }
 
@@ -366,9 +382,14 @@ func (r ApiDelistBlockRequest) Execute() (*GenericResponse, *http.Response, erro
 }
 
 /*
-DelistBlock Removes an email address from the blocked list
+DelistBlock Removes an email address from the block lists
 
-Removes an email address from the various block lists.
+Delists an email address from all three block list stores:
+1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
+
+Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.
+
+**Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules.
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -401,8 +422,8 @@ func (a *BlockingAPIService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.emailAddressParam == nil {
+		return localVarReturnValue, nil, reportError("emailAddressParam is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -423,7 +444,7 @@ func (a *BlockingAPIService) DelistBlockExecute(r ApiDelistBlockRequest) (*Gener
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.emailAddressParam
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -517,7 +538,23 @@ func (r ApiGetMailBlocksRequest) Execute() (*MailBlocks, *http.Response, error) 
 }
 
 /*
-GetMailBlocks displays a list of blocked email addresses
+GetMailBlocks Displays a list of blocked email addresses
+
+Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+
+- **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are
+  messages sent to recipients on your account's local block list.
+- **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages
+  that triggered MailBaby's internal trap / honeypot detection.
+- **`subject`** — senders whose recent messages contain spam-indicative subjects
+  (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition
+  (more than 4 identical subjects from the same sender in the last 3 days).
+
+
+The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.
+
+A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetMailBlocksRequest
@@ -612,17 +649,6 @@ func (a *BlockingAPIService) GetMailBlocksExecute(r ApiGetMailBlocksRequest) (*M
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -649,9 +675,15 @@ func (r ApiGetRulesRequest) Execute() ([]DenyRuleRecord, *http.Response, error) 
 }
 
 /*
-GetRules Displays a listing of deny email rules.
+GetRules Displays a listing of deny email rules
 
-Returns a listing of all the deny block rules you have configured.
+Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+
+Four rule types are supported:
+| `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |
+
+Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetRulesRequest
@@ -738,17 +770,6 @@ func (a *BlockingAPIService) GetRulesExecute(r ApiGetRulesRequest) ([]DenyRuleRe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorMessage
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorMessage
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

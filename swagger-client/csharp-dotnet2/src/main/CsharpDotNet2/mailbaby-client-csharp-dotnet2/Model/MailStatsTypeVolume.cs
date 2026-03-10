@@ -8,30 +8,33 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// 
+  /// Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window.
   /// </summary>
   [DataContract]
   public class MailStatsTypeVolume {
     /// <summary>
-    /// Gets or Sets To
+    /// Message counts keyed by destination (envelope `to`) email address.
     /// </summary>
+    /// <value>Message counts keyed by destination (envelope `to`) email address.</value>
     [DataMember(Name="to", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "to")]
-    public MailStatsTypeVolumeTo To { get; set; }
+    public Dictionary<string, int?> To { get; set; }
 
     /// <summary>
-    /// Gets or Sets From
+    /// Message counts keyed by sender (envelope `from`) email address.
     /// </summary>
+    /// <value>Message counts keyed by sender (envelope `from`) email address.</value>
     [DataMember(Name="from", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "from")]
-    public MailStatsTypeVolumeFrom From { get; set; }
+    public Dictionary<string, int?> From { get; set; }
 
     /// <summary>
-    /// Gets or Sets Ip
+    /// Message counts keyed by originating client IP address.
     /// </summary>
+    /// <value>Message counts keyed by originating client IP address.</value>
     [DataMember(Name="ip", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "ip")]
-    public MailStatsTypeVolumeIp Ip { get; set; }
+    public Dictionary<string, int?> Ip { get; set; }
 
 
     /// <summary>

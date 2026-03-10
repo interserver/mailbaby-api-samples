@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.*;
 /**
- * Array of Email Addresses
+ * An array of email contacts, each with an email address and optional display name.
  **/
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 import javax.xml.bind.annotation.*;
 
-@Schema(description = "Array of Email Addresses")
+@Schema(description = "An array of email contacts, each with an email address and optional display name.")
 
 public class EmailAddressNames extends ArrayList<EmailAddressName> implements EmailAddressesTypes  {
 

@@ -1,9 +1,9 @@
 # swagger-java-client
 
 MailBaby Email Delivery and Management Service API
-- API version: 1.3.0
+- API version: 1.4.0
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
   For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/)
 
@@ -94,7 +94,7 @@ public class BlockingApiExample {
         String user = "user_example"; // String | 
         String type = "type_example"; // String | 
         String data = "data_example"; // String | 
-        DenyRuleNew body = new DenyRuleNew(); // DenyRuleNew | These are the fields needed to create a new email deny rule.
+        DenyRuleNew body = new DenyRuleNew(); // DenyRuleNew | Fields required to create a new email deny rule.
         try {
             GenericResponse result = apiInstance.addRule(user, type, data, body);
             System.out.println(result);
@@ -124,7 +124,7 @@ public class BlockingApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         BlockingApi apiInstance = new BlockingApi();
-        Integer ruleId = 56; // Integer | The ID of the Rules entry.
+        Integer ruleId = 56; // Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
         try {
             GenericResponse result = apiInstance.deleteRule(ruleId);
             System.out.println(result);
@@ -154,9 +154,10 @@ public class BlockingApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         BlockingApi apiInstance = new BlockingApi();
-        String body = "{   \"value\" : {     \"email\" : \"client@domain.com\"   } }"; // String | 
+        EmailAddressParam body = new EmailAddressParam(); // EmailAddressParam | 
+        String email = "email_example"; // String | 
         try {
-            GenericResponse result = apiInstance.delistBlock(body);
+            GenericResponse result = apiInstance.delistBlock(body, email);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlockingApi#delistBlock");
@@ -230,17 +231,18 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule.
-*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes an deny mail rule.
-*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the blocked list
-*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | displays a list of blocked email addresses
-*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules.
-*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics.
-*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | displays the mail log
-*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw email
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | Displays the mail log
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
 *SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
 *SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | displays a list of mail service orders
+*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Displays details for a single mail order
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | Displays a list of mail service orders
 *StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
 
 ## Documentation for Models
@@ -249,6 +251,7 @@ Class | Method | HTTP request | Description
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
  - [EmailAddressNames](docs/EmailAddressNames.md)
+ - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)
  - [ErrorMessage](docs/ErrorMessage.md)
@@ -260,11 +263,10 @@ Class | Method | HTTP request | Description
  - [MailLog](docs/MailLog.md)
  - [MailLogEntry](docs/MailLogEntry.md)
  - [MailOrder](docs/MailOrder.md)
+ - [MailOrderDetail](docs/MailOrderDetail.md)
  - [MailStatsType](docs/MailStatsType.md)
  - [MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [MailStatsTypeVolumeFrom](docs/MailStatsTypeVolumeFrom.md)
- - [MailStatsTypeVolumeIp](docs/MailStatsTypeVolumeIp.md)
- - [MailStatsTypeVolumeTo](docs/MailStatsTypeVolumeTo.md)
+ - [OneOfSendMailTo](docs/OneOfSendMailTo.md)
  - [SendMail](docs/SendMail.md)
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailRaw](docs/SendMailRaw.md)

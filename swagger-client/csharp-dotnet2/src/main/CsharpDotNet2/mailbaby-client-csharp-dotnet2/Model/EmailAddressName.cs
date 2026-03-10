@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// An email contact.
+  /// An email contact with an optional display name.  Used in structured address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyto&#x60;) in &#x60;SendMailAdv&#x60;.
   /// </summary>
   [DataContract]
   public class EmailAddressName {
@@ -21,9 +21,9 @@ namespace IO.Swagger.Model {
     public string Email { get; set; }
 
     /// <summary>
-    /// Name to use for the sending contact.
+    /// Optional display name shown to recipients (e.g. in the `From:` header).
     /// </summary>
-    /// <value>Name to use for the sending contact.</value>
+    /// <value>Optional display name shown to recipients (e.g. in the `From:` header).</value>
     [DataMember(Name="name", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "name")]
     public string Name { get; set; }

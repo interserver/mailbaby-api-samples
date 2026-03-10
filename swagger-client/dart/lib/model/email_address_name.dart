@@ -3,7 +3,7 @@ part of swagger.api;
 class EmailAddressName {
   /* The email address. */
   String email = null;
-/* Name to use for the sending contact. */
+/* Optional display name shown to recipients (e.g. in the `From:` header). */
   String name = null;
 
   EmailAddressName();

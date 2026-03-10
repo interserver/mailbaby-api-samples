@@ -5,6 +5,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
 docs/ErrorMessage.md
@@ -17,14 +18,13 @@ docs/MailBlocks.md
 docs/MailLog.md
 docs/MailLogEntry.md
 docs/MailOrder.md
+docs/MailOrderDetail.md
 docs/MailStatsType.md
 docs/MailStatsTypeVolume.md
-docs/MailStatsTypeVolumeFrom.md
-docs/MailStatsTypeVolumeIp.md
-docs/MailStatsTypeVolumeTo.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
+docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
@@ -45,6 +45,7 @@ src/main/scala/org/openapitools/client/core/requests.scala
 src/main/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/model/DenyRuleRecord.scala
 src/main/scala/org/openapitools/client/model/EmailAddressName.scala
+src/main/scala/org/openapitools/client/model/EmailAddressParam.scala
 src/main/scala/org/openapitools/client/model/EmailAddressTypes.scala
 src/main/scala/org/openapitools/client/model/EmailAddressesTypes.scala
 src/main/scala/org/openapitools/client/model/ErrorMessage.scala
@@ -56,11 +57,10 @@ src/main/scala/org/openapitools/client/model/MailBlocks.scala
 src/main/scala/org/openapitools/client/model/MailLog.scala
 src/main/scala/org/openapitools/client/model/MailLogEntry.scala
 src/main/scala/org/openapitools/client/model/MailOrder.scala
+src/main/scala/org/openapitools/client/model/MailOrderDetail.scala
 src/main/scala/org/openapitools/client/model/MailStatsType.scala
 src/main/scala/org/openapitools/client/model/MailStatsTypeVolume.scala
-src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeFrom.scala
-src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeIp.scala
-src/main/scala/org/openapitools/client/model/MailStatsTypeVolumeTo.scala
 src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala
 src/main/scala/org/openapitools/client/model/SendMailRaw.scala
+src/main/scala/org/openapitools/client/model/SendMailTo.scala

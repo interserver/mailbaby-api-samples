@@ -11,9 +11,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * A block entry from the clickhouse mailblocks server.
+ * A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (&#x60;LOCAL_BL_RCPT&#x60; or &#x60;MBTRAP&#x60;). The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
  */
-@Schema(description = "A block entry from the clickhouse mailblocks server.")
+@Schema(description = "A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 @Validated
 @Introspected
 
@@ -39,10 +39,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
-   * Get date
+   * The date the block event was recorded.
    * @return date
   **/
-  @Schema(required = true, description = "")
+  @Schema(example = "Sun Aug 06 20:00:00 EDT 2023", required = true, description = "The date the block event was recorded.")
   @NotNull
 
   @Valid
@@ -60,10 +60,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
-   * Get from
+   * The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
    * @return from
   **/
-  @Schema(required = true, description = "")
+  @Schema(example = "user@domain.com", required = true, description = "The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.")
   @NotNull
 
   public String getFrom() {
@@ -80,11 +80,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
-   * Get messageId
+   * The `Message-ID` header of the blocked message, or `null` if not present.
    * @return messageId
   **/
-  @Schema(required = true, description = "")
-  @NotNull
+  @Schema(example = "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com", description = "The `Message-ID` header of the blocked message, or `null` if not present.")
 
   public String getMessageId() {
     return messageId;
@@ -100,10 +99,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
-   * Get subject
+   * The `Subject` header of the blocked message.
    * @return subject
   **/
-  @Schema(required = true, description = "")
+  @Schema(example = "Test Email", required = true, description = "The `Subject` header of the blocked message.")
   @NotNull
 
   public String getSubject() {
@@ -120,10 +119,10 @@ public class MailBlockClickHouse   {
   }
 
   /**
-   * Get to
+   * The serialized list of recipients of the blocked message.
    * @return to
   **/
-  @Schema(required = true, description = "")
+  @Schema(example = "['client@site.com']", required = true, description = "The serialized list of recipients of the blocked message.")
   @NotNull
 
   public String getTo() {

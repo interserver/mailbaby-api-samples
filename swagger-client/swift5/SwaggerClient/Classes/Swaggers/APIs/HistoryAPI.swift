@@ -19,14 +19,14 @@ open class HistoryAPI {
         case month = "month"
         case _7d = "7d"
         case _24h = "24h"
-        case _1d = "1d"
+        case day = "day"
         case _1h = "1h"
     }
 
     /**
-     Account usage statistics.
+     Account usage statistics
 
-     - parameter time: (query) The timeframe for the statistics. (optional)
+     - parameter time: (query) The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;. (optional, default to 1h)
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func getStats(time: Time_getStats? = nil, completion: @escaping ((_ data: MailStatsType?,_ error: Error?) -> Void)) {
@@ -37,7 +37,7 @@ open class HistoryAPI {
 
 
     /**
-     Account usage statistics.
+     Account usage statistics
      - GET /mail/stats
 
      - API Key:
@@ -47,7 +47,6 @@ open class HistoryAPI {
   "time" : "all",
   "usage" : 55,
   "currency" : "USD",
-  "currencySymbol" : "$",
   "cost" : 1.02,
   "received" : 508,
   "sent" : 495,
@@ -55,8 +54,7 @@ open class HistoryAPI {
     "to" : {
       "client@domain.com" : 395,
       "user@site.net" : 57,
-      "sales@company.com" : 47,
-      "client@anothersite.com" : 9
+      "sales@company.com" : 47
     },
     "from" : {
       "billing@somedomain.com" : 369,
@@ -65,12 +63,11 @@ open class HistoryAPI {
     "ip" : {
       "1.1.1.1" : 142,
       "2.2.2.2" : 132,
-      "3.3.3.3" : 129,
-      "4.4.4.4" : 105
+      "3.3.3.3" : 129
     }
   }
 }}]
-     - parameter time: (query) The timeframe for the statistics. (optional)
+     - parameter time: (query) The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;. (optional, default to 1h)
 
      - returns: RequestBuilder<MailStatsType> 
      */
@@ -91,48 +88,46 @@ open class HistoryAPI {
     /**
      * enum for parameter delivered
      */
-    public enum Delivered_viewMailLog: String { 
-        case _0 = "0"
-        case _1 = "1"
+    public enum Delivered_viewMailLog: Int { 
+        case _0 = 0
+        case _1 = 1
     }
 
     /**
-     displays the mail log
+     Displays the mail log
 
-     - parameter _id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter origin: (query) originating ip address sending mail (optional)
-     - parameter mx: (query) mx record mail was sent to (optional)
-     - parameter from: (query) from email address (optional)
-     - parameter to: (query) to/destination email address (optional)
-     - parameter subject: (query) subject containing this string (optional)
-     - parameter mailid: (query) mail id (optional)
-     - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
-     - parameter limit: (query) maximum number of records to return (optional, default to 100)
-     - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
-     - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
-     - parameter replyto: (query) Reply-To Email Address (optional)
-     - parameter headerfrom: (query) Header From Email Address (optional)
-     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
+     - parameter _id: (query) The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/{id}&#x60;. (optional)
+     - parameter origin: (query) Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
+     - parameter mx: (query) Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response. (optional)
+     - parameter from: (query) Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;. (optional)
+     - parameter to: (query) Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved. (optional)
+     - parameter subject: (query) Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text. (optional)
+     - parameter mailid: (query) Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;. (optional)
+     - parameter messageId: (query) Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;. (optional)
+     - parameter replyto: (query) Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set. (optional)
+     - parameter headerfrom: (query) Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address. (optional)
+     - parameter delivered: (query) Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
+     - parameter skip: (query) Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). (optional, default to 0)
+     - parameter limit: (query) Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. (optional, default to 100)
+     - parameter startDate: (query) Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. (optional)
+     - parameter endDate: (query) Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLog(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, completion: @escaping ((_ data: MailLog?,_ error: Error?) -> Void)) {
-        viewMailLogWithRequestBuilder(_id: _id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, skip: skip, limit: limit, startDate: startDate, endDate: endDate, replyto: replyto, headerfrom: headerfrom, delivered: delivered).execute { (response, error) -> Void in
+    open class func viewMailLog(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, completion: @escaping ((_ data: MailLog?,_ error: Error?) -> Void)) {
+        viewMailLogWithRequestBuilder(_id: _id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, messageId: messageId, replyto: replyto, headerfrom: headerfrom, delivered: delivered, skip: skip, limit: limit, startDate: startDate, endDate: endDate).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
 
     /**
-     displays the mail log
+     Displays the mail log
      - GET /mail/log
 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
      - examples: [{contentType=application/json, example={
-  "total" : 1,
-  "skip" : 0,
-  "limit" : 100,
   "emails" : [ {
     "_id" : 103172,
     "id" : "17c7eda538e0005d03",
@@ -140,7 +135,7 @@ open class HistoryAPI {
     "to" : "client@isp.com",
     "subject" : "sell 0.005 shares",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
-    "created" : "2021-10-14T08:50:10.000Z",
+    "created" : "2021-10-14 08:50:10",
     "time" : 1634215809,
     "user" : "mb5658",
     "transtype" : "ESMTPSA",
@@ -158,26 +153,55 @@ open class HistoryAPI {
     "queued" : "2021-10-14T12:50:15.487Z",
     "mxHostname" : "mx.j.is.cc",
     "response" : "250 2.0.0 Ok queued as C91D83E128C"
-  } ]
+  }, {
+    "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
+    "from" : "person@mysite.com",
+    "to" : "client@isp.com",
+    "subject" : "sell 0.005 shares",
+    "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+    "created" : "2021-10-14 08:50:10",
+    "time" : 1634215809,
+    "user" : "mb5658",
+    "transtype" : "ESMTPSA",
+    "origin" : "199.231.189.154",
+    "interface" : "feeder",
+    "sendingZone" : "interserver",
+    "bodySize" : 63,
+    "seq" : 1,
+    "delivered" : 1,
+    "recipient" : "client@isp.com",
+    "domain" : "interserver.net",
+    "locked" : 1,
+    "lockTime" : "1634215818533",
+    "assigned" : "relay1",
+    "queued" : "2021-10-14T12:50:15.487Z",
+    "mxHostname" : "mx.j.is.cc",
+    "response" : "250 2.0.0 Ok queued as C91D83E128C"
+  } ],
+  "total" : 10234,
+  "limit" : 100,
+  "skip" : 0
 }}]
-     - parameter _id: (query) The ID of your mail order this will be sent through. (optional)
-     - parameter origin: (query) originating ip address sending mail (optional)
-     - parameter mx: (query) mx record mail was sent to (optional)
-     - parameter from: (query) from email address (optional)
-     - parameter to: (query) to/destination email address (optional)
-     - parameter subject: (query) subject containing this string (optional)
-     - parameter mailid: (query) mail id (optional)
-     - parameter skip: (query) number of records to skip for pagination (optional, default to 0)
-     - parameter limit: (query) maximum number of records to return (optional, default to 100)
-     - parameter startDate: (query) earliest date to get emails in unix timestamp format (optional)
-     - parameter endDate: (query) earliest date to get emails in unix timestamp format (optional)
-     - parameter replyto: (query) Reply-To Email Address (optional)
-     - parameter headerfrom: (query) Header From Email Address (optional)
-     - parameter delivered: (query) Limiting the emails to wether or not they were delivered. (optional)
+     - parameter _id: (query) The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/{id}&#x60;. (optional)
+     - parameter origin: (query) Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
+     - parameter mx: (query) Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response. (optional)
+     - parameter from: (query) Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;. (optional)
+     - parameter to: (query) Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved. (optional)
+     - parameter subject: (query) Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text. (optional)
+     - parameter mailid: (query) Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;. (optional)
+     - parameter messageId: (query) Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;. (optional)
+     - parameter replyto: (query) Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set. (optional)
+     - parameter headerfrom: (query) Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address. (optional)
+     - parameter delivered: (query) Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
+     - parameter skip: (query) Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). (optional, default to 0)
+     - parameter limit: (query) Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. (optional, default to 100)
+     - parameter startDate: (query) Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. (optional)
+     - parameter endDate: (query) Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. (optional)
 
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: Int64? = nil, endDate: Int64? = nil) -> RequestBuilder<MailLog> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -190,13 +214,14 @@ open class HistoryAPI {
                         "to": to, 
                         "subject": subject, 
                         "mailid": mailid, 
+                        "messageId": messageId, 
+                        "replyto": replyto, 
+                        "headerfrom": headerfrom, 
+                        "delivered": delivered?.rawValue, 
                         "skip": skip?.encodeToJSON(), 
                         "limit": limit?.encodeToJSON(), 
                         "startDate": startDate?.encodeToJSON(), 
-                        "endDate": endDate?.encodeToJSON(), 
-                        "replyto": replyto, 
-                        "headerfrom": headerfrom, 
-                        "delivered": delivered?.rawValue
+                        "endDate": endDate?.encodeToJSON()
         ])
 
 

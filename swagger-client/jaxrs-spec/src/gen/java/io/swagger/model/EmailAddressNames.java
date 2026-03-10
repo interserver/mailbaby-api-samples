@@ -8,12 +8,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * Array of Email Addresses
+ * An array of email contacts, each with an email address and optional display name.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "Array of Email Addresses")
+@Schema(description = "An array of email contacts, each with an email address and optional display name.")
 
 public class EmailAddressNames extends ArrayList<EmailAddressName> implements EmailAddressesTypes  {
 

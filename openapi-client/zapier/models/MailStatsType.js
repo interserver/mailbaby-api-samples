@@ -7,7 +7,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}time`,
-                label: `[${labelPrefix}time]`,
+                label: `The time window these `received`, `sent`, and `volume` statistics cover. - [${labelPrefix}time]`,
                 type: 'string',
                 choices: [
                     'all',
@@ -15,38 +15,33 @@ module.exports = {
                     'month',
                     '7d',
                     '24h',
-                    'today',
+                    'day',
                     '1h',
                 ],
             },
             {
                 key: `${keyPrefix}usage`,
-                label: `[${labelPrefix}usage]`,
+                label: `Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. - [${labelPrefix}usage]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}currency`,
-                label: `[${labelPrefix}currency]`,
-                type: 'string',
-            },
-            {
-                key: `${keyPrefix}currencySymbol`,
-                label: `[${labelPrefix}currencySymbol]`,
+                label: `The ISO 4217 currency code for this account (e.g. `USD`). - [${labelPrefix}currency]`,
                 type: 'string',
             },
             {
                 key: `${keyPrefix}cost`,
-                label: `[${labelPrefix}cost]`,
+                label: `Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). - [${labelPrefix}cost]`,
                 type: 'number',
             },
             {
                 key: `${keyPrefix}received`,
-                label: `[${labelPrefix}received]`,
+                label: `Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue. - [${labelPrefix}received]`,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}sent`,
-                label: `[${labelPrefix}sent]`,
+                label: `Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. - [${labelPrefix}sent]`,
                 type: 'integer',
             },
             ...MailStatsType_volume.fields(`${keyPrefix}volume`, isInput),
@@ -58,7 +53,6 @@ module.exports = {
             'time': bundle.inputData?.[`${keyPrefix}time`],
             'usage': bundle.inputData?.[`${keyPrefix}usage`],
             'currency': bundle.inputData?.[`${keyPrefix}currency`],
-            'currencySymbol': bundle.inputData?.[`${keyPrefix}currencySymbol`],
             'cost': bundle.inputData?.[`${keyPrefix}cost`],
             'received': bundle.inputData?.[`${keyPrefix}received`],
             'sent': bundle.inputData?.[`${keyPrefix}sent`],

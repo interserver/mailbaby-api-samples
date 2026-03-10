@@ -5,7 +5,7 @@
 -define(BASE_URL, <<"">>).
 
 %% @doc Checks if the server is running
-%% 
+%% A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
 -spec ping_server(ctx:ctx()) -> {ok, [], openapi_utils:response_info()} | {ok, hackney:client_ref()} | {error, term(), openapi_utils:response_info()}.
 ping_server(Ctx) ->
     ping_server(Ctx, #{}).

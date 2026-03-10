@@ -2,8 +2,8 @@
 
 package client
 
-// SendMailRaw - Raw Email Object
+// SendMailRaw - Request body for `POST /mail/rawsend`.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing `DKIM-Signature` header intact.  The `From`, `To`, `Cc`, and `Bcc` addresses are extracted from the message headers automatically — you do not need to specify them separately.
 type SendMailRaw struct {
 	RawEmail string `json:"raw_email"`
-	Id int32 `json:"id,omitempty"`
+	Id int64 `json:"id,omitempty"`
 }

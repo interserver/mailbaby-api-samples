@@ -28,35 +28,25 @@ send_mail_adv_t* instantiate_send_mail_adv(int include_optional) {
   if (include_optional) {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
-      "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
+      "The package you ordered on 2021-01-23 has been delivered.",
       null,
       null,
       null,
       null,
       null,
-      [
-        {
-            "filename": "text.txt",
-            "data": "base64_encoded_contents"
-        }
-],
+      list_createList(),
       5000
     );
   } else {
     send_mail_adv = send_mail_adv_create(
       "Your Package has been Delivered!",
-      "The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.",
+      "The package you ordered on 2021-01-23 has been delivered.",
       null,
       null,
       null,
       null,
       null,
-      [
-        {
-            "filename": "text.txt",
-            "data": "base64_encoded_contents"
-        }
-],
+      list_createList(),
       5000
     );
   }

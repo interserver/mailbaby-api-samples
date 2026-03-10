@@ -7,7 +7,7 @@ using namespace Tiny;
 SendMailRaw::SendMailRaw()
 {
 	raw_email = std::string();
-	id = int(0);
+	id = long(0);
 }
 
 SendMailRaw::SendMailRaw(std::string jsonString)
@@ -46,7 +46,7 @@ SendMailRaw::fromJson(std::string jsonObj)
 
 
 
-        jsonToValue(&id, value, "int");
+        jsonToValue(&id, value, "long");
 
 
     }
@@ -90,14 +90,14 @@ SendMailRaw::setRawEmail(std::string raw_email)
 	this->raw_email = raw_email;
 }
 
-int
+long
 SendMailRaw::getId()
 {
 	return id;
 }
 
 void
-SendMailRaw::setId(int id)
+SendMailRaw::setId(long id)
 {
 	this->id = id;
 }

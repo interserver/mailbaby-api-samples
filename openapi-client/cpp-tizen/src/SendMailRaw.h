@@ -1,7 +1,7 @@
 /*
  * SendMailRaw.h
  *
- * Raw Email Object
+ * Request body for &#x60;POST /mail/rawsend&#x60;.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing &#x60;DKIM-Signature&#x60; header intact.  The &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, and &#x60;Bcc&#x60; addresses are extracted from the message headers automatically — you do not need to specify them separately.
  */
 
 #ifndef _SendMailRaw_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Raw Email Object
+/*! \brief Request body for `POST /mail/rawsend`.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing `DKIM-Signature` header intact.  The `From`, `To`, `Cc`, and `Bcc` addresses are extracted from the message headers automatically — you do not need to specify them separately.
  *
  *  \ingroup Models
  *
@@ -45,24 +45,24 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get The entire email contents
+	/*! \brief Get The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
 	 */
 	std::string getRawEmail();
 
-	/*! \brief Set The entire email contents
+	/*! \brief Set The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
 	 */
 	void setRawEmail(std::string  raw_email);
-	/*! \brief Get Optional order id
+	/*! \brief Get Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.
 	 */
-	int getId();
+	long long getId();
 
-	/*! \brief Set Optional order id
+	/*! \brief Set Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.
 	 */
-	void setId(int  id);
+	void setId(long long  id);
 
 private:
 	std::string raw_email;
-	int id;
+	long long id;
 	void __init();
 	void __cleanup();
 

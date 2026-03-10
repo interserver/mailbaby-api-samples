@@ -448,7 +448,7 @@ static bool delistBlockProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool delistBlockHelper(char * accessToken,
-	std::string body, 
+	std::shared_ptr<EmailAddressParam> emailAddressParam, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -470,9 +470,13 @@ static bool delistBlockHelper(char * accessToken,
 	JsonNode* node;
 	JsonArray* json_array;
 
-	if (isprimitive("std::string")) {
-		node = converttoJson(&body, "std::string", "");
+	if (isprimitive("EmailAddressParam")) {
+		node = converttoJson(&emailAddressParam, "EmailAddressParam", "");
 	}
+	
+	char *jsonStr =  emailAddressParam.toJson();
+	node = json_from_string(jsonStr, NULL);
+	g_free(static_cast<gpointer>(jsonStr));
 	
 
 	char *jsonStr1 =  json_to_string(node, false);
@@ -529,22 +533,22 @@ static bool delistBlockHelper(char * accessToken,
 
 
 bool BlockingManager::delistBlockAsync(char * accessToken,
-	std::string body, 
+	std::shared_ptr<EmailAddressParam> emailAddressParam, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return delistBlockHelper(accessToken,
-	body, 
+	emailAddressParam, 
 	handler, userData, true);
 }
 
 bool BlockingManager::delistBlockSync(char * accessToken,
-	std::string body, 
+	std::shared_ptr<EmailAddressParam> emailAddressParam, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData)
 {
 	return delistBlockHelper(accessToken,
-	body, 
+	emailAddressParam, 
 	handler, userData, false);
 }
 
@@ -578,11 +582,6 @@ static bool getMailBlocksProcessor(MemoryStruct_s p_chunk, long code, char* erro
 				}
 			}
 		} else {
-			
-			out.fromJson(data);
-			char *jsonStr =  out.toJson();
-			printf("\n%s\n", jsonStr);
-			g_free(static_cast<gpointer>(jsonStr));
 			
 			out.fromJson(data);
 			char *jsonStr =  out.toJson();

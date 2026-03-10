@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filename** | **String** | The filename of the attached file. | 
-**data** | **String** | The file contents base64 encoded | 
+**filename** | **String** | The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). | 
+**data** | **String** | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. | 
 

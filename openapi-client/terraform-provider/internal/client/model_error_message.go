@@ -2,7 +2,7 @@
 
 package client
 
-// ErrorMessage - The resposne when an error occurs.
+// ErrorMessage - The response body returned when an error occurs.
 type ErrorMessage struct {
 	Code int32 `json:"code"`
 	Message string `json:"message"`

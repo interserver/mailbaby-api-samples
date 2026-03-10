@@ -15,9 +15,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Array of Email Addresses
+ * An array of email contacts, each with an email address and optional display name.
  */
-@Schema(description = "Array of Email Addresses")
+@Schema(description = "An array of email contacts, each with an email address and optional display name.")
 @Validated
 @NotUndefined
 

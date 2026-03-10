@@ -1,7 +1,7 @@
 /*
  * MailBlockRspamd.h
  *
- * This is a block entry from the rspamd block list.
+ * A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
  */
 
 #ifndef _MailBlockRspamd_H_
@@ -20,7 +20,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief This is a block entry from the rspamd block list.
+/*! \brief A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
  *
  *  \ingroup Models
  *
@@ -45,18 +45,18 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
 	 */
 	std::string getFrom();
 
-	/*! \brief Set 
+	/*! \brief Set The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
 	 */
 	void setFrom(std::string  from);
-	/*! \brief Get 
+	/*! \brief Get The suspicious subject pattern that triggered the block.
 	 */
 	std::string getSubject();
 
-	/*! \brief Set 
+	/*! \brief Set The suspicious subject pattern that triggered the block.
 	 */
 	void setSubject(std::string  subject);
 

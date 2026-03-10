@@ -25,9 +25,9 @@ MailBlockClickHouse::__init()
 {
 	//date = null;
 	//from = std::string();
-	//messageId = std::string();
 	//subject = std::string();
 	//to = std::string();
+	//messageId = std::string();
 }
 
 void
@@ -43,11 +43,6 @@ MailBlockClickHouse::__cleanup()
 	//delete from;
 	//from = NULL;
 	//}
-	//if(messageId != NULL) {
-	//
-	//delete messageId;
-	//messageId = NULL;
-	//}
 	//if(subject != NULL) {
 	//
 	//delete subject;
@@ -57,6 +52,11 @@ MailBlockClickHouse::__cleanup()
 	//
 	//delete to;
 	//to = NULL;
+	//}
+	//if(messageId != NULL) {
+	//
+	//delete messageId;
+	//messageId = NULL;
 	//}
 	//
 }
@@ -88,17 +88,6 @@ MailBlockClickHouse::fromJson(char* jsonStr)
 			
 		}
 	}
-	const gchar *messageIdKey = "messageId";
-	node = json_object_get_member(pJsonObject, messageIdKey);
-	if (node !=NULL) {
-	
-
-		if (isprimitive("std::string")) {
-			jsonToValue(&messageId, node, "std::string", "");
-		} else {
-			
-		}
-	}
 	const gchar *subjectKey = "subject";
 	node = json_object_get_member(pJsonObject, subjectKey);
 	if (node !=NULL) {
@@ -117,6 +106,17 @@ MailBlockClickHouse::fromJson(char* jsonStr)
 
 		if (isprimitive("std::string")) {
 			jsonToValue(&to, node, "std::string", "");
+		} else {
+			
+		}
+	}
+	const gchar *messageIdKey = "messageId";
+	node = json_object_get_member(pJsonObject, messageIdKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("std::string")) {
+			jsonToValue(&messageId, node, "std::string", "");
 		} else {
 			
 		}
@@ -152,15 +152,6 @@ MailBlockClickHouse::toJson()
 	const gchar *fromKey = "from";
 	json_object_set_member(pJsonObject, fromKey, node);
 	if (isprimitive("std::string")) {
-		std::string obj = getMessageId();
-		node = converttoJson(&obj, "std::string", "");
-	}
-	else {
-		
-	}
-	const gchar *messageIdKey = "messageId";
-	json_object_set_member(pJsonObject, messageIdKey, node);
-	if (isprimitive("std::string")) {
 		std::string obj = getSubject();
 		node = converttoJson(&obj, "std::string", "");
 	}
@@ -178,6 +169,15 @@ MailBlockClickHouse::toJson()
 	}
 	const gchar *toKey = "to";
 	json_object_set_member(pJsonObject, toKey, node);
+	if (isprimitive("std::string")) {
+		std::string obj = getMessageId();
+		node = converttoJson(&obj, "std::string", "");
+	}
+	else {
+		
+	}
+	const gchar *messageIdKey = "messageId";
+	json_object_set_member(pJsonObject, messageIdKey, node);
 	node = json_node_alloc();
 	json_node_init(node, JSON_NODE_OBJECT);
 	json_node_take_object(node, pJsonObject);
@@ -211,18 +211,6 @@ MailBlockClickHouse::setFrom(std::string  from)
 }
 
 std::string
-MailBlockClickHouse::getMessageId()
-{
-	return messageId;
-}
-
-void
-MailBlockClickHouse::setMessageId(std::string  messageId)
-{
-	this->messageId = messageId;
-}
-
-std::string
 MailBlockClickHouse::getSubject()
 {
 	return subject;
@@ -244,6 +232,18 @@ void
 MailBlockClickHouse::setTo(std::string  to)
 {
 	this->to = to;
+}
+
+std::string
+MailBlockClickHouse::getMessageId()
+{
+	return messageId;
+}
+
+void
+MailBlockClickHouse::setMessageId(std::string  messageId)
+{
+	this->messageId = messageId;
 }
 
 

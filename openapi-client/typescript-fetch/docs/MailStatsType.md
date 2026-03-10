@@ -1,7 +1,7 @@
 
 # MailStatsType
 
-Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 
 ## Properties
 
@@ -10,7 +10,6 @@ Name | Type
 `time` | string
 `usage` | number
 `currency` | string
-`currencySymbol` | string
 `cost` | number
 `received` | number
 `sent` | number
@@ -26,7 +25,6 @@ const example = {
   "time": null,
   "usage": null,
   "currency": null,
-  "currencySymbol": null,
   "cost": null,
   "received": null,
   "sent": null,

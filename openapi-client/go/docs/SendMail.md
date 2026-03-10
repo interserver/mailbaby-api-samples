@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | **string** | The Contact whom is the primary recipient of this email. | 
-**From** | **string** | The contact whom is the this email is from. | 
-**Subject** | **string** | The subject or title of the email | 
-**Body** | **string** | The main email contents. | 
-**Id** | Pointer to **int32** | Optional Order ID | [optional] 
+**To** | [**SendMailTo**](SendMailTo.md) |  | 
+**From** | **string** | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | 
+**Subject** | **string** | The subject line of the email. | 
+**Body** | **string** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
+**Id** | Pointer to **int64** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional] 
 
 ## Methods
 
 ### NewSendMail
 
-`func NewSendMail(to string, from string, subject string, body string, ) *SendMail`
+`func NewSendMail(to SendMailTo, from string, subject string, body string, ) *SendMail`
 
 NewSendMail instantiates a new SendMail object
 This constructor will assign default values to properties that have it defined,
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTo
 
-`func (o *SendMail) GetTo() string`
+`func (o *SendMail) GetTo() SendMailTo`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *SendMail) GetToOk() (*string, bool)`
+`func (o *SendMail) GetToOk() (*SendMailTo, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *SendMail) SetTo(v string)`
+`func (o *SendMail) SetTo(v SendMailTo)`
 
 SetTo sets To field to given value.
 
@@ -111,20 +111,20 @@ SetBody sets Body field to given value.
 
 ### GetId
 
-`func (o *SendMail) GetId() int32`
+`func (o *SendMail) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *SendMail) GetIdOk() (*int32, bool)`
+`func (o *SendMail) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *SendMail) SetId(v int32)`
+`func (o *SendMail) SetId(v int64)`
 
 SetId sets Id field to given value.
 

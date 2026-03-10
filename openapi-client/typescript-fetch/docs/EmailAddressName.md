@@ -1,7 +1,7 @@
 
 # EmailAddressName
 
-An email contact.
+An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
 
 ## Properties
 

@@ -2,26 +2,26 @@
 <h2>MailBlockClickHouse</h2>
 <ul class="parameter">
   <li class="param-required-true">date : date
-    <br/>
+    <br/>The date the block event was recorded.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">from : String
-    <br/>
+    <br/>The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it.
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-true">messageId : String
-    <br/>
+  <li class="param-required-false">messageId : String
+    <br/>The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">subject : String
-    <br/>
+    <br/>The &#x60;Subject&#x60; header of the blocked message.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">to : String
-    <br/>
+    <br/>The serialized list of recipients of the blocked message.
   </li>
 </ul>

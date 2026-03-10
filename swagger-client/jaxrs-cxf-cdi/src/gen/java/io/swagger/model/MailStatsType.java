@@ -7,21 +7,21 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 /**
- * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  **/
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 import javax.xml.bind.annotation.*;
 
-@Schema(description = "Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
+@Schema(description = "Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.")
 
 public class MailStatsType   {
 @XmlType(name="TimeEnum")
 @XmlEnum(String.class)
 public enum TimeEnum {
 
-    @XmlEnumValue("all") ALL(String.valueOf("all")), @XmlEnumValue("billing") BILLING(String.valueOf("billing")), @XmlEnumValue("month") MONTH(String.valueOf("month")), @XmlEnumValue("7d") _7D(String.valueOf("7d")), @XmlEnumValue("24h") _24H(String.valueOf("24h")), @XmlEnumValue("today") TODAY(String.valueOf("today")), @XmlEnumValue("1h") _1H(String.valueOf("1h"));
+    @XmlEnumValue("all") ALL(String.valueOf("all")), @XmlEnumValue("billing") BILLING(String.valueOf("billing")), @XmlEnumValue("month") MONTH(String.valueOf("month")), @XmlEnumValue("7d") _7D(String.valueOf("7d")), @XmlEnumValue("24h") _24H(String.valueOf("24h")), @XmlEnumValue("day") DAY(String.valueOf("day")), @XmlEnumValue("1h") _1H(String.valueOf("1h"));
 
 
     private String value;
@@ -51,13 +51,13 @@ public enum TimeEnum {
   private TimeEnum time = TimeEnum._1H;
   private Integer usage = null;
   private String currency = null;
-  private String currencySymbol = null;
   private Double cost = null;
   private Integer received = null;
   private Integer sent = null;
   private MailStatsTypeVolume volume = null;
 
   /**
+   * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
    **/
   public MailStatsType time(TimeEnum time) {
     this.time = time;
@@ -66,7 +66,7 @@ public enum TimeEnum {
 
   
   
-  @Schema(description = "")
+  @Schema(description = "The time window these `received`, `sent`, and `volume` statistics cover.")
   @JsonProperty("time")
   @NotNull
   public TimeEnum getTime() {
@@ -77,6 +77,7 @@ public enum TimeEnum {
   }
 
   /**
+   * Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value.
    **/
   public MailStatsType usage(Integer usage) {
     this.usage = usage;
@@ -85,7 +86,7 @@ public enum TimeEnum {
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.")
   @JsonProperty("usage")
   @NotNull
   public Integer getUsage() {
@@ -96,6 +97,7 @@ public enum TimeEnum {
   }
 
   /**
+   * The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;).
    **/
   public MailStatsType currency(String currency) {
     this.currency = currency;
@@ -104,7 +106,7 @@ public enum TimeEnum {
 
   
   
-  @Schema(description = "")
+  @Schema(description = "The ISO 4217 currency code for this account (e.g. `USD`).")
   @JsonProperty("currency")
   @NotNull
   public String getCurrency() {
@@ -115,25 +117,7 @@ public enum TimeEnum {
   }
 
   /**
-   **/
-  public MailStatsType currencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-    return this;
-  }
-
-  
-  
-  @Schema(description = "")
-  @JsonProperty("currencySymbol")
-  @NotNull
-  public String getCurrencySymbol() {
-    return currencySymbol;
-  }
-  public void setCurrencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-  }
-
-  /**
+   * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
    **/
   public MailStatsType cost(Double cost) {
     this.cost = cost;
@@ -142,7 +126,7 @@ public enum TimeEnum {
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).")
   @JsonProperty("cost")
   @NotNull
   public Double getCost() {
@@ -153,6 +137,7 @@ public enum TimeEnum {
   }
 
   /**
+   * Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue.
    **/
   public MailStatsType received(Integer received) {
     this.received = received;
@@ -161,7 +146,7 @@ public enum TimeEnum {
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.")
   @JsonProperty("received")
   @NotNull
   public Integer getReceived() {
@@ -172,6 +157,7 @@ public enum TimeEnum {
   }
 
   /**
+   * Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;.
    **/
   public MailStatsType sent(Integer sent) {
     this.sent = sent;
@@ -180,7 +166,7 @@ public enum TimeEnum {
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.")
   @JsonProperty("sent")
   @NotNull
   public Integer getSent() {
@@ -223,7 +209,6 @@ public enum TimeEnum {
     return Objects.equals(time, mailStatsType.time) &&
         Objects.equals(usage, mailStatsType.usage) &&
         Objects.equals(currency, mailStatsType.currency) &&
-        Objects.equals(currencySymbol, mailStatsType.currencySymbol) &&
         Objects.equals(cost, mailStatsType.cost) &&
         Objects.equals(received, mailStatsType.received) &&
         Objects.equals(sent, mailStatsType.sent) &&
@@ -232,7 +217,7 @@ public enum TimeEnum {
 
   @Override
   public int hashCode() {
-    return Objects.hash(time, usage, currency, currencySymbol, cost, received, sent, volume);
+    return Objects.hash(time, usage, currency, cost, received, sent, volume);
   }
 
   @Override
@@ -243,7 +228,6 @@ public enum TimeEnum {
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    currencySymbol: ").append(toIndentedString(currencySymbol)).append("\n");
     sb.append("    cost: ").append(toIndentedString(cost)).append("\n");
     sb.append("    received: ").append(toIndentedString(received)).append("\n");
     sb.append("    sent: ").append(toIndentedString(sent)).append("\n");

@@ -2,11 +2,11 @@
 <h2>MailAttachment</h2>
 <ul class="parameter">
   <li class="param-required-true">filename : String
-    <br/>The filename of the attached file.
+    <br/>The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;).
   </li>
 </ul>
 <ul class="parameter">
-  <li class="param-required-true">data : String
-    <br/>The file contents base64 encoded
+  <li class="param-required-true">data : byte[]
+    <br/>The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
   </li>
 </ul>

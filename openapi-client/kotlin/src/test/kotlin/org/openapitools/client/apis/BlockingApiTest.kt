@@ -20,6 +20,7 @@ import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.apis.BlockingApi
 import org.openapitools.client.models.DenyRuleRecord
+import org.openapitools.client.models.EmailAddressParam
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GenericResponse
 import org.openapitools.client.models.MailBlocks
@@ -33,8 +34,8 @@ class BlockingApiTest : ShouldSpec() {
         should("test addRule") {
             // uncomment below to test addRule
             //val type : kotlin.String = type_example // kotlin.String | The type of deny rule.
-            //val `data` : kotlin.String = `data`_example // kotlin.String | The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
-            //val user : kotlin.String = user_example // kotlin.String | Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+            //val `data` : kotlin.String = `data`_example // kotlin.String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+            //val user : kotlin.String = user_example // kotlin.String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
             //val result : GenericResponse = apiInstance.addRule(type, `data`, user)
             //result shouldBe ("TODO")
         }
@@ -42,7 +43,7 @@ class BlockingApiTest : ShouldSpec() {
         // to test deleteRule
         should("test deleteRule") {
             // uncomment below to test deleteRule
-            //val ruleId : kotlin.Int = 34 // kotlin.Int | The ID of the Rules entry.
+            //val ruleId : kotlin.Int = 34 // kotlin.Int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
             //val result : GenericResponse = apiInstance.deleteRule(ruleId)
             //result shouldBe ("TODO")
         }
@@ -50,8 +51,8 @@ class BlockingApiTest : ShouldSpec() {
         // to test delistBlock
         should("test delistBlock") {
             // uncomment below to test delistBlock
-            //val body : kotlin.String = {"email":"client@domain.com"} // kotlin.String | 
-            //val result : GenericResponse = apiInstance.delistBlock(body)
+            //val emailAddressParam : EmailAddressParam = {"email":"client@domain.com"} // EmailAddressParam | 
+            //val result : GenericResponse = apiInstance.delistBlock(emailAddressParam)
             //result shouldBe ("TODO")
         }
 

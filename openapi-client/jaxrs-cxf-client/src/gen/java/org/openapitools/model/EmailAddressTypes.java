@@ -8,9 +8,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * 
+ * A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
  */
-@ApiModel(description="")
+@ApiModel(description="A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.")
 
 public class EmailAddressTypes  {
   
@@ -22,9 +22,9 @@ public class EmailAddressTypes  {
   private String email;
 
  /**
-  * Name to use for the sending contact.
+  * Optional display name shown to recipients (e.g. in the `From:` header).
   */
-  @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
+  @ApiModelProperty(example = "John Smith", value = "Optional display name shown to recipients (e.g. in the `From:` header).")
 
   private String name;
  /**
@@ -46,7 +46,7 @@ public class EmailAddressTypes  {
   }
 
  /**
-   * Name to use for the sending contact.
+   * Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
    * @return name
   **/
   @JsonProperty("name")

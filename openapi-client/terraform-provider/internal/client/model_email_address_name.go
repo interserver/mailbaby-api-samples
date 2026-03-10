@@ -2,7 +2,7 @@
 
 package client
 
-// EmailAddressName - An email contact.
+// EmailAddressName - An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
 type EmailAddressName struct {
 	Email string `json:"email"`
 	Name string `json:"name,omitempty"`

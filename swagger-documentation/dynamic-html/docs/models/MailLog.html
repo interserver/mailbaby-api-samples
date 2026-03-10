@@ -2,17 +2,17 @@
 <h2>MailLog</h2>
 <ul class="parameter">
   <li class="param-required-true">total : Integer
-    <br/>total number of mail log entries
+    <br/>Total number of log entries that match the supplied filters, regardless of &#x60;skip&#x60; and &#x60;limit&#x60;.  Use this to calculate the number of pages: &#x60;ceil(total / limit)&#x60;.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">skip : Integer
-    <br/>number of emails skipped in listing
+    <br/>The &#x60;skip&#x60; value used for this page (echoed from the request).
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">limit : Integer
-    <br/>number of emails to return
+    <br/>The &#x60;limit&#x60; value used for this page (echoed from the request).
   </li>
 </ul>
 <ul class="parameter">

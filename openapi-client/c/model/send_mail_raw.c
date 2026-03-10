@@ -7,7 +7,7 @@
 
 static send_mail_raw_t *send_mail_raw_create_internal(
     char *raw_email,
-    int id
+    long id
     ) {
     send_mail_raw_t *send_mail_raw_local_var = malloc(sizeof(send_mail_raw_t));
     if (!send_mail_raw_local_var) {
@@ -22,7 +22,7 @@ static send_mail_raw_t *send_mail_raw_create_internal(
 
 __attribute__((deprecated)) send_mail_raw_t *send_mail_raw_create(
     char *raw_email,
-    int id
+    long id
     ) {
     return send_mail_raw_create_internal (
         raw_email,

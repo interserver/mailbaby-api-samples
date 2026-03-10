@@ -1,11 +1,12 @@
 # openapi::MailStatsTypeVolume
 
+Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [**MailStatsTypeVolumeTo**](MailStatsType_volume_to.md) |  | [optional] 
-**from** | [**MailStatsTypeVolumeFrom**](MailStatsType_volume_from.md) |  | [optional] 
-**ip** | [**MailStatsTypeVolumeIp**](MailStatsType_volume_ip.md) |  | [optional] 
+**to** | **map(integer)** | Message counts keyed by destination (envelope &#x60;to&#x60;) email address. | [optional] 
+**from** | **map(integer)** | Message counts keyed by sender (envelope &#x60;from&#x60;) email address. | [optional] 
+**ip** | **map(integer)** | Message counts keyed by originating client IP address. | [optional] 
 
 

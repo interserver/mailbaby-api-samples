@@ -12,9 +12,12 @@ import org.joda.time.DateTime
 import MailStatsTypeVolume._
 
 case class MailStatsTypeVolume (
-  to: Option[MailStatsTypeVolumeTo],
-from: Option[MailStatsTypeVolumeFrom],
-ip: Option[MailStatsTypeVolumeIp])
+  /* Message counts keyed by destination (envelope `to`) email address. */
+  to: Option[Map[String, Integer]],
+/* Message counts keyed by sender (envelope `from`) email address. */
+  from: Option[Map[String, Integer]],
+/* Message counts keyed by originating client IP address. */
+  ip: Option[Map[String, Integer]])
 
 object MailStatsTypeVolume {
   import DateTimeCodecs._

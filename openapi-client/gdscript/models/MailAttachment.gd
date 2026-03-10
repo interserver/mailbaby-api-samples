@@ -8,10 +8,10 @@ class_name MailAttachment
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # MailAttachment Model
-# (optional) File attachments to include in the email.  The file contents must be base64
+# A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
 
 
-# The filename of the attached file.
+# The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
 # Required: True
 # Example: message.txt
 # isArray: false
@@ -21,11 +21,11 @@ class_name MailAttachment
 		filename = value
 var __filename__was__set := false
 
-# The file contents base64 encoded
+# The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 # Required: True
-# Example: aGVsbG8gdGhlcmUK
+# Example: [B@2bc378f7
 # isArray: false
-@export var data: String = "":
+@export var data: Array:
 	set(value):
 		__data__was__set = true
 		data = value

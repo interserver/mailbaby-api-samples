@@ -1,7 +1,7 @@
 
 # DenyRuleNew
 
-The data for a email deny rule record.
+The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
 
 ## Properties
 

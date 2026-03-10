@@ -15,18 +15,18 @@ func _bzz_get_api_name() -> String:
 
 
 # Operation addRule → POST /mail/rules
-# Creates a new email deny rule.
+# Creates a new email deny rule
 #
-# Adds a new email deny rule into the system to block new emails that match the given criteria
+# Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. 
 func add_rule(
 	# type: String = ""   Eg: type_example
 	# The type of deny rule.
 	type: String,
 	# data: String = ""   Eg: data_example
-	# The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	# The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 	data: String,
 	# user: String = ""   Eg: user_example
-	# Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+	# Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 	user = "",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -86,10 +86,10 @@ func add_rule_threaded(
 	# The type of deny rule.
 	type: String,
 	# data: String = ""   Eg: data_example
-	# The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+	# The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 	data: String,
 	# user: String = ""   Eg: user_example
-	# Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+	# Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 	user = "",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -108,12 +108,12 @@ func add_rule_threaded(
 
 
 # Operation deleteRule → DELETE /mail/rules/{ruleId}
-# Removes an deny mail rule.
+# Removes a deny mail rule
 #
-# Removes one of the configured deny mail rules from the system.
+# Permanently removes a single deny rule identified by its numeric `ruleId`.  The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.  Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account. 
 func delete_rule(
 	# ruleId: int   Eg: 34
-	# The ID of the Rules entry.
+	# The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 	ruleId: int,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -153,7 +153,7 @@ func delete_rule(
 
 func delete_rule_threaded(
 	# ruleId: int   Eg: 34
-	# The ID of the Rules entry.
+	# The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 	ruleId: int,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -170,12 +170,12 @@ func delete_rule_threaded(
 
 
 # Operation delistBlock → POST /mail/blocks/delete
-# Removes an email address from the blocked list
+# Removes an email address from the block lists
 #
-# Removes an email address from the various block lists. 
+# Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. 
 func delist_block(
-	# body: String   Eg: {"email":"client@domain.com"}
-	body: String,
+	# emailAddressParam: EmailAddressParam   Eg: {"email":"client@domain.com"}
+	emailAddressParam: EmailAddressParam,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -212,7 +212,7 @@ func delist_block(
 	var bzz_query := Dictionary()
 
 	var bzz_body = null
-	bzz_body = body
+	bzz_body = emailAddressParam
 
 	self._bzz_request(
 		bzz_method, bzz_path, bzz_headers, bzz_query, bzz_body,
@@ -227,15 +227,15 @@ func delist_block(
 
 
 func delist_block_threaded(
-	# body: String   Eg: {"email":"client@domain.com"}
-	body: String,
+	# emailAddressParam: EmailAddressParam   Eg: {"email":"client@domain.com"}
+	emailAddressParam: EmailAddressParam,
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
 	var bzz_thread := Thread.new()
 	var bzz_callable := Callable(self, "delist_block")
 	bzz_callable.bind(
-		body,
+		emailAddressParam,
 		on_success,
 		on_failure,
 	)
@@ -244,7 +244,9 @@ func delist_block_threaded(
 
 
 # Operation getMailBlocks → GET /mail/blocks
-# displays a list of blocked email addresses
+# Displays a list of blocked email addresses
+#
+# Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. 
 func get_mail_blocks(
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -297,9 +299,9 @@ func get_mail_blocks_threaded(
 
 
 # Operation getRules → GET /mail/rules
-# Displays a listing of deny email rules.
+# Displays a listing of deny email rules
 #
-# Returns a listing of all the deny block rules you have configured.
+# Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. 
 func get_rules(
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)

@@ -20,127 +20,132 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * An email record
+ * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
  *
- * @param id internal db id
- * @param id mail id
- * @param from from address
- * @param to to address
- * @param subject email subject
- * @param created creation date
- * @param time creation timestamp
- * @param user user account
- * @param transtype transaction type
- * @param origin origin ip
- * @param `interface` interface name
- * @param sendingZone sending zone
- * @param bodySize email body size in bytes
- * @param seq index of email in the to adderess list
- * @param recipient to address this email is being sent to
- * @param domain to address domain
- * @param locked locked status
- * @param lockTime lock timestamp
- * @param assigned assigned server
- * @param queued queued timestamp
- * @param mxHostname mx hostname
- * @param response mail delivery response
- * @param messageId message id
+ * @param id Internal auto-increment database row ID.  Not meaningful outside the API.
+ * @param id The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
+ * @param from SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
+ * @param to SMTP envelope `RCPT TO` address.
+ * @param created Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
+ * @param time Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
+ * @param user The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
+ * @param transtype SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
+ * @param origin IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
+ * @param `interface` Relay interface name that accepted the message (e.g. `feeder`).
+ * @param subject The `Subject` header value, if available.
+ * @param messageId The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
+ * @param sendingZone The sending zone assigned by the relay for outbound delivery.
+ * @param bodySize Size of the message body in bytes.
+ * @param seq Sequence index of this recipient in a multi-recipient message. Starts at 1.
+ * @param delivered Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+ * @param response The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
+ * @param recipient The specific recipient address this delivery record is for.
+ * @param domain The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
+ * @param locked Whether the queue entry is currently locked for delivery processing.
+ * @param lockTime Millisecond-precision timestamp of the last queue lock acquisition.
+ * @param assigned The relay server node assigned to deliver this message.
+ * @param queued ISO 8601 timestamp when the message was placed into the delivery queue.
+ * @param mxHostname The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
  */
 
 
 data class MailLogEntry (
 
-    /* internal db id */
+    /* Internal auto-increment database row ID.  Not meaningful outside the API. */
     @Json(name = "_id")
     val id: kotlin.Int,
 
-    /* mail id */
+    /* The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`. */
     @Json(name = "id")
     val id: kotlin.String,
 
-    /* from address */
+    /* SMTP envelope `MAIL FROM` address (may differ from the `From:` header). */
     @Json(name = "from")
     val from: kotlin.String,
 
-    /* to address */
+    /* SMTP envelope `RCPT TO` address. */
     @Json(name = "to")
     val to: kotlin.String,
 
-    /* email subject */
-    @Json(name = "subject")
-    val subject: kotlin.String,
-
-    /* creation date */
+    /* Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format. */
     @Json(name = "created")
     val created: kotlin.String,
 
-    /* creation timestamp */
+    /* Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`. */
     @Json(name = "time")
     val time: kotlin.Int,
 
-    /* user account */
+    /* The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders. */
     @Json(name = "user")
     val user: kotlin.String,
 
-    /* transaction type */
+    /* SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`). */
     @Json(name = "transtype")
     val transtype: kotlin.String,
 
-    /* origin ip */
+    /* IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`. */
     @Json(name = "origin")
     val origin: kotlin.String,
 
-    /* interface name */
+    /* Relay interface name that accepted the message (e.g. `feeder`). */
     @Json(name = "interface")
     val `interface`: kotlin.String,
 
-    /* sending zone */
-    @Json(name = "sendingZone")
-    val sendingZone: kotlin.String,
+    /* The `Subject` header value, if available. */
+    @Json(name = "subject")
+    val subject: kotlin.String? = null,
 
-    /* email body size in bytes */
-    @Json(name = "bodySize")
-    val bodySize: kotlin.Int,
-
-    /* index of email in the to adderess list */
-    @Json(name = "seq")
-    val seq: kotlin.Int,
-
-    /* to address this email is being sent to */
-    @Json(name = "recipient")
-    val recipient: kotlin.String,
-
-    /* to address domain */
-    @Json(name = "domain")
-    val domain: kotlin.String,
-
-    /* locked status */
-    @Json(name = "locked")
-    val locked: kotlin.Int,
-
-    /* lock timestamp */
-    @Json(name = "lockTime")
-    val lockTime: kotlin.String,
-
-    /* assigned server */
-    @Json(name = "assigned")
-    val assigned: kotlin.String,
-
-    /* queued timestamp */
-    @Json(name = "queued")
-    val queued: kotlin.String,
-
-    /* mx hostname */
-    @Json(name = "mxHostname")
-    val mxHostname: kotlin.String,
-
-    /* mail delivery response */
-    @Json(name = "response")
-    val response: kotlin.String,
-
-    /* message id */
+    /* The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups. */
     @Json(name = "messageId")
-    val messageId: kotlin.String? = null
+    val messageId: kotlin.String? = null,
+
+    /* The sending zone assigned by the relay for outbound delivery. */
+    @Json(name = "sendingZone")
+    val sendingZone: kotlin.String? = null,
+
+    /* Size of the message body in bytes. */
+    @Json(name = "bodySize")
+    val bodySize: kotlin.Int? = null,
+
+    /* Sequence index of this recipient in a multi-recipient message. Starts at 1. */
+    @Json(name = "seq")
+    val seq: kotlin.Int? = null,
+
+    /* Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. */
+    @Json(name = "delivered")
+    val delivered: kotlin.Int? = null,
+
+    /* The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). */
+    @Json(name = "response")
+    val response: kotlin.String? = null,
+
+    /* The specific recipient address this delivery record is for. */
+    @Json(name = "recipient")
+    val recipient: kotlin.String? = null,
+
+    /* The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`. */
+    @Json(name = "domain")
+    val domain: kotlin.String? = null,
+
+    /* Whether the queue entry is currently locked for delivery processing. */
+    @Json(name = "locked")
+    val locked: kotlin.Int? = null,
+
+    /* Millisecond-precision timestamp of the last queue lock acquisition. */
+    @Json(name = "lockTime")
+    val lockTime: kotlin.String? = null,
+
+    /* The relay server node assigned to deliver this message. */
+    @Json(name = "assigned")
+    val assigned: kotlin.String? = null,
+
+    /* ISO 8601 timestamp when the message was placed into the delivery queue. */
+    @Json(name = "queued")
+    val queued: kotlin.String? = null,
+
+    /* The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`. */
+    @Json(name = "mxHostname")
+    val mxHostname: kotlin.String? = null
 
 ) {
 

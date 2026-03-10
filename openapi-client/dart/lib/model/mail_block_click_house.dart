@@ -15,48 +15,57 @@ class MailBlockClickHouse {
   MailBlockClickHouse({
     required this.date,
     required this.from,
-    required this.messageId,
     required this.subject,
     required this.to,
+    this.messageId,
   });
 
+  /// The date the block event was recorded.
   DateTime date;
 
+  /// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
   String from;
 
-  String messageId;
-
+  /// The `Subject` header of the blocked message.
   String subject;
 
+  /// The serialized list of recipients of the blocked message.
   String to;
+
+  /// The `Message-ID` header of the blocked message, or `null` if not present.
+  String? messageId;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailBlockClickHouse &&
     other.date == date &&
     other.from == from &&
-    other.messageId == messageId &&
     other.subject == subject &&
-    other.to == to;
+    other.to == to &&
+    other.messageId == messageId;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (date.hashCode) +
     (from.hashCode) +
-    (messageId.hashCode) +
     (subject.hashCode) +
-    (to.hashCode);
+    (to.hashCode) +
+    (messageId == null ? 0 : messageId!.hashCode);
 
   @override
-  String toString() => 'MailBlockClickHouse[date=$date, from=$from, messageId=$messageId, subject=$subject, to=$to]';
+  String toString() => 'MailBlockClickHouse[date=$date, from=$from, subject=$subject, to=$to, messageId=$messageId]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'date'] = _dateFormatter.format(this.date.toUtc());
       json[r'from'] = this.from;
-      json[r'messageId'] = this.messageId;
       json[r'subject'] = this.subject;
       json[r'to'] = this.to;
+    if (this.messageId != null) {
+      json[r'messageId'] = this.messageId;
+    } else {
+      json[r'messageId'] = null;
+    }
     return json;
   }
 
@@ -81,9 +90,9 @@ class MailBlockClickHouse {
       return MailBlockClickHouse(
         date: mapDateTime(json, r'date', r'')!,
         from: mapValueOfType<String>(json, r'from')!,
-        messageId: mapValueOfType<String>(json, r'messageId')!,
         subject: mapValueOfType<String>(json, r'subject')!,
         to: mapValueOfType<String>(json, r'to')!,
+        messageId: mapValueOfType<String>(json, r'messageId'),
       );
     }
     return null;
@@ -133,7 +142,6 @@ class MailBlockClickHouse {
   static const requiredKeys = <String>{
     'date',
     'from',
-    'messageId',
     'subject',
     'to',
   };

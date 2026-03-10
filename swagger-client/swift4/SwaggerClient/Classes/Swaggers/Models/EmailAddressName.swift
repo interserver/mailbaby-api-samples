@@ -7,14 +7,14 @@
 
 import Foundation
 
-/** An email contact. */
+/** An email contact with an optional display name.  Used in structured address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyto&#x60;) in &#x60;SendMailAdv&#x60;. */
 public struct EmailAddressName: Codable {
 
 
     /** The email address. */
     public var email: String
 
-    /** Name to use for the sending contact. */
+    /** Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). */
     public var name: String?
     public init(email: String, name: String? = nil) { 
         self.email = email

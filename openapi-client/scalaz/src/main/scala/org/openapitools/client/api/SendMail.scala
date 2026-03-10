@@ -12,16 +12,15 @@ import org.joda.time.DateTime
 import SendMail._
 
 case class SendMail (
-  /* The Contact whom is the primary recipient of this email. */
-  to: String,
-/* The contact whom is the this email is from. */
+  to: SendMailTo,
+/* The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. */
   from: String,
-/* The subject or title of the email */
+/* The subject line of the email. */
   subject: String,
-/* The main email contents. */
+/* The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. */
   body: String,
-/* Optional Order ID */
-  id: Option[Integer])
+/* Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. */
+  id: Option[Long])
 
 object SendMail {
   import DateTimeCodecs._

@@ -7,6 +7,7 @@ model_instance <- MailBlocks$new()
 
 test_that("local", {
   # tests for the property `local` (array[MailBlockClickHouse])
+  # Messages flagged by the &#x60;LOCAL_BL_RCPT&#x60; rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`local`, "EXPECTED_RESULT")
@@ -14,6 +15,7 @@ test_that("local", {
 
 test_that("mbtrap", {
   # tests for the property `mbtrap` (array[MailBlockClickHouse])
+  # Messages flagged by the &#x60;MBTRAP&#x60; rspamd rule in the last 5 days. These triggered MailBaby&#39;s honeypot / trap address detection.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`mbtrap`, "EXPECTED_RESULT")
@@ -21,6 +23,7 @@ test_that("mbtrap", {
 
 test_that("subject", {
   # tests for the property `subject` (array[MailBlockRspamd])
+  # Senders whose messages contained spam-indicative subjects (containing &#x60;@&#x60;, &#x60;smtp&#x60;, &#x60;socks4&#x60;, or &#x60;socks5&#x60;) with more than 4 occurrences of the same subject in the last 3 days.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`subject`, "EXPECTED_RESULT")

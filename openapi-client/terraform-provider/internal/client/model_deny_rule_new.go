@@ -2,7 +2,7 @@
 
 package client
 
-// DenyRuleNew - The data for a email deny rule record.
+// DenyRuleNew - The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
 type DenyRuleNew struct {
 	User string `json:"user,omitempty"`
 	Type string `json:"type"`

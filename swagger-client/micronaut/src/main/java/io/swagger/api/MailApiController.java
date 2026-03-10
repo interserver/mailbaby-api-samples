@@ -4,6 +4,8 @@ import io.swagger.model.DenyRuleNew;
 
 import io.swagger.model.DenyRuleRecord;
 
+import io.swagger.model.EmailAddressParam;
+
 import io.swagger.model.EmailAddressTypes;
 
 import io.swagger.model.EmailAddressesTypes;
@@ -19,6 +21,8 @@ import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 
 import io.swagger.model.MailOrder;
+
+import io.swagger.model.MailOrderDetail;
 
 import io.swagger.model.MailStatsType;
 
@@ -60,15 +64,27 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> delistBlock(@NotNull @Valid String body) {
+    public Single<HttpResponse<GenericResponse>> delistBlock(@NotNull @Valid EmailAddressParam body) {
         // TODO: Implement me
         return MailApi.super.delistBlock(body);
+    }
+
+    @Override
+    public Single<HttpResponse<GenericResponse>> delistBlock(@NotNull String email) {
+        // TODO: Implement me
+        return MailApi.super.delistBlock(email);
     }
 
     @Override
     public Single<HttpResponse<MailBlocks>> getMailBlocks() {
         // TODO: Implement me
         return MailApi.super.getMailBlocks();
+    }
+
+    @Override
+    public Single<HttpResponse<MailOrderDetail>> getMailOrderById(Long id) {
+        // TODO: Implement me
+        return MailApi.super.getMailOrderById(id);
     }
 
     @Override
@@ -96,7 +112,7 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull String rawEmail, @NotNull Integer id) {
+    public Single<HttpResponse<GenericResponse>> rawMail(@NotNull String rawEmail, @NotNull Long id) {
         // TODO: Implement me
         return MailApi.super.rawMail(rawEmail, id);
     }
@@ -114,7 +130,7 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> sendMail(@NotNull String to, @NotNull String from, @NotNull String subject, @NotNull String body, @NotNull Integer id) {
+    public Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Valid Object to, @NotNull String from, @NotNull String subject, @NotNull String body, @NotNull Long id) {
         // TODO: Implement me
         return MailApi.super.sendMail(to, from, subject, body, id);
     }
@@ -126,8 +142,8 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<MailLog>> viewMailLog(@Nullable Long id, @Nullable String origin, @Nullable String mx, @Nullable String from, @Nullable String to, @Nullable String subject, @Nullable String mailid, @Nullable @Min(0)Integer skip, @Nullable @Min(1) @Max(10000) Integer limit, @Nullable @Min(0L) @Max(9999999999L) Long startDate, @Nullable @Min(0L) @Max(9999999999L) Long endDate, @Nullable String replyto, @Nullable String headerfrom, @Nullable String delivered) {
+    public Single<HttpResponse<MailLog>> viewMailLog(@Nullable Long id, @Nullable String origin, @Nullable String mx, @Nullable String from, @Nullable String to, @Nullable String subject, @Nullable @Size(min=18,max=19) String mailid, @Nullable String messageId, @Nullable String replyto, @Nullable String headerfrom, @Nullable Integer delivered, @Nullable @Min(0)Integer skip, @Nullable @Min(1) @Max(10000) Integer limit, @Nullable @Min(0L) @Max(9999999999L) Long startDate, @Nullable @Min(0L) @Max(9999999999L) Long endDate) {
         // TODO: Implement me
-        return MailApi.super.viewMailLog(id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered);
+        return MailApi.super.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate);
     }
 }

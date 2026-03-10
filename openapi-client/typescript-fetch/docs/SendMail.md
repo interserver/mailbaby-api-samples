@@ -1,13 +1,13 @@
 
 # SendMail
 
-Details for an Email
+Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`to` | string
+`to` | [SendMailTo](SendMailTo.md)
 `from` | string
 `subject` | string
 `body` | string
@@ -20,11 +20,11 @@ import type { SendMail } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "to": johndoe@company.com,
+  "to": null,
   "from": janedoe@company.com,
   "subject": Attention Client,
   "body": This is an email to inform you that something noteworthy happened.,
-  "id": null,
+  "id": 2604,
 } satisfies SendMail
 
 console.log(example)

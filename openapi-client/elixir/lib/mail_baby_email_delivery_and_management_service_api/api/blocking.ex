@@ -10,16 +10,16 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
   import MailBabyEmailDeliveryAndManagementServiceAPI.RequestBuilder
 
   @doc """
-  Creates a new email deny rule.
-  Adds a new email deny rule into the system to block new emails that match the given criteria
+  Creates a new email deny rule
+  Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. 
 
   ### Parameters
 
   - `connection` (MailBabyEmailDeliveryAndManagementServiceAPI.Connection): Connection to server
   - `type` (String.t): The type of deny rule.
-  - `data` (String.t): The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+  - `data` (String.t): The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
   - `opts` (keyword): Optional parameters
-    - `:user` (String.t): Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+    - `:user` (String.t): Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 
   ### Returns
 
@@ -52,13 +52,13 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
   end
 
   @doc """
-  Removes an deny mail rule.
-  Removes one of the configured deny mail rules from the system.
+  Removes a deny mail rule
+  Permanently removes a single deny rule identified by its numeric `ruleId`.  The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.  Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account. 
 
   ### Parameters
 
   - `connection` (MailBabyEmailDeliveryAndManagementServiceAPI.Connection): Connection to server
-  - `rule_id` (integer()): The ID of the Rules entry.
+  - `rule_id` (integer()): The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -85,13 +85,13 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
   end
 
   @doc """
-  Removes an email address from the blocked list
-  Removes an email address from the various block lists. 
+  Removes an email address from the block lists
+  Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. 
 
   ### Parameters
 
   - `connection` (MailBabyEmailDeliveryAndManagementServiceAPI.Connection): Connection to server
-  - `body` (String.t): 
+  - `email_address_param` (EmailAddressParam): 
   - `opts` (keyword): Optional parameters
 
   ### Returns
@@ -99,13 +99,13 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
   - `{:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec delist_block(Tesla.Env.client, String.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
-  def delist_block(connection, body, _opts \\ []) do
+  @spec delist_block(Tesla.Env.client, MailBabyEmailDeliveryAndManagementServiceAPI.Model.EmailAddressParam.t, keyword()) :: {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse.t} | {:ok, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage.t} | {:error, Tesla.Env.t}
+  def delist_block(connection, email_address_param, _opts \\ []) do
     request =
       %{}
       |> method(:post)
       |> url("/mail/blocks/delete")
-      |> add_param(:body, :body, body)
+      |> add_param(:body, :body, email_address_param)
       |> Enum.into([])
 
     connection
@@ -119,7 +119,8 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
   end
 
   @doc """
-  displays a list of blocked email addresses
+  Displays a list of blocked email addresses
+  Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. 
 
   ### Parameters
 
@@ -143,14 +144,13 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
     |> Connection.request(request)
     |> evaluate_response([
       {200, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailBlocks},
-      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage},
-      {404, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
+      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
     ])
   end
 
   @doc """
-  Displays a listing of deny email rules.
-  Returns a listing of all the deny block rules you have configured.
+  Displays a listing of deny email rules
+  Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. 
 
   ### Parameters
 
@@ -174,8 +174,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Blocking do
     |> Connection.request(request)
     |> evaluate_response([
       {200, MailBabyEmailDeliveryAndManagementServiceAPI.Model.DenyRuleRecord},
-      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage},
-      {404, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
+      {401, MailBabyEmailDeliveryAndManagementServiceAPI.Model.ErrorMessage}
     ])
   end
 end

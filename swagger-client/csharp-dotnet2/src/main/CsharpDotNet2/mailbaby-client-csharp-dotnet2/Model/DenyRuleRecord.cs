@@ -8,30 +8,30 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// The data for a email deny rule record.
+  /// A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;.
   /// </summary>
   [DataContract]
   public class DenyRuleRecord {
     /// <summary>
-    /// The deny rule Id number.
+    /// The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
     /// </summary>
-    /// <value>The deny rule Id number.</value>
+    /// <value>The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.</value>
     [DataMember(Name="id", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "id")]
     public string Id { get; set; }
 
     /// <summary>
-    /// the date the rule was created.
+    /// The timestamp when the rule was created.
     /// </summary>
-    /// <value>the date the rule was created.</value>
+    /// <value>The timestamp when the rule was created.</value>
     [DataMember(Name="created", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "created")]
     public DateTime? Created { get; set; }
 
     /// <summary>
-    /// Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+    /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
     /// </summary>
-    /// <value>Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.</value>
+    /// <value>Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.</value>
     [DataMember(Name="user", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "user")]
     public string User { get; set; }
@@ -45,9 +45,9 @@ namespace IO.Swagger.Model {
     public string Type { get; set; }
 
     /// <summary>
-    /// The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+    /// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
     /// </summary>
-    /// <value>The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.</value>
+    /// <value>The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.</value>
     [DataMember(Name="data", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "data")]
     public string Data { get; set; }

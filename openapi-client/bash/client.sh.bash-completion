@@ -79,6 +79,7 @@ _()
     operations["rawMail"]=1
     operations["sendAdvMail"]=1
     operations["sendMail"]=1
+    operations["getMailOrderById"]=1
     operations["getMailOrders"]=1
     operations["pingServer"]=1
 
@@ -91,10 +92,11 @@ _()
     operation_parameters["getMailBlocks"]=""
     operation_parameters["getRules"]=""
     operation_parameters["getStats"]="time= "
-    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= skip= limit= startDate= endDate= replyto= headerfrom= delivered= "
+    operation_parameters["viewMailLog"]="id= origin= mx= from= to= subject= mailid= messageId= replyto= headerfrom= delivered= skip= limit= startDate= endDate= "
     operation_parameters["rawMail"]=""
     operation_parameters["sendAdvMail"]=""
     operation_parameters["sendMail"]=""
+    operation_parameters["getMailOrderById"]="id= "
     operation_parameters["getMailOrders"]=""
     operation_parameters["pingServer"]=""
 

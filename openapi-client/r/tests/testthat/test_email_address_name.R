@@ -15,7 +15,7 @@ test_that("email", {
 
 test_that("name", {
   # tests for the property `name` (character)
-  # Name to use for the sending contact.
+  # Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
 
   # uncomment below to test the property
   #expect_equal(model.instance$`name`, "EXPECTED_RESULT")

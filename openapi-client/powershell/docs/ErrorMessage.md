@@ -3,15 +3,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **Int32** | The response code associated with the error. | 
-**Message** | **String** | The details or description of the error. | 
+**Code** | **Int32** | The HTTP-style status code associated with the error. | 
+**Message** | **String** | A human-readable description of the error. | 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $ErrorMessage = Initialize-PSOpenAPIToolsErrorMessage  -Code 400 `
- -Message There was an error.
+ -Message The specified ID was invalid.
 ```
 
 - Convert the resource to JSON

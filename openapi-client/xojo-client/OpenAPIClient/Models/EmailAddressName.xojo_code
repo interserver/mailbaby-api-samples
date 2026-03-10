@@ -11,7 +11,7 @@ Protected Class EmailAddressName
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Name to use for the sending contact.
+			Optional display name shown to recipients (e.g. in the `From:` header).
 		#tag EndNote
 		name As Xoson.O.OptionalString
 	#tag EndProperty

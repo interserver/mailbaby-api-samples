@@ -3,9 +3,9 @@ package org.openapitools.client.model
 
 
 case class ErrorMessage (
-    /* The response code associated with the error. */
+    /* The HTTP-style status code associated with the error. */
     _code: Integer,
-    /* The details or description of the error. */
+    /* A human-readable description of the error. */
     _message: String
 )
 object ErrorMessage {

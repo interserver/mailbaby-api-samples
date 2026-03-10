@@ -16,25 +16,26 @@
 #include "../model/send_mail.h"
 send_mail_t* instantiate_send_mail(int include_optional);
 
+#include "test_send_mail_to.c"
 
 
 send_mail_t* instantiate_send_mail(int include_optional) {
   send_mail_t* send_mail = NULL;
   if (include_optional) {
     send_mail = send_mail_create(
-      "johndoe@company.com",
+      null,
       "janedoe@company.com",
       "Attention Client",
       "This is an email to inform you that something noteworthy happened.",
-      56
+      2604
     );
   } else {
     send_mail = send_mail_create(
-      "johndoe@company.com",
+      null,
       "janedoe@company.com",
       "Attention Client",
       "This is an email to inform you that something noteworthy happened.",
-      56
+      2604
     );
   }
 

@@ -16,6 +16,8 @@ func _bzz_get_api_name() -> String:
 
 # Operation pingServer → GET /ping
 # Checks if the server is running
+#
+# A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
 func ping_server(
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)

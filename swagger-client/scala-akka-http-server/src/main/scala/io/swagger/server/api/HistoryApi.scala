@@ -33,12 +33,12 @@ class HistoryApi(
     } ~
     path() { 
       get {
-        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?, "replyto".as[String].?, "headerfrom".as[String].?, "delivered".as[String].?) { (id, origin, mx, from, to, subject, mailid, skip, limit, startDate, endDate, replyto, headerfrom, delivered) =>
+        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "messageId".as[String].?, "replyto".as[String].?, "headerfrom".as[String].?, "delivered".as[Int].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?) { (id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate) =>
           
             
               
                 
-                  historyService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, skip = skip, limit = limit, startDate = startDate, endDate = endDate, replyto = replyto, headerfrom = headerfrom, delivered = delivered)
+                  historyService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
                
              
            
@@ -54,26 +54,26 @@ trait HistoryApiService {
     complete((200, responseMailStatsType))
   def getStats401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
     complete((401, responseErrorMessage))
-  def getStats404(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
-    complete((404, responseErrorMessage))
   /**
    * Code: 200, Message: OK, DataType: MailStatsType
-   * Code: 401, Message: Unauthorized, DataType: ErrorMessage
-   * Code: 404, Message: Unauthorized, DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
    */
   def getStats(time: Option[String])
-      (implicit toEntityMarshallerMailStatsType: ToEntityMarshaller[MailStatsType], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
+      (implicit toEntityMarshallerMailStatsType: ToEntityMarshaller[MailStatsType], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
   def viewMailLog200(responseMailLog: MailLog)(implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]): Route =
     complete((200, responseMailLog))
-  def viewMailLog400: Route =
-    complete((400, "bad input parameter"))
+  def viewMailLog400(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((400, responseErrorMessage))
+  def viewMailLog401(responseErrorMessage: ErrorMessage)(implicit toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route =
+    complete((401, responseErrorMessage))
   /**
-   * Code: 200, Message: search results matching criteria, DataType: MailLog
-   * Code: 400, Message: bad input parameter
+   * Code: 200, Message: Paginated list of mail log entries, DataType: MailLog
+   * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
+   * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
    */
-  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long], replyto: Option[String], headerfrom: Option[String], delivered: Option[String])
-      (implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]): Route
+  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], messageId: Option[String], replyto: Option[String], headerfrom: Option[String], delivered: Option[Int], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long])
+      (implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }
 
@@ -83,9 +83,11 @@ trait HistoryApiMarshaller {
 
   implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
+  implicit def toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]
+
   implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
-  implicit def toEntityMarshallerMailLog: ToEntityMarshaller[MailLog]
+  implicit def toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]
 
 }
 

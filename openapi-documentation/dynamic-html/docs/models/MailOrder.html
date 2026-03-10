@@ -2,21 +2,21 @@
 <h2>MailOrder</h2>
 <ul class="parameter">
   <li class="param-required-true">id : Integer
-    <br/>The ID of the order.
+    <br/>The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">status : String
-    <br/>The order status.
+    <br/>The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-true">username : String
-    <br/>The username to use for this order.
+    <br/>The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed.
   </li>
 </ul>
 <ul class="parameter">
   <li class="param-required-false">comment : String
-    <br/>Optional order comment.
+    <br/>Optional human-readable note associated with the order.
   </li>
 </ul>

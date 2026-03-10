@@ -5,12 +5,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * The resposne when an error occurs.
+ * The response body returned when an error occurs.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "The resposne when an error occurs.")
+@Schema(description = "The response body returned when an error occurs.")
 
 public class ErrorMessage   {
 
@@ -19,7 +19,7 @@ public class ErrorMessage   {
   private @Valid String message = null;
 
   /**
-   * The response code associated with the error.
+   * The HTTP-style status code associated with the error.
    **/
   public ErrorMessage code(Integer code) {
     this.code = code;
@@ -27,7 +27,7 @@ public class ErrorMessage   {
   }
 
   
-  @ApiModelProperty(example = "400", required = true, value = "The response code associated with the error.")
+  @ApiModelProperty(example = "400", required = true, value = "The HTTP-style status code associated with the error.")
   @JsonProperty("code")
   @NotNull
 
@@ -39,7 +39,7 @@ public class ErrorMessage   {
   }
 
   /**
-   * The details or description of the error.
+   * A human-readable description of the error.
    **/
   public ErrorMessage message(String message) {
     this.message = message;
@@ -47,7 +47,7 @@ public class ErrorMessage   {
   }
 
   
-  @ApiModelProperty(example = "There was an error.", required = true, value = "The details or description of the error.")
+  @ApiModelProperty(example = "The specified ID was invalid.", required = true, value = "A human-readable description of the error.")
   @JsonProperty("message")
   @NotNull
 

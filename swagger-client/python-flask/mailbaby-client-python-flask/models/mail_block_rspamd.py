@@ -49,6 +49,7 @@ class MailBlockRspamd(Model):
     def _from(self) -> str:
         """Gets the _from of this MailBlockRspamd.
 
+        The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.  # noqa: E501
 
         :return: The _from of this MailBlockRspamd.
         :rtype: str
@@ -59,6 +60,7 @@ class MailBlockRspamd(Model):
     def _from(self, _from: str):
         """Sets the _from of this MailBlockRspamd.
 
+        The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.  # noqa: E501
 
         :param _from: The _from of this MailBlockRspamd.
         :type _from: str
@@ -72,6 +74,7 @@ class MailBlockRspamd(Model):
     def subject(self) -> str:
         """Gets the subject of this MailBlockRspamd.
 
+        The suspicious subject pattern that triggered the block.  # noqa: E501
 
         :return: The subject of this MailBlockRspamd.
         :rtype: str
@@ -82,6 +85,7 @@ class MailBlockRspamd(Model):
     def subject(self, subject: str):
         """Sets the subject of this MailBlockRspamd.
 
+        The suspicious subject pattern that triggered the block.  # noqa: E501
 
         :param subject: The subject of this MailBlockRspamd.
         :type subject: str

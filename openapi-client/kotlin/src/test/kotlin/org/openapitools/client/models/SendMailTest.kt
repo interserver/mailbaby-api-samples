@@ -19,37 +19,38 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.SendMail
+import org.openapitools.client.models.SendMailTo
 
 class SendMailTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of SendMail
         //val modelInstance = SendMail()
 
-        // to test the property `to` - The Contact whom is the primary recipient of this email.
+        // to test the property `to`
         should("test to") {
             // uncomment below to test the property
             //modelInstance.to shouldBe ("TODO")
         }
 
-        // to test the property `from` - The contact whom is the this email is from.
+        // to test the property `from` - The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
         should("test from") {
             // uncomment below to test the property
             //modelInstance.from shouldBe ("TODO")
         }
 
-        // to test the property `subject` - The subject or title of the email
+        // to test the property `subject` - The subject line of the email.
         should("test subject") {
             // uncomment below to test the property
             //modelInstance.subject shouldBe ("TODO")
         }
 
-        // to test the property `body` - The main email contents.
+        // to test the property `body` - The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
         should("test body") {
             // uncomment below to test the property
             //modelInstance.body shouldBe ("TODO")
         }
 
-        // to test the property `id` - Optional Order ID
+        // to test the property `id` - Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
         should("test id") {
             // uncomment below to test the property
             //modelInstance.id shouldBe ("TODO")

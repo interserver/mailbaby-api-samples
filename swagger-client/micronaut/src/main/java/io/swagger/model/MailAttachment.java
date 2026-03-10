@@ -10,9 +10,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * (optional) File attachments to include in the email.  The file contents must be base64
+ * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
  */
-@Schema(description = "(optional) File attachments to include in the email.  The file contents must be base64")
+@Schema(description = "A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.")
 @Validated
 @Introspected
 
@@ -21,7 +21,7 @@ public class MailAttachment   {
   private String filename = null;
 
   @JsonProperty("data")
-  private String data = null;
+  private byte[] data = null;
 
   public MailAttachment filename(String filename) {
     this.filename = filename;
@@ -29,10 +29,10 @@ public class MailAttachment   {
   }
 
   /**
-   * The filename of the attached file.
+   * The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
    * @return filename
   **/
-  @Schema(example = "message.txt", required = true, description = "The filename of the attached file.")
+  @Schema(example = "message.txt", required = true, description = "The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).")
   @NotNull
 
   public String getFilename() {
@@ -43,23 +43,23 @@ public class MailAttachment   {
     this.filename = filename;
   }
 
-  public MailAttachment data(String data) {
+  public MailAttachment data(byte[] data) {
     this.data = data;
     return this;
   }
 
   /**
-   * The file contents base64 encoded
+   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
    * @return data
   **/
-  @Schema(example = "aGVsbG8gdGhlcmUK", required = true, description = "The file contents base64 encoded")
+  @Schema(example = "[B@78361a8b", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
   @NotNull
 
-  public String getData() {
+  public byte[] getData() {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(byte[] data) {
     this.data = data;
   }
 

@@ -2,36 +2,49 @@
 Protected Class MailStatsType
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The time window these `received`, `sent`, and `volume` statistics cover.
+		#tag EndNote
 		time As Xoson.O.OptionalString
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+		#tag EndNote
 		usage As Xoson.O.OptionalInteger
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The ISO 4217 currency code for this account (e.g. `USD`).
+		#tag EndNote
 		currency As Xoson.O.OptionalString
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
-		currencySymbol As Xoson.O.OptionalString
-	#tag EndProperty
-
-
-	#tag Property, Flags = &h0
+		#tag Note
+			Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+		#tag EndNote
 		cost As Xoson.O.OptionalDouble
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+		#tag EndNote
 		received As Xoson.O.OptionalInteger
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
+		#tag EndNote
 		sent As Xoson.O.OptionalInteger
 	#tag EndProperty
 
@@ -48,7 +61,7 @@ Protected Class MailStatsType
         Month
         Escaped7d
         Escaped24h
-        Today
+        Day
         Escaped1h
         
     #tag EndEnum
@@ -68,8 +81,8 @@ Protected Class MailStatsType
 		      Return "7d"
 		    Case TimeEnum.Escaped24h
 		      Return "24h"
-		    Case TimeEnum.Today
-		      Return "today"
+		    Case TimeEnum.Day
+		      Return "day"
 		    Case TimeEnum.Escaped1h
 		      Return "1h"
 		    
@@ -122,14 +135,6 @@ Protected Class MailStatsType
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="currency"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="currencySymbol"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

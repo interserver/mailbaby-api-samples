@@ -49,7 +49,7 @@ class ErrorMessage(Model):
     def code(self) -> int:
         """Gets the code of this ErrorMessage.
 
-        The response code associated with the error.  # noqa: E501
+        The HTTP-style status code associated with the error.  # noqa: E501
 
         :return: The code of this ErrorMessage.
         :rtype: int
@@ -60,7 +60,7 @@ class ErrorMessage(Model):
     def code(self, code: int):
         """Sets the code of this ErrorMessage.
 
-        The response code associated with the error.  # noqa: E501
+        The HTTP-style status code associated with the error.  # noqa: E501
 
         :param code: The code of this ErrorMessage.
         :type code: int
@@ -74,7 +74,7 @@ class ErrorMessage(Model):
     def message(self) -> str:
         """Gets the message of this ErrorMessage.
 
-        The details or description of the error.  # noqa: E501
+        A human-readable description of the error.  # noqa: E501
 
         :return: The message of this ErrorMessage.
         :rtype: str
@@ -85,7 +85,7 @@ class ErrorMessage(Model):
     def message(self, message: str):
         """Sets the message of this ErrorMessage.
 
-        The details or description of the error.  # noqa: E501
+        A human-readable description of the error.  # noqa: E501
 
         :param message: The message of this ErrorMessage.
         :type message: str

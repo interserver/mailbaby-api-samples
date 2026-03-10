@@ -188,6 +188,8 @@ class ApiClient {
           return DenyRuleRecord.fromJson(value);
         case 'EmailAddressName':
           return EmailAddressName.fromJson(value);
+        case 'EmailAddressParam':
+          return EmailAddressParam.fromJson(value);
         case 'EmailAddressTypes':
           return EmailAddressTypes.fromJson(value);
         case 'EmailAddressesTypes':
@@ -210,22 +212,20 @@ class ApiClient {
           return MailLogEntry.fromJson(value);
         case 'MailOrder':
           return MailOrder.fromJson(value);
+        case 'MailOrderDetail':
+          return MailOrderDetail.fromJson(value);
         case 'MailStatsType':
           return MailStatsType.fromJson(value);
         case 'MailStatsTypeVolume':
           return MailStatsTypeVolume.fromJson(value);
-        case 'MailStatsTypeVolumeFrom':
-          return MailStatsTypeVolumeFrom.fromJson(value);
-        case 'MailStatsTypeVolumeIp':
-          return MailStatsTypeVolumeIp.fromJson(value);
-        case 'MailStatsTypeVolumeTo':
-          return MailStatsTypeVolumeTo.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
         case 'SendMailAdv':
           return SendMailAdv.fromJson(value);
         case 'SendMailRaw':
           return SendMailRaw.fromJson(value);
+        case 'SendMailTo':
+          return SendMailTo.fromJson(value);
         default:
           dynamic match;
           if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {

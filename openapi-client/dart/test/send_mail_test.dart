@@ -16,31 +16,30 @@ void main() {
   // final instance = SendMail();
 
   group('test SendMail', () {
-    // The Contact whom is the primary recipient of this email.
-    // String to
+    // SendMailTo to
     test('to test the property `to`', () async {
       // TODO
     });
 
-    // The contact whom is the this email is from.
+    // The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
     // String from
     test('to test the property `from`', () async {
       // TODO
     });
 
-    // The subject or title of the email
+    // The subject line of the email.
     // String subject
     test('to test the property `subject`', () async {
       // TODO
     });
 
-    // The main email contents.
+    // The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
     // String body
     test('to test the property `body`', () async {
       // TODO
     });
 
-    // Optional Order ID
+    // Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
     // int id
     test('to test the property `id`', () async {
       // TODO

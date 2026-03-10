@@ -10,6 +10,7 @@ main-api-client.cpp
 model/DenyRuleNew.hpp
 model/DenyRuleRecord.hpp
 model/EmailAddressName.hpp
+model/EmailAddressParam.hpp
 model/EmailAddressTypes.hpp
 model/EmailAddressesTypes.hpp
 model/ErrorMessage.hpp
@@ -21,11 +22,10 @@ model/MailBlocks.hpp
 model/MailLog.hpp
 model/MailLogEntry.hpp
 model/MailOrder.hpp
+model/MailOrderDetail.hpp
 model/MailStatsType.hpp
 model/MailStatsType_volume.hpp
-model/MailStatsType_volume_from.hpp
-model/MailStatsType_volume_ip.hpp
-model/MailStatsType_volume_to.hpp
 model/SendMail.hpp
 model/SendMailAdv.hpp
 model/SendMailRaw.hpp
+model/SendMail_to.hpp

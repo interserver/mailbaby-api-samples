@@ -7,7 +7,7 @@ model_instance <- ErrorMessage$new()
 
 test_that("code", {
   # tests for the property `code` (integer)
-  # The response code associated with the error.
+  # The HTTP-style status code associated with the error.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`code`, "EXPECTED_RESULT")
@@ -15,7 +15,7 @@ test_that("code", {
 
 test_that("message", {
   # tests for the property `message` (character)
-  # The details or description of the error.
+  # A human-readable description of the error.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`message`, "EXPECTED_RESULT")

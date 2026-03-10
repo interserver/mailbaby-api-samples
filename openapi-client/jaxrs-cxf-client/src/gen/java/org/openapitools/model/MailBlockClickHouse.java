@@ -1,6 +1,7 @@
 package org.openapitools.model;
 
 import org.joda.time.LocalDate;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,33 +9,48 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * A block entry from the clickhouse mailblocks server.
+ * A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
  */
-@ApiModel(description="A block entry from the clickhouse mailblocks server.")
+@ApiModel(description="A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 
 public class MailBlockClickHouse  {
   
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The date the block event was recorded.
+  */
+  @ApiModelProperty(example = "2023-08-07", required = true, value = "The date the block event was recorded.")
 
   private LocalDate date;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
+  */
+  @ApiModelProperty(example = "user@domain.com", required = true, value = "The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.")
 
   private String from;
 
-  @ApiModelProperty(required = true, value = "")
-
-  private String messageId;
-
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The `Subject` header of the blocked message.
+  */
+  @ApiModelProperty(example = "Test Email", required = true, value = "The `Subject` header of the blocked message.")
 
   private String subject;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The serialized list of recipients of the blocked message.
+  */
+  @ApiModelProperty(example = "['client@site.com']", required = true, value = "The serialized list of recipients of the blocked message.")
 
   private String to;
+
  /**
-   * Get date
+  * The `Message-ID` header of the blocked message, or `null` if not present.
+  */
+  @ApiModelProperty(example = "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com", value = "The `Message-ID` header of the blocked message, or `null` if not present.")
+
+  private String messageId;
+ /**
+   * The date the block event was recorded.
    * @return date
   **/
   @JsonProperty("date")
@@ -52,7 +68,7 @@ public class MailBlockClickHouse  {
   }
 
  /**
-   * Get from
+   * The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it.
    * @return from
   **/
   @JsonProperty("from")
@@ -70,25 +86,7 @@ public class MailBlockClickHouse  {
   }
 
  /**
-   * Get messageId
-   * @return messageId
-  **/
-  @JsonProperty("messageId")
-  public String getMessageId() {
-    return messageId;
-  }
-
-  public void setMessageId(String messageId) {
-    this.messageId = messageId;
-  }
-
-  public MailBlockClickHouse messageId(String messageId) {
-    this.messageId = messageId;
-    return this;
-  }
-
- /**
-   * Get subject
+   * The &#x60;Subject&#x60; header of the blocked message.
    * @return subject
   **/
   @JsonProperty("subject")
@@ -106,7 +104,7 @@ public class MailBlockClickHouse  {
   }
 
  /**
-   * Get to
+   * The serialized list of recipients of the blocked message.
    * @return to
   **/
   @JsonProperty("to")
@@ -123,6 +121,24 @@ public class MailBlockClickHouse  {
     return this;
   }
 
+ /**
+   * The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
+   * @return messageId
+  **/
+  @JsonProperty("messageId")
+  public String getMessageId() {
+    return messageId;
+  }
+
+  public void setMessageId(String messageId) {
+    this.messageId = messageId;
+  }
+
+  public MailBlockClickHouse messageId(String messageId) {
+    this.messageId = messageId;
+    return this;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -134,14 +150,14 @@ public class MailBlockClickHouse  {
     MailBlockClickHouse mailBlockClickHouse = (MailBlockClickHouse) o;
     return Objects.equals(this.date, mailBlockClickHouse.date) &&
         Objects.equals(this.from, mailBlockClickHouse.from) &&
-        Objects.equals(this.messageId, mailBlockClickHouse.messageId) &&
         Objects.equals(this.subject, mailBlockClickHouse.subject) &&
-        Objects.equals(this.to, mailBlockClickHouse.to);
+        Objects.equals(this.to, mailBlockClickHouse.to) &&
+        Objects.equals(this.messageId, mailBlockClickHouse.messageId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(date, from, messageId, subject, to);
+    return Objects.hash(date, from, subject, to, messageId);
   }
 
   @Override
@@ -151,9 +167,9 @@ public class MailBlockClickHouse  {
     
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
-    sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

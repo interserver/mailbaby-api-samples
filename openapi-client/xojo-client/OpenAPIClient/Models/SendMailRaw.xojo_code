@@ -3,7 +3,7 @@ Protected Class SendMailRaw
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The entire email contents
+			The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
 		#tag EndNote
 		raw_email As String
 	#tag EndProperty
@@ -11,9 +11,9 @@ Protected Class SendMailRaw
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Optional order id
+			Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.
 		#tag EndNote
-		id As Xoson.O.OptionalInteger
+		id As Xoson.O.OptionalInt64
 	#tag EndProperty
 
 
@@ -66,7 +66,7 @@ Protected Class SendMailRaw
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="Integer"
+			Type="Int64"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

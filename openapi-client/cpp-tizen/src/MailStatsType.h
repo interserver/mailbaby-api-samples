@@ -1,7 +1,7 @@
 /*
  * MailStatsType.h
  *
- * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  */
 
 #ifndef _MailStatsType_H_
@@ -21,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+/*! \brief Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  *
  *  \ingroup Models
  *
@@ -46,53 +46,46 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get The time window these `received`, `sent`, and `volume` statistics cover.
 	 */
 	std::string getTime();
 
-	/*! \brief Set 
+	/*! \brief Set The time window these `received`, `sent`, and `volume` statistics cover.
 	 */
 	void setTime(std::string  time);
-	/*! \brief Get 
+	/*! \brief Get Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
 	 */
 	int getUsage();
 
-	/*! \brief Set 
+	/*! \brief Set Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
 	 */
 	void setUsage(int  usage);
-	/*! \brief Get 
+	/*! \brief Get The ISO 4217 currency code for this account (e.g. `USD`).
 	 */
 	std::string getCurrency();
 
-	/*! \brief Set 
+	/*! \brief Set The ISO 4217 currency code for this account (e.g. `USD`).
 	 */
 	void setCurrency(std::string  currency);
-	/*! \brief Get 
-	 */
-	std::string getCurrencySymbol();
-
-	/*! \brief Set 
-	 */
-	void setCurrencySymbol(std::string  currencySymbol);
-	/*! \brief Get 
+	/*! \brief Get Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
 	 */
 	double getCost();
 
-	/*! \brief Set 
+	/*! \brief Set Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
 	 */
 	void setCost(double  cost);
-	/*! \brief Get 
+	/*! \brief Get Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
 	 */
 	int getReceived();
 
-	/*! \brief Set 
+	/*! \brief Set Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
 	 */
 	void setReceived(int  received);
-	/*! \brief Get 
+	/*! \brief Get Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
 	 */
 	int getSent();
 
-	/*! \brief Set 
+	/*! \brief Set Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
 	 */
 	void setSent(int  sent);
 	/*! \brief Get 
@@ -107,7 +100,6 @@ private:
 	std::string time;
 	int usage;
 	std::string currency;
-	std::string currencySymbol;
 	double cost;
 	int received;
 	int sent;

@@ -17,10 +17,10 @@ class MailAttachment {
     required this.data,
   });
 
-  /// The filename of the attached file.
+  /// The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
   String filename;
 
-  /// The file contents base64 encoded
+  /// The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
   String data;
 
   @override

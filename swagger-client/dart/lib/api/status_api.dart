@@ -9,7 +9,7 @@ class StatusApi {
 
   /// Checks if the server is running
   ///
-  /// 
+  /// A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
   Future pingServer() async {
     Object postBody = null;
 

@@ -8,22 +8,22 @@ using Newtonsoft.Json;
 namespace IO.Swagger.Model {
 
   /// <summary>
-  /// The resposne when an error occurs.
+  /// The response body returned when an error occurs.
   /// </summary>
   [DataContract]
   public class ErrorMessage {
     /// <summary>
-    /// The response code associated with the error.
+    /// The HTTP-style status code associated with the error.
     /// </summary>
-    /// <value>The response code associated with the error.</value>
+    /// <value>The HTTP-style status code associated with the error.</value>
     [DataMember(Name="code", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "code")]
     public int? Code { get; set; }
 
     /// <summary>
-    /// The details or description of the error.
+    /// A human-readable description of the error.
     /// </summary>
-    /// <value>The details or description of the error.</value>
+    /// <value>A human-readable description of the error.</value>
     [DataMember(Name="message", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "message")]
     public string Message { get; set; }

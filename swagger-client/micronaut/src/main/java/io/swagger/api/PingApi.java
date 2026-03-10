@@ -23,7 +23,7 @@ import java.util.Map;
 public interface PingApi {
 
 
-    @Operation(summary = "Checks if the server is running", operationId = "pingServer", description = "" , tags = {"Status"})
+    @Operation(summary = "Checks if the server is running", operationId = "pingServer", description = "A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. " , tags = {"Status"})
     @ApiResponse(responseCode = "200", description = "Server is up and running")
     @ApiResponse(responseCode = "200", description = "Something is wrong")
     @Get(value = "/ping")

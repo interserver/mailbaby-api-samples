@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **int32** | The response code associated with the error. | 
-**Message** | **string** | The details or description of the error. | 
+**Code** | **int32** | The HTTP-style status code associated with the error. | 
+**Message** | **string** | A human-readable description of the error. | 
 
 ## Methods
 

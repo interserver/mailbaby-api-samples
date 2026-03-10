@@ -1,7 +1,7 @@
 /*
  * MailStatsType_volume.h
  *
- * 
+ * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window.
  */
 
 #ifndef _MailStatsType_volume_H_
@@ -9,9 +9,7 @@
 
 
 #include <string>
-#include "MailStatsType_volume_from.h"
-#include "MailStatsType_volume_ip.h"
-#include "MailStatsType_volume_to.h"
+#include <map>
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -23,7 +21,7 @@ namespace Tizen {
 namespace ArtikCloud {
 
 
-/*! \brief 
+/*! \brief Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
  *
  *  \ingroup Models
  *
@@ -48,32 +46,32 @@ public:
 	 */
 	void fromJson(char* jsonStr);
 
-	/*! \brief Get 
+	/*! \brief Get Message counts keyed by destination (envelope `to`) email address.
 	 */
-	MailStatsType_volume_to getTo();
+	std::map<std::string, std::string> getTo();
 
-	/*! \brief Set 
+	/*! \brief Set Message counts keyed by destination (envelope `to`) email address.
 	 */
-	void setTo(MailStatsType_volume_to  to);
-	/*! \brief Get 
+	void setTo(std::map <std::string, std::string> to);
+	/*! \brief Get Message counts keyed by sender (envelope `from`) email address.
 	 */
-	MailStatsType_volume_from getFrom();
+	std::map<std::string, std::string> getFrom();
 
-	/*! \brief Set 
+	/*! \brief Set Message counts keyed by sender (envelope `from`) email address.
 	 */
-	void setFrom(MailStatsType_volume_from  from);
-	/*! \brief Get 
+	void setFrom(std::map <std::string, std::string> from);
+	/*! \brief Get Message counts keyed by originating client IP address.
 	 */
-	MailStatsType_volume_ip getIp();
+	std::map<std::string, std::string> getIp();
 
-	/*! \brief Set 
+	/*! \brief Set Message counts keyed by originating client IP address.
 	 */
-	void setIp(MailStatsType_volume_ip  ip);
+	void setIp(std::map <std::string, std::string> ip);
 
 private:
-	MailStatsType_volume_to to;
-	MailStatsType_volume_from from;
-	MailStatsType_volume_ip ip;
+	std::map <std::string, std::string>to;
+	std::map <std::string, std::string>from;
+	std::map <std::string, std::string>ip;
 	void __init();
 	void __cleanup();
 

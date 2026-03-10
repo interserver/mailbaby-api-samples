@@ -9,9 +9,9 @@
   {
    (ds/req :date) inst?
    (ds/req :from) string?
-   (ds/req :messageId) string?
    (ds/req :subject) string?
    (ds/req :to) string?
+   (ds/opt :messageId) string?
    })
 
 (def mail-block-click-house-spec

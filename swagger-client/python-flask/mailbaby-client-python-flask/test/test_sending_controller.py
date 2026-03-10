@@ -22,11 +22,11 @@ class TestSendingController(BaseTestCase):
     def test_raw_mail(self):
         """Test case for raw_mail
 
-        Sends a raw email
+        Sends a raw RFC 822 email
         """
         body = SendMailRaw()
         data = dict(raw_email='raw_email_example',
-                    id=56)
+                    id=789)
         response = self.client.open(
             '/mail/rawsend',
             method='POST',
@@ -66,11 +66,11 @@ class TestSendingController(BaseTestCase):
         Sends an Email
         """
         body = SendMail()
-        data = dict(to='to_example',
+        data = dict(to=Object(),
                     _from='_from_example',
                     subject='subject_example',
                     body='body_example',
-                    id=56)
+                    id=789)
         response = self.client.open(
             '/mail/send',
             method='POST',

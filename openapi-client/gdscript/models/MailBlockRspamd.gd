@@ -8,10 +8,12 @@ class_name MailBlockRspamd
 # The OpenAPI Generator Community, © Public Domain, 2022
 
 # MailBlockRspamd Model
-# This is a block entry from the rspamd block list.
+# A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 
 
+# The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
 # Required: True
+# Example: user@domain.com
 # isArray: false
 @export var from: String = "":
 	set(value):
@@ -19,7 +21,9 @@ class_name MailBlockRspamd
 		from = value
 var __from__was__set := false
 
+# The suspicious subject pattern that triggered the block.
 # Required: True
+# Example: Test email
 # isArray: false
 @export var subject: String = "":
 	set(value):

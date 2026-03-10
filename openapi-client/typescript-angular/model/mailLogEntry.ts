@@ -10,100 +10,104 @@
 
 
 /**
- * An email record
+ * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
  */
 export interface MailLogEntry { 
     /**
-     * internal db id
+     * Internal auto-increment database row ID.  Not meaningful outside the API.
      */
     _id: number;
     /**
-     * mail id
+     * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
      */
     id: string;
     /**
-     * from address
+     * SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
      */
     from: string;
     /**
-     * to address
+     * SMTP envelope `RCPT TO` address.
      */
     to: string;
     /**
-     * email subject
-     */
-    subject: string;
-    /**
-     * creation date
+     * Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
      */
     created: string;
     /**
-     * creation timestamp
+     * Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
      */
     time: number;
     /**
-     * user account
+     * The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
      */
     user: string;
     /**
-     * transaction type
+     * SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
      */
     transtype: string;
     /**
-     * origin ip
+     * IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
      */
     origin: string;
     /**
-     * interface name
+     * Relay interface name that accepted the message (e.g. `feeder`).
      */
     'interface': string;
     /**
-     * sending zone
+     * The `Subject` header value, if available.
      */
-    sendingZone: string;
+    subject?: string | null;
     /**
-     * email body size in bytes
+     * The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
      */
-    bodySize: number;
+    messageId?: string | null;
     /**
-     * index of email in the to adderess list
+     * The sending zone assigned by the relay for outbound delivery.
      */
-    seq: number;
+    sendingZone?: string | null;
     /**
-     * to address this email is being sent to
+     * Size of the message body in bytes.
      */
-    recipient: string;
+    bodySize?: number | null;
     /**
-     * to address domain
+     * Sequence index of this recipient in a multi-recipient message. Starts at 1.
      */
-    domain: string;
+    seq?: number | null;
     /**
-     * locked status
+     * Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
      */
-    locked: number;
+    delivered?: number | null;
     /**
-     * lock timestamp
+     * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
      */
-    lockTime: string;
+    response?: string | null;
     /**
-     * assigned server
+     * The specific recipient address this delivery record is for.
      */
-    assigned: string;
+    recipient?: string | null;
     /**
-     * queued timestamp
+     * The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
      */
-    queued: string;
+    domain?: string | null;
     /**
-     * mx hostname
+     * Whether the queue entry is currently locked for delivery processing.
      */
-    mxHostname: string;
+    locked?: number | null;
     /**
-     * mail delivery response
+     * Millisecond-precision timestamp of the last queue lock acquisition.
      */
-    response: string;
+    lockTime?: string | null;
     /**
-     * message id
+     * The relay server node assigned to deliver this message.
      */
-    messageId?: string;
+    assigned?: string | null;
+    /**
+     * ISO 8601 timestamp when the message was placed into the delivery queue.
+     */
+    queued?: string | null;
+    /**
+     * The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
+     */
+    mxHostname?: string | null;
 }
 

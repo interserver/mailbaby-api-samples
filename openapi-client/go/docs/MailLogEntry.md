@@ -4,35 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | internal db id | 
-**Id** | **string** | mail id | 
-**From** | **string** | from address | 
-**To** | **string** | to address | 
-**Subject** | **string** | email subject | 
-**MessageId** | Pointer to **string** | message id | [optional] 
-**Created** | **string** | creation date | 
-**Time** | **int32** | creation timestamp | 
-**User** | **string** | user account | 
-**Transtype** | **string** | transaction type | 
-**Origin** | **string** | origin ip | 
-**Interface** | **string** | interface name | 
-**SendingZone** | **string** | sending zone | 
-**BodySize** | **int32** | email body size in bytes | 
-**Seq** | **int32** | index of email in the to adderess list | 
-**Recipient** | **string** | to address this email is being sent to | 
-**Domain** | **string** | to address domain | 
-**Locked** | **int32** | locked status | 
-**LockTime** | **string** | lock timestamp | 
-**Assigned** | **string** | assigned server | 
-**Queued** | **string** | queued timestamp | 
-**MxHostname** | **string** | mx hostname | 
-**Response** | **string** | mail delivery response | 
+**Id** | **int32** | Internal auto-increment database row ID.  Not meaningful outside the API. | 
+**Id** | **string** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. | 
+**From** | **string** | SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). | 
+**To** | **string** | SMTP envelope &#x60;RCPT TO&#x60; address. | 
+**Subject** | Pointer to **NullableString** | The &#x60;Subject&#x60; header value, if available. | [optional] 
+**MessageId** | Pointer to **NullableString** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional] 
+**Created** | **string** | Human-readable creation timestamp in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format. | 
+**Time** | **int32** | Unix timestamp of message acceptance.  Corresponds to the &#x60;startDate&#x60; and &#x60;endDate&#x60; filter parameters on &#x60;GET /mail/log&#x60;. | 
+**User** | **string** | The SMTP AUTH username used to submit the message (e.g. &#x60;mb5658&#x60;). Corresponds to the &#x60;username&#x60; field in &#x60;GET /mail&#x60; orders. | 
+**Transtype** | **string** | SMTP transaction type negotiated with the relay (e.g. &#x60;ESMTPSA&#x60;). | 
+**Origin** | **string** | IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | 
+**Interface** | **string** | Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;). | 
+**SendingZone** | Pointer to **NullableString** | The sending zone assigned by the relay for outbound delivery. | [optional] 
+**BodySize** | Pointer to **NullableInt32** | Size of the message body in bytes. | [optional] 
+**Seq** | Pointer to **NullableInt32** | Sequence index of this recipient in a multi-recipient message. Starts at 1. | [optional] 
+**Delivered** | Pointer to **NullableInt32** | Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | [optional] 
+**Response** | Pointer to **NullableString** | The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;). | [optional] 
+**Recipient** | Pointer to **NullableString** | The specific recipient address this delivery record is for. | [optional] 
+**Domain** | Pointer to **NullableString** | The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;. | [optional] 
+**Locked** | Pointer to **NullableInt32** | Whether the queue entry is currently locked for delivery processing. | [optional] 
+**LockTime** | Pointer to **NullableString** | Millisecond-precision timestamp of the last queue lock acquisition. | [optional] 
+**Assigned** | Pointer to **NullableString** | The relay server node assigned to deliver this message. | [optional] 
+**Queued** | Pointer to **NullableString** | ISO 8601 timestamp when the message was placed into the delivery queue. | [optional] 
+**MxHostname** | Pointer to **NullableString** | The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | [optional] 
 
 ## Methods
 
 ### NewMailLogEntry
 
-`func NewMailLogEntry(id int32, id string, from string, to string, subject string, created string, time int32, user string, transtype string, origin string, interface_ string, sendingZone string, bodySize int32, seq int32, recipient string, domain string, locked int32, lockTime string, assigned string, queued string, mxHostname string, response string, ) *MailLogEntry`
+`func NewMailLogEntry(id int32, id string, from string, to string, created string, time int32, user string, transtype string, origin string, interface_ string, ) *MailLogEntry`
 
 NewMailLogEntry instantiates a new MailLogEntry object
 This constructor will assign default values to properties that have it defined,
@@ -146,7 +147,22 @@ and a boolean to check if the value has been set.
 
 SetSubject sets Subject field to given value.
 
+### HasSubject
 
+`func (o *MailLogEntry) HasSubject() bool`
+
+HasSubject returns a boolean if a field has been set.
+
+### SetSubjectNil
+
+`func (o *MailLogEntry) SetSubjectNil(b bool)`
+
+ SetSubjectNil sets the value for Subject to be an explicit nil
+
+### UnsetSubject
+`func (o *MailLogEntry) UnsetSubject()`
+
+UnsetSubject ensures that no value is present for Subject, not even an explicit nil
 ### GetMessageId
 
 `func (o *MailLogEntry) GetMessageId() string`
@@ -172,6 +188,16 @@ SetMessageId sets MessageId field to given value.
 
 HasMessageId returns a boolean if a field has been set.
 
+### SetMessageIdNil
+
+`func (o *MailLogEntry) SetMessageIdNil(b bool)`
+
+ SetMessageIdNil sets the value for MessageId to be an explicit nil
+
+### UnsetMessageId
+`func (o *MailLogEntry) UnsetMessageId()`
+
+UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
 ### GetCreated
 
 `func (o *MailLogEntry) GetCreated() string`
@@ -311,7 +337,22 @@ and a boolean to check if the value has been set.
 
 SetSendingZone sets SendingZone field to given value.
 
+### HasSendingZone
 
+`func (o *MailLogEntry) HasSendingZone() bool`
+
+HasSendingZone returns a boolean if a field has been set.
+
+### SetSendingZoneNil
+
+`func (o *MailLogEntry) SetSendingZoneNil(b bool)`
+
+ SetSendingZoneNil sets the value for SendingZone to be an explicit nil
+
+### UnsetSendingZone
+`func (o *MailLogEntry) UnsetSendingZone()`
+
+UnsetSendingZone ensures that no value is present for SendingZone, not even an explicit nil
 ### GetBodySize
 
 `func (o *MailLogEntry) GetBodySize() int32`
@@ -331,7 +372,22 @@ and a boolean to check if the value has been set.
 
 SetBodySize sets BodySize field to given value.
 
+### HasBodySize
 
+`func (o *MailLogEntry) HasBodySize() bool`
+
+HasBodySize returns a boolean if a field has been set.
+
+### SetBodySizeNil
+
+`func (o *MailLogEntry) SetBodySizeNil(b bool)`
+
+ SetBodySizeNil sets the value for BodySize to be an explicit nil
+
+### UnsetBodySize
+`func (o *MailLogEntry) UnsetBodySize()`
+
+UnsetBodySize ensures that no value is present for BodySize, not even an explicit nil
 ### GetSeq
 
 `func (o *MailLogEntry) GetSeq() int32`
@@ -351,147 +407,57 @@ and a boolean to check if the value has been set.
 
 SetSeq sets Seq field to given value.
 
+### HasSeq
 
-### GetRecipient
+`func (o *MailLogEntry) HasSeq() bool`
 
-`func (o *MailLogEntry) GetRecipient() string`
+HasSeq returns a boolean if a field has been set.
 
-GetRecipient returns the Recipient field if non-nil, zero value otherwise.
+### SetSeqNil
 
-### GetRecipientOk
+`func (o *MailLogEntry) SetSeqNil(b bool)`
 
-`func (o *MailLogEntry) GetRecipientOk() (*string, bool)`
+ SetSeqNil sets the value for Seq to be an explicit nil
 
-GetRecipientOk returns a tuple with the Recipient field if it's non-nil, zero value otherwise
+### UnsetSeq
+`func (o *MailLogEntry) UnsetSeq()`
+
+UnsetSeq ensures that no value is present for Seq, not even an explicit nil
+### GetDelivered
+
+`func (o *MailLogEntry) GetDelivered() int32`
+
+GetDelivered returns the Delivered field if non-nil, zero value otherwise.
+
+### GetDeliveredOk
+
+`func (o *MailLogEntry) GetDeliveredOk() (*int32, bool)`
+
+GetDeliveredOk returns a tuple with the Delivered field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRecipient
+### SetDelivered
 
-`func (o *MailLogEntry) SetRecipient(v string)`
+`func (o *MailLogEntry) SetDelivered(v int32)`
 
-SetRecipient sets Recipient field to given value.
+SetDelivered sets Delivered field to given value.
 
+### HasDelivered
 
-### GetDomain
+`func (o *MailLogEntry) HasDelivered() bool`
 
-`func (o *MailLogEntry) GetDomain() string`
+HasDelivered returns a boolean if a field has been set.
 
-GetDomain returns the Domain field if non-nil, zero value otherwise.
+### SetDeliveredNil
 
-### GetDomainOk
+`func (o *MailLogEntry) SetDeliveredNil(b bool)`
 
-`func (o *MailLogEntry) GetDomainOk() (*string, bool)`
+ SetDeliveredNil sets the value for Delivered to be an explicit nil
 
-GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetDelivered
+`func (o *MailLogEntry) UnsetDelivered()`
 
-### SetDomain
-
-`func (o *MailLogEntry) SetDomain(v string)`
-
-SetDomain sets Domain field to given value.
-
-
-### GetLocked
-
-`func (o *MailLogEntry) GetLocked() int32`
-
-GetLocked returns the Locked field if non-nil, zero value otherwise.
-
-### GetLockedOk
-
-`func (o *MailLogEntry) GetLockedOk() (*int32, bool)`
-
-GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLocked
-
-`func (o *MailLogEntry) SetLocked(v int32)`
-
-SetLocked sets Locked field to given value.
-
-
-### GetLockTime
-
-`func (o *MailLogEntry) GetLockTime() string`
-
-GetLockTime returns the LockTime field if non-nil, zero value otherwise.
-
-### GetLockTimeOk
-
-`func (o *MailLogEntry) GetLockTimeOk() (*string, bool)`
-
-GetLockTimeOk returns a tuple with the LockTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLockTime
-
-`func (o *MailLogEntry) SetLockTime(v string)`
-
-SetLockTime sets LockTime field to given value.
-
-
-### GetAssigned
-
-`func (o *MailLogEntry) GetAssigned() string`
-
-GetAssigned returns the Assigned field if non-nil, zero value otherwise.
-
-### GetAssignedOk
-
-`func (o *MailLogEntry) GetAssignedOk() (*string, bool)`
-
-GetAssignedOk returns a tuple with the Assigned field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAssigned
-
-`func (o *MailLogEntry) SetAssigned(v string)`
-
-SetAssigned sets Assigned field to given value.
-
-
-### GetQueued
-
-`func (o *MailLogEntry) GetQueued() string`
-
-GetQueued returns the Queued field if non-nil, zero value otherwise.
-
-### GetQueuedOk
-
-`func (o *MailLogEntry) GetQueuedOk() (*string, bool)`
-
-GetQueuedOk returns a tuple with the Queued field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetQueued
-
-`func (o *MailLogEntry) SetQueued(v string)`
-
-SetQueued sets Queued field to given value.
-
-
-### GetMxHostname
-
-`func (o *MailLogEntry) GetMxHostname() string`
-
-GetMxHostname returns the MxHostname field if non-nil, zero value otherwise.
-
-### GetMxHostnameOk
-
-`func (o *MailLogEntry) GetMxHostnameOk() (*string, bool)`
-
-GetMxHostnameOk returns a tuple with the MxHostname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMxHostname
-
-`func (o *MailLogEntry) SetMxHostname(v string)`
-
-SetMxHostname sets MxHostname field to given value.
-
-
+UnsetDelivered ensures that no value is present for Delivered, not even an explicit nil
 ### GetResponse
 
 `func (o *MailLogEntry) GetResponse() string`
@@ -511,7 +477,267 @@ and a boolean to check if the value has been set.
 
 SetResponse sets Response field to given value.
 
+### HasResponse
 
+`func (o *MailLogEntry) HasResponse() bool`
+
+HasResponse returns a boolean if a field has been set.
+
+### SetResponseNil
+
+`func (o *MailLogEntry) SetResponseNil(b bool)`
+
+ SetResponseNil sets the value for Response to be an explicit nil
+
+### UnsetResponse
+`func (o *MailLogEntry) UnsetResponse()`
+
+UnsetResponse ensures that no value is present for Response, not even an explicit nil
+### GetRecipient
+
+`func (o *MailLogEntry) GetRecipient() string`
+
+GetRecipient returns the Recipient field if non-nil, zero value otherwise.
+
+### GetRecipientOk
+
+`func (o *MailLogEntry) GetRecipientOk() (*string, bool)`
+
+GetRecipientOk returns a tuple with the Recipient field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRecipient
+
+`func (o *MailLogEntry) SetRecipient(v string)`
+
+SetRecipient sets Recipient field to given value.
+
+### HasRecipient
+
+`func (o *MailLogEntry) HasRecipient() bool`
+
+HasRecipient returns a boolean if a field has been set.
+
+### SetRecipientNil
+
+`func (o *MailLogEntry) SetRecipientNil(b bool)`
+
+ SetRecipientNil sets the value for Recipient to be an explicit nil
+
+### UnsetRecipient
+`func (o *MailLogEntry) UnsetRecipient()`
+
+UnsetRecipient ensures that no value is present for Recipient, not even an explicit nil
+### GetDomain
+
+`func (o *MailLogEntry) GetDomain() string`
+
+GetDomain returns the Domain field if non-nil, zero value otherwise.
+
+### GetDomainOk
+
+`func (o *MailLogEntry) GetDomainOk() (*string, bool)`
+
+GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomain
+
+`func (o *MailLogEntry) SetDomain(v string)`
+
+SetDomain sets Domain field to given value.
+
+### HasDomain
+
+`func (o *MailLogEntry) HasDomain() bool`
+
+HasDomain returns a boolean if a field has been set.
+
+### SetDomainNil
+
+`func (o *MailLogEntry) SetDomainNil(b bool)`
+
+ SetDomainNil sets the value for Domain to be an explicit nil
+
+### UnsetDomain
+`func (o *MailLogEntry) UnsetDomain()`
+
+UnsetDomain ensures that no value is present for Domain, not even an explicit nil
+### GetLocked
+
+`func (o *MailLogEntry) GetLocked() int32`
+
+GetLocked returns the Locked field if non-nil, zero value otherwise.
+
+### GetLockedOk
+
+`func (o *MailLogEntry) GetLockedOk() (*int32, bool)`
+
+GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLocked
+
+`func (o *MailLogEntry) SetLocked(v int32)`
+
+SetLocked sets Locked field to given value.
+
+### HasLocked
+
+`func (o *MailLogEntry) HasLocked() bool`
+
+HasLocked returns a boolean if a field has been set.
+
+### SetLockedNil
+
+`func (o *MailLogEntry) SetLockedNil(b bool)`
+
+ SetLockedNil sets the value for Locked to be an explicit nil
+
+### UnsetLocked
+`func (o *MailLogEntry) UnsetLocked()`
+
+UnsetLocked ensures that no value is present for Locked, not even an explicit nil
+### GetLockTime
+
+`func (o *MailLogEntry) GetLockTime() string`
+
+GetLockTime returns the LockTime field if non-nil, zero value otherwise.
+
+### GetLockTimeOk
+
+`func (o *MailLogEntry) GetLockTimeOk() (*string, bool)`
+
+GetLockTimeOk returns a tuple with the LockTime field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLockTime
+
+`func (o *MailLogEntry) SetLockTime(v string)`
+
+SetLockTime sets LockTime field to given value.
+
+### HasLockTime
+
+`func (o *MailLogEntry) HasLockTime() bool`
+
+HasLockTime returns a boolean if a field has been set.
+
+### SetLockTimeNil
+
+`func (o *MailLogEntry) SetLockTimeNil(b bool)`
+
+ SetLockTimeNil sets the value for LockTime to be an explicit nil
+
+### UnsetLockTime
+`func (o *MailLogEntry) UnsetLockTime()`
+
+UnsetLockTime ensures that no value is present for LockTime, not even an explicit nil
+### GetAssigned
+
+`func (o *MailLogEntry) GetAssigned() string`
+
+GetAssigned returns the Assigned field if non-nil, zero value otherwise.
+
+### GetAssignedOk
+
+`func (o *MailLogEntry) GetAssignedOk() (*string, bool)`
+
+GetAssignedOk returns a tuple with the Assigned field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssigned
+
+`func (o *MailLogEntry) SetAssigned(v string)`
+
+SetAssigned sets Assigned field to given value.
+
+### HasAssigned
+
+`func (o *MailLogEntry) HasAssigned() bool`
+
+HasAssigned returns a boolean if a field has been set.
+
+### SetAssignedNil
+
+`func (o *MailLogEntry) SetAssignedNil(b bool)`
+
+ SetAssignedNil sets the value for Assigned to be an explicit nil
+
+### UnsetAssigned
+`func (o *MailLogEntry) UnsetAssigned()`
+
+UnsetAssigned ensures that no value is present for Assigned, not even an explicit nil
+### GetQueued
+
+`func (o *MailLogEntry) GetQueued() string`
+
+GetQueued returns the Queued field if non-nil, zero value otherwise.
+
+### GetQueuedOk
+
+`func (o *MailLogEntry) GetQueuedOk() (*string, bool)`
+
+GetQueuedOk returns a tuple with the Queued field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQueued
+
+`func (o *MailLogEntry) SetQueued(v string)`
+
+SetQueued sets Queued field to given value.
+
+### HasQueued
+
+`func (o *MailLogEntry) HasQueued() bool`
+
+HasQueued returns a boolean if a field has been set.
+
+### SetQueuedNil
+
+`func (o *MailLogEntry) SetQueuedNil(b bool)`
+
+ SetQueuedNil sets the value for Queued to be an explicit nil
+
+### UnsetQueued
+`func (o *MailLogEntry) UnsetQueued()`
+
+UnsetQueued ensures that no value is present for Queued, not even an explicit nil
+### GetMxHostname
+
+`func (o *MailLogEntry) GetMxHostname() string`
+
+GetMxHostname returns the MxHostname field if non-nil, zero value otherwise.
+
+### GetMxHostnameOk
+
+`func (o *MailLogEntry) GetMxHostnameOk() (*string, bool)`
+
+GetMxHostnameOk returns a tuple with the MxHostname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMxHostname
+
+`func (o *MailLogEntry) SetMxHostname(v string)`
+
+SetMxHostname sets MxHostname field to given value.
+
+### HasMxHostname
+
+`func (o *MailLogEntry) HasMxHostname() bool`
+
+HasMxHostname returns a boolean if a field has been set.
+
+### SetMxHostnameNil
+
+`func (o *MailLogEntry) SetMxHostnameNil(b bool)`
+
+ SetMxHostnameNil sets the value for MxHostname to be an explicit nil
+
+### UnsetMxHostname
+`func (o *MailLogEntry) UnsetMxHostname()`
+
+UnsetMxHostname ensures that no value is present for MxHostname, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

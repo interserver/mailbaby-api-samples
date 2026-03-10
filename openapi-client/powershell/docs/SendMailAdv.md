@@ -3,33 +3,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subject** | **String** | The subject or title of the email | 
-**Body** | **String** | The main email contents. | 
+**Subject** | **String** | The subject line of the email. | 
+**Body** | **String** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
 **VarFrom** | [**EmailAddressTypes**](EmailAddressTypes.md) |  | 
 **To** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
 **Replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
 **Cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
 **Bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] 
-**Attachments** | [**MailAttachment[]**](MailAttachment.md) | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | [optional] 
-**Id** | **Int64** | (optional)  ID of the Mail order within our system to use as the Mail Account. | [optional] 
+**Attachments** | [**MailAttachment[]**](MailAttachment.md) | Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [optional] 
+**Id** | **Int64** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional] 
 
 ## Examples
 
 - Prepare the resource
 ```powershell
 $SendMailAdv = Initialize-PSOpenAPIToolsSendMailAdv  -Subject Your Package has been Delivered! `
- -Body The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else. `
+ -Body The package you ordered on 2021-01-23 has been delivered. `
  -VarFrom null `
  -To null `
  -Replyto null `
  -Cc null `
  -Bcc null `
- -Attachments [
-        {
-            &quot;filename&quot;: &quot;text.txt&quot;,
-            &quot;data&quot;: &quot;base64_encoded_contents&quot;
-        }
-] `
+ -Attachments null `
  -Id 5000
 ```
 

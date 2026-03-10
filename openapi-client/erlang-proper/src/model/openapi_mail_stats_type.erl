@@ -12,7 +12,6 @@
   [ {'time', binary() }
   | {'usage', integer() }
   | {'currency', binary() }
-  | {'currencySymbol', binary() }
   | {'cost', float() }
   | {'received', integer() }
   | {'sent', integer() }
@@ -24,10 +23,9 @@ openapi_mail_stats_type() ->
     openapi_mail_stats_type([]).
 
 openapi_mail_stats_type(Fields) ->
-  Default = [ {'time', elements([<<"all">>, <<"billing">>, <<"month">>, <<"7d">>, <<"24h">>, <<"today">>, <<"1h">>]) }
+  Default = [ {'time', elements([<<"all">>, <<"billing">>, <<"month">>, <<"7d">>, <<"24h">>, <<"day">>, <<"1h">>]) }
             , {'usage', integer() }
             , {'currency', binary() }
-            , {'currencySymbol', binary() }
             , {'cost', float() }
             , {'received', integer() }
             , {'sent', integer() }

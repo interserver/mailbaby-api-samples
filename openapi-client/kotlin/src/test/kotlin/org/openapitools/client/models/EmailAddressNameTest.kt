@@ -31,7 +31,7 @@ class EmailAddressNameTest : ShouldSpec() {
             //modelInstance.email shouldBe ("TODO")
         }
 
-        // to test the property `name` - Name to use for the sending contact.
+        // to test the property `name` - Optional display name shown to recipients (e.g. in the `From:` header).
         should("test name") {
             // uncomment below to test the property
             //modelInstance.name shouldBe ("TODO")

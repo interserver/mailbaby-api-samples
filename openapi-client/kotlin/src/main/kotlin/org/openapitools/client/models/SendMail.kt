@@ -15,42 +15,42 @@
 
 package org.openapitools.client.models
 
+import org.openapitools.client.models.SendMailTo
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Details for an Email
+ * Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
  *
- * @param to The Contact whom is the primary recipient of this email.
- * @param from The contact whom is the this email is from.
- * @param subject The subject or title of the email
- * @param body The main email contents.
- * @param id Optional Order ID
+ * @param to 
+ * @param from The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+ * @param subject The subject line of the email.
+ * @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+ * @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
  */
 
 
 data class SendMail (
 
-    /* The Contact whom is the primary recipient of this email. */
     @Json(name = "to")
-    val to: kotlin.String,
+    val to: SendMailTo,
 
-    /* The contact whom is the this email is from. */
+    /* The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. */
     @Json(name = "from")
     val from: kotlin.String,
 
-    /* The subject or title of the email */
+    /* The subject line of the email. */
     @Json(name = "subject")
     val subject: kotlin.String,
 
-    /* The main email contents. */
+    /* The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. */
     @Json(name = "body")
     val body: kotlin.String,
 
-    /* Optional Order ID */
+    /* Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. */
     @Json(name = "id")
-    val id: kotlin.Int? = null
+    val id: kotlin.Long? = null
 
 ) {
 

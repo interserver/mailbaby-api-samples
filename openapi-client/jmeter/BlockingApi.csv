@@ -1,2 +1,2 @@
-testCase,httpStatusCode,type,data,user,ruleId,body
+testCase,httpStatusCode,type,data,user,ruleId,emailAddressParam
 Success,200,0,0,0,0,0

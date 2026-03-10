@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [**kotlin.String**](.md) | The Contact whom is the primary recipient of this email. | 
-**from** | [**kotlin.String**](.md) | The contact whom is the this email is from. | 
-**subject** | [**kotlin.String**](.md) | The subject or title of the email | 
-**body** | [**kotlin.String**](.md) | The main email contents. | 
-**id** | [**kotlin.Int**](.md) | Optional Order ID |  [optional]
+**to** | [**OneOfSendMailTo**](OneOfSendMailTo.md) | The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. | 
+**from** | [**kotlin.String**](.md) | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | 
+**subject** | [**kotlin.String**](.md) | The subject line of the email. | 
+**body** | [**kotlin.String**](.md) | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
+**id** | [**kotlin.Long**](.md) | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. |  [optional]

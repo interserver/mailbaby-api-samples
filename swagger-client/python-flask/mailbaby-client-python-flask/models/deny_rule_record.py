@@ -65,7 +65,7 @@ class DenyRuleRecord(Model):
     def id(self) -> str:
         """Gets the id of this DenyRuleRecord.
 
-        The deny rule Id number.  # noqa: E501
+        The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.  # noqa: E501
 
         :return: The id of this DenyRuleRecord.
         :rtype: str
@@ -76,7 +76,7 @@ class DenyRuleRecord(Model):
     def id(self, id: str):
         """Sets the id of this DenyRuleRecord.
 
-        The deny rule Id number.  # noqa: E501
+        The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.  # noqa: E501
 
         :param id: The id of this DenyRuleRecord.
         :type id: str
@@ -90,7 +90,7 @@ class DenyRuleRecord(Model):
     def created(self) -> datetime:
         """Gets the created of this DenyRuleRecord.
 
-        the date the rule was created.  # noqa: E501
+        The timestamp when the rule was created.  # noqa: E501
 
         :return: The created of this DenyRuleRecord.
         :rtype: datetime
@@ -101,7 +101,7 @@ class DenyRuleRecord(Model):
     def created(self, created: datetime):
         """Sets the created of this DenyRuleRecord.
 
-        the date the rule was created.  # noqa: E501
+        The timestamp when the rule was created.  # noqa: E501
 
         :param created: The created of this DenyRuleRecord.
         :type created: datetime
@@ -115,7 +115,7 @@ class DenyRuleRecord(Model):
     def user(self) -> str:
         """Gets the user of this DenyRuleRecord.
 
-        Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.  # noqa: E501
+        Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.  # noqa: E501
 
         :return: The user of this DenyRuleRecord.
         :rtype: str
@@ -126,7 +126,7 @@ class DenyRuleRecord(Model):
     def user(self, user: str):
         """Sets the user of this DenyRuleRecord.
 
-        Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.  # noqa: E501
+        Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.  # noqa: E501
 
         :param user: The user of this DenyRuleRecord.
         :type user: str
@@ -167,7 +167,7 @@ class DenyRuleRecord(Model):
     def data(self) -> str:
         """Gets the data of this DenyRuleRecord.
 
-        The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.  # noqa: E501
+        The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.  # noqa: E501
 
         :return: The data of this DenyRuleRecord.
         :rtype: str
@@ -178,7 +178,7 @@ class DenyRuleRecord(Model):
     def data(self, data: str):
         """Sets the data of this DenyRuleRecord.
 
-        The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.  # noqa: E501
+        The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.  # noqa: E501
 
         :param data: The data of this DenyRuleRecord.
         :type data: str

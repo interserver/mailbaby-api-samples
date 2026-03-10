@@ -20,30 +20,30 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * A mail order record
+ * A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
  *
- * @param id The ID of the order.
- * @param status The order status.
- * @param username The username to use for this order.
- * @param comment Optional order comment.
+ * @param id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
+ * @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+ * @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
+ * @param comment Optional human-readable note associated with the order.
  */
 
 
 data class MailOrder (
 
-    /* The ID of the order. */
+    /* The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. */
     @Json(name = "id")
     val id: kotlin.Int,
 
-    /* The order status. */
+    /* The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. */
     @Json(name = "status")
     val status: kotlin.String,
 
-    /* The username to use for this order. */
+    /* The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. */
     @Json(name = "username")
     val username: kotlin.String,
 
-    /* Optional order comment. */
+    /* Optional human-readable note associated with the order. */
     @Json(name = "comment")
     val comment: kotlin.String? = null
 

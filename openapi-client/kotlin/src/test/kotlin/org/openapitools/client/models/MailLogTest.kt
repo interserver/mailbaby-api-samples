@@ -26,19 +26,19 @@ class MailLogTest : ShouldSpec() {
         // uncomment below to create an instance of MailLog
         //val modelInstance = MailLog()
 
-        // to test the property `total` - total number of mail log entries
+        // to test the property `total` - Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
         should("test total") {
             // uncomment below to test the property
             //modelInstance.total shouldBe ("TODO")
         }
 
-        // to test the property `skip` - number of emails skipped in listing
+        // to test the property `skip` - The `skip` value used for this page (echoed from the request).
         should("test skip") {
             // uncomment below to test the property
             //modelInstance.skip shouldBe ("TODO")
         }
 
-        // to test the property `limit` - number of emails to return
+        // to test the property `limit` - The `limit` value used for this page (echoed from the request).
         should("test limit") {
             // uncomment below to test the property
             //modelInstance.limit shouldBe ("TODO")

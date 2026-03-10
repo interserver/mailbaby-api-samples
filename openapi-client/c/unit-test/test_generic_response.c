@@ -23,12 +23,12 @@ generic_response_t* instantiate_generic_response(int include_optional) {
   if (include_optional) {
     generic_response = generic_response_create(
       "ok",
-      "The command completed successfully."
+      "185caa69ff7000f47c"
     );
   } else {
     generic_response = generic_response_create(
       "ok",
-      "The command completed successfully."
+      "185caa69ff7000f47c"
     );
   }
 

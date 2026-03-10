@@ -14,6 +14,8 @@ Method | HTTP request | Description
 
 Checks if the server is running
 
+
+
 ### Example
 
 ```go

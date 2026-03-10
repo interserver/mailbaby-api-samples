@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | The email address. | 
-**Name** | Pointer to **string** | Name to use for the sending contact. | [optional] 
+**Name** | Pointer to **string** | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). | [optional] 
 
 ## Methods
 

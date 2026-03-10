@@ -7,27 +7,27 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The resposne when an error occurs.
+ * The response body returned when an error occurs.
  */
-@ApiModel(description="The resposne when an error occurs.")
+@ApiModel(description="The response body returned when an error occurs.")
 
 public class ErrorMessage  {
   
  /**
-  * The response code associated with the error.
+  * The HTTP-style status code associated with the error.
   */
-  @ApiModelProperty(example = "400", required = true, value = "The response code associated with the error.")
+  @ApiModelProperty(example = "400", required = true, value = "The HTTP-style status code associated with the error.")
 
   private Integer code;
 
  /**
-  * The details or description of the error.
+  * A human-readable description of the error.
   */
-  @ApiModelProperty(example = "There was an error.", required = true, value = "The details or description of the error.")
+  @ApiModelProperty(example = "The specified ID was invalid.", required = true, value = "A human-readable description of the error.")
 
   private String message;
  /**
-   * The response code associated with the error.
+   * The HTTP-style status code associated with the error.
    * @return code
   **/
   @JsonProperty("code")
@@ -45,7 +45,7 @@ public class ErrorMessage  {
   }
 
  /**
-   * The details or description of the error.
+   * A human-readable description of the error.
    * @return message
   **/
   @JsonProperty("message")

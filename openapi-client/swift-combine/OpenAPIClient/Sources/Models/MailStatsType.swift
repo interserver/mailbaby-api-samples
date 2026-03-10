@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost. 
+/// Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address. 
 public struct MailStatsType: Codable {
     public enum Time: String, Codable, CaseIterable {
         case all = "all"
@@ -15,23 +15,27 @@ public struct MailStatsType: Codable {
         case month = "month"
         case _7d = "7d"
         case _24h = "24h"
-        case today = "today"
+        case day = "day"
         case _1h = "1h"
     }
+    /// The time window these `received`, `sent`, and `volume` statistics cover.
     public var time: Time? = ._1h
+    /// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
     public var usage: Int?
+    /// The ISO 4217 currency code for this account (e.g. `USD`).
     public var currency: String?
-    public var currencySymbol: String?
+    /// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
     public var cost: Double?
+    /// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
     public var received: Int?
+    /// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
     public var sent: Int?
     public var volume: MailStatsTypeVolume?
 
-    public init(time: Time? = ._1h, usage: Int? = nil, currency: String? = nil, currencySymbol: String? = nil, cost: Double? = nil, received: Int? = nil, sent: Int? = nil, volume: MailStatsTypeVolume? = nil) {
+    public init(time: Time? = ._1h, usage: Int? = nil, currency: String? = nil, cost: Double? = nil, received: Int? = nil, sent: Int? = nil, volume: MailStatsTypeVolume? = nil) {
         self.time = time
         self.usage = usage
         self.currency = currency
-        self.currencySymbol = currencySymbol
         self.cost = cost
         self.received = received
         self.sent = sent

@@ -11,7 +11,6 @@
    (ds/opt :time) string?
    (ds/opt :usage) int?
    (ds/opt :currency) string?
-   (ds/opt :currencySymbol) string?
    (ds/opt :cost) float?
    (ds/opt :received) int?
    (ds/opt :sent) int?

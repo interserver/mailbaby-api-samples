@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [**STRING_32**](STRING_32.md) | The Contact whom is the primary recipient of this email. | [default to null]
-**var_from** | [**STRING_32**](STRING_32.md) | The contact whom is the this email is from. | [default to null]
-**subject** | [**STRING_32**](STRING_32.md) | The subject or title of the email | [default to null]
-**body** | [**STRING_32**](STRING_32.md) | The main email contents. | [default to null]
-**id** | **INTEGER_32** | Optional Order ID | [optional] [default to null]
+**to** | [**SEND_MAIL_TO**](SendMail_to.md) |  | [default to null]
+**var_from** | [**STRING_32**](STRING_32.md) | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | [default to null]
+**subject** | [**STRING_32**](STRING_32.md) | The subject line of the email. | [default to null]
+**body** | [**STRING_32**](STRING_32.md) | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | [default to null]
+**id** | **INTEGER_64** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -9,17 +9,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description="The resposne when an error occurs.")
+@Schema(description="The response body returned when an error occurs.")
 
 public class ErrorMessage   {
   private Integer code = null;
   private String message = null;
 
   /**
-   * The response code associated with the error.
+   * The HTTP-style status code associated with the error.
    **/
   
-  @Schema(example = "400", required = true, description = "The response code associated with the error.")
+  @Schema(example = "400", required = true, description = "The HTTP-style status code associated with the error.")
   @JsonProperty("code")
   @NotNull
   public Integer getCode() {
@@ -30,10 +30,10 @@ public class ErrorMessage   {
   }
 
   /**
-   * The details or description of the error.
+   * A human-readable description of the error.
    **/
   
-  @Schema(example = "There was an error.", required = true, description = "The details or description of the error.")
+  @Schema(example = "The specified ID was invalid.", required = true, description = "A human-readable description of the error.")
   @JsonProperty("message")
   @NotNull
   public String getMessage() {

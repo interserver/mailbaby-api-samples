@@ -4,7 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RawMail**](SendingAPI.md#RawMail) | **Post** /mail/rawsend | Sends a raw email
+[**RawMail**](SendingAPI.md#RawMail) | **Post** /mail/rawsend | Sends a raw RFC 822 email
 [**SendAdvMail**](SendingAPI.md#SendAdvMail) | **Post** /mail/advsend | Sends an Email with Advanced Options
 [**SendMail**](SendingAPI.md#SendMail) | **Post** /mail/send | Sends an Email
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 > GenericResponse RawMail(ctx).SendMailRaw(sendMailRaw).Execute()
 
-Sends a raw email
+Sends a raw RFC 822 email
 
 
 
@@ -97,15 +97,15 @@ import (
 )
 
 func main() {
-	subject := "subject_example" // string | The subject or title of the email
-	body := "body_example" // string | The main email contents.
+	subject := "subject_example" // string | The subject line of the email.
+	body := "body_example" // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	from := openapiclient.EmailAddressTypes{EmailAddressName: openapiclient.NewEmailAddressName("user@domain.com")} // EmailAddressTypes | 
 	to := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes | 
 	replyto := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes |  (optional)
 	cc := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes |  (optional)
 	bcc := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes |  (optional)
-	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", "aGVsbG8gdGhlcmUK")} // []MailAttachment | (optional) File attachments to include in the email.  The file contents must be base64 encoded! (optional)
-	id := int64(789) // int64 | (optional)  ID of the Mail order within our system to use as the Mail Account. (optional)
+	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@7a583586))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
+	id := int64(789) // int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -130,15 +130,15 @@ Other parameters are passed through a pointer to a apiSendAdvMailRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subject** | **string** | The subject or title of the email | 
- **body** | **string** | The main email contents. | 
+ **subject** | **string** | The subject line of the email. | 
+ **body** | **string** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
  **from** | [**EmailAddressTypes**](EmailAddressTypes.md) |  | 
  **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
  **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
  **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
  **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | 
- **attachments** | [**[]MailAttachment**](MailAttachment.md) | (optional) File attachments to include in the email.  The file contents must be base64 encoded! | 
- **id** | **int64** | (optional)  ID of the Mail order within our system to use as the Mail Account. | 
+ **attachments** | [**[]MailAttachment**](MailAttachment.md) | Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | 
+ **id** | **int64** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | 
 
 ### Return type
 
@@ -179,11 +179,11 @@ import (
 )
 
 func main() {
-	to := "to_example" // string | The Contact whom is the primary recipient of this email.
-	from := "from_example" // string | The contact whom is the this email is from.
-	subject := "subject_example" // string | The subject or title of the email
-	body := "body_example" // string | The main email contents.
-	id := int32(56) // int32 | Optional Order ID (optional)
+	to := openapiclient.SendMail_to{ArrayOfString: new([]string)} // SendMailTo | 
+	from := "from_example" // string | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+	subject := "subject_example" // string | The subject line of the email.
+	body := "body_example" // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+	id := int64(789) // int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -208,11 +208,11 @@ Other parameters are passed through a pointer to a apiSendMailRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | **string** | The Contact whom is the primary recipient of this email. | 
- **from** | **string** | The contact whom is the this email is from. | 
- **subject** | **string** | The subject or title of the email | 
- **body** | **string** | The main email contents. | 
- **id** | **int32** | Optional Order ID | 
+ **to** | [**SendMailTo**](SendMailTo.md) |  | 
+ **from** | **string** | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | 
+ **subject** | **string** | The subject line of the email. | 
+ **body** | **string** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
+ **id** | **int64** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | 
 
 ### Return type
 

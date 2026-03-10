@@ -21,11 +21,20 @@ import io.kotlintest.specs.ShouldSpec
 import org.openapitools.client.apis.ServicesApi
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.MailOrder
+import org.openapitools.client.models.MailOrderDetail
 
 class ServicesApiTest : ShouldSpec() {
     init {
         // uncomment below to create an instance of ServicesApi
         //val apiInstance = ServicesApi()
+
+        // to test getMailOrderById
+        should("test getMailOrderById") {
+            // uncomment below to test getMailOrderById
+            //val id : kotlin.Long = 39 // kotlin.Long | The numeric ID of the mail order.
+            //val result : MailOrderDetail = apiInstance.getMailOrderById(id)
+            //result shouldBe ("TODO")
+        }
 
         // to test getMailOrders
         should("test getMailOrders") {

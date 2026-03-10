@@ -10,6 +10,8 @@ src/DenyRuleRecord.cpp
 src/DenyRuleRecord.h
 src/EmailAddressName.cpp
 src/EmailAddressName.h
+src/EmailAddressParam.cpp
+src/EmailAddressParam.h
 src/EmailAddressTypes.cpp
 src/EmailAddressTypes.h
 src/EmailAddressesTypes.cpp
@@ -38,16 +40,12 @@ src/MailLogEntry.cpp
 src/MailLogEntry.h
 src/MailOrder.cpp
 src/MailOrder.h
+src/MailOrderDetail.cpp
+src/MailOrderDetail.h
 src/MailStatsType.cpp
 src/MailStatsType.h
 src/MailStatsTypeVolume.cpp
 src/MailStatsTypeVolume.h
-src/MailStatsTypeVolumeFrom.cpp
-src/MailStatsTypeVolumeFrom.h
-src/MailStatsTypeVolumeIp.cpp
-src/MailStatsTypeVolumeIp.h
-src/MailStatsTypeVolumeTo.cpp
-src/MailStatsTypeVolumeTo.h
 src/NetClient.cpp
 src/NetClient.h
 src/Object.h
@@ -58,6 +56,8 @@ src/SendMailAdv.cpp
 src/SendMailAdv.h
 src/SendMailRaw.cpp
 src/SendMailRaw.h
+src/SendMailTo.cpp
+src/SendMailTo.h
 src/SendingManager.cpp
 src/SendingManager.h
 src/ServicesManager.cpp

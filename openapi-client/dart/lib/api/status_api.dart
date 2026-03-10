@@ -18,6 +18,8 @@ class StatusApi {
 
   /// Checks if the server is running
   ///
+  /// A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+  ///
   /// Note: This method returns the HTTP [Response].
   Future<Response> pingServerWithHttpInfo() async {
     // ignore: prefer_const_declarations
@@ -45,6 +47,8 @@ class StatusApi {
   }
 
   /// Checks if the server is running
+  ///
+  /// A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
   Future<void> pingServer() async {
     final response = await pingServerWithHttpInfo();
     if (response.statusCode >= HttpStatus.badRequest) {

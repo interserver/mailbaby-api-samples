@@ -10,38 +10,40 @@ import 'package:built_value/serializer.dart';
 
 part 'mail_stats_type.g.dart';
 
-/// Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+/// Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 ///
 /// Properties:
-/// * [time] 
-/// * [usage] 
-/// * [currency] 
-/// * [currencySymbol] 
-/// * [cost] 
-/// * [received] 
-/// * [sent] 
+/// * [time] - The time window these `received`, `sent`, and `volume` statistics cover.
+/// * [usage] - Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+/// * [currency] - The ISO 4217 currency code for this account (e.g. `USD`).
+/// * [cost] - Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+/// * [received] - Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+/// * [sent] - Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
 /// * [volume] 
 @BuiltValue()
 abstract class MailStatsType implements Built<MailStatsType, MailStatsTypeBuilder> {
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueField(wireName: r'time')
   MailStatsTypeTimeEnum? get time;
-  // enum timeEnum {  all,  billing,  month,  7d,  24h,  today,  1h,  };
+  // enum timeEnum {  all,  billing,  month,  7d,  24h,  day,  1h,  };
 
+  /// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
   @BuiltValueField(wireName: r'usage')
   int? get usage;
 
+  /// The ISO 4217 currency code for this account (e.g. `USD`).
   @BuiltValueField(wireName: r'currency')
   String? get currency;
 
-  @BuiltValueField(wireName: r'currencySymbol')
-  String? get currencySymbol;
-
+  /// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
   @BuiltValueField(wireName: r'cost')
   double? get cost;
 
+  /// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
   @BuiltValueField(wireName: r'received')
   int? get received;
 
+  /// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
   @BuiltValueField(wireName: r'sent')
   int? get sent;
 
@@ -90,13 +92,6 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
       yield r'currency';
       yield serializers.serialize(
         object.currency,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.currencySymbol != null) {
-      yield r'currencySymbol';
-      yield serializers.serialize(
-        object.currencySymbol,
         specifiedType: const FullType(String),
       );
     }
@@ -172,13 +167,6 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
           ) as String;
           result.currency = valueDes;
           break;
-        case r'currencySymbol':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.currencySymbol = valueDes;
-          break;
         case r'cost':
           final valueDes = serializers.deserialize(
             value,
@@ -238,18 +226,25 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
 
 class MailStatsTypeTimeEnum extends EnumClass {
 
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'all')
   static const MailStatsTypeTimeEnum all = _$mailStatsTypeTimeEnum_all;
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'billing')
   static const MailStatsTypeTimeEnum billing = _$mailStatsTypeTimeEnum_billing;
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'month')
   static const MailStatsTypeTimeEnum month = _$mailStatsTypeTimeEnum_month;
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'7d')
   static const MailStatsTypeTimeEnum n7d = _$mailStatsTypeTimeEnum_n7d;
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'24h')
   static const MailStatsTypeTimeEnum n24h = _$mailStatsTypeTimeEnum_n24h;
-  @BuiltValueEnumConst(wireName: r'today')
-  static const MailStatsTypeTimeEnum today = _$mailStatsTypeTimeEnum_today;
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
+  @BuiltValueEnumConst(wireName: r'day')
+  static const MailStatsTypeTimeEnum day = _$mailStatsTypeTimeEnum_day;
+  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'1h')
   static const MailStatsTypeTimeEnum n1h = _$mailStatsTypeTimeEnum_n1h;
 

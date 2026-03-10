@@ -1,7 +1,7 @@
 goog.provide('API.Client.EmailAddressName');
 
 /**
- * An email contact.
+ * An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
  * @record
  */
 API.Client.EmailAddressName = function() {}
@@ -14,7 +14,7 @@ API.Client.EmailAddressName = function() {}
 API.Client.EmailAddressName.prototype.email;
 
 /**
- * Name to use for the sending contact.
+ * Optional display name shown to recipients (e.g. in the `From:` header).
  * @type {!string}
  * @export
  */

@@ -10,7 +10,7 @@ import java.util.List;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description="Array of Email Addresses")
+@Schema(description="An array of email contacts, each with an email address and optional display name.")
 
 public class EmailAddressNames extends ArrayList<EmailAddressName> implements EmailAddressesTypes  {
 

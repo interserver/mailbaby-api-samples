@@ -1,7 +1,7 @@
 /*
  * mail_order.h
  *
- * A mail order record
+ * A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;.
  */
 
 #ifndef _mail_order_H_

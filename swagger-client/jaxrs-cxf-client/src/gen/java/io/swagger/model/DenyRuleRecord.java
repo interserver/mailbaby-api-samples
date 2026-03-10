@@ -17,26 +17,26 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
-  * The data for a email deny rule record.
+  * A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
  **/
-@Schema(description="The data for a email deny rule record.")
+@Schema(description="A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.")
 public class DenyRuleRecord   {
   
-  @Schema(example = "41124", required = true, description = "The deny rule Id number.")
+  @Schema(example = "41124", required = true, description = "The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.")
  /**
-   * The deny rule Id number.  
+   * The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.  
   **/
   private String id = null;
   
-  @Schema(required = true, description = "the date the rule was created.")
+  @Schema(required = true, description = "The timestamp when the rule was created.")
  /**
-   * the date the rule was created.  
+   * The timestamp when the rule was created.  
   **/
   private Date created = null;
   
-  @Schema(example = "mb20682", description = "Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.")
+  @Schema(example = "mb20682", description = "Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.")
  /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.  
+   * Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.  
   **/
   private String user = null;
   public enum TypeEnum {
@@ -75,13 +75,13 @@ public class DenyRuleRecord   {
   **/
   private TypeEnum type = null;
   
-  @Schema(example = "domeinwo@server.guesshost.net", required = true, description = "The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.")
+  @Schema(example = "domeinwo@server.guesshost.net", required = true, description = "The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.")
  /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.  
+   * The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.  
   **/
   private String data = null;
  /**
-   * The deny rule Id number.
+   * The numeric ID of the deny rule, as a string.  Pass this as &#x60;ruleId&#x60; to &#x60;DELETE /mail/rules/{ruleId}&#x60; to remove the rule.
    * @return id
   **/
   @JsonProperty("id")
@@ -99,7 +99,7 @@ public class DenyRuleRecord   {
   }
 
  /**
-   * the date the rule was created.
+   * The timestamp when the rule was created.
    * @return created
   **/
   @JsonProperty("created")
@@ -117,7 +117,7 @@ public class DenyRuleRecord   {
   }
 
  /**
-   * Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+   * Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
    * @return user
   **/
   @JsonProperty("user")
@@ -156,7 +156,7 @@ public class DenyRuleRecord   {
   }
 
  /**
-   * The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+   * The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
    * @return data
   **/
   @JsonProperty("data")

@@ -7,12 +7,14 @@
 
 import Foundation
 
-
+/** Standard success response returned by write operations (send, add rule, delete, etc.).  The &#x60;status&#x60; field is always &#x60;\&quot;ok\&quot;&#x60; on success.  The &#x60;text&#x60; field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record&#x27;s ID; for delete calls it contains a confirmation string. */
 public struct GenericResponse: Codable {
 
 
+    /** Always &#x60;\&quot;ok\&quot;&#x60; on success. */
     public var status: String?
 
+    /** Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#x27;s numeric ID.  For delete operations this is a human-readable confirmation. */
     public var text: String?
     public init(status: String? = nil, text: String? = nil) { 
         self.status = status

@@ -16,27 +16,21 @@
 #include "../model/mail_stats_type_volume.h"
 mail_stats_type_volume_t* instantiate_mail_stats_type_volume(int include_optional);
 
-#include "test_mail_stats_type_volume_to.c"
-#include "test_mail_stats_type_volume_from.c"
-#include "test_mail_stats_type_volume_ip.c"
 
 
 mail_stats_type_volume_t* instantiate_mail_stats_type_volume(int include_optional) {
   mail_stats_type_volume_t* mail_stats_type_volume = NULL;
   if (include_optional) {
     mail_stats_type_volume = mail_stats_type_volume_create(
-       // false, not to have infinite recursion
-      instantiate_mail_stats_type_volume_to(0),
-       // false, not to have infinite recursion
-      instantiate_mail_stats_type_volume_from(0),
-       // false, not to have infinite recursion
-      instantiate_mail_stats_type_volume_ip(0)
+      list_createList(),
+      list_createList(),
+      list_createList()
     );
   } else {
     mail_stats_type_volume = mail_stats_type_volume_create(
-      NULL,
-      NULL,
-      NULL
+      list_createList(),
+      list_createList(),
+      list_createList()
     );
   }
 

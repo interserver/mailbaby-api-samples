@@ -1,7 +1,13 @@
 ## ServicesApi
 
-### displays a list of mail service orders
-## displays a list of mail service orders
+### Displays details for a single mail order
+## Displays details for a single mail order
+GET https://api.mailbaby.net/mail/{{id}}
+Accept: application/json
+X-API-KEY: {{apiKey}}
+
+### Displays a list of mail service orders
+## Displays a list of mail service orders
 GET https://api.mailbaby.net/mail
 Accept: application/json
 X-API-KEY: {{apiKey}}

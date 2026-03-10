@@ -1,20 +1,18 @@
 part of swagger.api;
 
 class MailStatsType {
-  
+  /* The time window these `received`, `sent`, and `volume` statistics cover. */
   String time = null;
-  //enum timeEnum {  all,  billing,  month,  7d,  24h,  today,  1h,  };
-
+  //enum timeEnum {  all,  billing,  month,  7d,  24h,  day,  1h,  };
+/* Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. */
   int usage = null;
-
+/* The ISO 4217 currency code for this account (e.g. `USD`). */
   String currency = null;
-
-  String currencySymbol = null;
-
+/* Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). */
   double cost = null;
-
+/* Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue. */
   int received = null;
-
+/* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
   int sent = null;
 
   MailStatsTypeVolume volume = null;
@@ -23,7 +21,7 @@ class MailStatsType {
 
   @override
   String toString() {
-    return 'MailStatsType[time=$time, usage=$usage, currency=$currency, currencySymbol=$currencySymbol, cost=$cost, received=$received, sent=$sent, volume=$volume, ]';
+    return 'MailStatsType[time=$time, usage=$usage, currency=$currency, cost=$cost, received=$received, sent=$sent, volume=$volume, ]';
   }
 
   MailStatsType.fromJson(Map<String, dynamic> json) {
@@ -31,7 +29,6 @@ class MailStatsType {
     time = json['time'];
     usage = json['usage'];
     currency = json['currency'];
-    currencySymbol = json['currencySymbol'];
     cost = json['cost'];
     received = json['received'];
     sent = json['sent'];
@@ -43,7 +40,6 @@ class MailStatsType {
       'time': time,
       'usage': usage,
       'currency': currency,
-      'currencySymbol': currencySymbol,
       'cost': cost,
       'received': received,
       'sent': sent,

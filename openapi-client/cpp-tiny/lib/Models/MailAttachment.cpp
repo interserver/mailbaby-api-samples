@@ -46,8 +46,9 @@ MailAttachment::fromJson(std::string jsonObj)
 
 
 
-        jsonToValue(&data, value, "std::string");
 
+        ByteArray* obj = &data;
+		obj->fromJson(value.dump());
 
     }
 
@@ -70,8 +71,8 @@ MailAttachment::toJson()
 
 
 
-    object["data"] = getData();
 
+	object["data"] = getData().toJson();
 
 
     return object;
@@ -90,14 +91,14 @@ MailAttachment::setFilename(std::string filename)
 	this->filename = filename;
 }
 
-std::string
+ByteArray
 MailAttachment::getData()
 {
 	return data;
 }
 
 void
-MailAttachment::setData(std::string data)
+MailAttachment::setData(ByteArray data)
 {
 	this->data = data;
 }

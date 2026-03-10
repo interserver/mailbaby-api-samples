@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**To** | Pointer to [**MailStatsTypeVolumeTo**](MailStatsTypeVolumeTo.md) |  | [optional] 
-**From** | Pointer to [**MailStatsTypeVolumeFrom**](MailStatsTypeVolumeFrom.md) |  | [optional] 
-**Ip** | Pointer to [**MailStatsTypeVolumeIp**](MailStatsTypeVolumeIp.md) |  | [optional] 
+**To** | Pointer to **map[string]int32** | Message counts keyed by destination (envelope &#x60;to&#x60;) email address. | [optional] 
+**From** | Pointer to **map[string]int32** | Message counts keyed by sender (envelope &#x60;from&#x60;) email address. | [optional] 
+**Ip** | Pointer to **map[string]int32** | Message counts keyed by originating client IP address. | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTo
 
-`func (o *MailStatsTypeVolume) GetTo() MailStatsTypeVolumeTo`
+`func (o *MailStatsTypeVolume) GetTo() map[string]int32`
 
 GetTo returns the To field if non-nil, zero value otherwise.
 
 ### GetToOk
 
-`func (o *MailStatsTypeVolume) GetToOk() (*MailStatsTypeVolumeTo, bool)`
+`func (o *MailStatsTypeVolume) GetToOk() (*map[string]int32, bool)`
 
 GetToOk returns a tuple with the To field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTo
 
-`func (o *MailStatsTypeVolume) SetTo(v MailStatsTypeVolumeTo)`
+`func (o *MailStatsTypeVolume) SetTo(v map[string]int32)`
 
 SetTo sets To field to given value.
 
@@ -54,20 +54,20 @@ HasTo returns a boolean if a field has been set.
 
 ### GetFrom
 
-`func (o *MailStatsTypeVolume) GetFrom() MailStatsTypeVolumeFrom`
+`func (o *MailStatsTypeVolume) GetFrom() map[string]int32`
 
 GetFrom returns the From field if non-nil, zero value otherwise.
 
 ### GetFromOk
 
-`func (o *MailStatsTypeVolume) GetFromOk() (*MailStatsTypeVolumeFrom, bool)`
+`func (o *MailStatsTypeVolume) GetFromOk() (*map[string]int32, bool)`
 
 GetFromOk returns a tuple with the From field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFrom
 
-`func (o *MailStatsTypeVolume) SetFrom(v MailStatsTypeVolumeFrom)`
+`func (o *MailStatsTypeVolume) SetFrom(v map[string]int32)`
 
 SetFrom sets From field to given value.
 
@@ -79,20 +79,20 @@ HasFrom returns a boolean if a field has been set.
 
 ### GetIp
 
-`func (o *MailStatsTypeVolume) GetIp() MailStatsTypeVolumeIp`
+`func (o *MailStatsTypeVolume) GetIp() map[string]int32`
 
 GetIp returns the Ip field if non-nil, zero value otherwise.
 
 ### GetIpOk
 
-`func (o *MailStatsTypeVolume) GetIpOk() (*MailStatsTypeVolumeIp, bool)`
+`func (o *MailStatsTypeVolume) GetIpOk() (*map[string]int32, bool)`
 
 GetIpOk returns a tuple with the Ip field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIp
 
-`func (o *MailStatsTypeVolume) SetIp(v MailStatsTypeVolumeIp)`
+`func (o *MailStatsTypeVolume) SetIp(v map[string]int32)`
 
 SetIp sets Ip field to given value.
 

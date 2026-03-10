@@ -3,5 +3,5 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filename** | [**kotlin.String**](.md) | The filename of the attached file. | 
-**&#x60;data&#x60;** | [**kotlin.String**](.md) | The file contents base64 encoded | 
+**filename** | [**kotlin.String**](.md) | The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). | 
+**&#x60;data&#x60;** | [**kotlin.ByteArray**](.md) | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. | 

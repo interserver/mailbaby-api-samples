@@ -3,7 +3,7 @@
 
 defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsType do
   @moduledoc """
-  Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+  Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
   """
 
   @derive JSON.Encoder
@@ -11,7 +11,6 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsType do
     :time,
     :usage,
     :currency,
-    :currencySymbol,
     :cost,
     :received,
     :sent,
@@ -22,7 +21,6 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsType do
     :time => String.t | nil,
     :usage => integer() | nil,
     :currency => String.t | nil,
-    :currencySymbol => String.t | nil,
     :cost => float() | nil,
     :received => integer() | nil,
     :sent => integer() | nil,

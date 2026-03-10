@@ -20,10 +20,10 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * An email contact.
+ * An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
  *
  * @param email The email address.
- * @param name Name to use for the sending contact.
+ * @param name Optional display name shown to recipients (e.g. in the `From:` header).
  */
 
 
@@ -33,7 +33,7 @@ data class EmailAddressName (
     @Json(name = "email")
     val email: kotlin.String,
 
-    /* Name to use for the sending contact. */
+    /* Optional display name shown to recipients (e.g. in the `From:` header). */
     @Json(name = "name")
     val name: kotlin.String? = null
 

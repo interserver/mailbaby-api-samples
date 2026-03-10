@@ -11,6 +11,7 @@ openapiclient/models/model_any_type.nim
 openapiclient/models/model_deny_rule_new.nim
 openapiclient/models/model_deny_rule_record.nim
 openapiclient/models/model_email_address_name.nim
+openapiclient/models/model_email_address_param.nim
 openapiclient/models/model_email_address_types.nim
 openapiclient/models/model_email_addresses_types.nim
 openapiclient/models/model_error_message.nim
@@ -22,13 +23,12 @@ openapiclient/models/model_mail_blocks.nim
 openapiclient/models/model_mail_log.nim
 openapiclient/models/model_mail_log_entry.nim
 openapiclient/models/model_mail_order.nim
+openapiclient/models/model_mail_order_detail.nim
 openapiclient/models/model_mail_stats_type.nim
 openapiclient/models/model_mail_stats_type_volume.nim
-openapiclient/models/model_mail_stats_type_volume_from.nim
-openapiclient/models/model_mail_stats_type_volume_ip.nim
-openapiclient/models/model_mail_stats_type_volume_to.nim
 openapiclient/models/model_object.nim
 openapiclient/models/model_send_mail.nim
 openapiclient/models/model_send_mail_adv.nim
 openapiclient/models/model_send_mail_raw.nim
+openapiclient/models/model_send_mail_to.nim
 sample_client.nim

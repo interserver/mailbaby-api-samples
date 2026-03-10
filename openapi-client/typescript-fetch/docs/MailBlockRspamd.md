@@ -1,7 +1,7 @@
 
 # MailBlockRspamd
 
-This is a block entry from the rspamd block list.
+A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 
 ## Properties
 
@@ -17,8 +17,8 @@ import type { MailBlockRspamd } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "from": null,
-  "subject": null,
+  "from": user@domain.com,
+  "subject": Test email,
 } satisfies MailBlockRspamd
 
 console.log(example)

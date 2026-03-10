@@ -56,6 +56,7 @@ class MailBlocks(Model):
     def local(self) -> List[MailBlockClickHouse]:
         """Gets the local of this MailBlocks.
 
+        Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.  # noqa: E501
 
         :return: The local of this MailBlocks.
         :rtype: List[MailBlockClickHouse]
@@ -66,6 +67,7 @@ class MailBlocks(Model):
     def local(self, local: List[MailBlockClickHouse]):
         """Sets the local of this MailBlocks.
 
+        Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.  # noqa: E501
 
         :param local: The local of this MailBlocks.
         :type local: List[MailBlockClickHouse]
@@ -79,6 +81,7 @@ class MailBlocks(Model):
     def mbtrap(self) -> List[MailBlockClickHouse]:
         """Gets the mbtrap of this MailBlocks.
 
+        Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.  # noqa: E501
 
         :return: The mbtrap of this MailBlocks.
         :rtype: List[MailBlockClickHouse]
@@ -89,6 +92,7 @@ class MailBlocks(Model):
     def mbtrap(self, mbtrap: List[MailBlockClickHouse]):
         """Sets the mbtrap of this MailBlocks.
 
+        Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.  # noqa: E501
 
         :param mbtrap: The mbtrap of this MailBlocks.
         :type mbtrap: List[MailBlockClickHouse]
@@ -102,6 +106,7 @@ class MailBlocks(Model):
     def subject(self) -> List[MailBlockRspamd]:
         """Gets the subject of this MailBlocks.
 
+        Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.  # noqa: E501
 
         :return: The subject of this MailBlocks.
         :rtype: List[MailBlockRspamd]
@@ -112,6 +117,7 @@ class MailBlocks(Model):
     def subject(self, subject: List[MailBlockRspamd]):
         """Sets the subject of this MailBlocks.
 
+        Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.  # noqa: E501
 
         :param subject: The subject of this MailBlocks.
         :type subject: List[MailBlockRspamd]

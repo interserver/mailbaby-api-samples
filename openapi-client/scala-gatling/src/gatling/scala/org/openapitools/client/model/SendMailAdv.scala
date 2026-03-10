@@ -3,18 +3,18 @@ package org.openapitools.client.model
 
 
 case class SendMailAdv (
-    /* The subject or title of the email */
+    /* The subject line of the email. */
     _subject: String,
-    /* The main email contents. */
+    /* The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. */
     _body: String,
     _from: EmailAddressTypes,
     _to: EmailAddressesTypes,
     _replyto: Option[EmailAddressesTypes],
     _cc: Option[EmailAddressesTypes],
     _bcc: Option[EmailAddressesTypes],
-    /* (optional) File attachments to include in the email.  The file contents must be base64 encoded! */
+    /* Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. */
     _attachments: Option[List[MailAttachment]],
-    /* (optional)  ID of the Mail order within our system to use as the Mail Account. */
+    /* Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. */
     _id: Option[Long]
 )
 object SendMailAdv {

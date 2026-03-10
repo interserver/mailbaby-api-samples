@@ -3,7 +3,7 @@ Protected Class ErrorMessage
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The response code associated with the error.
+			The HTTP-style status code associated with the error.
 		#tag EndNote
 		code As Integer
 	#tag EndProperty
@@ -11,7 +11,7 @@ Protected Class ErrorMessage
 
 	#tag Property, Flags = &h0
 		#tag Note
-			The details or description of the error.
+			A human-readable description of the error.
 		#tag EndNote
 		message As String
 	#tag EndProperty

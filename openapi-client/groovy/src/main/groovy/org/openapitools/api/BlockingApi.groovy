@@ -2,6 +2,7 @@ package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
 import org.openapitools.model.DenyRuleRecord
+import org.openapitools.model.EmailAddressParam
 import org.openapitools.model.ErrorMessage
 import org.openapitools.model.GenericResponse
 import org.openapitools.model.MailBlocks
@@ -74,7 +75,7 @@ class BlockingApi {
 
     }
 
-    def delistBlock ( String body, Closure onSuccess, Closure onFailure)  {
+    def delistBlock ( EmailAddressParam emailAddressParam, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/blocks/delete"
 
         // params
@@ -85,14 +86,14 @@ class BlockingApi {
         def contentType
 
         // verify required params are set
-        if (body == null) {
-            throw new RuntimeException("missing required params body")
+        if (emailAddressParam == null) {
+            throw new RuntimeException("missing required params emailAddressParam")
         }
 
 
 
         contentType = 'application/json';
-        bodyParams = body
+        bodyParams = emailAddressParam
 
 
         accept = apiUtils.selectHeaderAccept(["application/json"])

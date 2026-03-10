@@ -20,20 +20,20 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The resposne when an error occurs.
+ * The response body returned when an error occurs.
  *
- * @param code The response code associated with the error.
- * @param message The details or description of the error.
+ * @param code The HTTP-style status code associated with the error.
+ * @param message A human-readable description of the error.
  */
 
 
 data class ErrorMessage (
 
-    /* The response code associated with the error. */
+    /* The HTTP-style status code associated with the error. */
     @Json(name = "code")
     val code: kotlin.Int,
 
-    /* The details or description of the error. */
+    /* A human-readable description of the error. */
     @Json(name = "message")
     val message: kotlin.String
 

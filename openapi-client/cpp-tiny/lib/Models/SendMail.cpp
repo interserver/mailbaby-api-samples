@@ -6,11 +6,11 @@ using namespace Tiny;
 
 SendMail::SendMail()
 {
-	to = std::string();
+	to = SendMail_to();
 	from = std::string();
 	subject = std::string();
 	body = std::string();
-	id = int(0);
+	id = long(0);
 }
 
 SendMail::SendMail(std::string jsonString)
@@ -36,8 +36,9 @@ SendMail::fromJson(std::string jsonObj)
 
 
 
-        jsonToValue(&to, value, "std::string");
 
+        SendMail_to* obj = &to;
+		obj->fromJson(value.dump());
 
     }
 
@@ -88,7 +89,7 @@ SendMail::fromJson(std::string jsonObj)
 
 
 
-        jsonToValue(&id, value, "int");
+        jsonToValue(&id, value, "long");
 
 
     }
@@ -105,8 +106,8 @@ SendMail::toJson()
 
 
 
-    object["to"] = getTo();
 
+	object["to"] = getTo().toJson();
 
 
 
@@ -141,14 +142,14 @@ SendMail::toJson()
 
 }
 
-std::string
+SendMail_to
 SendMail::getTo()
 {
 	return to;
 }
 
 void
-SendMail::setTo(std::string to)
+SendMail::setTo(SendMail_to to)
 {
 	this->to = to;
 }
@@ -189,14 +190,14 @@ SendMail::setBody(std::string body)
 	this->body = body;
 }
 
-int
+long
 SendMail::getId()
 {
 	return id;
 }
 
 void
-SendMail::setId(int id)
+SendMail::setId(long id)
 {
 	this->id = id;
 }

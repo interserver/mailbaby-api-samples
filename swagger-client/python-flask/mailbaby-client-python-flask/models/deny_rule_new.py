@@ -54,7 +54,7 @@ class DenyRuleNew(Model):
     def user(self) -> str:
         """Gets the user of this DenyRuleNew.
 
-        Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.  # noqa: E501
+        Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.  # noqa: E501
 
         :return: The user of this DenyRuleNew.
         :rtype: str
@@ -65,7 +65,7 @@ class DenyRuleNew(Model):
     def user(self, user: str):
         """Sets the user of this DenyRuleNew.
 
-        Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.  # noqa: E501
+        Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.  # noqa: E501
 
         :param user: The user of this DenyRuleNew.
         :type user: str
@@ -106,7 +106,7 @@ class DenyRuleNew(Model):
     def data(self) -> str:
         """Gets the data of this DenyRuleNew.
 
-        The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.  # noqa: E501
+        The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.  # noqa: E501
 
         :return: The data of this DenyRuleNew.
         :rtype: str
@@ -117,7 +117,7 @@ class DenyRuleNew(Model):
     def data(self, data: str):
         """Sets the data of this DenyRuleNew.
 
-        The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.  # noqa: E501
+        The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.  # noqa: E501
 
         :param data: The data of this DenyRuleNew.
         :type data: str

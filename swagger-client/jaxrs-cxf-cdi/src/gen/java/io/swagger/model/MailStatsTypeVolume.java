@@ -2,81 +2,83 @@ package io.swagger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.model.MailStatsTypeVolumeFrom;
-import io.swagger.model.MailStatsTypeVolumeIp;
-import io.swagger.model.MailStatsTypeVolumeTo;
-import javax.validation.Valid;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.validation.constraints.*;
-
+/**
+ * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window.
+ **/
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 
 import javax.xml.bind.annotation.*;
 
-
+@Schema(description = "Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.")
 
 public class MailStatsTypeVolume   {
-  private MailStatsTypeVolumeTo to = null;
-  private MailStatsTypeVolumeFrom from = null;
-  private MailStatsTypeVolumeIp ip = null;
+  private Map<String, Integer> to = new HashMap<String, Integer>();
+  private Map<String, Integer> from = new HashMap<String, Integer>();
+  private Map<String, Integer> ip = new HashMap<String, Integer>();
 
   /**
+   * Message counts keyed by destination (envelope &#x60;to&#x60;) email address.
    **/
-  public MailStatsTypeVolume to(MailStatsTypeVolumeTo to) {
+  public MailStatsTypeVolume to(Map<String, Integer> to) {
     this.to = to;
     return this;
   }
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Message counts keyed by destination (envelope `to`) email address.")
   @JsonProperty("to")
   @NotNull
-  @Valid
-  public MailStatsTypeVolumeTo getTo() {
+  public Map<String, Integer> getTo() {
     return to;
   }
-  public void setTo(MailStatsTypeVolumeTo to) {
+  public void setTo(Map<String, Integer> to) {
     this.to = to;
   }
 
   /**
+   * Message counts keyed by sender (envelope &#x60;from&#x60;) email address.
    **/
-  public MailStatsTypeVolume from(MailStatsTypeVolumeFrom from) {
+  public MailStatsTypeVolume from(Map<String, Integer> from) {
     this.from = from;
     return this;
   }
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Message counts keyed by sender (envelope `from`) email address.")
   @JsonProperty("from")
   @NotNull
-  @Valid
-  public MailStatsTypeVolumeFrom getFrom() {
+  public Map<String, Integer> getFrom() {
     return from;
   }
-  public void setFrom(MailStatsTypeVolumeFrom from) {
+  public void setFrom(Map<String, Integer> from) {
     this.from = from;
   }
 
   /**
+   * Message counts keyed by originating client IP address.
    **/
-  public MailStatsTypeVolume ip(MailStatsTypeVolumeIp ip) {
+  public MailStatsTypeVolume ip(Map<String, Integer> ip) {
     this.ip = ip;
     return this;
   }
 
   
   
-  @Schema(description = "")
+  @Schema(description = "Message counts keyed by originating client IP address.")
   @JsonProperty("ip")
   @NotNull
-  @Valid
-  public MailStatsTypeVolumeIp getIp() {
+  public Map<String, Integer> getIp() {
     return ip;
   }
-  public void setIp(MailStatsTypeVolumeIp ip) {
+  public void setIp(Map<String, Integer> ip) {
     this.ip = ip;
   }
 

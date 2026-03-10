@@ -7,6 +7,7 @@ model_instance <- MailStatsType$new()
 
 test_that("time", {
   # tests for the property `time` (character)
+  # The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`time`, "EXPECTED_RESULT")
@@ -14,6 +15,7 @@ test_that("time", {
 
 test_that("usage", {
   # tests for the property `usage` (integer)
+  # Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`usage`, "EXPECTED_RESULT")
@@ -21,20 +23,15 @@ test_that("usage", {
 
 test_that("currency", {
   # tests for the property `currency` (character)
+  # The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;).
 
   # uncomment below to test the property
   #expect_equal(model.instance$`currency`, "EXPECTED_RESULT")
 })
 
-test_that("currencySymbol", {
-  # tests for the property `currencySymbol` (character)
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`currencySymbol`, "EXPECTED_RESULT")
-})
-
 test_that("cost", {
   # tests for the property `cost` (numeric)
+  # Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
 
   # uncomment below to test the property
   #expect_equal(model.instance$`cost`, "EXPECTED_RESULT")
@@ -42,6 +39,7 @@ test_that("cost", {
 
 test_that("received", {
   # tests for the property `received` (integer)
+  # Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`received`, "EXPECTED_RESULT")
@@ -49,6 +47,7 @@ test_that("received", {
 
 test_that("sent", {
   # tests for the property `sent` (integer)
+  # Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`sent`, "EXPECTED_RESULT")

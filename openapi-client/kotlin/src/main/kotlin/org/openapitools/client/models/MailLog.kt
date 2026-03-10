@@ -21,26 +21,26 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * Mail log records
+ * Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.
  *
- * @param total total number of mail log entries
- * @param skip number of emails skipped in listing
- * @param limit number of emails to return
+ * @param total Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
+ * @param skip The `skip` value used for this page (echoed from the request).
+ * @param limit The `limit` value used for this page (echoed from the request).
  * @param emails 
  */
 
 
 data class MailLog (
 
-    /* total number of mail log entries */
+    /* Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`. */
     @Json(name = "total")
     val total: kotlin.Int,
 
-    /* number of emails skipped in listing */
+    /* The `skip` value used for this page (echoed from the request). */
     @Json(name = "skip")
     val skip: kotlin.Int,
 
-    /* number of emails to return */
+    /* The `limit` value used for this page (echoed from the request). */
     @Json(name = "limit")
     val limit: kotlin.Int,
 

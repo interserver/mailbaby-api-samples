@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-
+/**
+ * Standard success response returned by write operations (send, add rule, delete, etc.).  The &#x60;status&#x60; field is always &#x60;\&quot;ok\&quot;&#x60; on success.  The &#x60;text&#x60; field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record&#x27;s ID; for delete calls it contains a confirmation string.
+ **/
+@Schema(description = "Standard success response returned by write operations (send, add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.  The `text` field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.")
 
 
 public class GenericResponse   {
@@ -14,6 +17,7 @@ public class GenericResponse   {
   @JsonProperty("text")
   private String text = null;
   /**
+   * Always `\"ok\"` on success.
    **/
   public GenericResponse status(String status) {
     this.status = status;
@@ -21,7 +25,7 @@ public class GenericResponse   {
   }
 
   
-  @Schema(example = "ok", description = "")
+  @Schema(example = "ok", description = "Always `\"ok\"` on success.")
   @JsonProperty("status")
   public String getStatus() {
     return status;
@@ -31,6 +35,7 @@ public class GenericResponse   {
   }
 
   /**
+   * Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
    **/
   public GenericResponse text(String text) {
     this.text = text;
@@ -38,7 +43,7 @@ public class GenericResponse   {
   }
 
   
-  @Schema(example = "The command completed successfully.", description = "")
+  @Schema(example = "185caa69ff7000f47c", description = "Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.")
   @JsonProperty("text")
   public String getText() {
     return text;

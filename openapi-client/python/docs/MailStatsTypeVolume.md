@@ -1,13 +1,14 @@
 # MailStatsTypeVolume
 
+Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [**MailStatsTypeVolumeTo**](MailStatsTypeVolumeTo.md) |  | [optional] 
-**var_from** | [**MailStatsTypeVolumeFrom**](MailStatsTypeVolumeFrom.md) |  | [optional] 
-**ip** | [**MailStatsTypeVolumeIp**](MailStatsTypeVolumeIp.md) |  | [optional] 
+**to** | **Dict[str, int]** | Message counts keyed by destination (envelope &#x60;to&#x60;) email address. | [optional] 
+**var_from** | **Dict[str, int]** | Message counts keyed by sender (envelope &#x60;from&#x60;) email address. | [optional] 
+**ip** | **Dict[str, int]** | Message counts keyed by originating client IP address. | [optional] 
 
 ## Example
 

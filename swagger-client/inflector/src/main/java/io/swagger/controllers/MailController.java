@@ -12,6 +12,7 @@ import io.swagger.model.*;
 
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
+import io.swagger.model.EmailAddressParam;
 import io.swagger.model.EmailAddressTypes;
 import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.ErrorMessage;
@@ -20,6 +21,7 @@ import io.swagger.model.MailAttachment;
 import io.swagger.model.MailBlocks;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailOrder;
+import io.swagger.model.MailOrderDetail;
 import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
@@ -57,7 +59,14 @@ public class MailController  {
   */
 
   /*
-    public ResponseContext delistBlock(RequestContext request , String body 
+    public ResponseContext delistBlock(RequestContext request , EmailAddressParam body 
+) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext delistBlock(RequestContext request ,  String email
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
@@ -65,6 +74,13 @@ public class MailController  {
 
   /*
     public ResponseContext getMailBlocks(RequestContext request ) {
+        return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
+    }
+  */
+
+  /*
+    public ResponseContext getMailOrderById(RequestContext request , Long id 
+) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
   */
@@ -97,7 +113,7 @@ public class MailController  {
 
   /*
     public ResponseContext rawMail(RequestContext request ,  String rawEmail
-,  Integer id
+,  Long id
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
@@ -126,11 +142,11 @@ public class MailController  {
   */
 
   /*
-    public ResponseContext sendMail(RequestContext request ,  String to
+    public ResponseContext sendMail(RequestContext request ,  Object to
 ,  String from
 ,  String subject
 ,  String body
-,  Integer id
+,  Long id
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }
@@ -151,13 +167,14 @@ public class MailController  {
 , String to 
 , String subject 
 , String mailid 
+, String messageId 
+, String replyto 
+, String headerfrom 
+, Integer delivered 
 , Integer skip 
 , Integer limit 
 , Long startDate 
 , Long endDate 
-, String replyto 
-, String headerfrom 
-, String delivered 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }

@@ -181,14 +181,32 @@
   <h1>MailBaby Email Delivery and Management Service API</h1>
     <div class="app-desc"><p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
 <h1>Overview</h1>
-<p>This is the API interface to the <a href="https//mail.baby/">Mail Baby</a> Mail services provided by <a href="https://www.interserver.net">InterServer</a>. To use this service you must have an account with us at <a href="https://my.interserver.net">my.interserver.net</a>.</p>
+<p>This is the API interface to the <a href="https://mail.baby/">Mail Baby</a> Mail services provided by <a href="https://www.interserver.net">InterServer</a>. To use this service you must have an account with us at <a href="https://my.interserver.net">my.interserver.net</a>.</p>
+<h1>Mail Orders</h1>
+<p>Every sending account in MailBaby is backed by a <strong>Mail Order</strong> — a provisioned sending credential with a numeric <code>id</code> and a corresponding SMTP username (<code>mb&lt;id&gt;</code>).  Most calls accept an optional <code>id</code> parameter; when omitted the API automatically selects the first active order on your account. Use <code>GET /mail</code> to list all orders, and <code>GET /mail/{id}</code> to inspect a single order including its current SMTP password.</p>
+<h1>Sending Email</h1>
+<p>Three sending methods are available depending on your use-case:
+| Endpoint | Best for | |----------|----------| | <code>POST /mail/send</code> | Simple single-recipient messages | | <code>POST /mail/advsend</code> | Multiple recipients, CC/BCC, attachments, named contacts | | <code>POST /mail/rawsend</code> | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |</p>
+<p>After a successful send each endpoint returns a <code>GenericResponse</code> whose <code>text</code> field contains the <strong>transaction ID</strong> assigned by the relay.  This ID can later be matched against entries in <code>GET /mail/log</code> via the <code>mailid</code> query parameter.</p>
+<h1>Filtering &amp; Logs</h1>
+<p><code>GET /mail/log</code> provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. <code>from</code>, <code>to</code>, <code>subject</code>, <code>messageId</code>, <code>origin</code>, <code>mx</code>, <code>startDate</code>/<code>endDate</code>, and <code>delivered</code>.</p>
+<h1>Blocking</h1>
+<p>Two independent mechanisms exist for suppressing unwanted email:</p>
+<ul>
+<li><strong>Block lists</strong> (<code>GET /mail/blocks</code>, <code>POST /mail/blocks/delete</code>) — addresses flagged by the
+system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects).</li>
+<li><strong>Deny rules</strong> (<code>GET /mail/rules</code>, <code>POST /mail/rules</code>, <code>DELETE /mail/rules/{ruleId}</code>) —
+custom rules you configure to reject specific senders, domains, destination addresses, or
+subject-line prefixes before a message is even attempted.</li>
+</ul>
 <h1>Authentication</h1>
 <p>In order to use most of the API calls you must pass credentials from the <a href="https://my.interserver.net/">my.interserver.net</a> site.
-We support several different authentication methods but the preferred method is to use the <strong>API Key</strong> which you can get from the <a href="https://my.interserver.net/account_security">Account Security</a> page.</p>
+We support several different authentication methods but the preferred method is to use the <strong>API Key</strong> which you can get from the <a href="https://my.interserver.net/account_security">Account Security</a> page.
+Pass your key in the <code>X-API-KEY</code> HTTP request header for every protected call.</p>
 </div>
     <div class="app-desc">More information: <a href="https://www.mail.baby/contact/">https://www.mail.baby/contact/</a></div>
     <div class="app-desc">Contact Info: <a href="support@interserver.net">support@interserver.net</a></div>
-    <div class="app-desc">Version: 1.3.0</div>
+    <div class="app-desc">Version: 1.4.0</div>
     
     <div class="license-info">GNU GPLv3</div>
     <div class="license-url">https://www.gnu.org/licenses/gpl.txt</div>
@@ -223,6 +241,7 @@ We support several different authentication methods but the preferred method is 
   </ul>
   <h4><a href="#Services">Services</a></h4>
   <ul>
+  <li><a href="#getMailOrderById"><code><span class="http-method">get</span> /mail/{id}</code></a></li>
   <li><a href="#getMailOrders"><code><span class="http-method">get</span> /mail</code></a></li>
   </ul>
   <h4><a href="#Status">Status</a></h4>
@@ -235,8 +254,17 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/rules</code></pre></div>
-    <div class="method-summary">Creates a new email deny rule. (<span class="nickname">addRule</span>)</div>
-    <div class="method-notes">Adds a new email deny rule into the system to block new emails that match the given criteria</div>
+    <div class="method-summary">Creates a new email deny rule (<span class="nickname">addRule</span>)</div>
+    <div class="method-notes"><p>Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.</p>
+<p>The <code>type</code> field selects the matching strategy:</p>
+<ul>
+<li><strong><code>email</code></strong> — exact match against the SMTP envelope <code>MAIL FROM</code> address. - <strong><code>domain</code></strong> — matches any sender address at the specified domain. - <strong><code>destination</code></strong> — exact match against the SMTP envelope <code>RCPT TO</code> address. - <strong><code>startswith</code></strong> — matches any sender address whose local-part (the portion
+before the <code>@</code>) starts with the given string.  Only alphanumeric characters
+and <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> are permitted in the prefix.</li>
+</ul>
+<p>If <code>username</code> is provided it must be the SMTP username of one of your active mail orders (e.g. <code>mb20682</code>).  If omitted the rule is associated with your first active order.</p>
+<p>On success the response <code>text</code> field contains the newly created rule's <code>id</code>, which can later be passed to <code>DELETE /mail/rules/{ruleId}</code> to remove it.</p>
+</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -250,12 +278,12 @@ We support several different authentication methods but the preferred method is 
     <div class="field-items">
       <div class="param">body <a href="#DenyRuleNew">DenyRuleNew</a> (required)</div>
       
-            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; These are the fields needed to create a new email deny rule. </div>
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Fields required to create a new email deny rule. </div>
             <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;summary&quot; : &quot;Block a specific sender&quot;,
   &quot;value&quot; : {
-    &quot;user&quot; : &quot;mb20682&quot;,
     &quot;type&quot; : &quot;email&quot;,
-    &quot;data&quot; : &quot;domeinwo@server.guesshost.net&quot;
+    &quot;data&quot; : &quot;spammer@badactor.net&quot;
   }
 }</code></span></div>    </div>  <!-- field-items -->
 
@@ -282,7 +310,7 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }</code></pre>
 
@@ -295,22 +323,25 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
+    Rule created successfully
         <a href="#GenericResponse">GenericResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: AddRuleSuccess</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;ok&quot;,&quot;text&quot;:&quot;42&quot;}</code></pre>
     <h4 class="field-label">400</h4>
-    Error message when there was a problem with the input parameters.
+    Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: BadInputError</div>
     <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
     <h4 class="field-label">404</h4>
-    The specified resource was not found
+    The specified resource was not found or does not belong to your account.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: NotFoundError</div>
@@ -321,14 +352,17 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="delete"><code class="huge"><span class="http-method">delete</span> /mail/rules/{ruleId}</code></pre></div>
-    <div class="method-summary">Removes an deny mail rule. (<span class="nickname">deleteRule</span>)</div>
-    <div class="method-notes">Removes one of the configured deny mail rules from the system.</div>
+    <div class="method-summary">Removes a deny mail rule (<span class="nickname">deleteRule</span>)</div>
+    <div class="method-notes"><p>Permanently removes a single deny rule identified by its numeric <code>ruleId</code>.</p>
+<p>The <code>ruleId</code> is the <code>id</code> field returned by <code>GET /mail/rules</code> or the <code>text</code> field from a successful <code>POST /mail/rules</code> response.</p>
+<p>Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account.</p>
+</div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
       <div class="param">ruleId (required)</div>
       
-            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The ID of the Rules entry. </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The numeric ID of the deny rule to delete.  Obtain this from the &lt;code&gt;id&lt;/code&gt; field in &lt;code&gt;GET /mail/rules&lt;/code&gt; or the &lt;code&gt;text&lt;/code&gt; field of a &lt;code&gt;POST /mail/rules&lt;/code&gt; response. </div>    </div>  <!-- field-items -->
 
 
 
@@ -346,7 +380,7 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }</code></pre>
 
@@ -359,22 +393,25 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
+    Rule deleted successfully
         <a href="#GenericResponse">GenericResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: DeleteSuccess</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;ok&quot;,&quot;text&quot;:&quot;record deleted&quot;}</code></pre>
     <h4 class="field-label">400</h4>
-    Error message when there was a problem with the input parameters.
+    Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: BadInputError</div>
     <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
     <h4 class="field-label">404</h4>
-    The specified resource was not found
+    The specified resource was not found or does not belong to your account.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: NotFoundError</div>
@@ -385,8 +422,14 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/blocks/delete</code></pre></div>
-    <div class="method-summary">Removes an email address from the blocked list (<span class="nickname">delistBlock</span>)</div>
-    <div class="method-notes">Removes an email address from the various block lists.</div>
+    <div class="method-summary">Removes an email address from the block lists (<span class="nickname">delistBlock</span>)</div>
+    <div class="method-notes"><p>Delists an email address from all three block list stores:</p>
+<ol>
+<li>The rspamd spam-filter database (<code>fromemail</code> / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.</li>
+</ol>
+<p>Use <code>GET /mail/blocks</code> to discover which addresses are currently blocked.  The <code>from</code> field in any returned block entry is a valid input for this call.</p>
+<p><strong>Note:</strong> Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules.</p>
+</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -398,7 +441,7 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Request body</h3>
     <div class="field-items">
-      <div class="param">body <a href="#string">string</a> (required)</div>
+      <div class="param">body <a href="#EmailAddressParam">EmailAddressParam</a> (required)</div>
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
             <div class="param-desc"><span class="param-type">example: <code>{
@@ -409,6 +452,11 @@ We support several different authentication methods but the preferred method is 
 
 
 
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">email (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: email</div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -421,7 +469,7 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }</code></pre>
 
@@ -434,22 +482,25 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
+    Address successfully delisted
         <a href="#GenericResponse">GenericResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: DelistSuccess</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;ok&quot;,&quot;text&quot;:&quot;record deleted&quot;}</code></pre>
     <h4 class="field-label">400</h4>
-    Error message when there was a problem with the input parameters.
+    Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: BadInputError</div>
     <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
     <h4 class="field-label">404</h4>
-    The specified resource was not found
+    The specified resource was not found or does not belong to your account.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: NotFoundError</div>
@@ -460,8 +511,20 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/blocks</code></pre></div>
-    <div class="method-summary">displays a list of blocked email addresses (<span class="nickname">getMailBlocks</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-summary">Displays a list of blocked email addresses (<span class="nickname">getMailBlocks</span>)</div>
+    <div class="method-notes"><p>Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:</p>
+<ul>
+<li><strong><code>local</code></strong> — messages flagged by the <code>LOCAL_BL_RCPT</code> rspamd rule.  These are
+messages sent to recipients on your account's local block list.</li>
+<li><strong><code>mbtrap</code></strong> — messages flagged by the <code>MBTRAP</code> rspamd rule.  These are messages
+that triggered MailBaby's internal trap / honeypot detection.</li>
+<li><strong><code>subject</code></strong> — senders whose recent messages contain spam-indicative subjects
+(strings containing <code>@</code>, <code>smtp</code>, <code>socks4</code>, or <code>socks5</code>) with high repetition
+(more than 4 identical subjects from the same sender in the last 3 days).</li>
+</ul>
+<p>The <code>local</code> and <code>mbtrap</code> results cover the last 5 days.  The <code>subject</code> results cover the last 3 days.</p>
+<p>A sender address returned in any of these lists can be delisted using <code>POST /mail/blocks/delete</code> with the <code>email</code> field set to that address.</p>
+</div>
 
 
 
@@ -480,23 +543,26 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
+  "subject" : [ {
+    "from" : "user@domain.com",
+    "subject" : "Test email"
+  }, {
+    "from" : "user@domain.com",
+    "subject" : "Test email"
+  } ],
+  "mbtrap" : [ null, null ],
   "local" : [ {
     "date" : "2023-08-07",
     "from" : "user@domain.com",
     "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
     "subject" : "Test Email",
     "to" : "['client@site.com']"
-  } ],
-  "mbtrap" : [ {
+  }, {
     "date" : "2023-08-07",
     "from" : "user@domain.com",
     "messageId" : "pFaRqFUEWkucjhTuIzYuoAgWU@domain.com",
     "subject" : "Test Email",
     "to" : "['client@site.com']"
-  } ],
-  "subject" : [ {
-    "from" : "user@domain.com",
-    "subject" : "Test Email"
   } ]
 }</code></pre>
 
@@ -515,25 +581,23 @@ We support several different authentication methods but the preferred method is 
     <div class="example-data-content-type">Content-Type: MailBlocksExample</div>
     <pre class="example"><code>{&quot;local&quot;:[{&quot;date&quot;:&quot;2023-08-07&quot;,&quot;from&quot;:&quot;user@domain.com&quot;,&quot;messageId&quot;:&quot;pFaRqFUEWkucjhTuIzYuoAgWU@domain.com&quot;,&quot;subject&quot;:&quot;Test Email&quot;,&quot;to&quot;:&quot;[&#x27;client@site.com&#x27;]&quot;}],&quot;mbtrap&quot;:[{&quot;date&quot;:&quot;2023-08-07&quot;,&quot;from&quot;:&quot;user@domain.com&quot;,&quot;messageId&quot;:&quot;pFaRqFUEWkucjhTuIzYuoAgWU@domain.com&quot;,&quot;subject&quot;:&quot;Test Email&quot;,&quot;to&quot;:&quot;[&#x27;client@site.com&#x27;]&quot;}],&quot;subject&quot;:[{&quot;from&quot;:&quot;user@domain.com&quot;,&quot;subject&quot;:&quot;Test Email&quot;}]}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
-    <h4 class="field-label">404</h4>
-    Unauthorized
-        <a href="#ErrorMessage">ErrorMessage</a>
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="getRules"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/rules</code></pre></div>
-    <div class="method-summary">Displays a listing of deny email rules. (<span class="nickname">getRules</span>)</div>
-    <div class="method-notes">Returns a listing of all the deny block rules you have configured.</div>
+    <div class="method-summary">Displays a listing of deny email rules (<span class="nickname">getRules</span>)</div>
+    <div class="method-notes"><p>Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated <strong>before</strong> a message is transmitted and cause it to be rejected immediately when it matches.</p>
+<p>Four rule types are supported:
+| <code>type</code> | <code>data</code> format | Effect | |--------|---------------|--------| | <code>email</code> | <code>user@domain.com</code> | Rejects any message from this exact sender address | | <code>domain</code> | <code>domain.com</code> | Rejects any message from any address at this domain | | <code>destination</code> | <code>user@domain.com</code> | Rejects any message addressed to this recipient | | <code>startswith</code> | <code>prefix</code> | Rejects any message whose sender address begins with this string (alphanumeric, <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> only) |</p>
+<p>Use <code>POST /mail/rules</code> to add new rules and <code>DELETE /mail/rules/{ruleId}</code> to remove them.  The <code>id</code> field in each returned record is the value needed for the delete call.</p>
+</div>
 
 
 
@@ -552,13 +616,13 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>[ {
-  "id" : 14,
+  "id" : "14",
   "user" : "mb20682",
   "type" : "email",
   "data" : "domeinwo@server.guesshost.net",
   "created" : "2022-03-22 19:16:35"
 }, {
-  "id" : 14,
+  "id" : "14",
   "user" : "mb20682",
   "type" : "email",
   "data" : "domeinwo@server.guesshost.net",
@@ -578,19 +642,13 @@ We support several different authentication methods but the preferred method is 
         
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: ExampleMailRulesList</div>
-    <pre class="example"><code>[{&quot;id&quot;:&quot;14&quot;,&quot;user&quot;:&quot;mb20682&quot;,&quot;type&quot;:&quot;email&quot;,&quot;data&quot;:&quot;domeinwo@server.guesshost.net&quot;,&quot;created&quot;:&quot;2022-03-22 19:16:35&quot;},{&quot;id&quot;:&quot;15&quot;,&quot;user&quot;:&quot;mb20682&quot;,&quot;type&quot;:&quot;email&quot;,&quot;data&quot;:&quot;mamediieva@thedigital.gov.ua&quot;,&quot;created&quot;:&quot;2022-03-22 19:18:01&quot;}]</code></pre>
+    <pre class="example"><code>[{&quot;id&quot;:&quot;14&quot;,&quot;user&quot;:&quot;mb20682&quot;,&quot;type&quot;:&quot;email&quot;,&quot;data&quot;:&quot;domeinwo@server.guesshost.net&quot;,&quot;created&quot;:&quot;2022-03-22 19:16:35&quot;},{&quot;id&quot;:&quot;15&quot;,&quot;user&quot;:&quot;mb20682&quot;,&quot;type&quot;:&quot;domain&quot;,&quot;data&quot;:&quot;guesshost.net&quot;,&quot;created&quot;:&quot;2022-03-22 19:18:01&quot;}]</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
-    <h4 class="field-label">404</h4>
-    Unauthorized
-        <a href="#ErrorMessage">ErrorMessage</a>
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="History">History</a></h1>
@@ -598,8 +656,22 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/stats</code></pre></div>
-    <div class="method-summary">Account usage statistics. (<span class="nickname">getStats</span>)</div>
-    <div class="method-notes">Returns information about the usage on your mail accounts.</div>
+    <div class="method-summary">Account usage statistics (<span class="nickname">getStats</span>)</div>
+    <div class="method-notes"><p>Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.</p>
+<p>The response includes:</p>
+<ul>
+<li><strong><code>usage</code></strong> — total messages accepted by the relay during the current billing
+cycle (used for cost calculation).</li>
+<li><strong><code>cost</code></strong> — estimated cost for the billing cycle based on the base plan price
+plus per-email charges.</li>
+<li><strong><code>received</code></strong> / <strong><code>sent</code></strong> — count of messages accepted by the relay /
+successfully delivered to the destination MX within the selected <code>time</code> window.</li>
+<li><strong><code>volume</code></strong> — top-500 breakdown of message counts grouped by source IP (<code>ip</code>),
+destination address (<code>to</code>), and sender address (<code>from</code>) within the selected window.</li>
+</ul>
+<p><strong>Time windows</strong> (controlled by the <code>time</code> parameter):
+| Value | Window | |-------|--------| | <code>1h</code> | Last 1 hour (default) | | <code>24h</code> | Last 24 hours | | <code>7d</code> | Last 7 days | | <code>month</code> | Current calendar month (1st to now) | | <code>day</code> | Today (midnight to now) | | <code>billing</code> | Current billing cycle (last invoice date to next invoice date) | | <code>all</code> | All time |</p>
+</div>
 
 
 
@@ -609,7 +681,7 @@ We support several different authentication methods but the preferred method is 
     <div class="field-items">
       <div class="param">time (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The timeframe for the statistics. </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The time window to scope &lt;code&gt;received&lt;/code&gt;, &lt;code&gt;sent&lt;/code&gt;, and &lt;code&gt;volume&lt;/code&gt; statistics. Does not affect &lt;code&gt;usage&lt;/code&gt; or &lt;code&gt;cost&lt;/code&gt;, which are always calculated over the current billing cycle.  Defaults to &lt;code&gt;1h&lt;/code&gt;. default: 1h </div>    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
@@ -626,7 +698,6 @@ We support several different authentication methods but the preferred method is 
   "time" : "all",
   "usage" : 55,
   "currency" : "USD",
-  "currencySymbol" : "$",
   "cost" : 1.02,
   "received" : 508,
   "sent" : 495,
@@ -634,8 +705,7 @@ We support several different authentication methods but the preferred method is 
     "to" : {
       "client@domain.com" : 395,
       "user@site.net" : 57,
-      "sales@company.com" : 47,
-      "client@anothersite.com" : 9
+      "sales@company.com" : 47
     },
     "from" : {
       "billing@somedomain.com" : 369,
@@ -644,8 +714,7 @@ We support several different authentication methods but the preferred method is 
     "ip" : {
       "1.1.1.1" : 142,
       "2.2.2.2" : 132,
-      "3.3.3.3" : 129,
-      "4.4.4.4" : 105
+      "3.3.3.3" : 129
     }
   }
 }</code></pre>
@@ -661,26 +730,30 @@ We support several different authentication methods but the preferred method is 
     <h4 class="field-label">200</h4>
     OK
         <a href="#MailStatsType">MailStatsType</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: StatsExample</div>
+    <pre class="example"><code>{&quot;time&quot;:&quot;all&quot;,&quot;usage&quot;:55,&quot;currency&quot;:&quot;USD&quot;,&quot;cost&quot;:1.02,&quot;received&quot;:508,&quot;sent&quot;:495,&quot;volume&quot;:{&quot;to&quot;:{&quot;client@domain.com&quot;:395,&quot;user@site.net&quot;:57},&quot;from&quot;:{&quot;billing@somedomain.com&quot;:369},&quot;ip&quot;:{&quot;1.1.1.1&quot;:142,&quot;2.2.2.2&quot;:132}}}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
-    <h4 class="field-label">404</h4>
-    Unauthorized
-        <a href="#ErrorMessage">ErrorMessage</a>
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <div class="method"><a name="viewMailLog"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
-    <div class="method-summary">displays the mail log (<span class="nickname">viewMailLog</span>)</div>
-    <div class="method-notes">Get a listing of the emails sent through this system</div>
+    <div class="method-summary">Displays the mail log (<span class="nickname">viewMailLog</span>)</div>
+    <div class="method-notes"><p>Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.</p>
+<p><strong>Pagination</strong> is controlled by <code>skip</code> and <code>limit</code>.  The response includes a <code>total</code> count so clients can determine how many pages exist.</p>
+<p><strong>Date filtering</strong> uses Unix timestamps (<code>startDate</code> / <code>endDate</code>).  For example, to retrieve emails sent in January 2024: <code>startDate=1704067200&amp;endDate=1706745599</code>.</p>
+<p><strong>Delivery status</strong> can be filtered with the <code>delivered</code> parameter: <code>delivered=1</code> returns only successfully delivered messages; <code>delivered=0</code> returns messages still in queue or that failed.</p>
+<p><strong>Address filtering</strong> distinguishes between the SMTP envelope address (<code>from</code>, <code>to</code>) and message headers (<code>headerfrom</code> for the <code>From:</code> header, <code>replyto</code> for <code>Reply-To:</code>). These may differ when a message is sent on behalf of another address.</p>
+<p>The <code>mailid</code> parameter corresponds to the <code>id</code> field in the returned <code>MailLogEntry</code> objects, <strong>not</strong> the <code>_id</code> field.  It also matches the transaction ID returned in the <code>text</code> field of a successful send response from <code>/mail/send</code>, <code>/mail/advsend</code>, or <code>/mail/rawsend</code>.</p>
+<p>The <code>messageId</code> parameter searches the <code>Message-ID</code> email header (case-insensitive substring match).</p>
+</div>
 
 
 
@@ -690,33 +763,35 @@ We support several different authentication methods but the preferred method is 
     <div class="field-items">
       <div class="param">id (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The ID of your mail order this will be sent through. format: int64</div>      <div class="param">origin (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &lt;code&gt;GET /mail&lt;/code&gt; or &lt;code&gt;GET /mail/{id}&lt;/code&gt;. format: int64</div>      <div class="param">origin (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; originating ip address sending mail </div>      <div class="param">mx (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. </div>      <div class="param">mx (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mx record mail was sent to </div>      <div class="param">from (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the MX hostname the relay attempted delivery to.  For example &lt;code&gt;mx.google.com&lt;/code&gt; would return messages destined for Gmail recipients. Maps to &lt;code&gt;mxHostname&lt;/code&gt; in the &lt;code&gt;MailLogEntry&lt;/code&gt; response. </div>      <div class="param">from (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; from email address </div>      <div class="param">to (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by SMTP envelope &lt;code&gt;MAIL FROM&lt;/code&gt; address (exact match).  This is the address the relay used for bounce handling and may differ from the &lt;code&gt;From:&lt;/code&gt; message header.  For header-level filtering use &lt;code&gt;headerfrom&lt;/code&gt;. format: email</div>      <div class="param">to (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; to/destination email address </div>      <div class="param">subject (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by SMTP envelope &lt;code&gt;RCPT TO&lt;/code&gt; address (exact match).  This is the delivery address used by the relay and may differ from the &lt;code&gt;To:&lt;/code&gt; header when BCC recipients are involved. format: email</div>      <div class="param">subject (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; subject containing this string </div>      <div class="param">mailid (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by email &lt;code&gt;Subject&lt;/code&gt; header (exact match).  To search for a substring, include it in the full subject text. </div>      <div class="param">mailid (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; mail id </div>      <div class="param">skip (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &lt;code&gt;id&lt;/code&gt; field in &lt;code&gt;MailLogEntry&lt;/code&gt; and to the &lt;code&gt;text&lt;/code&gt; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &lt;code&gt;185997065c60008840&lt;/code&gt;. </div>      <div class="param">messageId (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; number of records to skip for pagination default: 0 format: int32</div>      <div class="param">limit (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the &lt;code&gt;Message-ID&lt;/code&gt; email header using a substring (case-insensitive) match.  The &lt;code&gt;Message-ID&lt;/code&gt; is assigned by the sending mail client and is visible in the &lt;code&gt;messageId&lt;/code&gt; field of &lt;code&gt;MailLogEntry&lt;/code&gt;.  Useful when you know the message ID generated by your application but not the relay &lt;code&gt;mailid&lt;/code&gt;. </div>      <div class="param">replyto (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; maximum number of records to return default: 100 format: int32</div>      <div class="param">startDate (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the &lt;code&gt;Reply-To&lt;/code&gt; message header address (exact match).  Only returns messages where this header was explicitly set. format: email</div>      <div class="param">headerfrom (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; earliest date to get emails in unix timestamp format format: int64</div>      <div class="param">endDate (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the &lt;code&gt;From&lt;/code&gt; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &lt;code&gt;from&lt;/code&gt; parameter when sending on behalf of another address. format: email</div>      <div class="param">delivered (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; earliest date to get emails in unix timestamp format format: int64</div>      <div class="param">replyto (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by delivery status.  &lt;code&gt;1&lt;/code&gt; returns only messages that were successfully delivered to the destination MX.  &lt;code&gt;0&lt;/code&gt; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. </div>      <div class="param">skip (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Reply-To Email Address </div>      <div class="param">headerfrom (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Number of records to skip for pagination.  Use in combination with &lt;code&gt;limit&lt;/code&gt; to page through large result sets.  Defaults to &lt;code&gt;0&lt;/code&gt; (no skip). default: 0 format: int32</div>      <div class="param">limit (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Header From Email Address </div>      <div class="param">delivered (optional)</div>
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Maximum number of records to return per page.  Defaults to &lt;code&gt;100&lt;/code&gt;. Maximum allowed value is &lt;code&gt;10000&lt;/code&gt;.  The response also includes a &lt;code&gt;total&lt;/code&gt; field with the full matched count so you can calculate the number of pages. default: 100 format: int32</div>      <div class="param">startDate (optional)</div>
       
-            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Limiting the emails to wether or not they were delivered. </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &lt;code&gt;time&lt;/code&gt; value &lt;strong&gt;greater than or equal to&lt;/strong&gt; this value will be included. format: int64</div>      <div class="param">endDate (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &lt;code&gt;time&lt;/code&gt; value &lt;strong&gt;less than or equal to&lt;/strong&gt; this value will be included. format: int64</div>    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
@@ -730,9 +805,6 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "total" : 1,
-  "skip" : 0,
-  "limit" : 100,
   "emails" : [ {
     "_id" : 103172,
     "id" : "17c7eda538e0005d03",
@@ -740,7 +812,7 @@ We support several different authentication methods but the preferred method is 
     "to" : "client@isp.com",
     "subject" : "sell 0.005 shares",
     "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
-    "created" : "2021-10-14T08:50:10.000Z",
+    "created" : "2021-10-14 08:50:10",
     "time" : 1634215809,
     "user" : "mb5658",
     "transtype" : "ESMTPSA",
@@ -758,7 +830,35 @@ We support several different authentication methods but the preferred method is 
     "queued" : "2021-10-14T12:50:15.487Z",
     "mxHostname" : "mx.j.is.cc",
     "response" : "250 2.0.0 Ok queued as C91D83E128C"
-  } ]
+  }, {
+    "_id" : 103172,
+    "id" : "17c7eda538e0005d03",
+    "from" : "person@mysite.com",
+    "to" : "client@isp.com",
+    "subject" : "sell 0.005 shares",
+    "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+    "created" : "2021-10-14 08:50:10",
+    "time" : 1634215809,
+    "user" : "mb5658",
+    "transtype" : "ESMTPSA",
+    "origin" : "199.231.189.154",
+    "interface" : "feeder",
+    "sendingZone" : "interserver",
+    "bodySize" : 63,
+    "seq" : 1,
+    "delivered" : 1,
+    "recipient" : "client@isp.com",
+    "domain" : "interserver.net",
+    "locked" : 1,
+    "lockTime" : "1634215818533",
+    "assigned" : "relay1",
+    "queued" : "2021-10-14T12:50:15.487Z",
+    "mxHostname" : "mx.j.is.cc",
+    "response" : "250 2.0.0 Ok queued as C91D83E128C"
+  } ],
+  "total" : 10234,
+  "limit" : 100,
+  "skip" : 0
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -770,14 +870,23 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
+    Paginated list of mail log entries
         <a href="#MailLog">MailLog</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: MailLogExample</div>
     <pre class="example"><code>{&quot;total&quot;:1,&quot;skip&quot;:0,&quot;limit&quot;:100,&quot;emails&quot;:[{&quot;_id&quot;:103172,&quot;id&quot;:&quot;17c7eda538e0005d03&quot;,&quot;from&quot;:&quot;person@mysite.com&quot;,&quot;to&quot;:&quot;client@isp.com&quot;,&quot;subject&quot;:&quot;sell 0.005 shares&quot;,&quot;messageId&quot;:&quot;&lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt;&quot;,&quot;created&quot;:&quot;2021-10-14 08:50:10&quot;,&quot;time&quot;:1634215809,&quot;user&quot;:&quot;mb5658&quot;,&quot;transtype&quot;:&quot;ESMTPSA&quot;,&quot;origin&quot;:&quot;199.231.189.154&quot;,&quot;interface&quot;:&quot;feeder&quot;,&quot;sendingZone&quot;:&quot;interserver&quot;,&quot;bodySize&quot;:63,&quot;seq&quot;:1,&quot;delivered&quot;:1,&quot;recipient&quot;:&quot;client@isp.com&quot;,&quot;domain&quot;:&quot;interserver.net&quot;,&quot;locked&quot;:1,&quot;lockTime&quot;:&quot;1634215818533&quot;,&quot;assigned&quot;:&quot;relay1&quot;,&quot;queued&quot;:&quot;2021-10-14T12:50:15.487Z&quot;,&quot;mxHostname&quot;:&quot;mx.j.is.cc&quot;,&quot;response&quot;:&quot;250 2.0.0 Ok queued as C91D83E128C&quot;}]}</code></pre>
     <h4 class="field-label">400</h4>
-    bad input parameter
-        <a href="#"></a>
+    Bad request — one or more input parameters were missing or invalid.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
+    <h4 class="field-label">401</h4>
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Sending">Sending</a></h1>
@@ -785,8 +894,13 @@ We support several different authentication methods but the preferred method is 
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/rawsend</code></pre></div>
-    <div class="method-summary">Sends a raw email (<span class="nickname">rawMail</span>)</div>
-    <div class="method-notes">This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.</div>
+    <div class="method-summary">Sends a raw RFC 822 email (<span class="nickname">rawMail</span>)</div>
+    <div class="method-notes"><p>Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.</p>
+<p>This endpoint is particularly useful when the message has already been <strong>DKIM-signed</strong> — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.</p>
+<p>The <code>From</code> and recipient addresses are parsed automatically from the message headers (<code>From</code>, <code>To</code>, <code>Cc</code>, <code>Bcc</code>).  You do <strong>not</strong> need to specify them separately.</p>
+<p>If an <code>id</code> is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.</p>
+<p>On success the response <code>text</code> field contains the relay transaction ID.  This ID can be used with <code>GET /mail/log</code> (via the <code>mailid</code> query parameter) to look up the delivery record.</p>
+</div>
 
 
     <h3 class="field-label">Consumes</h3>
@@ -811,7 +925,7 @@ We support several different authentication methods but the preferred method is 
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
       
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -824,7 +938,7 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }</code></pre>
 
@@ -837,22 +951,25 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    successful email response
+    Email accepted for delivery
         <a href="#GenericResponse">GenericResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: RawSendSuccess</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;ok&quot;,&quot;text&quot;:&quot;185caa69ff7000f47c&quot;}</code></pre>
     <h4 class="field-label">400</h4>
-    Error message when there was a problem with the input parameters.
+    Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: BadInputError</div>
     <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
     <h4 class="field-label">404</h4>
-    The specified resource was not found
+    The specified resource was not found or does not belong to your account.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: NotFoundError</div>
@@ -864,98 +981,48 @@ We support several different authentication methods but the preferred method is 
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/advsend</code></pre></div>
     <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMail</span>)</div>
-    <div class="method-notes"><p>Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.</p>
-<p>Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.</p>
-<pre><code class="language-BasicForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data to=support@interserver.net
+    <div class="method-notes"><p>Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.</p>
+<p><strong>Content-type flexibility</strong> — the request body may be submitted as either <code>application/x-www-form-urlencoded</code> or <code>application/json</code>.  When using form encoding, address fields (<code>from</code>, <code>to</code>, <code>replyto</code>, <code>cc</code>, <code>bcc</code>) accept both a plain RFC 822 comma-separated string (e.g. <code>&quot;Joe &lt;joe@example.com&gt;, jane@example.com&quot;</code>) and the structured <code>[{&quot;email&quot;:&quot;...&quot;,&quot;name&quot;:&quot;...&quot;}]</code> array format.  When using JSON, both formats are equally supported.</p>
+<p><strong>HTML detection</strong> is automatic — if <code>body</code> contains HTML tags the <code>Content-Type</code> is set to <code>text/html</code>; otherwise <code>text/plain</code>.</p>
+<p><strong>Attachments</strong> must be base64-encoded.  Each attachment requires at least a <code>data</code> field; the optional <code>filename</code> field controls the attachment name shown to recipients.</p>
+<p>If an <code>id</code> is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.</p>
+<p>On success the response <code>text</code> field contains the relay transaction ID which can be looked up in <code>GET /mail/log</code> via the <code>mailid</code> query parameter.</p>
+<h2>Examples</h2>
+<h3>Form — basic string addresses</h3>
+<pre><code class="language-sh">  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'subject=Welcome' \
+  -d 'body=Hello' \
+  -d from=user@domain.com \
+  -d to=support@interserver.net
 </code></pre>
-<pre><code class="language-ArrayForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data &quot;to[0][name]=Joe&quot; \
---data &quot;to[0][email]=support@interserver.net&quot;
+<h3>Form — RFC 822 named addresses</h3>
+<pre><code class="language-sh">  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'subject=Welcome' \
+  -d 'body=Hello' \
+  -d 'from=Joe &lt;user@domain.com&gt;' \
+  -d 'to=Jane &lt;support@interserver.net&gt;'
 </code></pre>
-<pre><code class="language-NameEmailForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=&quot;Joe &lt;user@domain.com&gt;&quot; \
---data to=&quot;Joe &lt;support@interserver.net&gt;&quot;
+<h3>Form — multiple recipients as array</h3>
+<pre><code class="language-sh">  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'subject=Welcome' -d 'body=Hello' \
+  -d from=user@domain.com \
+  -d 'to[0][name]=Joe' -d 'to[0][email]=support@interserver.net' \
+  -d 'to[1][name]=Jane' -d 'to[1][email]=jane@interserver.net'
 </code></pre>
-<pre><code class="language-MultToForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data &quot;to=support@interserver.net, support@interserver.net&quot;
-</code></pre>
-<pre><code class="language-MultToFullForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data &quot;to=Joe &lt;support@interserver.net&gt;, Joe &lt;support@interserver.net&gt;&quot;
-</code></pre>
-<pre><code class="language-MultToArrayForm">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data 'subject=Welcome' \
---data 'body=Hello' \
---data from=user@domain.com \
---data &quot;to[0][name]=Joe&quot; \
---data &quot;to[0][email]=support@interserver.net&quot; \
---data &quot;to[1][name]=Joe&quot; \
---data &quot;to[1][email]=support@interserver.net&quot;
-</code></pre>
-<pre><code class="language-BasicJson">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data '{
-&quot;subject&quot;: &quot;Welcome&quot;,
-&quot;body&quot;: &quot;Hello&quot;,
-&quot;from&quot;: &quot;user@domain.com&quot;,
-&quot;to&quot;: &quot;support@interserver.net&quot;
-}'
-</code></pre>
-<pre><code class="language-ArrayJson">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data '{
-&quot;subject&quot;: &quot;Welcome&quot;,
-&quot;body&quot;: &quot;Hello&quot;,
-&quot;from&quot;: {&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;user@domain.com&quot;},
-&quot;to&quot;: [{&quot;name&quot;: &quot;Joe&quot;, &quot;email&quot;: &quot;support@interserver.net&quot;}]
-}'
-</code></pre>
-<pre><code class="language-NameEmailJson">curl -i --request POST --url https://api.mailbaby.net/mail/advsend \
---header 'Accept: application/json' \
---header 'Content-Type: application/json' \
---header 'X-API-KEY: YOUR_API_KEY' \
---data '{
-&quot;subject&quot;: &quot;Welcome&quot;,
-&quot;body&quot;: &quot;Hello&quot;,
-&quot;from&quot;: &quot;Joe &lt;user@domain.com&gt;&quot;,
-&quot;to&quot;: &quot;Joe &lt;support@interserver.net&gt;&quot;
-}'
+<h3>JSON — structured objects</h3>
+<pre><code class="language-sh">  -H 'X-API-KEY: YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    &quot;subject&quot;: &quot;Welcome&quot;,
+    &quot;body&quot;: &quot;&lt;h1&gt;Hello&lt;/h1&gt;&quot;,
+    &quot;from&quot;: {&quot;email&quot;: &quot;user@domain.com&quot;, &quot;name&quot;: &quot;Sender Name&quot;},
+    &quot;to&quot;: [{&quot;email&quot;: &quot;joe@client.com&quot;, &quot;name&quot;: &quot;Joe Client&quot;}],
+    &quot;cc&quot;: [{&quot;email&quot;: &quot;manager@client.com&quot;}],
+    &quot;attachments&quot;: [{&quot;filename&quot;: &quot;report.pdf&quot;, &quot;data&quot;: &quot;BASE64_DATA&quot;}]
+  }'
 </code></pre>
 </div>
 
@@ -973,21 +1040,12 @@ We support several different authentication methods but the preferred method is 
       
             <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
             <div class="param-desc"><span class="param-type">example: <code>{
+  &quot;summary&quot; : &quot;Simple string addresses&quot;,
   &quot;value&quot; : {
     &quot;subject&quot; : &quot;Welcome&quot;,
     &quot;body&quot; : &quot;Hello&quot;,
-    &quot;from&quot; : {
-      &quot;email&quot; : &quot;user@domain.com&quot;
-    },
-    &quot;to&quot; : [ {
-      &quot;email&quot; : &quot;someone@client.com&quot;,
-      &quot;name&quot; : &quot;Mr Client&quot;
-    } ],
-    &quot;attachments&quot; : [ {
-      &quot;filename&quot; : &quot;message.txt&quot;,
-      &quot;data&quot; : &quot;base64_encoded_contents&quot;
-    } ],
-    &quot;id&quot; : 66
+    &quot;from&quot; : &quot;user@domain.com&quot;,
+    &quot;to&quot; : &quot;support@interserver.net&quot;
   }
 }</code></span></div>    </div>  <!-- field-items -->
 
@@ -1026,7 +1084,7 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }</code></pre>
 
@@ -1039,22 +1097,25 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
+    Email accepted for delivery
         <a href="#GenericResponse">GenericResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: SendSuccess</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;ok&quot;,&quot;text&quot;:&quot;185caa69ff7000f47c&quot;}</code></pre>
     <h4 class="field-label">400</h4>
-    Error message when there was a problem with the input parameters.
+    Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: BadInputError</div>
     <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
     <h4 class="field-label">404</h4>
-    The specified resource was not found
+    The specified resource was not found or does not belong to your account.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: NotFoundError</div>
@@ -1066,8 +1127,11 @@ We support several different authentication methods but the preferred method is 
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/send</code></pre></div>
     <div class="method-summary">Sends an Email (<span class="nickname">sendMail</span>)</div>
-    <div class="method-notes"><p>Sends an email through one of your mail orders.</p>
-<p><em>Note</em>: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead.</p>
+    <div class="method-notes"><p>Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.</p>
+<p><strong>HTML detection</strong> is automatic — if the <code>body</code> value contains any HTML tags the message will be sent as <code>text/html</code>; otherwise it is sent as <code>text/plain</code>.</p>
+<p>The <code>from</code> address is also automatically set as the <code>Reply-To</code> header.</p>
+<p><em>Note</em>: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use <code>POST /mail/advsend</code> instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use <code>POST /mail/rawsend</code>.</p>
+<p>On success the response <code>text</code> field contains the relay transaction ID.  This ID can be used with <code>GET /mail/log</code> (via the <code>mailid</code> query parameter) to look up the delivery record.</p>
 </div>
 
 
@@ -1093,13 +1157,13 @@ We support several different authentication methods but the preferred method is 
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">from (required)</div>
       
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">subject (required)</div>
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: email</div>      <div class="param">subject (required)</div>
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">body (required)</div>
       
             <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">id (required)</div>
       
-            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
@@ -1112,7 +1176,7 @@ We support several different authentication methods but the preferred method is 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "text" : "The command completed successfully.",
+  "text" : "185caa69ff7000f47c",
   "status" : "ok"
 }</code></pre>
 
@@ -1125,22 +1189,25 @@ We support several different authentication methods but the preferred method is 
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    search results matching criteria
+    Email accepted for delivery
         <a href="#GenericResponse">GenericResponse</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: SendSuccess</div>
+    <pre class="example"><code>{&quot;status&quot;:&quot;ok&quot;,&quot;text&quot;:&quot;185caa69ff7000f47c&quot;}</code></pre>
     <h4 class="field-label">400</h4>
-    Error message when there was a problem with the input parameters.
+    Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: BadInputError</div>
     <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
     <h4 class="field-label">404</h4>
-    The specified resource was not found
+    The specified resource was not found or does not belong to your account.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: NotFoundError</div>
@@ -1148,12 +1215,87 @@ We support several different authentication methods but the preferred method is 
   </div> <!-- method -->
   <hr/>
   <h1><a name="Services">Services</a></h1>
+  <div class="method"><a name="getMailOrderById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/{id}</code></pre></div>
+    <div class="method-summary">Displays details for a single mail order (<span class="nickname">getMailOrderById</span>)</div>
+    <div class="method-notes"><p>Returns the full detail record for one specific mail order identified by its numeric <code>id</code>.  In addition to the fields returned by <code>GET /mail</code>, this endpoint also includes the current <strong>SMTP password</strong> for the order.</p>
+<p>The <code>username</code> and <code>password</code> values returned here can be used directly to authenticate against <code>relay.mailbaby.net:25</code> (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.</p>
+<p>The <code>id</code> path parameter is the same integer <code>id</code> value returned by <code>GET /mail</code>.</p>
+</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The numeric ID of the mail order. format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#MailOrderDetail">MailOrderDetail</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "id" : 21472,
+  "status" : "active",
+  "username" : "mb21472",
+  "password" : "s3cr3tpassword"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#MailOrderDetail">MailOrderDetail</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: MailOrderDetail</div>
+    <pre class="example"><code>{&quot;id&quot;:39,&quot;status&quot;:&quot;active&quot;,&quot;username&quot;:&quot;mb39&quot;,&quot;password&quot;:&quot;s3cr3tpassword&quot;}</code></pre>
+    <h4 class="field-label">400</h4>
+    Bad request — one or more input parameters were missing or invalid.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: BadInputError</div>
+    <pre class="example"><code>{&quot;code&quot;:400,&quot;message&quot;:&quot;There was a problem with the input parameters.&quot;}</code></pre>
+    <h4 class="field-label">401</h4>
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
+    <h4 class="field-label">404</h4>
+    The specified resource was not found or does not belong to your account.
+        <a href="#ErrorMessage">ErrorMessage</a>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: NotFoundError</div>
+    <pre class="example"><code>{&quot;code&quot;:404,&quot;message&quot;:&quot;The specified resource was not found.&quot;}</code></pre>
+  </div> <!-- method -->
+  <hr/>
   <div class="method"><a name="getMailOrders"></a>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail</code></pre></div>
-    <div class="method-summary">displays a list of mail service orders (<span class="nickname">getMailOrders</span>)</div>
-    <div class="method-notes">This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.</div>
+    <div class="method-summary">Displays a list of mail service orders (<span class="nickname">getMailOrders</span>)</div>
+    <div class="method-notes"><p>Returns every mail order (active <strong>and</strong> inactive) associated with your account. Each record includes the numeric <code>id</code>, the <code>status</code> (<code>active</code> or <code>canceled</code>), the SMTP <code>username</code> (always <code>mb&lt;id&gt;</code>), and an optional human-readable <code>comment</code>.</p>
+<p>The <code>id</code> values returned here are used as the <code>id</code> input parameter on all sending endpoints (<code>/mail/send</code>, <code>/mail/advsend</code>, <code>/mail/rawsend</code>) as well as the log and stats queries.  When the <code>id</code> parameter is omitted on those calls the API automatically picks the <strong>first active</strong> order returned by this endpoint.</p>
+<p>To retrieve full details — including the current SMTP password — for a single order use <code>GET /mail/{id}</code>.</p>
+</div>
 
 
 
@@ -1196,17 +1338,11 @@ We support several different authentication methods but the preferred method is 
     <div class="example-data-content-type">Content-Type: MailOrders</div>
     <pre class="example"><code>[{&quot;id&quot;:39,&quot;status&quot;:&quot;active&quot;,&quot;username&quot;:&quot;mb39&quot;},{&quot;id&quot;:33,&quot;status&quot;:&quot;canceled&quot;,&quot;username&quot;:&quot;mb33&quot;,&quot;comment&quot;:&quot;test order&quot;}]</code></pre>
     <h4 class="field-label">401</h4>
-    Unauthorized
+    Authentication failed.  Ensure you are sending a valid &lt;code&gt;X-API-KEY&lt;/code&gt; header. Obtain your API key from &lt;a href&#x3D;&quot;https://my.interserver.net/account_security&quot;&gt;my.interserver.net/account_security&lt;/a&gt;.
         <a href="#ErrorMessage">ErrorMessage</a>
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
-    <h4 class="field-label">404</h4>
-    Unauthorized
-        <a href="#ErrorMessage">ErrorMessage</a>
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: UnauthorizedError</div>
-    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;Unauthorized&quot;}</code></pre>
+    <pre class="example"><code>{&quot;code&quot;:401,&quot;message&quot;:&quot;API key is missing or invalid&quot;}</code></pre>
   </div> <!-- method -->
   <hr/>
   <h1><a name="Status">Status</a></h1>
@@ -1215,7 +1351,7 @@ We support several different authentication methods but the preferred method is 
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /ping</code></pre></div>
     <div class="method-summary">Checks if the server is running (<span class="nickname">pingServer</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-notes">A lightweight health-check endpoint.  Returns a plain-text <code>200 OK</code> when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.</div>
 
 
 
@@ -1245,13 +1381,13 @@ We support several different authentication methods but the preferred method is 
   <ol>
     <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a></li>
     <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a></li>
-    <li><a href="#EmailAddress"><code>EmailAddress</code></a></li>
     <li><a href="#EmailAddressName"><code>EmailAddressName</code> - EmailAddressName</a></li>
     <li><a href="#EmailAddressNames"><code>EmailAddressNames</code> - EmailAddressNames</a></li>
+    <li><a href="#EmailAddressParam"><code>EmailAddressParam</code> - EmailAddressParam</a></li>
     <li><a href="#EmailAddressTypes"><code>EmailAddressTypes</code> - EmailAddressTypes</a></li>
-    <li><a href="#EmailAddressesTypes"><code>EmailAddressesTypes</code> - EmailAddressTypes</a></li>
+    <li><a href="#EmailAddressesTypes"><code>EmailAddressesTypes</code> - EmailAddressesTypes</a></li>
     <li><a href="#ErrorMessage"><code>ErrorMessage</code> - ErrorMessage</a></li>
-    <li><a href="#GenericResponse"><code>GenericResponse</code></a></li>
+    <li><a href="#GenericResponse"><code>GenericResponse</code> - GenericResponse</a></li>
     <li><a href="#MailAttachment"><code>MailAttachment</code> - MailAttachment</a></li>
     <li><a href="#MailBlockClickHouse"><code>MailBlockClickHouse</code> - MailBlockClickHouse</a></li>
     <li><a href="#MailBlockRspamd"><code>MailBlockRspamd</code> - MailBlockRspamd</a></li>
@@ -1259,340 +1395,327 @@ We support several different authentication methods but the preferred method is 
     <li><a href="#MailLog"><code>MailLog</code> - MailLog</a></li>
     <li><a href="#MailLogEntry"><code>MailLogEntry</code> - MailLogEntry</a></li>
     <li><a href="#MailOrder"><code>MailOrder</code> - MailOrder</a></li>
-    <li><a href="#MailStatsType"><code>MailStatsType</code> - Root Type for MailStatsType</a></li>
+    <li><a href="#MailOrderDetail"><code>MailOrderDetail</code> - MailOrderDetail</a></li>
+    <li><a href="#MailStatsType"><code>MailStatsType</code> - MailStatsType</a></li>
     <li><a href="#MailStatsType_volume"><code>MailStatsType_volume</code></a></li>
-    <li><a href="#MailStatsType_volume_from"><code>MailStatsType_volume_from</code></a></li>
-    <li><a href="#MailStatsType_volume_ip"><code>MailStatsType_volume_ip</code></a></li>
-    <li><a href="#MailStatsType_volume_to"><code>MailStatsType_volume_to</code></a></li>
     <li><a href="#SendMail"><code>SendMail</code> - SendMail</a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
-    <li><a href="#SendMailRaw"><code>SendMailRaw</code> - Root Type for RawMail</a></li>
+    <li><a href="#SendMailRaw"><code>SendMailRaw</code> - SendMailRaw</a></li>
   </ol>
 
   <div class="model">
     <h3><a name="DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>The data for a email deny rule record.</div>
+    <div class='model-description'>&lt;p&gt;The fields required to create a new email deny rule via &lt;code&gt;POST /mail/rules&lt;/code&gt;. The &lt;code&gt;type&lt;/code&gt; controls what &lt;code&gt;data&lt;/code&gt; is matched against:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;email&lt;/code&gt; — exact sender address match - &lt;code&gt;domain&lt;/code&gt; — all senders from a domain - &lt;code&gt;destination&lt;/code&gt; — exact recipient address match - &lt;code&gt;startswith&lt;/code&gt; — sender local-part prefix match (alphanumeric + &lt;code&gt;+_.-&lt;/code&gt; only)&lt;/li&gt;
+&lt;/ul&gt;
+</div>
     <div class="field-items">
-      <div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
+      <div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional SMTP username of the mail order to associate this rule with (e.g. &lt;code&gt;mb20682&lt;/code&gt;).  If omitted the first active order is used.  Valid usernames are the &lt;code&gt;username&lt;/code&gt; values returned by &lt;code&gt;GET /mail&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: mb20682</span></div>
 <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div><div class="param-enum">destination</div>
           <div class="param-desc"><span class="param-type">example: email</span></div>
-<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The value to match against, interpreted according to &lt;code&gt;type&lt;/code&gt;: a full email address for &lt;code&gt;email&lt;/code&gt;/&lt;code&gt;destination&lt;/code&gt;, a domain name for &lt;code&gt;domain&lt;/code&gt;, or an alphanumeric prefix string for &lt;code&gt;startswith&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: domeinwo@server.guesshost.net</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>The data for a email deny rule record.</div>
+    <div class='model-description'>A complete deny rule record as returned by &lt;code&gt;GET /mail/rules&lt;/code&gt;.  Combines the rule definition fields (&lt;code&gt;DenyRuleNew&lt;/code&gt;) with server-assigned metadata (&lt;code&gt;id&lt;/code&gt; and &lt;code&gt;created&lt;/code&gt;).  The &lt;code&gt;id&lt;/code&gt; value is required by &lt;code&gt;DELETE /mail/rules/{ruleId}&lt;/code&gt;.</div>
     <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The deny rule Id number. </div>
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The numeric ID of the deny rule, as a string.  Pass this as &lt;code&gt;ruleId&lt;/code&gt; to &lt;code&gt;DELETE /mail/rules/{ruleId}&lt;/code&gt; to remove the rule. </div>
           <div class="param-desc"><span class="param-type">example: 41124</span></div>
-<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> the date the rule was created. format: date-time</div>
-<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> The timestamp when the rule was created. format: date-time</div>
+<div class="param">user (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional SMTP username of the mail order to associate this rule with (e.g. &lt;code&gt;mb20682&lt;/code&gt;).  If omitted the first active order is used.  Valid usernames are the &lt;code&gt;username&lt;/code&gt; values returned by &lt;code&gt;GET /mail&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: mb20682</span></div>
 <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div><div class="param-enum">destination</div>
           <div class="param-desc"><span class="param-type">example: email</span></div>
-<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The value to match against, interpreted according to &lt;code&gt;type&lt;/code&gt;: a full email address for &lt;code&gt;email&lt;/code&gt;/&lt;code&gt;destination&lt;/code&gt;, a domain name for &lt;code&gt;domain&lt;/code&gt;, or an alphanumeric prefix string for &lt;code&gt;startswith&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: domeinwo@server.guesshost.net</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="EmailAddress"><code>EmailAddress</code></a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>an email address</div>
-    <div class="field-items">
-          </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3><a name="EmailAddressName"><code>EmailAddressName</code> - EmailAddressName</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An email contact.</div>
+    <div class='model-description'>An email contact with an optional display name.  Used in structured address fields (&lt;code&gt;from&lt;/code&gt;, &lt;code&gt;to&lt;/code&gt;, &lt;code&gt;cc&lt;/code&gt;, &lt;code&gt;bcc&lt;/code&gt;, &lt;code&gt;replyto&lt;/code&gt;) in &lt;code&gt;SendMailAdv&lt;/code&gt;.</div>
     <div class="field-items">
-      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address. </div>
+      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address. format: email</div>
           <div class="param-desc"><span class="param-type">example: user@domain.com</span></div>
-<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Name to use for the sending contact. </div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional display name shown to recipients (e.g. in the &lt;code&gt;From:&lt;/code&gt; header). </div>
           <div class="param-desc"><span class="param-type">example: John Smith</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="EmailAddressNames"><code>EmailAddressNames</code> - EmailAddressNames</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Array of Email Addresses</div>
+    <div class='model-description'>An array of email contacts, each with an email address and optional display name.</div>
     <div class="field-items">
           </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EmailAddressParam"><code>EmailAddressParam</code> - EmailAddressParam</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A single email address parameter used as the body of &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt;.</div>
+    <div class="field-items">
+      <div class="param">email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email address to delist from all block lists. format: email</div>
+          <div class="param-desc"><span class="param-type">example: user@domain.com</span></div>
+    </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="EmailAddressTypes"><code>EmailAddressTypes</code> - EmailAddressTypes</a> <a class="up" href="#__Models">Up</a></h3>
-    
+    <div class='model-description'>A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (&lt;code&gt;&amp;quot;Name &amp;lt;email&amp;gt;&amp;quot;&lt;/code&gt;), or a structured contact object.</div>
     <div class="field-items">
           </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="EmailAddressesTypes"><code>EmailAddressesTypes</code> - EmailAddressTypes</a> <a class="up" href="#__Models">Up</a></h3>
-    
+    <h3><a name="EmailAddressesTypes"><code>EmailAddressesTypes</code> - EmailAddressesTypes</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the &lt;code&gt;&amp;quot;Name &amp;lt;email&amp;gt;&amp;quot;&lt;/code&gt; and bare &lt;code&gt;email&lt;/code&gt; formats).  When an array is provided each entry must have at least an &lt;code&gt;email&lt;/code&gt; field with an optional &lt;code&gt;name&lt;/code&gt; field.</div>
     <div class="field-items">
           </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="ErrorMessage"><code>ErrorMessage</code> - ErrorMessage</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>The resposne when an error occurs.</div>
+    <div class='model-description'>The response body returned when an error occurs.</div>
     <div class="field-items">
-      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The response code associated with the error. format: int32</div>
+      <div class="param">code </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The HTTP-style status code associated with the error. format: int32</div>
           <div class="param-desc"><span class="param-type">example: 400</span></div>
-<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The details or description of the error. </div>
-          <div class="param-desc"><span class="param-type">example: There was an error.</span></div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> A human-readable description of the error. </div>
+          <div class="param-desc"><span class="param-type">example: The specified ID was invalid.</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="GenericResponse"><code>GenericResponse</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
+    <h3><a name="GenericResponse"><code>GenericResponse</code> - GenericResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Standard success response returned by write operations (send, add rule, delete, etc.).  The &lt;code&gt;status&lt;/code&gt; field is always &lt;code&gt;&amp;quot;ok&amp;quot;&lt;/code&gt; on success.  The &lt;code&gt;text&lt;/code&gt; field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record&#x27;s ID; for delete calls it contains a confirmation string.</div>
     <div class="field-items">
-      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Always &lt;code&gt;&amp;quot;ok&amp;quot;&lt;/code&gt; on success. </div>
           <div class="param-desc"><span class="param-type">example: ok</span></div>
-<div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: The command completed successfully.</span></div>
+<div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &lt;code&gt;185caa69ff7000f47c&lt;/code&gt;) which can be used as the &lt;code&gt;mailid&lt;/code&gt; parameter in &lt;code&gt;GET /mail/log&lt;/code&gt;.  For create operations this is the new record&#x27;s numeric ID.  For delete operations this is a human-readable confirmation. </div>
+          <div class="param-desc"><span class="param-type">example: 185caa69ff7000f47c</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailAttachment"><code>MailAttachment</code> - MailAttachment</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>(optional) File attachments to include in the email.  The file contents must be base64</div>
+    <div class='model-description'>A file attachment for use with &lt;code&gt;POST /mail/advsend&lt;/code&gt;.  The file content must be base64-encoded.  The &lt;code&gt;filename&lt;/code&gt; is shown to recipients in their email client.</div>
     <div class="field-items">
-      <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename of the attached file. </div>
+      <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename shown to recipients (e.g. &lt;code&gt;report.pdf&lt;/code&gt;, &lt;code&gt;invoice.xlsx&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: message.txt</span></div>
-<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The file contents base64 encoded </div>
-          <div class="param-desc"><span class="param-type">example: aGVsbG8gdGhlcmUK</span></div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#ByteArray">byte[]</a></span> The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. format: byte</div>
+          <div class="param-desc"><span class="param-type">example: [B@2007b9ac</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailBlockClickHouse"><code>MailBlockClickHouse</code> - MailBlockClickHouse</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>A block entry from the clickhouse mailblocks server.</div>
+    <div class='model-description'>A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (&lt;code&gt;LOCAL_BL_RCPT&lt;/code&gt; or &lt;code&gt;MBTRAP&lt;/code&gt;). The &lt;code&gt;from&lt;/code&gt; address can be passed to &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt; to delist it.</div>
     <div class="field-items">
-      <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">messageId </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">date </div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span> The date the block event was recorded. format: date</div>
+          <div class="param-desc"><span class="param-type">example: Sun Aug 06 20:00:00 EDT 2023</span></div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP envelope sender (&lt;code&gt;MAIL FROM&lt;/code&gt;) address of the blocked message. Pass this value as &lt;code&gt;email&lt;/code&gt; to &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt; to delist it. </div>
+          <div class="param-desc"><span class="param-type">example: user@domain.com</span></div>
+<div class="param">messageId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The &lt;code&gt;Message-ID&lt;/code&gt; header of the blocked message, or &lt;code&gt;null&lt;/code&gt; if not present. </div>
+          <div class="param-desc"><span class="param-type">example: pFaRqFUEWkucjhTuIzYuoAgWU@domain.com</span></div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The &lt;code&gt;Subject&lt;/code&gt; header of the blocked message. </div>
+          <div class="param-desc"><span class="param-type">example: Test Email</span></div>
+<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The serialized list of recipients of the blocked message. </div>
+          <div class="param-desc"><span class="param-type">example: [&#x27;client@site.com&#x27;]</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailBlockRspamd"><code>MailBlockRspamd</code> - MailBlockRspamd</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>This is a block entry from the rspamd block list.</div>
+    <div class='model-description'>A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &lt;code&gt;from&lt;/code&gt; address can be passed to &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt; to delist it.</div>
     <div class="field-items">
-      <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The sender email address.  Pass this value as &lt;code&gt;email&lt;/code&gt; to &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt; to delist the sender. </div>
+          <div class="param-desc"><span class="param-type">example: user@domain.com</span></div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The suspicious subject pattern that triggered the block. </div>
+          <div class="param-desc"><span class="param-type">example: Test email</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailBlocks"><code>MailBlocks</code> - MailBlocks</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>The listing of blocked emails.</div>
+    <div class='model-description'>The complete set of blocked addresses and message patterns returned by &lt;code&gt;GET /mail/blocks&lt;/code&gt;.  Three independent block sources are combined into one response. Use &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt; with a &lt;code&gt;from&lt;/code&gt; address from any entry to delist it.</div>
     <div class="field-items">
-      <div class="param">local </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span>  </div>
-<div class="param">mbtrap </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span>  </div>
-<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#MailBlockRspamd">array[MailBlockRspamd]</a></span>  </div>
+      <div class="param">local </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span> Messages flagged by the &lt;code&gt;LOCAL_BL_RCPT&lt;/code&gt; rspamd rule in the last 5 days. These are messages sent to recipients on a local block list. </div>
+<div class="param">mbtrap </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span> Messages flagged by the &lt;code&gt;MBTRAP&lt;/code&gt; rspamd rule in the last 5 days. These triggered MailBaby&#x27;s honeypot / trap address detection. </div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#MailBlockRspamd">array[MailBlockRspamd]</a></span> Senders whose messages contained spam-indicative subjects (containing &lt;code&gt;@&lt;/code&gt;, &lt;code&gt;smtp&lt;/code&gt;, &lt;code&gt;socks4&lt;/code&gt;, or &lt;code&gt;socks5&lt;/code&gt;) with more than 4 occurrences of the same subject in the last 3 days. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailLog"><code>MailLog</code> - MailLog</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Mail log records</div>
+    <div class='model-description'>Paginated mail log response returned by &lt;code&gt;GET /mail/log&lt;/code&gt;.  Contains the full matched count (&lt;code&gt;total&lt;/code&gt;) plus a page of &lt;code&gt;MailLogEntry&lt;/code&gt; records.  Use &lt;code&gt;skip&lt;/code&gt; and &lt;code&gt;limit&lt;/code&gt; to page through large result sets.</div>
     <div class="field-items">
-      <div class="param">total </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> total number of mail log entries </div>
+      <div class="param">total </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Total number of log entries that match the supplied filters, regardless of &lt;code&gt;skip&lt;/code&gt; and &lt;code&gt;limit&lt;/code&gt;.  Use this to calculate the number of pages: &lt;code&gt;ceil(total / limit)&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: 10234</span></div>
-<div class="param">skip </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> number of emails skipped in listing </div>
+<div class="param">skip </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The &lt;code&gt;skip&lt;/code&gt; value used for this page (echoed from the request). </div>
           <div class="param-desc"><span class="param-type">example: 0</span></div>
-<div class="param">limit </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> number of emails to return </div>
+<div class="param">limit </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The &lt;code&gt;limit&lt;/code&gt; value used for this page (echoed from the request). </div>
           <div class="param-desc"><span class="param-type">example: 100</span></div>
 <div class="param">emails </div><div class="param-desc"><span class="param-type"><a href="#MailLogEntry">array[MailLogEntry]</a></span>  </div>
-          <div class="param-desc"><span class="param-type">example: [{
-    &quot;_id&quot;: 103172,
-    &quot;id&quot;: &quot;17c7eda538e0005d03&quot;,
-    &quot;from&quot;: &quot;person@mysite.com&quot;,
-    &quot;to&quot;: &quot;client@isp.com&quot;,
-    &quot;subject&quot;: &quot;sell 0.005 shares&quot;,
-    &quot;messageId&quot;: &quot;&lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt;&quot;,
-    &quot;created&quot;: &quot;2021-10-14 08:50:10&quot;,
-    &quot;time&quot;: 1634215809,
-    &quot;user&quot;: &quot;mb5658&quot;,
-    &quot;transtype&quot;: &quot;ESMTPSA&quot;,
-    &quot;origin&quot;: &quot;199.231.189.154&quot;,
-    &quot;interface&quot;: &quot;feeder&quot;,
-    &quot;sendingZone&quot;: &quot;interserver&quot;,
-    &quot;bodySize&quot;: 63,
-    &quot;seq&quot;: 1,
-    &quot;recipient&quot;: &quot;client@isp.com&quot;,
-    &quot;domain&quot;: &quot;interserver.net&quot;,
-    &quot;locked&quot;: 1,
-    &quot;lockTime&quot;: &quot;1634215818533&quot;,
-    &quot;assigned&quot;: &quot;relay1&quot;,
-    &quot;queued&quot;: &quot;2021-10-14T12:50:15.487Z&quot;,
-    &quot;mxHostname&quot;: &quot;mx.j.is.cc&quot;,
-    &quot;response&quot;: &quot;250 2.0.0 Ok queued as C91D83E128C&quot;
-}]</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailLogEntry"><code>MailLogEntry</code> - MailLogEntry</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>An email record</div>
+    <div class='model-description'>&lt;p&gt;A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).&lt;/p&gt;
+&lt;p&gt;Key field relationships with other API calls:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;id&lt;/code&gt; field matches the &lt;code&gt;mailid&lt;/code&gt; query parameter on &lt;code&gt;GET /mail/log&lt;/code&gt; and
+the &lt;code&gt;text&lt;/code&gt; field of a successful send response.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;from&lt;/code&gt; address can be passed to &lt;code&gt;POST /mail/blocks/delete&lt;/code&gt; to delist a
+flagged sender.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;user&lt;/code&gt; field is the SMTP username (e.g. &lt;code&gt;mb5658&lt;/code&gt;) corresponding to the
+&lt;code&gt;username&lt;/code&gt; field in &lt;code&gt;GET /mail&lt;/code&gt; / &lt;code&gt;GET /mail/{id}&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</div>
     <div class="field-items">
-      <div class="param">_id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> internal db id </div>
+      <div class="param">_id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Internal auto-increment database row ID.  Not meaningful outside the API. </div>
           <div class="param-desc"><span class="param-type">example: 103172</span></div>
-<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> mail id </div>
+<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &lt;code&gt;text&lt;/code&gt; by the sending endpoints and accepted as the &lt;code&gt;mailid&lt;/code&gt; filter on &lt;code&gt;GET /mail/log&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: 17c7eda538e0005d03</span></div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> from address </div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> SMTP envelope &lt;code&gt;MAIL FROM&lt;/code&gt; address (may differ from the &lt;code&gt;From:&lt;/code&gt; header). </div>
           <div class="param-desc"><span class="param-type">example: person@mysite.com</span></div>
-<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> to address </div>
+<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> SMTP envelope &lt;code&gt;RCPT TO&lt;/code&gt; address. </div>
           <div class="param-desc"><span class="param-type">example: client@isp.com</span></div>
-<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> email subject </div>
+<div class="param">subject (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The &lt;code&gt;Subject&lt;/code&gt; header value, if available. </div>
           <div class="param-desc"><span class="param-type">example: sell 0.005 shares</span></div>
-<div class="param">messageId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> message id </div>
+<div class="param">messageId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The &lt;code&gt;Message-ID&lt;/code&gt; header value, if present.  Can be used with the &lt;code&gt;messageId&lt;/code&gt; filter on &lt;code&gt;GET /mail/log&lt;/code&gt; for subsequent lookups. </div>
           <div class="param-desc"><span class="param-type">example: &lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt;</span></div>
-<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> creation date </div>
+<div class="param">created </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Human-readable creation timestamp in &lt;code&gt;YYYY-MM-DD HH:MM:SS&lt;/code&gt; format. </div>
           <div class="param-desc"><span class="param-type">example: 2021-10-14 08:50:10</span></div>
-<div class="param">time </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> creation timestamp </div>
+<div class="param">time </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Unix timestamp of message acceptance.  Corresponds to the &lt;code&gt;startDate&lt;/code&gt; and &lt;code&gt;endDate&lt;/code&gt; filter parameters on &lt;code&gt;GET /mail/log&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: 1634215809</span></div>
-<div class="param">user </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> user account </div>
+<div class="param">user </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP AUTH username used to submit the message (e.g. &lt;code&gt;mb5658&lt;/code&gt;). Corresponds to the &lt;code&gt;username&lt;/code&gt; field in &lt;code&gt;GET /mail&lt;/code&gt; orders. </div>
           <div class="param-desc"><span class="param-type">example: mb5658</span></div>
-<div class="param">transtype </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> transaction type </div>
+<div class="param">transtype </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> SMTP transaction type negotiated with the relay (e.g. &lt;code&gt;ESMTPSA&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: ESMTPSA</span></div>
-<div class="param">origin </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> origin ip </div>
+<div class="param">origin </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> IP address of the client that submitted the message to the relay. Corresponds to the &lt;code&gt;origin&lt;/code&gt; filter parameter on &lt;code&gt;GET /mail/log&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: 199.231.189.154</span></div>
-<div class="param">interface </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> interface name </div>
+<div class="param">interface </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Relay interface name that accepted the message (e.g. &lt;code&gt;feeder&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: feeder</span></div>
-<div class="param">sendingZone </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> sending zone </div>
+<div class="param">sendingZone (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The sending zone assigned by the relay for outbound delivery. </div>
           <div class="param-desc"><span class="param-type">example: interserver</span></div>
-<div class="param">bodySize </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> email body size in bytes </div>
+<div class="param">bodySize (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Size of the message body in bytes. </div>
           <div class="param-desc"><span class="param-type">example: 63</span></div>
-<div class="param">seq </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> index of email in the to adderess list </div>
+<div class="param">seq (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Sequence index of this recipient in a multi-recipient message. Starts at 1. </div>
           <div class="param-desc"><span class="param-type">example: 1</span></div>
-<div class="param">recipient </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> to address this email is being sent to </div>
-          <div class="param-desc"><span class="param-type">example: client@isp.com</span></div>
-<div class="param">domain </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> to address domain </div>
-          <div class="param-desc"><span class="param-type">example: interserver.net</span></div>
-<div class="param">locked </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> locked status </div>
+<div class="param">delivered (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Delivery status flag.  &lt;code&gt;1&lt;/code&gt; &#x3D; successfully delivered to destination MX. &lt;code&gt;0&lt;/code&gt; &#x3D; queued, deferred, or failed.  &lt;code&gt;null&lt;/code&gt; &#x3D; delivery not yet attempted. Corresponds to the &lt;code&gt;delivered&lt;/code&gt; filter parameter on &lt;code&gt;GET /mail/log&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: 1</span></div>
-<div class="param">lockTime </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> lock timestamp </div>
-          <div class="param-desc"><span class="param-type">example: 1634215818533</span></div>
-<div class="param">assigned </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> assigned server </div>
-          <div class="param-desc"><span class="param-type">example: relay1</span></div>
-<div class="param">queued </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> queued timestamp </div>
-          <div class="param-desc"><span class="param-type">example: 2021-10-14T12:50:15.487Z</span></div>
-<div class="param">mxHostname </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> mx hostname </div>
-          <div class="param-desc"><span class="param-type">example: mx.j.is.cc</span></div>
-<div class="param">response </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> mail delivery response </div>
+<div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP response string received from the destination MX server upon delivery attempt (e.g. &lt;code&gt;&amp;quot;250 2.0.0 Ok queued as C91D83E128C&amp;quot;&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: 250 2.0.0 Ok queued as C91D83E128C</span></div>
+<div class="param">recipient (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The specific recipient address this delivery record is for. </div>
+          <div class="param-desc"><span class="param-type">example: client@isp.com</span></div>
+<div class="param">domain (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The destination domain.  Corresponds to the &lt;code&gt;mx&lt;/code&gt; filter parameter (which matches &lt;code&gt;mxHostname&lt;/code&gt;, not &lt;code&gt;domain&lt;/code&gt;) on &lt;code&gt;GET /mail/log&lt;/code&gt;. </div>
+          <div class="param-desc"><span class="param-type">example: interserver.net</span></div>
+<div class="param">locked (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Whether the queue entry is currently locked for delivery processing. </div>
+          <div class="param-desc"><span class="param-type">example: 1</span></div>
+<div class="param">lockTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Millisecond-precision timestamp of the last queue lock acquisition. </div>
+          <div class="param-desc"><span class="param-type">example: 1634215818533</span></div>
+<div class="param">assigned (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The relay server node assigned to deliver this message. </div>
+          <div class="param-desc"><span class="param-type">example: relay1</span></div>
+<div class="param">queued (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> ISO 8601 timestamp when the message was placed into the delivery queue. </div>
+          <div class="param-desc"><span class="param-type">example: 2021-10-14T12:50:15.487Z</span></div>
+<div class="param">mxHostname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The MX hostname the relay connected to for delivery.  Corresponds to the &lt;code&gt;mx&lt;/code&gt; filter parameter on &lt;code&gt;GET /mail/log&lt;/code&gt;. </div>
+          <div class="param-desc"><span class="param-type">example: mx.j.is.cc</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailOrder"><code>MailOrder</code> - MailOrder</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>A mail order record</div>
+    <div class='model-description'>A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &lt;code&gt;id&lt;/code&gt; is the numeric identifier used across most API calls.  The &lt;code&gt;username&lt;/code&gt; is always &lt;code&gt;mb&amp;lt;id&amp;gt;&lt;/code&gt; and is the SMTP AUTH username for &lt;code&gt;relay.mailbaby.net&lt;/code&gt;.</div>
     <div class="field-items">
-      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The ID of the order. format: int32</div>
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The unique numeric ID of the mail order.  Used as the &lt;code&gt;id&lt;/code&gt; parameter on sending calls, log queries, and stats queries. format: int32</div>
           <div class="param-desc"><span class="param-type">example: 21472</span></div>
-<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The order status. </div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current order status.  Only &lt;code&gt;active&lt;/code&gt; orders can be used for sending. &lt;code&gt;canceled&lt;/code&gt; orders are retained for history but cannot send. </div>
           <div class="param-desc"><span class="param-type">example: active</span></div>
-<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The username to use for this order. </div>
+<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP AUTH username for this order, always in the format &lt;code&gt;mb&amp;lt;id&amp;gt;&lt;/code&gt;. Use together with the password from &lt;code&gt;GET /mail/{id}&lt;/code&gt; to authenticate directly against &lt;code&gt;relay.mailbaby.net:25&lt;/code&gt; if needed. </div>
           <div class="param-desc"><span class="param-type">example: mb21472</span></div>
-<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional order comment. </div>
+<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional human-readable note associated with the order. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailStatsType"><code>MailStatsType</code> - Root Type for MailStatsType</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.</div>
+    <h3><a name="MailOrderDetail"><code>MailOrderDetail</code> - MailOrderDetail</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Extended mail order record including the current SMTP password.  Returned by &lt;code&gt;GET /mail/{id}&lt;/code&gt;.  The &lt;code&gt;username&lt;/code&gt; and &lt;code&gt;password&lt;/code&gt; fields can be used to authenticate directly against &lt;code&gt;relay.mailbaby.net:25&lt;/code&gt; via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API.</div>
     <div class="field-items">
-      <div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current SMTP AUTH password for this mail order.  Use with the &lt;code&gt;username&lt;/code&gt; field to authenticate against &lt;code&gt;relay.mailbaby.net:25&lt;/code&gt;. </div>
+          <div class="param-desc"><span class="param-type">example: s3cr3tpassword</span></div>
+<div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The unique numeric ID of the mail order.  Used as the &lt;code&gt;id&lt;/code&gt; parameter on sending calls, log queries, and stats queries. format: int32</div>
+          <div class="param-desc"><span class="param-type">example: 21472</span></div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current order status.  Only &lt;code&gt;active&lt;/code&gt; orders can be used for sending. &lt;code&gt;canceled&lt;/code&gt; orders are retained for history but cannot send. </div>
+          <div class="param-desc"><span class="param-type">example: active</span></div>
+<div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP AUTH username for this order, always in the format &lt;code&gt;mb&amp;lt;id&amp;gt;&lt;/code&gt;. Use together with the password from &lt;code&gt;GET /mail/{id}&lt;/code&gt; to authenticate directly against &lt;code&gt;relay.mailbaby.net:25&lt;/code&gt; if needed. </div>
+          <div class="param-desc"><span class="param-type">example: mb21472</span></div>
+<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional human-readable note associated with the order. </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MailStatsType"><code>MailStatsType</code> - MailStatsType</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Account usage statistics returned by &lt;code&gt;GET /mail/stats&lt;/code&gt;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.</div>
+    <div class="field-items">
+      <div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The time window these &lt;code&gt;received&lt;/code&gt;, &lt;code&gt;sent&lt;/code&gt;, and &lt;code&gt;volume&lt;/code&gt; statistics cover. </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">all</div><div class="param-enum">billing</div><div class="param-enum">month</div><div class="param-enum">7d</div><div class="param-enum">24h</div><div class="param-enum">today</div><div class="param-enum">1h</div>
-<div class="param">usage (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">currencySymbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">cost (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
-<div class="param">received (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">sent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+        <div class="param-enum">all</div><div class="param-enum">billing</div><div class="param-enum">month</div><div class="param-enum">7d</div><div class="param-enum">24h</div><div class="param-enum">day</div><div class="param-enum">1h</div>
+<div class="param">usage (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Total messages accepted during the current billing cycle.  Used to calculate the &lt;code&gt;cost&lt;/code&gt; value. format: int32</div>
+<div class="param">currency (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The ISO 4217 currency code for this account (e.g. &lt;code&gt;USD&lt;/code&gt;). </div>
+<div class="param">cost (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). format: double</div>
+<div class="param">received (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Count of messages accepted by the relay within the selected &lt;code&gt;time&lt;/code&gt; window. Includes messages still in queue. format: int32</div>
+<div class="param">sent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Count of messages successfully delivered to the destination MX within the selected &lt;code&gt;time&lt;/code&gt; window.  Will be ≤ &lt;code&gt;received&lt;/code&gt;. format: int32</div>
 <div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume">MailStatsType_volume</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="MailStatsType_volume"><code>MailStatsType_volume</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
+    <div class='model-description'>Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &lt;code&gt;time&lt;/code&gt; window.</div>
     <div class="field-items">
-      <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume_to">MailStatsType_volume_to</a></span>  </div>
-<div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume_from">MailStatsType_volume_from</a></span>  </div>
-<div class="param">ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume_ip">MailStatsType_volume_ip</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="MailStatsType_volume_from"><code>MailStatsType_volume_from</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">billing@somedomain.com (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">sales@somedomain.com (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="MailStatsType_volume_ip"><code>MailStatsType_volume_ip</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">1.1.1.1 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">2.2.2.2 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">3.3.3.3 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">4.4.4.4 (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="MailStatsType_volume_to"><code>MailStatsType_volume_to</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">client@domain.com (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">user@site.net (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">sales@company.com (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">client@anothersite.com (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+      <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">map[String, Integer]</a></span> Message counts keyed by destination (envelope &lt;code&gt;to&lt;/code&gt;) email address. format: int32</div>
+<div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">map[String, Integer]</a></span> Message counts keyed by sender (envelope &lt;code&gt;from&lt;/code&gt;) email address. format: int32</div>
+<div class="param">ip (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">map[String, Integer]</a></span> Message counts keyed by originating client IP address. format: int32</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="SendMail"><code>SendMail</code> - SendMail</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Details for an Email</div>
+    <div class='model-description'>&lt;p&gt;Request body for &lt;code&gt;POST /mail/send&lt;/code&gt;.  Sends a simple single-recipient message. HTML detection is automatic — if &lt;code&gt;body&lt;/code&gt; contains HTML tags the message is sent as &lt;code&gt;text/html&lt;/code&gt;; otherwise as &lt;code&gt;text/plain&lt;/code&gt;.  The &lt;code&gt;from&lt;/code&gt; address is automatically set as both the &lt;code&gt;From&lt;/code&gt; and &lt;code&gt;Reply-To&lt;/code&gt; headers.&lt;/p&gt;
+&lt;p&gt;For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &lt;code&gt;POST /mail/advsend&lt;/code&gt; instead.&lt;/p&gt;
+</div>
     <div class="field-items">
-      <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The Contact whom is the primary recipient of this email. </div>
-          <div class="param-desc"><span class="param-type">example: johndoe@company.com</span></div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The contact whom is the this email is from. </div>
+      <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#"></a></span> The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. </div>
+      <div class="param-desc"><span class="param-type">oneOf:</span>
+      </div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The sender address.  This is used as both the &lt;code&gt;From&lt;/code&gt; header and the &lt;code&gt;Reply-To&lt;/code&gt; header automatically.  Must be a valid email address authorized for your mail order. format: email</div>
           <div class="param-desc"><span class="param-type">example: janedoe@company.com</span></div>
-<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
+<div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject line of the email. </div>
           <div class="param-desc"><span class="param-type">example: Attention Client</span></div>
-<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email body.  If the string contains any HTML tags the message is automatically sent as &lt;code&gt;text/html&lt;/code&gt;; otherwise it is sent as &lt;code&gt;text/plain&lt;/code&gt;. </div>
           <div class="param-desc"><span class="param-type">example: This is an email to inform you that something noteworthy happened.</span></div>
-<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Optional Order ID </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &lt;code&gt;GET /mail&lt;/code&gt;. format: int64</div>
+          <div class="param-desc"><span class="param-type">example: 2604</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
     <h3><a name="SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Details for an Email</div>
+    <div class='model-description'>&lt;p&gt;Request body for &lt;code&gt;POST /mail/advsend&lt;/code&gt;.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.&lt;/p&gt;
+&lt;p&gt;Address fields (&lt;code&gt;from&lt;/code&gt;, &lt;code&gt;to&lt;/code&gt;, &lt;code&gt;replyto&lt;/code&gt;, &lt;code&gt;cc&lt;/code&gt;, &lt;code&gt;bcc&lt;/code&gt;) each accept either a plain RFC 822 string (e.g. &lt;code&gt;&amp;quot;Joe &amp;lt;joe@example.com&amp;gt;&amp;quot;&lt;/code&gt; or a comma-separated list) or a structured array of &lt;code&gt;{&amp;quot;email&amp;quot;: &amp;quot;...&amp;quot;, &amp;quot;name&amp;quot;: &amp;quot;...&amp;quot;}&lt;/code&gt; objects.&lt;/p&gt;
+&lt;p&gt;HTML detection is automatic based on whether &lt;code&gt;body&lt;/code&gt; contains HTML tags.&lt;/p&gt;
+</div>
     <div class="field-items">
-      <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject or title of the email </div>
+      <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject line of the email. </div>
           <div class="param-desc"><span class="param-type">example: Your Package has been Delivered!</span></div>
-<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The main email contents. </div>
-          <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered. If the package is broken into many pieces, please blaim someone else.</span></div>
+<div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email body.  If the string contains any HTML tags the message is automatically sent as &lt;code&gt;text/html&lt;/code&gt;; otherwise it is sent as &lt;code&gt;text/plain&lt;/code&gt;. </div>
+          <div class="param-desc"><span class="param-type">example: The package you ordered on 2021-01-23 has been delivered.</span></div>
 <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressTypes">EmailAddressTypes</a></span>  </div>
 <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
 <div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
 <div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
 <div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
-<div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> (optional) File attachments to include in the email.  The file contents must be base64 encoded! </div>
-          <div class="param-desc"><span class="param-type">example: [
-        {
-            &quot;filename&quot;: &quot;text.txt&quot;,
-            &quot;data&quot;: &quot;base64_encoded_contents&quot;
-        }
-]</span></div>
-<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> (optional)  ID of the Mail order within our system to use as the Mail Account. format: int64</div>
+<div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> Optional list of file attachments.  Each file must be base64-encoded. Include &lt;code&gt;filename&lt;/code&gt; so recipients see a meaningful attachment name. </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &lt;code&gt;GET /mail&lt;/code&gt;. format: int64</div>
           <div class="param-desc"><span class="param-type">example: 5000</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="SendMailRaw"><code>SendMailRaw</code> - Root Type for RawMail</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Raw Email Object</div>
+    <h3><a name="SendMailRaw"><code>SendMailRaw</code> - SendMailRaw</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>&lt;p&gt;Request body for &lt;code&gt;POST /mail/rawsend&lt;/code&gt;.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing &lt;code&gt;DKIM-Signature&lt;/code&gt; header intact.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;From&lt;/code&gt;, &lt;code&gt;To&lt;/code&gt;, &lt;code&gt;Cc&lt;/code&gt;, and &lt;code&gt;Bcc&lt;/code&gt; addresses are extracted from the message headers automatically — you do not need to specify them separately.&lt;/p&gt;
+</div>
     <div class="field-items">
-      <div class="param">raw_email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The entire email contents </div>
-<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Optional order id </div>
+      <div class="param">raw_email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The complete RFC 822 email message including all headers and the body. Must include at minimum &lt;code&gt;From&lt;/code&gt;, &lt;code&gt;To&lt;/code&gt;, &lt;code&gt;Subject&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, and &lt;code&gt;MIME-Version&lt;/code&gt; headers.  DKIM signatures in the &lt;code&gt;DKIM-Signature&lt;/code&gt; header are transmitted verbatim and will pass verification at the destination. </div>
+<div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by &lt;code&gt;GET /mail&lt;/code&gt;. format: int64</div>
     </div>  <!-- field-items -->
   </div>
   </body>

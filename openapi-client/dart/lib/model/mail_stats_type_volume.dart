@@ -13,68 +13,41 @@ part of openapi.api;
 class MailStatsTypeVolume {
   /// Returns a new [MailStatsTypeVolume] instance.
   MailStatsTypeVolume({
-    this.to,
-    this.from,
-    this.ip,
+    this.to = const {},
+    this.from = const {},
+    this.ip = const {},
   });
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  MailStatsTypeVolumeTo? to;
+  /// Message counts keyed by destination (envelope `to`) email address.
+  Map<String, int> to;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  MailStatsTypeVolumeFrom? from;
+  /// Message counts keyed by sender (envelope `from`) email address.
+  Map<String, int> from;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  MailStatsTypeVolumeIp? ip;
+  /// Message counts keyed by originating client IP address.
+  Map<String, int> ip;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailStatsTypeVolume &&
-    other.to == to &&
-    other.from == from &&
-    other.ip == ip;
+    _deepEquality.equals(other.to, to) &&
+    _deepEquality.equals(other.from, from) &&
+    _deepEquality.equals(other.ip, ip);
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (to == null ? 0 : to!.hashCode) +
-    (from == null ? 0 : from!.hashCode) +
-    (ip == null ? 0 : ip!.hashCode);
+    (to.hashCode) +
+    (from.hashCode) +
+    (ip.hashCode);
 
   @override
   String toString() => 'MailStatsTypeVolume[to=$to, from=$from, ip=$ip]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.to != null) {
       json[r'to'] = this.to;
-    } else {
-      json[r'to'] = null;
-    }
-    if (this.from != null) {
       json[r'from'] = this.from;
-    } else {
-      json[r'from'] = null;
-    }
-    if (this.ip != null) {
       json[r'ip'] = this.ip;
-    } else {
-      json[r'ip'] = null;
-    }
     return json;
   }
 
@@ -97,9 +70,9 @@ class MailStatsTypeVolume {
       }());
 
       return MailStatsTypeVolume(
-        to: MailStatsTypeVolumeTo.fromJson(json[r'to']),
-        from: MailStatsTypeVolumeFrom.fromJson(json[r'from']),
-        ip: MailStatsTypeVolumeIp.fromJson(json[r'ip']),
+        to: mapCastOfType<String, int>(json, r'to') ?? const {},
+        from: mapCastOfType<String, int>(json, r'from') ?? const {},
+        ip: mapCastOfType<String, int>(json, r'ip') ?? const {},
       );
     }
     return null;

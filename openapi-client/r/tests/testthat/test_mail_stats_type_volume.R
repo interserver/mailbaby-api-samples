@@ -6,21 +6,24 @@ context("Test MailStatsTypeVolume")
 model_instance <- MailStatsTypeVolume$new()
 
 test_that("to", {
-  # tests for the property `to` (MailStatsTypeVolumeTo)
+  # tests for the property `to` (map(integer))
+  # Message counts keyed by destination (envelope &#x60;to&#x60;) email address.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")
 })
 
 test_that("from", {
-  # tests for the property `from` (MailStatsTypeVolumeFrom)
+  # tests for the property `from` (map(integer))
+  # Message counts keyed by sender (envelope &#x60;from&#x60;) email address.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
 })
 
 test_that("ip", {
-  # tests for the property `ip` (MailStatsTypeVolumeIp)
+  # tests for the property `ip` (map(integer))
+  # Message counts keyed by originating client IP address.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`ip`, "EXPECTED_RESULT")

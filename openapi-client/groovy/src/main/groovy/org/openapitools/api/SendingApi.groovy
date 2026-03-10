@@ -7,6 +7,7 @@ import org.openapitools.model.ErrorMessage
 import org.openapitools.model.GenericResponse
 import org.openapitools.model.MailAttachment
 import org.openapitools.model.SendMailRaw
+import org.openapitools.model.SendMailTo
 
 class SendingApi {
     String basePath = "https://api.mailbaby.net"
@@ -92,7 +93,7 @@ class SendingApi {
 
     }
 
-    def sendMail ( String to, String from, String subject, String body, Integer id, Closure onSuccess, Closure onFailure)  {
+    def sendMail ( SendMailTo to, String from, String subject, String body, Long id, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/send"
 
         // params

@@ -6,8 +6,7 @@ context("Test SendMail")
 model_instance <- SendMail$new()
 
 test_that("to", {
-  # tests for the property `to` (character)
-  # The Contact whom is the primary recipient of this email.
+  # tests for the property `to` (SendMailTo)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")
@@ -15,7 +14,7 @@ test_that("to", {
 
 test_that("from", {
   # tests for the property `from` (character)
-  # The contact whom is the this email is from.
+  # The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
@@ -23,7 +22,7 @@ test_that("from", {
 
 test_that("subject", {
   # tests for the property `subject` (character)
-  # The subject or title of the email
+  # The subject line of the email.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`subject`, "EXPECTED_RESULT")
@@ -31,7 +30,7 @@ test_that("subject", {
 
 test_that("body", {
   # tests for the property `body` (character)
-  # The main email contents.
+  # The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`body`, "EXPECTED_RESULT")
@@ -39,7 +38,7 @@ test_that("body", {
 
 test_that("id", {
   # tests for the property `id` (integer)
-  # Optional Order ID
+  # Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")

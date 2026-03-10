@@ -1,6 +1,6 @@
 = MailBaby Email Delivery and Management Service API
 support@interserver.net
-1.3.0
+1.4.0
 :toc: left
 :numbered:
 :toclevels: 4
@@ -14,7 +14,7 @@ support@interserver.net
 
 [abstract]
 .Abstract
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.** # Overview This is the API interface to the [Mail Baby](https//mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net). # Authentication In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
 
 // markup not found, no include::{specDir}intro.adoc[opts=optional]
@@ -38,11 +38,11 @@ support@interserver.net
 
 `POST /mail/rules`
 
-Creates a new email deny rule.
+Creates a new email deny rule
 
 ===== Description
 
-Adds a new email deny rule into the system to block new emails that match the given criteria
+Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. 
 
 
 // markup not found, no include::{specDir}mail/rules/POST/spec.adoc[opts=optional]
@@ -60,7 +60,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
 |Name| Description| Required| Default| Pattern
 
 | user
-| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used. <<string>>
+| Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. <<string>>
 | -
 | null
 | 
@@ -72,7 +72,7 @@ Adds a new email deny rule into the system to block new emails that match the gi
 | 
 
 | data
-| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com. <<string>>
+| The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. <<string>>
 | X
 | null
 | 
@@ -100,22 +100,22 @@ Adds a new email deny rule into the system to block new emails that match the gi
 
 
 | 200
-| search results matching criteria
+| Rule created successfully
 |  <<GenericResponse>>
 
 
 | 400
-| Error message when there was a problem with the input parameters.
+| Bad request — one or more input parameters were missing or invalid.
 |  <<ErrorMessage>>
 
 
 | 401
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 
 | 404
-| The specified resource was not found
+| The specified resource was not found or does not belong to your account.
 |  <<ErrorMessage>>
 
 |===
@@ -147,11 +147,11 @@ endif::internal-generation[]
 
 `DELETE /mail/rules/{ruleId}`
 
-Removes an deny mail rule.
+Removes a deny mail rule
 
 ===== Description
 
-Removes one of the configured deny mail rules from the system.
+Permanently removes a single deny rule identified by its numeric `ruleId`.  The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.  Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account. 
 
 
 // markup not found, no include::{specDir}mail/rules/\{ruleId\}/DELETE/spec.adoc[opts=optional]
@@ -167,7 +167,7 @@ Removes one of the configured deny mail rules from the system.
 |Name| Description| Required| Default| Pattern
 
 | ruleId
-| The ID of the Rules entry. 
+| The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. 
 | X
 | null
 | 
@@ -197,22 +197,22 @@ Removes one of the configured deny mail rules from the system.
 
 
 | 200
-| search results matching criteria
+| Rule deleted successfully
 |  <<GenericResponse>>
 
 
 | 400
-| Error message when there was a problem with the input parameters.
+| Bad request — one or more input parameters were missing or invalid.
 |  <<ErrorMessage>>
 
 
 | 401
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 
 | 404
-| The specified resource was not found
+| The specified resource was not found or does not belong to your account.
 |  <<ErrorMessage>>
 
 |===
@@ -244,11 +244,11 @@ endif::internal-generation[]
 
 `POST /mail/blocks/delete`
 
-Removes an email address from the blocked list
+Removes an email address from the block lists
 
 ===== Description
 
-Removes an email address from the various block lists. 
+Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. 
 
 
 // markup not found, no include::{specDir}mail/blocks/delete/POST/spec.adoc[opts=optional]
@@ -264,8 +264,8 @@ Removes an email address from the various block lists.
 |===
 |Name| Description| Required| Default| Pattern
 
-| body
-|  <<string>>
+| EmailAddressParam
+|  <<EmailAddressParam>>
 | X
 | 
 | 
@@ -294,22 +294,22 @@ Removes an email address from the various block lists.
 
 
 | 200
-| search results matching criteria
+| Address successfully delisted
 |  <<GenericResponse>>
 
 
 | 400
-| Error message when there was a problem with the input parameters.
+| Bad request — one or more input parameters were missing or invalid.
 |  <<ErrorMessage>>
 
 
 | 401
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 
 | 404
-| The specified resource was not found
+| The specified resource was not found or does not belong to your account.
 |  <<ErrorMessage>>
 
 |===
@@ -341,11 +341,11 @@ endif::internal-generation[]
 
 `GET /mail/blocks`
 
-displays a list of blocked email addresses
+Displays a list of blocked email addresses
 
 ===== Description
 
-
+Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. 
 
 
 // markup not found, no include::{specDir}mail/blocks/GET/spec.adoc[opts=optional]
@@ -383,12 +383,7 @@ displays a list of blocked email addresses
 
 
 | 401
-| Unauthorized
-|  <<ErrorMessage>>
-
-
-| 404
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 |===
@@ -420,11 +415,11 @@ endif::internal-generation[]
 
 `GET /mail/rules`
 
-Displays a listing of deny email rules.
+Displays a listing of deny email rules
 
 ===== Description
 
-Returns a listing of all the deny block rules you have configured.
+Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. 
 
 
 // markup not found, no include::{specDir}mail/rules/GET/spec.adoc[opts=optional]
@@ -462,12 +457,7 @@ array[<<DenyRuleRecord>>]
 
 
 | 401
-| Unauthorized
-|  <<ErrorMessage>>
-
-
-| 404
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 |===
@@ -503,11 +493,11 @@ endif::internal-generation[]
 
 `GET /mail/stats`
 
-Account usage statistics.
+Account usage statistics
 
 ===== Description
 
-Returns information about the usage on your mail accounts.
+Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | 
 
 
 // markup not found, no include::{specDir}mail/stats/GET/spec.adoc[opts=optional]
@@ -527,9 +517,9 @@ Returns information about the usage on your mail accounts.
 |Name| Description| Required| Default| Pattern
 
 | time
-| The timeframe for the statistics. 
+| The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;. 
 | -
-| null
+| 1h
 | 
 
 |===
@@ -558,12 +548,7 @@ Returns information about the usage on your mail accounts.
 
 
 | 401
-| Unauthorized
-|  <<ErrorMessage>>
-
-
-| 404
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 |===
@@ -595,11 +580,11 @@ endif::internal-generation[]
 
 `GET /mail/log`
 
-displays the mail log
+Displays the mail log
 
 ===== Description
 
-Get a listing of the emails sent through this system 
+Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
 
 
 // markup not found, no include::{specDir}mail/log/GET/spec.adoc[opts=optional]
@@ -619,85 +604,91 @@ Get a listing of the emails sent through this system
 |Name| Description| Required| Default| Pattern
 
 | id
-| The ID of your mail order this will be sent through. 
+| The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/{id}&#x60;. 
 | -
 | null
 | 
 
 | origin
-| originating ip address sending mail 
+| Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. 
 | -
 | null
 | 
 
 | mx
-| mx record mail was sent to 
+| Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response. 
 | -
 | null
 | 
 
 | from
-| from email address 
+| Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;. 
 | -
 | null
 | 
 
 | to
-| to/destination email address 
+| Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved. 
 | -
 | null
 | 
 
 | subject
-| subject containing this string 
+| Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text. 
 | -
 | null
 | 
 
 | mailid
-| mail id 
+| Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;. 
 | -
 | null
 | 
 
-| skip
-| number of records to skip for pagination 
-| -
-| 0
-| 
-
-| limit
-| maximum number of records to return 
-| -
-| 100
-| 
-
-| startDate
-| earliest date to get emails in unix timestamp format 
-| -
-| null
-| 
-
-| endDate
-| earliest date to get emails in unix timestamp format 
+| messageId
+| Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;. 
 | -
 | null
 | 
 
 | replyto
-| Reply-To Email Address 
+| Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set. 
 | -
 | null
 | 
 
 | headerfrom
-| Header From Email Address 
+| Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address. 
 | -
 | null
 | 
 
 | delivered
-| Limiting the emails to wether or not they were delivered. 
+| Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. 
+| -
+| null
+| 
+
+| skip
+| Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). 
+| -
+| 0
+| 
+
+| limit
+| Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. 
+| -
+| 100
+| 
+
+| startDate
+| Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. 
+| -
+| null
+| 
+
+| endDate
+| Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. 
 | -
 | null
 | 
@@ -723,13 +714,18 @@ Get a listing of the emails sent through this system
 
 
 | 200
-| search results matching criteria
+| Paginated list of mail log entries
 |  <<MailLog>>
 
 
 | 400
-| bad input parameter
-|  <<>>
+| Bad request — one or more input parameters were missing or invalid.
+|  <<ErrorMessage>>
+
+
+| 401
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
+|  <<ErrorMessage>>
 
 |===
 
@@ -764,11 +760,11 @@ endif::internal-generation[]
 
 `POST /mail/rawsend`
 
-Sends a raw email
+Sends a raw RFC 822 email
 
 ===== Description
 
-This call will let you pass the raw / complete email contents (including headers) as a string and have it get sent as-is.  This is useful for things like DKIM signed messages.
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 
 // markup not found, no include::{specDir}mail/rawsend/POST/spec.adoc[opts=optional]
@@ -814,22 +810,22 @@ This call will let you pass the raw / complete email contents (including headers
 
 
 | 200
-| successful email response
+| Email accepted for delivery
 |  <<GenericResponse>>
 
 
 | 400
-| Error message when there was a problem with the input parameters.
+| Bad request — one or more input parameters were missing or invalid.
 |  <<ErrorMessage>>
 
 
 | 401
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 
 | 404
-| The specified resource was not found
+| The specified resource was not found or does not belong to your account.
 |  <<ErrorMessage>>
 
 |===
@@ -865,7 +861,7 @@ Sends an Email with Advanced Options
 
 ===== Description
 
-Sends An email through one of your mail orders allowing additional options such as file attachments, cc, bcc, etc.  Here are 9 examples showing the various ways to call the advsend operation showing the different ways you can pass the to, cc, bcc, and replyto information. The first several examples are all for the application/x-www-form-urlencoded content-type while the later ones are for application/json content-types.  ```BasicForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data to=support@interserver.net ```  ```ArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" ```  ```NameEmailForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=\"Joe <user@domain.com>\" \\ --data to=\"Joe <support@interserver.net>\" ```  ```MultToForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=support@interserver.net, support@interserver.net\" ```  ```MultToFullForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to=Joe <support@interserver.net>, Joe <support@interserver.net>\" ```  ```MultToArrayForm curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/x-www-form-urlencoded' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data 'subject=Welcome' \\ --data 'body=Hello' \\ --data from=user@domain.com \\ --data \"to[0][name]=Joe\" \\ --data \"to[0][email]=support@interserver.net\" \\ --data \"to[1][name]=Joe\" \\ --data \"to[1][email]=support@interserver.net\" ```  ```BasicJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"user@domain.com\", \"to\": \"support@interserver.net\" }' ```  ```ArrayJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": {\"name\": \"Joe\", \"email\": \"user@domain.com\"}, \"to\": [{\"name\": \"Joe\", \"email\": \"support@interserver.net\"}] }' ```  ```NameEmailJson curl -i --request POST --url https://api.mailbaby.net/mail/advsend \\ --header 'Accept: application/json' \\ --header 'Content-Type: application/json' \\ --header 'X-API-KEY: YOUR_API_KEY' \\ --data '{ \"subject\": \"Welcome\", \"body\": \"Hello\", \"from\": \"Joe <user@domain.com>\", \"to\": \"Joe <support@interserver.net>\" }' ``` 
+Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.  **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `\"Joe <joe@example.com>, jane@example.com\"`) and the structured `[{\"email\":\"...\",\"name\":\"...\"}]` array format.  When using JSON, both formats are equally supported.  **HTML detection** is automatic — if `body` contains HTML tags the `Content-Type` is set to `text/html`; otherwise `text/plain`.  **Attachments** must be base64-encoded.  Each attachment requires at least a `data` field; the optional `filename` field controls the attachment name shown to recipients.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  On success the response `text` field contains the relay transaction ID which can be looked up in `GET /mail/log` via the `mailid` query parameter.  ## Examples  ### Form — basic string addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d from=user@domain.com \\   -d to=support@interserver.net ``` ### Form — RFC 822 named addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d 'from=Joe <user@domain.com>' \\   -d 'to=Jane <support@interserver.net>' ``` ### Form — multiple recipients as array ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' -d 'body=Hello' \\   -d from=user@domain.com \\   -d 'to[0][name]=Joe' -d 'to[0][email]=support@interserver.net' \\   -d 'to[1][name]=Jane' -d 'to[1][email]=jane@interserver.net' ``` ### JSON — structured objects ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/json' \\   -d '{     \"subject\": \"Welcome\",     \"body\": \"<h1>Hello</h1>\",     \"from\": {\"email\": \"user@domain.com\", \"name\": \"Sender Name\"},     \"to\": [{\"email\": \"joe@client.com\", \"name\": \"Joe Client\"}],     \"cc\": [{\"email\": \"manager@client.com\"}],     \"attachments\": [{\"filename\": \"report.pdf\", \"data\": \"BASE64_DATA\"}]   }' ``` 
 
 
 // markup not found, no include::{specDir}mail/advsend/POST/spec.adoc[opts=optional]
@@ -883,13 +879,13 @@ Sends An email through one of your mail orders allowing additional options such 
 |Name| Description| Required| Default| Pattern
 
 | subject
-| The subject or title of the email <<string>>
+| The subject line of the email. <<string>>
 | X
 | null
 | 
 
 | body
-| The main email contents. <<string>>
+| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. <<string>>
 | X
 | null
 | 
@@ -925,13 +921,13 @@ Sends An email through one of your mail orders allowing additional options such 
 | 
 
 | attachments
-| (optional) File attachments to include in the email.  The file contents must be base64 encoded! <<MailAttachment>>
+| Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. <<MailAttachment>>
 | -
 | null
 | 
 
 | id
-| (optional)  ID of the Mail order within our system to use as the Mail Account. <<long>>
+| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. <<long>>
 | -
 | null
 | 
@@ -959,22 +955,22 @@ Sends An email through one of your mail orders allowing additional options such 
 
 
 | 200
-| search results matching criteria
+| Email accepted for delivery
 |  <<GenericResponse>>
 
 
 | 400
-| Error message when there was a problem with the input parameters.
+| Bad request — one or more input parameters were missing or invalid.
 |  <<ErrorMessage>>
 
 
 | 401
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 
 | 404
-| The specified resource was not found
+| The specified resource was not found or does not belong to your account.
 |  <<ErrorMessage>>
 
 |===
@@ -1010,7 +1006,7 @@ Sends an Email
 
 ===== Description
 
-Sends an email through one of your mail orders.  *Note*: If you want to send to multiple recipients or use file attachments use the advsend (Advanced Send) call instead. 
+Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 
 // markup not found, no include::{specDir}mail/send/POST/spec.adoc[opts=optional]
@@ -1028,31 +1024,31 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 |Name| Description| Required| Default| Pattern
 
 | to
-| The Contact whom is the primary recipient of this email. <<string>>
+|  <<SendMail_to>>
 | X
 | null
 | 
 
 | from
-| The contact whom is the this email is from. <<string>>
+| The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. <<string>>
 | X
 | null
 | 
 
 | subject
-| The subject or title of the email <<string>>
+| The subject line of the email. <<string>>
 | X
 | null
 | 
 
 | body
-| The main email contents. <<string>>
+| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. <<string>>
 | X
 | null
 | 
 
 | id
-| Optional Order ID <<integer>>
+| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. <<long>>
 | -
 | null
 | 
@@ -1080,22 +1076,22 @@ Sends an email through one of your mail orders.  *Note*: If you want to send to 
 
 
 | 200
-| search results matching criteria
+| Email accepted for delivery
 |  <<GenericResponse>>
 
 
 | 400
-| Error message when there was a problem with the input parameters.
+| Bad request — one or more input parameters were missing or invalid.
 |  <<ErrorMessage>>
 
 
 | 401
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 
 | 404
-| The specified resource was not found
+| The specified resource was not found or does not belong to your account.
 |  <<ErrorMessage>>
 
 |===
@@ -1126,16 +1122,113 @@ endif::internal-generation[]
 === Services
 
 
+[.getMailOrderById]
+==== getMailOrderById
+
+`GET /mail/{id}`
+
+Displays details for a single mail order
+
+===== Description
+
+Returns the full detail record for one specific mail order identified by its numeric `id`.  In addition to the fields returned by `GET /mail`, this endpoint also includes the current **SMTP password** for the order.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. 
+
+
+// markup not found, no include::{specDir}mail/\{id\}/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+====== Path Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+| The numeric ID of the mail order. 
+| X
+| null
+| 
+
+|===
+
+
+
+
+
+
+===== Return Type
+
+<<MailOrderDetail>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<MailOrderDetail>>
+
+
+| 400
+| Bad request — one or more input parameters were missing or invalid.
+|  <<ErrorMessage>>
+
+
+| 401
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
+|  <<ErrorMessage>>
+
+
+| 404
+| The specified resource was not found or does not belong to your account.
+|  <<ErrorMessage>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}mail/\{id\}/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :mail/{id}/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}mail/\{id\}/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
 [.getMailOrders]
 ==== getMailOrders
 
 `GET /mail`
 
-displays a list of mail service orders
+Displays a list of mail service orders
 
 ===== Description
 
-This will return a list of the mail orders you have in our system including their id, status, username, and optional comment.
+Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional human-readable `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
 
 
 // markup not found, no include::{specDir}mail/GET/spec.adoc[opts=optional]
@@ -1173,12 +1266,7 @@ array[<<MailOrder>>]
 
 
 | 401
-| Unauthorized
-|  <<ErrorMessage>>
-
-
-| 404
-| Unauthorized
+| Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
 |  <<ErrorMessage>>
 
 |===
@@ -1218,7 +1306,7 @@ Checks if the server is running
 
 ===== Description
 
-
+A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
 
 
 // markup not found, no include::{specDir}ping/GET/spec.adoc[opts=optional]
@@ -1288,7 +1376,8 @@ endif::internal-generation[]
 [#DenyRuleNew]
 === _DenyRuleNew_ DenyRuleNew
 
-The data for a email deny rule record.
+The fields required to create a new email deny rule via &#x60;POST /mail/rules&#x60;. The &#x60;type&#x60; controls what &#x60;data&#x60; is matched against:
+- &#x60;email&#x60; — exact sender address match - &#x60;domain&#x60; — all senders from a domain - &#x60;destination&#x60; — exact recipient address match - &#x60;startswith&#x60; — sender local-part prefix match (alphanumeric + &#x60;+_.-&#x60; only)
 
 
 [.fields-DenyRuleNew]
@@ -1307,14 +1396,14 @@ The data for a email deny rule record.
 | X
 | 
 |   String  
-| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+| The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
 |     
 
 | user
 | 
 | 
 |   String  
-| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+| Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
 |     
 
 |===
@@ -1324,7 +1413,7 @@ The data for a email deny rule record.
 [#DenyRuleRecord]
 === _DenyRuleRecord_ DenyRuleRecord
 
-The data for a email deny rule record.
+A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;.
 
 
 [.fields-DenyRuleRecord]
@@ -1343,28 +1432,28 @@ The data for a email deny rule record.
 | X
 | 
 |   String  
-| The content of the rule.  If a domain type rule then an example would be google.com. For a begins with type an example would be msgid-.  For the email typer an example would be user@server.com.
+| The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;.
 |     
 
 | id
 | X
 | 
 |   String  
-| The deny rule Id number.
+| The numeric ID of the deny rule, as a string.  Pass this as &#x60;ruleId&#x60; to &#x60;DELETE /mail/rules/{ruleId}&#x60; to remove the rule.
 |     
 
 | created
 | X
 | 
 |   Date  
-| the date the rule was created.
+| The timestamp when the rule was created.
 | date-time    
 
 | user
 | 
 | 
 |   String  
-| Mail account username that will be tied to this rule.  If not specified the first active mail order will be used.
+| Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
 |     
 
 |===
@@ -1374,7 +1463,7 @@ The data for a email deny rule record.
 [#EmailAddressName]
 === _EmailAddressName_ EmailAddressName
 
-An email contact.
+An email contact with an optional display name.  Used in structured address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyto&#x60;) in &#x60;SendMailAdv&#x60;.
 
 
 [.fields-EmailAddressName]
@@ -1387,14 +1476,36 @@ An email contact.
 | 
 |   String  
 | The email address.
-|     
+| email    
 
 | name
 | 
 | 
 |   String  
-| Name to use for the sending contact.
+| Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
 |     
+
+|===
+
+
+
+[#EmailAddressParam]
+=== _EmailAddressParam_ EmailAddressParam
+
+A single email address parameter used as the body of &#x60;POST /mail/blocks/delete&#x60;.
+
+
+[.fields-EmailAddressParam]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| email
+| X
+| 
+|   String  
+| The email address to delist from all block lists.
+| email    
 
 |===
 
@@ -1403,7 +1514,7 @@ An email contact.
 [#EmailAddressTypes]
 === _EmailAddressTypes_ EmailAddressTypes
 
-
+A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (&#x60;&quot;Name &lt;email&gt;&quot;&#x60;), or a structured contact object.
 
 
 [.fields-EmailAddressTypes]
@@ -1416,13 +1527,13 @@ An email contact.
 | 
 |   String  
 | The email address.
-|     
+| email    
 
 | name
 | 
 | 
 |   String  
-| Name to use for the sending contact.
+| Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
 |     
 
 |===
@@ -1430,9 +1541,9 @@ An email contact.
 
 
 [#EmailAddressesTypes]
-=== _EmailAddressesTypes_ EmailAddressTypes
+=== _EmailAddressesTypes_ EmailAddressesTypes
 
-
+A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the &#x60;&quot;Name &lt;email&gt;&quot;&#x60; and bare &#x60;email&#x60; formats).  When an array is provided each entry must have at least an &#x60;email&#x60; field with an optional &#x60;name&#x60; field.
 
 
 [.fields-EmailAddressesTypes]
@@ -1447,7 +1558,7 @@ An email contact.
 [#ErrorMessage]
 === _ErrorMessage_ ErrorMessage
 
-The resposne when an error occurs.
+The response body returned when an error occurs.
 
 
 [.fields-ErrorMessage]
@@ -1459,14 +1570,14 @@ The resposne when an error occurs.
 | X
 | 
 |   Integer  
-| The response code associated with the error.
+| The HTTP-style status code associated with the error.
 | int32    
 
 | message
 | X
 | 
 |   String  
-| The details or description of the error.
+| A human-readable description of the error.
 |     
 
 |===
@@ -1474,9 +1585,9 @@ The resposne when an error occurs.
 
 
 [#GenericResponse]
-=== _GenericResponse_ 
+=== _GenericResponse_ GenericResponse
 
-
+Standard success response returned by write operations (send, add rule, delete, etc.).  The &#x60;status&#x60; field is always &#x60;&quot;ok&quot;&#x60; on success.  The &#x60;text&#x60; field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record&#39;s ID; for delete calls it contains a confirmation string.
 
 
 [.fields-GenericResponse]
@@ -1488,14 +1599,14 @@ The resposne when an error occurs.
 | 
 | 
 |   String  
-| 
+| Always &#x60;\&quot;ok\&quot;&#x60; on success.
 |     
 
 | text
 | 
 | 
 |   String  
-| 
+| Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#39;s numeric ID.  For delete operations this is a human-readable confirmation.
 |     
 
 |===
@@ -1505,7 +1616,7 @@ The resposne when an error occurs.
 [#MailAttachment]
 === _MailAttachment_ MailAttachment
 
-(optional) File attachments to include in the email.  The file contents must be base64
+A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
 
 
 [.fields-MailAttachment]
@@ -1517,15 +1628,15 @@ The resposne when an error occurs.
 | X
 | 
 |   String  
-| The filename of the attached file.
+| The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;).
 |     
 
 | data
 | X
 | 
-|   String  
-| The file contents base64 encoded
-|     
+|   byte[]  
+| The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
+| byte    
 
 |===
 
@@ -1534,7 +1645,7 @@ The resposne when an error occurs.
 [#MailBlockClickHouse]
 === _MailBlockClickHouse_ MailBlockClickHouse
 
-A block entry from the clickhouse mailblocks server.
+A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (&#x60;LOCAL_BL_RCPT&#x60; or &#x60;MBTRAP&#x60;). The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
 
 
 [.fields-MailBlockClickHouse]
@@ -1546,35 +1657,35 @@ A block entry from the clickhouse mailblocks server.
 | X
 | 
 |   date  
-| 
+| The date the block event was recorded.
 | date    
 
 | from
 | X
 | 
 |   String  
-| 
-|     
-
-| messageId
-| X
-| 
-|   String  
-| 
+| The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it.
 |     
 
 | subject
 | X
 | 
 |   String  
-| 
+| The &#x60;Subject&#x60; header of the blocked message.
 |     
 
 | to
 | X
 | 
 |   String  
+| The serialized list of recipients of the blocked message.
+|     
+
+| messageId
 | 
+| X
+|   String  
+| The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
 |     
 
 |===
@@ -1584,7 +1695,7 @@ A block entry from the clickhouse mailblocks server.
 [#MailBlockRspamd]
 === _MailBlockRspamd_ MailBlockRspamd
 
-This is a block entry from the rspamd block list.
+A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
 
 
 [.fields-MailBlockRspamd]
@@ -1596,14 +1707,14 @@ This is a block entry from the rspamd block list.
 | X
 | 
 |   String  
-| 
+| The sender email address.  Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist the sender.
 |     
 
 | subject
 | X
 | 
 |   String  
-| 
+| The suspicious subject pattern that triggered the block.
 |     
 
 |===
@@ -1613,7 +1724,7 @@ This is a block entry from the rspamd block list.
 [#MailBlocks]
 === _MailBlocks_ MailBlocks
 
-The listing of blocked emails.
+The complete set of blocked addresses and message patterns returned by &#x60;GET /mail/blocks&#x60;.  Three independent block sources are combined into one response. Use &#x60;POST /mail/blocks/delete&#x60; with a &#x60;from&#x60; address from any entry to delist it.
 
 
 [.fields-MailBlocks]
@@ -1625,21 +1736,21 @@ The listing of blocked emails.
 | X
 | 
 |   List   of <<MailBlockClickHouse>>
-| 
+| Messages flagged by the &#x60;LOCAL_BL_RCPT&#x60; rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
 |     
 
 | mbtrap
 | X
 | 
 |   List   of <<MailBlockClickHouse>>
-| 
+| Messages flagged by the &#x60;MBTRAP&#x60; rspamd rule in the last 5 days. These triggered MailBaby&#39;s honeypot / trap address detection.
 |     
 
 | subject
 | X
 | 
 |   List   of <<MailBlockRspamd>>
-| 
+| Senders whose messages contained spam-indicative subjects (containing &#x60;@&#x60;, &#x60;smtp&#x60;, &#x60;socks4&#x60;, or &#x60;socks5&#x60;) with more than 4 occurrences of the same subject in the last 3 days.
 |     
 
 |===
@@ -1649,7 +1760,7 @@ The listing of blocked emails.
 [#MailLog]
 === _MailLog_ MailLog
 
-Mail log records
+Paginated mail log response returned by &#x60;GET /mail/log&#x60;.  Contains the full matched count (&#x60;total&#x60;) plus a page of &#x60;MailLogEntry&#x60; records.  Use &#x60;skip&#x60; and &#x60;limit&#x60; to page through large result sets.
 
 
 [.fields-MailLog]
@@ -1661,21 +1772,21 @@ Mail log records
 | X
 | 
 |   Integer  
-| total number of mail log entries
+| Total number of log entries that match the supplied filters, regardless of &#x60;skip&#x60; and &#x60;limit&#x60;.  Use this to calculate the number of pages: &#x60;ceil(total / limit)&#x60;.
 |     
 
 | skip
 | X
 | 
 |   Integer  
-| number of emails skipped in listing
+| The &#x60;skip&#x60; value used for this page (echoed from the request).
 |     
 
 | limit
 | X
 | 
 |   Integer  
-| number of emails to return
+| The &#x60;limit&#x60; value used for this page (echoed from the request).
 |     
 
 | emails
@@ -1692,7 +1803,15 @@ Mail log records
 [#MailLogEntry]
 === _MailLogEntry_ MailLogEntry
 
-An email record
+A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).
+
+Key field relationships with other API calls:
+- The &#x60;id&#x60; field matches the &#x60;mailid&#x60; query parameter on &#x60;GET /mail/log&#x60; and
+  the &#x60;text&#x60; field of a successful send response.
+- The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist a
+  flagged sender.
+- The &#x60;user&#x60; field is the SMTP username (e.g. &#x60;mb5658&#x60;) corresponding to the
+  &#x60;username&#x60; field in &#x60;GET /mail&#x60; / &#x60;GET /mail/{id}&#x60;.
 
 
 [.fields-MailLogEntry]
@@ -1704,161 +1823,168 @@ An email record
 | X
 | 
 |   Integer  
-| internal db id
+| Internal auto-increment database row ID.  Not meaningful outside the API.
 |     
 
 | id
 | X
 | 
 |   String  
-| mail id
+| The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;.
 |     
 
 | from
 | X
 | 
 |   String  
-| from address
+| SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header).
 |     
 
 | to
 | X
 | 
 |   String  
-| to address
-|     
-
-| subject
-| X
-| 
-|   String  
-| email subject
+| SMTP envelope &#x60;RCPT TO&#x60; address.
 |     
 
 | created
 | X
 | 
 |   String  
-| creation date
+| Human-readable creation timestamp in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format.
 |     
 
 | time
 | X
 | 
 |   Integer  
-| creation timestamp
+| Unix timestamp of message acceptance.  Corresponds to the &#x60;startDate&#x60; and &#x60;endDate&#x60; filter parameters on &#x60;GET /mail/log&#x60;.
 |     
 
 | user
 | X
 | 
 |   String  
-| user account
+| The SMTP AUTH username used to submit the message (e.g. &#x60;mb5658&#x60;). Corresponds to the &#x60;username&#x60; field in &#x60;GET /mail&#x60; orders.
 |     
 
 | transtype
 | X
 | 
 |   String  
-| transaction type
+| SMTP transaction type negotiated with the relay (e.g. &#x60;ESMTPSA&#x60;).
 |     
 
 | origin
 | X
 | 
 |   String  
-| origin ip
+| IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;.
 |     
 
 | interface
 | X
 | 
 |   String  
-| interface name
+| Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;).
 |     
 
-| sendingZone
-| X
+| subject
 | 
+| X
 |   String  
-| sending zone
-|     
-
-| bodySize
-| X
-| 
-|   Integer  
-| email body size in bytes
-|     
-
-| seq
-| X
-| 
-|   Integer  
-| index of email in the to adderess list
-|     
-
-| recipient
-| X
-| 
-|   String  
-| to address this email is being sent to
-|     
-
-| domain
-| X
-| 
-|   String  
-| to address domain
-|     
-
-| locked
-| X
-| 
-|   Integer  
-| locked status
-|     
-
-| lockTime
-| X
-| 
-|   String  
-| lock timestamp
-|     
-
-| assigned
-| X
-| 
-|   String  
-| assigned server
-|     
-
-| queued
-| X
-| 
-|   String  
-| queued timestamp
-|     
-
-| mxHostname
-| X
-| 
-|   String  
-| mx hostname
-|     
-
-| response
-| X
-| 
-|   String  
-| mail delivery response
+| The &#x60;Subject&#x60; header value, if available.
 |     
 
 | messageId
 | 
-| 
+| X
 |   String  
-| message id
+| The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups.
+|     
+
+| sendingZone
+| 
+| X
+|   String  
+| The sending zone assigned by the relay for outbound delivery.
+|     
+
+| bodySize
+| 
+| X
+|   Integer  
+| Size of the message body in bytes.
+|     
+
+| seq
+| 
+| X
+|   Integer  
+| Sequence index of this recipient in a multi-recipient message. Starts at 1.
+|     
+
+| delivered
+| 
+| X
+|   Integer  
+| Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;.
+|     
+
+| response
+| 
+| X
+|   String  
+| The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).
+|     
+
+| recipient
+| 
+| X
+|   String  
+| The specific recipient address this delivery record is for.
+|     
+
+| domain
+| 
+| X
+|   String  
+| The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;.
+|     
+
+| locked
+| 
+| X
+|   Integer  
+| Whether the queue entry is currently locked for delivery processing.
+|     
+
+| lockTime
+| 
+| X
+|   String  
+| Millisecond-precision timestamp of the last queue lock acquisition.
+|     
+
+| assigned
+| 
+| X
+|   String  
+| The relay server node assigned to deliver this message.
+|     
+
+| queued
+| 
+| X
+|   String  
+| ISO 8601 timestamp when the message was placed into the delivery queue.
+|     
+
+| mxHostname
+| 
+| X
+|   String  
+| The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;.
 |     
 
 |===
@@ -1868,7 +1994,7 @@ An email record
 [#MailOrder]
 === _MailOrder_ MailOrder
 
-A mail order record
+A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;.
 
 
 [.fields-MailOrder]
@@ -1880,28 +2006,78 @@ A mail order record
 | X
 | 
 |   Integer  
-| The ID of the order.
+| The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
 | int32    
 
 | status
 | X
 | 
 |   String  
-| The order status.
+| The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
 |     
 
 | username
 | X
 | 
 |   String  
-| The username to use for this order.
+| The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed.
 |     
 
 | comment
 | 
 | 
 |   String  
-| Optional order comment.
+| Optional human-readable note associated with the order.
+|     
+
+|===
+
+
+
+[#MailOrderDetail]
+=== _MailOrderDetail_ MailOrderDetail
+
+Extended mail order record including the current SMTP password.  Returned by &#x60;GET /mail/{id}&#x60;.  The &#x60;username&#x60; and &#x60;password&#x60; fields can be used to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API.
+
+
+[.fields-MailOrderDetail]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+| id
+| X
+| 
+|   Integer  
+| The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
+| int32    
+
+| status
+| X
+| 
+|   String  
+| The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
+|     
+
+| username
+| X
+| 
+|   String  
+| The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed.
+|     
+
+| password
+| X
+| 
+|   String  
+| The current SMTP AUTH password for this mail order.  Use with the &#x60;username&#x60; field to authenticate against &#x60;relay.mailbaby.net:25&#x60;.
+|     
+
+| comment
+| 
+| 
+|   String  
+| Optional human-readable note associated with the order.
 |     
 
 |===
@@ -1909,9 +2085,9 @@ A mail order record
 
 
 [#MailStatsType]
-=== _MailStatsType_ Root Type for MailStatsType
+=== _MailStatsType_ MailStatsType
 
-Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 
 
 [.fields-MailStatsType]
@@ -1923,49 +2099,42 @@ Statistics about the mail usage including volume by IP, To address, and From add
 | 
 | 
 |  <<String>>  
-| 
-|  _Enum:_ all, billing, month, 7d, 24h, today, 1h,  
+| The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
+|  _Enum:_ all, billing, month, 7d, 24h, day, 1h,  
 
 | usage
 | 
 | 
 |   Integer  
-| 
+| Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value.
 | int32    
 
 | currency
 | 
 | 
 |   String  
-| 
-|     
-
-| currencySymbol
-| 
-| 
-|   String  
-| 
+| The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;).
 |     
 
 | cost
 | 
 | 
 |   Double  
-| 
+| Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
 | double    
 
 | received
 | 
 | 
 |   Integer  
-| 
+| Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue.
 | int32    
 
 | sent
 | 
 | 
 |   Integer  
-| 
+| Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;.
 | int32    
 
 | volume
@@ -1982,7 +2151,7 @@ Statistics about the mail usage including volume by IP, To address, and From add
 [#MailStatsTypeVolume]
 === _MailStatsTypeVolume_ 
 
-
+Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window.
 
 
 [.fields-MailStatsTypeVolume]
@@ -1993,137 +2162,22 @@ Statistics about the mail usage including volume by IP, To address, and From add
 | to
 | 
 | 
-| <<MailStatsType_volume_to>>    
-| 
-|     
+|   Map   of <<integer>>
+| Message counts keyed by destination (envelope &#x60;to&#x60;) email address.
+| int32    
 
 | from
 | 
 | 
-| <<MailStatsType_volume_from>>    
-| 
-|     
+|   Map   of <<integer>>
+| Message counts keyed by sender (envelope &#x60;from&#x60;) email address.
+| int32    
 
 | ip
 | 
 | 
-| <<MailStatsType_volume_ip>>    
-| 
-|     
-
-|===
-
-
-
-[#MailStatsTypeVolumeFrom]
-=== _MailStatsTypeVolumeFrom_ 
-
-
-
-
-[.fields-MailStatsTypeVolumeFrom]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
-
-| billing@somedomain.com
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| sales@somedomain.com
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-|===
-
-
-
-[#MailStatsTypeVolumeIp]
-=== _MailStatsTypeVolumeIp_ 
-
-
-
-
-[.fields-MailStatsTypeVolumeIp]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
-
-| 1.1.1.1
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| 2.2.2.2
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| 3.3.3.3
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| 4.4.4.4
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-|===
-
-
-
-[#MailStatsTypeVolumeTo]
-=== _MailStatsTypeVolumeTo_ 
-
-
-
-
-[.fields-MailStatsTypeVolumeTo]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
-
-| client@domain.com
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| user@site.net
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| sales@company.com
-| 
-| 
-|   Integer  
-| 
-| int32    
-
-| client@anothersite.com
-| 
-| 
-|   Integer  
-| 
+|   Map   of <<integer>>
+| Message counts keyed by originating client IP address.
 | int32    
 
 |===
@@ -2133,7 +2187,9 @@ Statistics about the mail usage including volume by IP, To address, and From add
 [#SendMail]
 === _SendMail_ SendMail
 
-Details for an Email
+Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.
+
+For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead.
 
 
 [.fields-SendMail]
@@ -2144,37 +2200,37 @@ Details for an Email
 | to
 | X
 | 
-|   String  
-| The Contact whom is the primary recipient of this email.
+| <<SendMail_to>>    
+| 
 |     
 
 | from
 | X
 | 
 |   String  
-| The contact whom is the this email is from.
-|     
+| The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.
+| email    
 
 | subject
 | X
 | 
 |   String  
-| The subject or title of the email
+| The subject line of the email.
 |     
 
 | body
 | X
 | 
 |   String  
-| The main email contents.
+| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
 |     
 
 | id
 | 
 | 
-|   Integer  
-| Optional Order ID
-|     
+|   Long  
+| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
+| int64    
 
 |===
 
@@ -2183,7 +2239,11 @@ Details for an Email
 [#SendMailAdv]
 === _SendMailAdv_ SendMailAdv
 
-Details for an Email
+Request body for &#x60;POST /mail/advsend&#x60;.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.
+
+Address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;replyto&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;) each accept either a plain RFC 822 string (e.g. &#x60;&quot;Joe &lt;joe@example.com&gt;&quot;&#x60; or a comma-separated list) or a structured array of &#x60;{&quot;email&quot;: &quot;...&quot;, &quot;name&quot;: &quot;...&quot;}&#x60; objects.
+
+HTML detection is automatic based on whether &#x60;body&#x60; contains HTML tags.
 
 
 [.fields-SendMailAdv]
@@ -2195,14 +2255,14 @@ Details for an Email
 | X
 | 
 |   String  
-| The subject or title of the email
+| The subject line of the email.
 |     
 
 | body
 | X
 | 
 |   String  
-| The main email contents.
+| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
 |     
 
 | from
@@ -2244,14 +2304,14 @@ Details for an Email
 | 
 | 
 |   List   of <<MailAttachment>>
-| (optional) File attachments to include in the email.  The file contents must be base64 encoded!
+| Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name.
 |     
 
 | id
 | 
 | 
 |   Long  
-| (optional)  ID of the Mail order within our system to use as the Mail Account.
+| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;.
 | int64    
 
 |===
@@ -2259,9 +2319,11 @@ Details for an Email
 
 
 [#SendMailRaw]
-=== _SendMailRaw_ Root Type for RawMail
+=== _SendMailRaw_ SendMailRaw
 
-Raw Email Object
+Request body for &#x60;POST /mail/rawsend&#x60;.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing &#x60;DKIM-Signature&#x60; header intact.
+
+The &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, and &#x60;Bcc&#x60; addresses are extracted from the message headers automatically — you do not need to specify them separately.
 
 
 [.fields-SendMailRaw]
@@ -2273,15 +2335,30 @@ Raw Email Object
 | X
 | 
 |   String  
-| The entire email contents
+| The complete RFC 822 email message including all headers and the body. Must include at minimum &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Subject&#x60;, &#x60;Date&#x60;, and &#x60;MIME-Version&#x60; headers.  DKIM signatures in the &#x60;DKIM-Signature&#x60; header are transmitted verbatim and will pass verification at the destination.
 |     
 
 | id
 | 
 | 
-|   Integer  
-| Optional order id
-|     
+|   Long  
+| Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by &#x60;GET /mail&#x60;.
+| int64    
+
+|===
+
+
+
+[#SendMailTo]
+=== _SendMailTo_ 
+
+The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+
+
+[.fields-SendMailTo]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
 
 |===
 

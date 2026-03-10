@@ -8,15 +8,15 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.
+ * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  */
-@ApiModel(description="Statistics about the mail usage including volume by IP, To address, and From address; as well as total sent / delivered counts and cost.")
+@ApiModel(description="Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.")
 
 public class MailStatsType  {
   
 public enum TimeEnum {
 
-ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.valueOf("month")), _7D(String.valueOf("7d")), _24H(String.valueOf("24h")), TODAY(String.valueOf("today")), _1H(String.valueOf("1h"));
+ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.valueOf("month")), _7D(String.valueOf("7d")), _24H(String.valueOf("24h")), DAY(String.valueOf("day")), _1H(String.valueOf("1h"));
 
 
     private String value;
@@ -44,31 +44,45 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
     }
 }
 
-  @ApiModelProperty(value = "")
+ /**
+  * The time window these `received`, `sent`, and `volume` statistics cover.
+  */
+  @ApiModelProperty(value = "The time window these `received`, `sent`, and `volume` statistics cover.")
 
   private TimeEnum time = TimeEnum._1H;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+  */
+  @ApiModelProperty(value = "Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.")
 
   private Integer usage;
 
-  @ApiModelProperty(value = "")
+ /**
+  * The ISO 4217 currency code for this account (e.g. `USD`).
+  */
+  @ApiModelProperty(value = "The ISO 4217 currency code for this account (e.g. `USD`).")
 
   private String currency;
 
-  @ApiModelProperty(value = "")
-
-  private String currencySymbol;
-
-  @ApiModelProperty(value = "")
+ /**
+  * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+  */
+  @ApiModelProperty(value = "Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).")
 
   private Double cost;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+  */
+  @ApiModelProperty(value = "Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.")
 
   private Integer received;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
+  */
+  @ApiModelProperty(value = "Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.")
 
   private Integer sent;
 
@@ -76,7 +90,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
 
   private MailStatsTypeVolume volume;
  /**
-   * Get time
+   * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
    * @return time
   **/
   @JsonProperty("time")
@@ -97,7 +111,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
   }
 
  /**
-   * Get usage
+   * Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value.
    * @return usage
   **/
   @JsonProperty("usage")
@@ -115,7 +129,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
   }
 
  /**
-   * Get currency
+   * The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;).
    * @return currency
   **/
   @JsonProperty("currency")
@@ -133,25 +147,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
   }
 
  /**
-   * Get currencySymbol
-   * @return currencySymbol
-  **/
-  @JsonProperty("currencySymbol")
-  public String getCurrencySymbol() {
-    return currencySymbol;
-  }
-
-  public void setCurrencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-  }
-
-  public MailStatsType currencySymbol(String currencySymbol) {
-    this.currencySymbol = currencySymbol;
-    return this;
-  }
-
- /**
-   * Get cost
+   * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
    * @return cost
   **/
   @JsonProperty("cost")
@@ -169,7 +165,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
   }
 
  /**
-   * Get received
+   * Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue.
    * @return received
   **/
   @JsonProperty("received")
@@ -187,7 +183,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
   }
 
  /**
-   * Get sent
+   * Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;.
    * @return sent
   **/
   @JsonProperty("sent")
@@ -234,7 +230,6 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
     return Objects.equals(this.time, mailStatsType.time) &&
         Objects.equals(this.usage, mailStatsType.usage) &&
         Objects.equals(this.currency, mailStatsType.currency) &&
-        Objects.equals(this.currencySymbol, mailStatsType.currencySymbol) &&
         Objects.equals(this.cost, mailStatsType.cost) &&
         Objects.equals(this.received, mailStatsType.received) &&
         Objects.equals(this.sent, mailStatsType.sent) &&
@@ -243,7 +238,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
 
   @Override
   public int hashCode() {
-    return Objects.hash(time, usage, currency, currencySymbol, cost, received, sent, volume);
+    return Objects.hash(time, usage, currency, cost, received, sent, volume);
   }
 
   @Override
@@ -254,7 +249,6 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    currencySymbol: ").append(toIndentedString(currencySymbol)).append("\n");
     sb.append("    cost: ").append(toIndentedString(cost)).append("\n");
     sb.append("    received: ").append(toIndentedString(received)).append("\n");
     sb.append("    sent: ").append(toIndentedString(sent)).append("\n");

@@ -17,101 +17,99 @@ class MailLogEntry {
     required this.id,
     required this.from,
     required this.to,
-    required this.subject,
     required this.created,
     required this.time,
     required this.user,
     required this.transtype,
     required this.origin,
     required this.interface_,
-    required this.sendingZone,
-    required this.bodySize,
-    required this.seq,
-    required this.recipient,
-    required this.domain,
-    required this.locked,
-    required this.lockTime,
-    required this.assigned,
-    required this.queued,
-    required this.mxHostname,
-    required this.response,
+    this.subject,
     this.messageId,
+    this.sendingZone,
+    this.bodySize,
+    this.seq,
+    this.delivered,
+    this.response,
+    this.recipient,
+    this.domain,
+    this.locked,
+    this.lockTime,
+    this.assigned,
+    this.queued,
+    this.mxHostname,
   });
 
-  /// internal db id
+  /// Internal auto-increment database row ID.  Not meaningful outside the API.
   int id;
 
-  /// mail id
+  /// The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
   String id;
 
-  /// from address
+  /// SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
   String from;
 
-  /// to address
+  /// SMTP envelope `RCPT TO` address.
   String to;
 
-  /// email subject
-  String subject;
-
-  /// creation date
+  /// Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
   String created;
 
-  /// creation timestamp
+  /// Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
   int time;
 
-  /// user account
+  /// The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
   String user;
 
-  /// transaction type
+  /// SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
   String transtype;
 
-  /// origin ip
+  /// IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
   String origin;
 
-  /// interface name
+  /// Relay interface name that accepted the message (e.g. `feeder`).
   String interface_;
 
-  /// sending zone
-  String sendingZone;
+  /// The `Subject` header value, if available.
+  String? subject;
 
-  /// email body size in bytes
-  int bodySize;
-
-  /// index of email in the to adderess list
-  int seq;
-
-  /// to address this email is being sent to
-  String recipient;
-
-  /// to address domain
-  String domain;
-
-  /// locked status
-  int locked;
-
-  /// lock timestamp
-  String lockTime;
-
-  /// assigned server
-  String assigned;
-
-  /// queued timestamp
-  String queued;
-
-  /// mx hostname
-  String mxHostname;
-
-  /// mail delivery response
-  String response;
-
-  /// message id
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
+  /// The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
   String? messageId;
+
+  /// The sending zone assigned by the relay for outbound delivery.
+  String? sendingZone;
+
+  /// Size of the message body in bytes.
+  int? bodySize;
+
+  /// Sequence index of this recipient in a multi-recipient message. Starts at 1.
+  int? seq;
+
+  /// Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+  int? delivered;
+
+  /// The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
+  String? response;
+
+  /// The specific recipient address this delivery record is for.
+  String? recipient;
+
+  /// The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
+  String? domain;
+
+  /// Whether the queue entry is currently locked for delivery processing.
+  int? locked;
+
+  /// Millisecond-precision timestamp of the last queue lock acquisition.
+  String? lockTime;
+
+  /// The relay server node assigned to deliver this message.
+  String? assigned;
+
+  /// ISO 8601 timestamp when the message was placed into the delivery queue.
+  String? queued;
+
+  /// The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
+  String? mxHostname;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailLogEntry &&
@@ -119,25 +117,26 @@ class MailLogEntry {
     other.id == id &&
     other.from == from &&
     other.to == to &&
-    other.subject == subject &&
     other.created == created &&
     other.time == time &&
     other.user == user &&
     other.transtype == transtype &&
     other.origin == origin &&
     other.interface_ == interface_ &&
+    other.subject == subject &&
+    other.messageId == messageId &&
     other.sendingZone == sendingZone &&
     other.bodySize == bodySize &&
     other.seq == seq &&
+    other.delivered == delivered &&
+    other.response == response &&
     other.recipient == recipient &&
     other.domain == domain &&
     other.locked == locked &&
     other.lockTime == lockTime &&
     other.assigned == assigned &&
     other.queued == queued &&
-    other.mxHostname == mxHostname &&
-    other.response == response &&
-    other.messageId == messageId;
+    other.mxHostname == mxHostname;
 
   @override
   int get hashCode =>
@@ -146,28 +145,29 @@ class MailLogEntry {
     (id.hashCode) +
     (from.hashCode) +
     (to.hashCode) +
-    (subject.hashCode) +
     (created.hashCode) +
     (time.hashCode) +
     (user.hashCode) +
     (transtype.hashCode) +
     (origin.hashCode) +
     (interface_.hashCode) +
-    (sendingZone.hashCode) +
-    (bodySize.hashCode) +
-    (seq.hashCode) +
-    (recipient.hashCode) +
-    (domain.hashCode) +
-    (locked.hashCode) +
-    (lockTime.hashCode) +
-    (assigned.hashCode) +
-    (queued.hashCode) +
-    (mxHostname.hashCode) +
-    (response.hashCode) +
-    (messageId == null ? 0 : messageId!.hashCode);
+    (subject == null ? 0 : subject!.hashCode) +
+    (messageId == null ? 0 : messageId!.hashCode) +
+    (sendingZone == null ? 0 : sendingZone!.hashCode) +
+    (bodySize == null ? 0 : bodySize!.hashCode) +
+    (seq == null ? 0 : seq!.hashCode) +
+    (delivered == null ? 0 : delivered!.hashCode) +
+    (response == null ? 0 : response!.hashCode) +
+    (recipient == null ? 0 : recipient!.hashCode) +
+    (domain == null ? 0 : domain!.hashCode) +
+    (locked == null ? 0 : locked!.hashCode) +
+    (lockTime == null ? 0 : lockTime!.hashCode) +
+    (assigned == null ? 0 : assigned!.hashCode) +
+    (queued == null ? 0 : queued!.hashCode) +
+    (mxHostname == null ? 0 : mxHostname!.hashCode);
 
   @override
-  String toString() => 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, subject=$subject, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface_=$interface_, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname, response=$response, messageId=$messageId]';
+  String toString() => 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface_=$interface_, subject=$subject, messageId=$messageId, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, delivered=$delivered, response=$response, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -175,28 +175,81 @@ class MailLogEntry {
       json[r'id'] = this.id;
       json[r'from'] = this.from;
       json[r'to'] = this.to;
-      json[r'subject'] = this.subject;
       json[r'created'] = this.created;
       json[r'time'] = this.time;
       json[r'user'] = this.user;
       json[r'transtype'] = this.transtype;
       json[r'origin'] = this.origin;
       json[r'interface'] = this.interface_;
-      json[r'sendingZone'] = this.sendingZone;
-      json[r'bodySize'] = this.bodySize;
-      json[r'seq'] = this.seq;
-      json[r'recipient'] = this.recipient;
-      json[r'domain'] = this.domain;
-      json[r'locked'] = this.locked;
-      json[r'lockTime'] = this.lockTime;
-      json[r'assigned'] = this.assigned;
-      json[r'queued'] = this.queued;
-      json[r'mxHostname'] = this.mxHostname;
-      json[r'response'] = this.response;
+    if (this.subject != null) {
+      json[r'subject'] = this.subject;
+    } else {
+      json[r'subject'] = null;
+    }
     if (this.messageId != null) {
       json[r'messageId'] = this.messageId;
     } else {
       json[r'messageId'] = null;
+    }
+    if (this.sendingZone != null) {
+      json[r'sendingZone'] = this.sendingZone;
+    } else {
+      json[r'sendingZone'] = null;
+    }
+    if (this.bodySize != null) {
+      json[r'bodySize'] = this.bodySize;
+    } else {
+      json[r'bodySize'] = null;
+    }
+    if (this.seq != null) {
+      json[r'seq'] = this.seq;
+    } else {
+      json[r'seq'] = null;
+    }
+    if (this.delivered != null) {
+      json[r'delivered'] = this.delivered;
+    } else {
+      json[r'delivered'] = null;
+    }
+    if (this.response != null) {
+      json[r'response'] = this.response;
+    } else {
+      json[r'response'] = null;
+    }
+    if (this.recipient != null) {
+      json[r'recipient'] = this.recipient;
+    } else {
+      json[r'recipient'] = null;
+    }
+    if (this.domain != null) {
+      json[r'domain'] = this.domain;
+    } else {
+      json[r'domain'] = null;
+    }
+    if (this.locked != null) {
+      json[r'locked'] = this.locked;
+    } else {
+      json[r'locked'] = null;
+    }
+    if (this.lockTime != null) {
+      json[r'lockTime'] = this.lockTime;
+    } else {
+      json[r'lockTime'] = null;
+    }
+    if (this.assigned != null) {
+      json[r'assigned'] = this.assigned;
+    } else {
+      json[r'assigned'] = null;
+    }
+    if (this.queued != null) {
+      json[r'queued'] = this.queued;
+    } else {
+      json[r'queued'] = null;
+    }
+    if (this.mxHostname != null) {
+      json[r'mxHostname'] = this.mxHostname;
+    } else {
+      json[r'mxHostname'] = null;
     }
     return json;
   }
@@ -224,25 +277,26 @@ class MailLogEntry {
         id: mapValueOfType<String>(json, r'id')!,
         from: mapValueOfType<String>(json, r'from')!,
         to: mapValueOfType<String>(json, r'to')!,
-        subject: mapValueOfType<String>(json, r'subject')!,
         created: mapValueOfType<String>(json, r'created')!,
         time: mapValueOfType<int>(json, r'time')!,
         user: mapValueOfType<String>(json, r'user')!,
         transtype: mapValueOfType<String>(json, r'transtype')!,
         origin: mapValueOfType<String>(json, r'origin')!,
         interface_: mapValueOfType<String>(json, r'interface')!,
-        sendingZone: mapValueOfType<String>(json, r'sendingZone')!,
-        bodySize: mapValueOfType<int>(json, r'bodySize')!,
-        seq: mapValueOfType<int>(json, r'seq')!,
-        recipient: mapValueOfType<String>(json, r'recipient')!,
-        domain: mapValueOfType<String>(json, r'domain')!,
-        locked: mapValueOfType<int>(json, r'locked')!,
-        lockTime: mapValueOfType<String>(json, r'lockTime')!,
-        assigned: mapValueOfType<String>(json, r'assigned')!,
-        queued: mapValueOfType<String>(json, r'queued')!,
-        mxHostname: mapValueOfType<String>(json, r'mxHostname')!,
-        response: mapValueOfType<String>(json, r'response')!,
+        subject: mapValueOfType<String>(json, r'subject'),
         messageId: mapValueOfType<String>(json, r'messageId'),
+        sendingZone: mapValueOfType<String>(json, r'sendingZone'),
+        bodySize: mapValueOfType<int>(json, r'bodySize'),
+        seq: mapValueOfType<int>(json, r'seq'),
+        delivered: mapValueOfType<int>(json, r'delivered'),
+        response: mapValueOfType<String>(json, r'response'),
+        recipient: mapValueOfType<String>(json, r'recipient'),
+        domain: mapValueOfType<String>(json, r'domain'),
+        locked: mapValueOfType<int>(json, r'locked'),
+        lockTime: mapValueOfType<String>(json, r'lockTime'),
+        assigned: mapValueOfType<String>(json, r'assigned'),
+        queued: mapValueOfType<String>(json, r'queued'),
+        mxHostname: mapValueOfType<String>(json, r'mxHostname'),
       );
     }
     return null;
@@ -294,24 +348,12 @@ class MailLogEntry {
     'id',
     'from',
     'to',
-    'subject',
     'created',
     'time',
     'user',
     'transtype',
     'origin',
     'interface',
-    'sendingZone',
-    'bodySize',
-    'seq',
-    'recipient',
-    'domain',
-    'locked',
-    'lockTime',
-    'assigned',
-    'queued',
-    'mxHostname',
-    'response',
   };
 }
 

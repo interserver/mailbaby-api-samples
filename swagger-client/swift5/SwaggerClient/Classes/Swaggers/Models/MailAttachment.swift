@@ -8,16 +8,16 @@
 import Foundation
 
 
-/** (optional) File attachments to include in the email.  The file contents must be base64 */
+/** A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client. */
 
 public struct MailAttachment: Codable {
 
-    /** The filename of the attached file. */
+    /** The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). */
     public var filename: String
-    /** The file contents base64 encoded */
-    public var data: String
+    /** The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. */
+    public var data: Data
 
-    public init(filename: String, data: String) {
+    public init(filename: String, data: Data) {
         self.filename = filename
         self.data = data
     }

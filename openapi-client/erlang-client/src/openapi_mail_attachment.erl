@@ -6,7 +6,7 @@
 
 -type openapi_mail_attachment() ::
     #{ 'filename' := binary(),
-       'data' := binary()
+       'data' := openapi_byte_array:openapi_byte_array()
      }.
 
 encode(#{ 'filename' := Filename,

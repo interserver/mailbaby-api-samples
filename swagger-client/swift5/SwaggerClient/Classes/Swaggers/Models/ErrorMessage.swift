@@ -8,13 +8,13 @@
 import Foundation
 
 
-/** The resposne when an error occurs. */
+/** The response body returned when an error occurs. */
 
 public struct ErrorMessage: Codable {
 
-    /** The response code associated with the error. */
+    /** The HTTP-style status code associated with the error. */
     public var code: Int
-    /** The details or description of the error. */
+    /** A human-readable description of the error. */
     public var message: String
 
     public init(code: Int, message: String) {

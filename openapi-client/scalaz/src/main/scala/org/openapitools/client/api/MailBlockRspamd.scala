@@ -12,8 +12,10 @@ import org.joda.time.DateTime
 import MailBlockRspamd._
 
 case class MailBlockRspamd (
+  /* The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender. */
   from: String,
-subject: String)
+/* The suspicious subject pattern that triggered the block. */
+  subject: String)
 
 object MailBlockRspamd {
   import DateTimeCodecs._

@@ -7,19 +7,24 @@
 
 import Foundation
 
-/// A block entry from the clickhouse mailblocks server. 
+/// A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (&#x60;LOCAL_BL_RCPT&#x60; or &#x60;MBTRAP&#x60;). The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it. 
 public struct MailBlockClickHouse: Codable {
+    /// The date the block event was recorded.
     public var date: Date
+    /// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
     public var from: String
-    public var messageId: String
+    /// The `Subject` header of the blocked message.
     public var subject: String
+    /// The serialized list of recipients of the blocked message.
     public var to: String
+    /// The `Message-ID` header of the blocked message, or `null` if not present.
+    public var messageId: String?
 
-    public init(date: Date, from: String, messageId: String, subject: String, to: String) {
+    public init(date: Date, from: String, subject: String, to: String, messageId: String? = nil) {
         self.date = date
         self.from = from
-        self.messageId = messageId
         self.subject = subject
         self.to = to
+        self.messageId = messageId
     }
 }

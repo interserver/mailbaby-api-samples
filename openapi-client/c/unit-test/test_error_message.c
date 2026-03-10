@@ -23,12 +23,12 @@ error_message_t* instantiate_error_message(int include_optional) {
   if (include_optional) {
     error_message = error_message_create(
       400,
-      "There was an error."
+      "The specified ID was invalid."
     );
   } else {
     error_message = error_message_create(
       400,
-      "There was an error."
+      "The specified ID was invalid."
     );
   }
 

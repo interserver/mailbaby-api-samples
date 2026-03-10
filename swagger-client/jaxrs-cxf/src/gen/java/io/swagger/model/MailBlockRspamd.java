@@ -16,18 +16,24 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 /**
-  * This is a block entry from the rspamd block list.
+  * A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
  **/
-@Schema(description="This is a block entry from the rspamd block list.")
+@Schema(description="A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 public class MailBlockRspamd   {
   
-  @Schema(required = true, description = "")
+  @Schema(example = "user@domain.com", required = true, description = "The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.")
+ /**
+   * The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.  
+  **/
   private String from = null;
   
-  @Schema(required = true, description = "")
+  @Schema(example = "Test email", required = true, description = "The suspicious subject pattern that triggered the block.")
+ /**
+   * The suspicious subject pattern that triggered the block.  
+  **/
   private String subject = null;
  /**
-   * Get from
+   * The sender email address.  Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist the sender.
    * @return from
   **/
   @JsonProperty("from")
@@ -46,7 +52,7 @@ public class MailBlockRspamd   {
   }
 
  /**
-   * Get subject
+   * The suspicious subject pattern that triggered the block.
    * @return subject
   **/
   @JsonProperty("subject")

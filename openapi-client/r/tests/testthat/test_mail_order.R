@@ -7,7 +7,7 @@ model_instance <- MailOrder$new()
 
 test_that("id", {
   # tests for the property `id` (integer)
-  # The ID of the order.
+  # The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")
@@ -15,7 +15,7 @@ test_that("id", {
 
 test_that("status", {
   # tests for the property `status` (character)
-  # The order status.
+  # The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`status`, "EXPECTED_RESULT")
@@ -23,7 +23,7 @@ test_that("status", {
 
 test_that("username", {
   # tests for the property `username` (character)
-  # The username to use for this order.
+  # The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`username`, "EXPECTED_RESULT")
@@ -31,7 +31,7 @@ test_that("username", {
 
 test_that("comment", {
   # tests for the property `comment` (character)
-  # Optional order comment.
+  # Optional human-readable note associated with the order.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`comment`, "EXPECTED_RESULT")

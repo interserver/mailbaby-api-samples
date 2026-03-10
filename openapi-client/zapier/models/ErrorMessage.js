@@ -6,13 +6,13 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}code`,
-                label: `The response code associated with the error. - [${labelPrefix}code]`,
+                label: `The HTTP-style status code associated with the error. - [${labelPrefix}code]`,
                 required: true,
                 type: 'integer',
             },
             {
                 key: `${keyPrefix}message`,
-                label: `The details or description of the error. - [${labelPrefix}message]`,
+                label: `A human-readable description of the error. - [${labelPrefix}message]`,
                 required: true,
                 type: 'string',
             },

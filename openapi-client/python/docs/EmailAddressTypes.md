@@ -1,13 +1,13 @@
 # EmailAddressTypes
 
-
+A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | **str** | The email address. | 
-**name** | **str** | Name to use for the sending contact. | [optional] 
+**name** | **str** | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). | [optional] 
 
 ## Example
 

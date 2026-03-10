@@ -8,6 +8,7 @@ src/gen/java/org/openapitools/api/StatusApi.java
 src/gen/java/org/openapitools/model/DenyRuleNew.java
 src/gen/java/org/openapitools/model/DenyRuleRecord.java
 src/gen/java/org/openapitools/model/EmailAddressName.java
+src/gen/java/org/openapitools/model/EmailAddressParam.java
 src/gen/java/org/openapitools/model/EmailAddressTypes.java
 src/gen/java/org/openapitools/model/EmailAddressesTypes.java
 src/gen/java/org/openapitools/model/ErrorMessage.java
@@ -19,14 +20,13 @@ src/gen/java/org/openapitools/model/MailBlocks.java
 src/gen/java/org/openapitools/model/MailLog.java
 src/gen/java/org/openapitools/model/MailLogEntry.java
 src/gen/java/org/openapitools/model/MailOrder.java
+src/gen/java/org/openapitools/model/MailOrderDetail.java
 src/gen/java/org/openapitools/model/MailStatsType.java
 src/gen/java/org/openapitools/model/MailStatsTypeVolume.java
-src/gen/java/org/openapitools/model/MailStatsTypeVolumeFrom.java
-src/gen/java/org/openapitools/model/MailStatsTypeVolumeIp.java
-src/gen/java/org/openapitools/model/MailStatsTypeVolumeTo.java
 src/gen/java/org/openapitools/model/SendMail.java
 src/gen/java/org/openapitools/model/SendMailAdv.java
 src/gen/java/org/openapitools/model/SendMailRaw.java
+src/gen/java/org/openapitools/model/SendMailTo.java
 src/test/java/org/openapitools/api/BlockingApiTest.java
 src/test/java/org/openapitools/api/HistoryApiTest.java
 src/test/java/org/openapitools/api/SendingApiTest.java

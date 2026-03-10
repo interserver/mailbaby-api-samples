@@ -3,9 +3,9 @@ package org.openapitools.client.model
 
 
 case class MailAttachment (
-    /* The filename of the attached file. */
+    /* The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`). */
     _filename: String,
-    /* The file contents base64 encoded */
+    /* The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. */
     _data: String
 )
 object MailAttachment {

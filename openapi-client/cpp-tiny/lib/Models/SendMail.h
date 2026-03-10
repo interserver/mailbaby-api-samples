@@ -2,7 +2,7 @@
 /*
  * SendMail.h
  *
- * Details for an Email
+ * Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead.
  */
 
 #ifndef TINY_CPP_CLIENT_SendMail_H_
@@ -12,11 +12,12 @@
 #include <string>
 #include "bourne/json.hpp"
 #include "Helpers.h"
+#include "SendMail_to.h"
 
 namespace Tiny {
 
 
-/*! \brief Details for an Email
+/*! \brief Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
  *
  *  \ingroup Models
  *
@@ -45,49 +46,49 @@ public:
 	 */
     void fromJson(std::string jsonObj);
 
-	/*! \brief Get The Contact whom is the primary recipient of this email.
+	/*! \brief Get 
 	 */
-	std::string getTo();
+	SendMail_to getTo();
 
-	/*! \brief Set The Contact whom is the primary recipient of this email.
+	/*! \brief Set 
 	 */
-	void setTo(std::string to);
-	/*! \brief Get The contact whom is the this email is from.
+	void setTo(SendMail_to to);
+	/*! \brief Get The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 	 */
 	std::string getFrom();
 
-	/*! \brief Set The contact whom is the this email is from.
+	/*! \brief Set The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 	 */
 	void setFrom(std::string from);
-	/*! \brief Get The subject or title of the email
+	/*! \brief Get The subject line of the email.
 	 */
 	std::string getSubject();
 
-	/*! \brief Set The subject or title of the email
+	/*! \brief Set The subject line of the email.
 	 */
 	void setSubject(std::string subject);
-	/*! \brief Get The main email contents.
+	/*! \brief Get The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	 */
 	std::string getBody();
 
-	/*! \brief Set The main email contents.
+	/*! \brief Set The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	 */
 	void setBody(std::string body);
-	/*! \brief Get Optional Order ID
+	/*! \brief Get Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 	 */
-	int getId();
+	long getId();
 
-	/*! \brief Set Optional Order ID
+	/*! \brief Set Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 	 */
-	void setId(int id);
+	void setId(long id);
 
 
     private:
-    std::string to{};
+    SendMail_to to;
     std::string from{};
     std::string subject{};
     std::string body{};
-    int id{};
+    long id{};
 };
 }
 

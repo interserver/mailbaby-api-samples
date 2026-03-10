@@ -7,7 +7,7 @@ model_instance <- SendMailRaw$new()
 
 test_that("raw_email", {
   # tests for the property `raw_email` (character)
-  # The entire email contents
+  # The complete RFC 822 email message including all headers and the body. Must include at minimum &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Subject&#x60;, &#x60;Date&#x60;, and &#x60;MIME-Version&#x60; headers.  DKIM signatures in the &#x60;DKIM-Signature&#x60; header are transmitted verbatim and will pass verification at the destination.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`raw_email`, "EXPECTED_RESULT")
@@ -15,7 +15,7 @@ test_that("raw_email", {
 
 test_that("id", {
   # tests for the property `id` (integer)
-  # Optional order id
+  # Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by &#x60;GET /mail&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`id`, "EXPECTED_RESULT")

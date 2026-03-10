@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 
 /**
- * This is a block entry from the rspamd block list.
+ * A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
  **/
-@Schema(description = "This is a block entry from the rspamd block list.")
+@Schema(description = "A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.")
 
 
 public class MailBlockRspamd   {
@@ -17,6 +17,7 @@ public class MailBlockRspamd   {
   @JsonProperty("subject")
   private String subject = null;
   /**
+   * The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
    **/
   public MailBlockRspamd from(String from) {
     this.from = from;
@@ -24,7 +25,7 @@ public class MailBlockRspamd   {
   }
 
   
-  @Schema(required = true, description = "")
+  @Schema(example = "user@domain.com", required = true, description = "The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.")
   @JsonProperty("from")
   public String getFrom() {
     return from;
@@ -34,6 +35,7 @@ public class MailBlockRspamd   {
   }
 
   /**
+   * The suspicious subject pattern that triggered the block.
    **/
   public MailBlockRspamd subject(String subject) {
     this.subject = subject;
@@ -41,7 +43,7 @@ public class MailBlockRspamd   {
   }
 
   
-  @Schema(required = true, description = "")
+  @Schema(example = "Test email", required = true, description = "The suspicious subject pattern that triggered the block.")
   @JsonProperty("subject")
   public String getSubject() {
     return subject;

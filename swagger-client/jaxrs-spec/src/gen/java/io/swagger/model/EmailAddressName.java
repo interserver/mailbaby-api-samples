@@ -5,12 +5,12 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 
 /**
- * An email contact.
+ * An email contact with an optional display name.  Used in structured address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyto&#x60;) in &#x60;SendMailAdv&#x60;.
  **/
 import io.swagger.annotations.*;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@Schema(description = "An email contact.")
+@Schema(description = "An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.")
 
 public class EmailAddressName  implements EmailAddressTypes  {
 
@@ -39,7 +39,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
   }
 
   /**
-   * Name to use for the sending contact.
+   * Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
    **/
   public EmailAddressName name(String name) {
     this.name = name;
@@ -47,7 +47,7 @@ public class EmailAddressName  implements EmailAddressTypes  {
   }
 
   
-  @ApiModelProperty(example = "John Smith", value = "Name to use for the sending contact.")
+  @ApiModelProperty(example = "John Smith", value = "Optional display name shown to recipients (e.g. in the `From:` header).")
   @JsonProperty("name")
   @NotNull
 

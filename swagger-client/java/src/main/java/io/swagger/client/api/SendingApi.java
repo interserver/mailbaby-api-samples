@@ -34,6 +34,7 @@ import io.swagger.client.model.MailAttachment;
 import io.swagger.client.model.SendMail;
 import io.swagger.client.model.SendMailAdv;
 import io.swagger.client.model.SendMailRaw;
+import io.swagger.client.model.SendMailTo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -679,7 +680,7 @@ public class SendingApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call sendMailCall(Object to, String from, String subject, String body, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call sendMailCall(SendMailTo to, String from, String subject, String body, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -734,7 +735,7 @@ public class SendingApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call sendMailValidateBeforeCall(Object to, String from, String subject, String body, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call sendMailValidateBeforeCall(SendMailTo to, String from, String subject, String body, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'to' is set
         if (to == null) {
             throw new ApiException("Missing the required parameter 'to' when calling sendMail(Async)");
@@ -776,7 +777,7 @@ public class SendingApi {
      * @return GenericResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GenericResponse sendMail(Object to, String from, String subject, String body, Long id) throws ApiException {
+    public GenericResponse sendMail(SendMailTo to, String from, String subject, String body, Long id) throws ApiException {
         ApiResponse<GenericResponse> resp = sendMailWithHttpInfo(to, from, subject, body, id);
         return resp.getData();
     }
@@ -792,7 +793,7 @@ public class SendingApi {
      * @return ApiResponse&lt;GenericResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GenericResponse> sendMailWithHttpInfo(Object to, String from, String subject, String body, Long id) throws ApiException {
+    public ApiResponse<GenericResponse> sendMailWithHttpInfo(SendMailTo to, String from, String subject, String body, Long id) throws ApiException {
         com.squareup.okhttp.Call call = sendMailValidateBeforeCall(to, from, subject, body, id, null, null);
         Type localVarReturnType = new TypeToken<GenericResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -810,7 +811,7 @@ public class SendingApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call sendMailAsync(Object to, String from, String subject, String body, Long id, final ApiCallback<GenericResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call sendMailAsync(SendMailTo to, String from, String subject, String body, Long id, final ApiCallback<GenericResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

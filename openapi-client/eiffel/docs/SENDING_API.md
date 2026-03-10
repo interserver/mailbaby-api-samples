@@ -90,7 +90,7 @@ Sends an email through one of your mail orders using a simple flat set of fields
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**SEND_MAIL_TO**](SendMail_to.md)|  | [default to null]
+ **to** | [**SEND_MAIL_TO**](SendMailTo.md)|  | [default to null]
  **var_from** | **STRING_32**| The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | [default to null]
  **subject** | **STRING_32**| The subject line of the email. | [default to null]
  **body** | **STRING_32**| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | [default to null]

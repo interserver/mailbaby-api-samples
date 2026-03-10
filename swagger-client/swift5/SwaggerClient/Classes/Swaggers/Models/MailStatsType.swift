@@ -33,9 +33,9 @@ public struct MailStatsType: Codable {
     public var received: Int?
     /** Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. */
     public var sent: Int?
-    public var volume: MailStatsTypeVolume?
+    public var volume: MailStatsVolume?
 
-    public init(time: Time? = nil, usage: Int? = nil, currency: String? = nil, cost: Double? = nil, received: Int? = nil, sent: Int? = nil, volume: MailStatsTypeVolume? = nil) {
+    public init(time: Time? = nil, usage: Int? = nil, currency: String? = nil, cost: Double? = nil, received: Int? = nil, sent: Int? = nil, volume: MailStatsVolume? = nil) {
         self.time = time
         self.usage = usage
         self.currency = currency

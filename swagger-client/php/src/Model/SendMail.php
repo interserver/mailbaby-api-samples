@@ -57,7 +57,7 @@ class SendMail implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'to' => 'OneOfSendMailTo',
+        'to' => '\Interserver\Mailbaby\Model\SendMailTo',
         'from' => 'string',
         'subject' => 'string',
         'body' => 'string',
@@ -241,7 +241,7 @@ class SendMail implements ModelInterface, ArrayAccess
     /**
      * Gets to
      *
-     * @return OneOfSendMailTo
+     * @return \Interserver\Mailbaby\Model\SendMailTo
      */
     public function getTo()
     {
@@ -251,7 +251,7 @@ class SendMail implements ModelInterface, ArrayAccess
     /**
      * Sets to
      *
-     * @param OneOfSendMailTo $to The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+     * @param \Interserver\Mailbaby\Model\SendMailTo $to to
      *
      * @return $this
      */

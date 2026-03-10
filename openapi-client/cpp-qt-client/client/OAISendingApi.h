@@ -24,7 +24,7 @@
 #include "OAIGenericResponse.h"
 #include "OAIMailAttachment.h"
 #include "OAISendMailRaw.h"
-#include "OAISendMail_to.h"
+#include "OAISendMailTo.h"
 #include <QString>
 
 #include <QObject>
@@ -83,13 +83,13 @@ public:
     virtual void sendAdvMail(const QString &subject, const QString &body, const OAIEmailAddressTypes &from, const OAIEmailAddressesTypes &to, const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &replyto = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &cc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<OAIEmailAddressesTypes> &bcc = ::OpenAPI::OptionalParam<OAIEmailAddressesTypes>(), const ::OpenAPI::OptionalParam<QList<OAIMailAttachment>> &attachments = ::OpenAPI::OptionalParam<QList<OAIMailAttachment>>(), const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
 
     /**
-    * @param[in]  to OAISendMail_to [required]
+    * @param[in]  to OAISendMailTo [required]
     * @param[in]  from QString [required]
     * @param[in]  subject QString [required]
     * @param[in]  body QString [required]
     * @param[in]  id qint64 [optional]
     */
-    virtual void sendMail(const OAISendMail_to &to, const QString &from, const QString &subject, const QString &body, const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
+    virtual void sendMail(const OAISendMailTo &to, const QString &from, const QString &subject, const QString &body, const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>());
 
 
 private:

@@ -70,7 +70,7 @@ SendMail <- R6::R6Class(
     fromJSON = function(SendMailJson) {
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
       if (!is.null(SendMailObject$`to`)) {
-        toObject <- OneOfSendMailTo$new()
+        toObject <- SendMailTo$new()
         toObject$fromJSON(jsonlite::toJSON(SendMailObject$to, auto_unbox = TRUE))
         self$`to` <- toObject
       }
@@ -105,8 +105,8 @@ SendMail <- R6::R6Class(
     },
     fromJSONString = function(SendMailJson) {
       SendMailObject <- jsonlite::fromJSON(SendMailJson)
-      OneOfSendMailToObject <- OneOfSendMailTo$new()
-      self$`to` <- OneOfSendMailToObject$fromJSON(jsonlite::toJSON(SendMailObject$to, auto_unbox = TRUE))
+      SendMailToObject <- SendMailTo$new()
+      self$`to` <- SendMailToObject$fromJSON(jsonlite::toJSON(SendMailObject$to, auto_unbox = TRUE))
       self$`from` <- SendMailObject$`from`
       self$`subject` <- SendMailObject$`subject`
       self$`body` <- SendMailObject$`body`

@@ -12,7 +12,7 @@
 #include <string>
 #include "bourne/json.hpp"
 #include "Helpers.h"
-#include "EmailAddressName.h"
+#include "EmailAddressNames.h"
 
 namespace Tiny {
 

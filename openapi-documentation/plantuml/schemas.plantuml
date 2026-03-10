@@ -1,0 +1,172 @@
+@startuml
+
+title MailBaby Email Delivery and Management Service API Schemas Diagram
+
+entity DenyRuleNew {
+    * type: String
+    * data: String
+    user: String
+}
+
+entity DenyRuleRecord {
+}
+
+entity EmailAddressName {
+    * email: String
+    name: String
+}
+
+entity EmailAddressNames {
+}
+
+entity EmailAddressParam {
+    * email: String
+}
+
+entity EmailAddressTypes {
+    * email: String
+    name: String
+}
+
+entity EmailAddressesTypes {
+}
+
+entity ErrorMessage {
+    * code: Integer
+    * message: String
+}
+
+entity GenericResponse {
+    status: String
+    text: String
+}
+
+entity MailAttachment {
+    * filename: String
+    * data: Byte[]
+}
+
+entity MailBlockClickHouse {
+    * date: Date
+    * from: String
+    * subject: String
+    * to: String
+    messageId: String
+}
+
+entity MailBlockRspamd {
+    * from: String
+    * subject: String
+}
+
+entity MailBlocks {
+    * local: List<MailBlockClickHouse>
+    * mbtrap: List<MailBlockClickHouse>
+    * subject: List<MailBlockRspamd>
+}
+
+entity MailLog {
+    * total: Integer
+    * skip: Integer
+    * limit: Integer
+    * emails: List<MailLogEntry>
+}
+
+entity MailLogEntry {
+    * _id: Integer
+    * id: String
+    * from: String
+    * to: String
+    * created: String
+    * time: Integer
+    * user: String
+    * transtype: String
+    * origin: String
+    * interface: String
+    subject: String
+    messageId: String
+    sendingZone: String
+    bodySize: Integer
+    seq: Integer
+    delivered: Integer
+    response: String
+    recipient: String
+    domain: String
+    locked: Integer
+    lockTime: String
+    assigned: String
+    queued: String
+    mxHostname: String
+}
+
+entity MailOrder {
+    * id: Integer
+    * status: String
+    * username: String
+    comment: String
+}
+
+entity MailOrderDetail {
+}
+
+entity MailStatsType {
+    time: String
+    usage: Integer
+    currency: String
+    cost: Double
+    received: Integer
+    sent: Integer
+    volume: MailStatsVolume
+}
+
+entity MailStatsVolume {
+    to: Map
+    from: Map
+    ip: Map
+}
+
+entity SendMail {
+    * to: SendMailTo
+    * from: String
+    * subject: String
+    * body: String
+    id: Long
+}
+
+entity SendMailAdv {
+    * subject: String
+    * body: String
+    * from: EmailAddressTypes
+    * to: EmailAddressesTypes
+    replyto: EmailAddressesTypes
+    cc: EmailAddressesTypes
+    bcc: EmailAddressesTypes
+    attachments: List<MailAttachment>
+    id: Long
+}
+
+entity SendMailRaw {
+    * raw_email: String
+    id: Long
+}
+
+entity SendMailTo {
+}
+
+DenyRuleNew <|--- DenyRuleRecord
+MailOrder <|--- MailOrderDetail
+
+MailStatsType -- MailStatsVolume : volume
+SendMailAdv -- EmailAddressTypes : from
+SendMailAdv -- EmailAddressesTypes : to
+SendMailAdv -- EmailAddressesTypes : replyto
+SendMailAdv -- EmailAddressesTypes : cc
+SendMailAdv -- EmailAddressesTypes : bcc
+SendMailAdv -- "0..*" MailAttachment : attachments
+SendMail -- SendMailTo : to
+MailLog -- "0..*" MailLogEntry : emails
+MailBlocks -- "0..*" MailBlockClickHouse : local
+MailBlocks -- "0..*" MailBlockClickHouse : mbtrap
+MailBlocks -- "0..*" MailBlockRspamd : subject
+
+@enduml

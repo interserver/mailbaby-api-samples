@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const MailStatsType_volume = require('../models/MailStatsType_volume');
+const MailStatsVolume = require('../models/MailStatsVolume');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
@@ -44,7 +44,7 @@ module.exports = {
                 label: `Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. - [${labelPrefix}sent]`,
                 type: 'integer',
             },
-            ...MailStatsType_volume.fields(`${keyPrefix}volume`, isInput),
+            ...MailStatsVolume.fields(`${keyPrefix}volume`, isInput),
         ]
     },
     mapping: (bundle, prefix = '') => {
@@ -56,7 +56,7 @@ module.exports = {
             'cost': bundle.inputData?.[`${keyPrefix}cost`],
             'received': bundle.inputData?.[`${keyPrefix}received`],
             'sent': bundle.inputData?.[`${keyPrefix}sent`],
-            'volume': utils.removeIfEmpty(MailStatsType_volume.mapping(bundle, `${keyPrefix}volume`)),
+            'volume': utils.removeIfEmpty(MailStatsVolume.mapping(bundle, `${keyPrefix}volume`)),
         }
     },
 }

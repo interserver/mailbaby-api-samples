@@ -14,7 +14,7 @@
 #include "GenericResponse.h"
 #include "MailAttachment.h"
 #include "SendMailRaw.h"
-#include "SendMail_to.h"
+#include "SendMailTo.h"
 
 namespace Tiny {
 
@@ -104,7 +104,7 @@ public:
         >
     sendMail(
             
-            SendMail_to to
+            SendMailTo to
             , 
             
             std::string from

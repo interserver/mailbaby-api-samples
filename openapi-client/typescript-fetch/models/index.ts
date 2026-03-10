@@ -3,6 +3,7 @@
 export * from './DenyRuleNew';
 export * from './DenyRuleRecord';
 export * from './EmailAddressName';
+export * from './EmailAddressNames';
 export * from './EmailAddressParam';
 export * from './EmailAddressTypes';
 export * from './EmailAddressesTypes';
@@ -17,7 +18,7 @@ export * from './MailLogEntry';
 export * from './MailOrder';
 export * from './MailOrderDetail';
 export * from './MailStatsType';
-export * from './MailStatsTypeVolume';
+export * from './MailStatsVolume';
 export * from './SendMail';
 export * from './SendMailAdv';
 export * from './SendMailRaw';

@@ -21,6 +21,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class MailApiServiceImpl implements MailApiService {
       return Response.ok().entity("magic!").build();
   }
       @Override
-      public Response sendMail(Object to, String from, String subject, String body, Long id, SecurityContext securityContext) {
+      public Response sendMail(SendMailTo to, String from, String subject, String body, Long id, SecurityContext securityContext) {
       // do some magic!
       return Response.ok().entity("magic!").build();
   }

@@ -66,7 +66,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, JsonSerializable
         'cost' => 'float',
         'received' => 'int',
         'sent' => 'int',
-        'volume' => '\OpenAPI\Client\Model\MailStatsTypeVolume'
+        'volume' => '\OpenAPI\Client\Model\MailStatsVolume'
     ];
 
     /**
@@ -540,9 +540,9 @@ class MailStatsType implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets volume
      *
-     * @return \OpenAPI\Client\Model\MailStatsTypeVolume|null
+     * @return \OpenAPI\Client\Model\MailStatsVolume|null
      */
-    public function getVolume(): ?\OpenAPI\Client\Model\MailStatsTypeVolume
+    public function getVolume(): ?\OpenAPI\Client\Model\MailStatsVolume
     {
         return $this->container['volume'];
     }
@@ -550,11 +550,11 @@ class MailStatsType implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets volume
      *
-     * @param \OpenAPI\Client\Model\MailStatsTypeVolume|null $volume volume
+     * @param \OpenAPI\Client\Model\MailStatsVolume|null $volume volume
      *
      * @return $this
      */
-    public function setVolume(?\OpenAPI\Client\Model\MailStatsTypeVolume $volume): static
+    public function setVolume(?\OpenAPI\Client\Model\MailStatsVolume $volume): static
     {
         if (is_null($volume)) {
             throw new InvalidArgumentException('non-nullable volume cannot be null');

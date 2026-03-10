@@ -15,7 +15,7 @@ case class MailStatsType (
     _received: Option[Integer],
     /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
     _sent: Option[Integer],
-    _volume: Option[MailStatsTypeVolume]
+    _volume: Option[MailStatsVolume]
 )
 object MailStatsType {
     def toStringBody(var_time: Object, var_usage: Object, var_currency: Object, var_cost: Object, var_received: Object, var_sent: Object, var_volume: Object) =

@@ -138,7 +138,7 @@ using namespace Tiny;
         SendingApi::
         sendMail(
             
-            SendMail_to to
+            SendMailTo to
             , 
             
             std::string from

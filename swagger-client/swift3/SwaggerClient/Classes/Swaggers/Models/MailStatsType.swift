@@ -31,7 +31,7 @@ open class MailStatsType: JSONEncodable {
     public var received: Int32?
     /** Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. */
     public var sent: Int32?
-    public var volume: MailStatsTypeVolume?
+    public var volume: MailStatsVolume?
 
     public init() {}
 

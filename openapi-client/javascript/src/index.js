@@ -16,6 +16,7 @@ import ApiClient from './ApiClient';
 import DenyRuleNew from './model/DenyRuleNew';
 import DenyRuleRecord from './model/DenyRuleRecord';
 import EmailAddressName from './model/EmailAddressName';
+import EmailAddressNames from './model/EmailAddressNames';
 import EmailAddressParam from './model/EmailAddressParam';
 import EmailAddressTypes from './model/EmailAddressTypes';
 import EmailAddressesTypes from './model/EmailAddressesTypes';
@@ -30,7 +31,7 @@ import MailLogEntry from './model/MailLogEntry';
 import MailOrder from './model/MailOrder';
 import MailOrderDetail from './model/MailOrderDetail';
 import MailStatsType from './model/MailStatsType';
-import MailStatsTypeVolume from './model/MailStatsTypeVolume';
+import MailStatsVolume from './model/MailStatsVolume';
 import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import SendMailRaw from './model/SendMailRaw';
@@ -97,6 +98,12 @@ export {
      * @property {module:model/EmailAddressName}
      */
     EmailAddressName,
+
+    /**
+     * The EmailAddressNames model constructor.
+     * @property {module:model/EmailAddressNames}
+     */
+    EmailAddressNames,
 
     /**
      * The EmailAddressParam model constructor.
@@ -183,10 +190,10 @@ export {
     MailStatsType,
 
     /**
-     * The MailStatsTypeVolume model constructor.
-     * @property {module:model/MailStatsTypeVolume}
+     * The MailStatsVolume model constructor.
+     * @property {module:model/MailStatsVolume}
      */
-    MailStatsTypeVolume,
+    MailStatsVolume,
 
     /**
      * The SendMail model constructor.

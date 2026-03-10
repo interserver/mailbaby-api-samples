@@ -264,7 +264,7 @@ $apiInstance = new Interserver\Mailbaby\Api\SendingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$to = new \Interserver\Mailbaby\Model\null(); //  | 
+$to = new \Interserver\Mailbaby\Model\SendMailTo(); // \Interserver\Mailbaby\Model\SendMailTo | 
 $from = "from_example"; // string | 
 $subject = "subject_example"; // string | 
 $body = "body_example"; // string | 
@@ -283,7 +283,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [****](../Model/.md)|  |
+ **to** | [**\Interserver\Mailbaby\Model\SendMailTo**](../Model/.md)|  |
  **from** | **string**|  |
  **subject** | **string**|  |
  **body** | **string**|  |

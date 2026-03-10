@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { EmailAddressNames } from '../models/EmailAddressNames';
 import { HttpFile } from '../http/http';
 
 /**
@@ -20,7 +21,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type EmailAddressesTypes = Array<EmailAddressName> | string;
+export type EmailAddressesTypes = EmailAddressNames | string;
 
 /**
 * @type EmailAddressesTypesClass

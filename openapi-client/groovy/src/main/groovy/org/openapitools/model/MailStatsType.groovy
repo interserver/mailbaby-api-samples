@@ -3,7 +3,7 @@ package org.openapitools.model;
 import groovy.transform.Canonical
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.openapitools.model.MailStatsTypeVolume;
+import org.openapitools.model.MailStatsVolume;
 
 @Canonical
 class MailStatsType {
@@ -53,5 +53,5 @@ class MailStatsType {
     /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
     Integer sent
     
-    MailStatsTypeVolume volume
+    MailStatsVolume volume
 }

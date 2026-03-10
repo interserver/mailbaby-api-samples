@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Api.StatusApi
+# Interserver.MailBaby.Client.Api.StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -18,9 +18,9 @@ A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {

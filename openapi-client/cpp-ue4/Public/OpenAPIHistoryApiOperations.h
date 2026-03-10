@@ -93,8 +93,8 @@ public:
 	TOptional<FString> Headerfrom;
 	enum class DeliveredEnum
 	{
-		_0,
-		_1,
+		NotDelivered,
+		Delivered,
   	};
 
 	static FString EnumToString(const DeliveredEnum& EnumValue);

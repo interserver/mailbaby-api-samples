@@ -10,6 +10,7 @@ docs/index.html
 docs/models/DenyRuleNew.html
 docs/models/DenyRuleRecord.html
 docs/models/EmailAddressName.html
+docs/models/EmailAddressNames.html
 docs/models/EmailAddressParam.html
 docs/models/EmailAddressTypes.html
 docs/models/EmailAddressesTypes.html
@@ -24,7 +25,7 @@ docs/models/MailLogEntry.html
 docs/models/MailOrder.html
 docs/models/MailOrderDetail.html
 docs/models/MailStatsType.html
-docs/models/MailStatsTypeVolume.html
+docs/models/MailStatsVolume.html
 docs/models/SendMail.html
 docs/models/SendMailAdv.html
 docs/models/SendMailRaw.html

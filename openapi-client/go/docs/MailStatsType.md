@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Cost** | Pointer to **float64** | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). | [optional] 
 **Received** | Pointer to **int32** | Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue. | [optional] 
 **Sent** | Pointer to **int32** | Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. | [optional] 
-**Volume** | Pointer to [**MailStatsTypeVolume**](MailStatsTypeVolume.md) |  | [optional] 
+**Volume** | Pointer to [**MailStatsVolume**](MailStatsVolume.md) |  | [optional] 
 
 ## Methods
 
@@ -183,20 +183,20 @@ HasSent returns a boolean if a field has been set.
 
 ### GetVolume
 
-`func (o *MailStatsType) GetVolume() MailStatsTypeVolume`
+`func (o *MailStatsType) GetVolume() MailStatsVolume`
 
 GetVolume returns the Volume field if non-nil, zero value otherwise.
 
 ### GetVolumeOk
 
-`func (o *MailStatsType) GetVolumeOk() (*MailStatsTypeVolume, bool)`
+`func (o *MailStatsType) GetVolumeOk() (*MailStatsVolume, bool)`
 
 GetVolumeOk returns a tuple with the Volume field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVolume
 
-`func (o *MailStatsType) SetVolume(v MailStatsTypeVolume)`
+`func (o *MailStatsType) SetVolume(v MailStatsVolume)`
 
 SetVolume sets Volume field to given value.
 

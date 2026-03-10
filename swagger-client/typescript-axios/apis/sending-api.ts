@@ -25,7 +25,7 @@ import { MailAttachment } from '../models';
 import { SendMail } from '../models';
 import { SendMailAdv } from '../models';
 import { SendMailRaw } from '../models';
-import { string | Array&lt;string&gt; } from '../models';
+import { SendMailTo } from '../models';
 /**
  * SendingApi - axios parameter creator
  * @export
@@ -330,7 +330,7 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Sends an Email
-         * @param {string | Array<string>} to 
+         * @param {SendMailTo} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
@@ -338,7 +338,7 @@ export const SendingApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMailForm: async (to: string | Array<string>, from: string, subject: string, body: string, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sendMailForm: async (to: SendMailTo, from: string, subject: string, body: string, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMailForm.');
@@ -546,7 +546,7 @@ export const SendingApiFp = function(configuration?: Configuration) {
         /**
          * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Sends an Email
-         * @param {string | Array<string>} to 
+         * @param {SendMailTo} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
@@ -554,7 +554,7 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
+        async sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<GenericResponse>>> {
             const localVarAxiosArgs = await SendingApiAxiosParamCreator(configuration).sendMailForm(to, from, subject, body, id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -636,7 +636,7 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
         /**
          * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Sends an Email
-         * @param {string | Array<string>} to 
+         * @param {SendMailTo} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
@@ -644,7 +644,7 @@ export const SendingApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
+        async sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig): Promise<AxiosResponse<GenericResponse>> {
             return SendingApiFp(configuration).sendMailForm(to, from, subject, body, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -725,7 +725,7 @@ export class SendingApi extends BaseAPI {
     /**
      * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
      * @summary Sends an Email
-     * @param {string | Array<string>} to 
+     * @param {SendMailTo} to 
      * @param {string} from 
      * @param {string} subject 
      * @param {string} body 
@@ -734,7 +734,7 @@ export class SendingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public async sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
+    public async sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<GenericResponse>> {
         return SendingApiFp(this.configuration).sendMailForm(to, from, subject, body, id, options).then((request) => request(this.axios, this.basePath));
     }
 

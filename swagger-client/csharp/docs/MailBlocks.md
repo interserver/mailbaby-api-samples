@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.MailBlocks
+# Interserver.MailBaby.Client.Model.MailBlocks
 ## Properties
 
 Name | Type | Description | Notes

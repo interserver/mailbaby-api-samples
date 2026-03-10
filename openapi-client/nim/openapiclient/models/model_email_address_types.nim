@@ -16,21 +16,21 @@ import model_email_address_name
 
 # OneOf type
 type EmailAddressTypesKind* {.pure.} = enum
-  StringVariant
+  EmailAddressSingleStringVariant
   EmailAddressNameVariant
 
 type EmailAddressTypes* = object
   ## A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
   case kind*: EmailAddressTypesKind
-  of EmailAddressTypesKind.StringVariant:
-    stringValue*: string
+  of EmailAddressTypesKind.EmailAddressSingleStringVariant:
+    EmailAddressSingleStringValue*: string
   of EmailAddressTypesKind.EmailAddressNameVariant:
     EmailAddressNameValue*: EmailAddressName
 
 proc to*(node: JsonNode, T: typedesc[EmailAddressTypes]): EmailAddressTypes =
   ## Custom deserializer for oneOf type - tries each variant
   try:
-    return EmailAddressTypes(kind: EmailAddressTypesKind.StringVariant, stringValue: to(node, string))
+    return EmailAddressTypes(kind: EmailAddressTypesKind.EmailAddressSingleStringVariant, EmailAddressSingleStringValue: to(node, string))
   except Exception as e:
     when defined(debug):
       echo "Failed to deserialize as string: ", e.msg

@@ -68,7 +68,7 @@ proc sendAdvMail*(httpClient: HttpClient, subject: string, body: string, `from`:
   constructResult[GenericResponse](response)
 
 
-proc sendMail*(httpClient: HttpClient, to: SendMail_to, `from`: string, subject: string, body: string, id: int64): (Option[GenericResponse], Response) =
+proc sendMail*(httpClient: HttpClient, to: SendMailTo, `from`: string, subject: string, body: string, id: int64): (Option[GenericResponse], Response) =
   ## Sends an Email
   httpClient.headers["Content-Type"] = "application/x-www-form-urlencoded"
   let form_data = encodeQuery([

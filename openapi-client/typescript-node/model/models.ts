@@ -3,6 +3,7 @@ import localVarRequest from 'request';
 export * from './denyRuleNew';
 export * from './denyRuleRecord';
 export * from './emailAddressName';
+export * from './emailAddressNames';
 export * from './emailAddressParam';
 export * from './emailAddressTypes';
 export * from './emailAddressesTypes';
@@ -17,7 +18,7 @@ export * from './mailLogEntry';
 export * from './mailOrder';
 export * from './mailOrderDetail';
 export * from './mailStatsType';
-export * from './mailStatsTypeVolume';
+export * from './mailStatsVolume';
 export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailRaw';
@@ -39,6 +40,7 @@ export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 import { DenyRuleNew } from './denyRuleNew';
 import { DenyRuleRecord } from './denyRuleRecord';
 import { EmailAddressName } from './emailAddressName';
+import { EmailAddressNames } from './emailAddressNames';
 import { EmailAddressParam } from './emailAddressParam';
 import { EmailAddressTypes } from './emailAddressTypes';
 import { EmailAddressesTypes } from './emailAddressesTypes';
@@ -53,7 +55,7 @@ import { MailLogEntry } from './mailLogEntry';
 import { MailOrder } from './mailOrder';
 import { MailOrderDetail } from './mailOrderDetail';
 import { MailStatsType } from './mailStatsType';
-import { MailStatsTypeVolume } from './mailStatsTypeVolume';
+import { MailStatsVolume } from './mailStatsVolume';
 import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
 import { SendMailRaw } from './sendMailRaw';
@@ -81,6 +83,7 @@ let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
     "EmailAddressName": EmailAddressName,
+    "EmailAddressNames": EmailAddressNames,
     "EmailAddressParam": EmailAddressParam,
     "EmailAddressTypes": EmailAddressTypes,
     "EmailAddressesTypes": EmailAddressesTypes,
@@ -95,7 +98,7 @@ let typeMap: {[index: string]: any} = {
     "MailOrder": MailOrder,
     "MailOrderDetail": MailOrderDetail,
     "MailStatsType": MailStatsType,
-    "MailStatsTypeVolume": MailStatsTypeVolume,
+    "MailStatsVolume": MailStatsVolume,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
     "SendMailRaw": SendMailRaw,

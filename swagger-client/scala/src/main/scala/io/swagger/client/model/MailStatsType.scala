@@ -32,6 +32,6 @@ case class MailStatsType (
   cost: Option[Double] = None,
   received: Option[Integer] = None,
   sent: Option[Integer] = None,
-  volume: Option[MailStatsType_volume] = None
+  volume: Option[MailStatsVolume] = None
 )
 

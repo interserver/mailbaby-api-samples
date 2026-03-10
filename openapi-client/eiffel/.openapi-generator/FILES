@@ -7,6 +7,7 @@ docs/DENY_RULE_NEW.md
 docs/DENY_RULE_RECORD.md
 docs/EMAIL_ADDRESSES_TYPES.md
 docs/EMAIL_ADDRESS_NAME.md
+docs/EMAIL_ADDRESS_NAMES.md
 docs/EMAIL_ADDRESS_PARAM.md
 docs/EMAIL_ADDRESS_TYPES.md
 docs/ERROR_MESSAGE.md
@@ -21,7 +22,7 @@ docs/MAIL_LOG_ENTRY.md
 docs/MAIL_ORDER.md
 docs/MAIL_ORDER_DETAIL.md
 docs/MAIL_STATS_TYPE.md
-docs/MAIL_STATS_TYPE_VOLUME.md
+docs/MAIL_STATS_VOLUME.md
 docs/SENDING_API.md
 docs/SEND_MAIL.md
 docs/SEND_MAIL_ADV.md
@@ -38,6 +39,7 @@ src/api_client.e
 src/domain/deny_rule_new.e
 src/domain/deny_rule_record.e
 src/domain/email_address_name.e
+src/domain/email_address_names.e
 src/domain/email_address_param.e
 src/domain/email_address_types.e
 src/domain/email_addresses_types.e
@@ -52,7 +54,7 @@ src/domain/mail_log_entry.e
 src/domain/mail_order.e
 src/domain/mail_order_detail.e
 src/domain/mail_stats_type.e
-src/domain/mail_stats_type_volume.e
+src/domain/mail_stats_volume.e
 src/domain/send_mail.e
 src/domain/send_mail_adv.e
 src/domain/send_mail_raw.e

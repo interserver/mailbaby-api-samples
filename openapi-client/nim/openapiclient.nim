@@ -11,6 +11,7 @@
 import openapiclient/models/model_deny_rule_new
 import openapiclient/models/model_deny_rule_record
 import openapiclient/models/model_email_address_name
+import openapiclient/models/model_email_address_names
 import openapiclient/models/model_email_address_param
 import openapiclient/models/model_email_address_types
 import openapiclient/models/model_email_addresses_types
@@ -25,7 +26,7 @@ import openapiclient/models/model_mail_log_entry
 import openapiclient/models/model_mail_order
 import openapiclient/models/model_mail_order_detail
 import openapiclient/models/model_mail_stats_type
-import openapiclient/models/model_mail_stats_type_volume
+import openapiclient/models/model_mail_stats_volume
 import openapiclient/models/model_send_mail
 import openapiclient/models/model_send_mail_adv
 import openapiclient/models/model_send_mail_raw
@@ -34,6 +35,7 @@ import openapiclient/models/model_send_mail_to
 export model_deny_rule_new
 export model_deny_rule_record
 export model_email_address_name
+export model_email_address_names
 export model_email_address_param
 export model_email_address_types
 export model_email_addresses_types
@@ -48,7 +50,7 @@ export model_mail_log_entry
 export model_mail_order
 export model_mail_order_detail
 export model_mail_stats_type
-export model_mail_stats_type_volume
+export model_mail_stats_volume
 export model_send_mail
 export model_send_mail_adv
 export model_send_mail_raw

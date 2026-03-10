@@ -1,6 +1,6 @@
 package io.swagger.model;
 
-import io.swagger.model.MailStatsTypeVolume;
+import io.swagger.model.MailStatsVolume;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -58,7 +58,7 @@ public enum TimeEnum {
 
   private @Valid Integer sent = null;
 
-  private @Valid MailStatsTypeVolume volume = null;
+  private @Valid MailStatsVolume volume = null;
 
   /**
    * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
@@ -182,7 +182,7 @@ public enum TimeEnum {
 
   /**
    **/
-  public MailStatsType volume(MailStatsTypeVolume volume) {
+  public MailStatsType volume(MailStatsVolume volume) {
     this.volume = volume;
     return this;
   }
@@ -192,10 +192,10 @@ public enum TimeEnum {
   @JsonProperty("volume")
   @NotNull
 
-  public MailStatsTypeVolume getVolume() {
+  public MailStatsVolume getVolume() {
     return volume;
   }
-  public void setVolume(MailStatsTypeVolume volume) {
+  public void setVolume(MailStatsVolume volume) {
     this.volume = volume;
   }
 

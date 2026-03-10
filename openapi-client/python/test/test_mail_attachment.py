@@ -37,12 +37,12 @@ class TestMailAttachment(unittest.TestCase):
         if include_optional:
             return MailAttachment(
                 filename = 'message.txt',
-                data = '[B@1f1e58ca'
+                data = '[B@34aeacd1'
             )
         else:
             return MailAttachment(
                 filename = 'message.txt',
-                data = '[B@1f1e58ca',
+                data = '[B@34aeacd1',
         )
         """
 

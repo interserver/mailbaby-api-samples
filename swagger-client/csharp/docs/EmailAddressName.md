@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.EmailAddressName
+# Interserver.MailBaby.Client.Model.EmailAddressName
 ## Properties
 
 Name | Type | Description | Notes

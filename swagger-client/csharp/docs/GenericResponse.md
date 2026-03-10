@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.GenericResponse
+# Interserver.MailBaby.Client.Model.GenericResponse
 ## Properties
 
 Name | Type | Description | Notes

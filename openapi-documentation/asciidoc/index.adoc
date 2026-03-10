@@ -1024,7 +1024,7 @@ Sends an email through one of your mail orders using a simple flat set of fields
 |Name| Description| Required| Default| Pattern
 
 | to
-|  <<SendMail_to>>
+|  <<SendMailTo>>
 | X
 | null
 | 
@@ -1484,6 +1484,21 @@ An email contact with an optional display name.  Used in structured address fiel
 |   String  
 | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
 |     
+
+|===
+
+
+
+[#EmailAddressNames]
+=== _EmailAddressNames_ EmailAddressNames
+
+An array of email contacts, each with an email address and optional display name.
+
+
+[.fields-EmailAddressNames]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
 
 |===
 
@@ -2140,7 +2155,7 @@ Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes bill
 | volume
 | 
 | 
-| <<MailStatsType_volume>>    
+| <<MailStatsVolume>>    
 | 
 |     
 
@@ -2148,13 +2163,13 @@ Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes bill
 
 
 
-[#MailStatsTypeVolume]
-=== _MailStatsTypeVolume_ 
+[#MailStatsVolume]
+=== _MailStatsVolume_ MailStatsVolume
 
-Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &#x60;time&#x60; window.
+Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
 
 
-[.fields-MailStatsTypeVolume]
+[.fields-MailStatsVolume]
 [cols="2,1,1,2,4,1"]
 |===
 | Field Name| Required| Nullable | Type| Description | Format
@@ -2200,7 +2215,7 @@ For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use
 | to
 | X
 | 
-| <<SendMail_to>>    
+| <<SendMailTo>>    
 | 
 |     
 
@@ -2350,9 +2365,9 @@ The &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, and &#x60;Bcc&#x60; addres
 
 
 [#SendMailTo]
-=== _SendMailTo_ 
+=== _SendMailTo_ SendMailTo
 
-The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
 
 
 [.fields-SendMailTo]

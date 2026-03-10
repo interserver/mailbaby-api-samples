@@ -21,6 +21,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.micronaut.http.*;
 import io.micronaut.http.annotation.*;
@@ -219,7 +220,7 @@ public interface MailApi {
     @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).")
     @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.")
     @Post(value = "/mail/send", produces = { "application/json" }, consumes = {"application/x-www-form-urlencoded", "application/json"})
-    default Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Valid @Parameter(description = "") @Body(value = "to")  Object to,@NotNull @Parameter(description = "") @Body(value = "from")  String from,@NotNull @Parameter(description = "") @Body(value = "subject")  String subject,@NotNull @Parameter(description = "") @Body(value = "body")  String body,@NotNull @Parameter(description = "") @Body(value = "id")  Long id) {
+    default Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Valid @Parameter(description = "") @Body(value = "to")  SendMailTo to,@NotNull @Parameter(description = "") @Body(value = "from")  String from,@NotNull @Parameter(description = "") @Body(value = "subject")  String subject,@NotNull @Parameter(description = "") @Body(value = "body")  String body,@NotNull @Parameter(description = "") @Body(value = "id")  Long id) {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });

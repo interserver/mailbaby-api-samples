@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { MailStatsTypeVolume } from '../models/MailStatsTypeVolume';
+import { MailStatsVolume } from '../models/MailStatsVolume';
 import { HttpFile } from '../http/http';
 
 /**
@@ -41,7 +41,7 @@ export class MailStatsType {
     * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
     */
     'sent'?: number;
-    'volume'?: MailStatsTypeVolume;
+    'volume'?: MailStatsVolume;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -87,7 +87,7 @@ export class MailStatsType {
         {
             "name": "volume",
             "baseName": "volume",
-            "type": "MailStatsTypeVolume",
+            "type": "MailStatsVolume",
             "format": ""
         }    ];
 

@@ -1,6 +1,6 @@
 package org.openapitools.model;
 
-import org.openapitools.model.MailStatsTypeVolume;
+import org.openapitools.model.MailStatsVolume;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -88,7 +88,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
 
   @ApiModelProperty(value = "")
 
-  private MailStatsTypeVolume volume;
+  private MailStatsVolume volume;
  /**
    * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
    * @return time
@@ -205,15 +205,15 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
    * @return volume
   **/
   @JsonProperty("volume")
-  public MailStatsTypeVolume getVolume() {
+  public MailStatsVolume getVolume() {
     return volume;
   }
 
-  public void setVolume(MailStatsTypeVolume volume) {
+  public void setVolume(MailStatsVolume volume) {
     this.volume = volume;
   }
 
-  public MailStatsType volume(MailStatsTypeVolume volume) {
+  public MailStatsType volume(MailStatsVolume volume) {
     this.volume = volume;
     return this;
   }

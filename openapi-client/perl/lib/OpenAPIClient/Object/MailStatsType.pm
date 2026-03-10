@@ -30,7 +30,7 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use OpenAPIClient::Object::MailStatsTypeVolume;
+use OpenAPIClient::Object::MailStatsVolume;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 
@@ -263,7 +263,7 @@ __PACKAGE__->method_documentation({
         read_only => '',
             },
     'volume' => {
-        datatype => 'MailStatsTypeVolume',
+        datatype => 'MailStatsVolume',
         base_name => 'volume',
         description => '',
         format => '',
@@ -278,7 +278,7 @@ __PACKAGE__->openapi_types( {
     'cost' => 'double',
     'received' => 'int',
     'sent' => 'int',
-    'volume' => 'MailStatsTypeVolume'
+    'volume' => 'MailStatsVolume'
 } );
 
 __PACKAGE__->attribute_map( {

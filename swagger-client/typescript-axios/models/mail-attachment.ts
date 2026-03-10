@@ -34,7 +34,7 @@ export interface MailAttachment {
      *
      * @type {string}
      * @memberof MailAttachment
-     * @example [B@39e3708c
+     * @example [B@6c314aef
      */
     data: string;
 }

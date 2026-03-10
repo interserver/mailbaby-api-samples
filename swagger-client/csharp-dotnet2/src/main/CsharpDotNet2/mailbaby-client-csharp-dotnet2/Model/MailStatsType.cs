@@ -65,7 +65,7 @@ namespace IO.Swagger.Model {
     /// </summary>
     [DataMember(Name="volume", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "volume")]
-    public MailStatsTypeVolume Volume { get; set; }
+    public MailStatsVolume Volume { get; set; }
 
 
     /// <summary>

@@ -130,6 +130,6 @@ export enum GetStatsTimeEnum {
  * @enum {string}
  */
 export enum ViewMailLogDeliveredEnum {
-    NUMBER_0 = 0,
-    NUMBER_1 = 1
+    NotDelivered = 0,
+    Delivered = 1
 }

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Cost** | **Double** | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). | [optional] 
 **Received** | **Int32** | Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue. | [optional] 
 **Sent** | **Int32** | Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. | [optional] 
-**Volume** | [**MailStatsTypeVolume**](MailStatsTypeVolume.md) |  | [optional] 
+**Volume** | [**MailStatsVolume**](MailStatsVolume.md) |  | [optional] 
 
 ## Examples
 

@@ -17,6 +17,7 @@ import 'package:openapi/src/model/date.dart';
 import 'package:openapi/src/model/deny_rule_new.dart';
 import 'package:openapi/src/model/deny_rule_record.dart';
 import 'package:openapi/src/model/email_address_name.dart';
+import 'package:openapi/src/model/email_address_names.dart';
 import 'package:openapi/src/model/email_address_param.dart';
 import 'package:openapi/src/model/email_address_types.dart';
 import 'package:openapi/src/model/email_addresses_types.dart';
@@ -31,7 +32,7 @@ import 'package:openapi/src/model/mail_log_entry.dart';
 import 'package:openapi/src/model/mail_order.dart';
 import 'package:openapi/src/model/mail_order_detail.dart';
 import 'package:openapi/src/model/mail_stats_type.dart';
-import 'package:openapi/src/model/mail_stats_type_volume.dart';
+import 'package:openapi/src/model/mail_stats_volume.dart';
 import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
 import 'package:openapi/src/model/send_mail_raw.dart';
@@ -43,6 +44,7 @@ part 'serializers.g.dart';
   DenyRuleNew,$DenyRuleNew,
   DenyRuleRecord,
   EmailAddressName,
+  EmailAddressNames,
   EmailAddressParam,
   EmailAddressTypes,
   EmailAddressesTypes,
@@ -57,7 +59,7 @@ part 'serializers.g.dart';
   MailOrder,$MailOrder,
   MailOrderDetail,
   MailStatsType,
-  MailStatsTypeVolume,
+  MailStatsVolume,
   SendMail,
   SendMailAdv,
   SendMailRaw,

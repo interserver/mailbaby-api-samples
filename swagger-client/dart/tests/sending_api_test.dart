@@ -29,7 +29,7 @@ void main() {
     //
     // Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
     //
-    //Future<GenericResponse> sendMail(Object to, String from, String subject, String body, int id, SendMail body) async
+    //Future<GenericResponse> sendMail(SendMailTo to, String from, String subject, String body, int id, SendMail body) async
     test('test sendMail', () async {
       // TODO
     });

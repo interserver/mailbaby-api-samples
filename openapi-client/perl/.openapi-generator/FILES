@@ -8,6 +8,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -23,7 +24,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -40,6 +41,7 @@ lib/OpenAPIClient/HistoryApi.pm
 lib/OpenAPIClient/Object/DenyRuleNew.pm
 lib/OpenAPIClient/Object/DenyRuleRecord.pm
 lib/OpenAPIClient/Object/EmailAddressName.pm
+lib/OpenAPIClient/Object/EmailAddressNames.pm
 lib/OpenAPIClient/Object/EmailAddressParam.pm
 lib/OpenAPIClient/Object/EmailAddressTypes.pm
 lib/OpenAPIClient/Object/EmailAddressesTypes.pm
@@ -54,7 +56,7 @@ lib/OpenAPIClient/Object/MailLogEntry.pm
 lib/OpenAPIClient/Object/MailOrder.pm
 lib/OpenAPIClient/Object/MailOrderDetail.pm
 lib/OpenAPIClient/Object/MailStatsType.pm
-lib/OpenAPIClient/Object/MailStatsTypeVolume.pm
+lib/OpenAPIClient/Object/MailStatsVolume.pm
 lib/OpenAPIClient/Object/SendMail.pm
 lib/OpenAPIClient/Object/SendMailAdv.pm
 lib/OpenAPIClient/Object/SendMailRaw.pm
@@ -68,6 +70,7 @@ t/BlockingApiTest.t
 t/DenyRuleNewTest.t
 t/DenyRuleRecordTest.t
 t/EmailAddressNameTest.t
+t/EmailAddressNamesTest.t
 t/EmailAddressParamTest.t
 t/EmailAddressTypesTest.t
 t/EmailAddressesTypesTest.t
@@ -83,7 +86,7 @@ t/MailLogTest.t
 t/MailOrderDetailTest.t
 t/MailOrderTest.t
 t/MailStatsTypeTest.t
-t/MailStatsTypeVolumeTest.t
+t/MailStatsVolumeTest.t
 t/SendMailAdvTest.t
 t/SendMailRawTest.t
 t/SendMailTest.t

@@ -122,7 +122,7 @@ namespace mailbaby-client-aspnetcore.Models
         /// </summary>
 
         [DataMember(Name="volume")]
-        public MailStatsTypeVolume Volume { get; set; }
+        public MailStatsVolume Volume { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

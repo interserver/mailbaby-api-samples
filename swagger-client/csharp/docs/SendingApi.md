@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Api.SendingApi
+# Interserver.MailBaby.Client.Api.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -20,9 +20,9 @@ Accepts a complete, pre-built RFC 822 email message (headers + body) as a string
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -85,9 +85,9 @@ Sends an email through one of your mail orders with full control over recipients
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 <a name="sendmail"></a>
 # **SendMail**
-> GenericResponse SendMail (Object to, string from, string subject, string body, long? id)
+> GenericResponse SendMail (SendMailTo to, string from, string subject, string body, long? id)
 
 Sends an Email
 
@@ -166,9 +166,9 @@ Sends an email through one of your mail orders using a simple flat set of fields
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -182,7 +182,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-API-KEY", "Bearer");
 
             var apiInstance = new SendingApi();
-            var to = new Object(); // Object | 
+            var to = new SendMailTo(); // SendMailTo | 
             var from = from_example;  // string | 
             var subject = subject_example;  // string | 
             var body = body_example;  // string | 
@@ -207,7 +207,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**Object**](Object.md)|  | 
+ **to** | [**SendMailTo**](SendMailTo.md)|  | 
  **from** | **string**|  | 
  **subject** | **string**|  | 
  **body** | **string**|  | 

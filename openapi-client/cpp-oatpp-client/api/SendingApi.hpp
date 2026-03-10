@@ -30,7 +30,7 @@
 #include "GenericResponse.hpp"
 #include "MailAttachment.hpp"
 #include "SendMailRaw.hpp"
-#include "SendMail_to.hpp"
+#include "SendMailTo.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiClient) ///< Begin code-gen section
 

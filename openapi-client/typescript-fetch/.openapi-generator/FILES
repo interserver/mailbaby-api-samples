@@ -9,6 +9,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -24,7 +25,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -36,6 +37,7 @@ index.ts
 models/DenyRuleNew.ts
 models/DenyRuleRecord.ts
 models/EmailAddressName.ts
+models/EmailAddressNames.ts
 models/EmailAddressParam.ts
 models/EmailAddressTypes.ts
 models/EmailAddressesTypes.ts
@@ -50,7 +52,7 @@ models/MailLogEntry.ts
 models/MailOrder.ts
 models/MailOrderDetail.ts
 models/MailStatsType.ts
-models/MailStatsTypeVolume.ts
+models/MailStatsVolume.ts
 models/SendMail.ts
 models/SendMailAdv.ts
 models/SendMailRaw.ts

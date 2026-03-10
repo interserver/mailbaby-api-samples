@@ -19,6 +19,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 
 import java.util.List;
 import java.util.Map;
@@ -103,7 +104,7 @@ public class MailApiServiceImpl implements MailApiService {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
   }
-      public Response sendMail(Object to,String from,String subject,String body,Long id,SecurityContext securityContext)
+      public Response sendMail(SendMailTo to,String from,String subject,String body,Long id,SecurityContext securityContext)
       throws NotFoundException {
       // do some magic!
       return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();

@@ -42,16 +42,7 @@ class TestMailStatsType(unittest.TestCase):
                 cost = 1.337,
                 received = 56,
                 sent = 56,
-                volume = openapi_client.models.mail_stats_type_volume.MailStatsType_volume(
-                    to = {
-                        'key' : 56
-                        }, 
-                    from = {
-                        'key' : 56
-                        }, 
-                    ip = {
-                        'key' : 56
-                        }, )
+                volume = {"to":{"client@domain.com":395,"user@site.net":57},"from":{"billing@somedomain.com":369},"ip":{"1.1.1.1":142,"2.2.2.2":132}}
             )
         else:
             return MailStatsType(

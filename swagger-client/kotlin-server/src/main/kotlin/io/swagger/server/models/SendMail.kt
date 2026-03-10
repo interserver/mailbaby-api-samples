@@ -10,10 +10,11 @@
 * Do not edit the class manually.
 */package io.swagger.server.models
 
+import io.swagger.server.models.SendMailTo
 
 /**
  * Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
- * @param to The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * @param to 
  * @param from The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
  * @param subject The subject line of the email.
  * @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
@@ -21,8 +22,7 @@
  */
 data class SendMail (
 
-    /* The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. */
-    val to: OneOfSendMailTo,
+    val to: SendMailTo,
     /* The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. */
     val from: kotlin.String,
     /* The subject line of the email. */

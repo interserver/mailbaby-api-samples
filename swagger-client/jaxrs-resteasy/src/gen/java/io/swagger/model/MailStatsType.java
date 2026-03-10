@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.model.MailStatsTypeVolume;
+import io.swagger.model.MailStatsVolume;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -37,7 +37,7 @@ public class MailStatsType   {
       return String.valueOf(value);
     }
   }
-  private TimeEnum time = TimeEnum._1H;  private Integer usage = null;  private String currency = null;  private Double cost = null;  private Integer received = null;  private Integer sent = null;  private MailStatsTypeVolume volume = null;
+  private TimeEnum time = TimeEnum._1H;  private Integer usage = null;  private String currency = null;  private Double cost = null;  private Integer received = null;  private Integer sent = null;  private MailStatsVolume volume = null;
 
   /**
    * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
@@ -129,10 +129,10 @@ public class MailStatsType   {
   @Schema(description = "")
   @JsonProperty("volume")
   @NotNull
-  public MailStatsTypeVolume getVolume() {
+  public MailStatsVolume getVolume() {
     return volume;
   }
-  public void setVolume(MailStatsTypeVolume volume) {
+  public void setVolume(MailStatsVolume volume) {
     this.volume = volume;
   }
 

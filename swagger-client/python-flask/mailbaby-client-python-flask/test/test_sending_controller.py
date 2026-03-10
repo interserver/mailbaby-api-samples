@@ -13,6 +13,7 @@ from mailbaby-client-python-flask.models.mail_attachment import MailAttachment  
 from mailbaby-client-python-flask.models.send_mail import SendMail  # noqa: E501
 from mailbaby-client-python-flask.models.send_mail_adv import SendMailAdv  # noqa: E501
 from mailbaby-client-python-flask.models.send_mail_raw import SendMailRaw  # noqa: E501
+from mailbaby-client-python-flask.models.send_mail_to import SendMailTo  # noqa: E501
 from mailbaby-client-python-flask.test import BaseTestCase
 
 
@@ -66,7 +67,7 @@ class TestSendingController(BaseTestCase):
         Sends an Email
         """
         body = SendMail()
-        data = dict(to=Object(),
+        data = dict(to=SendMailTo(),
                     _from='_from_example',
                     subject='subject_example',
                     body='body_example',

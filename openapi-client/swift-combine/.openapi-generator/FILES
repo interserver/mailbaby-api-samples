@@ -8,6 +8,7 @@ OpenAPIClient/Sources/APIs/StatusAPI.swift
 OpenAPIClient/Sources/Models/DenyRuleNew.swift
 OpenAPIClient/Sources/Models/DenyRuleRecord.swift
 OpenAPIClient/Sources/Models/EmailAddressName.swift
+OpenAPIClient/Sources/Models/EmailAddressNames.swift
 OpenAPIClient/Sources/Models/EmailAddressParam.swift
 OpenAPIClient/Sources/Models/EmailAddressTypes.swift
 OpenAPIClient/Sources/Models/EmailAddressesTypes.swift
@@ -22,7 +23,7 @@ OpenAPIClient/Sources/Models/MailLogEntry.swift
 OpenAPIClient/Sources/Models/MailOrder.swift
 OpenAPIClient/Sources/Models/MailOrderDetail.swift
 OpenAPIClient/Sources/Models/MailStatsType.swift
-OpenAPIClient/Sources/Models/MailStatsTypeVolume.swift
+OpenAPIClient/Sources/Models/MailStatsVolume.swift
 OpenAPIClient/Sources/Models/SendMail.swift
 OpenAPIClient/Sources/Models/SendMailAdv.swift
 OpenAPIClient/Sources/Models/SendMailRaw.swift

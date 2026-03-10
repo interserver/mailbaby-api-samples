@@ -15,6 +15,7 @@ src/gatling/scala/org/openapitools/client/api/StatusApiSimulation.scala
 src/gatling/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/gatling/scala/org/openapitools/client/model/DenyRuleRecord.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressName.scala
+src/gatling/scala/org/openapitools/client/model/EmailAddressNames.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressParam.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressTypes.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressesTypes.scala
@@ -29,7 +30,7 @@ src/gatling/scala/org/openapitools/client/model/MailLogEntry.scala
 src/gatling/scala/org/openapitools/client/model/MailOrder.scala
 src/gatling/scala/org/openapitools/client/model/MailOrderDetail.scala
 src/gatling/scala/org/openapitools/client/model/MailStatsType.scala
-src/gatling/scala/org/openapitools/client/model/MailStatsTypeVolume.scala
+src/gatling/scala/org/openapitools/client/model/MailStatsVolume.scala
 src/gatling/scala/org/openapitools/client/model/SendMail.scala
 src/gatling/scala/org/openapitools/client/model/SendMailAdv.scala
 src/gatling/scala/org/openapitools/client/model/SendMailRaw.scala

@@ -13,9 +13,9 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    MailStatsTypeVolume,
-    MailStatsTypeVolumeFromJSON,
-    MailStatsTypeVolumeToJSON,
+    MailStatsVolume,
+    MailStatsVolumeFromJSON,
+    MailStatsVolumeToJSON,
 } from './';
 
 /**
@@ -62,10 +62,10 @@ export interface MailStatsType  {
     sent?: number;
     /**
      * 
-     * @type {MailStatsTypeVolume}
+     * @type {MailStatsVolume}
      * @memberof MailStatsType
      */
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 
 export function MailStatsTypeFromJSON(json: any): MailStatsType {
@@ -76,7 +76,7 @@ export function MailStatsTypeFromJSON(json: any): MailStatsType {
         'cost': !exists(json, 'cost') ? undefined : json['cost'],
         'received': !exists(json, 'received') ? undefined : json['received'],
         'sent': !exists(json, 'sent') ? undefined : json['sent'],
-        'volume': !exists(json, 'volume') ? undefined : MailStatsTypeVolumeFromJSON(json['volume']),
+        'volume': !exists(json, 'volume') ? undefined : MailStatsVolumeFromJSON(json['volume']),
     };
 }
 
@@ -91,7 +91,7 @@ export function MailStatsTypeToJSON(value?: MailStatsType): any {
         'cost': value.cost,
         'received': value.received,
         'sent': value.sent,
-        'volume': MailStatsTypeVolumeToJSON(value.volume),
+        'volume': MailStatsVolumeToJSON(value.volume),
     };
 }
 

@@ -6,7 +6,7 @@ using namespace Tiny;
 
 SendMail::SendMail()
 {
-	to = SendMail_to();
+	to = SendMailTo();
 	from = std::string();
 	subject = std::string();
 	body = std::string();
@@ -37,7 +37,7 @@ SendMail::fromJson(std::string jsonObj)
 
 
 
-        SendMail_to* obj = &to;
+        SendMailTo* obj = &to;
 		obj->fromJson(value.dump());
 
     }
@@ -142,14 +142,14 @@ SendMail::toJson()
 
 }
 
-SendMail_to
+SendMailTo
 SendMail::getTo()
 {
 	return to;
 }
 
 void
-SendMail::setTo(SendMail_to to)
+SendMail::setTo(SendMailTo to)
 {
 	this->to = to;
 }

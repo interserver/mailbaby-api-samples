@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.MailStatsTypeVolume
+import org.openapitools.client.models.MailStatsVolume
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -60,7 +60,7 @@ data class MailStatsType (
     val sent: kotlin.Int? = null,
 
     @Json(name = "volume")
-    val volume: MailStatsTypeVolume? = null
+    val volume: MailStatsVolume? = null
 
 ) {
 

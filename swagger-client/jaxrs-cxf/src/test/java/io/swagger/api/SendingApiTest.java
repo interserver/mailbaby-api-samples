@@ -32,6 +32,7 @@ import io.swagger.model.MailAttachment;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -128,7 +129,7 @@ public class SendingApiTest {
      */
     @Test
     public void sendMailTest() {
-        Object to = null;
+        SendMailTo to = null;
         String from = null;
         String subject = null;
         String body = null;

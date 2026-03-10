@@ -13,6 +13,7 @@ import io.swagger.server.model.MailAttachment
 import io.swagger.server.model.SendMail
 import io.swagger.server.model.SendMailAdv
 import io.swagger.server.model.SendMailRaw
+import io.swagger.server.model.SendMailTo
 
 class SendingApi(
     sendingService: SendingApiService,

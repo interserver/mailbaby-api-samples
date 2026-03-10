@@ -28,7 +28,7 @@ class SendMail(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'to': 'OneOfSendMailTo',
+        'to': 'SendMailTo',
         '_from': 'str',
         'subject': 'str',
         'body': 'str',
@@ -62,10 +62,9 @@ class SendMail(object):
     def to(self):
         """Gets the to of this SendMail.  # noqa: E501
 
-        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  # noqa: E501
 
         :return: The to of this SendMail.  # noqa: E501
-        :rtype: OneOfSendMailTo
+        :rtype: SendMailTo
         """
         return self._to
 
@@ -73,10 +72,9 @@ class SendMail(object):
     def to(self, to):
         """Sets the to of this SendMail.
 
-        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  # noqa: E501
 
         :param to: The to of this SendMail.  # noqa: E501
-        :type: OneOfSendMailTo
+        :type: SendMailTo
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501

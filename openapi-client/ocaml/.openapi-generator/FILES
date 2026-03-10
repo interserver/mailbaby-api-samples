@@ -17,6 +17,7 @@ src/apis/status_api.mli
 src/models/deny_rule_new.ml
 src/models/deny_rule_record.ml
 src/models/email_address_name.ml
+src/models/email_address_names.ml
 src/models/email_address_param.ml
 src/models/email_address_types.ml
 src/models/email_addresses_types.ml
@@ -31,7 +32,7 @@ src/models/mail_log_entry.ml
 src/models/mail_order.ml
 src/models/mail_order_detail.ml
 src/models/mail_stats_type.ml
-src/models/mail_stats_type_volume.ml
+src/models/mail_stats_volume.ml
 src/models/send_mail.ml
 src/models/send_mail_adv.ml
 src/models/send_mail_raw.ml

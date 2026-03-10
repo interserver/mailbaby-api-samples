@@ -237,7 +237,7 @@ Sends an email through one of your mail orders using a simple flat set of fields
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
-val to : kotlin.Any =  // kotlin.Any | 
+val to : SendMailTo =  // SendMailTo | 
 val from : kotlin.String = from_example // kotlin.String | 
 val subject : kotlin.String = subject_example // kotlin.String | 
 val body : kotlin.String = body_example // kotlin.String | 
@@ -258,7 +258,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**kotlin.Any**](.md)|  |
+ **to** | [**SendMailTo**](.md)|  |
  **from** | **kotlin.String**|  |
  **subject** | **kotlin.String**|  |
  **body** | **kotlin.String**|  |

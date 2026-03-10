@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from mailbaby-client-python-flask.models.base_model_ import Model
-from mailbaby-client-python-flask.models.one_of_send_mail_to import OneOfSendMailTo  # noqa: F401,E501
+from mailbaby-client-python-flask.models.send_mail_to import SendMailTo  # noqa: F401,E501
 from mailbaby-client-python-flask import util
 
 
@@ -15,11 +15,11 @@ class SendMail(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, to: OneOfSendMailTo=None, _from: str=None, subject: str=None, body: str=None, id: int=None):  # noqa: E501
+    def __init__(self, to: SendMailTo=None, _from: str=None, subject: str=None, body: str=None, id: int=None):  # noqa: E501
         """SendMail - a model defined in Swagger
 
         :param to: The to of this SendMail.  # noqa: E501
-        :type to: OneOfSendMailTo
+        :type to: SendMailTo
         :param _from: The _from of this SendMail.  # noqa: E501
         :type _from: str
         :param subject: The subject of this SendMail.  # noqa: E501
@@ -30,7 +30,7 @@ class SendMail(Model):
         :type id: int
         """
         self.swagger_types = {
-            'to': OneOfSendMailTo,
+            'to': SendMailTo,
             '_from': str,
             'subject': str,
             'body': str,
@@ -62,24 +62,22 @@ class SendMail(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def to(self) -> OneOfSendMailTo:
+    def to(self) -> SendMailTo:
         """Gets the to of this SendMail.
 
-        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  # noqa: E501
 
         :return: The to of this SendMail.
-        :rtype: OneOfSendMailTo
+        :rtype: SendMailTo
         """
         return self._to
 
     @to.setter
-    def to(self, to: OneOfSendMailTo):
+    def to(self, to: SendMailTo):
         """Sets the to of this SendMail.
 
-        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.  # noqa: E501
 
         :param to: The to of this SendMail.
-        :type to: OneOfSendMailTo
+        :type to: SendMailTo
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501

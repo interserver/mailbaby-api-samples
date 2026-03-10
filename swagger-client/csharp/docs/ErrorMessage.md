@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.ErrorMessage
+# Interserver.MailBaby.Client.Model.ErrorMessage
 ## Properties
 
 Name | Type | Description | Notes

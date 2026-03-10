@@ -1,25 +1,25 @@
 
 
-#include "SendMail_to.h"
+#include "SendMailTo.h"
 
 using namespace Tiny;
 
-SendMail_to::SendMail_to()
+SendMailTo::SendMailTo()
 {
 }
 
-SendMail_to::SendMail_to(std::string jsonString)
+SendMailTo::SendMailTo(std::string jsonString)
 {
 	this->fromJson(jsonString);
 }
 
-SendMail_to::~SendMail_to()
+SendMailTo::~SendMailTo()
 {
 
 }
 
 void
-SendMail_to::fromJson(std::string jsonObj)
+SendMailTo::fromJson(std::string jsonObj)
 {
     bourne::json object = bourne::json::parse(jsonObj);
 
@@ -27,7 +27,7 @@ SendMail_to::fromJson(std::string jsonObj)
 }
 
 bourne::json
-SendMail_to::toJson()
+SendMailTo::toJson()
 {
     bourne::json object = bourne::json::object();
 

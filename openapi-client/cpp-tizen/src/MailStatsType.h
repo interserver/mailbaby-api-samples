@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "MailStatsType_volume.h"
+#include "MailStatsVolume.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -90,11 +90,11 @@ public:
 	void setSent(int  sent);
 	/*! \brief Get 
 	 */
-	MailStatsType_volume getVolume();
+	MailStatsVolume getVolume();
 
 	/*! \brief Set 
 	 */
-	void setVolume(MailStatsType_volume  volume);
+	void setVolume(MailStatsVolume  volume);
 
 private:
 	std::string time;
@@ -103,7 +103,7 @@ private:
 	double cost;
 	int received;
 	int sent;
-	MailStatsType_volume volume;
+	MailStatsVolume volume;
 	void __init();
 	void __cleanup();
 

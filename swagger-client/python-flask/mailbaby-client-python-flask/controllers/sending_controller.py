@@ -9,6 +9,7 @@ from mailbaby-client-python-flask.models.mail_attachment import MailAttachment  
 from mailbaby-client-python-flask.models.send_mail import SendMail  # noqa: E501
 from mailbaby-client-python-flask.models.send_mail_adv import SendMailAdv  # noqa: E501
 from mailbaby-client-python-flask.models.send_mail_raw import SendMailRaw  # noqa: E501
+from mailbaby-client-python-flask.models.send_mail_to import SendMailTo  # noqa: E501
 from mailbaby-client-python-flask import util
 
 
@@ -117,7 +118,7 @@ def send_mail(to, _from, subject, body, id):  # noqa: E501
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        to = Object.from_dict(connexion.request.get_json())  # noqa: E501
+        to = SendMailTo.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'
 
 

@@ -7,7 +7,7 @@ goog.provide('API.Client.SendMail');
 API.Client.SendMail = function() {}
 
 /**
- * @type {!API.Client.SendMail_to}
+ * @type {!API.Client.SendMailTo}
  * @export
  */
 API.Client.SendMail.prototype.to;

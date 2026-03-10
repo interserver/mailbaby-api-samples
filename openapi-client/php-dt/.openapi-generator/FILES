@@ -18,6 +18,7 @@ src/App/DTO/DeleteRuleParameterData.php
 src/App/DTO/DenyRuleNew.php
 src/App/DTO/DenyRuleRecord.php
 src/App/DTO/EmailAddressName.php
+src/App/DTO/EmailAddressNames.php
 src/App/DTO/EmailAddressParam.php
 src/App/DTO/EmailAddressTypes.php
 src/App/DTO/EmailAddressesTypes.php
@@ -34,7 +35,7 @@ src/App/DTO/MailLogEntry.php
 src/App/DTO/MailOrder.php
 src/App/DTO/MailOrderDetail.php
 src/App/DTO/MailStatsType.php
-src/App/DTO/MailStatsTypeVolume.php
+src/App/DTO/MailStatsVolume.php
 src/App/DTO/SendMail.php
 src/App/DTO/SendMailAdv.php
 src/App/DTO/SendMailRaw.php

@@ -7,6 +7,7 @@ doc/BlockingApi.md
 doc/DenyRuleNew.md
 doc/DenyRuleRecord.md
 doc/EmailAddressName.md
+doc/EmailAddressNames.md
 doc/EmailAddressParam.md
 doc/EmailAddressTypes.md
 doc/EmailAddressesTypes.md
@@ -22,7 +23,7 @@ doc/MailLogEntry.md
 doc/MailOrder.md
 doc/MailOrderDetail.md
 doc/MailStatsType.md
-doc/MailStatsTypeVolume.md
+doc/MailStatsVolume.md
 doc/SendMail.md
 doc/SendMailAdv.md
 doc/SendMailRaw.md
@@ -48,6 +49,7 @@ lib/auth/oauth.dart
 lib/model/deny_rule_new.dart
 lib/model/deny_rule_record.dart
 lib/model/email_address_name.dart
+lib/model/email_address_names.dart
 lib/model/email_address_param.dart
 lib/model/email_address_types.dart
 lib/model/email_addresses_types.dart
@@ -62,7 +64,7 @@ lib/model/mail_log_entry.dart
 lib/model/mail_order.dart
 lib/model/mail_order_detail.dart
 lib/model/mail_stats_type.dart
-lib/model/mail_stats_type_volume.dart
+lib/model/mail_stats_volume.dart
 lib/model/send_mail.dart
 lib/model/send_mail_adv.dart
 lib/model/send_mail_raw.dart
@@ -72,6 +74,7 @@ test/blocking_api_test.dart
 test/deny_rule_new_test.dart
 test/deny_rule_record_test.dart
 test/email_address_name_test.dart
+test/email_address_names_test.dart
 test/email_address_param_test.dart
 test/email_address_types_test.dart
 test/email_addresses_types_test.dart
@@ -87,7 +90,7 @@ test/mail_log_test.dart
 test/mail_order_detail_test.dart
 test/mail_order_test.dart
 test/mail_stats_type_test.dart
-test/mail_stats_type_volume_test.dart
+test/mail_stats_volume_test.dart
 test/send_mail_adv_test.dart
 test/send_mail_raw_test.dart
 test/send_mail_test.dart

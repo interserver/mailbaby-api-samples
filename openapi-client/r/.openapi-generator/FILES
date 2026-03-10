@@ -12,6 +12,7 @@ R/blocking_api.R
 R/deny_rule_new.R
 R/deny_rule_record.R
 R/email_address_name.R
+R/email_address_names.R
 R/email_address_param.R
 R/email_address_types.R
 R/email_addresses_types.R
@@ -27,7 +28,7 @@ R/mail_log_entry.R
 R/mail_order.R
 R/mail_order_detail.R
 R/mail_stats_type.R
-R/mail_stats_type_volume.R
+R/mail_stats_volume.R
 R/send_mail.R
 R/send_mail_adv.R
 R/send_mail_raw.R
@@ -40,6 +41,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -55,7 +57,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -69,6 +71,7 @@ tests/testthat/test_blocking_api.R
 tests/testthat/test_deny_rule_new.R
 tests/testthat/test_deny_rule_record.R
 tests/testthat/test_email_address_name.R
+tests/testthat/test_email_address_names.R
 tests/testthat/test_email_address_param.R
 tests/testthat/test_email_address_types.R
 tests/testthat/test_email_addresses_types.R
@@ -84,7 +87,7 @@ tests/testthat/test_mail_log_entry.R
 tests/testthat/test_mail_order.R
 tests/testthat/test_mail_order_detail.R
 tests/testthat/test_mail_stats_type.R
-tests/testthat/test_mail_stats_type_volume.R
+tests/testthat/test_mail_stats_volume.R
 tests/testthat/test_send_mail.R
 tests/testthat/test_send_mail_adv.R
 tests/testthat/test_send_mail_raw.R

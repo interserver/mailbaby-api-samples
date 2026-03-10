@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.MailBlockRspamd
+# Interserver.MailBaby.Client.Model.MailBlockRspamd
 ## Properties
 
 Name | Type | Description | Notes

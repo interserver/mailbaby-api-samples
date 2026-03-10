@@ -102,8 +102,8 @@ open class HistoryAPI {
     /// Enum for parameter delivered
     ///
     public enum ViewMailLogDelivered: Int, Codable, CaseIterable {
-        case _0 = 0
-        case _1 = 1
+        case NotDelivered = 0
+        case Delivered = 1
     }
     public enum ViewMailLogError: Error, CustomStringConvertible {
         // Bad request — one or more input parameters were missing or invalid.

@@ -8,6 +8,7 @@ src/gen/java/org/openapitools/api/StatusApi.java
 src/gen/java/org/openapitools/model/DenyRuleNew.java
 src/gen/java/org/openapitools/model/DenyRuleRecord.java
 src/gen/java/org/openapitools/model/EmailAddressName.java
+src/gen/java/org/openapitools/model/EmailAddressNames.java
 src/gen/java/org/openapitools/model/EmailAddressParam.java
 src/gen/java/org/openapitools/model/EmailAddressTypes.java
 src/gen/java/org/openapitools/model/EmailAddressesTypes.java
@@ -22,7 +23,7 @@ src/gen/java/org/openapitools/model/MailLogEntry.java
 src/gen/java/org/openapitools/model/MailOrder.java
 src/gen/java/org/openapitools/model/MailOrderDetail.java
 src/gen/java/org/openapitools/model/MailStatsType.java
-src/gen/java/org/openapitools/model/MailStatsTypeVolume.java
+src/gen/java/org/openapitools/model/MailStatsVolume.java
 src/gen/java/org/openapitools/model/SendMail.java
 src/gen/java/org/openapitools/model/SendMailAdv.java
 src/gen/java/org/openapitools/model/SendMailRaw.java

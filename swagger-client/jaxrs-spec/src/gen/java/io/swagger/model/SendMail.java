@@ -1,5 +1,6 @@
 package io.swagger.model;
 
+import io.swagger.model.SendMailTo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import javax.validation.Valid;
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SendMail   {
 
-  private @Valid OneOfSendMailTo to = null;
+  private @Valid SendMailTo to = null;
 
   private @Valid String from = null;
 
@@ -25,22 +26,21 @@ public class SendMail   {
   private @Valid Long id = null;
 
   /**
-   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
    **/
-  public SendMail to(OneOfSendMailTo to) {
+  public SendMail to(SendMailTo to) {
     this.to = to;
     return this;
   }
 
   
-  @ApiModelProperty(required = true, value = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
+  @ApiModelProperty(required = true, value = "")
   @JsonProperty("to")
   @NotNull
 
-  public OneOfSendMailTo getTo() {
+  public SendMailTo getTo() {
     return to;
   }
-  public void setTo(OneOfSendMailTo to) {
+  public void setTo(SendMailTo to) {
     this.to = to;
   }
 

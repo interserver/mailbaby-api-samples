@@ -20,7 +20,7 @@ module OpenAPIClient
     # List of class defined in oneOf (OpenAPI v3)
     def self.openapi_one_of
       [
-        Array(EmailAddressName),
+        EmailAddressNames,
         String
       ]
     end
@@ -41,7 +41,7 @@ module OpenAPIClient
       nil
     end
 
-    private def self.find_and_cast_into_type(klass : Array(EmailAddressName).class, data)
+    private def self.find_and_cast_into_type(klass : EmailAddressNames.class, data)
       return if data.nil?
 
       Log.trace { "INSPECTING DATA" }
@@ -96,7 +96,7 @@ module OpenAPIClient
       klass.name.starts_with?("Array(")
     end
 
-    def initialize(@value : Array(EmailAddressName))
+    def initialize(@value : EmailAddressNames)
     end
 
     def initialize(@value : String)

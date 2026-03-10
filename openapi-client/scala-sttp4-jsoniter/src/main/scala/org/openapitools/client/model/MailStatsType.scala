@@ -30,7 +30,7 @@ case class MailStatsType(
   @named("received") received: Option[Int] = scala.None,
   /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
   @named("sent") sent: Option[Int] = scala.None,
-  @named("volume") volume: Option[MailStatsTypeVolume] = scala.None
+  @named("volume") volume: Option[MailStatsVolume] = scala.None
 )
 
 object MailStatsTypeEnums:

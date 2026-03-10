@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.SendMailAdv
+# Interserver.MailBaby.Client.Model.SendMailAdv
 ## Properties
 
 Name | Type | Description | Notes

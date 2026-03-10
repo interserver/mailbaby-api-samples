@@ -23,7 +23,7 @@ SendMail::~SendMail()
 void
 SendMail::__init()
 {
-	//to = new SendMail_to();
+	//to = new SendMailTo();
 	//from = std::string();
 	//subject = std::string();
 	//body = std::string();
@@ -71,11 +71,11 @@ SendMail::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("SendMail_to")) {
-			jsonToValue(&to, node, "SendMail_to", "SendMail_to");
+		if (isprimitive("SendMailTo")) {
+			jsonToValue(&to, node, "SendMailTo", "SendMailTo");
 		} else {
 			
-			SendMail_to* obj = static_cast<SendMail_to*> (&to);
+			SendMailTo* obj = static_cast<SendMailTo*> (&to);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -136,13 +136,13 @@ SendMail::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;
-	if (isprimitive("SendMail_to")) {
-		SendMail_to obj = getTo();
-		node = converttoJson(&obj, "SendMail_to", "");
+	if (isprimitive("SendMailTo")) {
+		SendMailTo obj = getTo();
+		node = converttoJson(&obj, "SendMailTo", "");
 	}
 	else {
 		
-		SendMail_to obj = static_cast<SendMail_to> (getTo());
+		SendMailTo obj = static_cast<SendMailTo> (getTo());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
@@ -194,14 +194,14 @@ SendMail::toJson()
 	return ret;
 }
 
-SendMail_to
+SendMailTo
 SendMail::getTo()
 {
 	return to;
 }
 
 void
-SendMail::setTo(SendMail_to  to)
+SendMail::setTo(SendMailTo  to)
 {
 	this->to = to;
 }

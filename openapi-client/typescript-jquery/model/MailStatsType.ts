@@ -46,7 +46,7 @@ export interface MailStatsType {
      */
     sent?: number;
 
-    volume?: models.MailStatsTypeVolume;
+    volume?: models.MailStatsVolume;
 
 }
 export namespace MailStatsType {

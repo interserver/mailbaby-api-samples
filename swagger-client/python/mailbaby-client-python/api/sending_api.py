@@ -538,7 +538,7 @@ class SendingApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param object to: (required)
+        :param SendMailTo to: (required)
         :param str _from: (required)
         :param str subject: (required)
         :param str body: (required)
@@ -564,7 +564,7 @@ class SendingApi(object):
         >>> result = thread.get()
 
         :param async_req bool
-        :param object to: (required)
+        :param SendMailTo to: (required)
         :param str _from: (required)
         :param str subject: (required)
         :param str body: (required)

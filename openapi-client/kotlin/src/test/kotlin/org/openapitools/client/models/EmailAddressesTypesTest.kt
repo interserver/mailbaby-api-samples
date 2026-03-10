@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.EmailAddressesTypes
-import org.openapitools.client.models.EmailAddressName
+import org.openapitools.client.models.EmailAddressNames
 
 class EmailAddressesTypesTest : ShouldSpec() {
     init {

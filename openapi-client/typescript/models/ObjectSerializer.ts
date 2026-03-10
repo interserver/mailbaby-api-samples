@@ -1,6 +1,7 @@
 export * from '../models/DenyRuleNew';
 export * from '../models/DenyRuleRecord';
 export * from '../models/EmailAddressName';
+export * from '../models/EmailAddressNames';
 export * from '../models/EmailAddressParam';
 export * from '../models/EmailAddressTypes';
 export * from '../models/EmailAddressesTypes';
@@ -15,7 +16,7 @@ export * from '../models/MailLogEntry';
 export * from '../models/MailOrder';
 export * from '../models/MailOrderDetail';
 export * from '../models/MailStatsType';
-export * from '../models/MailStatsTypeVolume';
+export * from '../models/MailStatsVolume';
 export * from '../models/SendMail';
 export * from '../models/SendMailAdv';
 export * from '../models/SendMailRaw';
@@ -24,6 +25,7 @@ export * from '../models/SendMailTo';
 import { DenyRuleNew, DenyRuleNewTypeEnum     } from '../models/DenyRuleNew';
 import { DenyRuleRecord, DenyRuleRecordTypeEnum       } from '../models/DenyRuleRecord';
 import { EmailAddressName } from '../models/EmailAddressName';
+import { EmailAddressNames } from '../models/EmailAddressNames';
 import { EmailAddressParam } from '../models/EmailAddressParam';
 import { EmailAddressTypesClass } from '../models/EmailAddressTypes';
 import { EmailAddressesTypesClass } from '../models/EmailAddressesTypes';
@@ -38,7 +40,7 @@ import { MailLogEntry } from '../models/MailLogEntry';
 import { MailOrder } from '../models/MailOrder';
 import { MailOrderDetail } from '../models/MailOrderDetail';
 import { MailStatsType, MailStatsTypeTimeEnum         } from '../models/MailStatsType';
-import { MailStatsTypeVolume } from '../models/MailStatsTypeVolume';
+import { MailStatsVolume } from '../models/MailStatsVolume';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 import { SendMailRaw } from '../models/SendMailRaw';
@@ -66,6 +68,7 @@ let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
     "EmailAddressName": EmailAddressName,
+    "EmailAddressNames": EmailAddressNames,
     "EmailAddressParam": EmailAddressParam,
     "EmailAddressTypes": EmailAddressTypesClass,
     "EmailAddressesTypes": EmailAddressesTypesClass,
@@ -80,7 +83,7 @@ let typeMap: {[index: string]: any} = {
     "MailOrder": MailOrder,
     "MailOrderDetail": MailOrderDetail,
     "MailStatsType": MailStatsType,
-    "MailStatsTypeVolume": MailStatsTypeVolume,
+    "MailStatsVolume": MailStatsVolume,
     "SendMail": SendMail,
     "SendMailAdv": SendMailAdv,
     "SendMailRaw": SendMailRaw,

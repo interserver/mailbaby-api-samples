@@ -14,7 +14,6 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import com.fasterxml.jackson.annotation.*;
 
@@ -24,12 +23,12 @@ import io.micronaut.core.annotation.*;
 import javax.annotation.Generated;
 
 /**
- * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  */
 @JsonPropertyOrder({
 })
-@JsonTypeName("SendMail_to")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-09T23:50:28.063839165-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@JsonTypeName("SendMailTo")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-10T03:55:45.089666227-04:00[America/New_York]", comments = "Generator version: 7.20.0")
 @Introspected
 public class SendMailTo {
     public SendMailTo() {

@@ -6,7 +6,7 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from mailbaby-client-python-flask.models.base_model_ import Model
-from mailbaby-client-python-flask.models.mail_stats_type_volume import MailStatsTypeVolume  # noqa: F401,E501
+from mailbaby-client-python-flask.models.mail_stats_volume import MailStatsVolume  # noqa: F401,E501
 from mailbaby-client-python-flask import util
 
 
@@ -15,7 +15,7 @@ class MailStatsType(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, time: str='1h', usage: int=None, currency: str=None, cost: float=None, received: int=None, sent: int=None, volume: MailStatsTypeVolume=None):  # noqa: E501
+    def __init__(self, time: str='1h', usage: int=None, currency: str=None, cost: float=None, received: int=None, sent: int=None, volume: MailStatsVolume=None):  # noqa: E501
         """MailStatsType - a model defined in Swagger
 
         :param time: The time of this MailStatsType.  # noqa: E501
@@ -31,7 +31,7 @@ class MailStatsType(Model):
         :param sent: The sent of this MailStatsType.  # noqa: E501
         :type sent: int
         :param volume: The volume of this MailStatsType.  # noqa: E501
-        :type volume: MailStatsTypeVolume
+        :type volume: MailStatsVolume
         """
         self.swagger_types = {
             'time': str,
@@ -40,7 +40,7 @@ class MailStatsType(Model):
             'cost': float,
             'received': int,
             'sent': int,
-            'volume': MailStatsTypeVolume
+            'volume': MailStatsVolume
         }
 
         self.attribute_map = {
@@ -216,22 +216,22 @@ class MailStatsType(Model):
         self._sent = sent
 
     @property
-    def volume(self) -> MailStatsTypeVolume:
+    def volume(self) -> MailStatsVolume:
         """Gets the volume of this MailStatsType.
 
 
         :return: The volume of this MailStatsType.
-        :rtype: MailStatsTypeVolume
+        :rtype: MailStatsVolume
         """
         return self._volume
 
     @volume.setter
-    def volume(self, volume: MailStatsTypeVolume):
+    def volume(self, volume: MailStatsVolume):
         """Sets the volume of this MailStatsType.
 
 
         :param volume: The volume of this MailStatsType.
-        :type volume: MailStatsTypeVolume
+        :type volume: MailStatsVolume
         """
 
         self._volume = volume

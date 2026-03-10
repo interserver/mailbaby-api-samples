@@ -100,11 +100,11 @@ Class | Method | HTTP request | Description
  - [MailOrder](MailOrder.md)
  - [MailOrderDetail](MailOrderDetail.md)
  - [MailStatsType](MailStatsType.md)
- - [MailStatsTypeVolume](MailStatsTypeVolume.md)
- - [OneOfSendMailTo](OneOfSendMailTo.md)
+ - [MailStatsVolume](MailStatsVolume.md)
  - [SendMail](SendMail.md)
  - [SendMailAdv](SendMailAdv.md)
  - [SendMailRaw](SendMailRaw.md)
+ - [SendMailTo](SendMailTo.md)
 
 ## Documentation for Authorization
 

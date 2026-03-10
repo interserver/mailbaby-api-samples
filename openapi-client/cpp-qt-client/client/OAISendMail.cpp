@@ -102,10 +102,10 @@ QJsonObject OAISendMail::asJsonObject() const {
     return obj;
 }
 
-OAISendMail_to OAISendMail::getTo() const {
+OAISendMailTo OAISendMail::getTo() const {
     return m_to;
 }
-void OAISendMail::setTo(const OAISendMail_to &to) {
+void OAISendMail::setTo(const OAISendMailTo &to) {
     m_to = to;
     m_to_isSet = true;
 }

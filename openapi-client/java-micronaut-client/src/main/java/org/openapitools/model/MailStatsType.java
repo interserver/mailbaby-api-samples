@@ -14,7 +14,7 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import org.openapitools.model.MailStatsTypeVolume;
+import org.openapitools.model.MailStatsVolume;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -35,7 +35,7 @@ import javax.annotation.Generated;
   MailStatsType.JSON_PROPERTY_VOLUME
 })
 @JsonTypeName("MailStatsType")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-09T23:50:28.063839165-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-10T03:55:45.089666227-04:00[America/New_York]", comments = "Generator version: 7.20.0")
 @Introspected
 public class MailStatsType {
     /**
@@ -95,7 +95,7 @@ public class MailStatsType {
     private Integer sent;
 
     public static final String JSON_PROPERTY_VOLUME = "volume";
-    private MailStatsTypeVolume volume;
+    private MailStatsVolume volume;
 
     public MailStatsType() {
     }
@@ -232,7 +232,7 @@ public class MailStatsType {
         this.sent = sent;
     }
 
-    public MailStatsType volume(MailStatsTypeVolume volume) {
+    public MailStatsType volume(MailStatsVolume volume) {
         this.volume = volume;
         return this;
     }
@@ -245,13 +245,13 @@ public class MailStatsType {
     @Nullable
     @JsonProperty(JSON_PROPERTY_VOLUME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public MailStatsTypeVolume getVolume() {
+    public MailStatsVolume getVolume() {
         return volume;
     }
 
     @JsonProperty(JSON_PROPERTY_VOLUME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setVolume(MailStatsTypeVolume volume) {
+    public void setVolume(MailStatsVolume volume) {
         this.volume = volume;
     }
 

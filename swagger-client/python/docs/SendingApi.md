@@ -155,7 +155,7 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
-to = NULL # object | 
+to = mailbaby-client-python.SendMailTo() # SendMailTo | 
 _from = '_from_example' # str | 
 subject = 'subject_example' # str | 
 body = 'body_example' # str | 
@@ -173,7 +173,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**object**](.md)|  | 
+ **to** | [**SendMailTo**](.md)|  | 
  **_from** | **str**|  | 
  **subject** | **str**|  | 
  **body** | **str**|  | 

@@ -8,10 +8,12 @@ src/main/scala/org/openapitools/client/apis/JsonSupports.scala
 src/main/scala/org/openapitools/client/apis/SendingApi.scala
 src/main/scala/org/openapitools/client/apis/ServicesApi.scala
 src/main/scala/org/openapitools/client/apis/StatusApi.scala
+src/main/scala/org/openapitools/client/models/DeliveredStatus.scala
 src/main/scala/org/openapitools/client/models/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/models/DenyRuleNewType.scala
 src/main/scala/org/openapitools/client/models/DenyRuleRecord.scala
 src/main/scala/org/openapitools/client/models/EmailAddressName.scala
+src/main/scala/org/openapitools/client/models/EmailAddressNames.scala
 src/main/scala/org/openapitools/client/models/EmailAddressParam.scala
 src/main/scala/org/openapitools/client/models/EmailAddressTypes.scala
 src/main/scala/org/openapitools/client/models/EmailAddressesTypes.scala
@@ -28,12 +30,11 @@ src/main/scala/org/openapitools/client/models/MailOrder.scala
 src/main/scala/org/openapitools/client/models/MailOrderDetail.scala
 src/main/scala/org/openapitools/client/models/MailStatsType.scala
 src/main/scala/org/openapitools/client/models/MailStatsTypeTime.scala
-src/main/scala/org/openapitools/client/models/MailStatsTypeVolume.scala
+src/main/scala/org/openapitools/client/models/MailStatsVolume.scala
 src/main/scala/org/openapitools/client/models/SendMail.scala
 src/main/scala/org/openapitools/client/models/SendMailAdv.scala
 src/main/scala/org/openapitools/client/models/SendMailRaw.scala
 src/main/scala/org/openapitools/client/models/SendMailTo.scala
-src/main/scala/org/openapitools/client/models/ViewMailLogDeliveredParameter.scala
 src/main/scala/org/openapitools/client/models/_Authorization.scala
 src/main/scala/org/openapitools/client/models/_FailedRequest.scala
 src/main/scala/org/openapitools/client/models/package.scala

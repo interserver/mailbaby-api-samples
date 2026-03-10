@@ -70,11 +70,11 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.MailOrder](docs/MailOrder.md)
  - [io.swagger.client.models.MailOrderDetail](docs/MailOrderDetail.md)
  - [io.swagger.client.models.MailStatsType](docs/MailStatsType.md)
- - [io.swagger.client.models.MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [io.swagger.client.models.OneOfSendMailTo](docs/OneOfSendMailTo.md)
+ - [io.swagger.client.models.MailStatsVolume](docs/MailStatsVolume.md)
  - [io.swagger.client.models.SendMail](docs/SendMail.md)
  - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
  - [io.swagger.client.models.SendMailRaw](docs/SendMailRaw.md)
+ - [io.swagger.client.models.SendMailTo](docs/SendMailTo.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

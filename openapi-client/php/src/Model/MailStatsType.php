@@ -65,7 +65,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost' => 'float',
         'received' => 'int',
         'sent' => 'int',
-        'volume' => '\Interserver\Mailbaby\Model\MailStatsTypeVolume'
+        'volume' => '\Interserver\Mailbaby\Model\MailStatsVolume'
     ];
 
     /**
@@ -542,7 +542,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets volume
      *
-     * @return \Interserver\Mailbaby\Model\MailStatsTypeVolume|null
+     * @return \Interserver\Mailbaby\Model\MailStatsVolume|null
      */
     public function getVolume()
     {
@@ -552,7 +552,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets volume
      *
-     * @param \Interserver\Mailbaby\Model\MailStatsTypeVolume|null $volume volume
+     * @param \Interserver\Mailbaby\Model\MailStatsVolume|null $volume volume
      *
      * @return self
      */

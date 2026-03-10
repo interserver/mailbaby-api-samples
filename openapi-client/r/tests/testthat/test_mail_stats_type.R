@@ -54,7 +54,7 @@ test_that("sent", {
 })
 
 test_that("volume", {
-  # tests for the property `volume` (MailStatsTypeVolume)
+  # tests for the property `volume` (MailStatsVolume)
 
   # uncomment below to test the property
   #expect_equal(model.instance$`volume`, "EXPECTED_RESULT")

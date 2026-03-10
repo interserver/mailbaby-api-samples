@@ -1,7 +1,7 @@
 (ns mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type
   (:require [clojure.spec.alpha :as s]
             [spec-tools.data-spec :as ds]
-            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type-volume :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-volume :refer :all]
             )
   (:import (java.io File)))
 
@@ -14,7 +14,7 @@
    (ds/opt :cost) float?
    (ds/opt :received) int?
    (ds/opt :sent) int?
-   (ds/opt :volume) mail-stats-type-volume-spec
+   (ds/opt :volume) mail-stats-volume-spec
    })
 
 (def mail-stats-type-spec

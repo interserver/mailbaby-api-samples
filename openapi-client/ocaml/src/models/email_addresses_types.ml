@@ -8,12 +8,12 @@
 
         type t =
             | OneOf0 of string
-            | OneOf1 of Email_address_name.t list
+            | OneOf1 of Email_address_names.t
         [@@deriving show, eq];;
         
         let to_yojson = function
             | OneOf0 v -> [%to_yojson: string] v
-            | OneOf1 v -> [%to_yojson: Email_address_name.t list] v
+            | OneOf1 v -> [%to_yojson: Email_address_names.t] v
         
         (* Manual implementations because the derived one encodes into a tuple list where the first element is the constructor name. *)
         
@@ -22,7 +22,7 @@
             [%of_yojson: string] json
               |> Stdlib.Result.to_option
               |> Stdlib.Option.map (fun v -> OneOf0 v);
-            [%of_yojson: Email_address_name.t list] json
+            [%of_yojson: Email_address_names.t] json
               |> Stdlib.Result.to_option
               |> Stdlib.Option.map (fun v -> OneOf1 v);
                         ]

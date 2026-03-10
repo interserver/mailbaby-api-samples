@@ -1,5 +1,5 @@
 const utils = require('../utils/utils');
-const EmailAddressName = require('../models/EmailAddressName');
+const EmailAddressNames = require('../models/EmailAddressNames');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {

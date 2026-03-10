@@ -6,6 +6,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -21,7 +22,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -38,6 +39,7 @@ src/PSOpenAPITools/Client/Configuration.ps1
 src/PSOpenAPITools/Model/DenyRuleNew.ps1
 src/PSOpenAPITools/Model/DenyRuleRecord.ps1
 src/PSOpenAPITools/Model/EmailAddressName.ps1
+src/PSOpenAPITools/Model/EmailAddressNames.ps1
 src/PSOpenAPITools/Model/EmailAddressParam.ps1
 src/PSOpenAPITools/Model/EmailAddressTypes.ps1
 src/PSOpenAPITools/Model/EmailAddressesTypes.ps1
@@ -52,7 +54,7 @@ src/PSOpenAPITools/Model/MailLogEntry.ps1
 src/PSOpenAPITools/Model/MailOrder.ps1
 src/PSOpenAPITools/Model/MailOrderDetail.ps1
 src/PSOpenAPITools/Model/MailStatsType.ps1
-src/PSOpenAPITools/Model/MailStatsTypeVolume.ps1
+src/PSOpenAPITools/Model/MailStatsVolume.ps1
 src/PSOpenAPITools/Model/SendMail.ps1
 src/PSOpenAPITools/Model/SendMailAdv.ps1
 src/PSOpenAPITools/Model/SendMailRaw.ps1
@@ -72,6 +74,7 @@ tests/Api/StatusApi.Tests.ps1
 tests/Model/DenyRuleNew.Tests.ps1
 tests/Model/DenyRuleRecord.Tests.ps1
 tests/Model/EmailAddressName.Tests.ps1
+tests/Model/EmailAddressNames.Tests.ps1
 tests/Model/EmailAddressParam.Tests.ps1
 tests/Model/EmailAddressTypes.Tests.ps1
 tests/Model/EmailAddressesTypes.Tests.ps1
@@ -86,7 +89,7 @@ tests/Model/MailLogEntry.Tests.ps1
 tests/Model/MailOrder.Tests.ps1
 tests/Model/MailOrderDetail.Tests.ps1
 tests/Model/MailStatsType.Tests.ps1
-tests/Model/MailStatsTypeVolume.Tests.ps1
+tests/Model/MailStatsVolume.Tests.ps1
 tests/Model/SendMail.Tests.ps1
 tests/Model/SendMailAdv.Tests.ps1
 tests/Model/SendMailRaw.Tests.ps1

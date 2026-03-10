@@ -20,7 +20,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  *
  */
 

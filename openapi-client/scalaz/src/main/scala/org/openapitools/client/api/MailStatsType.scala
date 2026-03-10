@@ -24,7 +24,7 @@ case class MailStatsType (
   received: Option[Integer],
 /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
   sent: Option[Integer],
-volume: Option[MailStatsTypeVolume])
+volume: Option[MailStatsVolume])
 
 object MailStatsType {
   import DateTimeCodecs._

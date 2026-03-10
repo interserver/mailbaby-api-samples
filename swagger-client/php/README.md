@@ -200,11 +200,11 @@ Class | Method | HTTP request | Description
  - [MailOrder](docs/Model/MailOrder.md)
  - [MailOrderDetail](docs/Model/MailOrderDetail.md)
  - [MailStatsType](docs/Model/MailStatsType.md)
- - [MailStatsTypeVolume](docs/Model/MailStatsTypeVolume.md)
- - [OneOfSendMailTo](docs/Model/OneOfSendMailTo.md)
+ - [MailStatsVolume](docs/Model/MailStatsVolume.md)
  - [SendMail](docs/Model/SendMail.md)
  - [SendMailAdv](docs/Model/SendMailAdv.md)
  - [SendMailRaw](docs/Model/SendMailRaw.md)
+ - [SendMailTo](docs/Model/SendMailTo.md)
 
 ## Documentation For Authorization
 

@@ -224,7 +224,7 @@ export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTime
  * @export
  */
 export const ViewMailLogDeliveredEnum = {
-    NUMBER_0: 0,
-    NUMBER_1: 1
+    NotDelivered: 0,
+    Delivered: 1
 } as const;
 export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typeof ViewMailLogDeliveredEnum];

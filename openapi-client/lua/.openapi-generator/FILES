@@ -10,6 +10,7 @@ openapiclient/api/status_api.lua
 openapiclient/model/deny_rule_new.lua
 openapiclient/model/deny_rule_record.lua
 openapiclient/model/email_address_name.lua
+openapiclient/model/email_address_names.lua
 openapiclient/model/email_address_param.lua
 openapiclient/model/email_address_types.lua
 openapiclient/model/email_addresses_types.lua
@@ -24,7 +25,7 @@ openapiclient/model/mail_log_entry.lua
 openapiclient/model/mail_order.lua
 openapiclient/model/mail_order_detail.lua
 openapiclient/model/mail_stats_type.lua
-openapiclient/model/mail_stats_type_volume.lua
+openapiclient/model/mail_stats_volume.lua
 openapiclient/model/send_mail.lua
 openapiclient/model/send_mail_adv.lua
 openapiclient/model/send_mail_raw.lua
@@ -33,6 +34,7 @@ spec/blocking_api_spec.lua
 spec/deny_rule_new_spec.lua
 spec/deny_rule_record_spec.lua
 spec/email_address_name_spec.lua
+spec/email_address_names_spec.lua
 spec/email_address_param_spec.lua
 spec/email_address_types_spec.lua
 spec/email_addresses_types_spec.lua
@@ -48,7 +50,7 @@ spec/mail_log_spec.lua
 spec/mail_order_detail_spec.lua
 spec/mail_order_spec.lua
 spec/mail_stats_type_spec.lua
-spec/mail_stats_type_volume_spec.lua
+spec/mail_stats_volume_spec.lua
 spec/send_mail_adv_spec.lua
 spec/send_mail_raw_spec.lua
 spec/send_mail_spec.lua

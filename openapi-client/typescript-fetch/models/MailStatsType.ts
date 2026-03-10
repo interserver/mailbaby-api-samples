@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { MailStatsTypeVolume } from './MailStatsTypeVolume';
+import type { MailStatsVolume } from './MailStatsVolume';
 import {
-    MailStatsTypeVolumeFromJSON,
-    MailStatsTypeVolumeFromJSONTyped,
-    MailStatsTypeVolumeToJSON,
-    MailStatsTypeVolumeToJSONTyped,
-} from './MailStatsTypeVolume';
+    MailStatsVolumeFromJSON,
+    MailStatsVolumeFromJSONTyped,
+    MailStatsVolumeToJSON,
+    MailStatsVolumeToJSONTyped,
+} from './MailStatsVolume';
 
 /**
  * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
@@ -65,10 +65,10 @@ export interface MailStatsType {
     sent?: number;
     /**
      * 
-     * @type {MailStatsTypeVolume}
+     * @type {MailStatsVolume}
      * @memberof MailStatsType
      */
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 
 
@@ -110,7 +110,7 @@ export function MailStatsTypeFromJSONTyped(json: any, ignoreDiscriminator: boole
         'cost': json['cost'] == null ? undefined : json['cost'],
         'received': json['received'] == null ? undefined : json['received'],
         'sent': json['sent'] == null ? undefined : json['sent'],
-        'volume': json['volume'] == null ? undefined : MailStatsTypeVolumeFromJSON(json['volume']),
+        'volume': json['volume'] == null ? undefined : MailStatsVolumeFromJSON(json['volume']),
     };
 }
 
@@ -131,7 +131,7 @@ export function MailStatsTypeToJSONTyped(value?: MailStatsType | null, ignoreDis
         'cost': value['cost'],
         'received': value['received'],
         'sent': value['sent'],
-        'volume': MailStatsTypeVolumeToJSON(value['volume']),
+        'volume': MailStatsVolumeToJSON(value['volume']),
     };
 }
 

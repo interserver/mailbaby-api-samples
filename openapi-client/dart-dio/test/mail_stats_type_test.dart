@@ -43,7 +43,7 @@ void main() {
       // TODO
     });
 
-    // MailStatsTypeVolume volume
+    // MailStatsVolume volume
     test('to test the property `volume`', () async {
       // TODO
     });

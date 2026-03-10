@@ -216,10 +216,10 @@ bool OAIMailStatsType::is_sent_Valid() const{
     return m_sent_isValid;
 }
 
-OAIMailStatsType_volume OAIMailStatsType::getVolume() const {
+OAIMailStatsVolume OAIMailStatsType::getVolume() const {
     return m_volume;
 }
-void OAIMailStatsType::setVolume(const OAIMailStatsType_volume &volume) {
+void OAIMailStatsType::setVolume(const OAIMailStatsVolume &volume) {
     m_volume = volume;
     m_volume_isSet = true;
 }

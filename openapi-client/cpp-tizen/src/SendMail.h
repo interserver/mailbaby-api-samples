@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "SendMail_to.h"
+#include "SendMailTo.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API
@@ -48,11 +48,11 @@ public:
 
 	/*! \brief Get 
 	 */
-	SendMail_to getTo();
+	SendMailTo getTo();
 
 	/*! \brief Set 
 	 */
-	void setTo(SendMail_to  to);
+	void setTo(SendMailTo  to);
 	/*! \brief Get The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 	 */
 	std::string getFrom();
@@ -83,7 +83,7 @@ public:
 	void setId(long long  id);
 
 private:
-	SendMail_to to;
+	SendMailTo to;
 	std::string from;
 	std::string subject;
 	std::string body;

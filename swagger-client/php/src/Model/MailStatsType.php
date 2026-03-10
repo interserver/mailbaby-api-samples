@@ -63,7 +63,7 @@ class MailStatsType implements ModelInterface, ArrayAccess
         'cost' => 'double',
         'received' => 'int',
         'sent' => 'int',
-        'volume' => '\Interserver\Mailbaby\Model\MailStatsTypeVolume'
+        'volume' => '\Interserver\Mailbaby\Model\MailStatsVolume'
     ];
 
     /**
@@ -426,7 +426,7 @@ class MailStatsType implements ModelInterface, ArrayAccess
     /**
      * Gets volume
      *
-     * @return \Interserver\Mailbaby\Model\MailStatsTypeVolume
+     * @return \Interserver\Mailbaby\Model\MailStatsVolume
      */
     public function getVolume()
     {
@@ -436,7 +436,7 @@ class MailStatsType implements ModelInterface, ArrayAccess
     /**
      * Sets volume
      *
-     * @param \Interserver\Mailbaby\Model\MailStatsTypeVolume $volume volume
+     * @param \Interserver\Mailbaby\Model\MailStatsVolume $volume volume
      *
      * @return $this
      */

@@ -19,7 +19,7 @@
 #define MailStatsType_H_
 
 
-#include "MailStatsType_volume.hpp"
+#include "MailStatsVolume.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 
@@ -48,7 +48,7 @@ class MailStatsType : public oatpp::DTO {
   DTO_FIELD(oatpp::Boolean, receivedIsSet);
   DTO_FIELD(oatpp::Int32, sent);
   DTO_FIELD(oatpp::Boolean, sentIsSet);
-  DTO_FIELD(oatpp::Object<org::openapitools::client::model::MailStatsType_volume>, volume);
+  DTO_FIELD(oatpp::Object<org::openapitools::client::model::MailStatsVolume>, volume);
   DTO_FIELD(oatpp::Boolean, volumeIsSet);
 
 };

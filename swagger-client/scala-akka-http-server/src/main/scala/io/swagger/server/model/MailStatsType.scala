@@ -21,6 +21,6 @@ case class MailStatsType (
   cost: Option[Double],
   received: Option[Int],
   sent: Option[Int],
-  volume: Option[MailStatsType_volume]
+  volume: Option[MailStatsVolume]
 )
 

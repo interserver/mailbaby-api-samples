@@ -26,7 +26,7 @@ SENDMAILTO_ONE_OF_SCHEMAS = ["List[str]", "str"]
 
 class SendMailTo(BaseModel):
     """
-    The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+    The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
     """
     # data type: str
     oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="Single recipient email address.")

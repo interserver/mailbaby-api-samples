@@ -199,11 +199,11 @@ Class | Method | HTTP request | Description
  - [mailbaby-client-csharp-dotnet2.Model.MailOrder](docs/MailOrder.md)
  - [mailbaby-client-csharp-dotnet2.Model.MailOrderDetail](docs/MailOrderDetail.md)
  - [mailbaby-client-csharp-dotnet2.Model.MailStatsType](docs/MailStatsType.md)
- - [mailbaby-client-csharp-dotnet2.Model.MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [mailbaby-client-csharp-dotnet2.Model.OneOfSendMailTo](docs/OneOfSendMailTo.md)
+ - [mailbaby-client-csharp-dotnet2.Model.MailStatsVolume](docs/MailStatsVolume.md)
  - [mailbaby-client-csharp-dotnet2.Model.SendMail](docs/SendMail.md)
  - [mailbaby-client-csharp-dotnet2.Model.SendMailAdv](docs/SendMailAdv.md)
  - [mailbaby-client-csharp-dotnet2.Model.SendMailRaw](docs/SendMailRaw.md)
+ - [mailbaby-client-csharp-dotnet2.Model.SendMailTo](docs/SendMailTo.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

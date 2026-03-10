@@ -412,7 +412,7 @@ void OAISendingApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAISendingApi::sendMail(const OAISendMail_to &to, const QString &from, const QString &subject, const QString &body, const ::OpenAPI::OptionalParam<qint64> &id) {
+void OAISendingApi::sendMail(const OAISendMailTo &to, const QString &from, const QString &subject, const QString &body, const ::OpenAPI::OptionalParam<qint64> &id) {
     QString fullPath = QString(_serverConfigs["sendMail"][_serverIndices.value("sendMail")].URL()+"/mail/send");
     
     if (_apiKeys.contains("apiKeyAuth")) {

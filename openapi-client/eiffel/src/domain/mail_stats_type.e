@@ -31,7 +31,7 @@ feature --Access
       -- Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
     sent: INTEGER_32
       -- Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
-    volume: detachable MAIL_STATS_TYPE_VOLUME
+    volume: detachable MAIL_STATS_VOLUME
       
 
 feature -- Change Element

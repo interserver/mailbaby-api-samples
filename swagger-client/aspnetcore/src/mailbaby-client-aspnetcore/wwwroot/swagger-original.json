@@ -802,8 +802,10 @@
           "style" : "form",
           "explode" : true,
           "schema" : {
+            "title" : "DeliveredStatus",
             "type" : "integer",
-            "enum" : [ 0, 1 ]
+            "enum" : [ 0, 1 ],
+            "x-enum-varnames" : [ "NotDelivered", "Delivered" ]
           },
           "example" : 1
         }, {
@@ -1522,6 +1524,25 @@
   },
   "components" : {
     "schemas" : {
+      "SendMailTo" : {
+        "title" : "SendMailTo",
+        "description" : "The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.",
+        "example" : "johndoe@company.com",
+        "oneOf" : [ {
+          "type" : "string",
+          "description" : "Single recipient email address.",
+          "format" : "email",
+          "example" : "johndoe@company.com"
+        }, {
+          "type" : "array",
+          "description" : "Multiple recipient email addresses.",
+          "example" : [ "johndoe@company.com", "janedoe@company.com" ],
+          "items" : {
+            "type" : "string",
+            "format" : "email"
+          }
+        } ]
+      },
       "GenericResponse" : {
         "title" : "GenericResponse",
         "type" : "object",
@@ -1678,6 +1699,7 @@
         "title" : "EmailAddressesTypes",
         "description" : "A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the `\"Name <email>\"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.",
         "oneOf" : [ {
+          "title" : "EmailAddressString",
           "type" : "string",
           "description" : "A single email address or RFC 822 comma-separated list. Example: `\"joe@example.com\"` or `\"Joe <joe@example.com>, jane@example.com\"`.",
           "format" : "email",
@@ -1690,6 +1712,7 @@
         "title" : "EmailAddressTypes",
         "description" : "A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.",
         "oneOf" : [ {
+          "title" : "EmailAddressSingleString",
           "type" : "string",
           "description" : "A single email address or RFC 822 named-address string. Example: `\"user@domain.com\"` or `\"Joe <user@domain.com>\"`.",
           "example" : "Joe <user@domain.com>"
@@ -1703,21 +1726,7 @@
         "type" : "object",
         "properties" : {
           "to" : {
-            "description" : "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.",
-            "oneOf" : [ {
-              "type" : "string",
-              "description" : "Single recipient email address.",
-              "format" : "email",
-              "example" : "johndoe@company.com"
-            }, {
-              "type" : "array",
-              "description" : "Multiple recipient email addresses.",
-              "example" : [ "johndoe@company.com", "janedoe@company.com" ],
-              "items" : {
-                "type" : "string",
-                "format" : "email"
-              }
-            } ]
+            "$ref" : "#/components/schemas/SendMailTo"
           },
           "from" : {
             "type" : "string",
@@ -2282,6 +2291,50 @@
           "response" : "250 2.0.0 Ok queued as C91D83E128C"
         }
       },
+      "MailStatsVolume" : {
+        "title" : "MailStatsVolume",
+        "type" : "object",
+        "properties" : {
+          "to" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : "Message counts keyed by destination (envelope `to`) email address."
+          },
+          "from" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : "Message counts keyed by sender (envelope `from`) email address."
+          },
+          "ip" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "integer",
+              "format" : "int32"
+            },
+            "description" : "Message counts keyed by originating client IP address."
+          }
+        },
+        "description" : "Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.",
+        "example" : {
+          "to" : {
+            "client@domain.com" : 395,
+            "user@site.net" : 57
+          },
+          "from" : {
+            "billing@somedomain.com" : 369
+          },
+          "ip" : {
+            "1.1.1.1" : 142,
+            "2.2.2.2" : 132
+          }
+        }
+      },
       "MailStatsType" : {
         "title" : "MailStatsType",
         "type" : "object",
@@ -2317,7 +2370,7 @@
             "format" : "int32"
           },
           "volume" : {
-            "$ref" : "#/components/schemas/MailStatsType_volume"
+            "$ref" : "#/components/schemas/MailStatsVolume"
           }
         },
         "description" : "Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.",
@@ -2345,36 +2398,6 @@
             }
           }
         }
-      },
-      "MailStatsType_volume" : {
-        "type" : "object",
-        "properties" : {
-          "to" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "description" : "Message counts keyed by destination (envelope `to`) email address."
-          },
-          "from" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "description" : "Message counts keyed by sender (envelope `from`) email address."
-          },
-          "ip" : {
-            "type" : "object",
-            "additionalProperties" : {
-              "type" : "integer",
-              "format" : "int32"
-            },
-            "description" : "Message counts keyed by originating client IP address."
-          }
-        },
-        "description" : "Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window."
       }
     },
     "responses" : {

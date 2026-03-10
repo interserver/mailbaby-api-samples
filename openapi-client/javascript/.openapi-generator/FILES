@@ -7,6 +7,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -22,7 +23,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -43,6 +44,7 @@ src/index.js
 src/model/DenyRuleNew.js
 src/model/DenyRuleRecord.js
 src/model/EmailAddressName.js
+src/model/EmailAddressNames.js
 src/model/EmailAddressParam.js
 src/model/EmailAddressTypes.js
 src/model/EmailAddressesTypes.js
@@ -57,7 +59,7 @@ src/model/MailLogEntry.js
 src/model/MailOrder.js
 src/model/MailOrderDetail.js
 src/model/MailStatsType.js
-src/model/MailStatsTypeVolume.js
+src/model/MailStatsVolume.js
 src/model/SendMail.js
 src/model/SendMailAdv.js
 src/model/SendMailRaw.js
@@ -70,6 +72,7 @@ test/api/StatusApi.spec.js
 test/model/DenyRuleNew.spec.js
 test/model/DenyRuleRecord.spec.js
 test/model/EmailAddressName.spec.js
+test/model/EmailAddressNames.spec.js
 test/model/EmailAddressParam.spec.js
 test/model/EmailAddressTypes.spec.js
 test/model/EmailAddressesTypes.spec.js
@@ -84,7 +87,7 @@ test/model/MailLogEntry.spec.js
 test/model/MailOrder.spec.js
 test/model/MailOrderDetail.spec.js
 test/model/MailStatsType.spec.js
-test/model/MailStatsTypeVolume.spec.js
+test/model/MailStatsVolume.spec.js
 test/model/SendMail.spec.js
 test/model/SendMailAdv.spec.js
 test/model/SendMailRaw.spec.js

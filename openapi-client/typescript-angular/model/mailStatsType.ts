@@ -7,7 +7,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { MailStatsTypeVolume } from './mailStatsTypeVolume';
+import { MailStatsVolume } from './mailStatsVolume';
 
 
 /**
@@ -38,7 +38,7 @@ export interface MailStatsType {
      * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
      */
     sent?: number;
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 export namespace MailStatsType {
     export const TimeEnum = {

@@ -10,6 +10,7 @@ index.js
 models/DenyRuleNew.js
 models/DenyRuleRecord.js
 models/EmailAddressName.js
+models/EmailAddressNames.js
 models/EmailAddressParam.js
 models/EmailAddressTypes.js
 models/EmailAddressesTypes.js
@@ -24,11 +25,11 @@ models/MailLogEntry.js
 models/MailOrder.js
 models/MailOrderDetail.js
 models/MailStatsType.js
-models/MailStatsType_volume.js
+models/MailStatsVolume.js
 models/SendMail.js
 models/SendMailAdv.js
 models/SendMailRaw.js
-models/SendMail_to.js
+models/SendMailTo.js
 operations/actions.js
 package.json
 samples/BlockingApi.js

@@ -17,13 +17,13 @@ use serde::{Deserialize, Serialize};
 #[serde(untagged)]
 pub enum EmailAddressTypes {
     /// A single email address or RFC 822 named-address string. Example: `\"user@domain.com\"` or `\"Joe <user@domain.com>\"`.
-    String(String),
+    EmailAddressSingleString(String),
     EmailAddressName(Box<models::EmailAddressName>),
 }
 
 impl Default for EmailAddressTypes {
     fn default() -> Self {
-        Self::String(Default::default())
+        Self::EmailAddressSingleString(Default::default())
     }
 }
 

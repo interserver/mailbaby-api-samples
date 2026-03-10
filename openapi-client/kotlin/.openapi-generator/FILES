@@ -5,6 +5,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -20,7 +21,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -58,6 +59,7 @@ src/main/kotlin/org/openapitools/client/infrastructure/UUIDAdapter.kt
 src/main/kotlin/org/openapitools/client/models/DenyRuleNew.kt
 src/main/kotlin/org/openapitools/client/models/DenyRuleRecord.kt
 src/main/kotlin/org/openapitools/client/models/EmailAddressName.kt
+src/main/kotlin/org/openapitools/client/models/EmailAddressNames.kt
 src/main/kotlin/org/openapitools/client/models/EmailAddressParam.kt
 src/main/kotlin/org/openapitools/client/models/EmailAddressTypes.kt
 src/main/kotlin/org/openapitools/client/models/EmailAddressesTypes.kt
@@ -72,7 +74,7 @@ src/main/kotlin/org/openapitools/client/models/MailLogEntry.kt
 src/main/kotlin/org/openapitools/client/models/MailOrder.kt
 src/main/kotlin/org/openapitools/client/models/MailOrderDetail.kt
 src/main/kotlin/org/openapitools/client/models/MailStatsType.kt
-src/main/kotlin/org/openapitools/client/models/MailStatsTypeVolume.kt
+src/main/kotlin/org/openapitools/client/models/MailStatsVolume.kt
 src/main/kotlin/org/openapitools/client/models/SendMail.kt
 src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
 src/main/kotlin/org/openapitools/client/models/SendMailRaw.kt
@@ -85,6 +87,7 @@ src/test/kotlin/org/openapitools/client/apis/StatusApiTest.kt
 src/test/kotlin/org/openapitools/client/models/DenyRuleNewTest.kt
 src/test/kotlin/org/openapitools/client/models/DenyRuleRecordTest.kt
 src/test/kotlin/org/openapitools/client/models/EmailAddressNameTest.kt
+src/test/kotlin/org/openapitools/client/models/EmailAddressNamesTest.kt
 src/test/kotlin/org/openapitools/client/models/EmailAddressParamTest.kt
 src/test/kotlin/org/openapitools/client/models/EmailAddressTypesTest.kt
 src/test/kotlin/org/openapitools/client/models/EmailAddressesTypesTest.kt
@@ -99,7 +102,7 @@ src/test/kotlin/org/openapitools/client/models/MailLogTest.kt
 src/test/kotlin/org/openapitools/client/models/MailOrderDetailTest.kt
 src/test/kotlin/org/openapitools/client/models/MailOrderTest.kt
 src/test/kotlin/org/openapitools/client/models/MailStatsTypeTest.kt
-src/test/kotlin/org/openapitools/client/models/MailStatsTypeVolumeTest.kt
+src/test/kotlin/org/openapitools/client/models/MailStatsVolumeTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailAdvTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailRawTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailTest.kt

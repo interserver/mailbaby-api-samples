@@ -11,7 +11,7 @@ import 'package:one_of/one_of.dart';
 
 part 'send_mail_to.g.dart';
 
-/// The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+/// The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
 @BuiltValue()
 abstract class SendMailTo implements Built<SendMailTo, SendMailToBuilder> {
   /// One Of [BuiltList<String>], [String]

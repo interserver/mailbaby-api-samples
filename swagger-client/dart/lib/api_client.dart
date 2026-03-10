@@ -74,16 +74,16 @@ class ApiClient {
           return new MailOrderDetail.fromJson(value);
         case 'MailStatsType':
           return new MailStatsType.fromJson(value);
-        case 'MailStatsTypeVolume':
-          return new MailStatsTypeVolume.fromJson(value);
-        case 'OneOfSendMailTo':
-          return new OneOfSendMailTo.fromJson(value);
+        case 'MailStatsVolume':
+          return new MailStatsVolume.fromJson(value);
         case 'SendMail':
           return new SendMail.fromJson(value);
         case 'SendMailAdv':
           return new SendMailAdv.fromJson(value);
         case 'SendMailRaw':
           return new SendMailRaw.fromJson(value);
+        case 'SendMailTo':
+          return new SendMailTo.fromJson(value);
         default:
           {
             Match match;

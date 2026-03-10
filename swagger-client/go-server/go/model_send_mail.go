@@ -11,8 +11,8 @@ package mailbaby-client-go-server
 
 // Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
 type SendMail struct {
-	// The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
-	To *OneOfSendMailTo `json:"to"`
+
+	To *SendMailTo `json:"to"`
 	// The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 	From string `json:"from"`
 	// The subject line of the email.

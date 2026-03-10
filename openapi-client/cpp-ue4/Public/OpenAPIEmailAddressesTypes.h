@@ -13,7 +13,7 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
-#include "OpenAPIEmailAddressName.h"
+#include "OpenAPIEmailAddressNames.h"
 
 namespace OpenAPI
 {

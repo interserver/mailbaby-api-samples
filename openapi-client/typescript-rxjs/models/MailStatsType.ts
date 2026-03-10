@@ -12,7 +12,7 @@
  */
 
 import type {
-    MailStatsTypeVolume,
+    MailStatsVolume,
 } from './';
 
 /**
@@ -58,10 +58,10 @@ export interface MailStatsType {
      */
     sent?: number;
     /**
-     * @type {MailStatsTypeVolume}
+     * @type {MailStatsVolume}
      * @memberof MailStatsType
      */
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 
 /**

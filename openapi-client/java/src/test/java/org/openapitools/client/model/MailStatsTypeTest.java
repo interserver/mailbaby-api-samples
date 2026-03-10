@@ -20,7 +20,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.MailStatsTypeVolume;
+import org.openapitools.client.model.MailStatsVolume;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

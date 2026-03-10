@@ -1694,6 +1694,14 @@ h2. Models
          |email |(/) |{noformat:nopanel=true}String{noformat} | The email address. |  | user@domain.com
          |name |(x) |{noformat:nopanel=true}String{noformat} | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). |  | John Smith
          
+        {anchor:EmailAddressNamesModelAnchor}
+        h3. EmailAddressNames
+
+        An array of email contacts, each with an email address and optional display name.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         
         {anchor:EmailAddressParamModelAnchor}
         h3. EmailAddressParam
 
@@ -1749,7 +1757,7 @@ h2. Models
         
         ||Field Name||Required||Type||Description||Enum||Example||
          |filename |(/) |{noformat:nopanel=true}String{noformat} | The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). |  | message.txt
-         |data |(/) |{noformat:nopanel=true}byte[]{noformat} | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. |  | [B@5af8bb51
+         |data |(/) |{noformat:nopanel=true}byte[]{noformat} | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. |  | [B@74174a23
          
         {anchor:MailBlockClickHouseModelAnchor}
         h3. MailBlockClickHouse
@@ -1875,12 +1883,12 @@ Key field relationships with other API calls:
          |cost |(x) |{noformat:nopanel=true}Double{noformat} | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). |  | null
          |received |(x) |{noformat:nopanel=true}Integer{noformat} | Count of messages accepted by the relay within the selected &#x60;time&#x60; window. Includes messages still in queue. |  | null
          |sent |(x) |{noformat:nopanel=true}Integer{noformat} | Count of messages successfully delivered to the destination MX within the selected &#x60;time&#x60; window.  Will be ≤ &#x60;received&#x60;. |  | null
-         |volume |(x) |{noformat:nopanel=true}MailStatsType_volume{noformat} |  |  | null
+         |volume |(x) |{noformat:nopanel=true}MailStatsVolume{noformat} |  |  | null
          
-        {anchor:MailStatsTypeVolumeModelAnchor}
-        h3. MailStatsTypeVolume
+        {anchor:MailStatsVolumeModelAnchor}
+        h3. MailStatsVolume
 
-        Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
+        Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
@@ -1897,7 +1905,7 @@ For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |to |(/) |{noformat:nopanel=true}SendMail_to{noformat} |  |  | null
+         |to |(/) |{noformat:nopanel=true}SendMailTo{noformat} |  |  | null
          |from |(/) |{noformat:nopanel=true}String{noformat} | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. |  | janedoe@company.com
          |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject line of the email. |  | Attention Client
          |body |(/) |{noformat:nopanel=true}String{noformat} | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. |  | This is an email to inform you that something noteworthy happened.
@@ -1939,7 +1947,7 @@ The `From`, `To`, `Cc`, and `Bcc` addresses are extracted from the message heade
         {anchor:SendMailToModelAnchor}
         h3. SendMailTo
 
-        The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+        The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
 
         
         ||Field Name||Required||Type||Description||Enum||Example||

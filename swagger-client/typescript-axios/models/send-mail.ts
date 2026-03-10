@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { SendMailTo } from './send-mail-to';
  /**
  * Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
  *
@@ -21,12 +22,10 @@
 export interface SendMail {
 
     /**
-     * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
-     *
-     * @type {string | Array<string>}
+     * @type {SendMailTo}
      * @memberof SendMail
      */
-    to: string | Array<string>;
+    to: SendMailTo;
 
     /**
      * The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.

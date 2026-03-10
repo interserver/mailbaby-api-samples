@@ -13,7 +13,7 @@
 #' @field cost Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). numeric [optional]
 #' @field received Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue. integer [optional]
 #' @field sent Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. integer [optional]
-#' @field volume  \link{MailStatsTypeVolume} [optional]
+#' @field volume  \link{MailStatsVolume} [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -199,7 +199,7 @@ MailStatsType <- R6::R6Class(
         self$`sent` <- this_object$`sent`
       }
       if (!is.null(this_object$`volume`)) {
-        `volume_object` <- MailStatsTypeVolume$new()
+        `volume_object` <- MailStatsVolume$new()
         `volume_object`$fromJSON(jsonlite::toJSON(this_object$`volume`, auto_unbox = TRUE, digits = NA))
         self$`volume` <- `volume_object`
       }
@@ -233,7 +233,7 @@ MailStatsType <- R6::R6Class(
       self$`cost` <- this_object$`cost`
       self$`received` <- this_object$`received`
       self$`sent` <- this_object$`sent`
-      self$`volume` <- MailStatsTypeVolume$new()$fromJSON(jsonlite::toJSON(this_object$`volume`, auto_unbox = TRUE, digits = NA))
+      self$`volume` <- MailStatsVolume$new()$fromJSON(jsonlite::toJSON(this_object$`volume`, auto_unbox = TRUE, digits = NA))
       self
     },
 

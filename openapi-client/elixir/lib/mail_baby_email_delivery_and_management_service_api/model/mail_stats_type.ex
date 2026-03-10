@@ -24,14 +24,14 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsType do
     :cost => float() | nil,
     :received => integer() | nil,
     :sent => integer() | nil,
-    :volume => MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolume.t | nil
+    :volume => MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsVolume.t | nil
   }
 
   alias MailBabyEmailDeliveryAndManagementServiceAPI.Deserializer
 
   def decode(value) do
     value
-     |> Deserializer.deserialize(:volume, :struct, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsTypeVolume)
+     |> Deserializer.deserialize(:volume, :struct, MailBabyEmailDeliveryAndManagementServiceAPI.Model.MailStatsVolume)
   end
 end
 

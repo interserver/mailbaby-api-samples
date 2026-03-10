@@ -5,7 +5,7 @@ const ErrorMessage = require('../models/ErrorMessage');
 const GenericResponse = require('../models/GenericResponse');
 const MailAttachment = require('../models/MailAttachment');
 const SendMailRaw = require('../models/SendMailRaw');
-const SendMail_to = require('../models/SendMail_to');
+const SendMailTo = require('../models/SendMailTo');
 const utils = require('../utils/utils');
 
 module.exports = {
@@ -122,7 +122,7 @@ module.exports = {
         },
         operation: {
             inputFields: [
-                ...SendMail_to.fields(),
+                ...SendMailTo.fields(),
                 {
                     key: 'from',
                     label: 'The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.',

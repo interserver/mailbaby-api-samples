@@ -24,5 +24,5 @@ type MailStatsType struct {
 	// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
 	Sent int32 `json:"sent,omitempty"`
 
-	Volume *MailStatsTypeVolume `json:"volume,omitempty"`
+	Volume *MailStatsVolume `json:"volume,omitempty"`
 }

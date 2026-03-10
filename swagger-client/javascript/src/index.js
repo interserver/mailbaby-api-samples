@@ -32,11 +32,11 @@ import MailLogEntry from './model/MailLogEntry';
 import MailOrder from './model/MailOrder';
 import MailOrderDetail from './model/MailOrderDetail';
 import MailStatsType from './model/MailStatsType';
-import MailStatsTypeVolume from './model/MailStatsTypeVolume';
-import OneOfSendMailTo from './model/OneOfSendMailTo';
+import MailStatsVolume from './model/MailStatsVolume';
 import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import SendMailRaw from './model/SendMailRaw';
+import SendMailTo from './model/SendMailTo';
 import BlockingApi from './api/BlockingApi';
 import HistoryApi from './api/HistoryApi';
 import SendingApi from './api/SendingApi';
@@ -190,16 +190,10 @@ export {
     MailStatsType,
 
     /**
-     * The MailStatsTypeVolume model constructor.
-     * @property {module:model/MailStatsTypeVolume}
+     * The MailStatsVolume model constructor.
+     * @property {module:model/MailStatsVolume}
      */
-    MailStatsTypeVolume,
-
-    /**
-     * The OneOfSendMailTo model constructor.
-     * @property {module:model/OneOfSendMailTo}
-     */
-    OneOfSendMailTo,
+    MailStatsVolume,
 
     /**
      * The SendMail model constructor.
@@ -218,6 +212,12 @@ export {
      * @property {module:model/SendMailRaw}
      */
     SendMailRaw,
+
+    /**
+     * The SendMailTo model constructor.
+     * @property {module:model/SendMailTo}
+     */
+    SendMailTo,
 
     /**
     * The BlockingApi service constructor.

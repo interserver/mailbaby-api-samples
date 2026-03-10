@@ -5,6 +5,7 @@ HEADERS += \
     $${PWD}/OAIDenyRuleNew.h \
     $${PWD}/OAIDenyRuleRecord.h \
     $${PWD}/OAIEmailAddressName.h \
+    $${PWD}/OAIEmailAddressNames.h \
     $${PWD}/OAIEmailAddressParam.h \
     $${PWD}/OAIEmailAddressTypes.h \
     $${PWD}/OAIEmailAddressesTypes.h \
@@ -19,11 +20,11 @@ HEADERS += \
     $${PWD}/OAIMailOrder.h \
     $${PWD}/OAIMailOrderDetail.h \
     $${PWD}/OAIMailStatsType.h \
-    $${PWD}/OAIMailStatsType_volume.h \
+    $${PWD}/OAIMailStatsVolume.h \
     $${PWD}/OAISendMail.h \
     $${PWD}/OAISendMailAdv.h \
     $${PWD}/OAISendMailRaw.h \
-    $${PWD}/OAISendMail_to.h \
+    $${PWD}/OAISendMailTo.h \
 # APIs
     $${PWD}/OAIBlockingApi.h \
     $${PWD}/OAIHistoryApi.h \
@@ -45,6 +46,7 @@ SOURCES += \
     $${PWD}/OAIDenyRuleNew.cpp \
     $${PWD}/OAIDenyRuleRecord.cpp \
     $${PWD}/OAIEmailAddressName.cpp \
+    $${PWD}/OAIEmailAddressNames.cpp \
     $${PWD}/OAIEmailAddressParam.cpp \
     $${PWD}/OAIEmailAddressTypes.cpp \
     $${PWD}/OAIEmailAddressesTypes.cpp \
@@ -59,11 +61,11 @@ SOURCES += \
     $${PWD}/OAIMailOrder.cpp \
     $${PWD}/OAIMailOrderDetail.cpp \
     $${PWD}/OAIMailStatsType.cpp \
-    $${PWD}/OAIMailStatsType_volume.cpp \
+    $${PWD}/OAIMailStatsVolume.cpp \
     $${PWD}/OAISendMail.cpp \
     $${PWD}/OAISendMailAdv.cpp \
     $${PWD}/OAISendMailRaw.cpp \
-    $${PWD}/OAISendMail_to.cpp \
+    $${PWD}/OAISendMailTo.cpp \
 # APIs
     $${PWD}/OAIBlockingApi.cpp \
     $${PWD}/OAIHistoryApi.cpp \

@@ -15,7 +15,7 @@
 
 package org.openapitools.client.models
 
-import org.openapitools.client.models.EmailAddressName
+import org.openapitools.client.models.EmailAddressNames
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

@@ -11,6 +11,7 @@ git_push.sh
 model/denyRuleNew.ts
 model/denyRuleRecord.ts
 model/emailAddressName.ts
+model/emailAddressNames.ts
 model/emailAddressParam.ts
 model/emailAddressTypes.ts
 model/emailAddressesTypes.ts
@@ -25,7 +26,7 @@ model/mailLogEntry.ts
 model/mailOrder.ts
 model/mailOrderDetail.ts
 model/mailStatsType.ts
-model/mailStatsTypeVolume.ts
+model/mailStatsVolume.ts
 model/models.ts
 model/sendMail.ts
 model/sendMailAdv.ts

@@ -12,20 +12,20 @@
  * Do not edit the class manually.
  */
 
-import type { EmailAddressName } from './EmailAddressName';
+import type { EmailAddressNames } from './EmailAddressNames';
 import {
-    instanceOfEmailAddressName,
-    EmailAddressNameFromJSON,
-    EmailAddressNameFromJSONTyped,
-    EmailAddressNameToJSON,
-} from './EmailAddressName';
+    instanceOfEmailAddressNames,
+    EmailAddressNamesFromJSON,
+    EmailAddressNamesFromJSONTyped,
+    EmailAddressNamesToJSON,
+} from './EmailAddressNames';
 
 /**
  * @type EmailAddressesTypes
  * A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the `"Name <email>"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.
  * @export
  */
-export type EmailAddressesTypes = Array<EmailAddressName> | string;
+export type EmailAddressesTypes = EmailAddressNames | string;
 
 export function EmailAddressesTypesFromJSON(json: any): EmailAddressesTypes {
     return EmailAddressesTypesFromJSONTyped(json, false);
@@ -35,13 +35,11 @@ export function EmailAddressesTypesFromJSONTyped(json: any, ignoreDiscriminator:
     if (json == null) {
         return json;
     }
-    if (Array.isArray(json)) {
-        if (json.every(item => typeof item === 'object')) {
-            if (json.every(item => instanceOfEmailAddressName(item))) {
-                return json.map(value => EmailAddressNameFromJSONTyped(value, true));
-            }
-        }
+    if (typeof json !== 'object') {
         return json;
+    }
+    if (instanceOfEmailAddressNames(json)) {
+        return EmailAddressNamesFromJSONTyped(json, true);
     }
     if (typeof json === 'string') {
         return json;
@@ -57,13 +55,11 @@ export function EmailAddressesTypesToJSONTyped(value?: EmailAddressesTypes | nul
     if (value == null) {
         return value;
     }
-    if (Array.isArray(value)) {
-        if (value.every(item => typeof item === 'object')) {
-            if (value.every(item => instanceOfEmailAddressName(item))) {
-                return value.map(value => EmailAddressNameToJSON(value as EmailAddressName));
-            }
-        }
+    if (typeof value !== 'object') {
         return value;
+    }
+    if (instanceOfEmailAddressNames(value)) {
+        return EmailAddressNamesToJSON(value as EmailAddressNames);
     }
     if (typeof value === 'string') {
         return value;

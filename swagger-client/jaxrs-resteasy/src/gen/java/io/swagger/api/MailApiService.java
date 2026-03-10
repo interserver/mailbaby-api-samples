@@ -19,6 +19,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,7 @@ public interface MailApiService {
       Response rawMail(String rawEmail,Long id,SecurityContext securityContext) throws NotFoundException;
       Response sendAdvMail(String subject,String body,EmailAddressTypes from,EmailAddressesTypes to,EmailAddressesTypes replyto,EmailAddressesTypes cc,EmailAddressesTypes bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) throws NotFoundException;
       Response sendAdvMail(SendMailAdv body,SecurityContext securityContext) throws NotFoundException;
-      Response sendMail(Object to,String from,String subject,String body,Long id,SecurityContext securityContext) throws NotFoundException;
+      Response sendMail(SendMailTo to,String from,String subject,String body,Long id,SecurityContext securityContext) throws NotFoundException;
       Response sendMail(SendMail body,SecurityContext securityContext) throws NotFoundException;
       Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,String messageId,String replyto,String headerfrom,Integer delivered,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext) throws NotFoundException;
 }

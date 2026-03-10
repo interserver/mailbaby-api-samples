@@ -42,6 +42,7 @@ import io.swagger.server.models.MailAttachment
 import io.swagger.server.models.SendMail
 import io.swagger.server.models.SendMailAdv
 import io.swagger.server.models.SendMailRaw
+import io.swagger.server.models.SendMailTo
 
 @KtorExperimentalLocationsAPI
 fun Route.SendingApi() {

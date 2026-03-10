@@ -34,7 +34,7 @@ class MailStatsType(object):
         'cost': 'float',
         'received': 'int',
         'sent': 'int',
-        'volume': 'MailStatsTypeVolume'
+        'volume': 'MailStatsVolume'
     }
 
     attribute_map = {
@@ -222,7 +222,7 @@ class MailStatsType(object):
 
 
         :return: The volume of this MailStatsType.  # noqa: E501
-        :rtype: MailStatsTypeVolume
+        :rtype: MailStatsVolume
         """
         return self._volume
 
@@ -232,7 +232,7 @@ class MailStatsType(object):
 
 
         :param volume: The volume of this MailStatsType.  # noqa: E501
-        :type: MailStatsTypeVolume
+        :type: MailStatsVolume
         """
 
         self._volume = volume

@@ -139,7 +139,7 @@ Sends an email through one of your mail orders using a simple flat set of fields
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let to = SendMail_to() // SendMailTo | 
+let to = SendMailTo() // SendMailTo | 
 let from = "from_example" // String | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 let subject = "subject_example" // String | The subject line of the email.
 let body = "body_example" // String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.

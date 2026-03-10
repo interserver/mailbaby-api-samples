@@ -3,6 +3,7 @@ API/Client/BlockingApi.js
 API/Client/DenyRuleNew.js
 API/Client/DenyRuleRecord.js
 API/Client/EmailAddressName.js
+API/Client/EmailAddressNames.js
 API/Client/EmailAddressParam.js
 API/Client/EmailAddressTypes.js
 API/Client/EmailAddressesTypes.js
@@ -18,7 +19,7 @@ API/Client/MailLogEntry.js
 API/Client/MailOrder.js
 API/Client/MailOrderDetail.js
 API/Client/MailStatsType.js
-API/Client/MailStatsTypeVolume.js
+API/Client/MailStatsVolume.js
 API/Client/SendMail.js
 API/Client/SendMailAdv.js
 API/Client/SendMailRaw.js

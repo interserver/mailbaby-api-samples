@@ -27,6 +27,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 
 import java.util.List;
 import java.util.Map;
@@ -245,7 +246,7 @@ public interface MailApi  {
                 @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                 @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
          })
-    Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  Object to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Context SecurityContext securityContext);
+    Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  SendMailTo to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Context SecurityContext securityContext);
 
     @POST
     @Path("/send")

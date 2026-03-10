@@ -1397,10 +1397,11 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <li><a href="#MailOrder"><code>MailOrder</code> - MailOrder</a></li>
     <li><a href="#MailOrderDetail"><code>MailOrderDetail</code> - MailOrderDetail</a></li>
     <li><a href="#MailStatsType"><code>MailStatsType</code> - MailStatsType</a></li>
-    <li><a href="#MailStatsType_volume"><code>MailStatsType_volume</code></a></li>
+    <li><a href="#MailStatsVolume"><code>MailStatsVolume</code> - MailStatsVolume</a></li>
     <li><a href="#SendMail"><code>SendMail</code> - SendMail</a></li>
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
     <li><a href="#SendMailRaw"><code>SendMailRaw</code> - SendMailRaw</a></li>
+    <li><a href="#SendMailTo"><code>SendMailTo</code> - SendMailTo</a></li>
   </ol>
 
   <div class="model">
@@ -1501,7 +1502,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
       <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename shown to recipients (e.g. &lt;code&gt;report.pdf&lt;/code&gt;, &lt;code&gt;invoice.xlsx&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: message.txt</span></div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#ByteArray">byte[]</a></span> The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. format: byte</div>
-          <div class="param-desc"><span class="param-type">example: [B@2007b9ac</span></div>
+          <div class="param-desc"><span class="param-type">example: [B@579c75cc</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1656,12 +1657,12 @@ flagged sender.&lt;/li&gt;
 <div class="param">cost (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span> Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). format: double</div>
 <div class="param">received (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Count of messages accepted by the relay within the selected &lt;code&gt;time&lt;/code&gt; window. Includes messages still in queue. format: int32</div>
 <div class="param">sent (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Count of messages successfully delivered to the destination MX within the selected &lt;code&gt;time&lt;/code&gt; window.  Will be ≤ &lt;code&gt;received&lt;/code&gt;. format: int32</div>
-<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsType_volume">MailStatsType_volume</a></span>  </div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailStatsVolume">MailStatsVolume</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="MailStatsType_volume"><code>MailStatsType_volume</code></a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected &lt;code&gt;time&lt;/code&gt; window.</div>
+    <h3><a name="MailStatsVolume"><code>MailStatsVolume</code> - MailStatsVolume</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.</div>
     <div class="field-items">
       <div class="param">to (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">map[String, Integer]</a></span> Message counts keyed by destination (envelope &lt;code&gt;to&lt;/code&gt;) email address. format: int32</div>
 <div class="param">from (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">map[String, Integer]</a></span> Message counts keyed by sender (envelope &lt;code&gt;from&lt;/code&gt;) email address. format: int32</div>
@@ -1674,9 +1675,7 @@ flagged sender.&lt;/li&gt;
 &lt;p&gt;For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &lt;code&gt;POST /mail/advsend&lt;/code&gt; instead.&lt;/p&gt;
 </div>
     <div class="field-items">
-      <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#"></a></span> The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. </div>
-      <div class="param-desc"><span class="param-type">oneOf:</span>
-      </div>
+      <div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#SendMailTo">SendMailTo</a></span>  </div>
 <div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The sender address.  This is used as both the &lt;code&gt;From&lt;/code&gt; header and the &lt;code&gt;Reply-To&lt;/code&gt; header automatically.  Must be a valid email address authorized for your mail order. format: email</div>
           <div class="param-desc"><span class="param-type">example: janedoe@company.com</span></div>
 <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject line of the email. </div>
@@ -1717,6 +1716,12 @@ flagged sender.&lt;/li&gt;
       <div class="param">raw_email </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The complete RFC 822 email message including all headers and the body. Must include at minimum &lt;code&gt;From&lt;/code&gt;, &lt;code&gt;To&lt;/code&gt;, &lt;code&gt;Subject&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, and &lt;code&gt;MIME-Version&lt;/code&gt; headers.  DKIM signatures in the &lt;code&gt;DKIM-Signature&lt;/code&gt; header are transmitted verbatim and will pass verification at the destination. </div>
 <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by &lt;code&gt;GET /mail&lt;/code&gt;. format: int64</div>
     </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SendMailTo"><code>SendMailTo</code> - SendMailTo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
   </div>
   </body>
 </html>

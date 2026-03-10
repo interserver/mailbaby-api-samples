@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.MailBlockClickHouse
+# Interserver.MailBaby.Client.Model.MailBlockClickHouse
 ## Properties
 
 Name | Type | Description | Notes

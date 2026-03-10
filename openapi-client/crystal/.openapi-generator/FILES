@@ -11,6 +11,7 @@ spec/api/status_api_spec.cr
 spec/models/deny_rule_new_spec.cr
 spec/models/deny_rule_record_spec.cr
 spec/models/email_address_name_spec.cr
+spec/models/email_address_names_spec.cr
 spec/models/email_address_param_spec.cr
 spec/models/email_address_types_spec.cr
 spec/models/email_addresses_types_spec.cr
@@ -25,7 +26,7 @@ spec/models/mail_log_spec.cr
 spec/models/mail_order_detail_spec.cr
 spec/models/mail_order_spec.cr
 spec/models/mail_stats_type_spec.cr
-spec/models/mail_stats_type_volume_spec.cr
+spec/models/mail_stats_volume_spec.cr
 spec/models/send_mail_adv_spec.cr
 spec/models/send_mail_raw_spec.cr
 spec/models/send_mail_spec.cr
@@ -43,6 +44,7 @@ src/openapi_client/configuration.cr
 src/openapi_client/models/deny_rule_new.cr
 src/openapi_client/models/deny_rule_record.cr
 src/openapi_client/models/email_address_name.cr
+src/openapi_client/models/email_address_names.cr
 src/openapi_client/models/email_address_param.cr
 src/openapi_client/models/email_address_types.cr
 src/openapi_client/models/email_addresses_types.cr
@@ -57,7 +59,7 @@ src/openapi_client/models/mail_log_entry.cr
 src/openapi_client/models/mail_order.cr
 src/openapi_client/models/mail_order_detail.cr
 src/openapi_client/models/mail_stats_type.cr
-src/openapi_client/models/mail_stats_type_volume.cr
+src/openapi_client/models/mail_stats_volume.cr
 src/openapi_client/models/send_mail.cr
 src/openapi_client/models/send_mail_adv.cr
 src/openapi_client/models/send_mail_raw.cr

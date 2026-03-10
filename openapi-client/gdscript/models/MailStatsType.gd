@@ -73,7 +73,7 @@ var __sent__was__set := false
 
 # Required: False
 # isArray: false
-@export var volume: MailStatsTypeVolume:
+@export var volume: MailStatsVolume:
 	set(value):
 		__volume__was__set = true
 		volume = value
@@ -120,7 +120,7 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 	if from_dict.has("sent"):
 		me.sent = from_dict["sent"]
 	if from_dict.has("volume"):
-		me.volume = MailStatsType_volume.bzz_denormalize_single(from_dict["volume"])
+		me.volume = MailStatsVolume.bzz_denormalize_single(from_dict["volume"])
 	return me
 
 

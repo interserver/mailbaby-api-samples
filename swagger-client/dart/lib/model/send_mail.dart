@@ -1,8 +1,8 @@
 part of swagger.api;
 
 class SendMail {
-  /* The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. */
-  OneOfSendMailTo to = null;
+  
+  SendMailTo to = null;
 /* The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. */
   String from = null;
 /* The subject line of the email. */
@@ -21,7 +21,7 @@ class SendMail {
 
   SendMail.fromJson(Map<String, dynamic> json) {
     if (json == null) return;
-    to = new OneOfSendMailTo.fromJson(json['to']);
+    to = new SendMailTo.fromJson(json['to']);
     from = json['from'];
     subject = json['subject'];
     body = json['body'];

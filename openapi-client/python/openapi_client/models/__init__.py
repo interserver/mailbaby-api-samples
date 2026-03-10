@@ -17,6 +17,7 @@
 from openapi_client.models.deny_rule_new import DenyRuleNew
 from openapi_client.models.deny_rule_record import DenyRuleRecord
 from openapi_client.models.email_address_name import EmailAddressName
+from openapi_client.models.email_address_names import EmailAddressNames
 from openapi_client.models.email_address_param import EmailAddressParam
 from openapi_client.models.email_address_types import EmailAddressTypes
 from openapi_client.models.email_addresses_types import EmailAddressesTypes
@@ -31,7 +32,7 @@ from openapi_client.models.mail_log_entry import MailLogEntry
 from openapi_client.models.mail_order import MailOrder
 from openapi_client.models.mail_order_detail import MailOrderDetail
 from openapi_client.models.mail_stats_type import MailStatsType
-from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume
+from openapi_client.models.mail_stats_volume import MailStatsVolume
 from openapi_client.models.send_mail import SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv
 from openapi_client.models.send_mail_raw import SendMailRaw

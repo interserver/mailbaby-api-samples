@@ -753,7 +753,11 @@ paths:
           enum:
           - 0
           - 1
+          title: DeliveredStatus
           type: integer
+          x-enum-varnames:
+          - NotDelivered
+          - Delivered
         style: form
       - description: Number of records to skip for pagination.  Use in combination
           with `limit` to page through large result sets.  Defaults to `0` (no skip).
@@ -1391,6 +1395,25 @@ components:
       description: "Authentication failed.  Ensure you are sending a valid `X-API-KEY`\
         \ header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)."
   schemas:
+    SendMailTo:
+      description: The primary recipient address for a simple send request. Accepts
+        a single email address string or an array of email address strings for multiple
+        recipients.
+      example: johndoe@company.com
+      oneOf:
+      - description: Single recipient email address.
+        example: johndoe@company.com
+        format: email
+        type: string
+      - description: Multiple recipient email addresses.
+        example:
+        - johndoe@company.com
+        - janedoe@company.com
+        items:
+          format: email
+          type: string
+        type: array
+      title: SendMailTo
     GenericResponse:
       description: "Standard success response returned by write operations (send,\
         \ add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.\
@@ -1551,6 +1574,7 @@ components:
           `."
         example: Joe <joe@example.com>
         format: email
+        title: EmailAddressString
         type: string
       - $ref: "#/components/schemas/EmailAddressNames"
       title: EmailAddressesTypes
@@ -1562,6 +1586,7 @@ components:
       - description: "A single email address or RFC 822 named-address string. Example:\
           \ `\"user@domain.com\"` or `\"Joe <user@domain.com>\"`."
         example: Joe <user@domain.com>
+        title: EmailAddressSingleString
         type: string
       - $ref: "#/components/schemas/EmailAddressName"
       title: EmailAddressTypes
@@ -1577,7 +1602,7 @@ components:
         body: This is an email to inform you that something noteworthy happened.
       properties:
         to:
-          $ref: "#/components/schemas/SendMail_to"
+          $ref: "#/components/schemas/SendMailTo"
         from:
           description: The sender address.  This is used as both the `From` header
             and the `Reply-To` header automatically.  Must be a valid email address
@@ -2174,6 +2199,39 @@ components:
       - user
       title: MailLogEntry
       type: object
+    MailStatsVolume:
+      description: "Top-500 breakdown of message counts within the selected time window,\
+        \ grouped by originating IP, destination address, and sender address."
+      example:
+        to:
+          client@domain.com: 395
+          user@site.net: 57
+        from:
+          billing@somedomain.com: 369
+        ip:
+          "1.1.1.1": 142
+          "2.2.2.2": 132
+      properties:
+        to:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: Message counts keyed by destination (envelope `to`) email address.
+          type: object
+        from:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: Message counts keyed by sender (envelope `from`) email address.
+          type: object
+        ip:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: Message counts keyed by originating client IP address.
+          type: object
+      title: MailStatsVolume
+      type: object
     MailStatsType:
       description: "Account usage statistics returned by `GET /mail/stats`.  Includes\
         \ billing-cycle usage totals (for cost calculation) as well as time-windowed\
@@ -2236,47 +2294,8 @@ components:
           format: int32
           type: integer
         volume:
-          $ref: "#/components/schemas/MailStatsType_volume"
+          $ref: "#/components/schemas/MailStatsVolume"
       title: MailStatsType
-      type: object
-    SendMail_to:
-      description: The primary recipient address.  Accepts a single email address
-        string or an array of email address strings for multiple recipients.
-      oneOf:
-      - description: Single recipient email address.
-        example: johndoe@company.com
-        format: email
-        type: string
-      - description: Multiple recipient email addresses.
-        example:
-        - johndoe@company.com
-        - janedoe@company.com
-        items:
-          format: email
-          type: string
-        type: array
-    MailStatsType_volume:
-      description: "Top-500 breakdown of message counts grouped by source IP, destination\
-        \ address, and sender address within the selected `time` window."
-      properties:
-        to:
-          additionalProperties:
-            format: int32
-            type: integer
-          description: Message counts keyed by destination (envelope `to`) email address.
-          type: object
-        from:
-          additionalProperties:
-            format: int32
-            type: integer
-          description: Message counts keyed by sender (envelope `from`) email address.
-          type: object
-        ip:
-          additionalProperties:
-            format: int32
-            type: integer
-          description: Message counts keyed by originating client IP address.
-          type: object
       type: object
   securitySchemes:
     apiKeyAuth:

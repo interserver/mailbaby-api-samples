@@ -14,7 +14,7 @@
  *
  */
 import ApiClient from '../ApiClient';
-import MailStatsTypeVolume from './MailStatsTypeVolume';
+import MailStatsVolume from './MailStatsVolume';
 
 /**
  * The MailStatsType model module.
@@ -54,7 +54,7 @@ export default class MailStatsType {
       if (data.hasOwnProperty('sent'))
         obj.sent = ApiClient.convertToType(data['sent'], 'Number');
       if (data.hasOwnProperty('volume'))
-        obj.volume = MailStatsTypeVolume.constructFromObject(data['volume']);
+        obj.volume = MailStatsVolume.constructFromObject(data['volume']);
     }
     return obj;
   }
@@ -146,7 +146,7 @@ MailStatsType.prototype.received = undefined;
 MailStatsType.prototype.sent = undefined;
 
 /**
- * @member {module:model/MailStatsTypeVolume} volume
+ * @member {module:model/MailStatsVolume} volume
  */
 MailStatsType.prototype.volume = undefined;
 

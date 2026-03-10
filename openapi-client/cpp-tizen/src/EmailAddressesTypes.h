@@ -9,7 +9,7 @@
 
 
 #include <string>
-#include "EmailAddressName.h"
+#include "EmailAddressNames.h"
 #include "Object.h"
 
 /** \defgroup Models Data Structures for API

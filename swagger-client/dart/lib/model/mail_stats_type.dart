@@ -15,7 +15,7 @@ class MailStatsType {
 /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
   int sent = null;
 
-  MailStatsTypeVolume volume = null;
+  MailStatsVolume volume = null;
 
   MailStatsType();
 
@@ -32,7 +32,7 @@ class MailStatsType {
     cost = json['cost'];
     received = json['received'];
     sent = json['sent'];
-    volume = new MailStatsTypeVolume.fromJson(json['volume']);
+    volume = new MailStatsVolume.fromJson(json['volume']);
   }
 
   Map<String, dynamic> toJson() {

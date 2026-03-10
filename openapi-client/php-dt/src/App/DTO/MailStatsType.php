@@ -53,8 +53,8 @@ class MailStatsType
     public int|null $sent = null;
 
     #[DTA\Data(field: "volume", nullable: true)]
-    #[DTA\Strategy("Object", ["type" => \App\DTO\MailStatsTypeVolume::class])]
-    #[DTA\Validator("TypeCompliant", ["type" => \App\DTO\MailStatsTypeVolume::class])]
-    public \App\DTO\MailStatsTypeVolume|null $volume = null;
+    #[DTA\Strategy("Object", ["type" => \App\DTO\MailStatsVolume::class])]
+    #[DTA\Validator("TypeCompliant", ["type" => \App\DTO\MailStatsVolume::class])]
+    public \App\DTO\MailStatsVolume|null $volume = null;
 
 }

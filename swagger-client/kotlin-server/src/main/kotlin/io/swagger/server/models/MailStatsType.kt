@@ -10,7 +10,7 @@
 * Do not edit the class manually.
 */package io.swagger.server.models
 
-import io.swagger.server.models.MailStatsTypeVolume
+import io.swagger.server.models.MailStatsVolume
 
 /**
  * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
@@ -36,7 +36,7 @@ data class MailStatsType (
     val received: kotlin.Int? = null,
     /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
     val sent: kotlin.Int? = null,
-    val volume: MailStatsTypeVolume? = null
+    val volume: MailStatsVolume? = null
 ) {
     /**
     * The time window these `received`, `sent`, and `volume` statistics cover.

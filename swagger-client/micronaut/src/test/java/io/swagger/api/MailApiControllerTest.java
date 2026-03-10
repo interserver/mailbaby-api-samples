@@ -16,6 +16,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -142,7 +143,7 @@ class MailApiControllerTest {
 
     @Test
     void sendMailFormTest() {
-        Object to = null;
+        SendMailTo to = null;
         String from = null;
         String subject = null;
         String body = null;

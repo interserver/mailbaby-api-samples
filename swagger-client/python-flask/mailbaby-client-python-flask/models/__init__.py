@@ -21,8 +21,8 @@ from mailbaby-client-python-flask.models.mail_log_entry import MailLogEntry
 from mailbaby-client-python-flask.models.mail_order import MailOrder
 from mailbaby-client-python-flask.models.mail_order_detail import MailOrderDetail
 from mailbaby-client-python-flask.models.mail_stats_type import MailStatsType
-from mailbaby-client-python-flask.models.mail_stats_type_volume import MailStatsTypeVolume
-from mailbaby-client-python-flask.models.one_of_send_mail_to import OneOfSendMailTo
+from mailbaby-client-python-flask.models.mail_stats_volume import MailStatsVolume
 from mailbaby-client-python-flask.models.send_mail import SendMail
 from mailbaby-client-python-flask.models.send_mail_adv import SendMailAdv
 from mailbaby-client-python-flask.models.send_mail_raw import SendMailRaw
+from mailbaby-client-python-flask.models.send_mail_to import SendMailTo

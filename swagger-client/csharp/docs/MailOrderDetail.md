@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.MailOrderDetail
+# Interserver.MailBaby.Client.Model.MailOrderDetail
 ## Properties
 
 Name | Type | Description | Notes

@@ -427,8 +427,8 @@ Protected Class HistoryApi
 
 	#tag Enum, Name = DeliveredEnum_ViewMailLog, Type = Integer, Flags = &h0
 		
-        Escaped0 = "0"
-        Escaped1 = "1"
+        NotDelivered = "0"
+        Delivered = "1"
 		
 	#tag EndEnum
 

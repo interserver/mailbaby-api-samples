@@ -21,6 +21,7 @@ import io.swagger.client.model.MailAttachment
 import io.swagger.client.model.SendMail
 import io.swagger.client.model.SendMailAdv
 import io.swagger.client.model.SendMailRaw
+import io.swagger.client.model.SendMailTo
 import io.swagger.client.{ApiInvoker, ApiException}
 
 import com.sun.jersey.multipart.FormDataMultiPart
@@ -171,7 +172,7 @@ class SendingApi(
    * @param body  
    * @return GenericResponse
    */
-  def sendMail(to: , from: String, subject: String, body: String, id: Long, body: SendMail): Option[GenericResponse] = {
+  def sendMail(to: SendMailTo, from: String, subject: String, body: String, id: Long, body: SendMail): Option[GenericResponse] = {
     val await = Try(Await.result(sendMailAsync(to, from, subject, body, id, body), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -191,7 +192,7 @@ class SendingApi(
    * @param body  
    * @return Future(GenericResponse)
    */
-  def sendMailAsync(to: , from: String, subject: String, body: String, id: Long, body: SendMail): Future[GenericResponse] = {
+  def sendMailAsync(to: SendMailTo, from: String, subject: String, body: String, id: Long, body: SendMail): Future[GenericResponse] = {
       helper.sendMail(to, from, subject, body, id, body)
   }
 
@@ -254,7 +255,7 @@ class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     }
   }
 
-  def sendMail(to: ,
+  def sendMail(to: SendMailTo,
     from: String,
     subject: String,
     body: String,

@@ -15,7 +15,7 @@
   | {'cost', float() }
   | {'received', integer() }
   | {'sent', integer() }
-  | {'volume', openapi_mail_stats_type_volume:openapi_mail_stats_type_volume() }
+  | {'volume', openapi_mail_stats_volume:openapi_mail_stats_volume() }
   ].
 
 
@@ -29,7 +29,7 @@ openapi_mail_stats_type(Fields) ->
             , {'cost', float() }
             , {'received', integer() }
             , {'sent', integer() }
-            , {'volume', openapi_mail_stats_type_volume:openapi_mail_stats_type_volume() }
+            , {'volume', openapi_mail_stats_volume:openapi_mail_stats_volume() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

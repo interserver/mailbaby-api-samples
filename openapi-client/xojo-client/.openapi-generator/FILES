@@ -23,6 +23,8 @@ OpenAPIClient/Models/DenyRuleRecord.xojo_code
 OpenAPIClient/Models/DenyRuleRecordOptional.xojo_code
 OpenAPIClient/Models/EmailAddressName.xojo_code
 OpenAPIClient/Models/EmailAddressNameOptional.xojo_code
+OpenAPIClient/Models/EmailAddressNames.xojo_code
+OpenAPIClient/Models/EmailAddressNamesOptional.xojo_code
 OpenAPIClient/Models/EmailAddressParam.xojo_code
 OpenAPIClient/Models/EmailAddressParamOptional.xojo_code
 OpenAPIClient/Models/EmailAddressTypes.xojo_code
@@ -51,8 +53,8 @@ OpenAPIClient/Models/MailOrderDetailOptional.xojo_code
 OpenAPIClient/Models/MailOrderOptional.xojo_code
 OpenAPIClient/Models/MailStatsType.xojo_code
 OpenAPIClient/Models/MailStatsTypeOptional.xojo_code
-OpenAPIClient/Models/MailStatsTypeVolume.xojo_code
-OpenAPIClient/Models/MailStatsTypeVolumeOptional.xojo_code
+OpenAPIClient/Models/MailStatsVolume.xojo_code
+OpenAPIClient/Models/MailStatsVolumeOptional.xojo_code
 OpenAPIClient/Models/SendMail.xojo_code
 OpenAPIClient/Models/SendMailAdv.xojo_code
 OpenAPIClient/Models/SendMailAdvOptional.xojo_code

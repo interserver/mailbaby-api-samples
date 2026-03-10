@@ -86,7 +86,7 @@ Sends an email through one of your mail orders using a simple flat set of fields
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **to** | [**Object**](.md)|  | 
+  **to** | [**SendMailTo**](.md)|  | 
   **from** | **string**|  | 
   **subject** | **string**|  | 
   **body** | **string**|  | 

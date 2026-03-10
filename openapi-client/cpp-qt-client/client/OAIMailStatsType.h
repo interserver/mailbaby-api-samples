@@ -21,14 +21,14 @@
 
 #include <QJsonObject>
 
-#include "OAIMailStatsType_volume.h"
+#include "OAIMailStatsVolume.h"
 #include <QString>
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAIMailStatsType_volume;
+class OAIMailStatsVolume;
 
 class OAIMailStatsType : public OAIObject {
 public:
@@ -71,8 +71,8 @@ public:
     bool is_sent_Set() const;
     bool is_sent_Valid() const;
 
-    OAIMailStatsType_volume getVolume() const;
-    void setVolume(const OAIMailStatsType_volume &volume);
+    OAIMailStatsVolume getVolume() const;
+    void setVolume(const OAIMailStatsVolume &volume);
     bool is_volume_Set() const;
     bool is_volume_Valid() const;
 
@@ -106,7 +106,7 @@ private:
     bool m_sent_isSet;
     bool m_sent_isValid;
 
-    OAIMailStatsType_volume m_volume;
+    OAIMailStatsVolume m_volume;
     bool m_volume_isSet;
     bool m_volume_isValid;
 };

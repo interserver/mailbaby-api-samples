@@ -25,6 +25,7 @@ Sources/OpenAPIClient/Infrastructure/Validation.swift
 Sources/OpenAPIClient/Models/DenyRuleNew.swift
 Sources/OpenAPIClient/Models/DenyRuleRecord.swift
 Sources/OpenAPIClient/Models/EmailAddressName.swift
+Sources/OpenAPIClient/Models/EmailAddressNames.swift
 Sources/OpenAPIClient/Models/EmailAddressParam.swift
 Sources/OpenAPIClient/Models/EmailAddressTypes.swift
 Sources/OpenAPIClient/Models/EmailAddressesTypes.swift
@@ -39,7 +40,7 @@ Sources/OpenAPIClient/Models/MailLogEntry.swift
 Sources/OpenAPIClient/Models/MailOrder.swift
 Sources/OpenAPIClient/Models/MailOrderDetail.swift
 Sources/OpenAPIClient/Models/MailStatsType.swift
-Sources/OpenAPIClient/Models/MailStatsTypeVolume.swift
+Sources/OpenAPIClient/Models/MailStatsVolume.swift
 Sources/OpenAPIClient/Models/SendMail.swift
 Sources/OpenAPIClient/Models/SendMailAdv.swift
 Sources/OpenAPIClient/Models/SendMailRaw.swift
@@ -48,6 +49,7 @@ docs/BlockingAPI.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -63,7 +65,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md

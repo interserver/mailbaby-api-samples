@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.DenyRuleRecord
+# Interserver.MailBaby.Client.Model.DenyRuleRecord
 ## Properties
 
 Name | Type | Description | Notes

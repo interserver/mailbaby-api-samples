@@ -29,7 +29,7 @@ MailStatsType::__init()
 	//cost = double(0);
 	//received = int(0);
 	//sent = int(0);
-	//volume = new MailStatsType_volume();
+	//volume = new MailStatsVolume();
 }
 
 void
@@ -149,11 +149,11 @@ MailStatsType::fromJson(char* jsonStr)
 	if (node !=NULL) {
 	
 
-		if (isprimitive("MailStatsType_volume")) {
-			jsonToValue(&volume, node, "MailStatsType_volume", "MailStatsType_volume");
+		if (isprimitive("MailStatsVolume")) {
+			jsonToValue(&volume, node, "MailStatsVolume", "MailStatsVolume");
 		} else {
 			
-			MailStatsType_volume* obj = static_cast<MailStatsType_volume*> (&volume);
+			MailStatsVolume* obj = static_cast<MailStatsVolume*> (&volume);
 			obj->fromJson(json_to_string(node, false));
 			
 		}
@@ -224,13 +224,13 @@ MailStatsType::toJson()
 	}
 	const gchar *sentKey = "sent";
 	json_object_set_member(pJsonObject, sentKey, node);
-	if (isprimitive("MailStatsType_volume")) {
-		MailStatsType_volume obj = getVolume();
-		node = converttoJson(&obj, "MailStatsType_volume", "");
+	if (isprimitive("MailStatsVolume")) {
+		MailStatsVolume obj = getVolume();
+		node = converttoJson(&obj, "MailStatsVolume", "");
 	}
 	else {
 		
-		MailStatsType_volume obj = static_cast<MailStatsType_volume> (getVolume());
+		MailStatsVolume obj = static_cast<MailStatsVolume> (getVolume());
 		GError *mygerror;
 		mygerror = NULL;
 		node = json_from_string(obj.toJson(), &mygerror);
@@ -318,14 +318,14 @@ MailStatsType::setSent(int  sent)
 	this->sent = sent;
 }
 
-MailStatsType_volume
+MailStatsVolume
 MailStatsType::getVolume()
 {
 	return volume;
 }
 
 void
-MailStatsType::setVolume(MailStatsType_volume  volume)
+MailStatsType::setVolume(MailStatsVolume  volume)
 {
 	this->volume = volume;
 }

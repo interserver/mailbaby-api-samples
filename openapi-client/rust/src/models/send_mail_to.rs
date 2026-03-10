@@ -11,8 +11,8 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// SendMailTo : The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
-/// The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+/// SendMailTo : The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
+/// The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SendMailTo {

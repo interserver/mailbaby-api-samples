@@ -21,7 +21,7 @@
 
 #include <QJsonObject>
 
-#include "OAISendMail_to.h"
+#include "OAISendMailTo.h"
 #include <QString>
 
 #include "OAIEnum.h"
@@ -40,8 +40,8 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    OAISendMail_to getTo() const;
-    void setTo(const OAISendMail_to &to);
+    OAISendMailTo getTo() const;
+    void setTo(const OAISendMailTo &to);
     bool is_to_Set() const;
     bool is_to_Valid() const;
 
@@ -71,7 +71,7 @@ public:
 private:
     void initializeModel();
 
-    OAISendMail_to m_to;
+    OAISendMailTo m_to;
     bool m_to_isSet;
     bool m_to_isValid;
 

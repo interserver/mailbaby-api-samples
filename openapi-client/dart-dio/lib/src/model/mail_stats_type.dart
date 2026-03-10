@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/mail_stats_type_volume.dart';
+import 'package:openapi/src/model/mail_stats_volume.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -48,7 +48,7 @@ abstract class MailStatsType implements Built<MailStatsType, MailStatsTypeBuilde
   int? get sent;
 
   @BuiltValueField(wireName: r'volume')
-  MailStatsTypeVolume? get volume;
+  MailStatsVolume? get volume;
 
   MailStatsType._();
 
@@ -120,7 +120,7 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
       yield r'volume';
       yield serializers.serialize(
         object.volume,
-        specifiedType: const FullType(MailStatsTypeVolume),
+        specifiedType: const FullType(MailStatsVolume),
       );
     }
   }
@@ -191,8 +191,8 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
         case r'volume':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MailStatsTypeVolume),
-          ) as MailStatsTypeVolume;
+            specifiedType: const FullType(MailStatsVolume),
+          ) as MailStatsVolume;
           result.volume.replace(valueDes);
           break;
         default:

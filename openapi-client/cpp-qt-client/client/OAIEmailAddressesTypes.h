@@ -21,7 +21,7 @@
 
 #include <QJsonObject>
 
-#include "OAIEmailAddressName.h"
+#include "OAIEmailAddressNames.h"
 
 #include "OAIEnum.h"
 #include "OAIObject.h"

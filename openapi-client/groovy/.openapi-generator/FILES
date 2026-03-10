@@ -10,6 +10,7 @@ src/main/groovy/org/openapitools/api/StatusApi.groovy
 src/main/groovy/org/openapitools/model/DenyRuleNew.groovy
 src/main/groovy/org/openapitools/model/DenyRuleRecord.groovy
 src/main/groovy/org/openapitools/model/EmailAddressName.groovy
+src/main/groovy/org/openapitools/model/EmailAddressNames.groovy
 src/main/groovy/org/openapitools/model/EmailAddressParam.groovy
 src/main/groovy/org/openapitools/model/EmailAddressTypes.groovy
 src/main/groovy/org/openapitools/model/EmailAddressesTypes.groovy
@@ -24,7 +25,7 @@ src/main/groovy/org/openapitools/model/MailLogEntry.groovy
 src/main/groovy/org/openapitools/model/MailOrder.groovy
 src/main/groovy/org/openapitools/model/MailOrderDetail.groovy
 src/main/groovy/org/openapitools/model/MailStatsType.groovy
-src/main/groovy/org/openapitools/model/MailStatsTypeVolume.groovy
+src/main/groovy/org/openapitools/model/MailStatsVolume.groovy
 src/main/groovy/org/openapitools/model/SendMail.groovy
 src/main/groovy/org/openapitools/model/SendMailAdv.groovy
 src/main/groovy/org/openapitools/model/SendMailRaw.groovy

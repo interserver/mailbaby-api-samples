@@ -261,7 +261,7 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::SendingApi.new
-to = SwaggerClient::null.new #  | 
+to = SwaggerClient::SendMailTo.new # SendMailTo | 
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
@@ -281,7 +281,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [****](.md)|  | 
+ **to** | [**SendMailTo**](.md)|  | 
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 

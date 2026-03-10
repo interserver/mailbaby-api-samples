@@ -39,8 +39,8 @@ module OpenAPIClient
     @[JSON::Field(key: "sent", type: Int32?, nillable: true, emit_null: false)]
     property sent : Int32?
 
-    @[JSON::Field(key: "volume", type: MailStatsTypeVolume?, nillable: true, emit_null: false)]
-    property volume : MailStatsTypeVolume?
+    @[JSON::Field(key: "volume", type: MailStatsVolume?, nillable: true, emit_null: false)]
+    property volume : MailStatsVolume?
 
     abstract class EnumAttributeValidator
       def valid?(value)
@@ -80,7 +80,7 @@ module OpenAPIClient
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@time : String? = nil, @usage : Int32? = nil, @currency : String? = nil, @cost : Float64? = nil, @received : Int32? = nil, @sent : Int32? = nil, @volume : MailStatsTypeVolume? = nil)
+    def initialize(@time : String? = nil, @usage : Int32? = nil, @currency : String? = nil, @cost : Float64? = nil, @received : Int32? = nil, @sent : Int32? = nil, @volume : MailStatsVolume? = nil)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?

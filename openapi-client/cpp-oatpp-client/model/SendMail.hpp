@@ -19,7 +19,7 @@
 #define SendMail_H_
 
 
-#include "SendMail_to.hpp"
+#include "SendMailTo.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 
@@ -36,7 +36,7 @@ class SendMail : public oatpp::DTO {
 
   DTO_INIT(SendMail, DTO /* Extends */)
 
-  DTO_FIELD(oatpp::Object<org::openapitools::client::model::SendMail_to>, to);
+  DTO_FIELD(oatpp::Object<org::openapitools::client::model::SendMailTo>, to);
 
   DTO_FIELD(oatpp::String, from);
 

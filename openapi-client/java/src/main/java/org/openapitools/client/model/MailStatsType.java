@@ -21,7 +21,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.client.model.MailStatsTypeVolume;
+import org.openapitools.client.model.MailStatsVolume;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-09T23:50:24.202194863-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-10T03:55:40.812216105-04:00[America/New_York]", comments = "Generator version: 7.20.0")
 public class MailStatsType {
   /**
    * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
@@ -146,7 +146,7 @@ public class MailStatsType {
   public static final String SERIALIZED_NAME_VOLUME = "volume";
   @SerializedName(SERIALIZED_NAME_VOLUME)
   @javax.annotation.Nullable
-  private MailStatsTypeVolume volume;
+  private MailStatsVolume volume;
 
   public MailStatsType() {
   }
@@ -265,7 +265,7 @@ public class MailStatsType {
   }
 
 
-  public MailStatsType volume(@javax.annotation.Nullable MailStatsTypeVolume volume) {
+  public MailStatsType volume(@javax.annotation.Nullable MailStatsVolume volume) {
     this.volume = volume;
     return this;
   }
@@ -275,11 +275,11 @@ public class MailStatsType {
    * @return volume
    */
   @javax.annotation.Nullable
-  public MailStatsTypeVolume getVolume() {
+  public MailStatsVolume getVolume() {
     return volume;
   }
 
-  public void setVolume(@javax.annotation.Nullable MailStatsTypeVolume volume) {
+  public void setVolume(@javax.annotation.Nullable MailStatsVolume volume) {
     this.volume = volume;
   }
 
@@ -379,7 +379,7 @@ public class MailStatsType {
       }
       // validate the optional field `volume`
       if (jsonObj.get("volume") != null && !jsonObj.get("volume").isJsonNull()) {
-        MailStatsTypeVolume.validateJsonElement(jsonObj.get("volume"));
+        MailStatsVolume.validateJsonElement(jsonObj.get("volume"));
       }
   }
 

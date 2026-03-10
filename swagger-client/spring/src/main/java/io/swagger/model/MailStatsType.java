@@ -4,7 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.model.MailStatsTypeVolume;
+import io.swagger.model.MailStatsVolume;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -105,7 +105,7 @@ public class MailStatsType   {
 
   @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private MailStatsTypeVolume volume = null;
+  private MailStatsVolume volume = null;
 
 
   public MailStatsType time(TimeEnum time) { 
@@ -246,7 +246,7 @@ public class MailStatsType   {
     this.sent = sent;
   }
 
-  public MailStatsType volume(MailStatsTypeVolume volume) { 
+  public MailStatsType volume(MailStatsVolume volume) { 
 
     this.volume = volume;
     return this;
@@ -260,13 +260,13 @@ public class MailStatsType   {
   @Schema(description = "")
   
 @Valid
-  public MailStatsTypeVolume getVolume() {  
+  public MailStatsVolume getVolume() {  
     return volume;
   }
 
 
 
-  public void setVolume(MailStatsTypeVolume volume) { 
+  public void setVolume(MailStatsVolume volume) { 
     this.volume = volume;
   }
 

@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.MailAttachment
+# Interserver.MailBaby.Client.Model.MailAttachment
 ## Properties
 
 Name | Type | Description | Notes

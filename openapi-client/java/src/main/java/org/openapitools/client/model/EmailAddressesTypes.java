@@ -14,8 +14,7 @@
 package org.openapitools.client.model;
 
 import java.util.Objects;
-import java.util.List;
-import org.openapitools.client.model.EmailAddressName;
+import org.openapitools.client.model.EmailAddressNames;
 
 
 
@@ -52,7 +51,7 @@ import com.google.gson.JsonParseException;
 
 import org.openapitools.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-09T23:50:24.202194863-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-10T03:55:40.812216105-04:00[America/New_York]", comments = "Generator version: 7.20.0")
 public class EmailAddressesTypes extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(EmailAddressesTypes.class.getName());
 
@@ -65,9 +64,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<String> adapterString = gson.getDelegateAdapter(this, TypeToken.get(String.class));
-
-            final Type typeInstanceListEmailAddressName = new TypeToken<List<EmailAddressName>>(){}.getType();
-            final TypeAdapter<List<EmailAddressName>> adapterListEmailAddressName = (TypeAdapter<List<EmailAddressName>>) gson.getDelegateAdapter(this, TypeToken.get(typeInstanceListEmailAddressName));
+            final TypeAdapter<EmailAddressNames> adapterEmailAddressNames = gson.getDelegateAdapter(this, TypeToken.get(EmailAddressNames.class));
 
             return (TypeAdapter<T>) new TypeAdapter<EmailAddressesTypes>() {
                 @Override
@@ -83,16 +80,13 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
                         elementAdapter.write(out, primitive);
                         return;
                     }
-                    // check if the actual instance is of the type `List<EmailAddressName>`
-                    if (value.getActualInstance() instanceof List<?>) {
-                        List<?> list = (List<?>) value.getActualInstance();
-                        if (!list.isEmpty() && list.get(0) instanceof EmailAddressName) {
-                            JsonArray array = adapterListEmailAddressName.toJsonTree((List<EmailAddressName>)value.getActualInstance()).getAsJsonArray();
-                            elementAdapter.write(out, array);
-                            return;
-                        }
+                    // check if the actual instance is of the type `EmailAddressNames`
+                    if (value.getActualInstance() instanceof EmailAddressNames) {
+                        JsonElement element = adapterEmailAddressNames.toJsonTree((EmailAddressNames)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: List<EmailAddressName>, String");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: EmailAddressNames, String");
                 }
 
                 @Override
@@ -118,25 +112,17 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
                         errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'String'", e);
                     }
-                    // deserialize List<EmailAddressName>
+                    // deserialize EmailAddressNames
                     try {
                         // validate the JSON object to see if any exception is thrown
-                        if (!jsonElement.isJsonArray()) {
-                            throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
-                        }
-
-                        JsonArray array = jsonElement.getAsJsonArray();
-                        // validate array items
-                        for(JsonElement element : array) {
-                            EmailAddressName.validateJsonElement(element);
-                        }
-                        actualAdapter = adapterListEmailAddressName;
+                        EmailAddressNames.validateJsonElement(jsonElement);
+                        actualAdapter = adapterEmailAddressNames;
                         match++;
-                        log.log(Level.FINER, "Input data matches schema 'List<EmailAddressName>'");
+                        log.log(Level.FINER, "Input data matches schema 'EmailAddressNames'");
                     } catch (Exception e) {
                         // deserialization failed, continue
-                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for List<EmailAddressName> failed with `%s`.", e.getMessage()));
-                        log.log(Level.FINER, "Input data does not match schema 'List<EmailAddressName>'", e);
+                        errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for EmailAddressNames failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'EmailAddressNames'", e);
                     }
 
                     if (match == 1) {
@@ -165,7 +151,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
 
     static {
         schemas.put("String", String.class);
-        schemas.put("List<EmailAddressName>", List.class);
+        schemas.put("EmailAddressNames", EmailAddressNames.class);
     }
 
     @Override
@@ -176,7 +162,7 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * List<EmailAddressName>, String
+     * EmailAddressNames, String
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -187,22 +173,19 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
             return;
         }
 
-        if (instance instanceof List<?>) {
-            List<?> list = (List<?>) instance;
-            if (!list.isEmpty() && list.get(0) instanceof EmailAddressName) {
-                super.setActualInstance(instance);
-                return;
-            }
+        if (instance instanceof EmailAddressNames) {
+            super.setActualInstance(instance);
+            return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be List<EmailAddressName>, String");
+        throw new RuntimeException("Invalid instance type. Must be EmailAddressNames, String");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * List<EmailAddressName>, String
+     * EmailAddressNames, String
      *
-     * @return The actual instance (List<EmailAddressName>, String)
+     * @return The actual instance (EmailAddressNames, String)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -222,14 +205,14 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
     }
 
     /**
-     * Get the actual instance of `List<EmailAddressName>`. If the actual instance is not `List<EmailAddressName>`,
+     * Get the actual instance of `EmailAddressNames`. If the actual instance is not `EmailAddressNames`,
      * the ClassCastException will be thrown.
      *
-     * @return The actual instance of `List<EmailAddressName>`
-     * @throws ClassCastException if the instance is not `List<EmailAddressName>`
+     * @return The actual instance of `EmailAddressNames`
+     * @throws ClassCastException if the instance is not `EmailAddressNames`
      */
-    public List<EmailAddressName> getListEmailAddressName() throws ClassCastException {
-        return (List<EmailAddressName>)super.getActualInstance();
+    public EmailAddressNames getEmailAddressNames() throws ClassCastException {
+        return (EmailAddressNames)super.getActualInstance();
     }
 
     /**
@@ -252,23 +235,16 @@ public class EmailAddressesTypes extends AbstractOpenApiSchema {
             errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for String failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        // validate the json string with List<EmailAddressName>
+        // validate the json string with EmailAddressNames
         try {
-            if (!jsonElement.isJsonArray()) {
-                throw new IllegalArgumentException(String.format(java.util.Locale.ROOT, "Expected json element to be a array type in the JSON string but got `%s`", jsonElement.toString()));
-            }
-            JsonArray array = jsonElement.getAsJsonArray();
-            // validate array items
-            for(JsonElement element : array) {
-                EmailAddressName.validateJsonElement(element);
-            }
+            EmailAddressNames.validateJsonElement(jsonElement);
             validCount++;
         } catch (Exception e) {
-            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for List<EmailAddressName> failed with `%s`.", e.getMessage()));
+            errorMessages.add(String.format(java.util.Locale.ROOT, "Deserialization for EmailAddressNames failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for EmailAddressesTypes with oneOf schemas: List<EmailAddressName>, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format(java.util.Locale.ROOT, "The JSON string is invalid for EmailAddressesTypes with oneOf schemas: EmailAddressNames, String. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

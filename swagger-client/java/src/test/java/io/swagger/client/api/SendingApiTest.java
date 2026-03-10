@@ -20,6 +20,7 @@ import io.swagger.client.model.MailAttachment;
 import io.swagger.client.model.SendMail;
 import io.swagger.client.model.SendMailAdv;
 import io.swagger.client.model.SendMailRaw;
+import io.swagger.client.model.SendMailTo;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -86,7 +87,7 @@ public class SendingApiTest {
      */
     @Test
     public void sendMailTest() throws Exception {
-        Object to = null;
+        SendMailTo to = null;
         String from = null;
         String subject = null;
         String body = null;

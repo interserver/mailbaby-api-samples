@@ -272,7 +272,7 @@ apiKeyAuth.setApiKey("YOUR API KEY");
 //apiKeyAuth.setApiKeyPrefix("Token");
 
 SendingApi apiInstance = new SendingApi();
-Object to = null; // Object | 
+SendMailTo to = new SendMailTo(); // SendMailTo | 
 String from = "from_example"; // String | 
 String subject = "subject_example"; // String | 
 String body = "body_example"; // String | 
@@ -290,7 +290,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**Object**](.md)|  |
+ **to** | [**SendMailTo**](.md)|  |
  **from** | **String**|  |
  **subject** | **String**|  |
  **body** | **String**|  |

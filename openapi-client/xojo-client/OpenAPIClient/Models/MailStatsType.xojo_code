@@ -50,7 +50,7 @@ Protected Class MailStatsType
 
 
 	#tag Property, Flags = &h0
-		volume As OpenAPIClient.Models.MailStatsTypeVolume
+		volume As OpenAPIClient.Models.MailStatsVolume
 	#tag EndProperty
 
 
@@ -170,7 +170,7 @@ Protected Class MailStatsType
 			Visible=false
 			Group="Behavior"
 			InitialValue=""
-			Type="MailStatsTypeVolume"
+			Type="MailStatsVolume"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

@@ -27,13 +27,12 @@ namespace mailbaby-client-aspnetcore.Models
     public partial class SendMail : IEquatable<SendMail>
     { 
         /// <summary>
-        /// The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+        /// Gets or Sets To
         /// </summary>
-        /// <value>The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.</value>
         [Required]
 
         [DataMember(Name="to")]
-        public OneOfSendMailTo To { get; set; }
+        public SendMailTo To { get; set; }
 
         /// <summary>
         /// The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.

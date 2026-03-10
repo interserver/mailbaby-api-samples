@@ -748,10 +748,14 @@ paths:
         style: form
         explode: true
         schema:
+          title: DeliveredStatus
           type: integer
           enum:
           - 0
           - 1
+          x-enum-varnames:
+          - NotDelivered
+          - Delivered
         example: 1
       - name: skip
         in: query
@@ -1345,6 +1349,25 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    SendMailTo:
+      title: SendMailTo
+      description: The primary recipient address for a simple send request. Accepts
+        a single email address string or an array of email address strings for multiple
+        recipients.
+      example: johndoe@company.com
+      oneOf:
+      - type: string
+        description: Single recipient email address.
+        format: email
+        example: johndoe@company.com
+      - type: array
+        description: Multiple recipient email addresses.
+        example:
+        - johndoe@company.com
+        - janedoe@company.com
+        items:
+          type: string
+          format: email
     GenericResponse:
       title: GenericResponse
       type: object
@@ -1501,7 +1524,8 @@ components:
         `"Name <email>"` and bare `email` formats).  When an array is provided each
         entry must have at least an `email` field with an optional `name` field.
       oneOf:
-      - type: string
+      - title: EmailAddressString
+        type: string
         description: "A single email address or RFC 822 comma-separated list. Example:\
           \ `\"joe@example.com\"` or `\"Joe <joe@example.com>, jane@example.com\"\
           `."
@@ -1514,7 +1538,8 @@ components:
         \ string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured\
         \ contact object."
       oneOf:
-      - type: string
+      - title: EmailAddressSingleString
+        type: string
         description: "A single email address or RFC 822 named-address string. Example:\
           \ `\"user@domain.com\"` or `\"Joe <user@domain.com>\"`."
         example: Joe <user@domain.com>
@@ -1529,21 +1554,7 @@ components:
       type: object
       properties:
         to:
-          description: The primary recipient address.  Accepts a single email address
-            string or an array of email address strings for multiple recipients.
-          oneOf:
-          - type: string
-            description: Single recipient email address.
-            format: email
-            example: johndoe@company.com
-          - type: array
-            description: Multiple recipient email addresses.
-            example:
-            - johndoe@company.com
-            - janedoe@company.com
-            items:
-              type: string
-              format: email
+          $ref: "#/components/schemas/SendMailTo"
         from:
           type: string
           description: The sender address.  This is used as both the `From` header
@@ -2134,6 +2145,39 @@ components:
         queued: 2021-10-14T12:50:15.487Z
         mxHostname: mx.j.is.cc
         response: 250 2.0.0 Ok queued as C91D83E128C
+    MailStatsVolume:
+      title: MailStatsVolume
+      type: object
+      properties:
+        to:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+          description: Message counts keyed by destination (envelope `to`) email address.
+        from:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+          description: Message counts keyed by sender (envelope `from`) email address.
+        ip:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+          description: Message counts keyed by originating client IP address.
+      description: "Top-500 breakdown of message counts within the selected time window,\
+        \ grouped by originating IP, destination address, and sender address."
+      example:
+        to:
+          client@domain.com: 395
+          user@site.net: 57
+        from:
+          billing@somedomain.com: 369
+        ip:
+          "1.1.1.1": 142
+          "2.2.2.2": 132
     MailStatsType:
       title: MailStatsType
       type: object
@@ -2175,7 +2219,7 @@ components:
             MX within the selected `time` window.  Will be ≤ `received`.
           format: int32
         volume:
-          $ref: "#/components/schemas/MailStatsType_volume"
+          $ref: "#/components/schemas/MailStatsVolume"
       description: "Account usage statistics returned by `GET /mail/stats`.  Includes\
         \ billing-cycle usage totals (for cost calculation) as well as time-windowed\
         \ sent/received counts and volume breakdowns by IP, destination, and source\
@@ -2199,29 +2243,6 @@ components:
             "1.1.1.1": 142
             "2.2.2.2": 132
             "3.3.3.3": 129
-    MailStatsType_volume:
-      type: object
-      properties:
-        to:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-          description: Message counts keyed by destination (envelope `to`) email address.
-        from:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-          description: Message counts keyed by sender (envelope `from`) email address.
-        ip:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-          description: Message counts keyed by originating client IP address.
-      description: "Top-500 breakdown of message counts grouped by source IP, destination\
-        \ address, and sender address within the selected `time` window."
   responses:
     BadInput:
       description: Bad request — one or more input parameters were missing or invalid.

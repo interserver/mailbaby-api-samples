@@ -83,6 +83,13 @@ export interface EmailAddressName {
 
 
 /**
+ * An array of email contacts, each with an email address and optional display name.
+ */
+export interface EmailAddressNames extends Array<EmailAddressName> {
+}
+
+
+/**
  * A single email address parameter used as the body of `POST /mail/blocks/delete`.
  */
 export interface EmailAddressParam {
@@ -104,7 +111,7 @@ export type EmailAddressTypes = EmailAddressName | string;
  * A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the `\"Name <email>\"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.
  * @export
  */
-export type EmailAddressesTypes = Array<EmailAddressName> | string;
+export type EmailAddressesTypes = EmailAddressNames | string;
 
 
 /**
@@ -414,7 +421,7 @@ export interface MailStatsType {
    * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
    */
   sent?: number;
-  volume?: MailStatsTypeVolume;
+  volume?: MailStatsVolume;
 }
 
 /**
@@ -424,9 +431,9 @@ export type MailStatsTypeTimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' |
 
 
 /**
- * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
+ * Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
  */
-export interface MailStatsTypeVolume {
+export interface MailStatsVolume {
   /**
    * Message counts keyed by destination (envelope `to`) email address.
    */
@@ -510,7 +517,7 @@ export interface SendMailRaw {
 
 /**
  * @type SendMailTo
- * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  * @export
  */
 export type SendMailTo = Array<string> | string;

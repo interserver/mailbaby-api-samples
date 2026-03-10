@@ -26,6 +26,7 @@ import io.swagger.model.MailStatsType;
 import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
+import io.swagger.model.SendMailTo;
 
 
 public class MailController  {
@@ -142,7 +143,7 @@ public class MailController  {
   */
 
   /*
-    public ResponseContext sendMail(RequestContext request ,  Object to
+    public ResponseContext sendMail(RequestContext request ,  SendMailTo to
 ,  String from
 ,  String subject
 ,  String body

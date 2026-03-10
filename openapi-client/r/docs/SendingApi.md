@@ -143,7 +143,7 @@ library(openapi)
 # Sends an Email
 #
 # prepare function argument(s)
-var_to <- SendMail_to$new() # SendMailTo | 
+var_to <- SendMailTo$new() # SendMailTo | 
 var_from <- "from_example" # character | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 var_subject <- "subject_example" # character | The subject line of the email.
 var_body <- "body_example" # character | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
@@ -162,7 +162,7 @@ dput(result)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**SendMailTo**](SendMail_to.md)|  | 
+ **to** | [**SendMailTo**](SendMailTo.md)|  | 
  **from** | **character**| The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | 
  **subject** | **character**| The subject line of the email. | 
  **body** | **character**| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 

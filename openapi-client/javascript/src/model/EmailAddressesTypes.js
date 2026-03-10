@@ -12,7 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
-import EmailAddressName from './EmailAddressName';
+import EmailAddressNames from './EmailAddressNames';
 
 /**
  * The EmailAddressesTypes model module.
@@ -24,7 +24,7 @@ class EmailAddressesTypes {
      * Constructs a new <code>EmailAddressesTypes</code>.
      * A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the &#x60;\&quot;Name &lt;email&gt;\&quot;&#x60; and bare &#x60;email&#x60; formats).  When an array is provided each entry must have at least an &#x60;email&#x60; field with an optional &#x60;name&#x60; field.
      * @alias module:model/EmailAddressesTypes
-     * @param {(module:model/String|module:model/[EmailAddressName])} instance The actual instance to initialize EmailAddressesTypes.
+     * @param {(module:model/EmailAddressNames|module:model/String)} instance The actual instance to initialize EmailAddressesTypes.
      */
     constructor(instance = null) {
         if (instance === null) {
@@ -46,28 +46,27 @@ class EmailAddressesTypes {
             errorMessages.push("Failed to construct String: " + err)
         }
 
-        // An array of email contacts, each with an email address and optional display name.
         try {
-            if (typeof instance === "[EmailAddressName]") {
+            if (typeof instance === "EmailAddressNames") {
                 this.actualInstance = instance;
             } else {
                 // plain JS object
                 // validate the object
-                [EmailAddressName].validateJSON(instance); // throw an exception if no match
-                // create [EmailAddressName] from JS object
-                this.actualInstance = [EmailAddressName].constructFromObject(instance);
+                EmailAddressNames.validateJSON(instance); // throw an exception if no match
+                // create EmailAddressNames from JS object
+                this.actualInstance = EmailAddressNames.constructFromObject(instance);
             }
             match++;
         } catch(err) {
-            // json data failed to deserialize into [EmailAddressName]
-            errorMessages.push("Failed to construct [EmailAddressName]: " + err)
+            // json data failed to deserialize into EmailAddressNames
+            errorMessages.push("Failed to construct EmailAddressNames: " + err)
         }
 
         if (match > 1) {
-            throw new Error("Multiple matches found constructing `EmailAddressesTypes` with oneOf schemas String, [EmailAddressName]. Input: " + JSON.stringify(instance));
+            throw new Error("Multiple matches found constructing `EmailAddressesTypes` with oneOf schemas EmailAddressNames, String. Input: " + JSON.stringify(instance));
         } else if (match === 0) {
             this.actualInstance = null; // clear the actual instance in case there are multiple matches
-            throw new Error("No match found constructing `EmailAddressesTypes` with oneOf schemas String, [EmailAddressName]. Details: " +
+            throw new Error("No match found constructing `EmailAddressesTypes` with oneOf schemas EmailAddressNames, String. Details: " +
                             errorMessages.join(", "));
         } else { // only 1 match
             // the input is valid
@@ -86,16 +85,16 @@ class EmailAddressesTypes {
     }
 
     /**
-     * Gets the actual instance, which can be <code>String</code>, <code>[EmailAddressName]</code>.
-     * @return {(module:model/String|module:model/[EmailAddressName])} The actual instance.
+     * Gets the actual instance, which can be <code>EmailAddressNames</code>, <code>String</code>.
+     * @return {(module:model/EmailAddressNames|module:model/String)} The actual instance.
      */
     getActualInstance() {
         return this.actualInstance;
     }
 
     /**
-     * Sets the actual instance, which can be <code>String</code>, <code>[EmailAddressName]</code>.
-     * @param {(module:model/String|module:model/[EmailAddressName])} obj The actual instance.
+     * Sets the actual instance, which can be <code>EmailAddressNames</code>, <code>String</code>.
+     * @param {(module:model/EmailAddressNames|module:model/String)} obj The actual instance.
      */
     setActualInstance(obj) {
        this.actualInstance = EmailAddressesTypes.constructFromObject(obj).getActualInstance();
@@ -120,7 +119,7 @@ class EmailAddressesTypes {
 }
 
 
-EmailAddressesTypes.OneOf = ["String", "[EmailAddressName]"];
+EmailAddressesTypes.OneOf = ["EmailAddressNames", "String"];
 
 export default EmailAddressesTypes;
 

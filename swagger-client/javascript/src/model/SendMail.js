@@ -14,6 +14,7 @@
  *
  */
 import ApiClient from '../ApiClient';
+import SendMailTo from './SendMailTo';
 
 /**
  * The SendMail model module.
@@ -26,7 +27,7 @@ export default class SendMail {
    * Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead.
    * @alias module:model/SendMail
    * @class
-   * @param to {Object} The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+   * @param to {module:model/SendMailTo} 
    * @param from {String} The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
    * @param subject {String} The subject line of the email.
    * @param body {String} The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
@@ -49,7 +50,7 @@ export default class SendMail {
     if (data) {
       obj = obj || new SendMail();
       if (data.hasOwnProperty('to'))
-        obj.to = ApiClient.convertToType(data['to'], Object);
+        obj.to = SendMailTo.constructFromObject(data['to']);
       if (data.hasOwnProperty('from'))
         obj.from = ApiClient.convertToType(data['from'], 'String');
       if (data.hasOwnProperty('subject'))
@@ -64,8 +65,7 @@ export default class SendMail {
 }
 
 /**
- * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
- * @member {Object} to
+ * @member {module:model/SendMailTo} to
  */
 SendMail.prototype.to = undefined;
 

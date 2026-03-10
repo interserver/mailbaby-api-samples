@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   EmailAddressName.JSON_PROPERTY_NAME
 })
 @JsonTypeName("EmailAddressName")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-09T23:50:28.063839165-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-10T03:55:45.089666227-04:00[America/New_York]", comments = "Generator version: 7.20.0")
 @Introspected
 public class EmailAddressName {
     public static final String JSON_PROPERTY_EMAIL = "email";

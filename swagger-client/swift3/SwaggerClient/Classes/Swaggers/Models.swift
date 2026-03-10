@@ -801,7 +801,7 @@ class Decoders {
                 case let .success(value): _result.sent = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: MailStatsTypeVolume.self, source: sourceDictionary["volume"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: MailStatsVolume.self, source: sourceDictionary["volume"] as AnyObject?) {
                 case let .success(value): _result.volume = value
                 case let .failure(error): break
                 }
@@ -810,15 +810,15 @@ class Decoders {
                 return .failure(.typeMismatch(expected: "MailStatsType", actual: "\(source)"))
             }
         }
-        // Decoder for [MailStatsTypeVolume]
-        Decoders.addDecoder(clazz: [MailStatsTypeVolume].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[MailStatsTypeVolume]> in
-            return Decoders.decode(clazz: [MailStatsTypeVolume].self, source: source)
+        // Decoder for [MailStatsVolume]
+        Decoders.addDecoder(clazz: [MailStatsVolume].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[MailStatsVolume]> in
+            return Decoders.decode(clazz: [MailStatsVolume].self, source: source)
         }
 
-        // Decoder for MailStatsTypeVolume
-        Decoders.addDecoder(clazz: MailStatsTypeVolume.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<MailStatsTypeVolume> in
+        // Decoder for MailStatsVolume
+        Decoders.addDecoder(clazz: MailStatsVolume.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<MailStatsVolume> in
             if let sourceDictionary = source as? [AnyHashable: Any] {
-                let _result = instance == nil ? MailStatsTypeVolume() : instance as! MailStatsTypeVolume
+                let _result = instance == nil ? MailStatsVolume() : instance as! MailStatsVolume
                 switch Decoders.decodeOptional(clazz: [String:Int32].self, source: sourceDictionary["to"] as AnyObject?) {
                 case let .success(value): _result.to = value
                 case let .failure(error): break
@@ -833,20 +833,7 @@ class Decoders {
                 }
                 return .success(_result)
             } else {
-                return .failure(.typeMismatch(expected: "MailStatsTypeVolume", actual: "\(source)"))
-            }
-        }
-        // Decoder for [OneOfSendMailTo]
-        Decoders.addDecoder(clazz: [OneOfSendMailTo].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[OneOfSendMailTo]> in
-            return Decoders.decode(clazz: [OneOfSendMailTo].self, source: source)
-        }
-
-        // Decoder for OneOfSendMailTo
-        Decoders.addDecoder(clazz: OneOfSendMailTo.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<OneOfSendMailTo> in
-            if let source = source as? OneOfSendMailTo {
-                return .success(source)
-            } else {
-                return .failure(.typeMismatch(expected: "Typealias OneOfSendMailTo", actual: "\(source)"))
+                return .failure(.typeMismatch(expected: "MailStatsVolume", actual: "\(source)"))
             }
         }
         // Decoder for [SendMail]
@@ -858,7 +845,7 @@ class Decoders {
         Decoders.addDecoder(clazz: SendMail.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<SendMail> in
             if let sourceDictionary = source as? [AnyHashable: Any] {
                 let _result = instance == nil ? SendMail() : instance as! SendMail
-                switch Decoders.decodeOptional(clazz: OneOfSendMailTo.self, source: sourceDictionary["to"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: SendMailTo.self, source: sourceDictionary["to"] as AnyObject?) {
                 case let .success(value): _result.to = value
                 case let .failure(error): break
                 }
@@ -953,6 +940,19 @@ class Decoders {
                 return .success(_result)
             } else {
                 return .failure(.typeMismatch(expected: "SendMailRaw", actual: "\(source)"))
+            }
+        }
+        // Decoder for [SendMailTo]
+        Decoders.addDecoder(clazz: [SendMailTo].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[SendMailTo]> in
+            return Decoders.decode(clazz: [SendMailTo].self, source: source)
+        }
+
+        // Decoder for SendMailTo
+        Decoders.addDecoder(clazz: SendMailTo.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<SendMailTo> in
+            if let source = source as? SendMailTo {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias SendMailTo", actual: "\(source)"))
             }
         }
     }()

@@ -10,8 +10,7 @@ import Foundation
 
 /** Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead. */
 open class SendMail: JSONEncodable {
-    /** The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. */
-    public var to: OneOfSendMailTo?
+    public var to: SendMailTo?
     /** The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. */
     public var from: String?
     /** The subject line of the email. */

@@ -36,7 +36,7 @@ use \Interserver\Mailbaby\ObjectSerializer;
  * SendMailTo Class Doc Comment
  *
  * @category Class
- * @description The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * @description The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  * @package  Interserver\Mailbaby
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -51,7 +51,7 @@ class SendMailTo implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SendMail_to';
+    protected static $openAPIModelName = 'SendMailTo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

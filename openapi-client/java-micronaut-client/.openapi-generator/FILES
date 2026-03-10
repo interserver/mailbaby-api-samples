@@ -14,6 +14,7 @@ docs/apis/auth.md
 docs/models/DenyRuleNew.md
 docs/models/DenyRuleRecord.md
 docs/models/EmailAddressName.md
+docs/models/EmailAddressNames.md
 docs/models/EmailAddressParam.md
 docs/models/EmailAddressTypes.md
 docs/models/EmailAddressesTypes.md
@@ -28,7 +29,7 @@ docs/models/MailLogEntry.md
 docs/models/MailOrder.md
 docs/models/MailOrderDetail.md
 docs/models/MailStatsType.md
-docs/models/MailStatsTypeVolume.md
+docs/models/MailStatsVolume.md
 docs/models/SendMail.md
 docs/models/SendMailAdv.md
 docs/models/SendMailRaw.md
@@ -50,6 +51,7 @@ src/main/java/org/openapitools/api/StatusApi.java
 src/main/java/org/openapitools/model/DenyRuleNew.java
 src/main/java/org/openapitools/model/DenyRuleRecord.java
 src/main/java/org/openapitools/model/EmailAddressName.java
+src/main/java/org/openapitools/model/EmailAddressNames.java
 src/main/java/org/openapitools/model/EmailAddressParam.java
 src/main/java/org/openapitools/model/EmailAddressTypes.java
 src/main/java/org/openapitools/model/EmailAddressesTypes.java
@@ -64,7 +66,7 @@ src/main/java/org/openapitools/model/MailLogEntry.java
 src/main/java/org/openapitools/model/MailOrder.java
 src/main/java/org/openapitools/model/MailOrderDetail.java
 src/main/java/org/openapitools/model/MailStatsType.java
-src/main/java/org/openapitools/model/MailStatsTypeVolume.java
+src/main/java/org/openapitools/model/MailStatsVolume.java
 src/main/java/org/openapitools/model/SendMail.java
 src/main/java/org/openapitools/model/SendMailAdv.java
 src/main/java/org/openapitools/model/SendMailRaw.java
@@ -79,6 +81,7 @@ src/test/java/org/openapitools/api/StatusApiTest.java
 src/test/java/org/openapitools/model/DenyRuleNewTest.java
 src/test/java/org/openapitools/model/DenyRuleRecordTest.java
 src/test/java/org/openapitools/model/EmailAddressNameTest.java
+src/test/java/org/openapitools/model/EmailAddressNamesTest.java
 src/test/java/org/openapitools/model/EmailAddressParamTest.java
 src/test/java/org/openapitools/model/EmailAddressTypesTest.java
 src/test/java/org/openapitools/model/EmailAddressesTypesTest.java
@@ -93,7 +96,7 @@ src/test/java/org/openapitools/model/MailLogTest.java
 src/test/java/org/openapitools/model/MailOrderDetailTest.java
 src/test/java/org/openapitools/model/MailOrderTest.java
 src/test/java/org/openapitools/model/MailStatsTypeTest.java
-src/test/java/org/openapitools/model/MailStatsTypeVolumeTest.java
+src/test/java/org/openapitools/model/MailStatsVolumeTest.java
 src/test/java/org/openapitools/model/SendMailAdvTest.java
 src/test/java/org/openapitools/model/SendMailRawTest.java
 src/test/java/org/openapitools/model/SendMailTest.java

@@ -34,11 +34,11 @@ require 'swagger_client/models/mail_log_entry'
 require 'swagger_client/models/mail_order'
 require 'swagger_client/models/mail_order_detail'
 require 'swagger_client/models/mail_stats_type'
-require 'swagger_client/models/mail_stats_type_volume'
-require 'swagger_client/models/one_of_send_mail_to'
+require 'swagger_client/models/mail_stats_volume'
 require 'swagger_client/models/send_mail'
 require 'swagger_client/models/send_mail_adv'
 require 'swagger_client/models/send_mail_raw'
+require 'swagger_client/models/send_mail_to'
 
 # APIs
 require 'swagger_client/api/blocking_api'

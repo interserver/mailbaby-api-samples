@@ -5,6 +5,7 @@ docs/BlockingApi.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
+docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -20,7 +21,7 @@ docs/MailLogEntry.md
 docs/MailOrder.md
 docs/MailOrderDetail.md
 docs/MailStatsType.md
-docs/MailStatsTypeVolume.md
+docs/MailStatsVolume.md
 docs/SendMail.md
 docs/SendMailAdv.md
 docs/SendMailRaw.md
@@ -45,6 +46,7 @@ src/main/scala/org/openapitools/client/core/requests.scala
 src/main/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/model/DenyRuleRecord.scala
 src/main/scala/org/openapitools/client/model/EmailAddressName.scala
+src/main/scala/org/openapitools/client/model/EmailAddressNames.scala
 src/main/scala/org/openapitools/client/model/EmailAddressParam.scala
 src/main/scala/org/openapitools/client/model/EmailAddressTypes.scala
 src/main/scala/org/openapitools/client/model/EmailAddressesTypes.scala
@@ -59,7 +61,7 @@ src/main/scala/org/openapitools/client/model/MailLogEntry.scala
 src/main/scala/org/openapitools/client/model/MailOrder.scala
 src/main/scala/org/openapitools/client/model/MailOrderDetail.scala
 src/main/scala/org/openapitools/client/model/MailStatsType.scala
-src/main/scala/org/openapitools/client/model/MailStatsTypeVolume.scala
+src/main/scala/org/openapitools/client/model/MailStatsVolume.scala
 src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala
 src/main/scala/org/openapitools/client/model/SendMailRaw.scala

@@ -11,7 +11,7 @@
        'cost' => float(),
        'received' => integer(),
        'sent' => integer(),
-       'volume' => openapi_mail_stats_type_volume:openapi_mail_stats_type_volume()
+       'volume' => openapi_mail_stats_volume:openapi_mail_stats_volume()
      }.
 
 encode(#{ 'time' := Time,

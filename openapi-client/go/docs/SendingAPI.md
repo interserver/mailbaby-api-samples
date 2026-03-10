@@ -100,11 +100,11 @@ func main() {
 	subject := "subject_example" // string | The subject line of the email.
 	body := "body_example" // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	from := openapiclient.EmailAddressTypes{EmailAddressName: openapiclient.NewEmailAddressName("user@domain.com")} // EmailAddressTypes | 
-	to := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes | 
-	replyto := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes |  (optional)
-	cc := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes |  (optional)
-	bcc := openapiclient.EmailAddressesTypes{ArrayOfEmailAddressName: new([]EmailAddressName)} // EmailAddressesTypes |  (optional)
-	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@7a583586))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
+	to := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes | 
+	replyto := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes |  (optional)
+	cc := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes |  (optional)
+	bcc := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes |  (optional)
+	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@1e1e9ef3))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
 	id := int64(789) // int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -179,7 +179,7 @@ import (
 )
 
 func main() {
-	to := openapiclient.SendMail_to{ArrayOfString: new([]string)} // SendMailTo | 
+	to := openapiclient.SendMailTo{ArrayOfString: new([]string)} // SendMailTo | 
 	from := "from_example" // string | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 	subject := "subject_example" // string | The subject line of the email.
 	body := "body_example" // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.

@@ -8,7 +8,7 @@ import 'package:swagger/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**to** | [**OneOfSendMailTo**](OneOfSendMailTo.md) | The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. | [default to null]
+**to** | [**SendMailTo**](SendMailTo.md) |  | [default to null]
 **from** | **String** | The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. | [default to null]
 **subject** | **String** | The subject line of the email. | [default to null]
 **body** | **String** | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | [default to null]

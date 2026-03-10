@@ -1,11 +1,11 @@
 const utils = require('../utils/utils');
-const SendMail_to = require('../models/SendMail_to');
+const SendMailTo = require('../models/SendMailTo');
 
 module.exports = {
     fields: (prefix = '', isInput = true, isArrayChild = false) => {
         const {keyPrefix, labelPrefix} = utils.buildKeyAndLabel(prefix, isInput, isArrayChild)
         return [
-            ...SendMail_to.fields(`${keyPrefix}to`, isInput),
+            ...SendMailTo.fields(`${keyPrefix}to`, isInput),
             {
                 key: `${keyPrefix}from`,
                 label: `The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. - [${labelPrefix}from]`,
@@ -34,7 +34,7 @@ module.exports = {
     mapping: (bundle, prefix = '') => {
         const {keyPrefix} = utils.buildKeyAndLabel(prefix)
         return {
-            'to': utils.removeIfEmpty(SendMail_to.mapping(bundle, `${keyPrefix}to`)),
+            'to': utils.removeIfEmpty(SendMailTo.mapping(bundle, `${keyPrefix}to`)),
             'from': bundle.inputData?.[`${keyPrefix}from`],
             'subject': bundle.inputData?.[`${keyPrefix}subject`],
             'body': bundle.inputData?.[`${keyPrefix}body`],

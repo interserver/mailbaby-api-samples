@@ -632,10 +632,10 @@ export interface MailStatsType {
     sent?: number;
     /**
      * 
-     * @type {MailStatsTypeVolume}
+     * @type {MailStatsVolume}
      * @memberof MailStatsType
      */
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 
 /**
@@ -658,27 +658,27 @@ export namespace MailStatsType {
     }
 }
 /**
- * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
+ * Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
  * @export
- * @interface MailStatsTypeVolume
+ * @interface MailStatsVolume
  */
-export interface MailStatsTypeVolume {
+export interface MailStatsVolume {
     /**
      * Message counts keyed by destination (envelope `to`) email address.
      * @type {{ [key: string]: number; }}
-     * @memberof MailStatsTypeVolume
+     * @memberof MailStatsVolume
      */
     to?: { [key: string]: number; };
     /**
      * Message counts keyed by sender (envelope `from`) email address.
      * @type {{ [key: string]: number; }}
-     * @memberof MailStatsTypeVolume
+     * @memberof MailStatsVolume
      */
     from?: { [key: string]: number; };
     /**
      * Message counts keyed by originating client IP address.
      * @type {{ [key: string]: number; }}
-     * @memberof MailStatsTypeVolume
+     * @memberof MailStatsVolume
      */
     ip?: { [key: string]: number; };
 }
@@ -689,11 +689,11 @@ export interface MailStatsTypeVolume {
  */
 export interface SendMail {
     /**
-     * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
-     * @type {string | Array<string>}
+     * 
+     * @type {SendMailTo}
      * @memberof SendMail
      */
-    to: string | Array<string>;
+    to: SendMailTo;
     /**
      * The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
      * @type {string}
@@ -798,6 +798,13 @@ export interface SendMailRaw {
      * @memberof SendMailRaw
      */
     id?: number;
+}
+/**
+ * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
+ * @export
+ * @interface SendMailTo
+ */
+export interface SendMailTo {
 }
 /**
  * BlockingApi - fetch parameter creator
@@ -1767,7 +1774,7 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
         /**
          * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Sends an Email
-         * @param {string | Array<string>} to 
+         * @param {SendMailTo} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
@@ -1776,7 +1783,7 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string | Array<string>, from: string, subject: string, body: string, id: number, body: SendMail, options: any = {}): FetchArgs {
+        sendMail(to: SendMailTo, from: string, subject: string, body: string, id: number, body: SendMail, options: any = {}): FetchArgs {
             // verify required parameter 'to' is not null or undefined
             if (to === null || to === undefined) {
                 throw new RequiredError('to','Required parameter to was null or undefined when calling sendMail.');
@@ -1914,7 +1921,7 @@ export const SendingApiFp = function(configuration?: Configuration) {
         /**
          * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Sends an Email
-         * @param {string | Array<string>} to 
+         * @param {SendMailTo} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
@@ -1923,7 +1930,7 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string | Array<string>, from: string, subject: string, body: string, id: number, body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+        sendMail(to: SendMailTo, from: string, subject: string, body: string, id: number, body: SendMail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
             const localVarFetchArgs = SendingApiFetchParamCreator(configuration).sendMail(to, from, subject, body, id, body, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -1978,7 +1985,7 @@ export const SendingApiFactory = function (configuration?: Configuration, fetch?
         /**
          * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Sends an Email
-         * @param {string | Array<string>} to 
+         * @param {SendMailTo} to 
          * @param {string} from 
          * @param {string} subject 
          * @param {string} body 
@@ -1987,7 +1994,7 @@ export const SendingApiFactory = function (configuration?: Configuration, fetch?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendMail(to: string | Array<string>, from: string, subject: string, body: string, id: number, body: SendMail, options?: any) {
+        sendMail(to: SendMailTo, from: string, subject: string, body: string, id: number, body: SendMail, options?: any) {
             return SendingApiFp(configuration).sendMail(to, from, subject, body, id, body, options)(fetch, basePath);
         },
     };
@@ -2038,7 +2045,7 @@ export class SendingApi extends BaseAPI {
     /**
      * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
      * @summary Sends an Email
-     * @param {string | Array<string>} to 
+     * @param {SendMailTo} to 
      * @param {string} from 
      * @param {string} subject 
      * @param {string} body 
@@ -2048,7 +2055,7 @@ export class SendingApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public sendMail(to: string | Array<string>, from: string, subject: string, body: string, id: number, body: SendMail, options?: any) {
+    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id: number, body: SendMail, options?: any) {
         return SendingApiFp(this.configuration).sendMail(to, from, subject, body, id, body, options)(this.fetch, this.basePath);
     }
 

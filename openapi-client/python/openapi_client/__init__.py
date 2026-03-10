@@ -36,6 +36,7 @@ __all__ = [
     "DenyRuleNew",
     "DenyRuleRecord",
     "EmailAddressName",
+    "EmailAddressNames",
     "EmailAddressParam",
     "EmailAddressTypes",
     "EmailAddressesTypes",
@@ -50,7 +51,7 @@ __all__ = [
     "MailOrder",
     "MailOrderDetail",
     "MailStatsType",
-    "MailStatsTypeVolume",
+    "MailStatsVolume",
     "SendMail",
     "SendMailAdv",
     "SendMailRaw",
@@ -79,6 +80,7 @@ from openapi_client.exceptions import ApiException as ApiException
 from openapi_client.models.deny_rule_new import DenyRuleNew as DenyRuleNew
 from openapi_client.models.deny_rule_record import DenyRuleRecord as DenyRuleRecord
 from openapi_client.models.email_address_name import EmailAddressName as EmailAddressName
+from openapi_client.models.email_address_names import EmailAddressNames as EmailAddressNames
 from openapi_client.models.email_address_param import EmailAddressParam as EmailAddressParam
 from openapi_client.models.email_address_types import EmailAddressTypes as EmailAddressTypes
 from openapi_client.models.email_addresses_types import EmailAddressesTypes as EmailAddressesTypes
@@ -93,7 +95,7 @@ from openapi_client.models.mail_log_entry import MailLogEntry as MailLogEntry
 from openapi_client.models.mail_order import MailOrder as MailOrder
 from openapi_client.models.mail_order_detail import MailOrderDetail as MailOrderDetail
 from openapi_client.models.mail_stats_type import MailStatsType as MailStatsType
-from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume as MailStatsTypeVolume
+from openapi_client.models.mail_stats_volume import MailStatsVolume as MailStatsVolume
 from openapi_client.models.send_mail import SendMail as SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv as SendMailAdv
 from openapi_client.models.send_mail_raw import SendMailRaw as SendMailRaw

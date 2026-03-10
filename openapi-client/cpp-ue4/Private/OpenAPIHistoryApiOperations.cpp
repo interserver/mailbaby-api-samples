@@ -137,9 +137,9 @@ inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEn
 {
 	switch (Value)
 	{
-	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_0:
+	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::NotDelivered:
 		return TEXT("0");
-	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_1:
+	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::Delivered:
 		return TEXT("1");
 	}
 
@@ -155,8 +155,8 @@ FString OpenAPIHistoryApi::ViewMailLogRequest::EnumToString(const OpenAPIHistory
 inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum& Value)
 {
 	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum> StringToEnum = { 
-		{ TEXT("0"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_0 },
-		{ TEXT("1"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::_1 }, };
+		{ TEXT("0"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::NotDelivered },
+		{ TEXT("1"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::Delivered }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

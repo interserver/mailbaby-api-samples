@@ -1245,7 +1245,7 @@
       "format" : "int32"
     },
     "volume" : {
-      "$ref" : "#/components/schemas/MailStatsType_volume"
+      "$ref" : "#/components/schemas/MailStatsVolume"
     }
   },
   "description" : "Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.",
@@ -1274,7 +1274,8 @@
     }
   }
 };
-            defs["MailStatsType_volume"] = {
+            defs["MailStatsVolume"] = {
+  "title" : "MailStatsVolume",
   "type" : "object",
   "properties" : {
     "to" : {
@@ -1302,30 +1303,28 @@
       "description" : "Message counts keyed by originating client IP address."
     }
   },
-  "description" : "Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window."
+  "description" : "Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.",
+  "example" : {
+    "to" : {
+      "client@domain.com" : 395,
+      "user@site.net" : 57
+    },
+    "from" : {
+      "billing@somedomain.com" : 369
+    },
+    "ip" : {
+      "1.1.1.1" : 142,
+      "2.2.2.2" : 132
+    }
+  }
 };
-            defs["OneOfSendMailTo"] = {};
             defs["SendMail"] = {
   "title" : "SendMail",
   "required" : [ "body", "from", "subject", "to" ],
   "type" : "object",
   "properties" : {
     "to" : {
-      "description" : "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.",
-      "oneOf" : [ {
-        "type" : "string",
-        "description" : "Single recipient email address.",
-        "format" : "email",
-        "example" : "johndoe@company.com"
-      }, {
-        "type" : "array",
-        "description" : "Multiple recipient email addresses.",
-        "example" : [ "johndoe@company.com", "janedoe@company.com" ],
-        "items" : {
-          "type" : "string",
-          "format" : "email"
-        }
-      } ]
+      "$ref" : "#/components/schemas/SendMailTo"
     },
     "from" : {
       "type" : "string",
@@ -1440,6 +1439,7 @@
     "raw_email" : "Date: Sun, 16 Nov 2025 14:30:11 -0500\nTo: Me <support@interserver.net>\nFrom: Mail Test <support@interserver.net>\nReply-To: Mail Test <support@interserver.net>\nSubject: testing out raw email api call\nMessage-ID: <9jeLkYQIw7KqYnoiCnnYj7EC0IrSHdp8XMuJq9a5qs@interserver.net>\nMIME-Version: 1.0\nContent-Type: text/plain; charset=utf-8\nDKIM-Signature: v=1; d=interserver.net; s=my; a=rsa-sha256; ...\n\nThis is a test of the rawsend API call.\n"
   }
 };
+            defs["SendMailTo"] = {};
   </script>
 
   <div class="container-fluid">
@@ -7106,7 +7106,7 @@ public class SendingApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         SendingApi apiInstance = new SendingApi();
-         to = ; //  | 
+        SendMailTo to = ; // SendMailTo | 
         String from = from_example; // String | 
         String subject = subject_example; // String | 
         String body = body_example; // String | 
@@ -7129,7 +7129,7 @@ public class SendingApiExample {
 
     public static void main(String[] args) {
         SendingApi apiInstance = new SendingApi();
-         to = ; //  | 
+        SendMailTo to = ; // SendMailTo | 
         String from = from_example; // String | 
         String subject = subject_example; // String | 
         String body = body_example; // String | 
@@ -7154,7 +7154,7 @@ public class SendingApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
- *to = ; // 
+SendMailTo *to = ; // 
 String *from = from_example; // 
 String *subject = subject_example; // 
 String *body = body_example; // 
@@ -7190,7 +7190,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
-var to = ; // {{}} 
+var to = ; // {{SendMailTo}} 
 var from = from_example; // {{String}} 
 var subject = subject_example; // {{String}} 
 var body = body_example; // {{String}} 
@@ -7230,7 +7230,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new SendingApi();
-            var to = new (); //  | 
+            var to = new SendMailTo(); // SendMailTo | 
             var from = from_example;  // String | 
             var subject = subject_example;  // String | 
             var body = body_example;  // String | 
@@ -7262,7 +7262,7 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiSendingApi();
-$to = ; //  | 
+$to = ; // SendMailTo | 
 $from = from_example; // String | 
 $subject = subject_example; // String | 
 $body = body_example; // String | 
@@ -7288,7 +7288,7 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::SendingApi->new();
-my $to = ; #  | 
+my $to = ; # SendMailTo | 
 my $from = from_example; # String | 
 my $subject = subject_example; # String | 
 my $body = body_example; # String | 
@@ -7317,7 +7317,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.SendingApi()
-to =  #  | 
+to =  # SendMailTo | 
 from = from_example # String | 
 subject = subject_example # String | 
 body = body_example # String | 
@@ -7399,7 +7399,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      
+                                                      SendMailTo
                                                   </span>
                                   
                                               </div>

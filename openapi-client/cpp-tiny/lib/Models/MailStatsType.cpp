@@ -12,7 +12,7 @@ MailStatsType::MailStatsType()
 	cost = float(0);
 	received = int(0);
 	sent = int(0);
-	volume = MailStatsType_volume();
+	volume = MailStatsVolume();
 }
 
 MailStatsType::MailStatsType(std::string jsonString)
@@ -117,7 +117,7 @@ MailStatsType::fromJson(std::string jsonObj)
 
 
 
-        MailStatsType_volume* obj = &volume;
+        MailStatsVolume* obj = &volume;
 		obj->fromJson(value.dump());
 
     }
@@ -256,14 +256,14 @@ MailStatsType::setSent(int sent)
 	this->sent = sent;
 }
 
-MailStatsType_volume
+MailStatsVolume
 MailStatsType::getVolume()
 {
 	return volume;
 }
 
 void
-MailStatsType::setVolume(MailStatsType_volume volume)
+MailStatsType::setVolume(MailStatsVolume volume)
 {
 	this->volume = volume;
 }

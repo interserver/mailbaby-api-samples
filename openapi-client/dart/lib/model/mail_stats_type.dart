@@ -76,7 +76,7 @@ class MailStatsType {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  MailStatsTypeVolume? volume;
+  MailStatsVolume? volume;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is MailStatsType &&
@@ -163,7 +163,7 @@ class MailStatsType {
         cost: mapValueOfType<double>(json, r'cost'),
         received: mapValueOfType<int>(json, r'received'),
         sent: mapValueOfType<int>(json, r'sent'),
-        volume: MailStatsTypeVolume.fromJson(json[r'volume']),
+        volume: MailStatsVolume.fromJson(json[r'volume']),
       );
     }
     return null;

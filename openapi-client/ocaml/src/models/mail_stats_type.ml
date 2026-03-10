@@ -52,7 +52,7 @@
                 
                 ; [@key "sent"]
                     (** Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. *)
-                                      volume: Mail_stats_type_volume.t
+                                      volume: Mail_stats_volume.t
                   
                    option [@default None]
                 

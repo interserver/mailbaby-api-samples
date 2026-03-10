@@ -49,7 +49,7 @@ API.Client.MailStatsType.prototype.received;
 API.Client.MailStatsType.prototype.sent;
 
 /**
- * @type {!API.Client.MailStatsType_volume}
+ * @type {!API.Client.MailStatsVolume}
  * @export
  */
 API.Client.MailStatsType.prototype.volume;

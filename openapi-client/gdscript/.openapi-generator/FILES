@@ -17,6 +17,7 @@ core/NullApiResponseNull.gd
 models/DenyRuleNew.gd
 models/DenyRuleRecord.gd
 models/EmailAddressName.gd
+models/EmailAddressNames.gd
 models/EmailAddressParam.gd
 models/EmailAddressTypes.gd
 models/EmailAddressesTypes.gd
@@ -31,7 +32,7 @@ models/MailLogEntry.gd
 models/MailOrder.gd
 models/MailOrderDetail.gd
 models/MailStatsType.gd
-models/MailStatsTypeVolume.gd
+models/MailStatsVolume.gd
 models/SendMail.gd
 models/SendMailAdv.gd
 models/SendMailRaw.gd

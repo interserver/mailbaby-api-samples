@@ -11,7 +11,7 @@
  */
 
 import { RequestFile } from './models';
-import { MailStatsTypeVolume } from './mailStatsTypeVolume';
+import { MailStatsVolume } from './mailStatsVolume';
 
 /**
 * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
@@ -41,7 +41,7 @@ export class MailStatsType {
     * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
     */
     'sent'?: number;
-    'volume'?: MailStatsTypeVolume;
+    'volume'?: MailStatsVolume;
 
     static discriminator: string | undefined = undefined;
 
@@ -79,7 +79,7 @@ export class MailStatsType {
         {
             "name": "volume",
             "baseName": "volume",
-            "type": "MailStatsTypeVolume"
+            "type": "MailStatsVolume"
         }    ];
 
     static getAttributeTypeMap() {

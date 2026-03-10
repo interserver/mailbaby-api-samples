@@ -11,7 +11,7 @@
 #include "GenericResponse.h"
 #include "MailAttachment.h"
 #include "SendMailRaw.h"
-#include "SendMail_to.h"
+#include "SendMailTo.h"
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -113,7 +113,7 @@ bool sendAdvMailAsync(char * accessToken,
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailSync(char * accessToken,
-	SendMail_to to, std::string from, std::string subject, std::string body, long long id, 
+	SendMailTo to, std::string from, std::string subject, std::string body, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 
@@ -130,7 +130,7 @@ bool sendMailSync(char * accessToken,
  * \param userData The user data to be passed to the callback function.
  */
 bool sendMailAsync(char * accessToken,
-	SendMail_to to, std::string from, std::string subject, std::string body, long long id, 
+	SendMailTo to, std::string from, std::string subject, std::string body, long long id, 
 	void(* handler)(GenericResponse, Error, void* )
 	, void* userData);
 

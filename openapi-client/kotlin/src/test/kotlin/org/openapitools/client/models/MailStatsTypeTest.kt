@@ -19,7 +19,7 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import org.openapitools.client.models.MailStatsType
-import org.openapitools.client.models.MailStatsTypeVolume
+import org.openapitools.client.models.MailStatsVolume
 
 class MailStatsTypeTest : ShouldSpec() {
     init {

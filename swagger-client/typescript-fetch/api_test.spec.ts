@@ -100,7 +100,7 @@ describe("SendingApi", () => {
     return expect(instance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id, {})).resolves.toBe(null)
   })
   test("sendMail", () => {
-    const to: api.string | Array<string> = undefined
+    const to: api.SendMailTo = undefined
     const from: string = "from_example"
     const subject: string = "subject_example"
     const body: string = "body_example"

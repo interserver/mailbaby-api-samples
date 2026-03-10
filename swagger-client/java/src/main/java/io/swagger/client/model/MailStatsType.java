@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.client.model.MailStatsTypeVolume;
+import io.swagger.client.model.MailStatsVolume;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
@@ -101,7 +101,7 @@ public class MailStatsType {
   private Integer sent = null;
 
   @SerializedName("volume")
-  private MailStatsTypeVolume volume = null;
+  private MailStatsVolume volume = null;
 
   public MailStatsType time(TimeEnum time) {
     this.time = time;
@@ -211,7 +211,7 @@ public class MailStatsType {
     this.sent = sent;
   }
 
-  public MailStatsType volume(MailStatsTypeVolume volume) {
+  public MailStatsType volume(MailStatsVolume volume) {
     this.volume = volume;
     return this;
   }
@@ -221,11 +221,11 @@ public class MailStatsType {
    * @return volume
   **/
   @Schema(description = "")
-  public MailStatsTypeVolume getVolume() {
+  public MailStatsVolume getVolume() {
     return volume;
   }
 
-  public void setVolume(MailStatsTypeVolume volume) {
+  public void setVolume(MailStatsVolume volume) {
     this.volume = volume;
   }
 

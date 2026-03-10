@@ -5,46 +5,46 @@
 #include "Helpers.h"
 
 
-#include "SendMail_to.h"
+#include "SendMailTo.h"
 
 using namespace std;
 using namespace Tizen::ArtikCloud;
 
-SendMail_to::SendMail_to()
+SendMailTo::SendMailTo()
 {
 	//__init();
 }
 
-SendMail_to::~SendMail_to()
+SendMailTo::~SendMailTo()
 {
 	//__cleanup();
 }
 
 void
-SendMail_to::__init()
+SendMailTo::__init()
 {
 }
 
 void
-SendMail_to::__cleanup()
+SendMailTo::__cleanup()
 {
 	//
 }
 
 void
-SendMail_to::fromJson(char* jsonStr)
+SendMailTo::fromJson(char* jsonStr)
 {
 	JsonObject *pJsonObject = json_node_get_object(json_from_string(jsonStr,NULL));
 	JsonNode *node;
 }
 
-SendMail_to::SendMail_to(char* json)
+SendMailTo::SendMailTo(char* json)
 {
 	this->fromJson(json);
 }
 
 char*
-SendMail_to::toJson()
+SendMailTo::toJson()
 {
 	JsonObject *pJsonObject = json_object_new();
 	JsonNode *node;

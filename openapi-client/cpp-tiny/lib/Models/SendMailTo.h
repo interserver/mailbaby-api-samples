@@ -1,12 +1,12 @@
 
 /*
- * SendMail_to.h
+ * SendMailTo.h
  *
- * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  */
 
-#ifndef TINY_CPP_CLIENT_SendMail_to_H_
-#define TINY_CPP_CLIENT_SendMail_to_H_
+#ifndef TINY_CPP_CLIENT_SendMailTo_H_
+#define TINY_CPP_CLIENT_SendMailTo_H_
 
 
 #include <string>
@@ -16,24 +16,24 @@
 namespace Tiny {
 
 
-/*! \brief The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+/*! \brief The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  *
  *  \ingroup Models
  *
  */
 
-class SendMail_to{
+class SendMailTo{
 public:
 
     /*! \brief Constructor.
 	 */
-    SendMail_to();
-    SendMail_to(std::string jsonString);
+    SendMailTo();
+    SendMailTo(std::string jsonString);
 
 
     /*! \brief Destructor.
 	 */
-    virtual ~SendMail_to();
+    virtual ~SendMailTo();
 
 
     /*! \brief Retrieve a bourne JSON representation of this class.
@@ -51,4 +51,4 @@ public:
 };
 }
 
-#endif /* TINY_CPP_CLIENT_SendMail_to_H_ */
+#endif /* TINY_CPP_CLIENT_SendMailTo_H_ */

@@ -1,7 +1,6 @@
 package org.openapitools.model;
 
-import java.util.List;
-import org.openapitools.model.EmailAddressName;
+import org.openapitools.model.EmailAddressNames;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -92,7 +92,7 @@ func bzz_normalize() -> Dictionary:
 static func bzz_denormalize_single(from_dict: Dictionary):
 	var me := new()
 	if from_dict.has("to"):
-		me.to = SendMail_to.bzz_denormalize_single(from_dict["to"])
+		me.to = SendMailTo.bzz_denormalize_single(from_dict["to"])
 	if from_dict.has("from"):
 		me.from = from_dict["from"]
 	if from_dict.has("subject"):

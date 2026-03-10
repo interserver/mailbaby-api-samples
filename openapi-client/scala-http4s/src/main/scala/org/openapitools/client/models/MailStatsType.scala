@@ -31,7 +31,7 @@ case class MailStatsType(
     cost: Option[Double] = None,
     received: Option[Int] = None,
     sent: Option[Int] = None,
-    volume: Option[MailStatsTypeVolume] = None
+    volume: Option[MailStatsVolume] = None
 )
   
 object MailStatsType {
@@ -56,7 +56,7 @@ object MailStatsType {
       cost <- c.downField("cost").as[Option[Double]]
       received <- c.downField("received").as[Option[Int]]
       sent <- c.downField("sent").as[Option[Int]]
-      volume <- c.downField("volume").as[Option[MailStatsTypeVolume]]
+      volume <- c.downField("volume").as[Option[MailStatsVolume]]
     } yield MailStatsType(
       time = time,
       usage = usage,

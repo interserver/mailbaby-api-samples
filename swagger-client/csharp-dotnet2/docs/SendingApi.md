@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 <a name="sendmail"></a>
 # **SendMail**
-> GenericResponse SendMail (Object to, string from, string subject, string body, long? id)
+> GenericResponse SendMail (SendMailTo to, string from, string subject, string body, long? id)
 
 Sends an Email
 
@@ -187,7 +187,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new SendingApi();
-            var to = new Object(); // Object | 
+            var to = new SendMailTo(); // SendMailTo | 
             var from = from_example;  // string | 
             var subject = subject_example;  // string | 
             var body = body_example;  // string | 
@@ -212,7 +212,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**Object**](.md)|  | 
+ **to** | [**SendMailTo**](.md)|  | 
  **from** | **string**|  | 
  **subject** | **string**|  | 
  **body** | **string**|  | 

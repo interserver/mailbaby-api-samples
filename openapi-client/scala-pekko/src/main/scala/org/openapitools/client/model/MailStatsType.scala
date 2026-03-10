@@ -26,7 +26,7 @@ case class MailStatsType (
   received: Option[Int] = None,
   /* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
   sent: Option[Int] = None,
-  volume: Option[MailStatsTypeVolume] = None
+  volume: Option[MailStatsVolume] = None
 ) extends ApiModel
 
 object MailStatsTypeEnums {

@@ -13,7 +13,7 @@ Name | Type
 `cost` | number
 `received` | number
 `sent` | number
-`volume` | [MailStatsTypeVolume](MailStatsTypeVolume.md)
+`volume` | [MailStatsVolume](MailStatsVolume.md)
 
 ## Example
 

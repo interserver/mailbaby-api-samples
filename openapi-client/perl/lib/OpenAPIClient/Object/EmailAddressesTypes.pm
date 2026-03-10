@@ -30,7 +30,7 @@ use Log::Any qw($log);
 use Date::Parse;
 use DateTime;
 
-use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::EmailAddressNames;
 
 use base ("Class::Accessor", "Class::Data::Inheritable");
 

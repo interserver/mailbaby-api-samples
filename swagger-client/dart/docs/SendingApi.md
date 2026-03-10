@@ -145,7 +145,7 @@ import 'package:swagger/api.dart';
 //swagger.api.Configuration.apiKeyPrefix{'X-API-KEY'} = "Bearer";
 
 var api_instance = new SendingApi();
-var to = ; // Object | 
+var to = ; // SendMailTo | 
 var from = from_example; // String | 
 var subject = subject_example; // String | 
 var body = body_example; // String | 
@@ -164,7 +164,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**Object**](.md)|  | 
+ **to** | [**SendMailTo**](.md)|  | 
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 

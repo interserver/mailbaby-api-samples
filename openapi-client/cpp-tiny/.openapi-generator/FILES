@@ -6,6 +6,8 @@ lib/Models/DenyRuleRecord.cpp
 lib/Models/DenyRuleRecord.h
 lib/Models/EmailAddressName.cpp
 lib/Models/EmailAddressName.h
+lib/Models/EmailAddressNames.cpp
+lib/Models/EmailAddressNames.h
 lib/Models/EmailAddressParam.cpp
 lib/Models/EmailAddressParam.h
 lib/Models/EmailAddressTypes.cpp
@@ -36,8 +38,8 @@ lib/Models/MailOrderDetail.cpp
 lib/Models/MailOrderDetail.h
 lib/Models/MailStatsType.cpp
 lib/Models/MailStatsType.h
-lib/Models/MailStatsTypeVolume.cpp
-lib/Models/MailStatsTypeVolume.h
+lib/Models/MailStatsVolume.cpp
+lib/Models/MailStatsVolume.h
 lib/Models/SendMail.cpp
 lib/Models/SendMail.h
 lib/Models/SendMailAdv.cpp
@@ -49,6 +51,7 @@ lib/Models/SendMailTo.h
 lib/TestFiles/DenyRuleNewTest.cpp
 lib/TestFiles/DenyRuleRecordTest.cpp
 lib/TestFiles/EmailAddressNameTest.cpp
+lib/TestFiles/EmailAddressNamesTest.cpp
 lib/TestFiles/EmailAddressParamTest.cpp
 lib/TestFiles/EmailAddressTypesTest.cpp
 lib/TestFiles/EmailAddressesTypesTest.cpp
@@ -63,7 +66,7 @@ lib/TestFiles/MailLogTest.cpp
 lib/TestFiles/MailOrderDetailTest.cpp
 lib/TestFiles/MailOrderTest.cpp
 lib/TestFiles/MailStatsTypeTest.cpp
-lib/TestFiles/MailStatsTypeVolumeTest.cpp
+lib/TestFiles/MailStatsVolumeTest.cpp
 lib/TestFiles/SendMailAdvTest.cpp
 lib/TestFiles/SendMailRawTest.cpp
 lib/TestFiles/SendMailTest.cpp

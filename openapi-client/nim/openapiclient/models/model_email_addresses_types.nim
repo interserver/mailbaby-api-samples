@@ -12,25 +12,25 @@ import tables
 import marshal
 import options
 
-import model_email_address_name
+import model_email_address_names
 
 # OneOf type
 type EmailAddressesTypesKind* {.pure.} = enum
-  StringVariant
+  EmailAddressStringVariant
   EmailAddressNamesVariant
 
 type EmailAddressesTypes* = object
   ## A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the `\"Name <email>\"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.
   case kind*: EmailAddressesTypesKind
-  of EmailAddressesTypesKind.StringVariant:
-    stringValue*: string
+  of EmailAddressesTypesKind.EmailAddressStringVariant:
+    EmailAddressStringValue*: string
   of EmailAddressesTypesKind.EmailAddressNamesVariant:
     EmailAddressNamesValue*: seq[EmailAddressName]
 
 proc to*(node: JsonNode, T: typedesc[EmailAddressesTypes]): EmailAddressesTypes =
   ## Custom deserializer for oneOf type - tries each variant
   try:
-    return EmailAddressesTypes(kind: EmailAddressesTypesKind.StringVariant, stringValue: to(node, string))
+    return EmailAddressesTypes(kind: EmailAddressesTypesKind.EmailAddressStringVariant, EmailAddressStringValue: to(node, string))
   except Exception as e:
     when defined(debug):
       echo "Failed to deserialize as string: ", e.msg

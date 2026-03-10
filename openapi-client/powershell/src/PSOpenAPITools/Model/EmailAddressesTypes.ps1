@@ -35,20 +35,20 @@ function ConvertFrom-JsonToEmailAddressesTypes {
         $matchType = $null
         $matchInstance = $null
 
-        # try to match EmailAddressName[] defined in the oneOf schemas
+        # try to match EmailAddressNames defined in the oneOf schemas
         try {
-            $matchInstance = ConvertFrom-JsonToEmailAddressName[] $Json
+            $matchInstance = ConvertFrom-JsonToEmailAddressNames $Json
 
             foreach($property in $matchInstance.PsObject.Properties) {
                 if ($null -ne $property.Value) {
-                    $matchType = "EmailAddressName[]"
+                    $matchType = "EmailAddressNames"
                     $match++
                     break
                 }
             }
         } catch {
             # fail to match the schema defined in oneOf, proceed to the next one
-            Write-Debug "Failed to match 'EmailAddressName[]' defined in oneOf (EmailAddressesTypes). Proceeding to the next one if any."
+            Write-Debug "Failed to match 'EmailAddressNames' defined in oneOf (EmailAddressesTypes). Proceeding to the next one if any."
         }
 
         # try to match String defined in the oneOf schemas
@@ -68,15 +68,15 @@ function ConvertFrom-JsonToEmailAddressesTypes {
         }
 
         if ($match -gt 1) {
-            throw "Error! The JSON payload matches more than one type defined in oneOf schemas ([EmailAddressName[], String]). JSON Payload: $($Json)"
+            throw "Error! The JSON payload matches more than one type defined in oneOf schemas ([EmailAddressNames, String]). JSON Payload: $($Json)"
         } elseif ($match -eq 1) {
             return [PSCustomObject]@{
                 "ActualType" = ${matchType}
                 "ActualInstance" = ${matchInstance}
-                "OneOfSchemas" = @("EmailAddressName[]", "String")
+                "OneOfSchemas" = @("EmailAddressNames", "String")
             }
         } else {
-            throw "Error! The JSON payload doesn't matches any type defined in oneOf schemas ([EmailAddressName[], String]). JSON Payload: $($Json)"
+            throw "Error! The JSON payload doesn't matches any type defined in oneOf schemas ([EmailAddressNames, String]). JSON Payload: $($Json)"
         }
     }
 }

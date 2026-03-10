@@ -9,7 +9,7 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { MailStatsTypeVolume } from './mailStatsTypeVolume';
+import { MailStatsVolume } from './mailStatsVolume';
 
 /**
  * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
@@ -39,7 +39,7 @@ export interface MailStatsType {
      * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
      */
     sent?: number;
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 export namespace MailStatsType {
     export type TimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h';

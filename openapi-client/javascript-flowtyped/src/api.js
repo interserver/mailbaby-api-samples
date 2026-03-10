@@ -155,6 +155,13 @@ export type EmailAddressName = {
 }
 
 /**
+ * An array of email contacts, each with an email address and optional display name.
+ * @export
+ */
+export type EmailAddressNames = {
+} & Array&lt;EmailAddressName&gt;
+
+/**
  * A single email address parameter used as the body of `POST /mail/blocks/delete`.
  * @export
  */
@@ -626,33 +633,33 @@ export type MailStatsType = {
     sent?: number;
     /**
      * 
-     * @type {MailStatsTypeVolume}
+     * @type {MailStatsVolume}
      * @memberof MailStatsType
      */
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 
 /**
- * Top-500 breakdown of message counts grouped by source IP, destination address, and sender address within the selected `time` window.
+ * Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
  * @export
  */
-export type MailStatsTypeVolume = {
+export type MailStatsVolume = {
     /**
      * Message counts keyed by destination (envelope `to`) email address.
      * @type {{ [key: string]: number; }}
-     * @memberof MailStatsTypeVolume
+     * @memberof MailStatsVolume
      */
     to?: { [key: string]: number; };
     /**
      * Message counts keyed by sender (envelope `from`) email address.
      * @type {{ [key: string]: number; }}
-     * @memberof MailStatsTypeVolume
+     * @memberof MailStatsVolume
      */
     from?: { [key: string]: number; };
     /**
      * Message counts keyed by originating client IP address.
      * @type {{ [key: string]: number; }}
-     * @memberof MailStatsTypeVolume
+     * @memberof MailStatsVolume
      */
     ip?: { [key: string]: number; };
 }
@@ -775,7 +782,7 @@ export type SendMailRaw = {
 }
 
 /**
- * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  * @export
  */
 export type SendMailTo = {

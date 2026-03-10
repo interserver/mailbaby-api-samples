@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.swagger.client.model.SendMailTo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.IOException;
 /**
@@ -29,7 +30,7 @@ import java.io.IOException;
 
 public class SendMail {
   @SerializedName("to")
-  private OneOfSendMailTo to = null;
+  private SendMailTo to = null;
 
   @SerializedName("from")
   private String from = null;
@@ -43,21 +44,21 @@ public class SendMail {
   @SerializedName("id")
   private Long id = null;
 
-  public SendMail to(OneOfSendMailTo to) {
+  public SendMail to(SendMailTo to) {
     this.to = to;
     return this;
   }
 
    /**
-   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+   * Get to
    * @return to
   **/
-  @Schema(required = true, description = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
-  public OneOfSendMailTo getTo() {
+  @Schema(required = true, description = "")
+  public SendMailTo getTo() {
     return to;
   }
 
-  public void setTo(OneOfSendMailTo to) {
+  public void setTo(SendMailTo to) {
     this.to = to;
   }
 

@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Api.HistoryApi
+# Interserver.MailBaby.Client.Api.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,9 +19,9 @@ Returns aggregate sending statistics for your mail account(s) across a selectabl
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -84,9 +84,9 @@ Returns a paginated list of every email message accepted by the relay for your m
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {

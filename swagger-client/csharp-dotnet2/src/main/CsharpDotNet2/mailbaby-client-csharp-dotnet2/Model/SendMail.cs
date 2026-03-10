@@ -13,12 +13,11 @@ namespace IO.Swagger.Model {
   [DataContract]
   public class SendMail {
     /// <summary>
-    /// The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+    /// Gets or Sets To
     /// </summary>
-    /// <value>The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.</value>
     [DataMember(Name="to", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "to")]
-    public OneOfSendMailTo To { get; set; }
+    public SendMailTo To { get; set; }
 
     /// <summary>
     /// The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.

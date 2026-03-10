@@ -53,7 +53,7 @@ namespace IO.Swagger.Api
         /// <param name="body"></param>
         /// <param name="id"></param>
         /// <returns>GenericResponse</returns>
-        GenericResponse SendMail (Object to, string from, string subject, string body, long? id);
+        GenericResponse SendMail (SendMailTo to, string from, string subject, string body, long? id);
         /// <summary>
         /// Sends an Email Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the &#x60;body&#x60; value contains any HTML tags the message will be sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is also automatically set as the &#x60;Reply-To&#x60; header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use &#x60;POST /mail/advsend&#x60; instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use &#x60;POST /mail/rawsend&#x60;.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
         /// </summary>
@@ -300,7 +300,7 @@ if (id != null) formParams.Add("id", ApiClient.ParameterToString(id)); // form p
         /// <param name="body"></param>
         /// <param name="id"></param>
         /// <returns>GenericResponse</returns>
-        public GenericResponse SendMail (Object to, string from, string subject, string body, long? id)
+        public GenericResponse SendMail (SendMailTo to, string from, string subject, string body, long? id)
         {
             // verify the required parameter 'to' is set
             if (to == null) throw new ApiException(400, "Missing required parameter 'to' when calling SendMail");

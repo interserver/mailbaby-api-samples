@@ -1,6 +1,6 @@
 package io.swagger.model;
 
-import io.swagger.model.MailStatsTypeVolume;
+import io.swagger.model.MailStatsVolume;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 
@@ -91,7 +91,7 @@ public class MailStatsType   {
   private Integer sent = null;
   
   @Schema(description = "")
-  private MailStatsTypeVolume volume = null;
+  private MailStatsVolume volume = null;
  /**
    * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
    * @return time
@@ -215,15 +215,15 @@ public class MailStatsType   {
   **/
   @JsonProperty("volume")
   @NotNull
-  public MailStatsTypeVolume getVolume() {
+  public MailStatsVolume getVolume() {
     return volume;
   }
 
-  public void setVolume(MailStatsTypeVolume volume) {
+  public void setVolume(MailStatsVolume volume) {
     this.volume = volume;
   }
 
-  public MailStatsType volume(MailStatsTypeVolume volume) {
+  public MailStatsType volume(MailStatsVolume volume) {
     this.volume = volume;
     return this;
   }

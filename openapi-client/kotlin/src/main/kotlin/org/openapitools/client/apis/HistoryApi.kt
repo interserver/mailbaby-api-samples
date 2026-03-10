@@ -151,8 +151,8 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * enum for parameter delivered
      */
      enum class DeliveredViewMailLog(val value: kotlin.Int) {
-         @Json(name = "0") _0(0),
-         @Json(name = "1") _1(1);
+         @Json(name = "0") NotDelivered(0),
+         @Json(name = "1") Delivered(1);
 
         /**
          * Override [toString()] to avoid using the enum variable name as the value, and instead use

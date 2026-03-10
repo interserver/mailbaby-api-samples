@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Api.ServicesApi
+# Interserver.MailBaby.Client.Api.ServicesApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,9 +19,9 @@ Returns the full detail record for one specific mail order identified by its num
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -84,9 +84,9 @@ Returns every mail order (active **and** inactive) associated with your account.
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {

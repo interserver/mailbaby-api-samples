@@ -69,8 +69,8 @@ open class HistoryAPI {
      * enum for parameter delivered
      */
     public enum Delivered_viewMailLog: Int, Sendable, CaseIterable {
-        case _0 = 0
-        case _1 = 1
+        case NotDelivered = 0
+        case Delivered = 1
     }
 
     /**

@@ -6,6 +6,7 @@ Private/OpenAPIBlockingApiOperations.cpp
 Private/OpenAPIDenyRuleNew.cpp
 Private/OpenAPIDenyRuleRecord.cpp
 Private/OpenAPIEmailAddressName.cpp
+Private/OpenAPIEmailAddressNames.cpp
 Private/OpenAPIEmailAddressParam.cpp
 Private/OpenAPIEmailAddressTypes.cpp
 Private/OpenAPIEmailAddressesTypes.cpp
@@ -23,7 +24,7 @@ Private/OpenAPIMailLogEntry.cpp
 Private/OpenAPIMailOrder.cpp
 Private/OpenAPIMailOrderDetail.cpp
 Private/OpenAPIMailStatsType.cpp
-Private/OpenAPIMailStatsTypeVolume.cpp
+Private/OpenAPIMailStatsVolume.cpp
 Private/OpenAPIModule.cpp
 Private/OpenAPIModule.h
 Private/OpenAPISendMail.cpp
@@ -42,6 +43,7 @@ Public/OpenAPIBlockingApiOperations.h
 Public/OpenAPIDenyRuleNew.h
 Public/OpenAPIDenyRuleRecord.h
 Public/OpenAPIEmailAddressName.h
+Public/OpenAPIEmailAddressNames.h
 Public/OpenAPIEmailAddressParam.h
 Public/OpenAPIEmailAddressTypes.h
 Public/OpenAPIEmailAddressesTypes.h
@@ -59,7 +61,7 @@ Public/OpenAPIMailLogEntry.h
 Public/OpenAPIMailOrder.h
 Public/OpenAPIMailOrderDetail.h
 Public/OpenAPIMailStatsType.h
-Public/OpenAPIMailStatsTypeVolume.h
+Public/OpenAPIMailStatsVolume.h
 Public/OpenAPISendMail.h
 Public/OpenAPISendMailAdv.h
 Public/OpenAPISendMailRaw.h

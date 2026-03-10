@@ -13,6 +13,7 @@ docs/Api/StatusApi.md
 docs/Model/DenyRuleNew.md
 docs/Model/DenyRuleRecord.md
 docs/Model/EmailAddressName.md
+docs/Model/EmailAddressNames.md
 docs/Model/EmailAddressParam.md
 docs/Model/EmailAddressTypes.md
 docs/Model/EmailAddressesTypes.md
@@ -27,7 +28,7 @@ docs/Model/MailLogEntry.md
 docs/Model/MailOrder.md
 docs/Model/MailOrderDetail.md
 docs/Model/MailStatsType.md
-docs/Model/MailStatsTypeVolume.md
+docs/Model/MailStatsVolume.md
 docs/Model/SendMail.md
 docs/Model/SendMailAdv.md
 docs/Model/SendMailRaw.md
@@ -46,6 +47,7 @@ src/HeaderSelector.php
 src/Model/DenyRuleNew.php
 src/Model/DenyRuleRecord.php
 src/Model/EmailAddressName.php
+src/Model/EmailAddressNames.php
 src/Model/EmailAddressParam.php
 src/Model/EmailAddressTypes.php
 src/Model/EmailAddressesTypes.php
@@ -60,7 +62,7 @@ src/Model/MailLogEntry.php
 src/Model/MailOrder.php
 src/Model/MailOrderDetail.php
 src/Model/MailStatsType.php
-src/Model/MailStatsTypeVolume.php
+src/Model/MailStatsVolume.php
 src/Model/ModelInterface.php
 src/Model/SendMail.php
 src/Model/SendMailAdv.php
@@ -75,6 +77,7 @@ tests/Api/StatusApiTest.php
 tests/Model/DenyRuleNewTest.php
 tests/Model/DenyRuleRecordTest.php
 tests/Model/EmailAddressNameTest.php
+tests/Model/EmailAddressNamesTest.php
 tests/Model/EmailAddressParamTest.php
 tests/Model/EmailAddressTypesTest.php
 tests/Model/EmailAddressesTypesTest.php
@@ -89,7 +92,7 @@ tests/Model/MailLogTest.php
 tests/Model/MailOrderDetailTest.php
 tests/Model/MailOrderTest.php
 tests/Model/MailStatsTypeTest.php
-tests/Model/MailStatsTypeVolumeTest.php
+tests/Model/MailStatsVolumeTest.php
 tests/Model/SendMailAdvTest.php
 tests/Model/SendMailRawTest.php
 tests/Model/SendMailTest.php

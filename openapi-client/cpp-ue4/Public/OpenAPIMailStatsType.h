@@ -13,7 +13,7 @@
 #pragma once
 
 #include "OpenAPIBaseModel.h"
-#include "OpenAPIMailStatsTypeVolume.h"
+#include "OpenAPIMailStatsVolume.h"
 
 namespace OpenAPI
 {
@@ -55,7 +55,7 @@ public:
 	TOptional<int32> Received;
 	/* Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. */
 	TOptional<int32> Sent;
-	TOptional<OpenAPIMailStatsTypeVolume> Volume;
+	TOptional<OpenAPIMailStatsVolume> Volume;
 };
 
 }

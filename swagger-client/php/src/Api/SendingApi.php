@@ -1422,7 +1422,7 @@ class SendingApi
      *
      * Sends an Email
      *
-     * @param   $to to (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailTo $to to (required)
      * @param  string $from from (required)
      * @param  string $subject subject (required)
      * @param  string $body body (required)
@@ -1443,7 +1443,7 @@ class SendingApi
      *
      * Sends an Email
      *
-     * @param   $to (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailTo $to (required)
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
@@ -1546,7 +1546,7 @@ class SendingApi
      *
      * Sends an Email
      *
-     * @param   $to (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailTo $to (required)
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
@@ -1570,7 +1570,7 @@ class SendingApi
      *
      * Sends an Email
      *
-     * @param   $to (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailTo $to (required)
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)
@@ -1624,7 +1624,7 @@ class SendingApi
     /**
      * Create request for operation 'sendMail'
      *
-     * @param   $to (required)
+     * @param  \Interserver\Mailbaby\Model\SendMailTo $to (required)
      * @param  string $from (required)
      * @param  string $subject (required)
      * @param  string $body (required)

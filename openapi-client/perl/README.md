@@ -281,6 +281,7 @@ To load the models:
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
 use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::EmailAddressNames;
 use OpenAPIClient::Object::EmailAddressParam;
 use OpenAPIClient::Object::EmailAddressTypes;
 use OpenAPIClient::Object::EmailAddressesTypes;
@@ -295,7 +296,7 @@ use OpenAPIClient::Object::MailLogEntry;
 use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::MailOrderDetail;
 use OpenAPIClient::Object::MailStatsType;
-use OpenAPIClient::Object::MailStatsTypeVolume;
+use OpenAPIClient::Object::MailStatsVolume;
 use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
 use OpenAPIClient::Object::SendMailRaw;
@@ -321,6 +322,7 @@ use OpenAPIClient::StatusApi;
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
 use OpenAPIClient::Object::EmailAddressName;
+use OpenAPIClient::Object::EmailAddressNames;
 use OpenAPIClient::Object::EmailAddressParam;
 use OpenAPIClient::Object::EmailAddressTypes;
 use OpenAPIClient::Object::EmailAddressesTypes;
@@ -335,7 +337,7 @@ use OpenAPIClient::Object::MailLogEntry;
 use OpenAPIClient::Object::MailOrder;
 use OpenAPIClient::Object::MailOrderDetail;
 use OpenAPIClient::Object::MailStatsType;
-use OpenAPIClient::Object::MailStatsTypeVolume;
+use OpenAPIClient::Object::MailStatsVolume;
 use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
 use OpenAPIClient::Object::SendMailRaw;
@@ -391,6 +393,7 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
  - [OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
  - [OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
+ - [OpenAPIClient::Object::EmailAddressNames](docs/EmailAddressNames.md)
  - [OpenAPIClient::Object::EmailAddressParam](docs/EmailAddressParam.md)
  - [OpenAPIClient::Object::EmailAddressTypes](docs/EmailAddressTypes.md)
  - [OpenAPIClient::Object::EmailAddressesTypes](docs/EmailAddressesTypes.md)
@@ -405,7 +408,7 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
  - [OpenAPIClient::Object::MailOrderDetail](docs/MailOrderDetail.md)
  - [OpenAPIClient::Object::MailStatsType](docs/MailStatsType.md)
- - [OpenAPIClient::Object::MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
+ - [OpenAPIClient::Object::MailStatsVolume](docs/MailStatsVolume.md)
  - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
  - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
  - [OpenAPIClient::Object::SendMailRaw](docs/SendMailRaw.md)

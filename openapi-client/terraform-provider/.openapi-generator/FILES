@@ -8,6 +8,7 @@ internal/client/client.go
 internal/client/model_deny_rule_new.go
 internal/client/model_deny_rule_record.go
 internal/client/model_email_address_name.go
+internal/client/model_email_address_names.go
 internal/client/model_email_address_param.go
 internal/client/model_email_address_types.go
 internal/client/model_email_addresses_types.go
@@ -22,7 +23,7 @@ internal/client/model_mail_log_entry.go
 internal/client/model_mail_order.go
 internal/client/model_mail_order_detail.go
 internal/client/model_mail_stats_type.go
-internal/client/model_mail_stats_type_volume.go
+internal/client/model_mail_stats_volume.go
 internal/client/model_send_mail.go
 internal/client/model_send_mail_adv.go
 internal/client/model_send_mail_raw.go

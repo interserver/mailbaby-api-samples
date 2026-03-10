@@ -10,5 +10,5 @@ type MailStatsType struct {
 	Cost float64 `json:"cost,omitempty"`
 	Received int32 `json:"received,omitempty"`
 	Sent int32 `json:"sent,omitempty"`
-	Volume MailStatsTypeVolume `json:"volume,omitempty"`
+	Volume MailStatsVolume `json:"volume,omitempty"`
 }

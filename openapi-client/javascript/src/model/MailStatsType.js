@@ -12,7 +12,7 @@
  */
 
 import ApiClient from '../ApiClient';
-import MailStatsTypeVolume from './MailStatsTypeVolume';
+import MailStatsVolume from './MailStatsVolume';
 
 /**
  * The MailStatsType model module.
@@ -69,7 +69,7 @@ class MailStatsType {
                 obj['sent'] = ApiClient.convertToType(data['sent'], 'Number');
             }
             if (data.hasOwnProperty('volume')) {
-                obj['volume'] = MailStatsTypeVolume.constructFromObject(data['volume']);
+                obj['volume'] = MailStatsVolume.constructFromObject(data['volume']);
             }
         }
         return obj;
@@ -91,7 +91,7 @@ class MailStatsType {
         }
         // validate the optional field `volume`
         if (data['volume']) { // data not null
-          MailStatsTypeVolume.validateJSON(data['volume']);
+          MailStatsVolume.validateJSON(data['volume']);
         }
 
         return true;
@@ -140,7 +140,7 @@ MailStatsType.prototype['received'] = undefined;
 MailStatsType.prototype['sent'] = undefined;
 
 /**
- * @member {module:model/MailStatsTypeVolume} volume
+ * @member {module:model/MailStatsVolume} volume
  */
 MailStatsType.prototype['volume'] = undefined;
 

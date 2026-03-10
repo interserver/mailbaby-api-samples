@@ -267,7 +267,7 @@ On success the response &#x60;text&#x60; field contains the relay transaction ID
      * @param body  
      * @param id  
      */
-    @Location("/mail/send") class sendMail(val to: kotlin.Any, val from: kotlin.String, val subject: kotlin.String, val body: kotlin.String, val id: kotlin.Long)
+    @Location("/mail/send") class sendMail(val to: SendMailTo, val from: kotlin.String, val subject: kotlin.String, val body: kotlin.String, val id: kotlin.Long)
 
     /**
      * Displays details for a single mail order

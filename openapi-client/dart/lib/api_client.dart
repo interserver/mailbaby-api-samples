@@ -188,6 +188,8 @@ class ApiClient {
           return DenyRuleRecord.fromJson(value);
         case 'EmailAddressName':
           return EmailAddressName.fromJson(value);
+        case 'EmailAddressNames':
+          return EmailAddressNames.fromJson(value);
         case 'EmailAddressParam':
           return EmailAddressParam.fromJson(value);
         case 'EmailAddressTypes':
@@ -216,8 +218,8 @@ class ApiClient {
           return MailOrderDetail.fromJson(value);
         case 'MailStatsType':
           return MailStatsType.fromJson(value);
-        case 'MailStatsTypeVolume':
-          return MailStatsTypeVolume.fromJson(value);
+        case 'MailStatsVolume':
+          return MailStatsVolume.fromJson(value);
         case 'SendMail':
           return SendMail.fromJson(value);
         case 'SendMailAdv':

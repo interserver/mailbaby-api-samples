@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Api.BlockingApi
+# Interserver.MailBaby.Client.Api.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -22,9 +22,9 @@ Adds a deny rule to block specific senders, domains, destinations, or sender pre
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -91,9 +91,9 @@ Permanently removes a single deny rule identified by its numeric `ruleId`.  The 
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -156,9 +156,9 @@ Delists an email address from all three block list stores: 1. The rspamd spam-fi
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -221,9 +221,9 @@ Returns addresses and messages that have been flagged by the spam filtering syst
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {
@@ -282,9 +282,9 @@ Returns all deny rules you have configured for your active mail account(s). Deny
 ```csharp
 using System;
 using System.Diagnostics;
-using mailbaby-client-csharp.Api;
-using mailbaby-client-csharp.Client;
-using mailbaby-client-csharp.Model;
+using Interserver.MailBaby.Client.Api;
+using Interserver.MailBaby.Client.Client;
+using Interserver.MailBaby.Client.Model;
 
 namespace Example
 {

@@ -5,6 +5,8 @@
 
 #include "EmailAddressNameTest.cpp"
 
+#include "EmailAddressNamesTest.cpp"
+
 #include "EmailAddressParamTest.cpp"
 
 #include "EmailAddressTypesTest.cpp"
@@ -33,7 +35,7 @@
 
 #include "MailStatsTypeTest.cpp"
 
-#include "MailStatsType_volumeTest.cpp"
+#include "MailStatsVolumeTest.cpp"
 
 #include "SendMailTest.cpp"
 
@@ -41,7 +43,7 @@
 
 #include "SendMailRawTest.cpp"
 
-#include "SendMail_toTest.cpp"
+#include "SendMailToTest.cpp"
 
 
 
@@ -82,6 +84,7 @@ void runTests(){
     
     
     RUN_TEST(test_EmailAddressName_name_is_assigned_from_json);
+    
     
     
     
@@ -274,13 +277,13 @@ void runTests(){
     
     
     
-    RUN_TEST(test_MailStatsType_volume_to_is_assigned_from_json);
+    RUN_TEST(test_MailStatsVolume_to_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_from_is_assigned_from_json);
+    RUN_TEST(test_MailStatsVolume_from_is_assigned_from_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_ip_is_assigned_from_json);
+    RUN_TEST(test_MailStatsVolume_ip_is_assigned_from_json);
     
     
     
@@ -354,6 +357,7 @@ void runTests(){
     
     
     RUN_TEST(test_EmailAddressName_name_is_converted_to_json);
+    
     
     
     
@@ -546,13 +550,13 @@ void runTests(){
     
     
     
-    RUN_TEST(test_MailStatsType_volume_to_is_converted_to_json);
+    RUN_TEST(test_MailStatsVolume_to_is_converted_to_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_from_is_converted_to_json);
+    RUN_TEST(test_MailStatsVolume_from_is_converted_to_json);
     
     
-    RUN_TEST(test_MailStatsType_volume_ip_is_converted_to_json);
+    RUN_TEST(test_MailStatsVolume_ip_is_converted_to_json);
     
     
     

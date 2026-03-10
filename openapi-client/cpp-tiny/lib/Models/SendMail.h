@@ -12,7 +12,7 @@
 #include <string>
 #include "bourne/json.hpp"
 #include "Helpers.h"
-#include "SendMail_to.h"
+#include "SendMailTo.h"
 
 namespace Tiny {
 
@@ -48,11 +48,11 @@ public:
 
 	/*! \brief Get 
 	 */
-	SendMail_to getTo();
+	SendMailTo getTo();
 
 	/*! \brief Set 
 	 */
-	void setTo(SendMail_to to);
+	void setTo(SendMailTo to);
 	/*! \brief Get The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 	 */
 	std::string getFrom();
@@ -84,7 +84,7 @@ public:
 
 
     private:
-    SendMail_to to;
+    SendMailTo to;
     std::string from{};
     std::string subject{};
     std::string body{};

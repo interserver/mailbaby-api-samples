@@ -33,7 +33,7 @@ pub struct MailStatsType {
     #[serde(rename = "sent", skip_serializing_if = "Option::is_none")]
     pub sent: Option<i32>,
     #[serde(rename = "volume", skip_serializing_if = "Option::is_none")]
-    pub volume: Option<Box<models::MailStatsTypeVolume>>,
+    pub volume: Option<Box<models::MailStatsVolume>>,
 }
 
 impl MailStatsType {

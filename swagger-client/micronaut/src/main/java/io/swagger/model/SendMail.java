@@ -3,6 +3,7 @@ package io.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.model.SendMailTo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.validation.Validated;
@@ -18,7 +19,7 @@ import javax.validation.constraints.*;
 
 public class SendMail   {
   @JsonProperty("to")
-  private OneOfSendMailTo to = null;
+  private SendMailTo to = null;
 
   @JsonProperty("from")
   private String from = null;
@@ -32,23 +33,24 @@ public class SendMail   {
   @JsonProperty("id")
   private Long id = null;
 
-  public SendMail to(OneOfSendMailTo to) {
+  public SendMail to(SendMailTo to) {
     this.to = to;
     return this;
   }
 
   /**
-   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+   * Get to
    * @return to
   **/
-  @Schema(required = true, description = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
+  @Schema(required = true, description = "")
   @NotNull
 
-  public OneOfSendMailTo getTo() {
+  @Valid
+  public SendMailTo getTo() {
     return to;
   }
 
-  public void setTo(OneOfSendMailTo to) {
+  public void setTo(SendMailTo to) {
     this.to = to;
   }
 

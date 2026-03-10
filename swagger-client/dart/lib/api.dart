@@ -36,10 +36,10 @@ part 'model/mail_log_entry.dart';
 part 'model/mail_order.dart';
 part 'model/mail_order_detail.dart';
 part 'model/mail_stats_type.dart';
-part 'model/mail_stats_type_volume.dart';
-part 'model/one_of_send_mail_to.dart';
+part 'model/mail_stats_volume.dart';
 part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
 part 'model/send_mail_raw.dart';
+part 'model/send_mail_to.dart';
 
 ApiClient defaultApiClient = new ApiClient();

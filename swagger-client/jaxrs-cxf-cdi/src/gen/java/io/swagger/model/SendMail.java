@@ -2,7 +2,9 @@ package io.swagger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.model.SendMailTo;
 import io.swagger.v3.oas.annotations.media.Schema;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 /**
  * Request body for &#x60;POST /mail/send&#x60;.  Sends a simple single-recipient message. HTML detection is automatic — if &#x60;body&#x60; contains HTML tags the message is sent as &#x60;text/html&#x60;; otherwise as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is automatically set as both the &#x60;From&#x60; and &#x60;Reply-To&#x60; headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use &#x60;POST /mail/advsend&#x60; instead.
@@ -15,29 +17,29 @@ import javax.xml.bind.annotation.*;
 @Schema(description = "Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.")
 
 public class SendMail   {
-  private OneOfSendMailTo to = null;
+  private SendMailTo to = null;
   private String from = null;
   private String subject = null;
   private String body = null;
   private Long id = null;
 
   /**
-   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
    **/
-  public SendMail to(OneOfSendMailTo to) {
+  public SendMail to(SendMailTo to) {
     this.to = to;
     return this;
   }
 
   
   
-  @Schema(required = true, description = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
+  @Schema(required = true, description = "")
   @JsonProperty("to")
   @NotNull
-  public OneOfSendMailTo getTo() {
+  @Valid
+  public SendMailTo getTo() {
     return to;
   }
-  public void setTo(OneOfSendMailTo to) {
+  public void setTo(SendMailTo to) {
     this.to = to;
   }
 

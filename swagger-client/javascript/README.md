@@ -134,11 +134,11 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailOrder](docs/MailOrder.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailOrderDetail](docs/MailOrderDetail.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailStatsType](docs/MailStatsType.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.OneOfSendMailTo](docs/OneOfSendMailTo.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.MailStatsVolume](docs/MailStatsVolume.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMail](docs/SendMail.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailAdv](docs/SendMailAdv.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw](docs/SendMailRaw.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailTo](docs/SendMailTo.md)
 
 ## Documentation for Authorization
 

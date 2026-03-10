@@ -1,4 +1,4 @@
-# mailbaby-client-csharp.Model.MailLogEntry
+# Interserver.MailBaby.Client.Model.MailLogEntry
 ## Properties
 
 Name | Type | Description | Notes

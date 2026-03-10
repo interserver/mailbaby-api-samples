@@ -21,7 +21,7 @@ import ApiClient from '../ApiClient';
 class SendMailTo {
     /**
      * Constructs a new <code>SendMailTo</code>.
-     * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+     * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
      * @alias module:model/SendMailTo
      * @param {(module:model/String|module:model/[String])} instance The actual instance to initialize SendMailTo.
      */

@@ -261,7 +261,7 @@ SwaggerClient.configure do |config|
 end
 
 api_instance = SwaggerClient::SendingApi.new
-to = SwaggerClient::null.new #  | 
+to = SwaggerClient::SendMailTo.new # SendMailTo | 
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
@@ -370,11 +370,11 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::MailOrder](docs/MailOrder.md)
  - [SwaggerClient::MailOrderDetail](docs/MailOrderDetail.md)
  - [SwaggerClient::MailStatsType](docs/MailStatsType.md)
- - [SwaggerClient::MailStatsTypeVolume](docs/MailStatsTypeVolume.md)
- - [SwaggerClient::OneOfSendMailTo](docs/OneOfSendMailTo.md)
+ - [SwaggerClient::MailStatsVolume](docs/MailStatsVolume.md)
  - [SwaggerClient::SendMail](docs/SendMail.md)
  - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
  - [SwaggerClient::SendMailRaw](docs/SendMailRaw.md)
+ - [SwaggerClient::SendMailTo](docs/SendMailTo.md)
 
 ## Documentation for Authorization
 

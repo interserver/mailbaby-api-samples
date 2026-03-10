@@ -17,7 +17,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { Arraystring } from '../model/arraystring';
 import { EmailAddressTypes } from '../model/emailAddressTypes';
 import { EmailAddressesTypes } from '../model/emailAddressesTypes';
 import { ErrorMessage } from '../model/errorMessage';
@@ -26,6 +25,7 @@ import { MailAttachment } from '../model/mailAttachment';
 import { SendMail } from '../model/sendMail';
 import { SendMailAdv } from '../model/sendMailAdv';
 import { SendMailRaw } from '../model/sendMailRaw';
+import { SendMailTo } from '../model/sendMailTo';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -382,10 +382,10 @@ export class SendingService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public sendMailForm(to: string | Array<string>, from: string, subject: string, body: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public sendMailForm(to: SendMailTo, from: string, subject: string, body: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (to === null || to === undefined) {
             throw new Error('Required parameter to was null or undefined when calling sendMail.');

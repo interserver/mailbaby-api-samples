@@ -32,6 +32,8 @@ import io.swagger.model.SendMailAdv;
 
 import io.swagger.model.SendMailRaw;
 
+import io.swagger.model.SendMailTo;
+
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.HttpResponse;
 import io.reactivex.rxjava3.core.Single;
@@ -130,7 +132,7 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Valid Object to, @NotNull String from, @NotNull String subject, @NotNull String body, @NotNull Long id) {
+    public Single<HttpResponse<GenericResponse>> sendMail(@NotNull @Valid SendMailTo to, @NotNull String from, @NotNull String subject, @NotNull String body, @NotNull Long id) {
         // TODO: Implement me
         return MailApi.super.sendMail(to, from, subject, body, id);
     }

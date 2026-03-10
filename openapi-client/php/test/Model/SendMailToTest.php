@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * SendMailToTest Class Doc Comment
  *
  * @category    Class
- * @description The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
+ * @description The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
  * @package     Interserver\Mailbaby
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

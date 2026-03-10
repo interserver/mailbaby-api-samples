@@ -12,7 +12,7 @@
 #include <string>
 #include "bourne/json.hpp"
 #include "Helpers.h"
-#include "MailStatsType_volume.h"
+#include "MailStatsVolume.h"
 
 namespace Tiny {
 
@@ -90,11 +90,11 @@ public:
 	void setSent(int sent);
 	/*! \brief Get 
 	 */
-	MailStatsType_volume getVolume();
+	MailStatsVolume getVolume();
 
 	/*! \brief Set 
 	 */
-	void setVolume(MailStatsType_volume volume);
+	void setVolume(MailStatsVolume volume);
 
 
     private:
@@ -104,7 +104,7 @@ public:
     double cost{};
     int received{};
     int sent{};
-    MailStatsType_volume volume;
+    MailStatsVolume volume;
 };
 }
 

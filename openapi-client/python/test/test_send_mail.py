@@ -36,7 +36,7 @@ class TestSendMail(unittest.TestCase):
         model = SendMail()
         if include_optional:
             return SendMail(
-                to = None,
+                to = johndoe@company.com,
                 var_from = 'janedoe@company.com',
                 subject = 'Attention Client',
                 body = 'This is an email to inform you that something noteworthy happened.',
@@ -44,7 +44,7 @@ class TestSendMail(unittest.TestCase):
             )
         else:
             return SendMail(
-                to = None,
+                to = johndoe@company.com,
                 var_from = 'janedoe@company.com',
                 subject = 'Attention Client',
                 body = 'This is an email to inform you that something noteworthy happened.',

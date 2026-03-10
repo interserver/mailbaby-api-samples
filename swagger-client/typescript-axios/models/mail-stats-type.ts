@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { MailStatsTypeVolume } from './mail-stats-type-volume';
+import { MailStatsVolume } from './mail-stats-volume';
  /**
  * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  *
@@ -70,10 +70,10 @@ export interface MailStatsType {
     sent?: number;
 
     /**
-     * @type {MailStatsTypeVolume}
+     * @type {MailStatsVolume}
      * @memberof MailStatsType
      */
-    volume?: MailStatsTypeVolume;
+    volume?: MailStatsVolume;
 }
 
 /**

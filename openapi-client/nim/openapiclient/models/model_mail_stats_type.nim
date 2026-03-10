@@ -12,7 +12,7 @@ import tables
 import marshal
 import options
 
-import model_mail_stats_type_volume
+import model_mail_stats_volume
 
 type Time* {.pure.} = enum
   All
@@ -31,7 +31,7 @@ type MailStatsType* = object
   cost*: Option[float64] ## Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
   received*: Option[int] ## Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
   sent*: Option[int] ## Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
-  volume*: Option[MailStatsType_volume]
+  volume*: Option[MailStatsVolume]
 
 func `%`*(v: Time): JsonNode =
   result = case v:

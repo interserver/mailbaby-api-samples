@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.model.SendMailTo;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,19 +13,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description="Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.")
 
 public class SendMail   {
-  private OneOfSendMailTo to = null;  private String from = null;  private String subject = null;  private String body = null;  private Long id = null;
+  private SendMailTo to = null;  private String from = null;  private String subject = null;  private String body = null;  private Long id = null;
 
   /**
-   * The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.
    **/
   
-  @Schema(required = true, description = "The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients.")
+  @Schema(required = true, description = "")
   @JsonProperty("to")
   @NotNull
-  public OneOfSendMailTo getTo() {
+  public SendMailTo getTo() {
     return to;
   }
-  public void setTo(OneOfSendMailTo to) {
+  public void setTo(SendMailTo to) {
     this.to = to;
   }
 

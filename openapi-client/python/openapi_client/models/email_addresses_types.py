@@ -18,12 +18,12 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from openapi_client.models.email_address_name import EmailAddressName
+from openapi_client.models.email_address_names import EmailAddressNames
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-EMAILADDRESSESTYPES_ONE_OF_SCHEMAS = ["List[EmailAddressName]", "str"]
+EMAILADDRESSESTYPES_ONE_OF_SCHEMAS = ["EmailAddressNames", "str"]
 
 class EmailAddressesTypes(BaseModel):
     """
@@ -31,10 +31,10 @@ class EmailAddressesTypes(BaseModel):
     """
     # data type: str
     oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="A single email address or RFC 822 comma-separated list. Example: `\"joe@example.com\"` or `\"Joe <joe@example.com>, jane@example.com\"`.")
-    # data type: List[EmailAddressName]
-    oneof_schema_2_validator: Optional[List[EmailAddressName]] = Field(default=None, description="An array of email contacts, each with an email address and optional display name.")
-    actual_instance: Optional[Union[List[EmailAddressName], str]] = None
-    one_of_schemas: Set[str] = { "List[EmailAddressName]", "str" }
+    # data type: EmailAddressNames
+    oneof_schema_2_validator: Optional[EmailAddressNames] = None
+    actual_instance: Optional[Union[EmailAddressNames, str]] = None
+    one_of_schemas: Set[str] = { "EmailAddressNames", "str" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -63,18 +63,17 @@ class EmailAddressesTypes(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: List[EmailAddressName]
-        try:
-            instance.oneof_schema_2_validator = v
+        # validate data type: EmailAddressNames
+        if not isinstance(v, EmailAddressNames):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `EmailAddressNames`")
+        else:
             match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in EmailAddressesTypes with oneOf schemas: List[EmailAddressName], str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in EmailAddressesTypes with oneOf schemas: EmailAddressNames, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in EmailAddressesTypes with oneOf schemas: List[EmailAddressName], str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in EmailAddressesTypes with oneOf schemas: EmailAddressNames, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -98,22 +97,19 @@ class EmailAddressesTypes(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into List[EmailAddressName]
+        # deserialize data into EmailAddressNames
         try:
-            # validation
-            instance.oneof_schema_2_validator = json.loads(json_str)
-            # assign value to actual_instance
-            instance.actual_instance = instance.oneof_schema_2_validator
+            instance.actual_instance = EmailAddressNames.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into EmailAddressesTypes with oneOf schemas: List[EmailAddressName], str. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into EmailAddressesTypes with oneOf schemas: EmailAddressNames, str. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into EmailAddressesTypes with oneOf schemas: List[EmailAddressName], str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into EmailAddressesTypes with oneOf schemas: EmailAddressNames, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -127,7 +123,7 @@ class EmailAddressesTypes(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], List[EmailAddressName], str]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], EmailAddressNames, str]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

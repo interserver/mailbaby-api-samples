@@ -12,8 +12,7 @@ import Foundation
 
 public struct SendMail: Codable {
 
-    /** The primary recipient address.  Accepts a single email address string or an array of email address strings for multiple recipients. */
-    public var to: OneOfSendMailTo
+    public var to: SendMailTo
     /** The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. */
     public var from: String
     /** The subject line of the email. */
@@ -23,7 +22,7 @@ public struct SendMail: Codable {
     /** Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. */
     public var _id: Int64?
 
-    public init(to: OneOfSendMailTo, from: String, subject: String, body: String, _id: Int64? = nil) {
+    public init(to: SendMailTo, from: String, subject: String, body: String, _id: Int64? = nil) {
         self.to = to
         self.from = from
         self.subject = subject

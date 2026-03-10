@@ -20,7 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from openapi_client.models.mail_stats_type_volume import MailStatsTypeVolume
+from openapi_client.models.mail_stats_volume import MailStatsVolume
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,7 +34,7 @@ class MailStatsType(BaseModel):
     cost: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).")
     received: Optional[StrictInt] = Field(default=None, description="Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.")
     sent: Optional[StrictInt] = Field(default=None, description="Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.")
-    volume: Optional[MailStatsTypeVolume] = None
+    volume: Optional[MailStatsVolume] = None
     __properties: ClassVar[List[str]] = ["time", "usage", "currency", "cost", "received", "sent", "volume"]
 
     @field_validator('time')
@@ -107,7 +107,7 @@ class MailStatsType(BaseModel):
             "cost": obj.get("cost"),
             "received": obj.get("received"),
             "sent": obj.get("sent"),
-            "volume": MailStatsTypeVolume.from_dict(obj["volume"]) if obj.get("volume") is not None else None
+            "volume": MailStatsVolume.from_dict(obj["volume"]) if obj.get("volume") is not None else None
         })
         return _obj
 

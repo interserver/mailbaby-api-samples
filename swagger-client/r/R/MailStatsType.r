@@ -106,7 +106,7 @@ MailStatsType <- R6::R6Class(
         self$`sent` <- MailStatsTypeObject$`sent`
       }
       if (!is.null(MailStatsTypeObject$`volume`)) {
-        volumeObject <- MailStatsTypeVolume$new()
+        volumeObject <- MailStatsVolume$new()
         volumeObject$fromJSON(jsonlite::toJSON(MailStatsTypeObject$volume, auto_unbox = TRUE))
         self$`volume` <- volumeObject
       }
@@ -139,8 +139,8 @@ MailStatsType <- R6::R6Class(
       self$`cost` <- MailStatsTypeObject$`cost`
       self$`received` <- MailStatsTypeObject$`received`
       self$`sent` <- MailStatsTypeObject$`sent`
-      MailStatsTypeVolumeObject <- MailStatsTypeVolume$new()
-      self$`volume` <- MailStatsTypeVolumeObject$fromJSON(jsonlite::toJSON(MailStatsTypeObject$volume, auto_unbox = TRUE))
+      MailStatsVolumeObject <- MailStatsVolume$new()
+      self$`volume` <- MailStatsVolumeObject$fromJSON(jsonlite::toJSON(MailStatsTypeObject$volume, auto_unbox = TRUE))
     }
   )
 )

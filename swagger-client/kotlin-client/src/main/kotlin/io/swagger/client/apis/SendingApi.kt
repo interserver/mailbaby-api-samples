@@ -19,6 +19,7 @@ import io.swagger.client.models.MailAttachment
 import io.swagger.client.models.SendMail
 import io.swagger.client.models.SendMailAdv
 import io.swagger.client.models.SendMailRaw
+import io.swagger.client.models.SendMailTo
 
 import mailbaby-client-kotlin-client.infrastructure.*
 
@@ -152,7 +153,7 @@ class SendingApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return GenericResponse
      */
     @Suppress("UNCHECKED_CAST")
-    fun sendMail(to: kotlin.Any, from: kotlin.String, subject: kotlin.String, body: kotlin.String, id: kotlin.Long): GenericResponse {
+    fun sendMail(to: SendMailTo, from: kotlin.String, subject: kotlin.String, body: kotlin.String, id: kotlin.Long): GenericResponse {
         val localVariableBody: kotlin.Any? = mapOf("to" to "$to", "from" to "$from", "subject" to "$subject", "body" to "$body", "id" to "$id")
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
         localVariableHeaders["Accept"] = "application/json"

@@ -150,7 +150,7 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
-let to = null; // Object | 
+let to = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailTo(); // SendMailTo | 
 let from = "from_example"; // String | 
 let subject = "subject_example"; // String | 
 let body = "body_example"; // String | 
@@ -170,7 +170,7 @@ apiInstance.sendMail(to, from, subject, body, id, body, (error, data, response) 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**Object**](.md)|  | 
+ **to** | [**SendMailTo**](.md)|  | 
  **from** | **String**|  | 
  **subject** | **String**|  | 
  **body** | **String**|  | 

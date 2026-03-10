@@ -6,6 +6,7 @@ src/openapi_blocking_api.erl
 src/openapi_deny_rule_new.erl
 src/openapi_deny_rule_record.erl
 src/openapi_email_address_name.erl
+src/openapi_email_address_names.erl
 src/openapi_email_address_param.erl
 src/openapi_email_address_types.erl
 src/openapi_email_addresses_types.erl
@@ -21,7 +22,7 @@ src/openapi_mail_log_entry.erl
 src/openapi_mail_order.erl
 src/openapi_mail_order_detail.erl
 src/openapi_mail_stats_type.erl
-src/openapi_mail_stats_type_volume.erl
+src/openapi_mail_stats_volume.erl
 src/openapi_send_mail.erl
 src/openapi_send_mail_adv.erl
 src/openapi_send_mail_raw.erl

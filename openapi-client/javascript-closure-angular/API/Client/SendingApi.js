@@ -21,7 +21,7 @@ goog.require('API.Client.ErrorMessage');
 goog.require('API.Client.GenericResponse');
 goog.require('API.Client.MailAttachment');
 goog.require('API.Client.SendMailRaw');
-goog.require('API.Client.SendMail_to');
+goog.require('API.Client.SendMailTo');
 
 /**
  * @constructor
@@ -170,7 +170,7 @@ API.Client.SendingApi.prototype.sendAdvMail = function(subject, body, from, to, 
 /**
  * Sends an Email
  * Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.  **HTML detection** is automatic — if the &#x60;body&#x60; value contains any HTML tags the message will be sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.  The &#x60;from&#x60; address is also automatically set as the &#x60;Reply-To&#x60; header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use &#x60;POST /mail/advsend&#x60; instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use &#x60;POST /mail/rawsend&#x60;.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
- * @param {!API.Client.SendMail_to} to 
+ * @param {!API.Client.SendMailTo} to 
  * @param {!string} from The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order.
  * @param {!string} subject The subject line of the email.
  * @param {!string} body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.

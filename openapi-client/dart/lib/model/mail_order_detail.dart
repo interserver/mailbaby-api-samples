@@ -86,10 +86,14 @@ class MailOrderDetail {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MailOrderDetail[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MailOrderDetail[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "MailOrderDetail[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "MailOrderDetail[id]" has a null value in JSON.');
+        assert(json.containsKey(r'status'), 'Required key "MailOrderDetail[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "MailOrderDetail[status]" has a null value in JSON.');
+        assert(json.containsKey(r'username'), 'Required key "MailOrderDetail[username]" is missing from JSON.');
+        assert(json[r'username'] != null, 'Required key "MailOrderDetail[username]" has a null value in JSON.');
+        assert(json.containsKey(r'password'), 'Required key "MailOrderDetail[password]" is missing from JSON.');
+        assert(json[r'password'] != null, 'Required key "MailOrderDetail[password]" has a null value in JSON.');
         return true;
       }());
 

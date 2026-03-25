@@ -12,7 +12,8 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 
 /** A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.

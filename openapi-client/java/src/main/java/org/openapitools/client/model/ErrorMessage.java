@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * The response body returned when an error occurs.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-10T18:34:04.798677451-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-25T15:12:23.358005257-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 public class ErrorMessage {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -135,10 +135,7 @@ public class ErrorMessage {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

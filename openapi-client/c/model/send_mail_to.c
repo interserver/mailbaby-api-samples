@@ -11,15 +11,18 @@ static send_mail_to_t *send_mail_to_create_internal(
     if (!send_mail_to_local_var) {
         return NULL;
     }
-
+    memset(send_mail_to_local_var, 0, sizeof(send_mail_to_t));
     send_mail_to_local_var->_library_owned = 1;
     return send_mail_to_local_var;
 }
 
 __attribute__((deprecated)) send_mail_to_t *send_mail_to_create(
     ) {
-    return send_mail_to_create_internal (
+    send_mail_to_t *result = send_mail_to_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void send_mail_to_free(send_mail_to_t *send_mail_to) {
@@ -49,8 +52,13 @@ send_mail_to_t *send_mail_to_parseFromJSON(cJSON *send_mail_toJSON){
     send_mail_to_t *send_mail_to_local_var = NULL;
 
 
+
     send_mail_to_local_var = send_mail_to_create_internal (
         );
+
+    if (!send_mail_to_local_var) {
+        goto end;
+    }
 
     return send_mail_to_local_var;
 end:

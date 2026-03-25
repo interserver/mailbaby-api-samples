@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAISendMailRaw : public OAIObject {
 public:
     OAISendMailRaw();
-    OAISendMailRaw(QString json);
+    OAISendMailRaw(const QString &json);
     ~OAISendMailRaw() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QString getRawEmail() const;
     void setRawEmail(const QString &raw_email);

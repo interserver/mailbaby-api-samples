@@ -7,27 +7,36 @@
 
 static send_mail_raw_t *send_mail_raw_create_internal(
     char *raw_email,
-    long id
+    long *id
     ) {
     send_mail_raw_t *send_mail_raw_local_var = malloc(sizeof(send_mail_raw_t));
     if (!send_mail_raw_local_var) {
         return NULL;
     }
+    memset(send_mail_raw_local_var, 0, sizeof(send_mail_raw_t));
+    send_mail_raw_local_var->_library_owned = 1;
     send_mail_raw_local_var->raw_email = raw_email;
     send_mail_raw_local_var->id = id;
-
-    send_mail_raw_local_var->_library_owned = 1;
     return send_mail_raw_local_var;
 }
 
 __attribute__((deprecated)) send_mail_raw_t *send_mail_raw_create(
     char *raw_email,
-    long id
+    long *id
     ) {
-    return send_mail_raw_create_internal (
+    long *id_copy = NULL;
+    if (id) {
+        id_copy = malloc(sizeof(long));
+        if (id_copy) *id_copy = *id;
+    }
+    send_mail_raw_t *result = send_mail_raw_create_internal (
         raw_email,
-        id
+        id_copy
         );
+    if (!result) {
+        free(id_copy);
+    }
+    return result;
 }
 
 void send_mail_raw_free(send_mail_raw_t *send_mail_raw) {
@@ -42,6 +51,10 @@ void send_mail_raw_free(send_mail_raw_t *send_mail_raw) {
     if (send_mail_raw->raw_email) {
         free(send_mail_raw->raw_email);
         send_mail_raw->raw_email = NULL;
+    }
+    if (send_mail_raw->id) {
+        free(send_mail_raw->id);
+        send_mail_raw->id = NULL;
     }
     free(send_mail_raw);
 }
@@ -60,7 +73,7 @@ cJSON *send_mail_raw_convertToJSON(send_mail_raw_t *send_mail_raw) {
 
     // send_mail_raw->id
     if(send_mail_raw->id) {
-    if(cJSON_AddNumberToObject(item, "id", send_mail_raw->id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "id", *send_mail_raw->id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -76,6 +89,11 @@ fail:
 send_mail_raw_t *send_mail_raw_parseFromJSON(cJSON *send_mail_rawJSON){
 
     send_mail_raw_t *send_mail_raw_local_var = NULL;
+
+    char *raw_email_local_str = NULL;
+
+    // define the local variable for send_mail_raw->id
+    long *id_local_var = NULL;
 
     // send_mail_raw->raw_email
     cJSON *raw_email = cJSON_GetObjectItemCaseSensitive(send_mail_rawJSON, "raw_email");
@@ -102,16 +120,36 @@ send_mail_raw_t *send_mail_raw_parseFromJSON(cJSON *send_mail_rawJSON){
     {
     goto end; //Numeric
     }
+    id_local_var = malloc(sizeof(long));
+    if(!id_local_var)
+    {
+        goto end;
+    }
+    *id_local_var = id->valuedouble;
     }
 
 
+    if (raw_email && !cJSON_IsNull(raw_email)) raw_email_local_str = strdup(raw_email->valuestring);
+
     send_mail_raw_local_var = send_mail_raw_create_internal (
-        strdup(raw_email->valuestring),
-        id ? id->valuedouble : 0
+        raw_email_local_str,
+        id_local_var
         );
+
+    if (!send_mail_raw_local_var) {
+        goto end;
+    }
 
     return send_mail_raw_local_var;
 end:
+    if (raw_email_local_str) {
+        free(raw_email_local_str);
+        raw_email_local_str = NULL;
+    }
+    if (id_local_var) {
+        free(id_local_var);
+        id_local_var = NULL;
+    }
     return NULL;
 
 }

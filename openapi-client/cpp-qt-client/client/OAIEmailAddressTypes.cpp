@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIEmailAddressTypes::OAIEmailAddressTypes(QString json) {
+OAIEmailAddressTypes::OAIEmailAddressTypes(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -41,7 +41,7 @@ void OAIEmailAddressTypes::initializeModel() {
     m_name_isValid = false;
 }
 
-void OAIEmailAddressTypes::fromJson(QString jsonString) {
+void OAIEmailAddressTypes::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

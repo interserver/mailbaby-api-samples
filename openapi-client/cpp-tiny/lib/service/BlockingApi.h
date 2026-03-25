@@ -25,7 +25,7 @@ class BlockingApi : public Service {
 public:
     BlockingApi() = default;
 
-    virtual ~BlockingApi() = default;
+    virtual ~BlockingApi();
 
     /**
     * Creates a new email deny rule.

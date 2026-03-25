@@ -19,14 +19,14 @@ typedef struct error_message_t error_message_t;
 
 
 typedef struct error_message_t {
-    int code; //numeric
+    int *code; //numeric
     char *message; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } error_message_t;
 
 __attribute__((deprecated)) error_message_t *error_message_create(
-    int code,
+    int *code,
     char *message
 );
 

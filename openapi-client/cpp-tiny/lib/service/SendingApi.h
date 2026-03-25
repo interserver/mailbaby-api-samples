@@ -27,7 +27,7 @@ class SendingApi : public Service {
 public:
     SendingApi() = default;
 
-    virtual ~SendingApi() = default;
+    virtual ~SendingApi();
 
     /**
     * Sends a raw RFC 822 email.

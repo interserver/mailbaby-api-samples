@@ -12,7 +12,8 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 import scala.collection.immutable.Seq
 import org.openapitools.client.models.EmailAddressesTypes
@@ -20,7 +21,7 @@ import org.openapitools.client.models.EmailAddressesTypes
 /** An array of email contacts, each with an email address and optional display name.
   */
 case class EmailAddressNames(
-)
+) extends EmailAddressesTypes
   
 object EmailAddressNames {
   given encoderEmailAddressNames: Encoder[EmailAddressNames] = Encoder.instance { t =>

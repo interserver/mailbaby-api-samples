@@ -12,7 +12,8 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 
 /** Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.

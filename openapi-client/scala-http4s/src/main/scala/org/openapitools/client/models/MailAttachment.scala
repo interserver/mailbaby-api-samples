@@ -12,7 +12,8 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 
 /** A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.

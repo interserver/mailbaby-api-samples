@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist it.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-10T18:34:04.798677451-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-25T15:12:23.358005257-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 public class MailBlockRspamd {
   public static final String SERIALIZED_NAME_FROM = "from";
   @SerializedName(SERIALIZED_NAME_FROM)
@@ -135,10 +135,7 @@ public class MailBlockRspamd {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
 

@@ -102,7 +102,7 @@ const request: SendingApiSendAdvMailRequest = {
   attachments: [
     {
       filename: "message.txt",
-      data: [B@62b790a5,
+      data: [B@12f49ca8,
     },
   ],
     // Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)

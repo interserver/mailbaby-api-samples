@@ -29,11 +29,11 @@ mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e mail_s
 
 typedef struct mail_stats_type_t {
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time; //enum
-    int usage; //numeric
+    int *usage; //numeric
     char *currency; // string
-    double cost; //numeric
-    int received; //numeric
-    int sent; //numeric
+    double *cost; //numeric
+    int *received; //numeric
+    int *sent; //numeric
     struct mail_stats_volume_t *volume; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -41,11 +41,11 @@ typedef struct mail_stats_type_t {
 
 __attribute__((deprecated)) mail_stats_type_t *mail_stats_type_create(
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time,
-    int usage,
+    int *usage,
     char *currency,
-    double cost,
-    int received,
-    int sent,
+    double *cost,
+    int *received,
+    int *sent,
     mail_stats_volume_t *volume
 );
 

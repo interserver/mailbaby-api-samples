@@ -20,14 +20,14 @@ typedef struct send_mail_raw_t send_mail_raw_t;
 
 typedef struct send_mail_raw_t {
     char *raw_email; // string
-    long id; //numeric
+    long *id; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } send_mail_raw_t;
 
 __attribute__((deprecated)) send_mail_raw_t *send_mail_raw_create(
     char *raw_email,
-    long id
+    long *id
 );
 
 void send_mail_raw_free(send_mail_raw_t *send_mail_raw);

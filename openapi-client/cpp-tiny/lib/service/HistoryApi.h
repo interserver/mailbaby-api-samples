@@ -23,7 +23,7 @@ class HistoryApi : public Service {
 public:
     HistoryApi() = default;
 
-    virtual ~HistoryApi() = default;
+    virtual ~HistoryApi();
 
     /**
     * Account usage statistics.

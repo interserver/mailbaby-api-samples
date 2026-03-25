@@ -1,4 +1,4 @@
-# # SendMailTo
+# SendMailTo
 
 ## Properties
 

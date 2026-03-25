@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAISendMailTo::OAISendMailTo(QString json) {
+OAISendMailTo::OAISendMailTo(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -36,7 +36,7 @@ void OAISendMailTo::initializeModel() {
 
 }
 
-void OAISendMailTo::fromJson(QString jsonString) {
+void OAISendMailTo::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

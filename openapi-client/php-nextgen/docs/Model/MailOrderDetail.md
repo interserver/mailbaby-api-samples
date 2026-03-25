@@ -1,4 +1,4 @@
-# # MailOrderDetail
+# MailOrderDetail
 
 ## Properties
 

@@ -12,25 +12,29 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 
 /** A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the `\"Name <email>\"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.
   */
-case class EmailAddressesTypes(
-)
-  
+trait EmailAddressesTypes
 object EmailAddressesTypes {
-  given encoderEmailAddressesTypes: Encoder[EmailAddressesTypes] = Encoder.instance { t =>
-    Json.fromFields{
-      Seq(
-      ).flatten
-    }
+  import io.circe.{ Decoder, Encoder }
+  import io.circe.syntax.*
+  import cats.syntax.functor.*
+
+// no discriminator
+  given encoderEmailAddressesTypes: Encoder[EmailAddressesTypes] = Encoder.instance {
+    case obj: EmailAddressNames => obj.asJson
+    case obj: String => obj.asJson
   }
-  given decoderEmailAddressesTypes: Decoder[EmailAddressesTypes] = Decoder.instance { c =>
-    for {
-    } yield EmailAddressesTypes(
-    )
-  }
+
+  given decoderEmailAddressesTypes: Decoder[EmailAddressesTypes] =
+    List[Decoder[EmailAddressesTypes]](
+      Decoder[EmailAddressNames].widen,
+      Decoder[String].widen,
+  ).reduceLeft(_ or _)
 }
+
 

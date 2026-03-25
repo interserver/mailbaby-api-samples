@@ -12,35 +12,31 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 
 /** A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
   * @param email The email address.
   * @param name Optional display name shown to recipients (e.g. in the `From:` header).
   */
-case class EmailAddressTypes(
-    email: String,
-    name: Option[String] = None
-)
-  
+trait EmailAddressTypes
 object EmailAddressTypes {
-  given encoderEmailAddressTypes: Encoder[EmailAddressTypes] = Encoder.instance { t =>
-    Json.fromFields{
-      Seq(
-        Some("email" -> t.email.asJson),
-        t.name.map(v => "name" -> v.asJson)
-      ).flatten
-    }
+  import io.circe.{ Decoder, Encoder }
+  import io.circe.syntax.*
+  import cats.syntax.functor.*
+
+// no discriminator
+  given encoderEmailAddressTypes: Encoder[EmailAddressTypes] = Encoder.instance {
+    case obj: EmailAddressName => obj.asJson
+    case obj: String => obj.asJson
   }
-  given decoderEmailAddressTypes: Decoder[EmailAddressTypes] = Decoder.instance { c =>
-    for {
-      email <- c.downField("email").as[String]
-      name <- c.downField("name").as[Option[String]]
-    } yield EmailAddressTypes(
-      email = email,
-      name = name
-    )
-  }
+
+  given decoderEmailAddressTypes: Decoder[EmailAddressTypes] =
+    List[Decoder[EmailAddressTypes]](
+      Decoder[EmailAddressName].widen,
+      Decoder[String].widen,
+  ).reduceLeft(_ or _)
 }
+
 

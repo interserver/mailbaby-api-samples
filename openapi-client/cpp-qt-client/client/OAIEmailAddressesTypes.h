@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIEmailAddressesTypes : public OAIObject {
 public:
     OAIEmailAddressesTypes();
-    OAIEmailAddressesTypes(QString json);
+    OAIEmailAddressesTypes(const QString &json);
     ~OAIEmailAddressesTypes() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

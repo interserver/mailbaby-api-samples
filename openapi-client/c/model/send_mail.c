@@ -10,19 +10,19 @@ static send_mail_t *send_mail_create_internal(
     char *from,
     char *subject,
     char *body,
-    long id
+    long *id
     ) {
     send_mail_t *send_mail_local_var = malloc(sizeof(send_mail_t));
     if (!send_mail_local_var) {
         return NULL;
     }
+    memset(send_mail_local_var, 0, sizeof(send_mail_t));
+    send_mail_local_var->_library_owned = 1;
     send_mail_local_var->to = to;
     send_mail_local_var->from = from;
     send_mail_local_var->subject = subject;
     send_mail_local_var->body = body;
     send_mail_local_var->id = id;
-
-    send_mail_local_var->_library_owned = 1;
     return send_mail_local_var;
 }
 
@@ -31,15 +31,24 @@ __attribute__((deprecated)) send_mail_t *send_mail_create(
     char *from,
     char *subject,
     char *body,
-    long id
+    long *id
     ) {
-    return send_mail_create_internal (
+    long *id_copy = NULL;
+    if (id) {
+        id_copy = malloc(sizeof(long));
+        if (id_copy) *id_copy = *id;
+    }
+    send_mail_t *result = send_mail_create_internal (
         to,
         from,
         subject,
         body,
-        id
+        id_copy
         );
+    if (!result) {
+        free(id_copy);
+    }
+    return result;
 }
 
 void send_mail_free(send_mail_t *send_mail) {
@@ -66,6 +75,10 @@ void send_mail_free(send_mail_t *send_mail) {
     if (send_mail->body) {
         free(send_mail->body);
         send_mail->body = NULL;
+    }
+    if (send_mail->id) {
+        free(send_mail->id);
+        send_mail->id = NULL;
     }
     free(send_mail);
 }
@@ -116,7 +129,7 @@ cJSON *send_mail_convertToJSON(send_mail_t *send_mail) {
 
     // send_mail->id
     if(send_mail->id) {
-    if(cJSON_AddNumberToObject(item, "id", send_mail->id) == NULL) {
+    if(cJSON_AddNumberToObject(item, "id", *send_mail->id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -135,6 +148,15 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
 
     // define the local variable for send_mail->to
     send_mail_to_t *to_local_nonprim = NULL;
+
+    char *from_local_str = NULL;
+
+    char *subject_local_str = NULL;
+
+    char *body_local_str = NULL;
+
+    // define the local variable for send_mail->id
+    long *id_local_var = NULL;
 
     // send_mail->to
     cJSON *to = cJSON_GetObjectItemCaseSensitive(send_mailJSON, "to");
@@ -203,22 +225,52 @@ send_mail_t *send_mail_parseFromJSON(cJSON *send_mailJSON){
     {
     goto end; //Numeric
     }
+    id_local_var = malloc(sizeof(long));
+    if(!id_local_var)
+    {
+        goto end;
+    }
+    *id_local_var = id->valuedouble;
     }
 
 
+    if (from && !cJSON_IsNull(from)) from_local_str = strdup(from->valuestring);
+    if (subject && !cJSON_IsNull(subject)) subject_local_str = strdup(subject->valuestring);
+    if (body && !cJSON_IsNull(body)) body_local_str = strdup(body->valuestring);
+
     send_mail_local_var = send_mail_create_internal (
         to_local_nonprim,
-        strdup(from->valuestring),
-        strdup(subject->valuestring),
-        strdup(body->valuestring),
-        id ? id->valuedouble : 0
+        from_local_str,
+        subject_local_str,
+        body_local_str,
+        id_local_var
         );
+
+    if (!send_mail_local_var) {
+        goto end;
+    }
 
     return send_mail_local_var;
 end:
     if (to_local_nonprim) {
         send_mail_to_free(to_local_nonprim);
         to_local_nonprim = NULL;
+    }
+    if (from_local_str) {
+        free(from_local_str);
+        from_local_str = NULL;
+    }
+    if (subject_local_str) {
+        free(subject_local_str);
+        subject_local_str = NULL;
+    }
+    if (body_local_str) {
+        free(body_local_str);
+        body_local_str = NULL;
+    }
+    if (id_local_var) {
+        free(id_local_var);
+        id_local_var = NULL;
     }
     return NULL;
 

@@ -19,12 +19,12 @@ typedef struct mail_log_entry_t mail_log_entry_t;
 
 
 typedef struct mail_log_entry_t {
-    int _id; //numeric
+    int *_id; //numeric
     char *id; // string
     char *from; // string
     char *to; // string
     char *created; // string
-    int time; //numeric
+    int *time; //numeric
     char *user; // string
     char *transtype; // string
     char *origin; // string
@@ -32,13 +32,13 @@ typedef struct mail_log_entry_t {
     char *subject; // string
     char *message_id; // string
     char *sending_zone; // string
-    int body_size; //numeric
-    int seq; //numeric
-    int delivered; //numeric
+    int *body_size; //numeric
+    int *seq; //numeric
+    int *delivered; //numeric
     char *response; // string
     char *recipient; // string
     char *domain; // string
-    int locked; //numeric
+    int *locked; //numeric
     char *lock_time; // string
     char *assigned; // string
     char *queued; // string
@@ -48,12 +48,12 @@ typedef struct mail_log_entry_t {
 } mail_log_entry_t;
 
 __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
-    int _id,
+    int *_id,
     char *id,
     char *from,
     char *to,
     char *created,
-    int time,
+    int *time,
     char *user,
     char *transtype,
     char *origin,
@@ -61,13 +61,13 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
     char *subject,
     char *message_id,
     char *sending_zone,
-    int body_size,
-    int seq,
-    int delivered,
+    int *body_size,
+    int *seq,
+    int *delivered,
     char *response,
     char *recipient,
     char *domain,
-    int locked,
+    int *locked,
     char *lock_time,
     char *assigned,
     char *queued,

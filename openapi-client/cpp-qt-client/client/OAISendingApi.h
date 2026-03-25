@@ -93,6 +93,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -112,7 +119,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void rawMailCallback(OAIHttpRequestWorker *worker);
     void sendAdvMailCallback(OAIHttpRequestWorker *worker);
@@ -129,24 +136,12 @@ Q_SIGNALS:
     void sendAdvMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
     void sendMailSignalFull(OAIHttpRequestWorker *worker, OAIGenericResponse summary);
 
-    Q_DECL_DEPRECATED_X("Use rawMailSignalError() instead")
-    void rawMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void rawMailSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use sendAdvMailSignalError() instead")
-    void sendAdvMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void sendAdvMailSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use sendMailSignalError() instead")
-    void sendMailSignalE(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, QString error_str);
     void sendMailSignalError(OAIGenericResponse summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use rawMailSignalErrorFull() instead")
-    void rawMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void rawMailSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use sendAdvMailSignalErrorFull() instead")
-    void sendAdvMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void sendAdvMailSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use sendMailSignalErrorFull() instead")
-    void sendMailSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void sendMailSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

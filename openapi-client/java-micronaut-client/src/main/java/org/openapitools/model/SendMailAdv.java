@@ -42,7 +42,7 @@ import javax.annotation.Generated;
   SendMailAdv.JSON_PROPERTY_ID
 })
 @JsonTypeName("SendMailAdv")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-10T18:34:08.915143814-04:00[America/New_York]", comments = "Generator version: 7.20.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-25T15:12:27.349842802-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 @Introspected
 public class SendMailAdv {
     public static final String JSON_PROPERTY_SUBJECT = "subject";
@@ -337,10 +337,7 @@ public class SendMailAdv {
      * (except the first line).
      */
     private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+        return o == null ? "null" : o.toString().replace("\n", "\n    ");
     }
 
 }

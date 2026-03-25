@@ -271,32 +271,6 @@ void OAISendingApi::rawMailCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT rawMailSignal(output);
         Q_EMIT rawMailSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT rawMailSignalE(output, error_type, error_str);
-        Q_EMIT rawMailSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT rawMailSignalError(output, error_type, error_str);
         Q_EMIT rawMailSignalErrorFull(worker, error_type, error_str);
     }
@@ -381,32 +355,6 @@ void OAISendingApi::sendAdvMailCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT sendAdvMailSignal(output);
         Q_EMIT sendAdvMailSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT sendAdvMailSignalE(output, error_type, error_str);
-        Q_EMIT sendAdvMailSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT sendAdvMailSignalError(output, error_type, error_str);
         Q_EMIT sendAdvMailSignalErrorFull(worker, error_type, error_str);
     }
@@ -475,42 +423,16 @@ void OAISendingApi::sendMailCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT sendMailSignal(output);
         Q_EMIT sendMailSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT sendMailSignalE(output, error_type, error_str);
-        Q_EMIT sendMailSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT sendMailSignalError(output, error_type, error_str);
         Q_EMIT sendMailSignalErrorFull(worker, error_type, error_str);
     }
 }
 
-void OAISendingApi::tokenAvailable(){
+void OAISendingApi::tokenAvailable() {
 
     oauthToken token;
     switch (_OauthMethod) {
-    case 1: //implicit flow
+    case OauthMethod::ImplicitFlow:
         token = _implicitFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -520,7 +442,7 @@ void OAISendingApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 2: //authorization flow
+    case OauthMethod::AuthorizationFlow:
         token = _authFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -530,7 +452,7 @@ void OAISendingApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 3: //client credentials flow
+    case OauthMethod::ClientCredentialsFlow:
         token = _credentialFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -540,7 +462,7 @@ void OAISendingApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 4: //resource owner password flow
+    case OauthMethod::ResourceOwnerPasswordFlow:
         token = _passwordFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());

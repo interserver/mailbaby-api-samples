@@ -1,4 +1,4 @@
-# # EmailAddressParam
+# EmailAddressParam
 
 ## Properties
 

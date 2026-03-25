@@ -1,4 +1,4 @@
-# # MailLogEntry
+# MailLogEntry
 
 ## Properties
 

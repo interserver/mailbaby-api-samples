@@ -31,13 +31,13 @@ namespace OpenAPI {
 class OAIMailStatsVolume : public OAIObject {
 public:
     OAIMailStatsVolume();
-    OAIMailStatsVolume(QString json);
+    OAIMailStatsVolume(const QString &json);
     ~OAIMailStatsVolume() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     QMap<QString, qint32> getTo() const;
     void setTo(const QMap<QString, qint32> &to);

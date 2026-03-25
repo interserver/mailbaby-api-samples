@@ -24,17 +24,19 @@ mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e mail_s
 
 static mail_stats_type_t *mail_stats_type_create_internal(
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time,
-    int usage,
+    int *usage,
     char *currency,
-    double cost,
-    int received,
-    int sent,
+    double *cost,
+    int *received,
+    int *sent,
     mail_stats_volume_t *volume
     ) {
     mail_stats_type_t *mail_stats_type_local_var = malloc(sizeof(mail_stats_type_t));
     if (!mail_stats_type_local_var) {
         return NULL;
     }
+    memset(mail_stats_type_local_var, 0, sizeof(mail_stats_type_t));
+    mail_stats_type_local_var->_library_owned = 1;
     mail_stats_type_local_var->time = time;
     mail_stats_type_local_var->usage = usage;
     mail_stats_type_local_var->currency = currency;
@@ -42,29 +44,54 @@ static mail_stats_type_t *mail_stats_type_create_internal(
     mail_stats_type_local_var->received = received;
     mail_stats_type_local_var->sent = sent;
     mail_stats_type_local_var->volume = volume;
-
-    mail_stats_type_local_var->_library_owned = 1;
     return mail_stats_type_local_var;
 }
 
 __attribute__((deprecated)) mail_stats_type_t *mail_stats_type_create(
     mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_e time,
-    int usage,
+    int *usage,
     char *currency,
-    double cost,
-    int received,
-    int sent,
+    double *cost,
+    int *received,
+    int *sent,
     mail_stats_volume_t *volume
     ) {
-    return mail_stats_type_create_internal (
+    int *usage_copy = NULL;
+    if (usage) {
+        usage_copy = malloc(sizeof(int));
+        if (usage_copy) *usage_copy = *usage;
+    }
+    double *cost_copy = NULL;
+    if (cost) {
+        cost_copy = malloc(sizeof(double));
+        if (cost_copy) *cost_copy = *cost;
+    }
+    int *received_copy = NULL;
+    if (received) {
+        received_copy = malloc(sizeof(int));
+        if (received_copy) *received_copy = *received;
+    }
+    int *sent_copy = NULL;
+    if (sent) {
+        sent_copy = malloc(sizeof(int));
+        if (sent_copy) *sent_copy = *sent;
+    }
+    mail_stats_type_t *result = mail_stats_type_create_internal (
         time,
-        usage,
+        usage_copy,
         currency,
-        cost,
-        received,
-        sent,
+        cost_copy,
+        received_copy,
+        sent_copy,
         volume
         );
+    if (!result) {
+        free(usage_copy);
+        free(cost_copy);
+        free(received_copy);
+        free(sent_copy);
+    }
+    return result;
 }
 
 void mail_stats_type_free(mail_stats_type_t *mail_stats_type) {
@@ -76,9 +103,25 @@ void mail_stats_type_free(mail_stats_type_t *mail_stats_type) {
         return ;
     }
     listEntry_t *listEntry;
+    if (mail_stats_type->usage) {
+        free(mail_stats_type->usage);
+        mail_stats_type->usage = NULL;
+    }
     if (mail_stats_type->currency) {
         free(mail_stats_type->currency);
         mail_stats_type->currency = NULL;
+    }
+    if (mail_stats_type->cost) {
+        free(mail_stats_type->cost);
+        mail_stats_type->cost = NULL;
+    }
+    if (mail_stats_type->received) {
+        free(mail_stats_type->received);
+        mail_stats_type->received = NULL;
+    }
+    if (mail_stats_type->sent) {
+        free(mail_stats_type->sent);
+        mail_stats_type->sent = NULL;
     }
     if (mail_stats_type->volume) {
         mail_stats_volume_free(mail_stats_type->volume);
@@ -101,7 +144,7 @@ cJSON *mail_stats_type_convertToJSON(mail_stats_type_t *mail_stats_type) {
 
     // mail_stats_type->usage
     if(mail_stats_type->usage) {
-    if(cJSON_AddNumberToObject(item, "usage", mail_stats_type->usage) == NULL) {
+    if(cJSON_AddNumberToObject(item, "usage", *mail_stats_type->usage) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -117,7 +160,7 @@ cJSON *mail_stats_type_convertToJSON(mail_stats_type_t *mail_stats_type) {
 
     // mail_stats_type->cost
     if(mail_stats_type->cost) {
-    if(cJSON_AddNumberToObject(item, "cost", mail_stats_type->cost) == NULL) {
+    if(cJSON_AddNumberToObject(item, "cost", *mail_stats_type->cost) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -125,7 +168,7 @@ cJSON *mail_stats_type_convertToJSON(mail_stats_type_t *mail_stats_type) {
 
     // mail_stats_type->received
     if(mail_stats_type->received) {
-    if(cJSON_AddNumberToObject(item, "received", mail_stats_type->received) == NULL) {
+    if(cJSON_AddNumberToObject(item, "received", *mail_stats_type->received) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -133,7 +176,7 @@ cJSON *mail_stats_type_convertToJSON(mail_stats_type_t *mail_stats_type) {
 
     // mail_stats_type->sent
     if(mail_stats_type->sent) {
-    if(cJSON_AddNumberToObject(item, "sent", mail_stats_type->sent) == NULL) {
+    if(cJSON_AddNumberToObject(item, "sent", *mail_stats_type->sent) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -163,6 +206,20 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
 
     mail_stats_type_t *mail_stats_type_local_var = NULL;
 
+    // define the local variable for mail_stats_type->usage
+    int *usage_local_var = NULL;
+
+    char *currency_local_str = NULL;
+
+    // define the local variable for mail_stats_type->cost
+    double *cost_local_var = NULL;
+
+    // define the local variable for mail_stats_type->received
+    int *received_local_var = NULL;
+
+    // define the local variable for mail_stats_type->sent
+    int *sent_local_var = NULL;
+
     // define the local variable for mail_stats_type->volume
     mail_stats_volume_t *volume_local_nonprim = NULL;
 
@@ -190,6 +247,12 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
     {
     goto end; //Numeric
     }
+    usage_local_var = malloc(sizeof(int));
+    if(!usage_local_var)
+    {
+        goto end;
+    }
+    *usage_local_var = usage->valuedouble;
     }
 
     // mail_stats_type->currency
@@ -214,6 +277,12 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
     {
     goto end; //Numeric
     }
+    cost_local_var = malloc(sizeof(double));
+    if(!cost_local_var)
+    {
+        goto end;
+    }
+    *cost_local_var = cost->valuedouble;
     }
 
     // mail_stats_type->received
@@ -226,6 +295,12 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
     {
     goto end; //Numeric
     }
+    received_local_var = malloc(sizeof(int));
+    if(!received_local_var)
+    {
+        goto end;
+    }
+    *received_local_var = received->valuedouble;
     }
 
     // mail_stats_type->sent
@@ -238,6 +313,12 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
     {
     goto end; //Numeric
     }
+    sent_local_var = malloc(sizeof(int));
+    if(!sent_local_var)
+    {
+        goto end;
+    }
+    *sent_local_var = sent->valuedouble;
     }
 
     // mail_stats_type->volume
@@ -250,18 +331,44 @@ mail_stats_type_t *mail_stats_type_parseFromJSON(cJSON *mail_stats_typeJSON){
     }
 
 
+    if (currency && !cJSON_IsNull(currency)) currency_local_str = strdup(currency->valuestring);
+
     mail_stats_type_local_var = mail_stats_type_create_internal (
         time ? timeVariable : mailbaby_email_delivery_and_management_service_api_mail_stats_type_TIME_NULL,
-        usage ? usage->valuedouble : 0,
-        currency && !cJSON_IsNull(currency) ? strdup(currency->valuestring) : NULL,
-        cost ? cost->valuedouble : 0,
-        received ? received->valuedouble : 0,
-        sent ? sent->valuedouble : 0,
+        usage_local_var,
+        currency_local_str,
+        cost_local_var,
+        received_local_var,
+        sent_local_var,
         volume ? volume_local_nonprim : NULL
         );
 
+    if (!mail_stats_type_local_var) {
+        goto end;
+    }
+
     return mail_stats_type_local_var;
 end:
+    if (usage_local_var) {
+        free(usage_local_var);
+        usage_local_var = NULL;
+    }
+    if (currency_local_str) {
+        free(currency_local_str);
+        currency_local_str = NULL;
+    }
+    if (cost_local_var) {
+        free(cost_local_var);
+        cost_local_var = NULL;
+    }
+    if (received_local_var) {
+        free(received_local_var);
+        received_local_var = NULL;
+    }
+    if (sent_local_var) {
+        free(sent_local_var);
+        sent_local_var = NULL;
+    }
     if (volume_local_nonprim) {
         mail_stats_volume_free(volume_local_nonprim);
         volume_local_nonprim = NULL;

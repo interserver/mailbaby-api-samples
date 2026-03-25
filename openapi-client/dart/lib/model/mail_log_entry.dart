@@ -265,10 +265,26 @@ class MailLogEntry {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "MailLogEntry[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "MailLogEntry[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'_id'), 'Required key "MailLogEntry[_id]" is missing from JSON.');
+        assert(json[r'_id'] != null, 'Required key "MailLogEntry[_id]" has a null value in JSON.');
+        assert(json.containsKey(r'id'), 'Required key "MailLogEntry[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "MailLogEntry[id]" has a null value in JSON.');
+        assert(json.containsKey(r'from'), 'Required key "MailLogEntry[from]" is missing from JSON.');
+        assert(json[r'from'] != null, 'Required key "MailLogEntry[from]" has a null value in JSON.');
+        assert(json.containsKey(r'to'), 'Required key "MailLogEntry[to]" is missing from JSON.');
+        assert(json[r'to'] != null, 'Required key "MailLogEntry[to]" has a null value in JSON.');
+        assert(json.containsKey(r'created'), 'Required key "MailLogEntry[created]" is missing from JSON.');
+        assert(json[r'created'] != null, 'Required key "MailLogEntry[created]" has a null value in JSON.');
+        assert(json.containsKey(r'time'), 'Required key "MailLogEntry[time]" is missing from JSON.');
+        assert(json[r'time'] != null, 'Required key "MailLogEntry[time]" has a null value in JSON.');
+        assert(json.containsKey(r'user'), 'Required key "MailLogEntry[user]" is missing from JSON.');
+        assert(json[r'user'] != null, 'Required key "MailLogEntry[user]" has a null value in JSON.');
+        assert(json.containsKey(r'transtype'), 'Required key "MailLogEntry[transtype]" is missing from JSON.');
+        assert(json[r'transtype'] != null, 'Required key "MailLogEntry[transtype]" has a null value in JSON.');
+        assert(json.containsKey(r'origin'), 'Required key "MailLogEntry[origin]" is missing from JSON.');
+        assert(json[r'origin'] != null, 'Required key "MailLogEntry[origin]" has a null value in JSON.');
+        assert(json.containsKey(r'interface'), 'Required key "MailLogEntry[interface]" is missing from JSON.');
+        assert(json[r'interface'] != null, 'Required key "MailLogEntry[interface]" has a null value in JSON.');
         return true;
       }());
 

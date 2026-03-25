@@ -45,7 +45,7 @@ export const DenyRuleNewTypeEnum = {
     Domain: 'domain',
     Email: 'email',
     Startswith: 'startswith',
-    Destination: 'destination'
+    Destination: 'destination',
 } as const;
 
 export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRuleNewTypeEnum];
@@ -80,7 +80,7 @@ export const DenyRuleRecordTypeEnum = {
     Domain: 'domain',
     Email: 'email',
     Startswith: 'startswith',
-    Destination: 'destination'
+    Destination: 'destination',
 } as const;
 
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
@@ -421,7 +421,7 @@ export const MailStatsTypeTimeEnum = {
     _7d: '7d',
     _24h: '24h',
     Day: 'day',
-    _1h: '1h'
+    _1h: '1h',
 } as const;
 
 export type MailStatsTypeTimeEnum = typeof MailStatsTypeTimeEnum[keyof typeof MailStatsTypeTimeEnum];
@@ -912,7 +912,7 @@ export const AddRuleTypeEnum = {
     Domain: 'domain',
     Email: 'email',
     Startswith: 'startswith',
-    Destination: 'destination'
+    Destination: 'destination',
 } as const;
 export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];
 
@@ -1211,12 +1211,12 @@ export const GetStatsTimeEnum = {
     _7d: '7d',
     _24h: '24h',
     Day: 'day',
-    _1h: '1h'
+    _1h: '1h',
 } as const;
 export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTimeEnum];
 export const ViewMailLogDeliveredEnum = {
     NotDelivered: 0,
-    Delivered: 1
+    Delivered: 1,
 } as const;
 export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typeof ViewMailLogDeliveredEnum];
 

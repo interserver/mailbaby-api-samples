@@ -23,7 +23,7 @@ class ServicesApi : public Service {
 public:
     ServicesApi() = default;
 
-    virtual ~ServicesApi() = default;
+    virtual ~ServicesApi();
 
     /**
     * Displays details for a single mail order.

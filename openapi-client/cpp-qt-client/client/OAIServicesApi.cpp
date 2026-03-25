@@ -278,32 +278,6 @@ void OAIServicesApi::getMailOrderByIdCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getMailOrderByIdSignal(output);
         Q_EMIT getMailOrderByIdSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getMailOrderByIdSignalE(output, error_type, error_str);
-        Q_EMIT getMailOrderByIdSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getMailOrderByIdSignalError(output, error_type, error_str);
         Q_EMIT getMailOrderByIdSignalErrorFull(worker, error_type, error_str);
     }
@@ -361,42 +335,16 @@ void OAIServicesApi::getMailOrdersCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getMailOrdersSignal(output);
         Q_EMIT getMailOrdersSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getMailOrdersSignalE(output, error_type, error_str);
-        Q_EMIT getMailOrdersSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getMailOrdersSignalError(output, error_type, error_str);
         Q_EMIT getMailOrdersSignalErrorFull(worker, error_type, error_str);
     }
 }
 
-void OAIServicesApi::tokenAvailable(){
+void OAIServicesApi::tokenAvailable() {
 
     oauthToken token;
     switch (_OauthMethod) {
-    case 1: //implicit flow
+    case OauthMethod::ImplicitFlow:
         token = _implicitFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -406,7 +354,7 @@ void OAIServicesApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 2: //authorization flow
+    case OauthMethod::AuthorizationFlow:
         token = _authFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -416,7 +364,7 @@ void OAIServicesApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 3: //client credentials flow
+    case OauthMethod::ClientCredentialsFlow:
         token = _credentialFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -426,7 +374,7 @@ void OAIServicesApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 4: //resource owner password flow
+    case OauthMethod::ResourceOwnerPasswordFlow:
         token = _passwordFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());

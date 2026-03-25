@@ -11,15 +11,18 @@ static email_address_names_t *email_address_names_create_internal(
     if (!email_address_names_local_var) {
         return NULL;
     }
-
+    memset(email_address_names_local_var, 0, sizeof(email_address_names_t));
     email_address_names_local_var->_library_owned = 1;
     return email_address_names_local_var;
 }
 
 __attribute__((deprecated)) email_address_names_t *email_address_names_create(
     ) {
-    return email_address_names_create_internal (
+    email_address_names_t *result = email_address_names_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void email_address_names_free(email_address_names_t *email_address_names) {
@@ -49,8 +52,13 @@ email_address_names_t *email_address_names_parseFromJSON(cJSON *email_address_na
     email_address_names_t *email_address_names_local_var = NULL;
 
 
+
     email_address_names_local_var = email_address_names_create_internal (
         );
+
+    if (!email_address_names_local_var) {
+        goto end;
+    }
 
     return email_address_names_local_var;
 end:

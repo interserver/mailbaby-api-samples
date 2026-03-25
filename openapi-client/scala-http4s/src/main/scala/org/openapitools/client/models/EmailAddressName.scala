@@ -12,7 +12,8 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 import org.openapitools.client.models.EmailAddressTypes
 
@@ -23,7 +24,7 @@ import org.openapitools.client.models.EmailAddressTypes
 case class EmailAddressName(
     email: String,
     name: Option[String] = None
-)
+) extends EmailAddressTypes
   
 object EmailAddressName {
   given encoderEmailAddressName: Encoder[EmailAddressName] = Encoder.instance { t =>

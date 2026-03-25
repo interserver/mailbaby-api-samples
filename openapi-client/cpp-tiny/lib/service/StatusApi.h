@@ -20,7 +20,7 @@ class StatusApi : public Service {
 public:
     StatusApi() = default;
 
-    virtual ~StatusApi() = default;
+    virtual ~StatusApi();
 
     /**
     * Checks if the server is running.

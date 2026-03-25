@@ -86,6 +86,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -105,7 +112,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void getStatsCallback(OAIHttpRequestWorker *worker);
     void viewMailLogCallback(OAIHttpRequestWorker *worker);
@@ -119,18 +126,10 @@ Q_SIGNALS:
     void getStatsSignalFull(OAIHttpRequestWorker *worker, OAIMailStatsType summary);
     void viewMailLogSignalFull(OAIHttpRequestWorker *worker, OAIMailLog summary);
 
-    Q_DECL_DEPRECATED_X("Use getStatsSignalError() instead")
-    void getStatsSignalE(OAIMailStatsType summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getStatsSignalError(OAIMailStatsType summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use viewMailLogSignalError() instead")
-    void viewMailLogSignalE(OAIMailLog summary, QNetworkReply::NetworkError error_type, QString error_str);
     void viewMailLogSignalError(OAIMailLog summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use getStatsSignalErrorFull() instead")
-    void getStatsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getStatsSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use viewMailLogSignalErrorFull() instead")
-    void viewMailLogSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void viewMailLogSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

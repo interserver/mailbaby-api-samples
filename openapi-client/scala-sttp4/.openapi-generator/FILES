@@ -1,14 +1,15 @@
 .openapi-generator-ignore
+.scalafmt.conf
 README.md
 build.sbt
 project/build.properties
+project/plugins.sbt
 src/main/scala/org/openapitools/client/api/BlockingApi.scala
 src/main/scala/org/openapitools/client/api/HistoryApi.scala
 src/main/scala/org/openapitools/client/api/SendingApi.scala
 src/main/scala/org/openapitools/client/api/ServicesApi.scala
 src/main/scala/org/openapitools/client/api/StatusApi.scala
 src/main/scala/org/openapitools/client/core/AdditionalTypeSerializers.scala
-src/main/scala/org/openapitools/client/core/DateSerializers.scala
 src/main/scala/org/openapitools/client/core/JsonSupport.scala
 src/main/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/model/DenyRuleRecord.scala

@@ -62,6 +62,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -81,7 +88,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void pingServerCallback(OAIHttpRequestWorker *worker);
 
@@ -92,12 +99,8 @@ Q_SIGNALS:
 
     void pingServerSignalFull(OAIHttpRequestWorker *worker);
 
-    Q_DECL_DEPRECATED_X("Use pingServerSignalError() instead")
-    void pingServerSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalError(QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use pingServerSignalErrorFull() instead")
-    void pingServerSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void pingServerSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

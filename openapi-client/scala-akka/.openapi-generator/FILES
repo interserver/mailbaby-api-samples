@@ -1,4 +1,5 @@
 .openapi-generator-ignore
+.scalafmt.conf
 README.md
 build.sbt
 docs/BlockingApi.md
@@ -31,6 +32,7 @@ docs/ServicesApi.md
 docs/StatusApi.md
 pom.xml
 project/build.properties
+project/plugins.sbt
 src/main/resources/reference.conf
 src/main/scala/org/openapitools/client/api/BlockingApi.scala
 src/main/scala/org/openapitools/client/api/EnumsSerializers.scala

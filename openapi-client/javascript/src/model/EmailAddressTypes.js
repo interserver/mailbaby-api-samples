@@ -47,7 +47,7 @@ class EmailAddressTypes {
         }
 
         try {
-            if (typeof instance === "EmailAddressName") {
+            if (instance instanceof EmailAddressName) {
                 this.actualInstance = instance;
             } else {
                 // plain JS object

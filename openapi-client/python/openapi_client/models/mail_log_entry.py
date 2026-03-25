@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class MailLogEntry(BaseModel):
     """
@@ -54,7 +55,8 @@ class MailLogEntry(BaseModel):
     __properties: ClassVar[List[str]] = ["_id", "id", "from", "to", "subject", "messageId", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "delivered", "response", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -66,8 +68,7 @@ class MailLogEntry(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

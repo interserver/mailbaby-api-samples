@@ -1757,7 +1757,7 @@ h2. Models
         
         ||Field Name||Required||Type||Description||Enum||Example||
          |filename |(/) |{noformat:nopanel=true}String{noformat} | The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). |  | message.txt
-         |data |(/) |{noformat:nopanel=true}byte[]{noformat} | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. |  | [B@74174a23
+         |data |(/) |{noformat:nopanel=true}byte[]{noformat} | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. |  | [B@7640a5b1
          
         {anchor:MailBlockClickHouseModelAnchor}
         h3. MailBlockClickHouse

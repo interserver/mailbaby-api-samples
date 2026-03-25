@@ -11,15 +11,18 @@ static email_addresses_types_t *email_addresses_types_create_internal(
     if (!email_addresses_types_local_var) {
         return NULL;
     }
-
+    memset(email_addresses_types_local_var, 0, sizeof(email_addresses_types_t));
     email_addresses_types_local_var->_library_owned = 1;
     return email_addresses_types_local_var;
 }
 
 __attribute__((deprecated)) email_addresses_types_t *email_addresses_types_create(
     ) {
-    return email_addresses_types_create_internal (
+    email_addresses_types_t *result = email_addresses_types_create_internal (
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void email_addresses_types_free(email_addresses_types_t *email_addresses_types) {
@@ -49,8 +52,13 @@ email_addresses_types_t *email_addresses_types_parseFromJSON(cJSON *email_addres
     email_addresses_types_t *email_addresses_types_local_var = NULL;
 
 
+
     email_addresses_types_local_var = email_addresses_types_create_internal (
         );
+
+    if (!email_addresses_types_local_var) {
+        goto end;
+    }
 
     return email_addresses_types_local_var;
 end:

@@ -23,12 +23,12 @@ mail_attachment_t* instantiate_mail_attachment(int include_optional) {
   if (include_optional) {
     mail_attachment = mail_attachment_create(
       "message.txt",
-      "[B@7e642b88"
+      "[B@1f6917fb"
     );
   } else {
     mail_attachment = mail_attachment_create(
       "message.txt",
-      "[B@7e642b88"
+      "[B@1f6917fb"
     );
   }
 

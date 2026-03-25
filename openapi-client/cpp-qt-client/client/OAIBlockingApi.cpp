@@ -282,32 +282,6 @@ void OAIBlockingApi::addRuleCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT addRuleSignal(output);
         Q_EMIT addRuleSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT addRuleSignalE(output, error_type, error_str);
-        Q_EMIT addRuleSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT addRuleSignalError(output, error_type, error_str);
         Q_EMIT addRuleSignalErrorFull(worker, error_type, error_str);
     }
@@ -370,32 +344,6 @@ void OAIBlockingApi::deleteRuleCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT deleteRuleSignal(output);
         Q_EMIT deleteRuleSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT deleteRuleSignalE(output, error_type, error_str);
-        Q_EMIT deleteRuleSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT deleteRuleSignalError(output, error_type, error_str);
         Q_EMIT deleteRuleSignalErrorFull(worker, error_type, error_str);
     }
@@ -449,32 +397,6 @@ void OAIBlockingApi::delistBlockCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT delistBlockSignal(output);
         Q_EMIT delistBlockSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT delistBlockSignalE(output, error_type, error_str);
-        Q_EMIT delistBlockSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT delistBlockSignalError(output, error_type, error_str);
         Q_EMIT delistBlockSignalErrorFull(worker, error_type, error_str);
     }
@@ -523,32 +445,6 @@ void OAIBlockingApi::getMailBlocksCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getMailBlocksSignal(output);
         Q_EMIT getMailBlocksSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getMailBlocksSignalE(output, error_type, error_str);
-        Q_EMIT getMailBlocksSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getMailBlocksSignalError(output, error_type, error_str);
         Q_EMIT getMailBlocksSignalErrorFull(worker, error_type, error_str);
     }
@@ -606,42 +502,16 @@ void OAIBlockingApi::getRulesCallback(OAIHttpRequestWorker *worker) {
         Q_EMIT getRulesSignal(output);
         Q_EMIT getRulesSignalFull(worker, output);
     } else {
-
-#if defined(_MSC_VER)
-// For MSVC
-#pragma warning(push)
-#pragma warning(disable : 4996)
-#elif defined(__clang__)
-// For Clang
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-#elif defined(__GNUC__)
-// For GCC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
-
-        Q_EMIT getRulesSignalE(output, error_type, error_str);
-        Q_EMIT getRulesSignalEFull(worker, error_type, error_str);
-
-#if defined(_MSC_VER)
-#pragma warning(pop)
-#elif defined(__clang__)
-#pragma clang diagnostic pop
-#elif defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif
-
         Q_EMIT getRulesSignalError(output, error_type, error_str);
         Q_EMIT getRulesSignalErrorFull(worker, error_type, error_str);
     }
 }
 
-void OAIBlockingApi::tokenAvailable(){
+void OAIBlockingApi::tokenAvailable() {
 
     oauthToken token;
     switch (_OauthMethod) {
-    case 1: //implicit flow
+    case OauthMethod::ImplicitFlow:
         token = _implicitFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -651,7 +521,7 @@ void OAIBlockingApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 2: //authorization flow
+    case OauthMethod::AuthorizationFlow:
         token = _authFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -661,7 +531,7 @@ void OAIBlockingApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 3: //client credentials flow
+    case OauthMethod::ClientCredentialsFlow:
         token = _credentialFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());
@@ -671,7 +541,7 @@ void OAIBlockingApi::tokenAvailable(){
             qDebug() << "Could not retrieve a valid token";
         }
         break;
-    case 4: //resource owner password flow
+    case OauthMethod::ResourceOwnerPasswordFlow:
         token = _passwordFlow.getToken(_latestScope.join(" "));
         if(token.isValid()){
             _latestInput.headers.insert("Authorization", "Bearer " + token.getToken());

@@ -104,7 +104,7 @@ func main() {
 	replyto := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes |  (optional)
 	cc := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes |  (optional)
 	bcc := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes |  (optional)
-	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@1e1e9ef3))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
+	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@3b27b497))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
 	id := int64(789) // int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 	configuration := openapiclient.NewConfiguration()

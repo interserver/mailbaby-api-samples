@@ -32,13 +32,13 @@ namespace OpenAPI {
 class OAISendMail : public OAIObject {
 public:
     OAISendMail();
-    OAISendMail(QString json);
+    OAISendMail(const QString &json);
     ~OAISendMail() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     OAISendMailTo getTo() const;
     void setTo(const OAISendMailTo &to);

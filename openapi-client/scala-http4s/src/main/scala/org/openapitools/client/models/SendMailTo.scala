@@ -12,25 +12,29 @@ package org.openapitools.client.models
 
 import io.circe.*
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder}
+import io.circe.{Decoder, DecodingFailure, Encoder}
+import cats.syntax.functor.*
 
 
 /** The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
   */
-case class SendMailTo(
-)
-  
+trait SendMailTo
 object SendMailTo {
-  given encoderSendMailTo: Encoder[SendMailTo] = Encoder.instance { t =>
-    Json.fromFields{
-      Seq(
-      ).flatten
-    }
+  import io.circe.{ Decoder, Encoder }
+  import io.circe.syntax.*
+  import cats.syntax.functor.*
+
+// no discriminator
+  given encoderSendMailTo: Encoder[SendMailTo] = Encoder.instance {
+    case obj: Seq[String] => obj.asJson
+    case obj: String => obj.asJson
   }
-  given decoderSendMailTo: Decoder[SendMailTo] = Decoder.instance { c =>
-    for {
-    } yield SendMailTo(
-    )
-  }
+
+  given decoderSendMailTo: Decoder[SendMailTo] =
+    List[Decoder[SendMailTo]](
+      Decoder[Seq[String]].widen,
+      Decoder[String].widen,
+  ).reduceLeft(_ or _)
 }
+
 

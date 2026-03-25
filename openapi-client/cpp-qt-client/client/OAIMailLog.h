@@ -33,13 +33,13 @@ class OAIMailLogEntry;
 class OAIMailLog : public OAIObject {
 public:
     OAIMailLog();
-    OAIMailLog(QString json);
+    OAIMailLog(const QString &json);
     ~OAIMailLog() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
-    void fromJson(QString jsonString) override;
+    void fromJson(const QString &jsonString) override;
 
     qint32 getTotal() const;
     void setTotal(const qint32 &total);

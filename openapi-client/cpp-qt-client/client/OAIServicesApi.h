@@ -70,6 +70,13 @@ public:
 
 
 private:
+    enum class OauthMethod : int {
+        INVALID_VALUE_OPENAPI_GENERATED = 0,
+        ImplicitFlow = 1,
+        AuthorizationFlow = 2,
+        ClientCredentialsFlow = 3,
+        ResourceOwnerPasswordFlow = 4
+    };
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
     QMap<QString, QString> _apiKeys;
@@ -89,7 +96,7 @@ private:
     OauthImplicit _implicitFlow;
     OauthCredentials _credentialFlow;
     OauthPassword _passwordFlow;
-    int _OauthMethod = 0;
+    OauthMethod _OauthMethod = OauthMethod::INVALID_VALUE_OPENAPI_GENERATED;
 
     void getMailOrderByIdCallback(OAIHttpRequestWorker *worker);
     void getMailOrdersCallback(OAIHttpRequestWorker *worker);
@@ -103,18 +110,10 @@ Q_SIGNALS:
     void getMailOrderByIdSignalFull(OAIHttpRequestWorker *worker, OAIMailOrderDetail summary);
     void getMailOrdersSignalFull(OAIHttpRequestWorker *worker, QList<OAIMailOrder> summary);
 
-    Q_DECL_DEPRECATED_X("Use getMailOrderByIdSignalError() instead")
-    void getMailOrderByIdSignalE(OAIMailOrderDetail summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getMailOrderByIdSignalError(OAIMailOrderDetail summary, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getMailOrdersSignalError() instead")
-    void getMailOrdersSignalE(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getMailOrdersSignalError(QList<OAIMailOrder> summary, QNetworkReply::NetworkError error_type, const QString &error_str);
 
-    Q_DECL_DEPRECATED_X("Use getMailOrderByIdSignalErrorFull() instead")
-    void getMailOrderByIdSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getMailOrderByIdSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
-    Q_DECL_DEPRECATED_X("Use getMailOrdersSignalErrorFull() instead")
-    void getMailOrdersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getMailOrdersSignalErrorFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, const QString &error_str);
 
     void abortRequestsSignal();

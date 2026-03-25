@@ -23,7 +23,7 @@ public class MailAttachment  {
  /**
   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
   */
-  @ApiModelProperty(example = "[B@5d497a91", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  @ApiModelProperty(example = "[B@3291b443", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
 
   private byte[] data;
  /**
@@ -96,10 +96,7 @@ public class MailAttachment  {
    * (except the first line).
    */
   private static String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 }
 

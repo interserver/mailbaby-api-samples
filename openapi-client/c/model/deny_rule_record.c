@@ -33,13 +33,13 @@ static deny_rule_record_t *deny_rule_record_create_internal(
     if (!deny_rule_record_local_var) {
         return NULL;
     }
+    memset(deny_rule_record_local_var, 0, sizeof(deny_rule_record_t));
+    deny_rule_record_local_var->_library_owned = 1;
     deny_rule_record_local_var->type = type;
     deny_rule_record_local_var->data = data;
     deny_rule_record_local_var->id = id;
     deny_rule_record_local_var->created = created;
     deny_rule_record_local_var->user = user;
-
-    deny_rule_record_local_var->_library_owned = 1;
     return deny_rule_record_local_var;
 }
 
@@ -50,13 +50,16 @@ __attribute__((deprecated)) deny_rule_record_t *deny_rule_record_create(
     char *created,
     char *user
     ) {
-    return deny_rule_record_create_internal (
+    deny_rule_record_t *result = deny_rule_record_create_internal (
         type,
         data,
         id,
         created,
         user
         );
+    if (!result) {
+    }
+    return result;
 }
 
 void deny_rule_record_free(deny_rule_record_t *deny_rule_record) {
@@ -146,6 +149,14 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
 
     deny_rule_record_t *deny_rule_record_local_var = NULL;
 
+    char *data_local_str = NULL;
+
+    char *id_local_str = NULL;
+
+    char *created_local_str = NULL;
+
+    char *user_local_str = NULL;
+
     // deny_rule_record->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(deny_rule_recordJSON, "type");
     if (cJSON_IsNull(type)) {
@@ -221,16 +232,41 @@ deny_rule_record_t *deny_rule_record_parseFromJSON(cJSON *deny_rule_recordJSON){
     }
 
 
+    if (data && !cJSON_IsNull(data)) data_local_str = strdup(data->valuestring);
+    if (id && !cJSON_IsNull(id)) id_local_str = strdup(id->valuestring);
+    if (created && !cJSON_IsNull(created)) created_local_str = strdup(created->valuestring);
+    if (user && !cJSON_IsNull(user)) user_local_str = strdup(user->valuestring);
+
     deny_rule_record_local_var = deny_rule_record_create_internal (
         typeVariable,
-        strdup(data->valuestring),
-        strdup(id->valuestring),
-        strdup(created->valuestring),
-        user && !cJSON_IsNull(user) ? strdup(user->valuestring) : NULL
+        data_local_str,
+        id_local_str,
+        created_local_str,
+        user_local_str
         );
+
+    if (!deny_rule_record_local_var) {
+        goto end;
+    }
 
     return deny_rule_record_local_var;
 end:
+    if (data_local_str) {
+        free(data_local_str);
+        data_local_str = NULL;
+    }
+    if (id_local_str) {
+        free(id_local_str);
+        id_local_str = NULL;
+    }
+    if (created_local_str) {
+        free(created_local_str);
+        created_local_str = NULL;
+    }
+    if (user_local_str) {
+        free(user_local_str);
+        user_local_str = NULL;
+    }
     return NULL;
 
 }

@@ -21,7 +21,7 @@
 
 namespace OpenAPI {
 
-OAIMailOrderDetail::OAIMailOrderDetail(QString json) {
+OAIMailOrderDetail::OAIMailOrderDetail(const QString &json) {
     this->initializeModel();
     this->fromJson(json);
 }
@@ -50,7 +50,7 @@ void OAIMailOrderDetail::initializeModel() {
     m_comment_isValid = false;
 }
 
-void OAIMailOrderDetail::fromJson(QString jsonString) {
+void OAIMailOrderDetail::fromJson(const QString &jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();

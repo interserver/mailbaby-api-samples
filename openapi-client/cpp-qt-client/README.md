@@ -5,7 +5,7 @@
 MailBaby Email Delivery and Management Service API
 
 - API version: 1.4.0
-- Generator version: 7.20.0
+- Generator version: 7.21.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -106,7 +106,7 @@ void Example::exampleFunction1(){
       connect(&apiInstance, &OAIBlockingApi::addRuleSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, const QString &error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
@@ -117,7 +117,7 @@ void Example::exampleFunction1(){
       connect(&apiInstance, &OAIBlockingApi::addRuleSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, const QString &error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
@@ -128,7 +128,7 @@ void Example::exampleFunction1(){
       connect(&apiInstance, &OAIBlockingApi::addRuleSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIBlockingApi::addRuleSignalE, [&](QNetworkReply::NetworkError, const QString &error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });

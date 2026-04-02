@@ -11,7 +11,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Status do
 
   @doc """
   Checks if the server is running
-  A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+  A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 
   ### Parameters
 
@@ -20,10 +20,10 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Api.Status do
 
   ### Returns
 
-  - `{:ok, nil}` on success
+  - `{:ok, String.t}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec ping_server(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec ping_server(Tesla.Env.client, keyword()) :: {:ok, nil} | {:ok, String.t} | {:error, Tesla.Env.t}
   def ping_server(connection, _opts \\ []) do
     request =
       %{}

@@ -52,6 +52,11 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [io.swagger.client.models.AllOfSendMailAdvBcc](docs/AllOfSendMailAdvBcc.md)
+ - [io.swagger.client.models.AllOfSendMailAdvCc](docs/AllOfSendMailAdvCc.md)
+ - [io.swagger.client.models.AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
+ - [io.swagger.client.models.AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
+ - [io.swagger.client.models.AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
  - [io.swagger.client.models.DenyRuleNew](docs/DenyRuleNew.md)
  - [io.swagger.client.models.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [io.swagger.client.models.EmailAddressName](docs/EmailAddressName.md)
@@ -59,6 +64,7 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.EmailAddressParam](docs/EmailAddressParam.md)
  - [io.swagger.client.models.EmailAddressTypes](docs/EmailAddressTypes.md)
  - [io.swagger.client.models.EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [io.swagger.client.models.EndDate](docs/EndDate.md)
  - [io.swagger.client.models.ErrorMessage](docs/ErrorMessage.md)
  - [io.swagger.client.models.GenericResponse](docs/GenericResponse.md)
  - [io.swagger.client.models.MailAttachment](docs/MailAttachment.md)
@@ -75,6 +81,7 @@ Class | Method | HTTP request | Description
  - [io.swagger.client.models.SendMailAdv](docs/SendMailAdv.md)
  - [io.swagger.client.models.SendMailRaw](docs/SendMailRaw.md)
  - [io.swagger.client.models.SendMailTo](docs/SendMailTo.md)
+ - [io.swagger.client.models.StartDate](docs/StartDate.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

@@ -20,7 +20,7 @@ func _bzz_get_api_name() -> String:
 # Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | 
 func get_stats(
 	# some_timenull: String = "1h"   Eg: some_timenull_example
-	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 	some_timenull = "1h",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -61,7 +61,7 @@ func get_stats(
 
 func get_stats_threaded(
 	# some_timenull: String = "1h"   Eg: some_timenull_example
-	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 	some_timenull = "1h",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -80,7 +80,7 @@ func get_stats_threaded(
 # Operation viewMailLog → GET /mail/log
 # Displays the mail log
 #
-# Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
+# Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).  **Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.  **Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.  **Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
 func view_mail_log(
 	# id: float   Eg: 2604
 	# The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`.
@@ -104,7 +104,7 @@ func view_mail_log(
 	# Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
 	mailid = "",
 	# messageId: String = ""   Eg: <abc123@yourdomain.com>
-	# Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+	# Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
 	messageId = "",
 	# replyto: String   Eg: replies@sender.com
 	# Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
@@ -121,12 +121,21 @@ func view_mail_log(
 	# limit: int = 100   Eg: 100
 	# Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
 	limit = 100,
-	# startDate: float   Eg: 1641781008
-	# Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
+	# startDate: ViewMailLogStartDateParameter   Eg: 1641781008
+	# Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
 	startDate = null,
-	# endDate: float   Eg: 1673317008
-	# Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+	# endDate: ViewMailLogStartDateParameter   Eg: 1673317008
+	# Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 	endDate = null,
+	# sort: String = "time"   Eg: time
+	# Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+	sort = "time",
+	# dir: String = "desc"   Eg: desc
+	# Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+	dir = "desc",
+	# groupby: String = "recipient"   Eg: recipient
+	# Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
+	groupby = "recipient",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -168,34 +177,6 @@ func view_mail_log(
 		on_failure.call(error)
 		return
 
-	# Validate param `startDate` constraints
-	if startDate > 9999999999:
-		var error := ApiError.new()
-		error.identifier = "view_mail_log.param.validation.maximum"
-		error.message = "Invalid value for `startDate`, must be smaller than or equal to 9999999999."
-		on_failure.call(error)
-		return
-	if startDate < 0:
-		var error := ApiError.new()
-		error.identifier = "view_mail_log.param.validation.minimum"
-		error.message = "Invalid value for `startDate`, must be greater than or equal to 0."
-		on_failure.call(error)
-		return
-
-	# Validate param `endDate` constraints
-	if endDate > 9999999999:
-		var error := ApiError.new()
-		error.identifier = "view_mail_log.param.validation.maximum"
-		error.message = "Invalid value for `endDate`, must be smaller than or equal to 9999999999."
-		on_failure.call(error)
-		return
-	if endDate < 0:
-		var error := ApiError.new()
-		error.identifier = "view_mail_log.param.validation.minimum"
-		error.message = "Invalid value for `endDate`, must be greater than or equal to 0."
-		on_failure.call(error)
-		return
-
 	# Convert the String HTTP method to a Constant Godot understands
 	var bzz_method := self._bzz_convert_http_method("GET")
 
@@ -228,6 +209,9 @@ func view_mail_log(
 	bzz_query["limit"] = limit
 	bzz_query["startDate"] = startDate
 	bzz_query["endDate"] = endDate
+	bzz_query["sort"] = sort
+	bzz_query["dir"] = dir
+	bzz_query["groupby"] = groupby
 
 	var bzz_body = null
 
@@ -266,7 +250,7 @@ func view_mail_log_threaded(
 	# Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
 	mailid = "",
 	# messageId: String = ""   Eg: <abc123@yourdomain.com>
-	# Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+	# Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
 	messageId = "",
 	# replyto: String   Eg: replies@sender.com
 	# Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
@@ -283,12 +267,21 @@ func view_mail_log_threaded(
 	# limit: int = 100   Eg: 100
 	# Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
 	limit = 100,
-	# startDate: float   Eg: 1641781008
-	# Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
+	# startDate: ViewMailLogStartDateParameter   Eg: 1641781008
+	# Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
 	startDate = null,
-	# endDate: float   Eg: 1673317008
-	# Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+	# endDate: ViewMailLogStartDateParameter   Eg: 1673317008
+	# Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 	endDate = null,
+	# sort: String = "time"   Eg: time
+	# Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+	sort = "time",
+	# dir: String = "desc"   Eg: desc
+	# Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+	dir = "desc",
+	# groupby: String = "recipient"   Eg: recipient
+	# Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
+	groupby = "recipient",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
@@ -310,6 +303,9 @@ func view_mail_log_threaded(
 		limit,
 		startDate,
 		endDate,
+		sort,
+		dir,
+		groupby,
 		on_success,
 		on_failure,
 	)

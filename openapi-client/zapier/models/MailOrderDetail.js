@@ -15,6 +15,10 @@ module.exports = {
                 label: `The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. - [${labelPrefix}status]`,
                 required: true,
                 type: 'string',
+                choices: [
+                    'active',
+                    'canceled',
+                ],
             },
             {
                 key: `${keyPrefix}username`,
@@ -30,7 +34,7 @@ module.exports = {
             },
             {
                 key: `${keyPrefix}comment`,
-                label: `Optional human-readable note associated with the order. - [${labelPrefix}comment]`,
+                label: `Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. - [${labelPrefix}comment]`,
                 type: 'string',
             },
         ]

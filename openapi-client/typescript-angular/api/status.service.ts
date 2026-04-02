@@ -35,16 +35,16 @@ export class StatusService extends BaseService {
 
     /**
      * Checks if the server is running
-     * A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+     * A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
      * @endpoint get /ping
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public pingServer(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined,}): Observable<any>;
-    public pingServer(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined,}): Observable<HttpResponse<any>>;
-    public pingServer(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined,}): Observable<HttpEvent<any>>;
-    public pingServer(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined,}): Observable<any> {
+    public pingServer(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain',}): Observable<string>;
+    public pingServer(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain',}): Observable<HttpResponse<string>>;
+    public pingServer(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'text/plain',}): Observable<HttpEvent<string>>;
+    public pingServer(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'text/plain',}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -52,6 +52,7 @@ export class StatusService extends BaseService {
         localVarHeaders = this.configuration.addCredentialToHeaders('apiKeyAuth', 'X-API-KEY', localVarHeaders);
 
         const localVarHttpHeaderAcceptSelected: string | undefined = options?.httpHeaderAccept ?? this.configuration.selectHeaderAccept([
+            'text/plain'
         ]);
         if (localVarHttpHeaderAcceptSelected !== undefined) {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
@@ -72,7 +73,7 @@ export class StatusService extends BaseService {
 
         let localVarPath = `/ping`;
         const { basePath, withCredentials } = this.configuration;
-        return this.httpClient.request<any>('get', `${basePath}${localVarPath}`,
+        return this.httpClient.request<string>('get', `${basePath}${localVarPath}`,
             {
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),

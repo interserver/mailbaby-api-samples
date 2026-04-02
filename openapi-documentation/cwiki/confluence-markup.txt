@@ -19,7 +19,7 @@ After a successful send each endpoint returns a `GenericResponse` whose `text` f
 
 # Filtering & Logs
 
-`GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
+`GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
 
 # Blocking
 
@@ -682,7 +682,7 @@ h4. Parameters
 
 h5. Query Parameters
         ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |time |The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;. | String | (x) |1h |  | [all, billing, month, 7d, 24h, day, 1h] |
+        |time |The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle. Defaults to &#x60;1h&#x60;. | String | (x) |1h |  | [all, billing, month, 7d, 24h, day, 1h] |
 ----
 h4. Responses
 
@@ -723,6 +723,12 @@ h4. Responses
         }
       }
     }
+  },
+  "links" : {
+    "viewMailLogLink" : {
+      "operationId" : "viewMailLog",
+      "description" : "Use `GET /mail/log` to view individual message details behind the aggregate statistics."
+    }
   }
 }{code}{code:title=Example  |collapse=true }{code} |
        || Example 1 | {code:title=Example  |collapse=true }{code} |
@@ -761,9 +767,13 @@ h3. viewMailLog
     *Summary:* Displays the mail log
     *Description:* Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
 
-**Pagination** is controlled by &#x60;skip&#x60; and &#x60;limit&#x60;.  The response includes a &#x60;total&#x60; count so clients can determine how many pages exist.
+**Row grouping** is controlled by the &#x60;groupby&#x60; parameter.  By default (&#x60;groupby&#x3D;recipient&#x60;), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and &#x60;mxHostname&#x60; values.  Set &#x60;groupby&#x3D;message&#x60; to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
-**Date filtering** uses Unix timestamps (&#x60;startDate&#x60; / &#x60;endDate&#x60;).  For example, to retrieve emails sent in January 2024: &#x60;startDate&#x3D;1704067200&amp;endDate&#x3D;1706745599&#x60;.
+**Pagination** is controlled by &#x60;skip&#x60; and &#x60;limit&#x60;.  The &#x60;total&#x60; in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.
+
+**Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60;, &#x60;last monday&#x60;, or &#x60;2024-01-01 00:00:00&#x60;.  Examples: &#x60;startDate&#x3D;1704067200&amp;endDate&#x3D;1706745599&#x60; or &#x60;startDate&#x3D;2024-01-01&amp;endDate&#x3D;2024-01-31&#x60;.
+
+**Sorting** is controlled by &#x60;sort&#x60; and &#x60;dir&#x60;.  Currently the only sort key is &#x60;time&#x60; (default), which orders by internal row ID.
 
 **Delivery status** can be filtered with the &#x60;delivered&#x60; parameter: &#x60;delivered&#x3D;1&#x60; returns only successfully delivered messages; &#x60;delivered&#x3D;0&#x60; returns messages still in queue or that failed.
 
@@ -785,7 +795,7 @@ h4. Parameters
 
 h5. Query Parameters
         ||Name||Description||Type||Required||Default||Pattern||Enum||Example||
-        |id |The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/\{id\}&#x60;. | Long | (x) |null |  |  ||origin |Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. | String | (x) |null |  |  ||mx |Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response. | String | (x) |null |  |  ||from |Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;. | String | (x) |null |  |  ||to |Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved. | String | (x) |null |  |  ||subject |Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text. | String | (x) |null |  |  ||mailid |Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;. | String | (x) |null |  |  ||messageId |Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;. | String | (x) |null |  |  ||replyto |Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set. | String | (x) |null |  |  ||headerfrom |Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address. | String | (x) |null |  |  ||delivered |Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. | Integer | (x) |null |  | [0, 1] ||skip |Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). | Integer | (x) |0 |  |  ||limit |Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. | Integer | (x) |100 |  |  ||startDate |Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. | Long | (x) |null |  |  ||endDate |Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. | Long | (x) |null |  |  |
+        |id |The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/\{id\}&#x60;. | Long | (x) |null |  |  ||origin |Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. | String | (x) |null |  |  ||mx |Filter by the MX hostname the relay attempted delivery to.  For example &#x60;mx.google.com&#x60; would return messages destined for Gmail recipients. Maps to &#x60;mxHostname&#x60; in the &#x60;MailLogEntry&#x60; response. | String | (x) |null |  |  ||from |Filter by SMTP envelope &#x60;MAIL FROM&#x60; address (exact match).  This is the address the relay used for bounce handling and may differ from the &#x60;From:&#x60; message header.  For header-level filtering use &#x60;headerfrom&#x60;. | String | (x) |null |  |  ||to |Filter by SMTP envelope &#x60;RCPT TO&#x60; address (exact match).  This is the delivery address used by the relay and may differ from the &#x60;To:&#x60; header when BCC recipients are involved. | String | (x) |null |  |  ||subject |Filter by email &#x60;Subject&#x60; header (exact match).  To search for a substring, include it in the full subject text. | String | (x) |null |  |  ||mailid |Filter by the relay-assigned mail ID string (exact match).  This corresponds to the &#x60;id&#x60; field in &#x60;MailLogEntry&#x60; and to the &#x60;text&#x60; value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as &#x60;185997065c60008840&#x60;. | String | (x) |null |  |  ||messageId |Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match. The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;. | String | (x) |null |  |  ||replyto |Filter by the &#x60;Reply-To&#x60; message header address (exact match).  Only returns messages where this header was explicitly set. | String | (x) |null |  |  ||headerfrom |Filter by the &#x60;From&#x60; message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope &#x60;from&#x60; parameter when sending on behalf of another address. | String | (x) |null |  |  ||delivered |Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. | Integer | (x) |null |  | [0, 1] ||skip |Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). | Integer | (x) |0 |  |  ||limit |Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. | Integer | (x) |100 |  |  ||startDate |Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60; or &#x60;last monday&#x60;.  Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. | ViewMailLogStartDateParameter | (x) |null |  |  ||endDate |Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-31&#x60; or &#x60;yesterday&#x60;. Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. | ViewMailLogStartDateParameter | (x) |null |  |  ||sort |Field to sort results by.  Currently only &#x60;time&#x60; is supported (sorts by internal row ID which corresponds to chronological order). | String | (x) |time |  | [time] ||dir |Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. | String | (x) |desc |  | [asc, desc] ||groupby |Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. | String | (x) |recipient |  | [message, recipient] |
 ----
 h4. Responses
 
@@ -801,7 +811,43 @@ h4. Responses
         "$ref" : "#/components/schemas/MailLog"
       },
       "examples" : {
-        "MailLogExample" : {
+        "MailLogRecipientExample" : {
+          "summary" : "groupby=recipient (default) - one row per delivery attempt",
+          "value" : {
+            "total" : 4,
+            "skip" : 0,
+            "limit" : 100,
+            "emails" : [ {
+              "_id" : 103172,
+              "id" : "17c7eda538e0005d03",
+              "from" : "person@mysite.com",
+              "to" : "client@isp.com",
+              "subject" : "sell 0.005 shares",
+              "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+              "created" : "2021-10-14 08:50:10",
+              "time" : 1634215809,
+              "user" : "mb5658",
+              "transtype" : "ESMTPSA",
+              "origin" : "199.231.189.154",
+              "interface" : "feeder",
+              "sendingZone" : "interserver",
+              "bodySize" : 63,
+              "seq" : 1,
+              "delivered" : 1,
+              "code" : 250,
+              "recipient" : "client@isp.com",
+              "domain" : "interserver.net",
+              "locked" : 1,
+              "lockTime" : "1634215818533",
+              "assigned" : "relay1",
+              "queued" : "2021-10-14T12:50:15.487Z",
+              "mxHostname" : "mx.j.is.cc",
+              "response" : "250 2.0.0 Ok queued as C91D83E128C"
+            } ]
+          }
+        },
+        "MailLogMessageExample" : {
+          "summary" : "groupby=message - one row per message",
           "value" : {
             "total" : 1,
             "skip" : 0,
@@ -823,6 +869,7 @@ h4. Responses
               "bodySize" : 63,
               "seq" : 1,
               "delivered" : 1,
+              "code" : 250,
               "recipient" : "client@isp.com",
               "domain" : "interserver.net",
               "locked" : 1,
@@ -846,8 +893,8 @@ h4. Responses
       "description" : "A `from` address returned in the log can be passed as `email` to `POST /mail/blocks/delete` to remove a block on that sender."
     }
   }
-}{code}{code:title=Example  |collapse=true }{code} |
-       || Example 1 | {code:title=Example  |collapse=true }{code} |
+}{code}{code:title=Example  |collapse=true }{code}{code:title=Example  |collapse=true }{code} |
+       || Example 1 | {code:title=Example  |collapse=true }{code} ||| Example 2 | {code:title=Example  |collapse=true }{code} |
 
 
     	|| Status Code | {status:colour=Orange|title=400|subtle=false} |
@@ -908,7 +955,7 @@ h3. rawMail
     *Summary:* Sends a raw RFC 822 email
     *Description:* Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
 The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.
 
@@ -1412,6 +1459,33 @@ h4. Responses
         }
       }
     }
+  },
+  "links" : {
+    "sendMailByIdLink" : {
+      "operationId" : "sendMail",
+      "parameters" : {
+        "id" : "$response.body#/id"
+      },
+      "description" : "The `id` value can be used as the `id` body parameter in `POST /mail/send`."
+    },
+    "sendAdvMailByIdLink" : {
+      "operationId" : "sendAdvMail",
+      "parameters" : {
+        "id" : "$response.body#/id"
+      },
+      "description" : "The `id` value can be used as the `id` body parameter in `POST /mail/advsend`."
+    },
+    "viewMailLogByIdLink" : {
+      "operationId" : "viewMailLog",
+      "parameters" : {
+        "id" : "$response.body#/id"
+      },
+      "description" : "The `id` value can be used as the `id` query parameter in `GET /mail/log`."
+    },
+    "getStatsByIdLink" : {
+      "operationId" : "getStats",
+      "description" : "Use `GET /mail/stats` to view sending statistics for this mail order."
+    }
   }
 }{code}{code:title=Example  |collapse=true }{code} |
        || Example 1 | {code:title=Example  |collapse=true }{code} |
@@ -1619,13 +1693,13 @@ h4. Responses
 h3. pingServer
 {panel:title=pingServer|borderStyle=solid|borderColor=#003b6f|titleBGColor=#003b6f|titleColor=#a6b8c7|bgColor=#ffffff}
     *Summary:* Checks if the server is running
-    *Description:* A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.
+    *Description:* A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
 
 	|| HttpMethod | {status:colour=Yellow|title=get|subtle=false} |
     || Protocol | {noformat:nopanel=true}https{noformat} |
     || Path | {noformat:nopanel=true}/ping{noformat} |
     || Base Path | {noformat:nopanel=true}https://api.mailbaby.net{noformat} |
-    
+    || Produces | {noformat:nopanel=true}text/plain {noformat} |
 ----
 h4. Parameters
 
@@ -1636,10 +1710,18 @@ h4. Responses
 
     	|| Status Code | {status:colour=Green|title=200|subtle=false} |
     	|| Message | Server is up and running |
-    	|| Response Type |  |
-    	|| Response Model | [ Model|#ModelAnchor|Jump to model] |
+    	|| Response Type | String |
+    	|| Response Model | [String Model|#StringModelAnchor|Jump to model] |
     	|| Response Schema | {code:collapse=true}{
-  "description" : "Server is up and running"
+  "description" : "Server is up and running",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "type" : "string",
+        "example" : "Server is up and running"
+      }
+    }
+  }
 }{code} |
        
 
@@ -1667,7 +1749,7 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith, destination]  | email
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix. |  [domain, email, startswith, destination]  | email
          |data |(/) |{noformat:nopanel=true}String{noformat} | The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. |  | domeinwo@server.guesshost.net
          |user |(x) |{noformat:nopanel=true}String{noformat} | Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. |  | mb20682
          
@@ -1678,7 +1760,7 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |type |(/) |{noformat:nopanel=true}String{noformat} | The type of deny rule. |  [domain, email, startswith, destination]  | email
+         |type |(/) |{noformat:nopanel=true}String{noformat} | The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix. |  [domain, email, startswith, destination]  | email
          |data |(/) |{noformat:nopanel=true}String{noformat} | The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. |  | domeinwo@server.guesshost.net
          |id |(/) |{noformat:nopanel=true}String{noformat} | The numeric ID of the deny rule, as a string.  Pass this as &#x60;ruleId&#x60; to &#x60;DELETE /mail/rules/\{ruleId\}&#x60; to remove the rule. |  | 41124
          |created |(/) |{noformat:nopanel=true}Date{noformat} | The timestamp when the rule was created. |  | null
@@ -1746,8 +1828,8 @@ h2. Models
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
-         |status |(x) |{noformat:nopanel=true}String{noformat} | Always &#x60;&quot;ok&quot;&#x60; on success. |  | ok
-         |text |(x) |{noformat:nopanel=true}String{noformat} | Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#39;s numeric ID.  For delete operations this is a human-readable confirmation. |  | 185caa69ff7000f47c
+         |status |(/) |{noformat:nopanel=true}String{noformat} | Always &#x60;&quot;ok&quot;&#x60; on success. |  | ok
+         |text |(/) |{noformat:nopanel=true}String{noformat} | Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#39;s numeric ID.  For delete operations this is a human-readable confirmation. |  | 185caa69ff7000f47c
          
         {anchor:MailAttachmentModelAnchor}
         h3. MailAttachment
@@ -1757,7 +1839,7 @@ h2. Models
         
         ||Field Name||Required||Type||Description||Enum||Example||
          |filename |(/) |{noformat:nopanel=true}String{noformat} | The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;). |  | message.txt
-         |data |(/) |{noformat:nopanel=true}byte[]{noformat} | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. |  | [B@7640a5b1
+         |data |(/) |{noformat:nopanel=true}byte[]{noformat} | The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. |  | [B@46aa712c
          
         {anchor:MailBlockClickHouseModelAnchor}
         h3. MailBlockClickHouse
@@ -1785,7 +1867,7 @@ h2. Models
         {anchor:MailBlocksModelAnchor}
         h3. MailBlocks
 
-        The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`.  Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.
+        The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`. Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.
 
         
         ||Field Name||Required||Type||Description||Enum||Example||
@@ -1836,6 +1918,7 @@ Key field relationships with other API calls:
          |bodySize |(x) |{noformat:nopanel=true}Integer{noformat} | Size of the message body in bytes. |  | 63
          |seq |(x) |{noformat:nopanel=true}Integer{noformat} | Sequence index of this recipient in a multi-recipient message. Starts at 1. |  | 1
          |delivered |(x) |{noformat:nopanel=true}Integer{noformat} | Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. |  | 1
+         |code |(x) |{noformat:nopanel=true}Integer{noformat} | The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure). |  | 250
          |response |(x) |{noformat:nopanel=true}String{noformat} | The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;&quot;250 2.0.0 Ok queued as C91D83E128C&quot;&#x60;). |  | 250 2.0.0 Ok queued as C91D83E128C
          |recipient |(x) |{noformat:nopanel=true}String{noformat} | The specific recipient address this delivery record is for. |  | client@isp.com
          |domain |(x) |{noformat:nopanel=true}String{noformat} | The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;. |  | interserver.net
@@ -1853,9 +1936,9 @@ Key field relationships with other API calls:
         
         ||Field Name||Required||Type||Description||Enum||Example||
          |id |(/) |{noformat:nopanel=true}Integer{noformat} | The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries. |  | 21472
-         |status |(/) |{noformat:nopanel=true}String{noformat} | The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. |  | active
+         |status |(/) |{noformat:nopanel=true}String{noformat} | The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. |  [active, canceled]  | active
          |username |(/) |{noformat:nopanel=true}String{noformat} | The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/\{id\}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed. |  | mb21472
-         |comment |(x) |{noformat:nopanel=true}String{noformat} | Optional human-readable note associated with the order. |  | null
+         |comment |(x) |{noformat:nopanel=true}String{noformat} | Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. |  | null
          
         {anchor:MailOrderDetailModelAnchor}
         h3. MailOrderDetail
@@ -1865,10 +1948,10 @@ Key field relationships with other API calls:
         
         ||Field Name||Required||Type||Description||Enum||Example||
          |id |(/) |{noformat:nopanel=true}Integer{noformat} | The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries. |  | 21472
-         |status |(/) |{noformat:nopanel=true}String{noformat} | The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. |  | active
+         |status |(/) |{noformat:nopanel=true}String{noformat} | The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. |  [active, canceled]  | active
          |username |(/) |{noformat:nopanel=true}String{noformat} | The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/\{id\}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed. |  | mb21472
          |password |(/) |{noformat:nopanel=true}String{noformat} | The current SMTP AUTH password for this mail order.  Use with the &#x60;username&#x60; field to authenticate against &#x60;relay.mailbaby.net:25&#x60;. |  | s3cr3tpassword
-         |comment |(x) |{noformat:nopanel=true}String{noformat} | Optional human-readable note associated with the order. |  | null
+         |comment |(x) |{noformat:nopanel=true}String{noformat} | Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. |  | null
          
         {anchor:MailStatsTypeModelAnchor}
         h3. MailStatsType
@@ -1924,11 +2007,11 @@ HTML detection is automatic based on whether `body` contains HTML tags.
         ||Field Name||Required||Type||Description||Enum||Example||
          |subject |(/) |{noformat:nopanel=true}String{noformat} | The subject line of the email. |  | Your Package has been Delivered!
          |body |(/) |{noformat:nopanel=true}String{noformat} | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. |  | The package you ordered on 2021-01-23 has been delivered.
-         |from |(/) |{noformat:nopanel=true}EmailAddressTypes{noformat} |  |  | null
-         |to |(/) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
-         |replyto |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
-         |cc |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
-         |bcc |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} |  |  | null
+         |from |(/) |{noformat:nopanel=true}EmailAddressTypes{noformat} | The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;&quot;Name &lt;email&gt;&quot;&#x60;), or a &#x60;\{&quot;email&quot;: &quot;...&quot;, &quot;name&quot;: &quot;...&quot;\}&#x60; object. |  | null
+         |to |(/) |{noformat:nopanel=true}EmailAddressesTypes{noformat} | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. |  | null
+         |replyto |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} | Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. |  | null
+         |cc |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} | Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. |  | null
+         |bcc |(x) |{noformat:nopanel=true}EmailAddressesTypes{noformat} | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. |  | null
          |attachments |(x) |{noformat:nopanel=true}array[MailAttachment]{noformat} | Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. |  | null
          |id |(x) |{noformat:nopanel=true}Long{noformat} | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. |  | 5000
          
@@ -1948,6 +2031,14 @@ The `From`, `To`, `Cc`, and `Bcc` addresses are extracted from the message heade
         h3. SendMailTo
 
         The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
+
+        
+        ||Field Name||Required||Type||Description||Enum||Example||
+         
+        {anchor:ViewMailLogStartDateParameterModelAnchor}
+        h3. ViewMailLogStartDateParameter
+
+        
 
         
         ||Field Name||Required||Type||Description||Enum||Example||

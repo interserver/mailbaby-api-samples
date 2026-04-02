@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
 
 ### Example
 ```kotlin
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
 
 ### Example
 ```kotlin
@@ -121,11 +121,11 @@ Sends an email through one of your mail orders with full control over recipients
 val apiInstance = SendingApi()
 val subject : kotlin.String = subject_example // kotlin.String | 
 val body : kotlin.String = body_example // kotlin.String | 
-val from : EmailAddressTypes =  // EmailAddressTypes | 
-val to : EmailAddressesTypes =  // EmailAddressesTypes | 
-val replyto : EmailAddressesTypes =  // EmailAddressesTypes | 
-val cc : EmailAddressesTypes =  // EmailAddressesTypes | 
-val bcc : EmailAddressesTypes =  // EmailAddressesTypes | 
+val from : kotlin.Any =  // kotlin.Any | 
+val to : kotlin.Any =  // kotlin.Any | 
+val replyto : kotlin.Any =  // kotlin.Any | 
+val cc : kotlin.Any =  // kotlin.Any | 
+val bcc : kotlin.Any =  // kotlin.Any | 
 val attachments : kotlin.Array<MailAttachment> =  // kotlin.Array<MailAttachment> | 
 val id : kotlin.Long = 789 // kotlin.Long | 
 try {
@@ -146,11 +146,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **kotlin.String**|  |
  **body** | **kotlin.String**|  |
- **from** | [**EmailAddressTypes**](.md)|  |
- **to** | [**EmailAddressesTypes**](.md)|  |
- **replyto** | [**EmailAddressesTypes**](.md)|  |
- **cc** | [**EmailAddressesTypes**](.md)|  |
- **bcc** | [**EmailAddressesTypes**](.md)|  |
+ **from** | [**kotlin.Any**](.md)|  |
+ **to** | [**kotlin.Any**](.md)|  |
+ **replyto** | [**kotlin.Any**](.md)|  |
+ **cc** | [**kotlin.Any**](.md)|  |
+ **bcc** | [**kotlin.Any**](.md)|  |
  **attachments** | [**kotlin.Array&lt;MailAttachment&gt;**](MailAttachment.md)|  |
  **id** | **kotlin.Long**|  |
 

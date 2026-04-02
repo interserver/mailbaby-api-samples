@@ -1,6 +1,6 @@
 /*
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n# Overview\n\nThis is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n# Mail Orders\n\nEvery sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.\n\n# Sending Email\n\nThree sending methods are available depending on your use-case:\n| Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |\n\nAfter a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.\n\n# Filtering & Logs\n\n`GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.\n\n# Blocking\n\nTwo independent mechanisms exist for suppressing unwanted email:\n- **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the\n  system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects).\n- **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —\n  custom rules you configure to reject specific senders, domains, destination addresses, or\n  subject-line prefixes before a message is even attempted.\n\n\n# Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\nPass your key in the `X-API-KEY` HTTP request header for every protected call.\n
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n# Overview\n\nThis is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n# Mail Orders\n\nEvery sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.\n\n# Sending Email\n\nThree sending methods are available depending on your use-case:\n| Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |\n\nAfter a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.\n\n# Filtering & Logs\n\n`GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.\n\n# Blocking\n\nTwo independent mechanisms exist for suppressing unwanted email:\n- **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the\n  system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects).\n- **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —\n  custom rules you configure to reject specific senders, domains, destination addresses, or\n  subject-line prefixes before a message is even attempted.\n\n\n# Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\nPass your key in the `X-API-KEY` HTTP request header for every protected call.\n
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -22,9 +22,17 @@ public class OASMailOrderDetail implements OASMailOrder {
 
     /**
      * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+     */
+    public enum StatusEnum {
+        ACTIVE,
+        CANCELED
+    }
+
+    /**
+     * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
      * @return status
      */
-    public String status { get; set; }
+    public StatusEnum status { get; set; }
 
     /**
      * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
@@ -39,7 +47,7 @@ public class OASMailOrderDetail implements OASMailOrder {
     public String password { get; set; }
 
     /**
-     * Optional human-readable note associated with the order.
+     * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
      * @return comment
      */
     public String comment { get; set; }
@@ -47,7 +55,7 @@ public class OASMailOrderDetail implements OASMailOrder {
     public static OASMailOrderDetail getExample() {
         OASMailOrderDetail mailOrderDetail = new OASMailOrderDetail();
           mailOrderDetail.id = 21472;
-          mailOrderDetail.status = 'active';
+          mailOrderDetail.status = StatusEnum.ACTIVE;
           mailOrderDetail.username = 'mb21472';
           mailOrderDetail.password = 's3cr3tpassword';
           mailOrderDetail.comment = '';

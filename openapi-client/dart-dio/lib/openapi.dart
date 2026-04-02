@@ -39,4 +39,5 @@ export 'package:openapi/src/model/send_mail.dart';
 export 'package:openapi/src/model/send_mail_adv.dart';
 export 'package:openapi/src/model/send_mail_raw.dart';
 export 'package:openapi/src/model/send_mail_to.dart';
+export 'package:openapi/src/model/view_mail_log_start_date_parameter.dart';
 

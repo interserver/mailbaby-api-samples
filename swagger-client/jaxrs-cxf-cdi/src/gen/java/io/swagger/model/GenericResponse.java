@@ -28,7 +28,7 @@ public class GenericResponse   {
 
   
   
-  @Schema(example = "ok", description = "Always `\"ok\"` on success.")
+  @Schema(example = "ok", required = true, description = "Always `\"ok\"` on success.")
   @JsonProperty("status")
   @NotNull
   public String getStatus() {
@@ -48,7 +48,7 @@ public class GenericResponse   {
 
   
   
-  @Schema(example = "185caa69ff7000f47c", description = "Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.")
+  @Schema(example = "185caa69ff7000f47c", required = true, description = "Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.")
   @JsonProperty("text")
   @NotNull
   public String getText() {

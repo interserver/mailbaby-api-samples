@@ -20,7 +20,7 @@ func _bzz_get_api_name() -> String:
 # Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. 
 func add_rule(
 	# type: String = ""   Eg: type_example
-	# The type of deny rule.
+	# The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 	type: String,
 	# data: String = ""   Eg: data_example
 	# The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
@@ -83,7 +83,7 @@ func add_rule(
 
 func add_rule_threaded(
 	# type: String = ""   Eg: type_example
-	# The type of deny rule.
+	# The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 	type: String,
 	# data: String = ""   Eg: data_example
 	# The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
@@ -188,7 +188,7 @@ func delist_block(
 
 	# Collect the headers
 	var bzz_headers := Dictionary()
-	var bzz_mimes_consumable_by_server := ['application/json', 'multipart/form-data']
+	var bzz_mimes_consumable_by_server := ['application/json', 'application/x-www-form-urlencoded']
 	var bzz_found_producible_mime := false
 	for bzz_mime in BZZ_PRODUCIBLE_CONTENT_TYPES:
 		if bzz_mime in bzz_mimes_consumable_by_server:

@@ -71,6 +71,7 @@ set(SRCS
     model/send_mail_adv.c
     model/send_mail_raw.c
     model/send_mail_to.c
+    model/view_mail_log_start_date_parameter.c
     api/BlockingAPI.c
     api/HistoryAPI.c
     api/SendingAPI.c
@@ -110,6 +111,7 @@ set(HDRS
     model/send_mail_adv.h
     model/send_mail_raw.h
     model/send_mail_to.h
+    model/view_mail_log_start_date_parameter.h
     api/BlockingAPI.h
     api/HistoryAPI.h
     api/SendingAPI.h

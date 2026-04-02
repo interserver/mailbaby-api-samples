@@ -8,6 +8,8 @@ import io.swagger.server.AkkaHttpHelper._
 import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.MailLog
 import io.swagger.server.model.MailStatsType
+import io.swagger.server.model.endDate
+import io.swagger.server.model.startDate
 
 class HistoryApi(
     historyService: HistoryApiService,
@@ -33,12 +35,12 @@ class HistoryApi(
     } ~
     path() { 
       get {
-        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "messageId".as[String].?, "replyto".as[String].?, "headerfrom".as[String].?, "delivered".as[Int].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[Long].?, "endDate".as[Long].?) { (id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate) =>
+        parameters("id".as[Long].?, "origin".as[String].?, "mx".as[String].?, "from".as[String].?, "to".as[String].?, "subject".as[String].?, "mailid".as[String].?, "messageId".as[String].?, "replyto".as[String].?, "headerfrom".as[String].?, "delivered".as[Int].?, "skip".as[Int].?, "limit".as[Int].?, "startDate".as[String].?, "endDate".as[String].?, "sort".as[String].?, "dir".as[String].?, "groupby".as[String].?) { (id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby) =>
           
             
               
                 
-                  historyService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate)
+                  historyService.viewMailLog(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate, sort = sort, dir = dir, groupby = groupby)
                
              
            
@@ -72,7 +74,7 @@ trait HistoryApiService {
    * Code: 400, Message: Bad request — one or more input parameters were missing or invalid., DataType: ErrorMessage
    * Code: 401, Message: Authentication failed.  Ensure you are sending a valid &#x60;X-API-KEY&#x60; header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security)., DataType: ErrorMessage
    */
-  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], messageId: Option[String], replyto: Option[String], headerfrom: Option[String], delivered: Option[Int], skip: Option[Int], limit: Option[Int], startDate: Option[Long], endDate: Option[Long])
+  def viewMailLog(id: Option[Long], origin: Option[String], mx: Option[String], from: Option[String], to: Option[String], subject: Option[String], mailid: Option[String], messageId: Option[String], replyto: Option[String], headerfrom: Option[String], delivered: Option[Int], skip: Option[Int], limit: Option[Int], startDate: Option[String], endDate: Option[String], sort: Option[String], dir: Option[String], groupby: Option[String])
       (implicit toEntityMarshallerMailLog: ToEntityMarshaller[MailLog], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage], toEntityMarshallerErrorMessage: ToEntityMarshaller[ErrorMessage]): Route
 
 }

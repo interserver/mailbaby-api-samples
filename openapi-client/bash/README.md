@@ -143,6 +143,7 @@ Class | Method | HTTP request | Description
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailRaw](docs/SendMailRaw.md)
  - [SendMailTo](docs/SendMailTo.md)
+ - [ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 ## Documentation For Authorization

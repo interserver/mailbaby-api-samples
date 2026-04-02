@@ -15,7 +15,7 @@ import {SecurityAuthentication} from '../auth/auth';
 export class StatusApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+     * A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
      * Checks if the server is running
      */
     public async pingServer(_options?: Configuration): Promise<RequestContext> {
@@ -55,10 +55,14 @@ export class StatusApiResponseProcessor {
      * @params response Response returned by the server for a request to pingServer
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async pingServerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<void >> {
+     public async pingServerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
+            const body: string = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "string", ""
+            ) as string;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("0", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Something is wrong", undefined, response.headers);
@@ -66,10 +70,10 @@ export class StatusApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: void = ObjectSerializer.deserialize(
+            const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "void", ""
-            ) as void;
+                "string", ""
+            ) as string;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

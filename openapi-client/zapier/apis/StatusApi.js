@@ -7,7 +7,7 @@ module.exports = {
         noun: 'Status',
         display: {
             label: 'Checks if the server is running',
-            description: 'A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. ',
+            description: 'A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. ',
             hidden: false,
         },
         operation: {
@@ -22,7 +22,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': '',
+                        'Accept': 'text/plain',
                     },
                     params: {
                     },
@@ -32,7 +32,7 @@ module.exports = {
                 return z.request(utils.requestOptionsMiddleware(z, bundle, options)).then((response) => {
                     response.throwForStatus();
                     const results = utils.responseOptionsMiddleware(z, bundle, 'pingServer', response.json);
-                    return results;
+                    return { data: results };
                 })
             },
             sample: { data: {} }

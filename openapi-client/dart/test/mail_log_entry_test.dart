@@ -112,6 +112,12 @@ void main() {
       // TODO
     });
 
+    // The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+    // int code
+    test('to test the property `code`', () async {
+      // TODO
+    });
+
     // The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
     // String response
     test('to test the property `response`', () async {

@@ -35,6 +35,8 @@ case class MailLogEntry (
     _seq: Option[Integer],
     /* Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. */
     _delivered: Option[Integer],
+    /* The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). */
+    _code: Option[Integer],
     /* The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). */
     _response: Option[String],
     /* The specific recipient address this delivery record is for. */
@@ -53,10 +55,10 @@ case class MailLogEntry (
     _mxHostname: Option[String]
 )
 object MailLogEntry {
-    def toStringBody(var__id: Object, var_id: Object, var_from: Object, var_to: Object, var_created: Object, var_time: Object, var_user: Object, var_transtype: Object, var_origin: Object, var_interface: Object, var_subject: Object, var_messageId: Object, var_sendingZone: Object, var_bodySize: Object, var_seq: Object, var_delivered: Object, var_response: Object, var_recipient: Object, var_domain: Object, var_locked: Object, var_lockTime: Object, var_assigned: Object, var_queued: Object, var_mxHostname: Object) =
+    def toStringBody(var__id: Object, var_id: Object, var_from: Object, var_to: Object, var_created: Object, var_time: Object, var_user: Object, var_transtype: Object, var_origin: Object, var_interface: Object, var_subject: Object, var_messageId: Object, var_sendingZone: Object, var_bodySize: Object, var_seq: Object, var_delivered: Object, var_code: Object, var_response: Object, var_recipient: Object, var_domain: Object, var_locked: Object, var_lockTime: Object, var_assigned: Object, var_queued: Object, var_mxHostname: Object) =
         s"""
         | {
-        | "_id":$var__id,"id":$var_id,"from":$var_from,"to":$var_to,"created":$var_created,"time":$var_time,"user":$var_user,"transtype":$var_transtype,"origin":$var_origin,"interface":$var_interface,"subject":$var_subject,"messageId":$var_messageId,"sendingZone":$var_sendingZone,"bodySize":$var_bodySize,"seq":$var_seq,"delivered":$var_delivered,"response":$var_response,"recipient":$var_recipient,"domain":$var_domain,"locked":$var_locked,"lockTime":$var_lockTime,"assigned":$var_assigned,"queued":$var_queued,"mxHostname":$var_mxHostname
+        | "_id":$var__id,"id":$var_id,"from":$var_from,"to":$var_to,"created":$var_created,"time":$var_time,"user":$var_user,"transtype":$var_transtype,"origin":$var_origin,"interface":$var_interface,"subject":$var_subject,"messageId":$var_messageId,"sendingZone":$var_sendingZone,"bodySize":$var_bodySize,"seq":$var_seq,"delivered":$var_delivered,"code":$var_code,"response":$var_response,"recipient":$var_recipient,"domain":$var_domain,"locked":$var_locked,"lockTime":$var_lockTime,"assigned":$var_assigned,"queued":$var_queued,"mxHostname":$var_mxHostname
         | }
         """.stripMargin
 }

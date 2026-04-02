@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **bodySize** | **integer** |  | [optional] [default to null]
 **seq** | **integer** |  | [optional] [default to null]
 **delivered** | **integer** |  | [optional] [default to null]
+**code** | **integer** |  | [optional] [default to null]
 **response** | **string** |  | [optional] [default to null]
 **recipient** | **string** |  | [optional] [default to null]
 **domain** | **string** |  | [optional] [default to null]

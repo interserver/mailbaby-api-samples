@@ -13,6 +13,7 @@
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.view-mail-log-start-date-parameter :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.error-message :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
@@ -124,7 +125,7 @@ Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `
              :query-params  {}
              :form-params   {}
              :body-param    email-address-param
-             :content-types ["application/json" "multipart/form-data"]
+             :content-types ["application/json" "application/x-www-form-urlencoded"]
              :accepts       ["application/json"]
              :auth-names    ["apiKeyAuth"]}))
 

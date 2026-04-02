@@ -6,9 +6,12 @@ from datetime import date, datetime  # noqa: F401
 from typing import List, Dict  # noqa: F401
 
 from mailbaby-client-python-flask.models.base_model_ import Model
-from mailbaby-client-python-flask.models.email_address_types import EmailAddressTypes  # noqa: F401,E501
-from mailbaby-client-python-flask.models.email_addresses_types import EmailAddressesTypes  # noqa: F401,E501
 from mailbaby-client-python-flask.models.mail_attachment import MailAttachment  # noqa: F401,E501
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_from import AllOfSendMailAdvFrom  # noqa: F401,E501
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_to import AllOfSendMailAdvTo  # noqa: F401,E501
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_replyto import AllOfSendMailAdvReplyto  # noqa: F401,E501
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_cc import AllOfSendMailAdvCc  # noqa: F401,E501
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_bcc import AllOfSendMailAdvBcc  # noqa: F401,E501
 from mailbaby-client-python-flask import util
 
 
@@ -17,7 +20,7 @@ class SendMailAdv(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, subject: str=None, body: str=None, _from: EmailAddressTypes=None, to: EmailAddressesTypes=None, replyto: EmailAddressesTypes=None, cc: EmailAddressesTypes=None, bcc: EmailAddressesTypes=None, attachments: List[MailAttachment]=None, id: int=None):  # noqa: E501
+    def __init__(self, subject: str=None, body: str=None, _from: AllOfSendMailAdvFrom=None, to: AllOfSendMailAdvTo=None, replyto: AllOfSendMailAdvReplyto=None, cc: AllOfSendMailAdvCc=None, bcc: AllOfSendMailAdvBcc=None, attachments: List[MailAttachment]=None, id: int=None):  # noqa: E501
         """SendMailAdv - a model defined in Swagger
 
         :param subject: The subject of this SendMailAdv.  # noqa: E501
@@ -25,15 +28,15 @@ class SendMailAdv(Model):
         :param body: The body of this SendMailAdv.  # noqa: E501
         :type body: str
         :param _from: The _from of this SendMailAdv.  # noqa: E501
-        :type _from: EmailAddressTypes
+        :type _from: AllOfSendMailAdvFrom
         :param to: The to of this SendMailAdv.  # noqa: E501
-        :type to: EmailAddressesTypes
+        :type to: AllOfSendMailAdvTo
         :param replyto: The replyto of this SendMailAdv.  # noqa: E501
-        :type replyto: EmailAddressesTypes
+        :type replyto: AllOfSendMailAdvReplyto
         :param cc: The cc of this SendMailAdv.  # noqa: E501
-        :type cc: EmailAddressesTypes
+        :type cc: AllOfSendMailAdvCc
         :param bcc: The bcc of this SendMailAdv.  # noqa: E501
-        :type bcc: EmailAddressesTypes
+        :type bcc: AllOfSendMailAdvBcc
         :param attachments: The attachments of this SendMailAdv.  # noqa: E501
         :type attachments: List[MailAttachment]
         :param id: The id of this SendMailAdv.  # noqa: E501
@@ -42,11 +45,11 @@ class SendMailAdv(Model):
         self.swagger_types = {
             'subject': str,
             'body': str,
-            '_from': EmailAddressTypes,
-            'to': EmailAddressesTypes,
-            'replyto': EmailAddressesTypes,
-            'cc': EmailAddressesTypes,
-            'bcc': EmailAddressesTypes,
+            '_from': AllOfSendMailAdvFrom,
+            'to': AllOfSendMailAdvTo,
+            'replyto': AllOfSendMailAdvReplyto,
+            'cc': AllOfSendMailAdvCc,
+            'bcc': AllOfSendMailAdvBcc,
             'attachments': List[MailAttachment],
             'id': int
         }
@@ -134,22 +137,24 @@ class SendMailAdv(Model):
         self._body = body
 
     @property
-    def _from(self) -> EmailAddressTypes:
+    def _from(self) -> AllOfSendMailAdvFrom:
         """Gets the _from of this SendMailAdv.
 
+        The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.  # noqa: E501
 
         :return: The _from of this SendMailAdv.
-        :rtype: EmailAddressTypes
+        :rtype: AllOfSendMailAdvFrom
         """
         return self.__from
 
     @_from.setter
-    def _from(self, _from: EmailAddressTypes):
+    def _from(self, _from: AllOfSendMailAdvFrom):
         """Sets the _from of this SendMailAdv.
 
+        The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.  # noqa: E501
 
         :param _from: The _from of this SendMailAdv.
-        :type _from: EmailAddressTypes
+        :type _from: AllOfSendMailAdvFrom
         """
         if _from is None:
             raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
@@ -157,22 +162,24 @@ class SendMailAdv(Model):
         self.__from = _from
 
     @property
-    def to(self) -> EmailAddressesTypes:
+    def to(self) -> AllOfSendMailAdvTo:
         """Gets the to of this SendMailAdv.
 
+        One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.  # noqa: E501
 
         :return: The to of this SendMailAdv.
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvTo
         """
         return self._to
 
     @to.setter
-    def to(self, to: EmailAddressesTypes):
+    def to(self, to: AllOfSendMailAdvTo):
         """Sets the to of this SendMailAdv.
 
+        One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.  # noqa: E501
 
         :param to: The to of this SendMailAdv.
-        :type to: EmailAddressesTypes
+        :type to: AllOfSendMailAdvTo
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
@@ -180,64 +187,70 @@ class SendMailAdv(Model):
         self._to = to
 
     @property
-    def replyto(self) -> EmailAddressesTypes:
+    def replyto(self) -> AllOfSendMailAdvReplyto:
         """Gets the replyto of this SendMailAdv.
 
+        Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.  # noqa: E501
 
         :return: The replyto of this SendMailAdv.
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvReplyto
         """
         return self._replyto
 
     @replyto.setter
-    def replyto(self, replyto: EmailAddressesTypes):
+    def replyto(self, replyto: AllOfSendMailAdvReplyto):
         """Sets the replyto of this SendMailAdv.
 
+        Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.  # noqa: E501
 
         :param replyto: The replyto of this SendMailAdv.
-        :type replyto: EmailAddressesTypes
+        :type replyto: AllOfSendMailAdvReplyto
         """
 
         self._replyto = replyto
 
     @property
-    def cc(self) -> EmailAddressesTypes:
+    def cc(self) -> AllOfSendMailAdvCc:
         """Gets the cc of this SendMailAdv.
 
+        Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.  # noqa: E501
 
         :return: The cc of this SendMailAdv.
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvCc
         """
         return self._cc
 
     @cc.setter
-    def cc(self, cc: EmailAddressesTypes):
+    def cc(self, cc: AllOfSendMailAdvCc):
         """Sets the cc of this SendMailAdv.
 
+        Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.  # noqa: E501
 
         :param cc: The cc of this SendMailAdv.
-        :type cc: EmailAddressesTypes
+        :type cc: AllOfSendMailAdvCc
         """
 
         self._cc = cc
 
     @property
-    def bcc(self) -> EmailAddressesTypes:
+    def bcc(self) -> AllOfSendMailAdvBcc:
         """Gets the bcc of this SendMailAdv.
 
+        Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.  # noqa: E501
 
         :return: The bcc of this SendMailAdv.
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvBcc
         """
         return self._bcc
 
     @bcc.setter
-    def bcc(self, bcc: EmailAddressesTypes):
+    def bcc(self, bcc: AllOfSendMailAdvBcc):
         """Sets the bcc of this SendMailAdv.
 
+        Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.  # noqa: E501
 
         :param bcc: The bcc of this SendMailAdv.
-        :type bcc: EmailAddressesTypes
+        :type bcc: AllOfSendMailAdvBcc
         """
 
         self._bcc = bcc

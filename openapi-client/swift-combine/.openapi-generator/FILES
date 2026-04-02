@@ -28,6 +28,7 @@ OpenAPIClient/Sources/Models/SendMail.swift
 OpenAPIClient/Sources/Models/SendMailAdv.swift
 OpenAPIClient/Sources/Models/SendMailRaw.swift
 OpenAPIClient/Sources/Models/SendMailTo.swift
+OpenAPIClient/Sources/Models/ViewMailLogStartDateParameter.swift
 OpenAPIClient/Sources/Private/AnyDecodable.swift
 OpenAPIClient/Sources/Private/OpenISO8601DateFormatter.swift
 OpenAPITransport/Package.swift

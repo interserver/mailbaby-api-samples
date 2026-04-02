@@ -16,12 +16,13 @@ feature -- Test routines
     test_ping_server
             -- Checks if the server is running
             --
-            -- A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+            -- A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
         local
+            l_response: STRING_32
         do
             -- TODO: Initialize required params.
 
-            -- api.ping_server
+            -- l_response := api.ping_server
             assert ("not_implemented", False)
         end
 

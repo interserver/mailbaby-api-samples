@@ -28,6 +28,7 @@ internal/client/model_send_mail.go
 internal/client/model_send_mail_adv.go
 internal/client/model_send_mail_raw.go
 internal/client/model_send_mail_to.go
+internal/client/model_view_mail_log_start_date_parameter.go
 internal/provider/blocking_data_source.go
 internal/provider/blocking_model.go
 internal/provider/blocking_resource.go

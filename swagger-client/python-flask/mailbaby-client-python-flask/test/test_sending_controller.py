@@ -5,8 +5,6 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from mailbaby-client-python-flask.models.email_address_types import EmailAddressTypes  # noqa: E501
-from mailbaby-client-python-flask.models.email_addresses_types import EmailAddressesTypes  # noqa: E501
 from mailbaby-client-python-flask.models.error_message import ErrorMessage  # noqa: E501
 from mailbaby-client-python-flask.models.generic_response import GenericResponse  # noqa: E501
 from mailbaby-client-python-flask.models.mail_attachment import MailAttachment  # noqa: E501
@@ -45,11 +43,11 @@ class TestSendingController(BaseTestCase):
         body = SendMailAdv()
         data = dict(subject='subject_example',
                     body='body_example',
-                    _from=EmailAddressTypes(),
-                    to=EmailAddressesTypes(),
-                    replyto=EmailAddressesTypes(),
-                    cc=EmailAddressesTypes(),
-                    bcc=EmailAddressesTypes(),
+                    _from=Object(),
+                    to=Object(),
+                    replyto=Object(),
+                    cc=Object(),
+                    bcc=Object(),
                     attachments=MailAttachment(),
                     id=789)
         response = self.client.open(

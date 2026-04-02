@@ -31,7 +31,7 @@ test_that("username", {
 
 test_that("comment", {
   # tests for the property `comment` (character)
-  # Optional human-readable note associated with the order.
+  # Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`comment`, "EXPECTED_RESULT")

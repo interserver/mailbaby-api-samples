@@ -3,8 +3,7 @@ package io.swagger.api;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -17,6 +16,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
+import io.swagger.model.StartDate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -169,7 +169,7 @@ public class MailApiController implements MailApi {
         return new ResponseEntity<List<DenyRuleRecord>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<MailStatsType> getStats(@Parameter(in = ParameterIn.QUERY, description = "The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`." ,schema=@Schema(allowableValues={ "all", "billing", "month", "7d", "24h", "day", "1h" }
+    public ResponseEntity<MailStatsType> getStats(@Parameter(in = ParameterIn.QUERY, description = "The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`." ,schema=@Schema(allowableValues={ "all", "billing", "month", "7d", "24h", "day", "1h" }
 , defaultValue="1h")) @Valid @RequestParam(value = "time", required = false, defaultValue="1h") String time
 ) {
         String accept = request.getHeader("Accept");
@@ -202,11 +202,11 @@ public class MailApiController implements MailApi {
 
     public ResponseEntity<GenericResponse> sendAdvMail(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="subject", required=true)  String subject
 ,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="body", required=true)  String body
-,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="from", required=true)  EmailAddressTypes from
-,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="to", required=true)  EmailAddressesTypes to
-,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="replyto", required=true)  EmailAddressesTypes replyto
-,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="cc", required=true)  EmailAddressesTypes cc
-,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="bcc", required=true)  EmailAddressesTypes bcc
+,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="from", required=true)  Object from
+,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="to", required=true)  Object to
+,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="replyto", required=true)  Object replyto
+,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="cc", required=true)  Object cc
+,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="bcc", required=true)  Object bcc
 ,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="attachments", required=true)  List<MailAttachment> attachments
 ,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true,schema=@Schema()) @RequestParam(value="id", required=true)  Long id
 ) {
@@ -249,7 +249,7 @@ public class MailApiController implements MailApi {
 ,@Parameter(in = ParameterIn.QUERY, description = "Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved." ,schema=@Schema()) @Valid @RequestParam(value = "to", required = false) String to
 ,@Parameter(in = ParameterIn.QUERY, description = "Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text." ,schema=@Schema()) @Valid @RequestParam(value = "subject", required = false) String subject
 ,@Size(min=18,max=19) @Parameter(in = ParameterIn.QUERY, description = "Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`." ,schema=@Schema()) @Valid @RequestParam(value = "mailid", required = false) String mailid
-,@Parameter(in = ParameterIn.QUERY, description = "Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`." ,schema=@Schema()) @Valid @RequestParam(value = "messageId", required = false) String messageId
+,@Parameter(in = ParameterIn.QUERY, description = "Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`." ,schema=@Schema()) @Valid @RequestParam(value = "messageId", required = false) String messageId
 ,@Parameter(in = ParameterIn.QUERY, description = "Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set." ,schema=@Schema()) @Valid @RequestParam(value = "replyto", required = false) String replyto
 ,@Parameter(in = ParameterIn.QUERY, description = "Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address." ,schema=@Schema()) @Valid @RequestParam(value = "headerfrom", required = false) String headerfrom
 ,@Parameter(in = ParameterIn.QUERY, description = "Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status." ,schema=@Schema(allowableValues={ "0", "1" }
@@ -258,15 +258,19 @@ public class MailApiController implements MailApi {
 , defaultValue="0")) @Valid @RequestParam(value = "skip", required = false, defaultValue="0") Integer skip
 ,@Min(1) @Max(10000) @Parameter(in = ParameterIn.QUERY, description = "Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages." ,schema=@Schema(allowableValues={ "1", "10000" }, minimum="1", maximum="10000"
 , defaultValue="100")) @Valid @RequestParam(value = "limit", required = false, defaultValue="100") Integer limit
-,@Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included." ,schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999"
-)) @Valid @RequestParam(value = "startDate", required = false) Long startDate
-,@Min(0L) @Max(9999999999L) @Parameter(in = ParameterIn.QUERY, description = "Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included." ,schema=@Schema(allowableValues={ "0", "9999999999" }, maximum="9999999999"
-)) @Valid @RequestParam(value = "endDate", required = false) Long endDate
+,@Parameter(in = ParameterIn.QUERY, description = "Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included." ,schema=@Schema()) @Valid @RequestParam(value = "startDate", required = false) StartDate startDate
+,@Parameter(in = ParameterIn.QUERY, description = "Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included." ,schema=@Schema()) @Valid @RequestParam(value = "endDate", required = false) EndDate endDate
+,@Parameter(in = ParameterIn.QUERY, description = "Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order)." ,schema=@Schema(allowableValues={ "time" }
+, defaultValue="time")) @Valid @RequestParam(value = "sort", required = false, defaultValue="time") String sort
+,@Parameter(in = ParameterIn.QUERY, description = "Sort direction.  `desc` returns newest first (default), `asc` returns oldest first." ,schema=@Schema(allowableValues={ "asc", "desc" }
+, defaultValue="desc")) @Valid @RequestParam(value = "dir", required = false, defaultValue="desc") String dir
+,@Parameter(in = ParameterIn.QUERY, description = "Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode." ,schema=@Schema(allowableValues={ "message", "recipient" }
+, defaultValue="recipient")) @Valid @RequestParam(value = "groupby", required = false, defaultValue="recipient") String groupby
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<MailLog>(objectMapper.readValue("{\n  \"emails\" : [ {\n    \"_id\" : 103172,\n    \"id\" : \"17c7eda538e0005d03\",\n    \"from\" : \"person@mysite.com\",\n    \"to\" : \"client@isp.com\",\n    \"subject\" : \"sell 0.005 shares\",\n    \"messageId\" : \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",\n    \"created\" : \"2021-10-14 08:50:10\",\n    \"time\" : 1634215809,\n    \"user\" : \"mb5658\",\n    \"transtype\" : \"ESMTPSA\",\n    \"origin\" : \"199.231.189.154\",\n    \"interface\" : \"feeder\",\n    \"sendingZone\" : \"interserver\",\n    \"bodySize\" : 63,\n    \"seq\" : 1,\n    \"delivered\" : 1,\n    \"recipient\" : \"client@isp.com\",\n    \"domain\" : \"interserver.net\",\n    \"locked\" : 1,\n    \"lockTime\" : \"1634215818533\",\n    \"assigned\" : \"relay1\",\n    \"queued\" : \"2021-10-14T12:50:15.487Z\",\n    \"mxHostname\" : \"mx.j.is.cc\",\n    \"response\" : \"250 2.0.0 Ok queued as C91D83E128C\"\n  }, {\n    \"_id\" : 103172,\n    \"id\" : \"17c7eda538e0005d03\",\n    \"from\" : \"person@mysite.com\",\n    \"to\" : \"client@isp.com\",\n    \"subject\" : \"sell 0.005 shares\",\n    \"messageId\" : \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",\n    \"created\" : \"2021-10-14 08:50:10\",\n    \"time\" : 1634215809,\n    \"user\" : \"mb5658\",\n    \"transtype\" : \"ESMTPSA\",\n    \"origin\" : \"199.231.189.154\",\n    \"interface\" : \"feeder\",\n    \"sendingZone\" : \"interserver\",\n    \"bodySize\" : 63,\n    \"seq\" : 1,\n    \"delivered\" : 1,\n    \"recipient\" : \"client@isp.com\",\n    \"domain\" : \"interserver.net\",\n    \"locked\" : 1,\n    \"lockTime\" : \"1634215818533\",\n    \"assigned\" : \"relay1\",\n    \"queued\" : \"2021-10-14T12:50:15.487Z\",\n    \"mxHostname\" : \"mx.j.is.cc\",\n    \"response\" : \"250 2.0.0 Ok queued as C91D83E128C\"\n  } ],\n  \"total\" : 10234,\n  \"limit\" : 100,\n  \"skip\" : 0\n}", MailLog.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<MailLog>(objectMapper.readValue("{\n  \"emails\" : [ {\n    \"_id\" : 103172,\n    \"id\" : \"17c7eda538e0005d03\",\n    \"from\" : \"person@mysite.com\",\n    \"to\" : \"client@isp.com\",\n    \"subject\" : \"sell 0.005 shares\",\n    \"messageId\" : \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",\n    \"created\" : \"2021-10-14 08:50:10\",\n    \"time\" : 1634215809,\n    \"user\" : \"mb5658\",\n    \"transtype\" : \"ESMTPSA\",\n    \"origin\" : \"199.231.189.154\",\n    \"interface\" : \"feeder\",\n    \"sendingZone\" : \"interserver\",\n    \"bodySize\" : 63,\n    \"seq\" : 1,\n    \"delivered\" : 1,\n    \"code\" : 250,\n    \"recipient\" : \"client@isp.com\",\n    \"domain\" : \"interserver.net\",\n    \"locked\" : 1,\n    \"lockTime\" : \"1634215818533\",\n    \"assigned\" : \"relay1\",\n    \"queued\" : \"2021-10-14T12:50:15.487Z\",\n    \"mxHostname\" : \"mx.j.is.cc\",\n    \"response\" : \"250 2.0.0 Ok queued as C91D83E128C\"\n  }, {\n    \"_id\" : 103172,\n    \"id\" : \"17c7eda538e0005d03\",\n    \"from\" : \"person@mysite.com\",\n    \"to\" : \"client@isp.com\",\n    \"subject\" : \"sell 0.005 shares\",\n    \"messageId\" : \"<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>\",\n    \"created\" : \"2021-10-14 08:50:10\",\n    \"time\" : 1634215809,\n    \"user\" : \"mb5658\",\n    \"transtype\" : \"ESMTPSA\",\n    \"origin\" : \"199.231.189.154\",\n    \"interface\" : \"feeder\",\n    \"sendingZone\" : \"interserver\",\n    \"bodySize\" : 63,\n    \"seq\" : 1,\n    \"delivered\" : 1,\n    \"code\" : 250,\n    \"recipient\" : \"client@isp.com\",\n    \"domain\" : \"interserver.net\",\n    \"locked\" : 1,\n    \"lockTime\" : \"1634215818533\",\n    \"assigned\" : \"relay1\",\n    \"queued\" : \"2021-10-14T12:50:15.487Z\",\n    \"mxHostname\" : \"mx.j.is.cc\",\n    \"response\" : \"250 2.0.0 Ok queued as C91D83E128C\"\n  } ],\n  \"total\" : 10234,\n  \"limit\" : 100,\n  \"skip\" : 0\n}", MailLog.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<MailLog>(HttpStatus.INTERNAL_SERVER_ERROR);

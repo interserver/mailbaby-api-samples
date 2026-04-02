@@ -37,3 +37,4 @@ models/SendMail.gd
 models/SendMailAdv.gd
 models/SendMailRaw.gd
 models/SendMailTo.gd
+models/ViewMailLogStartDateParameter.gd

@@ -190,7 +190,7 @@ font-style: italic;
 | Endpoint | Best for | |----------|----------| | <code>POST /mail/send</code> | Simple single-recipient messages | | <code>POST /mail/advsend</code> | Multiple recipients, CC/BCC, attachments, named contacts | | <code>POST /mail/rawsend</code> | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |</p>
 <p>After a successful send each endpoint returns a <code>GenericResponse</code> whose <code>text</code> field contains the <strong>transaction ID</strong> assigned by the relay.  This ID can later be matched against entries in <code>GET /mail/log</code> via the <code>mailid</code> query parameter.</p>
 <h1>Filtering &amp; Logs</h1>
-<p><code>GET /mail/log</code> provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. <code>from</code>, <code>to</code>, <code>subject</code>, <code>messageId</code>, <code>origin</code>, <code>mx</code>, <code>startDate</code>/<code>endDate</code>, and <code>delivered</code>.</p>
+<p><code>GET /mail/log</code> provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. <code>from</code>, <code>to</code>, <code>subject</code>, <code>messageId</code>, <code>origin</code>, <code>mx</code>, <code>startDate</code>/<code>endDate</code>, and <code>delivered</code>.</p>
 <h1>Blocking</h1>
 <p>Two independent mechanisms exist for suppressing unwanted email:</p>
 <ul>
@@ -284,7 +284,7 @@ and <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> are permitted
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional SMTP username of the mail order to associate this rule with (e.g. <code>mb20682</code>).  If omitted the first active order is used.  Valid usernames are the <code>username</code> values returned by <code>GET /mail</code>. default: null </div><div class="param">type (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The type of deny rule. default: null </div><div class="param">data (required)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The matching strategy for this rule.  <code>email</code> blocks an exact sender address, <code>domain</code> blocks all senders at a domain, <code>destination</code> blocks an exact recipient address, and <code>startswith</code> blocks any sender whose local-part begins with the given prefix. default: null </div><div class="param">data (required)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The value to match against, interpreted according to <code>type</code>: a full email address for <code>email</code>/<code>destination</code>, a domain name for <code>domain</code>, or an alphanumeric prefix string for <code>startswith</code>. default: null </div>
     </div>  <!-- field-items -->
@@ -463,7 +463,7 @@ and <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> are permitted
     This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
     <ul>
       <li><code>application/json</code></li>
-      <li><code>multipart/form-data</code></li>
+      <li><code>application/x-www-form-urlencoded</code></li>
     </ul>
 
     <h3 class="field-label">Request body</h3>
@@ -742,7 +742,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="field-items">
       <div class="param">time (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The time window to scope <code>received</code>, <code>sent</code>, and <code>volume</code> statistics. Does not affect <code>usage</code> or <code>cost</code>, which are always calculated over the current billing cycle.  Defaults to <code>1h</code>. default: 1h </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The time window to scope <code>received</code>, <code>sent</code>, and <code>volume</code> statistics. Does not affect <code>usage</code> or <code>cost</code>, which are always calculated over the current billing cycle. Defaults to <code>1h</code>. default: 1h </div>
     </div>  <!-- field-items -->
 
 
@@ -815,8 +815,10 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
     <div class="method-summary">Displays the mail log (<span class="nickname">viewMailLog</span>)</div>
     <div class="method-notes"><p>Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.</p>
-<p><strong>Pagination</strong> is controlled by <code>skip</code> and <code>limit</code>.  The response includes a <code>total</code> count so clients can determine how many pages exist.</p>
-<p><strong>Date filtering</strong> uses Unix timestamps (<code>startDate</code> / <code>endDate</code>).  For example, to retrieve emails sent in January 2024: <code>startDate=1704067200&amp;endDate=1706745599</code>.</p>
+<p><strong>Row grouping</strong> is controlled by the <code>groupby</code> parameter.  By default (<code>groupby=recipient</code>), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own <code>recipient</code>, <code>delivered</code>, <code>response</code>, and <code>mxHostname</code> values.  Set <code>groupby=message</code> to collapse to one row per message (delivery fields will reflect one arbitrary recipient).</p>
+<p><strong>Pagination</strong> is controlled by <code>skip</code> and <code>limit</code>.  The <code>total</code> in the response reflects the row count <strong>after</strong> grouping, so it matches the number of pages you need to fetch.</p>
+<p><strong>Date filtering</strong> accepts either a Unix timestamp (integer) or a date string parseable by PHP <code>strtotime()</code> such as <code>2024-01-15</code>, <code>last monday</code>, or <code>2024-01-01 00:00:00</code>.  Examples: <code>startDate=1704067200&amp;endDate=1706745599</code> or <code>startDate=2024-01-01&amp;endDate=2024-01-31</code>.</p>
+<p><strong>Sorting</strong> is controlled by <code>sort</code> and <code>dir</code>.  Currently the only sort key is <code>time</code> (default), which orders by internal row ID.</p>
 <p><strong>Delivery status</strong> can be filtered with the <code>delivered</code> parameter: <code>delivered=1</code> returns only successfully delivered messages; <code>delivered=0</code> returns messages still in queue or that failed.</p>
 <p><strong>Address filtering</strong> distinguishes between the SMTP envelope address (<code>from</code>, <code>to</code>) and message headers (<code>headerfrom</code> for the <code>From:</code> header, <code>replyto</code> for <code>Reply-To:</code>). These may differ when a message is sent on behalf of another address.</p>
 <p>The <code>mailid</code> parameter corresponds to the <code>id</code> field in the returned <code>MailLogEntry</code> objects, <strong>not</strong> the <code>_id</code> field.  It also matches the transaction ID returned in the <code>text</code> field of a successful send response from <code>/mail/send</code>, <code>/mail/advsend</code>, or <code>/mail/rawsend</code>.</p>
@@ -845,7 +847,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the relay-assigned mail ID string (exact match).  This corresponds to the <code>id</code> field in <code>MailLogEntry</code> and to the <code>text</code> value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as <code>185997065c60008840</code>. default: null </div><div class="param">messageId (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the <code>Message-ID</code> email header using a substring (case-insensitive) match.  The <code>Message-ID</code> is assigned by the sending mail client and is visible in the <code>messageId</code> field of <code>MailLogEntry</code>.  Useful when you know the message ID generated by your application but not the relay <code>mailid</code>. default: null </div><div class="param">replyto (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the <code>Message-ID</code> email header using a substring (case-insensitive) match. The <code>Message-ID</code> is assigned by the sending mail client and is visible in the <code>messageId</code> field of <code>MailLogEntry</code>.  Useful when you know the message ID generated by your application but not the relay <code>mailid</code>. default: null </div><div class="param">replyto (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Filter by the <code>Reply-To</code> message header address (exact match).  Only returns messages where this header was explicitly set. default: null format: email</div><div class="param">headerfrom (optional)</div>
 
@@ -857,9 +859,15 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Maximum number of records to return per page.  Defaults to <code>100</code>. Maximum allowed value is <code>10000</code>.  The response also includes a <code>total</code> field with the full matched count so you can calculate the number of pages. default: 100 format: int32</div><div class="param">startDate (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a <code>time</code> value <strong>greater than or equal to</strong> this value will be included. default: null format: int64</div><div class="param">endDate (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by <code>strtotime()</code> such as <code>2024-01-15</code> or <code>last monday</code>.  Messages with a <code>time</code> value <strong>greater than or equal to</strong> this value will be included. default: null </div><div class="param">endDate (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a <code>time</code> value <strong>less than or equal to</strong> this value will be included. default: null format: int64</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by <code>strtotime()</code> such as <code>2024-01-31</code> or <code>yesterday</code>. Messages with a <code>time</code> value <strong>less than or equal to</strong> this value will be included. default: null </div><div class="param">sort (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Field to sort results by.  Currently only <code>time</code> is supported (sorts by internal row ID which corresponds to chronological order). default: time </div><div class="param">dir (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Sort direction.  <code>desc</code> returns newest first (default), <code>asc</code> returns oldest first. default: desc </div><div class="param">groupby (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Controls how results are grouped.  <code>recipient</code> (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own <code>recipient</code>, <code>delivered</code>, <code>response</code>, and delivery metadata.  <code>message</code> collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The <code>total</code> count in the response matches the grouping mode. default: recipient </div>
     </div>  <!-- field-items -->
 
 
@@ -891,6 +899,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     "bodySize" : 63,
     "seq" : 1,
     "delivered" : 1,
+    "code" : 250,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -916,6 +925,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     "bodySize" : 63,
     "seq" : 1,
     "delivered" : 1,
+    "code" : 250,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -956,6 +966,9 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: </div>
     <pre class="example"><code></code></pre>
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
     <h4 class="field-label">400</h4>
     Bad request — one or more input parameters were missing or invalid.
         <a href="#ErrorMessage">ErrorMessage</a>
@@ -977,7 +990,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/rawsend</code></pre></div>
     <div class="method-summary">Sends a raw RFC 822 email (<span class="nickname">rawMail</span>)</div>
     <div class="method-notes"><p>Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.</p>
-<p>This endpoint is particularly useful when the message has already been <strong>DKIM-signed</strong> — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.</p>
+<p>This endpoint is particularly useful when the message has already been <strong>DKIM-signed</strong> — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.</p>
 <p>The <code>From</code> and recipient addresses are parsed automatically from the message headers (<code>From</code>, <code>To</code>, <code>Cc</code>, <code>Bcc</code>).  You do <strong>not</strong> need to specify them separately.</p>
 <p>If an <code>id</code> is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.</p>
 <p>On success the response <code>text</code> field contains the relay transaction ID.  This ID can be used with <code>GET /mail/log</code> (via the <code>mailid</code> query parameter) to look up the delivery record.</p>
@@ -1138,15 +1151,15 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The email body.  If the string contains any HTML tags the message is automatically sent as <code>text/html</code>; otherwise it is sent as <code>text/plain</code>. default: null </div><div class="param">from (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">to (required)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; The sender address.  Accepts a plain email string, an RFC 822 named string (<code>&quot;Name &lt;email&gt;&quot;</code>), or a <code>{&quot;email&quot;: &quot;...&quot;, &quot;name&quot;: &quot;...&quot;}</code> object. default: null </div><div class="param">to (required)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">replyto (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. default: null </div><div class="param">replyto (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">cc (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional.  One or more addresses to set as the <code>Reply-To</code> header. When recipients reply to the message their email client will address the reply to these addresses instead of <code>from</code>. default: null </div><div class="param">cc (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">bcc (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional.  Carbon-copy recipients.  These addresses are listed in the <code>Cc</code> header and are visible to all recipients. default: null </div><div class="param">bcc (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  default: null </div><div class="param">attachments (optional)</div>
+      <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. default: null </div><div class="param">attachments (optional)</div>
 
       <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash; Optional list of file attachments.  Each file must be base64-encoded. Include <code>filename</code> so recipients see a meaningful attachment name. default: null </div><div class="param">id (optional)</div>
 
@@ -1487,7 +1500,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /ping</code></pre></div>
     <div class="method-summary">Checks if the server is running (<span class="nickname">pingServer</span>)</div>
-    <div class="method-notes">A lightweight health-check endpoint.  Returns a plain-text <code>200 OK</code> when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.</div>
+    <div class="method-notes">A lightweight health-check endpoint.  Returns the plain-text string <code>Server is up and running</code> with a <code>200</code> status when the API server is reachable.  <strong>No authentication is required.</strong> Useful for uptime monitoring, load-balancer health checks, and smoke tests.</div>
 
 
 
@@ -1495,15 +1508,29 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 
 
 
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      String
+    </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
 
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Server is up and running
-        <a href="#"></a>
+        <a href="#String">String</a>
     <h4 class="field-label">default</h4>
     Something is wrong
         <a href="#"></a>
@@ -1538,6 +1565,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
     <li><a href="#SendMailRaw"><code>SendMailRaw</code> - SendMailRaw</a></li>
     <li><a href="#SendMailTo"><code>SendMailTo</code> - SendMailTo</a></li>
+    <li><a href="#viewMailLog_startDate_parameter"><code>viewMailLog_startDate_parameter</code> - </a></li>
   </ol>
 
   <div class="model">
@@ -1548,7 +1576,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 </ul>
 </div>
     <div class="field-items">
-      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
+      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The matching strategy for this rule.  <code>email</code> blocks an exact sender address, <code>domain</code> blocks all senders at a domain, <code>destination</code> blocks an exact recipient address, and <code>startswith</code> blocks any sender whose local-part begins with the given prefix. </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div><div class="param-enum">destination</div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The value to match against, interpreted according to <code>type</code>: a full email address for <code>email</code>/<code>destination</code>, a domain name for <code>domain</code>, or an alphanumeric prefix string for <code>startswith</code>. </div>
@@ -1559,7 +1587,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <h3><a name="DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>A complete deny rule record as returned by <code>GET /mail/rules</code>.  Combines the rule definition fields (<code>DenyRuleNew</code>) with server-assigned metadata (<code>id</code> and <code>created</code>).  The <code>id</code> value is required by <code>DELETE /mail/rules/{ruleId}</code>.</div>
     <div class="field-items">
-      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The type of deny rule. </div>
+      <div class="param">type </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The matching strategy for this rule.  <code>email</code> blocks an exact sender address, <code>domain</code> blocks all senders at a domain, <code>destination</code> blocks an exact recipient address, and <code>startswith</code> blocks any sender whose local-part begins with the given prefix. </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">domain</div><div class="param-enum">email</div><div class="param-enum">startswith</div><div class="param-enum">destination</div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The value to match against, interpreted according to <code>type</code>: a full email address for <code>email</code>/<code>destination</code>, a domain name for <code>domain</code>, or an alphanumeric prefix string for <code>startswith</code>. </div>
@@ -1615,8 +1643,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <h3><a name="GenericResponse"><code>GenericResponse</code> - GenericResponse</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>Standard success response returned by write operations (send, add rule, delete, etc.).  The <code>status</code> field is always <code>&quot;ok&quot;</code> on success.  The <code>text</code> field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.</div>
     <div class="field-items">
-      <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Always <code>&quot;ok&quot;</code> on success. </div>
-<div class="param">text (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Operation-specific result string.  For send operations this is the relay transaction ID (e.g. <code>185caa69ff7000f47c</code>) which can be used as the <code>mailid</code> parameter in <code>GET /mail/log</code>.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation. </div>
+      <div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Always <code>&quot;ok&quot;</code> on success. </div>
+<div class="param">text </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Operation-specific result string.  For send operations this is the relay transaction ID (e.g. <code>185caa69ff7000f47c</code>) which can be used as the <code>mailid</code> parameter in <code>GET /mail/log</code>.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1648,7 +1676,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
   </div>
   <div class="model">
     <h3><a name="MailBlocks"><code>MailBlocks</code> - MailBlocks</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'>The complete set of blocked addresses and message patterns returned by <code>GET /mail/blocks</code>.  Three independent block sources are combined into one response. Use <code>POST /mail/blocks/delete</code> with a <code>from</code> address from any entry to delist it.</div>
+    <div class='model-description'>The complete set of blocked addresses and message patterns returned by <code>GET /mail/blocks</code>. Three independent block sources are combined into one response. Use <code>POST /mail/blocks/delete</code> with a <code>from</code> address from any entry to delist it.</div>
     <div class="field-items">
       <div class="param">local </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span> Messages flagged by the <code>LOCAL_BL_RCPT</code> rspamd rule in the last 5 days. These are messages sent to recipients on a local block list. </div>
 <div class="param">mbtrap </div><div class="param-desc"><span class="param-type"><a href="#MailBlockClickHouse">array[MailBlockClickHouse]</a></span> Messages flagged by the <code>MBTRAP</code> rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection. </div>
@@ -1695,6 +1723,7 @@ flagged sender.</li>
 <div class="param">bodySize (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Size of the message body in bytes. </div>
 <div class="param">seq (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Sequence index of this recipient in a multi-recipient message. Starts at 1. </div>
 <div class="param">delivered (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> Delivery status flag.  <code>1</code> = successfully delivered to destination MX. <code>0</code> = queued, deferred, or failed.  <code>null</code> = delivery not yet attempted. Corresponds to the <code>delivered</code> filter parameter on <code>GET /mail/log</code>. </div>
+<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The SMTP response code from the destination MX server (e.g. <code>250</code> for success, <code>550</code> for permanent failure). </div>
 <div class="param">response (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP response string received from the destination MX server upon delivery attempt (e.g. <code>&quot;250 2.0.0 Ok queued as C91D83E128C&quot;</code>). </div>
 <div class="param">recipient (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The specific recipient address this delivery record is for. </div>
 <div class="param">domain (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The destination domain.  Corresponds to the <code>mx</code> filter parameter (which matches <code>mxHostname</code>, not <code>domain</code>) on <code>GET /mail/log</code>. </div>
@@ -1711,8 +1740,10 @@ flagged sender.</li>
     <div class="field-items">
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The unique numeric ID of the mail order.  Used as the <code>id</code> parameter on sending calls, log queries, and stats queries. format: int32</div>
 <div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current order status.  Only <code>active</code> orders can be used for sending. <code>canceled</code> orders are retained for history but cannot send. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">active</div><div class="param-enum">canceled</div>
 <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP AUTH username for this order, always in the format <code>mb&lt;id&gt;</code>. Use together with the password from <code>GET /mail/{id}</code> to authenticate directly against <code>relay.mailbaby.net:25</code> if needed. </div>
-<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional human-readable note associated with the order. </div>
+<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1721,9 +1752,11 @@ flagged sender.</li>
     <div class="field-items">
       <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> The unique numeric ID of the mail order.  Used as the <code>id</code> parameter on sending calls, log queries, and stats queries. format: int32</div>
 <div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current order status.  Only <code>active</code> orders can be used for sending. <code>canceled</code> orders are retained for history but cannot send. </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">active</div><div class="param-enum">canceled</div>
 <div class="param">username </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The SMTP AUTH username for this order, always in the format <code>mb&lt;id&gt;</code>. Use together with the password from <code>GET /mail/{id}</code> to authenticate directly against <code>relay.mailbaby.net:25</code> if needed. </div>
 <div class="param">password </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The current SMTP AUTH password for this mail order.  Use with the <code>username</code> field to authenticate against <code>relay.mailbaby.net:25</code>. </div>
-<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional human-readable note associated with the order. </div>
+<div class="param">comment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1772,11 +1805,11 @@ flagged sender.</li>
     <div class="field-items">
       <div class="param">subject </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The subject line of the email. </div>
 <div class="param">body </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The email body.  If the string contains any HTML tags the message is automatically sent as <code>text/html</code>; otherwise it is sent as <code>text/plain</code>. </div>
-<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressTypes">EmailAddressTypes</a></span>  </div>
-<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
-<div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
-<div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
-<div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span>  </div>
+<div class="param">from </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressTypes">EmailAddressTypes</a></span> The sender address.  Accepts a plain email string, an RFC 822 named string (<code>&quot;Name &lt;email&gt;&quot;</code>), or a <code>{&quot;email&quot;: &quot;...&quot;, &quot;name&quot;: &quot;...&quot;}</code> object. </div>
+<div class="param">to </div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span> One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. </div>
+<div class="param">replyto (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span> Optional.  One or more addresses to set as the <code>Reply-To</code> header. When recipients reply to the message their email client will address the reply to these addresses instead of <code>from</code>. </div>
+<div class="param">cc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span> Optional.  Carbon-copy recipients.  These addresses are listed in the <code>Cc</code> header and are visible to all recipients. </div>
+<div class="param">bcc (optional)</div><div class="param-desc"><span class="param-type"><a href="#EmailAddressesTypes">EmailAddressesTypes</a></span> Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. </div>
 <div class="param">attachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#MailAttachment">array[MailAttachment]</a></span> Optional list of file attachments.  Each file must be base64-encoded. Include <code>filename</code> so recipients see a meaningful attachment name. </div>
 <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by <code>GET /mail</code>. format: int64</div>
     </div>  <!-- field-items -->
@@ -1794,6 +1827,12 @@ flagged sender.</li>
   <div class="model">
     <h3><a name="SendMailTo"><code>SendMailTo</code> - SendMailTo</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="viewMailLog_startDate_parameter"><code>viewMailLog_startDate_parameter</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
     <div class="field-items">
           </div>  <!-- field-items -->
   </div>

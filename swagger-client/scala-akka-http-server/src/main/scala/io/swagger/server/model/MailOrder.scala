@@ -9,7 +9,7 @@ package io.swagger.server.model
  * @param id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. for example: ''21472''
  * @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. for example: ''active''
  * @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. for example: ''mb21472''
- * @param comment Optional human-readable note associated with the order.
+ * @param comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
  */
 case class MailOrder (
   id: Int,

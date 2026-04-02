@@ -12,7 +12,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description="A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.")
 
 public class MailLogEntry   {
-  private Integer _id = null;  private String id = null;  private String from = null;  private String to = null;  private String subject = null;  private String messageId = null;  private String created = null;  private Integer time = null;  private String user = null;  private String transtype = null;  private String origin = null;  private String _interface = null;  private String sendingZone = null;  private Integer bodySize = null;  private Integer seq = null;  private Integer delivered = null;  private String response = null;  private String recipient = null;  private String domain = null;  private Integer locked = null;  private String lockTime = null;  private String assigned = null;  private String queued = null;  private String mxHostname = null;
+  private Integer _id = null;  private String id = null;  private String from = null;  private String to = null;  private String subject = null;  private String messageId = null;  private String created = null;  private Integer time = null;  private String user = null;  private String transtype = null;  private String origin = null;  private String _interface = null;  private String sendingZone = null;  private Integer bodySize = null;  private Integer seq = null;  private Integer delivered = null;  private Integer code = null;  private String response = null;  private String recipient = null;  private String domain = null;  private Integer locked = null;  private String lockTime = null;  private String assigned = null;  private String queued = null;  private String mxHostname = null;
 
   /**
    * Internal auto-increment database row ID.  Not meaningful outside the API.
@@ -35,7 +35,7 @@ public class MailLogEntry   {
   @Schema(example = "17c7eda538e0005d03", required = true, description = "The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.")
   @JsonProperty("id")
   @NotNull
-  public String getId() {
+ @Size(min=18,max=19)  public String getId() {
     return id;
   }
   public void setId(String id) {
@@ -233,6 +233,19 @@ public class MailLogEntry   {
   }
 
   /**
+   * The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).
+   **/
+  
+  @Schema(example = "250", description = "The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).")
+  @JsonProperty("code")
+  public Integer getCode() {
+    return code;
+  }
+  public void setCode(Integer code) {
+    this.code = code;
+  }
+
+  /**
    * The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).
    **/
   
@@ -362,6 +375,7 @@ public class MailLogEntry   {
         Objects.equals(bodySize, mailLogEntry.bodySize) &&
         Objects.equals(seq, mailLogEntry.seq) &&
         Objects.equals(delivered, mailLogEntry.delivered) &&
+        Objects.equals(code, mailLogEntry.code) &&
         Objects.equals(response, mailLogEntry.response) &&
         Objects.equals(recipient, mailLogEntry.recipient) &&
         Objects.equals(domain, mailLogEntry.domain) &&
@@ -374,7 +388,7 @@ public class MailLogEntry   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, delivered, response, recipient, domain, locked, lockTime, assigned, queued, mxHostname);
+    return Objects.hash(_id, id, from, to, subject, messageId, created, time, user, transtype, origin, _interface, sendingZone, bodySize, seq, delivered, code, response, recipient, domain, locked, lockTime, assigned, queued, mxHostname);
   }
 
   @Override
@@ -398,6 +412,7 @@ public class MailLogEntry   {
     sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
     sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
     sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
     sb.append("    domain: ").append(toIndentedString(domain)).append("\n");

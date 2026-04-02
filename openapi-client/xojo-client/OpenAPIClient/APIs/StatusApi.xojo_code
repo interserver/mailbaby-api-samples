@@ -4,11 +4,13 @@ Protected Class StatusApi
 		Sub PingServer()
 		  // Operation pingServer
 		  // Checks if the server is running
+		  // - 
 		  //
-		  // Invokes StatusApiCallbackHandler.PingServerCallback() on completion. 
+		  // Invokes StatusApiCallbackHandler.PingServerCallback(String) on completion. 
 		  //
 		  // - GET /ping
-		  // - A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+		  // - A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+		  // - defaultResponse: Sample
 		  //
 		  // - API Key:
 		  //   - type: apiKey X-API-KEY (HEADER)
@@ -29,8 +31,9 @@ Protected Class StatusApi
 		  
 		  
 		  
-		  AddHandler localVarHTTPSocket.PageReceived, addressof Me.PingServer_handler
+		  AddHandler localVarHTTPSocket.PageReceived, addressof me.PingServer_handler
 		  AddHandler localVarHTTPSocket.Error, addressof Me.PingServer_error
+		  
 		  
 		  localVarHTTPSocket.SendRequest("GET", Me.BasePath + localVarPath)
 		  if localVarHTTPSocket.LastErrorCode <> 0 then
@@ -41,29 +44,66 @@ Protected Class StatusApi
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Function PingServerPrivateFuncDeserializeResponse(HTTPStatus As Integer, Headers As InternetHeaders, error As OpenAPIClient.OpenAPIClientException, Content As String, ByRef outData As String) As Boolean
+		  Dim contentType As String = Headers.Value("Content-Type")
+		  Dim contentEncoding As TextEncoding = OpenAPIClient.EncodingFromContentType(contentType)
+		  Content = DefineEncoding(Content, contentEncoding)
+		  
+		  If HTTPStatus > 199 and HTTPStatus < 300 then
+		    If contentType.LeftB(16) = "application/json" then
+		      outData = Content
+		      
+		      
+		    ElseIf contentType.LeftB(19) = "multipart/form-data" then
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    ElseIf contentType.LeftB(33) = "application/x-www-form-urlencoded" then
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    Else
+		      error.Message = "Unsupported media type: " + contentType
+		      error.ErrorNumber = kErrorUnsupportedMediaType
+		      Return False
+
+		    End If
+		  Else
+		    error.Message = error.Message + ". " + Content
+			error.ErrorNumber = kErrorHTTPFail
+		    Return False
+		  End If
+		  
+		  Return True
+		End Function
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub PingServer_error(sender As HTTPSecureSocket, Code As Integer)
 		  If sender <> nil Then sender.Close()
 
 		  Dim error As New OpenAPIClient.OpenAPIClientException(Code)
-		  CallbackHandler.PingServerCallback(error)
+		  Dim data As String
+		  CallbackHandler.PingServerCallback(error, data)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub PingServer_handler(sender As HTTPSecureSocket, URL As String, HTTPStatus As Integer, Headers As InternetHeaders, Content As String)
 		  #Pragma Unused URL
-		  #Pragma Unused Headers
-		  #Pragma Unused Content
+		  
 
 		  If sender <> nil Then sender.Close()
 		  
-		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", "")
+		  Dim error As New OpenAPIClient.OpenAPIClientException(HTTPStatus, "", Content)
 		  
+		  Dim data As String
+		  Call PingServerPrivateFuncDeserializeResponse(HTTPStatus, Headers, error, Content, data)
 		  
-		  
-		  CallbackHandler.PingServerCallback(error)
+		  CallbackHandler.PingServerCallback(error, data)
 		End Sub
 	#tag EndMethod
 

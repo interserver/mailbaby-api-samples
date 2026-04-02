@@ -20,12 +20,42 @@ public class MailOrder  {
 
   private Integer id;
 
+public enum StatusEnum {
+
+ACTIVE(String.valueOf("active")), CANCELED(String.valueOf("canceled"));
+
+
+    private String value;
+
+    StatusEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+        for (StatusEnum b : StatusEnum.values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}
+
  /**
   * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   */
   @ApiModelProperty(example = "active", required = true, value = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
 
-  private String status;
+  private StatusEnum status;
 
  /**
   * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
@@ -35,9 +65,9 @@ public class MailOrder  {
   private String username;
 
  /**
-  * Optional human-readable note associated with the order.
+  * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
   */
-  @ApiModelProperty(value = "Optional human-readable note associated with the order.")
+  @ApiModelProperty(value = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
 
   private String comment;
  /**
@@ -64,14 +94,17 @@ public class MailOrder  {
   **/
   @JsonProperty("status")
   public String getStatus() {
-    return status;
+    if (status == null) {
+      return null;
+    }
+    return status.value();
   }
 
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
-  public MailOrder status(String status) {
+  public MailOrder status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -95,7 +128,7 @@ public class MailOrder  {
   }
 
  /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    * @return comment
   **/
   @JsonProperty("comment")

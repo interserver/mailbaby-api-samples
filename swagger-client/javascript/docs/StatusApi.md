@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 <a name="pingServer"></a>
 # **pingServer**
-> pingServer()
+> &#x27;String&#x27; pingServer()
 
 Checks if the server is running
 
-A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 
 ### Example
 ```javascript
@@ -30,7 +30,7 @@ apiInstance.pingServer((error, data, response) => {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 });
 ```
@@ -40,7 +40,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+**&#x27;String&#x27;**
 
 ### Authorization
 
@@ -49,5 +49,5 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain
 

@@ -13,6 +13,7 @@
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.view-mail-log-start-date-parameter :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.error-message :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
@@ -34,7 +35,7 @@
   "Sends a raw RFC 822 email
   Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
 The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.
 
@@ -57,7 +58,7 @@ On success the response `text` field contains the relay transaction ID.  This ID
   "Sends a raw RFC 822 email
   Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
 The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.
 

@@ -16,11 +16,19 @@
 typedef struct mail_order_t mail_order_t;
 
 
+// Enum STATUS for mail_order
+
+typedef enum  { mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_NULL = 0, mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_active, mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_canceled } mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e;
+
+char* mail_order_status_ToString(mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e status);
+
+mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e mail_order_status_FromString(char* status);
+
 
 
 typedef struct mail_order_t {
     int *id; //numeric
-    char *status; // string
+    mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e status; //enum
     char *username; // string
     char *comment; // string
 
@@ -29,7 +37,7 @@ typedef struct mail_order_t {
 
 __attribute__((deprecated)) mail_order_t *mail_order_create(
     int *id,
-    char *status,
+    mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e status,
     char *username,
     char *comment
 );

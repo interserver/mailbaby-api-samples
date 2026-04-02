@@ -30,6 +30,7 @@ doc/SendMailTo.md
 doc/SendingApi.md
 doc/ServicesApi.md
 doc/StatusApi.md
+doc/ViewMailLogStartDateParameter.md
 lib/openapi.dart
 lib/src/api.dart
 lib/src/api/blocking_api.dart
@@ -68,6 +69,7 @@ lib/src/model/send_mail.dart
 lib/src/model/send_mail_adv.dart
 lib/src/model/send_mail_raw.dart
 lib/src/model/send_mail_to.dart
+lib/src/model/view_mail_log_start_date_parameter.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/blocking_api_test.dart
@@ -98,3 +100,4 @@ test/send_mail_to_test.dart
 test/sending_api_test.dart
 test/services_api_test.dart
 test/status_api_test.dart
+test/view_mail_log_start_date_parameter_test.dart

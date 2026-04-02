@@ -11,10 +11,10 @@ namespace IO.Swagger.Api
     public interface IStatusApi
     {
         /// <summary>
-        /// Checks if the server is running A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+        /// Checks if the server is running A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
         /// </summary>
-        /// <returns></returns>
-        void PingServer ();
+        /// <returns>string</returns>
+        string PingServer ();
     }
   
     /// <summary>
@@ -71,10 +71,10 @@ namespace IO.Swagger.Api
         public ApiClient ApiClient {get; set;}
     
         /// <summary>
-        /// Checks if the server is running A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+        /// Checks if the server is running A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
         /// </summary>
-        /// <returns></returns>
-        public void PingServer ()
+        /// <returns>string</returns>
+        public string PingServer ()
         {
     
             var path = "/ping";
@@ -98,7 +98,7 @@ namespace IO.Swagger.Api
             else if (((int)response.StatusCode) == 0)
                 throw new ApiException ((int)response.StatusCode, "Error calling PingServer: " + response.ErrorMessage, response.ErrorMessage);
     
-            return;
+            return (string) ApiClient.Deserialize(response.Content, typeof(string), response.Headers);
         }
     
     }

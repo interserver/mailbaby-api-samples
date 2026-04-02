@@ -57,6 +57,7 @@ part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
 part 'model/send_mail_raw.dart';
 part 'model/send_mail_to.dart';
+part 'model/view_mail_log_start_date_parameter.dart';
 
 
 /// An [ApiClient] instance that uses the default values obtained from

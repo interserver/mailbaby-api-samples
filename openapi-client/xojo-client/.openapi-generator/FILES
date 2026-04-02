@@ -63,5 +63,7 @@ OpenAPIClient/Models/SendMailRaw.xojo_code
 OpenAPIClient/Models/SendMailRawOptional.xojo_code
 OpenAPIClient/Models/SendMailTo.xojo_code
 OpenAPIClient/Models/SendMailToOptional.xojo_code
+OpenAPIClient/Models/ViewMailLogStartDateParameter.xojo_code
+OpenAPIClient/Models/ViewMailLogStartDateParameterOptional.xojo_code
 OpenAPIClient/OpenAPIClientException.xojo_code
 README.md

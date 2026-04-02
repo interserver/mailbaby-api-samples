@@ -17,7 +17,7 @@ func _bzz_get_api_name() -> String:
 # Operation pingServer → GET /ping
 # Checks if the server is running
 #
-# A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+# A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 func ping_server(
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
@@ -31,6 +31,11 @@ func ping_server(
 
 	# Collect the headers
 	var bzz_headers := Dictionary()
+	var bzz_mimes_produced_by_server := ['text/plain']
+	for bzz_mime in BZZ_CONSUMABLE_CONTENT_TYPES:
+		if bzz_mime in bzz_mimes_produced_by_server:
+			bzz_headers["Accept"] = bzz_mime
+			break
 
 	# Collect the query parameters
 	# Note: we do not support multiple values for a single param (for now), nor arrays

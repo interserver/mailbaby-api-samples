@@ -11,11 +11,11 @@ Method | HTTP request | Description
 
 ## pingServer
 
-> pingServer(): ApiRequest[Unit]
+> pingServer(): ApiRequest[String]
 
 Checks if the server is running
 
-A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 
 ### Example
 
@@ -46,6 +46,7 @@ object Example extends App {
         case Success(ApiResponse(code, content, headers)) =>
             System.out.println(s"Status code: $code}")
             System.out.println(s"Response headers: ${headers.mkString(", ")}")
+            System.out.println(s"Response body: $content")
         
         case Failure(error @ ApiError(code, message, responseContent, cause, headers)) =>
             System.err.println("Exception when calling StatusApi#pingServer")
@@ -67,8 +68,8 @@ This endpoint does not need any parameter.
 
 ### Return type
 
+ApiRequest[**String**]
 
-ApiRequest[Unit] (empty response body)
 
 ### Authorization
 
@@ -77,7 +78,7 @@ ApiRequest[Unit] (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |

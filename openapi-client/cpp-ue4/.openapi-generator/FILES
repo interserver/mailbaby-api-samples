@@ -37,6 +37,7 @@ Private/OpenAPIServicesApi.cpp
 Private/OpenAPIServicesApiOperations.cpp
 Private/OpenAPIStatusApi.cpp
 Private/OpenAPIStatusApiOperations.cpp
+Private/OpenAPIViewMailLogStartDateParameter.cpp
 Public/OpenAPIBaseModel.h
 Public/OpenAPIBlockingApi.h
 Public/OpenAPIBlockingApiOperations.h
@@ -72,3 +73,4 @@ Public/OpenAPIServicesApi.h
 Public/OpenAPIServicesApiOperations.h
 Public/OpenAPIStatusApi.h
 Public/OpenAPIStatusApiOperations.h
+Public/OpenAPIViewMailLogStartDateParameter.h

@@ -30,6 +30,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 src/PSOpenAPITools/Api/BlockingApi.ps1
 src/PSOpenAPITools/Api/HistoryApi.ps1
 src/PSOpenAPITools/Api/SendingApi.ps1
@@ -59,6 +60,7 @@ src/PSOpenAPITools/Model/SendMail.ps1
 src/PSOpenAPITools/Model/SendMailAdv.ps1
 src/PSOpenAPITools/Model/SendMailRaw.ps1
 src/PSOpenAPITools/Model/SendMailTo.ps1
+src/PSOpenAPITools/Model/ViewMailLogStartDateParameter.ps1
 src/PSOpenAPITools/PSOpenAPITools.psm1
 src/PSOpenAPITools/Private/ApiClient.ps1
 src/PSOpenAPITools/Private/Get-CommonParameters.ps1
@@ -94,3 +96,4 @@ tests/Model/SendMail.Tests.ps1
 tests/Model/SendMailAdv.Tests.ps1
 tests/Model/SendMailRaw.Tests.ps1
 tests/Model/SendMailTo.Tests.ps1
+tests/Model/ViewMailLogStartDateParameter.Tests.ps1

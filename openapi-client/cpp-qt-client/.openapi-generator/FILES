@@ -70,4 +70,6 @@ client/OAIServicesApi.cpp
 client/OAIServicesApi.h
 client/OAIStatusApi.cpp
 client/OAIStatusApi.h
+client/OAIViewMailLog_startDate_parameter.cpp
+client/OAIViewMailLog_startDate_parameter.h
 client/OAIclient.pri

@@ -30,3 +30,4 @@ model/SendMail.hpp
 model/SendMailAdv.hpp
 model/SendMailRaw.hpp
 model/SendMailTo.hpp
+model/ViewMailLog_startDate_parameter.hpp

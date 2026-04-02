@@ -119,6 +119,13 @@ API.Client.MailLogEntry.prototype.seq;
 API.Client.MailLogEntry.prototype.delivered;
 
 /**
+ * The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+ * @type {!number}
+ * @export
+ */
+API.Client.MailLogEntry.prototype.code;
+
+/**
  * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
  * @type {!string}
  * @export

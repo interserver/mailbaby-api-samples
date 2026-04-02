@@ -1,7 +1,7 @@
 /* 
  * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |- -- -- -- -- -|- -- -- -- -- -| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |- -- -- -- -- -|- -- -- -- -- -| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * OpenAPI spec version: 1.4.0
  * Contact: support@interserver.net
@@ -33,14 +33,14 @@ namespace Interserver.MailBaby.Client.Model
         /// </summary>
         /// <param name="subject">The subject line of the email. (required).</param>
         /// <param name="body">The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required).</param>
-        /// <param name="from">from (required).</param>
-        /// <param name="to">to (required).</param>
-        /// <param name="replyto">replyto.</param>
-        /// <param name="cc">cc.</param>
-        /// <param name="bcc">bcc.</param>
+        /// <param name="from">The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; object. (required).</param>
+        /// <param name="to">One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required).</param>
+        /// <param name="replyto">Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;..</param>
+        /// <param name="cc">Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients..</param>
+        /// <param name="bcc">Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header..</param>
         /// <param name="attachments">Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name..</param>
         /// <param name="id">Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;..</param>
-        public SendMailAdv(string subject = default(string), string body = default(string), EmailAddressTypes from = default(EmailAddressTypes), EmailAddressesTypes to = default(EmailAddressesTypes), EmailAddressesTypes replyto = default(EmailAddressesTypes), EmailAddressesTypes cc = default(EmailAddressesTypes), EmailAddressesTypes bcc = default(EmailAddressesTypes), List<MailAttachment> attachments = default(List<MailAttachment>), long? id = default(long?))
+        public SendMailAdv(string subject = default(string), string body = default(string), AllOfSendMailAdvFrom from = default(AllOfSendMailAdvFrom), AllOfSendMailAdvTo to = default(AllOfSendMailAdvTo), AllOfSendMailAdvReplyto replyto = default(AllOfSendMailAdvReplyto), AllOfSendMailAdvCc cc = default(AllOfSendMailAdvCc), AllOfSendMailAdvBcc bcc = default(AllOfSendMailAdvBcc), List<MailAttachment> attachments = default(List<MailAttachment>), long? id = default(long?))
         {
             // to ensure "subject" is required (not null)
             if (subject == null)
@@ -100,34 +100,39 @@ namespace Interserver.MailBaby.Client.Model
         public string body { get; set; }
 
         /// <summary>
-        /// Gets or Sets from
+        /// The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; object.
         /// </summary>
+        /// <value>The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; object.</value>
         [DataMember(Name="from", EmitDefaultValue=false)]
-        public EmailAddressTypes from { get; set; }
+        public AllOfSendMailAdvFrom from { get; set; }
 
         /// <summary>
-        /// Gets or Sets to
+        /// One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
         /// </summary>
+        /// <value>One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.</value>
         [DataMember(Name="to", EmitDefaultValue=false)]
-        public EmailAddressesTypes to { get; set; }
+        public AllOfSendMailAdvTo to { get; set; }
 
         /// <summary>
-        /// Gets or Sets replyto
+        /// Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;.
         /// </summary>
+        /// <value>Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;.</value>
         [DataMember(Name="replyto", EmitDefaultValue=false)]
-        public EmailAddressesTypes replyto { get; set; }
+        public AllOfSendMailAdvReplyto replyto { get; set; }
 
         /// <summary>
-        /// Gets or Sets cc
+        /// Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients.
         /// </summary>
+        /// <value>Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients.</value>
         [DataMember(Name="cc", EmitDefaultValue=false)]
-        public EmailAddressesTypes cc { get; set; }
+        public AllOfSendMailAdvCc cc { get; set; }
 
         /// <summary>
-        /// Gets or Sets bcc
+        /// Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
         /// </summary>
+        /// <value>Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.</value>
         [DataMember(Name="bcc", EmitDefaultValue=false)]
-        public EmailAddressesTypes bcc { get; set; }
+        public AllOfSendMailAdvBcc bcc { get; set; }
 
         /// <summary>
         /// Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name.

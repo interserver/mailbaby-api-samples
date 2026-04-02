@@ -1,6 +1,6 @@
 /**
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -28,8 +28,8 @@ class SendMailAdv {
      * @alias module:model/SendMailAdv
      * @param subject {String} The subject line of the email.
      * @param body {String} The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-     * @param from {module:model/EmailAddressTypes} 
-     * @param to {module:model/EmailAddressesTypes} 
+     * @param from {module:model/EmailAddressTypes} The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+     * @param to {module:model/EmailAddressesTypes} One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
      */
     constructor(subject, body, from, to) { 
         
@@ -66,19 +66,19 @@ class SendMailAdv {
                 obj['body'] = ApiClient.convertToType(data['body'], 'String');
             }
             if (data.hasOwnProperty('from')) {
-                obj['from'] = EmailAddressTypes.constructFromObject(data['from']);
+                obj['from'] = ApiClient.convertToType(data['from'], EmailAddressTypes);
             }
             if (data.hasOwnProperty('to')) {
-                obj['to'] = EmailAddressesTypes.constructFromObject(data['to']);
+                obj['to'] = ApiClient.convertToType(data['to'], EmailAddressesTypes);
             }
             if (data.hasOwnProperty('replyto')) {
-                obj['replyto'] = EmailAddressesTypes.constructFromObject(data['replyto']);
+                obj['replyto'] = ApiClient.convertToType(data['replyto'], EmailAddressesTypes);
             }
             if (data.hasOwnProperty('cc')) {
-                obj['cc'] = EmailAddressesTypes.constructFromObject(data['cc']);
+                obj['cc'] = ApiClient.convertToType(data['cc'], EmailAddressesTypes);
             }
             if (data.hasOwnProperty('bcc')) {
-                obj['bcc'] = EmailAddressesTypes.constructFromObject(data['bcc']);
+                obj['bcc'] = ApiClient.convertToType(data['bcc'], EmailAddressesTypes);
             }
             if (data.hasOwnProperty('attachments')) {
                 obj['attachments'] = ApiClient.convertToType(data['attachments'], [MailAttachment]);
@@ -162,26 +162,31 @@ SendMailAdv.prototype['subject'] = undefined;
 SendMailAdv.prototype['body'] = undefined;
 
 /**
+ * The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
  * @member {module:model/EmailAddressTypes} from
  */
 SendMailAdv.prototype['from'] = undefined;
 
 /**
+ * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
  * @member {module:model/EmailAddressesTypes} to
  */
 SendMailAdv.prototype['to'] = undefined;
 
 /**
+ * Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
  * @member {module:model/EmailAddressesTypes} replyto
  */
 SendMailAdv.prototype['replyto'] = undefined;
 
 /**
+ * Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
  * @member {module:model/EmailAddressesTypes} cc
  */
 SendMailAdv.prototype['cc'] = undefined;
 
 /**
+ * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
  * @member {module:model/EmailAddressesTypes} bcc
  */
 SendMailAdv.prototype['bcc'] = undefined;

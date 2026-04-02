@@ -1,6 +1,6 @@
 /**
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * OpenAPI spec version: 1.4.0
  * Contact: support@interserver.net
@@ -186,6 +186,162 @@ inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIHist
 	return false;
 }
 
+inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::Time:
+		return TEXT("time");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::SortEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIHistoryApi::ViewMailLogRequest::EnumToString(const OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& Value)
+{
+	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::SortEnum> StringToEnum = { 
+		{ TEXT("time"), OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::Time }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIHistoryApi::ViewMailLogRequest::EnumFromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
+inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Asc:
+		return TEXT("asc");
+	case OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Desc:
+		return TEXT("desc");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::DirEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIHistoryApi::ViewMailLogRequest::EnumToString(const OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& Value)
+{
+	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::DirEnum> StringToEnum = { 
+		{ TEXT("asc"), OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Asc },
+		{ TEXT("desc"), OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Desc }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIHistoryApi::ViewMailLogRequest::EnumFromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
+inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum& Value)
+{
+	switch (Value)
+	{
+	case OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Message:
+		return TEXT("message");
+	case OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Recipient:
+		return TEXT("recipient");
+	}
+
+	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum Value (%d)"), (int)Value);
+	return TEXT("");
+}
+
+FString OpenAPIHistoryApi::ViewMailLogRequest::EnumToString(const OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum& EnumValue)
+{
+	return ToString(EnumValue);
+}
+
+inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum& Value)
+{
+	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum> StringToEnum = { 
+		{ TEXT("message"), OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Message },
+		{ TEXT("recipient"), OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Recipient }, };
+
+	const auto Found = StringToEnum.Find(EnumAsString);
+	if(Found)
+		Value = *Found;
+
+	return Found != nullptr;
+}
+
+bool OpenAPIHistoryApi::ViewMailLogRequest::EnumFromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum& EnumValue)
+{
+	return FromString(EnumAsString, EnumValue);
+}
+
+inline void WriteJsonValue(JsonWriter& Writer, const OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum& Value)
+{
+	WriteJsonValue(Writer, ToString(Value));
+}
+
+inline bool TryGetJsonValue(const TSharedPtr<FJsonValue>& JsonValue, OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum& Value)
+{
+	FString TmpValue;
+	if (JsonValue->TryGetString(TmpValue))
+	{
+		if(FromString(TmpValue, Value))
+			return true;
+	}
+	return false;
+}
+
 FString OpenAPIHistoryApi::ViewMailLogRequest::ComputePath() const
 {
 	FString Path(TEXT("/mail/log"));
@@ -249,6 +405,18 @@ FString OpenAPIHistoryApi::ViewMailLogRequest::ComputePath() const
 	if(EndDate.IsSet())
 	{
 		QueryParams.Add(FString(TEXT("endDate=")) + ToUrlString(EndDate.GetValue()));
+	}
+	if(Sort.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("sort=")) + ToUrlString(Sort.GetValue()));
+	}
+	if(Dir.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("dir=")) + ToUrlString(Dir.GetValue()));
+	}
+	if(Groupby.IsSet())
+	{
+		QueryParams.Add(FString(TEXT("groupby=")) + ToUrlString(Groupby.GetValue()));
 	}
 	Path += TCHAR('?');
 	Path += FString::Join(QueryParams, TEXT("&"));

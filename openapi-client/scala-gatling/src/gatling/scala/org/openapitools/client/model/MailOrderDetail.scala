@@ -11,7 +11,7 @@ case class MailOrderDetail (
     _username: String,
     /* The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`. */
     _password: String,
-    /* Optional human-readable note associated with the order. */
+    /* Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     _comment: Option[String]
 )
 object MailOrderDetail {

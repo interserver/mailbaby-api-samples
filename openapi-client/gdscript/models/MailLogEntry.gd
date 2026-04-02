@@ -171,6 +171,16 @@ var __seq__was__set := false
 		delivered = value
 var __delivered__was__set := false
 
+# The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+# Required: False
+# Example: 250
+# isArray: false
+@export var code: int:
+	set(value):
+		__code__was__set = true
+		code = value
+var __code__was__set := false
+
 # The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
 # Required: False
 # Example: 250 2.0.0 Ok queued as C91D83E128C
@@ -311,6 +321,8 @@ func bzz_normalize() -> Dictionary:
 		bzz_dictionary["seq"] = self.seq
 	if self.__delivered__was__set:
 		bzz_dictionary["delivered"] = self.delivered
+	if self.__code__was__set:
+		bzz_dictionary["code"] = self.code
 	if self.__response__was__set:
 		bzz_dictionary["response"] = self.response
 	if self.__recipient__was__set:
@@ -365,6 +377,8 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 		me.seq = from_dict["seq"]
 	if from_dict.has("delivered"):
 		me.delivered = from_dict["delivered"]
+	if from_dict.has("code"):
+		me.code = from_dict["code"]
 	if from_dict.has("response"):
 		me.response = from_dict["response"]
 	if from_dict.has("recipient"):

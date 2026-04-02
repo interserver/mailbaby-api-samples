@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Checks if the server is running
 
-A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 
 ### Example
 
@@ -39,9 +39,9 @@ var api = StatusApi.new(config)
 # Invoke an endpoint
 api.ping_server(
 	# On Success
-	func(response):
+	func(response):  # response is ApiResponse
 		prints("Success!", "ping_server", response)
-		
+		assert(response.data is string)
 		pass  # do things, make stuff
 		,
 	# On Error

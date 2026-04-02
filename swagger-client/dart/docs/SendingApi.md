@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 ```dart
@@ -82,11 +82,11 @@ import 'package:swagger/api.dart';
 var api_instance = new SendingApi();
 var subject = subject_example; // String | 
 var body = body_example; // String | 
-var from = ; // EmailAddressTypes | 
-var to = ; // EmailAddressesTypes | 
-var replyto = ; // EmailAddressesTypes | 
-var cc = ; // EmailAddressesTypes | 
-var bcc = ; // EmailAddressesTypes | 
+var from = ; // Object | 
+var to = ; // Object | 
+var replyto = ; // Object | 
+var cc = ; // Object | 
+var bcc = ; // Object | 
 var attachments = []; // List<MailAttachment> | 
 var id = 789; // int | 
 var body = new SendMailAdv(); // SendMailAdv | 
@@ -105,11 +105,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **from** | [**EmailAddressTypes**](.md)|  | 
- **to** | [**EmailAddressesTypes**](.md)|  | 
- **replyto** | [**EmailAddressesTypes**](.md)|  | 
- **cc** | [**EmailAddressesTypes**](.md)|  | 
- **bcc** | [**EmailAddressesTypes**](.md)|  | 
+ **from** | [**Object**](.md)|  | 
+ **to** | [**Object**](.md)|  | 
+ **replyto** | [**Object**](.md)|  | 
+ **cc** | [**Object**](.md)|  | 
+ **bcc** | [**Object**](.md)|  | 
  **attachments** | [**List&lt;MailAttachment&gt;**](MailAttachment.md)|  | 
  **id** | **int**|  | 
  **body** | [**SendMailAdv**](SendMailAdv.md)|  | 

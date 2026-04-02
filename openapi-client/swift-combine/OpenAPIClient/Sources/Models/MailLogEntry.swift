@@ -41,6 +41,8 @@ public struct MailLogEntry: Codable {
     public var seq: Int?
     /// Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
     public var delivered: Int?
+    /// The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+    public var code: Int?
     /// The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
     public var response: String?
     /// The specific recipient address this delivery record is for.
@@ -58,7 +60,7 @@ public struct MailLogEntry: Codable {
     /// The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
     public var mxHostname: String?
 
-    public init(id: Int, id: String, from: String, to: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, subject: String? = nil, messageId: String? = nil, sendingZone: String? = nil, bodySize: Int? = nil, seq: Int? = nil, delivered: Int? = nil, response: String? = nil, recipient: String? = nil, domain: String? = nil, locked: Int? = nil, lockTime: String? = nil, assigned: String? = nil, queued: String? = nil, mxHostname: String? = nil) {
+    public init(id: Int, id: String, from: String, to: String, created: String, time: Int, user: String, transtype: String, origin: String, interface: String, subject: String? = nil, messageId: String? = nil, sendingZone: String? = nil, bodySize: Int? = nil, seq: Int? = nil, delivered: Int? = nil, code: Int? = nil, response: String? = nil, recipient: String? = nil, domain: String? = nil, locked: Int? = nil, lockTime: String? = nil, assigned: String? = nil, queued: String? = nil, mxHostname: String? = nil) {
         self.id = id
         self.id = id
         self.from = from
@@ -75,6 +77,7 @@ public struct MailLogEntry: Codable {
         self.bodySize = bodySize
         self.seq = seq
         self.delivered = delivered
+        self.code = code
         self.response = response
         self.recipient = recipient
         self.domain = domain
@@ -102,6 +105,7 @@ public struct MailLogEntry: Codable {
         case bodySize
         case seq
         case delivered
+        case code
         case response
         case recipient
         case domain
@@ -130,6 +134,7 @@ public struct MailLogEntry: Codable {
         bodySize = try container.decodeIfPresent(Int.self, forKey: .bodySize)
         seq = try container.decodeIfPresent(Int.self, forKey: .seq)
         delivered = try container.decodeIfPresent(Int.self, forKey: .delivered)
+        code = try container.decodeIfPresent(Int.self, forKey: .code)
         response = try container.decodeIfPresent(String.self, forKey: .response)
         recipient = try container.decodeIfPresent(String.self, forKey: .recipient)
         domain = try container.decodeIfPresent(String.self, forKey: .domain)
@@ -158,6 +163,7 @@ public struct MailLogEntry: Codable {
         try container.encodeIfPresent(bodySize, forKey: .bodySize)
         try container.encodeIfPresent(seq, forKey: .seq)
         try container.encodeIfPresent(delivered, forKey: .delivered)
+        try container.encodeIfPresent(code, forKey: .code)
         try container.encodeIfPresent(response, forKey: .response)
         try container.encodeIfPresent(recipient, forKey: .recipient)
         try container.encodeIfPresent(domain, forKey: .domain)

@@ -131,6 +131,14 @@ Protected Class MailLogEntry
 
 	#tag Property, Flags = &h0
 		#tag Note
+			The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+		#tag EndNote
+		code As Xoson.O.OptionalInteger
+	#tag EndProperty
+
+
+	#tag Property, Flags = &h0
+		#tag Note
 			The SMTP response string received from the destination MX server upon delivery attempt (e.g. `"250 2.0.0 Ok queued as C91D83E128C"`).
 		#tag EndNote
 		response As Xoson.O.OptionalString
@@ -351,6 +359,14 @@ Protected Class MailLogEntry
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="delivered"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="code"
 			Visible=false
 			Group="Behavior"
 			InitialValue=""

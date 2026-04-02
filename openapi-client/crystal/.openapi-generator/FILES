@@ -31,6 +31,7 @@ spec/models/send_mail_adv_spec.cr
 spec/models/send_mail_raw_spec.cr
 spec/models/send_mail_spec.cr
 spec/models/send_mail_to_spec.cr
+spec/models/view_mail_log_start_date_parameter_spec.cr
 spec/spec_helper.cr
 src/openapi_client.cr
 src/openapi_client/api/blocking_api.cr
@@ -64,4 +65,5 @@ src/openapi_client/models/send_mail.cr
 src/openapi_client/models/send_mail_adv.cr
 src/openapi_client/models/send_mail_raw.cr
 src/openapi_client/models/send_mail_to.cr
+src/openapi_client/models/view_mail_log_start_date_parameter.cr
 src/openapi_client/recursive_hash.cr

@@ -20,14 +20,22 @@ export interface MailOrder {
     /**
      * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
      */
-    status: string;
+    status: MailOrder.StatusEnum;
     /**
      * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
      */
     username: string;
     /**
-     * Optional human-readable note associated with the order.
+     * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
      */
     comment?: string;
 }
+export namespace MailOrder {
+    export const StatusEnum = {
+        Active: 'active',
+        Canceled: 'canceled'
+    } as const;
+    export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
+}
+
 

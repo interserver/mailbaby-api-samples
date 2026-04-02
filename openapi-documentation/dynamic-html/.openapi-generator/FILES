@@ -30,6 +30,7 @@ docs/models/SendMail.html
 docs/models/SendMailAdv.html
 docs/models/SendMailRaw.html
 docs/models/SendMailTo.html
+docs/models/ViewMailLogStartDateParameter.html
 docs/operations/BlockingApi.html
 docs/operations/HistoryApi.html
 docs/operations/SendingApi.html

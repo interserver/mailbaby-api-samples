@@ -46,6 +46,7 @@ import com.squareup.moshi.JsonClass
  * @param bodySize Size of the message body in bytes.
  * @param seq Sequence index of this recipient in a multi-recipient message. Starts at 1.
  * @param delivered Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+ * @param code The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
  * @param response The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
  * @param recipient The specific recipient address this delivery record is for.
  * @param domain The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
@@ -122,6 +123,10 @@ data class MailLogEntry (
     /* Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. */
     @Json(name = "delivered")
     val delivered: kotlin.Int? = null,
+
+    /* The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). */
+    @Json(name = "code")
+    val code: kotlin.Int? = null,
 
     /* The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). */
     @Json(name = "response")

@@ -133,6 +133,14 @@ test_that("delivered", {
   #expect_equal(model.instance$`delivered`, "EXPECTED_RESULT")
 })
 
+test_that("code", {
+  # tests for the property `code` (integer)
+  # The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`code`, "EXPECTED_RESULT")
+})
+
 test_that("response", {
   # tests for the property `response` (character)
   # The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).

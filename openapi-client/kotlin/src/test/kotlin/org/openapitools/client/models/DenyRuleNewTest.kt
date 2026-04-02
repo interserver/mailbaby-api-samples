@@ -33,7 +33,7 @@ class DenyRuleNewTest : ShouldSpec() {
         // uncomment below to create an instance of DenyRuleNew
         //val modelInstance = DenyRuleNew()
 
-        // to test the property `type` - The type of deny rule.
+        // to test the property `type` - The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
         should("test type") {
             // uncomment below to test the property
             //modelInstance.type shouldBe ("TODO")

@@ -10,18 +10,23 @@ import Foundation
 /** Extended mail order record including the current SMTP password.  Returned by &#x60;GET /mail/{id}&#x60;.  The &#x60;username&#x60; and &#x60;password&#x60; fields can be used to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API. */
 public struct MailOrderDetail: Sendable, Codable, Hashable {
 
+    public enum Status: String, Sendable, Codable, CaseIterable {
+        case active = "active"
+        case canceled = "canceled"
+    }
+    public static let usernameRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^mb\\d+$/")
     /** The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. */
     public var id: Int
     /** The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. */
-    public var status: String
+    public var status: Status
     /** The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. */
     public var username: String
     /** The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`. */
     public var password: String
-    /** Optional human-readable note associated with the order. */
+    /** Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     public var comment: String?
 
-    public init(id: Int, status: String, username: String, password: String, comment: String? = nil) {
+    public init(id: Int, status: Status, username: String, password: String, comment: String? = nil) {
         self.id = id
         self.status = status
         self.username = username

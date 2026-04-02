@@ -38,6 +38,7 @@ docs/SendMailTo.md
 docs/SendingAPI.md
 docs/ServicesAPI.md
 docs/StatusAPI.md
+docs/ViewMailLogStartDateParameter.md
 git_push.sh
 go.mod
 go.sum
@@ -64,6 +65,7 @@ model_send_mail.go
 model_send_mail_adv.go
 model_send_mail_raw.go
 model_send_mail_to.go
+model_view_mail_log_start_date_parameter.go
 response.go
 test/api_blocking_test.go
 test/api_history_test.go

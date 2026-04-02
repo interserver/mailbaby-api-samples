@@ -14,7 +14,7 @@ import java.util.Map;
 public class PingApiController implements PingApi {
 
     @Override
-    public Single<HttpResponse<Void>> pingServer() {
+    public Single<HttpResponse<String>> pingServer() {
         // TODO: Implement me
         return PingApi.super.pingServer();
     }

@@ -16,7 +16,7 @@ let get_stats ?(time = `_1h) () =
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Mail_stats_type.of_yojson) resp body
 
-let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?replyto ?headerfrom ?delivered ?(skip = 00l) ?(limit = 100100l) ?start_date ?end_date () =
+let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?replyto ?headerfrom ?delivered ?(skip = 00l) ?(limit = 100100l) ?start_date ?end_date ?(sort = `Time) ?(dir = `Desc) ?(groupby = `Recipient) () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/mail/log" in
     let headers = Request.default_headers in
@@ -204,7 +204,7 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?reply
         
         
  limit in
-    let uri = Request.maybe_add_query_param uri "startDate"     Int64.to_string
+    let uri = Request.maybe_add_query_param uri "startDate"     
     
     
     
@@ -215,11 +215,9 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?reply
     
     
     
-    
-        
-        
+    .show
  start_date in
-    let uri = Request.maybe_add_query_param uri "endDate"     Int64.to_string
+    let uri = Request.maybe_add_query_param uri "endDate"     
     
     
     
@@ -230,10 +228,17 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?reply
     
     
     
-    
-        
-        
+    .show
  end_date in
+    let uri = Request.add_query_param uri "sort"         Enums.show_sort
+        
+ sort in
+    let uri = Request.add_query_param uri "dir"         Enums.show_dir
+        
+ dir in
+    let uri = Request.add_query_param uri "groupby"         Enums.show_groupby
+        
+ groupby in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.unwrap Mail_log.of_yojson) resp body
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 ```csharp
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 <a name="sendadvmail"></a>
 # **SendAdvMail**
-> GenericResponse SendAdvMail (string subject, string body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, List<MailAttachment> attachments, long? id)
+> GenericResponse SendAdvMail (string subject, string body, Object from, Object to, Object replyto, Object cc, Object bcc, List<MailAttachment> attachments, long? id)
 
 Sends an Email with Advanced Options
 
@@ -106,11 +106,11 @@ namespace Example
             var apiInstance = new SendingApi();
             var subject = subject_example;  // string | 
             var body = body_example;  // string | 
-            var from = new EmailAddressTypes(); // EmailAddressTypes | 
-            var to = new EmailAddressesTypes(); // EmailAddressesTypes | 
-            var replyto = new EmailAddressesTypes(); // EmailAddressesTypes | 
-            var cc = new EmailAddressesTypes(); // EmailAddressesTypes | 
-            var bcc = new EmailAddressesTypes(); // EmailAddressesTypes | 
+            var from = new Object(); // Object | 
+            var to = new Object(); // Object | 
+            var replyto = new Object(); // Object | 
+            var cc = new Object(); // Object | 
+            var bcc = new Object(); // Object | 
             var attachments = new List<MailAttachment>(); // List<MailAttachment> | 
             var id = 789;  // long? | 
 
@@ -135,11 +135,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**|  | 
  **body** | **string**|  | 
- **from** | [**EmailAddressTypes**](.md)|  | 
- **to** | [**EmailAddressesTypes**](.md)|  | 
- **replyto** | [**EmailAddressesTypes**](.md)|  | 
- **cc** | [**EmailAddressesTypes**](.md)|  | 
- **bcc** | [**EmailAddressesTypes**](.md)|  | 
+ **from** | [**Object**](.md)|  | 
+ **to** | [**Object**](.md)|  | 
+ **replyto** | [**Object**](.md)|  | 
+ **cc** | [**Object**](.md)|  | 
+ **bcc** | [**Object**](.md)|  | 
  **attachments** | [**List<MailAttachment>**](MailAttachment.md)|  | 
  **id** | **long?**|  | 
 

@@ -31,6 +31,7 @@ var __subject__was__set := false
 		body = value
 var __body__was__set := false
 
+# The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
 # Required: True
 # isArray: false
 @export var from: EmailAddressTypes:
@@ -39,6 +40,7 @@ var __body__was__set := false
 		from = value
 var __from__was__set := false
 
+# One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 # Required: True
 # isArray: false
 @export var to: EmailAddressesTypes:
@@ -47,6 +49,7 @@ var __from__was__set := false
 		to = value
 var __to__was__set := false
 
+# Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
 # Required: False
 # isArray: false
 @export var replyto: EmailAddressesTypes:
@@ -55,6 +58,7 @@ var __to__was__set := false
 		replyto = value
 var __replyto__was__set := false
 
+# Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
 # Required: False
 # isArray: false
 @export var cc: EmailAddressesTypes:
@@ -63,6 +67,7 @@ var __replyto__was__set := false
 		cc = value
 var __cc__was__set := false
 
+# Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 # Required: False
 # isArray: false
 @export var bcc: EmailAddressesTypes:

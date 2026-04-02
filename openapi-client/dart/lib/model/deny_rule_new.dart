@@ -18,7 +18,7 @@ class DenyRuleNew {
     this.user,
   });
 
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   DenyRuleNewTypeEnum type;
 
   /// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
@@ -135,7 +135,7 @@ class DenyRuleNew {
   };
 }
 
-/// The type of deny rule.
+/// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 class DenyRuleNewTypeEnum {
   /// Instantiate a new enum with the provided [value].
   const DenyRuleNewTypeEnum._(this.value);

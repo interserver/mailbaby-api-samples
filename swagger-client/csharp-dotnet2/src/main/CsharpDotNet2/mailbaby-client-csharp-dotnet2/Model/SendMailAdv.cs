@@ -29,39 +29,44 @@ namespace IO.Swagger.Model {
     public string Body { get; set; }
 
     /// <summary>
-    /// Gets or Sets From
+    /// The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
     /// </summary>
+    /// <value>The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.</value>
     [DataMember(Name="from", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "from")]
-    public EmailAddressTypes From { get; set; }
+    public AllOfSendMailAdvFrom From { get; set; }
 
     /// <summary>
-    /// Gets or Sets To
+    /// One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
     /// </summary>
+    /// <value>One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.</value>
     [DataMember(Name="to", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "to")]
-    public EmailAddressesTypes To { get; set; }
+    public AllOfSendMailAdvTo To { get; set; }
 
     /// <summary>
-    /// Gets or Sets Replyto
+    /// Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
     /// </summary>
+    /// <value>Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.</value>
     [DataMember(Name="replyto", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "replyto")]
-    public EmailAddressesTypes Replyto { get; set; }
+    public AllOfSendMailAdvReplyto Replyto { get; set; }
 
     /// <summary>
-    /// Gets or Sets Cc
+    /// Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
     /// </summary>
+    /// <value>Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.</value>
     [DataMember(Name="cc", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "cc")]
-    public EmailAddressesTypes Cc { get; set; }
+    public AllOfSendMailAdvCc Cc { get; set; }
 
     /// <summary>
-    /// Gets or Sets Bcc
+    /// Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
     /// </summary>
+    /// <value>Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.</value>
     [DataMember(Name="bcc", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "bcc")]
-    public EmailAddressesTypes Bcc { get; set; }
+    public AllOfSendMailAdvBcc Bcc { get; set; }
 
     /// <summary>
     /// Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.

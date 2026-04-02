@@ -22,7 +22,7 @@ openapi_mail_order_detail() ->
 
 openapi_mail_order_detail(Fields) ->
   Default = [ {'id', integer() }
-            , {'status', binary() }
+            , {'status', elements([<<"active">>, <<"canceled">>]) }
             , {'username', binary() }
             , {'comment', binary() }
             , {'password', binary() }

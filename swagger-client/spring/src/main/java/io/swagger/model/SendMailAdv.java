@@ -3,8 +3,6 @@ package io.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -38,29 +36,29 @@ public class SendMailAdv   {
 
   @JsonProperty("from")
 
-  private EmailAddressTypes from = null;
+  private AllOfSendMailAdvFrom from = null;
 
   @JsonProperty("to")
 
-  private EmailAddressesTypes to = null;
+  private AllOfSendMailAdvTo to = null;
 
   @JsonProperty("replyto")
 
   @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private EmailAddressesTypes replyto = null;
+  private AllOfSendMailAdvReplyto replyto = null;
 
   @JsonProperty("cc")
 
   @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private EmailAddressesTypes cc = null;
+  private AllOfSendMailAdvCc cc = null;
 
   @JsonProperty("bcc")
 
   @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
   @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
-  private EmailAddressesTypes bcc = null;
+  private AllOfSendMailAdvBcc bcc = null;
 
   @JsonProperty("attachments")
   @Valid
@@ -122,127 +120,122 @@ public class SendMailAdv   {
     this.body = body;
   }
 
-  public SendMailAdv from(EmailAddressTypes from) { 
+  public SendMailAdv from(AllOfSendMailAdvFrom from) { 
 
     this.from = from;
     return this;
   }
 
   /**
-   * Get from
+   * The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
    * @return from
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.")
   
-@Valid
   @NotNull
-  public EmailAddressTypes getFrom() {  
+  public AllOfSendMailAdvFrom getFrom() {  
     return from;
   }
 
 
 
-  public void setFrom(EmailAddressTypes from) { 
+  public void setFrom(AllOfSendMailAdvFrom from) { 
 
     this.from = from;
   }
 
-  public SendMailAdv to(EmailAddressesTypes to) { 
+  public SendMailAdv to(AllOfSendMailAdvTo to) { 
 
     this.to = to;
     return this;
   }
 
   /**
-   * Get to
+   * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
    * @return to
    **/
   
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.")
   
-@Valid
   @NotNull
-  public EmailAddressesTypes getTo() {  
+  public AllOfSendMailAdvTo getTo() {  
     return to;
   }
 
 
 
-  public void setTo(EmailAddressesTypes to) { 
+  public void setTo(AllOfSendMailAdvTo to) { 
 
     this.to = to;
   }
 
-  public SendMailAdv replyto(EmailAddressesTypes replyto) { 
+  public SendMailAdv replyto(AllOfSendMailAdvReplyto replyto) { 
 
     this.replyto = replyto;
     return this;
   }
 
   /**
-   * Get replyto
+   * Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
    * @return replyto
    **/
   
-  @Schema(description = "")
+  @Schema(description = "Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.")
   
-@Valid
-  public EmailAddressesTypes getReplyto() {  
+  public AllOfSendMailAdvReplyto getReplyto() {  
     return replyto;
   }
 
 
 
-  public void setReplyto(EmailAddressesTypes replyto) { 
+  public void setReplyto(AllOfSendMailAdvReplyto replyto) { 
     this.replyto = replyto;
   }
 
-  public SendMailAdv cc(EmailAddressesTypes cc) { 
+  public SendMailAdv cc(AllOfSendMailAdvCc cc) { 
 
     this.cc = cc;
     return this;
   }
 
   /**
-   * Get cc
+   * Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
    * @return cc
    **/
   
-  @Schema(description = "")
+  @Schema(description = "Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.")
   
-@Valid
-  public EmailAddressesTypes getCc() {  
+  public AllOfSendMailAdvCc getCc() {  
     return cc;
   }
 
 
 
-  public void setCc(EmailAddressesTypes cc) { 
+  public void setCc(AllOfSendMailAdvCc cc) { 
     this.cc = cc;
   }
 
-  public SendMailAdv bcc(EmailAddressesTypes bcc) { 
+  public SendMailAdv bcc(AllOfSendMailAdvBcc bcc) { 
 
     this.bcc = bcc;
     return this;
   }
 
   /**
-   * Get bcc
+   * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
    * @return bcc
    **/
   
-  @Schema(description = "")
+  @Schema(description = "Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.")
   
-@Valid
-  public EmailAddressesTypes getBcc() {  
+  public AllOfSendMailAdvBcc getBcc() {  
     return bcc;
   }
 
 
 
-  public void setBcc(EmailAddressesTypes bcc) { 
+  public void setBcc(AllOfSendMailAdvBcc bcc) { 
     this.bcc = bcc;
   }
 

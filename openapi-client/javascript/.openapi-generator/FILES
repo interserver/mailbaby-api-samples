@@ -31,6 +31,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 git_push.sh
 mocha.opts
 package.json
@@ -64,6 +65,7 @@ src/model/SendMail.js
 src/model/SendMailAdv.js
 src/model/SendMailRaw.js
 src/model/SendMailTo.js
+src/model/ViewMailLogStartDateParameter.js
 test/api/BlockingApi.spec.js
 test/api/HistoryApi.spec.js
 test/api/SendingApi.spec.js
@@ -92,3 +94,4 @@ test/model/SendMail.spec.js
 test/model/SendMailAdv.spec.js
 test/model/SendMailRaw.spec.js
 test/model/SendMailTo.spec.js
+test/model/ViewMailLogStartDateParameter.spec.js

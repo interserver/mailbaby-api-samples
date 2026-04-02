@@ -37,6 +37,7 @@ src/models/send_mail.ml
 src/models/send_mail_adv.ml
 src/models/send_mail_raw.ml
 src/models/send_mail_to.ml
+src/models/view_mail_log_start_date_parameter.ml
 src/support/enums.ml
 src/support/jsonSupport.ml
 src/support/request.ml

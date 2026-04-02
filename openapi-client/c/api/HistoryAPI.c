@@ -103,6 +103,162 @@ end:
 }
 */
 
+// Functions for enum SORT for HistoryAPI_viewMailLog
+
+static char* viewMailLog_SORT_ToString(mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e SORT){
+    char *SORTArray[] =  { "NULL", "time" };
+    return SORTArray[SORT];
+}
+
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e viewMailLog_SORT_FromString(char* SORT){
+    int stringToReturn = 0;
+    char *SORTArray[] =  { "NULL", "time" };
+    size_t sizeofArray = sizeof(SORTArray) / sizeof(SORTArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(SORT, SORTArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function viewMailLog_SORT_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *viewMailLog_SORT_convertToJSON(mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e SORT) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "sort", viewMailLog_SORT_ToString(SORT)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function viewMailLog_SORT_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e viewMailLog_SORT_parseFromJSON(cJSON* SORTJSON) {
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e SORTVariable = 0;
+    cJSON *SORTVar = cJSON_GetObjectItemCaseSensitive(SORTJSON, "sort");
+    if(!cJSON_IsString(SORTVar) || (SORTVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    SORTVariable = viewMailLog_SORT_FromString(SORTVar->valuestring);
+    return SORTVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum DIR for HistoryAPI_viewMailLog
+
+static char* viewMailLog_DIR_ToString(mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e DIR){
+    char *DIRArray[] =  { "NULL", "asc", "desc" };
+    return DIRArray[DIR];
+}
+
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e viewMailLog_DIR_FromString(char* DIR){
+    int stringToReturn = 0;
+    char *DIRArray[] =  { "NULL", "asc", "desc" };
+    size_t sizeofArray = sizeof(DIRArray) / sizeof(DIRArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(DIR, DIRArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function viewMailLog_DIR_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *viewMailLog_DIR_convertToJSON(mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e DIR) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "dir", viewMailLog_DIR_ToString(DIR)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function viewMailLog_DIR_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e viewMailLog_DIR_parseFromJSON(cJSON* DIRJSON) {
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e DIRVariable = 0;
+    cJSON *DIRVar = cJSON_GetObjectItemCaseSensitive(DIRJSON, "dir");
+    if(!cJSON_IsString(DIRVar) || (DIRVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    DIRVariable = viewMailLog_DIR_FromString(DIRVar->valuestring);
+    return DIRVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum GROUPBY for HistoryAPI_viewMailLog
+
+static char* viewMailLog_GROUPBY_ToString(mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e GROUPBY){
+    char *GROUPBYArray[] =  { "NULL", "message", "recipient" };
+    return GROUPBYArray[GROUPBY];
+}
+
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e viewMailLog_GROUPBY_FromString(char* GROUPBY){
+    int stringToReturn = 0;
+    char *GROUPBYArray[] =  { "NULL", "message", "recipient" };
+    size_t sizeofArray = sizeof(GROUPBYArray) / sizeof(GROUPBYArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(GROUPBY, GROUPBYArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function viewMailLog_GROUPBY_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *viewMailLog_GROUPBY_convertToJSON(mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e GROUPBY) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "groupby", viewMailLog_GROUPBY_ToString(GROUPBY)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function viewMailLog_GROUPBY_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e viewMailLog_GROUPBY_parseFromJSON(cJSON* GROUPBYJSON) {
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e GROUPBYVariable = 0;
+    cJSON *GROUPBYVar = cJSON_GetObjectItemCaseSensitive(GROUPBYJSON, "groupby");
+    if(!cJSON_IsString(GROUPBYVar) || (GROUPBYVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    GROUPBYVariable = viewMailLog_GROUPBY_FromString(GROUPBYVar->valuestring);
+    return GROUPBYVariable;
+end:
+    return 0;
+}
+*/
+
 
 // Account usage statistics
 //
@@ -201,10 +357,10 @@ end:
 
 // Displays the mail log
 //
-// Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
+// Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).  **Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.  **Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.  **Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, char *messageId, char *replyto, char *headerfrom, int *delivered, int *skip, int *limit, long startDate, long endDate)
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, char *messageId, char *replyto, char *headerfrom, int *delivered, int *skip, int *limit, view_mail_log_start_date_parameter_t *startDate, view_mail_log_start_date_parameter_t *endDate, mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e sort, mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e dir, mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e groupby)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -386,26 +542,65 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
 
     // query parameters
     char *keyQuery_startDate = NULL;
-    char * valueQuery_startDate ;
+    view_mail_log_start_date_parameter_t * valueQuery_startDate ;
     keyValuePair_t *keyPairQuery_startDate = 0;
+    if (startDate)
     {
         keyQuery_startDate = strdup("startDate");
-        valueQuery_startDate = calloc(1,MAX_NUMBER_LENGTH_LONG);
-        snprintf(valueQuery_startDate, MAX_NUMBER_LENGTH_LONG, "%d", startDate);
-        keyPairQuery_startDate = keyValuePair_create(keyQuery_startDate, valueQuery_startDate);
+        valueQuery_startDate = (startDate);
+        keyPairQuery_startDate = keyValuePair_create(keyQuery_startDate, &valueQuery_startDate);
         list_addElement(localVarQueryParameters,keyPairQuery_startDate);
     }
 
     // query parameters
     char *keyQuery_endDate = NULL;
-    char * valueQuery_endDate ;
+    view_mail_log_start_date_parameter_t * valueQuery_endDate ;
     keyValuePair_t *keyPairQuery_endDate = 0;
+    if (endDate)
     {
         keyQuery_endDate = strdup("endDate");
-        valueQuery_endDate = calloc(1,MAX_NUMBER_LENGTH_LONG);
-        snprintf(valueQuery_endDate, MAX_NUMBER_LENGTH_LONG, "%d", endDate);
-        keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, valueQuery_endDate);
+        valueQuery_endDate = (endDate);
+        keyPairQuery_endDate = keyValuePair_create(keyQuery_endDate, &valueQuery_endDate);
         list_addElement(localVarQueryParameters,keyPairQuery_endDate);
+    }
+
+    // query parameters
+    char *keyQuery_sort = NULL;
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e valueQuery_sort ;
+    keyValuePair_t *keyPairQuery_sort = 0;
+    if (sort)
+    {
+        keyQuery_sort = strdup("sort");
+        valueQuery_sort = (sort);
+        keyPairQuery_sort = keyValuePair_create(keyQuery_sort, strdup(viewMailLog_SORT_ToString(
+        valueQuery_sort)));
+        list_addElement(localVarQueryParameters,keyPairQuery_sort);
+    }
+
+    // query parameters
+    char *keyQuery_dir = NULL;
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e valueQuery_dir ;
+    keyValuePair_t *keyPairQuery_dir = 0;
+    if (dir)
+    {
+        keyQuery_dir = strdup("dir");
+        valueQuery_dir = (dir);
+        keyPairQuery_dir = keyValuePair_create(keyQuery_dir, strdup(viewMailLog_DIR_ToString(
+        valueQuery_dir)));
+        list_addElement(localVarQueryParameters,keyPairQuery_dir);
+    }
+
+    // query parameters
+    char *keyQuery_groupby = NULL;
+    mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e valueQuery_groupby ;
+    keyValuePair_t *keyPairQuery_groupby = 0;
+    if (groupby)
+    {
+        keyQuery_groupby = strdup("groupby");
+        valueQuery_groupby = (groupby);
+        keyPairQuery_groupby = keyValuePair_create(keyQuery_groupby, strdup(viewMailLog_GROUPBY_ToString(
+        valueQuery_groupby)));
+        list_addElement(localVarQueryParameters,keyPairQuery_groupby);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
@@ -621,6 +816,30 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
     if(keyPairQuery_endDate){
         keyValuePair_free(keyPairQuery_endDate);
         keyPairQuery_endDate = NULL;
+    }
+    if(keyQuery_sort){
+        free(keyQuery_sort);
+        keyQuery_sort = NULL;
+    }
+    if(keyPairQuery_sort){
+        keyValuePair_free(keyPairQuery_sort);
+        keyPairQuery_sort = NULL;
+    }
+    if(keyQuery_dir){
+        free(keyQuery_dir);
+        keyQuery_dir = NULL;
+    }
+    if(keyPairQuery_dir){
+        keyValuePair_free(keyPairQuery_dir);
+        keyPairQuery_dir = NULL;
+    }
+    if(keyQuery_groupby){
+        free(keyQuery_groupby);
+        keyQuery_groupby = NULL;
+    }
+    if(keyPairQuery_groupby){
+        keyValuePair_free(keyPairQuery_groupby);
+        keyPairQuery_groupby = NULL;
     }
     return elementToReturn;
 end:

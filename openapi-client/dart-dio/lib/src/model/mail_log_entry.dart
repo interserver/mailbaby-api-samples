@@ -27,6 +27,7 @@ part 'mail_log_entry.g.dart';
 /// * [bodySize] - Size of the message body in bytes.
 /// * [seq] - Sequence index of this recipient in a multi-recipient message. Starts at 1.
 /// * [delivered] - Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+/// * [code] - The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
 /// * [response] - The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
 /// * [recipient] - The specific recipient address this delivery record is for.
 /// * [domain] - The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
@@ -100,6 +101,10 @@ abstract class MailLogEntry implements Built<MailLogEntry, MailLogEntryBuilder> 
   /// Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
   @BuiltValueField(wireName: r'delivered')
   int? get delivered;
+
+  /// The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+  @BuiltValueField(wireName: r'code')
+  int? get code;
 
   /// The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
   @BuiltValueField(wireName: r'response')
@@ -245,6 +250,13 @@ class _$MailLogEntrySerializer implements PrimitiveSerializer<MailLogEntry> {
       yield r'delivered';
       yield serializers.serialize(
         object.delivered,
+        specifiedType: const FullType.nullable(int),
+      );
+    }
+    if (object.code != null) {
+      yield r'code';
+      yield serializers.serialize(
+        object.code,
         specifiedType: const FullType.nullable(int),
       );
     }
@@ -444,6 +456,14 @@ class _$MailLogEntrySerializer implements PrimitiveSerializer<MailLogEntry> {
           ) as int?;
           if (valueDes == null) continue;
           result.delivered = valueDes;
+          break;
+        case r'code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
+          result.code = valueDes;
           break;
         case r'response':
           final valueDes = serializers.deserialize(

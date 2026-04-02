@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to **string** | Always &#x60;\&quot;ok\&quot;&#x60; on success. | [optional] 
-**Text** | Pointer to **string** | Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#39;s numeric ID.  For delete operations this is a human-readable confirmation. | [optional] 
+**Status** | **string** | Always &#x60;\&quot;ok\&quot;&#x60; on success. | 
+**Text** | **string** | Operation-specific result string.  For send operations this is the relay transaction ID (e.g. &#x60;185caa69ff7000f47c&#x60;) which can be used as the &#x60;mailid&#x60; parameter in &#x60;GET /mail/log&#x60;.  For create operations this is the new record&#39;s numeric ID.  For delete operations this is a human-readable confirmation. | 
 
 ## Methods
 
 ### NewGenericResponse
 
-`func NewGenericResponse() *GenericResponse`
+`func NewGenericResponse(status string, text string, ) *GenericResponse`
 
 NewGenericResponse instantiates a new GenericResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *GenericResponse) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetText
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetText sets Text field to given value.
 
-### HasText
-
-`func (o *GenericResponse) HasText() bool`
-
-HasText returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,7 +12,7 @@ class_name GenericResponse
 
 
 # Always `\"ok\"` on success.
-# Required: False
+# Required: True
 # Example: ok
 # isArray: false
 @export var status: String = "":
@@ -22,7 +22,7 @@ class_name GenericResponse
 var __status__was__set := false
 
 # Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
-# Required: False
+# Required: True
 # Example: 185caa69ff7000f47c
 # isArray: false
 @export var text: String = "":
@@ -34,6 +34,10 @@ var __text__was__set := false
 
 func bzz_collect_missing_properties() -> Array:
 	var bzz_missing_properties := Array()
+	if not self.__status__was__set:
+		bzz_missing_properties.append("status")
+	if not self.__text__was__set:
+		bzz_missing_properties.append("text")
 	return bzz_missing_properties
 
 

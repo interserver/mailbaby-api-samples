@@ -63,39 +63,39 @@ public:
 	/*! \brief Set The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	 */
 	void setBody(std::string  body);
-	/*! \brief Get 
+	/*! \brief Get The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
 	 */
 	EmailAddressTypes getFrom();
 
-	/*! \brief Set 
+	/*! \brief Set The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
 	 */
 	void setFrom(EmailAddressTypes  from);
-	/*! \brief Get 
+	/*! \brief Get One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 	 */
 	EmailAddressesTypes getTo();
 
-	/*! \brief Set 
+	/*! \brief Set One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 	 */
 	void setTo(EmailAddressesTypes  to);
-	/*! \brief Get 
+	/*! \brief Get Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
 	 */
 	EmailAddressesTypes getReplyto();
 
-	/*! \brief Set 
+	/*! \brief Set Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
 	 */
 	void setReplyto(EmailAddressesTypes  replyto);
-	/*! \brief Get 
+	/*! \brief Get Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
 	 */
 	EmailAddressesTypes getCc();
 
-	/*! \brief Set 
+	/*! \brief Set Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
 	 */
 	void setCc(EmailAddressesTypes  cc);
-	/*! \brief Get 
+	/*! \brief Get Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 	 */
 	EmailAddressesTypes getBcc();
 
-	/*! \brief Set 
+	/*! \brief Set Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 	 */
 	void setBcc(EmailAddressesTypes  bcc);
 	/*! \brief Get Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.

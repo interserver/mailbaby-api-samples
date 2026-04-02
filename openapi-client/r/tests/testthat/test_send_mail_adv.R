@@ -23,6 +23,7 @@ test_that("body", {
 
 test_that("from", {
   # tests for the property `from` (EmailAddressTypes)
+  # The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; object.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
@@ -30,6 +31,7 @@ test_that("from", {
 
 test_that("to", {
   # tests for the property `to` (EmailAddressesTypes)
+  # One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")
@@ -37,6 +39,7 @@ test_that("to", {
 
 test_that("replyto", {
   # tests for the property `replyto` (EmailAddressesTypes)
+  # Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`replyto`, "EXPECTED_RESULT")
@@ -44,6 +47,7 @@ test_that("replyto", {
 
 test_that("cc", {
   # tests for the property `cc` (EmailAddressesTypes)
+  # Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`cc`, "EXPECTED_RESULT")
@@ -51,6 +55,7 @@ test_that("cc", {
 
 test_that("bcc", {
   # tests for the property `bcc` (EmailAddressesTypes)
+  # Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`bcc`, "EXPECTED_RESULT")

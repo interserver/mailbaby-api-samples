@@ -13,6 +13,7 @@
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.view-mail-log-start-date-parameter :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.error-message :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
@@ -87,9 +88,13 @@ The response includes:
   "Displays the mail log
   Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
 
-**Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.
+**Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
-**Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.
+**Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.
+
+**Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.
+
+**Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.
 
 **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.
 
@@ -99,11 +104,11 @@ The `mailid` parameter corresponds to the `id` field in the returned `MailLogEnt
 
 The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match)."
   ([] (view-mail-log-with-http-info nil))
-  ([{:keys [id origin mx from to subject mailid messageId replyto headerfrom delivered skip limit startDate endDate]} (s/map-of keyword? any?)]
+  ([{:keys [id origin mx from to subject mailid messageId replyto headerfrom delivered skip limit startDate endDate sort dir groupby]} (s/map-of keyword? any?)]
    (call-api "/mail/log" :get
              {:path-params   {}
               :header-params {}
-              :query-params  {"id" id "origin" origin "mx" mx "from" from "to" to "subject" subject "mailid" mailid "messageId" messageId "replyto" replyto "headerfrom" headerfrom "delivered" delivered "skip" skip "limit" limit "startDate" startDate "endDate" endDate }
+              :query-params  {"id" id "origin" origin "mx" mx "from" from "to" to "subject" subject "mailid" mailid "messageId" messageId "replyto" replyto "headerfrom" headerfrom "delivered" delivered "skip" skip "limit" limit "startDate" startDate "endDate" endDate "sort" sort "dir" dir "groupby" groupby }
               :form-params   {}
               :content-types []
               :accepts       ["application/json"]
@@ -113,9 +118,13 @@ The `messageId` parameter searches the `Message-ID` email header (case-insensiti
   "Displays the mail log
   Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
 
-**Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.
+**Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
-**Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.
+**Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.
+
+**Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.
+
+**Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.
 
 **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.
 

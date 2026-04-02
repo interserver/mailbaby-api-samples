@@ -3,4 +3,5 @@
 ### Checks if the server is running
 ## Checks if the server is running
 GET https://api.mailbaby.net/ping
+Accept: text/plain
 X-API-KEY: {{apiKey}}

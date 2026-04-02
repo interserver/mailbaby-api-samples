@@ -35,6 +35,7 @@ typedef struct mail_log_entry_t {
     int *body_size; //numeric
     int *seq; //numeric
     int *delivered; //numeric
+    int *code; //numeric
     char *response; // string
     char *recipient; // string
     char *domain; // string
@@ -64,6 +65,7 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
     int *body_size,
     int *seq,
     int *delivered,
+    int *code,
     char *response,
     char *recipient,
     char *domain,

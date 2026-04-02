@@ -25,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // Optional human-readable note associated with the order.
+    // Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
     // String comment
     test('to test the property `comment`', () async {
       // TODO

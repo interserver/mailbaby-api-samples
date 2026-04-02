@@ -17,7 +17,7 @@ func _bzz_get_api_name() -> String:
 # Operation rawMail → POST /mail/rawsend
 # Sends a raw RFC 822 email
 #
-# Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+# Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 func raw_mail(
 	# sendMailRaw: SendMailRaw
 	sendMailRaw: SendMailRaw,
@@ -100,14 +100,19 @@ func send_adv_mail(
 	# The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	body: String,
 	# from: EmailAddressTypes
+	# The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
 	from: EmailAddressTypes,
 	# to: EmailAddressesTypes
+	# One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 	to: EmailAddressesTypes,
 	# replyto: EmailAddressesTypes
+	# Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
 	replyto = null,
 	# cc: EmailAddressesTypes
+	# Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
 	cc = null,
 	# bcc: EmailAddressesTypes
+	# Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 	bcc = null,
 	# attachments: Array
 	# Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
@@ -182,14 +187,19 @@ func send_adv_mail_threaded(
 	# The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 	body: String,
 	# from: EmailAddressTypes
+	# The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
 	from: EmailAddressTypes,
 	# to: EmailAddressesTypes
+	# One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 	to: EmailAddressesTypes,
 	# replyto: EmailAddressesTypes
+	# Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
 	replyto = null,
 	# cc: EmailAddressesTypes
+	# Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
 	cc = null,
 	# bcc: EmailAddressesTypes
+	# Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 	bcc = null,
 	# attachments: Array
 	# Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.

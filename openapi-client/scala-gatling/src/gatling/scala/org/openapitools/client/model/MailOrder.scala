@@ -9,7 +9,7 @@ case class MailOrder (
     _status: String,
     /* The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. */
     _username: String,
-    /* Optional human-readable note associated with the order. */
+    /* Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     _comment: Option[String]
 )
 object MailOrder {

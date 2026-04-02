@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **ping_server**
-> ping_server()
+> str ping_server()
 
 Checks if the server is running
 
-A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.
+A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
 
 
 ### Example
@@ -48,7 +48,9 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Checks if the server is running
-        api_instance.ping_server()
+        api_response = api_instance.ping_server()
+        print("The response of StatusApi->ping_server:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling StatusApi->ping_server: %s\n" % e)
 ```
@@ -61,7 +63,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**str**
 
 ### Authorization
 
@@ -70,7 +72,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain
 
 ### HTTP response details
 

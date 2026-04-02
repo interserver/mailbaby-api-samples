@@ -16,7 +16,7 @@ Sends a raw RFC 822 email
 
 Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
 The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.
 
@@ -168,8 +168,6 @@ On success the response `text` field contains the relay transaction ID which can
 
 ```python
 import openapi_client
-from openapi_client.models.email_address_types import EmailAddressTypes
-from openapi_client.models.email_addresses_types import EmailAddressesTypes
 from openapi_client.models.generic_response import GenericResponse
 from openapi_client.models.mail_attachment import MailAttachment
 from openapi_client.rest import ApiException
@@ -198,11 +196,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = openapi_client.SendingApi(api_client)
     subject = 'subject_example' # str | The subject line of the email.
     body = 'body_example' # str | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-    var_from = openapi_client.EmailAddressTypes() # EmailAddressTypes | 
-    to = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | 
-    replyto = openapi_client.EmailAddressesTypes() # EmailAddressesTypes |  (optional)
-    cc = openapi_client.EmailAddressesTypes() # EmailAddressesTypes |  (optional)
-    bcc = openapi_client.EmailAddressesTypes() # EmailAddressesTypes |  (optional)
+    var_from = openapi_client.EmailAddressTypes() # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+    to = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+    replyto = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. (optional)
+    cc = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. (optional)
+    bcc = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
     attachments = [openapi_client.MailAttachment()] # List[MailAttachment] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
     id = 56 # int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
@@ -224,11 +222,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**| The subject line of the email. | 
  **body** | **str**| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
- **var_from** | [**EmailAddressTypes**](EmailAddressTypes.md)|  | 
- **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | 
- **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
- **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
- **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **var_from** | [**EmailAddressTypes**](EmailAddressTypes.md)| The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. | 
+ **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. | 
+ **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. | [optional] 
+ **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. | [optional] 
+ **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. | [optional] 
  **attachments** | [**List[MailAttachment]**](MailAttachment.md)| Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [optional] 
  **id** | **int**| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional] 
 

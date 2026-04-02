@@ -30,12 +30,12 @@ open class StatusAPI {
 
     /// Checks if the server is running
     /// - GET /ping
-    /// - A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+    /// - A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
-    /// - returns: AnyPublisher<Void, Error> 
-    open func pingServer() -> AnyPublisher<Void, Error> {
+    /// - returns: AnyPublisher<String, Error> 
+    open func pingServer() -> AnyPublisher<String, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -51,10 +51,10 @@ open class StatusAPI {
                 request.httpMethod = "GET"
                 return request
             }.publisher
-        }.flatMap { request -> AnyPublisher<Void, Error> in 
+        }.flatMap { request -> AnyPublisher<String, Error> in 
             return self.transport.send(request: request)
                 .tryMap { response in
-                    return ()
+                    try self.decoder.decode(String.self, from: response.data)
                 }
                 .eraseToAnyPublisher()
         }.eraseToAnyPublisher()

@@ -32,3 +32,4 @@ src/main/scala/org/openapitools/client/api/SendMailTo.scala
 src/main/scala/org/openapitools/client/api/SendingApi.scala
 src/main/scala/org/openapitools/client/api/ServicesApi.scala
 src/main/scala/org/openapitools/client/api/StatusApi.scala
+src/main/scala/org/openapitools/client/api/ViewMailLogStartDateParameter.scala

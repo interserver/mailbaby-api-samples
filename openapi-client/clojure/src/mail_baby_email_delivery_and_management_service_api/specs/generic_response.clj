@@ -7,8 +7,8 @@
 
 (def generic-response-data
   {
-   (ds/opt :status) string?
-   (ds/opt :text) string?
+   (ds/req :status) string?
+   (ds/req :text) string?
    })
 
 (def generic-response-spec

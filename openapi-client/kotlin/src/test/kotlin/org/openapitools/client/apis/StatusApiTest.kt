@@ -36,7 +36,8 @@ class StatusApiTest : ShouldSpec() {
         // to test pingServer
         should("test pingServer") {
             // uncomment below to test pingServer
-            //apiInstance.pingServer()
+            //val result : kotlin.String = apiInstance.pingServer()
+            //result shouldBe ("TODO")
         }
 
     }

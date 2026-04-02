@@ -32,6 +32,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 git_push.sh
 openapi_client/__init__.py
 openapi_client/api/__init__.py
@@ -68,6 +69,7 @@ openapi_client/models/send_mail.py
 openapi_client/models/send_mail_adv.py
 openapi_client/models/send_mail_raw.py
 openapi_client/models/send_mail_to.py
+openapi_client/models/view_mail_log_start_date_parameter.py
 openapi_client/py.typed
 openapi_client/rest.py
 pyproject.toml
@@ -104,4 +106,5 @@ test/test_send_mail_to.py
 test/test_sending_api.py
 test/test_services_api.py
 test/test_status_api.py
+test/test_view_mail_log_start_date_parameter.py
 tox.ini

@@ -41,7 +41,7 @@ class BlockingApiTest : ShouldSpec() {
         // to test addRule
         should("test addRule") {
             // uncomment below to test addRule
-            //val type : kotlin.String = type_example // kotlin.String | The type of deny rule.
+            //val type : kotlin.String = type_example // kotlin.String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
             //val `data` : kotlin.String = `data`_example // kotlin.String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
             //val user : kotlin.String = user_example // kotlin.String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
             //val result : GenericResponse = apiInstance.addRule(type, `data`, user)

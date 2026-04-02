@@ -1,6 +1,6 @@
 /**
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -81,6 +81,9 @@ void OAIMailLogEntry::initializeModel() {
 
     m_delivered_isSet = false;
     m_delivered_isValid = false;
+
+    m_code_isSet = false;
+    m_code_isValid = false;
 
     m_response_isSet = false;
     m_response_isValid = false;
@@ -164,6 +167,9 @@ void OAIMailLogEntry::fromJsonObject(QJsonObject json) {
     m_delivered_isValid = ::OpenAPI::fromJsonValue(m_delivered, json[QString("delivered")]);
     m_delivered_isSet = !json[QString("delivered")].isNull() && m_delivered_isValid;
 
+    m_code_isValid = ::OpenAPI::fromJsonValue(m_code, json[QString("code")]);
+    m_code_isSet = !json[QString("code")].isNull() && m_code_isValid;
+
     m_response_isValid = ::OpenAPI::fromJsonValue(m_response, json[QString("response")]);
     m_response_isSet = !json[QString("response")].isNull() && m_response_isValid;
 
@@ -245,6 +251,9 @@ QJsonObject OAIMailLogEntry::asJsonObject() const {
     }
     if (m_delivered_isSet) {
         obj.insert(QString("delivered"), ::OpenAPI::toJsonValue(m_delivered));
+    }
+    if (m_code_isSet) {
+        obj.insert(QString("code"), ::OpenAPI::toJsonValue(m_code));
     }
     if (m_response_isSet) {
         obj.insert(QString("response"), ::OpenAPI::toJsonValue(m_response));
@@ -529,6 +538,22 @@ bool OAIMailLogEntry::is_delivered_Valid() const{
     return m_delivered_isValid;
 }
 
+qint32 OAIMailLogEntry::getCode() const {
+    return m_code;
+}
+void OAIMailLogEntry::setCode(const qint32 &code) {
+    m_code = code;
+    m_code_isSet = true;
+}
+
+bool OAIMailLogEntry::is_code_Set() const{
+    return m_code_isSet;
+}
+
+bool OAIMailLogEntry::is_code_Valid() const{
+    return m_code_isValid;
+}
+
 QString OAIMailLogEntry::getResponse() const {
     return m_response;
 }
@@ -736,6 +761,11 @@ bool OAIMailLogEntry::isSet() const {
         }
 
         if (m_delivered_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_code_isSet) {
             isObjectUpdated = true;
             break;
         }

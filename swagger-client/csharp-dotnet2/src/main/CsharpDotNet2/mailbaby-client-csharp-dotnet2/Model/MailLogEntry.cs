@@ -141,6 +141,14 @@ namespace IO.Swagger.Model {
     public int? Delivered { get; set; }
 
     /// <summary>
+    /// The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+    /// </summary>
+    /// <value>The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).</value>
+    [DataMember(Name="code", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "code")]
+    public int? Code { get; set; }
+
+    /// <summary>
     /// The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
     /// </summary>
     /// <value>The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).</value>
@@ -228,6 +236,7 @@ namespace IO.Swagger.Model {
       sb.Append("  BodySize: ").Append(BodySize).Append("\n");
       sb.Append("  Seq: ").Append(Seq).Append("\n");
       sb.Append("  Delivered: ").Append(Delivered).Append("\n");
+      sb.Append("  Code: ").Append(Code).Append("\n");
       sb.Append("  Response: ").Append(Response).Append("\n");
       sb.Append("  Recipient: ").Append(Recipient).Append("\n");
       sb.Append("  Domain: ").Append(Domain).Append("\n");

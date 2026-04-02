@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## PingServer
 
-> PingServer(ctx).Execute()
+> string PingServer(ctx).Execute()
 
 Checks if the server is running
 
@@ -32,11 +32,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.StatusAPI.PingServer(context.Background()).Execute()
+	resp, r, err := apiClient.StatusAPI.PingServer(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StatusAPI.PingServer``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `PingServer`: string
+	fmt.Fprintf(os.Stdout, "Response from `StatusAPI.PingServer`: %v\n", resp)
 }
 ```
 
@@ -51,7 +53,7 @@ Other parameters are passed through a pointer to a apiPingServerRequest struct v
 
 ### Return type
 
- (empty response body)
+**string**
 
 ### Authorization
 
@@ -60,7 +62,7 @@ Other parameters are passed through a pointer to a apiPingServerRequest struct v
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: text/plain
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

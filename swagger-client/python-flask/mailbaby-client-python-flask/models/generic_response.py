@@ -65,6 +65,8 @@ class GenericResponse(Model):
         :param status: The status of this GenericResponse.
         :type status: str
         """
+        if status is None:
+            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
 
         self._status = status
 
@@ -88,5 +90,7 @@ class GenericResponse(Model):
         :param text: The text of this GenericResponse.
         :type text: str
         """
+        if text is None:
+            raise ValueError("Invalid value for `text`, must not be `None`")  # noqa: E501
 
         self._text = text

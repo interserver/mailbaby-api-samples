@@ -106,6 +106,7 @@ Category | Method | HTTP request | Description
  - [send_mail_adv_t](docs/send_mail_adv.md)
  - [send_mail_raw_t](docs/send_mail_raw.md)
  - [send_mail_to_t](docs/send_mail_to.md)
+ - [view_mail_log_start_date_parameter_t](docs/view_mail_log_start_date_parameter.md)
 
 
 ## Documentation for Authorization

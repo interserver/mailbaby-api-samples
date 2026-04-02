@@ -340,7 +340,7 @@ BlockingAPI_delistBlock(apiClient_t *apiClient, email_address_param_t *email_add
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
-    list_addElement(localVarContentType,"multipart/form-data"); //consumes
+    list_addElement(localVarContentType,"application/x-www-form-urlencoded"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,

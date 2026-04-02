@@ -5,7 +5,7 @@ using namespace Tiny;
 
 
         Response<
-            String
+            std::string
         >
         StatusApi::
         pingServer(
@@ -35,7 +35,14 @@ using namespace Tiny;
             std::string output_string = output.c_str();
 
 
-            Response<String> response(output, httpCode);
+
+            bourne::json jsonPayload(output_string);
+            std::string obj;
+            jsonToValue(&obj, jsonPayload, "std::string");
+
+
+
+            Response<std::string> response(obj, httpCode);
             return response;
         }
 

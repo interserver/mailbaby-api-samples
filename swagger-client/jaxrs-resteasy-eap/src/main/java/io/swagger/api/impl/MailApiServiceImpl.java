@@ -6,8 +6,7 @@ import io.swagger.model.*;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -20,6 +19,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
+import io.swagger.model.StartDate;
 
 import java.util.List;
 import java.util.Map;
@@ -79,7 +79,7 @@ public class MailApiServiceImpl implements MailApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response sendAdvMail(String subject,String body,EmailAddressTypes from,EmailAddressesTypes to,EmailAddressesTypes replyto,EmailAddressesTypes cc,EmailAddressesTypes bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) {
+      public Response sendAdvMail(String subject,String body,Object from,Object to,Object replyto,Object cc,Object bcc,List<MailAttachment> attachments,Long id,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }
@@ -95,7 +95,7 @@ public class MailApiServiceImpl implements MailApi {
       // do some magic!
       return Response.ok().build();
   }
-      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,String messageId,String replyto,String headerfrom,Integer delivered,Integer skip,Integer limit,Long startDate,Long endDate,SecurityContext securityContext) {
+      public Response viewMailLog(Long id,String origin,String mx,String from,String to,String subject,String mailid,String messageId,String replyto,String headerfrom,Integer delivered,Integer skip,Integer limit,StartDate startDate,EndDate endDate,String sort,String dir,String groupby,SecurityContext securityContext) {
       // do some magic!
       return Response.ok().build();
   }

@@ -1,5 +1,5 @@
 --  MailBaby Email Delivery and Management Service API
---  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use_case: | Endpoint | Best for | |__________|__________| | `POST /mail/send` | Simple single_recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre_built RFC 822 messages (e.g. DKIM_signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: _ **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). _ **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject_line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X_API_KEY` HTTP request header for every protected call. 
+--  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use_case: | Endpoint | Best for | |__________|__________| | `POST /mail/send` | Simple single_recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre_built RFC 822 messages (e.g. DKIM_signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: _ **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). _ **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject_line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X_API_KEY` HTTP request header for every protected call. 
 --
 --  The version of the OpenAPI document: 1.4.0
 --  Contact: support@interserver.net
@@ -15,12 +15,18 @@ package body .Clients is
 
    Mime_1 : aliased constant String := "multipart/form-data";
    Media_List_1 : constant Swagger.Mime_List := (
-     1 => Swagger.Mime_Json   );
+     1 => Swagger.Mime_Text   );
    Media_List_2 : constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Json   );
+   Media_List_3 : constant Swagger.Mime_List := (
      1 => Swagger.Mime_Form,
    
      2 => Swagger.Mime_Json   );
-   Media_List_3 : constant Swagger.Mime_List := (
+   Media_List_4 : constant Swagger.Mime_List := (
+     1 => Swagger.Mime_Json,
+   
+     2 => Swagger.Mime_Form   );
+   Media_List_5 : constant Swagger.Mime_List := (
      1 => Swagger.Mime_Json,
    
      2 => Mime_1'Access   );
@@ -48,9 +54,9 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
-      Client.Initialize (Req, Media_List_2);
+      Client.Initialize (Req, Media_List_3);
       .Models.Serialize (Req.Stream, "user", User);
       .Models.Serialize (Req.Stream, "type", P_Type);
       .Models.Serialize (Req.Stream, "data", Data);
@@ -73,7 +79,7 @@ package body .Clients is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Set_Path ("/mail/rules/{ruleId}");
@@ -97,8 +103,8 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
-      Client.Initialize (Req, Media_List_3);
+      Client.Set_Accept (Media_List_2);
+      Client.Initialize (Req, Media_List_4);
       .Models.Serialize (Req.Stream, "", Email_Address_Param_Type);
 
       URI.Set_Path ("/mail/blocks/delete");
@@ -127,7 +133,7 @@ package body .Clients is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Set_Path ("/mail/blocks");
@@ -148,7 +154,7 @@ package body .Clients is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Set_Path ("/mail/rules");
@@ -179,7 +185,7 @@ package body .Clients is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Add_Param ("time", Time);
@@ -191,9 +197,13 @@ package body .Clients is
    --  Displays the mail log
    --  Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
    --  
-   --  **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.
+   --  **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
    --  
-   --  **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.
+   --  **Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.
+   --  
+   --  **Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.
+   --  
+   --  **Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.
    --  
    --  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.
    --  
@@ -217,13 +227,16 @@ package body .Clients is
        Delivered : in Swagger.Nullable_Integer;
        Skip : in Swagger.Nullable_Integer;
        Limit : in Swagger.Nullable_Integer;
-       Start_Date : in Swagger.Nullable_Long;
-       End_Date : in Swagger.Nullable_Long;
+       Start_Date : in .Models.ViewMailLogStartDateParameter_Type;
+       End_Date : in .Models.ViewMailLogStartDateParameter_Type;
+       Sort : in Swagger.Nullable_UString;
+       Dir : in Swagger.Nullable_UString;
+       Groupby : in Swagger.Nullable_UString;
        Result : out .Models.MailLog_Type) is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Add_Param ("id", Id);
@@ -239,8 +252,11 @@ package body .Clients is
       URI.Add_Param ("delivered", Delivered);
       URI.Add_Param ("skip", Skip);
       URI.Add_Param ("limit", Limit);
-      URI.Add_Param ("startDate", Start_Date);
-      URI.Add_Param ("endDate", End_Date);
+      URI.Add_Param ("startDate", .Models.To_String (Start_Date));
+      URI.Add_Param ("endDate", .Models.To_String (End_Date));
+      URI.Add_Param ("sort", Sort);
+      URI.Add_Param ("dir", Dir);
+      URI.Add_Param ("groupby", Groupby);
       URI.Set_Path ("/mail/log");
       Client.Call (Swagger.Clients.GET, URI, Reply);
       .Models.Deserialize (Reply, "", Result);
@@ -249,7 +265,7 @@ package body .Clients is
    --  Sends a raw RFC 822 email
    --  Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
    --  
-   --  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+   --  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
    --  
    --  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.
    --  
@@ -264,8 +280,8 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
-      Client.Initialize (Req, Media_List_3);
+      Client.Set_Accept (Media_List_2);
+      Client.Initialize (Req, Media_List_5);
       .Models.Serialize (Req.Stream, "", Send_Mail_Raw_Type);
 
       URI.Set_Path ("/mail/rawsend");
@@ -344,9 +360,9 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
-      Client.Initialize (Req, Media_List_2);
+      Client.Initialize (Req, Media_List_3);
       .Models.Serialize (Req.Stream, "subject", Subject);
       .Models.Serialize (Req.Stream, "body", P_Body);
       .Models.Serialize (Req.Stream, "from", From);
@@ -384,9 +400,9 @@ package body .Clients is
       Req   : Swagger.Clients.Request_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
-      Client.Initialize (Req, Media_List_2);
+      Client.Initialize (Req, Media_List_3);
       .Models.Serialize (Req.Stream, "to", To);
       .Models.Serialize (Req.Stream, "from", From);
       .Models.Serialize (Req.Stream, "subject", Subject);
@@ -411,7 +427,7 @@ package body .Clients is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Set_Path ("/mail/{id}");
@@ -432,7 +448,7 @@ package body .Clients is
       URI   : Swagger.Clients.URI_Type;
       Reply : Swagger.Value_Type;
    begin
-      Client.Set_Accept (Media_List_1);
+      Client.Set_Accept (Media_List_2);
 
 
       URI.Set_Path ("/mail");
@@ -441,14 +457,18 @@ package body .Clients is
    end Get_Mail_Orders;
 
    --  Checks if the server is running
-   --  A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.
+   --  A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
    procedure Ping_Server
-      (Client : in out Client_Type) is
+      (Client : in out Client_Type;
+       Result : out Swagger.UString) is
       URI   : Swagger.Clients.URI_Type;
+      Reply : Swagger.Value_Type;
    begin
+      Client.Set_Accept (Media_List_1);
 
 
       URI.Set_Path ("/ping");
-      Client.Call (Swagger.Clients.GET, URI);
+      Client.Call (Swagger.Clients.GET, URI, Reply);
+      .Models.Deserialize (Reply, "", Result);
    end Ping_Server;
 end .Clients;

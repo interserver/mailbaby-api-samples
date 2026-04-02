@@ -19,7 +19,7 @@ After a successful send each endpoint returns a `GenericResponse` whose `text` f
 
 # Filtering & Logs
 
-`GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
+`GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
 
 # Blocking
 
@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
  - [SEND_MAIL_ADV](docs/SEND_MAIL_ADV.md)
  - [SEND_MAIL_RAW](docs/SEND_MAIL_RAW.md)
  - [SEND_MAIL_TO](docs/SEND_MAIL_TO.md)
+ - [VIEW_MAIL_LOG_START_DATE_PARAMETER](docs/VIEW_MAIL_LOG_START_DATE_PARAMETER.md)
 
 
 ## Documentation For Authorization

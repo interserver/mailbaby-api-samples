@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 ```python
@@ -87,11 +87,11 @@ configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
 subject = 'subject_example' # str | 
 body = 'body_example' # str | 
-_from = mailbaby-client-python.EmailAddressTypes() # EmailAddressTypes | 
-to = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
-replyto = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
-cc = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
-bcc = mailbaby-client-python.EmailAddressesTypes() # EmailAddressesTypes | 
+_from = NULL # object | 
+to = NULL # object | 
+replyto = NULL # object | 
+cc = NULL # object | 
+bcc = NULL # object | 
 attachments = [mailbaby-client-python.MailAttachment()] # list[MailAttachment] | 
 id = 789 # int | 
 
@@ -109,11 +109,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **str**|  | 
  **body** | **str**|  | 
- **_from** | [**EmailAddressTypes**](.md)|  | 
- **to** | [**EmailAddressesTypes**](.md)|  | 
- **replyto** | [**EmailAddressesTypes**](.md)|  | 
- **cc** | [**EmailAddressesTypes**](.md)|  | 
- **bcc** | [**EmailAddressesTypes**](.md)|  | 
+ **_from** | [**object**](.md)|  | 
+ **to** | [**object**](.md)|  | 
+ **replyto** | [**object**](.md)|  | 
+ **cc** | [**object**](.md)|  | 
+ **bcc** | [**object**](.md)|  | 
  **attachments** | [**list[MailAttachment]**](MailAttachment.md)|  | 
  **id** | **int**|  | 
 

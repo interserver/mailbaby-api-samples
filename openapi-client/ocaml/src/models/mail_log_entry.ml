@@ -122,6 +122,13 @@
                 
                 ; [@key "delivered"]
                     (** Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. *)
+                                      code: int32
+                  
+                   option [@default None]
+                
+                
+                ; [@key "code"]
+                    (** The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). *)
                                       response: string
                   
                    option [@default None]
@@ -198,6 +205,7 @@
             body_size = None;
             seq = None;
             delivered = None;
+            code = None;
             response = None;
             recipient = None;
             domain = None;

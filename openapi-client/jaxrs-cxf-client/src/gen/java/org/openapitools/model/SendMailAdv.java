@@ -33,23 +33,38 @@ public class SendMailAdv  {
 
   private String body;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+  */
+  @ApiModelProperty(required = true, value = "The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.")
 
   private EmailAddressTypes from;
 
-  @ApiModelProperty(required = true, value = "")
+ /**
+  * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+  */
+  @ApiModelProperty(required = true, value = "One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.")
 
   private EmailAddressesTypes to;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+  */
+  @ApiModelProperty(value = "Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.")
 
   private EmailAddressesTypes replyto;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+  */
+  @ApiModelProperty(value = "Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.")
 
   private EmailAddressesTypes cc;
 
-  @ApiModelProperty(value = "")
+ /**
+  * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+  */
+  @ApiModelProperty(value = "Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.")
 
   private EmailAddressesTypes bcc;
 
@@ -103,7 +118,7 @@ public class SendMailAdv  {
   }
 
  /**
-   * Get from
+   * The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; object.
    * @return from
   **/
   @JsonProperty("from")
@@ -121,7 +136,7 @@ public class SendMailAdv  {
   }
 
  /**
-   * Get to
+   * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
    * @return to
   **/
   @JsonProperty("to")
@@ -139,7 +154,7 @@ public class SendMailAdv  {
   }
 
  /**
-   * Get replyto
+   * Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;.
    * @return replyto
   **/
   @JsonProperty("replyto")
@@ -157,7 +172,7 @@ public class SendMailAdv  {
   }
 
  /**
-   * Get cc
+   * Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients.
    * @return cc
   **/
   @JsonProperty("cc")
@@ -175,7 +190,7 @@ public class SendMailAdv  {
   }
 
  /**
-   * Get bcc
+   * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
    * @return bcc
   **/
   @JsonProperty("bcc")

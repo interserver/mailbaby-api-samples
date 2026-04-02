@@ -33,6 +33,8 @@ class MailLogEntry {
   int seq = null;
 /* Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. */
   int delivered = null;
+/* The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). */
+  int code = null;
 /* The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). */
   String response = null;
 /* The specific recipient address this delivery record is for. */
@@ -54,7 +56,7 @@ class MailLogEntry {
 
   @override
   String toString() {
-    return 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, subject=$subject, messageId=$messageId, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface=$interface, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, delivered=$delivered, response=$response, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname, ]';
+    return 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, subject=$subject, messageId=$messageId, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface=$interface, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, delivered=$delivered, code=$code, response=$response, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname, ]';
   }
 
   MailLogEntry.fromJson(Map<String, dynamic> json) {
@@ -75,6 +77,7 @@ class MailLogEntry {
     bodySize = json['bodySize'];
     seq = json['seq'];
     delivered = json['delivered'];
+    code = json['code'];
     response = json['response'];
     recipient = json['recipient'];
     domain = json['domain'];
@@ -103,6 +106,7 @@ class MailLogEntry {
       'bodySize': bodySize,
       'seq': seq,
       'delivered': delivered,
+      'code': code,
       'response': response,
       'recipient': recipient,
       'domain': domain,

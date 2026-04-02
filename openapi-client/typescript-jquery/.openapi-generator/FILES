@@ -31,5 +31,6 @@ model/SendMail.ts
 model/SendMailAdv.ts
 model/SendMailRaw.ts
 model/SendMailTo.ts
+model/ViewMailLogStartDateParameter.ts
 model/models.ts
 variables.ts

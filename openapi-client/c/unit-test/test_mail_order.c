@@ -23,14 +23,14 @@ mail_order_t* instantiate_mail_order(int include_optional) {
   if (include_optional) {
     mail_order = mail_order_create(
       21472,
-      "active",
+      mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_"active",
       "mb21472",
       "0"
     );
   } else {
     mail_order = mail_order_create(
       21472,
-      "active",
+      mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_"active",
       "mb21472",
       "0"
     );

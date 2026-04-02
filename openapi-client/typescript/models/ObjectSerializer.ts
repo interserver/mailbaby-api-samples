@@ -21,6 +21,7 @@ export * from '../models/SendMail';
 export * from '../models/SendMailAdv';
 export * from '../models/SendMailRaw';
 export * from '../models/SendMailTo';
+export * from '../models/ViewMailLogStartDateParameter';
 
 import { DenyRuleNew, DenyRuleNewTypeEnum     } from '../models/DenyRuleNew';
 import { DenyRuleRecord, DenyRuleRecordTypeEnum       } from '../models/DenyRuleRecord';
@@ -37,14 +38,15 @@ import { MailBlockRspamd } from '../models/MailBlockRspamd';
 import { MailBlocks } from '../models/MailBlocks';
 import { MailLog } from '../models/MailLog';
 import { MailLogEntry } from '../models/MailLogEntry';
-import { MailOrder } from '../models/MailOrder';
-import { MailOrderDetail } from '../models/MailOrderDetail';
+import { MailOrder , MailOrderStatusEnum     } from '../models/MailOrder';
+import { MailOrderDetail , MailOrderDetailStatusEnum      } from '../models/MailOrderDetail';
 import { MailStatsType, MailStatsTypeTimeEnum         } from '../models/MailStatsType';
 import { MailStatsVolume } from '../models/MailStatsVolume';
 import { SendMail } from '../models/SendMail';
 import { SendMailAdv } from '../models/SendMailAdv';
 import { SendMailRaw } from '../models/SendMailRaw';
 import { SendMailToClass } from '../models/SendMailTo';
+import { ViewMailLogStartDateParameterClass } from '../models/ViewMailLogStartDateParameter';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -61,6 +63,8 @@ let primitives = [
 let enumsMap: Set<string> = new Set<string>([
     "DenyRuleNewTypeEnum",
     "DenyRuleRecordTypeEnum",
+    "MailOrderStatusEnum",
+    "MailOrderDetailStatusEnum",
     "MailStatsTypeTimeEnum",
 ]);
 
@@ -88,6 +92,7 @@ let typeMap: {[index: string]: any} = {
     "SendMailAdv": SendMailAdv,
     "SendMailRaw": SendMailRaw,
     "SendMailTo": SendMailToClass,
+    "ViewMailLogStartDateParameter": ViewMailLogStartDateParameterClass,
 }
 
 type MimeTypeDescriptor = {

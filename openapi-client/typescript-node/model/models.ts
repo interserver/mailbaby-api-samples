@@ -23,6 +23,7 @@ export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailRaw';
 export * from './sendMailTo';
+export * from './viewMailLogStartDateParameter';
 
 import * as fs from 'fs';
 
@@ -60,6 +61,7 @@ import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
 import { SendMailRaw } from './sendMailRaw';
 import { SendMailTo } from './sendMailTo';
+import { ViewMailLogStartDateParameter } from './viewMailLogStartDateParameter';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -76,6 +78,8 @@ let primitives = [
 let enumsMap: {[index: string]: any} = {
         "DenyRuleNew.TypeEnum": DenyRuleNew.TypeEnum,
         "DenyRuleRecord.TypeEnum": DenyRuleRecord.TypeEnum,
+        "MailOrder.StatusEnum": MailOrder.StatusEnum,
+        "MailOrderDetail.StatusEnum": MailOrderDetail.StatusEnum,
         "MailStatsType.TimeEnum": MailStatsType.TimeEnum,
 }
 
@@ -103,6 +107,7 @@ let typeMap: {[index: string]: any} = {
     "SendMailAdv": SendMailAdv,
     "SendMailRaw": SendMailRaw,
     "SendMailTo": SendMailTo,
+    "ViewMailLogStartDateParameter": ViewMailLogStartDateParameter,
 }
 
 // Check if a string starts with another string without using es6 features

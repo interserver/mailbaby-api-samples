@@ -23,7 +23,7 @@ mail_order_detail_t* instantiate_mail_order_detail(int include_optional) {
   if (include_optional) {
     mail_order_detail = mail_order_detail_create(
       21472,
-      "active",
+      mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_"active",
       "mb21472",
       "s3cr3tpassword",
       "0"
@@ -31,7 +31,7 @@ mail_order_detail_t* instantiate_mail_order_detail(int include_optional) {
   } else {
     mail_order_detail = mail_order_detail_create(
       21472,
-      "active",
+      mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_"active",
       "mb21472",
       "s3cr3tpassword",
       "0"

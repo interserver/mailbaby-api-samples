@@ -45,6 +45,7 @@ models/SendMail.ts
 models/SendMailAdv.ts
 models/SendMailRaw.ts
 models/SendMailTo.ts
+models/ViewMailLogStartDateParameter.ts
 models/all.ts
 package.json
 rxjsStub.ts

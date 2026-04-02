@@ -1,6 +1,6 @@
 # #MailBaby Email Delivery and Management Service API
 #
-##**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+##**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 #
 #The version of the OpenAPI document: 1.4.0
 #Contact: support@interserver.net
@@ -80,6 +80,10 @@ module OpenAPIClient
     @[JSON::Field(key: "delivered", type: Int32?, nillable: true, emit_null: false)]
     property delivered : Int32?
 
+    # The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+    @[JSON::Field(key: "code", type: Int32?, nillable: true, emit_null: false)]
+    property code : Int32?
+
     # The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
     @[JSON::Field(key: "response", type: String?, nillable: true, emit_null: false)]
     property response : String?
@@ -114,20 +118,44 @@ module OpenAPIClient
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
-    def initialize(@_id : Int32, @id : String, @from : String, @to : String, @created : String, @time : Int32, @user : String, @transtype : String, @origin : String, @interface : String, @subject : String? = nil, @message_id : String? = nil, @sending_zone : String? = nil, @body_size : Int32? = nil, @seq : Int32? = nil, @delivered : Int32? = nil, @response : String? = nil, @recipient : String? = nil, @domain : String? = nil, @locked : Int32? = nil, @lock_time : String? = nil, @assigned : String? = nil, @queued : String? = nil, @mx_hostname : String? = nil)
+    def initialize(@_id : Int32, @id : String, @from : String, @to : String, @created : String, @time : Int32, @user : String, @transtype : String, @origin : String, @interface : String, @subject : String? = nil, @message_id : String? = nil, @sending_zone : String? = nil, @body_size : Int32? = nil, @seq : Int32? = nil, @delivered : Int32? = nil, @code : Int32? = nil, @response : String? = nil, @recipient : String? = nil, @domain : String? = nil, @locked : Int32? = nil, @lock_time : String? = nil, @assigned : String? = nil, @queued : String? = nil, @mx_hostname : String? = nil)
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array(String).new
+      if @id.try &.to_s.try &.size.try &.> 19
+        invalid_properties.push("invalid value for \"id\", the character length must be smaller than or equal to 19.")
+      end
+
+      if @id.try &.to_s.try &.size.try &.< 18
+        invalid_properties.push("invalid value for \"id\", the character length must be greater than or equal to 18.")
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @id.try &.to_s.try &.size.try &.> 19
+      return false if @id.try &.to_s.try &.size.try &.< 18
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id Value to be assigned
+    def id=(id)
+      if id.to_s.size > 19
+        raise ArgumentError.new("invalid value for \"id\", the character length must be smaller than or equal to 19.")
+      end
+
+      if id.to_s.size < 18
+        raise ArgumentError.new("invalid value for \"id\", the character length must be greater than or equal to 18.")
+      end
+
+      @id = id
     end
 
     # Checks equality by comparing each attribute.
@@ -151,6 +179,7 @@ module OpenAPIClient
           body_size == other.body_size &&
           seq == other.seq &&
           delivered == other.delivered &&
+          code == other.code &&
           response == other.response &&
           recipient == other.recipient &&
           domain == other.domain &&
@@ -170,7 +199,7 @@ module OpenAPIClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [_id, id, from, to, created, time, user, transtype, origin, interface, subject, message_id, sending_zone, body_size, seq, delivered, response, recipient, domain, locked, lock_time, assigned, queued, mx_hostname].hash
+      [_id, id, from, to, created, time, user, transtype, origin, interface, subject, message_id, sending_zone, body_size, seq, delivered, code, response, recipient, domain, locked, lock_time, assigned, queued, mx_hostname].hash
     end
 
     # Returns the string representation of the object
@@ -205,6 +234,7 @@ module OpenAPIClient
       hash["bodySize"] = _to_h(body_size)
       hash["seq"] = _to_h(seq)
       hash["delivered"] = _to_h(delivered)
+      hash["code"] = _to_h(code)
       hash["response"] = _to_h(response)
       hash["recipient"] = _to_h(recipient)
       hash["domain"] = _to_h(domain)

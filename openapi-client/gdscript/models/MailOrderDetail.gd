@@ -25,11 +25,17 @@ var __id__was__set := false
 # Required: True
 # Example: active
 # isArray: false
+# Allowed values: "active", "canceled"
 @export var status: String = "":
 	set(value):
+		if str(value) != "" and not (str(value) in __status__allowable__values):
+			push_error("MailOrderDetail: tried to set property `status` to a value that is not allowed." +
+				"  Allowed values: `active`, `canceled`")
+			return
 		__status__was__set = true
 		status = value
 var __status__was__set := false
+var __status__allowable__values := ["active", "canceled"]
 
 # The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 # Required: True
@@ -51,7 +57,7 @@ var __username__was__set := false
 		password = value
 var __password__was__set := false
 
-# Optional human-readable note associated with the order.
+# Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 # Required: False
 # isArray: false
 @export var comment: String = "":

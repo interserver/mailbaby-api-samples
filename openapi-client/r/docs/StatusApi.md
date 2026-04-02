@@ -8,11 +8,11 @@ Method | HTTP request | Description
 
 
 # **PingServer**
-> PingServer()
+> character PingServer()
 
 Checks if the server is running
 
-A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 
 ### Example
 ```R
@@ -24,7 +24,10 @@ library(openapi)
 api_instance <- StatusApi$new()
 # Configure API key authorization: apiKeyAuth
 api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
-api_instance$PingServer()
+# to save the result into a file, simply add the optional `data_file` parameter, e.g.
+# result <- api_instance$PingServer(data_file = "result.txt")
+result <- api_instance$PingServer()
+dput(result)
 ```
 
 ### Parameters
@@ -32,7 +35,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**character**
 
 ### Authorization
 
@@ -41,7 +44,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain
 
 ### HTTP response details
 | Status code | Description | Response headers |

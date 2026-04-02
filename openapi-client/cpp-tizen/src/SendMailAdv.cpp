@@ -25,11 +25,11 @@ SendMailAdv::__init()
 {
 	//subject = std::string();
 	//body = std::string();
-	//from = new EmailAddressTypes();
-	//to = new EmailAddressesTypes();
-	//replyto = new EmailAddressesTypes();
-	//cc = new EmailAddressesTypes();
-	//bcc = new EmailAddressesTypes();
+	//from = null;
+	//to = null;
+	//replyto = null;
+	//cc = null;
+	//bcc = null;
 	//new std::list()std::list> attachments;
 	//id = long(0);
 }

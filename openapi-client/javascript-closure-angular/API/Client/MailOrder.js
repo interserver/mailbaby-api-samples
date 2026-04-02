@@ -28,9 +28,14 @@ API.Client.MailOrder.prototype.status;
 API.Client.MailOrder.prototype.username;
 
 /**
- * Optional human-readable note associated with the order.
+ * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
  * @type {!string}
  * @export
  */
 API.Client.MailOrder.prototype.comment;
 
+/** @enum {string} */
+API.Client.MailOrder.StatusEnum = { 
+  active: 'active',
+  canceled: 'canceled',
+}

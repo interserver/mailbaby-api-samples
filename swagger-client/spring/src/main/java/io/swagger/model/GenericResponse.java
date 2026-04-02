@@ -25,14 +25,10 @@ import javax.validation.constraints.*;
 public class GenericResponse   {
   @JsonProperty("status")
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
-  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String status = null;
 
   @JsonProperty("text")
 
-  @JsonInclude(JsonInclude.Include.NON_ABSENT)  // Exclude from JSON if absent
-  @JsonSetter(nulls = Nulls.FAIL)    // FAIL setting if the value is null
   private String text = null;
 
 
@@ -47,8 +43,9 @@ public class GenericResponse   {
    * @return status
    **/
   
-  @Schema(example = "ok", description = "Always `\"ok\"` on success.")
+  @Schema(example = "ok", required = true, description = "Always `\"ok\"` on success.")
   
+  @NotNull
   public String getStatus() {  
     return status;
   }
@@ -56,6 +53,7 @@ public class GenericResponse   {
 
 
   public void setStatus(String status) { 
+
     this.status = status;
   }
 
@@ -70,8 +68,9 @@ public class GenericResponse   {
    * @return text
    **/
   
-  @Schema(example = "185caa69ff7000f47c", description = "Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.")
+  @Schema(example = "185caa69ff7000f47c", required = true, description = "Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.")
   
+  @NotNull
   public String getText() {  
     return text;
   }
@@ -79,6 +78,7 @@ public class GenericResponse   {
 
 
   public void setText(String text) { 
+
     this.text = text;
   }
 

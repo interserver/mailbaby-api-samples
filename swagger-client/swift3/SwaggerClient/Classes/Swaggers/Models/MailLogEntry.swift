@@ -42,6 +42,8 @@ open class MailLogEntry: JSONEncodable {
     public var seq: Int32?
     /** Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. */
     public var delivered: Int32?
+    /** The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure). */
+    public var code: Int32?
     /** The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;). */
     public var response: String?
     /** The specific recipient address this delivery record is for. */
@@ -80,6 +82,7 @@ open class MailLogEntry: JSONEncodable {
         nillableDictionary["bodySize"] = self.bodySize?.encodeToJSON()
         nillableDictionary["seq"] = self.seq?.encodeToJSON()
         nillableDictionary["delivered"] = self.delivered?.encodeToJSON()
+        nillableDictionary["code"] = self.code?.encodeToJSON()
         nillableDictionary["response"] = self.response
         nillableDictionary["recipient"] = self.recipient
         nillableDictionary["domain"] = self.domain

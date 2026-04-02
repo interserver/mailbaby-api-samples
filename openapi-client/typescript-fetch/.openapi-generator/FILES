@@ -33,6 +33,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 index.ts
 models/DenyRuleNew.ts
 models/DenyRuleRecord.ts
@@ -57,5 +58,6 @@ models/SendMail.ts
 models/SendMailAdv.ts
 models/SendMailRaw.ts
 models/SendMailTo.ts
+models/ViewMailLogStartDateParameter.ts
 models/index.ts
 runtime.ts

@@ -20,6 +20,7 @@ type MailLogEntry struct {
 	BodySize int32 `json:"bodySize,omitempty"`
 	Seq int32 `json:"seq,omitempty"`
 	Delivered int32 `json:"delivered,omitempty"`
+	Code int32 `json:"code,omitempty"`
 	Response string `json:"response,omitempty"`
 	Recipient string `json:"recipient,omitempty"`
 	Domain string `json:"domain,omitempty"`

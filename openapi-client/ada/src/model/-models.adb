@@ -1,5 +1,5 @@
 --  MailBaby Email Delivery and Management Service API
---  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use_case: | Endpoint | Best for | |__________|__________| | `POST /mail/send` | Simple single_recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre_built RFC 822 messages (e.g. DKIM_signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: _ **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). _ **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject_line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X_API_KEY` HTTP request header for every protected call. 
+--  **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use_case: | Endpoint | Best for | |__________|__________| | `POST /mail/send` | Simple single_recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre_built RFC 822 messages (e.g. DKIM_signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: _ **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). _ **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject_line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X_API_KEY` HTTP request header for every protected call. 
 --
 --  The version of the OpenAPI document: 1.4.0
 --  Contact: support@interserver.net
@@ -346,12 +346,8 @@ package body .Models is
                         Value : in .Models.GenericResponse_Type) is
    begin
       Into.Start_Entity (Name);
-      if not Value.Status.Is_Null then
-         Into.Write_Entity ("status", Value.Status);
-      end if;
-      if not Value.Text.Is_Null then
-         Into.Write_Entity ("text", Value.Text);
-      end if;
+      Into.Write_Entity ("status", Value.Status);
+      Into.Write_Entity ("text", Value.Text);
       Into.End_Entity (Name);
    end Serialize;
 
@@ -507,6 +503,7 @@ package body .Models is
       Into.Write_Entity ("bodySize", Value.Body_Size);
       Into.Write_Entity ("seq", Value.Seq);
       Into.Write_Entity ("delivered", Value.Delivered);
+      Into.Write_Entity ("code", Value.Code);
       Into.Write_Entity ("response", Value.Response);
       Into.Write_Entity ("recipient", Value.Recipient);
       Into.Write_Entity ("domain", Value.Domain);
@@ -551,6 +548,7 @@ package body .Models is
       Swagger.Streams.Deserialize (Object, "bodySize", Value.Body_Size);
       Swagger.Streams.Deserialize (Object, "seq", Value.Seq);
       Swagger.Streams.Deserialize (Object, "delivered", Value.Delivered);
+      Swagger.Streams.Deserialize (Object, "code", Value.Code);
       Swagger.Streams.Deserialize (Object, "response", Value.Response);
       Swagger.Streams.Deserialize (Object, "recipient", Value.Recipient);
       Swagger.Streams.Deserialize (Object, "domain", Value.Domain);
@@ -805,6 +803,47 @@ package body .Models is
                           Value : in out SendMailTo_Type_Vectors.Vector) is
       List : Swagger.Value_Array_Type;
       Item : .Models.SendMailTo_Type;
+   begin
+      Value.Clear;
+      Swagger.Streams.Deserialize (From, Name, List);
+      for Data of List loop
+         Deserialize (Data, "", Item);
+         Value.Append (Item);
+      end loop;
+   end Deserialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.ViewMailLogStartDateParameter_Type) is
+   begin
+      Into.Start_Entity (Name);
+      Into.End_Entity (Name);
+   end Serialize;
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in ViewMailLogStartDateParameter_Type_Vectors.Vector) is
+   begin
+      Into.Start_Array (Name);
+      for Item of Value loop
+         Serialize (Into, "", Item);
+      end loop;
+      Into.End_Array (Name);
+   end Serialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.ViewMailLogStartDateParameter_Type) is
+      Object : Swagger.Value_Type;
+   begin
+      Swagger.Streams.Deserialize (From, Name, Object);
+   end Deserialize;
+
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out ViewMailLogStartDateParameter_Type_Vectors.Vector) is
+      List : Swagger.Value_Array_Type;
+      Item : .Models.ViewMailLogStartDateParameter_Type;
    begin
       Value.Clear;
       Swagger.Streams.Deserialize (From, Name, List);

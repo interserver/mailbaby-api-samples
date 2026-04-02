@@ -1,6 +1,6 @@
 /*
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * OpenAPI spec version: 1.4.0
  * Contact: support@interserver.net
@@ -15,8 +15,6 @@ package io.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
 import io.swagger.model.MailAttachment;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
@@ -37,19 +35,19 @@ public class SendMailAdv   {
   private String body = null;
 
   @JsonProperty("from")
-  private EmailAddressTypes from = null;
+  private AllOfSendMailAdvFrom from = null;
 
   @JsonProperty("to")
-  private EmailAddressesTypes to = null;
+  private AllOfSendMailAdvTo to = null;
 
   @JsonProperty("replyto")
-  private EmailAddressesTypes replyto = null;
+  private AllOfSendMailAdvReplyto replyto = null;
 
   @JsonProperty("cc")
-  private EmailAddressesTypes cc = null;
+  private AllOfSendMailAdvCc cc = null;
 
   @JsonProperty("bcc")
-  private EmailAddressesTypes bcc = null;
+  private AllOfSendMailAdvBcc bcc = null;
 
   @JsonProperty("attachments")
   private List<MailAttachment> attachments = null;
@@ -97,108 +95,103 @@ public class SendMailAdv   {
     this.body = body;
   }
 
-  public SendMailAdv from(EmailAddressTypes from) {
+  public SendMailAdv from(AllOfSendMailAdvFrom from) {
     this.from = from;
     return this;
   }
 
   /**
-   * Get from
+   * The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\&quot;Name &lt;email&gt;\&quot;&#x60;), or a &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; object.
    * @return from
    **/
   @JsonProperty("from")
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.")
   @NotNull
-  @Valid
-  public EmailAddressTypes getFrom() {
+  public AllOfSendMailAdvFrom getFrom() {
     return from;
   }
 
-  public void setFrom(EmailAddressTypes from) {
+  public void setFrom(AllOfSendMailAdvFrom from) {
     this.from = from;
   }
 
-  public SendMailAdv to(EmailAddressesTypes to) {
+  public SendMailAdv to(AllOfSendMailAdvTo to) {
     this.to = to;
     return this;
   }
 
   /**
-   * Get to
+   * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
    * @return to
    **/
   @JsonProperty("to")
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.")
   @NotNull
-  @Valid
-  public EmailAddressesTypes getTo() {
+  public AllOfSendMailAdvTo getTo() {
     return to;
   }
 
-  public void setTo(EmailAddressesTypes to) {
+  public void setTo(AllOfSendMailAdvTo to) {
     this.to = to;
   }
 
-  public SendMailAdv replyto(EmailAddressesTypes replyto) {
+  public SendMailAdv replyto(AllOfSendMailAdvReplyto replyto) {
     this.replyto = replyto;
     return this;
   }
 
   /**
-   * Get replyto
+   * Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;.
    * @return replyto
    **/
   @JsonProperty("replyto")
-  @Schema(description = "")
+  @Schema(description = "Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.")
   @NotNull
-  @Valid
-  public EmailAddressesTypes getReplyto() {
+  public AllOfSendMailAdvReplyto getReplyto() {
     return replyto;
   }
 
-  public void setReplyto(EmailAddressesTypes replyto) {
+  public void setReplyto(AllOfSendMailAdvReplyto replyto) {
     this.replyto = replyto;
   }
 
-  public SendMailAdv cc(EmailAddressesTypes cc) {
+  public SendMailAdv cc(AllOfSendMailAdvCc cc) {
     this.cc = cc;
     return this;
   }
 
   /**
-   * Get cc
+   * Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients.
    * @return cc
    **/
   @JsonProperty("cc")
-  @Schema(description = "")
+  @Schema(description = "Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.")
   @NotNull
-  @Valid
-  public EmailAddressesTypes getCc() {
+  public AllOfSendMailAdvCc getCc() {
     return cc;
   }
 
-  public void setCc(EmailAddressesTypes cc) {
+  public void setCc(AllOfSendMailAdvCc cc) {
     this.cc = cc;
   }
 
-  public SendMailAdv bcc(EmailAddressesTypes bcc) {
+  public SendMailAdv bcc(AllOfSendMailAdvBcc bcc) {
     this.bcc = bcc;
     return this;
   }
 
   /**
-   * Get bcc
+   * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
    * @return bcc
    **/
   @JsonProperty("bcc")
-  @Schema(description = "")
+  @Schema(description = "Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.")
   @NotNull
-  @Valid
-  public EmailAddressesTypes getBcc() {
+  public AllOfSendMailAdvBcc getBcc() {
     return bcc;
   }
 
-  public void setBcc(EmailAddressesTypes bcc) {
+  public void setBcc(AllOfSendMailAdvBcc bcc) {
     this.bcc = bcc;
   }
 

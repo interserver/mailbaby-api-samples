@@ -1,8 +1,6 @@
 import connexion
 import six
 
-from mailbaby-client-python-flask.models.email_address_types import EmailAddressTypes  # noqa: E501
-from mailbaby-client-python-flask.models.email_addresses_types import EmailAddressesTypes  # noqa: E501
 from mailbaby-client-python-flask.models.error_message import ErrorMessage  # noqa: E501
 from mailbaby-client-python-flask.models.generic_response import GenericResponse  # noqa: E501
 from mailbaby-client-python-flask.models.mail_attachment import MailAttachment  # noqa: E501
@@ -16,7 +14,7 @@ from mailbaby-client-python-flask import util
 def raw_mail(body):  # noqa: E501
     """Sends a raw RFC 822 email
 
-    Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record.  # noqa: E501
+    Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record.  # noqa: E501
 
     :param body: 
     :type body: dict | bytes
@@ -31,7 +29,7 @@ def raw_mail(body):  # noqa: E501
 def raw_mail(raw_email, id):  # noqa: E501
     """Sends a raw RFC 822 email
 
-    Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record.  # noqa: E501
+    Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record.  # noqa: E501
 
     :param raw_email: 
     :type raw_email: str
@@ -70,15 +68,15 @@ def send_adv_mail(subject, body, _from, to, replyto, cc, bcc, attachments, id): 
     :rtype: GenericResponse
     """
     if connexion.request.is_json:
-        _from = EmailAddressTypes.from_dict(connexion.request.get_json())  # noqa: E501
+        _from = Object.from_dict(connexion.request.get_json())  # noqa: E501
     if connexion.request.is_json:
-        to = EmailAddressesTypes.from_dict(connexion.request.get_json())  # noqa: E501
+        to = Object.from_dict(connexion.request.get_json())  # noqa: E501
     if connexion.request.is_json:
-        replyto = EmailAddressesTypes.from_dict(connexion.request.get_json())  # noqa: E501
+        replyto = Object.from_dict(connexion.request.get_json())  # noqa: E501
     if connexion.request.is_json:
-        cc = EmailAddressesTypes.from_dict(connexion.request.get_json())  # noqa: E501
+        cc = Object.from_dict(connexion.request.get_json())  # noqa: E501
     if connexion.request.is_json:
-        bcc = EmailAddressesTypes.from_dict(connexion.request.get_json())  # noqa: E501
+        bcc = Object.from_dict(connexion.request.get_json())  # noqa: E501
     if connexion.request.is_json:
         attachments = [MailAttachment.from_dict(d) for d in connexion.request.get_json()]  # noqa: E501
     return 'do some magic!'

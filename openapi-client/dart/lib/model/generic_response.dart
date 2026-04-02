@@ -13,27 +13,15 @@ part of openapi.api;
 class GenericResponse {
   /// Returns a new [GenericResponse] instance.
   GenericResponse({
-    this.status,
-    this.text,
+    required this.status,
+    required this.text,
   });
 
   /// Always `\"ok\"` on success.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? status;
+  String status;
 
   /// Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  String? text;
+  String text;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is GenericResponse &&
@@ -43,24 +31,16 @@ class GenericResponse {
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (status == null ? 0 : status!.hashCode) +
-    (text == null ? 0 : text!.hashCode);
+    (status.hashCode) +
+    (text.hashCode);
 
   @override
   String toString() => 'GenericResponse[status=$status, text=$text]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (this.status != null) {
       json[r'status'] = this.status;
-    } else {
-      json[r'status'] = null;
-    }
-    if (this.text != null) {
       json[r'text'] = this.text;
-    } else {
-      json[r'text'] = null;
-    }
     return json;
   }
 
@@ -75,12 +55,16 @@ class GenericResponse {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
+        assert(json.containsKey(r'status'), 'Required key "GenericResponse[status]" is missing from JSON.');
+        assert(json[r'status'] != null, 'Required key "GenericResponse[status]" has a null value in JSON.');
+        assert(json.containsKey(r'text'), 'Required key "GenericResponse[text]" is missing from JSON.');
+        assert(json[r'text'] != null, 'Required key "GenericResponse[text]" has a null value in JSON.');
         return true;
       }());
 
       return GenericResponse(
-        status: mapValueOfType<String>(json, r'status'),
-        text: mapValueOfType<String>(json, r'text'),
+        status: mapValueOfType<String>(json, r'status')!,
+        text: mapValueOfType<String>(json, r'text')!,
       );
     }
     return null;
@@ -128,6 +112,8 @@ class GenericResponse {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
+    'status',
+    'text',
   };
 }
 

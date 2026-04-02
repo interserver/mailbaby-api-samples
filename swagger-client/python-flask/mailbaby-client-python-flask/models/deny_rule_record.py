@@ -138,7 +138,7 @@ class DenyRuleRecord(Model):
     def type(self) -> str:
         """Gets the type of this DenyRuleRecord.
 
-        The type of deny rule.  # noqa: E501
+        The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.  # noqa: E501
 
         :return: The type of this DenyRuleRecord.
         :rtype: str
@@ -149,7 +149,7 @@ class DenyRuleRecord(Model):
     def type(self, type: str):
         """Sets the type of this DenyRuleRecord.
 
-        The type of deny rule.  # noqa: E501
+        The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.  # noqa: E501
 
         :param type: The type of this DenyRuleRecord.
         :type type: str

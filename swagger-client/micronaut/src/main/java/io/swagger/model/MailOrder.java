@@ -3,6 +3,7 @@ package io.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.validation.Validated;
@@ -20,8 +21,37 @@ public class MailOrder   {
   @JsonProperty("id")
   private Integer id = null;
 
+  /**
+   * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+   */
+  public enum StatusEnum {
+    ACTIVE("active"),
+    CANCELED("canceled");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
   @JsonProperty("status")
-  private String status = null;
+  private StatusEnum status = null;
 
   @JsonProperty("username")
   private String username = null;
@@ -49,7 +79,7 @@ public class MailOrder   {
     this.id = id;
   }
 
-  public MailOrder status(String status) {
+  public MailOrder status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -61,11 +91,11 @@ public class MailOrder   {
   @Schema(example = "active", required = true, description = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
   @NotNull
 
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
@@ -81,7 +111,7 @@ public class MailOrder   {
   @Schema(example = "mb21472", required = true, description = "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
   @NotNull
 
-  public String getUsername() {
+@Pattern(regexp="^mb\\d+$")   public String getUsername() {
     return username;
   }
 
@@ -95,10 +125,10 @@ public class MailOrder   {
   }
 
   /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    * @return comment
   **/
-  @Schema(description = "Optional human-readable note associated with the order.")
+  @Schema(description = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
   @NotNull
 
   public String getComment() {

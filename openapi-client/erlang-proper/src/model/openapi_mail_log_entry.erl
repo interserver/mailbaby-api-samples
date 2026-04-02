@@ -25,6 +25,7 @@
   | {'bodySize', integer() }
   | {'seq', integer() }
   | {'delivered', integer() }
+  | {'code', integer() }
   | {'response', binary() }
   | {'recipient', binary() }
   | {'domain', binary() }
@@ -41,7 +42,7 @@ openapi_mail_log_entry() ->
 
 openapi_mail_log_entry(Fields) ->
   Default = [ {'_id', integer() }
-            , {'id', binary() }
+            , {'id', binary(18, 19) }
             , {'from', binary() }
             , {'to', binary() }
             , {'subject', binary() }
@@ -56,6 +57,7 @@ openapi_mail_log_entry(Fields) ->
             , {'bodySize', integer() }
             , {'seq', integer() }
             , {'delivered', integer() }
+            , {'code', integer() }
             , {'response', binary() }
             , {'recipient', binary() }
             , {'domain', binary() }

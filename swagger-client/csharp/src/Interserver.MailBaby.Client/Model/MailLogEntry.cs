@@ -1,7 +1,7 @@
 /* 
  * MailBaby Email Delivery and Management Service API
  *
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |- -- -- -- -- -|- -- -- -- -- -| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |- -- -- -- -- -|- -- -- -- -- -| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * OpenAPI spec version: 1.4.0
  * Contact: support@interserver.net
@@ -47,6 +47,7 @@ namespace Interserver.MailBaby.Client.Model
         /// <param name="bodySize">Size of the message body in bytes..</param>
         /// <param name="seq">Sequence index of this recipient in a multi-recipient message. Starts at 1..</param>
         /// <param name="delivered">Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;..</param>
+        /// <param name="code">The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure)..</param>
         /// <param name="response">The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;)..</param>
         /// <param name="recipient">The specific recipient address this delivery record is for..</param>
         /// <param name="domain">The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;..</param>
@@ -55,7 +56,7 @@ namespace Interserver.MailBaby.Client.Model
         /// <param name="assigned">The relay server node assigned to deliver this message..</param>
         /// <param name="queued">ISO 8601 timestamp when the message was placed into the delivery queue..</param>
         /// <param name="mxHostname">The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;..</param>
-        public MailLogEntry(int? id = default(int?), string id = default(string), string from = default(string), string to = default(string), string subject = default(string), string messageId = default(string), string created = default(string), int? time = default(int?), string user = default(string), string transtype = default(string), string origin = default(string), string _interface = default(string), string sendingZone = default(string), int? bodySize = default(int?), int? seq = default(int?), int? delivered = default(int?), string response = default(string), string recipient = default(string), string domain = default(string), int? locked = default(int?), string lockTime = default(string), string assigned = default(string), string queued = default(string), string mxHostname = default(string))
+        public MailLogEntry(int? id = default(int?), string id = default(string), string from = default(string), string to = default(string), string subject = default(string), string messageId = default(string), string created = default(string), int? time = default(int?), string user = default(string), string transtype = default(string), string origin = default(string), string _interface = default(string), string sendingZone = default(string), int? bodySize = default(int?), int? seq = default(int?), int? delivered = default(int?), int? code = default(int?), string response = default(string), string recipient = default(string), string domain = default(string), int? locked = default(int?), string lockTime = default(string), string assigned = default(string), string queued = default(string), string mxHostname = default(string))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -153,6 +154,7 @@ namespace Interserver.MailBaby.Client.Model
             this.bodySize = bodySize;
             this.seq = seq;
             this.delivered = delivered;
+            this.code = code;
             this.response = response;
             this.recipient = recipient;
             this.domain = domain;
@@ -276,6 +278,13 @@ namespace Interserver.MailBaby.Client.Model
         public int? delivered { get; set; }
 
         /// <summary>
+        /// The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).
+        /// </summary>
+        /// <value>The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).</value>
+        [DataMember(Name="code", EmitDefaultValue=false)]
+        public int? code { get; set; }
+
+        /// <summary>
         /// The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).
         /// </summary>
         /// <value>The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).</value>
@@ -355,6 +364,7 @@ namespace Interserver.MailBaby.Client.Model
             sb.Append("  bodySize: ").Append(bodySize).Append("\n");
             sb.Append("  seq: ").Append(seq).Append("\n");
             sb.Append("  delivered: ").Append(delivered).Append("\n");
+            sb.Append("  code: ").Append(code).Append("\n");
             sb.Append("  response: ").Append(response).Append("\n");
             sb.Append("  recipient: ").Append(recipient).Append("\n");
             sb.Append("  domain: ").Append(domain).Append("\n");
@@ -478,6 +488,11 @@ namespace Interserver.MailBaby.Client.Model
                     this.delivered.Equals(input.delivered))
                 ) && 
                 (
+                    this.code == input.code ||
+                    (this.code != null &&
+                    this.code.Equals(input.code))
+                ) && 
+                (
                     this.response == input.response ||
                     (this.response != null &&
                     this.response.Equals(input.response))
@@ -560,6 +575,8 @@ namespace Interserver.MailBaby.Client.Model
                     hashCode = hashCode * 59 + this.seq.GetHashCode();
                 if (this.delivered != null)
                     hashCode = hashCode * 59 + this.delivered.GetHashCode();
+                if (this.code != null)
+                    hashCode = hashCode * 59 + this.code.GetHashCode();
                 if (this.response != null)
                     hashCode = hashCode * 59 + this.response.GetHashCode();
                 if (this.recipient != null)

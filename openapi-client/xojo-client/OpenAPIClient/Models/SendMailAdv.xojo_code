@@ -18,26 +18,41 @@ Protected Class SendMailAdv
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			The sender address.  Accepts a plain email string, an RFC 822 named string (`"Name <email>"`), or a `{"email": "...", "name": "..."}` object.
+		#tag EndNote
 		from As OpenAPIClient.Models.EmailAddressTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+		#tag EndNote
 		Escapedto As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+		#tag EndNote
 		replyto As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+		#tag EndNote
 		cc As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 
 
 	#tag Property, Flags = &h0
+		#tag Note
+			Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+		#tag EndNote
 		bcc As OpenAPIClient.Models.EmailAddressesTypes
 	#tag EndProperty
 

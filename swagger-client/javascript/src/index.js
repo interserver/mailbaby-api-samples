@@ -1,6 +1,6 @@
 /*
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * OpenAPI spec version: 1.4.0
  * Contact: support@interserver.net
@@ -14,6 +14,11 @@
  *
  */
 import ApiClient from './ApiClient';
+import AllOfSendMailAdvBcc from './model/AllOfSendMailAdvBcc';
+import AllOfSendMailAdvCc from './model/AllOfSendMailAdvCc';
+import AllOfSendMailAdvFrom from './model/AllOfSendMailAdvFrom';
+import AllOfSendMailAdvReplyto from './model/AllOfSendMailAdvReplyto';
+import AllOfSendMailAdvTo from './model/AllOfSendMailAdvTo';
 import DenyRuleNew from './model/DenyRuleNew';
 import DenyRuleRecord from './model/DenyRuleRecord';
 import EmailAddressName from './model/EmailAddressName';
@@ -21,6 +26,7 @@ import EmailAddressNames from './model/EmailAddressNames';
 import EmailAddressParam from './model/EmailAddressParam';
 import EmailAddressTypes from './model/EmailAddressTypes';
 import EmailAddressesTypes from './model/EmailAddressesTypes';
+import EndDate from './model/EndDate';
 import ErrorMessage from './model/ErrorMessage';
 import GenericResponse from './model/GenericResponse';
 import MailAttachment from './model/MailAttachment';
@@ -37,6 +43,7 @@ import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import SendMailRaw from './model/SendMailRaw';
 import SendMailTo from './model/SendMailTo';
+import StartDate from './model/StartDate';
 import BlockingApi from './api/BlockingApi';
 import HistoryApi from './api/HistoryApi';
 import SendingApi from './api/SendingApi';
@@ -44,7 +51,7 @@ import ServicesApi from './api/ServicesApi';
 import StatusApi from './api/StatusApi';
 
 /**
-* Send_emails_fast_and_with_confidence_through_our_easy_to_use__REST_httpsen_wikipedia_orgwikiRepresentational_state_transfer_API_interface__OverviewThis_is_the_API_interface_to_the__Mail_Baby_httpsmail_baby_Mail_services_provided_by__InterServer_httpswww_interserver_net__To_use_this_service_you_must_have_an_account_with_us_at__my_interserver_net_httpsmy_interserver_net__Mail_OrdersEvery_sending_account_in_MailBaby_is_backed_by_a_Mail_Order__a_provisioned_sending_credential_with_a_numeric_id_and_a_corresponding_SMTP_username__mbid___Most_calls_accept_an_optional_id_parameter_when_omitted_the_API_automatically_selects_the_first_active_order_on_your_account__Use_GET_mail_to_list_all_orders_and_GET_mailid_to_inspect_a_single_order_including_its_current_SMTP_password__Sending_EmailThree_sending_methods_are_available_depending_on_your_use_case_Endpoint__Best_for________________________POST_mailsend__Simple_single_recipient_messages___POST_mailadvsend__Multiple_recipients_CCBCC_attachments_named_contacts___POST_mailrawsend__Pre_built_RFC_822_messages__e_g__DKIM_signed_payloads_After_a_successful_send_each_endpoint_returns_a_GenericResponse_whose_text_field_contains_the_transaction_ID_assigned_by_the_relay___This_ID_can_later_be_matched_against_entries_in_GET_maillog_via_the_mailid_query_parameter__Filtering__LogsGET_maillog_provides_paginated_access_to_every_message_accepted_by_the_relay_for_your_account___Combine_any_of_the_query_parameters_to_narrow_results__e_g__from_to_subject_messageId_origin_mx_startDateendDate_and_delivered__BlockingTwo_independent_mechanisms_exist_for_suppressing_unwanted_email__Block_lists__GET_mailblocks_POST_mailblocksdelete__addresses_flagged_by_the__system_spam_filters__LOCAL_BL_RCPT__MBTRAP_rules_in_rspamd_and_suspicious_subjects___Deny_rules__GET_mailrules_POST_mailrules_DELETE_mailrulesruleId___custom_rules_you_configure_to_reject_specific_senders_domains_destination_addresses_or__subject_line_prefixes_before_a_message_is_even_attempted__AuthenticationIn_order_to_use_most_of_the_API_calls_you_must_pass_credentials_from_the__my_interserver_net_httpsmy_interserver_net_site_We_support_several_different_authentication_methods_but_the_preferred_method_is_to_use_the_API_Key_which_you_can_get_from_the__Account_Security_httpsmy_interserver_netaccount_security_page_Pass_your_key_in_the_X_API_KEY_HTTP_request_header_for_every_protected_call_.<br>
+* Send_emails_fast_and_with_confidence_through_our_easy_to_use__REST_httpsen_wikipedia_orgwikiRepresentational_state_transfer_API_interface__OverviewThis_is_the_API_interface_to_the__Mail_Baby_httpsmail_baby_Mail_services_provided_by__InterServer_httpswww_interserver_net__To_use_this_service_you_must_have_an_account_with_us_at__my_interserver_net_httpsmy_interserver_net__Mail_OrdersEvery_sending_account_in_MailBaby_is_backed_by_a_Mail_Order__a_provisioned_sending_credential_with_a_numeric_id_and_a_corresponding_SMTP_username__mbid___Most_calls_accept_an_optional_id_parameter_when_omitted_the_API_automatically_selects_the_first_active_order_on_your_account__Use_GET_mail_to_list_all_orders_and_GET_mailid_to_inspect_a_single_order_including_its_current_SMTP_password__Sending_EmailThree_sending_methods_are_available_depending_on_your_use_case_Endpoint__Best_for________________________POST_mailsend__Simple_single_recipient_messages___POST_mailadvsend__Multiple_recipients_CCBCC_attachments_named_contacts___POST_mailrawsend__Pre_built_RFC_822_messages__e_g__DKIM_signed_payloads_After_a_successful_send_each_endpoint_returns_a_GenericResponse_whose_text_field_contains_the_transaction_ID_assigned_by_the_relay___This_ID_can_later_be_matched_against_entries_in_GET_maillog_via_the_mailid_query_parameter__Filtering__LogsGET_maillog_provides_paginated_access_to_every_message_accepted_by_the_relay_for_your_account__Combine_any_of_the_query_parameters_to_narrow_results__e_g__from_to_subject_messageId_origin_mx_startDateendDate_and_delivered__BlockingTwo_independent_mechanisms_exist_for_suppressing_unwanted_email__Block_lists__GET_mailblocks_POST_mailblocksdelete__addresses_flagged_by_the__system_spam_filters__LOCAL_BL_RCPT__MBTRAP_rules_in_rspamd_and_suspicious_subjects___Deny_rules__GET_mailrules_POST_mailrules_DELETE_mailrulesruleId___custom_rules_you_configure_to_reject_specific_senders_domains_destination_addresses_or__subject_line_prefixes_before_a_message_is_even_attempted__AuthenticationIn_order_to_use_most_of_the_API_calls_you_must_pass_credentials_from_the__my_interserver_net_httpsmy_interserver_net_site_We_support_several_different_authentication_methods_but_the_preferred_method_is_to_use_the_API_Key_which_you_can_get_from_the__Account_Security_httpsmy_interserver_netaccount_security_page_Pass_your_key_in_the_X_API_KEY_HTTP_request_header_for_every_protected_call_.<br>
 * The <code>index</code> module provides access to constructors for all the classes which comprise the public API.
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
@@ -80,6 +87,36 @@ export {
      * @property {module:ApiClient}
      */
     ApiClient,
+
+    /**
+     * The AllOfSendMailAdvBcc model constructor.
+     * @property {module:model/AllOfSendMailAdvBcc}
+     */
+    AllOfSendMailAdvBcc,
+
+    /**
+     * The AllOfSendMailAdvCc model constructor.
+     * @property {module:model/AllOfSendMailAdvCc}
+     */
+    AllOfSendMailAdvCc,
+
+    /**
+     * The AllOfSendMailAdvFrom model constructor.
+     * @property {module:model/AllOfSendMailAdvFrom}
+     */
+    AllOfSendMailAdvFrom,
+
+    /**
+     * The AllOfSendMailAdvReplyto model constructor.
+     * @property {module:model/AllOfSendMailAdvReplyto}
+     */
+    AllOfSendMailAdvReplyto,
+
+    /**
+     * The AllOfSendMailAdvTo model constructor.
+     * @property {module:model/AllOfSendMailAdvTo}
+     */
+    AllOfSendMailAdvTo,
 
     /**
      * The DenyRuleNew model constructor.
@@ -122,6 +159,12 @@ export {
      * @property {module:model/EmailAddressesTypes}
      */
     EmailAddressesTypes,
+
+    /**
+     * The EndDate model constructor.
+     * @property {module:model/EndDate}
+     */
+    EndDate,
 
     /**
      * The ErrorMessage model constructor.
@@ -218,6 +261,12 @@ export {
      * @property {module:model/SendMailTo}
      */
     SendMailTo,
+
+    /**
+     * The StartDate model constructor.
+     * @property {module:model/StartDate}
+     */
+    StartDate,
 
     /**
     * The BlockingApi service constructor.

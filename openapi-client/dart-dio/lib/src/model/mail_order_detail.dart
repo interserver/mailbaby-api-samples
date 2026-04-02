@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/mail_order.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -16,7 +17,7 @@ part 'mail_order_detail.g.dart';
 /// * [status] - The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 /// * [username] - The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 /// * [password] - The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
-/// * [comment] - Optional human-readable note associated with the order.
+/// * [comment] - Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 @BuiltValue()
 abstract class MailOrderDetail implements MailOrder, Built<MailOrderDetail, MailOrderDetailBuilder> {
   /// The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
@@ -66,7 +67,7 @@ class _$MailOrderDetailSerializer implements PrimitiveSerializer<MailOrderDetail
     yield r'status';
     yield serializers.serialize(
       object.status,
-      specifiedType: const FullType(String),
+      specifiedType: const FullType(MailOrderStatusEnum),
     );
     yield r'username';
     yield serializers.serialize(
@@ -120,8 +121,8 @@ class _$MailOrderDetailSerializer implements PrimitiveSerializer<MailOrderDetail
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType(MailOrderStatusEnum),
+          ) as MailOrderStatusEnum;
           result.status = valueDes;
           break;
         case r'username':
@@ -158,5 +159,22 @@ class _$MailOrderDetailSerializer implements PrimitiveSerializer<MailOrderDetail
     );
     return result.build();
   }
+}
+
+class MailOrderDetailStatusEnum extends EnumClass {
+
+  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+  @BuiltValueEnumConst(wireName: r'active')
+  static const MailOrderDetailStatusEnum active = _$mailOrderDetailStatusEnum_active;
+  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+  @BuiltValueEnumConst(wireName: r'canceled')
+  static const MailOrderDetailStatusEnum canceled = _$mailOrderDetailStatusEnum_canceled;
+
+  static Serializer<MailOrderDetailStatusEnum> get serializer => _$mailOrderDetailStatusEnumSerializer;
+
+  const MailOrderDetailStatusEnum._(String name): super(name);
+
+  static BuiltSet<MailOrderDetailStatusEnum> get values => _$mailOrderDetailStatusEnumValues;
+  static MailOrderDetailStatusEnum valueOf(String name) => _$mailOrderDetailStatusEnumValueOf(name);
 }
 

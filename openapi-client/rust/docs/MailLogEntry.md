@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **body_size** | Option<**i32**> | Size of the message body in bytes. | [optional]
 **seq** | Option<**i32**> | Sequence index of this recipient in a multi-recipient message. Starts at 1. | [optional]
 **delivered** | Option<**i32**> | Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. | [optional]
+**code** | Option<**i32**> | The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). | [optional]
 **response** | Option<**String**> | The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). | [optional]
 **recipient** | Option<**String**> | The specific recipient address this delivery record is for. | [optional]
 **domain** | Option<**String**> | The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`. | [optional]

@@ -34,6 +34,7 @@ add_library(${PROJECT_NAME}
   OAISendMailAdv.h
   OAISendMailRaw.h
   OAISendMailTo.h
+  OAIViewMailLog_startDate_parameter.h
   OAIBlockingApi.h
   OAIHistoryApi.h
   OAISendingApi.h
@@ -70,6 +71,7 @@ add_library(${PROJECT_NAME}
   OAISendMailAdv.cpp
   OAISendMailRaw.cpp
   OAISendMailTo.cpp
+  OAIViewMailLog_startDate_parameter.cpp
   OAIBlockingApi.cpp
   OAIHistoryApi.cpp
   OAISendingApi.cpp

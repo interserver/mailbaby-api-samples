@@ -24,7 +24,7 @@ info:
 
     # Filtering & Logs
 
-    `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
+    `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
 
     # Blocking
 
@@ -71,10 +71,15 @@ paths:
   /ping:
     get:
       description: |
-        A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.
+        A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
       operationId: pingServer
       responses:
         "200":
+          content:
+            text/plain:
+              schema:
+                example: Server is up and running
+                type: string
           description: Server is up and running
         default:
           description: Something is wrong
@@ -190,6 +195,29 @@ paths:
               schema:
                 $ref: "#/components/schemas/MailOrderDetail"
           description: OK
+          links:
+            sendMailByIdLink:
+              description: The `id` value can be used as the `id` body parameter in
+                `POST /mail/send`.
+              operationId: sendMail
+              parameters:
+                id: $response.body#/id
+            sendAdvMailByIdLink:
+              description: The `id` value can be used as the `id` body parameter in
+                `POST /mail/advsend`.
+              operationId: sendAdvMail
+              parameters:
+                id: $response.body#/id
+            viewMailLogByIdLink:
+              description: The `id` value can be used as the `id` query parameter
+                in `GET /mail/log`.
+              operationId: viewMailLog
+              parameters:
+                id: $response.body#/id
+            getStatsByIdLink:
+              description: Use `GET /mail/stats` to view sending statistics for this
+                mail order.
+              operationId: getStats
         "400":
           content:
             application/json:
@@ -314,7 +342,7 @@ paths:
       description: |
         Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-        This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+        This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
         The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.
 
@@ -477,7 +505,7 @@ paths:
                     name: Mr Client
                   attachments:
                   - filename: message.txt
-                    data: base64_encoded_contents
+                    data: aGVsbG8gdGhlcmUK
                   id: 66
             schema:
               $ref: "#/components/schemas/SendMailAdv"
@@ -528,7 +556,7 @@ paths:
                   - email: replies@domain.com
                   attachments:
                   - filename: message.txt
-                    data: base64_encoded_contents
+                    data: aGVsbG8gdGhlcmUK
                   id: 66
             schema:
               $ref: "#/components/schemas/SendMailAdv"
@@ -596,9 +624,13 @@ paths:
       description: |
         Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
 
-        **Pagination** is controlled by `skip` and `limit`.  The response includes a `total` count so clients can determine how many pages exist.
+        **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
-        **Date filtering** uses Unix timestamps (`startDate` / `endDate`).  For example, to retrieve emails sent in January 2024: `startDate=1704067200&endDate=1706745599`.
+        **Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.
+
+        **Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.
+
+        **Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.
 
         **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.
 
@@ -691,7 +723,7 @@ paths:
           type: string
         style: form
       - description: Filter by the `Message-ID` email header using a substring (case-insensitive)
-          match.  The `Message-ID` is assigned by the sending mail client and is visible
+          match. The `Message-ID` is assigned by the sending mail client and is visible
           in the `messageId` field of `MailLogEntry`.  Useful when you know the message
           ID generated by your application but not the relay `mailid`.
         example: <abc123@yourdomain.com>
@@ -772,40 +804,114 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: "Earliest date to include, as a Unix timestamp (seconds since\
-          \ epoch). Messages with a `time` value **greater than or equal to** this\
-          \ value will be included."
+      - description: Earliest date to include.  Accepts either a Unix timestamp (integer
+          seconds since epoch) or a date string parseable by `strtotime()` such as
+          `2024-01-15` or `last monday`.  Messages with a `time` value **greater than
+          or equal to** this value will be included.
         example: 1641781008
         explode: true
         in: query
         name: startDate
         required: false
         schema:
-          format: int64
-          maximum: 9999999999
-          minimum: 0
-          type: integer
+          $ref: "#/components/schemas/viewMailLog_startDate_parameter"
         style: form
-      - description: "Latest date to include, as a Unix timestamp (seconds since epoch).\
-          \ Messages with a `time` value **less than or equal to** this value will\
-          \ be included."
+      - description: Latest date to include.  Accepts either a Unix timestamp (integer
+          seconds since epoch) or a date string parseable by `strtotime()` such as
+          `2024-01-31` or `yesterday`. Messages with a `time` value **less than or
+          equal to** this value will be included.
         example: 1673317008
         explode: true
         in: query
         name: endDate
         required: false
         schema:
-          format: int64
-          maximum: 9999999999
-          minimum: 0
-          type: integer
+          $ref: "#/components/schemas/viewMailLog_startDate_parameter"
+        style: form
+      - description: Field to sort results by.  Currently only `time` is supported
+          (sorts by internal row ID which corresponds to chronological order).
+        example: time
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: time
+          enum:
+          - time
+          type: string
+        style: form
+      - description: "Sort direction.  `desc` returns newest first (default), `asc`\
+          \ returns oldest first."
+        example: desc
+        explode: true
+        in: query
+        name: dir
+        required: false
+        schema:
+          default: desc
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      - description: "Controls how results are grouped.  `recipient` (default) returns\
+          \ one row per delivery attempt — a message sent to 4 recipients produces\
+          \ 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery\
+          \ metadata.  `message` collapses to one row per unique message ID; delivery-level\
+          \ fields will reflect one arbitrary recipient per message.  The `total`\
+          \ count in the response matches the grouping mode."
+        example: recipient
+        explode: true
+        in: query
+        name: groupby
+        required: false
+        schema:
+          default: recipient
+          enum:
+          - message
+          - recipient
+          type: string
         style: form
       responses:
         "200":
           content:
             application/json:
               examples:
-                MailLogExample:
+                MailLogRecipientExample:
+                  summary: groupby=recipient (default) - one row per delivery attempt
+                  value:
+                    total: 4
+                    skip: 0
+                    limit: 100
+                    emails:
+                    - _id: 103172
+                      id: 17c7eda538e0005d03
+                      from: person@mysite.com
+                      to: client@isp.com
+                      subject: sell 0.005 shares
+                      messageId: <vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>
+                      created: 2021-10-14 08:50:10
+                      time: 1634215809
+                      user: mb5658
+                      transtype: ESMTPSA
+                      origin: 199.231.189.154
+                      interface: feeder
+                      sendingZone: interserver
+                      bodySize: 63
+                      seq: 1
+                      delivered: 1
+                      code: 250
+                      recipient: client@isp.com
+                      domain: interserver.net
+                      locked: 1
+                      lockTime: "1634215818533"
+                      assigned: relay1
+                      queued: 2021-10-14T12:50:15.487Z
+                      mxHostname: mx.j.is.cc
+                      response: 250 2.0.0 Ok queued as C91D83E128C
+                MailLogMessageExample:
+                  summary: groupby=message - one row per message
                   value:
                     total: 1
                     skip: 0
@@ -827,6 +933,7 @@ paths:
                       bodySize: 63
                       seq: 1
                       delivered: 1
+                      code: 250
                       recipient: client@isp.com
                       domain: interserver.net
                       locked: 1
@@ -894,7 +1001,7 @@ paths:
       parameters:
       - description: "The time window to scope `received`, `sent`, and `volume` statistics.\
           \ Does not affect `usage` or `cost`, which are always calculated over the\
-          \ current billing cycle.  Defaults to `1h`."
+          \ current billing cycle. Defaults to `1h`."
         explode: true
         in: query
         name: time
@@ -936,6 +1043,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/MailStatsType"
           description: OK
+          links:
+            viewMailLogLink:
+              description: Use `GET /mail/log` to view individual message details
+                behind the aggregate statistics.
+              operationId: viewMailLog
         "401":
           content:
             application/json:
@@ -1035,7 +1147,7 @@ paths:
                   email: client@domain.com
             schema:
               $ref: "#/components/schemas/EmailAddressParam"
-          multipart/form-data:
+          application/x-www-form-urlencoded:
             examples:
               BlocksDeleteExampleForm:
                 value:
@@ -1405,6 +1517,9 @@ components:
             confirmation.
           example: 185caa69ff7000f47c
           type: string
+      required:
+      - status
+      - text
       title: GenericResponse
       type: object
     ErrorMessage:
@@ -1446,6 +1561,9 @@ components:
         status:
           description: The current order status.  Only `active` orders can be used
             for sending. `canceled` orders are retained for history but cannot send.
+          enum:
+          - active
+          - canceled
           example: active
           type: string
         username:
@@ -1453,9 +1571,11 @@ components:
             \ `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate\
             \ directly against `relay.mailbaby.net:25` if needed."
           example: mb21472
+          pattern: ^mb\d+$
           type: string
         comment:
-          description: Optional human-readable note associated with the order.
+          description: Optional human-readable note associated with the order.  Only
+            present in the response when the order has a non-empty comment.
           type: string
       required:
       - id
@@ -1542,7 +1662,6 @@ components:
           \ `\"joe@example.com\"` or `\"Joe <joe@example.com>, jane@example.com\"\
           `."
         example: Joe <joe@example.com>
-        format: email
         title: EmailAddressString
         type: string
       - $ref: "#/components/schemas/EmailAddressNames"
@@ -1619,7 +1738,7 @@ components:
           name: Mr Client
         attachments:
         - filename: file.txt
-          data: base64_encoded_contents
+          data: aGVsbG8gdGhlcmUK
         id: 66
       properties:
         subject:
@@ -1632,15 +1751,32 @@ components:
           example: The package you ordered on 2021-01-23 has been delivered.
           type: string
         from:
-          $ref: "#/components/schemas/EmailAddressTypes"
+          allOf:
+          - $ref: "#/components/schemas/EmailAddressTypes"
+          description: "The sender address.  Accepts a plain email string, an RFC\
+            \ 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"\
+            name\": \"...\"}` object."
         to:
-          $ref: "#/components/schemas/EmailAddressesTypes"
+          allOf:
+          - $ref: "#/components/schemas/EmailAddressesTypes"
+          description: One or more destination addresses.  Accepts a comma-separated
+            RFC 822 string or an array of contact objects.
         replyto:
-          $ref: "#/components/schemas/EmailAddressesTypes"
+          allOf:
+          - $ref: "#/components/schemas/EmailAddressesTypes"
+          description: Optional.  One or more addresses to set as the `Reply-To` header.
+            When recipients reply to the message their email client will address the
+            reply to these addresses instead of `from`.
         cc:
-          $ref: "#/components/schemas/EmailAddressesTypes"
+          allOf:
+          - $ref: "#/components/schemas/EmailAddressesTypes"
+          description: Optional.  Carbon-copy recipients.  These addresses are listed
+            in the `Cc` header and are visible to all recipients.
         bcc:
-          $ref: "#/components/schemas/EmailAddressesTypes"
+          allOf:
+          - $ref: "#/components/schemas/EmailAddressesTypes"
+          description: Optional.  Blind-carbon-copy recipients.  These addresses receive
+            the message but are not listed in any visible header.
         attachments:
           description: Optional list of file attachments.  Each file must be base64-encoded.
             Include `filename` so recipients see a meaningful attachment name.
@@ -1703,7 +1839,7 @@ components:
         their email client.
       example:
         filename: file.txt
-        data: base64_encoded_file_contents
+        data: aGVsbG8gdGhlcmUK
       properties:
         filename:
           description: "The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`)."
@@ -1723,9 +1859,9 @@ components:
       type: object
     MailBlocks:
       description: The complete set of blocked addresses and message patterns returned
-        by `GET /mail/blocks`.  Three independent block sources are combined into
-        one response. Use `POST /mail/blocks/delete` with a `from` address from any
-        entry to delist it.
+        by `GET /mail/blocks`. Three independent block sources are combined into one
+        response. Use `POST /mail/blocks/delete` with a `from` address from any entry
+        to delist it.
       example:
         subject:
         - from: user@domain.com
@@ -1890,7 +2026,10 @@ components:
           example: mb20682
           type: string
         type:
-          description: The type of deny rule.
+          description: "The matching strategy for this rule.  `email` blocks an exact\
+            \ sender address, `domain` blocks all senders at a domain, `destination`\
+            \ blocks an exact recipient address, and `startswith` blocks any sender\
+            \ whose local-part begins with the given prefix."
           enum:
           - domain
           - email
@@ -1931,6 +2070,7 @@ components:
           bodySize: 63
           seq: 1
           delivered: 1
+          code: 250
           recipient: client@isp.com
           domain: interserver.net
           locked: 1
@@ -1955,6 +2095,7 @@ components:
           bodySize: 63
           seq: 1
           delivered: 1
+          code: 250
           recipient: client@isp.com
           domain: interserver.net
           locked: 1
@@ -2020,6 +2161,7 @@ components:
         bodySize: 63
         seq: 1
         delivered: 1
+        code: 250
         recipient: client@isp.com
         domain: interserver.net
         locked: 1
@@ -2039,6 +2181,8 @@ components:
             the value returned as `text` by the sending endpoints and accepted as
             the `mailid` filter on `GET /mail/log`.
           example: 17c7eda538e0005d03
+          maxLength: 19
+          minLength: 18
           type: string
         from:
           description: SMTP envelope `MAIL FROM` address (may differ from the `From:`
@@ -2109,6 +2253,12 @@ components:
             \ MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted.\
             \ Corresponds to the `delivered` filter parameter on `GET /mail/log`."
           example: 1
+          nullable: true
+          type: integer
+        code:
+          description: "The SMTP response code from the destination MX server (e.g.\
+            \ `250` for success, `550` for permanent failure)."
+          example: 250
           nullable: true
           type: integer
         response:
@@ -2266,6 +2416,13 @@ components:
           $ref: "#/components/schemas/MailStatsVolume"
       title: MailStatsType
       type: object
+    viewMailLog_startDate_parameter:
+      oneOf:
+      - format: int64
+        maximum: 9999999999
+        minimum: 0
+        type: integer
+      - type: string
   securitySchemes:
     apiKeyAuth:
       description: "Pass your API key in the `X-API-KEY` HTTP request header.  Obtain\

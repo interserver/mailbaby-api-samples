@@ -24,6 +24,7 @@ src/model/openapi_send_mail.erl
 src/model/openapi_send_mail_adv.erl
 src/model/openapi_send_mail_raw.erl
 src/model/openapi_send_mail_to.erl
+src/model/openapi_view_mail_log_start_date_parameter.erl
 src/openapi.app.src
 src/openapi.hrl
 src/openapi_api.erl

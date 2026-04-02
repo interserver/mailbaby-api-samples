@@ -346,6 +346,27 @@ void test_MailLogEntry_delivered_is_assigned_from_json()
 }
 
 
+void test_MailLogEntry_code_is_assigned_from_json()
+{
+    bourne::json input =
+    {
+        "code", 1
+    };
+
+    MailLogEntry obj(input.dump());
+
+    TEST_ASSERT_EQUAL_INT(1, obj.getCode());
+
+
+
+
+
+
+
+
+}
+
+
 void test_MailLogEntry_response_is_assigned_from_json()
 {
 
@@ -844,6 +865,27 @@ void test_MailLogEntry_delivered_is_converted_to_json()
     output = obj.toJson();
 
     TEST_ASSERT(input["delivered"] == output["delivered"]);
+
+
+
+
+}
+
+
+void test_MailLogEntry_code_is_converted_to_json()
+{
+    bourne::json input =
+    {
+        "code", 1
+    };
+
+    MailLogEntry obj(input.dump());
+
+    bourne::json output = bourne::json::object();
+
+    output = obj.toJson();
+
+    TEST_ASSERT(input["code"] == output["code"]);
 
 
 

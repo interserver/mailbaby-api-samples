@@ -5,9 +5,10 @@ class MailOrder {
   int id = null;
 /* The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. */
   String status = null;
+  //enum statusEnum {  active,  canceled,  };
 /* The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. */
   String username = null;
-/* Optional human-readable note associated with the order. */
+/* Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
   String comment = null;
 
   MailOrder();

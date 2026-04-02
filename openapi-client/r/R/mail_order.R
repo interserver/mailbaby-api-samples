@@ -10,7 +10,7 @@
 #' @field id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. integer
 #' @field status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. character
 #' @field username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. character
-#' @field comment Optional human-readable note associated with the order. character [optional]
+#' @field comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -28,7 +28,7 @@ MailOrder <- R6::R6Class(
     #' @param id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
     #' @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
     #' @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
-    #' @param comment Optional human-readable note associated with the order.
+    #' @param comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
     #' @param ... Other optional arguments.
     initialize = function(`id`, `status`, `username`, `comment` = NULL, ...) {
       if (!missing(`id`)) {
@@ -38,6 +38,9 @@ MailOrder <- R6::R6Class(
         self$`id` <- `id`
       }
       if (!missing(`status`)) {
+        if (!(`status` %in% c("active", "canceled"))) {
+          stop(paste("Error! \"", `status`, "\" cannot be assigned to `status`. Must be \"active\", \"canceled\".", sep = ""))
+        }
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
         }
@@ -118,6 +121,9 @@ MailOrder <- R6::R6Class(
         self$`id` <- this_object$`id`
       }
       if (!is.null(this_object$`status`)) {
+        if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("active", "canceled"))) {
+          stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"active\", \"canceled\".", sep = ""))
+        }
         self$`status` <- this_object$`status`
       }
       if (!is.null(this_object$`username`)) {
@@ -148,6 +154,9 @@ MailOrder <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`id` <- this_object$`id`
+      if (!is.null(this_object$`status`) && !(this_object$`status` %in% c("active", "canceled"))) {
+        stop(paste("Error! \"", this_object$`status`, "\" cannot be assigned to `status`. Must be \"active\", \"canceled\".", sep = ""))
+      }
       self$`status` <- this_object$`status`
       self$`username` <- this_object$`username`
       self$`comment` <- this_object$`comment`
@@ -214,6 +223,10 @@ MailOrder <- R6::R6Class(
         return(FALSE)
       }
 
+      if (!str_detect(self$`username`, "^mb\\d+$")) {
+        return(FALSE)
+      }
+
       TRUE
     },
 
@@ -236,6 +249,10 @@ MailOrder <- R6::R6Class(
       # check if the required `username` is null
       if (is.null(self$`username`)) {
         invalid_fields["username"] <- "Non-nullable required field `username` cannot be null."
+      }
+
+      if (!str_detect(self$`username`, "^mb\\d+$")) {
+        invalid_fields["username"] <- "Invalid value for `username`, must conform to the pattern ^mb\\d+$."
       }
 
       invalid_fields

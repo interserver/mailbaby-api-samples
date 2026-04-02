@@ -93,10 +93,19 @@ using namespace Tiny;
             int limit
             , 
             
-            long startDate
+            ViewMailLog_startDate_parameter startDate
             , 
             
-            long endDate
+            ViewMailLog_startDate_parameter endDate
+            , 
+            
+            std::string sort
+            , 
+            
+            std::string dir
+            , 
+            
+            std::string groupby
             
         )
         {
@@ -105,7 +114,7 @@ using namespace Tiny;
 
             // Headers  | 
 
-            // Query    | id origin mx from to subject mailid messageId replyto headerfrom delivered skip limit startDate endDate 
+            // Query    | id origin mx from to subject mailid messageId replyto headerfrom delivered skip limit startDate endDate sort dir groupby 
             addQueryParam("id",id);
             addQueryParam("origin",origin);
             addQueryParam("mx",mx);
@@ -121,6 +130,9 @@ using namespace Tiny;
             addQueryParam("limit",limit);
             addQueryParam("startDate",startDate);
             addQueryParam("endDate",endDate);
+            addQueryParam("sort",sort);
+            addQueryParam("dir",dir);
+            addQueryParam("groupby",groupby);
 
             // Form     | 
 

@@ -25,7 +25,7 @@ public class StatusApiTest {
     /**
      * Checks if the server is running
      *
-     * A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+     * A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
      */
     @Test
     @Disabled("Not Implemented")
@@ -33,7 +33,7 @@ public class StatusApiTest {
         // given
 
         // when
-        api.pingServer().block();
+        String body = api.pingServer().block();
 
         // then
         // TODO implement the pingServerTest()

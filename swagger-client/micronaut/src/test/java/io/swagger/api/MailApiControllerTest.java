@@ -3,8 +3,7 @@ package io.swagger.api;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -17,6 +16,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
+import io.swagger.model.StartDate;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -127,11 +127,11 @@ class MailApiControllerTest {
     void sendAdvMailFormTest() {
         String subject = null;
         String body = null;
-        EmailAddressTypes from = null;
-        EmailAddressesTypes to = null;
-        EmailAddressesTypes replyto = null;
-        EmailAddressesTypes cc = null;
-        EmailAddressesTypes bcc = null;
+        Object from = null;
+        Object to = null;
+        Object replyto = null;
+        Object cc = null;
+        Object bcc = null;
         List<MailAttachment> attachments = null;
         Long id = null;
         try {
@@ -170,10 +170,13 @@ class MailApiControllerTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        Long startDate = null;
-        Long endDate = null;
+        StartDate startDate = null;
+        EndDate endDate = null;
+        String sort = null;
+        String dir = null;
+        String groupby = null;
         try {
-            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate).blockingGet();
+            //TODO: api.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby).blockingGet();
         } catch (UnsupportedOperationException e) {
             assumeTrue(false, "API is not yet implemented");
         }

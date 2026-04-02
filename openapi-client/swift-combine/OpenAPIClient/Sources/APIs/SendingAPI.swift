@@ -49,7 +49,7 @@ open class SendingAPI {
 
     /// Sends a raw RFC 822 email
     /// - POST /mail/rawsend
-    /// - Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+    /// - Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
     /// - API Key:
     /// - type: apiKey X-API-KEY (HEADER)
     /// - name: apiKeyAuth
@@ -137,11 +137,11 @@ open class SendingAPI {
     /// - name: apiKeyAuth
     /// - parameter subject: (form) The subject line of the email. 
     /// - parameter body: (form) The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. 
-    /// - parameter from: (form)  
-    /// - parameter to: (form)  
-    /// - parameter replyto: (form)  (optional)
-    /// - parameter cc: (form)  (optional)
-    /// - parameter bcc: (form)  (optional)
+    /// - parameter from: (form) The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. 
+    /// - parameter to: (form) One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. 
+    /// - parameter replyto: (form) Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+    /// - parameter cc: (form) Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+    /// - parameter bcc: (form) Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
     /// - parameter attachments: (form) Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
     /// - parameter id: (form) Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
     /// - returns: AnyPublisher<GenericResponse, Error> 

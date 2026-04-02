@@ -66,7 +66,7 @@ delist_block(Ctx, OpenapiEmailAddressParam, Optional) ->
     QS = [],
     Headers = [],
     Body1 = OpenapiEmailAddressParam,
-    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"multipart/form-data">>]),
+    ContentTypeHeader = openapi_utils:select_header_content_type([<<"application/json">>, <<"application/x-www-form-urlencoded">>]),
     Opts = maps:get(hackney_opts, Optional, []),
 
     openapi_utils:request(Ctx, Method, Path, QS, ContentTypeHeader++Headers, Body1, Opts, Cfg).

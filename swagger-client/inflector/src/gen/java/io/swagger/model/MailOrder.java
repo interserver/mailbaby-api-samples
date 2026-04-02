@@ -2,6 +2,7 @@ package io.swagger.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
@@ -14,8 +15,38 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class MailOrder   {
   @JsonProperty("id")
   private Integer id = null;
+  /**
+   * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+   */
+  public enum StatusEnum {
+    ACTIVE("active"),
+    
+    CANCELED("canceled");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
   @JsonProperty("status")
-  private String status = null;
+  private StatusEnum status = null;
   @JsonProperty("username")
   private String username = null;
   @JsonProperty("comment")
@@ -41,7 +72,7 @@ public class MailOrder   {
   /**
    * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
    **/
-  public MailOrder status(String status) {
+  public MailOrder status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -49,10 +80,10 @@ public class MailOrder   {
   
   @Schema(example = "active", required = true, description = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
   @JsonProperty("status")
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
@@ -75,7 +106,7 @@ public class MailOrder   {
   }
 
   /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    **/
   public MailOrder comment(String comment) {
     this.comment = comment;
@@ -83,7 +114,7 @@ public class MailOrder   {
   }
 
   
-  @Schema(description = "Optional human-readable note associated with the order.")
+  @Schema(description = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
   @JsonProperty("comment")
   public String getComment() {
     return comment;

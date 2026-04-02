@@ -11,11 +11,11 @@ import Foundation
 public struct GenericResponse: Sendable, Codable, Hashable {
 
     /** Always `\"ok\"` on success. */
-    public var status: String?
+    public var status: String
     /** Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation. */
-    public var text: String?
+    public var text: String
 
-    public init(status: String? = nil, text: String? = nil) {
+    public init(status: String, text: String) {
         self.status = status
         self.text = text
     }
@@ -29,8 +29,8 @@ public struct GenericResponse: Sendable, Codable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(status, forKey: .status)
-        try container.encodeIfPresent(text, forKey: .text)
+        try container.encode(status, forKey: .status)
+        try container.encode(text, forKey: .text)
     }
 }
 

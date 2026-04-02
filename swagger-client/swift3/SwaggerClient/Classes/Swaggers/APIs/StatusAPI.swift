@@ -14,9 +14,9 @@ open class StatusAPI: APIBase {
      Checks if the server is running
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func pingServer(completion: @escaping ((_ error: ErrorResponse?) -> Void)) {
+    open class func pingServer(completion: @escaping ((_ data: String?, _ error: ErrorResponse?) -> Void)) {
         pingServerWithRequestBuilder().execute { (response, error) -> Void in
-            completion(error)
+            completion(response?.body, error)
         }
     }
 
@@ -24,20 +24,21 @@ open class StatusAPI: APIBase {
     /**
      Checks if the server is running
      - GET /ping
-     - A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+     - A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
-     - returns: RequestBuilder<Void> 
+     - examples: [{contentType=application/json, example="Server is up and running"}]
+     - returns: RequestBuilder<String> 
      */
-    open class func pingServerWithRequestBuilder() -> RequestBuilder<Void> {
+    open class func pingServerWithRequestBuilder() -> RequestBuilder<String> {
         let path = "/ping"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

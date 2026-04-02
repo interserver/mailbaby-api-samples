@@ -30,10 +30,13 @@ class SendMailAdv {
   /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
   String body;
 
+  /// The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
   EmailAddressTypes from;
 
+  /// One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
   EmailAddressesTypes to;
 
+  /// Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -42,6 +45,7 @@ class SendMailAdv {
   ///
   EmailAddressesTypes? replyto;
 
+  /// Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -50,6 +54,7 @@ class SendMailAdv {
   ///
   EmailAddressesTypes? cc;
 
+  /// Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated

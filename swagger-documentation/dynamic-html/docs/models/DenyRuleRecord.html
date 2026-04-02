@@ -17,7 +17,7 @@
 </ul>
 <ul class="parameter">
   <li class="param-required-true">type : String
-    <br/>The type of deny rule.
+    <br/>The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix.
       <dl class="param-enum">
         <dt>Enum:
             <dd>domain</dd>

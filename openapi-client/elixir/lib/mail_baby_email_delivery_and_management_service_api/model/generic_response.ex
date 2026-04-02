@@ -13,8 +13,8 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Model.GenericResponse do
   ]
 
   @type t :: %__MODULE__{
-    :status => String.t | nil,
-    :text => String.t | nil
+    :status => String.t,
+    :text => String.t
   }
 
   def decode(value) do

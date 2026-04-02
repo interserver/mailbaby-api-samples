@@ -9,16 +9,20 @@ import Foundation
 
 /// A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;. 
 public struct MailOrder: Codable {
+    public enum Status: String, Codable, CaseIterable {
+        case active = "active"
+        case canceled = "canceled"
+    }
     /// The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
     public var id: Int
     /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
-    public var status: String
+    public var status: Status
     /// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
     public var username: String
-    /// Optional human-readable note associated with the order.
+    /// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
     public var comment: String?
 
-    public init(id: Int, status: String, username: String, comment: String? = nil) {
+    public init(id: Int, status: Status, username: String, comment: String? = nil) {
         self.id = id
         self.status = status
         self.username = username

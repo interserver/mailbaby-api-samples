@@ -23,6 +23,7 @@
 #' @field bodySize Size of the message body in bytes. integer [optional]
 #' @field seq Sequence index of this recipient in a multi-recipient message. Starts at 1. integer [optional]
 #' @field delivered Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. integer [optional]
+#' @field code The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). integer [optional]
 #' @field response The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). character [optional]
 #' @field recipient The specific recipient address this delivery record is for. character [optional]
 #' @field domain The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`. character [optional]
@@ -53,6 +54,7 @@ MailLogEntry <- R6::R6Class(
     `bodySize` = NULL,
     `seq` = NULL,
     `delivered` = NULL,
+    `code` = NULL,
     `response` = NULL,
     `recipient` = NULL,
     `domain` = NULL,
@@ -81,6 +83,7 @@ MailLogEntry <- R6::R6Class(
     #' @param bodySize Size of the message body in bytes.
     #' @param seq Sequence index of this recipient in a multi-recipient message. Starts at 1.
     #' @param delivered Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+    #' @param code The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
     #' @param response The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
     #' @param recipient The specific recipient address this delivery record is for.
     #' @param domain The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
@@ -90,7 +93,7 @@ MailLogEntry <- R6::R6Class(
     #' @param queued ISO 8601 timestamp when the message was placed into the delivery queue.
     #' @param mxHostname The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
     #' @param ... Other optional arguments.
-    initialize = function(`_id`, `id`, `from`, `to`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `subject` = NULL, `messageId` = NULL, `sendingZone` = NULL, `bodySize` = NULL, `seq` = NULL, `delivered` = NULL, `response` = NULL, `recipient` = NULL, `domain` = NULL, `locked` = NULL, `lockTime` = NULL, `assigned` = NULL, `queued` = NULL, `mxHostname` = NULL, ...) {
+    initialize = function(`_id`, `id`, `from`, `to`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `subject` = NULL, `messageId` = NULL, `sendingZone` = NULL, `bodySize` = NULL, `seq` = NULL, `delivered` = NULL, `code` = NULL, `response` = NULL, `recipient` = NULL, `domain` = NULL, `locked` = NULL, `lockTime` = NULL, `assigned` = NULL, `queued` = NULL, `mxHostname` = NULL, ...) {
       if (!missing(`_id`)) {
         if (!(is.numeric(`_id`) && length(`_id`) == 1)) {
           stop(paste("Error! Invalid data for `_id`. Must be an integer:", `_id`))
@@ -186,6 +189,12 @@ MailLogEntry <- R6::R6Class(
           stop(paste("Error! Invalid data for `delivered`. Must be an integer:", `delivered`))
         }
         self$`delivered` <- `delivered`
+      }
+      if (!is.null(`code`)) {
+        if (!(is.numeric(`code`) && length(`code`) == 1)) {
+          stop(paste("Error! Invalid data for `code`. Must be an integer:", `code`))
+        }
+        self$`code` <- `code`
       }
       if (!is.null(`response`)) {
         if (!(is.character(`response`) && length(`response`) == 1)) {
@@ -332,6 +341,10 @@ MailLogEntry <- R6::R6Class(
         MailLogEntryObject[["delivered"]] <-
           self$`delivered`
       }
+      if (!is.null(self$`code`)) {
+        MailLogEntryObject[["code"]] <-
+          self$`code`
+      }
       if (!is.null(self$`response`)) {
         MailLogEntryObject[["response"]] <-
           self$`response`
@@ -422,6 +435,9 @@ MailLogEntry <- R6::R6Class(
       if (!is.null(this_object$`delivered`)) {
         self$`delivered` <- this_object$`delivered`
       }
+      if (!is.null(this_object$`code`)) {
+        self$`code` <- this_object$`code`
+      }
       if (!is.null(this_object$`response`)) {
         self$`response` <- this_object$`response`
       }
@@ -483,6 +499,7 @@ MailLogEntry <- R6::R6Class(
       self$`bodySize` <- this_object$`bodySize`
       self$`seq` <- this_object$`seq`
       self$`delivered` <- this_object$`delivered`
+      self$`code` <- this_object$`code`
       self$`response` <- this_object$`response`
       self$`recipient` <- this_object$`recipient`
       self$`domain` <- this_object$`domain`
@@ -605,6 +622,13 @@ MailLogEntry <- R6::R6Class(
         return(FALSE)
       }
 
+      if (nchar(self$`id`) > 19) {
+        return(FALSE)
+      }
+      if (nchar(self$`id`) < 18) {
+        return(FALSE)
+      }
+
       # check if the required `from` is null
       if (is.null(self$`from`)) {
         return(FALSE)
@@ -662,6 +686,13 @@ MailLogEntry <- R6::R6Class(
       # check if the required `id` is null
       if (is.null(self$`id`)) {
         invalid_fields["id"] <- "Non-nullable required field `id` cannot be null."
+      }
+
+      if (nchar(self$`id`) > 19) {
+        invalid_fields["id"] <- "Invalid length for `id`, must be smaller than or equal to 19."
+      }
+      if (nchar(self$`id`) < 18) {
+        invalid_fields["id"] <- "Invalid length for `id`, must be bigger than or equal to 18."
       }
 
       # check if the required `from` is null

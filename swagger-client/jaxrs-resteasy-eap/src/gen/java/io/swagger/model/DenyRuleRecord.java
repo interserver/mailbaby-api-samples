@@ -19,7 +19,7 @@ public class DenyRuleRecord   {
   private Date created = null;
   private String user = null;
   /**
-   * The type of deny rule.
+   * The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix.
    */
   public enum TypeEnum {
     DOMAIN("domain"),
@@ -84,10 +84,10 @@ public class DenyRuleRecord   {
   }
 
   /**
-   * The type of deny rule.
+   * The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix.
    **/
   
-  @Schema(example = "email", required = true, description = "The type of deny rule.")
+  @Schema(example = "email", required = true, description = "The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.")
   @JsonProperty("type")
   @NotNull
   public TypeEnum getType() {

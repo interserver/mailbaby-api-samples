@@ -33,7 +33,7 @@ import com.squareup.moshi.JsonClass
  * @param id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
  * @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
  * @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
- * @param comment Optional human-readable note associated with the order.
+ * @param comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
  */
 
 
@@ -45,18 +45,28 @@ data class MailOrder (
 
     /* The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. */
     @Json(name = "status")
-    val status: kotlin.String,
+    val status: MailOrder.Status,
 
     /* The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. */
     @Json(name = "username")
     val username: kotlin.String,
 
-    /* Optional human-readable note associated with the order. */
+    /* Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     @Json(name = "comment")
     val comment: kotlin.String? = null
 
 ) {
 
+    /**
+     * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+     *
+     * Values: active,canceled
+     */
+    @JsonClass(generateAdapter = false)
+    enum class Status(val value: kotlin.String) {
+        @Json(name = "active") active("active"),
+        @Json(name = "canceled") canceled("canceled");
+    }
 
 }
 

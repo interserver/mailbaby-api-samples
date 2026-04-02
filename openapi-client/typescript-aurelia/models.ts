@@ -1,6 +1,6 @@
 /**
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -16,7 +16,7 @@
  */
 export interface DenyRuleNew {
   /**
-   * The type of deny rule.
+   * The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
    */
   type: DenyRuleNewTypeEnum;
   /**
@@ -40,7 +40,7 @@ export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith' | 'destinati
  */
 export interface DenyRuleRecord {
   /**
-   * The type of deny rule.
+   * The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
    */
   type: DenyRuleRecordTypeEnum;
   /**
@@ -136,11 +136,11 @@ export interface GenericResponse {
   /**
    * Always `\"ok\"` on success.
    */
-  status?: string;
+  status: string;
   /**
    * Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record\'s numeric ID.  For delete operations this is a human-readable confirmation.
    */
-  text?: string;
+  text: string;
 }
 
 
@@ -202,7 +202,7 @@ export interface MailBlockRspamd {
 
 
 /**
- * The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`.  Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.
+ * The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`. Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it.
  */
 export interface MailBlocks {
   /**
@@ -309,6 +309,10 @@ export interface MailLogEntry {
    */
   delivered?: number;
   /**
+   * The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+   */
+  code?: number;
+  /**
    * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
    */
   response?: string;
@@ -354,16 +358,21 @@ export interface MailOrder {
   /**
    * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
    */
-  status: string;
+  status: MailOrderStatusEnum;
   /**
    * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
    */
   username: string;
   /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    */
   comment?: string;
 }
+
+/**
+ * Enum for the status property.
+ */
+export type MailOrderStatusEnum = 'active' | 'canceled';
 
 
 /**
@@ -377,7 +386,7 @@ export interface MailOrderDetail {
   /**
    * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
    */
-  status: string;
+  status: MailOrderDetailStatusEnum;
   /**
    * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
    */
@@ -387,10 +396,15 @@ export interface MailOrderDetail {
    */
   password: string;
   /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    */
   comment?: string;
 }
+
+/**
+ * Enum for the status property.
+ */
+export type MailOrderDetailStatusEnum = 'active' | 'canceled';
 
 
 /**
@@ -485,10 +499,25 @@ export interface SendMailAdv {
    * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
    */
   body: string;
+  /**
+   * The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+   */
   from: EmailAddressTypes;
+  /**
+   * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+   */
   to: EmailAddressesTypes;
+  /**
+   * Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+   */
   replyto?: EmailAddressesTypes;
+  /**
+   * Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+   */
   cc?: EmailAddressesTypes;
+  /**
+   * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+   */
   bcc?: EmailAddressesTypes;
   /**
    * Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
@@ -521,4 +550,10 @@ export interface SendMailRaw {
  * @export
  */
 export type SendMailTo = Array<string> | string;
+
+/**
+ * @type ViewMailLogStartDateParameter
+ * @export
+ */
+export type ViewMailLogStartDateParameter = number | string;
 

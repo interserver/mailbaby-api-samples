@@ -26,7 +26,7 @@ Adds a deny rule to block specific senders, domains, destinations, or sender pre
 //import org.openapitools.client.models.*
 
 val apiInstance = BlockingApi()
-val type : kotlin.String = type_example // kotlin.String | The type of deny rule.
+val type : kotlin.String = type_example // kotlin.String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 val `data` : kotlin.String = `data`_example // kotlin.String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 val user : kotlin.String = user_example // kotlin.String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 try {
@@ -42,7 +42,7 @@ try {
 ```
 
 ### Parameters
-| **type** | **kotlin.String**| The type of deny rule. | [enum: domain, email, startswith, destination] |
+| **type** | **kotlin.String**| The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix. | [enum: domain, email, startswith, destination] |
 | **&#x60;data&#x60;** | **kotlin.String**| The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. | |
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |

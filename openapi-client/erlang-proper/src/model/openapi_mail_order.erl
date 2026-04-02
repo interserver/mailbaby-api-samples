@@ -21,7 +21,7 @@ openapi_mail_order() ->
 
 openapi_mail_order(Fields) ->
   Default = [ {'id', integer() }
-            , {'status', binary() }
+            , {'status', elements([<<"active">>, <<"canceled">>]) }
             , {'username', binary() }
             , {'comment', binary() }
             ],

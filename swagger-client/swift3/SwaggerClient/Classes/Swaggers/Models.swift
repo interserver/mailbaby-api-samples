@@ -287,6 +287,71 @@ class Decoders {
             }
         }
 
+        // Decoder for [AllOfSendMailAdvBcc]
+        Decoders.addDecoder(clazz: [AllOfSendMailAdvBcc].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[AllOfSendMailAdvBcc]> in
+            return Decoders.decode(clazz: [AllOfSendMailAdvBcc].self, source: source)
+        }
+
+        // Decoder for AllOfSendMailAdvBcc
+        Decoders.addDecoder(clazz: AllOfSendMailAdvBcc.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<AllOfSendMailAdvBcc> in
+            if let source = source as? AllOfSendMailAdvBcc {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias AllOfSendMailAdvBcc", actual: "\(source)"))
+            }
+        }
+        // Decoder for [AllOfSendMailAdvCc]
+        Decoders.addDecoder(clazz: [AllOfSendMailAdvCc].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[AllOfSendMailAdvCc]> in
+            return Decoders.decode(clazz: [AllOfSendMailAdvCc].self, source: source)
+        }
+
+        // Decoder for AllOfSendMailAdvCc
+        Decoders.addDecoder(clazz: AllOfSendMailAdvCc.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<AllOfSendMailAdvCc> in
+            if let source = source as? AllOfSendMailAdvCc {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias AllOfSendMailAdvCc", actual: "\(source)"))
+            }
+        }
+        // Decoder for [AllOfSendMailAdvFrom]
+        Decoders.addDecoder(clazz: [AllOfSendMailAdvFrom].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[AllOfSendMailAdvFrom]> in
+            return Decoders.decode(clazz: [AllOfSendMailAdvFrom].self, source: source)
+        }
+
+        // Decoder for AllOfSendMailAdvFrom
+        Decoders.addDecoder(clazz: AllOfSendMailAdvFrom.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<AllOfSendMailAdvFrom> in
+            if let source = source as? AllOfSendMailAdvFrom {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias AllOfSendMailAdvFrom", actual: "\(source)"))
+            }
+        }
+        // Decoder for [AllOfSendMailAdvReplyto]
+        Decoders.addDecoder(clazz: [AllOfSendMailAdvReplyto].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[AllOfSendMailAdvReplyto]> in
+            return Decoders.decode(clazz: [AllOfSendMailAdvReplyto].self, source: source)
+        }
+
+        // Decoder for AllOfSendMailAdvReplyto
+        Decoders.addDecoder(clazz: AllOfSendMailAdvReplyto.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<AllOfSendMailAdvReplyto> in
+            if let source = source as? AllOfSendMailAdvReplyto {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias AllOfSendMailAdvReplyto", actual: "\(source)"))
+            }
+        }
+        // Decoder for [AllOfSendMailAdvTo]
+        Decoders.addDecoder(clazz: [AllOfSendMailAdvTo].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[AllOfSendMailAdvTo]> in
+            return Decoders.decode(clazz: [AllOfSendMailAdvTo].self, source: source)
+        }
+
+        // Decoder for AllOfSendMailAdvTo
+        Decoders.addDecoder(clazz: AllOfSendMailAdvTo.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<AllOfSendMailAdvTo> in
+            if let source = source as? AllOfSendMailAdvTo {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias AllOfSendMailAdvTo", actual: "\(source)"))
+            }
+        }
         // Decoder for [DenyRuleNew]
         Decoders.addDecoder(clazz: [DenyRuleNew].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[DenyRuleNew]> in
             return Decoders.decode(clazz: [DenyRuleNew].self, source: source)
@@ -411,6 +476,19 @@ class Decoders {
                 return .success(source)
             } else {
                 return .failure(.typeMismatch(expected: "Typealias EmailAddressesTypes", actual: "\(source)"))
+            }
+        }
+        // Decoder for [EndDate]
+        Decoders.addDecoder(clazz: [EndDate].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[EndDate]> in
+            return Decoders.decode(clazz: [EndDate].self, source: source)
+        }
+
+        // Decoder for EndDate
+        Decoders.addDecoder(clazz: EndDate.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<EndDate> in
+            if let source = source as? EndDate {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias EndDate", actual: "\(source)"))
             }
         }
         // Decoder for [ErrorMessage]
@@ -664,6 +742,10 @@ class Decoders {
                 case let .success(value): _result.delivered = value
                 case let .failure(error): break
                 }
+                switch Decoders.decodeOptional(clazz: Int32.self, source: sourceDictionary["code"] as AnyObject?) {
+                case let .success(value): _result.code = value
+                case let .failure(error): break
+                }
                 switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["response"] as AnyObject?) {
                 case let .success(value): _result.response = value
                 case let .failure(error): break
@@ -714,7 +796,7 @@ class Decoders {
                 case let .success(value): _result.id = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["status"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: MailOrder.Status.self, source: sourceDictionary["status"] as AnyObject?) {
                 case let .success(value): _result.status = value
                 case let .failure(error): break
                 }
@@ -751,7 +833,7 @@ class Decoders {
                 case let .success(value): _result.id = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: String.self, source: sourceDictionary["status"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: MailOrderDetail.Status.self, source: sourceDictionary["status"] as AnyObject?) {
                 case let .success(value): _result.status = value
                 case let .failure(error): break
                 }
@@ -887,23 +969,23 @@ class Decoders {
                 case let .success(value): _result.body = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: EmailAddressTypes.self, source: sourceDictionary["from"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: AllOfSendMailAdvFrom.self, source: sourceDictionary["from"] as AnyObject?) {
                 case let .success(value): _result.from = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: EmailAddressesTypes.self, source: sourceDictionary["to"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: AllOfSendMailAdvTo.self, source: sourceDictionary["to"] as AnyObject?) {
                 case let .success(value): _result.to = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: EmailAddressesTypes.self, source: sourceDictionary["replyto"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: AllOfSendMailAdvReplyto.self, source: sourceDictionary["replyto"] as AnyObject?) {
                 case let .success(value): _result.replyto = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: EmailAddressesTypes.self, source: sourceDictionary["cc"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: AllOfSendMailAdvCc.self, source: sourceDictionary["cc"] as AnyObject?) {
                 case let .success(value): _result.cc = value
                 case let .failure(error): break
                 }
-                switch Decoders.decodeOptional(clazz: EmailAddressesTypes.self, source: sourceDictionary["bcc"] as AnyObject?) {
+                switch Decoders.decodeOptional(clazz: AllOfSendMailAdvBcc.self, source: sourceDictionary["bcc"] as AnyObject?) {
                 case let .success(value): _result.bcc = value
                 case let .failure(error): break
                 }
@@ -953,6 +1035,19 @@ class Decoders {
                 return .success(source)
             } else {
                 return .failure(.typeMismatch(expected: "Typealias SendMailTo", actual: "\(source)"))
+            }
+        }
+        // Decoder for [StartDate]
+        Decoders.addDecoder(clazz: [StartDate].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[StartDate]> in
+            return Decoders.decode(clazz: [StartDate].self, source: source)
+        }
+
+        // Decoder for StartDate
+        Decoders.addDecoder(clazz: StartDate.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<StartDate> in
+            if let source = source as? StartDate {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias StartDate", actual: "\(source)"))
             }
         }
     }()

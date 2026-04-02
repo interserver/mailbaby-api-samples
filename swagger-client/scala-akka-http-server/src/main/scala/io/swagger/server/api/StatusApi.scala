@@ -30,12 +30,12 @@ class StatusApi(
 
 trait StatusApiService {
 
-  def pingServer200: Route =
-    complete((200, "Server is up and running"))
+  def pingServer200(responseString: String): Route =
+    complete((200, responseString))
   def pingServer0: Route =
     complete((0, "Something is wrong"))
   /**
-   * Code: 200, Message: Server is up and running
+   * Code: 200, Message: Server is up and running, DataType: String
    * Code: 0, Message: Something is wrong
    */
   def pingServer(): Route

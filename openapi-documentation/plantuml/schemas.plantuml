@@ -37,8 +37,8 @@ entity ErrorMessage {
 }
 
 entity GenericResponse {
-    status: String
-    text: String
+    * status: String
+    * text: String
 }
 
 entity MailAttachment {
@@ -89,6 +89,7 @@ entity MailLogEntry {
     bodySize: Integer
     seq: Integer
     delivered: Integer
+    code: Integer
     response: String
     recipient: String
     domain: String
@@ -151,6 +152,9 @@ entity SendMailRaw {
 }
 
 entity SendMailTo {
+}
+
+entity ViewMailLogStartDateParameter {
 }
 
 DenyRuleNew <|--- DenyRuleRecord

@@ -35,13 +35,33 @@ Protected Class MailOrderDetail
 
 	#tag Property, Flags = &h0
 		#tag Note
-			Optional human-readable note associated with the order.
+			Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 		#tag EndNote
 		comment As Xoson.O.OptionalString
 	#tag EndProperty
 
 
+    #tag Enum, Name = StatusEnum, Type = Integer, Flags = &h0
+        
+        Active
+        Canceled
+        
+    #tag EndEnum
 
+
+	#tag Method, Flags = &h0
+		Shared Function StatusEnumToString(value As StatusEnum) As String
+		  Select Case value
+		    
+		    Case StatusEnum.Active
+		      Return "active"
+		    Case StatusEnum.Canceled
+		      Return "canceled"
+		    
+		  End Select
+		  Return ""
+		End Function
+	#tag EndMethod
 
 
 	#tag ViewBehavior
@@ -83,14 +103,6 @@ Protected Class MailOrderDetail
 			Group="Behavior"
 			InitialValue=""
 			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="status"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="String"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty

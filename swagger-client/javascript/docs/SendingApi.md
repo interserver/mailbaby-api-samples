@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
 
 ### Example
 ```javascript
@@ -84,11 +84,11 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
 let subject = "subject_example"; // String | 
 let body = "body_example"; // String | 
-let from = new MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressTypes(); // EmailAddressTypes | 
-let to = new MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes(); // EmailAddressesTypes | 
-let replyto = new MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes(); // EmailAddressesTypes | 
-let cc = new MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes(); // EmailAddressesTypes | 
-let bcc = new MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes(); // EmailAddressesTypes | 
+let from = null; // Object | 
+let to = null; // Object | 
+let replyto = null; // Object | 
+let cc = null; // Object | 
+let bcc = null; // Object | 
 let attachments = [new MailBabyEmailDeliveryAndManagementServiceApi.MailAttachment()]; // [MailAttachment] | 
 let id = 789; // Number | 
 let body = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailAdv(); // SendMailAdv | 
@@ -108,11 +108,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **from** | [**EmailAddressTypes**](.md)|  | 
- **to** | [**EmailAddressesTypes**](.md)|  | 
- **replyto** | [**EmailAddressesTypes**](.md)|  | 
- **cc** | [**EmailAddressesTypes**](.md)|  | 
- **bcc** | [**EmailAddressesTypes**](.md)|  | 
+ **from** | [**Object**](.md)|  | 
+ **to** | [**Object**](.md)|  | 
+ **replyto** | [**Object**](.md)|  | 
+ **cc** | [**Object**](.md)|  | 
+ **bcc** | [**Object**](.md)|  | 
  **attachments** | [**[MailAttachment]**](MailAttachment.md)|  | 
  **id** | **Number**|  | 
  **body** | [**SendMailAdv**](SendMailAdv.md)|  | 

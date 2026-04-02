@@ -29,6 +29,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
 gradlew
@@ -79,6 +80,7 @@ src/main/kotlin/org/openapitools/client/models/SendMail.kt
 src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
 src/main/kotlin/org/openapitools/client/models/SendMailRaw.kt
 src/main/kotlin/org/openapitools/client/models/SendMailTo.kt
+src/main/kotlin/org/openapitools/client/models/ViewMailLogStartDateParameter.kt
 src/test/kotlin/org/openapitools/client/apis/BlockingApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/HistoryApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/SendingApiTest.kt
@@ -107,3 +109,4 @@ src/test/kotlin/org/openapitools/client/models/SendMailAdvTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailRawTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailToTest.kt
+src/test/kotlin/org/openapitools/client/models/ViewMailLogStartDateParameterTest.kt

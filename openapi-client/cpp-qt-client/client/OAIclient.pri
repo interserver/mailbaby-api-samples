@@ -25,6 +25,7 @@ HEADERS += \
     $${PWD}/OAISendMailAdv.h \
     $${PWD}/OAISendMailRaw.h \
     $${PWD}/OAISendMailTo.h \
+    $${PWD}/OAIViewMailLog_startDate_parameter.h \
 # APIs
     $${PWD}/OAIBlockingApi.h \
     $${PWD}/OAIHistoryApi.h \
@@ -66,6 +67,7 @@ SOURCES += \
     $${PWD}/OAISendMailAdv.cpp \
     $${PWD}/OAISendMailRaw.cpp \
     $${PWD}/OAISendMailTo.cpp \
+    $${PWD}/OAIViewMailLog_startDate_parameter.cpp \
 # APIs
     $${PWD}/OAIBlockingApi.cpp \
     $${PWD}/OAIHistoryApi.cpp \

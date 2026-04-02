@@ -3,7 +3,7 @@
 """
     MailBaby Email Delivery and Management Service API
 
-    **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call.   # noqa: E501
+    **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call.   # noqa: E501
 
     OpenAPI spec version: 1.4.0
     Contact: support@interserver.net
@@ -30,11 +30,11 @@ class SendMailAdv(object):
     swagger_types = {
         'subject': 'str',
         'body': 'str',
-        '_from': 'EmailAddressTypes',
-        'to': 'EmailAddressesTypes',
-        'replyto': 'EmailAddressesTypes',
-        'cc': 'EmailAddressesTypes',
-        'bcc': 'EmailAddressesTypes',
+        '_from': 'AllOfSendMailAdvFrom',
+        'to': 'AllOfSendMailAdvTo',
+        'replyto': 'AllOfSendMailAdvReplyto',
+        'cc': 'AllOfSendMailAdvCc',
+        'bcc': 'AllOfSendMailAdvBcc',
         'attachments': 'list[MailAttachment]',
         'id': 'int'
     }
@@ -132,9 +132,10 @@ class SendMailAdv(object):
     def _from(self):
         """Gets the _from of this SendMailAdv.  # noqa: E501
 
+        The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.  # noqa: E501
 
         :return: The _from of this SendMailAdv.  # noqa: E501
-        :rtype: EmailAddressTypes
+        :rtype: AllOfSendMailAdvFrom
         """
         return self.__from
 
@@ -142,9 +143,10 @@ class SendMailAdv(object):
     def _from(self, _from):
         """Sets the _from of this SendMailAdv.
 
+        The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.  # noqa: E501
 
         :param _from: The _from of this SendMailAdv.  # noqa: E501
-        :type: EmailAddressTypes
+        :type: AllOfSendMailAdvFrom
         """
         if _from is None:
             raise ValueError("Invalid value for `_from`, must not be `None`")  # noqa: E501
@@ -155,9 +157,10 @@ class SendMailAdv(object):
     def to(self):
         """Gets the to of this SendMailAdv.  # noqa: E501
 
+        One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.  # noqa: E501
 
         :return: The to of this SendMailAdv.  # noqa: E501
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvTo
         """
         return self._to
 
@@ -165,9 +168,10 @@ class SendMailAdv(object):
     def to(self, to):
         """Sets the to of this SendMailAdv.
 
+        One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.  # noqa: E501
 
         :param to: The to of this SendMailAdv.  # noqa: E501
-        :type: EmailAddressesTypes
+        :type: AllOfSendMailAdvTo
         """
         if to is None:
             raise ValueError("Invalid value for `to`, must not be `None`")  # noqa: E501
@@ -178,9 +182,10 @@ class SendMailAdv(object):
     def replyto(self):
         """Gets the replyto of this SendMailAdv.  # noqa: E501
 
+        Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.  # noqa: E501
 
         :return: The replyto of this SendMailAdv.  # noqa: E501
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvReplyto
         """
         return self._replyto
 
@@ -188,9 +193,10 @@ class SendMailAdv(object):
     def replyto(self, replyto):
         """Sets the replyto of this SendMailAdv.
 
+        Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.  # noqa: E501
 
         :param replyto: The replyto of this SendMailAdv.  # noqa: E501
-        :type: EmailAddressesTypes
+        :type: AllOfSendMailAdvReplyto
         """
 
         self._replyto = replyto
@@ -199,9 +205,10 @@ class SendMailAdv(object):
     def cc(self):
         """Gets the cc of this SendMailAdv.  # noqa: E501
 
+        Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.  # noqa: E501
 
         :return: The cc of this SendMailAdv.  # noqa: E501
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvCc
         """
         return self._cc
 
@@ -209,9 +216,10 @@ class SendMailAdv(object):
     def cc(self, cc):
         """Sets the cc of this SendMailAdv.
 
+        Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.  # noqa: E501
 
         :param cc: The cc of this SendMailAdv.  # noqa: E501
-        :type: EmailAddressesTypes
+        :type: AllOfSendMailAdvCc
         """
 
         self._cc = cc
@@ -220,9 +228,10 @@ class SendMailAdv(object):
     def bcc(self):
         """Gets the bcc of this SendMailAdv.  # noqa: E501
 
+        Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.  # noqa: E501
 
         :return: The bcc of this SendMailAdv.  # noqa: E501
-        :rtype: EmailAddressesTypes
+        :rtype: AllOfSendMailAdvBcc
         """
         return self._bcc
 
@@ -230,9 +239,10 @@ class SendMailAdv(object):
     def bcc(self, bcc):
         """Sets the bcc of this SendMailAdv.
 
+        Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.  # noqa: E501
 
         :param bcc: The bcc of this SendMailAdv.  # noqa: E501
-        :type: EmailAddressesTypes
+        :type: AllOfSendMailAdvBcc
         """
 
         self._bcc = bcc

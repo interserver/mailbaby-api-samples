@@ -22,6 +22,7 @@ MailLogEntry::MailLogEntry()
 	bodySize = int(0);
 	seq = int(0);
 	delivered = int(0);
+	code = int(0);
 	response = std::string();
 	recipient = std::string();
 	domain = std::string();
@@ -255,6 +256,19 @@ MailLogEntry::fromJson(std::string jsonObj)
 
     }
 
+    const char *codeKey = "code";
+
+    if(object.has_key(codeKey))
+    {
+        bourne::json value = object[codeKey];
+
+
+
+        jsonToValue(&code, value, "int");
+
+
+    }
+
     const char *responseKey = "response";
 
     if(object.has_key(responseKey))
@@ -477,6 +491,13 @@ MailLogEntry::toJson()
 
 
     object["delivered"] = getDelivered();
+
+
+
+
+
+
+    object["code"] = getCode();
 
 
 
@@ -730,6 +751,18 @@ void
 MailLogEntry::setDelivered(int delivered)
 {
 	this->delivered = delivered;
+}
+
+int
+MailLogEntry::getCode()
+{
+	return code;
+}
+
+void
+MailLogEntry::setCode(int code)
+{
+	this->code = code;
 }
 
 std::string

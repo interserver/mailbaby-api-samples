@@ -34,7 +34,7 @@ import com.squareup.moshi.JsonClass
  * @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
  * @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
  * @param password The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
- * @param comment Optional human-readable note associated with the order.
+ * @param comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
  */
 
 
@@ -46,7 +46,7 @@ data class MailOrderDetail (
 
     /* The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. */
     @Json(name = "status")
-    val status: kotlin.String,
+    val status: MailOrderDetail.Status,
 
     /* The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. */
     @Json(name = "username")
@@ -56,12 +56,22 @@ data class MailOrderDetail (
     @Json(name = "password")
     val password: kotlin.String,
 
-    /* Optional human-readable note associated with the order. */
+    /* Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     @Json(name = "comment")
     val comment: kotlin.String? = null
 
 ) {
 
+    /**
+     * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+     *
+     * Values: active,canceled
+     */
+    @JsonClass(generateAdapter = false)
+    enum class Status(val value: kotlin.String) {
+        @Json(name = "active") active("active"),
+        @Json(name = "canceled") canceled("canceled");
+    }
 
 }
 

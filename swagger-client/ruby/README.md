@@ -2,7 +2,7 @@
 
 SwaggerClient - the Ruby gem for the MailBaby Email Delivery and Management Service API
 
-**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
 This SDK is automatically generated by the [Swagger Codegen](https://github.com/swagger-api/swagger-codegen) project:
 
@@ -159,7 +159,7 @@ end
 
 api_instance = SwaggerClient::HistoryApi.new
 opts = { 
-  time: '1h' # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+  time: '1h' # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 }
 
 begin
@@ -186,14 +186,17 @@ opts = {
   to: 'to_example', # String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved.
   subject: 'subject_example', # String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text.
   mailid: 'mailid_example', # String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
-  message_id: 'message_id_example', # String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+  message_id: 'message_id_example', # String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
   replyto: 'replyto_example', # String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
   headerfrom: 'headerfrom_example', # String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address.
   delivered: 56, # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
   skip: 0, # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
   limit: 100, # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-  start_date: 789, # Integer | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
-  end_date: 789 # Integer | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+  start_date: SwaggerClient::StartDate.new, # StartDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+  end_date: SwaggerClient::EndDate.new, # EndDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+  sort: 'time', # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+  dir: 'desc', # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+  groupby: 'recipient' # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
 }
 
 begin
@@ -235,11 +238,11 @@ end
 api_instance = SwaggerClient::SendingApi.new
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::EmailAddressTypes.new # EmailAddressTypes | 
-to = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
-replyto = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
-cc = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
-bcc = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
+from = SwaggerClient::null.new #  | 
+to = SwaggerClient::null.new #  | 
+replyto = SwaggerClient::null.new #  | 
+cc = SwaggerClient::null.new #  | 
+bcc = SwaggerClient::null.new #  | 
 attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 id = 789 # Integer | 
 body = SwaggerClient::SendMailAdv.new # SendMailAdv | 
@@ -324,7 +327,8 @@ api_instance = SwaggerClient::StatusApi.new
 
 begin
   #Checks if the server is running
-  api_instance.ping_server
+  result = api_instance.ping_server
+  p result
 rescue SwaggerClient::ApiError => e
   puts "Exception when calling StatusApi->ping_server: #{e}"
 end
@@ -352,6 +356,11 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [SwaggerClient::AllOfSendMailAdvBcc](docs/AllOfSendMailAdvBcc.md)
+ - [SwaggerClient::AllOfSendMailAdvCc](docs/AllOfSendMailAdvCc.md)
+ - [SwaggerClient::AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
+ - [SwaggerClient::AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
+ - [SwaggerClient::AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
  - [SwaggerClient::DenyRuleNew](docs/DenyRuleNew.md)
  - [SwaggerClient::DenyRuleRecord](docs/DenyRuleRecord.md)
  - [SwaggerClient::EmailAddressName](docs/EmailAddressName.md)
@@ -359,6 +368,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::EmailAddressParam](docs/EmailAddressParam.md)
  - [SwaggerClient::EmailAddressTypes](docs/EmailAddressTypes.md)
  - [SwaggerClient::EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [SwaggerClient::EndDate](docs/EndDate.md)
  - [SwaggerClient::ErrorMessage](docs/ErrorMessage.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)
@@ -375,6 +385,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
  - [SwaggerClient::SendMailRaw](docs/SendMailRaw.md)
  - [SwaggerClient::SendMailTo](docs/SendMailTo.md)
+ - [SwaggerClient::StartDate](docs/StartDate.md)
 
 ## Documentation for Authorization
 

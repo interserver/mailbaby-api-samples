@@ -20,7 +20,7 @@ After a successful send each endpoint returns a `GenericResponse` whose `text` f
 
 # Filtering & Logs
 
-`GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
+`GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
 
 # Blocking
 
@@ -146,7 +146,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 //apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token"
 
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi()
-var type = "type_example"; // {String} The type of deny rule.
+var type = "type_example"; // {String} The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 var data = "data_example"; // {String} The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 var opts = {
   'user': "user_example" // {String} Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
@@ -208,6 +208,7 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailAdv](docs/SendMailAdv.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw](docs/SendMailRaw.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailTo](docs/SendMailTo.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 ## Documentation for Authorization

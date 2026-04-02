@@ -31,3 +31,4 @@ src/openapi_sending_api.erl
 src/openapi_services_api.erl
 src/openapi_status_api.erl
 src/openapi_utils.erl
+src/openapi_view_mail_log_start_date_parameter.erl

@@ -73,11 +73,11 @@ public:
 	/*! \brief Set The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
 	 */
 	void setPassword(std::string  password);
-	/*! \brief Get Optional human-readable note associated with the order.
+	/*! \brief Get Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 	 */
 	std::string getComment();
 
-	/*! \brief Set Optional human-readable note associated with the order.
+	/*! \brief Set Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 	 */
 	void setComment(std::string  comment);
 

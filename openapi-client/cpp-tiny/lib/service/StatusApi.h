@@ -25,10 +25,10 @@ public:
     /**
     * Checks if the server is running.
     *
-    * A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+    * A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
     */
     Response<
-            String
+                std::string
         >
     pingServer(
     );

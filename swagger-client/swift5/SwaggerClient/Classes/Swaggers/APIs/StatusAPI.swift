@@ -15,13 +15,9 @@ open class StatusAPI {
 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func pingServer(completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func pingServer(completion: @escaping ((_ data: String?,_ error: Error?) -> Void)) {
         pingServerWithRequestBuilder().execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
@@ -33,17 +29,18 @@ open class StatusAPI {
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
+     - examples: [{contentType=application/json, example="Server is up and running"}]
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<String> 
      */
-    open class func pingServerWithRequestBuilder() -> RequestBuilder<Void> {
+    open class func pingServerWithRequestBuilder() -> RequestBuilder<String> {
         let path = "/ping"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         let url = URLComponents(string: URLString)
 
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

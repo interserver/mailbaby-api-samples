@@ -13,8 +13,7 @@ import io.swagger.model.*;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -27,6 +26,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
+import io.swagger.model.StartDate;
 
 
 public class MailController  {
@@ -123,11 +123,11 @@ public class MailController  {
   /*
     public ResponseContext sendAdvMail(RequestContext request ,  String subject
 ,  String body
-,  EmailAddressTypes from
-,  EmailAddressesTypes to
-,  EmailAddressesTypes replyto
-,  EmailAddressesTypes cc
-,  EmailAddressesTypes bcc
+,  Object from
+,  Object to
+,  Object replyto
+,  Object cc
+,  Object bcc
 ,  List<MailAttachment> attachments
 ,  Long id
 ) {
@@ -174,8 +174,11 @@ public class MailController  {
 , Integer delivered 
 , Integer skip 
 , Integer limit 
-, Long startDate 
-, Long endDate 
+, StartDate startDate 
+, EndDate endDate 
+, String sort 
+, String dir 
+, String groupby 
 ) {
         return new ResponseContext().status(Status.INTERNAL_SERVER_ERROR).entity( "Not implemented" );
     }

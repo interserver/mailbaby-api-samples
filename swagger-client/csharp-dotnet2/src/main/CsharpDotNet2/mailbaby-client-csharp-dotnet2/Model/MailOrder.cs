@@ -37,9 +37,9 @@ namespace IO.Swagger.Model {
     public string Username { get; set; }
 
     /// <summary>
-    /// Optional human-readable note associated with the order.
+    /// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
     /// </summary>
-    /// <value>Optional human-readable note associated with the order.</value>
+    /// <value>Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.</value>
     [DataMember(Name="comment", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "comment")]
     public string Comment { get; set; }

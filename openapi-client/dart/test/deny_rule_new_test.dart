@@ -16,7 +16,7 @@ void main() {
   // final instance = DenyRuleNew();
 
   group('test DenyRuleNew', () {
-    // The type of deny rule.
+    // The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
     // String type
     test('to test the property `type`', () async {
       // TODO

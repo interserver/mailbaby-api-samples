@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 ```ruby
@@ -69,7 +69,7 @@ Name | Type | Description  | Notes
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 ```ruby
@@ -141,11 +141,11 @@ end
 api_instance = SwaggerClient::SendingApi.new
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::EmailAddressTypes.new # EmailAddressTypes | 
-to = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
-replyto = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
-cc = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
-bcc = SwaggerClient::EmailAddressesTypes.new # EmailAddressesTypes | 
+from = SwaggerClient::null.new #  | 
+to = SwaggerClient::null.new #  | 
+replyto = SwaggerClient::null.new #  | 
+cc = SwaggerClient::null.new #  | 
+bcc = SwaggerClient::null.new #  | 
 attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
 id = 789 # Integer | 
 
@@ -165,11 +165,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **String**|  | 
  **body** | **String**|  | 
- **from** | [**EmailAddressTypes**](.md)|  | 
- **to** | [**EmailAddressesTypes**](.md)|  | 
- **replyto** | [**EmailAddressesTypes**](.md)|  | 
- **cc** | [**EmailAddressesTypes**](.md)|  | 
- **bcc** | [**EmailAddressesTypes**](.md)|  | 
+ **from** | [****](.md)|  | 
+ **to** | [****](.md)|  | 
+ **replyto** | [****](.md)|  | 
+ **cc** | [****](.md)|  | 
+ **bcc** | [****](.md)|  | 
  **attachments** | [**Array&lt;MailAttachment&gt;**](MailAttachment.md)|  | 
  **id** | **Integer**|  | 
 

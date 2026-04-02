@@ -24,7 +24,7 @@ class MailOrderDetail {
   int id;
 
   /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
-  String status;
+  MailOrderDetailStatusEnum status;
 
   /// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
   String username;
@@ -32,7 +32,7 @@ class MailOrderDetail {
   /// The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
   String password;
 
-  /// Optional human-readable note associated with the order.
+  /// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
   /// does not include a default value (using the "default:" property), however, the generated
@@ -99,7 +99,7 @@ class MailOrderDetail {
 
       return MailOrderDetail(
         id: mapValueOfType<int>(json, r'id')!,
-        status: mapValueOfType<String>(json, r'status')!,
+        status: MailOrderDetailStatusEnum.fromJson(json[r'status'])!,
         username: mapValueOfType<String>(json, r'username')!,
         password: mapValueOfType<String>(json, r'password')!,
         comment: mapValueOfType<String>(json, r'comment'),
@@ -156,4 +156,78 @@ class MailOrderDetail {
     'password',
   };
 }
+
+/// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+class MailOrderDetailStatusEnum {
+  /// Instantiate a new enum with the provided [value].
+  const MailOrderDetailStatusEnum._(this.value);
+
+  /// The underlying value of this enum member.
+  final String value;
+
+  @override
+  String toString() => value;
+
+  String toJson() => value;
+
+  static const active = MailOrderDetailStatusEnum._(r'active');
+  static const canceled = MailOrderDetailStatusEnum._(r'canceled');
+
+  /// List of all possible values in this [enum][MailOrderDetailStatusEnum].
+  static const values = <MailOrderDetailStatusEnum>[
+    active,
+    canceled,
+  ];
+
+  static MailOrderDetailStatusEnum? fromJson(dynamic value) => MailOrderDetailStatusEnumTypeTransformer().decode(value);
+
+  static List<MailOrderDetailStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <MailOrderDetailStatusEnum>[];
+    if (json is List && json.isNotEmpty) {
+      for (final row in json) {
+        final value = MailOrderDetailStatusEnum.fromJson(row);
+        if (value != null) {
+          result.add(value);
+        }
+      }
+    }
+    return result.toList(growable: growable);
+  }
+}
+
+/// Transformation class that can [encode] an instance of [MailOrderDetailStatusEnum] to String,
+/// and [decode] dynamic data back to [MailOrderDetailStatusEnum].
+class MailOrderDetailStatusEnumTypeTransformer {
+  factory MailOrderDetailStatusEnumTypeTransformer() => _instance ??= const MailOrderDetailStatusEnumTypeTransformer._();
+
+  const MailOrderDetailStatusEnumTypeTransformer._();
+
+  String encode(MailOrderDetailStatusEnum data) => data.value;
+
+  /// Decodes a [dynamic value][data] to a MailOrderDetailStatusEnum.
+  ///
+  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
+  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
+  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
+  ///
+  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
+  /// and users are still using an old app with the old code.
+  MailOrderDetailStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data != null) {
+      switch (data) {
+        case r'active': return MailOrderDetailStatusEnum.active;
+        case r'canceled': return MailOrderDetailStatusEnum.canceled;
+        default:
+          if (!allowNull) {
+            throw ArgumentError('Unknown enum value to decode: $data');
+          }
+      }
+    }
+    return null;
+  }
+
+  /// Singleton [MailOrderDetailStatusEnumTypeTransformer] instance.
+  static MailOrderDetailStatusEnumTypeTransformer? _instance;
+}
+
 

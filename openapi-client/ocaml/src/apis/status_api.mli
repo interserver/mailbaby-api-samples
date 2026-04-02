@@ -5,4 +5,4 @@
  *
  *)
 
-val ping_server : unit -> unit Lwt.t
+val ping_server : unit -> string Lwt.t

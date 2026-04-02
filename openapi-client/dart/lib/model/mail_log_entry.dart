@@ -29,6 +29,7 @@ class MailLogEntry {
     this.bodySize,
     this.seq,
     this.delivered,
+    this.code,
     this.response,
     this.recipient,
     this.domain,
@@ -87,6 +88,9 @@ class MailLogEntry {
   /// Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
   int? delivered;
 
+  /// The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+  int? code;
+
   /// The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
   String? response;
 
@@ -129,6 +133,7 @@ class MailLogEntry {
     other.bodySize == bodySize &&
     other.seq == seq &&
     other.delivered == delivered &&
+    other.code == code &&
     other.response == response &&
     other.recipient == recipient &&
     other.domain == domain &&
@@ -157,6 +162,7 @@ class MailLogEntry {
     (bodySize == null ? 0 : bodySize!.hashCode) +
     (seq == null ? 0 : seq!.hashCode) +
     (delivered == null ? 0 : delivered!.hashCode) +
+    (code == null ? 0 : code!.hashCode) +
     (response == null ? 0 : response!.hashCode) +
     (recipient == null ? 0 : recipient!.hashCode) +
     (domain == null ? 0 : domain!.hashCode) +
@@ -167,7 +173,7 @@ class MailLogEntry {
     (mxHostname == null ? 0 : mxHostname!.hashCode);
 
   @override
-  String toString() => 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface_=$interface_, subject=$subject, messageId=$messageId, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, delivered=$delivered, response=$response, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname]';
+  String toString() => 'MailLogEntry[id=$id, id=$id, from=$from, to=$to, created=$created, time=$time, user=$user, transtype=$transtype, origin=$origin, interface_=$interface_, subject=$subject, messageId=$messageId, sendingZone=$sendingZone, bodySize=$bodySize, seq=$seq, delivered=$delivered, code=$code, response=$response, recipient=$recipient, domain=$domain, locked=$locked, lockTime=$lockTime, assigned=$assigned, queued=$queued, mxHostname=$mxHostname]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -210,6 +216,11 @@ class MailLogEntry {
       json[r'delivered'] = this.delivered;
     } else {
       json[r'delivered'] = null;
+    }
+    if (this.code != null) {
+      json[r'code'] = this.code;
+    } else {
+      json[r'code'] = null;
     }
     if (this.response != null) {
       json[r'response'] = this.response;
@@ -305,6 +316,7 @@ class MailLogEntry {
         bodySize: mapValueOfType<int>(json, r'bodySize'),
         seq: mapValueOfType<int>(json, r'seq'),
         delivered: mapValueOfType<int>(json, r'delivered'),
+        code: mapValueOfType<int>(json, r'code'),
         response: mapValueOfType<String>(json, r'response'),
         recipient: mapValueOfType<String>(json, r'recipient'),
         domain: mapValueOfType<String>(json, r'domain'),

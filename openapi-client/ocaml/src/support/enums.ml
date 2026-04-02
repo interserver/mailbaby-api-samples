@@ -16,6 +16,17 @@ let delivered_to_yojson e =
     | `List [json] -> json
     | json -> json
 
+type dir = [
+| `Asc [@printer fun fmt _ -> Format.pp_print_string fmt "asc"] [@name "asc"]
+| `Desc [@printer fun fmt _ -> Format.pp_print_string fmt "desc"] [@name "desc"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let dir_of_yojson json = dir_of_yojson (`List [json])
+let dir_to_yojson e =
+    match dir_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
 type denyrulenew_type = [
 | `Destination [@printer fun fmt _ -> Format.pp_print_string fmt "destination"] [@name "destination"]
 | `Domain [@printer fun fmt _ -> Format.pp_print_string fmt "domain"] [@name "domain"]
@@ -26,6 +37,38 @@ type denyrulenew_type = [
 let denyrulenew_type_of_yojson json = denyrulenew_type_of_yojson (`List [json])
 let denyrulenew_type_to_yojson e =
     match denyrulenew_type_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
+type status = [
+| `Active [@printer fun fmt _ -> Format.pp_print_string fmt "active"] [@name "active"]
+| `Canceled [@printer fun fmt _ -> Format.pp_print_string fmt "canceled"] [@name "canceled"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let status_of_yojson json = status_of_yojson (`List [json])
+let status_to_yojson e =
+    match status_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
+type sort = [
+| `Time [@printer fun fmt _ -> Format.pp_print_string fmt "time"] [@name "time"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let sort_of_yojson json = sort_of_yojson (`List [json])
+let sort_to_yojson e =
+    match sort_to_yojson e with
+    | `List [json] -> json
+    | json -> json
+
+type groupby = [
+| `Message [@printer fun fmt _ -> Format.pp_print_string fmt "message"] [@name "message"]
+| `Recipient [@printer fun fmt _ -> Format.pp_print_string fmt "recipient"] [@name "recipient"]
+] [@@deriving yojson, show { with_path = false }, eq];;
+
+let groupby_of_yojson json = groupby_of_yojson (`List [json])
+let groupby_to_yojson e =
+    match groupby_to_yojson e with
     | `List [json] -> json
     | json -> json
 

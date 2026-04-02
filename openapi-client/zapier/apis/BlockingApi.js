@@ -19,7 +19,7 @@ module.exports = {
             inputFields: [
                 {
                     key: 'type',
-                    label: 'The type of deny rule.',
+                    label: 'The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix.',
                     type: 'string',
                     required: true,
                     choices: [
@@ -131,7 +131,7 @@ module.exports = {
                     method: 'POST',
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
-                        'Content-Type': 'application/json, multipart/form-data',
+                        'Content-Type': 'application/json, application/x-www-form-urlencoded',
                         'Accept': 'application/json',
                     },
                     params: {

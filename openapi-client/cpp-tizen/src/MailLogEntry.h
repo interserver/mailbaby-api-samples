@@ -157,6 +157,13 @@ public:
 	/*! \brief Set Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
 	 */
 	void setDelivered(int  delivered);
+	/*! \brief Get The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+	 */
+	int getCode();
+
+	/*! \brief Set The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+	 */
+	void setCode(int  code);
 	/*! \brief Get The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
 	 */
 	std::string getResponse();
@@ -231,6 +238,7 @@ private:
 	int bodySize;
 	int seq;
 	int delivered;
+	int code;
 	std::string response;
 	std::string recipient;
 	std::string domain;

@@ -30,6 +30,7 @@ src/models/SendMail.ts
 src/models/SendMailAdv.ts
 src/models/SendMailRaw.ts
 src/models/SendMailTo.ts
+src/models/ViewMailLogStartDateParameter.ts
 src/models/index.ts
 src/runtime.ts
 tsconfig.json

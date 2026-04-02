@@ -11,7 +11,7 @@ All URIs are relative to *https://api.mailbaby.net*
 # **rawMail**
 > GenericResponse rawMail(sendMailRaw)
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 
@@ -86,11 +86,11 @@ const apiInstance = new SendingApi(configuration);
 
 let subject: string; //The subject line of the email. (default to undefined)
 let body: string; //The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. (default to undefined)
-let from: EmailAddressTypes; // (default to undefined)
-let to: EmailAddressesTypes; // (default to undefined)
-let replyto: EmailAddressesTypes; // (optional) (default to undefined)
-let cc: EmailAddressesTypes; // (optional) (default to undefined)
-let bcc: EmailAddressesTypes; // (optional) (default to undefined)
+let from: EmailAddressTypes; //The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object. (default to undefined)
+let to: EmailAddressesTypes; //One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (default to undefined)
+let replyto: EmailAddressesTypes; //Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. (optional) (default to undefined)
+let cc: EmailAddressesTypes; //Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. (optional) (default to undefined)
+let bcc: EmailAddressesTypes; //Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional) (default to undefined)
 let attachments: Array<MailAttachment>; //Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional) (default to undefined)
 let id: number; //Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional) (default to undefined)
 
@@ -113,11 +113,11 @@ const { status, data } = await apiInstance.sendAdvMail(
 |------------- | ------------- | ------------- | -------------|
 | **subject** | [**string**] | The subject line of the email. | defaults to undefined|
 | **body** | [**string**] | The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | defaults to undefined|
-| **from** | **EmailAddressTypes** |  | defaults to undefined|
-| **to** | **EmailAddressesTypes** |  | defaults to undefined|
-| **replyto** | **EmailAddressesTypes** |  | (optional) defaults to undefined|
-| **cc** | **EmailAddressesTypes** |  | (optional) defaults to undefined|
-| **bcc** | **EmailAddressesTypes** |  | (optional) defaults to undefined|
+| **from** | **EmailAddressTypes** | The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. | defaults to undefined|
+| **to** | **EmailAddressesTypes** | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. | defaults to undefined|
+| **replyto** | **EmailAddressesTypes** | Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. | (optional) defaults to undefined|
+| **cc** | **EmailAddressesTypes** | Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. | (optional) defaults to undefined|
+| **bcc** | **EmailAddressesTypes** | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. | (optional) defaults to undefined|
 | **attachments** | **Array&lt;MailAttachment&gt;** | Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | (optional) defaults to undefined|
 | **id** | [**number**] | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | (optional) defaults to undefined|
 

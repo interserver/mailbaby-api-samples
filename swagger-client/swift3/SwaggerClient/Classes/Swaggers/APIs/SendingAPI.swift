@@ -25,7 +25,7 @@ open class SendingAPI: APIBase {
     /**
      Sends a raw RFC 822 email
      - POST /mail/rawsend
-     - Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+     - Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
@@ -64,7 +64,7 @@ open class SendingAPI: APIBase {
     /**
      Sends a raw RFC 822 email
      - POST /mail/rawsend
-     - Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+     - Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
      - API Key:
        - type: apiKey X-API-KEY 
        - name: apiKeyAuth
@@ -101,7 +101,7 @@ open class SendingAPI: APIBase {
      - parameter id: (form)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: [MailAttachment], id: Int64, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
+    open class func sendAdvMail(subject: String, body: String, from: Object, to: Object, replyto: Object, cc: Object, bcc: Object, attachments: [MailAttachment], id: Int64, completion: @escaping ((_ data: GenericResponse?, _ error: ErrorResponse?) -> Void)) {
         sendAdvMailWithRequestBuilder(subject: subject, body: body, from: from, to: to, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -130,7 +130,7 @@ open class SendingAPI: APIBase {
      - parameter id: (form)  
      - returns: RequestBuilder<GenericResponse> 
      */
-    open class func sendAdvMailWithRequestBuilder(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes, cc: EmailAddressesTypes, bcc: EmailAddressesTypes, attachments: [MailAttachment], id: Int64) -> RequestBuilder<GenericResponse> {
+    open class func sendAdvMailWithRequestBuilder(subject: String, body: String, from: Object, to: Object, replyto: Object, cc: Object, bcc: Object, attachments: [MailAttachment], id: Int64) -> RequestBuilder<GenericResponse> {
         let path = "/mail/advsend"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = body.encodeToJSON()

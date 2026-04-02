@@ -19,7 +19,7 @@ After a successful send each endpoint returns a `GenericResponse` whose `text` f
 
 # Filtering & Logs
 
-`GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
+`GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.
 
 # Blocking
 
@@ -123,6 +123,7 @@ All URIs are relative to *https://api.mailbaby.net*
  - [org.openapitools.client.models.SendMailAdv](docs/SendMailAdv.md)
  - [org.openapitools.client.models.SendMailRaw](docs/SendMailRaw.md)
  - [org.openapitools.client.models.SendMailTo](docs/SendMailTo.md)
+ - [org.openapitools.client.models.ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 <a id="documentation-for-authorization"></a>

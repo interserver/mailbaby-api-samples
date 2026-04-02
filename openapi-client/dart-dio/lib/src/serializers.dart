@@ -37,6 +37,7 @@ import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
 import 'package:openapi/src/model/send_mail_raw.dart';
 import 'package:openapi/src/model/send_mail_to.dart';
+import 'package:openapi/src/model/view_mail_log_start_date_parameter.dart';
 
 part 'serializers.g.dart';
 
@@ -64,6 +65,7 @@ part 'serializers.g.dart';
   SendMailAdv,
   SendMailRaw,
   SendMailTo,
+  ViewMailLogStartDateParameter,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

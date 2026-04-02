@@ -53,11 +53,11 @@ class SendingApiTest : ShouldSpec() {
             // uncomment below to test sendAdvMail
             //val subject : kotlin.String = subject_example // kotlin.String | The subject line of the email.
             //val body : kotlin.String = body_example // kotlin.String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-            //val from : EmailAddressTypes =  // EmailAddressTypes | 
-            //val to : EmailAddressesTypes =  // EmailAddressesTypes | 
-            //val replyto : EmailAddressesTypes =  // EmailAddressesTypes | 
-            //val cc : EmailAddressesTypes =  // EmailAddressesTypes | 
-            //val bcc : EmailAddressesTypes =  // EmailAddressesTypes | 
+            //val from : EmailAddressTypes =  // EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+            //val to : EmailAddressesTypes =  // EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+            //val replyto : EmailAddressesTypes =  // EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+            //val cc : EmailAddressesTypes =  // EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+            //val bcc : EmailAddressesTypes =  // EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
             //val attachments : kotlin.collections.List<MailAttachment> =  // kotlin.collections.List<MailAttachment> | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
             //val id : kotlin.Long = 789 // kotlin.Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
             //val result : GenericResponse = apiInstance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id)

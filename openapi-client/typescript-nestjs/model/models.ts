@@ -21,3 +21,4 @@ export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailRaw';
 export * from './sendMailTo';
+export * from './viewMailLogStartDateParameter';

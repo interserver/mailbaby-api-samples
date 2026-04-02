@@ -11,15 +11,15 @@
 
 // Checks if the server is running
 //
-// A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. 
+// A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
 //
-void
+char*
 StatusAPI_pingServer(apiClient_t *apiClient)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = NULL;
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
     size_t     localVarBodyLength = 0;
@@ -33,6 +33,7 @@ StatusAPI_pingServer(apiClient_t *apiClient)
 
 
 
+    list_addElement(localVarHeaderType,"text/plain"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -52,8 +53,11 @@ StatusAPI_pingServer(apiClient_t *apiClient)
     //if (apiClient->response_code == 0) {
     //    printf("%s\n","Something is wrong");
     //}
-    //No return type
-end:
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
+
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
         apiClient->dataReceived = NULL;
@@ -62,9 +66,13 @@ end:
     
     
     
-    
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
 
 }
 

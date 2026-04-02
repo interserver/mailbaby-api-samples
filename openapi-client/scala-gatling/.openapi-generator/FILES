@@ -35,3 +35,4 @@ src/gatling/scala/org/openapitools/client/model/SendMail.scala
 src/gatling/scala/org/openapitools/client/model/SendMailAdv.scala
 src/gatling/scala/org/openapitools/client/model/SendMailRaw.scala
 src/gatling/scala/org/openapitools/client/model/SendMailTo.scala
+src/gatling/scala/org/openapitools/client/model/ViewMailLogStartDateParameter.scala

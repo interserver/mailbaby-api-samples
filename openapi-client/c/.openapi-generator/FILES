@@ -41,6 +41,7 @@ docs/send_mail.md
 docs/send_mail_adv.md
 docs/send_mail_raw.md
 docs/send_mail_to.md
+docs/view_mail_log_start_date_parameter.md
 external/cJSON.c
 external/cJSON.h
 external/cJSON.licence
@@ -98,6 +99,8 @@ model/send_mail_raw.c
 model/send_mail_raw.h
 model/send_mail_to.c
 model/send_mail_to.h
+model/view_mail_log_start_date_parameter.c
+model/view_mail_log_start_date_parameter.h
 src/apiClient.c
 src/apiKey.c
 src/binary.c
@@ -126,3 +129,4 @@ unit-test/test_send_mail.c
 unit-test/test_send_mail_adv.c
 unit-test/test_send_mail_raw.c
 unit-test/test_send_mail_to.c
+unit-test/test_view_mail_log_start_date_parameter.c

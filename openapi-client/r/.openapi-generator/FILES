@@ -36,6 +36,7 @@ R/send_mail_to.R
 R/sending_api.R
 R/services_api.R
 R/status_api.R
+R/view_mail_log_start_date_parameter.R
 README.md
 docs/BlockingApi.md
 docs/DenyRuleNew.md
@@ -65,6 +66,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 git_push.sh
 tests/testthat.R
 tests/testthat/test_blocking_api.R
@@ -95,3 +97,4 @@ tests/testthat/test_send_mail_to.R
 tests/testthat/test_sending_api.R
 tests/testthat/test_services_api.R
 tests/testthat/test_status_api.R
+tests/testthat/test_view_mail_log_start_date_parameter.R

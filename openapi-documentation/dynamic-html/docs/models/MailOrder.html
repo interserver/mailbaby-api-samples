@@ -8,6 +8,12 @@
 <ul class="parameter">
   <li class="param-required-true">status : String
     <br/>The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
+      <dl class="param-enum">
+        <dt>Enum:
+            <dd>active</dd>
+            <dd>canceled</dd>
+        </dt>
+      </dl>
   </li>
 </ul>
 <ul class="parameter">
@@ -17,6 +23,6 @@
 </ul>
 <ul class="parameter">
   <li class="param-required-false">comment : String
-    <br/>Optional human-readable note associated with the order.
+    <br/>Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
   </li>
 </ul>

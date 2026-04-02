@@ -22,6 +22,7 @@ package io.swagger.server.model
  * @param bodySize Size of the message body in bytes. for example: ''63''
  * @param seq Sequence index of this recipient in a multi-recipient message. Starts at 1. for example: ''1''
  * @param delivered Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. for example: ''1''
+ * @param code The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). for example: ''250''
  * @param response The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). for example: ''250 2.0.0 Ok queued as C91D83E128C''
  * @param recipient The specific recipient address this delivery record is for. for example: ''client@isp.com''
  * @param domain The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`. for example: ''interserver.net''
@@ -48,6 +49,7 @@ case class MailLogEntry (
   bodySize: Option[Int],
   seq: Option[Int],
   delivered: Option[Int],
+  code: Option[Int],
   response: Option[String],
   recipient: Option[String],
   domain: Option[String],

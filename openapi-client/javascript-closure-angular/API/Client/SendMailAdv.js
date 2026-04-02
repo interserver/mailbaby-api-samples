@@ -21,30 +21,35 @@ API.Client.SendMailAdv.prototype.subject;
 API.Client.SendMailAdv.prototype.body;
 
 /**
+ * The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
  * @type {!API.Client.EmailAddressTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.from;
 
 /**
+ * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
  * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.to;
 
 /**
+ * Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
  * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.replyto;
 
 /**
+ * Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
  * @type {!API.Client.EmailAddressesTypes}
  * @export
  */
 API.Client.SendMailAdv.prototype.cc;
 
 /**
+ * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
  * @type {!API.Client.EmailAddressesTypes}
  * @export
  */

@@ -116,6 +116,12 @@ public class MailLogEntry   {
   **/
   private Integer delivered = null;
   
+  @Schema(example = "250", description = "The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).")
+ /**
+   * The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).  
+  **/
+  private Integer code = null;
+  
   @Schema(example = "250 2.0.0 Ok queued as C91D83E128C", description = "The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).")
  /**
    * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).  
@@ -452,6 +458,24 @@ public class MailLogEntry   {
   }
 
  /**
+   * The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).
+   * @return code
+  **/
+  @JsonProperty("code")
+  public Integer getCode() {
+    return code;
+  }
+
+  public void setCode(Integer code) {
+    this.code = code;
+  }
+
+  public MailLogEntry code(Integer code) {
+    this.code = code;
+    return this;
+  }
+
+ /**
    * The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).
    * @return response
   **/
@@ -617,6 +641,7 @@ public class MailLogEntry   {
     sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
     sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
     sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
     sb.append("    domain: ").append(toIndentedString(domain)).append("\n");

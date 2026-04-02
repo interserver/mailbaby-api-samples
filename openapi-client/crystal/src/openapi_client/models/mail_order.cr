@@ -1,6 +1,6 @@
 # #MailBaby Email Delivery and Management Service API
 #
-##**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+##**Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 #
 #The version of the OpenAPI document: 1.4.0
 #Contact: support@interserver.net
@@ -28,9 +28,45 @@ module OpenAPIClient
     property username : String
 
     # Optional properties
-    # Optional human-readable note associated with the order.
+    # Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
     @[JSON::Field(key: "comment", type: String?, nillable: true, emit_null: false)]
     property comment : String?
+
+    abstract class EnumAttributeValidator
+      def valid?(value)
+        !value || @allowable_values.includes?(value)
+      end
+
+      def message
+        "invalid value for \"#{@attribute}\", must be one of #{@allowable_values}."
+      end
+
+      def to(_type, value)
+        case _type
+        when Int32
+          value.to_i32
+        when Int64
+          value.to_i64
+        when Float32
+          value.to_f32
+        when Float64
+          value.to_f64
+        else
+          value.to_s
+        end
+      end
+    end
+
+    class EnumAttributeValidatorForStatus < EnumAttributeValidator
+      @attribute : String
+      @allowable_values : Array(Int32 | Int64 | Float32 | Float64 | String)
+
+      def initialize
+        @attribute = "status"
+        @allowable_values = ["active", "canceled"].map { |value| to(String, value)}
+      end
+    end
+
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash
@@ -41,13 +77,48 @@ module OpenAPIClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array(String).new
+      status_validator = EnumAttributeValidatorForStatus.new
+      if !status_validator.valid?(@status)
+        message = status_validator.message
+        invalid_properties.push(message)
+      end
+
+      pattern = /^mb\d+$/
+      if @username.try &.!~ pattern
+        invalid_properties.push("invalid value for \"username\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      status_validator = EnumAttributeValidatorForStatus.new
+      return false unless status_validator.valid?(@status)
+      return false if @username.try &.!~ /^mb\d+$/
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] status Object to be assigned
+    def status=(status)
+      validator = EnumAttributeValidatorForStatus.new
+      unless validator.valid?(status)
+        raise ArgumentError.new(validator.message)
+      end
+      @status = status
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] username Value to be assigned
+    def username=(username)
+      pattern = /^mb\d+$/
+      if username !~ pattern
+        raise ArgumentError.new("invalid value for \"username\", must conform to the pattern #{pattern}.")
+      end
+
+      @username = username
     end
 
     # Checks equality by comparing each attribute.

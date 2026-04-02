@@ -18,7 +18,7 @@ X-API-KEY: {{apiKey}}
 ## Removes an email address from the block lists
 POST https://api.mailbaby.net/mail/blocks/delete
 Content-Type: application/json
-Content-Type: multipart/form-data
+Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 X-API-KEY: {{apiKey}}
 

@@ -51,7 +51,7 @@ class MailOrderTest : ShouldSpec() {
             //modelInstance.username shouldBe ("TODO")
         }
 
-        // to test the property `comment` - Optional human-readable note associated with the order.
+        // to test the property `comment` - Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
         should("test comment") {
             // uncomment below to test the property
             //modelInstance.comment shouldBe ("TODO")

@@ -30,31 +30,36 @@
                 
                 
                 ; [@key "from"]
-                                              _to: Email_addresses_types.t
+                    (** The sender address.  Accepts a plain email string, an RFC 822 named string (`\''Name <email>\''`), or a `{\''email\'': \''...\'', \''name\'': \''...\''}` object. *)
+                                      _to: Email_addresses_types.t
                   
                   
                 
                 
                 ; [@key "to"]
-                                              replyto: Email_addresses_types.t
+                    (** One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. *)
+                                      replyto: Email_addresses_types.t
                   
                    option [@default None]
                 
                 
                 ; [@key "replyto"]
-                                              cc: Email_addresses_types.t
+                    (** Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. *)
+                                      cc: Email_addresses_types.t
                   
                    option [@default None]
                 
                 
                 ; [@key "cc"]
-                                              bcc: Email_addresses_types.t
+                    (** Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. *)
+                                      bcc: Email_addresses_types.t
                   
                    option [@default None]
                 
                 
                 ; [@key "bcc"]
-                                              attachments: Mail_attachment.t list
+                    (** Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. *)
+                                      attachments: Mail_attachment.t list
                  [@default []]
                 
                 ; [@key "attachments"]

@@ -1,6 +1,6 @@
 /*
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n# Overview\n\nThis is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n# Mail Orders\n\nEvery sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.\n\n# Sending Email\n\nThree sending methods are available depending on your use-case:\n| Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |\n\nAfter a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.\n\n# Filtering & Logs\n\n`GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.\n\n# Blocking\n\nTwo independent mechanisms exist for suppressing unwanted email:\n- **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the\n  system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects).\n- **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —\n  custom rules you configure to reject specific senders, domains, destination addresses, or\n  subject-line prefixes before a message is even attempted.\n\n\n# Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\nPass your key in the `X-API-KEY` HTTP request header for every protected call.\n
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**\n\n# Overview\n\nThis is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).\n\n# Mail Orders\n\nEvery sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.\n\n# Sending Email\n\nThree sending methods are available depending on your use-case:\n| Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |\n\nAfter a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.\n\n# Filtering & Logs\n\n`GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.\n\n# Blocking\n\nTwo independent mechanisms exist for suppressing unwanted email:\n- **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the\n  system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects).\n- **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —\n  custom rules you configure to reject specific senders, domains, destination addresses, or\n  subject-line prefixes before a message is even attempted.\n\n\n# Authentication\n\nIn order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site.\nWe support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page.\nPass your key in the `X-API-KEY` HTTP request header for every protected call.\n
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -109,6 +109,12 @@ public class OASMailLogEntry implements OAS.MappedProperties {
      * @return delivered
      */
     public Integer delivered { get; set; }
+
+    /**
+     * The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+     * @return code
+     */
+    public Integer code { get; set; }
 
     /**
      * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `"250 2.0.0 Ok queued as C91D83E128C"`).
@@ -220,6 +226,7 @@ public class OASMailLogEntry implements OAS.MappedProperties {
           mailLogEntry.bodySize = 63;
           mailLogEntry.seq = 1;
           mailLogEntry.delivered = 1;
+          mailLogEntry.code = 250;
           mailLogEntry.response = '250 2.0.0 Ok queued as C91D83E128C';
           mailLogEntry.recipient = 'client@isp.com';
           mailLogEntry.domain = 'interserver.net';
@@ -250,6 +257,7 @@ public class OASMailLogEntry implements OAS.MappedProperties {
                 && this.bodySize == mailLogEntry.bodySize
                 && this.seq == mailLogEntry.seq
                 && this.delivered == mailLogEntry.delivered
+                && this.code == mailLogEntry.code
                 && this.response == mailLogEntry.response
                 && this.recipient == mailLogEntry.recipient
                 && this.domain == mailLogEntry.domain
@@ -280,6 +288,7 @@ public class OASMailLogEntry implements OAS.MappedProperties {
         hashCode = (17 * hashCode) + (bodySize == null ? 0 : System.hashCode(bodySize));
         hashCode = (17 * hashCode) + (seq == null ? 0 : System.hashCode(seq));
         hashCode = (17 * hashCode) + (delivered == null ? 0 : System.hashCode(delivered));
+        hashCode = (17 * hashCode) + (code == null ? 0 : System.hashCode(code));
         hashCode = (17 * hashCode) + (response == null ? 0 : System.hashCode(response));
         hashCode = (17 * hashCode) + (recipient == null ? 0 : System.hashCode(recipient));
         hashCode = (17 * hashCode) + (domain == null ? 0 : System.hashCode(domain));

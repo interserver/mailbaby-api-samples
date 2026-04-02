@@ -1,6 +1,6 @@
 /**
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -26,7 +26,7 @@ class MailOrderDetail {
      * @alias module:model/MailOrderDetail
      * @implements module:model/MailOrder
      * @param id {Number} The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
-     * @param status {String} The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
+     * @param status {module:model/MailOrderDetail.StatusEnum} The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
      * @param username {String} The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
      * @param password {String} The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
      */
@@ -123,7 +123,7 @@ MailOrderDetail.prototype['id'] = undefined;
 
 /**
  * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
- * @member {String} status
+ * @member {module:model/MailOrderDetail.StatusEnum} status
  */
 MailOrderDetail.prototype['status'] = undefined;
 
@@ -140,7 +140,7 @@ MailOrderDetail.prototype['username'] = undefined;
 MailOrderDetail.prototype['password'] = undefined;
 
 /**
- * Optional human-readable note associated with the order.
+ * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
  * @member {String} comment
  */
 MailOrderDetail.prototype['comment'] = undefined;
@@ -154,7 +154,7 @@ MailOrderDetail.prototype['comment'] = undefined;
 MailOrder.prototype['id'] = undefined;
 /**
  * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
- * @member {String} status
+ * @member {module:model/MailOrder.StatusEnum} status
  */
 MailOrder.prototype['status'] = undefined;
 /**
@@ -163,11 +163,32 @@ MailOrder.prototype['status'] = undefined;
  */
 MailOrder.prototype['username'] = undefined;
 /**
- * Optional human-readable note associated with the order.
+ * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
  * @member {String} comment
  */
 MailOrder.prototype['comment'] = undefined;
 
+
+
+/**
+ * Allowed values for the <code>status</code> property.
+ * @enum {String}
+ * @readonly
+ */
+MailOrderDetail['StatusEnum'] = {
+
+    /**
+     * value: "active"
+     * @const
+     */
+    "active": "active",
+
+    /**
+     * value: "canceled"
+     * @const
+     */
+    "canceled": "canceled"
+};
 
 
 

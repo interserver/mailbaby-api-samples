@@ -13,6 +13,7 @@
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-order :refer :all]
+            [mail-baby-email-delivery-and-management-service-api.specs.view-mail-log-start-date-parameter :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.error-message :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-stats-type :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-attachment :refer :all]
@@ -32,7 +33,7 @@
 
 (defn-spec ping-server-with-http-info any?
   "Checks if the server is running
-  A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks."
+  A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests."
   []
   (call-api "/ping" :get
             {:path-params   {}
@@ -40,16 +41,16 @@
              :query-params  {}
              :form-params   {}
              :content-types []
-             :accepts       []
+             :accepts       ["text/plain"]
              :auth-names    ["apiKeyAuth"]}))
 
-(defn-spec ping-server any?
+(defn-spec ping-server string?
   "Checks if the server is running
-  A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks."
+  A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests."
   []
   (let [res (:data (ping-server-with-http-info))]
     (if (:decode-models *api-context*)
-       (st/decode any? res st/string-transformer)
+       (st/decode string? res st/string-transformer)
        res)))
 
 

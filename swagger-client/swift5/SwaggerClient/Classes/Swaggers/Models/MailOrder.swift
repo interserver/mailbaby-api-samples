@@ -12,16 +12,20 @@ import Foundation
 
 public struct MailOrder: Codable {
 
+    public enum Status: String, Codable { 
+        case active = "active"
+        case canceled = "canceled"
+    }
     /** The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries. */
     public var _id: Int
     /** The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. */
-    public var status: String
+    public var status: Status
     /** The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed. */
     public var username: String
-    /** Optional human-readable note associated with the order. */
+    /** Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     public var comment: String?
 
-    public init(_id: Int, status: String, username: String, comment: String? = nil) {
+    public init(_id: Int, status: Status, username: String, comment: String? = nil) {
         self._id = _id
         self.status = status
         self.username = username

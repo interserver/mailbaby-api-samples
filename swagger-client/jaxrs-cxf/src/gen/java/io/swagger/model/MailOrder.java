@@ -26,12 +26,39 @@ public class MailOrder   {
    * The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.  
   **/
   private Integer id = null;
-  
+  public enum StatusEnum {
+    ACTIVE("active"),
+    CANCELED("canceled");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+    @JsonCreator
+    public static StatusEnum fromValue(String text) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }  
   @Schema(example = "active", required = true, description = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
  /**
    * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.  
   **/
-  private String status = null;
+  private StatusEnum status = null;
   
   @Schema(example = "mb21472", required = true, description = "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
  /**
@@ -39,9 +66,9 @@ public class MailOrder   {
   **/
   private String username = null;
   
-  @Schema(description = "Optional human-readable note associated with the order.")
+  @Schema(description = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
  /**
-   * Optional human-readable note associated with the order.  
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.  
   **/
   private String comment = null;
  /**
@@ -70,14 +97,17 @@ public class MailOrder   {
   @JsonProperty("status")
   @NotNull
   public String getStatus() {
-    return status;
+    if (status == null) {
+      return null;
+    }
+    return status.getValue();
   }
 
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
-  public MailOrder status(String status) {
+  public MailOrder status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -88,7 +118,7 @@ public class MailOrder   {
   **/
   @JsonProperty("username")
   @NotNull
-  public String getUsername() {
+ @Pattern(regexp="^mb\\d+$")  public String getUsername() {
     return username;
   }
 
@@ -102,7 +132,7 @@ public class MailOrder   {
   }
 
  /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    * @return comment
   **/
   @JsonProperty("comment")

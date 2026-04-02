@@ -44,6 +44,8 @@ case class MailLogEntry (
   seq: Option[Integer],
 /* Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`. */
   delivered: Option[Integer],
+/* The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). */
+  code: Option[Integer],
 /* The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). */
   response: Option[String],
 /* The specific recipient address this delivery record is for. */

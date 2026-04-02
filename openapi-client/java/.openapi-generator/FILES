@@ -34,6 +34,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 git_push.sh
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
@@ -89,6 +90,7 @@ src/main/java/org/openapitools/client/model/SendMail.java
 src/main/java/org/openapitools/client/model/SendMailAdv.java
 src/main/java/org/openapitools/client/model/SendMailRaw.java
 src/main/java/org/openapitools/client/model/SendMailTo.java
+src/main/java/org/openapitools/client/model/ViewMailLogStartDateParameter.java
 src/test/java/org/openapitools/client/api/BlockingApiTest.java
 src/test/java/org/openapitools/client/api/HistoryApiTest.java
 src/test/java/org/openapitools/client/api/SendingApiTest.java
@@ -117,3 +119,4 @@ src/test/java/org/openapitools/client/model/SendMailAdvTest.java
 src/test/java/org/openapitools/client/model/SendMailRawTest.java
 src/test/java/org/openapitools/client/model/SendMailTest.java
 src/test/java/org/openapitools/client/model/SendMailToTest.java
+src/test/java/org/openapitools/client/model/ViewMailLogStartDateParameterTest.java

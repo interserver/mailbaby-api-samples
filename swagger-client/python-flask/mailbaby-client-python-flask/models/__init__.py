@@ -3,6 +3,11 @@
 # flake8: noqa
 from __future__ import absolute_import
 # import models into model package
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_bcc import AllOfSendMailAdvBcc
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_cc import AllOfSendMailAdvCc
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_from import AllOfSendMailAdvFrom
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_replyto import AllOfSendMailAdvReplyto
+from mailbaby-client-python-flask.models.all_of_send_mail_adv_to import AllOfSendMailAdvTo
 from mailbaby-client-python-flask.models.deny_rule_new import DenyRuleNew
 from mailbaby-client-python-flask.models.deny_rule_record import DenyRuleRecord
 from mailbaby-client-python-flask.models.email_address_name import EmailAddressName
@@ -10,6 +15,7 @@ from mailbaby-client-python-flask.models.email_address_names import EmailAddress
 from mailbaby-client-python-flask.models.email_address_param import EmailAddressParam
 from mailbaby-client-python-flask.models.email_address_types import EmailAddressTypes
 from mailbaby-client-python-flask.models.email_addresses_types import EmailAddressesTypes
+from mailbaby-client-python-flask.models.end_date import EndDate
 from mailbaby-client-python-flask.models.error_message import ErrorMessage
 from mailbaby-client-python-flask.models.generic_response import GenericResponse
 from mailbaby-client-python-flask.models.mail_attachment import MailAttachment
@@ -26,3 +32,4 @@ from mailbaby-client-python-flask.models.send_mail import SendMail
 from mailbaby-client-python-flask.models.send_mail_adv import SendMailAdv
 from mailbaby-client-python-flask.models.send_mail_raw import SendMailRaw
 from mailbaby-client-python-flask.models.send_mail_to import SendMailTo
+from mailbaby-client-python-flask.models.start_date import StartDate

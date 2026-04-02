@@ -9,11 +9,11 @@
 #' @format An \code{R6Class} generator object
 #' @field subject The subject line of the email. character
 #' @field body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. character
-#' @field from  \link{EmailAddressTypes}
-#' @field to  \link{EmailAddressesTypes}
-#' @field replyto  \link{EmailAddressesTypes} [optional]
-#' @field cc  \link{EmailAddressesTypes} [optional]
-#' @field bcc  \link{EmailAddressesTypes} [optional]
+#' @field from The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object. \link{EmailAddressTypes}
+#' @field to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. \link{EmailAddressesTypes}
+#' @field replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. \link{EmailAddressesTypes} [optional]
+#' @field cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. \link{EmailAddressesTypes} [optional]
+#' @field bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. \link{EmailAddressesTypes} [optional]
 #' @field attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. list(\link{MailAttachment}) [optional]
 #' @field id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. integer [optional]
 #' @importFrom R6 R6Class
@@ -37,11 +37,11 @@ SendMailAdv <- R6::R6Class(
     #'
     #' @param subject The subject line of the email.
     #' @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-    #' @param from from
-    #' @param to to
-    #' @param replyto replyto
-    #' @param cc cc
-    #' @param bcc bcc
+    #' @param from The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+    #' @param to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+    #' @param replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+    #' @param cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+    #' @param bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
     #' @param attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
     #' @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
     #' @param ... Other optional arguments.

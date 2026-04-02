@@ -30,6 +30,7 @@ src/main/scala/org/openapitools/client/models/MailLog.scala
 src/main/scala/org/openapitools/client/models/MailLogEntry.scala
 src/main/scala/org/openapitools/client/models/MailOrder.scala
 src/main/scala/org/openapitools/client/models/MailOrderDetail.scala
+src/main/scala/org/openapitools/client/models/MailOrderStatus.scala
 src/main/scala/org/openapitools/client/models/MailStatsType.scala
 src/main/scala/org/openapitools/client/models/MailStatsTypeTime.scala
 src/main/scala/org/openapitools/client/models/MailStatsVolume.scala
@@ -37,6 +38,10 @@ src/main/scala/org/openapitools/client/models/SendMail.scala
 src/main/scala/org/openapitools/client/models/SendMailAdv.scala
 src/main/scala/org/openapitools/client/models/SendMailRaw.scala
 src/main/scala/org/openapitools/client/models/SendMailTo.scala
+src/main/scala/org/openapitools/client/models/ViewMailLogDirParameter.scala
+src/main/scala/org/openapitools/client/models/ViewMailLogGroupbyParameter.scala
+src/main/scala/org/openapitools/client/models/ViewMailLogSortParameter.scala
+src/main/scala/org/openapitools/client/models/ViewMailLogStartDateParameter.scala
 src/main/scala/org/openapitools/client/models/_Authorization.scala
 src/main/scala/org/openapitools/client/models/_FailedRequest.scala
 src/main/scala/org/openapitools/client/models/package.scala

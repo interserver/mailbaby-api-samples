@@ -5,9 +5,11 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
+from mailbaby-client-python-flask.models.end_date import EndDate  # noqa: E501
 from mailbaby-client-python-flask.models.error_message import ErrorMessage  # noqa: E501
 from mailbaby-client-python-flask.models.mail_log import MailLog  # noqa: E501
 from mailbaby-client-python-flask.models.mail_stats_type import MailStatsType  # noqa: E501
+from mailbaby-client-python-flask.models.start_date import StartDate  # noqa: E501
 from mailbaby-client-python-flask.test import BaseTestCase
 
 
@@ -45,8 +47,11 @@ class TestHistoryController(BaseTestCase):
                         ('delivered', 56),
                         ('skip', 1),
                         ('limit', 10000),
-                        ('start_date', 9999999999),
-                        ('end_date', 9999999999)]
+                        ('start_date', StartDate()),
+                        ('end_date', EndDate()),
+                        ('sort', 'time'),
+                        ('dir', 'desc'),
+                        ('groupby', 'recipient')]
         response = self.client.open(
             '/mail/log',
             method='GET',

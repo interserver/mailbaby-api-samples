@@ -7,6 +7,7 @@ from typing import List, Dict  # noqa: F401
 
 from mailbaby-client-python-flask.models.base_model_ import Model
 from mailbaby-client-python-flask.models.mail_order import MailOrder  # noqa: F401,E501
+import re  # noqa: F401,E501
 from mailbaby-client-python-flask import util
 
 
@@ -131,8 +132,12 @@ class MailOrderDetail(Model):
         :param status: The status of this MailOrderDetail.
         :type status: str
         """
-        if status is None:
-            raise ValueError("Invalid value for `status`, must not be `None`")  # noqa: E501
+        allowed_values = ["active", "canceled"]  # noqa: E501
+        if status not in allowed_values:
+            raise ValueError(
+                "Invalid value for `status` ({0}), must be one of {1}"
+                .format(status, allowed_values)
+            )
 
         self._status = status
 
@@ -165,7 +170,7 @@ class MailOrderDetail(Model):
     def comment(self) -> str:
         """Gets the comment of this MailOrderDetail.
 
-        Optional human-readable note associated with the order.  # noqa: E501
+        Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.  # noqa: E501
 
         :return: The comment of this MailOrderDetail.
         :rtype: str
@@ -176,7 +181,7 @@ class MailOrderDetail(Model):
     def comment(self, comment: str):
         """Sets the comment of this MailOrderDetail.
 
-        Optional human-readable note associated with the order.  # noqa: E501
+        Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.  # noqa: E501
 
         :param comment: The comment of this MailOrderDetail.
         :type comment: str

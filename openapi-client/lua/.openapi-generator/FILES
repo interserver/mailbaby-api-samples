@@ -30,6 +30,7 @@ openapiclient/model/send_mail.lua
 openapiclient/model/send_mail_adv.lua
 openapiclient/model/send_mail_raw.lua
 openapiclient/model/send_mail_to.lua
+openapiclient/model/view_mail_log_start_date_parameter.lua
 spec/blocking_api_spec.lua
 spec/deny_rule_new_spec.lua
 spec/deny_rule_record_spec.lua
@@ -58,3 +59,4 @@ spec/send_mail_to_spec.lua
 spec/sending_api_spec.lua
 spec/services_api_spec.lua
 spec/status_api_spec.lua
+spec/view_mail_log_start_date_parameter_spec.lua

@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
 
 ### Example
 ```perl
@@ -86,11 +86,11 @@ my $api_instance = OpenAPIClient::SendingApi->new(
 
 my $subject = "subject_example"; # string | The subject line of the email.
 my $body = "body_example"; # string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-my $from = new OpenAPIClient.EmailAddressTypes(); # EmailAddressTypes | 
-my $to = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | 
-my $replyto = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | 
-my $cc = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | 
-my $bcc = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | 
+my $from = new OpenAPIClient.EmailAddressTypes(); # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+my $to = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+my $replyto = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+my $cc = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+my $bcc = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
 my $attachments = [(new OpenAPIClient.MailAttachment())]; # ARRAY[MailAttachment] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
 my $id = 789; # int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 
@@ -109,11 +109,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**| The subject line of the email. | 
  **body** | **string**| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. | 
- **from** | [**EmailAddressTypes**](EmailAddressTypes.md)|  | 
- **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | 
- **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
- **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
- **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)|  | [optional] 
+ **from** | [**EmailAddressTypes**](EmailAddressTypes.md)| The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. | 
+ **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. | 
+ **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. | [optional] 
+ **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. | [optional] 
+ **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md)| Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. | [optional] 
  **attachments** | [**ARRAY[MailAttachment]**](MailAttachment.md)| Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [optional] 
  **id** | **int**| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional] 
 

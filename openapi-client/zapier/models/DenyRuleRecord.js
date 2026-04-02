@@ -6,7 +6,7 @@ module.exports = {
         return [
             {
                 key: `${keyPrefix}type`,
-                label: `The type of deny rule. - [${labelPrefix}type]`,
+                label: `The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. - [${labelPrefix}type]`,
                 required: true,
                 type: 'string',
                 choices: [

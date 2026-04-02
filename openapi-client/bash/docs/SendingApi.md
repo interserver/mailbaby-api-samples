@@ -16,7 +16,7 @@ Sends a raw RFC 822 email
 
 Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
 The 'From' and recipient addresses are parsed automatically from the message headers ('From', 'To', 'Cc', 'Bcc').  You do **not** need to specify them separately.
 
@@ -125,11 +125,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string** | The subject line of the email. | [default to null]
  **body** | **string** | The email body.  If the string contains any HTML tags the message is automatically sent as 'text/html'; otherwise it is sent as 'text/plain'. | [default to null]
- **from** | [**EmailAddressTypes**](EmailAddressTypes.md) |  | [default to null]
- **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [default to null]
- **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] [default to null]
- **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] [default to null]
- **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) |  | [optional] [default to null]
+ **from** | [**EmailAddressTypes**](EmailAddressTypes.md) | The sender address.  Accepts a plain email string, an RFC 822 named string ('\\\"Name <email>\\\"'), or a '{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}' object. | [default to null]
+ **to** | [**EmailAddressesTypes**](EmailAddressesTypes.md) | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. | [default to null]
+ **replyto** | [**EmailAddressesTypes**](EmailAddressesTypes.md) | Optional.  One or more addresses to set as the 'Reply-To' header. When recipients reply to the message their email client will address the reply to these addresses instead of 'from'. | [optional] [default to null]
+ **cc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) | Optional.  Carbon-copy recipients.  These addresses are listed in the 'Cc' header and are visible to all recipients. | [optional] [default to null]
+ **bcc** | [**EmailAddressesTypes**](EmailAddressesTypes.md) | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. | [optional] [default to null]
  **attachments** | [**array[MailAttachment]**](MailAttachment.md) | Optional list of file attachments.  Each file must be base64-encoded. Include 'filename' so recipients see a meaningful attachment name. | [optional] [default to null]
  **id** | **integer** | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by 'GET /mail'. | [optional] [default to null]
 

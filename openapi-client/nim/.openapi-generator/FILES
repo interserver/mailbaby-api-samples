@@ -32,4 +32,5 @@ openapiclient/models/model_send_mail.nim
 openapiclient/models/model_send_mail_adv.nim
 openapiclient/models/model_send_mail_raw.nim
 openapiclient/models/model_send_mail_to.nim
+openapiclient/models/model_view_mail_log_start_date_parameter.nim
 sample_client.nim

@@ -4,10 +4,27 @@
 #include "mail_order.h"
 
 
+char* mail_order_status_ToString(mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e status) {
+    char* statusArray[] =  { "NULL", "active", "canceled" };
+    return statusArray[status];
+}
+
+mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e mail_order_status_FromString(char* status){
+    int stringToReturn = 0;
+    char *statusArray[] =  { "NULL", "active", "canceled" };
+    size_t sizeofArray = sizeof(statusArray) / sizeof(statusArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(status, statusArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 static mail_order_t *mail_order_create_internal(
     int *id,
-    char *status,
+    mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e status,
     char *username,
     char *comment
     ) {
@@ -26,7 +43,7 @@ static mail_order_t *mail_order_create_internal(
 
 __attribute__((deprecated)) mail_order_t *mail_order_create(
     int *id,
-    char *status,
+    mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e status,
     char *username,
     char *comment
     ) {
@@ -60,10 +77,6 @@ void mail_order_free(mail_order_t *mail_order) {
         free(mail_order->id);
         mail_order->id = NULL;
     }
-    if (mail_order->status) {
-        free(mail_order->status);
-        mail_order->status = NULL;
-    }
     if (mail_order->username) {
         free(mail_order->username);
         mail_order->username = NULL;
@@ -88,11 +101,12 @@ cJSON *mail_order_convertToJSON(mail_order_t *mail_order) {
 
 
     // mail_order->status
-    if (!mail_order->status) {
+    if (mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_NULL == mail_order->status) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "status", mail_order->status) == NULL) {
-    goto fail; //String
+    if(cJSON_AddStringToObject(item, "status", mail_order_status_ToString(mail_order->status)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
@@ -126,8 +140,6 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
 
     // define the local variable for mail_order->id
     int *id_local_var = NULL;
-
-    char *status_local_str = NULL;
 
     char *username_local_str = NULL;
 
@@ -163,11 +175,13 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
         goto end;
     }
 
+    mailbaby_email_delivery_and_management_service_api_mail_order_STATUS_e statusVariable;
     
     if(!cJSON_IsString(status))
     {
-    goto end; //String
+    goto end; //Enum
     }
+    statusVariable = mail_order_status_FromString(status->valuestring);
 
     // mail_order->username
     cJSON *username = cJSON_GetObjectItemCaseSensitive(mail_orderJSON, "username");
@@ -197,13 +211,12 @@ mail_order_t *mail_order_parseFromJSON(cJSON *mail_orderJSON){
     }
 
 
-    if (status && !cJSON_IsNull(status)) status_local_str = strdup(status->valuestring);
     if (username && !cJSON_IsNull(username)) username_local_str = strdup(username->valuestring);
     if (comment && !cJSON_IsNull(comment)) comment_local_str = strdup(comment->valuestring);
 
     mail_order_local_var = mail_order_create_internal (
         id_local_var,
-        status_local_str,
+        statusVariable,
         username_local_str,
         comment_local_str
         );
@@ -217,10 +230,6 @@ end:
     if (id_local_var) {
         free(id_local_var);
         id_local_var = NULL;
-    }
-    if (status_local_str) {
-        free(status_local_str);
-        status_local_str = NULL;
     }
     if (username_local_str) {
         free(username_local_str);

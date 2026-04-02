@@ -1,6 +1,6 @@
 # MailBaby Email Delivery and Management Service API
 #
-# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 #
 # OpenAPI spec version: 1.4.0
 # Contact: support@interserver.net
@@ -24,6 +24,7 @@
 #' @field bodySize 
 #' @field seq 
 #' @field delivered 
+#' @field code 
 #' @field response 
 #' @field recipient 
 #' @field domain 
@@ -55,6 +56,7 @@ MailLogEntry <- R6::R6Class(
     `bodySize` = NULL,
     `seq` = NULL,
     `delivered` = NULL,
+    `code` = NULL,
     `response` = NULL,
     `recipient` = NULL,
     `domain` = NULL,
@@ -63,7 +65,7 @@ MailLogEntry <- R6::R6Class(
     `assigned` = NULL,
     `queued` = NULL,
     `mxHostname` = NULL,
-    initialize = function(`_id`, `id`, `from`, `to`, `subject`, `messageId`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `sendingZone`, `bodySize`, `seq`, `delivered`, `response`, `recipient`, `domain`, `locked`, `lockTime`, `assigned`, `queued`, `mxHostname`){
+    initialize = function(`_id`, `id`, `from`, `to`, `subject`, `messageId`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `sendingZone`, `bodySize`, `seq`, `delivered`, `code`, `response`, `recipient`, `domain`, `locked`, `lockTime`, `assigned`, `queued`, `mxHostname`){
       if (!missing(`_id`)) {
         stopifnot(is.numeric(`_id`), length(`_id`) == 1)
         self$`_id` <- `_id`
@@ -127,6 +129,10 @@ MailLogEntry <- R6::R6Class(
       if (!missing(`delivered`)) {
         stopifnot(is.numeric(`delivered`), length(`delivered`) == 1)
         self$`delivered` <- `delivered`
+      }
+      if (!missing(`code`)) {
+        stopifnot(is.numeric(`code`), length(`code`) == 1)
+        self$`code` <- `code`
       }
       if (!missing(`response`)) {
         stopifnot(is.character(`response`), length(`response`) == 1)
@@ -211,6 +217,9 @@ MailLogEntry <- R6::R6Class(
       if (!is.null(self$`delivered`)) {
         MailLogEntryObject[['delivered']] <- self$`delivered`
       }
+      if (!is.null(self$`code`)) {
+        MailLogEntryObject[['code']] <- self$`code`
+      }
       if (!is.null(self$`response`)) {
         MailLogEntryObject[['response']] <- self$`response`
       }
@@ -288,6 +297,9 @@ MailLogEntry <- R6::R6Class(
       if (!is.null(MailLogEntryObject$`delivered`)) {
         self$`delivered` <- MailLogEntryObject$`delivered`
       }
+      if (!is.null(MailLogEntryObject$`code`)) {
+        self$`code` <- MailLogEntryObject$`code`
+      }
       if (!is.null(MailLogEntryObject$`response`)) {
         self$`response` <- MailLogEntryObject$`response`
       }
@@ -332,6 +344,7 @@ MailLogEntry <- R6::R6Class(
            "bodySize": %d,
            "seq": %d,
            "delivered": %d,
+           "code": %d,
            "response": %s,
            "recipient": %s,
            "domain": %s,
@@ -357,6 +370,7 @@ MailLogEntry <- R6::R6Class(
         self$`bodySize`,
         self$`seq`,
         self$`delivered`,
+        self$`code`,
         self$`response`,
         self$`recipient`,
         self$`domain`,
@@ -385,6 +399,7 @@ MailLogEntry <- R6::R6Class(
       self$`bodySize` <- MailLogEntryObject$`bodySize`
       self$`seq` <- MailLogEntryObject$`seq`
       self$`delivered` <- MailLogEntryObject$`delivered`
+      self$`code` <- MailLogEntryObject$`code`
       self$`response` <- MailLogEntryObject$`response`
       self$`recipient` <- MailLogEntryObject$`recipient`
       self$`domain` <- MailLogEntryObject$`domain`

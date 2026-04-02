@@ -7,11 +7,11 @@ Method | HTTP request | Description
 [**pingServer**](StatusApi.md#pingserver) | **GET** /ping | Checks if the server is running
 
 # **pingServer**
-> pingServer()
+> string pingServer()
 
 Checks if the server is running
 
-A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.
+A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
 
 ### Example
 ```php
@@ -30,7 +30,8 @@ $apiInstance = new Interserver\Mailbaby\Api\StatusApi(
 );
 
 try {
-    $apiInstance->pingServer();
+    $result = $apiInstance->pingServer();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StatusApi->pingServer: ', $e->getMessage(), PHP_EOL;
 }
@@ -42,7 +43,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+**string**
 
 ### Authorization
 
@@ -51,7 +52,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: text/plain
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

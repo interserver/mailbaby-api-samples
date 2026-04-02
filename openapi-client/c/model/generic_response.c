@@ -57,18 +57,20 @@ cJSON *generic_response_convertToJSON(generic_response_t *generic_response) {
     cJSON *item = cJSON_CreateObject();
 
     // generic_response->status
-    if(generic_response->status) {
+    if (!generic_response->status) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "status", generic_response->status) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // generic_response->text
-    if(generic_response->text) {
+    if (!generic_response->text) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "text", generic_response->text) == NULL) {
     goto fail; //String
-    }
     }
 
     return item;
@@ -92,11 +94,14 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
     if (cJSON_IsNull(status)) {
         status = NULL;
     }
-    if (status) { 
-    if(!cJSON_IsString(status) && !cJSON_IsNull(status))
+    if (!status) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(status))
     {
     goto end; //String
-    }
     }
 
     // generic_response->text
@@ -104,11 +109,14 @@ generic_response_t *generic_response_parseFromJSON(cJSON *generic_responseJSON){
     if (cJSON_IsNull(text)) {
         text = NULL;
     }
-    if (text) { 
-    if(!cJSON_IsString(text) && !cJSON_IsNull(text))
+    if (!text) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(text))
     {
     goto end; //String
-    }
     }
 
 

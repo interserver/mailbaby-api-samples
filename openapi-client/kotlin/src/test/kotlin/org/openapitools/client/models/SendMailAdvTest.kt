@@ -48,31 +48,31 @@ class SendMailAdvTest : ShouldSpec() {
             //modelInstance.body shouldBe ("TODO")
         }
 
-        // to test the property `from`
+        // to test the property `from` - The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
         should("test from") {
             // uncomment below to test the property
             //modelInstance.from shouldBe ("TODO")
         }
 
-        // to test the property `to`
+        // to test the property `to` - One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
         should("test to") {
             // uncomment below to test the property
             //modelInstance.to shouldBe ("TODO")
         }
 
-        // to test the property `replyto`
+        // to test the property `replyto` - Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
         should("test replyto") {
             // uncomment below to test the property
             //modelInstance.replyto shouldBe ("TODO")
         }
 
-        // to test the property `cc`
+        // to test the property `cc` - Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
         should("test cc") {
             // uncomment below to test the property
             //modelInstance.cc shouldBe ("TODO")
         }
 
-        // to test the property `bcc`
+        // to test the property `bcc` - Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
         should("test bcc") {
             // uncomment below to test the property
             //modelInstance.bcc shouldBe ("TODO")

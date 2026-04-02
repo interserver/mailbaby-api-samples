@@ -1,6 +1,6 @@
 /*
  * MailBaby Email Delivery and Management Service API
- * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+ * **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
  *
  * The version of the OpenAPI document: 1.4.0
  * Contact: support@interserver.net
@@ -42,6 +42,7 @@ import javax.annotation.Generated;
   MailLogEntry.JSON_PROPERTY_BODY_SIZE,
   MailLogEntry.JSON_PROPERTY_SEQ,
   MailLogEntry.JSON_PROPERTY_DELIVERED,
+  MailLogEntry.JSON_PROPERTY_CODE,
   MailLogEntry.JSON_PROPERTY_RESPONSE,
   MailLogEntry.JSON_PROPERTY_RECIPIENT,
   MailLogEntry.JSON_PROPERTY_DOMAIN,
@@ -52,7 +53,7 @@ import javax.annotation.Generated;
   MailLogEntry.JSON_PROPERTY_MX_HOSTNAME
 })
 @JsonTypeName("MailLogEntry")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-03-25T15:12:27.349842802-04:00[America/New_York]", comments = "Generator version: 7.21.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-04-02T06:32:50.034309269-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 @Introspected
 public class MailLogEntry {
     public static final String JSON_PROPERTY_ID = "_id";
@@ -102,6 +103,9 @@ public class MailLogEntry {
 
     public static final String JSON_PROPERTY_DELIVERED = "delivered";
     private Integer delivered;
+
+    public static final String JSON_PROPERTY_CODE = "code";
+    private Integer code;
 
     public static final String JSON_PROPERTY_RESPONSE = "response";
     private String response;
@@ -172,6 +176,7 @@ public class MailLogEntry {
      * @return id
      */
     @NotNull
+    @Size(min=18, max=19)
     @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public String getId() {
@@ -492,6 +497,28 @@ public class MailLogEntry {
         this.delivered = delivered;
     }
 
+    public MailLogEntry code(Integer code) {
+        this.code = code;
+        return this;
+    }
+
+    /**
+     * The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).
+     * @return code
+     */
+    @Nullable
+    @JsonProperty(JSON_PROPERTY_CODE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public Integer getCode() {
+        return code;
+    }
+
+    @JsonProperty(JSON_PROPERTY_CODE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
     public MailLogEntry response(String response) {
         this.response = response;
         return this;
@@ -693,6 +720,7 @@ public class MailLogEntry {
             Objects.equals(this.bodySize, mailLogEntry.bodySize) &&
             Objects.equals(this.seq, mailLogEntry.seq) &&
             Objects.equals(this.delivered, mailLogEntry.delivered) &&
+            Objects.equals(this.code, mailLogEntry.code) &&
             Objects.equals(this.response, mailLogEntry.response) &&
             Objects.equals(this.recipient, mailLogEntry.recipient) &&
             Objects.equals(this.domain, mailLogEntry.domain) &&
@@ -705,7 +733,7 @@ public class MailLogEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, id, from, to, created, time, user, transtype, origin, _interface, subject, messageId, sendingZone, bodySize, seq, delivered, response, recipient, domain, locked, lockTime, assigned, queued, mxHostname);
+        return Objects.hash(id, id, from, to, created, time, user, transtype, origin, _interface, subject, messageId, sendingZone, bodySize, seq, delivered, code, response, recipient, domain, locked, lockTime, assigned, queued, mxHostname);
     }
 
     @Override
@@ -728,6 +756,7 @@ public class MailLogEntry {
         sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
         sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
         sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
+        sb.append("    code: ").append(toIndentedString(code)).append("\n");
         sb.append("    response: ").append(toIndentedString(response)).append("\n");
         sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
         sb.append("    domain: ").append(toIndentedString(domain)).append("\n");

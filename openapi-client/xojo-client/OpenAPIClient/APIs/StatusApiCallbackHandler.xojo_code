@@ -1,7 +1,7 @@
 #tag Interface
 Protected Interface StatusApiCallbackHandler
 	#tag Method, Flags = &h0
-		Sub PingServerCallback(status As OpenAPIClient.OpenAPIClientException)
+		Sub PingServerCallback(status As OpenAPIClient.OpenAPIClientException, Optional data As String)
 		  
 		End Sub
 	#tag EndMethod

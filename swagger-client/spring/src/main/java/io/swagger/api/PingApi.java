@@ -35,15 +35,16 @@ import java.util.Map;
 @Validated
 public interface PingApi {
 
-    @Operation(summary = "Checks if the server is running", description = "A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. ", security = {
+    @Operation(summary = "Checks if the server is running", description = "A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. ", security = {
         @SecurityRequirement(name = "apiKeyAuth")    }, tags={ "Status" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Server is up and running"),
+        @ApiResponse(responseCode = "200", description = "Server is up and running", content = @Content(mediaType = "text/plain", schema = @Schema(implementation = String.class))),
         
         @ApiResponse(responseCode = "200", description = "Something is wrong") })
     @RequestMapping(value = "/ping",
+        produces = { "text/plain" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Void> pingServer();
+    ResponseEntity<String> pingServer();
 
 }
 

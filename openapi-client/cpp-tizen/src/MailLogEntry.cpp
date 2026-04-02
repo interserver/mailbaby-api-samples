@@ -39,6 +39,7 @@ MailLogEntry::__init()
 	//bodySize = int(0);
 	//seq = int(0);
 	//delivered = int(0);
+	//code = int(0);
 	//response = std::string();
 	//recipient = std::string();
 	//domain = std::string();
@@ -131,6 +132,11 @@ MailLogEntry::__cleanup()
 	//
 	//delete delivered;
 	//delivered = NULL;
+	//}
+	//if(code != NULL) {
+	//
+	//delete code;
+	//code = NULL;
 	//}
 	//if(response != NULL) {
 	//
@@ -352,6 +358,17 @@ MailLogEntry::fromJson(char* jsonStr)
 
 		if (isprimitive("int")) {
 			jsonToValue(&delivered, node, "int", "");
+		} else {
+			
+		}
+	}
+	const gchar *codeKey = "code";
+	node = json_object_get_member(pJsonObject, codeKey);
+	if (node !=NULL) {
+	
+
+		if (isprimitive("int")) {
+			jsonToValue(&code, node, "int", "");
 		} else {
 			
 		}
@@ -600,6 +617,15 @@ MailLogEntry::toJson()
 	}
 	const gchar *deliveredKey = "delivered";
 	json_object_set_member(pJsonObject, deliveredKey, node);
+	if (isprimitive("int")) {
+		int obj = getCode();
+		node = converttoJson(&obj, "int", "");
+	}
+	else {
+		
+	}
+	const gchar *codeKey = "code";
+	json_object_set_member(pJsonObject, codeKey, node);
 	if (isprimitive("std::string")) {
 		std::string obj = getResponse();
 		node = converttoJson(&obj, "std::string", "");
@@ -870,6 +896,18 @@ void
 MailLogEntry::setDelivered(int  delivered)
 {
 	this->delivered = delivered;
+}
+
+int
+MailLogEntry::getCode()
+{
+	return code;
+}
+
+void
+MailLogEntry::setCode(int  code)
+{
+	this->code = code;
 }
 
 std::string

@@ -45,6 +45,8 @@
 
 #include "SendMailToTest.cpp"
 
+#include "ViewMailLog_startDate_parameterTest.cpp"
+
 
 
 void setUp(){}
@@ -203,6 +205,9 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_delivered_is_assigned_from_json);
     
     
+    RUN_TEST(test_MailLogEntry_code_is_assigned_from_json);
+    
+    
     RUN_TEST(test_MailLogEntry_response_is_assigned_from_json);
     
     
@@ -321,6 +326,7 @@ void runTests(){
     
     
     RUN_TEST(test_SendMailRaw_id_is_assigned_from_json);
+    
     
     
     
@@ -476,6 +482,9 @@ void runTests(){
     RUN_TEST(test_MailLogEntry_delivered_is_converted_to_json);
     
     
+    RUN_TEST(test_MailLogEntry_code_is_converted_to_json);
+    
+    
     RUN_TEST(test_MailLogEntry_response_is_converted_to_json);
     
     
@@ -594,6 +603,7 @@ void runTests(){
     
     
     RUN_TEST(test_SendMailRaw_id_is_converted_to_json);
+    
     
     
     

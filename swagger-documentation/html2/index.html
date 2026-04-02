@@ -689,6 +689,36 @@
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+            defs["AllOfSendMailAdvBcc"] = {
+  "description" : "Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.",
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddressesTypes"
+  } ]
+};
+            defs["AllOfSendMailAdvCc"] = {
+  "description" : "Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.",
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddressesTypes"
+  } ]
+};
+            defs["AllOfSendMailAdvFrom"] = {
+  "description" : "The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.",
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddressTypes"
+  } ]
+};
+            defs["AllOfSendMailAdvReplyto"] = {
+  "description" : "Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.",
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddressesTypes"
+  } ]
+};
+            defs["AllOfSendMailAdvTo"] = {
+  "description" : "One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.",
+  "allOf" : [ {
+    "$ref" : "#/components/schemas/EmailAddressesTypes"
+  } ]
+};
             defs["DenyRuleNew"] = {
   "title" : "DenyRuleNew",
   "required" : [ "data", "type" ],
@@ -701,7 +731,7 @@
     },
     "type" : {
       "type" : "string",
-      "description" : "The type of deny rule.",
+      "description" : "The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.",
       "example" : "email",
       "enum" : [ "domain", "email", "startswith", "destination" ]
     },
@@ -801,6 +831,7 @@
 };
             defs["EmailAddressTypes"] = {};
             defs["EmailAddressesTypes"] = {};
+            defs["endDate"] = {};
             defs["ErrorMessage"] = {
   "title" : "ErrorMessage",
   "required" : [ "code", "message" ],
@@ -826,6 +857,7 @@
 };
             defs["GenericResponse"] = {
   "title" : "GenericResponse",
+  "required" : [ "status", "text" ],
   "type" : "object",
   "properties" : {
     "status" : {
@@ -861,7 +893,7 @@
   "description" : "A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.",
   "example" : {
     "filename" : "file.txt",
-    "data" : "base64_encoded_file_contents"
+    "data" : "aGVsbG8gdGhlcmUK"
   }
 };
             defs["MailBlockClickHouse"] = {
@@ -955,7 +987,7 @@
       }
     }
   },
-  "description" : "The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`.  Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it."
+  "description" : "The complete set of blocked addresses and message patterns returned by `GET /mail/blocks`. Three independent block sources are combined into one response. Use `POST /mail/blocks/delete` with a `from` address from any entry to delist it."
 };
             defs["MailLog"] = {
   "title" : "MailLog",
@@ -997,6 +1029,8 @@
       "example" : 103172
     },
     "id" : {
+      "maxLength" : 19,
+      "minLength" : 18,
       "type" : "string",
       "description" : "The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.",
       "example" : "17c7eda538e0005d03"
@@ -1077,6 +1111,12 @@
       "nullable" : true,
       "example" : 1
     },
+    "code" : {
+      "type" : "integer",
+      "description" : "The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).",
+      "nullable" : true,
+      "example" : 250
+    },
     "response" : {
       "type" : "string",
       "description" : "The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).",
@@ -1144,6 +1184,7 @@
     "bodySize" : 63,
     "seq" : 1,
     "delivered" : 1,
+    "code" : 250,
     "recipient" : "client@isp.com",
     "domain" : "interserver.net",
     "locked" : 1,
@@ -1168,16 +1209,18 @@
     "status" : {
       "type" : "string",
       "description" : "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.",
-      "example" : "active"
+      "example" : "active",
+      "enum" : [ "active", "canceled" ]
     },
     "username" : {
+      "pattern" : "^mb\\d+$",
       "type" : "string",
       "description" : "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.",
       "example" : "mb21472"
     },
     "comment" : {
       "type" : "string",
-      "description" : "Optional human-readable note associated with the order."
+      "description" : "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment."
     }
   },
   "description" : "A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.",
@@ -1373,19 +1416,34 @@
       "example" : "The package you ordered on 2021-01-23 has been delivered."
     },
     "from" : {
-      "$ref" : "#/components/schemas/EmailAddressTypes"
+      "description" : "The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/EmailAddressTypes"
+      } ]
     },
     "to" : {
-      "$ref" : "#/components/schemas/EmailAddressesTypes"
+      "description" : "One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/EmailAddressesTypes"
+      } ]
     },
     "replyto" : {
-      "$ref" : "#/components/schemas/EmailAddressesTypes"
+      "description" : "Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/EmailAddressesTypes"
+      } ]
     },
     "cc" : {
-      "$ref" : "#/components/schemas/EmailAddressesTypes"
+      "description" : "Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/EmailAddressesTypes"
+      } ]
     },
     "bcc" : {
-      "$ref" : "#/components/schemas/EmailAddressesTypes"
+      "description" : "Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.",
+      "allOf" : [ {
+        "$ref" : "#/components/schemas/EmailAddressesTypes"
+      } ]
     },
     "attachments" : {
       "type" : "array",
@@ -1413,7 +1471,7 @@
     } ],
     "attachments" : [ {
       "filename" : "file.txt",
-      "data" : "base64_encoded_contents"
+      "data" : "aGVsbG8gdGhlcmUK"
     } ],
     "id" : 66
   }
@@ -1440,6 +1498,7 @@
   }
 };
             defs["SendMailTo"] = {};
+            defs["startDate"] = {};
   </script>
 
   <div class="container-fluid">
@@ -1525,7 +1584,7 @@
 | Endpoint | Best for | |----------|----------| | <code>POST /mail/send</code> | Simple single-recipient messages | | <code>POST /mail/advsend</code> | Multiple recipients, CC/BCC, attachments, named contacts | | <code>POST /mail/rawsend</code> | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |</p>
 <p>After a successful send each endpoint returns a <code>GenericResponse</code> whose <code>text</code> field contains the <strong>transaction ID</strong> assigned by the relay.  This ID can later be matched against entries in <code>GET /mail/log</code> via the <code>mailid</code> query parameter.</p>
 <h1>Filtering &amp; Logs</h1>
-<p><code>GET /mail/log</code> provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. <code>from</code>, <code>to</code>, <code>subject</code>, <code>messageId</code>, <code>origin</code>, <code>mx</code>, <code>startDate</code>/<code>endDate</code>, and <code>delivered</code>.</p>
+<p><code>GET /mail/log</code> provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. <code>from</code>, <code>to</code>, <code>subject</code>, <code>messageId</code>, <code>origin</code>, <code>mx</code>, <code>startDate</code>/<code>endDate</code>, and <code>delivered</code>.</p>
 <h1>Blocking</h1>
 <p>Two independent mechanisms exist for suppressing unwanted email:</p>
 <ul>
@@ -2775,7 +2834,7 @@ Use &#x60;GET /mail/blocks&#x60; to discover which addresses are currently block
                            <pre class="prettyprint"><code class="language-bsh">curl -X POST\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
--H "Content-Type: application/json,multipart/form-data"\
+-H "Content-Type: application/json,application/x-www-form-urlencoded"\
 "https://api.mailbaby.net/mail/blocks/delete"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Blocking-delistBlock-0-java">
@@ -3043,7 +3102,7 @@ except ApiException as e:
         }
       }
     },
-    "multipart/form-data" : {
+    "application/x-www-form-urlencoded" : {
       "schema" : {
         "$ref" : "#/components/schemas/EmailAddressParam"
       },
@@ -4206,7 +4265,7 @@ public class HistoryApiExample {
         //apiKeyAuth.setApiKeyPrefix("Token");
 
         HistoryApi apiInstance = new HistoryApi();
-        String time = time_example; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+        String time = time_example; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
         try {
             MailStatsType result = apiInstance.getStats(time);
             System.out.println(result);
@@ -4225,7 +4284,7 @@ public class HistoryApiExample {
 
     public static void main(String[] args) {
         HistoryApi apiInstance = new HistoryApi();
-        String time = time_example; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+        String time = time_example; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
         try {
             MailStatsType result = apiInstance.getStats(time);
             System.out.println(result);
@@ -4246,7 +4305,7 @@ public class HistoryApiExample {
 [apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-String *time = time_example; // The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`. (optional) (default to 1h)
+String *time = time_example; // The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
@@ -4275,7 +4334,7 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.HistoryApi()
 var opts = { 
-  'time': time_example // {{String}} The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+  'time': time_example // {{String}} The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4311,7 +4370,7 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             var apiInstance = new HistoryApi();
-            var time = time_example;  // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`. (optional)  (default to 1h)
+            var time = time_example;  // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional)  (default to 1h)
 
             try
             {
@@ -4339,7 +4398,7 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 // Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 $api_instance = new Swagger\Client\ApiHistoryApi();
-$time = time_example; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+$time = time_example; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 
 try {
     $result = $api_instance->getStats($time);
@@ -4361,7 +4420,7 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 #$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 my $api_instance = MailBabyApi::HistoryApi->new();
-my $time = time_example; # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`.
+my $time = time_example; # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 
 eval { 
     my $result = $api_instance->getStats(time => $time);
@@ -4386,7 +4445,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = MailBabyApi.HistoryApi()
-time = time_example # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle.  Defaults to `1h`. (optional) (default to 1h)
+time = time_example # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
 try: 
     # Account usage statistics
@@ -4421,7 +4480,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle.  Defaults to &#x60;1h&#x60;.
+                                                        The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle. Defaults to &#x60;1h&#x60;.
                                                     </div>
                                             </div>
                                         </div>
@@ -4477,6 +4536,12 @@ except ApiException as e:
           }
         }
       }
+    }
+  },
+  "links" : {
+    "viewMailLogLink" : {
+      "operationId" : "viewMailLog",
+      "description" : "Use `GET /mail/log` to view individual message details behind the aggregate statistics."
     }
   }
 };
@@ -4574,9 +4639,13 @@ except ApiException as e:
                         <p></p>
                         <p class="marked">Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
 
-**Pagination** is controlled by &#x60;skip&#x60; and &#x60;limit&#x60;.  The response includes a &#x60;total&#x60; count so clients can determine how many pages exist.
+**Row grouping** is controlled by the &#x60;groupby&#x60; parameter.  By default (&#x60;groupby&#x3D;recipient&#x60;), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and &#x60;mxHostname&#x60; values.  Set &#x60;groupby&#x3D;message&#x60; to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
-**Date filtering** uses Unix timestamps (&#x60;startDate&#x60; / &#x60;endDate&#x60;).  For example, to retrieve emails sent in January 2024: &#x60;startDate&#x3D;1704067200&amp;endDate&#x3D;1706745599&#x60;.
+**Pagination** is controlled by &#x60;skip&#x60; and &#x60;limit&#x60;.  The &#x60;total&#x60; in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.
+
+**Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60;, &#x60;last monday&#x60;, or &#x60;2024-01-01 00:00:00&#x60;.  Examples: &#x60;startDate&#x3D;1704067200&amp;endDate&#x3D;1706745599&#x60; or &#x60;startDate&#x3D;2024-01-01&amp;endDate&#x3D;2024-01-31&#x60;.
+
+**Sorting** is controlled by &#x60;sort&#x60; and &#x60;dir&#x60;.  Currently the only sort key is &#x60;time&#x60; (default), which orders by internal row ID.
 
 **Delivery status** can be filtered with the &#x60;delivered&#x60; parameter: &#x60;delivered&#x3D;1&#x60; returns only successfully delivered messages; &#x60;delivered&#x3D;0&#x60; returns messages still in queue or that failed.
 
@@ -4611,7 +4680,7 @@ The &#x60;messageId&#x60; parameter searches the &#x60;Message-ID&#x60; email he
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
 -H "Accept: application/json"\
-"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&messageId=&replyto=&headerfrom=&delivered=&skip=&limit=&startDate=&endDate="</code></pre>
+"https://api.mailbaby.net/mail/log?id=&origin=&mx=&from=&to=&subject=&mailid=&messageId=&replyto=&headerfrom=&delivered=&skip=&limit=&startDate=&endDate=&sort=&dir=&groupby="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-viewMailLog-0-java">
                             <pre class="prettyprint"><code class="language-java">import MailBabyApi.*;
@@ -4641,16 +4710,19 @@ public class HistoryApiExample {
         String to = to_example; // String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved.
         String subject = subject_example; // String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text.
         String mailid = mailid_example; // String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
-        String messageId = messageId_example; // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+        String messageId = messageId_example; // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
         String replyto = replyto_example; // String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
         String headerfrom = headerfrom_example; // String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address.
         Integer delivered = 56; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
         Integer skip = 56; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
         Integer limit = 56; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-        Long startDate = 789; // Long | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
-        Long endDate = 789; // Long | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+        startDate startDate = ; // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+        endDate endDate = ; // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+        String sort = sort_example; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+        String dir = dir_example; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+        String groupby = groupby_example; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4674,16 +4746,19 @@ public class HistoryApiExample {
         String to = to_example; // String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved.
         String subject = subject_example; // String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text.
         String mailid = mailid_example; // String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
-        String messageId = messageId_example; // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+        String messageId = messageId_example; // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
         String replyto = replyto_example; // String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
         String headerfrom = headerfrom_example; // String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address.
         Integer delivered = 56; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
         Integer skip = 56; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
         Integer limit = 56; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-        Long startDate = 789; // Long | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
-        Long endDate = 789; // Long | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+        startDate startDate = ; // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+        endDate endDate = ; // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+        String sort = sort_example; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+        String dir = dir_example; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+        String groupby = groupby_example; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
         try {
-            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate);
+            MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HistoryApi#viewMailLog");
@@ -4709,14 +4784,17 @@ String *from = from_example; // Filter by SMTP envelope `MAIL FROM` address (exa
 String *to = to_example; // Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved. (optional)
 String *subject = subject_example; // Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text. (optional)
 String *mailid = mailid_example; // Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`. (optional)
-String *messageId = messageId_example; // Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional)
+String *messageId = messageId_example; // Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional)
 String *replyto = replyto_example; // Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set. (optional)
 String *headerfrom = headerfrom_example; // Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address. (optional)
 Integer *delivered = 56; // Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
 Integer *skip = 56; // Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 Integer *limit = 56; // Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-Long *startDate = 789; // Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included. (optional)
-Long *endDate = 789; // Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included. (optional)
+startDate *startDate = ; // Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+endDate *endDate = ; // Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
+String *sort = sort_example; // Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
+String *dir = dir_example; // Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
+String *groupby = groupby_example; // Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
 
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 
@@ -4736,6 +4814,9 @@ HistoryApi *apiInstance = [[HistoryApi alloc] init];
     limit:limit
     startDate:startDate
     endDate:endDate
+    sort:sort
+    dir:dir
+    groupby:groupby
               completionHandler: ^(MailLog output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4766,14 +4847,17 @@ var opts = {
   'to': to_example, // {{String}} Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved.
   'subject': subject_example, // {{String}} Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text.
   'mailid': mailid_example, // {{String}} Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
-  'messageId': messageId_example, // {{String}} Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+  'messageId': messageId_example, // {{String}} Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
   'replyto': replyto_example, // {{String}} Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
   'headerfrom': headerfrom_example, // {{String}} Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address.
   'delivered': 56, // {{Integer}} Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
   'skip': 56, // {{Integer}} Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
   'limit': 56, // {{Integer}} Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-  'startDate': 789, // {{Long}} Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
-  'endDate': 789 // {{Long}} Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+  'startDate': , // {{startDate}} Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+  'endDate': , // {{endDate}} Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+  'sort': sort_example, // {{String}} Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+  'dir': dir_example, // {{String}} Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+  'groupby': groupby_example // {{String}} Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
 };
 var callback = function(error, data, response) {
   if (error) {
@@ -4816,19 +4900,22 @@ namespace Example
             var to = to_example;  // String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved. (optional) 
             var subject = subject_example;  // String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text. (optional) 
             var mailid = mailid_example;  // String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`. (optional) 
-            var messageId = messageId_example;  // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional) 
+            var messageId = messageId_example;  // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional) 
             var replyto = replyto_example;  // String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set. (optional) 
             var headerfrom = headerfrom_example;  // String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address. (optional) 
             var delivered = 56;  // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional) 
             var skip = 56;  // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional)  (default to 0)
             var limit = 56;  // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional)  (default to 100)
-            var startDate = 789;  // Long | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included. (optional) 
-            var endDate = 789;  // Long | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included. (optional) 
+            var startDate = new startDate(); // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) 
+            var endDate = new endDate(); // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) 
+            var sort = sort_example;  // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional)  (default to time)
+            var dir = dir_example;  // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional)  (default to desc)
+            var groupby = groupby_example;  // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional)  (default to recipient)
 
             try
             {
                 // Displays the mail log
-                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate);
+                MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4858,17 +4945,20 @@ $from = from_example; // String | Filter by SMTP envelope `MAIL FROM` address (e
 $to = to_example; // String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved.
 $subject = subject_example; // String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text.
 $mailid = mailid_example; // String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
-$messageId = messageId_example; // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+$messageId = messageId_example; // String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
 $replyto = replyto_example; // String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
 $headerfrom = headerfrom_example; // String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address.
 $delivered = 56; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 $skip = 56; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 $limit = 56; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-$startDate = 789; // Long | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
-$endDate = 789; // Long | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+$startDate = ; // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+$endDate = ; // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+$sort = sort_example; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+$dir = dir_example; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+$groupby = groupby_example; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
 
 try {
-    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $messageId, $replyto, $headerfrom, $delivered, $skip, $limit, $startDate, $endDate);
+    $result = $api_instance->viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $messageId, $replyto, $headerfrom, $delivered, $skip, $limit, $startDate, $endDate, $sort, $dir, $groupby);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling HistoryApi->viewMailLog: ', $e->getMessage(), PHP_EOL;
@@ -4894,17 +4984,20 @@ my $from = from_example; # String | Filter by SMTP envelope `MAIL FROM` address 
 my $to = to_example; # String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved.
 my $subject = subject_example; # String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text.
 my $mailid = mailid_example; # String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`.
-my $messageId = messageId_example; # String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
+my $messageId = messageId_example; # String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`.
 my $replyto = replyto_example; # String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set.
 my $headerfrom = headerfrom_example; # String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address.
 my $delivered = 56; # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 my $skip = 56; # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 my $limit = 56; # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-my $startDate = 789; # Long | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included.
-my $endDate = 789; # Long | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included.
+my $startDate = ; # startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+my $endDate = ; # endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+my $sort = sort_example; # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
+my $dir = dir_example; # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
+my $groupby = groupby_example; # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
 
 eval { 
-    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, messageId => $messageId, replyto => $replyto, headerfrom => $headerfrom, delivered => $delivered, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate);
+    my $result = $api_instance->viewMailLog(id => $id, origin => $origin, mx => $mx, from => $from, to => $to, subject => $subject, mailid => $mailid, messageId => $messageId, replyto => $replyto, headerfrom => $headerfrom, delivered => $delivered, skip => $skip, limit => $limit, startDate => $startDate, endDate => $endDate, sort => $sort, dir => $dir, groupby => $groupby);
     print Dumper($result);
 };
 if ($@) {
@@ -4933,18 +5026,21 @@ from = from_example # String | Filter by SMTP envelope `MAIL FROM` address (exac
 to = to_example # String | Filter by SMTP envelope `RCPT TO` address (exact match).  This is the delivery address used by the relay and may differ from the `To:` header when BCC recipients are involved. (optional)
 subject = subject_example # String | Filter by email `Subject` header (exact match).  To search for a substring, include it in the full subject text. (optional)
 mailid = mailid_example # String | Filter by the relay-assigned mail ID string (exact match).  This corresponds to the `id` field in `MailLogEntry` and to the `text` value returned by the sending endpoints on success.  Format is an 18–19 character hexadecimal string such as `185997065c60008840`. (optional)
-messageId = messageId_example # String | Filter by the `Message-ID` email header using a substring (case-insensitive) match.  The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional)
+messageId = messageId_example # String | Filter by the `Message-ID` email header using a substring (case-insensitive) match. The `Message-ID` is assigned by the sending mail client and is visible in the `messageId` field of `MailLogEntry`.  Useful when you know the message ID generated by your application but not the relay `mailid`. (optional)
 replyto = replyto_example # String | Filter by the `Reply-To` message header address (exact match).  Only returns messages where this header was explicitly set. (optional)
 headerfrom = headerfrom_example # String | Filter by the `From` message header address (exact match).  This is the human-visible sender address and may differ from the SMTP envelope `from` parameter when sending on behalf of another address. (optional)
 delivered = 56 # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
 skip = 56 # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 limit = 56 # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-startDate = 789 # Long | Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **greater than or equal to** this value will be included. (optional)
-endDate = 789 # Long | Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a `time` value **less than or equal to** this value will be included. (optional)
+startDate =  # startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+endDate =  # endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
+sort = sort_example # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
+dir = dir_example # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
+groupby = groupby_example # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
 
 try: 
     # Displays the mail log
-    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, messageId=messageId, replyto=replyto, headerfrom=headerfrom, delivered=delivered, skip=skip, limit=limit, startDate=startDate, endDate=endDate)
+    api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, messageId=messageId, replyto=replyto, headerfrom=headerfrom, delivered=delivered, skip=skip, limit=limit, startDate=startDate, endDate=endDate, sort=sort, dir=dir, groupby=groupby)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling HistoryApi->viewMailLog: %s\n" % e)</code></pre>
@@ -5117,7 +5213,7 @@ except ApiException as e:
                                                 </span>
                                 
                                                     <div class="inner description">
-                                                        Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match.  The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;.
+                                                        Filter by the &#x60;Message-ID&#x60; email header using a substring (case-insensitive) match. The &#x60;Message-ID&#x60; is assigned by the sending mail client and is visible in the &#x60;messageId&#x60; field of &#x60;MailLogEntry&#x60;.  Useful when you know the message ID generated by your application but not the relay &#x60;mailid&#x60;.
                                                     </div>
                                             </div>
                                         </div>
@@ -5239,14 +5335,11 @@ except ApiException as e:
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
-                                                    Long
+                                                    startDate
                                                 </span>
-                                                    <span class="format">
-                                                        (int64)
-                                                    </span>
                                 
                                                     <div class="inner description">
-                                                        Earliest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included.
+                                                        Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60; or &#x60;last monday&#x60;.  Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included.
                                                     </div>
                                             </div>
                                         </div>
@@ -5261,14 +5354,68 @@ except ApiException as e:
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
-                                                    Long
+                                                    endDate
                                                 </span>
-                                                    <span class="format">
-                                                        (int64)
-                                                    </span>
                                 
                                                     <div class="inner description">
-                                                        Latest date to include, as a Unix timestamp (seconds since epoch). Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included.
+                                                        Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-31&#x60; or &#x60;yesterday&#x60;. Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">sort</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_sort">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Field to sort results by.  Currently only &#x60;time&#x60; is supported (sorts by internal row ID which corresponds to chronological order).
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">dir</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_dir">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                </tr>
+                                <tr><td style="width:150px;">groupby</td>
+                                <td>
+                                
+                                
+                                    <div id="d2e199_viewMailLog_groupby">
+                                        <div class="json-schema-view">
+                                            <div class="primitive">
+                                                <span class="type">
+                                                    String
+                                                </span>
+                                
+                                                    <div class="inner description">
+                                                        Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode.
                                                     </div>
                                             </div>
                                         </div>
@@ -5300,7 +5447,43 @@ except ApiException as e:
         "$ref" : "#/components/schemas/MailLog"
       },
       "examples" : {
-        "MailLogExample" : {
+        "MailLogRecipientExample" : {
+          "summary" : "groupby=recipient (default) - one row per delivery attempt",
+          "value" : {
+            "total" : 4,
+            "skip" : 0,
+            "limit" : 100,
+            "emails" : [ {
+              "_id" : 103172,
+              "id" : "17c7eda538e0005d03",
+              "from" : "person@mysite.com",
+              "to" : "client@isp.com",
+              "subject" : "sell 0.005 shares",
+              "messageId" : "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>",
+              "created" : "2021-10-14 08:50:10",
+              "time" : 1634215809,
+              "user" : "mb5658",
+              "transtype" : "ESMTPSA",
+              "origin" : "199.231.189.154",
+              "interface" : "feeder",
+              "sendingZone" : "interserver",
+              "bodySize" : 63,
+              "seq" : 1,
+              "delivered" : 1,
+              "code" : 250,
+              "recipient" : "client@isp.com",
+              "domain" : "interserver.net",
+              "locked" : 1,
+              "lockTime" : "1634215818533",
+              "assigned" : "relay1",
+              "queued" : "2021-10-14T12:50:15.487Z",
+              "mxHostname" : "mx.j.is.cc",
+              "response" : "250 2.0.0 Ok queued as C91D83E128C"
+            } ]
+          }
+        },
+        "MailLogMessageExample" : {
+          "summary" : "groupby=message - one row per message",
           "value" : {
             "total" : 1,
             "skip" : 0,
@@ -5322,6 +5505,7 @@ except ApiException as e:
               "bodySize" : 63,
               "seq" : 1,
               "delivered" : 1,
+              "code" : 250,
               "recipient" : "client@isp.com",
               "domain" : "interserver.net",
               "locked" : 1,
@@ -5499,7 +5683,7 @@ except ApiException as e:
                         <p></p>
                         <p class="marked">Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
-This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
+This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
 The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.
 
@@ -6201,11 +6385,11 @@ public class SendingApiExample {
         SendingApi apiInstance = new SendingApi();
         String subject = subject_example; // String | 
         String body = body_example; // String | 
-        EmailAddressTypes from = ; // EmailAddressTypes | 
-        EmailAddressesTypes to = ; // EmailAddressesTypes | 
-        EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
-        EmailAddressesTypes cc = ; // EmailAddressesTypes | 
-        EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
+         from = ; //  | 
+         to = ; //  | 
+         replyto = ; //  | 
+         cc = ; //  | 
+         bcc = ; //  | 
         array[MailAttachment] attachments = ; // array[MailAttachment] | 
         Long id = 789; // Long | 
         try {
@@ -6228,11 +6412,11 @@ public class SendingApiExample {
         SendingApi apiInstance = new SendingApi();
         String subject = subject_example; // String | 
         String body = body_example; // String | 
-        EmailAddressTypes from = ; // EmailAddressTypes | 
-        EmailAddressesTypes to = ; // EmailAddressesTypes | 
-        EmailAddressesTypes replyto = ; // EmailAddressesTypes | 
-        EmailAddressesTypes cc = ; // EmailAddressesTypes | 
-        EmailAddressesTypes bcc = ; // EmailAddressesTypes | 
+         from = ; //  | 
+         to = ; //  | 
+         replyto = ; //  | 
+         cc = ; //  | 
+         bcc = ; //  | 
         array[MailAttachment] attachments = ; // array[MailAttachment] | 
         Long id = 789; // Long | 
         try {
@@ -6257,11 +6441,11 @@ public class SendingApiExample {
 //[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
 String *subject = subject_example; // 
 String *body = body_example; // 
-EmailAddressTypes *from = ; // 
-EmailAddressesTypes *to = ; // 
-EmailAddressesTypes *replyto = ; // 
-EmailAddressesTypes *cc = ; // 
-EmailAddressesTypes *bcc = ; // 
+ *from = ; // 
+ *to = ; // 
+ *replyto = ; // 
+ *cc = ; // 
+ *bcc = ; // 
 array[MailAttachment] *attachments = ; // 
 Long *id = 789; // 
 
@@ -6301,11 +6485,11 @@ apiKeyAuth.apiKey = "YOUR API KEY"
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi()
 var subject = subject_example; // {{String}} 
 var body = body_example; // {{String}} 
-var from = ; // {{EmailAddressTypes}} 
-var to = ; // {{EmailAddressesTypes}} 
-var replyto = ; // {{EmailAddressesTypes}} 
-var cc = ; // {{EmailAddressesTypes}} 
-var bcc = ; // {{EmailAddressesTypes}} 
+var from = ; // {{}} 
+var to = ; // {{}} 
+var replyto = ; // {{}} 
+var cc = ; // {{}} 
+var bcc = ; // {{}} 
 var attachments = ; // {{array[MailAttachment]}} 
 var id = 789; // {{Long}} 
 
@@ -6345,11 +6529,11 @@ namespace Example
             var apiInstance = new SendingApi();
             var subject = subject_example;  // String | 
             var body = body_example;  // String | 
-            var from = new EmailAddressTypes(); // EmailAddressTypes | 
-            var to = new EmailAddressesTypes(); // EmailAddressesTypes | 
-            var replyto = new EmailAddressesTypes(); // EmailAddressesTypes | 
-            var cc = new EmailAddressesTypes(); // EmailAddressesTypes | 
-            var bcc = new EmailAddressesTypes(); // EmailAddressesTypes | 
+            var from = new (); //  | 
+            var to = new (); //  | 
+            var replyto = new (); //  | 
+            var cc = new (); //  | 
+            var bcc = new (); //  | 
             var attachments = new array[MailAttachment](); // array[MailAttachment] | 
             var id = 789;  // Long | 
 
@@ -6381,11 +6565,11 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 $api_instance = new Swagger\Client\ApiSendingApi();
 $subject = subject_example; // String | 
 $body = body_example; // String | 
-$from = ; // EmailAddressTypes | 
-$to = ; // EmailAddressesTypes | 
-$replyto = ; // EmailAddressesTypes | 
-$cc = ; // EmailAddressesTypes | 
-$bcc = ; // EmailAddressesTypes | 
+$from = ; //  | 
+$to = ; //  | 
+$replyto = ; //  | 
+$cc = ; //  | 
+$bcc = ; //  | 
 $attachments = ; // array[MailAttachment] | 
 $id = 789; // Long | 
 
@@ -6411,11 +6595,11 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 my $api_instance = MailBabyApi::SendingApi->new();
 my $subject = subject_example; # String | 
 my $body = body_example; # String | 
-my $from = ; # EmailAddressTypes | 
-my $to = ; # EmailAddressesTypes | 
-my $replyto = ; # EmailAddressesTypes | 
-my $cc = ; # EmailAddressesTypes | 
-my $bcc = ; # EmailAddressesTypes | 
+my $from = ; #  | 
+my $to = ; #  | 
+my $replyto = ; #  | 
+my $cc = ; #  | 
+my $bcc = ; #  | 
 my $attachments = []; # array[MailAttachment] | 
 my $id = 789; # Long | 
 
@@ -6444,11 +6628,11 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.SendingApi()
 subject = subject_example # String | 
 body = body_example # String | 
-from =  # EmailAddressTypes | 
-to =  # EmailAddressesTypes | 
-replyto =  # EmailAddressesTypes | 
-cc =  # EmailAddressesTypes | 
-bcc =  # EmailAddressesTypes | 
+from =  #  | 
+to =  #  | 
+replyto =  #  | 
+cc =  #  | 
+bcc =  #  | 
 attachments =  # array[MailAttachment] | 
 id = 789 # Long | 
 
@@ -6516,7 +6700,7 @@ except ApiException as e:
             } ],
             "attachments" : [ {
               "filename" : "message.txt",
-              "data" : "base64_encoded_contents"
+              "data" : "aGVsbG8gdGhlcmUK"
             } ],
             "id" : 66
           }
@@ -6586,7 +6770,7 @@ except ApiException as e:
             } ],
             "attachments" : [ {
               "filename" : "message.txt",
-              "data" : "base64_encoded_contents"
+              "data" : "aGVsbG8gdGhlcmUK"
             } ],
             "id" : 66
           }
@@ -6670,7 +6854,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      EmailAddressTypes
+                                                      
                                                   </span>
                                   
                                               </div>
@@ -6689,7 +6873,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      EmailAddressesTypes
+                                                      
                                                   </span>
                                   
                                               </div>
@@ -6708,7 +6892,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      EmailAddressesTypes
+                                                      
                                                   </span>
                                   
                                               </div>
@@ -6727,7 +6911,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      EmailAddressesTypes
+                                                      
                                                   </span>
                                   
                                               </div>
@@ -6746,7 +6930,7 @@ except ApiException as e:
                                           <div class="json-schema-view">
                                               <div class="primitive">
                                                   <span class="type">
-                                                      EmailAddressesTypes
+                                                      
                                                   </span>
                                   
                                               </div>
@@ -8060,6 +8244,33 @@ except ApiException as e:
         }
       }
     }
+  },
+  "links" : {
+    "sendMailByIdLink" : {
+      "operationId" : "sendMail",
+      "parameters" : {
+        "id" : "$response.body#/id"
+      },
+      "description" : "The `id` value can be used as the `id` body parameter in `POST /mail/send`."
+    },
+    "sendAdvMailByIdLink" : {
+      "operationId" : "sendAdvMail",
+      "parameters" : {
+        "id" : "$response.body#/id"
+      },
+      "description" : "The `id` value can be used as the `id` body parameter in `POST /mail/advsend`."
+    },
+    "viewMailLogByIdLink" : {
+      "operationId" : "viewMailLog",
+      "parameters" : {
+        "id" : "$response.body#/id"
+      },
+      "description" : "The `id` value can be used as the `id` query parameter in `GET /mail/log`."
+    },
+    "getStatsByIdLink" : {
+      "operationId" : "getStats",
+      "description" : "Use `GET /mail/stats` to view sending statistics for this mail order."
+    }
   }
 };
                                         var schema = schemaWrapper.content["application/json"].schema;
@@ -8683,7 +8894,7 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">A lightweight health-check endpoint.  Returns a plain-text &#x60;200 OK&#x60; when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks.
+                        <p class="marked">A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
 </p>
                         <p></p>
                         <br />
@@ -8709,6 +8920,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Status-pingServer-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
+-H "Accept: text/plain"\
 "https://api.mailbaby.net/ping"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Status-pingServer-0-java">
@@ -8733,7 +8945,8 @@ public class StatusApiExample {
 
         StatusApi apiInstance = new StatusApi();
         try {
-            apiInstance.pingServer();
+            'String' result = apiInstance.pingServer();
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StatusApi#pingServer");
             e.printStackTrace();
@@ -8750,7 +8963,8 @@ public class StatusApiExample {
     public static void main(String[] args) {
         StatusApi apiInstance = new StatusApi();
         try {
-            apiInstance.pingServer();
+            'String' result = apiInstance.pingServer();
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling StatusApi#pingServer");
             e.printStackTrace();
@@ -8773,7 +8987,10 @@ StatusApi *apiInstance = [[StatusApi alloc] init];
 
 // Checks if the server is running
 [apiInstance pingServerWithCompletionHandler: 
-              ^(NSError* error) {
+              ^('String' output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
                             if (error) {
                                 NSLog(@"Error: %@", error);
                             }
@@ -8796,7 +9013,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 api.pingServer(callback);
@@ -8830,7 +9047,8 @@ namespace Example
             try
             {
                 // Checks if the server is running
-                apiInstance.pingServer();
+                'String' result = apiInstance.pingServer();
+                Debug.WriteLine(result);
             }
             catch (Exception e)
             {
@@ -8854,7 +9072,8 @@ Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-
 $api_instance = new Swagger\Client\ApiStatusApi();
 
 try {
-    $api_instance->pingServer();
+    $result = $api_instance->pingServer();
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling StatusApi->pingServer: ', $e->getMessage(), PHP_EOL;
 }
@@ -8874,7 +9093,8 @@ $MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 my $api_instance = MailBabyApi::StatusApi->new();
 
 eval { 
-    $api_instance->pingServer();
+    my $result = $api_instance->pingServer();
+    print Dumper($result);
 };
 if ($@) {
     warn "Exception when calling StatusApi->pingServer: $@\n";
@@ -8898,7 +9118,8 @@ api_instance = MailBabyApi.StatusApi()
 
 try: 
     # Checks if the server is running
-    api_instance.ping_server()
+    api_response = api_instance.ping_server()
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling StatusApi->pingServer: %s\n" % e)</code></pre>
                             </div>
@@ -8915,9 +9136,51 @@ except ApiException as e:
                             <h3> Status: 200 - Server is up and running </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-pingServer-200-schema">Schema</a>
+                                </li>
+
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-pingServer-200-schema">
+                                  <div id='responses-pingServer-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Server is up and running",
+  "content" : {
+    "text/plain" : {
+      "schema" : {
+        "type" : "string",
+        "example" : "Server is up and running",
+        "x-content-type" : "text/plain"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.content["text/plain"].schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.components = {};
+                                          schemaWrapper.components.schemas = Object.assign({}, defs);
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-pingServer-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-pingServer-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-pingServer-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                             <h3> Status: default - Something is wrong </h3>

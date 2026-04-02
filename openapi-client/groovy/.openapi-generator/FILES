@@ -30,3 +30,4 @@ src/main/groovy/org/openapitools/model/SendMail.groovy
 src/main/groovy/org/openapitools/model/SendMailAdv.groovy
 src/main/groovy/org/openapitools/model/SendMailRaw.groovy
 src/main/groovy/org/openapitools/model/SendMailTo.groovy
+src/main/groovy/org/openapitools/model/ViewMailLogStartDateParameter.groovy

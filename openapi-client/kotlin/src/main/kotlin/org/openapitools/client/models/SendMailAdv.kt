@@ -35,11 +35,11 @@ import com.squareup.moshi.JsonClass
  *
  * @param subject The subject line of the email.
  * @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
- * @param from 
- * @param to 
- * @param replyto 
- * @param cc 
- * @param bcc 
+ * @param from The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+ * @param to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+ * @param replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+ * @param cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+ * @param bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
  * @param attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
  * @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
  */
@@ -55,18 +55,23 @@ data class SendMailAdv (
     @Json(name = "body")
     val body: kotlin.String,
 
+    /* The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object. */
     @Json(name = "from")
     val from: EmailAddressTypes,
 
+    /* One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. */
     @Json(name = "to")
     val to: EmailAddressesTypes,
 
+    /* Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. */
     @Json(name = "replyto")
     val replyto: EmailAddressesTypes? = null,
 
+    /* Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. */
     @Json(name = "cc")
     val cc: EmailAddressesTypes? = null,
 
+    /* Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. */
     @Json(name = "bcc")
     val bcc: EmailAddressesTypes? = null,
 

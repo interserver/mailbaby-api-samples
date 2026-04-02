@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record.
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record.
 
 ### Example
 ```php
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 Sends a raw RFC 822 email
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact.  If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record.
+Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record.
 
 ### Example
 ```php
@@ -142,11 +142,11 @@ $apiInstance = new Interserver\Mailbaby\Api\SendingApi(
 );
 $subject = "subject_example"; // string | 
 $body = "body_example"; // string | 
-$from = new \Interserver\Mailbaby\Model\EmailAddressTypes(); // \Interserver\Mailbaby\Model\EmailAddressTypes | 
-$to = new \Interserver\Mailbaby\Model\EmailAddressesTypes(); // \Interserver\Mailbaby\Model\EmailAddressesTypes | 
-$replyto = new \Interserver\Mailbaby\Model\EmailAddressesTypes(); // \Interserver\Mailbaby\Model\EmailAddressesTypes | 
-$cc = new \Interserver\Mailbaby\Model\EmailAddressesTypes(); // \Interserver\Mailbaby\Model\EmailAddressesTypes | 
-$bcc = new \Interserver\Mailbaby\Model\EmailAddressesTypes(); // \Interserver\Mailbaby\Model\EmailAddressesTypes | 
+$from = new \Interserver\Mailbaby\Model\null(); //  | 
+$to = new \Interserver\Mailbaby\Model\null(); //  | 
+$replyto = new \Interserver\Mailbaby\Model\null(); //  | 
+$cc = new \Interserver\Mailbaby\Model\null(); //  | 
+$bcc = new \Interserver\Mailbaby\Model\null(); //  | 
 $attachments = array(new \Interserver\Mailbaby\Model\MailAttachment()); // \Interserver\Mailbaby\Model\MailAttachment[] | 
 $id = 789; // int | 
 
@@ -165,11 +165,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**|  |
  **body** | **string**|  |
- **from** | [**\Interserver\Mailbaby\Model\EmailAddressTypes**](../Model/.md)|  |
- **to** | [**\Interserver\Mailbaby\Model\EmailAddressesTypes**](../Model/.md)|  |
- **replyto** | [**\Interserver\Mailbaby\Model\EmailAddressesTypes**](../Model/.md)|  |
- **cc** | [**\Interserver\Mailbaby\Model\EmailAddressesTypes**](../Model/.md)|  |
- **bcc** | [**\Interserver\Mailbaby\Model\EmailAddressesTypes**](../Model/.md)|  |
+ **from** | [****](../Model/.md)|  |
+ **to** | [****](../Model/.md)|  |
+ **replyto** | [****](../Model/.md)|  |
+ **cc** | [****](../Model/.md)|  |
+ **bcc** | [****](../Model/.md)|  |
  **attachments** | [**\Interserver\Mailbaby\Model\MailAttachment[]**](../Model/\Interserver\Mailbaby\Model\MailAttachment.md)|  |
  **id** | **int**|  |
 

@@ -66,11 +66,11 @@ public:
 	/*! \brief Set The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
 	 */
 	void setUsername(std::string  username);
-	/*! \brief Get Optional human-readable note associated with the order.
+	/*! \brief Get Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 	 */
 	std::string getComment();
 
-	/*! \brief Set Optional human-readable note associated with the order.
+	/*! \brief Set Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 	 */
 	void setComment(std::string  comment);
 

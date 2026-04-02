@@ -22,6 +22,7 @@ static mail_log_entry_t *mail_log_entry_create_internal(
     int *body_size,
     int *seq,
     int *delivered,
+    int *code,
     char *response,
     char *recipient,
     char *domain,
@@ -53,6 +54,7 @@ static mail_log_entry_t *mail_log_entry_create_internal(
     mail_log_entry_local_var->body_size = body_size;
     mail_log_entry_local_var->seq = seq;
     mail_log_entry_local_var->delivered = delivered;
+    mail_log_entry_local_var->code = code;
     mail_log_entry_local_var->response = response;
     mail_log_entry_local_var->recipient = recipient;
     mail_log_entry_local_var->domain = domain;
@@ -81,6 +83,7 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
     int *body_size,
     int *seq,
     int *delivered,
+    int *code,
     char *response,
     char *recipient,
     char *domain,
@@ -115,6 +118,11 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
         delivered_copy = malloc(sizeof(int));
         if (delivered_copy) *delivered_copy = *delivered;
     }
+    int *code_copy = NULL;
+    if (code) {
+        code_copy = malloc(sizeof(int));
+        if (code_copy) *code_copy = *code;
+    }
     int *locked_copy = NULL;
     if (locked) {
         locked_copy = malloc(sizeof(int));
@@ -137,6 +145,7 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
         body_size_copy,
         seq_copy,
         delivered_copy,
+        code_copy,
         response,
         recipient,
         domain,
@@ -152,6 +161,7 @@ __attribute__((deprecated)) mail_log_entry_t *mail_log_entry_create(
         free(body_size_copy);
         free(seq_copy);
         free(delivered_copy);
+        free(code_copy);
         free(locked_copy);
     }
     return result;
@@ -229,6 +239,10 @@ void mail_log_entry_free(mail_log_entry_t *mail_log_entry) {
     if (mail_log_entry->delivered) {
         free(mail_log_entry->delivered);
         mail_log_entry->delivered = NULL;
+    }
+    if (mail_log_entry->code) {
+        free(mail_log_entry->code);
+        mail_log_entry->code = NULL;
     }
     if (mail_log_entry->response) {
         free(mail_log_entry->response);
@@ -406,6 +420,14 @@ cJSON *mail_log_entry_convertToJSON(mail_log_entry_t *mail_log_entry) {
     }
 
 
+    // mail_log_entry->code
+    if(mail_log_entry->code) {
+    if(cJSON_AddNumberToObject(item, "code", *mail_log_entry->code) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // mail_log_entry->response
     if(mail_log_entry->response) {
     if(cJSON_AddStringToObject(item, "response", mail_log_entry->response) == NULL) {
@@ -517,6 +539,9 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
 
     // define the local variable for mail_log_entry->delivered
     int *delivered_local_var = NULL;
+
+    // define the local variable for mail_log_entry->code
+    int *code_local_var = NULL;
 
     char *response_local_str = NULL;
 
@@ -787,6 +812,24 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
     *delivered_local_var = delivered->valuedouble;
     }
 
+    // mail_log_entry->code
+    cJSON *code = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "code");
+    if (cJSON_IsNull(code)) {
+        code = NULL;
+    }
+    if (code) { 
+    if(!cJSON_IsNumber(code))
+    {
+    goto end; //Numeric
+    }
+    code_local_var = malloc(sizeof(int));
+    if(!code_local_var)
+    {
+        goto end;
+    }
+    *code_local_var = code->valuedouble;
+    }
+
     // mail_log_entry->response
     cJSON *response = cJSON_GetObjectItemCaseSensitive(mail_log_entryJSON, "response");
     if (cJSON_IsNull(response)) {
@@ -926,6 +969,7 @@ mail_log_entry_t *mail_log_entry_parseFromJSON(cJSON *mail_log_entryJSON){
         body_size_local_var,
         seq_local_var,
         delivered_local_var,
+        code_local_var,
         response_local_str,
         recipient_local_str,
         domain_local_str,
@@ -1005,6 +1049,10 @@ end:
     if (delivered_local_var) {
         free(delivered_local_var);
         delivered_local_var = NULL;
+    }
+    if (code_local_var) {
+        free(code_local_var);
+        code_local_var = NULL;
     }
     if (response_local_str) {
         free(response_local_str);

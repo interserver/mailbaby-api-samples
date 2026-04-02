@@ -13,7 +13,7 @@ part 'deny_rule_record.g.dart';
 /// A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
 ///
 /// Properties:
-/// * [type] - The type of deny rule.
+/// * [type] - The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 /// * [data] - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 /// * [id] - The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
 /// * [created] - The timestamp when the rule was created.
@@ -167,16 +167,16 @@ class _$DenyRuleRecordSerializer implements PrimitiveSerializer<DenyRuleRecord> 
 
 class DenyRuleRecordTypeEnum extends EnumClass {
 
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'domain')
   static const DenyRuleRecordTypeEnum domain = _$denyRuleRecordTypeEnum_domain;
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'email')
   static const DenyRuleRecordTypeEnum email = _$denyRuleRecordTypeEnum_email;
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'startswith')
   static const DenyRuleRecordTypeEnum startswith = _$denyRuleRecordTypeEnum_startswith;
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'destination')
   static const DenyRuleRecordTypeEnum destination = _$denyRuleRecordTypeEnum_destination;
 

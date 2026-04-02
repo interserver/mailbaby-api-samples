@@ -33,6 +33,7 @@ docs/Model/SendMail.md
 docs/Model/SendMailAdv.md
 docs/Model/SendMailRaw.md
 docs/Model/SendMailTo.md
+docs/Model/ViewMailLogStartDateParameter.md
 git_push.sh
 phpunit.xml.dist
 src/Api/BlockingApi.php
@@ -68,6 +69,7 @@ src/Model/SendMail.php
 src/Model/SendMailAdv.php
 src/Model/SendMailRaw.php
 src/Model/SendMailTo.php
+src/Model/ViewMailLogStartDateParameter.php
 src/ObjectSerializer.php
 tests/Api/BlockingApiTest.php
 tests/Api/HistoryApiTest.php
@@ -97,3 +99,4 @@ tests/Model/SendMailAdvTest.php
 tests/Model/SendMailRawTest.php
 tests/Model/SendMailTest.php
 tests/Model/SendMailToTest.php
+tests/Model/ViewMailLogStartDateParameterTest.php

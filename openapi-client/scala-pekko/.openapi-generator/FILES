@@ -29,6 +29,7 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
+docs/ViewMailLogStartDateParameter.md
 pom.xml
 project/build.properties
 src/main/resources/reference.conf
@@ -66,3 +67,4 @@ src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala
 src/main/scala/org/openapitools/client/model/SendMailRaw.scala
 src/main/scala/org/openapitools/client/model/SendMailTo.scala
+src/main/scala/org/openapitools/client/model/ViewMailLogStartDateParameter.scala

@@ -95,6 +95,11 @@ module.exports = {
                 type: 'integer',
             },
             {
+                key: `${keyPrefix}code`,
+                label: `The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure). - [${labelPrefix}code]`,
+                type: 'integer',
+            },
+            {
                 key: `${keyPrefix}response`,
                 label: `The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`). - [${labelPrefix}response]`,
                 type: 'string',
@@ -155,6 +160,7 @@ module.exports = {
             'bodySize': bundle.inputData?.[`${keyPrefix}bodySize`],
             'seq': bundle.inputData?.[`${keyPrefix}seq`],
             'delivered': bundle.inputData?.[`${keyPrefix}delivered`],
+            'code': bundle.inputData?.[`${keyPrefix}code`],
             'response': bundle.inputData?.[`${keyPrefix}response`],
             'recipient': bundle.inputData?.[`${keyPrefix}recipient`],
             'domain': bundle.inputData?.[`${keyPrefix}domain`],

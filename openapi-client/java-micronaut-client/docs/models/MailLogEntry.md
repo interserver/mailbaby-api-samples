@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **bodySize** | `Integer` | Size of the message body in bytes. |  [optional property]
 **seq** | `Integer` | Sequence index of this recipient in a multi-recipient message. Starts at 1. |  [optional property]
 **delivered** | `Integer` | Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. |  [optional property]
+**code** | `Integer` | The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure). |  [optional property]
 **response** | `String` | The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;). |  [optional property]
 **recipient** | `String` | The specific recipient address this delivery record is for. |  [optional property]
 **domain** | `String` | The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;. |  [optional property]
@@ -34,6 +35,7 @@ Name | Type | Description | Notes
 **assigned** | `String` | The relay server node assigned to deliver this message. |  [optional property]
 **queued** | `String` | ISO 8601 timestamp when the message was placed into the delivery queue. |  [optional property]
 **mxHostname** | `String` | The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;. |  [optional property]
+
 
 
 

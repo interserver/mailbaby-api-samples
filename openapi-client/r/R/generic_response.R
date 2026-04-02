@@ -7,8 +7,8 @@
 #' @title GenericResponse
 #' @description GenericResponse Class
 #' @format An \code{R6Class} generator object
-#' @field status Always `\"ok\"` on success. character [optional]
-#' @field text Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation. character [optional]
+#' @field status Always `\"ok\"` on success. character
+#' @field text Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation. character
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -24,14 +24,14 @@ GenericResponse <- R6::R6Class(
     #' @param status Always `\"ok\"` on success.
     #' @param text Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
     #' @param ... Other optional arguments.
-    initialize = function(`status` = NULL, `text` = NULL, ...) {
-      if (!is.null(`status`)) {
+    initialize = function(`status`, `text`, ...) {
+      if (!missing(`status`)) {
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
         }
         self$`status` <- `status`
       }
-      if (!is.null(`text`)) {
+      if (!missing(`text`)) {
         if (!(is.character(`text`) && length(`text`) == 1)) {
           stop(paste("Error! Invalid data for `text`. Must be a string:", `text`))
         }
@@ -126,6 +126,22 @@ GenericResponse <- R6::R6Class(
     #' @param input the JSON input
     validateJSON = function(input) {
       input_json <- jsonlite::fromJSON(input)
+      # check the required field `status`
+      if (!is.null(input_json$`status`)) {
+        if (!(is.character(input_json$`status`) && length(input_json$`status`) == 1)) {
+          stop(paste("Error! Invalid data for `status`. Must be a string:", input_json$`status`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for GenericResponse: the required field `status` is missing."))
+      }
+      # check the required field `text`
+      if (!is.null(input_json$`text`)) {
+        if (!(is.character(input_json$`text`) && length(input_json$`text`) == 1)) {
+          stop(paste("Error! Invalid data for `text`. Must be a string:", input_json$`text`))
+        }
+      } else {
+        stop(paste("The JSON input `", input, "` is invalid for GenericResponse: the required field `text` is missing."))
+      }
     },
 
     #' @description
@@ -141,6 +157,16 @@ GenericResponse <- R6::R6Class(
     #'
     #' @return true if the values in all fields are valid.
     isValid = function() {
+      # check if the required `status` is null
+      if (is.null(self$`status`)) {
+        return(FALSE)
+      }
+
+      # check if the required `text` is null
+      if (is.null(self$`text`)) {
+        return(FALSE)
+      }
+
       TRUE
     },
 
@@ -150,6 +176,16 @@ GenericResponse <- R6::R6Class(
     #' @return A list of invalid fields (if any).
     getInvalidFields = function() {
       invalid_fields <- list()
+      # check if the required `status` is null
+      if (is.null(self$`status`)) {
+        invalid_fields["status"] <- "Non-nullable required field `status` cannot be null."
+      }
+
+      # check if the required `text` is null
+      if (is.null(self$`text`)) {
+        invalid_fields["text"] <- "Non-nullable required field `text` cannot be null."
+      }
+
       invalid_fields
     },
 

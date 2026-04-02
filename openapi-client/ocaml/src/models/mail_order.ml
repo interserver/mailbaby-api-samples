@@ -17,13 +17,10 @@
                 
                 ; [@key "id"]
                     (** The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. *)
-                                      status: string
-                  
-                  
-                
-                
-                ; [@key "status"]
-                    (** The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. *)
+                              status: Enums.status
+                            
+                                                              ; [@key "status"]
+                            (** The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. *)
                                       username: string
                   
                   
@@ -37,11 +34,11 @@
                 
                 
                 ; [@key "comment"]
-                    (** Optional human-readable note associated with the order. *)
+                    (** Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. *)
                 } [@@deriving yojson { strict = false }, show, eq ];;
         
         (** A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`. *)
-        let create (id : int32) (status : string) (username : string) : t = {
+        let create (id : int32) (status : Enums.status) (username : string) : t = {
             id = id;
             status = status;
             username = username;

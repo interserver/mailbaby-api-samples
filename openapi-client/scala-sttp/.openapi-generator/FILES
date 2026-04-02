@@ -33,3 +33,4 @@ src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala
 src/main/scala/org/openapitools/client/model/SendMailRaw.scala
 src/main/scala/org/openapitools/client/model/SendMailTo.scala
+src/main/scala/org/openapitools/client/model/ViewMailLogStartDateParameter.scala

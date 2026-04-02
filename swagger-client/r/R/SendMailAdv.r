@@ -1,6 +1,6 @@
 # MailBaby Email Delivery and Management Service API
 #
-# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 #
 # OpenAPI spec version: 1.4.0
 # Contact: support@interserver.net
@@ -113,27 +113,27 @@ SendMailAdv <- R6::R6Class(
         self$`body` <- SendMailAdvObject$`body`
       }
       if (!is.null(SendMailAdvObject$`from`)) {
-        fromObject <- EmailAddressTypes$new()
+        fromObject <- AllOfSendMailAdvFrom$new()
         fromObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$from, auto_unbox = TRUE))
         self$`from` <- fromObject
       }
       if (!is.null(SendMailAdvObject$`to`)) {
-        toObject <- EmailAddressesTypes$new()
+        toObject <- AllOfSendMailAdvTo$new()
         toObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$to, auto_unbox = TRUE))
         self$`to` <- toObject
       }
       if (!is.null(SendMailAdvObject$`replyto`)) {
-        replytoObject <- EmailAddressesTypes$new()
+        replytoObject <- AllOfSendMailAdvReplyto$new()
         replytoObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$replyto, auto_unbox = TRUE))
         self$`replyto` <- replytoObject
       }
       if (!is.null(SendMailAdvObject$`cc`)) {
-        ccObject <- EmailAddressesTypes$new()
+        ccObject <- AllOfSendMailAdvCc$new()
         ccObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$cc, auto_unbox = TRUE))
         self$`cc` <- ccObject
       }
       if (!is.null(SendMailAdvObject$`bcc`)) {
-        bccObject <- EmailAddressesTypes$new()
+        bccObject <- AllOfSendMailAdvBcc$new()
         bccObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$bcc, auto_unbox = TRUE))
         self$`bcc` <- bccObject
       }
@@ -176,16 +176,16 @@ SendMailAdv <- R6::R6Class(
       SendMailAdvObject <- jsonlite::fromJSON(SendMailAdvJson)
       self$`subject` <- SendMailAdvObject$`subject`
       self$`body` <- SendMailAdvObject$`body`
-      EmailAddressTypesObject <- EmailAddressTypes$new()
-      self$`from` <- EmailAddressTypesObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$from, auto_unbox = TRUE))
-      EmailAddressesTypesObject <- EmailAddressesTypes$new()
-      self$`to` <- EmailAddressesTypesObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$to, auto_unbox = TRUE))
-      EmailAddressesTypesObject <- EmailAddressesTypes$new()
-      self$`replyto` <- EmailAddressesTypesObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$replyto, auto_unbox = TRUE))
-      EmailAddressesTypesObject <- EmailAddressesTypes$new()
-      self$`cc` <- EmailAddressesTypesObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$cc, auto_unbox = TRUE))
-      EmailAddressesTypesObject <- EmailAddressesTypes$new()
-      self$`bcc` <- EmailAddressesTypesObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$bcc, auto_unbox = TRUE))
+      AllOfSendMailAdvFromObject <- AllOfSendMailAdvFrom$new()
+      self$`from` <- AllOfSendMailAdvFromObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$from, auto_unbox = TRUE))
+      AllOfSendMailAdvToObject <- AllOfSendMailAdvTo$new()
+      self$`to` <- AllOfSendMailAdvToObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$to, auto_unbox = TRUE))
+      AllOfSendMailAdvReplytoObject <- AllOfSendMailAdvReplyto$new()
+      self$`replyto` <- AllOfSendMailAdvReplytoObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$replyto, auto_unbox = TRUE))
+      AllOfSendMailAdvCcObject <- AllOfSendMailAdvCc$new()
+      self$`cc` <- AllOfSendMailAdvCcObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$cc, auto_unbox = TRUE))
+      AllOfSendMailAdvBccObject <- AllOfSendMailAdvBcc$new()
+      self$`bcc` <- AllOfSendMailAdvBccObject$fromJSON(jsonlite::toJSON(SendMailAdvObject$bcc, auto_unbox = TRUE))
       self$`attachments` <- lapply(SendMailAdvObject$`attachments`, function(x) MailAttachment$new()$fromJSON(jsonlite::toJSON(x, auto_unbox = TRUE)))
       self$`id` <- SendMailAdvObject$`id`
     }

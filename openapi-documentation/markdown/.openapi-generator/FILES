@@ -27,4 +27,5 @@ Models/SendMail.md
 Models/SendMailAdv.md
 Models/SendMailRaw.md
 Models/SendMailTo.md
+Models/viewMailLog_startDate_parameter.md
 README.md

@@ -23,11 +23,11 @@ import java.util.Map;
 public interface PingApi {
 
 
-    @Operation(summary = "Checks if the server is running", operationId = "pingServer", description = "A lightweight health-check endpoint.  Returns a plain-text `200 OK` when the API server is reachable.  No authentication is required.  Useful for monitoring and uptime checks. " , tags = {"Status"})
+    @Operation(summary = "Checks if the server is running", operationId = "pingServer", description = "A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. " , tags = {"Status"})
     @ApiResponse(responseCode = "200", description = "Server is up and running")
     @ApiResponse(responseCode = "200", description = "Something is wrong")
-    @Get(value = "/ping")
-    default Single<HttpResponse<Void>> pingServer() {
+    @Get(value = "/ping", produces = { "text/plain" })
+    default Single<HttpResponse<String>> pingServer() {
         return Single.fromCallable(() -> {
             throw new UnsupportedOperationException();
         });

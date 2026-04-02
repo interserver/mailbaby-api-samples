@@ -6,8 +6,7 @@ import io.swagger.model.*;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EmailAddressTypes;
-import io.swagger.model.EmailAddressesTypes;
+import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -20,6 +19,7 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
+import io.swagger.model.StartDate;
 
 import java.util.Map;
 import java.util.List;
@@ -95,7 +95,7 @@ public class MailApiServiceImpl extends MailApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response sendAdvMail(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, List<MailAttachment> attachments, Long id, SecurityContext securityContext) throws NotFoundException {
+    public Response sendAdvMail(String subject, String body, Object from, Object to, Object replyto, Object cc, Object bcc, List<MailAttachment> attachments, Long id, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
@@ -115,7 +115,7 @@ public class MailApiServiceImpl extends MailApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response viewMailLog( Long id,  String origin,  String mx,  String from,  String to,  String subject,  @Size(min=18,max=19) String mailid,  String messageId,  String replyto,  String headerfrom,  Integer delivered,  @Min(0) Integer skip,  @Min(1) @Max(10000) Integer limit,  @Min(0L) @Max(9999999999L) Long startDate,  @Min(0L) @Max(9999999999L) Long endDate, SecurityContext securityContext) throws NotFoundException {
+    public Response viewMailLog( Long id,  String origin,  String mx,  String from,  String to,  String subject,  @Size(min=18,max=19) String mailid,  String messageId,  String replyto,  String headerfrom,  Integer delivered,  @Min(0) Integer skip,  @Min(1) @Max(10000) Integer limit,  StartDate startDate,  EndDate endDate,  String sort,  String dir,  String groupby, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }

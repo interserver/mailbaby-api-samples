@@ -8,11 +8,11 @@ SendMailAdv::SendMailAdv()
 {
 	subject = std::string();
 	body = std::string();
-	from = EmailAddressTypes();
-	to = EmailAddressesTypes();
-	replyto = EmailAddressesTypes();
-	cc = EmailAddressesTypes();
-	bcc = EmailAddressesTypes();
+	from = null;
+	to = null;
+	replyto = null;
+	cc = null;
+	bcc = null;
 	attachments = std::list<MailAttachment>();
 	id = long(0);
 }

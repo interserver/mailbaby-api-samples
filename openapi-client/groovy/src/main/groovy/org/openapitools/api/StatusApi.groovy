@@ -22,11 +22,11 @@ class StatusApi {
 
 
 
-        accept = apiUtils.selectHeaderAccept([])
+        accept = apiUtils.selectHeaderAccept(["text/plain"])
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, accept, contentType,
                     "GET", "",
-                    null )
+                    String.class )
 
     }
 

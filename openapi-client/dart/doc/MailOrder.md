@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **id** | **int** | The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. | 
 **status** | **String** | The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. | 
 **username** | **String** | The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. | 
-**comment** | **String** | Optional human-readable note associated with the order. | [optional] 
+**comment** | **String** | Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

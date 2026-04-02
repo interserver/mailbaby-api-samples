@@ -1,6 +1,6 @@
 #
 # MailBaby Email Delivery and Management Service API
-# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account.  Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
+# **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 # Version: 1.4.0
 # Contact: support@interserver.net
 # Generated by OpenAPI Generator: https://openapi-generator.tech
@@ -47,6 +47,8 @@ Size of the message body in bytes.
 Sequence index of this recipient in a multi-recipient message. Starts at 1.
 .PARAMETER Delivered
 Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+.PARAMETER Code
+The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
 .PARAMETER Response
 The SMTP response string received from the destination MX server upon delivery attempt (e.g. `""250 2.0.0 Ok queued as C91D83E128C""`).
 .PARAMETER Recipient
@@ -120,27 +122,30 @@ function Initialize-MailLogEntry {
         [System.Nullable[Int32]]
         ${Delivered},
         [Parameter(Position = 16, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${Response},
+        [System.Nullable[Int32]]
+        ${Code},
         [Parameter(Position = 17, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Recipient},
+        ${Response},
         [Parameter(Position = 18, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Domain},
+        ${Recipient},
         [Parameter(Position = 19, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Domain},
+        [Parameter(Position = 20, ValueFromPipelineByPropertyName = $true)]
         [System.Nullable[Int32]]
         ${Locked},
-        [Parameter(Position = 20, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${LockTime},
         [Parameter(Position = 21, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Assigned},
+        ${LockTime},
         [Parameter(Position = 22, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Queued},
+        ${Assigned},
         [Parameter(Position = 23, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${Queued},
+        [Parameter(Position = 24, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${MxHostname}
     )
@@ -155,6 +160,14 @@ function Initialize-MailLogEntry {
 
         if ($null -eq $Id) {
             throw "invalid value for 'Id', 'Id' cannot be null."
+        }
+
+        if ($Id.length -gt 19) {
+            throw "invalid value for 'Id', the character length must be smaller than or equal to 19."
+        }
+
+        if ($Id.length -lt 18) {
+            throw "invalid value for 'Id', the character length must be greater than or equal to 18."
         }
 
         if ($null -eq $VarFrom) {
@@ -207,6 +220,7 @@ function Initialize-MailLogEntry {
             "bodySize" = ${BodySize}
             "seq" = ${Seq}
             "delivered" = ${Delivered}
+            "code" = ${Code}
             "response" = ${Response}
             "recipient" = ${Recipient}
             "domain" = ${Domain}
@@ -252,7 +266,7 @@ function ConvertFrom-JsonToMailLogEntry {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MailLogEntry
-        $AllProperties = ("_id", "id", "from", "to", "subject", "messageId", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "delivered", "response", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname")
+        $AllProperties = ("_id", "id", "from", "to", "subject", "messageId", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "delivered", "code", "response", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname")
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -359,6 +373,12 @@ function ConvertFrom-JsonToMailLogEntry {
             $Delivered = $JsonParameters.PSobject.Properties["delivered"].value
         }
 
+        if (!([bool]($JsonParameters.PSobject.Properties.name -match "code"))) { #optional property not found
+            $Code = $null
+        } else {
+            $Code = $JsonParameters.PSobject.Properties["code"].value
+        }
+
         if (!([bool]($JsonParameters.PSobject.Properties.name -match "response"))) { #optional property not found
             $Response = $null
         } else {
@@ -424,6 +444,7 @@ function ConvertFrom-JsonToMailLogEntry {
             "bodySize" = ${BodySize}
             "seq" = ${Seq}
             "delivered" = ${Delivered}
+            "code" = ${Code}
             "response" = ${Response}
             "recipient" = ${Recipient}
             "domain" = ${Domain}

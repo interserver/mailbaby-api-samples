@@ -14,7 +14,7 @@ class MailLogEntry(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, id: int=None, id: str=None, _from: str=None, to: str=None, subject: str=None, message_id: str=None, created: str=None, time: int=None, user: str=None, transtype: str=None, origin: str=None, interface: str=None, sending_zone: str=None, body_size: int=None, seq: int=None, delivered: int=None, response: str=None, recipient: str=None, domain: str=None, locked: int=None, lock_time: str=None, assigned: str=None, queued: str=None, mx_hostname: str=None):  # noqa: E501
+    def __init__(self, id: int=None, id: str=None, _from: str=None, to: str=None, subject: str=None, message_id: str=None, created: str=None, time: int=None, user: str=None, transtype: str=None, origin: str=None, interface: str=None, sending_zone: str=None, body_size: int=None, seq: int=None, delivered: int=None, code: int=None, response: str=None, recipient: str=None, domain: str=None, locked: int=None, lock_time: str=None, assigned: str=None, queued: str=None, mx_hostname: str=None):  # noqa: E501
         """MailLogEntry - a model defined in Swagger
 
         :param id: The id of this MailLogEntry.  # noqa: E501
@@ -49,6 +49,8 @@ class MailLogEntry(Model):
         :type seq: int
         :param delivered: The delivered of this MailLogEntry.  # noqa: E501
         :type delivered: int
+        :param code: The code of this MailLogEntry.  # noqa: E501
+        :type code: int
         :param response: The response of this MailLogEntry.  # noqa: E501
         :type response: str
         :param recipient: The recipient of this MailLogEntry.  # noqa: E501
@@ -83,6 +85,7 @@ class MailLogEntry(Model):
             'body_size': int,
             'seq': int,
             'delivered': int,
+            'code': int,
             'response': str,
             'recipient': str,
             'domain': str,
@@ -110,6 +113,7 @@ class MailLogEntry(Model):
             'body_size': 'bodySize',
             'seq': 'seq',
             'delivered': 'delivered',
+            'code': 'code',
             'response': 'response',
             'recipient': 'recipient',
             'domain': 'domain',
@@ -135,6 +139,7 @@ class MailLogEntry(Model):
         self._body_size = body_size
         self._seq = seq
         self._delivered = delivered
+        self._code = code
         self._response = response
         self._recipient = recipient
         self._domain = domain
@@ -542,6 +547,29 @@ class MailLogEntry(Model):
         """
 
         self._delivered = delivered
+
+    @property
+    def code(self) -> int:
+        """Gets the code of this MailLogEntry.
+
+        The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).  # noqa: E501
+
+        :return: The code of this MailLogEntry.
+        :rtype: int
+        """
+        return self._code
+
+    @code.setter
+    def code(self, code: int):
+        """Sets the code of this MailLogEntry.
+
+        The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).  # noqa: E501
+
+        :param code: The code of this MailLogEntry.
+        :type code: int
+        """
+
+        self._code = code
 
     @property
     def response(self) -> str:

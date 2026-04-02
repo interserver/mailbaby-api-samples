@@ -23,6 +23,7 @@
    (ds/opt :bodySize) int?
    (ds/opt :seq) int?
    (ds/opt :delivered) int?
+   (ds/opt :code) int?
    (ds/opt :response) string?
    (ds/opt :recipient) string?
    (ds/opt :domain) string?

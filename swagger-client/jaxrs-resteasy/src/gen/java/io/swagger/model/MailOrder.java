@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,7 +13,25 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description="A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.")
 
 public class MailOrder   {
-  private Integer id = null;  private String status = null;  private String username = null;  private String comment = null;
+  private Integer id = null;  /**
+   * The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
+   */
+  public enum StatusEnum {
+    ACTIVE("active"),
+    CANCELED("canceled");
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+  }
+  private StatusEnum status = null;  private String username = null;  private String comment = null;
 
   /**
    * The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries.
@@ -35,10 +54,10 @@ public class MailOrder   {
   @Schema(example = "active", required = true, description = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
   @JsonProperty("status")
   @NotNull
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
@@ -49,7 +68,7 @@ public class MailOrder   {
   @Schema(example = "mb21472", required = true, description = "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
   @JsonProperty("username")
   @NotNull
-  public String getUsername() {
+ @Pattern(regexp="^mb\\d+$")  public String getUsername() {
     return username;
   }
   public void setUsername(String username) {
@@ -57,10 +76,10 @@ public class MailOrder   {
   }
 
   /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    **/
   
-  @Schema(description = "Optional human-readable note associated with the order.")
+  @Schema(description = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
   @JsonProperty("comment")
   @NotNull
   public String getComment() {

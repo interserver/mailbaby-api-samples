@@ -6,7 +6,7 @@ A single email record in the mail log.  Combines data from the message store (en
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **_id** | **integer** | Internal auto-increment database row ID.  Not meaningful outside the API. | 
-**id** | **character** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. | 
+**id** | **character** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. | [Max. length: 19] [Min. length: 18] 
 **from** | **character** | SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). | 
 **to** | **character** | SMTP envelope &#x60;RCPT TO&#x60; address. | 
 **subject** | **character** | The &#x60;Subject&#x60; header value, if available. | [optional] 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **bodySize** | **integer** | Size of the message body in bytes. | [optional] 
 **seq** | **integer** | Sequence index of this recipient in a multi-recipient message. Starts at 1. | [optional] 
 **delivered** | **integer** | Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | [optional] 
+**code** | **integer** | The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure). | [optional] 
 **response** | **character** | The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;). | [optional] 
 **recipient** | **character** | The specific recipient address this delivery record is for. | [optional] 
 **domain** | **character** | The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;. | [optional] 

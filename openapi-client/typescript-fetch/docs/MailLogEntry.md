@@ -23,6 +23,7 @@ Name | Type
 `bodySize` | number
 `seq` | number
 `delivered` | number
+`code` | number
 `response` | string
 `recipient` | string
 `domain` | string
@@ -55,6 +56,7 @@ const example = {
   "bodySize": 63,
   "seq": 1,
   "delivered": 1,
+  "code": 250,
   "response": 250 2.0.0 Ok queued as C91D83E128C,
   "recipient": client@isp.com,
   "domain": interserver.net,

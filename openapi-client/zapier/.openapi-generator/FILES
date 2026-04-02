@@ -30,6 +30,7 @@ models/SendMail.js
 models/SendMailAdv.js
 models/SendMailRaw.js
 models/SendMailTo.js
+models/viewMailLog_startDate_parameter.js
 operations/actions.js
 package.json
 samples/BlockingApi.js

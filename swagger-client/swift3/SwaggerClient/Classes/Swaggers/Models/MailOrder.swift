@@ -10,13 +10,17 @@ import Foundation
 
 /** A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;. */
 open class MailOrder: JSONEncodable {
+    public enum Status: String {
+        case active = "active"
+        case canceled = "canceled"
+    }
     /** The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries. */
     public var id: Int32?
     /** The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send. */
-    public var status: String?
+    public var status: Status?
     /** The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed. */
     public var username: String?
-    /** Optional human-readable note associated with the order. */
+    /** Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
     public var comment: String?
 
     public init() {}
@@ -25,7 +29,7 @@ open class MailOrder: JSONEncodable {
     open func encodeToJSON() -> Any {
         var nillableDictionary = [String:Any?]()
         nillableDictionary["id"] = self.id?.encodeToJSON()
-        nillableDictionary["status"] = self.status
+        nillableDictionary["status"] = self.status?.rawValue
         nillableDictionary["username"] = self.username
         nillableDictionary["comment"] = self.comment
 

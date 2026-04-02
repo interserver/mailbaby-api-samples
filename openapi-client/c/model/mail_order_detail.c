@@ -4,10 +4,27 @@
 #include "mail_order_detail.h"
 
 
+char* mail_order_detail_status_ToString(mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_e status) {
+    char* statusArray[] =  { "NULL", "active", "canceled" };
+    return statusArray[status];
+}
+
+mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_e mail_order_detail_status_FromString(char* status){
+    int stringToReturn = 0;
+    char *statusArray[] =  { "NULL", "active", "canceled" };
+    size_t sizeofArray = sizeof(statusArray) / sizeof(statusArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(status, statusArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 static mail_order_detail_t *mail_order_detail_create_internal(
     int *id,
-    char *status,
+    mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_e status,
     char *username,
     char *password,
     char *comment
@@ -28,7 +45,7 @@ static mail_order_detail_t *mail_order_detail_create_internal(
 
 __attribute__((deprecated)) mail_order_detail_t *mail_order_detail_create(
     int *id,
-    char *status,
+    mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_e status,
     char *username,
     char *password,
     char *comment
@@ -64,10 +81,6 @@ void mail_order_detail_free(mail_order_detail_t *mail_order_detail) {
         free(mail_order_detail->id);
         mail_order_detail->id = NULL;
     }
-    if (mail_order_detail->status) {
-        free(mail_order_detail->status);
-        mail_order_detail->status = NULL;
-    }
     if (mail_order_detail->username) {
         free(mail_order_detail->username);
         mail_order_detail->username = NULL;
@@ -96,11 +109,12 @@ cJSON *mail_order_detail_convertToJSON(mail_order_detail_t *mail_order_detail) {
 
 
     // mail_order_detail->status
-    if (!mail_order_detail->status) {
+    if (mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_NULL == mail_order_detail->status) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "status", mail_order_detail->status) == NULL) {
-    goto fail; //String
+    if(cJSON_AddStringToObject(item, "status", mail_order_detail_status_ToString(mail_order_detail->status)) == NULL)
+    {
+    goto fail; //Enum
     }
 
 
@@ -144,8 +158,6 @@ mail_order_detail_t *mail_order_detail_parseFromJSON(cJSON *mail_order_detailJSO
     // define the local variable for mail_order_detail->id
     int *id_local_var = NULL;
 
-    char *status_local_str = NULL;
-
     char *username_local_str = NULL;
 
     char *password_local_str = NULL;
@@ -182,11 +194,13 @@ mail_order_detail_t *mail_order_detail_parseFromJSON(cJSON *mail_order_detailJSO
         goto end;
     }
 
+    mailbaby_email_delivery_and_management_service_api_mail_order_detail_STATUS_e statusVariable;
     
     if(!cJSON_IsString(status))
     {
-    goto end; //String
+    goto end; //Enum
     }
+    statusVariable = mail_order_detail_status_FromString(status->valuestring);
 
     // mail_order_detail->username
     cJSON *username = cJSON_GetObjectItemCaseSensitive(mail_order_detailJSON, "username");
@@ -231,14 +245,13 @@ mail_order_detail_t *mail_order_detail_parseFromJSON(cJSON *mail_order_detailJSO
     }
 
 
-    if (status && !cJSON_IsNull(status)) status_local_str = strdup(status->valuestring);
     if (username && !cJSON_IsNull(username)) username_local_str = strdup(username->valuestring);
     if (password && !cJSON_IsNull(password)) password_local_str = strdup(password->valuestring);
     if (comment && !cJSON_IsNull(comment)) comment_local_str = strdup(comment->valuestring);
 
     mail_order_detail_local_var = mail_order_detail_create_internal (
         id_local_var,
-        status_local_str,
+        statusVariable,
         username_local_str,
         password_local_str,
         comment_local_str
@@ -253,10 +266,6 @@ end:
     if (id_local_var) {
         free(id_local_var);
         id_local_var = NULL;
-    }
-    if (status_local_str) {
-        free(status_local_str);
-        status_local_str = NULL;
     }
     if (username_local_str) {
         free(username_local_str);

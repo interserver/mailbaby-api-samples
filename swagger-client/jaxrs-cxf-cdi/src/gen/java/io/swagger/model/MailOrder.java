@@ -16,7 +16,38 @@ import javax.xml.bind.annotation.*;
 
 public class MailOrder   {
   private Integer id = null;
-  private String status = null;
+@XmlType(name="StatusEnum")
+@XmlEnum(String.class)
+public enum StatusEnum {
+
+    @XmlEnumValue("active") ACTIVE(String.valueOf("active")), @XmlEnumValue("canceled") CANCELED(String.valueOf("canceled"));
+
+
+    private String value;
+
+    StatusEnum (String v) {
+        value = v;
+    }
+
+    public String value() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String v) {
+        for (StatusEnum b : StatusEnum.values()) {
+            if (String.valueOf(b.value).equals(v)) {
+                return b;
+            }
+        }
+        return null;
+    }
+}
+  private StatusEnum status = null;
   private String username = null;
   private String comment = null;
 
@@ -43,7 +74,7 @@ public class MailOrder   {
   /**
    * The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send.
    **/
-  public MailOrder status(String status) {
+  public MailOrder status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -53,10 +84,10 @@ public class MailOrder   {
   @Schema(example = "active", required = true, description = "The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
   @JsonProperty("status")
   @NotNull
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
@@ -73,7 +104,7 @@ public class MailOrder   {
   @Schema(example = "mb21472", required = true, description = "The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
   @JsonProperty("username")
   @NotNull
-  public String getUsername() {
+ @Pattern(regexp="^mb\\d+$")  public String getUsername() {
     return username;
   }
   public void setUsername(String username) {
@@ -81,7 +112,7 @@ public class MailOrder   {
   }
 
   /**
-   * Optional human-readable note associated with the order.
+   * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
    **/
   public MailOrder comment(String comment) {
     this.comment = comment;
@@ -90,7 +121,7 @@ public class MailOrder   {
 
   
   
-  @Schema(description = "Optional human-readable note associated with the order.")
+  @Schema(description = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
   @JsonProperty("comment")
   @NotNull
   public String getComment() {

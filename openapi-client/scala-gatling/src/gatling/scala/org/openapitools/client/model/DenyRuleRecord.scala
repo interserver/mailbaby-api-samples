@@ -4,7 +4,7 @@ package org.openapitools.client.model
 import java.time.OffsetDateTime
 
 case class DenyRuleRecord (
-    /* The type of deny rule. */
+    /* The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. */
     _type: String,
     /* The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`. */
     _data: String,

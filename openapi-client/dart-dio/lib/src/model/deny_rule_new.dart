@@ -12,12 +12,12 @@ part 'deny_rule_new.g.dart';
 /// The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
 ///
 /// Properties:
-/// * [type] - The type of deny rule.
+/// * [type] - The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 /// * [data] - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 /// * [user] - Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 @BuiltValue(instantiable: false)
 abstract class DenyRuleNew  {
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueField(wireName: r'type')
   DenyRuleNewTypeEnum get type;
   // enum typeEnum {  domain,  email,  startswith,  destination,  };
@@ -178,16 +178,16 @@ class _$$DenyRuleNewSerializer implements PrimitiveSerializer<$DenyRuleNew> {
 
 class DenyRuleNewTypeEnum extends EnumClass {
 
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'domain')
   static const DenyRuleNewTypeEnum domain = _$denyRuleNewTypeEnum_domain;
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'email')
   static const DenyRuleNewTypeEnum email = _$denyRuleNewTypeEnum_email;
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'startswith')
   static const DenyRuleNewTypeEnum startswith = _$denyRuleNewTypeEnum_startswith;
-  /// The type of deny rule.
+  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
   @BuiltValueEnumConst(wireName: r'destination')
   static const DenyRuleNewTypeEnum destination = _$denyRuleNewTypeEnum_destination;
 

@@ -55,6 +55,12 @@
                   "example" : "Server is up and running",
                   "type" : "string"
                 }
+              },
+              "application/json" : {
+                "schema" : {
+                  "example" : "Server is up and running",
+                  "type" : "string"
+                }
               }
             },
             "description" : "Server is up and running"
@@ -877,7 +883,7 @@
           "name" : "startDate",
           "required" : false,
           "schema" : {
-            "$ref" : "#/components/schemas/viewMailLog_startDate_parameter"
+            "$ref" : "#/components/schemas/DateOrTimestamp"
           },
           "style" : "form"
         }, {
@@ -888,7 +894,7 @@
           "name" : "endDate",
           "required" : false,
           "schema" : {
-            "$ref" : "#/components/schemas/viewMailLog_startDate_parameter"
+            "$ref" : "#/components/schemas/DateOrTimestamp"
           },
           "style" : "form"
         }, {
@@ -1077,7 +1083,8 @@
           "schema" : {
             "default" : "1h",
             "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ],
-            "type" : "string"
+            "type" : "string",
+            "x-enum-varnames" : [ "All", "Billing", "Month", "SevenDays", "TwentyFourHours", "Day", "OneHour" ]
           },
           "style" : "form"
         } ],
@@ -1696,6 +1703,7 @@
           "description" : "Single recipient email address.",
           "example" : "johndoe@company.com",
           "format" : "email",
+          "title" : "EmailAddressSingle",
           "type" : "string"
         }, {
           "description" : "Multiple recipient email addresses.",
@@ -1704,6 +1712,7 @@
             "format" : "email",
             "type" : "string"
           },
+          "title" : "EmailAddressList",
           "type" : "array"
         } ],
         "title" : "SendMailTo"
@@ -1796,6 +1805,7 @@
             }
           },
           "required" : [ "password" ],
+          "title" : "MailOrderPassword",
           "type" : "object"
         } ],
         "description" : "Extended mail order record including the current SMTP password.  Returned by `GET /mail/{id}`.  The `username` and `password` fields can be used to authenticate directly against `relay.mailbaby.net:25` via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API.",
@@ -2150,6 +2160,7 @@
             }
           },
           "required" : [ "created", "id" ],
+          "title" : "DenyRuleMetadata",
           "type" : "object"
         }, {
           "$ref" : "#/components/schemas/DenyRuleNew"
@@ -2474,7 +2485,8 @@
             "default" : "1h",
             "description" : "The time window these `received`, `sent`, and `volume` statistics cover.",
             "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ],
-            "type" : "string"
+            "type" : "string",
+            "x-enum-varnames" : [ "All", "Billing", "Month", "SevenDays", "TwentyFourHours", "Day", "OneHour" ]
           },
           "usage" : {
             "description" : "Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.",
@@ -2507,15 +2519,19 @@
         "title" : "MailStatsType",
         "type" : "object"
       },
-      "viewMailLog_startDate_parameter" : {
+      "DateOrTimestamp" : {
+        "description" : "A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).",
         "oneOf" : [ {
+          "description" : "Unix timestamp (integer seconds since epoch, 0–9999999999).",
           "format" : "int64",
           "maximum" : 9999999999,
           "minimum" : 0,
           "type" : "integer"
         }, {
+          "description" : "Date string parseable by strtotime() such as `2024-01-15` or `last monday`.",
           "type" : "string"
-        } ]
+        } ],
+        "title" : "DateOrTimestamp"
       }
     },
     "securitySchemes" : {

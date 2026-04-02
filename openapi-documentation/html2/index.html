@@ -844,6 +844,20 @@ ul.nav-tabs {
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+    defs["DateOrTimestamp"] = {
+  "title" : "DateOrTimestamp",
+  "description" : "A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).",
+  "oneOf" : [ {
+    "maximum" : 9999999999,
+    "minimum" : 0,
+    "type" : "integer",
+    "description" : "Unix timestamp (integer seconds since epoch, 0–9999999999).",
+    "format" : "int64"
+  }, {
+    "type" : "string",
+    "description" : "Date string parseable by strtotime() such as `2024-01-15` or `last monday`."
+  } ]
+};
     defs["DenyRuleNew"] = {
   "title" : "DenyRuleNew",
   "required" : [ "data", "type" ],
@@ -884,6 +898,7 @@ ul.nav-tabs {
     "created" : "2022-03-22 19:16:35"
   },
   "allOf" : [ {
+    "title" : "DenyRuleMetadata",
     "required" : [ "created", "id" ],
     "type" : "object",
     "properties" : {
@@ -1388,6 +1403,7 @@ ul.nav-tabs {
   "allOf" : [ {
     "$ref" : "#/components/schemas/MailOrder"
   }, {
+    "title" : "MailOrderPassword",
     "required" : [ "password" ],
     "type" : "object",
     "properties" : {
@@ -1407,7 +1423,8 @@ ul.nav-tabs {
       "type" : "string",
       "description" : "The time window these `received`, `sent`, and `volume` statistics cover.",
       "default" : "1h",
-      "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ]
+      "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ],
+      "x-enum-varnames" : [ "All", "Billing", "Month", "SevenDays", "TwentyFourHours", "Day", "OneHour" ]
     },
     "usage" : {
       "type" : "integer",
@@ -1648,11 +1665,13 @@ ul.nav-tabs {
   "description" : "The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.",
   "example" : "johndoe@company.com",
   "oneOf" : [ {
+    "title" : "EmailAddressSingle",
     "type" : "string",
     "description" : "Single recipient email address.",
     "format" : "email",
     "example" : "johndoe@company.com"
   }, {
+    "title" : "EmailAddressList",
     "type" : "array",
     "description" : "Multiple recipient email addresses.",
     "example" : [ "johndoe@company.com", "janedoe@company.com" ],
@@ -1660,16 +1679,6 @@ ul.nav-tabs {
       "type" : "string",
       "format" : "email"
     }
-  } ]
-};
-    defs["viewMailLog_startDate_parameter"] = {
-  "oneOf" : [ {
-    "maximum" : 9999999999,
-    "minimum" : 0,
-    "type" : "integer",
-    "format" : "int64"
-  }, {
-    "type" : "string"
   } ]
 };
 
@@ -5607,8 +5616,8 @@ public class HistoryApiExample {
         Integer delivered = 1; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
         Integer skip = 0; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
         Integer limit = 100; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-        ViewMailLogStartDateParameter startDate = 1641781008; // ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        ViewMailLogStartDateParameter endDate = 1673317008; // ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+        DateOrTimestamp startDate = 1641781008; // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+        DateOrTimestamp endDate = 1673317008; // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
         String sort = time; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         String dir = desc; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
         String groupby = recipient; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5643,8 +5652,8 @@ final String headerfrom = new String(); // String | Filter by the `From` message
 final Integer delivered = new Integer(); // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 final Integer skip = new Integer(); // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 final Integer limit = new Integer(); // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-final ViewMailLogStartDateParameter startDate = new ViewMailLogStartDateParameter(); // ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-final ViewMailLogStartDateParameter endDate = new ViewMailLogStartDateParameter(); // ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+final DateOrTimestamp startDate = new DateOrTimestamp(); // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+final DateOrTimestamp endDate = new DateOrTimestamp(); // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 final String sort = new String(); // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
 final String dir = new String(); // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
 final String groupby = new String(); // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5678,8 +5687,8 @@ public class HistoryApiExample {
         Integer delivered = 1; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
         Integer skip = 0; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
         Integer limit = 100; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-        ViewMailLogStartDateParameter startDate = 1641781008; // ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        ViewMailLogStartDateParameter endDate = 1673317008; // ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+        DateOrTimestamp startDate = 1641781008; // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+        DateOrTimestamp endDate = 1673317008; // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
         String sort = time; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         String dir = desc; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
         String groupby = recipient; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5722,8 +5731,8 @@ String *headerfrom = newsletter@sender.com; // Filter by the `From` message head
 Integer *delivered = 1; // Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional) (default to null)
 Integer *skip = 0; // Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 Integer *limit = 100; // Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-ViewMailLogStartDateParameter *startDate = 1641781008; // Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) (default to null)
-ViewMailLogStartDateParameter *endDate = 1673317008; // Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) (default to null)
+DateOrTimestamp *startDate = 1641781008; // Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) (default to null)
+DateOrTimestamp *endDate = 1673317008; // Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) (default to null)
 String *sort = time; // Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
 String *dir = desc; // Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
 String *groupby = recipient; // Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
@@ -5784,8 +5793,8 @@ var opts = {
   'delivered': 1, // {Integer} Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
   'skip': 0, // {Integer} Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
   'limit': 100, // {Integer} Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-  'startDate': 1641781008, // {ViewMailLogStartDateParameter} Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-  'endDate': 1673317008, // {ViewMailLogStartDateParameter} Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+  'startDate': 1641781008, // {DateOrTimestamp} Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+  'endDate': 1673317008, // {DateOrTimestamp} Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
   'sort': time, // {String} Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
   'dir': desc, // {String} Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
   'groupby': recipient // {String} Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5838,8 +5847,8 @@ namespace Example
             var delivered = 1;  // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)  (default to null)
             var skip = 0;  // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional)  (default to 0)
             var limit = 100;  // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional)  (default to 100)
-            var startDate = new ViewMailLogStartDateParameter(); // ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)  (default to null)
-            var endDate = new ViewMailLogStartDateParameter(); // ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)  (default to null)
+            var startDate = new DateOrTimestamp(); // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)  (default to null)
+            var endDate = new DateOrTimestamp(); // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)  (default to null)
             var sort = time;  // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional)  (default to time)
             var dir = desc;  // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional)  (default to desc)
             var groupby = recipient;  // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional)  (default to recipient)
@@ -5881,8 +5890,8 @@ $headerfrom = newsletter@sender.com; // String | Filter by the `From` message he
 $delivered = 1; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 $skip = 0; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 $limit = 100; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-$startDate = 1641781008; // ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-$endDate = 1673317008; // ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+$startDate = 1641781008; // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+$endDate = 1673317008; // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 $sort = time; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
 $dir = desc; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
 $groupby = recipient; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5921,8 +5930,8 @@ my $headerfrom = newsletter@sender.com; # String | Filter by the `From` message 
 my $delivered = 1; # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 my $skip = 0; # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 my $limit = 100; # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-my $startDate = 1641781008; # ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-my $endDate = 1673317008; # ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+my $startDate = 1641781008; # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+my $endDate = 1673317008; # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 my $sort = time; # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
 my $dir = desc; # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
 my $groupby = recipient; # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5963,8 +5972,8 @@ headerfrom = newsletter@sender.com # String | Filter by the `From` message heade
 delivered = 1 # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional) (default to null)
 skip = 0 # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 limit = 100 # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-startDate = 1641781008 # ViewMailLogStartDateParameter | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) (default to null)
-endDate = 1673317008 # ViewMailLogStartDateParameter | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) (default to null)
+startDate = 1641781008 # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) (default to null)
+endDate = 1673317008 # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) (default to null)
 sort = time # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
 dir = desc # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
 groupby = recipient # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
@@ -5994,8 +6003,8 @@ pub fn main() {
     let delivered = 1; // Integer
     let skip = 0; // Integer
     let limit = 100; // Integer
-    let startDate = 1641781008; // ViewMailLogStartDateParameter
-    let endDate = 1673317008; // ViewMailLogStartDateParameter
+    let startDate = 1641781008; // DateOrTimestamp
+    let endDate = 1673317008; // DateOrTimestamp
     let sort = time; // String
     let dir = desc; // String
     let groupby = recipient; // String
@@ -6315,7 +6324,7 @@ Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maxi
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    ViewMailLogStartDateParameter
+                    DateOrTimestamp
                 </span>
 
                     <div class="inner description marked">
@@ -6335,7 +6344,7 @@ Earliest date to include.  Accepts either a Unix timestamp (integer seconds sinc
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
-                    ViewMailLogStartDateParameter
+                    DateOrTimestamp
                 </span>
 
                     <div class="inner description marked">
@@ -10604,7 +10613,7 @@ pub fn main() {
                           <div class="tab-pane active" id="examples-Status-pingServer-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
 -H "X-API-KEY: [[apiKey]]" \
- -H "Accept: text/plain" \
+ -H "Accept: text/plain,application/json" \
  "https://api.mailbaby.net/ping"
 </code></pre>
                           </div>
@@ -10891,6 +10900,12 @@ pub fn main() {
   "description" : "Server is up and running",
   "content" : {
     "text/plain" : {
+      "schema" : {
+        "type" : "string",
+        "example" : "Server is up and running"
+      }
+    },
+    "application/json" : {
       "schema" : {
         "type" : "string",
         "example" : "Server is up and running"

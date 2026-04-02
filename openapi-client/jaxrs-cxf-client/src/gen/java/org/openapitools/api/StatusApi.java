@@ -30,7 +30,7 @@ public interface StatusApi  {
      */
     @GET
     
-    @Produces({ "text/plain" })
+    @Produces({ "text/plain", "application/json" })
     @ApiOperation(value = "Checks if the server is running", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Server is up and running", response = String.class),

@@ -121,10 +121,10 @@ func view_mail_log(
 	# limit: int = 100   Eg: 100
 	# Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
 	limit = 100,
-	# startDate: ViewMailLogStartDateParameter   Eg: 1641781008
+	# startDate: DateOrTimestamp   Eg: 1641781008
 	# Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
 	startDate = null,
-	# endDate: ViewMailLogStartDateParameter   Eg: 1673317008
+	# endDate: DateOrTimestamp   Eg: 1673317008
 	# Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 	endDate = null,
 	# sort: String = "time"   Eg: time
@@ -267,10 +267,10 @@ func view_mail_log_threaded(
 	# limit: int = 100   Eg: 100
 	# Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
 	limit = 100,
-	# startDate: ViewMailLogStartDateParameter   Eg: 1641781008
+	# startDate: DateOrTimestamp   Eg: 1641781008
 	# Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
 	startDate = null,
-	# endDate: ViewMailLogStartDateParameter   Eg: 1673317008
+	# endDate: DateOrTimestamp   Eg: 1673317008
 	# Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 	endDate = null,
 	# sort: String = "time"   Eg: time

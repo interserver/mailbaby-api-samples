@@ -106,6 +106,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [PSOpenAPITools\Model.DateOrTimestamp](docs/DateOrTimestamp.md)
  - [PSOpenAPITools\Model.DenyRuleNew](docs/DenyRuleNew.md)
  - [PSOpenAPITools\Model.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [PSOpenAPITools\Model.EmailAddressName](docs/EmailAddressName.md)
@@ -129,7 +130,6 @@ Class | Method | HTTP request | Description
  - [PSOpenAPITools\Model.SendMailAdv](docs/SendMailAdv.md)
  - [PSOpenAPITools\Model.SendMailRaw](docs/SendMailRaw.md)
  - [PSOpenAPITools\Model.SendMailTo](docs/SendMailTo.md)
- - [PSOpenAPITools\Model.ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 <a id="documentation-for-authorization"></a>

@@ -8,6 +8,7 @@
 #
 
 # Models
+import openapiclient/models/model_date_or_timestamp
 import openapiclient/models/model_deny_rule_new
 import openapiclient/models/model_deny_rule_record
 import openapiclient/models/model_email_address_name
@@ -31,8 +32,8 @@ import openapiclient/models/model_send_mail
 import openapiclient/models/model_send_mail_adv
 import openapiclient/models/model_send_mail_raw
 import openapiclient/models/model_send_mail_to
-import openapiclient/models/model_view_mail_log_start_date_parameter
 
+export model_date_or_timestamp
 export model_deny_rule_new
 export model_deny_rule_record
 export model_email_address_name
@@ -56,7 +57,6 @@ export model_send_mail
 export model_send_mail_adv
 export model_send_mail_raw
 export model_send_mail_to
-export model_view_mail_log_start_date_parameter
 
 # APIs
 import openapiclient/apis/api_blocking

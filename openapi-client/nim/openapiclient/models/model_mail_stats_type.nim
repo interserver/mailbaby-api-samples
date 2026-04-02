@@ -18,10 +18,10 @@ type Time* {.pure.} = enum
   All
   Billing
   Month
-  `7d`
-  `24h`
+  SevenDays
+  TwentyFourHours
   Day
-  `1h`
+  OneHour
 
 type MailStatsType* = object
   ## Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
@@ -38,19 +38,19 @@ func `%`*(v: Time): JsonNode =
     of Time.All: %"all"
     of Time.Billing: %"billing"
     of Time.Month: %"month"
-    of Time.`7d`: %"7d"
-    of Time.`24h`: %"24h"
+    of Time.SevenDays: %"7d"
+    of Time.TwentyFourHours: %"24h"
     of Time.Day: %"day"
-    of Time.`1h`: %"1h"
+    of Time.OneHour: %"1h"
 func `$`*(v: Time): string =
   result = case v:
     of Time.All: $("all")
     of Time.Billing: $("billing")
     of Time.Month: $("month")
-    of Time.`7d`: $("7d")
-    of Time.`24h`: $("24h")
+    of Time.SevenDays: $("7d")
+    of Time.TwentyFourHours: $("24h")
     of Time.Day: $("day")
-    of Time.`1h`: $("1h")
+    of Time.OneHour: $("1h")
 
 proc to*(node: JsonNode, T: typedesc[Time]): Time =
   if node.kind != JString:
@@ -64,13 +64,13 @@ proc to*(node: JsonNode, T: typedesc[Time]): Time =
   of $("month"):
     return Time.Month
   of $("7d"):
-    return Time.`7d`
+    return Time.SevenDays
   of $("24h"):
-    return Time.`24h`
+    return Time.TwentyFourHours
   of $("day"):
     return Time.Day
   of $("1h"):
-    return Time.`1h`
+    return Time.OneHour
   else:
     raise newException(ValueError, "Invalid enum value for Time: " & strVal)
 

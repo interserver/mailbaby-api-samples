@@ -11,6 +11,7 @@ docs/apis/SendingApi.md
 docs/apis/ServicesApi.md
 docs/apis/StatusApi.md
 docs/apis/auth.md
+docs/models/DateOrTimestamp.md
 docs/models/DenyRuleNew.md
 docs/models/DenyRuleRecord.md
 docs/models/EmailAddressName.md
@@ -34,7 +35,6 @@ docs/models/SendMail.md
 docs/models/SendMailAdv.md
 docs/models/SendMailRaw.md
 docs/models/SendMailTo.md
-docs/models/ViewMailLogStartDateParameter.md
 gradle.properties
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
@@ -49,6 +49,7 @@ src/main/java/org/openapitools/api/HistoryApi.java
 src/main/java/org/openapitools/api/SendingApi.java
 src/main/java/org/openapitools/api/ServicesApi.java
 src/main/java/org/openapitools/api/StatusApi.java
+src/main/java/org/openapitools/model/DateOrTimestamp.java
 src/main/java/org/openapitools/model/DenyRuleNew.java
 src/main/java/org/openapitools/model/DenyRuleRecord.java
 src/main/java/org/openapitools/model/EmailAddressName.java
@@ -72,7 +73,6 @@ src/main/java/org/openapitools/model/SendMail.java
 src/main/java/org/openapitools/model/SendMailAdv.java
 src/main/java/org/openapitools/model/SendMailRaw.java
 src/main/java/org/openapitools/model/SendMailTo.java
-src/main/java/org/openapitools/model/ViewMailLogStartDateParameter.java
 src/main/resources/application.yml
 src/main/resources/logback.xml
 src/test/java/org/openapitools/api/BlockingApiTest.java
@@ -80,6 +80,7 @@ src/test/java/org/openapitools/api/HistoryApiTest.java
 src/test/java/org/openapitools/api/SendingApiTest.java
 src/test/java/org/openapitools/api/ServicesApiTest.java
 src/test/java/org/openapitools/api/StatusApiTest.java
+src/test/java/org/openapitools/model/DateOrTimestampTest.java
 src/test/java/org/openapitools/model/DenyRuleNewTest.java
 src/test/java/org/openapitools/model/DenyRuleRecordTest.java
 src/test/java/org/openapitools/model/EmailAddressNameTest.java
@@ -103,4 +104,3 @@ src/test/java/org/openapitools/model/SendMailAdvTest.java
 src/test/java/org/openapitools/model/SendMailRawTest.java
 src/test/java/org/openapitools/model/SendMailTest.java
 src/test/java/org/openapitools/model/SendMailToTest.java
-src/test/java/org/openapitools/model/ViewMailLogStartDateParameterTest.java

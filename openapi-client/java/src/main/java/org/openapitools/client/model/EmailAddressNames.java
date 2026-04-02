@@ -44,7 +44,7 @@ import org.openapitools.client.JSON;
 /**
  * An array of email contacts, each with an email address and optional display name.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T09:43:36.615652131-04:00[America/New_York]", comments = "Generator version: 7.21.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T09:50:33.323686160-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 public class EmailAddressNames extends ArrayList<EmailAddressName> {
   public EmailAddressNames() {
   }

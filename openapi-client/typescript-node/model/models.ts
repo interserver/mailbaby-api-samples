@@ -1,5 +1,6 @@
 import localVarRequest from 'request';
 
+export * from './dateOrTimestamp';
 export * from './denyRuleNew';
 export * from './denyRuleRecord';
 export * from './emailAddressName';
@@ -23,7 +24,6 @@ export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailRaw';
 export * from './sendMailTo';
-export * from './viewMailLogStartDateParameter';
 
 import * as fs from 'fs';
 
@@ -38,6 +38,7 @@ export interface RequestDetailedFile {
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
 
+import { DateOrTimestamp } from './dateOrTimestamp';
 import { DenyRuleNew } from './denyRuleNew';
 import { DenyRuleRecord } from './denyRuleRecord';
 import { EmailAddressName } from './emailAddressName';
@@ -61,7 +62,6 @@ import { SendMail } from './sendMail';
 import { SendMailAdv } from './sendMailAdv';
 import { SendMailRaw } from './sendMailRaw';
 import { SendMailTo } from './sendMailTo';
-import { ViewMailLogStartDateParameter } from './viewMailLogStartDateParameter';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -84,6 +84,7 @@ let enumsMap: {[index: string]: any} = {
 }
 
 let typeMap: {[index: string]: any} = {
+    "DateOrTimestamp": DateOrTimestamp,
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
     "EmailAddressName": EmailAddressName,
@@ -107,7 +108,6 @@ let typeMap: {[index: string]: any} = {
     "SendMailAdv": SendMailAdv,
     "SendMailRaw": SendMailRaw,
     "SendMailTo": SendMailTo,
-    "ViewMailLogStartDateParameter": ViewMailLogStartDateParameter,
 }
 
 // Check if a string starts with another string without using es6 features

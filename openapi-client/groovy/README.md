@@ -42,7 +42,7 @@ This Groovy package, using the [http-builder-ng library](https://http-builder-ng
 
 - API version: 1.4.0
 - Package version: 1.0.0
-- Build date: 2026-04-02T08:37:32.674180258-04:00[America/New_York]
+- Build date: 2026-04-02T09:50:28.793081494-04:00[America/New_York]
 - Generator version: 7.21.0
 - Build package: org.openapitools.codegen.languages.GroovyClientCodegen
 For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/)

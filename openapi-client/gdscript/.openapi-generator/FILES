@@ -14,6 +14,7 @@ core/NullApiBeeNull.gd
 core/NullApiConfigNull.gd
 core/NullApiErrorNull.gd
 core/NullApiResponseNull.gd
+models/DateOrTimestamp.gd
 models/DenyRuleNew.gd
 models/DenyRuleRecord.gd
 models/EmailAddressName.gd
@@ -37,4 +38,3 @@ models/SendMail.gd
 models/SendMailAdv.gd
 models/SendMailRaw.gd
 models/SendMailTo.gd
-models/ViewMailLogStartDateParameter.gd

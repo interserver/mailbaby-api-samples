@@ -18,10 +18,10 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAIDateOrTimestamp.h"
 #include "OAIErrorMessage.h"
 #include "OAIMailLog.h"
 #include "OAIMailStatsType.h"
-#include "OAIViewMailLog_startDate_parameter.h"
 #include <QString>
 
 #include <QObject>
@@ -80,13 +80,13 @@ public:
     * @param[in]  delivered qint32 [optional]
     * @param[in]  skip qint32 [optional]
     * @param[in]  limit qint32 [optional]
-    * @param[in]  start_date OAIViewMailLog_startDate_parameter [optional]
-    * @param[in]  end_date OAIViewMailLog_startDate_parameter [optional]
+    * @param[in]  start_date OAIDateOrTimestamp [optional]
+    * @param[in]  end_date OAIDateOrTimestamp [optional]
     * @param[in]  sort QString [optional]
     * @param[in]  dir QString [optional]
     * @param[in]  groupby QString [optional]
     */
-    virtual void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &origin = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mx = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mailid = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &message_id = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &replyto = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &headerfrom = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &delivered = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<OAIViewMailLog_startDate_parameter> &start_date = ::OpenAPI::OptionalParam<OAIViewMailLog_startDate_parameter>(), const ::OpenAPI::OptionalParam<OAIViewMailLog_startDate_parameter> &end_date = ::OpenAPI::OptionalParam<OAIViewMailLog_startDate_parameter>(), const ::OpenAPI::OptionalParam<QString> &sort = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &dir = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &groupby = ::OpenAPI::OptionalParam<QString>());
+    virtual void viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id = ::OpenAPI::OptionalParam<qint64>(), const ::OpenAPI::OptionalParam<QString> &origin = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mx = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &from = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &to = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &subject = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &mailid = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &message_id = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &replyto = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &headerfrom = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<qint32> &delivered = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &limit = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<OAIDateOrTimestamp> &start_date = ::OpenAPI::OptionalParam<OAIDateOrTimestamp>(), const ::OpenAPI::OptionalParam<OAIDateOrTimestamp> &end_date = ::OpenAPI::OptionalParam<OAIDateOrTimestamp>(), const ::OpenAPI::OptionalParam<QString> &sort = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &dir = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &groupby = ::OpenAPI::OptionalParam<QString>());
 
 
 private:

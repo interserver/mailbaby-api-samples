@@ -360,7 +360,7 @@ end:
 // Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.  **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).  **Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.  **Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.  **Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). 
 //
 mail_log_t*
-HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, char *messageId, char *replyto, char *headerfrom, int *delivered, int *skip, int *limit, view_mail_log_start_date_parameter_t *startDate, view_mail_log_start_date_parameter_t *endDate, mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e sort, mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e dir, mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e groupby)
+HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, char *from, char *to, char *subject, char *mailid, char *messageId, char *replyto, char *headerfrom, int *delivered, int *skip, int *limit, date_or_timestamp_t *startDate, date_or_timestamp_t *endDate, mailbaby_email_delivery_and_management_service_api_viewMailLog_sort_e sort, mailbaby_email_delivery_and_management_service_api_viewMailLog_dir_e dir, mailbaby_email_delivery_and_management_service_api_viewMailLog_groupby_e groupby)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -542,7 +542,7 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
 
     // query parameters
     char *keyQuery_startDate = NULL;
-    view_mail_log_start_date_parameter_t * valueQuery_startDate ;
+    date_or_timestamp_t * valueQuery_startDate ;
     keyValuePair_t *keyPairQuery_startDate = 0;
     if (startDate)
     {
@@ -554,7 +554,7 @@ HistoryAPI_viewMailLog(apiClient_t *apiClient, long id, char *origin, char *mx, 
 
     // query parameters
     char *keyQuery_endDate = NULL;
-    view_mail_log_start_date_parameter_t * valueQuery_endDate ;
+    date_or_timestamp_t * valueQuery_endDate ;
     keyValuePair_t *keyPairQuery_endDate = 0;
     if (endDate)
     {

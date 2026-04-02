@@ -141,8 +141,8 @@ package .Clients is
        Delivered : in Swagger.Nullable_Integer;
        Skip : in Swagger.Nullable_Integer;
        Limit : in Swagger.Nullable_Integer;
-       Start_Date : in .Models.ViewMailLogStartDateParameter_Type;
-       End_Date : in .Models.ViewMailLogStartDateParameter_Type;
+       Start_Date : in .Models.DateOrTimestamp_Type;
+       End_Date : in .Models.DateOrTimestamp_Type;
        Sort : in Swagger.Nullable_UString;
        Dir : in Swagger.Nullable_UString;
        Groupby : in Swagger.Nullable_UString;

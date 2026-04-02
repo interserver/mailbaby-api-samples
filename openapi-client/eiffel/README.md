@@ -76,6 +76,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [DATE_OR_TIMESTAMP](docs/DATE_OR_TIMESTAMP.md)
  - [DENY_RULE_NEW](docs/DENY_RULE_NEW.md)
  - [DENY_RULE_RECORD](docs/DENY_RULE_RECORD.md)
  - [EMAIL_ADDRESSES_TYPES](docs/EMAIL_ADDRESSES_TYPES.md)
@@ -99,7 +100,6 @@ Class | Method | HTTP request | Description
  - [SEND_MAIL_ADV](docs/SEND_MAIL_ADV.md)
  - [SEND_MAIL_RAW](docs/SEND_MAIL_RAW.md)
  - [SEND_MAIL_TO](docs/SEND_MAIL_TO.md)
- - [VIEW_MAIL_LOG_START_DATE_PARAMETER](docs/VIEW_MAIL_LOG_START_DATE_PARAMETER.md)
 
 
 ## Documentation For Authorization

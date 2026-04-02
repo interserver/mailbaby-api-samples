@@ -2,6 +2,7 @@ QT += network
 
 HEADERS += \
 # Models
+    $${PWD}/OAIDateOrTimestamp.h \
     $${PWD}/OAIDenyRuleNew.h \
     $${PWD}/OAIDenyRuleRecord.h \
     $${PWD}/OAIEmailAddressName.h \
@@ -25,7 +26,6 @@ HEADERS += \
     $${PWD}/OAISendMailAdv.h \
     $${PWD}/OAISendMailRaw.h \
     $${PWD}/OAISendMailTo.h \
-    $${PWD}/OAIViewMailLog_startDate_parameter.h \
 # APIs
     $${PWD}/OAIBlockingApi.h \
     $${PWD}/OAIHistoryApi.h \
@@ -44,6 +44,7 @@ HEADERS += \
 
 SOURCES += \
 # Models
+    $${PWD}/OAIDateOrTimestamp.cpp \
     $${PWD}/OAIDenyRuleNew.cpp \
     $${PWD}/OAIDenyRuleRecord.cpp \
     $${PWD}/OAIEmailAddressName.cpp \
@@ -67,7 +68,6 @@ SOURCES += \
     $${PWD}/OAISendMailAdv.cpp \
     $${PWD}/OAISendMailRaw.cpp \
     $${PWD}/OAISendMailTo.cpp \
-    $${PWD}/OAIViewMailLog_startDate_parameter.cpp \
 # APIs
     $${PWD}/OAIBlockingApi.cpp \
     $${PWD}/OAIHistoryApi.cpp \

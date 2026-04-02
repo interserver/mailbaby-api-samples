@@ -11,13 +11,13 @@ import Foundation
 public struct MailStatsType: Sendable, Codable, Hashable {
 
     public enum Time: String, Sendable, Codable, CaseIterable {
-        case all = "all"
-        case billing = "billing"
-        case month = "month"
-        case _7d = "7d"
-        case _24h = "24h"
-        case day = "day"
-        case _1h = "1h"
+        case All = "all"
+        case Billing = "billing"
+        case Month = "month"
+        case SevenDays = "7d"
+        case TwentyFourHours = "24h"
+        case Day = "day"
+        case OneHour = "1h"
     }
     /** The time window these `received`, `sent`, and `volume` statistics cover. */
     public var time: Time? = ._1h

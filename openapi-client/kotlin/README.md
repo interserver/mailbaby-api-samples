@@ -100,6 +100,7 @@ All URIs are relative to *https://api.mailbaby.net*
 <a id="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [org.openapitools.client.models.DateOrTimestamp](docs/DateOrTimestamp.md)
  - [org.openapitools.client.models.DenyRuleNew](docs/DenyRuleNew.md)
  - [org.openapitools.client.models.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [org.openapitools.client.models.EmailAddressName](docs/EmailAddressName.md)
@@ -123,7 +124,6 @@ All URIs are relative to *https://api.mailbaby.net*
  - [org.openapitools.client.models.SendMailAdv](docs/SendMailAdv.md)
  - [org.openapitools.client.models.SendMailRaw](docs/SendMailRaw.md)
  - [org.openapitools.client.models.SendMailTo](docs/SendMailTo.md)
- - [org.openapitools.client.models.ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 <a id="documentation-for-authorization"></a>

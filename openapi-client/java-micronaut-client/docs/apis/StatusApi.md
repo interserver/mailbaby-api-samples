@@ -55,5 +55,5 @@ A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server
 
 ### HTTP request headers
  - **Content-Type**: Not defined
- - **Accept**: `text/plain`
+ - **Accept**: `text/plain`, `application/json`
 

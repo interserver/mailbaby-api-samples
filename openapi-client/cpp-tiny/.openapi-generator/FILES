@@ -1,5 +1,7 @@
 .openapi-generator-ignore
 README.md
+lib/Models/DateOrTimestamp.cpp
+lib/Models/DateOrTimestamp.h
 lib/Models/DenyRuleNew.cpp
 lib/Models/DenyRuleNew.h
 lib/Models/DenyRuleRecord.cpp
@@ -48,8 +50,7 @@ lib/Models/SendMailRaw.cpp
 lib/Models/SendMailRaw.h
 lib/Models/SendMailTo.cpp
 lib/Models/SendMailTo.h
-lib/Models/ViewMailLogStartDateParameter.cpp
-lib/Models/ViewMailLogStartDateParameter.h
+lib/TestFiles/DateOrTimestampTest.cpp
 lib/TestFiles/DenyRuleNewTest.cpp
 lib/TestFiles/DenyRuleRecordTest.cpp
 lib/TestFiles/EmailAddressNameTest.cpp
@@ -73,7 +74,6 @@ lib/TestFiles/SendMailAdvTest.cpp
 lib/TestFiles/SendMailRawTest.cpp
 lib/TestFiles/SendMailTest.cpp
 lib/TestFiles/SendMailToTest.cpp
-lib/TestFiles/ViewMailLogStartDateParameterTest.cpp
 lib/service/BlockingApi.cpp
 lib/service/BlockingApi.h
 lib/service/HistoryApi.cpp

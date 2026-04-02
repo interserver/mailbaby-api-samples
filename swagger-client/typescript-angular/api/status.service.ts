@@ -74,7 +74,8 @@ export class StatusService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
-            'text/plain'
+            'text/plain',
+            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {

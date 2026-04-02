@@ -1,8 +1,8 @@
 const samples = require('../samples/HistoryApi');
+const DateOrTimestamp = require('../models/DateOrTimestamp');
 const ErrorMessage = require('../models/ErrorMessage');
 const MailLog = require('../models/MailLog');
 const MailStatsType = require('../models/MailStatsType');
-const viewMailLog_startDate_parameter = require('../models/viewMailLog_startDate_parameter');
 const utils = require('../utils/utils');
 
 module.exports = {

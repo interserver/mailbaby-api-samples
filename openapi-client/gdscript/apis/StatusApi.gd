@@ -31,7 +31,7 @@ func ping_server(
 
 	# Collect the headers
 	var bzz_headers := Dictionary()
-	var bzz_mimes_produced_by_server := ['text/plain']
+	var bzz_mimes_produced_by_server := ['text/plain', 'application/json']
 	for bzz_mime in BZZ_CONSUMABLE_CONTENT_TYPES:
 		if bzz_mime in bzz_mimes_produced_by_server:
 			bzz_headers["Accept"] = bzz_mime

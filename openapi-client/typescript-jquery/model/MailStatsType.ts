@@ -54,9 +54,9 @@ export namespace MailStatsType {
         All = <any> 'all',
         Billing = <any> 'billing',
         Month = <any> 'month',
-        _7d = <any> '7d',
-        _24h = <any> '24h',
+        SevenDays = <any> '7d',
+        TwentyFourHours = <any> '24h',
         Day = <any> 'day',
-        _1h = <any> '1h'
+        OneHour = <any> '1h'
     }
 }

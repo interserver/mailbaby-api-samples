@@ -14,10 +14,10 @@
 import { HttpService, Injectable, Optional } from '@nestjs/common';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
+import { DateOrTimestamp } from '../model/dateOrTimestamp';
 import { ErrorMessage } from '../model/errorMessage';
 import { MailLog } from '../model/mailLog';
 import { MailStatsType } from '../model/mailStatsType';
-import { ViewMailLogStartDateParameter } from '../model/viewMailLogStartDateParameter';
 import { Configuration } from '../configuration';
 import { COLLECTION_FORMATS } from '../variables';
 
@@ -123,8 +123,8 @@ export class HistoryService {
      * @param reportProgress flag to report request and response progress.
      * @param {*} [viewMailLogOpts.config] Override http request option.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: ViewMailLogStartDateParameter, endDate?: ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', viewMailLogOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: ViewMailLogStartDateParameter, endDate?: ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', viewMailLogOpts?: { config?: AxiosRequestConfig }): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', viewMailLogOpts?: { config?: AxiosRequestConfig }): Observable<AxiosResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', viewMailLogOpts?: { config?: AxiosRequestConfig }): Observable<any> {
         let queryParameters = new URLSearchParams();
         if (id !== undefined && id !== null) {
             queryParameters.append('id', <any>id);

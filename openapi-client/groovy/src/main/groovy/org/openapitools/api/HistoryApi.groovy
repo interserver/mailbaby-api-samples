@@ -1,10 +1,10 @@
 package org.openapitools.api;
 
 import org.openapitools.api.ApiUtils
+import org.openapitools.model.DateOrTimestamp
 import org.openapitools.model.ErrorMessage
 import org.openapitools.model.MailLog
 import org.openapitools.model.MailStatsType
-import org.openapitools.model.ViewMailLogStartDateParameter
 
 class HistoryApi {
     String basePath = "https://api.mailbaby.net"
@@ -37,7 +37,7 @@ class HistoryApi {
 
     }
 
-    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, ViewMailLogStartDateParameter startDate, ViewMailLogStartDateParameter endDate, String sort, String dir, String groupby, Closure onSuccess, Closure onFailure)  {
+    def viewMailLog ( Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, Closure onSuccess, Closure onFailure)  {
         String resourcePath = "/mail/log"
 
         // params

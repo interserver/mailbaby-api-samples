@@ -5,6 +5,7 @@ README.md
 bin/autodoc
 cpanfile
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -32,13 +33,13 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md
 git_push.sh
 lib/OpenAPIClient/ApiClient.pm
 lib/OpenAPIClient/ApiFactory.pm
 lib/OpenAPIClient/BlockingApi.pm
 lib/OpenAPIClient/Configuration.pm
 lib/OpenAPIClient/HistoryApi.pm
+lib/OpenAPIClient/Object/DateOrTimestamp.pm
 lib/OpenAPIClient/Object/DenyRuleNew.pm
 lib/OpenAPIClient/Object/DenyRuleRecord.pm
 lib/OpenAPIClient/Object/EmailAddressName.pm
@@ -62,13 +63,13 @@ lib/OpenAPIClient/Object/SendMail.pm
 lib/OpenAPIClient/Object/SendMailAdv.pm
 lib/OpenAPIClient/Object/SendMailRaw.pm
 lib/OpenAPIClient/Object/SendMailTo.pm
-lib/OpenAPIClient/Object/ViewMailLogStartDateParameter.pm
 lib/OpenAPIClient/Role.pm
 lib/OpenAPIClient/Role/AutoDoc.pm
 lib/OpenAPIClient/SendingApi.pm
 lib/OpenAPIClient/ServicesApi.pm
 lib/OpenAPIClient/StatusApi.pm
 t/BlockingApiTest.t
+t/DateOrTimestampTest.t
 t/DenyRuleNewTest.t
 t/DenyRuleRecordTest.t
 t/EmailAddressNameTest.t
@@ -96,4 +97,3 @@ t/SendMailToTest.t
 t/SendingApiTest.t
 t/ServicesApiTest.t
 t/StatusApiTest.t
-t/ViewMailLogStartDateParameterTest.t

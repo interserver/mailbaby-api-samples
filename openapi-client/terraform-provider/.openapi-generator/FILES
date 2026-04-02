@@ -5,6 +5,7 @@ README.md
 examples/provider/provider.tf
 go.mod
 internal/client/client.go
+internal/client/model_date_or_timestamp.go
 internal/client/model_deny_rule_new.go
 internal/client/model_deny_rule_record.go
 internal/client/model_email_address_name.go
@@ -28,7 +29,6 @@ internal/client/model_send_mail.go
 internal/client/model_send_mail_adv.go
 internal/client/model_send_mail_raw.go
 internal/client/model_send_mail_to.go
-internal/client/model_view_mail_log_start_date_parameter.go
 internal/provider/blocking_data_source.go
 internal/provider/blocking_model.go
 internal/provider/blocking_resource.go

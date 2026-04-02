@@ -48,6 +48,8 @@ class ApiClient {
           return new AllOfSendMailAdvReplyto.fromJson(value);
         case 'AllOfSendMailAdvTo':
           return new AllOfSendMailAdvTo.fromJson(value);
+        case 'DateOrTimestamp':
+          return new DateOrTimestamp.fromJson(value);
         case 'DenyRuleNew':
           return new DenyRuleNew.fromJson(value);
         case 'DenyRuleRecord':
@@ -62,8 +64,6 @@ class ApiClient {
           return new EmailAddressTypes.fromJson(value);
         case 'EmailAddressesTypes':
           return new EmailAddressesTypes.fromJson(value);
-        case 'EndDate':
-          return new EndDate.fromJson(value);
         case 'ErrorMessage':
           return new ErrorMessage.fromJson(value);
         case 'GenericResponse':
@@ -96,8 +96,6 @@ class ApiClient {
           return new SendMailRaw.fromJson(value);
         case 'SendMailTo':
           return new SendMailTo.fromJson(value);
-        case 'StartDate':
-          return new StartDate.fromJson(value);
         default:
           {
             Match match;

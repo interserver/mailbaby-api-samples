@@ -25,6 +25,7 @@ All URIs are relative to *https://api.mailbaby.net*
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [DateOrTimestamp](./Models/DateOrTimestamp.md)
  - [DenyRuleNew](./Models/DenyRuleNew.md)
  - [DenyRuleRecord](./Models/DenyRuleRecord.md)
  - [EmailAddressName](./Models/EmailAddressName.md)
@@ -48,7 +49,6 @@ All URIs are relative to *https://api.mailbaby.net*
  - [SendMailAdv](./Models/SendMailAdv.md)
  - [SendMailRaw](./Models/SendMailRaw.md)
  - [SendMailTo](./Models/SendMailTo.md)
- - [viewMailLog_startDate_parameter](./Models/viewMailLog_startDate_parameter.md)
 
 
 <a name="documentation-for-authorization"></a>

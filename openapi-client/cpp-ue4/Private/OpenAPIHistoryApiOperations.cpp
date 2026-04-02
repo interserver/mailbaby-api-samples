@@ -33,13 +33,13 @@ inline FString ToString(const OpenAPIHistoryApi::GetStatsRequest::TimeEnum& Valu
 		return TEXT("billing");
 	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Month:
 		return TEXT("month");
-	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_7d:
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::SevenDays:
 		return TEXT("7d");
-	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_24h:
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::TwentyFourHours:
 		return TEXT("24h");
 	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Day:
 		return TEXT("day");
-	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_1h:
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::OneHour:
 		return TEXT("1h");
 	}
 
@@ -58,10 +58,10 @@ inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::GetStatsR
 		{ TEXT("all"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::All },
 		{ TEXT("billing"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Billing },
 		{ TEXT("month"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Month },
-		{ TEXT("7d"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_7d },
-		{ TEXT("24h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_24h },
+		{ TEXT("7d"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::SevenDays },
+		{ TEXT("24h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::TwentyFourHours },
 		{ TEXT("day"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Day },
-		{ TEXT("1h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::_1h }, };
+		{ TEXT("1h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::OneHour }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

@@ -26,11 +26,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import io.swagger.client.model.EndDate;
+import io.swagger.client.model.DateOrTimestamp;
 import io.swagger.client.model.ErrorMessage;
 import io.swagger.client.model.MailLog;
 import io.swagger.client.model.MailStatsType;
-import io.swagger.client.model.StartDate;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -212,7 +211,7 @@ public class HistoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, StartDate startDate, EndDate endDate, String sort, String dir, String groupby, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call viewMailLogCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -293,7 +292,7 @@ public class HistoryApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, StartDate startDate, EndDate endDate, String sort, String dir, String groupby, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call viewMailLogValidateBeforeCall(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         com.squareup.okhttp.Call call = viewMailLogCall(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby, progressListener, progressRequestListener);
         return call;
@@ -328,7 +327,7 @@ public class HistoryApi {
      * @return MailLog
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, StartDate startDate, EndDate endDate, String sort, String dir, String groupby) throws ApiException {
+    public MailLog viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby) throws ApiException {
         ApiResponse<MailLog> resp = viewMailLogWithHttpInfo(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
         return resp.getData();
     }
@@ -357,7 +356,7 @@ public class HistoryApi {
      * @return ApiResponse&lt;MailLog&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, StartDate startDate, EndDate endDate, String sort, String dir, String groupby) throws ApiException {
+    public ApiResponse<MailLog> viewMailLogWithHttpInfo(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby) throws ApiException {
         com.squareup.okhttp.Call call = viewMailLogValidateBeforeCall(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby, null, null);
         Type localVarReturnType = new TypeToken<MailLog>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -388,7 +387,7 @@ public class HistoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, StartDate startDate, EndDate endDate, String sort, String dir, String groupby, final ApiCallback<MailLog> callback) throws ApiException {
+    public com.squareup.okhttp.Call viewMailLogAsync(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, final ApiCallback<MailLog> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

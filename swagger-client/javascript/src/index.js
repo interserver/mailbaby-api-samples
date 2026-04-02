@@ -19,6 +19,7 @@ import AllOfSendMailAdvCc from './model/AllOfSendMailAdvCc';
 import AllOfSendMailAdvFrom from './model/AllOfSendMailAdvFrom';
 import AllOfSendMailAdvReplyto from './model/AllOfSendMailAdvReplyto';
 import AllOfSendMailAdvTo from './model/AllOfSendMailAdvTo';
+import DateOrTimestamp from './model/DateOrTimestamp';
 import DenyRuleNew from './model/DenyRuleNew';
 import DenyRuleRecord from './model/DenyRuleRecord';
 import EmailAddressName from './model/EmailAddressName';
@@ -26,7 +27,6 @@ import EmailAddressNames from './model/EmailAddressNames';
 import EmailAddressParam from './model/EmailAddressParam';
 import EmailAddressTypes from './model/EmailAddressTypes';
 import EmailAddressesTypes from './model/EmailAddressesTypes';
-import EndDate from './model/EndDate';
 import ErrorMessage from './model/ErrorMessage';
 import GenericResponse from './model/GenericResponse';
 import MailAttachment from './model/MailAttachment';
@@ -43,7 +43,6 @@ import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import SendMailRaw from './model/SendMailRaw';
 import SendMailTo from './model/SendMailTo';
-import StartDate from './model/StartDate';
 import BlockingApi from './api/BlockingApi';
 import HistoryApi from './api/HistoryApi';
 import SendingApi from './api/SendingApi';
@@ -119,6 +118,12 @@ export {
     AllOfSendMailAdvTo,
 
     /**
+     * The DateOrTimestamp model constructor.
+     * @property {module:model/DateOrTimestamp}
+     */
+    DateOrTimestamp,
+
+    /**
      * The DenyRuleNew model constructor.
      * @property {module:model/DenyRuleNew}
      */
@@ -159,12 +164,6 @@ export {
      * @property {module:model/EmailAddressesTypes}
      */
     EmailAddressesTypes,
-
-    /**
-     * The EndDate model constructor.
-     * @property {module:model/EndDate}
-     */
-    EndDate,
 
     /**
      * The ErrorMessage model constructor.
@@ -261,12 +260,6 @@ export {
      * @property {module:model/SendMailTo}
      */
     SendMailTo,
-
-    /**
-     * The StartDate model constructor.
-     * @property {module:model/StartDate}
-     */
-    StartDate,
 
     /**
     * The BlockingApi service constructor.

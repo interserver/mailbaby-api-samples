@@ -66,7 +66,8 @@ export class StatusApi {
 
         // to determine the Accept header
         let produces: string[] = [
-            'text/plain'
+            'text/plain', 
+            'application/json'
         ];
 
         // authentication (apiKeyAuth) required

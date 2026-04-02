@@ -228,25 +228,25 @@ class MailStatsTypeTimeEnum extends EnumClass {
 
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'all')
-  static const MailStatsTypeTimeEnum all = _$mailStatsTypeTimeEnum_all;
+  static const MailStatsTypeTimeEnum All = _$mailStatsTypeTimeEnum_All;
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'billing')
-  static const MailStatsTypeTimeEnum billing = _$mailStatsTypeTimeEnum_billing;
+  static const MailStatsTypeTimeEnum Billing = _$mailStatsTypeTimeEnum_Billing;
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'month')
-  static const MailStatsTypeTimeEnum month = _$mailStatsTypeTimeEnum_month;
+  static const MailStatsTypeTimeEnum Month = _$mailStatsTypeTimeEnum_Month;
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'7d')
-  static const MailStatsTypeTimeEnum n7d = _$mailStatsTypeTimeEnum_n7d;
+  static const MailStatsTypeTimeEnum SevenDays = _$mailStatsTypeTimeEnum_SevenDays;
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'24h')
-  static const MailStatsTypeTimeEnum n24h = _$mailStatsTypeTimeEnum_n24h;
+  static const MailStatsTypeTimeEnum TwentyFourHours = _$mailStatsTypeTimeEnum_TwentyFourHours;
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'day')
-  static const MailStatsTypeTimeEnum day = _$mailStatsTypeTimeEnum_day;
+  static const MailStatsTypeTimeEnum Day = _$mailStatsTypeTimeEnum_Day;
   /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'1h')
-  static const MailStatsTypeTimeEnum n1h = _$mailStatsTypeTimeEnum_n1h;
+  static const MailStatsTypeTimeEnum OneHour = _$mailStatsTypeTimeEnum_OneHour;
 
   static Serializer<MailStatsTypeTimeEnum> get serializer => _$mailStatsTypeTimeEnumSerializer;
 

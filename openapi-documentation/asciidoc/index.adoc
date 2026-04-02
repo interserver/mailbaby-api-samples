@@ -1348,6 +1348,7 @@ A lightweight health-check endpoint.  Returns the plain-text string `Server is u
 ===== Content Type
 
 * text/plain
+* application/json
 
 ===== Responses
 
@@ -1392,6 +1393,21 @@ endif::internal-generation[]
 
 [#models]
 == Models
+
+
+[#DateOrTimestamp]
+=== _DateOrTimestamp_ DateOrTimestamp
+
+A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; (e.g. &#x60;2024-01-15&#x60;, &#x60;last monday&#x60;).
+
+
+[.fields-DateOrTimestamp]
+[cols="2,1,1,2,4,1"]
+|===
+| Field Name| Required| Nullable | Type| Description | Format
+
+|===
+
 
 
 [#DenyRuleNew]
@@ -2399,21 +2415,6 @@ The primary recipient address for a simple send request. Accepts a single email 
 
 
 [.fields-SendMailTo]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
-
-|===
-
-
-
-[#ViewMailLogStartDateParameter]
-=== _ViewMailLogStartDateParameter_ 
-
-
-
-
-[.fields-ViewMailLogStartDateParameter]
 [cols="2,1,1,2,4,1"]
 |===
 | Field Name| Required| Nullable | Type| Description | Format

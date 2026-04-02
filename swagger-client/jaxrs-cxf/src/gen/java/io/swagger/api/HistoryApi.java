@@ -1,10 +1,9 @@
 package io.swagger.api;
 
-import io.swagger.model.EndDate;
+import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.StartDate;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -62,5 +61,5 @@ public interface HistoryApi  {
         @ApiResponse(responseCode = "200", description = "Paginated list of mail log entries", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
         @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
         @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
-    public MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") @Size(min=18,max=19) String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @QueryParam("skip") @Min(0) @DefaultValue("0") Integer skip, @QueryParam("limit") @Min(1) @Max(10000) @DefaultValue("100") Integer limit, @QueryParam("startDate") StartDate startDate, @QueryParam("endDate") EndDate endDate, @QueryParam("sort") @DefaultValue("time") String sort, @QueryParam("dir") @DefaultValue("desc") String dir, @QueryParam("groupby") @DefaultValue("recipient") String groupby);
+    public MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") @Size(min=18,max=19) String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @QueryParam("skip") @Min(0) @DefaultValue("0") Integer skip, @QueryParam("limit") @Min(1) @Max(10000) @DefaultValue("100") Integer limit, @QueryParam("startDate") DateOrTimestamp startDate, @QueryParam("endDate") DateOrTimestamp endDate, @QueryParam("sort") @DefaultValue("time") String sort, @QueryParam("dir") @DefaultValue("desc") String dir, @QueryParam("groupby") @DefaultValue("recipient") String groupby);
 }

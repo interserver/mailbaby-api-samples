@@ -218,7 +218,7 @@ export default function() {
             let url = BASE_URL + `/ping`;
             let params = {
                 headers: {
-                    "X-API-KEY": `${X_API_KEY}`, "Accept": "text/plain"
+                    "X-API-KEY": `${X_API_KEY}`, "Accept": "application/json"
                 }
             };
             let request = http.get(url, params);

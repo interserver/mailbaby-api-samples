@@ -16,7 +16,7 @@ public class MailStatsType  {
   
 public enum TimeEnum {
 
-ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.valueOf("month")), _7D(String.valueOf("7d")), _24H(String.valueOf("24h")), DAY(String.valueOf("day")), _1H(String.valueOf("1h"));
+All(String.valueOf("all")), Billing(String.valueOf("billing")), Month(String.valueOf("month")), SevenDays(String.valueOf("7d")), TwentyFourHours(String.valueOf("24h")), Day(String.valueOf("day")), OneHour(String.valueOf("1h"));
 
 
     private String value;
@@ -49,7 +49,7 @@ ALL(String.valueOf("all")), BILLING(String.valueOf("billing")), MONTH(String.val
   */
   @ApiModelProperty(value = "The time window these `received`, `sent`, and `volume` statistics cover.")
 
-  private TimeEnum time = TimeEnum._1H;
+  private TimeEnum time = TimeEnum.OneHour;
 
  /**
   * Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.

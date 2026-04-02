@@ -125,10 +125,10 @@ class HistoryApi {
   /// * [int] limit:
   ///   Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
   ///
-  /// * [ViewMailLogStartDateParameter] startDate:
+  /// * [DateOrTimestamp] startDate:
   ///   Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
   ///
-  /// * [ViewMailLogStartDateParameter] endDate:
+  /// * [DateOrTimestamp] endDate:
   ///   Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
   ///
   /// * [String] sort:
@@ -139,7 +139,7 @@ class HistoryApi {
   ///
   /// * [String] groupby:
   ///   Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
-  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, ViewMailLogStartDateParameter? startDate, ViewMailLogStartDateParameter? endDate, String? sort, String? dir, String? groupby, }) async {
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp? startDate, DateOrTimestamp? endDate, String? sort, String? dir, String? groupby, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
@@ -264,10 +264,10 @@ class HistoryApi {
   /// * [int] limit:
   ///   Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
   ///
-  /// * [ViewMailLogStartDateParameter] startDate:
+  /// * [DateOrTimestamp] startDate:
   ///   Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
   ///
-  /// * [ViewMailLogStartDateParameter] endDate:
+  /// * [DateOrTimestamp] endDate:
   ///   Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
   ///
   /// * [String] sort:
@@ -278,7 +278,7 @@ class HistoryApi {
   ///
   /// * [String] groupby:
   ///   Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
-  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, ViewMailLogStartDateParameter? startDate, ViewMailLogStartDateParameter? endDate, String? sort, String? dir, String? groupby, }) async {
+  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp? startDate, DateOrTimestamp? endDate, String? sort, String? dir, String? groupby, }) async {
     final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, messageId: messageId, replyto: replyto, headerfrom: headerfrom, delivered: delivered, skip: skip, limit: limit, startDate: startDate, endDate: endDate, sort: sort, dir: dir, groupby: groupby, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));

@@ -35,10 +35,10 @@ public:
 		All,
 		Billing,
 		Month,
-		_7d,
-		_24h,
+		SevenDays,
+		TwentyFourHours,
 		Day,
-		_1h,
+		OneHour,
   	};
 
 	static FString EnumToString(const TimeEnum& EnumValue);

@@ -93,10 +93,10 @@ using namespace Tiny;
             int limit
             , 
             
-            ViewMailLog_startDate_parameter startDate
+            DateOrTimestamp startDate
             , 
             
-            ViewMailLog_startDate_parameter endDate
+            DateOrTimestamp endDate
             , 
             
             std::string sort

@@ -8,6 +8,7 @@ spec/api/history_api_spec.cr
 spec/api/sending_api_spec.cr
 spec/api/services_api_spec.cr
 spec/api/status_api_spec.cr
+spec/models/date_or_timestamp_spec.cr
 spec/models/deny_rule_new_spec.cr
 spec/models/deny_rule_record_spec.cr
 spec/models/email_address_name_spec.cr
@@ -31,7 +32,6 @@ spec/models/send_mail_adv_spec.cr
 spec/models/send_mail_raw_spec.cr
 spec/models/send_mail_spec.cr
 spec/models/send_mail_to_spec.cr
-spec/models/view_mail_log_start_date_parameter_spec.cr
 spec/spec_helper.cr
 src/openapi_client.cr
 src/openapi_client/api/blocking_api.cr
@@ -42,6 +42,7 @@ src/openapi_client/api/status_api.cr
 src/openapi_client/api_client.cr
 src/openapi_client/api_error.cr
 src/openapi_client/configuration.cr
+src/openapi_client/models/date_or_timestamp.cr
 src/openapi_client/models/deny_rule_new.cr
 src/openapi_client/models/deny_rule_record.cr
 src/openapi_client/models/email_address_name.cr
@@ -65,5 +66,4 @@ src/openapi_client/models/send_mail.cr
 src/openapi_client/models/send_mail_adv.cr
 src/openapi_client/models/send_mail_raw.cr
 src/openapi_client/models/send_mail_to.cr
-src/openapi_client/models/view_mail_log_start_date_parameter.cr
 src/openapi_client/recursive_hash.cr

@@ -133,7 +133,7 @@ export class HistoryApi {
      * @param dir Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.
      * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: models.ViewMailLogStartDateParameter, endDate?: models.ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: models.DateOrTimestamp, endDate?: models.DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', extraJQueryAjaxSettings?: JQueryAjaxSettings): JQuery.Promise<
     { response: JQueryXHR; body: models.MailLog;  },
     { response: JQueryXHR; errorThrown: string }
     > {

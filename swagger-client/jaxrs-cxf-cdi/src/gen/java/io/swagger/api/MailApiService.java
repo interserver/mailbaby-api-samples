@@ -6,10 +6,10 @@ import io.swagger.model.*;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
+import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -22,7 +22,6 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
-import io.swagger.model.StartDate;
 
 import java.util.List;
 
@@ -49,5 +48,5 @@ public interface MailApiService {
       public Response sendAdvMail(SendMailAdv body, SecurityContext securityContext);
       public Response sendMail(SendMailTo to, String from, String subject, String body, Long id, SecurityContext securityContext);
       public Response sendMail(SendMail body, SecurityContext securityContext);
-      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, StartDate startDate, EndDate endDate, String sort, String dir, String groupby, SecurityContext securityContext);
+      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, SecurityContext securityContext);
 }

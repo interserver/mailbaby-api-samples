@@ -9,6 +9,7 @@ NAMESPACE
 R/api_client.R
 R/api_response.R
 R/blocking_api.R
+R/date_or_timestamp.R
 R/deny_rule_new.R
 R/deny_rule_record.R
 R/email_address_name.R
@@ -36,9 +37,9 @@ R/send_mail_to.R
 R/sending_api.R
 R/services_api.R
 R/status_api.R
-R/view_mail_log_start_date_parameter.R
 README.md
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -66,10 +67,10 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md
 git_push.sh
 tests/testthat.R
 tests/testthat/test_blocking_api.R
+tests/testthat/test_date_or_timestamp.R
 tests/testthat/test_deny_rule_new.R
 tests/testthat/test_deny_rule_record.R
 tests/testthat/test_email_address_name.R
@@ -97,4 +98,3 @@ tests/testthat/test_send_mail_to.R
 tests/testthat/test_sending_api.R
 tests/testthat/test_services_api.R
 tests/testthat/test_status_api.R
-tests/testthat/test_view_mail_log_start_date_parameter.R

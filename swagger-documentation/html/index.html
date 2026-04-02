@@ -1389,6 +1389,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
     </ul>
 
     <h3 class="field-label">Responses</h3>
@@ -1406,6 +1407,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 
   <h3>Table of Contents</h3>
   <ol>
+    <li><a href="#DateOrTimestamp"><code>DateOrTimestamp</code> - DateOrTimestamp</a></li>
     <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a></li>
     <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a></li>
     <li><a href="#EmailAddressName"><code>EmailAddressName</code> - EmailAddressName</a></li>
@@ -1429,10 +1431,14 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
     <li><a href="#SendMailRaw"><code>SendMailRaw</code> - SendMailRaw</a></li>
     <li><a href="#SendMailTo"><code>SendMailTo</code> - SendMailTo</a></li>
-    <li><a href="#endDate"><code>endDate</code></a></li>
-    <li><a href="#startDate"><code>startDate</code></a></li>
   </ol>
 
+  <div class="model">
+    <h3><a name="DateOrTimestamp"><code>DateOrTimestamp</code> - DateOrTimestamp</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by &lt;code&gt;strtotime()&lt;/code&gt; (e.g. &lt;code&gt;2024-01-15&lt;/code&gt;, &lt;code&gt;last monday&lt;/code&gt;).</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
   <div class="model">
     <h3><a name="DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>&lt;p&gt;The fields required to create a new email deny rule via &lt;code&gt;POST /mail/rules&lt;/code&gt;. The &lt;code&gt;type&lt;/code&gt; controls what &lt;code&gt;data&lt;/code&gt; is matched against:&lt;/p&gt;
@@ -1531,7 +1537,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
       <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename shown to recipients (e.g. &lt;code&gt;report.pdf&lt;/code&gt;, &lt;code&gt;invoice.xlsx&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: message.txt</span></div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#ByteArray">byte[]</a></span> The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. format: byte</div>
-          <div class="param-desc"><span class="param-type">example: [B@5ff410d1</span></div>
+          <div class="param-desc"><span class="param-type">example: [B@11b9c480</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1755,18 +1761,6 @@ flagged sender.&lt;/li&gt;
   <div class="model">
     <h3><a name="SendMailTo"><code>SendMailTo</code> - SendMailTo</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.</div>
-    <div class="field-items">
-          </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="endDate"><code>endDate</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-          </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="startDate"><code>startDate</code></a> <a class="up" href="#__Models">Up</a></h3>
-    
     <div class="field-items">
           </div>  <!-- field-items -->
   </div>

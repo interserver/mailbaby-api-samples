@@ -3,6 +3,7 @@ Build.ps1
 README.md
 appveyor.yml
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -30,13 +31,13 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md
 src/PSOpenAPITools/Api/BlockingApi.ps1
 src/PSOpenAPITools/Api/HistoryApi.ps1
 src/PSOpenAPITools/Api/SendingApi.ps1
 src/PSOpenAPITools/Api/ServicesApi.ps1
 src/PSOpenAPITools/Api/StatusApi.ps1
 src/PSOpenAPITools/Client/Configuration.ps1
+src/PSOpenAPITools/Model/DateOrTimestamp.ps1
 src/PSOpenAPITools/Model/DenyRuleNew.ps1
 src/PSOpenAPITools/Model/DenyRuleRecord.ps1
 src/PSOpenAPITools/Model/EmailAddressName.ps1
@@ -60,7 +61,6 @@ src/PSOpenAPITools/Model/SendMail.ps1
 src/PSOpenAPITools/Model/SendMailAdv.ps1
 src/PSOpenAPITools/Model/SendMailRaw.ps1
 src/PSOpenAPITools/Model/SendMailTo.ps1
-src/PSOpenAPITools/Model/ViewMailLogStartDateParameter.ps1
 src/PSOpenAPITools/PSOpenAPITools.psm1
 src/PSOpenAPITools/Private/ApiClient.ps1
 src/PSOpenAPITools/Private/Get-CommonParameters.ps1
@@ -73,6 +73,7 @@ tests/Api/HistoryApi.Tests.ps1
 tests/Api/SendingApi.Tests.ps1
 tests/Api/ServicesApi.Tests.ps1
 tests/Api/StatusApi.Tests.ps1
+tests/Model/DateOrTimestamp.Tests.ps1
 tests/Model/DenyRuleNew.Tests.ps1
 tests/Model/DenyRuleRecord.Tests.ps1
 tests/Model/EmailAddressName.Tests.ps1
@@ -96,4 +97,3 @@ tests/Model/SendMail.Tests.ps1
 tests/Model/SendMailAdv.Tests.ps1
 tests/Model/SendMailRaw.Tests.ps1
 tests/Model/SendMailTo.Tests.ps1
-tests/Model/ViewMailLogStartDateParameter.Tests.ps1

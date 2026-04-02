@@ -7,6 +7,7 @@ openapiclient/api/history_api.lua
 openapiclient/api/sending_api.lua
 openapiclient/api/services_api.lua
 openapiclient/api/status_api.lua
+openapiclient/model/date_or_timestamp.lua
 openapiclient/model/deny_rule_new.lua
 openapiclient/model/deny_rule_record.lua
 openapiclient/model/email_address_name.lua
@@ -30,8 +31,8 @@ openapiclient/model/send_mail.lua
 openapiclient/model/send_mail_adv.lua
 openapiclient/model/send_mail_raw.lua
 openapiclient/model/send_mail_to.lua
-openapiclient/model/view_mail_log_start_date_parameter.lua
 spec/blocking_api_spec.lua
+spec/date_or_timestamp_spec.lua
 spec/deny_rule_new_spec.lua
 spec/deny_rule_record_spec.lua
 spec/email_address_name_spec.lua
@@ -59,4 +60,3 @@ spec/send_mail_to_spec.lua
 spec/sending_api_spec.lua
 spec/services_api_spec.lua
 spec/status_api_spec.lua
-spec/view_mail_log_start_date_parameter_spec.lua

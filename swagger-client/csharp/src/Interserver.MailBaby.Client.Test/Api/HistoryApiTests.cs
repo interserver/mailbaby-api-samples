@@ -93,8 +93,8 @@ namespace Interserver.MailBaby.Client.Test
             //int? delivered = null;
             //int? skip = null;
             //int? limit = null;
-            //StartDate startDate = null;
-            //EndDate endDate = null;
+            //DateOrTimestamp startDate = null;
+            //DateOrTimestamp endDate = null;
             //string sort = null;
             //string dir = null;
             //string groupby = null;

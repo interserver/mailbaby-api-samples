@@ -36,7 +36,7 @@ public interface StatusApi  {
      */
     @GET
     @Path("/ping")
-    @Produces({ "text/plain" })
+    @Produces({ "text/plain", "application/json" })
     @Operation(summary = "Checks if the server is running", tags={ "Status" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Server is up and running", content = @Content(mediaType = "text/plain", schema = @Schema(implementation = String.class))),

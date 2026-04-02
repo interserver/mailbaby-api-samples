@@ -48,6 +48,7 @@ set(SRCS
     src/binary.c
     external/cJSON.c
     model/object.c
+    model/date_or_timestamp.c
     model/deny_rule_new.c
     model/deny_rule_record.c
     model/email_address_name.c
@@ -71,7 +72,6 @@ set(SRCS
     model/send_mail_adv.c
     model/send_mail_raw.c
     model/send_mail_to.c
-    model/view_mail_log_start_date_parameter.c
     api/BlockingAPI.c
     api/HistoryAPI.c
     api/SendingAPI.c
@@ -88,6 +88,7 @@ set(HDRS
     external/cJSON.h
     model/object.h
     model/any_type.h
+    model/date_or_timestamp.h
     model/deny_rule_new.h
     model/deny_rule_record.h
     model/email_address_name.h
@@ -111,7 +112,6 @@ set(HDRS
     model/send_mail_adv.h
     model/send_mail_raw.h
     model/send_mail_to.h
-    model/view_mail_log_start_date_parameter.h
     api/BlockingAPI.h
     api/HistoryAPI.h
     api/SendingAPI.h

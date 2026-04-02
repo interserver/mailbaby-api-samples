@@ -29,7 +29,7 @@ public class OASMailAttachment {
     public static OASMailAttachment getExample() {
         OASMailAttachment mailAttachment = new OASMailAttachment();
           mailAttachment.filename = 'message.txt';
-          mailAttachment.data = EncodingUtil.base64Decode('[B@671d1157');
+          mailAttachment.data = EncodingUtil.base64Decode('[B@f1d0004');
         return mailAttachment;
     }
 

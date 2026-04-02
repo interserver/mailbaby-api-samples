@@ -13,10 +13,10 @@
 
 package org.openapitools.api;
 
+import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
-import org.openapitools.model.ViewMailLogStartDateParameter;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -103,8 +103,8 @@ public class HistoryApiTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        ViewMailLogStartDateParameter startDate = null;
-        ViewMailLogStartDateParameter endDate = null;
+        DateOrTimestamp startDate = null;
+        DateOrTimestamp endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

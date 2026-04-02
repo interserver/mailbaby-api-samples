@@ -18,13 +18,13 @@ public class OASMailStatsType implements OAS.MappedProperties {
      * The time window these `received`, `sent`, and `volume` statistics cover.
      */
     public enum RTimeEnum {
-        ALL,
-        BILLING,
-        MONTH,
-        _7D,
-        _24H,
-        DAY,
-        _1H
+        All,
+        Billing,
+        Month,
+        SevenDays,
+        TwentyFourHours,
+        Day,
+        OneHour
     }
 
     /**
@@ -88,7 +88,7 @@ public class OASMailStatsType implements OAS.MappedProperties {
     }
 
     public OASMailStatsType() {
-        r_time = RTimeEnum._1H;
+        r_time = RTimeEnum.OneHour;
     }
 
     public static OASMailStatsType getExample() {

@@ -278,6 +278,7 @@ use OpenAPIClient::StatusApi;
 
 To load the models:
 ```perl
+use OpenAPIClient::Object::DateOrTimestamp;
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
 use OpenAPIClient::Object::EmailAddressName;
@@ -301,7 +302,6 @@ use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
 use OpenAPIClient::Object::SendMailRaw;
 use OpenAPIClient::Object::SendMailTo;
-use OpenAPIClient::Object::ViewMailLogStartDateParameter;
 
 ````
 
@@ -320,6 +320,7 @@ use OpenAPIClient::ServicesApi;
 use OpenAPIClient::StatusApi;
 
 # load the models
+use OpenAPIClient::Object::DateOrTimestamp;
 use OpenAPIClient::Object::DenyRuleNew;
 use OpenAPIClient::Object::DenyRuleRecord;
 use OpenAPIClient::Object::EmailAddressName;
@@ -343,7 +344,6 @@ use OpenAPIClient::Object::SendMail;
 use OpenAPIClient::Object::SendMailAdv;
 use OpenAPIClient::Object::SendMailRaw;
 use OpenAPIClient::Object::SendMailTo;
-use OpenAPIClient::Object::ViewMailLogStartDateParameter;
 
 # for displaying the API response data
 use Data::Dumper;
@@ -392,6 +392,7 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
+ - [OpenAPIClient::Object::DateOrTimestamp](docs/DateOrTimestamp.md)
  - [OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
  - [OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
  - [OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
@@ -415,7 +416,6 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
  - [OpenAPIClient::Object::SendMailRaw](docs/SendMailRaw.md)
  - [OpenAPIClient::Object::SendMailTo](docs/SendMailTo.md)
- - [OpenAPIClient::Object::ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

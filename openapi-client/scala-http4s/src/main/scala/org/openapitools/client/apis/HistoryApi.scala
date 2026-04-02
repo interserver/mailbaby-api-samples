@@ -14,6 +14,7 @@ import cats.effect.Concurrent
 import io.circe.Encoder
 import org.http4s.Uri
 import org.http4s.client.Client as Http4sClient
+import org.openapitools.client.models.DateOrTimestamp
 import org.openapitools.client.models.DeliveredStatus
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.GetStatsTimeParameter
@@ -22,13 +23,12 @@ import org.openapitools.client.models.MailStatsType
 import org.openapitools.client.models.ViewMailLogDirParameter
 import org.openapitools.client.models.ViewMailLogGroupbyParameter
 import org.openapitools.client.models.ViewMailLogSortParameter
-import org.openapitools.client.models.ViewMailLogStartDateParameter
 import org.openapitools.client.models.*
 
 trait HistoryApiEndpoints[F[*]] {
 
   def getStats(time: Option[GetStatsTimeParameter] = None)(using auth: _Authorization.ApiKey): F[MailStatsType]
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[DeliveredStatus] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[ViewMailLogStartDateParameter] = None, endDate: Option[ViewMailLogStartDateParameter] = None, sort: Option[ViewMailLogSortParameter] = None, dir: Option[ViewMailLogDirParameter] = None, groupby: Option[ViewMailLogGroupbyParameter] = None)(using auth: _Authorization.ApiKey): F[MailLog]
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[DeliveredStatus] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[ViewMailLogSortParameter] = None, dir: Option[ViewMailLogDirParameter] = None, groupby: Option[ViewMailLogGroupbyParameter] = None)(using auth: _Authorization.ApiKey): F[MailLog]
 
 }
 
@@ -64,7 +64,7 @@ class HistoryApiEndpointsImpl[F[*]: Concurrent](
     }
   }
 
-  override def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[DeliveredStatus] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[ViewMailLogStartDateParameter] = None, endDate: Option[ViewMailLogStartDateParameter] = None, sort: Option[ViewMailLogSortParameter] = None, dir: Option[ViewMailLogDirParameter] = None, groupby: Option[ViewMailLogGroupbyParameter] = None)(using auth: _Authorization.ApiKey): F[MailLog] = {
+  override def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[DeliveredStatus] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[ViewMailLogSortParameter] = None, dir: Option[ViewMailLogDirParameter] = None, groupby: Option[ViewMailLogGroupbyParameter] = None)(using auth: _Authorization.ApiKey): F[MailLog] = {
     val requestHeaders = Seq(
       Some("Content-Type" -> "application/json")
     ).flatten

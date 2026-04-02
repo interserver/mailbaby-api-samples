@@ -14,6 +14,7 @@ import 'package:built_value/iso_8601_date_time_serializer.dart';
 import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
+import 'package:openapi/src/model/date_or_timestamp.dart';
 import 'package:openapi/src/model/deny_rule_new.dart';
 import 'package:openapi/src/model/deny_rule_record.dart';
 import 'package:openapi/src/model/email_address_name.dart';
@@ -37,11 +38,11 @@ import 'package:openapi/src/model/send_mail.dart';
 import 'package:openapi/src/model/send_mail_adv.dart';
 import 'package:openapi/src/model/send_mail_raw.dart';
 import 'package:openapi/src/model/send_mail_to.dart';
-import 'package:openapi/src/model/view_mail_log_start_date_parameter.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
+  DateOrTimestamp,
   DenyRuleNew,$DenyRuleNew,
   DenyRuleRecord,
   EmailAddressName,
@@ -65,7 +66,6 @@ part 'serializers.g.dart';
   SendMailAdv,
   SendMailRaw,
   SendMailTo,
-  ViewMailLogStartDateParameter,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

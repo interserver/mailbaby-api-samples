@@ -92,8 +92,8 @@ public class OASHistoryApi {
         query.addAll(client.makeParam('delivered', (Integer) params.get('delivered')));
         query.addAll(client.makeParam('skip', (Integer) params.get('skip')));
         query.addAll(client.makeParam('limit', (Integer) params.get('r_limit')));
-        query.addAll(client.makeParam('startDate', (OASViewMailLogStartDateParameter) params.get('startDate')));
-        query.addAll(client.makeParam('endDate', (OASViewMailLogStartDateParameter) params.get('endDate')));
+        query.addAll(client.makeParam('startDate', (OASDateOrTimestamp) params.get('startDate')));
+        query.addAll(client.makeParam('endDate', (OASDateOrTimestamp) params.get('endDate')));
         query.addAll(client.makeParam('sort', (String) params.get('r_sort')));
         query.addAll(client.makeParam('dir', (String) params.get('dir')));
         query.addAll(client.makeParam('groupby', (String) params.get('groupby')));

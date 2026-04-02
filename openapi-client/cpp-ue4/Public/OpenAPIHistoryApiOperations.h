@@ -15,10 +15,10 @@
 #include "OpenAPIBaseModel.h"
 #include "OpenAPIHistoryApi.h"
 
+#include "OpenAPIDateOrTimestamp.h"
 #include "OpenAPIErrorMessage.h"
 #include "OpenAPIMailLog.h"
 #include "OpenAPIMailStatsType.h"
-#include "OpenAPIViewMailLogStartDateParameter.h"
 
 namespace OpenAPI
 {
@@ -39,10 +39,10 @@ public:
 		All,
 		Billing,
 		Month,
-		_7d,
-		_24h,
+		SevenDays,
+		TwentyFourHours,
 		Day,
-		_1h,
+		OneHour,
   	};
 
 	static FString EnumToString(const TimeEnum& EnumValue);
@@ -107,9 +107,9 @@ public:
 	/* Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. */
 	TOptional<int32> Limit;
 	/* Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. */
-	TOptional<OpenAPIViewMailLogStartDateParameter> StartDate;
+	TOptional<OpenAPIDateOrTimestamp> StartDate;
 	/* Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. */
-	TOptional<OpenAPIViewMailLogStartDateParameter> EndDate;
+	TOptional<OpenAPIDateOrTimestamp> EndDate;
 	enum class SortEnum
 	{
 		Time,

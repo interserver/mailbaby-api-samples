@@ -56,7 +56,7 @@ func (a *StatusApiService) PingServer(ctx context.Context) (string, *http.Respon
 	}
 
 	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"text/plain"}
+	localVarHttpHeaderAccepts := []string{"text/plain", "application/json"}
 
 	// set Accept header
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)

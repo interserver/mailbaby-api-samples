@@ -34,6 +34,7 @@ StatusAPI_pingServer(apiClient_t *apiClient)
 
 
     list_addElement(localVarHeaderType,"text/plain"); //produces
+    list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,

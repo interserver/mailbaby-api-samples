@@ -24,11 +24,10 @@
 
 package io.swagger.api;
 
-import io.swagger.model.EndDate;
+import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailStatsType;
-import io.swagger.model.StartDate;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -113,8 +112,8 @@ public class HistoryApiTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        StartDate startDate = null;
-        EndDate endDate = null;
+        DateOrTimestamp startDate = null;
+        DateOrTimestamp endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

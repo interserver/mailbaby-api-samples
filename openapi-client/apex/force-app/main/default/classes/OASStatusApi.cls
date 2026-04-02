@@ -40,7 +40,7 @@ public class OASStatusApi {
             query, form,
             new Map<String, Object>(),
             new Map<String, Object>(),
-            new List<String>{ 'text/plain' },
+            new List<String>{ 'text/plain', 'application/json' },
             new List<String>(),
             new List<String> { 'apiKeyAuth' },
             String.class

@@ -719,6 +719,7 @@
     "$ref" : "#/components/schemas/EmailAddressesTypes"
   } ]
 };
+            defs["DateOrTimestamp"] = {};
             defs["DenyRuleNew"] = {
   "title" : "DenyRuleNew",
   "required" : [ "data", "type" ],
@@ -759,6 +760,7 @@
     "created" : "2022-03-22 19:16:35"
   },
   "allOf" : [ {
+    "title" : "DenyRuleMetadata",
     "required" : [ "created", "id" ],
     "type" : "object",
     "properties" : {
@@ -831,7 +833,6 @@
 };
             defs["EmailAddressTypes"] = {};
             defs["EmailAddressesTypes"] = {};
-            defs["endDate"] = {};
             defs["ErrorMessage"] = {
   "title" : "ErrorMessage",
   "required" : [ "code", "message" ],
@@ -1242,6 +1243,7 @@
   "allOf" : [ {
     "$ref" : "#/components/schemas/MailOrder"
   }, {
+    "title" : "MailOrderPassword",
     "required" : [ "password" ],
     "type" : "object",
     "properties" : {
@@ -1261,7 +1263,8 @@
       "type" : "string",
       "description" : "The time window these `received`, `sent`, and `volume` statistics cover.",
       "default" : "1h",
-      "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ]
+      "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ],
+      "x-enum-varnames" : [ "All", "Billing", "Month", "SevenDays", "TwentyFourHours", "Day", "OneHour" ]
     },
     "usage" : {
       "type" : "integer",
@@ -1498,7 +1501,6 @@
   }
 };
             defs["SendMailTo"] = {};
-            defs["startDate"] = {};
   </script>
 
   <div class="container-fluid">
@@ -4716,8 +4718,8 @@ public class HistoryApiExample {
         Integer delivered = 56; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
         Integer skip = 56; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
         Integer limit = 56; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-        startDate startDate = ; // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        endDate endDate = ; // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+        DateOrTimestamp startDate = ; // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+        DateOrTimestamp endDate = ; // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
         String sort = sort_example; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         String dir = dir_example; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
         String groupby = groupby_example; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -4752,8 +4754,8 @@ public class HistoryApiExample {
         Integer delivered = 56; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
         Integer skip = 56; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
         Integer limit = 56; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-        startDate startDate = ; // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        endDate endDate = ; // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+        DateOrTimestamp startDate = ; // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+        DateOrTimestamp endDate = ; // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
         String sort = sort_example; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         String dir = dir_example; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
         String groupby = groupby_example; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -4790,8 +4792,8 @@ String *headerfrom = headerfrom_example; // Filter by the `From` message header 
 Integer *delivered = 56; // Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
 Integer *skip = 56; // Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 Integer *limit = 56; // Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-startDate *startDate = ; // Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
-endDate *endDate = ; // Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
+DateOrTimestamp *startDate = ; // Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+DateOrTimestamp *endDate = ; // Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
 String *sort = sort_example; // Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
 String *dir = dir_example; // Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
 String *groupby = groupby_example; // Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
@@ -4853,8 +4855,8 @@ var opts = {
   'delivered': 56, // {{Integer}} Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
   'skip': 56, // {{Integer}} Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
   'limit': 56, // {{Integer}} Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-  'startDate': , // {{startDate}} Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-  'endDate': , // {{endDate}} Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+  'startDate': , // {{DateOrTimestamp}} Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+  'endDate': , // {{DateOrTimestamp}} Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
   'sort': sort_example, // {{String}} Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
   'dir': dir_example, // {{String}} Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
   'groupby': groupby_example // {{String}} Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -4906,8 +4908,8 @@ namespace Example
             var delivered = 56;  // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional) 
             var skip = 56;  // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional)  (default to 0)
             var limit = 56;  // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional)  (default to 100)
-            var startDate = new startDate(); // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) 
-            var endDate = new endDate(); // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) 
+            var startDate = new DateOrTimestamp(); // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional) 
+            var endDate = new DateOrTimestamp(); // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional) 
             var sort = sort_example;  // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional)  (default to time)
             var dir = dir_example;  // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional)  (default to desc)
             var groupby = groupby_example;  // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional)  (default to recipient)
@@ -4951,8 +4953,8 @@ $headerfrom = headerfrom_example; // String | Filter by the `From` message heade
 $delivered = 56; // Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 $skip = 56; // Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 $limit = 56; // Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-$startDate = ; // startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-$endDate = ; // endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+$startDate = ; // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+$endDate = ; // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 $sort = sort_example; // String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
 $dir = dir_example; // String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
 $groupby = groupby_example; // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -4990,8 +4992,8 @@ my $headerfrom = headerfrom_example; # String | Filter by the `From` message hea
 my $delivered = 56; # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
 my $skip = 56; # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
 my $limit = 56; # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-my $startDate = ; # startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-my $endDate = ; # endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+my $startDate = ; # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+my $endDate = ; # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 my $sort = sort_example; # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
 my $dir = dir_example; # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
 my $groupby = groupby_example; # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -5032,8 +5034,8 @@ headerfrom = headerfrom_example # String | Filter by the `From` message header a
 delivered = 56 # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
 skip = 56 # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 limit = 56 # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-startDate =  # startDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
-endDate =  # endDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
+startDate =  # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+endDate =  # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
 sort = sort_example # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
 dir = dir_example # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
 groupby = groupby_example # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
@@ -5335,7 +5337,7 @@ except ApiException as e:
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
-                                                    startDate
+                                                    DateOrTimestamp
                                                 </span>
                                 
                                                     <div class="inner description">
@@ -5354,7 +5356,7 @@ except ApiException as e:
                                         <div class="json-schema-view">
                                             <div class="primitive">
                                                 <span class="type">
-                                                    endDate
+                                                    DateOrTimestamp
                                                 </span>
                                 
                                                     <div class="inner description">
@@ -8920,7 +8922,7 @@ except ApiException as e:
                           <div class="tab-pane active" id="examples-Status-pingServer-0-curl">
                            <pre class="prettyprint"><code class="language-bsh">curl -X GET\
 -H "X-API-KEY: [[apiKey]]"\
--H "Accept: text/plain"\
+-H "Accept: text/plain,application/json"\
 "https://api.mailbaby.net/ping"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Status-pingServer-0-java">
@@ -9155,6 +9157,12 @@ except ApiException as e:
         "type" : "string",
         "example" : "Server is up and running",
         "x-content-type" : "text/plain"
+      }
+    },
+    "application/json" : {
+      "schema" : {
+        "type" : "string",
+        "example" : "Server is up and running"
       }
     }
   }

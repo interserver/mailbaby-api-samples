@@ -1517,14 +1517,15 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: </div>
-    <pre class="example"><code></code></pre>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"Server is up and running"</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
     the media type will be conveyed by the <span class="header">Content-Type</span> response header.
     <ul>
       <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
     </ul>
 
     <h3 class="field-label">Responses</h3>
@@ -1542,6 +1543,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
 
   <h3>Table of Contents</h3>
   <ol>
+    <li><a href="#DateOrTimestamp"><code>DateOrTimestamp</code> - DateOrTimestamp</a></li>
     <li><a href="#DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a></li>
     <li><a href="#DenyRuleRecord"><code>DenyRuleRecord</code> - DenyRuleRecord</a></li>
     <li><a href="#EmailAddressName"><code>EmailAddressName</code> - EmailAddressName</a></li>
@@ -1565,9 +1567,14 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <li><a href="#SendMailAdv"><code>SendMailAdv</code> - SendMailAdv</a></li>
     <li><a href="#SendMailRaw"><code>SendMailRaw</code> - SendMailRaw</a></li>
     <li><a href="#SendMailTo"><code>SendMailTo</code> - SendMailTo</a></li>
-    <li><a href="#viewMailLog_startDate_parameter"><code>viewMailLog_startDate_parameter</code> - </a></li>
   </ol>
 
+  <div class="model">
+    <h3><a name="DateOrTimestamp"><code>DateOrTimestamp</code> - DateOrTimestamp</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by <code>strtotime()</code> (e.g. <code>2024-01-15</code>, <code>last monday</code>).</div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
   <div class="model">
     <h3><a name="DenyRuleNew"><code>DenyRuleNew</code> - DenyRuleNew</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'><p>The fields required to create a new email deny rule via <code>POST /mail/rules</code>. The <code>type</code> controls what <code>data</code> is matched against:</p>
@@ -1827,12 +1834,6 @@ flagged sender.</li>
   <div class="model">
     <h3><a name="SendMailTo"><code>SendMailTo</code> - SendMailTo</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'>The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.</div>
-    <div class="field-items">
-          </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="viewMailLog_startDate_parameter"><code>viewMailLog_startDate_parameter</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    <div class='model-description'></div>
     <div class="field-items">
           </div>  <!-- field-items -->
   </div>

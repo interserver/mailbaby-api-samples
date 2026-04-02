@@ -16,10 +16,10 @@ import type { AjaxResponse } from 'rxjs/ajax';
 import { BaseAPI } from '../runtime';
 import type { OperationOpts, HttpHeaders, HttpQuery } from '../runtime';
 import type {
+    DateOrTimestamp,
     ErrorMessage,
     MailLog,
     MailStatsType,
-    ViewMailLogStartDateParameter,
 } from '../models';
 
 export interface GetStatsRequest {
@@ -40,8 +40,8 @@ export interface ViewMailLogRequest {
     delivered?: ViewMailLogDeliveredEnum;
     skip?: number;
     limit?: number;
-    startDate?: ViewMailLogStartDateParameter;
-    endDate?: ViewMailLogStartDateParameter;
+    startDate?: DateOrTimestamp;
+    endDate?: DateOrTimestamp;
     sort?: ViewMailLogSortEnum;
     dir?: ViewMailLogDirEnum;
     groupby?: ViewMailLogGroupbyEnum;
@@ -127,10 +127,10 @@ export enum GetStatsTimeEnum {
     All = 'all',
     Billing = 'billing',
     Month = 'month',
-    _7d = '7d',
-    _24h = '24h',
+    SevenDays = '7d',
+    TwentyFourHours = '24h',
     Day = 'day',
-    _1h = '1h'
+    OneHour = '1h'
 }
 /**
  * @export

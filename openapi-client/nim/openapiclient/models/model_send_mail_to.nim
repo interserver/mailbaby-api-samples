@@ -15,26 +15,26 @@ import options
 
 # OneOf type
 type SendMailToKind* {.pure.} = enum
-  StringVariant
-  ArrayVariant
+  EmailAddressSingleVariant
+  EmailAddressListVariant
 
 type SendMailTo* = object
   ## The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
   case kind*: SendMailToKind
-  of SendMailToKind.StringVariant:
-    stringValue*: string
-  of SendMailToKind.ArrayVariant:
-    arrayValue*: seq[string]
+  of SendMailToKind.EmailAddressSingleVariant:
+    EmailAddressSingleValue*: string
+  of SendMailToKind.EmailAddressListVariant:
+    EmailAddressListValue*: seq[string]
 
 proc to*(node: JsonNode, T: typedesc[SendMailTo]): SendMailTo =
   ## Custom deserializer for oneOf type - tries each variant
   try:
-    return SendMailTo(kind: SendMailToKind.StringVariant, stringValue: to(node, string))
+    return SendMailTo(kind: SendMailToKind.EmailAddressSingleVariant, EmailAddressSingleValue: to(node, string))
   except Exception as e:
     when defined(debug):
       echo "Failed to deserialize as string: ", e.msg
   try:
-    return SendMailTo(kind: SendMailToKind.ArrayVariant, arrayValue: to(node, seq[string]))
+    return SendMailTo(kind: SendMailToKind.EmailAddressListVariant, EmailAddressListValue: to(node, seq[string]))
   except Exception as e:
     when defined(debug):
       echo "Failed to deserialize as seq[string]: ", e.msg

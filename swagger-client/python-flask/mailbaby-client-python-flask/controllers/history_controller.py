@@ -1,11 +1,10 @@
 import connexion
 import six
 
-from mailbaby-client-python-flask.models.end_date import EndDate  # noqa: E501
+from mailbaby-client-python-flask.models.date_or_timestamp import DateOrTimestamp  # noqa: E501
 from mailbaby-client-python-flask.models.error_message import ErrorMessage  # noqa: E501
 from mailbaby-client-python-flask.models.mail_log import MailLog  # noqa: E501
 from mailbaby-client-python-flask.models.mail_stats_type import MailStatsType  # noqa: E501
-from mailbaby-client-python-flask.models.start_date import StartDate  # noqa: E501
 from mailbaby-client-python-flask import util
 
 
@@ -67,7 +66,7 @@ def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=No
     :rtype: MailLog
     """
     if connexion.request.is_json:
-        start_date = StartDate.from_dict(connexion.request.get_json())  # noqa: E501
+        start_date = DateOrTimestamp.from_dict(connexion.request.get_json())  # noqa: E501
     if connexion.request.is_json:
-        end_date = EndDate.from_dict(connexion.request.get_json())  # noqa: E501
+        end_date = DateOrTimestamp.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

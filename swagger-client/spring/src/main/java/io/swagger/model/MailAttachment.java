@@ -68,7 +68,7 @@ public class MailAttachment   {
    * @return data
    **/
   
-  @Schema(example = "[B@55d7237d", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  @Schema(example = "[B@20a3b8db", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
   
   @NotNull
   public byte[] getData() {  

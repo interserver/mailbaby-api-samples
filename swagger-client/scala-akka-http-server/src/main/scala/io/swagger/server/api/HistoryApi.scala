@@ -5,11 +5,10 @@ import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.unmarshalling.FromRequestUnmarshaller
 import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import io.swagger.server.AkkaHttpHelper._
+import io.swagger.server.model.DateOrTimestamp
 import io.swagger.server.model.ErrorMessage
 import io.swagger.server.model.MailLog
 import io.swagger.server.model.MailStatsType
-import io.swagger.server.model.endDate
-import io.swagger.server.model.startDate
 
 class HistoryApi(
     historyService: HistoryApiService,

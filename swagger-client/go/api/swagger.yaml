@@ -85,6 +85,10 @@ paths:
                 type: string
                 example: Server is up and running
                 x-content-type: text/plain
+            application/json:
+              schema:
+                type: string
+                example: Server is up and running
         default:
           description: Something is wrong
   /mail:
@@ -819,7 +823,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: "#/components/schemas/startDate"
+          $ref: "#/components/schemas/DateOrTimestamp"
         example: 1641781008
       - name: endDate
         in: query
@@ -831,7 +835,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: "#/components/schemas/endDate"
+          $ref: "#/components/schemas/DateOrTimestamp"
         example: 1673317008
       - name: sort
         in: query
@@ -1023,6 +1027,14 @@ paths:
           - 24h
           - day
           - 1h
+          x-enum-varnames:
+          - All
+          - Billing
+          - Month
+          - SevenDays
+          - TwentyFourHours
+          - Day
+          - OneHour
       responses:
         "200":
           description: OK
@@ -1450,11 +1462,13 @@ components:
         recipients.
       example: johndoe@company.com
       oneOf:
-      - type: string
+      - title: EmailAddressSingle
+        type: string
         description: Single recipient email address.
         format: email
         example: johndoe@company.com
-      - type: array
+      - title: EmailAddressList
+        type: array
         description: Multiple recipient email addresses.
         example:
         - johndoe@company.com
@@ -1564,7 +1578,8 @@ components:
         password: s3cr3tpassword
       allOf:
       - $ref: "#/components/schemas/MailOrder"
-      - required:
+      - title: MailOrderPassword
+        required:
         - password
         type: object
         properties:
@@ -1954,7 +1969,8 @@ components:
         data: domeinwo@server.guesshost.net
         created: 2022-03-22 19:16:35
       allOf:
-      - required:
+      - title: DenyRuleMetadata
+        required:
         - created
         - id
         type: object
@@ -2327,6 +2343,14 @@ components:
           - 24h
           - day
           - 1h
+          x-enum-varnames:
+          - All
+          - Billing
+          - Month
+          - SevenDays
+          - TwentyFourHours
+          - Day
+          - OneHour
         usage:
           type: integer
           description: Total messages accepted during the current billing cycle.  Used
@@ -2375,20 +2399,20 @@ components:
             "1.1.1.1": 142
             "2.2.2.2": 132
             "3.3.3.3": 129
-    startDate:
+    DateOrTimestamp:
+      title: DateOrTimestamp
+      description: "A date/time value accepted as either a Unix timestamp (integer\
+        \ seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`,\
+        \ `last monday`)."
       oneOf:
       - maximum: 9999999999
         minimum: 0
         type: integer
+        description: "Unix timestamp (integer seconds since epoch, 0–9999999999)."
         format: int64
       - type: string
-    endDate:
-      oneOf:
-      - maximum: 9999999999
-        minimum: 0
-        type: integer
-        format: int64
-      - type: string
+        description: Date string parseable by strtotime() such as `2024-01-15` or
+          `last monday`.
   responses:
     BadInput:
       description: Bad request — one or more input parameters were missing or invalid.

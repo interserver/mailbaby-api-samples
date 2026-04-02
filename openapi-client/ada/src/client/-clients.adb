@@ -15,7 +15,9 @@ package body .Clients is
 
    Mime_1 : aliased constant String := "multipart/form-data";
    Media_List_1 : constant Swagger.Mime_List := (
-     1 => Swagger.Mime_Text   );
+     1 => Swagger.Mime_Json,
+   
+     2 => Swagger.Mime_Text   );
    Media_List_2 : constant Swagger.Mime_List := (
      1 => Swagger.Mime_Json   );
    Media_List_3 : constant Swagger.Mime_List := (
@@ -227,8 +229,8 @@ package body .Clients is
        Delivered : in Swagger.Nullable_Integer;
        Skip : in Swagger.Nullable_Integer;
        Limit : in Swagger.Nullable_Integer;
-       Start_Date : in .Models.ViewMailLogStartDateParameter_Type;
-       End_Date : in .Models.ViewMailLogStartDateParameter_Type;
+       Start_Date : in .Models.DateOrTimestamp_Type;
+       End_Date : in .Models.DateOrTimestamp_Type;
        Sort : in Swagger.Nullable_UString;
        Dir : in Swagger.Nullable_UString;
        Groupby : in Swagger.Nullable_UString;

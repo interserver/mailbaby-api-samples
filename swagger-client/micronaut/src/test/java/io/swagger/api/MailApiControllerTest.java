@@ -1,9 +1,9 @@
 package io.swagger.api;
 
+import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -16,7 +16,6 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
-import io.swagger.model.StartDate;
 
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
@@ -170,8 +169,8 @@ class MailApiControllerTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        StartDate startDate = null;
-        EndDate endDate = null;
+        DateOrTimestamp startDate = null;
+        DateOrTimestamp endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

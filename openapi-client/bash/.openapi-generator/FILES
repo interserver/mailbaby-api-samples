@@ -5,6 +5,7 @@ _client.sh
 client.sh
 client.sh.bash-completion
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -32,4 +33,3 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md

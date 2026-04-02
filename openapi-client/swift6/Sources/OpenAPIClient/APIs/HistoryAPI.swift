@@ -13,13 +13,13 @@ open class HistoryAPI {
      * enum for parameter time
      */
     public enum Time_getStats: String, Sendable, CaseIterable {
-        case all = "all"
-        case billing = "billing"
-        case month = "month"
-        case _7d = "7d"
-        case _24h = "24h"
-        case day = "day"
-        case _1h = "1h"
+        case All = "all"
+        case Billing = "billing"
+        case Month = "month"
+        case SevenDays = "7d"
+        case TwentyFourHours = "24h"
+        case Day = "day"
+        case OneHour = "1h"
     }
 
     /**
@@ -120,7 +120,7 @@ open class HistoryAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: MailLog
      */
-    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: ViewMailLogStartDateParameter? = nil, endDate: ViewMailLogStartDateParameter? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailLog {
+    open class func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: DateOrTimestamp? = nil, endDate: DateOrTimestamp? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailLog {
         return try await viewMailLogWithRequestBuilder(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, messageId: messageId, replyto: replyto, headerfrom: headerfrom, delivered: delivered, skip: skip, limit: limit, startDate: startDate, endDate: endDate, sort: sort, dir: dir, groupby: groupby, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -152,7 +152,7 @@ open class HistoryAPI {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: ViewMailLogStartDateParameter? = nil, endDate: ViewMailLogStartDateParameter? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: DateOrTimestamp? = nil, endDate: DateOrTimestamp? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MailLog> {
         let localVariablePath = "/mail/log"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil

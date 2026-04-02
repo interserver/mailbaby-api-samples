@@ -27,10 +27,10 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
+import org.openapitools.client.models.DateOrTimestamp
 import org.openapitools.client.models.ErrorMessage
 import org.openapitools.client.models.MailLog
 import org.openapitools.client.models.MailStatsType
-import org.openapitools.client.models.ViewMailLogStartDateParameter
 
 import com.squareup.moshi.Json
 
@@ -60,13 +60,13 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * enum for parameter time
      */
      enum class TimeGetStats(val value: kotlin.String) {
-         @Json(name = "all") all("all"),
-         @Json(name = "billing") billing("billing"),
-         @Json(name = "month") month("month"),
-         @Json(name = "7d") _7d("7d"),
-         @Json(name = "24h") _24h("24h"),
-         @Json(name = "day") day("day"),
-         @Json(name = "1h") _1h("1h");
+         @Json(name = "all") All("all"),
+         @Json(name = "billing") Billing("billing"),
+         @Json(name = "month") Month("month"),
+         @Json(name = "7d") SevenDays("7d"),
+         @Json(name = "24h") TwentyFourHours("24h"),
+         @Json(name = "day") Day("day"),
+         @Json(name = "1h") OneHour("1h");
 
         /**
          * Override [toString()] to avoid using the enum variable name as the value, and instead use
@@ -254,7 +254,7 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, messageId: kotlin.String? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: DeliveredViewMailLog? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: ViewMailLogStartDateParameter? = null, endDate: ViewMailLogStartDateParameter? = null, sort: SortViewMailLog? = SortViewMailLog.time, dir: DirViewMailLog? = DirViewMailLog.desc, groupby: GroupbyViewMailLog? = GroupbyViewMailLog.recipient) : MailLog {
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, messageId: kotlin.String? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: DeliveredViewMailLog? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: DateOrTimestamp? = null, endDate: DateOrTimestamp? = null, sort: SortViewMailLog? = SortViewMailLog.time, dir: DirViewMailLog? = DirViewMailLog.desc, groupby: GroupbyViewMailLog? = GroupbyViewMailLog.recipient) : MailLog {
         val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate, sort = sort, dir = dir, groupby = groupby)
 
         return when (localVarResponse.responseType) {
@@ -300,7 +300,7 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: ViewMailLogStartDateParameter?, endDate: ViewMailLogStartDateParameter?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : ApiResponse<MailLog?> {
+    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: DateOrTimestamp?, endDate: DateOrTimestamp?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : ApiResponse<MailLog?> {
         val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate, sort = sort, dir = dir, groupby = groupby)
 
         return request<Unit, MailLog>(
@@ -331,7 +331,7 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to Groupby.recipient)
      * @return RequestConfig
      */
-    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: ViewMailLogStartDateParameter?, endDate: ViewMailLogStartDateParameter?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : RequestConfig<Unit> {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: DateOrTimestamp?, endDate: DateOrTimestamp?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {

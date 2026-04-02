@@ -5,10 +5,10 @@
 #include <cstring>
 #include <list>
 #include <glib.h>
+#include "DateOrTimestamp.h"
 #include "ErrorMessage.h"
 #include "MailLog.h"
 #include "MailStatsType.h"
-#include "ViewMailLog_startDate_parameter.h"
 #include "Error.h"
 
 /** \defgroup Operations API Endpoints
@@ -80,7 +80,7 @@ bool getStatsAsync(char * accessToken,
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogSync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, ViewMailLog_startDate_parameter startDate, ViewMailLog_startDate_parameter endDate, std::string sort, std::string dir, std::string groupby, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, DateOrTimestamp startDate, DateOrTimestamp endDate, std::string sort, std::string dir, std::string groupby, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 
@@ -110,7 +110,7 @@ bool viewMailLogSync(char * accessToken,
  * \param userData The user data to be passed to the callback function.
  */
 bool viewMailLogAsync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, ViewMailLog_startDate_parameter startDate, ViewMailLog_startDate_parameter endDate, std::string sort, std::string dir, std::string groupby, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, DateOrTimestamp startDate, DateOrTimestamp endDate, std::string sort, std::string dir, std::string groupby, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData);
 

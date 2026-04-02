@@ -34,6 +34,7 @@ part 'api/sending_api.dart';
 part 'api/services_api.dart';
 part 'api/status_api.dart';
 
+part 'model/date_or_timestamp.dart';
 part 'model/deny_rule_new.dart';
 part 'model/deny_rule_record.dart';
 part 'model/email_address_name.dart';
@@ -57,7 +58,6 @@ part 'model/send_mail.dart';
 part 'model/send_mail_adv.dart';
 part 'model/send_mail_raw.dart';
 part 'model/send_mail_to.dart';
-part 'model/view_mail_log_start_date_parameter.dart';
 
 
 /// An [ApiClient] instance that uses the default values obtained from

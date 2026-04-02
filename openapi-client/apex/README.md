@@ -84,6 +84,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [OASDateOrTimestamp](OASDateOrTimestamp.md)
  - [OASDenyRuleNew](OASDenyRuleNew.md)
  - [OASDenyRuleRecord](OASDenyRuleRecord.md)
  - [OASEmailAddressName](OASEmailAddressName.md)
@@ -107,7 +108,6 @@ Class | Method | HTTP request | Description
  - [OASSendMailAdv](OASSendMailAdv.md)
  - [OASSendMailRaw](OASSendMailRaw.md)
  - [OASSendMailTo](OASSendMailTo.md)
- - [OASViewMailLogStartDateParameter](OASViewMailLogStartDateParameter.md)
 
 
 ## Documentation for Authorization

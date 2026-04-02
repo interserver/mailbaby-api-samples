@@ -1,3 +1,4 @@
+export * from './date-or-timestamp';
 export * from './deny-rule-new';
 export * from './deny-rule-record';
 export * from './email-address-name';
@@ -5,7 +6,6 @@ export * from './email-address-names';
 export * from './email-address-param';
 export * from './email-address-types';
 export * from './email-addresses-types';
-export * from './end-date';
 export * from './error-message';
 export * from './generic-response';
 export * from './mail-attachment';
@@ -22,4 +22,3 @@ export * from './send-mail';
 export * from './send-mail-adv';
 export * from './send-mail-raw';
 export * from './send-mail-to';
-export * from './start-date';

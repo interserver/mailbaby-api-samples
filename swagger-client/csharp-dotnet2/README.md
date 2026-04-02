@@ -186,6 +186,7 @@ Class | Method | HTTP request | Description
  - [mailbaby-client-csharp-dotnet2.Model.AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
  - [mailbaby-client-csharp-dotnet2.Model.AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
  - [mailbaby-client-csharp-dotnet2.Model.AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
+ - [mailbaby-client-csharp-dotnet2.Model.DateOrTimestamp](docs/DateOrTimestamp.md)
  - [mailbaby-client-csharp-dotnet2.Model.DenyRuleNew](docs/DenyRuleNew.md)
  - [mailbaby-client-csharp-dotnet2.Model.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [mailbaby-client-csharp-dotnet2.Model.EmailAddressName](docs/EmailAddressName.md)
@@ -193,7 +194,6 @@ Class | Method | HTTP request | Description
  - [mailbaby-client-csharp-dotnet2.Model.EmailAddressParam](docs/EmailAddressParam.md)
  - [mailbaby-client-csharp-dotnet2.Model.EmailAddressTypes](docs/EmailAddressTypes.md)
  - [mailbaby-client-csharp-dotnet2.Model.EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [mailbaby-client-csharp-dotnet2.Model.EndDate](docs/EndDate.md)
  - [mailbaby-client-csharp-dotnet2.Model.ErrorMessage](docs/ErrorMessage.md)
  - [mailbaby-client-csharp-dotnet2.Model.GenericResponse](docs/GenericResponse.md)
  - [mailbaby-client-csharp-dotnet2.Model.MailAttachment](docs/MailAttachment.md)
@@ -210,7 +210,6 @@ Class | Method | HTTP request | Description
  - [mailbaby-client-csharp-dotnet2.Model.SendMailAdv](docs/SendMailAdv.md)
  - [mailbaby-client-csharp-dotnet2.Model.SendMailRaw](docs/SendMailRaw.md)
  - [mailbaby-client-csharp-dotnet2.Model.SendMailTo](docs/SendMailTo.md)
- - [mailbaby-client-csharp-dotnet2.Model.StartDate](docs/StartDate.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

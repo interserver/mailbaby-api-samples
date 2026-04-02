@@ -10,6 +10,7 @@ src/main/scala/org/openapitools/client/apis/JsonSupports.scala
 src/main/scala/org/openapitools/client/apis/SendingApi.scala
 src/main/scala/org/openapitools/client/apis/ServicesApi.scala
 src/main/scala/org/openapitools/client/apis/StatusApi.scala
+src/main/scala/org/openapitools/client/models/DateOrTimestamp.scala
 src/main/scala/org/openapitools/client/models/DeliveredStatus.scala
 src/main/scala/org/openapitools/client/models/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/models/DenyRuleNewType.scala
@@ -41,7 +42,6 @@ src/main/scala/org/openapitools/client/models/SendMailTo.scala
 src/main/scala/org/openapitools/client/models/ViewMailLogDirParameter.scala
 src/main/scala/org/openapitools/client/models/ViewMailLogGroupbyParameter.scala
 src/main/scala/org/openapitools/client/models/ViewMailLogSortParameter.scala
-src/main/scala/org/openapitools/client/models/ViewMailLogStartDateParameter.scala
 src/main/scala/org/openapitools/client/models/_Authorization.scala
 src/main/scala/org/openapitools/client/models/_FailedRequest.scala
 src/main/scala/org/openapitools/client/models/package.scala

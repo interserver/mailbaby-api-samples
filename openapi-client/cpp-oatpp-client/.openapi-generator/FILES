@@ -7,6 +7,7 @@ api/SendingApi.hpp
 api/ServicesApi.hpp
 api/StatusApi.hpp
 main-api-client.cpp
+model/DateOrTimestamp.hpp
 model/DenyRuleNew.hpp
 model/DenyRuleRecord.hpp
 model/EmailAddressName.hpp
@@ -30,4 +31,3 @@ model/SendMail.hpp
 model/SendMailAdv.hpp
 model/SendMailRaw.hpp
 model/SendMailTo.hpp
-model/ViewMailLog_startDate_parameter.hpp

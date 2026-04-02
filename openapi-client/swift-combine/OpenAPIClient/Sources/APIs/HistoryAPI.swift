@@ -31,13 +31,13 @@ open class HistoryAPI {
     /// Enum for parameter time
     ///
     public enum GetStatsTime: String, Codable, CaseIterable {
-        case all = "all"
-        case billing = "billing"
-        case month = "month"
-        case _7d = "7d"
-        case _24h = "24h"
-        case day = "day"
-        case _1h = "1h"
+        case All = "all"
+        case Billing = "billing"
+        case Month = "month"
+        case SevenDays = "7d"
+        case TwentyFourHours = "24h"
+        case Day = "day"
+        case OneHour = "1h"
     }
     public enum GetStatsError: Error, CustomStringConvertible {
         // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
@@ -166,7 +166,7 @@ open class HistoryAPI {
     /// - parameter dir: (query) Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. (optional, default to .desc)
     /// - parameter groupby: (query) Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to .recipient)
     /// - returns: AnyPublisher<MailLog, Error> 
-    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil, skip: Int? = nil, limit: Int? = nil, startDate: ViewMailLogStartDateParameter? = nil, endDate: ViewMailLogStartDateParameter? = nil, sort: ViewMailLogSort? = nil, dir: ViewMailLogDir? = nil, groupby: ViewMailLogGroupby? = nil) -> AnyPublisher<MailLog, Error> {
+    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil, skip: Int? = nil, limit: Int? = nil, startDate: DateOrTimestamp? = nil, endDate: DateOrTimestamp? = nil, sort: ViewMailLogSort? = nil, dir: ViewMailLogDir? = nil, groupby: ViewMailLogGroupby? = nil) -> AnyPublisher<MailLog, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {

@@ -22,6 +22,7 @@ Sources/OpenAPIClient/Infrastructure/OpenISO8601DateFormatter.swift
 Sources/OpenAPIClient/Infrastructure/SynchronizedDictionary.swift
 Sources/OpenAPIClient/Infrastructure/URLSessionImplementations.swift
 Sources/OpenAPIClient/Infrastructure/Validation.swift
+Sources/OpenAPIClient/Models/DateOrTimestamp.swift
 Sources/OpenAPIClient/Models/DenyRuleNew.swift
 Sources/OpenAPIClient/Models/DenyRuleRecord.swift
 Sources/OpenAPIClient/Models/EmailAddressName.swift
@@ -45,8 +46,8 @@ Sources/OpenAPIClient/Models/SendMail.swift
 Sources/OpenAPIClient/Models/SendMailAdv.swift
 Sources/OpenAPIClient/Models/SendMailRaw.swift
 Sources/OpenAPIClient/Models/SendMailTo.swift
-Sources/OpenAPIClient/Models/ViewMailLogStartDateParameter.swift
 docs/BlockingAPI.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -74,6 +75,5 @@ docs/SendMailTo.md
 docs/SendingAPI.md
 docs/ServicesAPI.md
 docs/StatusAPI.md
-docs/ViewMailLogStartDateParameter.md
 git_push.sh
 project.yml

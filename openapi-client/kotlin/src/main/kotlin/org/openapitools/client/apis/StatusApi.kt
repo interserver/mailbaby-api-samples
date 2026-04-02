@@ -110,7 +110,7 @@ open class StatusApi(basePath: kotlin.String = defaultBasePath, client: Call.Fac
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "text/plain"
+        localVariableHeaders["Accept"] = "text/plain, application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,

@@ -9,6 +9,7 @@ AllOfSendMailAdvCc : io.swagger.model.AllOfSendMailAdvCc
 AllOfSendMailAdvFrom : io.swagger.model.AllOfSendMailAdvFrom
 AllOfSendMailAdvReplyto : io.swagger.model.AllOfSendMailAdvReplyto
 AllOfSendMailAdvTo : io.swagger.model.AllOfSendMailAdvTo
+DateOrTimestamp : io.swagger.model.DateOrTimestamp
 DenyRuleNew : io.swagger.model.DenyRuleNew
 DenyRuleRecord : io.swagger.model.DenyRuleRecord
 EmailAddressName : io.swagger.model.EmailAddressName
@@ -16,7 +17,6 @@ EmailAddressNames : io.swagger.model.EmailAddressNames
 EmailAddressParam : io.swagger.model.EmailAddressParam
 EmailAddressTypes : io.swagger.model.EmailAddressTypes
 EmailAddressesTypes : io.swagger.model.EmailAddressesTypes
-EndDate : io.swagger.model.EndDate
 ErrorMessage : io.swagger.model.ErrorMessage
 GenericResponse : io.swagger.model.GenericResponse
 MailAttachment : io.swagger.model.MailAttachment
@@ -33,7 +33,6 @@ SendMail : io.swagger.model.SendMail
 SendMailAdv : io.swagger.model.SendMailAdv
 SendMailRaw : io.swagger.model.SendMailRaw
 SendMailTo : io.swagger.model.SendMailTo
-StartDate : io.swagger.model.StartDate
 
 entityProcessors:
   - json

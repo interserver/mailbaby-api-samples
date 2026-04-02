@@ -42,7 +42,7 @@ public interface PingApi {
         
         @ApiResponse(responseCode = "200", description = "Something is wrong") })
     @RequestMapping(value = "/ping",
-        produces = { "text/plain" }, 
+        produces = { "text/plain", "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<String> pingServer();
 

@@ -18,10 +18,10 @@ import tables
 import typetraits
 import uri
 
+import ../models/model_date_or_timestamp
 import ../models/model_error_message
 import ../models/model_mail_log
 import ../models/model_mail_stats_type
-import ../models/model_view_mail_log_start_date_parameter
 
 const basepath = "https://api.mailbaby.net"
 
@@ -49,7 +49,7 @@ proc getStats*(httpClient: HttpClient, time: string): (Option[MailStatsType], Re
   constructResult[MailStatsType](response)
 
 
-proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, messageId: string, replyto: string, headerfrom: string, delivered: Delivered, skip: int, limit: int, startDate: ViewMailLogStartDateParameter, endDate: ViewMailLogStartDateParameter, sort: string, dir: string, groupby: string): (Option[MailLog], Response) =
+proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, messageId: string, replyto: string, headerfrom: string, delivered: Delivered, skip: int, limit: int, startDate: DateOrTimestamp, endDate: DateOrTimestamp, sort: string, dir: string, groupby: string): (Option[MailLog], Response) =
   ## Displays the mail log
   var query_params_list: seq[(string, string)] = @[]
   if $id != "":

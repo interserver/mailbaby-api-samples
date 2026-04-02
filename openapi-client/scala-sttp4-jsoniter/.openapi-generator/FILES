@@ -10,6 +10,7 @@ src/main/scala/org/openapitools/client/api/StatusApi.scala
 src/main/scala/org/openapitools/client/core/AdditionalTypeSerializers.scala
 src/main/scala/org/openapitools/client/core/Helpers.scala
 src/main/scala/org/openapitools/client/core/JsonSupport.scala
+src/main/scala/org/openapitools/client/model/DateOrTimestamp.scala
 src/main/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/model/DenyRuleRecord.scala
 src/main/scala/org/openapitools/client/model/EmailAddressName.scala
@@ -33,4 +34,3 @@ src/main/scala/org/openapitools/client/model/SendMail.scala
 src/main/scala/org/openapitools/client/model/SendMailAdv.scala
 src/main/scala/org/openapitools/client/model/SendMailRaw.scala
 src/main/scala/org/openapitools/client/model/SendMailTo.scala
-src/main/scala/org/openapitools/client/model/ViewMailLogStartDateParameter.scala

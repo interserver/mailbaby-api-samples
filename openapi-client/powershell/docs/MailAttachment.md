@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 - Prepare the resource
 ```powershell
 $MailAttachment = Initialize-PSOpenAPIToolsMailAttachment  -Filename message.txt `
- -VarData [B@575e572f
+ -VarData [B@42a0501e
 ```
 
 - Convert the resource to JSON

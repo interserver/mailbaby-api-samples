@@ -272,7 +272,7 @@ static bool viewMailLogProcessor(MemoryStruct_s p_chunk, long code, char* errorm
 }
 
 static bool viewMailLogHelper(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, ViewMailLog_startDate_parameter startDate, ViewMailLog_startDate_parameter endDate, std::string sort, std::string dir, std::string groupby, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, DateOrTimestamp startDate, DateOrTimestamp endDate, std::string sort, std::string dir, std::string groupby, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData, bool isAsync)
 {
@@ -381,14 +381,14 @@ static bool viewMailLogHelper(char * accessToken,
 	}
 
 
-	itemAtq = stringify(&startDate, "ViewMailLog_startDate_parameter");
+	itemAtq = stringify(&startDate, "DateOrTimestamp");
 	queryParams.insert(pair<string, string>("startDate", itemAtq));
 	if( itemAtq.empty()==true){
 		queryParams.erase("startDate");
 	}
 
 
-	itemAtq = stringify(&endDate, "ViewMailLog_startDate_parameter");
+	itemAtq = stringify(&endDate, "DateOrTimestamp");
 	queryParams.insert(pair<string, string>("endDate", itemAtq));
 	if( itemAtq.empty()==true){
 		queryParams.erase("endDate");
@@ -469,7 +469,7 @@ static bool viewMailLogHelper(char * accessToken,
 
 
 bool HistoryManager::viewMailLogAsync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, ViewMailLog_startDate_parameter startDate, ViewMailLog_startDate_parameter endDate, std::string sort, std::string dir, std::string groupby, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, DateOrTimestamp startDate, DateOrTimestamp endDate, std::string sort, std::string dir, std::string groupby, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {
@@ -479,7 +479,7 @@ bool HistoryManager::viewMailLogAsync(char * accessToken,
 }
 
 bool HistoryManager::viewMailLogSync(char * accessToken,
-	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, ViewMailLog_startDate_parameter startDate, ViewMailLog_startDate_parameter endDate, std::string sort, std::string dir, std::string groupby, 
+	long long id, std::string origin, std::string mx, std::string from, std::string to, std::string subject, std::string mailid, std::string messageId, std::string replyto, std::string headerfrom, int delivered, int skip, int limit, DateOrTimestamp startDate, DateOrTimestamp endDate, std::string sort, std::string dir, std::string groupby, 
 	void(* handler)(MailLog, Error, void* )
 	, void* userData)
 {

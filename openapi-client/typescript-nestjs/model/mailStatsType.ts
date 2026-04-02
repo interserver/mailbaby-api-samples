@@ -48,10 +48,10 @@ export namespace MailStatsType {
         All: 'all' as TimeEnum,
         Billing: 'billing' as TimeEnum,
         Month: 'month' as TimeEnum,
-        _7d: '7d' as TimeEnum,
-        _24h: '24h' as TimeEnum,
+        SevenDays: '7d' as TimeEnum,
+        TwentyFourHours: '24h' as TimeEnum,
         Day: 'day' as TimeEnum,
-        _1h: '1h' as TimeEnum
+        OneHour: '1h' as TimeEnum
     };
 }
 

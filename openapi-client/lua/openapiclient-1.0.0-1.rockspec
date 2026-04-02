@@ -28,6 +28,7 @@ build = {
 		["openapiclient.api.sending_api"] = "openapiclient/api/sending_api.lua";
 		["openapiclient.api.services_api"] = "openapiclient/api/services_api.lua";
 		["openapiclient.api.status_api"] = "openapiclient/api/status_api.lua";
+		["openapiclient.model.date_or_timestamp"] = "openapiclient/model/date_or_timestamp.lua";
 		["openapiclient.model.deny_rule_new"] = "openapiclient/model/deny_rule_new.lua";
 		["openapiclient.model.deny_rule_record"] = "openapiclient/model/deny_rule_record.lua";
 		["openapiclient.model.email_address_name"] = "openapiclient/model/email_address_name.lua";
@@ -51,6 +52,5 @@ build = {
 		["openapiclient.model.send_mail_adv"] = "openapiclient/model/send_mail_adv.lua";
 		["openapiclient.model.send_mail_raw"] = "openapiclient/model/send_mail_raw.lua";
 		["openapiclient.model.send_mail_to"] = "openapiclient/model/send_mail_to.lua";
-		["openapiclient.model.view_mail_log_start_date_parameter"] = "openapiclient/model/view_mail_log_start_date_parameter.lua";
 	}
 }

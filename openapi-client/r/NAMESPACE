@@ -13,6 +13,7 @@ export(ApiClient)
 export(ApiResponse)
 
 # Models
+export(DateOrTimestamp)
 export(DenyRuleNew)
 export(DenyRuleRecord)
 export(EmailAddressName)
@@ -36,7 +37,6 @@ export(SendMail)
 export(SendMailAdv)
 export(SendMailRaw)
 export(SendMailTo)
-export(ViewMailLogStartDateParameter)
 
 # APIs
 export(BlockingApi)

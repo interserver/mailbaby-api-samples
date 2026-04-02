@@ -30,13 +30,13 @@ inline FString ToString(const OpenAPIMailStatsType::TimeEnum& Value)
 		return TEXT("billing");
 	case OpenAPIMailStatsType::TimeEnum::Month:
 		return TEXT("month");
-	case OpenAPIMailStatsType::TimeEnum::_7d:
+	case OpenAPIMailStatsType::TimeEnum::SevenDays:
 		return TEXT("7d");
-	case OpenAPIMailStatsType::TimeEnum::_24h:
+	case OpenAPIMailStatsType::TimeEnum::TwentyFourHours:
 		return TEXT("24h");
 	case OpenAPIMailStatsType::TimeEnum::Day:
 		return TEXT("day");
-	case OpenAPIMailStatsType::TimeEnum::_1h:
+	case OpenAPIMailStatsType::TimeEnum::OneHour:
 		return TEXT("1h");
 	}
 
@@ -55,10 +55,10 @@ inline bool FromString(const FString& EnumAsString, OpenAPIMailStatsType::TimeEn
 		{ TEXT("all"), OpenAPIMailStatsType::TimeEnum::All },
 		{ TEXT("billing"), OpenAPIMailStatsType::TimeEnum::Billing },
 		{ TEXT("month"), OpenAPIMailStatsType::TimeEnum::Month },
-		{ TEXT("7d"), OpenAPIMailStatsType::TimeEnum::_7d },
-		{ TEXT("24h"), OpenAPIMailStatsType::TimeEnum::_24h },
+		{ TEXT("7d"), OpenAPIMailStatsType::TimeEnum::SevenDays },
+		{ TEXT("24h"), OpenAPIMailStatsType::TimeEnum::TwentyFourHours },
 		{ TEXT("day"), OpenAPIMailStatsType::TimeEnum::Day },
-		{ TEXT("1h"), OpenAPIMailStatsType::TimeEnum::_1h }, };
+		{ TEXT("1h"), OpenAPIMailStatsType::TimeEnum::OneHour }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

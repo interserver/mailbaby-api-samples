@@ -58,6 +58,12 @@
                   "type" : "string",
                   "example" : "Server is up and running"
                 }
+              },
+              "application/json" : {
+                "schema" : {
+                  "type" : "string",
+                  "example" : "Server is up and running"
+                }
               }
             }
           },
@@ -879,7 +885,7 @@
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/startDate"
+            "$ref" : "#/components/schemas/DateOrTimestamp"
           },
           "example" : 1641781008
         }, {
@@ -890,7 +896,7 @@
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/endDate"
+            "$ref" : "#/components/schemas/DateOrTimestamp"
           },
           "example" : 1673317008
         }, {
@@ -1080,7 +1086,8 @@
           "schema" : {
             "type" : "string",
             "default" : "1h",
-            "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ]
+            "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ],
+            "x-enum-varnames" : [ "All", "Billing", "Month", "SevenDays", "TwentyFourHours", "Day", "OneHour" ]
           }
         } ],
         "responses" : {
@@ -1638,11 +1645,13 @@
         "description" : "The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.",
         "example" : "johndoe@company.com",
         "oneOf" : [ {
+          "title" : "EmailAddressSingle",
           "type" : "string",
           "description" : "Single recipient email address.",
           "format" : "email",
           "example" : "johndoe@company.com"
         }, {
+          "title" : "EmailAddressList",
           "type" : "array",
           "description" : "Multiple recipient email addresses.",
           "example" : [ "johndoe@company.com", "janedoe@company.com" ],
@@ -1740,6 +1749,7 @@
         "allOf" : [ {
           "$ref" : "#/components/schemas/MailOrder"
         }, {
+          "title" : "MailOrderPassword",
           "required" : [ "password" ],
           "type" : "object",
           "properties" : {
@@ -2090,6 +2100,7 @@
           "created" : "2022-03-22 19:16:35"
         },
         "allOf" : [ {
+          "title" : "DenyRuleMetadata",
           "required" : [ "created", "id" ],
           "type" : "object",
           "properties" : {
@@ -2395,7 +2406,8 @@
             "type" : "string",
             "description" : "The time window these `received`, `sent`, and `volume` statistics cover.",
             "default" : "1h",
-            "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ]
+            "enum" : [ "all", "billing", "month", "7d", "24h", "day", "1h" ],
+            "x-enum-varnames" : [ "All", "Billing", "Month", "SevenDays", "TwentyFourHours", "Day", "OneHour" ]
           },
           "usage" : {
             "type" : "integer",
@@ -2451,24 +2463,18 @@
           }
         }
       },
-      "startDate" : {
+      "DateOrTimestamp" : {
+        "title" : "DateOrTimestamp",
+        "description" : "A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).",
         "oneOf" : [ {
           "maximum" : 9999999999,
           "minimum" : 0,
           "type" : "integer",
+          "description" : "Unix timestamp (integer seconds since epoch, 0–9999999999).",
           "format" : "int64"
         }, {
-          "type" : "string"
-        } ]
-      },
-      "endDate" : {
-        "oneOf" : [ {
-          "maximum" : 9999999999,
-          "minimum" : 0,
-          "type" : "integer",
-          "format" : "int64"
-        }, {
-          "type" : "string"
+          "type" : "string",
+          "description" : "Date string parseable by strtotime() such as `2024-01-15` or `last monday`."
         } ]
       }
     },

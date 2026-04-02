@@ -4,6 +4,8 @@ doc/README.md
 doc/generateDocumentation.sh
 src/BlockingManager.cpp
 src/BlockingManager.h
+src/DateOrTimestamp.cpp
+src/DateOrTimestamp.h
 src/DenyRuleNew.cpp
 src/DenyRuleNew.h
 src/DenyRuleRecord.cpp
@@ -66,5 +68,3 @@ src/ServicesManager.cpp
 src/ServicesManager.h
 src/StatusManager.cpp
 src/StatusManager.h
-src/ViewMailLogStartDateParameter.cpp
-src/ViewMailLogStartDateParameter.h

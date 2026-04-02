@@ -18,6 +18,7 @@ docs/HistoryAPI.md
 docs/SendingAPI.md
 docs/ServicesAPI.md
 docs/StatusAPI.md
+docs/date_or_timestamp.md
 docs/deny_rule_new.md
 docs/deny_rule_record.md
 docs/email_address_name.md
@@ -41,7 +42,6 @@ docs/send_mail.md
 docs/send_mail_adv.md
 docs/send_mail_raw.md
 docs/send_mail_to.md
-docs/view_mail_log_start_date_parameter.md
 external/cJSON.c
 external/cJSON.h
 external/cJSON.licence
@@ -51,6 +51,8 @@ include/keyValuePair.h
 include/list.h
 libcurl.licence
 model/any_type.h
+model/date_or_timestamp.c
+model/date_or_timestamp.h
 model/deny_rule_new.c
 model/deny_rule_new.h
 model/deny_rule_record.c
@@ -99,13 +101,12 @@ model/send_mail_raw.c
 model/send_mail_raw.h
 model/send_mail_to.c
 model/send_mail_to.h
-model/view_mail_log_start_date_parameter.c
-model/view_mail_log_start_date_parameter.h
 src/apiClient.c
 src/apiKey.c
 src/binary.c
 src/list.c
 uncrustify-rules.cfg
+unit-test/test_date_or_timestamp.c
 unit-test/test_deny_rule_new.c
 unit-test/test_deny_rule_record.c
 unit-test/test_email_address_name.c
@@ -129,4 +130,3 @@ unit-test/test_send_mail.c
 unit-test/test_send_mail_adv.c
 unit-test/test_send_mail_raw.c
 unit-test/test_send_mail_to.c
-unit-test/test_view_mail_log_start_date_parameter.c

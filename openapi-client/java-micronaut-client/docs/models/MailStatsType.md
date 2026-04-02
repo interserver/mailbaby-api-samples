@@ -22,13 +22,13 @@ Name | Type | Description | Notes
 
 Name | Value
 ---- | -----
-ALL | `"all"`
-BILLING | `"billing"`
-MONTH | `"month"`
-_7D | `"7d"`
-_24H | `"24h"`
-DAY | `"day"`
-_1H | `"1h"`
+All | `"all"`
+Billing | `"billing"`
+Month | `"month"`
+SevenDays | `"7d"`
+TwentyFourHours | `"24h"`
+Day | `"day"`
+OneHour | `"1h"`
 
 
 

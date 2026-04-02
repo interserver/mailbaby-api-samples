@@ -45,7 +45,7 @@ data class MailStatsType (
 
     /* The time window these `received`, `sent`, and `volume` statistics cover. */
     @Json(name = "time")
-    val time: MailStatsType.Time? = Time._1h,
+    val time: MailStatsType.Time? = Time.OneHour,
 
     /* Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. */
     @Json(name = "usage")
@@ -75,17 +75,17 @@ data class MailStatsType (
     /**
      * The time window these `received`, `sent`, and `volume` statistics cover.
      *
-     * Values: all,billing,month,_7d,_24h,day,_1h
+     * Values: All,Billing,Month,SevenDays,TwentyFourHours,Day,OneHour
      */
     @JsonClass(generateAdapter = false)
     enum class Time(val value: kotlin.String) {
-        @Json(name = "all") all("all"),
-        @Json(name = "billing") billing("billing"),
-        @Json(name = "month") month("month"),
-        @Json(name = "7d") _7d("7d"),
-        @Json(name = "24h") _24h("24h"),
-        @Json(name = "day") day("day"),
-        @Json(name = "1h") _1h("1h");
+        @Json(name = "all") All("all"),
+        @Json(name = "billing") Billing("billing"),
+        @Json(name = "month") Month("month"),
+        @Json(name = "7d") SevenDays("7d"),
+        @Json(name = "24h") TwentyFourHours("24h"),
+        @Json(name = "day") Day("day"),
+        @Json(name = "1h") OneHour("1h");
     }
 
 }

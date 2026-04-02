@@ -8,10 +8,10 @@
 #include "Helpers.h"
 #include <list>
 
+#include "DateOrTimestamp.h"
 #include "ErrorMessage.h"
 #include "MailLog.h"
 #include "MailStatsType.h"
-#include "ViewMailLog_startDate_parameter.h"
 
 namespace Tiny {
 
@@ -107,10 +107,10 @@ public:
             int limit
             , 
             
-            ViewMailLog_startDate_parameter startDate
+            DateOrTimestamp startDate
             , 
             
-            ViewMailLog_startDate_parameter endDate
+            DateOrTimestamp endDate
             , 
             
             std::string sort

@@ -192,8 +192,8 @@ opts = {
   delivered: 56, # Integer | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
   skip: 0, # Integer | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
   limit: 100, # Integer | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-  start_date: SwaggerClient::StartDate.new, # StartDate | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-  end_date: SwaggerClient::EndDate.new, # EndDate | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+  start_date: SwaggerClient::DateOrTimestamp.new, # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+  end_date: SwaggerClient::DateOrTimestamp.new, # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
   sort: 'time', # String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
   dir: 'desc', # String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
   groupby: 'recipient' # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
@@ -361,6 +361,7 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
  - [SwaggerClient::AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
  - [SwaggerClient::AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
+ - [SwaggerClient::DateOrTimestamp](docs/DateOrTimestamp.md)
  - [SwaggerClient::DenyRuleNew](docs/DenyRuleNew.md)
  - [SwaggerClient::DenyRuleRecord](docs/DenyRuleRecord.md)
  - [SwaggerClient::EmailAddressName](docs/EmailAddressName.md)
@@ -368,7 +369,6 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::EmailAddressParam](docs/EmailAddressParam.md)
  - [SwaggerClient::EmailAddressTypes](docs/EmailAddressTypes.md)
  - [SwaggerClient::EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [SwaggerClient::EndDate](docs/EndDate.md)
  - [SwaggerClient::ErrorMessage](docs/ErrorMessage.md)
  - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
  - [SwaggerClient::MailAttachment](docs/MailAttachment.md)
@@ -385,7 +385,6 @@ Class | Method | HTTP request | Description
  - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
  - [SwaggerClient::SendMailRaw](docs/SendMailRaw.md)
  - [SwaggerClient::SendMailTo](docs/SendMailTo.md)
- - [SwaggerClient::StartDate](docs/StartDate.md)
 
 ## Documentation for Authorization
 

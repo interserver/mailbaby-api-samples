@@ -7,6 +7,7 @@ src/apis/ServicesApi.ts
 src/apis/StatusApi.ts
 src/apis/index.ts
 src/index.ts
+src/models/DateOrTimestamp.ts
 src/models/DenyRuleNew.ts
 src/models/DenyRuleRecord.ts
 src/models/EmailAddressName.ts
@@ -30,7 +31,6 @@ src/models/SendMail.ts
 src/models/SendMailAdv.ts
 src/models/SendMailRaw.ts
 src/models/SendMailTo.ts
-src/models/ViewMailLogStartDateParameter.ts
 src/models/index.ts
 src/runtime.ts
 tsconfig.json

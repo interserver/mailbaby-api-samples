@@ -16,6 +16,7 @@ export 'package:openapi/src/api/sending_api.dart';
 export 'package:openapi/src/api/services_api.dart';
 export 'package:openapi/src/api/status_api.dart';
 
+export 'package:openapi/src/model/date_or_timestamp.dart';
 export 'package:openapi/src/model/deny_rule_new.dart';
 export 'package:openapi/src/model/deny_rule_record.dart';
 export 'package:openapi/src/model/email_address_name.dart';
@@ -39,5 +40,4 @@ export 'package:openapi/src/model/send_mail.dart';
 export 'package:openapi/src/model/send_mail_adv.dart';
 export 'package:openapi/src/model/send_mail_raw.dart';
 export 'package:openapi/src/model/send_mail_to.dart';
-export 'package:openapi/src/model/view_mail_log_start_date_parameter.dart';
 

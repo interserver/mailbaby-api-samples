@@ -15,6 +15,10 @@ Checks if the server is running
 
 No description available.
 
+.PARAMETER ReturnType
+
+Select the return type (optional): text/plain, application/json
+
 .PARAMETER WithHttpInfo
 
 A switch when turned on will return a hash table of Response, StatusCode and Headers instead of just the Response
@@ -26,6 +30,9 @@ String
 function Ping-Server {
     [CmdletBinding()]
     Param (
+        [String]
+        [ValidateSet("text/plain", "application/json")]
+        $ReturnType,
         [Switch]
         $WithHttpInfo
     )
@@ -45,7 +52,12 @@ function Ping-Server {
 
         $Configuration = Get-Configuration
         # HTTP header 'Accept' (if needed)
-        $LocalVarAccepts = @('text/plain')
+        $LocalVarAccepts = @('text/plain', 'application/json')
+
+        if ($ReturnType) {
+            # use the return type (MIME) provided by the user
+            $LocalVarAccepts = @($ReturnType)
+        }
 
         $LocalVarUri = '/ping'
 

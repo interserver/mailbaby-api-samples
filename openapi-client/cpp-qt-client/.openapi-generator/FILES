@@ -4,6 +4,8 @@ client/CMakeLists.txt
 client/Config.cmake.in
 client/OAIBlockingApi.cpp
 client/OAIBlockingApi.h
+client/OAIDateOrTimestamp.cpp
+client/OAIDateOrTimestamp.h
 client/OAIDenyRuleNew.cpp
 client/OAIDenyRuleNew.h
 client/OAIDenyRuleRecord.cpp
@@ -70,6 +72,4 @@ client/OAIServicesApi.cpp
 client/OAIServicesApi.h
 client/OAIStatusApi.cpp
 client/OAIStatusApi.h
-client/OAIViewMailLog_startDate_parameter.cpp
-client/OAIViewMailLog_startDate_parameter.h
 client/OAIclient.pri

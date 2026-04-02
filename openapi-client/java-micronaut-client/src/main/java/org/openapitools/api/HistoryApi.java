@@ -17,10 +17,10 @@ import io.micronaut.core.annotation.*;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.core.convert.format.Format;
 import reactor.core.publisher.Mono;
+import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
-import org.openapitools.model.ViewMailLogStartDateParameter;
 import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +29,7 @@ import java.util.Map;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-04-02T08:37:46.332787875-04:00[America/New_York]", comments = "Generator version: 7.21.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-04-02T09:50:38.305692037-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 @Client("${openapi-micronaut-client-base-path}")
 public interface HistoryApi {
     /**
@@ -85,8 +85,8 @@ public interface HistoryApi {
         @QueryValue(value="delivered") @Nullable Integer delivered, 
         @QueryValue(value="skip", defaultValue="0") @Nullable @Min(0) Integer skip, 
         @QueryValue(value="limit", defaultValue="100") @Nullable @Min(1) @Max(10000) Integer limit, 
-        @QueryValue(value="startDate") @Nullable @Valid ViewMailLogStartDateParameter startDate, 
-        @QueryValue(value="endDate") @Nullable @Valid ViewMailLogStartDateParameter endDate, 
+        @QueryValue(value="startDate") @Nullable @Valid DateOrTimestamp startDate, 
+        @QueryValue(value="endDate") @Nullable @Valid DateOrTimestamp endDate, 
         @QueryValue(value="sort", defaultValue="time") @Nullable String sort, 
         @QueryValue(value="dir", defaultValue="desc") @Nullable String dir, 
         @QueryValue(value="groupby", defaultValue="recipient") @Nullable String groupby

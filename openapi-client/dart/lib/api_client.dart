@@ -182,6 +182,8 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'DateTime':
           return value is DateTime ? value : DateTime.tryParse(value);
+        case 'DateOrTimestamp':
+          return DateOrTimestamp.fromJson(value);
         case 'DenyRuleNew':
           return DenyRuleNew.fromJson(value);
         case 'DenyRuleRecord':
@@ -228,8 +230,6 @@ class ApiClient {
           return SendMailRaw.fromJson(value);
         case 'SendMailTo':
           return SendMailTo.fromJson(value);
-        case 'ViewMailLogStartDateParameter':
-          return ViewMailLogStartDateParameter.fromJson(value);
         default:
           dynamic match;
           if (value is List && (match = _regList.firstMatch(targetType)?.group(1)) != null) {

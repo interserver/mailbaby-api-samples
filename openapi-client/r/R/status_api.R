@@ -97,7 +97,7 @@ StatusApi <- R6::R6Class(
       }
 
       # The Accept request HTTP header
-      local_var_accepts <- list("text/plain")
+      local_var_accepts <- list("text/plain", "application/json")
 
       # The Content-Type representation header
       local_var_content_types <- list()

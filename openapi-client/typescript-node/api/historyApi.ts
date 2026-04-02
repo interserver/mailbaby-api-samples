@@ -15,10 +15,10 @@ import localVarRequest from 'request';
 import http from 'http';
 
 /* tslint:disable:no-unused-locals */
+import { DateOrTimestamp } from '../model/dateOrTimestamp';
 import { ErrorMessage } from '../model/errorMessage';
 import { MailLog } from '../model/mailLog';
 import { MailStatsType } from '../model/mailStatsType';
-import { ViewMailLogStartDateParameter } from '../model/viewMailLogStartDateParameter';
 
 import { ObjectSerializer, Authentication, VoidAuth, Interceptor } from '../model/models';
 import { HttpBasicAuth, HttpBearerAuth, ApiKeyAuth, OAuth } from '../model/models';
@@ -184,7 +184,7 @@ export class HistoryApi {
      * @param dir Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.
      * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode.
      */
-    public async viewMailLog (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: ViewMailLogStartDateParameter, endDate?: ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailLog;  }> {
+    public async viewMailLog (id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: MailLog;  }> {
         const localVarPath = this.basePath + '/mail/log';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -250,11 +250,11 @@ export class HistoryApi {
         }
 
         if (startDate !== undefined) {
-            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "ViewMailLogStartDateParameter");
+            localVarQueryParameters['startDate'] = ObjectSerializer.serialize(startDate, "DateOrTimestamp");
         }
 
         if (endDate !== undefined) {
-            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "ViewMailLogStartDateParameter");
+            localVarQueryParameters['endDate'] = ObjectSerializer.serialize(endDate, "DateOrTimestamp");
         }
 
         if (sort !== undefined) {

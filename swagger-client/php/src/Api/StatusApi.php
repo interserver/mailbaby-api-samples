@@ -270,11 +270,11 @@ class StatusApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['text/plain']
+                ['text/plain', 'application/json']
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['text/plain'],
+                ['text/plain', 'application/json'],
                 []
             );
         }

@@ -15,6 +15,31 @@ package .Models is
 
 
    --  ------------------------------
+   --  DateOrTimestamp
+   --  A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024_01_15`, `last monday`).
+   --  ------------------------------
+   type DateOrTimestamp_Type is new oneOf<long,string>;
+
+
+   package DateOrTimestamp_Type_Vectors is
+      new Ada.Containers.Vectors (Index_Type   => Positive,
+                                  Element_Type => .Models.DateOrTimestamp_Type);
+
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in .Models.DateOrTimestamp_Type);
+   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
+                        Name  : in String;
+                        Value : in DateOrTimestamp_Type_Vectors.Vector);
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : out .Models.DateOrTimestamp_Type);
+   procedure Deserialize (From  : in Swagger.Value_Type;
+                          Name  : in String;
+                          Value : in out DateOrTimestamp_Type_Vectors.Vector);
+
+
+   --  ------------------------------
    --  DenyRuleNew
    --  The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: _ `email` — exact sender address match _ `domain` — all senders from a domain _ `destination` — exact recipient address match _ `startswith` — sender local_part prefix match (alphanumeric + `+_._` only)
    --  ------------------------------
@@ -506,28 +531,6 @@ package .Models is
    procedure Deserialize (From  : in Swagger.Value_Type;
                           Name  : in String;
                           Value : in out SendMailTo_Type_Vectors.Vector);
-
-
-
-   type ViewMailLogStartDateParameter_Type is new oneOf<long,string>;
-
-
-   package ViewMailLogStartDateParameter_Type_Vectors is
-      new Ada.Containers.Vectors (Index_Type   => Positive,
-                                  Element_Type => .Models.ViewMailLogStartDateParameter_Type);
-
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in .Models.ViewMailLogStartDateParameter_Type);
-   procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
-                        Name  : in String;
-                        Value : in ViewMailLogStartDateParameter_Type_Vectors.Vector);
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : out .Models.ViewMailLogStartDateParameter_Type);
-   procedure Deserialize (From  : in Swagger.Value_Type;
-                          Name  : in String;
-                          Value : in out ViewMailLogStartDateParameter_Type_Vectors.Vector);
 
 
    --  ------------------------------

@@ -32,7 +32,7 @@ FString OpenAPIStatusApi::PingServerRequest::ComputePath() const
 void OpenAPIStatusApi::PingServerRequest::SetupHttpRequest(const FHttpRequestRef& HttpRequest) const
 {
 	static const TArray<FString> Consumes = {  };
-	//static const TArray<FString> Produces = { TEXT("text/plain") };
+	//static const TArray<FString> Produces = { TEXT("text/plain"), TEXT("application/json") };
 
 	HttpRequest->SetVerb(TEXT("GET"));
 

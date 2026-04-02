@@ -10,19 +10,19 @@ class MailStatsType {
 
     enum TimeEnum {
     
-        ALL("all"),
+        All("all"),
         
-        BILLING("billing"),
+        Billing("billing"),
         
-        MONTH("month"),
+        Month("month"),
         
-        _7D("7d"),
+        SevenDays("7d"),
         
-        _24H("24h"),
+        TwentyFourHours("24h"),
         
-        DAY("day"),
+        Day("day"),
         
-        _1H("1h")
+        OneHour("1h")
     
         private final String value
     
@@ -41,7 +41,7 @@ class MailStatsType {
     }
 
     /* The time window these `received`, `sent`, and `volume` statistics cover. */
-    TimeEnum time = TimeEnum._1H
+    TimeEnum time = TimeEnum.OneHour
     /* Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. */
     Integer usage
     /* The ISO 4217 currency code for this account (e.g. `USD`). */

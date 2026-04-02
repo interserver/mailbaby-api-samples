@@ -78,7 +78,7 @@ ApiRequest[**String**]
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain
+- **Accept**: text/plain, application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |

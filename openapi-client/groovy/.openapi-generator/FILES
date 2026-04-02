@@ -7,6 +7,7 @@ src/main/groovy/org/openapitools/api/HistoryApi.groovy
 src/main/groovy/org/openapitools/api/SendingApi.groovy
 src/main/groovy/org/openapitools/api/ServicesApi.groovy
 src/main/groovy/org/openapitools/api/StatusApi.groovy
+src/main/groovy/org/openapitools/model/DateOrTimestamp.groovy
 src/main/groovy/org/openapitools/model/DenyRuleNew.groovy
 src/main/groovy/org/openapitools/model/DenyRuleRecord.groovy
 src/main/groovy/org/openapitools/model/EmailAddressName.groovy
@@ -30,4 +31,3 @@ src/main/groovy/org/openapitools/model/SendMail.groovy
 src/main/groovy/org/openapitools/model/SendMailAdv.groovy
 src/main/groovy/org/openapitools/model/SendMailRaw.groovy
 src/main/groovy/org/openapitools/model/SendMailTo.groovy
-src/main/groovy/org/openapitools/model/ViewMailLogStartDateParameter.groovy

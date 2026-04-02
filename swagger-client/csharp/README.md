@@ -130,6 +130,7 @@ Class | Method | HTTP request | Description
  - [Model.AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
  - [Model.AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
  - [Model.AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
+ - [Model.DateOrTimestamp](docs/DateOrTimestamp.md)
  - [Model.DenyRuleNew](docs/DenyRuleNew.md)
  - [Model.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [Model.EmailAddressName](docs/EmailAddressName.md)
@@ -137,7 +138,6 @@ Class | Method | HTTP request | Description
  - [Model.EmailAddressParam](docs/EmailAddressParam.md)
  - [Model.EmailAddressTypes](docs/EmailAddressTypes.md)
  - [Model.EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [Model.EndDate](docs/EndDate.md)
  - [Model.ErrorMessage](docs/ErrorMessage.md)
  - [Model.GenericResponse](docs/GenericResponse.md)
  - [Model.MailAttachment](docs/MailAttachment.md)
@@ -154,7 +154,6 @@ Class | Method | HTTP request | Description
  - [Model.SendMailAdv](docs/SendMailAdv.md)
  - [Model.SendMailRaw](docs/SendMailRaw.md)
  - [Model.SendMailTo](docs/SendMailTo.md)
- - [Model.StartDate](docs/StartDate.md)
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization

@@ -1,12 +1,12 @@
 package io.swagger.api;
 
+import io.swagger.model.DateOrTimestamp;
+
 import io.swagger.model.DenyRuleNew;
 
 import io.swagger.model.DenyRuleRecord;
 
 import io.swagger.model.EmailAddressParam;
-
-import io.swagger.model.EndDate;
 
 import io.swagger.model.ErrorMessage;
 
@@ -31,8 +31,6 @@ import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 
 import io.swagger.model.SendMailTo;
-
-import io.swagger.model.StartDate;
 
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.HttpResponse;
@@ -144,7 +142,7 @@ public class MailApiController implements MailApi {
     }
 
     @Override
-    public Single<HttpResponse<MailLog>> viewMailLog(@Nullable Long id, @Nullable String origin, @Nullable String mx, @Nullable String from, @Nullable String to, @Nullable String subject, @Nullable @Size(min=18,max=19) String mailid, @Nullable String messageId, @Nullable String replyto, @Nullable String headerfrom, @Nullable Integer delivered, @Nullable @Min(0)Integer skip, @Nullable @Min(1) @Max(10000) Integer limit, @Nullable @Valid StartDate startDate, @Nullable @Valid EndDate endDate, @Nullable String sort, @Nullable String dir, @Nullable String groupby) {
+    public Single<HttpResponse<MailLog>> viewMailLog(@Nullable Long id, @Nullable String origin, @Nullable String mx, @Nullable String from, @Nullable String to, @Nullable String subject, @Nullable @Size(min=18,max=19) String mailid, @Nullable String messageId, @Nullable String replyto, @Nullable String headerfrom, @Nullable Integer delivered, @Nullable @Min(0)Integer skip, @Nullable @Min(1) @Max(10000) Integer limit, @Nullable @Valid DateOrTimestamp startDate, @Nullable @Valid DateOrTimestamp endDate, @Nullable String sort, @Nullable String dir, @Nullable String groupby) {
         // TODO: Implement me
         return MailApi.super.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
     }

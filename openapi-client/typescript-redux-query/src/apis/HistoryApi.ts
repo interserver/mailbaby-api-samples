@@ -15,6 +15,9 @@
 import { HttpMethods, QueryConfig, ResponseBody, ResponseText } from 'redux-query';
 import * as runtime from '../runtime';
 import {
+    DateOrTimestamp,
+    DateOrTimestampFromJSON,
+    DateOrTimestampToJSON,
     ErrorMessage,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
@@ -24,9 +27,6 @@ import {
     MailStatsType,
     MailStatsTypeFromJSON,
     MailStatsTypeToJSON,
-    ViewMailLogStartDateParameter,
-    ViewMailLogStartDateParameterFromJSON,
-    ViewMailLogStartDateParameterToJSON,
 } from '../models';
 
 export interface GetStatsRequest {
@@ -47,8 +47,8 @@ export interface ViewMailLogRequest {
     delivered?: ViewMailLogDeliveredEnum;
     skip?: number;
     limit?: number;
-    startDate?: ViewMailLogStartDateParameter;
-    endDate?: ViewMailLogStartDateParameter;
+    startDate?: DateOrTimestamp;
+    endDate?: DateOrTimestamp;
     sort?: ViewMailLogSortEnum;
     dir?: ViewMailLogDirEnum;
     groupby?: ViewMailLogGroupbyEnum;
@@ -251,10 +251,10 @@ export enum GetStatsTimeEnum {
     All = 'all',
     Billing = 'billing',
     Month = 'month',
-    _7d = '7d',
-    _24h = '24h',
+    SevenDays = '7d',
+    TwentyFourHours = '24h',
     Day = 'day',
-    _1h = '1h'
+    OneHour = '1h'
 }
 /**
     * @export

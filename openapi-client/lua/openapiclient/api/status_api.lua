@@ -55,7 +55,7 @@ function status_api:ping_server()
 	-- set HTTP verb
 	req.headers:upsert(":method", "GET")
 	-- TODO: create a function to select proper content-type
-	--local var_accept = { "text/plain" }
+	--local var_accept = { "text/plain", "application/json" }
 	req.headers:upsert("content-type", "text/plain")
 
 	-- api key in headers 'X-API-KEY'

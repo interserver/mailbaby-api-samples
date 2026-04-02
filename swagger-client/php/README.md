@@ -187,6 +187,7 @@ Class | Method | HTTP request | Description
  - [AllOfSendMailAdvFrom](docs/Model/AllOfSendMailAdvFrom.md)
  - [AllOfSendMailAdvReplyto](docs/Model/AllOfSendMailAdvReplyto.md)
  - [AllOfSendMailAdvTo](docs/Model/AllOfSendMailAdvTo.md)
+ - [DateOrTimestamp](docs/Model/DateOrTimestamp.md)
  - [DenyRuleNew](docs/Model/DenyRuleNew.md)
  - [DenyRuleRecord](docs/Model/DenyRuleRecord.md)
  - [EmailAddressName](docs/Model/EmailAddressName.md)
@@ -194,7 +195,6 @@ Class | Method | HTTP request | Description
  - [EmailAddressParam](docs/Model/EmailAddressParam.md)
  - [EmailAddressTypes](docs/Model/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/Model/EmailAddressesTypes.md)
- - [EndDate](docs/Model/EndDate.md)
  - [ErrorMessage](docs/Model/ErrorMessage.md)
  - [GenericResponse](docs/Model/GenericResponse.md)
  - [MailAttachment](docs/Model/MailAttachment.md)
@@ -211,7 +211,6 @@ Class | Method | HTTP request | Description
  - [SendMailAdv](docs/Model/SendMailAdv.md)
  - [SendMailRaw](docs/Model/SendMailRaw.md)
  - [SendMailTo](docs/Model/SendMailTo.md)
- - [StartDate](docs/Model/StartDate.md)
 
 ## Documentation For Authorization
 

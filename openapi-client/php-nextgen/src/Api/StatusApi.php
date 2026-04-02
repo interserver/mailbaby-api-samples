@@ -329,7 +329,7 @@ class StatusApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', ],
+            ['text/plain', 'application/json', ],
             $contentType,
             $multipart
         );

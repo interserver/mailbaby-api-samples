@@ -72,9 +72,9 @@ export enum MailStatsTypeTimeEnum {
     All = 'all',
     Billing = 'billing',
     Month = 'month',
-    _7d = '7d',
-    _24h = '24h',
+    SevenDays = '7d',
+    TwentyFourHours = '24h',
     Day = 'day',
-    _1h = '1h'
+    OneHour = '1h'
 }
 

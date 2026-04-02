@@ -35,20 +35,20 @@ import javax.annotation.Generated;
   MailStatsType.JSON_PROPERTY_VOLUME
 })
 @JsonTypeName("MailStatsType")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-04-02T08:37:46.332787875-04:00[America/New_York]", comments = "Generator version: 7.21.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-04-02T09:50:38.305692037-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 @Introspected
 public class MailStatsType {
     /**
      * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
      */
     public enum TimeEnum {
-        ALL("all"),
-        BILLING("billing"),
-        MONTH("month"),
-        _7D("7d"),
-        _24H("24h"),
-        DAY("day"),
-        _1H("1h");
+        All("all"),
+        Billing("billing"),
+        Month("month"),
+        SevenDays("7d"),
+        TwentyFourHours("24h"),
+        Day("day"),
+        OneHour("1h");
 
         private String value;
 
@@ -77,7 +77,7 @@ public class MailStatsType {
         }
     }
     public static final String JSON_PROPERTY_TIME = "time";
-    private TimeEnum time = TimeEnum._1H;
+    private TimeEnum time = TimeEnum.OneHour;
 
     public static final String JSON_PROPERTY_USAGE = "usage";
     private Integer usage;

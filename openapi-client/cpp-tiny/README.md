@@ -64,6 +64,7 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 ## What are the Model files for the data structures/objects?
 |Class | Description|
 |------------- | -------------|
+|*DateOrTimestamp* | A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).|
 |*DenyRuleNew* | The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)|
 |*DenyRuleRecord* | A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.|
 |*EmailAddressName* | An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.|
@@ -87,5 +88,4 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 |*SendMailAdv* | Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.|
 |*SendMailRaw* | Request body for `POST /mail/rawsend`.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing `DKIM-Signature` header intact.  The `From`, `To`, `Cc`, and `Bcc` addresses are extracted from the message headers automatically — you do not need to specify them separately.|
 |*SendMailTo* | The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.|
-|*ViewMailLog_startDate_parameter* | |
 

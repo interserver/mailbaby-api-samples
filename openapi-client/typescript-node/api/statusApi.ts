@@ -96,7 +96,7 @@ export class StatusApi {
         const localVarPath = this.basePath + '/ping';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
-        const produces = ['text/plain'];
+        const produces = ['text/plain', 'application/json'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
             localVarHeaderParams.Accept = 'application/json';

@@ -76,7 +76,7 @@ sub ping_server {
     my $form_params = {};
 
     # 'Accept' and 'Content-Type' header
-    my $_header_accept = $self->{api_client}->select_header_accept('text/plain');
+    my $_header_accept = $self->{api_client}->select_header_accept('text/plain', 'application/json');
     if ($_header_accept) {
         $header_params->{'Accept'} = $_header_accept;
     }

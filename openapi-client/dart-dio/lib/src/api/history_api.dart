@@ -9,10 +9,10 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:openapi/src/api_util.dart';
+import 'package:openapi/src/model/date_or_timestamp.dart';
 import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/mail_log.dart';
 import 'package:openapi/src/model/mail_stats_type.dart';
-import 'package:openapi/src/model/view_mail_log_start_date_parameter.dart';
 
 class HistoryApi {
 
@@ -154,8 +154,8 @@ class HistoryApi {
     int? delivered,
     int? skip = 0,
     int? limit = 100,
-    ViewMailLogStartDateParameter? startDate,
-    ViewMailLogStartDateParameter? endDate,
+    DateOrTimestamp? startDate,
+    DateOrTimestamp? endDate,
     String? sort = 'time',
     String? dir = 'desc',
     String? groupby = 'recipient',
@@ -200,8 +200,8 @@ class HistoryApi {
       if (delivered != null) r'delivered': encodeQueryParameter(_serializers, delivered, const FullType(int)),
       if (skip != null) r'skip': encodeQueryParameter(_serializers, skip, const FullType(int)),
       if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
-      if (startDate != null) r'startDate': encodeQueryParameter(_serializers, startDate, const FullType(ViewMailLogStartDateParameter)),
-      if (endDate != null) r'endDate': encodeQueryParameter(_serializers, endDate, const FullType(ViewMailLogStartDateParameter)),
+      if (startDate != null) r'startDate': encodeQueryParameter(_serializers, startDate, const FullType(DateOrTimestamp)),
+      if (endDate != null) r'endDate': encodeQueryParameter(_serializers, endDate, const FullType(DateOrTimestamp)),
       if (sort != null) r'sort': encodeQueryParameter(_serializers, sort, const FullType(String)),
       if (dir != null) r'dir': encodeQueryParameter(_serializers, dir, const FullType(String)),
       if (groupby != null) r'groupby': encodeQueryParameter(_serializers, groupby, const FullType(String)),

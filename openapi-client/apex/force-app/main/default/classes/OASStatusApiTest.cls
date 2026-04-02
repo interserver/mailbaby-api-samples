@@ -24,7 +24,7 @@ private class OASStatusApiTest {
 
 
         js = JSON.serialize('Server is up and running');
-        res.setHeader('Content-Type', '');
+        res.setHeader('Content-Type', 'application/json');
         res.setBody(js);
         expectedResponse = 'Server is up and running';
         response = (String) api.pingServer();

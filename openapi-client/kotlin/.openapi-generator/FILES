@@ -2,6 +2,7 @@
 README.md
 build.gradle
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -29,7 +30,6 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
 gradlew
@@ -57,6 +57,7 @@ src/main/kotlin/org/openapitools/client/infrastructure/ResponseExtensions.kt
 src/main/kotlin/org/openapitools/client/infrastructure/Serializer.kt
 src/main/kotlin/org/openapitools/client/infrastructure/URIAdapter.kt
 src/main/kotlin/org/openapitools/client/infrastructure/UUIDAdapter.kt
+src/main/kotlin/org/openapitools/client/models/DateOrTimestamp.kt
 src/main/kotlin/org/openapitools/client/models/DenyRuleNew.kt
 src/main/kotlin/org/openapitools/client/models/DenyRuleRecord.kt
 src/main/kotlin/org/openapitools/client/models/EmailAddressName.kt
@@ -80,12 +81,12 @@ src/main/kotlin/org/openapitools/client/models/SendMail.kt
 src/main/kotlin/org/openapitools/client/models/SendMailAdv.kt
 src/main/kotlin/org/openapitools/client/models/SendMailRaw.kt
 src/main/kotlin/org/openapitools/client/models/SendMailTo.kt
-src/main/kotlin/org/openapitools/client/models/ViewMailLogStartDateParameter.kt
 src/test/kotlin/org/openapitools/client/apis/BlockingApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/HistoryApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/SendingApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/ServicesApiTest.kt
 src/test/kotlin/org/openapitools/client/apis/StatusApiTest.kt
+src/test/kotlin/org/openapitools/client/models/DateOrTimestampTest.kt
 src/test/kotlin/org/openapitools/client/models/DenyRuleNewTest.kt
 src/test/kotlin/org/openapitools/client/models/DenyRuleRecordTest.kt
 src/test/kotlin/org/openapitools/client/models/EmailAddressNameTest.kt
@@ -109,4 +110,3 @@ src/test/kotlin/org/openapitools/client/models/SendMailAdvTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailRawTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailTest.kt
 src/test/kotlin/org/openapitools/client/models/SendMailToTest.kt
-src/test/kotlin/org/openapitools/client/models/ViewMailLogStartDateParameterTest.kt

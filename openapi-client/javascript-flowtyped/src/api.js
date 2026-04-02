@@ -69,6 +69,13 @@ export class RequiredError extends Error {
     }
 }
 
+/**
+ * A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).
+ * @export
+ */
+export type DateOrTimestamp = {
+}
+
 
             export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
 /**
@@ -798,13 +805,6 @@ export type SendMailRaw = {
 export type SendMailTo = {
 }
 
-/**
- * 
- * @export
- */
-export type ViewMailLogStartDateParameter = {
-}
-
 
 
 /**
@@ -1144,7 +1144,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
          * @summary Displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: ViewMailLogStartDateParameter, endDate?: ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options: RequestOptions): FetchArgs {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options: RequestOptions): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -1247,7 +1247,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
 export type HistoryApiType = { 
     getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', options?: RequestOptions): Promise<MailStatsType>,
 
-    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: ViewMailLogStartDateParameter, endDate?: ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions): Promise<MailLog>,
+    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions): Promise<MailLog>,
 }
 
 /**
@@ -1277,7 +1277,7 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Displays the mail log
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: ViewMailLogStartDateParameter, endDate?: ViewMailLogStartDateParameter, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions = {}): Promise<MailLog> {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions = {}): Promise<MailLog> {
             const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {

@@ -4,6 +4,7 @@
 README.md
 analysis_options.yaml
 doc/BlockingApi.md
+doc/DateOrTimestamp.md
 doc/DenyRuleNew.md
 doc/DenyRuleRecord.md
 doc/EmailAddressName.md
@@ -31,7 +32,6 @@ doc/SendMailTo.md
 doc/SendingApi.md
 doc/ServicesApi.md
 doc/StatusApi.md
-doc/ViewMailLogStartDateParameter.md
 git_push.sh
 lib/api.dart
 lib/api/blocking_api.dart
@@ -47,6 +47,7 @@ lib/auth/authentication.dart
 lib/auth/http_basic_auth.dart
 lib/auth/http_bearer_auth.dart
 lib/auth/oauth.dart
+lib/model/date_or_timestamp.dart
 lib/model/deny_rule_new.dart
 lib/model/deny_rule_record.dart
 lib/model/email_address_name.dart
@@ -70,9 +71,9 @@ lib/model/send_mail.dart
 lib/model/send_mail_adv.dart
 lib/model/send_mail_raw.dart
 lib/model/send_mail_to.dart
-lib/model/view_mail_log_start_date_parameter.dart
 pubspec.yaml
 test/blocking_api_test.dart
+test/date_or_timestamp_test.dart
 test/deny_rule_new_test.dart
 test/deny_rule_record_test.dart
 test/email_address_name_test.dart
@@ -100,4 +101,3 @@ test/send_mail_to_test.dart
 test/sending_api_test.dart
 test/services_api_test.dart
 test/status_api_test.dart
-test/view_mail_log_start_date_parameter_test.dart

@@ -223,23 +223,23 @@ class MailStatsTypeTimeEnum {
 
   String toJson() => value;
 
-  static const all = MailStatsTypeTimeEnum._(r'all');
-  static const billing = MailStatsTypeTimeEnum._(r'billing');
-  static const month = MailStatsTypeTimeEnum._(r'month');
-  static const n7d = MailStatsTypeTimeEnum._(r'7d');
-  static const n24h = MailStatsTypeTimeEnum._(r'24h');
-  static const day = MailStatsTypeTimeEnum._(r'day');
-  static const n1h = MailStatsTypeTimeEnum._(r'1h');
+  static const All = MailStatsTypeTimeEnum._(r'all');
+  static const Billing = MailStatsTypeTimeEnum._(r'billing');
+  static const Month = MailStatsTypeTimeEnum._(r'month');
+  static const SevenDays = MailStatsTypeTimeEnum._(r'7d');
+  static const TwentyFourHours = MailStatsTypeTimeEnum._(r'24h');
+  static const Day = MailStatsTypeTimeEnum._(r'day');
+  static const OneHour = MailStatsTypeTimeEnum._(r'1h');
 
   /// List of all possible values in this [enum][MailStatsTypeTimeEnum].
   static const values = <MailStatsTypeTimeEnum>[
-    all,
-    billing,
-    month,
-    n7d,
-    n24h,
-    day,
-    n1h,
+    All,
+    Billing,
+    Month,
+    SevenDays,
+    TwentyFourHours,
+    Day,
+    OneHour,
   ];
 
   static MailStatsTypeTimeEnum? fromJson(dynamic value) => MailStatsTypeTimeEnumTypeTransformer().decode(value);
@@ -278,13 +278,13 @@ class MailStatsTypeTimeEnumTypeTransformer {
   MailStatsTypeTimeEnum? decode(dynamic data, {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case r'all': return MailStatsTypeTimeEnum.all;
-        case r'billing': return MailStatsTypeTimeEnum.billing;
-        case r'month': return MailStatsTypeTimeEnum.month;
-        case r'7d': return MailStatsTypeTimeEnum.n7d;
-        case r'24h': return MailStatsTypeTimeEnum.n24h;
-        case r'day': return MailStatsTypeTimeEnum.day;
-        case r'1h': return MailStatsTypeTimeEnum.n1h;
+        case r'all': return MailStatsTypeTimeEnum.All;
+        case r'billing': return MailStatsTypeTimeEnum.Billing;
+        case r'month': return MailStatsTypeTimeEnum.Month;
+        case r'7d': return MailStatsTypeTimeEnum.SevenDays;
+        case r'24h': return MailStatsTypeTimeEnum.TwentyFourHours;
+        case r'day': return MailStatsTypeTimeEnum.Day;
+        case r'1h': return MailStatsTypeTimeEnum.OneHour;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

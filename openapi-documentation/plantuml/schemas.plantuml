@@ -2,6 +2,9 @@
 
 title MailBaby Email Delivery and Management Service API Schemas Diagram
 
+entity DateOrTimestamp {
+}
+
 entity DenyRuleNew {
     * type: String
     * data: String
@@ -152,9 +155,6 @@ entity SendMailRaw {
 }
 
 entity SendMailTo {
-}
-
-entity ViewMailLogStartDateParameter {
 }
 
 DenyRuleNew <|--- DenyRuleRecord

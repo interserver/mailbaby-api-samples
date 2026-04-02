@@ -10,13 +10,13 @@ import Foundation
 /// Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address. 
 public struct MailStatsType: Codable {
     public enum Time: String, Codable, CaseIterable {
-        case all = "all"
-        case billing = "billing"
-        case month = "month"
-        case _7d = "7d"
-        case _24h = "24h"
-        case day = "day"
-        case _1h = "1h"
+        case All = "all"
+        case Billing = "billing"
+        case Month = "month"
+        case SevenDays = "7d"
+        case TwentyFourHours = "24h"
+        case Day = "day"
+        case OneHour = "1h"
     }
     /// The time window these `received`, `sent`, and `volume` statistics cover.
     public var time: Time? = ._1h

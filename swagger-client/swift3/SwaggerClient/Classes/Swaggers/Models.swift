@@ -352,6 +352,19 @@ class Decoders {
                 return .failure(.typeMismatch(expected: "Typealias AllOfSendMailAdvTo", actual: "\(source)"))
             }
         }
+        // Decoder for [DateOrTimestamp]
+        Decoders.addDecoder(clazz: [DateOrTimestamp].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[DateOrTimestamp]> in
+            return Decoders.decode(clazz: [DateOrTimestamp].self, source: source)
+        }
+
+        // Decoder for DateOrTimestamp
+        Decoders.addDecoder(clazz: DateOrTimestamp.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<DateOrTimestamp> in
+            if let source = source as? DateOrTimestamp {
+                return .success(source)
+            } else {
+                return .failure(.typeMismatch(expected: "Typealias DateOrTimestamp", actual: "\(source)"))
+            }
+        }
         // Decoder for [DenyRuleNew]
         Decoders.addDecoder(clazz: [DenyRuleNew].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[DenyRuleNew]> in
             return Decoders.decode(clazz: [DenyRuleNew].self, source: source)
@@ -476,19 +489,6 @@ class Decoders {
                 return .success(source)
             } else {
                 return .failure(.typeMismatch(expected: "Typealias EmailAddressesTypes", actual: "\(source)"))
-            }
-        }
-        // Decoder for [EndDate]
-        Decoders.addDecoder(clazz: [EndDate].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[EndDate]> in
-            return Decoders.decode(clazz: [EndDate].self, source: source)
-        }
-
-        // Decoder for EndDate
-        Decoders.addDecoder(clazz: EndDate.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<EndDate> in
-            if let source = source as? EndDate {
-                return .success(source)
-            } else {
-                return .failure(.typeMismatch(expected: "Typealias EndDate", actual: "\(source)"))
             }
         }
         // Decoder for [ErrorMessage]
@@ -1035,19 +1035,6 @@ class Decoders {
                 return .success(source)
             } else {
                 return .failure(.typeMismatch(expected: "Typealias SendMailTo", actual: "\(source)"))
-            }
-        }
-        // Decoder for [StartDate]
-        Decoders.addDecoder(clazz: [StartDate].self) { (source: AnyObject, instance: AnyObject?) -> Decoded<[StartDate]> in
-            return Decoders.decode(clazz: [StartDate].self, source: source)
-        }
-
-        // Decoder for StartDate
-        Decoders.addDecoder(clazz: StartDate.self) { (source: AnyObject, instance: AnyObject?) -> Decoded<StartDate> in
-            if let source = source as? StartDate {
-                return .success(source)
-            } else {
-                return .failure(.typeMismatch(expected: "Typealias StartDate", actual: "\(source)"))
             }
         }
     }()

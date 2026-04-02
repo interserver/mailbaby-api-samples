@@ -2,7 +2,7 @@
 
 MailBaby Email Delivery and Management Service API
 - API version: 1.4.0
-  - Build date: 2026-04-02T09:43:36.615652131-04:00[America/New_York]
+  - Build date: 2026-04-02T09:50:33.323686160-04:00[America/New_York]
   - Generator version: 7.21.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**

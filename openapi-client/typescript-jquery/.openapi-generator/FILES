@@ -8,6 +8,7 @@ api/api.ts
 configuration.ts
 git_push.sh
 index.ts
+model/DateOrTimestamp.ts
 model/DenyRuleNew.ts
 model/DenyRuleRecord.ts
 model/EmailAddressName.ts
@@ -31,6 +32,5 @@ model/SendMail.ts
 model/SendMailAdv.ts
 model/SendMailRaw.ts
 model/SendMailTo.ts
-model/ViewMailLogStartDateParameter.ts
 model/models.ts
 variables.ts

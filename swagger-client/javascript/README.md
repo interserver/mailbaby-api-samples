@@ -121,6 +121,7 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
+ - [MailBabyEmailDeliveryAndManagementServiceApi.DateOrTimestamp](docs/DateOrTimestamp.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleNew](docs/DenyRuleNew.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressName](docs/EmailAddressName.md)
@@ -128,7 +129,6 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressParam](docs/EmailAddressParam.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressTypes](docs/EmailAddressTypes.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.EndDate](docs/EndDate.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.ErrorMessage](docs/ErrorMessage.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.GenericResponse](docs/GenericResponse.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.MailAttachment](docs/MailAttachment.md)
@@ -145,7 +145,6 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailAdv](docs/SendMailAdv.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw](docs/SendMailRaw.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailTo](docs/SendMailTo.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.StartDate](docs/StartDate.md)
 
 ## Documentation for Authorization
 

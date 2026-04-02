@@ -34,11 +34,10 @@ import mailbaby-client-kotlin-server.Paths
 import mailbaby-client-kotlin-server.infrastructure.ApiPrincipal
 
 
-import io.swagger.server.models.EndDate
+import io.swagger.server.models.DateOrTimestamp
 import io.swagger.server.models.ErrorMessage
 import io.swagger.server.models.MailLog
 import io.swagger.server.models.MailStatsType
-import io.swagger.server.models.StartDate
 
 @KtorExperimentalLocationsAPI
 fun Route.HistoryApi() {

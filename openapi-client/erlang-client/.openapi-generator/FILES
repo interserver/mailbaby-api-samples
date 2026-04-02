@@ -3,6 +3,7 @@ README.md
 rebar.config
 src/openapi.app.src
 src/openapi_blocking_api.erl
+src/openapi_date_or_timestamp.erl
 src/openapi_deny_rule_new.erl
 src/openapi_deny_rule_record.erl
 src/openapi_email_address_name.erl
@@ -31,4 +32,3 @@ src/openapi_sending_api.erl
 src/openapi_services_api.erl
 src/openapi_status_api.erl
 src/openapi_utils.erl
-src/openapi_view_mail_log_start_date_parameter.erl

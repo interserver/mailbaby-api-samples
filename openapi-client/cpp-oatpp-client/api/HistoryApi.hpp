@@ -24,10 +24,10 @@
 #include "oatpp/web/protocol/http/outgoing/MultipartBody.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 
+#include "DateOrTimestamp.hpp"
 #include "ErrorMessage.hpp"
 #include "MailLog.hpp"
 #include "MailStatsType.hpp"
-#include "ViewMailLog_startDate_parameter.hpp"
 
 #include OATPP_CODEGEN_BEGIN(ApiClient) ///< Begin code-gen section
 
@@ -71,7 +71,7 @@ public:
   /// <param name="sort">Field to sort results by.  Currently only &#x60;time&#x60; is supported (sorts by internal row ID which corresponds to chronological order). (optional, default to &quot;time&quot;)</param>
   /// <param name="dir">Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. (optional, default to &quot;desc&quot;)</param>
   /// <param name="groupby">Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to &quot;recipient&quot;)</param>
-  API_CALL("GET", "/mail/log", view_mail_log, QUERY(oatpp::Int64, id), QUERY(oatpp::String, origin), QUERY(oatpp::String, mx), QUERY(oatpp::String, from), QUERY(oatpp::String, to), QUERY(oatpp::String, subject), QUERY(oatpp::String, mailid), QUERY(oatpp::String, messageId), QUERY(oatpp::String, replyto), QUERY(oatpp::String, headerfrom), QUERY(oatpp::Int32, delivered), QUERY(oatpp::Int32, skip), QUERY(oatpp::Int32, limit), QUERY(org::openapitools::client::model::ViewMailLog_startDate_parameter, startDate), QUERY(org::openapitools::client::model::ViewMailLog_startDate_parameter, endDate), QUERY(oatpp::String, sort), QUERY(oatpp::String, dir), QUERY(oatpp::String, groupby))
+  API_CALL("GET", "/mail/log", view_mail_log, QUERY(oatpp::Int64, id), QUERY(oatpp::String, origin), QUERY(oatpp::String, mx), QUERY(oatpp::String, from), QUERY(oatpp::String, to), QUERY(oatpp::String, subject), QUERY(oatpp::String, mailid), QUERY(oatpp::String, messageId), QUERY(oatpp::String, replyto), QUERY(oatpp::String, headerfrom), QUERY(oatpp::Int32, delivered), QUERY(oatpp::Int32, skip), QUERY(oatpp::Int32, limit), QUERY(org::openapitools::client::model::DateOrTimestamp, startDate), QUERY(org::openapitools::client::model::DateOrTimestamp, endDate), QUERY(oatpp::String, sort), QUERY(oatpp::String, dir), QUERY(oatpp::String, groupby))
 };
 
 #include OATPP_CODEGEN_END(ApiClient) ///< End code-gen section

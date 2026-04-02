@@ -14,6 +14,7 @@ src/apis/services_api.ml
 src/apis/services_api.mli
 src/apis/status_api.ml
 src/apis/status_api.mli
+src/models/date_or_timestamp.ml
 src/models/deny_rule_new.ml
 src/models/deny_rule_record.ml
 src/models/email_address_name.ml
@@ -37,7 +38,6 @@ src/models/send_mail.ml
 src/models/send_mail_adv.ml
 src/models/send_mail_raw.ml
 src/models/send_mail_to.ml
-src/models/view_mail_log_start_date_parameter.ml
 src/support/enums.ml
 src/support/jsonSupport.ml
 src/support/request.ml

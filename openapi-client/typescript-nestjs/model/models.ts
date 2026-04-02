@@ -1,3 +1,4 @@
+export * from './dateOrTimestamp';
 export * from './denyRuleNew';
 export * from './denyRuleRecord';
 export * from './emailAddressName';
@@ -21,4 +22,3 @@ export * from './sendMail';
 export * from './sendMailAdv';
 export * from './sendMailRaw';
 export * from './sendMailTo';
-export * from './viewMailLogStartDateParameter';

@@ -87,6 +87,7 @@ Class | Method | HTTP request | Description
  - [AllOfSendMailAdvFrom](AllOfSendMailAdvFrom.md)
  - [AllOfSendMailAdvReplyto](AllOfSendMailAdvReplyto.md)
  - [AllOfSendMailAdvTo](AllOfSendMailAdvTo.md)
+ - [DateOrTimestamp](DateOrTimestamp.md)
  - [DenyRuleNew](DenyRuleNew.md)
  - [DenyRuleRecord](DenyRuleRecord.md)
  - [EmailAddressName](EmailAddressName.md)
@@ -94,7 +95,6 @@ Class | Method | HTTP request | Description
  - [EmailAddressParam](EmailAddressParam.md)
  - [EmailAddressTypes](EmailAddressTypes.md)
  - [EmailAddressesTypes](EmailAddressesTypes.md)
- - [EndDate](EndDate.md)
  - [ErrorMessage](ErrorMessage.md)
  - [GenericResponse](GenericResponse.md)
  - [MailAttachment](MailAttachment.md)
@@ -111,7 +111,6 @@ Class | Method | HTTP request | Description
  - [SendMailAdv](SendMailAdv.md)
  - [SendMailRaw](SendMailRaw.md)
  - [SendMailTo](SendMailTo.md)
- - [StartDate](StartDate.md)
 
 ## Documentation for Authorization
 

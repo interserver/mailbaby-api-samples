@@ -22,7 +22,7 @@ module.exports = {
                     removeMissingValuesFrom: { params: true, body: true },
                     headers: {
                         'Content-Type': '',
-                        'Accept': 'text/plain',
+                        'Accept': 'text/plain, application/json',
                     },
                     params: {
                     },

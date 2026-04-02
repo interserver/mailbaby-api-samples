@@ -1,9 +1,9 @@
 package org.openapitools.api;
 
+import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
-import org.openapitools.model.ViewMailLogStartDateParameter;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -67,8 +67,8 @@ public class HistoryApiTest {
         Integer delivered = 1;
         Integer skip = 0;
         Integer limit = 100;
-        ViewMailLogStartDateParameter startDate = new ViewMailLogStartDateParameter();
-        ViewMailLogStartDateParameter endDate = new ViewMailLogStartDateParameter();
+        DateOrTimestamp startDate = new DateOrTimestamp();
+        DateOrTimestamp endDate = new DateOrTimestamp();
         String sort = "time";
         String dir = "desc";
         String groupby = "recipient";

@@ -83,6 +83,7 @@ Category | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [date_or_timestamp_t](docs/date_or_timestamp.md)
  - [deny_rule_new_t](docs/deny_rule_new.md)
  - [deny_rule_record_t](docs/deny_rule_record.md)
  - [email_address_name_t](docs/email_address_name.md)
@@ -106,7 +107,6 @@ Category | Method | HTTP request | Description
  - [send_mail_adv_t](docs/send_mail_adv.md)
  - [send_mail_raw_t](docs/send_mail_raw.md)
  - [send_mail_to_t](docs/send_mail_to.md)
- - [view_mail_log_start_date_parameter_t](docs/view_mail_log_start_date_parameter.md)
 
 
 ## Documentation for Authorization

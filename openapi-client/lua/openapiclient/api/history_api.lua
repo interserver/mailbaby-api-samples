@@ -19,7 +19,7 @@ local basexx = require "basexx"
 local openapiclient_error_message = require "openapiclient.model.error_message"
 local openapiclient_mail_log = require "openapiclient.model.mail_log"
 local openapiclient_mail_stats_type = require "openapiclient.model.mail_stats_type"
-local openapiclient_view_mail_log_start_date_parameter = require "openapiclient.model.view_mail_log_start_date_parameter"
+local openapiclient_date_or_timestamp = require "openapiclient.model.date_or_timestamp"
 
 local history_api = {}
 local history_api_mt = {

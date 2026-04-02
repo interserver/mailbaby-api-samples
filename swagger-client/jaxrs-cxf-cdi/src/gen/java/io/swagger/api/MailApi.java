@@ -1,9 +1,9 @@
 package io.swagger.api;
 
+import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
-import io.swagger.model.EndDate;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.GenericResponse;
 import io.swagger.model.MailAttachment;
@@ -16,7 +16,6 @@ import io.swagger.model.SendMail;
 import io.swagger.model.SendMailAdv;
 import io.swagger.model.SendMailRaw;
 import io.swagger.model.SendMailTo;
-import io.swagger.model.StartDate;
 import io.swagger.api.MailApiService;
 
 import javax.ws.rs.*;
@@ -346,9 +345,9 @@ public class MailApi  {
 @Parameter(description = "Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.", schema=@Schema(allowableValues={ "1", "10000" }, minimum="1", maximum="10000")
 ) @DefaultValue("100") @QueryParam("limit") Integer limit
 ,  
-@Parameter(description = "Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")  @QueryParam("startDate") StartDate startDate
+@Parameter(description = "Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")  @QueryParam("startDate") DateOrTimestamp startDate
 ,  
-@Parameter(description = "Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")  @QueryParam("endDate") EndDate endDate
+@Parameter(description = "Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")  @QueryParam("endDate") DateOrTimestamp endDate
 ,  
 @Parameter(description = "Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).", schema=@Schema(allowableValues={ "time" })
 ) @DefaultValue("time") @QueryParam("sort") String sort

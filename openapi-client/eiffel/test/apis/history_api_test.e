@@ -46,8 +46,8 @@ feature -- Test routines
             l_delivered: INTEGER_32
             l_skip: INTEGER_32
             l_limit: INTEGER_32
-            l_start_date: VIEW_MAIL_LOG_START_DATE_PARAMETER
-            l_end_date: VIEW_MAIL_LOG_START_DATE_PARAMETER
+            l_start_date: DATE_OR_TIMESTAMP
+            l_end_date: DATE_OR_TIMESTAMP
             l_sort: STRING_32
             l_dir: STRING_32
             l_groupby: STRING_32

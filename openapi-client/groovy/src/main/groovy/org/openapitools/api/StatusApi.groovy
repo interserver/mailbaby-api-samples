@@ -22,7 +22,7 @@ class StatusApi {
 
 
 
-        accept = apiUtils.selectHeaderAccept(["text/plain"])
+        accept = apiUtils.selectHeaderAccept(["text/plain", "application/json"])
 
         apiUtils.invokeApi(onSuccess, onFailure, basePath, versionPath, resourcePath, queryParams, headerParams, bodyParams, accept, contentType,
                     "GET", "",

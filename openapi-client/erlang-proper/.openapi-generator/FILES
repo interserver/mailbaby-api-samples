@@ -1,6 +1,7 @@
 .openapi-generator-ignore
 README.md
 rebar.config
+src/model/openapi_date_or_timestamp.erl
 src/model/openapi_deny_rule_new.erl
 src/model/openapi_deny_rule_record.erl
 src/model/openapi_email_address_name.erl
@@ -24,7 +25,6 @@ src/model/openapi_send_mail.erl
 src/model/openapi_send_mail_adv.erl
 src/model/openapi_send_mail_raw.erl
 src/model/openapi_send_mail_to.erl
-src/model/openapi_view_mail_log_start_date_parameter.erl
 src/openapi.app.src
 src/openapi.hrl
 src/openapi_api.erl

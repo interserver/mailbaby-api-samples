@@ -42,7 +42,7 @@ feature -- API Access
 			l_path := "/ping"
 
 
-			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"text/plain">>)  as l_accept then
+			if attached {STRING} api_client.select_header_accept ({ARRAY [STRING]}<<"text/plain", "application/json">>)  as l_accept then
 				l_request.add_header(l_accept,"Accept");
 			end
 			l_request.add_header(api_client.select_header_content_type ({ARRAY [STRING]}<<>>),"Content-Type")

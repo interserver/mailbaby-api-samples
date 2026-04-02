@@ -80,7 +80,7 @@ private class OASMailStatsTypeTest {
     @isTest
     private static void defaultValuesPopulated() {
         OASMailStatsType mailStatsType = new OASMailStatsType();
-        System.assertEquals(RTimeEnum._1H, mailStatsType.r_time);
+        System.assertEquals(RTimeEnum.OneHour, mailStatsType.r_time);
         System.assertEquals(null, mailStatsType.usage);
         System.assertEquals(null, mailStatsType.r_currency);
         System.assertEquals(null, mailStatsType.cost);

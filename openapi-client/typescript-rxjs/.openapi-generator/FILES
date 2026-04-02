@@ -7,6 +7,7 @@ apis/ServicesApi.ts
 apis/StatusApi.ts
 apis/index.ts
 index.ts
+models/DateOrTimestamp.ts
 models/DenyRuleNew.ts
 models/DenyRuleRecord.ts
 models/EmailAddressName.ts
@@ -30,7 +31,6 @@ models/SendMail.ts
 models/SendMailAdv.ts
 models/SendMailRaw.ts
 models/SendMailTo.ts
-models/ViewMailLogStartDateParameter.ts
 models/index.ts
 runtime.ts
 servers.ts

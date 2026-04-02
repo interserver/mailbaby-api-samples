@@ -1,4 +1,6 @@
 
+#include "DateOrTimestampTest.cpp"
+
 #include "DenyRuleNewTest.cpp"
 
 #include "DenyRuleRecordTest.cpp"
@@ -45,8 +47,6 @@
 
 #include "SendMailToTest.cpp"
 
-#include "ViewMailLog_startDate_parameterTest.cpp"
-
 
 
 void setUp(){}
@@ -54,6 +54,7 @@ void setUp(){}
 void tearDown(){}
 
 void runTests(){
+    
     
     
     RUN_TEST(test_DenyRuleNew_type_is_assigned_from_json);
@@ -329,8 +330,8 @@ void runTests(){
     
     
     
-    
 
+    
     
     
     RUN_TEST(test_DenyRuleNew_type_is_converted_to_json);
@@ -603,7 +604,6 @@ void runTests(){
     
     
     RUN_TEST(test_SendMailRaw_id_is_converted_to_json);
-    
     
     
     

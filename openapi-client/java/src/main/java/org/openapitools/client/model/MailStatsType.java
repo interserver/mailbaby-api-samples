@@ -49,26 +49,26 @@ import org.openapitools.client.JSON;
 /**
  * Account usage statistics returned by &#x60;GET /mail/stats&#x60;.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:37:38.980319937-04:00[America/New_York]", comments = "Generator version: 7.21.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T09:43:36.615652131-04:00[America/New_York]", comments = "Generator version: 7.21.0")
 public class MailStatsType {
   /**
    * The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover.
    */
   @JsonAdapter(TimeEnum.Adapter.class)
   public enum TimeEnum {
-    ALL("all"),
+    All("all"),
     
-    BILLING("billing"),
+    Billing("billing"),
     
-    MONTH("month"),
+    Month("month"),
     
-    _7D("7d"),
+    SevenDays("7d"),
     
-    _24H("24h"),
+    TwentyFourHours("24h"),
     
-    DAY("day"),
+    Day("day"),
     
-    _1H("1h");
+    OneHour("1h");
 
     private String value;
 
@@ -116,7 +116,7 @@ public class MailStatsType {
   public static final String SERIALIZED_NAME_TIME = "time";
   @SerializedName(SERIALIZED_NAME_TIME)
   @javax.annotation.Nullable
-  private TimeEnum time = TimeEnum._1H;
+  private TimeEnum time = TimeEnum.OneHour;
 
   public static final String SERIALIZED_NAME_USAGE = "usage";
   @SerializedName(SERIALIZED_NAME_USAGE)

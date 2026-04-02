@@ -22,13 +22,13 @@ Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle 
 
 | Name | Value |
 |---- | -----|
-| ALL | &quot;all&quot; |
-| BILLING | &quot;billing&quot; |
-| MONTH | &quot;month&quot; |
-| _7D | &quot;7d&quot; |
-| _24H | &quot;24h&quot; |
-| DAY | &quot;day&quot; |
-| _1H | &quot;1h&quot; |
+| All | &quot;all&quot; |
+| Billing | &quot;billing&quot; |
+| Month | &quot;month&quot; |
+| SevenDays | &quot;7d&quot; |
+| TwentyFourHours | &quot;24h&quot; |
+| Day | &quot;day&quot; |
+| OneHour | &quot;1h&quot; |
 
 
 

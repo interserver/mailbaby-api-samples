@@ -33,6 +33,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "DateOrTimestamp",
     "DenyRuleNew",
     "DenyRuleRecord",
     "EmailAddressName",
@@ -56,7 +57,6 @@ __all__ = [
     "SendMailAdv",
     "SendMailRaw",
     "SendMailTo",
-    "ViewMailLogStartDateParameter",
 ]
 
 # import apis into sdk package
@@ -78,6 +78,7 @@ from openapi_client.exceptions import ApiAttributeError as ApiAttributeError
 from openapi_client.exceptions import ApiException as ApiException
 
 # import models into sdk package
+from openapi_client.models.date_or_timestamp import DateOrTimestamp as DateOrTimestamp
 from openapi_client.models.deny_rule_new import DenyRuleNew as DenyRuleNew
 from openapi_client.models.deny_rule_record import DenyRuleRecord as DenyRuleRecord
 from openapi_client.models.email_address_name import EmailAddressName as EmailAddressName
@@ -101,5 +102,4 @@ from openapi_client.models.send_mail import SendMail as SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv as SendMailAdv
 from openapi_client.models.send_mail_raw import SendMailRaw as SendMailRaw
 from openapi_client.models.send_mail_to import SendMailTo as SendMailTo
-from openapi_client.models.view_mail_log_start_date_parameter import ViewMailLogStartDateParameter as ViewMailLogStartDateParameter
 

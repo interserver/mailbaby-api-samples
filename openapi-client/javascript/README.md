@@ -185,6 +185,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [MailBabyEmailDeliveryAndManagementServiceApi.DateOrTimestamp](docs/DateOrTimestamp.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleNew](docs/DenyRuleNew.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressName](docs/EmailAddressName.md)
@@ -208,7 +209,6 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailAdv](docs/SendMailAdv.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw](docs/SendMailRaw.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.SendMailTo](docs/SendMailTo.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 ## Documentation for Authorization

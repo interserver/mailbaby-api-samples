@@ -371,9 +371,9 @@ class HistoryApi:
         :param limit: Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         :type limit: int
         :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        :type start_date: ViewMailLogStartDateParameter
+        :type start_date: DateOrTimestamp
         :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        :type end_date: ViewMailLogStartDateParameter
+        :type end_date: DateOrTimestamp
         :param sort: Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         :type sort: str
         :param dir: Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
@@ -508,9 +508,9 @@ class HistoryApi:
         :param limit: Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         :type limit: int
         :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        :type start_date: ViewMailLogStartDateParameter
+        :type start_date: DateOrTimestamp
         :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        :type end_date: ViewMailLogStartDateParameter
+        :type end_date: DateOrTimestamp
         :param sort: Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         :type sort: str
         :param dir: Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
@@ -645,9 +645,9 @@ class HistoryApi:
         :param limit: Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         :type limit: int
         :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        :type start_date: ViewMailLogStartDateParameter
+        :type start_date: DateOrTimestamp
         :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        :type end_date: ViewMailLogStartDateParameter
+        :type end_date: DateOrTimestamp
         :param sort: Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         :type sort: str
         :param dir: Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.

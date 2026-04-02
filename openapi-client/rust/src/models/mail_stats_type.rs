@@ -60,13 +60,13 @@ pub enum Time {
     #[serde(rename = "month")]
     Month,
     #[serde(rename = "7d")]
-    Variant7d,
+    SevenDays,
     #[serde(rename = "24h")]
-    Variant24h,
+    TwentyFourHours,
     #[serde(rename = "day")]
     Day,
     #[serde(rename = "1h")]
-    Variant1h,
+    OneHour,
 }
 
 impl Default for Time {

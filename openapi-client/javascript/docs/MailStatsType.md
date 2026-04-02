@@ -17,19 +17,19 @@ Name | Type | Description | Notes
 ## Enum: TimeEnum
 
 
-* `all` (value: `"all"`)
+* `All` (value: `"all"`)
 
-* `billing` (value: `"billing"`)
+* `Billing` (value: `"billing"`)
 
-* `month` (value: `"month"`)
+* `Month` (value: `"month"`)
 
-* `7d` (value: `"7d"`)
+* `SevenDays` (value: `"7d"`)
 
-* `24h` (value: `"24h"`)
+* `TwentyFourHours` (value: `"24h"`)
 
-* `day` (value: `"day"`)
+* `Day` (value: `"day"`)
 
-* `1h` (value: `"1h"`)
+* `OneHour` (value: `"1h"`)
 
 
 

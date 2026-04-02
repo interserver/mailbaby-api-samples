@@ -72,7 +72,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain
+ - **Accept**: text/plain, application/json
 
 ### HTTP response details
 

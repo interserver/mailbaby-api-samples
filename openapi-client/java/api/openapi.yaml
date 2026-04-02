@@ -80,6 +80,10 @@ paths:
               schema:
                 example: Server is up and running
                 type: string
+            application/json:
+              schema:
+                example: Server is up and running
+                type: string
           description: Server is up and running
         default:
           description: Something is wrong
@@ -87,6 +91,7 @@ paths:
       tags:
       - Status
       x-accepts:
+      - application/json
       - text/plain
   /mail:
     get:
@@ -829,7 +834,7 @@ paths:
         name: startDate
         required: false
         schema:
-          $ref: "#/components/schemas/viewMailLog_startDate_parameter"
+          $ref: "#/components/schemas/DateOrTimestamp"
         style: form
       - description: Latest date to include.  Accepts either a Unix timestamp (integer
           seconds since epoch) or a date string parseable by `strtotime()` such as
@@ -841,7 +846,7 @@ paths:
         name: endDate
         required: false
         schema:
-          $ref: "#/components/schemas/viewMailLog_startDate_parameter"
+          $ref: "#/components/schemas/DateOrTimestamp"
         style: form
       - description: Field to sort results by.  Currently only `time` is supported
           (sorts by internal row ID which corresponds to chronological order).
@@ -1034,6 +1039,14 @@ paths:
           - day
           - 1h
           type: string
+          x-enum-varnames:
+          - All
+          - Billing
+          - Month
+          - SevenDays
+          - TwentyFourHours
+          - Day
+          - OneHour
         style: form
       responses:
         "200":
@@ -1516,6 +1529,7 @@ components:
       - description: Single recipient email address.
         example: johndoe@company.com
         format: email
+        title: EmailAddressSingle
         type: string
       - description: Multiple recipient email addresses.
         example:
@@ -1524,6 +1538,7 @@ components:
         items:
           format: email
           type: string
+        title: EmailAddressList
         type: array
       title: SendMailTo
     GenericResponse:
@@ -1625,6 +1640,7 @@ components:
             type: string
         required:
         - password
+        title: MailOrderPassword
         type: object
       description: "Extended mail order record including the current SMTP password.\
         \  Returned by `GET /mail/{id}`.  The `username` and `password` fields can\
@@ -2029,6 +2045,7 @@ components:
         required:
         - created
         - id
+        title: DenyRuleMetadata
         type: object
       - $ref: "#/components/schemas/DenyRuleNew"
       description: "A complete deny rule record as returned by `GET /mail/rules`.\
@@ -2420,6 +2437,14 @@ components:
           - day
           - 1h
           type: string
+          x-enum-varnames:
+          - All
+          - Billing
+          - Month
+          - SevenDays
+          - TwentyFourHours
+          - Day
+          - OneHour
         usage:
           description: Total messages accepted during the current billing cycle.  Used
             to calculate the `cost` value.
@@ -2447,13 +2472,20 @@ components:
           $ref: "#/components/schemas/MailStatsVolume"
       title: MailStatsType
       type: object
-    viewMailLog_startDate_parameter:
+    DateOrTimestamp:
+      description: "A date/time value accepted as either a Unix timestamp (integer\
+        \ seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`,\
+        \ `last monday`)."
       oneOf:
-      - format: int64
+      - description: "Unix timestamp (integer seconds since epoch, 0–9999999999)."
+        format: int64
         maximum: 9999999999
         minimum: 0
         type: integer
-      - type: string
+      - description: Date string parseable by strtotime() such as `2024-01-15` or
+          `last monday`.
+        type: string
+      title: DateOrTimestamp
   securitySchemes:
     apiKeyAuth:
       description: "Pass your API key in the `X-API-KEY` HTTP request header.  Obtain\

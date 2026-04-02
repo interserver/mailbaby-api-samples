@@ -29,7 +29,7 @@ class MailStatsType(BaseModel):
     """
     Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
     """ # noqa: E501
-    time: Optional[StrictStr] = Field(default='1h', description="The time window these `received`, `sent`, and `volume` statistics cover.")
+    time: Optional[StrictStr] = Field(default=OneHour, description="The time window these `received`, `sent`, and `volume` statistics cover.")
     usage: Optional[StrictInt] = Field(default=None, description="Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.")
     currency: Optional[StrictStr] = Field(default=None, description="The ISO 4217 currency code for this account (e.g. `USD`).")
     cost: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).")
@@ -102,7 +102,7 @@ class MailStatsType(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "time": obj.get("time") if obj.get("time") is not None else '1h',
+            "time": obj.get("time") if obj.get("time") is not None else OneHour,
             "usage": obj.get("usage"),
             "currency": obj.get("currency"),
             "cost": obj.get("cost"),

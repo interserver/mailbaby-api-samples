@@ -104,7 +104,7 @@ func main() {
 	replyto := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. (optional)
 	cc := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. (optional)
 	bcc := openapiclient.EmailAddressesTypes{EmailAddressNames: openapiclient.NewEmailAddressNames()} // EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@22ebccb9))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
+	attachments := []openapiclient.MailAttachment{*openapiclient.NewMailAttachment("message.txt", string([B@3c3820bb))} // []MailAttachment | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
 	id := int64(789) // int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 	configuration := openapiclient.NewConfiguration()

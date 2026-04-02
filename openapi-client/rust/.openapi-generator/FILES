@@ -4,6 +4,7 @@
 Cargo.toml
 README.md
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -31,7 +32,6 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md
 git_push.sh
 src/apis/blocking_api.rs
 src/apis/configuration.rs
@@ -41,6 +41,7 @@ src/apis/sending_api.rs
 src/apis/services_api.rs
 src/apis/status_api.rs
 src/lib.rs
+src/models/date_or_timestamp.rs
 src/models/deny_rule_new.rs
 src/models/deny_rule_record.rs
 src/models/email_address_name.rs
@@ -65,4 +66,3 @@ src/models/send_mail.rs
 src/models/send_mail_adv.rs
 src/models/send_mail_raw.rs
 src/models/send_mail_to.rs
-src/models/view_mail_log_start_date_parameter.rs

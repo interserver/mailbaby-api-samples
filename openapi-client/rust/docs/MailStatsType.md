@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**time** | Option<**Time**> | The time window these `received`, `sent`, and `volume` statistics cover. (enum: all, billing, month, 7d, 24h, day, 1h) | [optional][default to Variant1h]
+**time** | Option<**Time**> | The time window these `received`, `sent`, and `volume` statistics cover. (enum: all, billing, month, 7d, 24h, day, 1h) | [optional][default to OneHour]
 **usage** | Option<**i32**> | Total messages accepted during the current billing cycle.  Used to calculate the `cost` value. | [optional]
 **currency** | Option<**String**> | The ISO 4217 currency code for this account (e.g. `USD`). | [optional]
 **cost** | Option<**f64**> | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). | [optional]

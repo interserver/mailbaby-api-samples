@@ -6,7 +6,7 @@ Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**time** | **str** | The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover. | [optional] [default to '1h']
+**time** | **str** | The time window these &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics cover. | [optional] [default to OneHour]
 **usage** | **int** | Total messages accepted during the current billing cycle.  Used to calculate the &#x60;cost&#x60; value. | [optional] 
 **currency** | **str** | The ISO 4217 currency code for this account (e.g. &#x60;USD&#x60;). | [optional] 
 **cost** | **float** | Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails). | [optional] 

@@ -17,6 +17,8 @@ OpenAPIClient/APIs/ServicesApiCallbackHandler.xojo_code
 OpenAPIClient/APIs/StatusApi.xojo_code
 OpenAPIClient/APIs/StatusApiCallbackHandler.xojo_code
 OpenAPIClient/Models.xojo_code
+OpenAPIClient/Models/DateOrTimestamp.xojo_code
+OpenAPIClient/Models/DateOrTimestampOptional.xojo_code
 OpenAPIClient/Models/DenyRuleNew.xojo_code
 OpenAPIClient/Models/DenyRuleNewOptional.xojo_code
 OpenAPIClient/Models/DenyRuleRecord.xojo_code
@@ -63,7 +65,5 @@ OpenAPIClient/Models/SendMailRaw.xojo_code
 OpenAPIClient/Models/SendMailRawOptional.xojo_code
 OpenAPIClient/Models/SendMailTo.xojo_code
 OpenAPIClient/Models/SendMailToOptional.xojo_code
-OpenAPIClient/Models/ViewMailLogStartDateParameter.xojo_code
-OpenAPIClient/Models/ViewMailLogStartDateParameterOptional.xojo_code
 OpenAPIClient/OpenAPIClientException.xojo_code
 README.md

@@ -1,3 +1,5 @@
+pub mod date_or_timestamp;
+pub use self::date_or_timestamp::DateOrTimestamp;
 pub mod deny_rule_new;
 pub use self::deny_rule_new::DenyRuleNew;
 pub mod deny_rule_record;
@@ -44,5 +46,3 @@ pub mod send_mail_raw;
 pub use self::send_mail_raw::SendMailRaw;
 pub mod send_mail_to;
 pub use self::send_mail_to::SendMailTo;
-pub mod view_mail_log_start_date_parameter;
-pub use self::view_mail_log_start_date_parameter::ViewMailLogStartDateParameter;

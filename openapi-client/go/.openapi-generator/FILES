@@ -11,6 +11,7 @@ api_status.go
 client.go
 configuration.go
 docs/BlockingAPI.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -38,10 +39,10 @@ docs/SendMailTo.md
 docs/SendingAPI.md
 docs/ServicesAPI.md
 docs/StatusAPI.md
-docs/ViewMailLogStartDateParameter.md
 git_push.sh
 go.mod
 go.sum
+model_date_or_timestamp.go
 model_deny_rule_new.go
 model_deny_rule_record.go
 model_email_address_name.go
@@ -65,7 +66,6 @@ model_send_mail.go
 model_send_mail_adv.go
 model_send_mail_raw.go
 model_send_mail_to.go
-model_view_mail_log_start_date_parameter.go
 response.go
 test/api_blocking_test.go
 test/api_history_test.go

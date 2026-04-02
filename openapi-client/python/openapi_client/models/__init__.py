@@ -14,6 +14,7 @@
 """  # noqa: E501
 
 # import models into model package
+from openapi_client.models.date_or_timestamp import DateOrTimestamp
 from openapi_client.models.deny_rule_new import DenyRuleNew
 from openapi_client.models.deny_rule_record import DenyRuleRecord
 from openapi_client.models.email_address_name import EmailAddressName
@@ -37,5 +38,4 @@ from openapi_client.models.send_mail import SendMail
 from openapi_client.models.send_mail_adv import SendMailAdv
 from openapi_client.models.send_mail_raw import SendMailRaw
 from openapi_client.models.send_mail_to import SendMailTo
-from openapi_client.models.view_mail_log_start_date_parameter import ViewMailLogStartDateParameter
 

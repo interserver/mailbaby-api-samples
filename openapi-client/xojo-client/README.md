@@ -126,6 +126,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [OpenAPIClient.Models.DateOrTimestamp](DateOrTimestamp.md)
  - [OpenAPIClient.Models.DenyRuleNew](DenyRuleNew.md)
  - [OpenAPIClient.Models.DenyRuleRecord](DenyRuleRecord.md)
  - [OpenAPIClient.Models.EmailAddressName](EmailAddressName.md)
@@ -149,7 +150,6 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient.Models.SendMailAdv](SendMailAdv.md)
  - [OpenAPIClient.Models.SendMailRaw](SendMailRaw.md)
  - [OpenAPIClient.Models.SendMailTo](SendMailTo.md)
- - [OpenAPIClient.Models.ViewMailLogStartDateParameter](ViewMailLogStartDateParameter.md)
 
 
 ## Documentation For Authorization

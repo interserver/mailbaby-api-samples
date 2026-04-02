@@ -61,7 +61,7 @@ export default class StatusApi {
 
       let authNames = ['apiKeyAuth'];
       let contentTypes = [];
-      let accepts = ['text/plain'];
+      let accepts = ['text/plain', 'application/json'];
       let returnType = 'String';
       return this.apiClient.callApi(
         '/ping', 'GET',

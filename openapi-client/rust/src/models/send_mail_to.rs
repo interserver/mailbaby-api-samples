@@ -17,14 +17,14 @@ use serde::{Deserialize, Serialize};
 #[serde(untagged)]
 pub enum SendMailTo {
     /// Single recipient email address.
-    String(String),
+    EmailAddressSingle(String),
     /// Multiple recipient email addresses.
-    ArrayVecString(Vec<String>),
+    EmailAddressList(Vec<String>),
 }
 
 impl Default for SendMailTo {
     fn default() -> Self {
-        Self::String(Default::default())
+        Self::EmailAddressSingle(Default::default())
     }
 }
 

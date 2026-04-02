@@ -125,6 +125,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [DateOrTimestamp](docs/DateOrTimestamp.md)
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
@@ -148,7 +149,6 @@ Class | Method | HTTP request | Description
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailRaw](docs/SendMailRaw.md)
  - [SendMailTo](docs/SendMailTo.md)
- - [ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 ## Documentation For Authorization

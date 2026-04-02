@@ -13,10 +13,10 @@
 
 
 import ApiClient from "../ApiClient";
+import DateOrTimestamp from '../model/DateOrTimestamp';
 import ErrorMessage from '../model/ErrorMessage';
 import MailLog from '../model/MailLog';
 import MailStatsType from '../model/MailStatsType';
-import ViewMailLogStartDateParameter from '../model/ViewMailLogStartDateParameter';
 
 /**
 * History service.
@@ -103,8 +103,8 @@ export default class HistoryApi {
      * @param {module:model/Number} [delivered] Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
      * @param {Number} [skip = 0)] Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
      * @param {Number} [limit = 100)] Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-     * @param {module:model/ViewMailLogStartDateParameter} [startDate] Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-     * @param {module:model/ViewMailLogStartDateParameter} [endDate] Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+     * @param {module:model/DateOrTimestamp} [startDate] Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+     * @param {module:model/DateOrTimestamp} [endDate] Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
      * @param {module:model/String} [sort = 'time')] Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
      * @param {module:model/String} [dir = 'desc')] Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
      * @param {module:model/String} [groupby = 'recipient')] Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.

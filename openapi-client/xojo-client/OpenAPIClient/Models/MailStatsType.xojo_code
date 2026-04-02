@@ -59,10 +59,10 @@ Protected Class MailStatsType
         All
         Billing
         Month
-        Escaped7d
-        Escaped24h
+        SevenDays
+        TwentyFourHours
         Day
-        Escaped1h
+        OneHour
         
     #tag EndEnum
 
@@ -77,13 +77,13 @@ Protected Class MailStatsType
 		      Return "billing"
 		    Case TimeEnum.Month
 		      Return "month"
-		    Case TimeEnum.Escaped7d
+		    Case TimeEnum.SevenDays
 		      Return "7d"
-		    Case TimeEnum.Escaped24h
+		    Case TimeEnum.TwentyFourHours
 		      Return "24h"
 		    Case TimeEnum.Day
 		      Return "day"
-		    Case TimeEnum.Escaped1h
+		    Case TimeEnum.OneHour
 		      Return "1h"
 		    
 		  End Select

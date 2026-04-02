@@ -4,6 +4,7 @@
 .travis.yml
 README.md
 docs/BlockingApi.md
+docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
@@ -31,7 +32,6 @@ docs/SendMailTo.md
 docs/SendingApi.md
 docs/ServicesApi.md
 docs/StatusApi.md
-docs/ViewMailLogStartDateParameter.md
 git_push.sh
 mocha.opts
 package.json
@@ -42,6 +42,7 @@ src/api/SendingApi.js
 src/api/ServicesApi.js
 src/api/StatusApi.js
 src/index.js
+src/model/DateOrTimestamp.js
 src/model/DenyRuleNew.js
 src/model/DenyRuleRecord.js
 src/model/EmailAddressName.js
@@ -65,12 +66,12 @@ src/model/SendMail.js
 src/model/SendMailAdv.js
 src/model/SendMailRaw.js
 src/model/SendMailTo.js
-src/model/ViewMailLogStartDateParameter.js
 test/api/BlockingApi.spec.js
 test/api/HistoryApi.spec.js
 test/api/SendingApi.spec.js
 test/api/ServicesApi.spec.js
 test/api/StatusApi.spec.js
+test/model/DateOrTimestamp.spec.js
 test/model/DenyRuleNew.spec.js
 test/model/DenyRuleRecord.spec.js
 test/model/EmailAddressName.spec.js
@@ -94,4 +95,3 @@ test/model/SendMail.spec.js
 test/model/SendMailAdv.spec.js
 test/model/SendMailRaw.spec.js
 test/model/SendMailTo.spec.js
-test/model/ViewMailLogStartDateParameter.spec.js

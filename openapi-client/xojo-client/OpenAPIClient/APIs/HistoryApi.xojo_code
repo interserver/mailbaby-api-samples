@@ -143,13 +143,13 @@ Protected Class HistoryApi
 		      Return "billing"
 		    Case TimeEnum_GetStats.Month
 		      Return "month"
-		    Case TimeEnum_GetStats.Escaped7d
+		    Case TimeEnum_GetStats.SevenDays
 		      Return "7d"
-		    Case TimeEnum_GetStats.Escaped24h
+		    Case TimeEnum_GetStats.TwentyFourHours
 		      Return "24h"
 		    Case TimeEnum_GetStats.Day
 		      Return "day"
-		    Case TimeEnum_GetStats.Escaped1h
+		    Case TimeEnum_GetStats.OneHour
 		      Return "1h"
 		    
 		  End Select
@@ -158,7 +158,7 @@ Protected Class HistoryApi
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ViewMailLog(, Optional id As Xoson.O.OptionalInt64, Optional origin As Xoson.O.OptionalString, Optional mx As Xoson.O.OptionalString, Optional from As Xoson.O.OptionalString, Optional Escapedto As Xoson.O.OptionalString, Optional subject As Xoson.O.OptionalString, Optional mailid As Xoson.O.OptionalString, Optional messageId As Xoson.O.OptionalString, Optional replyto As Xoson.O.OptionalString, Optional headerfrom As Xoson.O.OptionalString, delivered As DeliveredEnum_ViewMailLog, Optional skip As Xoson.O.OptionalInteger, Optional limit As Xoson.O.OptionalInteger, Optional startDate As OpenAPIClient.Models.ViewMailLogStartDateParameter, Optional endDate As OpenAPIClient.Models.ViewMailLogStartDateParameter, sort As SortEnum_ViewMailLog, dir As DirEnum_ViewMailLog, groupby As GroupbyEnum_ViewMailLog)
+		Sub ViewMailLog(, Optional id As Xoson.O.OptionalInt64, Optional origin As Xoson.O.OptionalString, Optional mx As Xoson.O.OptionalString, Optional from As Xoson.O.OptionalString, Optional Escapedto As Xoson.O.OptionalString, Optional subject As Xoson.O.OptionalString, Optional mailid As Xoson.O.OptionalString, Optional messageId As Xoson.O.OptionalString, Optional replyto As Xoson.O.OptionalString, Optional headerfrom As Xoson.O.OptionalString, delivered As DeliveredEnum_ViewMailLog, Optional skip As Xoson.O.OptionalInteger, Optional limit As Xoson.O.OptionalInteger, Optional startDate As OpenAPIClient.Models.DateOrTimestamp, Optional endDate As OpenAPIClient.Models.DateOrTimestamp, sort As SortEnum_ViewMailLog, dir As DirEnum_ViewMailLog, groupby As GroupbyEnum_ViewMailLog)
 		  // Operation viewMailLog
 		  // Displays the mail log
 		  // - 
@@ -464,10 +464,10 @@ Protected Class HistoryApi
         All
         Billing
         Month
-        Escaped7d
-        Escaped24h
+        SevenDays
+        TwentyFourHours
         Day
-        Escaped1h
+        OneHour
 		
 	#tag EndEnum
 

@@ -13,6 +13,7 @@
 
 
 import ApiClient from './ApiClient';
+import DateOrTimestamp from './model/DateOrTimestamp';
 import DenyRuleNew from './model/DenyRuleNew';
 import DenyRuleRecord from './model/DenyRuleRecord';
 import EmailAddressName from './model/EmailAddressName';
@@ -36,7 +37,6 @@ import SendMail from './model/SendMail';
 import SendMailAdv from './model/SendMailAdv';
 import SendMailRaw from './model/SendMailRaw';
 import SendMailTo from './model/SendMailTo';
-import ViewMailLogStartDateParameter from './model/ViewMailLogStartDateParameter';
 import BlockingApi from './api/BlockingApi';
 import HistoryApi from './api/HistoryApi';
 import SendingApi from './api/SendingApi';
@@ -81,6 +81,12 @@ export {
      * @property {module:ApiClient}
      */
     ApiClient,
+
+    /**
+     * The DateOrTimestamp model constructor.
+     * @property {module:model/DateOrTimestamp}
+     */
+    DateOrTimestamp,
 
     /**
      * The DenyRuleNew model constructor.
@@ -219,12 +225,6 @@ export {
      * @property {module:model/SendMailTo}
      */
     SendMailTo,
-
-    /**
-     * The ViewMailLogStartDateParameter model constructor.
-     * @property {module:model/ViewMailLogStartDateParameter}
-     */
-    ViewMailLogStartDateParameter,
 
     /**
     * The BlockingApi service constructor.

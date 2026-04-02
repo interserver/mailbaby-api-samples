@@ -2,7 +2,7 @@
 
 MailBaby Email Delivery and Management Service API
 - API version: 1.4.0
-  - Build date: 2026-04-02T08:37:38.980319937-04:00[America/New_York]
+  - Build date: 2026-04-02T09:43:36.615652131-04:00[America/New_York]
   - Generator version: 7.21.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
@@ -178,6 +178,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [DateOrTimestamp](docs/DateOrTimestamp.md)
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
@@ -201,7 +202,6 @@ Class | Method | HTTP request | Description
  - [SendMailAdv](docs/SendMailAdv.md)
  - [SendMailRaw](docs/SendMailRaw.md)
  - [SendMailTo](docs/SendMailTo.md)
- - [ViewMailLogStartDateParameter](docs/ViewMailLogStartDateParameter.md)
 
 
 <a id="documentation-for-authorization"></a>

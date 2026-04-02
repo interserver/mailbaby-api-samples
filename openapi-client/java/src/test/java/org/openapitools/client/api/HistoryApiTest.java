@@ -14,10 +14,10 @@
 package org.openapitools.client.api;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.DateOrTimestamp;
 import org.openapitools.client.model.ErrorMessage;
 import org.openapitools.client.model.MailLog;
 import org.openapitools.client.model.MailStatsType;
-import org.openapitools.client.model.ViewMailLogStartDateParameter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -70,8 +70,8 @@ public class HistoryApiTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        ViewMailLogStartDateParameter startDate = null;
-        ViewMailLogStartDateParameter endDate = null;
+        DateOrTimestamp startDate = null;
+        DateOrTimestamp endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

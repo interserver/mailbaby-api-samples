@@ -159,43 +159,43 @@ MailStatsType['TimeEnum'] = {
      * value: "all"
      * @const
      */
-    "all": "all",
+    "All": "all",
 
     /**
      * value: "billing"
      * @const
      */
-    "billing": "billing",
+    "Billing": "billing",
 
     /**
      * value: "month"
      * @const
      */
-    "month": "month",
+    "Month": "month",
 
     /**
      * value: "7d"
      * @const
      */
-    "7d": "7d",
+    "SevenDays": "7d",
 
     /**
      * value: "24h"
      * @const
      */
-    "24h": "24h",
+    "TwentyFourHours": "24h",
 
     /**
      * value: "day"
      * @const
      */
-    "day": "day",
+    "Day": "day",
 
     /**
      * value: "1h"
      * @const
      */
-    "1h": "1h"
+    "OneHour": "1h"
 };
 
 

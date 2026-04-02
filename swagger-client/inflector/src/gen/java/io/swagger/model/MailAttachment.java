@@ -43,7 +43,7 @@ public class MailAttachment   {
   }
 
   
-  @Schema(example = "[B@6b004be6", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  @Schema(example = "[B@761d8138", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
   @JsonProperty("data")
   public byte[] getData() {
     return data;

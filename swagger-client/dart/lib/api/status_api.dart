@@ -7,9 +7,9 @@ class StatusApi {
 
   StatusApi([ApiClient apiClient]) : apiClient = apiClient ?? defaultApiClient;
 
-  /// Checks if the server is running
+  /// Health check — verify the API is reachable
   ///
-  /// A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+  /// **No authentication required.** Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
   Future<String> pingServer() async {
     Object postBody = null;
 
@@ -26,7 +26,7 @@ class StatusApi {
     List<String> contentTypes = [];
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-    List<String> authNames = ["apiKeyAuth"];
+    List<String> authNames = [];
 
     if(contentType.startsWith("multipart/form-data")) {
       bool hasFields = false;

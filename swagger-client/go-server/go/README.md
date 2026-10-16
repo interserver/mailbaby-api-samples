@@ -12,7 +12,7 @@ To see how to make this your own, look here:
 
 [README](https://github.com/swagger-api/swagger-codegen/blob/master/README.md)
 
-- API version: 1.4.0
+- API version: 1.5.0
 For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/)
 
 

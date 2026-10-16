@@ -4,16 +4,16 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_stats**](HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage statistics
-[**view_mail_log**](HistoryApi.md#view_mail_log) | **GET** /mail/log | Displays the mail log
+[**get_stats**](HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+[**view_mail_log**](HistoryApi.md#view_mail_log) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
 
 
 # **get_stats**
 > MailStatsType get_stats(time=time)
 
-Account usage statistics
+Account usage, cost, and volume statistics for a time window
 
-Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.
+**Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The `time` query param controls the window for `received`, `sent`, and `volume` (`1h`, `24h`, `7d`, `month`, `day`, `billing`, `all`). The `usage` and `cost` fields are always for the current billing cycle, regardless of `time`.
 
 The response includes:
 - **`usage`** — total messages accepted by the relay during the current billing
@@ -64,7 +64,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     time = 1h # str | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
     try:
-        # Account usage statistics
+        # Account usage, cost, and volume statistics for a time window
         api_response = api_instance.get_stats(time=time)
         print("The response of HistoryApi->get_stats:\n")
         pprint(api_response)
@@ -106,9 +106,9 @@ Name | Type | Description  | Notes
 # **view_mail_log**
 > MailLog view_mail_log(id=id, origin=origin, mx=mx, var_from=var_from, to=to, subject=subject, mailid=mailid, message_id=message_id, replyto=replyto, headerfrom=headerfrom, delivered=delivered, skip=skip, limit=limit, start_date=start_date, end_date=end_date, sort=sort, dir=dir, groupby=groupby)
 
-Displays the mail log
+Query the mail delivery log (filterable, paginated)
 
-Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
+**Use this to find or audit sent messages.** All filters are optional and combinable. The most useful filters: `mailid` (the transaction id returned by a send call), `from` / `to` (envelope addresses), `subject`, `messageId` (case-insensitive substring on the `Message-ID` header), `delivered` (`1`=delivered, `0`=queued/failed), and the `startDate`/`endDate` date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).
 
 **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
@@ -178,7 +178,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     groupby = recipient # str | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
 
     try:
-        # Displays the mail log
+        # Query the mail delivery log (filterable, paginated)
         api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, var_from=var_from, to=to, subject=subject, mailid=mailid, message_id=message_id, replyto=replyto, headerfrom=headerfrom, delivered=delivered, skip=skip, limit=limit, start_date=start_date, end_date=end_date, sort=sort, dir=dir, groupby=groupby)
         print("The response of HistoryApi->view_mail_log:\n")
         pprint(api_response)

@@ -17,7 +17,7 @@ class TestServicesController(BaseTestCase):
     def test_get_mail_order_by_id(self):
         """Test case for get_mail_order_by_id
 
-        Displays details for a single mail order
+        Get one mail order's full detail including SMTP password
         """
         response = self.client.open(
             '/mail/{id}'.format(id=789),
@@ -28,7 +28,7 @@ class TestServicesController(BaseTestCase):
     def test_get_mail_orders(self):
         """Test case for get_mail_orders
 
-        Displays a list of mail service orders
+        List your provisioned mail orders (sending accounts)
         """
         response = self.client.open(
             '/mail',

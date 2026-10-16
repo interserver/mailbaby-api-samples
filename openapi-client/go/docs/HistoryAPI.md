@@ -4,8 +4,8 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetStats**](HistoryAPI.md#GetStats) | **Get** /mail/stats | Account usage statistics
-[**ViewMailLog**](HistoryAPI.md#ViewMailLog) | **Get** /mail/log | Displays the mail log
+[**GetStats**](HistoryAPI.md#GetStats) | **Get** /mail/stats | Account usage, cost, and volume statistics for a time window
+[**ViewMailLog**](HistoryAPI.md#ViewMailLog) | **Get** /mail/log | Query the mail delivery log (filterable, paginated)
 
 
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 > MailStatsType GetStats(ctx).Time(time).Execute()
 
-Account usage statistics
+Account usage, cost, and volume statistics for a time window
 
 
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 > MailLog ViewMailLog(ctx).Id(id).Origin(origin).Mx(mx).From(from).To(to).Subject(subject).Mailid(mailid).MessageId(messageId).Replyto(replyto).Headerfrom(headerfrom).Delivered(delivered).Skip(skip).Limit(limit).StartDate(startDate).EndDate(endDate).Sort(sort).Dir(dir).Groupby(groupby).Execute()
 
-Displays the mail log
+Query the mail delivery log (filterable, paginated)
 
 
 

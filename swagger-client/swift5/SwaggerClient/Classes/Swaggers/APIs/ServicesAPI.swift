@@ -11,7 +11,7 @@ import Alamofire
 
 open class ServicesAPI {
     /**
-     Displays details for a single mail order
+     Get one mail order's full detail including SMTP password
 
      - parameter _id: (path) The numeric ID of the mail order. 
      - parameter completion: completion handler to receive the data and the error objects
@@ -24,7 +24,7 @@ open class ServicesAPI {
 
 
     /**
-     Displays details for a single mail order
+     Get one mail order's full detail including SMTP password
      - GET /mail/{id}
 
      - API Key:
@@ -55,7 +55,7 @@ open class ServicesAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Displays a list of mail service orders
+     List your provisioned mail orders (sending accounts)
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -67,7 +67,7 @@ open class ServicesAPI {
 
 
     /**
-     Displays a list of mail service orders
+     List your provisioned mail orders (sending accounts)
      - GET /mail
 
      - API Key:

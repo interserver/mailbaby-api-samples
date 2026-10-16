@@ -11,7 +11,7 @@ import Alamofire
 
 open class StatusAPI {
     /**
-     Checks if the server is running
+     Health check — verify the API is reachable
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -23,12 +23,9 @@ open class StatusAPI {
 
 
     /**
-     Checks if the server is running
+     Health check — verify the API is reachable
      - GET /ping
 
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
      - examples: [{contentType=application/json, example="Server is up and running"}]
 
      - returns: RequestBuilder<String> 

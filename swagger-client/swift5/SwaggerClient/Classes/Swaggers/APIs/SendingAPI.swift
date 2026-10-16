@@ -11,7 +11,7 @@ import Alamofire
 
 open class SendingAPI {
     /**
-     Sends a raw RFC 822 email
+     Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
@@ -24,7 +24,7 @@ open class SendingAPI {
 
 
     /**
-     Sends a raw RFC 822 email
+     Send a pre-built RFC 822 message verbatim (preserves DKIM)
      - POST /mail/rawsend
 
      - API Key:
@@ -50,7 +50,7 @@ open class SendingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Sends a raw RFC 822 email
+     Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
      - parameter rawEmail: (form)  
      - parameter _id: (form)  
@@ -64,7 +64,7 @@ open class SendingAPI {
 
 
     /**
-     Sends a raw RFC 822 email
+     Send a pre-built RFC 822 message verbatim (preserves DKIM)
      - POST /mail/rawsend
 
      - API Key:
@@ -91,7 +91,7 @@ open class SendingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Sends an Email with Advanced Options
+     Send email with multiple recipients, CC/BCC, attachments, named contacts
 
      - parameter subject: (form)  
      - parameter body: (form)  
@@ -112,7 +112,7 @@ open class SendingAPI {
 
 
     /**
-     Sends an Email with Advanced Options
+     Send email with multiple recipients, CC/BCC, attachments, named contacts
      - POST /mail/advsend
 
      - API Key:
@@ -146,7 +146,7 @@ open class SendingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Sends an Email with Advanced Options
+     Send email with multiple recipients, CC/BCC, attachments, named contacts
 
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
@@ -159,7 +159,7 @@ open class SendingAPI {
 
 
     /**
-     Sends an Email with Advanced Options
+     Send email with multiple recipients, CC/BCC, attachments, named contacts
      - POST /mail/advsend
 
      - API Key:
@@ -185,7 +185,7 @@ open class SendingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Sends an Email
+     Send a simple email (single recipient, plain or HTML)
 
      - parameter to: (form)  
      - parameter from: (form)  
@@ -202,7 +202,7 @@ open class SendingAPI {
 
 
     /**
-     Sends an Email
+     Send a simple email (single recipient, plain or HTML)
      - POST /mail/send
 
      - API Key:
@@ -232,7 +232,7 @@ open class SendingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Sends an Email
+     Send a simple email (single recipient, plain or HTML)
 
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
@@ -245,7 +245,7 @@ open class SendingAPI {
 
 
     /**
-     Sends an Email
+     Send a simple email (single recipient, plain or HTML)
      - POST /mail/send
 
      - API Key:

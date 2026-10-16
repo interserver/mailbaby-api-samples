@@ -32,8 +32,8 @@
 
 
 (defn-spec raw-mail-with-http-info any?
-  "Sends a raw RFC 822 email
-  Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+  "Send a pre-built RFC 822 message verbatim (preserves DKIM)
+  **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
 This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
@@ -55,8 +55,8 @@ On success the response `text` field contains the relay transaction ID.  This ID
              :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec raw-mail generic-response-spec
-  "Sends a raw RFC 822 email
-  Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+  "Send a pre-built RFC 822 message verbatim (preserves DKIM)
+  **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
 This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
@@ -73,8 +73,8 @@ On success the response `text` field contains the relay transaction ID.  This ID
 
 
 (defn-spec send-adv-mail-with-http-info any?
-  "Sends an Email with Advanced Options
-  Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
+  "Send email with multiple recipients, CC/BCC, attachments, named contacts
+  **Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.
 
 **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `\"Joe <joe@example.com>, jane@example.com\"`) and the structured `[{\"email\":\"...\",\"name\":\"...\"}]` array format.  When using JSON, both formats are equally supported.
 
@@ -141,8 +141,8 @@ On success the response `text` field contains the relay transaction ID which can
               :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec send-adv-mail generic-response-spec
-  "Sends an Email with Advanced Options
-  Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
+  "Send email with multiple recipients, CC/BCC, attachments, named contacts
+  **Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.
 
 **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `\"Joe <joe@example.com>, jane@example.com\"`) and the structured `[{\"email\":\"...\",\"name\":\"...\"}]` array format.  When using JSON, both formats are equally supported.
 
@@ -205,8 +205,8 @@ On success the response `text` field contains the relay transaction ID which can
 
 
 (defn-spec send-mail-with-http-info any?
-  "Sends an Email
-  Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
+  "Send a simple email (single recipient, plain or HTML)
+  **Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: `from`, `to`, `subject`, `body`. Optional: `id` (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.
 
 **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.
 
@@ -228,8 +228,8 @@ On success the response `text` field contains the relay transaction ID.  This ID
               :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec send-mail generic-response-spec
-  "Sends an Email
-  Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
+  "Send a simple email (single recipient, plain or HTML)
+  **Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: `from`, `to`, `subject`, `body`. Optional: `id` (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.
 
 **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.
 

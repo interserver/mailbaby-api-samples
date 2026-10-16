@@ -4,7 +4,7 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PingServer**](StatusAPI.md#PingServer) | **Get** /ping | Checks if the server is running
+[**PingServer**](StatusAPI.md#PingServer) | **Get** /ping | Health check — verify the API is reachable
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > string PingServer(ctx).Execute()
 
-Checks if the server is running
+Health check — verify the API is reachable
 
 
 
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiPingServerRequest struct v
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)
+No authorization required
 
 ### HTTP request headers
 

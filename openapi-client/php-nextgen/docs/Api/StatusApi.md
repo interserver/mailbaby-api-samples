@@ -4,7 +4,7 @@ All URIs are relative to https://api.mailbaby.net, except if the operation defin
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**pingServer()**](StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running |
+| [**pingServer()**](StatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable |
 
 
 ## `pingServer()`
@@ -13,9 +13,9 @@ All URIs are relative to https://api.mailbaby.net, except if the operation defin
 pingServer(): string
 ```
 
-Checks if the server is running
+Health check — verify the API is reachable
 
-A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
+**No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests.
 
 ### Example
 
@@ -24,17 +24,11 @@ A lightweight health-check endpoint.  Returns the plain-text string `Server is u
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
-
 
 $apiInstance = new OpenAPI\Client\Api\StatusApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 
 try {
@@ -55,7 +49,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../../README.md#apiKeyAuth)
+No authorization required
 
 ### HTTP request headers
 

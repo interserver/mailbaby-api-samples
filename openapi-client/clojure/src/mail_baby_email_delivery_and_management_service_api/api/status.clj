@@ -32,8 +32,8 @@
 
 
 (defn-spec ping-server-with-http-info any?
-  "Checks if the server is running
-  A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests."
+  "Health check — verify the API is reachable
+  **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests."
   []
   (call-api "/ping" :get
             {:path-params   {}
@@ -42,11 +42,11 @@
              :form-params   {}
              :content-types []
              :accepts       ["text/plain" "application/json"]
-             :auth-names    ["apiKeyAuth"]}))
+             :auth-names    []}))
 
 (defn-spec ping-server string?
-  "Checks if the server is running
-  A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests."
+  "Health check — verify the API is reachable
+  **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests."
   []
   (let [res (:data (ping-server-with-http-info))]
     (if (:decode-models *api-context*)

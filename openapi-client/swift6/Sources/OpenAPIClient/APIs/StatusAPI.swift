@@ -10,7 +10,7 @@ import Foundation
 open class StatusAPI {
 
     /**
-     Checks if the server is running
+     Health check — verify the API is reachable
      
      - parameter apiConfiguration: The configuration for the http request.
      - returns: String
@@ -20,12 +20,9 @@ open class StatusAPI {
     }
 
     /**
-     Checks if the server is running
+     Health check — verify the API is reachable
      - GET /ping
-     - A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
-     - API Key:
-       - type: apiKey X-API-KEY (HEADER)
-       - name: apiKeyAuth
+     - **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<String> 
      */
@@ -44,6 +41,6 @@ open class StatusAPI {
 
         let localVariableRequestBuilder: RequestBuilder<String>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
     }
 }

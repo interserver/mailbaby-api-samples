@@ -1,13 +1,13 @@
 ## ServicesApi
 
-### Displays details for a single mail order
-## Displays details for a single mail order
+### Get one mail order&#39;s full detail including SMTP password
+## Get one mail order&#39;s full detail including SMTP password
 GET https://api.mailbaby.net/mail/{{id}}
 Accept: application/json
 X-API-KEY: {{apiKey}}
 
-### Displays a list of mail service orders
-## Displays a list of mail service orders
+### List your provisioned mail orders (sending accounts)
+## List your provisioned mail orders (sending accounts)
 GET https://api.mailbaby.net/mail
 Accept: application/json
 X-API-KEY: {{apiKey}}

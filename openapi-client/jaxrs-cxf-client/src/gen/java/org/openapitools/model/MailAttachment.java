@@ -23,7 +23,7 @@ public class MailAttachment  {
  /**
   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
   */
-  @ApiModelProperty(example = "[B@3662bdff", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  @ApiModelProperty(example = "[B@1f1e58ca", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
 
   private byte[] data;
  /**

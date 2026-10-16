@@ -4,17 +4,17 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**raw_mail**](SendingApi.md#raw_mail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
-[**send_adv_mail**](SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-[**send_mail**](SendingApi.md#send_mail) | **POST** /mail/send | Sends an Email
+[**raw_mail**](SendingApi.md#raw_mail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
+[**send_adv_mail**](SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
+[**send_mail**](SendingApi.md#send_mail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
 
 
 # **raw_mail**
 > GenericResponse raw_mail(send_mail_raw)
 
-Sends a raw RFC 822 email
+Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
-Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+**Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
 This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
@@ -60,7 +60,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     send_mail_raw = openapi_client.SendMailRaw() # SendMailRaw | 
 
     try:
-        # Sends a raw RFC 822 email
+        # Send a pre-built RFC 822 message verbatim (preserves DKIM)
         api_response = api_instance.raw_mail(send_mail_raw)
         print("The response of SendingApi->raw_mail:\n")
         pprint(api_response)
@@ -104,9 +104,9 @@ Name | Type | Description  | Notes
 # **send_adv_mail**
 > GenericResponse send_adv_mail(subject, body, var_from, to, replyto=replyto, cc=cc, bcc=bcc, attachments=attachments, id=id)
 
-Sends an Email with Advanced Options
+Send email with multiple recipients, CC/BCC, attachments, named contacts
 
-Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
+**Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.
 
 **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `"Joe <joe@example.com>, jane@example.com"`) and the structured `[{"email":"...","name":"..."}]` array format.  When using JSON, both formats are equally supported.
 
@@ -205,7 +205,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     id = 56 # int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
     try:
-        # Sends an Email with Advanced Options
+        # Send email with multiple recipients, CC/BCC, attachments, named contacts
         api_response = api_instance.send_adv_mail(subject, body, var_from, to, replyto=replyto, cc=cc, bcc=bcc, attachments=attachments, id=id)
         print("The response of SendingApi->send_adv_mail:\n")
         pprint(api_response)
@@ -257,9 +257,9 @@ Name | Type | Description  | Notes
 # **send_mail**
 > GenericResponse send_mail(to, var_from, subject, body, id=id)
 
-Sends an Email
+Send a simple email (single recipient, plain or HTML)
 
-Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
+**Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: `from`, `to`, `subject`, `body`. Optional: `id` (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.
 
 **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.
 
@@ -309,7 +309,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     id = 56 # int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
     try:
-        # Sends an Email
+        # Send a simple email (single recipient, plain or HTML)
         api_response = api_instance.send_mail(to, var_from, subject, body, id=id)
         print("The response of SendingApi->send_mail:\n")
         pprint(api_response)

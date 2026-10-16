@@ -67,19 +67,19 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OASBlockingApi* | [**addRule**](OASBlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule
-*OASBlockingApi* | [**deleteRule**](OASBlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
-*OASBlockingApi* | [**delistBlock**](OASBlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
-*OASBlockingApi* | [**getMailBlocks**](OASBlockingApi.md#getMailBlocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
-*OASBlockingApi* | [**getRules**](OASBlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules
-*OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics
-*OASHistoryApi* | [**viewMailLog**](OASHistoryApi.md#viewMailLog) | **GET** /mail/log | Displays the mail log
-*OASSendingApi* | [**rawMail**](OASSendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
-*OASSendingApi* | [**sendAdvMail**](OASSendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*OASSendingApi* | [**sendMail**](OASSendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*OASServicesApi* | [**getMailOrderById**](OASServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Displays details for a single mail order
-*OASServicesApi* | [**getMailOrders**](OASServicesApi.md#getMailOrders) | **GET** /mail | Displays a list of mail service orders
-*OASStatusApi* | [**pingServer**](OASStatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
+*OASBlockingApi* | [**addRule**](OASBlockingApi.md#addRule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+*OASBlockingApi* | [**deleteRule**](OASBlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+*OASBlockingApi* | [**delistBlock**](OASBlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+*OASBlockingApi* | [**getMailBlocks**](OASBlockingApi.md#getMailBlocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+*OASBlockingApi* | [**getRules**](OASBlockingApi.md#getRules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
+*OASHistoryApi* | [**getStats**](OASHistoryApi.md#getStats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+*OASHistoryApi* | [**viewMailLog**](OASHistoryApi.md#viewMailLog) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
+*OASSendingApi* | [**rawMail**](OASSendingApi.md#rawMail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
+*OASSendingApi* | [**sendAdvMail**](OASSendingApi.md#sendAdvMail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
+*OASSendingApi* | [**sendMail**](OASSendingApi.md#sendMail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
+*OASServicesApi* | [**getMailOrderById**](OASServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Get one mail order\&#39;s full detail including SMTP password
+*OASServicesApi* | [**getMailOrders**](OASServicesApi.md#getMailOrders) | **GET** /mail | List your provisioned mail orders (sending accounts)
+*OASStatusApi* | [**pingServer**](OASStatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable
 
 
 ## Documentation for Models

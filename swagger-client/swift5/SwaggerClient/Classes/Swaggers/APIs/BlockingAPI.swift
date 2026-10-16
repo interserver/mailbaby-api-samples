@@ -21,7 +21,7 @@ open class BlockingAPI {
     }
 
     /**
-     Creates a new email deny rule
+     Create a deny rule to block a sender, domain, destination, or prefix
 
      - parameter user: (form)  
      - parameter type: (form)  
@@ -36,7 +36,7 @@ open class BlockingAPI {
 
 
     /**
-     Creates a new email deny rule
+     Create a deny rule to block a sender, domain, destination, or prefix
      - POST /mail/rules
 
      - API Key:
@@ -64,7 +64,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Creates a new email deny rule
+     Create a deny rule to block a sender, domain, destination, or prefix
 
      - parameter body: (body) Fields required to create a new email deny rule. 
      - parameter completion: completion handler to receive the data and the error objects
@@ -77,7 +77,7 @@ open class BlockingAPI {
 
 
     /**
-     Creates a new email deny rule
+     Create a deny rule to block a sender, domain, destination, or prefix
      - POST /mail/rules
 
      - API Key:
@@ -103,7 +103,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Removes a deny mail rule
+     Delete a deny rule by its numeric ruleId
 
      - parameter ruleId: (path) The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. 
      - parameter completion: completion handler to receive the data and the error objects
@@ -116,7 +116,7 @@ open class BlockingAPI {
 
 
     /**
-     Removes a deny mail rule
+     Delete a deny rule by its numeric ruleId
      - DELETE /mail/rules/{ruleId}
 
      - API Key:
@@ -145,7 +145,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Removes an email address from the block lists
+     Delist an email address from the spam-filter block lists
 
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
@@ -158,7 +158,7 @@ open class BlockingAPI {
 
 
     /**
-     Removes an email address from the block lists
+     Delist an email address from the spam-filter block lists
      - POST /mail/blocks/delete
 
      - API Key:
@@ -184,7 +184,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Removes an email address from the block lists
+     Delist an email address from the spam-filter block lists
 
      - parameter email: (form)  
      - parameter completion: completion handler to receive the data and the error objects
@@ -197,7 +197,7 @@ open class BlockingAPI {
 
 
     /**
-     Removes an email address from the block lists
+     Delist an email address from the spam-filter block lists
      - POST /mail/blocks/delete
 
      - API Key:
@@ -223,7 +223,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
     /**
-     Displays a list of blocked email addresses
+     List addresses currently flagged by spam-filter block lists
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -235,7 +235,7 @@ open class BlockingAPI {
 
 
     /**
-     Displays a list of blocked email addresses
+     List addresses currently flagged by spam-filter block lists
      - GET /mail/blocks
 
      - API Key:
@@ -279,7 +279,7 @@ open class BlockingAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Displays a listing of deny email rules
+     List custom deny rules (sender / domain / destination / prefix)
 
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -291,7 +291,7 @@ open class BlockingAPI {
 
 
     /**
-     Displays a listing of deny email rules
+     List custom deny rules (sender / domain / destination / prefix)
      - GET /mail/rules
 
      - API Key:

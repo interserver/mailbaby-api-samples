@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **r#type** | **Type** | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. (enum: domain, email, startswith, destination) | 
 **data** | **String** | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`. | 
 **id** | **String** | The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule. | 
-**created** | **String** | The timestamp when the rule was created. | 
+**created** | **chrono::DateTime<chrono::FixedOffset>** | The timestamp when the rule was created. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

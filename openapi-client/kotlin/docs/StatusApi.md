@@ -4,16 +4,16 @@ All URIs are relative to *https://api.mailbaby.net*
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**pingServer**](StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running |
+| [**pingServer**](StatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable |
 
 
 <a id="pingServer"></a>
 # **pingServer**
 > kotlin.String pingServer()
 
-Checks if the server is running
+Health check — verify the API is reachable
 
-A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+**No authentication required.** Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
 
 ### Example
 ```kotlin
@@ -43,10 +43,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-
-Configure apiKeyAuth:
-    ApiClient.apiKey["X-API-KEY"] = ""
-    ApiClient.apiKeyPrefix["X-API-KEY"] = ""
+No authorization required
 
 ### HTTP request headers
 

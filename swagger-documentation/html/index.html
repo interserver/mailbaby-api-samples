@@ -206,7 +206,7 @@ Pass your key in the <code>X-API-KEY</code> HTTP request header for every protec
 </div>
     <div class="app-desc">More information: <a href="https://www.mail.baby/contact/">https://www.mail.baby/contact/</a></div>
     <div class="app-desc">Contact Info: <a href="support@interserver.net">support@interserver.net</a></div>
-    <div class="app-desc">Version: 1.4.0</div>
+    <div class="app-desc">Version: 1.5.0</div>
     
     <div class="license-info">GNU GPLv3</div>
     <div class="license-url">https://www.gnu.org/licenses/gpl.txt</div>
@@ -254,8 +254,8 @@ Pass your key in the <code>X-API-KEY</code> HTTP request header for every protec
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/rules</code></pre></div>
-    <div class="method-summary">Creates a new email deny rule (<span class="nickname">addRule</span>)</div>
-    <div class="method-notes"><p>Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.</p>
+    <div class="method-summary">Create a deny rule to block a sender, domain, destination, or prefix (<span class="nickname">addRule</span>)</div>
+    <div class="method-notes"><p><strong>Use this to prevent future relay attempts that match a pattern.</strong> Required: <code>type</code> (<code>email</code>, <code>domain</code>, <code>destination</code>, or <code>startswith</code>) and <code>data</code> (the value to match). Optional: <code>user</code> (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.</p>
 <p>The <code>type</code> field selects the matching strategy:</p>
 <ul>
 <li><strong><code>email</code></strong> — exact match against the SMTP envelope <code>MAIL FROM</code> address. - <strong><code>domain</code></strong> — matches any sender address at the specified domain. - <strong><code>destination</code></strong> — exact match against the SMTP envelope <code>RCPT TO</code> address. - <strong><code>startswith</code></strong> — matches any sender address whose local-part (the portion
@@ -352,8 +352,8 @@ and <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> are permitted
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="delete"><code class="huge"><span class="http-method">delete</span> /mail/rules/{ruleId}</code></pre></div>
-    <div class="method-summary">Removes a deny mail rule (<span class="nickname">deleteRule</span>)</div>
-    <div class="method-notes"><p>Permanently removes a single deny rule identified by its numeric <code>ruleId</code>.</p>
+    <div class="method-summary">Delete a deny rule by its numeric ruleId (<span class="nickname">deleteRule</span>)</div>
+    <div class="method-notes"><p><strong>Destructive — permanently removes the rule.</strong> Required: <code>ruleId</code> (path param; obtain from the <code>id</code> field returned by <code>GET /mail/rules</code> or the <code>text</code> field returned by <code>POST /mail/rules</code>). Permanently removes a single deny rule identified by its numeric <code>ruleId</code>.</p>
 <p>The <code>ruleId</code> is the <code>id</code> field returned by <code>GET /mail/rules</code> or the <code>text</code> field from a successful <code>POST /mail/rules</code> response.</p>
 <p>Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account.</p>
 </div>
@@ -422,8 +422,8 @@ and <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> are permitted
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/blocks/delete</code></pre></div>
-    <div class="method-summary">Removes an email address from the block lists (<span class="nickname">delistBlock</span>)</div>
-    <div class="method-notes"><p>Delists an email address from all three block list stores:</p>
+    <div class="method-summary">Delist an email address from the spam-filter block lists (<span class="nickname">delistBlock</span>)</div>
+    <div class="method-notes"><p><strong>Destructive — wipes block records for the given address.</strong> Required: <code>email</code> (must be a valid address; typically a <code>from</code> value previously returned by <code>GET /mail/blocks</code> or <code>GET /mail/log</code>). Delists an email address from all three block list stores:</p>
 <ol>
 <li>The rspamd spam-filter database (<code>fromemail</code> / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.</li>
 </ol>
@@ -511,8 +511,8 @@ and <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> are permitted
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/blocks</code></pre></div>
-    <div class="method-summary">Displays a list of blocked email addresses (<span class="nickname">getMailBlocks</span>)</div>
-    <div class="method-notes"><p>Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:</p>
+    <div class="method-summary">List addresses currently flagged by spam-filter block lists (<span class="nickname">getMailBlocks</span>)</div>
+    <div class="method-notes"><p><strong>Use this to discover which addresses to delist.</strong> The <code>from</code> value of any returned entry can be passed to <code>POST /mail/blocks/delete</code> (as the <code>email</code> field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:</p>
 <ul>
 <li><strong><code>local</code></strong> — messages flagged by the <code>LOCAL_BL_RCPT</code> rspamd rule.  These are
 messages sent to recipients on your account's local block list.</li>
@@ -592,8 +592,8 @@ that triggered MailBaby's internal trap / honeypot detection.</li>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/rules</code></pre></div>
-    <div class="method-summary">Displays a listing of deny email rules (<span class="nickname">getRules</span>)</div>
-    <div class="method-notes"><p>Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated <strong>before</strong> a message is transmitted and cause it to be rejected immediately when it matches.</p>
+    <div class="method-summary">List custom deny rules (sender / domain / destination / prefix) (<span class="nickname">getRules</span>)</div>
+    <div class="method-notes"><p><strong>Use this to inspect or pick a <code>ruleId</code> to delete.</strong> Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated <strong>before</strong> a message is transmitted and cause it to be rejected immediately when it matches.</p>
 <p>Four rule types are supported:
 | <code>type</code> | <code>data</code> format | Effect | |--------|---------------|--------| | <code>email</code> | <code>user@domain.com</code> | Rejects any message from this exact sender address | | <code>domain</code> | <code>domain.com</code> | Rejects any message from any address at this domain | | <code>destination</code> | <code>user@domain.com</code> | Rejects any message addressed to this recipient | | <code>startswith</code> | <code>prefix</code> | Rejects any message whose sender address begins with this string (alphanumeric, <code>+</code>, <code>_</code>, <code>.</code>, <code>-</code> only) |</p>
 <p>Use <code>POST /mail/rules</code> to add new rules and <code>DELETE /mail/rules/{ruleId}</code> to remove them.  The <code>id</code> field in each returned record is the value needed for the delete call.</p>
@@ -656,8 +656,8 @@ that triggered MailBaby's internal trap / honeypot detection.</li>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/stats</code></pre></div>
-    <div class="method-summary">Account usage statistics (<span class="nickname">getStats</span>)</div>
-    <div class="method-notes"><p>Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.</p>
+    <div class="method-summary">Account usage, cost, and volume statistics for a time window (<span class="nickname">getStats</span>)</div>
+    <div class="method-notes"><p><strong>Use this for dashboards or billing-cycle reviews.</strong> Returns aggregate sending statistics for your mail account(s). The <code>time</code> query param controls the window for <code>received</code>, <code>sent</code>, and <code>volume</code> (<code>1h</code>, <code>24h</code>, <code>7d</code>, <code>month</code>, <code>day</code>, <code>billing</code>, <code>all</code>). The <code>usage</code> and <code>cost</code> fields are always for the current billing cycle, regardless of <code>time</code>.</p>
 <p>The response includes:</p>
 <ul>
 <li><strong><code>usage</code></strong> — total messages accepted by the relay during the current billing
@@ -745,8 +745,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/log</code></pre></div>
-    <div class="method-summary">Displays the mail log (<span class="nickname">viewMailLog</span>)</div>
-    <div class="method-notes"><p>Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.</p>
+    <div class="method-summary">Query the mail delivery log (filterable, paginated) (<span class="nickname">viewMailLog</span>)</div>
+    <div class="method-notes"><p><strong>Use this to find or audit sent messages.</strong> All filters are optional and combinable. The most useful filters: <code>mailid</code> (the transaction id returned by a send call), <code>from</code> / <code>to</code> (envelope addresses), <code>subject</code>, <code>messageId</code> (case-insensitive substring on the <code>Message-ID</code> header), <code>delivered</code> (<code>1</code>=delivered, <code>0</code>=queued/failed), and the <code>startDate</code>/<code>endDate</code> date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).</p>
 <p><strong>Row grouping</strong> is controlled by the <code>groupby</code> parameter.  By default (<code>groupby=recipient</code>), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own <code>recipient</code>, <code>delivered</code>, <code>response</code>, and <code>mxHostname</code> values.  Set <code>groupby=message</code> to collapse to one row per message (delivery fields will reflect one arbitrary recipient).</p>
 <p><strong>Pagination</strong> is controlled by <code>skip</code> and <code>limit</code>.  The <code>total</code> in the response reflects the row count <strong>after</strong> grouping, so it matches the number of pages you need to fetch.</p>
 <p><strong>Date filtering</strong> accepts either a Unix timestamp (integer) or a date string parseable by PHP <code>strtotime()</code> such as <code>2024-01-15</code>, <code>last monday</code>, or <code>2024-01-01 00:00:00</code>.  Examples: <code>startDate=1704067200&amp;endDate=1706745599</code> or <code>startDate=2024-01-01&amp;endDate=2024-01-31</code>.</p>
@@ -907,8 +907,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/rawsend</code></pre></div>
-    <div class="method-summary">Sends a raw RFC 822 email (<span class="nickname">rawMail</span>)</div>
-    <div class="method-notes"><p>Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.</p>
+    <div class="method-summary">Send a pre-built RFC 822 message verbatim (preserves DKIM) (<span class="nickname">rawMail</span>)</div>
+    <div class="method-notes"><p><strong>Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself</strong> and want the relay to transmit it byte-for-byte. Required: <code>raw_email</code> (full RFC 822 string with headers + body). Optional: <code>id</code> (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.</p>
 <p>This endpoint is particularly useful when the message has already been <strong>DKIM-signed</strong> — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.</p>
 <p>The <code>From</code> and recipient addresses are parsed automatically from the message headers (<code>From</code>, <code>To</code>, <code>Cc</code>, <code>Bcc</code>).  You do <strong>not</strong> need to specify them separately.</p>
 <p>If an <code>id</code> is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.</p>
@@ -993,8 +993,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/advsend</code></pre></div>
-    <div class="method-summary">Sends an Email with Advanced Options (<span class="nickname">sendAdvMail</span>)</div>
-    <div class="method-notes"><p>Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.</p>
+    <div class="method-summary">Send email with multiple recipients, CC/BCC, attachments, named contacts (<span class="nickname">sendAdvMail</span>)</div>
+    <div class="method-notes"><p><strong>Use this when the simple send is not enough</strong> — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: <code>from</code>, <code>to</code>, <code>subject</code>, <code>body</code>. Optional: <code>cc</code>, <code>bcc</code>, <code>replyto</code>, <code>attachments</code> (array of <code>{filename,data}</code> with base64 data), <code>id</code>. Sends through one of your mail orders with full control over recipients, headers, and attachments.</p>
 <p><strong>Content-type flexibility</strong> — the request body may be submitted as either <code>application/x-www-form-urlencoded</code> or <code>application/json</code>.  When using form encoding, address fields (<code>from</code>, <code>to</code>, <code>replyto</code>, <code>cc</code>, <code>bcc</code>) accept both a plain RFC 822 comma-separated string (e.g. <code>&quot;Joe &lt;joe@example.com&gt;, jane@example.com&quot;</code>) and the structured <code>[{&quot;email&quot;:&quot;...&quot;,&quot;name&quot;:&quot;...&quot;}]</code> array format.  When using JSON, both formats are equally supported.</p>
 <p><strong>HTML detection</strong> is automatic — if <code>body</code> contains HTML tags the <code>Content-Type</code> is set to <code>text/html</code>; otherwise <code>text/plain</code>.</p>
 <p><strong>Attachments</strong> must be base64-encoded.  Each attachment requires at least a <code>data</code> field; the optional <code>filename</code> field controls the attachment name shown to recipients.</p>
@@ -1139,8 +1139,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /mail/send</code></pre></div>
-    <div class="method-summary">Sends an Email (<span class="nickname">sendMail</span>)</div>
-    <div class="method-notes"><p>Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.</p>
+    <div class="method-summary">Send a simple email (single recipient, plain or HTML) (<span class="nickname">sendMail</span>)</div>
+    <div class="method-notes"><p><strong>Use this for the simplest case</strong> — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: <code>from</code>, <code>to</code>, <code>subject</code>, <code>body</code>. Optional: <code>id</code> (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.</p>
 <p><strong>HTML detection</strong> is automatic — if the <code>body</code> value contains any HTML tags the message will be sent as <code>text/html</code>; otherwise it is sent as <code>text/plain</code>.</p>
 <p>The <code>from</code> address is also automatically set as the <code>Reply-To</code> header.</p>
 <p><em>Note</em>: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use <code>POST /mail/advsend</code> instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use <code>POST /mail/rawsend</code>.</p>
@@ -1232,8 +1232,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail/{id}</code></pre></div>
-    <div class="method-summary">Displays details for a single mail order (<span class="nickname">getMailOrderById</span>)</div>
-    <div class="method-notes"><p>Returns the full detail record for one specific mail order identified by its numeric <code>id</code>.  In addition to the fields returned by <code>GET /mail</code>, this endpoint also includes the current <strong>SMTP password</strong> for the order.</p>
+    <div class="method-summary">Get one mail order's full detail including SMTP password (<span class="nickname">getMailOrderById</span>)</div>
+    <div class="method-notes"><p><strong>Returns the SMTP password</strong> in addition to the basic <code>GET /mail</code> fields. Use when you need to authenticate against <code>relay.mailbaby.net:25</code> from an SMTP client directly. Required: <code>id</code> (path; obtain from <code>GET /mail</code>). Returns the full detail record for one specific mail order identified by its numeric <code>id</code>.</p>
 <p>The <code>username</code> and <code>password</code> values returned here can be used directly to authenticate against <code>relay.mailbaby.net:25</code> (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.</p>
 <p>The <code>id</code> path parameter is the same integer <code>id</code> value returned by <code>GET /mail</code>.</p>
 </div>
@@ -1304,8 +1304,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /mail</code></pre></div>
-    <div class="method-summary">Displays a list of mail service orders (<span class="nickname">getMailOrders</span>)</div>
-    <div class="method-notes"><p>Returns every mail order (active <strong>and</strong> inactive) associated with your account. Each record includes the numeric <code>id</code>, the <code>status</code> (<code>active</code> or <code>canceled</code>), the SMTP <code>username</code> (always <code>mb&lt;id&gt;</code>), and an optional human-readable <code>comment</code>.</p>
+    <div class="method-summary">List your provisioned mail orders (sending accounts) (<span class="nickname">getMailOrders</span>)</div>
+    <div class="method-notes"><p>Use this <strong>before sending</strong> if you need to discover which mail order <code>id</code> to pass to <code>/mail/send</code>, <code>/mail/advsend</code>, <code>/mail/rawsend</code>, <code>/mail/log</code>, or <code>/mail/stats</code>. Returns every mail order (active <strong>and</strong> canceled) on your account. Each record includes the numeric <code>id</code>, the <code>status</code> (<code>active</code> or <code>canceled</code>), the SMTP <code>username</code> (always <code>mb&lt;id&gt;</code>), and an optional <code>comment</code>.</p>
 <p>The <code>id</code> values returned here are used as the <code>id</code> input parameter on all sending endpoints (<code>/mail/send</code>, <code>/mail/advsend</code>, <code>/mail/rawsend</code>) as well as the log and stats queries.  When the <code>id</code> parameter is omitted on those calls the API automatically picks the <strong>first active</strong> order returned by this endpoint.</p>
 <p>To retrieve full details — including the current SMTP password — for a single order use <code>GET /mail/{id}</code>.</p>
 </div>
@@ -1363,8 +1363,8 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /ping</code></pre></div>
-    <div class="method-summary">Checks if the server is running (<span class="nickname">pingServer</span>)</div>
-    <div class="method-notes">A lightweight health-check endpoint.  Returns the plain-text string <code>Server is up and running</code> with a <code>200</code> status when the API server is reachable.  <strong>No authentication is required.</strong> Useful for uptime monitoring, load-balancer health checks, and smoke tests.</div>
+    <div class="method-summary">Health check — verify the API is reachable (<span class="nickname">pingServer</span>)</div>
+    <div class="method-notes"><strong>No authentication required.</strong> Returns the plain-text string <code>Server is up and running</code> with a <code>200</code> status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests.</div>
 
 
 
@@ -1537,7 +1537,7 @@ destination address (<code>to</code>), and sender address (<code>from</code>) wi
       <div class="param">filename </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> The filename shown to recipients (e.g. &lt;code&gt;report.pdf&lt;/code&gt;, &lt;code&gt;invoice.xlsx&lt;/code&gt;). </div>
           <div class="param-desc"><span class="param-type">example: message.txt</span></div>
 <div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#ByteArray">byte[]</a></span> The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. format: byte</div>
-          <div class="param-desc"><span class="param-type">example: [B@11b9c480</span></div>
+          <div class="param-desc"><span class="param-type">example: [B@243ada8b</span></div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">

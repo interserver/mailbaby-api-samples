@@ -20,7 +20,7 @@ class TestBlockingController(BaseTestCase):
     def test_add_rule(self):
         """Test case for add_rule
 
-        Creates a new email deny rule
+        Create a deny rule to block a sender, domain, destination, or prefix
         """
         body = DenyRuleNew()
         data = dict(user='user_example',
@@ -38,7 +38,7 @@ class TestBlockingController(BaseTestCase):
     def test_delete_rule(self):
         """Test case for delete_rule
 
-        Removes a deny mail rule
+        Delete a deny rule by its numeric ruleId
         """
         response = self.client.open(
             '/mail/rules/{ruleId}'.format(rule_id=56),
@@ -49,7 +49,7 @@ class TestBlockingController(BaseTestCase):
     def test_delist_block(self):
         """Test case for delist_block
 
-        Removes an email address from the block lists
+        Delist an email address from the spam-filter block lists
         """
         body = EmailAddressParam()
         data = dict(email='email_example')
@@ -65,7 +65,7 @@ class TestBlockingController(BaseTestCase):
     def test_get_mail_blocks(self):
         """Test case for get_mail_blocks
 
-        Displays a list of blocked email addresses
+        List addresses currently flagged by spam-filter block lists
         """
         response = self.client.open(
             '/mail/blocks',
@@ -76,7 +76,7 @@ class TestBlockingController(BaseTestCase):
     def test_get_rules(self):
         """Test case for get_rules
 
-        Displays a listing of deny email rules
+        List custom deny rules (sender / domain / destination / prefix)
         """
         response = self.client.open(
             '/mail/rules',

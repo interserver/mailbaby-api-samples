@@ -1,21 +1,21 @@
 ## BlockingApi
 
-### Creates a new email deny rule
-## Creates a new email deny rule
+### Create a deny rule to block a sender, domain, destination, or prefix
+## Create a deny rule to block a sender, domain, destination, or prefix
 POST https://api.mailbaby.net/mail/rules
 Content-Type: application/x-www-form-urlencoded
 Content-Type: application/json
 Accept: application/json
 X-API-KEY: {{apiKey}}
 
-### Removes a deny mail rule
-## Removes a deny mail rule
+### Delete a deny rule by its numeric ruleId
+## Delete a deny rule by its numeric ruleId
 DELETE https://api.mailbaby.net/mail/rules/{{ruleId}}
 Accept: application/json
 X-API-KEY: {{apiKey}}
 
-### Removes an email address from the block lists
-## Removes an email address from the block lists
+### Delist an email address from the spam-filter block lists
+## Delist an email address from the spam-filter block lists
 POST https://api.mailbaby.net/mail/blocks/delete
 Content-Type: application/json
 Content-Type: application/x-www-form-urlencoded
@@ -27,14 +27,14 @@ X-API-KEY: {{apiKey}}
 }
 
 
-### Displays a list of blocked email addresses
-## Displays a list of blocked email addresses
+### List addresses currently flagged by spam-filter block lists
+## List addresses currently flagged by spam-filter block lists
 GET https://api.mailbaby.net/mail/blocks
 Accept: application/json
 X-API-KEY: {{apiKey}}
 
-### Displays a listing of deny email rules
-## Displays a listing of deny email rules
+### List custom deny rules (sender / domain / destination / prefix)
+## List custom deny rules (sender / domain / destination / prefix)
 GET https://api.mailbaby.net/mail/rules
 Accept: application/json
 X-API-KEY: {{apiKey}}

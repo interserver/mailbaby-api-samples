@@ -18,7 +18,7 @@ class TestHistoryController(BaseTestCase):
     def test_get_stats(self):
         """Test case for get_stats
 
-        Account usage statistics
+        Account usage, cost, and volume statistics for a time window
         """
         query_string = [('time', '1h')]
         response = self.client.open(
@@ -31,7 +31,7 @@ class TestHistoryController(BaseTestCase):
     def test_view_mail_log(self):
         """Test case for view_mail_log
 
-        Displays the mail log
+        Query the mail delivery log (filterable, paginated)
         """
         query_string = [('id', 789),
                         ('origin', 'origin_example'),

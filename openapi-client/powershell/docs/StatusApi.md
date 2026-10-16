@@ -4,28 +4,21 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Ping-Server**](StatusApi.md#Ping-Server) | **GET** /ping | Checks if the server is running
+[**Ping-Server**](StatusApi.md#Ping-Server) | **GET** /ping | Health check — verify the API is reachable
 
 
 <a id="Ping-Server"></a>
 # **Ping-Server**
 > String Ping-Server<br>
 
-Checks if the server is running
+Health check — verify the API is reachable
 
-A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+**No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
 
 ### Example
 ```powershell
-# general setting of the PowerShell module, e.g. base URL, authentication, etc
-$Configuration = Get-Configuration
-# Configure API key authorization: apiKeyAuth
-$Configuration.ApiKey.X-API-KEY = "YOUR_API_KEY"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$Configuration.ApiKeyPrefix.X-API-KEY = "Bearer"
 
-
-# Checks if the server is running
+# Health check — verify the API is reachable
 try {
     $Result = Ping-Server
 } catch {
@@ -43,7 +36,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)
+No authorization required
 
 ### HTTP request headers
 

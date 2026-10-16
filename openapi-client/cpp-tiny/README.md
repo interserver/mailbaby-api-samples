@@ -6,7 +6,7 @@ After the client have been generated, you have to change these following variabl
 - src/main.cpp | Change wifi password
 - lib/service/AbstractService.h | Change to your url
 
-# Documentation for MailBaby Email Delivery and Management Service API 1.4.0 Tiny client cpp (Arduino) 
+# Documentation for MailBaby Email Delivery and Management Service API 1.5.0 Tiny client cpp (Arduino) 
 
 The project is structured like this:
 ```
@@ -30,35 +30,35 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 ### BlockingApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|*addRule* | *POST* /mail/rules | Creates a new email deny rule.|
-|*deleteRule* | *DELETE* /mail/rules/{ruleId} | Removes a deny mail rule.|
-|*delistBlock* | *POST* /mail/blocks/delete | Removes an email address from the block lists.|
-|*getMailBlocks* | *GET* /mail/blocks | Displays a list of blocked email addresses.|
-|*getRules* | *GET* /mail/rules | Displays a listing of deny email rules.|
+|*addRule* | *POST* /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix.|
+|*deleteRule* | *DELETE* /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId.|
+|*delistBlock* | *POST* /mail/blocks/delete | Delist an email address from the spam-filter block lists.|
+|*getMailBlocks* | *GET* /mail/blocks | List addresses currently flagged by spam-filter block lists.|
+|*getRules* | *GET* /mail/rules | List custom deny rules (sender / domain / destination / prefix).|
 
 ### HistoryApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|*getStats* | *GET* /mail/stats | Account usage statistics.|
-|*viewMailLog* | *GET* /mail/log | Displays the mail log.|
+|*getStats* | *GET* /mail/stats | Account usage, cost, and volume statistics for a time window.|
+|*viewMailLog* | *GET* /mail/log | Query the mail delivery log (filterable, paginated).|
 
 ### SendingApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|*rawMail* | *POST* /mail/rawsend | Sends a raw RFC 822 email.|
-|*sendAdvMail* | *POST* /mail/advsend | Sends an Email with Advanced Options.|
-|*sendMail* | *POST* /mail/send | Sends an Email.|
+|*rawMail* | *POST* /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM).|
+|*sendAdvMail* | *POST* /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts.|
+|*sendMail* | *POST* /mail/send | Send a simple email (single recipient, plain or HTML).|
 
 ### ServicesApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|*getMailOrderById* | *GET* /mail/{id} | Displays details for a single mail order.|
-|*getMailOrders* | *GET* /mail | Displays a list of mail service orders.|
+|*getMailOrderById* | *GET* /mail/{id} | Get one mail order's full detail including SMTP password.|
+|*getMailOrders* | *GET* /mail | List your provisioned mail orders (sending accounts).|
 
 ### StatusApi
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|*pingServer* | *GET* /ping | Checks if the server is running.|
+|*pingServer* | *GET* /ping | Health check — verify the API is reachable.|
 
 
 ## What are the Model files for the data structures/objects?

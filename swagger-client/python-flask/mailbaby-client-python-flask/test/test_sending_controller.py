@@ -21,7 +21,7 @@ class TestSendingController(BaseTestCase):
     def test_raw_mail(self):
         """Test case for raw_mail
 
-        Sends a raw RFC 822 email
+        Send a pre-built RFC 822 message verbatim (preserves DKIM)
         """
         body = SendMailRaw()
         data = dict(raw_email='raw_email_example',
@@ -38,7 +38,7 @@ class TestSendingController(BaseTestCase):
     def test_send_adv_mail(self):
         """Test case for send_adv_mail
 
-        Sends an Email with Advanced Options
+        Send email with multiple recipients, CC/BCC, attachments, named contacts
         """
         body = SendMailAdv()
         data = dict(subject='subject_example',
@@ -62,7 +62,7 @@ class TestSendingController(BaseTestCase):
     def test_send_mail(self):
         """Test case for send_mail
 
-        Sends an Email
+        Send a simple email (single recipient, plain or HTML)
         """
         body = SendMail()
         data = dict(to=SendMailTo(),

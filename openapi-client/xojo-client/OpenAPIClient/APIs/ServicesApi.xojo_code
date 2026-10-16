@@ -3,14 +3,14 @@ Protected Class ServicesApi
 	#tag Method, Flags = &h0
 		Sub GetMailOrderById(, id As Int64)
 		  // Operation getMailOrderById
-		  // Displays details for a single mail order
+		  // Get one mail order's full detail including SMTP password
 		  // - 
 		  // - parameter id: (path) The numeric ID of the mail order. 
 		  //
 		  // Invokes ServicesApiCallbackHandler.GetMailOrderByIdCallback(MailOrderDetail) on completion. 
 		  //
 		  // - GET /mail/{id}
-		  // - Returns the full detail record for one specific mail order identified by its numeric `id`.  In addition to the fields returned by `GET /mail`, this endpoint also includes the current **SMTP password** for the order.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. 
+		  // - **Returns the SMTP password** in addition to the basic `GET /mail` fields. Use when you need to authenticate against `relay.mailbaby.net:25` from an SMTP client directly. Required: `id` (path; obtain from `GET /mail`). Returns the full detail record for one specific mail order identified by its numeric `id`.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. 
 		  // - defaultResponse: Nil
 		  //
 		  // - API Key:
@@ -137,13 +137,13 @@ Protected Class ServicesApi
 	#tag Method, Flags = &h0
 		Sub GetMailOrders()
 		  // Operation getMailOrders
-		  // Displays a list of mail service orders
+		  // List your provisioned mail orders (sending accounts)
 		  // - 
 		  //
 		  // Invokes ServicesApiCallbackHandler.GetMailOrdersCallback(MailOrder) on completion. 
 		  //
 		  // - GET /mail
-		  // - Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional human-readable `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
+		  // - Use this **before sending** if you need to discover which mail order `id` to pass to `/mail/send`, `/mail/advsend`, `/mail/rawsend`, `/mail/log`, or `/mail/stats`. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
 		  // - defaultResponse: Nil
 		  //
 		  // - API Key:

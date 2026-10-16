@@ -4,16 +4,16 @@ All URIs are relative to **
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics
-[**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | Displays the mail log
+[**getStats**](HistoryApi.md#getStats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+[**viewMailLog**](HistoryApi.md#viewMailLog) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
 
 
 
 ## getStats
 
-Account usage statistics
+Account usage, cost, and volume statistics for a time window
 
-Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.
+**Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The 'time' query param controls the window for 'received', 'sent', and 'volume' ('1h', '24h', '7d', 'month', 'day', 'billing', 'all'). The 'usage' and 'cost' fields are always for the current billing cycle, regardless of 'time'.
 
 The response includes:
 - **'usage'** — total messages accepted by the relay during the current billing
@@ -60,9 +60,9 @@ Name | Type | Description  | Notes
 
 ## viewMailLog
 
-Displays the mail log
+Query the mail delivery log (filterable, paginated)
 
-Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
+**Use this to find or audit sent messages.** All filters are optional and combinable. The most useful filters: 'mailid' (the transaction id returned by a send call), 'from' / 'to' (envelope addresses), 'subject', 'messageId' (case-insensitive substring on the 'Message-ID' header), 'delivered' ('1'=delivered, '0'=queued/failed), and the 'startDate'/'endDate' date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).
 
 **Row grouping** is controlled by the 'groupby' parameter.  By default ('groupby=recipient'), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own 'recipient', 'delivered', 'response', and 'mxHostname' values.  Set 'groupby=message' to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 

@@ -10,7 +10,7 @@
 # !
 # ! Based on: https://github.com/Valodim/zsh-curl-completion/blob/master/_curl
 # !
-# ! Generator version: 7.21.0
+# ! Generator version: 7.22.0
 # !
 # !
 # ! Installation:
@@ -297,15 +297,15 @@ case $state in
   ops)
     # Operations
     _values "Operations" \
-            "addRule[Creates a new email deny rule]" \
-            "deleteRule[Removes a deny mail rule]" \
-            "delistBlock[Removes an email address from the block lists]" \
-            "getMailBlocks[Displays a list of blocked email addresses]" \
-            "getRules[Displays a listing of deny email rules]"             "getStats[Account usage statistics]" \
-            "viewMailLog[Displays the mail log]"             "rawMail[Sends a raw RFC 822 email]" \
-            "sendAdvMail[Sends an Email with Advanced Options]" \
-            "sendMail[Sends an Email]"             "getMailOrderById[Displays details for a single mail order]" \
-            "getMailOrders[Displays a list of mail service orders]"             "pingServer[Checks if the server is running]" \
+            "addRule[Create a deny rule to block a sender, domain, destination, or prefix]" \
+            "deleteRule[Delete a deny rule by its numeric ruleId]" \
+            "delistBlock[Delist an email address from the spam-filter block lists]" \
+            "getMailBlocks[List addresses currently flagged by spam-filter block lists]" \
+            "getRules[List custom deny rules (sender / domain / destination / prefix)]"             "getStats[Account usage, cost, and volume statistics for a time window]" \
+            "viewMailLog[Query the mail delivery log (filterable, paginated)]"             "rawMail[Send a pre-built RFC 822 message verbatim (preserves DKIM)]" \
+            "sendAdvMail[Send email with multiple recipients, CC/BCC, attachments, named contacts]" \
+            "sendMail[Send a simple email (single recipient, plain or HTML)]"             "getMailOrderById[Get one mail order's full detail including SMTP password]" \
+            "getMailOrders[List your provisioned mail orders (sending accounts)]"             "pingServer[Health check — verify the API is reachable]" \
 
     _arguments "(--help)--help[Print information about operation]"
 

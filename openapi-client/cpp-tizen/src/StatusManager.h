@@ -23,9 +23,9 @@ public:
 	StatusManager();
 	virtual ~StatusManager();
 
-/*! \brief Checks if the server is running. *Synchronous*
+/*! \brief Health check — verify the API is reachable. *Synchronous*
  *
- * A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+ * **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.
@@ -35,9 +35,9 @@ bool pingServerSync(char * accessToken,
 	void(* handler)(std::string, Error, void* )
 	, void* userData);
 
-/*! \brief Checks if the server is running. *Asynchronous*
+/*! \brief Health check — verify the API is reachable. *Asynchronous*
  *
- * A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+ * **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
  * \param handler The callback function to be invoked on completion. *Required*
  * \param accessToken The Authorization token. *Required*
  * \param userData The user data to be passed to the callback function.

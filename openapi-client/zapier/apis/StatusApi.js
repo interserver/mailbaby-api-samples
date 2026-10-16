@@ -6,8 +6,8 @@ module.exports = {
         key: 'pingServer',
         noun: 'Status',
         display: {
-            label: 'Checks if the server is running',
-            description: 'A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. ',
+            label: 'Health check — verify the API is reachable',
+            description: '**No authentication required.** Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. ',
             hidden: false,
         },
         operation: {

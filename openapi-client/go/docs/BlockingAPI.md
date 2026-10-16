@@ -4,11 +4,11 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddRule**](BlockingAPI.md#AddRule) | **Post** /mail/rules | Creates a new email deny rule
-[**DeleteRule**](BlockingAPI.md#DeleteRule) | **Delete** /mail/rules/{ruleId} | Removes a deny mail rule
-[**DelistBlock**](BlockingAPI.md#DelistBlock) | **Post** /mail/blocks/delete | Removes an email address from the block lists
-[**GetMailBlocks**](BlockingAPI.md#GetMailBlocks) | **Get** /mail/blocks | Displays a list of blocked email addresses
-[**GetRules**](BlockingAPI.md#GetRules) | **Get** /mail/rules | Displays a listing of deny email rules
+[**AddRule**](BlockingAPI.md#AddRule) | **Post** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+[**DeleteRule**](BlockingAPI.md#DeleteRule) | **Delete** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+[**DelistBlock**](BlockingAPI.md#DelistBlock) | **Post** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+[**GetMailBlocks**](BlockingAPI.md#GetMailBlocks) | **Get** /mail/blocks | List addresses currently flagged by spam-filter block lists
+[**GetRules**](BlockingAPI.md#GetRules) | **Get** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > GenericResponse AddRule(ctx).Type_(type_).Data(data).User(user).Execute()
 
-Creates a new email deny rule
+Create a deny rule to block a sender, domain, destination, or prefix
 
 
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 > GenericResponse DeleteRule(ctx, ruleId).Execute()
 
-Removes a deny mail rule
+Delete a deny rule by its numeric ruleId
 
 
 
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 > GenericResponse DelistBlock(ctx).EmailAddressParam(emailAddressParam).Execute()
 
-Removes an email address from the block lists
+Delist an email address from the spam-filter block lists
 
 
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 > MailBlocks GetMailBlocks(ctx).Execute()
 
-Displays a list of blocked email addresses
+List addresses currently flagged by spam-filter block lists
 
 
 
@@ -283,7 +283,7 @@ Other parameters are passed through a pointer to a apiGetMailBlocksRequest struc
 
 > []DenyRuleRecord GetRules(ctx).Execute()
 
-Displays a listing of deny email rules
+List custom deny rules (sender / domain / destination / prefix)
 
 
 

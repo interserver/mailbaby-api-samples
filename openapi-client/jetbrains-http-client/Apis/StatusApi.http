@@ -1,8 +1,7 @@
 ## StatusApi
 
-### Checks if the server is running
-## Checks if the server is running
+### Health check — verify the API is reachable
+## Health check — verify the API is reachable
 GET https://api.mailbaby.net/ping
 Accept: text/plain
 Accept: application/json
-X-API-KEY: {{apiKey}}

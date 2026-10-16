@@ -1,7 +1,7 @@
 # swagger-java-client
 
 MailBaby Email Delivery and Management Service API
-- API version: 1.4.0
+- API version: 1.5.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
@@ -231,19 +231,19 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule
-*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
-*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
-*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
-*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules
-*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics
-*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | Displays the mail log
-*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
-*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Displays details for a single mail order
-*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | Displays a list of mail service orders
-*StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
+*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
+*SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
+*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Get one mail order&#x27;s full detail including SMTP password
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | List your provisioned mail orders (sending accounts)
+*StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable
 
 ## Documentation for Models
 

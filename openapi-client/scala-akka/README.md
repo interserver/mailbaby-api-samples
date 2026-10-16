@@ -1,8 +1,8 @@
 # openapi-client
 
 MailBaby Email Delivery and Management Service API
-- API version: 1.4.0
-  - Generator version: 7.21.0
+- API version: 1.5.0
+  - Generator version: 7.22.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -157,19 +157,19 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule
-*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
-*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
-*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
-*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules
-*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage statistics
-*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | Displays the mail log
-*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Sends a raw RFC 822 email
-*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Sends an Email with Advanced Options
-*SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Sends an Email
-*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Displays details for a single mail order
-*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | Displays a list of mail service orders
-*StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Checks if the server is running
+*BlockingApi* | [**addRule**](docs/BlockingApi.md#addRule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+*BlockingApi* | [**deleteRule**](docs/BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+*BlockingApi* | [**delistBlock**](docs/BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+*BlockingApi* | [**getMailBlocks**](docs/BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+*BlockingApi* | [**getRules**](docs/BlockingApi.md#getRules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
+*HistoryApi* | [**getStats**](docs/HistoryApi.md#getStats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+*HistoryApi* | [**viewMailLog**](docs/HistoryApi.md#viewMailLog) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
+*SendingApi* | [**rawMail**](docs/SendingApi.md#rawMail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
+*SendingApi* | [**sendAdvMail**](docs/SendingApi.md#sendAdvMail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
+*SendingApi* | [**sendMail**](docs/SendingApi.md#sendMail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
+*ServicesApi* | [**getMailOrderById**](docs/ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Get one mail order&#39;s full detail including SMTP password
+*ServicesApi* | [**getMailOrders**](docs/ServicesApi.md#getMailOrders) | **GET** /mail | List your provisioned mail orders (sending accounts)
+*StatusApi* | [**pingServer**](docs/StatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable
 
 
 ## Documentation for Models

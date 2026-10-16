@@ -1,4 +1,4 @@
-# Documentation for MailBaby Email Delivery and Management Service API 1.4.0 Tizen Client SDK
+# Documentation for MailBaby Email Delivery and Management Service API 1.5.0 Tizen Client SDK
 
 ## How do I get the doc files?
 First generate source code by running `openapi-generator`
@@ -42,52 +42,52 @@ All URIs are relative to https://api.mailbaby.nethttps://api.mailbaby.net
 ### BlockingManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*addRuleSync* | *POST* /mail/rules | Creates a new email deny rule.
-*addRuleASync* | *POST* /mail/rules | Creates a new email deny rule.
-*deleteRuleSync* | *DELETE* /mail/rules/{ruleId} | Removes a deny mail rule.
-*deleteRuleASync* | *DELETE* /mail/rules/{ruleId} | Removes a deny mail rule.
-*delistBlockSync* | *POST* /mail/blocks/delete | Removes an email address from the block lists.
-*delistBlockASync* | *POST* /mail/blocks/delete | Removes an email address from the block lists.
-*getMailBlocksSync* | *GET* /mail/blocks | Displays a list of blocked email addresses.
-*getMailBlocksASync* | *GET* /mail/blocks | Displays a list of blocked email addresses.
-*getRulesSync* | *GET* /mail/rules | Displays a listing of deny email rules.
-*getRulesASync* | *GET* /mail/rules | Displays a listing of deny email rules.
+*addRuleSync* | *POST* /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix.
+*addRuleASync* | *POST* /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix.
+*deleteRuleSync* | *DELETE* /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId.
+*deleteRuleASync* | *DELETE* /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId.
+*delistBlockSync* | *POST* /mail/blocks/delete | Delist an email address from the spam-filter block lists.
+*delistBlockASync* | *POST* /mail/blocks/delete | Delist an email address from the spam-filter block lists.
+*getMailBlocksSync* | *GET* /mail/blocks | List addresses currently flagged by spam-filter block lists.
+*getMailBlocksASync* | *GET* /mail/blocks | List addresses currently flagged by spam-filter block lists.
+*getRulesSync* | *GET* /mail/rules | List custom deny rules (sender / domain / destination / prefix).
+*getRulesASync* | *GET* /mail/rules | List custom deny rules (sender / domain / destination / prefix).
 
 
 ### HistoryManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*getStatsSync* | *GET* /mail/stats | Account usage statistics.
-*getStatsASync* | *GET* /mail/stats | Account usage statistics.
-*viewMailLogSync* | *GET* /mail/log | Displays the mail log.
-*viewMailLogASync* | *GET* /mail/log | Displays the mail log.
+*getStatsSync* | *GET* /mail/stats | Account usage, cost, and volume statistics for a time window.
+*getStatsASync* | *GET* /mail/stats | Account usage, cost, and volume statistics for a time window.
+*viewMailLogSync* | *GET* /mail/log | Query the mail delivery log (filterable, paginated).
+*viewMailLogASync* | *GET* /mail/log | Query the mail delivery log (filterable, paginated).
 
 
 ### SendingManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*rawMailSync* | *POST* /mail/rawsend | Sends a raw RFC 822 email.
-*rawMailASync* | *POST* /mail/rawsend | Sends a raw RFC 822 email.
-*sendAdvMailSync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
-*sendAdvMailASync* | *POST* /mail/advsend | Sends an Email with Advanced Options.
-*sendMailSync* | *POST* /mail/send | Sends an Email.
-*sendMailASync* | *POST* /mail/send | Sends an Email.
+*rawMailSync* | *POST* /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM).
+*rawMailASync* | *POST* /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM).
+*sendAdvMailSync* | *POST* /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts.
+*sendAdvMailASync* | *POST* /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts.
+*sendMailSync* | *POST* /mail/send | Send a simple email (single recipient, plain or HTML).
+*sendMailASync* | *POST* /mail/send | Send a simple email (single recipient, plain or HTML).
 
 
 ### ServicesManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*getMailOrderByIdSync* | *GET* /mail/{id} | Displays details for a single mail order.
-*getMailOrderByIdASync* | *GET* /mail/{id} | Displays details for a single mail order.
-*getMailOrdersSync* | *GET* /mail | Displays a list of mail service orders.
-*getMailOrdersASync* | *GET* /mail | Displays a list of mail service orders.
+*getMailOrderByIdSync* | *GET* /mail/{id} | Get one mail order's full detail including SMTP password.
+*getMailOrderByIdASync* | *GET* /mail/{id} | Get one mail order's full detail including SMTP password.
+*getMailOrdersSync* | *GET* /mail | List your provisioned mail orders (sending accounts).
+*getMailOrdersASync* | *GET* /mail | List your provisioned mail orders (sending accounts).
 
 
 ### StatusManager
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-*pingServerSync* | *GET* /ping | Checks if the server is running.
-*pingServerASync* | *GET* /ping | Checks if the server is running.
+*pingServerSync* | *GET* /ping | Health check — verify the API is reachable.
+*pingServerASync* | *GET* /ping | Health check — verify the API is reachable.
 
 
 ## What are the Model files for the data structures/objects?

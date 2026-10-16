@@ -24,7 +24,7 @@ open class HistoryAPI {
     }
 
     /**
-     Account usage statistics
+     Account usage, cost, and volume statistics for a time window
 
      - parameter time: (query) The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle. Defaults to &#x60;1h&#x60;. (optional, default to 1h)
      - parameter completion: completion handler to receive the data and the error objects
@@ -37,7 +37,7 @@ open class HistoryAPI {
 
 
     /**
-     Account usage statistics
+     Account usage, cost, and volume statistics for a time window
      - GET /mail/stats
 
      - API Key:
@@ -117,7 +117,7 @@ open class HistoryAPI {
     }
 
     /**
-     Displays the mail log
+     Query the mail delivery log (filterable, paginated)
 
      - parameter _id: (query) The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from &#x60;GET /mail&#x60; or &#x60;GET /mail/{id}&#x60;. (optional)
      - parameter origin: (query) Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
@@ -147,7 +147,7 @@ open class HistoryAPI {
 
 
     /**
-     Displays the mail log
+     Query the mail delivery log (filterable, paginated)
      - GET /mail/log
 
      - API Key:

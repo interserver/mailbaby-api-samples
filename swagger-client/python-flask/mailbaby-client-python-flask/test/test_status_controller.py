@@ -14,7 +14,7 @@ class TestStatusController(BaseTestCase):
     def test_ping_server(self):
         """Test case for ping_server
 
-        Checks if the server is running
+        Health check — verify the API is reachable
         """
         response = self.client.open(
             '/ping',

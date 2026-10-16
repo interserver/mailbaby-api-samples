@@ -9,7 +9,6 @@ let ping_server () =
     let open Lwt.Infix in
     let uri = Request.build_uri "/ping" in
     let headers = Request.default_headers in
-    let headers = Cohttp.Header.add headers "X-API-KEY" Request.api_key in
     Cohttp_lwt_unix.Client.call `GET uri ~headers >>= fun (resp, body) ->
     Request.read_json_body_as (JsonSupport.to_string) resp body
 

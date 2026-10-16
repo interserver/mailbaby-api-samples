@@ -32,8 +32,8 @@
 
 
 (defn-spec add-rule-with-http-info any?
-  "Creates a new email deny rule
-  Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+  "Create a deny rule to block a sender, domain, destination, or prefix
+  **Use this to prevent future relay attempts that match a pattern.** Required: `type` (`email`, `domain`, `destination`, or `startswith`) and `data` (the value to match). Optional: `user` (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
 
 The `type` field selects the matching strategy:
 - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion
@@ -57,8 +57,8 @@ On success the response `text` field contains the newly created rule's `id`, whi
               :auth-names    ["apiKeyAuth"]})))
 
 (defn-spec add-rule generic-response-spec
-  "Creates a new email deny rule
-  Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+  "Create a deny rule to block a sender, domain, destination, or prefix
+  **Use this to prevent future relay attempts that match a pattern.** Required: `type` (`email`, `domain`, `destination`, or `startswith`) and `data` (the value to match). Optional: `user` (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
 
 The `type` field selects the matching strategy:
 - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion
@@ -78,8 +78,8 @@ On success the response `text` field contains the newly created rule's `id`, whi
 
 
 (defn-spec delete-rule-with-http-info any?
-  "Removes a deny mail rule
-  Permanently removes a single deny rule identified by its numeric `ruleId`.
+  "Delete a deny rule by its numeric ruleId
+  **Destructive — permanently removes the rule.** Required: `ruleId` (path param; obtain from the `id` field returned by `GET /mail/rules` or the `text` field returned by `POST /mail/rules`). Permanently removes a single deny rule identified by its numeric `ruleId`.
 
 The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.
 
@@ -96,8 +96,8 @@ Only rules belonging to your own active mail account(s) can be deleted — the s
              :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec delete-rule generic-response-spec
-  "Removes a deny mail rule
-  Permanently removes a single deny rule identified by its numeric `ruleId`.
+  "Delete a deny rule by its numeric ruleId
+  **Destructive — permanently removes the rule.** Required: `ruleId` (path param; obtain from the `id` field returned by `GET /mail/rules` or the `text` field returned by `POST /mail/rules`). Permanently removes a single deny rule identified by its numeric `ruleId`.
 
 The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.
 
@@ -110,8 +110,8 @@ Only rules belonging to your own active mail account(s) can be deleted — the s
 
 
 (defn-spec delist-block-with-http-info any?
-  "Removes an email address from the block lists
-  Delists an email address from all three block list stores:
+  "Delist an email address from the spam-filter block lists
+  **Destructive — wipes block records for the given address.** Required: `email` (must be a valid address; typically a `from` value previously returned by `GET /mail/blocks` or `GET /mail/log`). Delists an email address from all three block list stores:
 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
 
 Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.
@@ -130,8 +130,8 @@ Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `
              :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec delist-block generic-response-spec
-  "Removes an email address from the block lists
-  Delists an email address from all three block list stores:
+  "Delist an email address from the spam-filter block lists
+  **Destructive — wipes block records for the given address.** Required: `email` (must be a valid address; typically a `from` value previously returned by `GET /mail/blocks` or `GET /mail/log`). Delists an email address from all three block list stores:
 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
 
 Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.
@@ -145,8 +145,8 @@ Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `
 
 
 (defn-spec get-mail-blocks-with-http-info any?
-  "Displays a list of blocked email addresses
-  Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+  "List addresses currently flagged by spam-filter block lists
+  **Use this to discover which addresses to delist.** The `from` value of any returned entry can be passed to `POST /mail/blocks/delete` (as the `email` field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:
 
 - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are
   messages sent to recipients on your account's local block list.
@@ -171,8 +171,8 @@ A sender address returned in any of these lists can be delisted using `POST /mai
              :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec get-mail-blocks mail-blocks-spec
-  "Displays a list of blocked email addresses
-  Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+  "List addresses currently flagged by spam-filter block lists
+  **Use this to discover which addresses to delist.** The `from` value of any returned entry can be passed to `POST /mail/blocks/delete` (as the `email` field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:
 
 - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are
   messages sent to recipients on your account's local block list.
@@ -194,8 +194,8 @@ A sender address returned in any of these lists can be delisted using `POST /mai
 
 
 (defn-spec get-rules-with-http-info any?
-  "Displays a listing of deny email rules
-  Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+  "List custom deny rules (sender / domain / destination / prefix)
+  **Use this to inspect or pick a `ruleId` to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
 
 Four rule types are supported:
 | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |
@@ -212,8 +212,8 @@ Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to rem
              :auth-names    ["apiKeyAuth"]}))
 
 (defn-spec get-rules (s/coll-of deny-rule-record-spec)
-  "Displays a listing of deny email rules
-  Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+  "List custom deny rules (sender / domain / destination / prefix)
+  **Use this to inspect or pick a `ruleId` to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
 
 Four rule types are supported:
 | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |

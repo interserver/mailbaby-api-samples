@@ -1757,7 +1757,7 @@ ul.nav-tabs {
         <div id="header">
           <div id="api-_">
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
-              <div class="app-desc">Version: 1.4.0</div>
+              <div class="app-desc">Version: 1.5.0</div>
             <hr>
             <div id="app-description" class="app-desc">
                 <p><strong>Send emails fast and with confidence through our easy to use <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> API interface.</strong></p>
@@ -1795,12 +1795,12 @@ Pass your key in the <code>X-API-KEY</code> HTTP request header for every protec
                       <article id="api-Blocking-addRule-0" data-group="User" data-name="addRule" data-version="0">
                         <div class="pull-left">
                           <h1>addRule</h1>
-                          <p>Creates a new email deny rule</p>
+                          <p>Create a deny rule to block a sender, domain, destination, or prefix</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+                        <p class="marked">**Use this to prevent future relay attempts that match a pattern.** Required: &#x60;type&#x60; (&#x60;email&#x60;, &#x60;domain&#x60;, &#x60;destination&#x60;, or &#x60;startswith&#x60;) and &#x60;data&#x60; (the value to match). Optional: &#x60;user&#x60; (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
 
 The &#x60;type&#x60; field selects the matching strategy:
 - **&#x60;email&#x60;** — exact match against the SMTP envelope &#x60;MAIL FROM&#x60; address. - **&#x60;domain&#x60;** — matches any sender address at the specified domain. - **&#x60;destination&#x60;** — exact match against the SMTP envelope &#x60;RCPT TO&#x60; address. - **&#x60;startswith&#x60;** — matches any sender address whose local-part (the portion
@@ -1938,7 +1938,7 @@ String *type = type_example; // The matching strategy for this rule.  `email` bl
 String *data = data_example; // The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`. (default to null)
 String *user = user_example; // Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional) (default to null)
 
-// Creates a new email deny rule
+// Create a deny rule to block a sender, domain, destination, or prefix
 [apiInstance addRuleWith:type
     data:data
     user:user
@@ -2010,7 +2010,7 @@ namespace Example
             var user = user_example;  // String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional)  (default to null)
 
             try {
-                // Creates a new email deny rule
+                // Create a deny rule to block a sender, domain, destination, or prefix
                 GenericResponse result = apiInstance.addRule(type, data, user);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -2090,7 +2090,7 @@ data = data_example # String | The value to match against, interpreted according
 user = user_example # String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional) (default to null)
 
 try:
-    # Creates a new email deny rule
+    # Create a deny rule to block a sender, domain, destination, or prefix
     api_response = api_instance.add_rule(type, data, user=user)
     pprint(api_response)
 except ApiException as e:
@@ -2569,12 +2569,12 @@ The value to match against, interpreted according to &#x60;type&#x60;: a full em
                       <article id="api-Blocking-deleteRule-0" data-group="User" data-name="deleteRule" data-version="0">
                         <div class="pull-left">
                           <h1>deleteRule</h1>
-                          <p>Removes a deny mail rule</p>
+                          <p>Delete a deny rule by its numeric ruleId</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Permanently removes a single deny rule identified by its numeric &#x60;ruleId&#x60;.
+                        <p class="marked">**Destructive — permanently removes the rule.** Required: &#x60;ruleId&#x60; (path param; obtain from the &#x60;id&#x60; field returned by &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field returned by &#x60;POST /mail/rules&#x60;). Permanently removes a single deny rule identified by its numeric &#x60;ruleId&#x60;.
 
 The &#x60;ruleId&#x60; is the &#x60;id&#x60; field returned by &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field from a successful &#x60;POST /mail/rules&#x60; response.
 
@@ -2697,7 +2697,7 @@ public class BlockingApiExample {
 BlockingApi *apiInstance = [[BlockingApi alloc] init];
 Integer *ruleId = 34; // The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response. (default to null)
 
-// Removes a deny mail rule
+// Delete a deny rule by its numeric ruleId
 [apiInstance deleteRuleWith:ruleId
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
@@ -2761,7 +2761,7 @@ namespace Example
             var ruleId = 34;  // Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response. (default to null)
 
             try {
-                // Removes a deny mail rule
+                // Delete a deny rule by its numeric ruleId
                 GenericResponse result = apiInstance.deleteRule(ruleId);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -2835,7 +2835,7 @@ api_instance = MailBabyApi.BlockingApi()
 ruleId = 34 # Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response. (default to null)
 
 try:
-    # Removes a deny mail rule
+    # Delete a deny rule by its numeric ruleId
     api_response = api_instance.delete_rule(ruleId)
     pprint(api_response)
 except ApiException as e:
@@ -3255,12 +3255,12 @@ The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; 
                       <article id="api-Blocking-delistBlock-0" data-group="User" data-name="delistBlock" data-version="0">
                         <div class="pull-left">
                           <h1>delistBlock</h1>
-                          <p>Removes an email address from the block lists</p>
+                          <p>Delist an email address from the spam-filter block lists</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Delists an email address from all three block list stores:
+                        <p class="marked">**Destructive — wipes block records for the given address.** Required: &#x60;email&#x60; (must be a valid address; typically a &#x60;from&#x60; value previously returned by &#x60;GET /mail/blocks&#x60; or &#x60;GET /mail/log&#x60;). Delists an email address from all three block list stores:
 1. The rspamd spam-filter database (&#x60;fromemail&#x60; / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
 
 Use &#x60;GET /mail/blocks&#x60; to discover which addresses are currently blocked.  The &#x60;from&#x60; field in any returned block entry is a valid input for this call.
@@ -3389,7 +3389,7 @@ public class BlockingApiExample {
 BlockingApi *apiInstance = [[BlockingApi alloc] init];
 EmailAddressParam *emailAddressParam = {"email":"client@domain.com"}; // 
 
-// Removes an email address from the block lists
+// Delist an email address from the spam-filter block lists
 [apiInstance delistBlockWith:emailAddressParam
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
@@ -3453,7 +3453,7 @@ namespace Example
             var emailAddressParam = new EmailAddressParam(); // EmailAddressParam | 
 
             try {
-                // Removes an email address from the block lists
+                // Delist an email address from the spam-filter block lists
                 GenericResponse result = apiInstance.delistBlock(emailAddressParam);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -3527,7 +3527,7 @@ api_instance = MailBabyApi.BlockingApi()
 emailAddressParam = {"email":"client@domain.com"} # EmailAddressParam | 
 
 try:
-    # Removes an email address from the block lists
+    # Delist an email address from the spam-filter block lists
     api_response = api_instance.delist_block(emailAddressParam)
     pprint(api_response)
 except ApiException as e:
@@ -3984,12 +3984,12 @@ $(document).ready(function() {
                       <article id="api-Blocking-getMailBlocks-0" data-group="User" data-name="getMailBlocks" data-version="0">
                         <div class="pull-left">
                           <h1>getMailBlocks</h1>
-                          <p>Displays a list of blocked email addresses</p>
+                          <p>List addresses currently flagged by spam-filter block lists</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+                        <p class="marked">**Use this to discover which addresses to delist.** The &#x60;from&#x60; value of any returned entry can be passed to &#x60;POST /mail/blocks/delete&#x60; (as the &#x60;email&#x60; field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:
 
 - **&#x60;local&#x60;** — messages flagged by the &#x60;LOCAL_BL_RCPT&#x60; rspamd rule.  These are
   messages sent to recipients on your account&#39;s local block list.
@@ -4117,7 +4117,7 @@ public class BlockingApiExample {
 // Create an instance of the API class
 BlockingApi *apiInstance = [[BlockingApi alloc] init];
 
-// Displays a list of blocked email addresses
+// List addresses currently flagged by spam-filter block lists
 [apiInstance getMailBlocksWithCompletionHandler: 
               ^(MailBlocks output, NSError* error) {
     if (output) {
@@ -4178,7 +4178,7 @@ namespace Example
             var apiInstance = new BlockingApi();
 
             try {
-                // Displays a list of blocked email addresses
+                // List addresses currently flagged by spam-filter block lists
                 MailBlocks result = apiInstance.getMailBlocks();
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -4249,7 +4249,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.BlockingApi()
 
 try:
-    # Displays a list of blocked email addresses
+    # List addresses currently flagged by spam-filter block lists
     api_response = api_instance.get_mail_blocks()
     pprint(api_response)
 except ApiException as e:
@@ -4489,12 +4489,12 @@ pub fn main() {
                       <article id="api-Blocking-getRules-0" data-group="User" data-name="getRules" data-version="0">
                         <div class="pull-left">
                           <h1>getRules</h1>
-                          <p>Displays a listing of deny email rules</p>
+                          <p>List custom deny rules (sender / domain / destination / prefix)</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+                        <p class="marked">**Use this to inspect or pick a &#x60;ruleId&#x60; to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
 
 Four rule types are supported:
 | &#x60;type&#x60; | &#x60;data&#x60; format | Effect | |--------|---------------|--------| | &#x60;email&#x60; | &#x60;user@domain.com&#x60; | Rejects any message from this exact sender address | | &#x60;domain&#x60; | &#x60;domain.com&#x60; | Rejects any message from any address at this domain | | &#x60;destination&#x60; | &#x60;user@domain.com&#x60; | Rejects any message addressed to this recipient | | &#x60;startswith&#x60; | &#x60;prefix&#x60; | Rejects any message whose sender address begins with this string (alphanumeric, &#x60;+&#x60;, &#x60;_&#x60;, &#x60;.&#x60;, &#x60;-&#x60; only) |
@@ -4614,7 +4614,7 @@ public class BlockingApiExample {
 // Create an instance of the API class
 BlockingApi *apiInstance = [[BlockingApi alloc] init];
 
-// Displays a listing of deny email rules
+// List custom deny rules (sender / domain / destination / prefix)
 [apiInstance getRulesWithCompletionHandler: 
               ^(array[DenyRuleRecord] output, NSError* error) {
     if (output) {
@@ -4675,7 +4675,7 @@ namespace Example
             var apiInstance = new BlockingApi();
 
             try {
-                // Displays a listing of deny email rules
+                // List custom deny rules (sender / domain / destination / prefix)
                 array[DenyRuleRecord] result = apiInstance.getRules();
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -4746,7 +4746,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.BlockingApi()
 
 try:
-    # Displays a listing of deny email rules
+    # List custom deny rules (sender / domain / destination / prefix)
     api_response = api_instance.get_rules()
     pprint(api_response)
 except ApiException as e:
@@ -4985,12 +4985,12 @@ pub fn main() {
                       <article id="api-History-getStats-0" data-group="User" data-name="getStats" data-version="0">
                         <div class="pull-left">
                           <h1>getStats</h1>
-                          <p>Account usage statistics</p>
+                          <p>Account usage, cost, and volume statistics for a time window</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.
+                        <p class="marked">**Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The &#x60;time&#x60; query param controls the window for &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; (&#x60;1h&#x60;, &#x60;24h&#x60;, &#x60;7d&#x60;, &#x60;month&#x60;, &#x60;day&#x60;, &#x60;billing&#x60;, &#x60;all&#x60;). The &#x60;usage&#x60; and &#x60;cost&#x60; fields are always for the current billing cycle, regardless of &#x60;time&#x60;.
 
 The response includes:
 - **&#x60;usage&#x60;** — total messages accepted by the relay during the current billing
@@ -5123,7 +5123,7 @@ public class HistoryApiExample {
 HistoryApi *apiInstance = [[HistoryApi alloc] init];
 String *time = time_example; // The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
-// Account usage statistics
+// Account usage, cost, and volume statistics for a time window
 [apiInstance getStatsWith:time
               completionHandler: ^(MailStatsType output, NSError* error) {
     if (output) {
@@ -5189,7 +5189,7 @@ namespace Example
             var time = time_example;  // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional)  (default to 1h)
 
             try {
-                // Account usage statistics
+                // Account usage, cost, and volume statistics for a time window
                 MailStatsType result = apiInstance.getStats(time);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -5263,7 +5263,7 @@ api_instance = MailBabyApi.HistoryApi()
 time = time_example # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
 try:
-    # Account usage statistics
+    # Account usage, cost, and volume statistics for a time window
     api_response = api_instance.get_stats(time=time)
     pprint(api_response)
 except ApiException as e:
@@ -5529,12 +5529,12 @@ The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volum
                       <article id="api-History-viewMailLog-0" data-group="User" data-name="viewMailLog" data-version="0">
                         <div class="pull-left">
                           <h1>viewMailLog</h1>
-                          <p>Displays the mail log</p>
+                          <p>Query the mail delivery log (filterable, paginated)</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
+                        <p class="marked">**Use this to find or audit sent messages.** All filters are optional and combinable. The most useful filters: &#x60;mailid&#x60; (the transaction id returned by a send call), &#x60;from&#x60; / &#x60;to&#x60; (envelope addresses), &#x60;subject&#x60;, &#x60;messageId&#x60; (case-insensitive substring on the &#x60;Message-ID&#x60; header), &#x60;delivered&#x60; (&#x60;1&#x60;&#x3D;delivered, &#x60;0&#x60;&#x3D;queued/failed), and the &#x60;startDate&#x60;/&#x60;endDate&#x60; date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).
 
 **Row grouping** is controlled by the &#x60;groupby&#x60; parameter.  By default (&#x60;groupby&#x3D;recipient&#x60;), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and &#x60;mxHostname&#x60; values.  Set &#x60;groupby&#x3D;message&#x60; to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
@@ -5737,7 +5737,7 @@ String *sort = time; // Field to sort results by.  Currently only `time` is supp
 String *dir = desc; // Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
 String *groupby = recipient; // Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
 
-// Displays the mail log
+// Query the mail delivery log (filterable, paginated)
 [apiInstance viewMailLogWith:id
     origin:origin
     mx:mx
@@ -5854,7 +5854,7 @@ namespace Example
             var groupby = recipient;  // String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional)  (default to recipient)
 
             try {
-                // Displays the mail log
+                // Query the mail delivery log (filterable, paginated)
                 MailLog result = apiInstance.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -5979,7 +5979,7 @@ dir = desc # String | Sort direction.  `desc` returns newest first (default), `a
 groupby = recipient # String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)
 
 try:
-    # Displays the mail log
+    # Query the mail delivery log (filterable, paginated)
     api_response = api_instance.view_mail_log(id=id, origin=origin, mx=mx, from=from, to=to, subject=subject, mailid=mailid, messageId=messageId, replyto=replyto, headerfrom=headerfrom, delivered=delivered, skip=skip, limit=limit, startDate=startDate, endDate=endDate, sort=sort, dir=dir, groupby=groupby)
     pprint(api_response)
 except ApiException as e:
@@ -6766,12 +6766,12 @@ Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one r
                       <article id="api-Sending-rawMail-0" data-group="User" data-name="rawMail" data-version="0">
                         <div class="pull-left">
                           <h1>rawMail</h1>
-                          <p>Sends a raw RFC 822 email</p>
+                          <p>Send a pre-built RFC 822 message verbatim (preserves DKIM)</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+                        <p class="marked">**Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: &#x60;raw_email&#x60; (full RFC 822 string with headers + body). Optional: &#x60;id&#x60; (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
 This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
@@ -6904,7 +6904,7 @@ public class SendingApiExample {
 SendingApi *apiInstance = [[SendingApi alloc] init];
 SendMailRaw *sendMailRaw = ; // 
 
-// Sends a raw RFC 822 email
+// Send a pre-built RFC 822 message verbatim (preserves DKIM)
 [apiInstance rawMailWith:sendMailRaw
               completionHandler: ^(GenericResponse output, NSError* error) {
     if (output) {
@@ -6968,7 +6968,7 @@ namespace Example
             var sendMailRaw = new SendMailRaw(); // SendMailRaw | 
 
             try {
-                // Sends a raw RFC 822 email
+                // Send a pre-built RFC 822 message verbatim (preserves DKIM)
                 GenericResponse result = apiInstance.rawMail(sendMailRaw);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -7042,7 +7042,7 @@ api_instance = MailBabyApi.SendingApi()
 sendMailRaw =  # SendMailRaw | 
 
 try:
-    # Sends a raw RFC 822 email
+    # Send a pre-built RFC 822 message verbatim (preserves DKIM)
     api_response = api_instance.raw_mail(sendMailRaw)
     pprint(api_response)
 except ApiException as e:
@@ -7494,12 +7494,12 @@ $(document).ready(function() {
                       <article id="api-Sending-sendAdvMail-0" data-group="User" data-name="sendAdvMail" data-version="0">
                         <div class="pull-left">
                           <h1>sendAdvMail</h1>
-                          <p>Sends an Email with Advanced Options</p>
+                          <p>Send email with multiple recipients, CC/BCC, attachments, named contacts</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
+                        <p class="marked">**Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: &#x60;from&#x60;, &#x60;to&#x60;, &#x60;subject&#x60;, &#x60;body&#x60;. Optional: &#x60;cc&#x60;, &#x60;bcc&#x60;, &#x60;replyto&#x60;, &#x60;attachments&#x60; (array of &#x60;{filename,data}&#x60; with base64 data), &#x60;id&#x60;. Sends through one of your mail orders with full control over recipients, headers, and attachments.
 
 **Content-type flexibility** — the request body may be submitted as either &#x60;application/x-www-form-urlencoded&#x60; or &#x60;application/json&#x60;.  When using form encoding, address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;replyto&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;) accept both a plain RFC 822 comma-separated string (e.g. &#x60;&quot;Joe &lt;joe@example.com&gt;, jane@example.com&quot;&#x60;) and the structured &#x60;[{&quot;email&quot;:&quot;...&quot;,&quot;name&quot;:&quot;...&quot;}]&#x60; array format.  When using JSON, both formats are equally supported.
 
@@ -7704,7 +7704,7 @@ EmailAddressesTypes *bcc = ; // Optional.  Blind-carbon-copy recipients.  These 
 array[MailAttachment] *attachments = ; // Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional) (default to null)
 Long *id = 789; // Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional) (default to null)
 
-// Sends an Email with Advanced Options
+// Send email with multiple recipients, CC/BCC, attachments, named contacts
 [apiInstance sendAdvMailWith:subject
     body:body
     from:from
@@ -7794,7 +7794,7 @@ namespace Example
             var id = 789;  // Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)  (default to null)
 
             try {
-                // Sends an Email with Advanced Options
+                // Send email with multiple recipients, CC/BCC, attachments, named contacts
                 GenericResponse result = apiInstance.sendAdvMail(subject, body, from, to, replyto, cc, bcc, attachments, id);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -7892,7 +7892,7 @@ attachments =  # array[MailAttachment] | Optional list of file attachments.  Eac
 id = 789 # Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional) (default to null)
 
 try:
-    # Sends an Email with Advanced Options
+    # Send email with multiple recipients, CC/BCC, attachments, named contacts
     api_response = api_instance.send_adv_mail(subject, body, from, to, replyto=replyto, cc=cc, bcc=bcc, attachments=attachments, id=id)
     pprint(api_response)
 except ApiException as e:
@@ -8501,12 +8501,12 @@ Optional numeric ID of the mail order to send through.  If omitted the first act
                       <article id="api-Sending-sendMail-0" data-group="User" data-name="sendMail" data-version="0">
                         <div class="pull-left">
                           <h1>sendMail</h1>
-                          <p>Sends an Email</p>
+                          <p>Send a simple email (single recipient, plain or HTML)</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
+                        <p class="marked">**Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: &#x60;from&#x60;, &#x60;to&#x60;, &#x60;subject&#x60;, &#x60;body&#x60;. Optional: &#x60;id&#x60; (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.
 
 **HTML detection** is automatic — if the &#x60;body&#x60; value contains any HTML tags the message will be sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;.
 
@@ -8650,7 +8650,7 @@ String *subject = subject_example; // The subject line of the email. (default to
 String *body = body_example; // The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. (default to null)
 Long *id = 789; // Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional) (default to null)
 
-// Sends an Email
+// Send a simple email (single recipient, plain or HTML)
 [apiInstance sendMailWith:to
     from:from
     subject:subject
@@ -8728,7 +8728,7 @@ namespace Example
             var id = 789;  // Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)  (default to null)
 
             try {
-                // Sends an Email
+                // Send a simple email (single recipient, plain or HTML)
                 GenericResponse result = apiInstance.sendMail(to, from, subject, body, id);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -8814,7 +8814,7 @@ body = body_example # String | The email body.  If the string contains any HTML 
 id = 789 # Long | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional) (default to null)
 
 try:
-    # Sends an Email
+    # Send a simple email (single recipient, plain or HTML)
     api_response = api_instance.send_mail(to, from, subject, body, id=id)
     pprint(api_response)
 except ApiException as e:
@@ -9342,12 +9342,12 @@ Optional numeric ID of the mail order to send through.  If omitted the first act
                       <article id="api-Services-getMailOrderById-0" data-group="User" data-name="getMailOrderById" data-version="0">
                         <div class="pull-left">
                           <h1>getMailOrderById</h1>
-                          <p>Displays details for a single mail order</p>
+                          <p>Get one mail order&#39;s full detail including SMTP password</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns the full detail record for one specific mail order identified by its numeric &#x60;id&#x60;.  In addition to the fields returned by &#x60;GET /mail&#x60;, this endpoint also includes the current **SMTP password** for the order.
+                        <p class="marked">**Returns the SMTP password** in addition to the basic &#x60;GET /mail&#x60; fields. Use when you need to authenticate against &#x60;relay.mailbaby.net:25&#x60; from an SMTP client directly. Required: &#x60;id&#x60; (path; obtain from &#x60;GET /mail&#x60;). Returns the full detail record for one specific mail order identified by its numeric &#x60;id&#x60;.
 
 The &#x60;username&#x60; and &#x60;password&#x60; values returned here can be used directly to authenticate against &#x60;relay.mailbaby.net:25&#x60; (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.
 
@@ -9470,7 +9470,7 @@ public class ServicesApiExample {
 ServicesApi *apiInstance = [[ServicesApi alloc] init];
 Long *id = 39; // The numeric ID of the mail order. (default to null)
 
-// Displays details for a single mail order
+// Get one mail order's full detail including SMTP password
 [apiInstance getMailOrderByIdWith:id
               completionHandler: ^(MailOrderDetail output, NSError* error) {
     if (output) {
@@ -9534,7 +9534,7 @@ namespace Example
             var id = 39;  // Long | The numeric ID of the mail order. (default to null)
 
             try {
-                // Displays details for a single mail order
+                // Get one mail order's full detail including SMTP password
                 MailOrderDetail result = apiInstance.getMailOrderById(id);
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -9608,7 +9608,7 @@ api_instance = MailBabyApi.ServicesApi()
 id = 39 # Long | The numeric ID of the mail order. (default to null)
 
 try:
-    # Displays details for a single mail order
+    # Get one mail order's full detail including SMTP password
     api_response = api_instance.get_mail_order_by_id(id)
     pprint(api_response)
 except ApiException as e:
@@ -10060,12 +10060,12 @@ The numeric ID of the mail order.
                       <article id="api-Services-getMailOrders-0" data-group="User" data-name="getMailOrders" data-version="0">
                         <div class="pull-left">
                           <h1>getMailOrders</h1>
-                          <p>Displays a list of mail service orders</p>
+                          <p>List your provisioned mail orders (sending accounts)</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric &#x60;id&#x60;, the &#x60;status&#x60; (&#x60;active&#x60; or &#x60;canceled&#x60;), the SMTP &#x60;username&#x60; (always &#x60;mb&lt;id&gt;&#x60;), and an optional human-readable &#x60;comment&#x60;.
+                        <p class="marked">Use this **before sending** if you need to discover which mail order &#x60;id&#x60; to pass to &#x60;/mail/send&#x60;, &#x60;/mail/advsend&#x60;, &#x60;/mail/rawsend&#x60;, &#x60;/mail/log&#x60;, or &#x60;/mail/stats&#x60;. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric &#x60;id&#x60;, the &#x60;status&#x60; (&#x60;active&#x60; or &#x60;canceled&#x60;), the SMTP &#x60;username&#x60; (always &#x60;mb&lt;id&gt;&#x60;), and an optional &#x60;comment&#x60;.
 
 The &#x60;id&#x60; values returned here are used as the &#x60;id&#x60; input parameter on all sending endpoints (&#x60;/mail/send&#x60;, &#x60;/mail/advsend&#x60;, &#x60;/mail/rawsend&#x60;) as well as the log and stats queries.  When the &#x60;id&#x60; parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.
 
@@ -10184,7 +10184,7 @@ public class ServicesApiExample {
 // Create an instance of the API class
 ServicesApi *apiInstance = [[ServicesApi alloc] init];
 
-// Displays a list of mail service orders
+// List your provisioned mail orders (sending accounts)
 [apiInstance getMailOrdersWithCompletionHandler: 
               ^(array[MailOrder] output, NSError* error) {
     if (output) {
@@ -10245,7 +10245,7 @@ namespace Example
             var apiInstance = new ServicesApi();
 
             try {
-                // Displays a list of mail service orders
+                // List your provisioned mail orders (sending accounts)
                 array[MailOrder] result = apiInstance.getMailOrders();
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -10316,7 +10316,7 @@ MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 api_instance = MailBabyApi.ServicesApi()
 
 try:
-    # Displays a list of mail service orders
+    # List your provisioned mail orders (sending accounts)
     api_response = api_instance.get_mail_orders()
     pprint(api_response)
 except ApiException as e:
@@ -10580,12 +10580,12 @@ pub fn main() {
                       <article id="api-Status-pingServer-0" data-group="User" data-name="pingServer" data-version="0">
                         <div class="pull-left">
                           <h1>pingServer</h1>
-                          <p>Checks if the server is running</p>
+                          <p>Health check — verify the API is reachable</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">A lightweight health-check endpoint.  Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
+                        <p class="marked">**No authentication required.** Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests.
 </p>
                         <p></p>
                         <br />
@@ -10612,7 +10612,6 @@ pub fn main() {
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Status-pingServer-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET \
--H "X-API-KEY: [[apiKey]]" \
  -H "Accept: text/plain,application/json" \
  "https://api.mailbaby.net/ping"
 </code></pre>
@@ -10628,13 +10627,6 @@ import java.util.*;
 
 public class StatusApiExample {
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-        // Configure API key authorization: apiKeyAuth
-        ApiKeyAuth apiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("apiKeyAuth");
-        apiKeyAuth.setApiKey("YOUR API KEY");
-        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-        //apiKeyAuth.setApiKeyPrefix("Token");
 
         // Create an instance of the API class
         StatusApi apiInstance = new StatusApi();
@@ -10689,18 +10681,12 @@ public class StatusApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Status-pingServer-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Configuration *apiConfig = [Configuration sharedConfig];
-
-// Configure API key authorization: (authentication scheme: apiKeyAuth)
-[apiConfig setApiKey:@"YOUR_API_KEY" forApiKeyIdentifier:@"X-API-KEY"];
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-//[apiConfig setApiKeyPrefix:@"Bearer" forApiKeyIdentifier:@"X-API-KEY"];
-
+                              <pre class="prettyprint"><code class="language-cpp">
 
 // Create an instance of the API class
 StatusApi *apiInstance = [[StatusApi alloc] init];
 
-// Checks if the server is running
+// Health check — verify the API is reachable
 [apiInstance pingServerWithCompletionHandler: 
               ^('String' output, NSError* error) {
     if (output) {
@@ -10715,13 +10701,6 @@ StatusApi *apiInstance = [[StatusApi alloc] init];
 
                             <div class="tab-pane" id="examples-Status-pingServer-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var MailBabyEmailDeliveryAndManagementServiceApi = require('mail_baby_email_delivery_and_management_service_api');
-var defaultClient = MailBabyEmailDeliveryAndManagementServiceApi.ApiClient.instance;
-
-// Configure API key authorization: apiKeyAuth
-var apiKeyAuth = defaultClient.authentications['apiKeyAuth'];
-apiKeyAuth.apiKey = "YOUR API KEY";
-// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-//apiKeyAuth.apiKeyPrefix['X-API-KEY'] = "Token";
 
 // Create an instance of the API class
 var api = new MailBabyEmailDeliveryAndManagementServiceApi.StatusApi()
@@ -10752,16 +10731,12 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKeyAuth
-            Configuration.Default.ApiKey.Add("X-API-KEY", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.ApiKeyPrefix.Add("X-API-KEY", "Bearer");
 
             // Create an instance of the API class
             var apiInstance = new StatusApi();
 
             try {
-                // Checks if the server is running
+                // Health check — verify the API is reachable
                 'String' result = apiInstance.pingServer();
                 Debug.WriteLine(result);
             } catch (Exception e) {
@@ -10776,11 +10751,6 @@ namespace Example
                             <div class="tab-pane" id="examples-Status-pingServer-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\StatusApi();
@@ -10798,11 +10768,6 @@ try {
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use MailBabyApi::Configuration;
 use MailBabyApi::StatusApi;
-
-# Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
-# uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
 my $api_instance = MailBabyApi::StatusApi->new();
@@ -10823,16 +10788,11 @@ import MailBabyApi
 from MailBabyApi.rest import ApiException
 from pprint import pprint
 
-# Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
-
 # Create an instance of the API class
 api_instance = MailBabyApi.StatusApi()
 
 try:
-    # Checks if the server is running
+    # Health check — verify the API is reachable
     api_response = api_instance.ping_server()
     pprint(api_response)
 except ApiException as e:

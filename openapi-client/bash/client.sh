@@ -8,7 +8,7 @@
 # ! openapi-generator (https://openapi-generator.tech)
 # ! FROM OPENAPI SPECIFICATION IN JSON.
 # !
-# ! Generator version: 7.21.0
+# ! Generator version: 7.22.0
 # !
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -602,7 +602,7 @@ build_request_path() {
 print_help() {
 cat <<EOF
 
-${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.4.0)${OFF}
+${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.5.0)${OFF}
 
 ${BOLD}${WHITE}Usage${OFF}
 
@@ -638,39 +638,39 @@ EOF
     echo ""
     echo -e "${BOLD}${WHITE}[blocking]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}addRule${OFF};Creates a new email deny rule (AUTH)
-  ${CYAN}deleteRule${OFF};Removes a deny mail rule (AUTH)
-  ${CYAN}delistBlock${OFF};Removes an email address from the block lists (AUTH)
-  ${CYAN}getMailBlocks${OFF};Displays a list of blocked email addresses (AUTH)
-  ${CYAN}getRules${OFF};Displays a listing of deny email rules (AUTH)
+  ${CYAN}addRule${OFF};Create a deny rule to block a sender, domain, destination, or prefix (AUTH)
+  ${CYAN}deleteRule${OFF};Delete a deny rule by its numeric ruleId (AUTH)
+  ${CYAN}delistBlock${OFF};Delist an email address from the spam-filter block lists (AUTH)
+  ${CYAN}getMailBlocks${OFF};List addresses currently flagged by spam-filter block lists (AUTH)
+  ${CYAN}getRules${OFF};List custom deny rules (sender / domain / destination / prefix) (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[history]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}getStats${OFF};Account usage statistics (AUTH)
-  ${CYAN}viewMailLog${OFF};Displays the mail log (AUTH)
+  ${CYAN}getStats${OFF};Account usage, cost, and volume statistics for a time window (AUTH)
+  ${CYAN}viewMailLog${OFF};Query the mail delivery log (filterable, paginated) (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[sending]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}rawMail${OFF};Sends a raw RFC 822 email (AUTH)
-  ${CYAN}sendAdvMail${OFF};Sends an Email with Advanced Options (AUTH)
-  ${CYAN}sendMail${OFF};Sends an Email (AUTH)
+  ${CYAN}rawMail${OFF};Send a pre-built RFC 822 message verbatim (preserves DKIM) (AUTH)
+  ${CYAN}sendAdvMail${OFF};Send email with multiple recipients, CC/BCC, attachments, named contacts (AUTH)
+  ${CYAN}sendMail${OFF};Send a simple email (single recipient, plain or HTML) (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[services]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}getMailOrderById${OFF};Displays details for a single mail order (AUTH)
-  ${CYAN}getMailOrders${OFF};Displays a list of mail service orders (AUTH)
+  ${CYAN}getMailOrderById${OFF};Get one mail order's full detail including SMTP password (AUTH)
+  ${CYAN}getMailOrders${OFF};List your provisioned mail orders (sending accounts) (AUTH)
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
     echo -e "${BOLD}${WHITE}[status]${OFF}"
 read -r -d '' ops <<EOF
-  ${CYAN}pingServer${OFF};Checks if the server is running (AUTH)
+  ${CYAN}pingServer${OFF};Health check — verify the API is reachable
 EOF
 echo "  $ops" | column -t -s ';'
     echo ""
@@ -700,7 +700,7 @@ echo -e "              \\t\\t\\t\\t(e.g. 'https://api.mailbaby.net')"
 ##############################################################################
 print_about() {
     echo ""
-    echo -e "${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.4.0)${OFF}"
+    echo -e "${BOLD}${WHITE}MailBaby Email Delivery and Management Service API command line client (API version 1.5.0)${OFF}"
     echo ""
     echo -e "License: GNU GPLv3"
     echo -e "Contact: support@interserver.net"
@@ -755,7 +755,7 @@ echo "$appdescription" | paste -sd' ' - | fold -sw 80
 ##############################################################################
 print_version() {
     echo ""
-    echo -e "${BOLD}MailBaby Email Delivery and Management Service API command line client (API version 1.4.0)${OFF}"
+    echo -e "${BOLD}MailBaby Email Delivery and Management Service API command line client (API version 1.5.0)${OFF}"
     echo ""
 }
 
@@ -766,9 +766,9 @@ print_version() {
 ##############################################################################
 print_addRule_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}addRule - Creates a new email deny rule${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}addRule - Create a deny rule to block a sender, domain, destination, or prefix${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+    echo -e "**Use this to prevent future relay attempts that match a pattern.** Required: 'type' ('email', 'domain', 'destination', or 'startswith') and 'data' (the value to match). Optional: 'user' (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
 
 The 'type' field selects the matching strategy:
 - **'email'** — exact match against the SMTP envelope 'MAIL FROM' address. - **'domain'** — matches any sender address at the specified domain. - **'destination'** — exact match against the SMTP envelope 'RCPT TO' address. - **'startswith'** — matches any sender address whose local-part (the portion
@@ -799,9 +799,9 @@ On success the response 'text' field contains the newly created rule's 'id', whi
 ##############################################################################
 print_deleteRule_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}deleteRule - Removes a deny mail rule${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}deleteRule - Delete a deny rule by its numeric ruleId${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Permanently removes a single deny rule identified by its numeric 'ruleId'.
+    echo -e "**Destructive — permanently removes the rule.** Required: 'ruleId' (path param; obtain from the 'id' field returned by 'GET /mail/rules' or the 'text' field returned by 'POST /mail/rules'). Permanently removes a single deny rule identified by its numeric 'ruleId'.
 
 The 'ruleId' is the 'id' field returned by 'GET /mail/rules' or the 'text' field from a successful 'POST /mail/rules' response.
 
@@ -827,9 +827,9 @@ Only rules belonging to your own active mail account(s) can be deleted — the s
 ##############################################################################
 print_delistBlock_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}delistBlock - Removes an email address from the block lists${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}delistBlock - Delist an email address from the spam-filter block lists${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Delists an email address from all three block list stores:
+    echo -e "**Destructive — wipes block records for the given address.** Required: 'email' (must be a valid address; typically a 'from' value previously returned by 'GET /mail/blocks' or 'GET /mail/log'). Delists an email address from all three block list stores:
 1. The rspamd spam-filter database ('fromemail' / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
 
 Use 'GET /mail/blocks' to discover which addresses are currently blocked.  The 'from' field in any returned block entry is a valid input for this call.
@@ -857,9 +857,9 @@ Use 'GET /mail/blocks' to discover which addresses are currently blocked.  The '
 ##############################################################################
 print_getMailBlocks_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailBlocks - Displays a list of blocked email addresses${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getMailBlocks - List addresses currently flagged by spam-filter block lists${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+    echo -e "**Use this to discover which addresses to delist.** The 'from' value of any returned entry can be passed to 'POST /mail/blocks/delete' (as the 'email' field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:
 
 - **'local'** — messages flagged by the 'LOCAL_BL_RCPT' rspamd rule.  These are
   messages sent to recipients on your account's local block list.
@@ -888,9 +888,9 @@ A sender address returned in any of these lists can be delisted using 'POST /mai
 ##############################################################################
 print_getRules_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getRules - Displays a listing of deny email rules${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getRules - List custom deny rules (sender / domain / destination / prefix)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+    echo -e "**Use this to inspect or pick a 'ruleId' to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
 
 Four rule types are supported:
 | 'type' | 'data' format | Effect | |--------|---------------|--------| | 'email' | 'user@domain.com' | Rejects any message from this exact sender address | | 'domain' | 'domain.com' | Rejects any message from any address at this domain | | 'destination' | 'user@domain.com' | Rejects any message addressed to this recipient | | 'startswith' | 'prefix' | Rejects any message whose sender address begins with this string (alphanumeric, '+', '_', '.', '-' only) |
@@ -911,9 +911,9 @@ Use 'POST /mail/rules' to add new rules and 'DELETE /mail/rules/{ruleId}' to rem
 ##############################################################################
 print_getStats_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getStats - Account usage statistics${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getStats - Account usage, cost, and volume statistics for a time window${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.
+    echo -e "**Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The 'time' query param controls the window for 'received', 'sent', and 'volume' ('1h', '24h', '7d', 'month', 'day', 'billing', 'all'). The 'usage' and 'cost' fields are always for the current billing cycle, regardless of 'time'.
 
 The response includes:
 - **'usage'** — total messages accepted by the relay during the current billing
@@ -946,9 +946,9 @@ The response includes:
 ##############################################################################
 print_viewMailLog_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}viewMailLog - Displays the mail log${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}viewMailLog - Query the mail delivery log (filterable, paginated)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
+    echo -e "**Use this to find or audit sent messages.** All filters are optional and combinable. The most useful filters: 'mailid' (the transaction id returned by a send call), 'from' / 'to' (envelope addresses), 'subject', 'messageId' (case-insensitive substring on the 'Message-ID' header), 'delivered' ('1'=delivered, '0'=queued/failed), and the 'startDate'/'endDate' date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).
 
 **Row grouping** is controlled by the 'groupby' parameter.  By default ('groupby=recipient'), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own 'recipient', 'delivered', 'response', and 'mxHostname' values.  Set 'groupby=message' to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
@@ -1019,9 +1019,9 @@ The 'messageId' parameter searches the 'Message-ID' email header (case-insensiti
 ##############################################################################
 print_rawMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}rawMail - Sends a raw RFC 822 email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}rawMail - Send a pre-built RFC 822 message verbatim (preserves DKIM)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+    echo -e "**Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: 'raw_email' (full RFC 822 string with headers + body). Optional: 'id' (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
 This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
@@ -1052,9 +1052,9 @@ On success the response 'text' field contains the relay transaction ID.  This ID
 ##############################################################################
 print_sendAdvMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendAdvMail - Sends an Email with Advanced Options${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendAdvMail - Send email with multiple recipients, CC/BCC, attachments, named contacts${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
+    echo -e "**Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: 'from', 'to', 'subject', 'body'. Optional: 'cc', 'bcc', 'replyto', 'attachments' (array of '{filename,data}' with base64 data), 'id'. Sends through one of your mail orders with full control over recipients, headers, and attachments.
 
 **Content-type flexibility** — the request body may be submitted as either 'application/x-www-form-urlencoded' or 'application/json'.  When using form encoding, address fields ('from', 'to', 'replyto', 'cc', 'bcc') accept both a plain RFC 822 comma-separated string (e.g. '\"Joe <joe@example.com>, jane@example.com\"') and the structured '[{\"email\":\"...\",\"name\":\"...\"}]' array format.  When using JSON, both formats are equally supported.
 
@@ -1128,9 +1128,9 @@ On success the response 'text' field contains the relay transaction ID which can
 ##############################################################################
 print_sendMail_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}sendMail - Sends an Email${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}sendMail - Send a simple email (single recipient, plain or HTML)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
+    echo -e "**Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: 'from', 'to', 'subject', 'body'. Optional: 'id' (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.
 
 **HTML detection** is automatic — if the 'body' value contains any HTML tags the message will be sent as 'text/html'; otherwise it is sent as 'text/plain'.
 
@@ -1159,9 +1159,9 @@ On success the response 'text' field contains the relay transaction ID.  This ID
 ##############################################################################
 print_getMailOrderById_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailOrderById - Displays details for a single mail order${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getMailOrderById - Get one mail order's full detail including SMTP password${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns the full detail record for one specific mail order identified by its numeric 'id'.  In addition to the fields returned by 'GET /mail', this endpoint also includes the current **SMTP password** for the order.
+    echo -e "**Returns the SMTP password** in addition to the basic 'GET /mail' fields. Use when you need to authenticate against 'relay.mailbaby.net:25' from an SMTP client directly. Required: 'id' (path; obtain from 'GET /mail'). Returns the full detail record for one specific mail order identified by its numeric 'id'.
 
 The 'username' and 'password' values returned here can be used directly to authenticate against 'relay.mailbaby.net:25' (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.
 
@@ -1187,9 +1187,9 @@ The 'id' path parameter is the same integer 'id' value returned by 'GET /mail'."
 ##############################################################################
 print_getMailOrders_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}getMailOrders - Displays a list of mail service orders${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}getMailOrders - List your provisioned mail orders (sending accounts)${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric 'id', the 'status' ('active' or 'canceled'), the SMTP 'username' (always 'mb<id>'), and an optional human-readable 'comment'.
+    echo -e "Use this **before sending** if you need to discover which mail order 'id' to pass to '/mail/send', '/mail/advsend', '/mail/rawsend', '/mail/log', or '/mail/stats'. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric 'id', the 'status' ('active' or 'canceled'), the SMTP 'username' (always 'mb<id>'), and an optional 'comment'.
 
 The 'id' values returned here are used as the 'id' input parameter on all sending endpoints ('/mail/send', '/mail/advsend', '/mail/rawsend') as well as the log and stats queries.  When the 'id' parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.
 
@@ -1209,9 +1209,9 @@ To retrieve full details — including the current SMTP password — for a singl
 ##############################################################################
 print_pingServer_help() {
     echo ""
-    echo -e "${BOLD}${WHITE}pingServer - Checks if the server is running${OFF}${BLUE}(AUTH - HEADER)${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
+    echo -e "${BOLD}${WHITE}pingServer - Health check — verify the API is reachable${OFF}" | paste -sd' ' - | fold -sw 80 | sed '2,$s/^/    /'
     echo -e ""
-    echo -e "A lightweight health-check endpoint.  Returns the plain-text string 'Server is up and running' with a '200' status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests." | paste -sd' ' - | fold -sw 80
+    echo -e "**No authentication required.** Returns the plain-text string 'Server is up and running' with a '200' status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests." | paste -sd' ' - | fold -sw 80
     echo -e ""
     echo ""
     echo -e "${BOLD}${WHITE}Responses${OFF}"
@@ -1748,7 +1748,7 @@ call_pingServer() {
     local path_parameter_names=()
     # ignore error about 'query_parameter_names' being unused; passed by reference
     # shellcheck disable=SC2034
-    local query_parameter_names=(  )
+    local query_parameter_names=()
     local path
 
     if ! path=$(build_request_path "/ping" path_parameter_names query_parameter_names); then

@@ -4,26 +4,24 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**PingServer**](StatusApi.md#PingServer) | **GET** /ping | Checks if the server is running
+[**PingServer**](StatusApi.md#PingServer) | **GET** /ping | Health check — verify the API is reachable
 
 
 # **PingServer**
 > character PingServer()
 
-Checks if the server is running
+Health check — verify the API is reachable
 
-A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+**No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
 
 ### Example
 ```R
 library(openapi)
 
-# Checks if the server is running
+# Health check — verify the API is reachable
 #
 
 api_instance <- StatusApi$new()
-# Configure API key authorization: apiKeyAuth
-api_instance$api_client$api_keys["X-API-KEY"] <- Sys.getenv("API_KEY")
 # to save the result into a file, simply add the optional `data_file` parameter, e.g.
 # result <- api_instance$PingServer(data_file = "result.txt")
 result <- api_instance$PingServer()
@@ -39,7 +37,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth)
+No authorization required
 
 ### HTTP request headers
 

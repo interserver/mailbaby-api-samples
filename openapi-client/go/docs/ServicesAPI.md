@@ -4,8 +4,8 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMailOrderById**](ServicesAPI.md#GetMailOrderById) | **Get** /mail/{id} | Displays details for a single mail order
-[**GetMailOrders**](ServicesAPI.md#GetMailOrders) | **Get** /mail | Displays a list of mail service orders
+[**GetMailOrderById**](ServicesAPI.md#GetMailOrderById) | **Get** /mail/{id} | Get one mail order&#39;s full detail including SMTP password
+[**GetMailOrders**](ServicesAPI.md#GetMailOrders) | **Get** /mail | List your provisioned mail orders (sending accounts)
 
 
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 > MailOrderDetail GetMailOrderById(ctx, id).Execute()
 
-Displays details for a single mail order
+Get one mail order's full detail including SMTP password
 
 
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 > []MailOrder GetMailOrders(ctx).Execute()
 
-Displays a list of mail service orders
+List your provisioned mail orders (sending accounts)
 
 
 

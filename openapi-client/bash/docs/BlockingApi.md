@@ -4,19 +4,19 @@ All URIs are relative to **
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addRule**](BlockingApi.md#addRule) | **POST** /mail/rules | Creates a new email deny rule
-[**deleteRule**](BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Removes a deny mail rule
-[**delistBlock**](BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Removes an email address from the block lists
-[**getMailBlocks**](BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | Displays a list of blocked email addresses
-[**getRules**](BlockingApi.md#getRules) | **GET** /mail/rules | Displays a listing of deny email rules
+[**addRule**](BlockingApi.md#addRule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+[**deleteRule**](BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+[**delistBlock**](BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+[**getMailBlocks**](BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+[**getRules**](BlockingApi.md#getRules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
 
 
 
 ## addRule
 
-Creates a new email deny rule
+Create a deny rule to block a sender, domain, destination, or prefix
 
-Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+**Use this to prevent future relay attempts that match a pattern.** Required: 'type' ('email', 'domain', 'destination', or 'startswith') and 'data' (the value to match). Optional: 'user' (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
 
 The 'type' field selects the matching strategy:
 - **'email'** — exact match against the SMTP envelope 'MAIL FROM' address. - **'domain'** — matches any sender address at the specified domain. - **'destination'** — exact match against the SMTP envelope 'RCPT TO' address. - **'startswith'** — matches any sender address whose local-part (the portion
@@ -61,9 +61,9 @@ Name | Type | Description  | Notes
 
 ## deleteRule
 
-Removes a deny mail rule
+Delete a deny rule by its numeric ruleId
 
-Permanently removes a single deny rule identified by its numeric 'ruleId'.
+**Destructive — permanently removes the rule.** Required: 'ruleId' (path param; obtain from the 'id' field returned by 'GET /mail/rules' or the 'text' field returned by 'POST /mail/rules'). Permanently removes a single deny rule identified by its numeric 'ruleId'.
 
 The 'ruleId' is the 'id' field returned by 'GET /mail/rules' or the 'text' field from a successful 'POST /mail/rules' response.
 
@@ -100,9 +100,9 @@ Name | Type | Description  | Notes
 
 ## delistBlock
 
-Removes an email address from the block lists
+Delist an email address from the spam-filter block lists
 
-Delists an email address from all three block list stores:
+**Destructive — wipes block records for the given address.** Required: 'email' (must be a valid address; typically a 'from' value previously returned by 'GET /mail/blocks' or 'GET /mail/log'). Delists an email address from all three block list stores:
 1. The rspamd spam-filter database ('fromemail' / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
 
 Use 'GET /mail/blocks' to discover which addresses are currently blocked.  The 'from' field in any returned block entry is a valid input for this call.
@@ -140,9 +140,9 @@ Name | Type | Description  | Notes
 
 ## getMailBlocks
 
-Displays a list of blocked email addresses
+List addresses currently flagged by spam-filter block lists
 
-Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+**Use this to discover which addresses to delist.** The 'from' value of any returned entry can be passed to 'POST /mail/blocks/delete' (as the 'email' field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:
 
 - **'local'** — messages flagged by the 'LOCAL_BL_RCPT' rspamd rule.  These are
   messages sent to recipients on your account's local block list.
@@ -185,9 +185,9 @@ This endpoint does not need any parameter.
 
 ## getRules
 
-Displays a listing of deny email rules
+List custom deny rules (sender / domain / destination / prefix)
 
-Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+**Use this to inspect or pick a 'ruleId' to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
 
 Four rule types are supported:
 | 'type' | 'data' format | Effect | |--------|---------------|--------| | 'email' | 'user@domain.com' | Rejects any message from this exact sender address | | 'domain' | 'domain.com' | Rejects any message from any address at this domain | | 'destination' | 'user@domain.com' | Rejects any message addressed to this recipient | | 'startswith' | 'prefix' | Rejects any message whose sender address begins with this string (alphanumeric, '+', '_', '.', '-' only) |

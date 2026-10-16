@@ -3,27 +3,21 @@ Protected Class StatusApi
 	#tag Method, Flags = &h0
 		Sub PingServer()
 		  // Operation pingServer
-		  // Checks if the server is running
+		  // Health check — verify the API is reachable
 		  // - 
 		  //
 		  // Invokes StatusApiCallbackHandler.PingServerCallback(String) on completion. 
 		  //
 		  // - GET /ping
-		  // - A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
+		  // - **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
 		  // - defaultResponse: Sample
 		  //
-		  // - API Key:
-		  //   - type: apiKey X-API-KEY (HEADER)
-		  //   - name: apiKeyAuth
 		  //
 		  
 		  Dim localVarHTTPSocket As New HTTPSecureSocket
 		  Me.PrivateFuncPrepareSocket(localVarHTTPSocket)
 		  
 		  
-		  If me.ApiKeyapiKeyAuth = "" Then Raise New OpenAPIClient.OpenAPIClientException(kErrorCannotAuthenticate, "API key is unset. Please assign a value to `StatusApi.ApiKeyapiKeyAuth` before invoking `StatusApi.PingServer()`.")
-		  
-		  localVarHTTPSocket.SetRequestHeader(EncodeURLComponent("X-API-KEY"), EncodeURLComponent(me.ApiKeyapiKeyAuth))
 		  
 
 

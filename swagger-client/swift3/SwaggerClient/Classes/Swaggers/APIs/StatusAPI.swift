@@ -11,7 +11,7 @@ import Alamofire
 
 open class StatusAPI: APIBase {
     /**
-     Checks if the server is running
+     Health check — verify the API is reachable
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func pingServer(completion: @escaping ((_ data: String?, _ error: ErrorResponse?) -> Void)) {
@@ -22,12 +22,10 @@ open class StatusAPI: APIBase {
 
 
     /**
-     Checks if the server is running
+     Health check — verify the API is reachable
      - GET /ping
-     - A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests. 
-     - API Key:
-       - type: apiKey X-API-KEY 
-       - name: apiKeyAuth
+     - **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
+
      - examples: [{contentType=application/json, example="Server is up and running"}]
      - returns: RequestBuilder<String> 
      */

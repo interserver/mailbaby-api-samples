@@ -46,7 +46,7 @@ info:
   license:
     name: GNU GPLv3
     url: https://www.gnu.org/licenses/gpl.txt
-  version: 1.4.0
+  version: 1.5.0
 externalDocs:
   description: MailBaby FAQ & Tips
   url: https://www.mail.baby/tips/
@@ -72,9 +72,9 @@ paths:
     get:
       tags:
       - Status
-      summary: Checks if the server is running
+      summary: Health check — verify the API is reachable
       description: |
-        A lightweight health-check endpoint.  Returns the plain-text string `Server is up and running` with a `200` status when the API server is reachable.  **No authentication is required.** Useful for uptime monitoring, load-balancer health checks, and smoke tests.
+        **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests.
       operationId: pingServer
       responses:
         "200":
@@ -90,13 +90,14 @@ paths:
                 example: Server is up and running
         default:
           description: Something is wrong
+      security: []
   /mail:
     get:
       tags:
       - Services
-      summary: Displays a list of mail service orders
+      summary: List your provisioned mail orders (sending accounts)
       description: |
-        Returns every mail order (active **and** inactive) associated with your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional human-readable `comment`.
+        Use this **before sending** if you need to discover which mail order `id` to pass to `/mail/send`, `/mail/advsend`, `/mail/rawsend`, `/mail/log`, or `/mail/stats`. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional `comment`.
 
         The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.
 
@@ -169,9 +170,9 @@ paths:
     get:
       tags:
       - Services
-      summary: Displays details for a single mail order
+      summary: Get one mail order's full detail including SMTP password
       description: |
-        Returns the full detail record for one specific mail order identified by its numeric `id`.  In addition to the fields returned by `GET /mail`, this endpoint also includes the current **SMTP password** for the order.
+        **Returns the SMTP password** in addition to the basic `GET /mail` fields. Use when you need to authenticate against `relay.mailbaby.net:25` from an SMTP client directly. Required: `id` (path; obtain from `GET /mail`). Returns the full detail record for one specific mail order identified by its numeric `id`.
 
         The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.
 
@@ -265,9 +266,9 @@ paths:
     post:
       tags:
       - Sending
-      summary: Sends an Email
+      summary: "Send a simple email (single recipient, plain or HTML)"
       description: |
-        Sends an email through one of your mail orders using a simple flat set of fields. This is the quickest way to send a single-recipient plain-text or HTML message.
+        **Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: `from`, `to`, `subject`, `body`. Optional: `id` (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.
 
         **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.
 
@@ -345,9 +346,9 @@ paths:
     post:
       tags:
       - Sending
-      summary: Sends a raw RFC 822 email
+      summary: Send a pre-built RFC 822 message verbatim (preserves DKIM)
       description: |
-        Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
+        **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.
 
         This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.
 
@@ -425,9 +426,9 @@ paths:
     post:
       tags:
       - Sending
-      summary: Sends an Email with Advanced Options
+      summary: "Send email with multiple recipients, CC/BCC, attachments, named contacts"
       description: |
-        Sends an email through one of your mail orders with full control over recipients, headers, and attachments.  Supports multiple To / CC / BCC addresses, named contacts, Reply-To overrides, and base64-encoded file attachments.
+        **Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.
 
         **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `"Joe <joe@example.com>, jane@example.com"`) and the structured `[{"email":"...","name":"..."}]` array format.  When using JSON, both formats are equally supported.
 
@@ -627,9 +628,9 @@ paths:
     get:
       tags:
       - History
-      summary: Displays the mail log
+      summary: "Query the mail delivery log (filterable, paginated)"
       description: |
-        Returns a paginated list of every email message accepted by the relay for your mail account(s).  All filter parameters are optional and combinable.
+        **Use this to find or audit sent messages.** All filters are optional and combinable. The most useful filters: `mailid` (the transaction id returned by a send call), `from` / `to` (envelope addresses), `subject`, `messageId` (case-insensitive substring on the `Message-ID` header), `delivered` (`1`=delivered, `0`=queued/failed), and the `startDate`/`endDate` date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).
 
         **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).
 
@@ -987,9 +988,9 @@ paths:
     get:
       tags:
       - History
-      summary: Account usage statistics
+      summary: "Account usage, cost, and volume statistics for a time window"
       description: |
-        Returns aggregate sending statistics for your mail account(s) across a selectable time window.  Useful for dashboards, billing reviews, and detecting unusual traffic patterns.
+        **Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The `time` query param controls the window for `received`, `sent`, and `volume` (`1h`, `24h`, `7d`, `month`, `day`, `billing`, `all`). The `usage` and `cost` fields are always for the current billing cycle, regardless of `time`.
 
         The response includes:
         - **`usage`** — total messages accepted by the relay during the current billing
@@ -1079,9 +1080,9 @@ paths:
     get:
       tags:
       - Blocking
-      summary: Displays a list of blocked email addresses
+      summary: List addresses currently flagged by spam-filter block lists
       description: |
-        Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s).  Three categories are returned:
+        **Use this to discover which addresses to delist.** The `from` value of any returned entry can be passed to `POST /mail/blocks/delete` (as the `email` field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:
 
         - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are
           messages sent to recipients on your account's local block list.
@@ -1144,9 +1145,9 @@ paths:
     post:
       tags:
       - Blocking
-      summary: Removes an email address from the block lists
+      summary: Delist an email address from the spam-filter block lists
       description: |
-        Delists an email address from all three block list stores:
+        **Destructive — wipes block records for the given address.** Required: `email` (must be a valid address; typically a `from` value previously returned by `GET /mail/blocks` or `GET /mail/log`). Delists an email address from all three block list stores:
         1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.
 
         Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.
@@ -1222,9 +1223,9 @@ paths:
     get:
       tags:
       - Blocking
-      summary: Displays a listing of deny email rules
+      summary: List custom deny rules (sender / domain / destination / prefix)
       description: |
-        Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
+        **Use this to inspect or pick a `ruleId` to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.
 
         Four rule types are supported:
         | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |
@@ -1275,9 +1276,9 @@ paths:
     post:
       tags:
       - Blocking
-      summary: Creates a new email deny rule
+      summary: "Create a deny rule to block a sender, domain, destination, or prefix"
       description: |
-        Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
+        **Use this to prevent future relay attempts that match a pattern.** Required: `type` (`email`, `domain`, `destination`, or `startswith`) and `data` (the value to match). Optional: `user` (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.
 
         The `type` field selects the matching strategy:
         - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion
@@ -1380,9 +1381,9 @@ paths:
     delete:
       tags:
       - Blocking
-      summary: Removes a deny mail rule
+      summary: Delete a deny rule by its numeric ruleId
       description: |
-        Permanently removes a single deny rule identified by its numeric `ruleId`.
+        **Destructive — permanently removes the rule.** Required: `ruleId` (path param; obtain from the `id` field returned by `GET /mail/rules` or the `text` field returned by `POST /mail/rules`). Permanently removes a single deny rule identified by its numeric `ruleId`.
 
         The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.
 

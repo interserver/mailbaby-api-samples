@@ -1,13 +1,13 @@
 ## HistoryApi
 
-### Account usage statistics
-## Account usage statistics
+### Account usage, cost, and volume statistics for a time window
+## Account usage, cost, and volume statistics for a time window
 GET https://api.mailbaby.net/mail/stats?time={{time}}
 Accept: application/json
 X-API-KEY: {{apiKey}}
 
-### Displays the mail log
-## Displays the mail log
+### Query the mail delivery log (filterable, paginated)
+## Query the mail delivery log (filterable, paginated)
 GET https://api.mailbaby.net/mail/log?id={{id}}&origin={{origin}}&mx={{mx}}&from={{from}}&to={{to}}&subject={{subject}}&mailid={{mailid}}&messageId={{messageId}}&replyto={{replyto}}&headerfrom={{headerfrom}}&delivered={{delivered}}&skip={{skip}}&limit={{limit}}&startDate={{startDate}}&endDate={{endDate}}&sort={{sort}}&dir={{dir}}&groupby={{groupby}}
 Accept: application/json
 X-API-KEY: {{apiKey}}

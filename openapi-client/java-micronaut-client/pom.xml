@@ -128,5 +128,39 @@
             </plugin>
         </plugins>
     </build>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-handler</artifactId>
+        <version>5.0.0.Alpha2</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-codec-socks</artifactId>
+        <version>5.0.0.Alpha2</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-codec-http2</artifactId>
+        <version>5.0.0.Alpha2</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-codec-http</artifactId>
+        <version>5.0.0.Alpha2</version>
+      </dependency>
+      <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-codec</artifactId>
+        <version>5.0.0.Alpha2</version>
+      </dependency>
+      <dependency>
+        <groupId>io.micronaut</groupId>
+        <artifactId>micronaut-http-client</artifactId>
+        <version>5.2.16</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 </project>

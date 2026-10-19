@@ -8,5 +8,16 @@
   "dependencies": {
     "express": "5.x"
   },
-  "license": "Unlicense"
+  "license": "Unlicense",
+  "overrides": {
+    "base64-url": "^2.0.0",
+    "basic-auth-connect": "^1.1.0",
+    "compression": "^1.8.2",
+    "mime": "^1.4.1",
+    "minimist": "^0.2.4",
+    "morgan": "^1.12.1",
+    "multiparty": "^4.3.1",
+    "on-headers": "^1.1.0",
+    "qs": "^6.16.0"
+  }
 }

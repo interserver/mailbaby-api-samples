@@ -21,14 +21,6 @@ test_that("from", {
   #expect_equal(model.instance$`from`, "EXPECTED_RESULT")
 })
 
-test_that("messageId", {
-  # tests for the property `messageId` (character)
-  # The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`messageId`, "EXPECTED_RESULT")
-})
-
 test_that("subject", {
   # tests for the property `subject` (character)
   # The &#x60;Subject&#x60; header of the blocked message.
@@ -43,4 +35,12 @@ test_that("to", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`to`, "EXPECTED_RESULT")
+})
+
+test_that("messageId", {
+  # tests for the property `messageId` (character)
+  # The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`messageId`, "EXPECTED_RESULT")
 })

@@ -233,13 +233,6 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'message_id' => {
-        datatype => 'string',
-        base_name => 'messageId',
-        description => 'The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.',
-        format => '',
-        read_only => '',
-            },
     'subject' => {
         datatype => 'string',
         base_name => 'subject',
@@ -254,22 +247,29 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'message_id' => {
+        datatype => 'string',
+        base_name => 'messageId',
+        description => 'The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present.',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
     'date' => 'DATE',
     'from' => 'string',
-    'message_id' => 'string',
     'subject' => 'string',
-    'to' => 'string'
+    'to' => 'string',
+    'message_id' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
     'date' => 'date',
     'from' => 'from',
-    'message_id' => 'messageId',
     'subject' => 'subject',
-    'to' => 'to'
+    'to' => 'to',
+    'message_id' => 'messageId'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

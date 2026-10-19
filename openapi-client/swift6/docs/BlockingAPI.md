@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 # **addRule**
 ```swift
-    open class func addRule(type: ModelType_addRule, data: String, user: String? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func addRule(type: ModelType_addRule, data: String, user: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse
 ```
 
 Create a deny rule to block a sender, domain, destination, or prefix
@@ -30,15 +30,11 @@ let data = "data_example" // String | The value to match against, interpreted ac
 let user = "user_example" // String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional)
 
 // Create a deny rule to block a sender, domain, destination, or prefix
-BlockingAPI.addRule(type: type, data: data, user: user) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlockingAPI.addRule(type: type, data: data, user: user)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -67,7 +63,7 @@ Name | Type | Description  | Notes
 
 # **deleteRule**
 ```swift
-    open class func deleteRule(ruleId: Int, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func deleteRule(ruleId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse
 ```
 
 Delete a deny rule by its numeric ruleId
@@ -82,15 +78,11 @@ import OpenAPIClient
 let ruleId = 987 // Int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 // Delete a deny rule by its numeric ruleId
-BlockingAPI.deleteRule(ruleId: ruleId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlockingAPI.deleteRule(ruleId: ruleId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -117,7 +109,7 @@ Name | Type | Description  | Notes
 
 # **delistBlock**
 ```swift
-    open class func delistBlock(emailAddressParam: EmailAddressParam, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func delistBlock(emailAddressParam: EmailAddressParam, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse
 ```
 
 Delist an email address from the spam-filter block lists
@@ -132,15 +124,11 @@ import OpenAPIClient
 let emailAddressParam = EmailAddressParam(email: "email_example") // EmailAddressParam | 
 
 // Delist an email address from the spam-filter block lists
-BlockingAPI.delistBlock(emailAddressParam: emailAddressParam) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlockingAPI.delistBlock(emailAddressParam: emailAddressParam)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -167,7 +155,7 @@ Name | Type | Description  | Notes
 
 # **getMailBlocks**
 ```swift
-    open class func getMailBlocks(completion: @escaping (_ data: MailBlocks?, _ error: Error?) -> Void)
+    open class func getMailBlocks(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailBlocks
 ```
 
 List addresses currently flagged by spam-filter block lists
@@ -181,15 +169,11 @@ import OpenAPIClient
 
 
 // List addresses currently flagged by spam-filter block lists
-BlockingAPI.getMailBlocks() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlockingAPI.getMailBlocks()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -213,7 +197,7 @@ This endpoint does not need any parameter.
 
 # **getRules**
 ```swift
-    open class func getRules(completion: @escaping (_ data: [DenyRuleRecord]?, _ error: Error?) -> Void)
+    open class func getRules(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [DenyRuleRecord]
 ```
 
 List custom deny rules (sender / domain / destination / prefix)
@@ -227,15 +211,11 @@ import OpenAPIClient
 
 
 // List custom deny rules (sender / domain / destination / prefix)
-BlockingAPI.getRules() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await BlockingAPI.getRules()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

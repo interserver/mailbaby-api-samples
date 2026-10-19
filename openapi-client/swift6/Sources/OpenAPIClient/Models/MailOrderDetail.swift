@@ -14,7 +14,7 @@ public struct MailOrderDetail: Sendable, Codable, Hashable {
         case active = "active"
         case canceled = "canceled"
     }
-    public static let usernameRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^mb\\d+$/")
+    public static let usernameRule = StringRule(minLength: nil, maxLength: nil, pattern: "^mb\\d+$")
     /** The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. */
     public var id: Int
     /** The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. */

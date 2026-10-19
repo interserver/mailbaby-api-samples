@@ -28,10 +28,10 @@ class DenyRuleNew(BaseModel):
     """
     The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
     """ # noqa: E501
-    user: Optional[StrictStr] = Field(default=None, description="Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.")
-    type: StrictStr = Field(description="The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.")
-    data: StrictStr = Field(description="The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.")
-    __properties: ClassVar[List[str]] = ["user", "type", "data"]
+    type: StrictStr = Field(description="The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.", json_schema_extra={"examples": ["email"]})
+    data: StrictStr = Field(description="The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.", json_schema_extra={"examples": ["domeinwo@server.guesshost.net"]})
+    user: Optional[StrictStr] = Field(default=None, description="Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.", json_schema_extra={"examples": ["mb20682"]})
+    __properties: ClassVar[List[str]] = ["type", "data", "user"]
 
     @field_validator('type')
     def type_validate_enum(cls, value):
@@ -91,9 +91,9 @@ class DenyRuleNew(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "user": obj.get("user"),
             "type": obj.get("type"),
-            "data": obj.get("data")
+            "data": obj.get("data"),
+            "user": obj.get("user")
         })
         return _obj
 

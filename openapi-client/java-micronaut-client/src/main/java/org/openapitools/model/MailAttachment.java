@@ -29,7 +29,7 @@ import javax.annotation.Generated;
   MailAttachment.JSON_PROPERTY_DATA
 })
 @JsonTypeName("MailAttachment")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-06-04T16:55:36.861586950-04:00[America/New_York]", comments = "Generator version: 7.22.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-10-18T20:35:33.311765995-04:00[America/New_York]", comments = "Generator version: 7.26.0")
 @Introspected
 public class MailAttachment {
     public static final String JSON_PROPERTY_FILENAME = "filename";

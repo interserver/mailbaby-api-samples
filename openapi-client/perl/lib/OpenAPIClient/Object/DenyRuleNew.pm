@@ -219,13 +219,6 @@ __PACKAGE__->class_documentation({description => 'The fields required to create 
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'user' => {
-        datatype => 'string',
-        base_name => 'user',
-        description => 'Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.',
-        format => '',
-        read_only => '',
-            },
     'type' => {
         datatype => 'string',
         base_name => 'type',
@@ -240,18 +233,25 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'user' => {
+        datatype => 'string',
+        base_name => 'user',
+        description => 'Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
-    'user' => 'string',
     'type' => 'string',
-    'data' => 'string'
+    'data' => 'string',
+    'user' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
-    'user' => 'user',
     'type' => 'type',
-    'data' => 'data'
+    'data' => 'data',
+    'user' => 'user'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

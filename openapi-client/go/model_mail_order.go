@@ -27,7 +27,7 @@ type MailOrder struct {
 	// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 	Status string `json:"status"`
 	// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
-	Username string `json:"username" validate:"regexp=^mb\\\\d+$"`
+	Username string `json:"username" validate:"regexp=^mb\\d+$"`
 	// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 	Comment *string `json:"comment,omitempty"`
 }

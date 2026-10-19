@@ -22,4 +22,3 @@ case class MailAttachment(
   /* The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. */
   data: Array[Byte]
 )
-

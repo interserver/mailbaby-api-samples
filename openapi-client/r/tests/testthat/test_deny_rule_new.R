@@ -5,14 +5,6 @@ context("Test DenyRuleNew")
 
 model_instance <- DenyRuleNew$new()
 
-test_that("user", {
-  # tests for the property `user` (character)
-  # Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`user`, "EXPECTED_RESULT")
-})
-
 test_that("type", {
   # tests for the property `type` (character)
   # The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix.
@@ -27,4 +19,12 @@ test_that("data", {
 
   # uncomment below to test the property
   #expect_equal(model.instance$`data`, "EXPECTED_RESULT")
+})
+
+test_that("user", {
+  # tests for the property `user` (character)
+  # Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`user`, "EXPECTED_RESULT")
 })

@@ -219,13 +219,6 @@ __PACKAGE__->class_documentation({description => 'A complete deny rule record as
 }                                 );
 
 __PACKAGE__->method_documentation({
-    'user' => {
-        datatype => 'string',
-        base_name => 'user',
-        description => 'Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.',
-        format => '',
-        read_only => '',
-            },
     'type' => {
         datatype => 'string',
         base_name => 'type',
@@ -254,22 +247,29 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
+    'user' => {
+        datatype => 'string',
+        base_name => 'user',
+        description => 'Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;.',
+        format => '',
+        read_only => '',
+            },
 });
 
 __PACKAGE__->openapi_types( {
-    'user' => 'string',
     'type' => 'string',
     'data' => 'string',
     'id' => 'string',
-    'created' => 'DATE_TIME'
+    'created' => 'DATE_TIME',
+    'user' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
-    'user' => 'user',
     'type' => 'type',
     'data' => 'data',
     'id' => 'id',
-    'created' => 'created'
+    'created' => 'created',
+    'user' => 'user'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

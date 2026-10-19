@@ -16,10 +16,33 @@ package org.openapitools.client.model
    * EmailAddressTypes
    * A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
    */
-case class EmailAddressTypes(
+sealed trait EmailAddressTypes
+
+case class EmailAddressName(
   /* The email address. */
   email: String,
   /* Optional display name shown to recipients (e.g. in the `From:` header). */
   name: Option[String] = None
-)
+) extends EmailAddressTypes
 
+object EmailAddressTypes {
+
+  import org.json4s._
+
+  // oneOf without discriminator - json4s custom serializer
+  implicit object EmailAddressTypesSerializer extends Serializer[EmailAddressTypes] {
+    def deserialize(implicit format: Formats): PartialFunction[(TypeInfo, JValue), EmailAddressTypes] = {
+      case (TypeInfo(clazz, _), json) if classOf[EmailAddressTypes].isAssignableFrom(clazz) =>
+        // Try each oneOf type in order
+        Extraction.extract[EmailAddressName](json) match {
+          case x: EmailAddressName => return x
+          case _ => // continue
+        }
+        throw new MappingException(s"Can't convert $json to EmailAddressTypes")
+    }
+
+    def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
+      case x: EmailAddressName => Extraction.decompose(x)
+    }
+  }
+}

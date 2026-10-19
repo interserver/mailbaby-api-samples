@@ -15,8 +15,6 @@ No summary available.
 
 A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
 
-.PARAMETER User
-Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 .PARAMETER Type
 The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 .PARAMETER VarData
@@ -25,6 +23,8 @@ The value to match against, interpreted according to `type`: a full email addres
 The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
 .PARAMETER Created
 The timestamp when the rule was created.
+.PARAMETER User
+Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 .OUTPUTS
 
 DenyRuleRecord<PSCustomObject>
@@ -34,21 +34,21 @@ function Initialize-DenyRuleRecord {
     [CmdletBinding()]
     Param (
         [Parameter(Position = 0, ValueFromPipelineByPropertyName = $true)]
-        [String]
-        ${User},
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [ValidateSet("domain", "email", "startswith", "destination")]
         [String]
         ${Type},
-        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${VarData},
-        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
         ${Id},
-        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [System.DateTime]
-        ${Created}
+        ${Created},
+        [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
+        [String]
+        ${User}
     )
 
     Process {
@@ -73,11 +73,11 @@ function Initialize-DenyRuleRecord {
 
 
         $PSO = [PSCustomObject]@{
-            'user' = ${User}
             'type' = ${Type}
             'data' = ${VarData}
             'id' = ${Id}
             'created' = ${Created}
+            'user' = ${User}
         }
 
 
@@ -115,7 +115,7 @@ function ConvertFrom-JsonToDenyRuleRecord {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in DenyRuleRecord
-        $AllProperties = ('user', 'type', 'data', 'id', 'created')
+        $AllProperties = ('type', 'data', 'id', 'created', 'user')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -157,11 +157,11 @@ function ConvertFrom-JsonToDenyRuleRecord {
         }
 
         $PSO = [PSCustomObject]@{
-            'user' = ${User}
             'type' = ${Type}
             'data' = ${VarData}
             'id' = ${Id}
             'created' = ${Created}
+            'user' = ${User}
         }
 
         return $PSO

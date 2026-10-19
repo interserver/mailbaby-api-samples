@@ -30,6 +30,9 @@ import {
 } from '../models/MailOrderDetail';
 
 export interface GetMailOrderByIdRequest {
+    /**
+     * The numeric ID of the mail order.
+     */
     id: number;
 }
 

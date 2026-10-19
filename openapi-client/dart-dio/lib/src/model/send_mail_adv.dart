@@ -194,36 +194,41 @@ class _$SendMailAdvSerializer implements PrimitiveSerializer<SendMailAdv> {
         case r'replyto':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailAddressesTypes),
-          ) as EmailAddressesTypes;
+            specifiedType: const FullType.nullable(EmailAddressesTypes),
+          ) as EmailAddressesTypes?;
+          if (valueDes == null) continue;
           result.replyto.replace(valueDes);
           break;
         case r'cc':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailAddressesTypes),
-          ) as EmailAddressesTypes;
+            specifiedType: const FullType.nullable(EmailAddressesTypes),
+          ) as EmailAddressesTypes?;
+          if (valueDes == null) continue;
           result.cc.replace(valueDes);
           break;
         case r'bcc':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(EmailAddressesTypes),
-          ) as EmailAddressesTypes;
+            specifiedType: const FullType.nullable(EmailAddressesTypes),
+          ) as EmailAddressesTypes?;
+          if (valueDes == null) continue;
           result.bcc.replace(valueDes);
           break;
         case r'attachments':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(MailAttachment)]),
-          ) as BuiltList<MailAttachment>;
+            specifiedType: const FullType.nullable(BuiltList, [FullType(MailAttachment)]),
+          ) as BuiltList<MailAttachment>?;
+          if (valueDes == null) continue;
           result.attachments.replace(valueDes);
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         default:
@@ -254,4 +259,5 @@ class _$SendMailAdvSerializer implements PrimitiveSerializer<SendMailAdv> {
     return result.build();
   }
 }
+
 

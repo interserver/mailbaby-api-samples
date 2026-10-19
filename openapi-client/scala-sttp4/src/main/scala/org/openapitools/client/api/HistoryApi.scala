@@ -37,7 +37,7 @@ class HistoryApi(baseUrl: String) {
    * 
    * @param time The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
    */
-  def getStats(apiKeyHeader: String)(time: Option[String] = None): Request[Either[ResponseException[String, Exception], MailStatsType]] =
+  def getStats(apiKeyHeader: String)(time: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], MailStatsType]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/stats?time=${ time }")
       .contentType("application/json")
@@ -74,7 +74,7 @@ class HistoryApi(baseUrl: String) {
    * @param dir Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
    * @param groupby Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
    */
-  def viewMailLog(apiKeyHeader: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Int] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[String] = None, dir: Option[String] = None, groupby: Option[String] = None): Request[Either[ResponseException[String, Exception], MailLog]] =
+  def viewMailLog(apiKeyHeader: String)(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Int] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[String] = None, dir: Option[String] = None, groupby: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], MailLog]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/log?id=${ id }&origin=${ origin }&mx=${ mx }&from=${ from }&to=${ to }&subject=${ subject }&mailid=${ mailid }&messageId=${ messageId }&replyto=${ replyto }&headerfrom=${ headerfrom }&delivered=${ delivered }&skip=${ skip }&limit=${ limit }&startDate=${ startDate }&endDate=${ endDate }&sort=${ sort }&dir=${ dir }&groupby=${ groupby }")
       .contentType("application/json")

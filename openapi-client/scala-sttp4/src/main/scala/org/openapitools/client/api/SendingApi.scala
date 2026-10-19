@@ -42,12 +42,12 @@ class SendingApi(baseUrl: String) {
    * 
    * @param sendMailRaw 
    */
-  def rawMail(apiKeyHeader: String)(sendMailRaw: SendMailRaw): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def rawMail(apiKeyHeader: String)(sendMailRaw: SendMailRaw): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/rawsend")
       .contentType("application/json")
       .header("X-API-KEY", apiKeyHeader)
-      .body(sendMailRaw)
+      .body(asJson(sendMailRaw))
       .response(asJson[GenericResponse])
 
   /**
@@ -72,22 +72,22 @@ class SendingApi(baseUrl: String) {
    * @param attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
    * @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
    */
-  def sendAdvMail(apiKeyHeader: String)(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: Option[EmailAddressesTypes] = None, cc: Option[EmailAddressesTypes] = None, bcc: Option[EmailAddressesTypes] = None, attachments: Seq[MailAttachment], id: Option[Long] = None): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def sendAdvMail(apiKeyHeader: String)(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: Option[EmailAddressesTypes] = None, cc: Option[EmailAddressesTypes] = None, bcc: Option[EmailAddressesTypes] = None, attachments: Option[Seq[MailAttachment]] = None, id: Option[Long] = None): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/advsend")
       .contentType("application/x-www-form-urlencoded")
       .header("X-API-KEY", apiKeyHeader)
       .body(Map(
-        "subject" -> subject,
-        "body" -> body,
-        "from" -> from,
-        "to" -> to,
+        "subject" -> Some(subject),
+        "body" -> Some(body),
+        "from" -> Some(from),
+        "to" -> Some(to),
         "replyto" -> replyto,
         "cc" -> cc,
         "bcc" -> bcc,
         "attachments" -> ArrayValues(attachments, CSV),
         "id" -> id
-      ))
+      ).collect { case (k, Some(v)) => k -> v })
       .response(asJson[GenericResponse])
 
   /**
@@ -108,18 +108,18 @@ class SendingApi(baseUrl: String) {
    * @param body The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
    * @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
    */
-  def sendMail(apiKeyHeader: String)(to: SendMailTo, from: String, subject: String, body: String, id: Option[Long] = None): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def sendMail(apiKeyHeader: String)(to: SendMailTo, from: String, subject: String, body: String, id: Option[Long] = None): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/send")
       .contentType("application/x-www-form-urlencoded")
       .header("X-API-KEY", apiKeyHeader)
       .body(Map(
-        "to" -> to,
-        "from" -> from,
-        "subject" -> subject,
-        "body" -> body,
+        "to" -> Some(to),
+        "from" -> Some(from),
+        "subject" -> Some(subject),
+        "body" -> Some(body),
         "id" -> id
-      ))
+      ).collect { case (k, Some(v)) => k -> v })
       .response(asJson[GenericResponse])
 
 }

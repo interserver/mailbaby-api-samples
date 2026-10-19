@@ -149,50 +149,57 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
         case r'time':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MailStatsTypeTimeEnum),
-          ) as MailStatsTypeTimeEnum;
+            specifiedType: const FullType.nullable(MailStatsTypeTimeEnum),
+          ) as MailStatsTypeTimeEnum?;
+          if (valueDes == null) continue;
           result.time = valueDes;
           break;
         case r'usage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.usage = valueDes;
           break;
         case r'currency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.currency = valueDes;
           break;
         case r'cost':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.cost = valueDes;
           break;
         case r'received':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.received = valueDes;
           break;
         case r'sent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(int),
-          ) as int;
+            specifiedType: const FullType.nullable(int),
+          ) as int?;
+          if (valueDes == null) continue;
           result.sent = valueDes;
           break;
         case r'volume':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(MailStatsVolume),
-          ) as MailStatsVolume;
+            specifiedType: const FullType.nullable(MailStatsVolume),
+          ) as MailStatsVolume?;
+          if (valueDes == null) continue;
           result.volume.replace(valueDes);
           break;
         default:
@@ -224,27 +231,22 @@ class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
   }
 }
 
+
+/// The time window these `received`, `sent`, and `volume` statistics cover.
 class MailStatsTypeTimeEnum extends EnumClass {
 
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'all')
   static const MailStatsTypeTimeEnum All = _$mailStatsTypeTimeEnum_All;
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'billing')
   static const MailStatsTypeTimeEnum Billing = _$mailStatsTypeTimeEnum_Billing;
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'month')
   static const MailStatsTypeTimeEnum Month = _$mailStatsTypeTimeEnum_Month;
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'7d')
   static const MailStatsTypeTimeEnum SevenDays = _$mailStatsTypeTimeEnum_SevenDays;
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'24h')
   static const MailStatsTypeTimeEnum TwentyFourHours = _$mailStatsTypeTimeEnum_TwentyFourHours;
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'day')
   static const MailStatsTypeTimeEnum Day = _$mailStatsTypeTimeEnum_Day;
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
   @BuiltValueEnumConst(wireName: r'1h')
   static const MailStatsTypeTimeEnum OneHour = _$mailStatsTypeTimeEnum_OneHour;
 

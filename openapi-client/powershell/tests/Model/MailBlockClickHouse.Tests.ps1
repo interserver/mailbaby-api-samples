@@ -10,7 +10,7 @@ Describe -tag 'PSOpenAPITools' -name 'MailBlockClickHouse' {
     Context 'MailBlockClickHouse' {
         It 'Initialize-MailBlockClickHouse' {
             # a simple test to create an object
-            #$NewObject = Initialize-MailBlockClickHouse -Date "TEST_VALUE" -VarFrom "TEST_VALUE" -MessageId "TEST_VALUE" -Subject "TEST_VALUE" -To "TEST_VALUE"
+            #$NewObject = Initialize-MailBlockClickHouse -Date "TEST_VALUE" -VarFrom "TEST_VALUE" -Subject "TEST_VALUE" -To "TEST_VALUE" -MessageId "TEST_VALUE"
             #$NewObject | Should -BeOfType MailBlockClickHouse
             #$NewObject.property | Should -Be 0
         }

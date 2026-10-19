@@ -57,7 +57,7 @@ function Get-MailOrderById {
         if (!$Id) {
             throw "Error! The required parameter `Id` missing when calling getMailOrderById."
         }
-        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Web.HTTPUtility]::UrlEncode($Id))
+        $LocalVarUri = $LocalVarUri.replace('{id}', [System.Uri]::EscapeDataString([string]$Id))
 
         if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
             $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]

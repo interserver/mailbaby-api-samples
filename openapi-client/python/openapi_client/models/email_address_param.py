@@ -28,7 +28,7 @@ class EmailAddressParam(BaseModel):
     """
     A single email address parameter used as the body of `POST /mail/blocks/delete`.
     """ # noqa: E501
-    email: StrictStr = Field(description="The email address to delist from all block lists.")
+    email: StrictStr = Field(description="The email address to delist from all block lists.", json_schema_extra={"examples": ["user@domain.com"]})
     __properties: ClassVar[List[str]] = ["email"]
 
     model_config = ConfigDict(

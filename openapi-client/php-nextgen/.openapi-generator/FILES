@@ -45,6 +45,7 @@ src/ApiException.php
 src/Configuration.php
 src/FormDataProcessor.php
 src/HeaderSelector.php
+src/Model/AnyOfInterface.php
 src/Model/DateOrTimestamp.php
 src/Model/DenyRuleNew.php
 src/Model/DenyRuleRecord.php
@@ -66,6 +67,7 @@ src/Model/MailOrderDetail.php
 src/Model/MailStatsType.php
 src/Model/MailStatsVolume.php
 src/Model/ModelInterface.php
+src/Model/OneOfInterface.php
 src/Model/SendMail.php
 src/Model/SendMailAdv.php
 src/Model/SendMailRaw.php

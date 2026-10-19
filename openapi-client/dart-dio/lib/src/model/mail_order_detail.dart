@@ -107,8 +107,9 @@ class _$MailOrderDetailSerializer implements PrimitiveSerializer<MailOrderDetail
         case r'comment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.comment = valueDes;
           break;
         case r'id':
@@ -161,12 +162,12 @@ class _$MailOrderDetailSerializer implements PrimitiveSerializer<MailOrderDetail
   }
 }
 
+
+/// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 class MailOrderDetailStatusEnum extends EnumClass {
 
-  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   @BuiltValueEnumConst(wireName: r'active')
   static const MailOrderDetailStatusEnum active = _$mailOrderDetailStatusEnum_active;
-  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   @BuiltValueEnumConst(wireName: r'canceled')
   static const MailOrderDetailStatusEnum canceled = _$mailOrderDetailStatusEnum_canceled;
 

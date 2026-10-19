@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface MailOrderDetail {
     /**
      * The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
-     * @type {number}
-     * @memberof MailOrderDetail
      */
     id: number;
     /**
      * The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
-     * @type {MailOrderDetailStatusEnum}
-     * @memberof MailOrderDetail
      */
     status: MailOrderDetailStatusEnum;
     /**
      * The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
-     * @type {string}
-     * @memberof MailOrderDetail
      */
     username: string;
     /**
      * The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
-     * @type {string}
-     * @memberof MailOrderDetail
      */
     password: string;
     /**
      * Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
-     * @type {string}
-     * @memberof MailOrderDetail
      */
     comment?: string;
 }
@@ -57,7 +47,7 @@ export interface MailOrderDetail {
  */
 export const MailOrderDetailStatusEnum = {
     Active: 'active',
-    Canceled: 'canceled'
+    Canceled: 'canceled',
 } as const;
 export type MailOrderDetailStatusEnum = typeof MailOrderDetailStatusEnum[keyof typeof MailOrderDetailStatusEnum];
 

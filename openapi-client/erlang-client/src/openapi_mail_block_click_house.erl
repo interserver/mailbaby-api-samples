@@ -7,20 +7,20 @@
 -type openapi_mail_block_click_house() ::
     #{ 'date' := calendar:date(),
        'from' := binary(),
-       'messageId' => binary(),
        'subject' := binary(),
-       'to' := binary()
+       'to' := binary(),
+       'messageId' => binary()
      }.
 
 encode(#{ 'date' := Date,
           'from' := From,
-          'messageId' := MessageId,
           'subject' := Subject,
-          'to' := To
+          'to' := To,
+          'messageId' := MessageId
         }) ->
     #{ 'date' => Date,
        'from' => From,
-       'messageId' => MessageId,
        'subject' => Subject,
-       'to' => To
+       'to' => To,
+       'messageId' => MessageId
      }.

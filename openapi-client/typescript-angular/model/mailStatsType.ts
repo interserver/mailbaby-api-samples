@@ -48,7 +48,7 @@ export namespace MailStatsType {
         SevenDays: '7d',
         TwentyFourHours: '24h',
         Day: 'day',
-        OneHour: '1h'
+        OneHour: '1h',
     } as const;
     export type TimeEnum = typeof TimeEnum[keyof typeof TimeEnum];
 }

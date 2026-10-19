@@ -39,8 +39,8 @@ class TestMailOrderDetail(unittest.TestCase):
                 id = 21472,
                 status = 'active',
                 username = 'mb21472',
-                comment = '',
-                password = 's3cr3tpassword'
+                password = 's3cr3tpassword',
+                comment = ''
             )
         else:
             return MailOrderDetail(

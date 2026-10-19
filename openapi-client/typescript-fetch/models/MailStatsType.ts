@@ -29,44 +29,30 @@ import {
 export interface MailStatsType {
     /**
      * The time window these `received`, `sent`, and `volume` statistics cover.
-     * @type {MailStatsTypeTimeEnum}
-     * @memberof MailStatsType
      */
     time?: MailStatsTypeTimeEnum;
     /**
      * Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
-     * @type {number}
-     * @memberof MailStatsType
      */
     usage?: number;
     /**
      * The ISO 4217 currency code for this account (e.g. `USD`).
-     * @type {string}
-     * @memberof MailStatsType
      */
     currency?: string;
     /**
      * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
-     * @type {number}
-     * @memberof MailStatsType
      */
     cost?: number;
     /**
      * Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
-     * @type {number}
-     * @memberof MailStatsType
      */
     received?: number;
     /**
      * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
-     * @type {number}
-     * @memberof MailStatsType
      */
     sent?: number;
     /**
      * 
-     * @type {MailStatsVolume}
-     * @memberof MailStatsType
      */
     volume?: MailStatsVolume;
 }
@@ -82,7 +68,7 @@ export const MailStatsTypeTimeEnum = {
     SevenDays: '7d',
     TwentyFourHours: '24h',
     Day: 'day',
-    OneHour: '1h'
+    OneHour: '1h',
 } as const;
 export type MailStatsTypeTimeEnum = typeof MailStatsTypeTimeEnum[keyof typeof MailStatsTypeTimeEnum];
 

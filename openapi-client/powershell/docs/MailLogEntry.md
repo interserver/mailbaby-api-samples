@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 **Id** | **String** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. | 
 **VarFrom** | **String** | SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). | 
 **To** | **String** | SMTP envelope &#x60;RCPT TO&#x60; address. | 
-**Subject** | **String** | The &#x60;Subject&#x60; header value, if available. | [optional] 
-**MessageId** | **String** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional] 
 **Created** | **String** | Human-readable creation timestamp in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format. | 
 **Time** | **Int32** | Unix timestamp of message acceptance.  Corresponds to the &#x60;startDate&#x60; and &#x60;endDate&#x60; filter parameters on &#x60;GET /mail/log&#x60;. | 
 **User** | **String** | The SMTP AUTH username used to submit the message (e.g. &#x60;mb5658&#x60;). Corresponds to the &#x60;username&#x60; field in &#x60;GET /mail&#x60; orders. | 
 **Transtype** | **String** | SMTP transaction type negotiated with the relay (e.g. &#x60;ESMTPSA&#x60;). | 
 **Origin** | **String** | IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | 
 **Interface** | **String** | Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;). | 
+**Subject** | **String** | The &#x60;Subject&#x60; header value, if available. | [optional] 
+**MessageId** | **String** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional] 
 **SendingZone** | **String** | The sending zone assigned by the relay for outbound delivery. | [optional] 
 **BodySize** | **Int32** | Size of the message body in bytes. | [optional] 
 **Seq** | **Int32** | Sequence index of this recipient in a multi-recipient message. Starts at 1. | [optional] 
@@ -37,14 +37,14 @@ $MailLogEntry = Initialize-PSOpenAPIToolsMailLogEntry  -Id 103172 `
  -Id 17c7eda538e0005d03 `
  -VarFrom person@mysite.com `
  -To client@isp.com `
- -Subject sell 0.005 shares `
- -MessageId &lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt; `
  -Created 2021-10-14 08:50:10 `
  -Time 1634215809 `
  -User mb5658 `
  -Transtype ESMTPSA `
  -Origin 199.231.189.154 `
  -Interface feeder `
+ -Subject sell 0.005 shares `
+ -MessageId &lt;vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net&gt; `
  -SendingZone interserver `
  -BodySize 63 `
  -Seq 1 `

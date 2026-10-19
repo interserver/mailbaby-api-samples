@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface EmailAddressName {
     /**
      * The email address.
-     * @type {string}
-     * @memberof EmailAddressName
      */
     email: string;
     /**
      * Optional display name shown to recipients (e.g. in the `From:` header).
-     * @type {string}
-     * @memberof EmailAddressName
      */
     name?: string;
 }

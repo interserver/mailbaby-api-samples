@@ -40,16 +40,31 @@ import {
 } from '../models/MailBlocks';
 
 export interface AddRuleRequest {
+    /**
+     * The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
+     */
     type: AddRuleTypeEnum;
+    /**
+     * The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+     */
     data: string;
+    /**
+     * Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+     */
     user?: string;
 }
 
 export interface DeleteRuleRequest {
+    /**
+     * The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
+     */
     ruleId: number;
 }
 
 export interface DelistBlockRequest {
+    /**
+     * 
+     */
     emailAddressParam: EmailAddressParam;
 }
 
@@ -342,6 +357,6 @@ export const AddRuleTypeEnum = {
     Domain: 'domain',
     Email: 'email',
     Startswith: 'startswith',
-    Destination: 'destination'
+    Destination: 'destination',
 } as const;
 export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];

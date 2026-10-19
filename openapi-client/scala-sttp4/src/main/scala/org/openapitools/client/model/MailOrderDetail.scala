@@ -28,13 +28,29 @@ case class MailOrderDetail(
   /* Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. */
   comment: Option[String] = None
 )
-
 object MailOrderDetailEnums {
 
-  type Status = Status.Value
-  object Status extends Enumeration {
-    val Active = Value("active")
-    val Canceled = Value("canceled")
-  }
+  sealed trait Status
+  object Status {
+    case object Active extends Status { override def toString: String = "active" }
+    case object Canceled extends Status { override def toString: String = "canceled" }
 
+    import org.json4s._
+
+    implicit object StatusSerializer extends Serializer[Status] {
+      def deserialize(implicit format: Formats): PartialFunction[(TypeInfo, JValue), Status] = {
+        case (TypeInfo(clazz, _), json) if classOf[Status].isAssignableFrom(clazz) =>
+          json match {
+            case JString("active") => Active
+            case JString("canceled") => Canceled
+            case other => throw new MappingException(s"Invalid Status: $other")
+          }
+      }
+
+      def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
+        case Active => JString("active")
+        case Canceled => JString("canceled")
+      }
+    }
+  }
 }

@@ -28,7 +28,7 @@ import javax.annotation.Generated;
   EmailAddressParam.JSON_PROPERTY_EMAIL
 })
 @JsonTypeName("EmailAddressParam")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-06-04T16:55:36.861586950-04:00[America/New_York]", comments = "Generator version: 7.22.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-10-18T20:35:33.311765995-04:00[America/New_York]", comments = "Generator version: 7.26.0")
 @Introspected
 public class EmailAddressParam {
     public static final String JSON_PROPERTY_EMAIL = "email";

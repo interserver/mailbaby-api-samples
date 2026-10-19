@@ -22,12 +22,12 @@ var _ MappedNullable = &DenyRuleNew{}
 
 // DenyRuleNew The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
 type DenyRuleNew struct {
-	// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-	User *string `json:"user,omitempty"`
 	// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 	Type string `json:"type"`
 	// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 	Data string `json:"data"`
+	// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+	User *string `json:"user,omitempty"`
 }
 
 type _DenyRuleNew DenyRuleNew
@@ -49,38 +49,6 @@ func NewDenyRuleNew(type_ string, data string) *DenyRuleNew {
 func NewDenyRuleNewWithDefaults() *DenyRuleNew {
 	this := DenyRuleNew{}
 	return &this
-}
-
-// GetUser returns the User field value if set, zero value otherwise.
-func (o *DenyRuleNew) GetUser() string {
-	if o == nil || IsNil(o.User) {
-		var ret string
-		return ret
-	}
-	return *o.User
-}
-
-// GetUserOk returns a tuple with the User field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DenyRuleNew) GetUserOk() (*string, bool) {
-	if o == nil || IsNil(o.User) {
-		return nil, false
-	}
-	return o.User, true
-}
-
-// HasUser returns a boolean if a field has been set.
-func (o *DenyRuleNew) HasUser() bool {
-	if o != nil && !IsNil(o.User) {
-		return true
-	}
-
-	return false
-}
-
-// SetUser gets a reference to the given string and assigns it to the User field.
-func (o *DenyRuleNew) SetUser(v string) {
-	o.User = &v
 }
 
 // GetType returns the Type field value
@@ -131,6 +99,38 @@ func (o *DenyRuleNew) SetData(v string) {
 	o.Data = v
 }
 
+// GetUser returns the User field value if set, zero value otherwise.
+func (o *DenyRuleNew) GetUser() string {
+	if o == nil || IsNil(o.User) {
+		var ret string
+		return ret
+	}
+	return *o.User
+}
+
+// GetUserOk returns a tuple with the User field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DenyRuleNew) GetUserOk() (*string, bool) {
+	if o == nil || IsNil(o.User) {
+		return nil, false
+	}
+	return o.User, true
+}
+
+// HasUser returns a boolean if a field has been set.
+func (o *DenyRuleNew) HasUser() bool {
+	if o != nil && !IsNil(o.User) {
+		return true
+	}
+
+	return false
+}
+
+// SetUser gets a reference to the given string and assigns it to the User field.
+func (o *DenyRuleNew) SetUser(v string) {
+	o.User = &v
+}
+
 func (o DenyRuleNew) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -141,11 +141,11 @@ func (o DenyRuleNew) MarshalJSON() ([]byte, error) {
 
 func (o DenyRuleNew) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["data"] = o.Data
 	if !IsNil(o.User) {
 		toSerialize["user"] = o.User
 	}
-	toSerialize["type"] = o.Type
-	toSerialize["data"] = o.Data
 	return toSerialize, nil
 }
 

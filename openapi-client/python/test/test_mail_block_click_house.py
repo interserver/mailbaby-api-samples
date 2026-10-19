@@ -38,9 +38,9 @@ class TestMailBlockClickHouse(unittest.TestCase):
             return MailBlockClickHouse(
                 var_date = 'Sun Aug 06 20:00:00 EDT 2023',
                 var_from = 'user@domain.com',
-                message_id = 'pFaRqFUEWkucjhTuIzYuoAgWU@domain.com',
                 subject = 'Test Email',
-                to = '['client@site.com']'
+                to = '['client@site.com']',
+                message_id = 'pFaRqFUEWkucjhTuIzYuoAgWU@domain.com'
             )
         else:
             return MailBlockClickHouse(

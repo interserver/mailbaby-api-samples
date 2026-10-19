@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface MailBlockClickHouse {
     /**
      * The date the block event was recorded.
-     * @type {Date}
-     * @memberof MailBlockClickHouse
      */
     date: Date;
     /**
      * The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
-     * @type {string}
-     * @memberof MailBlockClickHouse
      */
     from: string;
     /**
      * The `Subject` header of the blocked message.
-     * @type {string}
-     * @memberof MailBlockClickHouse
      */
     subject: string;
     /**
      * The serialized list of recipients of the blocked message.
-     * @type {string}
-     * @memberof MailBlockClickHouse
      */
     to: string;
     /**
      * The `Message-ID` header of the blocked message, or `null` if not present.
-     * @type {string}
-     * @memberof MailBlockClickHouse
      */
     messageId?: string | null;
 }
@@ -72,11 +62,11 @@ export function MailBlockClickHouseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'date': (new Date(json['date'])),
+        'date': (json['date'] == null ? json['date'] : parseDate(json['date'])),
         'from': json['from'],
         'subject': json['subject'],
         'to': json['to'],
-        'messageId': json['messageId'] == null ? undefined : json['messageId'],
+        'messageId': json['messageId'] === undefined ? undefined : json['messageId'] === null ? null : json['messageId'],
     };
 }
 
@@ -91,7 +81,7 @@ export function MailBlockClickHouseToJSONTyped(value?: MailBlockClickHouse | nul
 
     return {
         
-        'date': value['date'].toISOString().substring(0,10),
+        'date': value['date'] == null ? value['date'] : serializeDate(value['date']),
         'from': value['from'],
         'subject': value['subject'],
         'to': value['to'],

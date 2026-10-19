@@ -29,4 +29,3 @@ case class MailBlockClickHouse(
   /* The `Message-ID` header of the blocked message, or `null` if not present. */
   messageId: Option[String] = None
 )
-

@@ -26,7 +26,7 @@ class HistoryApi {
   ///
   /// * [String] time:
   ///   The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
-  Future<Response> getStatsWithHttpInfo({ String? time, }) async {
+  Future<Response> getStatsWithHttpInfo({ String? time, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/stats';
 
@@ -52,6 +52,7 @@ class HistoryApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -63,8 +64,8 @@ class HistoryApi {
   ///
   /// * [String] time:
   ///   The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
-  Future<MailStatsType?> getStats({ String? time, }) async {
-    final response = await getStatsWithHttpInfo( time: time, );
+  Future<MailStatsType?> getStats({ String? time, Future<void>? abortTrigger, }) async {
+    final response = await getStatsWithHttpInfo(time: time, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -139,7 +140,7 @@ class HistoryApi {
   ///
   /// * [String] groupby:
   ///   Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
-  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp? startDate, DateOrTimestamp? endDate, String? sort, String? dir, String? groupby, }) async {
+  Future<Response> viewMailLogWithHttpInfo({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp? startDate, DateOrTimestamp? endDate, String? sort, String? dir, String? groupby, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/log';
 
@@ -216,6 +217,7 @@ class HistoryApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -278,8 +280,8 @@ class HistoryApi {
   ///
   /// * [String] groupby:
   ///   Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
-  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp? startDate, DateOrTimestamp? endDate, String? sort, String? dir, String? groupby, }) async {
-    final response = await viewMailLogWithHttpInfo( id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, messageId: messageId, replyto: replyto, headerfrom: headerfrom, delivered: delivered, skip: skip, limit: limit, startDate: startDate, endDate: endDate, sort: sort, dir: dir, groupby: groupby, );
+  Future<MailLog?> viewMailLog({ int? id, String? origin, String? mx, String? from, String? to, String? subject, String? mailid, String? messageId, String? replyto, String? headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp? startDate, DateOrTimestamp? endDate, String? sort, String? dir, String? groupby, Future<void>? abortTrigger, }) async {
+    final response = await viewMailLogWithHttpInfo(id: id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, messageId: messageId, replyto: replyto, headerfrom: headerfrom, delivered: delivered, skip: skip, limit: limit, startDate: startDate, endDate: endDate, sort: sort, dir: dir, groupby: groupby, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

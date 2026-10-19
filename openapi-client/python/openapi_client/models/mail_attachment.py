@@ -28,8 +28,8 @@ class MailAttachment(BaseModel):
     """
     A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
     """ # noqa: E501
-    filename: StrictStr = Field(description="The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).")
-    data: Union[StrictBytes, StrictStr] = Field(description="The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+    filename: StrictStr = Field(description="The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).", json_schema_extra={"examples": ["message.txt"]})
+    data: Union[StrictBytes, StrictStr] = Field(description="The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.", json_schema_extra={"examples": ["YUdWc2JHOGdkR2hsY21VSw=="]})
     __properties: ClassVar[List[str]] = ["filename", "data"]
 
     model_config = ConfigDict(

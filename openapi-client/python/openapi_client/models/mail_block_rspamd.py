@@ -28,8 +28,8 @@ class MailBlockRspamd(BaseModel):
     """
     A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
     """ # noqa: E501
-    var_from: StrictStr = Field(description="The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.", alias="from")
-    subject: StrictStr = Field(description="The suspicious subject pattern that triggered the block.")
+    var_from: StrictStr = Field(description="The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.", alias="from", json_schema_extra={"examples": ["user@domain.com"]})
+    subject: StrictStr = Field(description="The suspicious subject pattern that triggered the block.", json_schema_extra={"examples": ["Test email"]})
     __properties: ClassVar[List[str]] = ["from", "subject"]
 
     model_config = ConfigDict(

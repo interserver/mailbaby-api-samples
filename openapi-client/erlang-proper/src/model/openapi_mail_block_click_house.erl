@@ -11,9 +11,9 @@
 -type openapi_mail_block_click_house() ::
   [ {'date', date() }
   | {'from', binary() }
-  | {'messageId', binary() }
   | {'subject', binary() }
   | {'to', binary() }
+  | {'messageId', binary() }
   ].
 
 
@@ -23,9 +23,9 @@ openapi_mail_block_click_house() ->
 openapi_mail_block_click_house(Fields) ->
   Default = [ {'date', date() }
             , {'from', binary() }
-            , {'messageId', binary() }
             , {'subject', binary() }
             , {'to', binary() }
+            , {'messageId', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

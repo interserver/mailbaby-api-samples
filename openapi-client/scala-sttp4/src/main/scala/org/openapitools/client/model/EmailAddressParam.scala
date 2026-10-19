@@ -20,4 +20,3 @@ case class EmailAddressParam(
   /* The email address to delist from all block lists. */
   email: String
 )
-

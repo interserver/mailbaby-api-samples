@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **Id** | **string** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. | 
 **From** | **string** | SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). | 
 **To** | **string** | SMTP envelope &#x60;RCPT TO&#x60; address. | 
-**Subject** | Pointer to **NullableString** | The &#x60;Subject&#x60; header value, if available. | [optional] 
-**MessageId** | Pointer to **NullableString** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional] 
 **Created** | **string** | Human-readable creation timestamp in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format. | 
 **Time** | **int32** | Unix timestamp of message acceptance.  Corresponds to the &#x60;startDate&#x60; and &#x60;endDate&#x60; filter parameters on &#x60;GET /mail/log&#x60;. | 
 **User** | **string** | The SMTP AUTH username used to submit the message (e.g. &#x60;mb5658&#x60;). Corresponds to the &#x60;username&#x60; field in &#x60;GET /mail&#x60; orders. | 
 **Transtype** | **string** | SMTP transaction type negotiated with the relay (e.g. &#x60;ESMTPSA&#x60;). | 
 **Origin** | **string** | IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | 
 **Interface** | **string** | Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;). | 
+**Subject** | Pointer to **NullableString** | The &#x60;Subject&#x60; header value, if available. | [optional] 
+**MessageId** | Pointer to **NullableString** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional] 
 **SendingZone** | Pointer to **NullableString** | The sending zone assigned by the relay for outbound delivery. | [optional] 
 **BodySize** | Pointer to **NullableInt32** | Size of the message body in bytes. | [optional] 
 **Seq** | Pointer to **NullableInt32** | Sequence index of this recipient in a multi-recipient message. Starts at 1. | [optional] 
@@ -129,76 +129,6 @@ and a boolean to check if the value has been set.
 SetTo sets To field to given value.
 
 
-### GetSubject
-
-`func (o *MailLogEntry) GetSubject() string`
-
-GetSubject returns the Subject field if non-nil, zero value otherwise.
-
-### GetSubjectOk
-
-`func (o *MailLogEntry) GetSubjectOk() (*string, bool)`
-
-GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSubject
-
-`func (o *MailLogEntry) SetSubject(v string)`
-
-SetSubject sets Subject field to given value.
-
-### HasSubject
-
-`func (o *MailLogEntry) HasSubject() bool`
-
-HasSubject returns a boolean if a field has been set.
-
-### SetSubjectNil
-
-`func (o *MailLogEntry) SetSubjectNil(b bool)`
-
- SetSubjectNil sets the value for Subject to be an explicit nil
-
-### UnsetSubject
-`func (o *MailLogEntry) UnsetSubject()`
-
-UnsetSubject ensures that no value is present for Subject, not even an explicit nil
-### GetMessageId
-
-`func (o *MailLogEntry) GetMessageId() string`
-
-GetMessageId returns the MessageId field if non-nil, zero value otherwise.
-
-### GetMessageIdOk
-
-`func (o *MailLogEntry) GetMessageIdOk() (*string, bool)`
-
-GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessageId
-
-`func (o *MailLogEntry) SetMessageId(v string)`
-
-SetMessageId sets MessageId field to given value.
-
-### HasMessageId
-
-`func (o *MailLogEntry) HasMessageId() bool`
-
-HasMessageId returns a boolean if a field has been set.
-
-### SetMessageIdNil
-
-`func (o *MailLogEntry) SetMessageIdNil(b bool)`
-
- SetMessageIdNil sets the value for MessageId to be an explicit nil
-
-### UnsetMessageId
-`func (o *MailLogEntry) UnsetMessageId()`
-
-UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
 ### GetCreated
 
 `func (o *MailLogEntry) GetCreated() string`
@@ -319,6 +249,76 @@ and a boolean to check if the value has been set.
 SetInterface sets Interface field to given value.
 
 
+### GetSubject
+
+`func (o *MailLogEntry) GetSubject() string`
+
+GetSubject returns the Subject field if non-nil, zero value otherwise.
+
+### GetSubjectOk
+
+`func (o *MailLogEntry) GetSubjectOk() (*string, bool)`
+
+GetSubjectOk returns a tuple with the Subject field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubject
+
+`func (o *MailLogEntry) SetSubject(v string)`
+
+SetSubject sets Subject field to given value.
+
+### HasSubject
+
+`func (o *MailLogEntry) HasSubject() bool`
+
+HasSubject returns a boolean if a field has been set.
+
+### SetSubjectNil
+
+`func (o *MailLogEntry) SetSubjectNil(b bool)`
+
+ SetSubjectNil sets the value for Subject to be an explicit nil
+
+### UnsetSubject
+`func (o *MailLogEntry) UnsetSubject()`
+
+UnsetSubject ensures that no value is present for Subject, not even an explicit nil
+### GetMessageId
+
+`func (o *MailLogEntry) GetMessageId() string`
+
+GetMessageId returns the MessageId field if non-nil, zero value otherwise.
+
+### GetMessageIdOk
+
+`func (o *MailLogEntry) GetMessageIdOk() (*string, bool)`
+
+GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessageId
+
+`func (o *MailLogEntry) SetMessageId(v string)`
+
+SetMessageId sets MessageId field to given value.
+
+### HasMessageId
+
+`func (o *MailLogEntry) HasMessageId() bool`
+
+HasMessageId returns a boolean if a field has been set.
+
+### SetMessageIdNil
+
+`func (o *MailLogEntry) SetMessageIdNil(b bool)`
+
+ SetMessageIdNil sets the value for MessageId to be an explicit nil
+
+### UnsetMessageId
+`func (o *MailLogEntry) UnsetMessageId()`
+
+UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
 ### GetSendingZone
 
 `func (o *MailLogEntry) GetSendingZone() string`

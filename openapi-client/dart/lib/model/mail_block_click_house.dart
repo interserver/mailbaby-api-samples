@@ -57,7 +57,7 @@ class MailBlockClickHouse {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'date'] = _dateFormatter.format(this.date.toUtc());
+      json[r'date'] = _dateFormatter.format(this.date);
       json[r'from'] = this.from;
       json[r'subject'] = this.subject;
       json[r'to'] = this.to;

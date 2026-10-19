@@ -22,4 +22,3 @@ case class SendMailRaw(
   /* Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`. */
   id: Option[Long] = None
 )
-

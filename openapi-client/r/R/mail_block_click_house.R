@@ -9,9 +9,9 @@
 #' @format An \code{R6Class} generator object
 #' @field date The date the block event was recorded. character
 #' @field from The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it. character
-#' @field messageId The `Message-ID` header of the blocked message, or `null` if not present. character [optional]
 #' @field subject The `Subject` header of the blocked message. character
 #' @field to The serialized list of recipients of the blocked message. character
+#' @field messageId The `Message-ID` header of the blocked message, or `null` if not present. character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -20,9 +20,9 @@ MailBlockClickHouse <- R6::R6Class(
   public = list(
     `date` = NULL,
     `from` = NULL,
-    `messageId` = NULL,
     `subject` = NULL,
     `to` = NULL,
+    `messageId` = NULL,
 
     #' @description
     #' Initialize a new MailBlockClickHouse class.
@@ -105,10 +105,6 @@ MailBlockClickHouse <- R6::R6Class(
         MailBlockClickHouseObject[["from"]] <-
           self$`from`
       }
-      if (!is.null(self$`messageId`)) {
-        MailBlockClickHouseObject[["messageId"]] <-
-          self$`messageId`
-      }
       if (!is.null(self$`subject`)) {
         MailBlockClickHouseObject[["subject"]] <-
           self$`subject`
@@ -116,6 +112,10 @@ MailBlockClickHouse <- R6::R6Class(
       if (!is.null(self$`to`)) {
         MailBlockClickHouseObject[["to"]] <-
           self$`to`
+      }
+      if (!is.null(self$`messageId`)) {
+        MailBlockClickHouseObject[["messageId"]] <-
+          self$`messageId`
       }
       return(MailBlockClickHouseObject)
     },
@@ -133,14 +133,14 @@ MailBlockClickHouse <- R6::R6Class(
       if (!is.null(this_object$`from`)) {
         self$`from` <- this_object$`from`
       }
-      if (!is.null(this_object$`messageId`)) {
-        self$`messageId` <- this_object$`messageId`
-      }
       if (!is.null(this_object$`subject`)) {
         self$`subject` <- this_object$`subject`
       }
       if (!is.null(this_object$`to`)) {
         self$`to` <- this_object$`to`
+      }
+      if (!is.null(this_object$`messageId`)) {
+        self$`messageId` <- this_object$`messageId`
       }
       self
     },
@@ -165,9 +165,9 @@ MailBlockClickHouse <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`date` <- this_object$`date`
       self$`from` <- this_object$`from`
-      self$`messageId` <- this_object$`messageId`
       self$`subject` <- this_object$`subject`
       self$`to` <- this_object$`to`
+      self$`messageId` <- this_object$`messageId`
       self
     },
 

@@ -24,4 +24,3 @@ case class MailStatsVolume(
   /* Message counts keyed by originating client IP address. */
   ip: Option[Map[String, Int]] = None
 )
-

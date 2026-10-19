@@ -211,39 +211,34 @@ class MailStatsType {
 }
 
 /// The time window these `received`, `sent`, and `volume` statistics cover.
-class MailStatsTypeTimeEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MailStatsTypeTimeEnum._(this.value);
+enum MailStatsTypeTimeEnum {
+  All._(r'all'),
+  Billing._(r'billing'),
+  Month._(r'month'),
+  SevenDays._(r'7d'),
+  TwentyFourHours._(r'24h'),
+  Day._(r'day'),
+  OneHour._(r'1h'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MailStatsTypeTimeEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const All = MailStatsTypeTimeEnum._(r'all');
-  static const Billing = MailStatsTypeTimeEnum._(r'billing');
-  static const Month = MailStatsTypeTimeEnum._(r'month');
-  static const SevenDays = MailStatsTypeTimeEnum._(r'7d');
-  static const TwentyFourHours = MailStatsTypeTimeEnum._(r'24h');
-  static const Day = MailStatsTypeTimeEnum._(r'day');
-  static const OneHour = MailStatsTypeTimeEnum._(r'1h');
-
-  /// List of all possible values in this [enum][MailStatsTypeTimeEnum].
-  static const values = <MailStatsTypeTimeEnum>[
-    All,
-    Billing,
-    Month,
-    SevenDays,
-    TwentyFourHours,
-    Day,
-    OneHour,
-  ];
-
+  /// Returns the instance of [MailStatsTypeTimeEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MailStatsTypeTimeEnum? fromJson(dynamic value) => MailStatsTypeTimeEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MailStatsTypeTimeEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MailStatsTypeTimeEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MailStatsTypeTimeEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -265,9 +260,10 @@ class MailStatsTypeTimeEnumTypeTransformer {
 
   const MailStatsTypeTimeEnumTypeTransformer._();
 
-  String encode(MailStatsTypeTimeEnum data) => data.value;
+  String encode(MailStatsTypeTimeEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MailStatsTypeTimeEnum.
+  /// Returns the instance of [MailStatsTypeTimeEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -276,6 +272,9 @@ class MailStatsTypeTimeEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MailStatsTypeTimeEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MailStatsTypeTimeEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'all': return MailStatsTypeTimeEnum.All;
@@ -294,7 +293,7 @@ class MailStatsTypeTimeEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MailStatsTypeTimeEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MailStatsTypeTimeEnumTypeTransformer? _instance;
 }
 

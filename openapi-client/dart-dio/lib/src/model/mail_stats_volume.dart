@@ -99,22 +99,25 @@ class _$MailStatsVolumeSerializer implements PrimitiveSerializer<MailStatsVolume
         case r'to':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
-          ) as BuiltMap<String, int>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(int)]),
+          ) as BuiltMap<String, int>?;
+          if (valueDes == null) continue;
           result.to.replace(valueDes);
           break;
         case r'from':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
-          ) as BuiltMap<String, int>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(int)]),
+          ) as BuiltMap<String, int>?;
+          if (valueDes == null) continue;
           result.from.replace(valueDes);
           break;
         case r'ip':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [FullType(String), FullType(int)]),
-          ) as BuiltMap<String, int>;
+            specifiedType: const FullType.nullable(BuiltMap, [FullType(String), FullType(int)]),
+          ) as BuiltMap<String, int>?;
+          if (valueDes == null) continue;
           result.ip.replace(valueDes);
           break;
         default:
@@ -145,4 +148,5 @@ class _$MailStatsVolumeSerializer implements PrimitiveSerializer<MailStatsVolume
     return result.build();
   }
 }
+
 

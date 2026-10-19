@@ -39,12 +39,12 @@ class MailBlockClickHouse : public oatpp::DTO {
 
   DTO_FIELD(oatpp::String, from);
 
-  DTO_FIELD(oatpp::String, messageId);
-  DTO_FIELD(oatpp::Boolean, messageIdIsSet);
   DTO_FIELD(oatpp::String, subject);
 
   DTO_FIELD(oatpp::String, to);
 
+  DTO_FIELD(oatpp::String, messageId);
+  DTO_FIELD(oatpp::Boolean, messageIdIsSet);
 
 };
 

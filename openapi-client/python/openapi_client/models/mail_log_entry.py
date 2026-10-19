@@ -29,32 +29,32 @@ class MailLogEntry(BaseModel):
     """
     A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
     """ # noqa: E501
-    id: StrictInt = Field(description="Internal auto-increment database row ID.  Not meaningful outside the API.", alias="_id")
-    id: Annotated[str, Field(min_length=18, strict=True, max_length=19)] = Field(description="The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.")
-    var_from: StrictStr = Field(description="SMTP envelope `MAIL FROM` address (may differ from the `From:` header).", alias="from")
-    to: StrictStr = Field(description="SMTP envelope `RCPT TO` address.")
-    subject: Optional[StrictStr] = Field(default=None, description="The `Subject` header value, if available.")
-    message_id: Optional[StrictStr] = Field(default=None, description="The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.", alias="messageId")
-    created: StrictStr = Field(description="Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.")
-    time: StrictInt = Field(description="Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.")
-    user: StrictStr = Field(description="The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.")
-    transtype: StrictStr = Field(description="SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).")
-    origin: StrictStr = Field(description="IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.")
-    interface: StrictStr = Field(description="Relay interface name that accepted the message (e.g. `feeder`).")
-    sending_zone: Optional[StrictStr] = Field(default=None, description="The sending zone assigned by the relay for outbound delivery.", alias="sendingZone")
-    body_size: Optional[StrictInt] = Field(default=None, description="Size of the message body in bytes.", alias="bodySize")
-    seq: Optional[StrictInt] = Field(default=None, description="Sequence index of this recipient in a multi-recipient message. Starts at 1.")
-    delivered: Optional[StrictInt] = Field(default=None, description="Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.")
-    code: Optional[StrictInt] = Field(default=None, description="The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).")
-    response: Optional[StrictStr] = Field(default=None, description="The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).")
-    recipient: Optional[StrictStr] = Field(default=None, description="The specific recipient address this delivery record is for.")
-    domain: Optional[StrictStr] = Field(default=None, description="The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.")
-    locked: Optional[StrictInt] = Field(default=None, description="Whether the queue entry is currently locked for delivery processing.")
-    lock_time: Optional[StrictStr] = Field(default=None, description="Millisecond-precision timestamp of the last queue lock acquisition.", alias="lockTime")
-    assigned: Optional[StrictStr] = Field(default=None, description="The relay server node assigned to deliver this message.")
-    queued: Optional[StrictStr] = Field(default=None, description="ISO 8601 timestamp when the message was placed into the delivery queue.")
-    mx_hostname: Optional[StrictStr] = Field(default=None, description="The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.", alias="mxHostname")
-    __properties: ClassVar[List[str]] = ["_id", "id", "from", "to", "subject", "messageId", "created", "time", "user", "transtype", "origin", "interface", "sendingZone", "bodySize", "seq", "delivered", "code", "response", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname"]
+    id: StrictInt = Field(description="Internal auto-increment database row ID.  Not meaningful outside the API.", alias="_id", json_schema_extra={"examples": [103172]})
+    id: Annotated[str, Field(min_length=18, strict=True, max_length=19)] = Field(description="The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.", json_schema_extra={"examples": ["17c7eda538e0005d03"]})
+    var_from: StrictStr = Field(description="SMTP envelope `MAIL FROM` address (may differ from the `From:` header).", alias="from", json_schema_extra={"examples": ["person@mysite.com"]})
+    to: StrictStr = Field(description="SMTP envelope `RCPT TO` address.", json_schema_extra={"examples": ["client@isp.com"]})
+    created: StrictStr = Field(description="Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.", json_schema_extra={"examples": ["2021-10-14 08:50:10"]})
+    time: StrictInt = Field(description="Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.", json_schema_extra={"examples": [1634215809]})
+    user: StrictStr = Field(description="The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.", json_schema_extra={"examples": ["mb5658"]})
+    transtype: StrictStr = Field(description="SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).", json_schema_extra={"examples": ["ESMTPSA"]})
+    origin: StrictStr = Field(description="IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.", json_schema_extra={"examples": ["199.231.189.154"]})
+    interface: StrictStr = Field(description="Relay interface name that accepted the message (e.g. `feeder`).", json_schema_extra={"examples": ["feeder"]})
+    subject: Optional[StrictStr] = Field(default=None, description="The `Subject` header value, if available.", json_schema_extra={"examples": ["sell 0.005 shares"]})
+    message_id: Optional[StrictStr] = Field(default=None, description="The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.", alias="messageId", json_schema_extra={"examples": ["<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>"]})
+    sending_zone: Optional[StrictStr] = Field(default=None, description="The sending zone assigned by the relay for outbound delivery.", alias="sendingZone", json_schema_extra={"examples": ["interserver"]})
+    body_size: Optional[StrictInt] = Field(default=None, description="Size of the message body in bytes.", alias="bodySize", json_schema_extra={"examples": [63]})
+    seq: Optional[StrictInt] = Field(default=None, description="Sequence index of this recipient in a multi-recipient message. Starts at 1.", json_schema_extra={"examples": [1]})
+    delivered: Optional[StrictInt] = Field(default=None, description="Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.", json_schema_extra={"examples": [1]})
+    code: Optional[StrictInt] = Field(default=None, description="The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).", json_schema_extra={"examples": [250]})
+    response: Optional[StrictStr] = Field(default=None, description="The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).", json_schema_extra={"examples": ["250 2.0.0 Ok queued as C91D83E128C"]})
+    recipient: Optional[StrictStr] = Field(default=None, description="The specific recipient address this delivery record is for.", json_schema_extra={"examples": ["client@isp.com"]})
+    domain: Optional[StrictStr] = Field(default=None, description="The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.", json_schema_extra={"examples": ["interserver.net"]})
+    locked: Optional[StrictInt] = Field(default=None, description="Whether the queue entry is currently locked for delivery processing.", json_schema_extra={"examples": [1]})
+    lock_time: Optional[StrictStr] = Field(default=None, description="Millisecond-precision timestamp of the last queue lock acquisition.", alias="lockTime", json_schema_extra={"examples": ["1634215818533"]})
+    assigned: Optional[StrictStr] = Field(default=None, description="The relay server node assigned to deliver this message.", json_schema_extra={"examples": ["relay1"]})
+    queued: Optional[StrictStr] = Field(default=None, description="ISO 8601 timestamp when the message was placed into the delivery queue.", json_schema_extra={"examples": ["2021-10-14T12:50:15.487Z"]})
+    mx_hostname: Optional[StrictStr] = Field(default=None, description="The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.", alias="mxHostname", json_schema_extra={"examples": ["mx.j.is.cc"]})
+    __properties: ClassVar[List[str]] = ["_id", "id", "from", "to", "created", "time", "user", "transtype", "origin", "interface", "subject", "messageId", "sendingZone", "bodySize", "seq", "delivered", "code", "response", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -186,14 +186,14 @@ class MailLogEntry(BaseModel):
             "id": obj.get("id"),
             "from": obj.get("from"),
             "to": obj.get("to"),
-            "subject": obj.get("subject"),
-            "messageId": obj.get("messageId"),
             "created": obj.get("created"),
             "time": obj.get("time"),
             "user": obj.get("user"),
             "transtype": obj.get("transtype"),
             "origin": obj.get("origin"),
             "interface": obj.get("interface"),
+            "subject": obj.get("subject"),
+            "messageId": obj.get("messageId"),
             "sendingZone": obj.get("sendingZone"),
             "bodySize": obj.get("bodySize"),
             "seq": obj.get("seq"),

@@ -37,15 +37,15 @@ describe("mail_order_detail", function()
     end)
   end)
 
-  -- unit tests for the property 'comment'
-  describe("property comment test", function()
+  -- unit tests for the property 'password'
+  describe("property password test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)
   end)
 
-  -- unit tests for the property 'password'
-  describe("property password test", function()
+  -- unit tests for the property 'comment'
+  describe("property comment test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

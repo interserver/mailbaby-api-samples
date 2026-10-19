@@ -18,7 +18,7 @@ import type { MailAttachment } from ''
 // TODO: Update the object below with actual values
 const example = {
   "filename": message.txt,
-  "data": [B@37e69c43,
+  "data": [B@3a2e9f5b,
 } satisfies MailAttachment
 
 console.log(example)

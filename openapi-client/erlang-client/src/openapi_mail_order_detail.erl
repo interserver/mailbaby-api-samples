@@ -8,19 +8,19 @@
     #{ 'id' := integer(),
        'status' := binary(),
        'username' := binary(),
-       'comment' => binary(),
-       'password' := binary()
+       'password' := binary(),
+       'comment' => binary()
      }.
 
 encode(#{ 'id' := Id,
           'status' := Status,
           'username' := Username,
-          'comment' := Comment,
-          'password' := Password
+          'password' := Password,
+          'comment' := Comment
         }) ->
     #{ 'id' => Id,
        'status' => Status,
        'username' => Username,
-       'comment' => Comment,
-       'password' => Password
+       'password' => Password,
+       'comment' => Comment
      }.

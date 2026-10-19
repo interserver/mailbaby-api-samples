@@ -21,8 +21,6 @@ import { mapValues } from '../runtime';
 export interface EmailAddressParam {
     /**
      * The email address to delist from all block lists.
-     * @type {string}
-     * @memberof EmailAddressParam
      */
     email: string;
 }

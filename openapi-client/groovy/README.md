@@ -42,8 +42,8 @@ This Groovy package, using the [http-builder-ng library](https://http-builder-ng
 
 - API version: 1.5.0
 - Package version: 1.0.0
-- Build date: 2026-06-04T16:55:28.901130292-04:00[America/New_York]
-- Generator version: 7.22.0
+- Build date: 2026-10-18T20:35:28.195044357-04:00[America/New_York]
+- Generator version: 7.26.0
 - Build package: org.openapitools.codegen.languages.GroovyClientCodegen
 For more information, please visit [https://www.mail.baby/contact/](https://www.mail.baby/contact/)
 

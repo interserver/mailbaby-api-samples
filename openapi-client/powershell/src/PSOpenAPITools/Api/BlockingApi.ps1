@@ -166,7 +166,7 @@ function Invoke-DeleteRule {
         if (!$RuleId) {
             throw "Error! The required parameter `RuleId` missing when calling deleteRule."
         }
-        $LocalVarUri = $LocalVarUri.replace('{ruleId}', [System.Web.HTTPUtility]::UrlEncode($RuleId))
+        $LocalVarUri = $LocalVarUri.replace('{ruleId}', [System.Uri]::EscapeDataString([string]$RuleId))
 
         if ($Configuration["ApiKeyPrefix"] -and $Configuration["ApiKeyPrefix"]["X-API-KEY"]) {
             $apiKeyPrefix = $Configuration["ApiKeyPrefix"]["X-API-KEY"]

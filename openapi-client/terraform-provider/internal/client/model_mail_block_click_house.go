@@ -6,7 +6,7 @@ package client
 type MailBlockClickHouse struct {
 	Date string `json:"date"`
 	From string `json:"from"`
-	MessageId string `json:"messageId,omitempty"`
 	Subject string `json:"subject"`
 	To string `json:"to"`
+	MessageId string `json:"messageId,omitempty"`
 }

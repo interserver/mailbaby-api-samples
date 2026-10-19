@@ -29,9 +29,9 @@ class MailLog(BaseModel):
     """
     Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.
     """ # noqa: E501
-    total: StrictInt = Field(description="Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.")
-    skip: StrictInt = Field(description="The `skip` value used for this page (echoed from the request).")
-    limit: StrictInt = Field(description="The `limit` value used for this page (echoed from the request).")
+    total: StrictInt = Field(description="Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.", json_schema_extra={"examples": [10234]})
+    skip: StrictInt = Field(description="The `skip` value used for this page (echoed from the request).", json_schema_extra={"examples": [0]})
+    limit: StrictInt = Field(description="The `limit` value used for this page (echoed from the request).", json_schema_extra={"examples": [100]})
     emails: List[MailLogEntry]
     __properties: ClassVar[List[str]] = ["total", "skip", "limit", "emails"]
 
@@ -78,8 +78,7 @@ class MailLog(BaseModel):
         _items = []
         if self.emails:
             for _item_emails in self.emails:
-                if _item_emails:
-                    _items.append(_item_emails.to_dict())
+                _items.append(_item_emails.to_dict() if _item_emails is not None else None)
             _dict['emails'] = _items
         return _dict
 

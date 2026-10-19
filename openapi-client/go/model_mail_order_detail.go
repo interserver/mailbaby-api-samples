@@ -27,11 +27,11 @@ type MailOrderDetail struct {
 	// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 	Status string `json:"status"`
 	// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
-	Username string `json:"username" validate:"regexp=^mb\\\\d+$"`
-	// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
-	Comment *string `json:"comment,omitempty"`
+	Username string `json:"username" validate:"regexp=^mb\\d+$"`
 	// The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
 	Password string `json:"password"`
+	// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
+	Comment *string `json:"comment,omitempty"`
 }
 
 type _MailOrderDetail MailOrderDetail
@@ -129,6 +129,30 @@ func (o *MailOrderDetail) SetUsername(v string) {
 	o.Username = v
 }
 
+// GetPassword returns the Password field value
+func (o *MailOrderDetail) GetPassword() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *MailOrderDetail) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
+}
+
+// SetPassword sets field value
+func (o *MailOrderDetail) SetPassword(v string) {
+	o.Password = v
+}
+
 // GetComment returns the Comment field value if set, zero value otherwise.
 func (o *MailOrderDetail) GetComment() string {
 	if o == nil || IsNil(o.Comment) {
@@ -161,30 +185,6 @@ func (o *MailOrderDetail) SetComment(v string) {
 	o.Comment = &v
 }
 
-// GetPassword returns the Password field value
-func (o *MailOrderDetail) GetPassword() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Password
-}
-
-// GetPasswordOk returns a tuple with the Password field value
-// and a boolean to check if the value has been set.
-func (o *MailOrderDetail) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Password, true
-}
-
-// SetPassword sets field value
-func (o *MailOrderDetail) SetPassword(v string) {
-	o.Password = v
-}
-
 func (o MailOrderDetail) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -198,10 +198,10 @@ func (o MailOrderDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["status"] = o.Status
 	toSerialize["username"] = o.Username
+	toSerialize["password"] = o.Password
 	if !IsNil(o.Comment) {
 		toSerialize["comment"] = o.Comment
 	}
-	toSerialize["password"] = o.Password
 	return toSerialize, nil
 }
 

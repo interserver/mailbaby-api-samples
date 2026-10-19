@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues, parseDate, parseDateTime, serializeDate, serializeDateTime } from '../runtime';
 /**
  * A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
  * @export
@@ -21,32 +21,22 @@ import { mapValues } from '../runtime';
 export interface DenyRuleRecord {
     /**
      * The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
-     * @type {DenyRuleRecordTypeEnum}
-     * @memberof DenyRuleRecord
      */
     type: DenyRuleRecordTypeEnum;
     /**
      * The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     data: string;
     /**
      * The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     id: string;
     /**
      * The timestamp when the rule was created.
-     * @type {Date}
-     * @memberof DenyRuleRecord
      */
     created: Date;
     /**
      * Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-     * @type {string}
-     * @memberof DenyRuleRecord
      */
     user?: string;
 }
@@ -59,7 +49,7 @@ export const DenyRuleRecordTypeEnum = {
     Domain: 'domain',
     Email: 'email',
     Startswith: 'startswith',
-    Destination: 'destination'
+    Destination: 'destination',
 } as const;
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
 
@@ -88,7 +78,7 @@ export function DenyRuleRecordFromJSONTyped(json: any, ignoreDiscriminator: bool
         'type': json['type'],
         'data': json['data'],
         'id': json['id'],
-        'created': (new Date(json['created'])),
+        'created': (json['created'] == null ? json['created'] : parseDateTime(json['created'])),
         'user': json['user'] == null ? undefined : json['user'],
     };
 }
@@ -107,7 +97,7 @@ export function DenyRuleRecordToJSONTyped(value?: DenyRuleRecord | null, ignoreD
         'type': value['type'],
         'data': value['data'],
         'id': value['id'],
-        'created': value['created'].toISOString(),
+        'created': value['created'] == null ? value['created'] : serializeDateTime(value['created']),
         'user': value['user'],
     };
 }

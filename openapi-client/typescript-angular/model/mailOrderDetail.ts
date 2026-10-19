@@ -37,7 +37,7 @@ export interface MailOrderDetail {
 export namespace MailOrderDetail {
     export const StatusEnum = {
         Active: 'active',
-        Canceled: 'canceled'
+        Canceled: 'canceled',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

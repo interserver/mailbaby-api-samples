@@ -122,3 +122,4 @@ class _$MailBlockRspamdSerializer implements PrimitiveSerializer<MailBlockRspamd
   }
 }
 
+

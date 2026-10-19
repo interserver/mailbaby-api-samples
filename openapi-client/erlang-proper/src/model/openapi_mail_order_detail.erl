@@ -12,8 +12,8 @@
   [ {'id', integer() }
   | {'status', binary() }
   | {'username', binary() }
-  | {'comment', binary() }
   | {'password', binary() }
+  | {'comment', binary() }
   ].
 
 
@@ -24,8 +24,8 @@ openapi_mail_order_detail(Fields) ->
   Default = [ {'id', integer() }
             , {'status', elements([<<"active">>, <<"canceled">>]) }
             , {'username', binary() }
-            , {'comment', binary() }
             , {'password', binary() }
+            , {'comment', binary() }
             ],
   lists:ukeymerge(1, lists:sort(Fields), lists:sort(Default)).
 

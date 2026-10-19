@@ -94,6 +94,7 @@ class _$MailOrderSerializer implements PrimitiveSerializer<MailOrder> {
   }
 }
 
+
 /// a concrete implementation of [MailOrder], since [MailOrder] is not instantiable
 @BuiltValue(instantiable: true)
 abstract class $MailOrder implements MailOrder, Built<$MailOrder, $MailOrderBuilder> {
@@ -160,8 +161,9 @@ class _$$MailOrderSerializer implements PrimitiveSerializer<$MailOrder> {
         case r'comment':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.comment = valueDes;
           break;
         default:
@@ -193,12 +195,11 @@ class _$$MailOrderSerializer implements PrimitiveSerializer<$MailOrder> {
   }
 }
 
+/// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
 class MailOrderStatusEnum extends EnumClass {
 
-  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   @BuiltValueEnumConst(wireName: r'active')
   static const MailOrderStatusEnum active = _$mailOrderStatusEnum_active;
-  /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
   @BuiltValueEnumConst(wireName: r'canceled')
   static const MailOrderStatusEnum canceled = _$mailOrderStatusEnum_canceled;
 

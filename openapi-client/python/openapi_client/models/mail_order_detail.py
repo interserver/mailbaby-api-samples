@@ -29,12 +29,12 @@ class MailOrderDetail(BaseModel):
     """
     Extended mail order record including the current SMTP password.  Returned by `GET /mail/{id}`.  The `username` and `password` fields can be used to authenticate directly against `relay.mailbaby.net:25` via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API.
     """ # noqa: E501
-    id: StrictInt = Field(description="The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.")
-    status: StrictStr = Field(description="The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
-    username: Annotated[str, Field(strict=True)] = Field(description="The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
+    id: StrictInt = Field(description="The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.", json_schema_extra={"examples": [21472]})
+    status: StrictStr = Field(description="The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.", json_schema_extra={"examples": ["active"]})
+    username: Annotated[str, Field(strict=True)] = Field(description="The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.", json_schema_extra={"examples": ["mb21472"]})
+    password: StrictStr = Field(description="The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.", json_schema_extra={"examples": ["s3cr3tpassword"]})
     comment: Optional[StrictStr] = Field(default=None, description="Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
-    password: StrictStr = Field(description="The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.")
-    __properties: ClassVar[List[str]] = ["id", "status", "username", "comment", "password"]
+    __properties: ClassVar[List[str]] = ["id", "status", "username", "password", "comment"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -43,13 +43,10 @@ class MailOrderDetail(BaseModel):
             raise ValueError("must be one of enum values ('active', 'canceled')")
         return value
 
-    @field_validator('username')
+    @field_validator('username', mode="before")
     def username_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^mb\d+$", value):
+        if isinstance(value, str) and not re.match(r"^mb\d+$", value):
             raise ValueError(r"must validate the regular expression /^mb\d+$/")
         return value
 
@@ -107,8 +104,8 @@ class MailOrderDetail(BaseModel):
             "id": obj.get("id"),
             "status": obj.get("status"),
             "username": obj.get("username"),
-            "comment": obj.get("comment"),
-            "password": obj.get("password")
+            "password": obj.get("password"),
+            "comment": obj.get("comment")
         })
         return _obj
 

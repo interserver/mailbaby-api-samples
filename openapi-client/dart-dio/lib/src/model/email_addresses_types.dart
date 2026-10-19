@@ -67,3 +67,4 @@ class _$EmailAddressesTypesSerializer implements PrimitiveSerializer<EmailAddres
   }
 }
 
+

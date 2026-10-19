@@ -29,9 +29,9 @@ class MailOrder(BaseModel):
     """
     A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
     """ # noqa: E501
-    id: StrictInt = Field(description="The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.")
-    status: StrictStr = Field(description="The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.")
-    username: Annotated[str, Field(strict=True)] = Field(description="The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.")
+    id: StrictInt = Field(description="The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.", json_schema_extra={"examples": [21472]})
+    status: StrictStr = Field(description="The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.", json_schema_extra={"examples": ["active"]})
+    username: Annotated[str, Field(strict=True)] = Field(description="The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.", json_schema_extra={"examples": ["mb21472"]})
     comment: Optional[StrictStr] = Field(default=None, description="Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.")
     __properties: ClassVar[List[str]] = ["id", "status", "username", "comment"]
 
@@ -42,13 +42,10 @@ class MailOrder(BaseModel):
             raise ValueError("must be one of enum values ('active', 'canceled')")
         return value
 
-    @field_validator('username')
+    @field_validator('username', mode="before")
     def username_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if not isinstance(value, str):
-            value = str(value)
-
-        if not re.match(r"^mb\d+$", value):
+        if isinstance(value, str) and not re.match(r"^mb\d+$", value):
             raise ValueError(r"must validate the regular expression /^mb\d+$/")
         return value
 

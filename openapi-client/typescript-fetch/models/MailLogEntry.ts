@@ -29,152 +29,102 @@ import { mapValues } from '../runtime';
 export interface MailLogEntry {
     /**
      * Internal auto-increment database row ID.  Not meaningful outside the API.
-     * @type {number}
-     * @memberof MailLogEntry
      */
     _id: number;
     /**
      * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     id: string;
     /**
      * SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
-     * @type {string}
-     * @memberof MailLogEntry
      */
     from: string;
     /**
      * SMTP envelope `RCPT TO` address.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     to: string;
     /**
      * Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     created: string;
     /**
      * Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
-     * @type {number}
-     * @memberof MailLogEntry
      */
     time: number;
     /**
      * The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     user: string;
     /**
      * SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
-     * @type {string}
-     * @memberof MailLogEntry
      */
     transtype: string;
     /**
      * IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     origin: string;
     /**
      * Relay interface name that accepted the message (e.g. `feeder`).
-     * @type {string}
-     * @memberof MailLogEntry
      */
     _interface: string;
     /**
      * The `Subject` header value, if available.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     subject?: string | null;
     /**
      * The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     messageId?: string | null;
     /**
      * The sending zone assigned by the relay for outbound delivery.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     sendingZone?: string | null;
     /**
      * Size of the message body in bytes.
-     * @type {number}
-     * @memberof MailLogEntry
      */
     bodySize?: number | null;
     /**
      * Sequence index of this recipient in a multi-recipient message. Starts at 1.
-     * @type {number}
-     * @memberof MailLogEntry
      */
     seq?: number | null;
     /**
      * Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
-     * @type {number}
-     * @memberof MailLogEntry
      */
     delivered?: number | null;
     /**
      * The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
-     * @type {number}
-     * @memberof MailLogEntry
      */
     code?: number | null;
     /**
      * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `"250 2.0.0 Ok queued as C91D83E128C"`).
-     * @type {string}
-     * @memberof MailLogEntry
      */
     response?: string | null;
     /**
      * The specific recipient address this delivery record is for.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     recipient?: string | null;
     /**
      * The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     domain?: string | null;
     /**
      * Whether the queue entry is currently locked for delivery processing.
-     * @type {number}
-     * @memberof MailLogEntry
      */
     locked?: number | null;
     /**
      * Millisecond-precision timestamp of the last queue lock acquisition.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     lockTime?: string | null;
     /**
      * The relay server node assigned to deliver this message.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     assigned?: string | null;
     /**
      * ISO 8601 timestamp when the message was placed into the delivery queue.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     queued?: string | null;
     /**
      * The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
-     * @type {string}
-     * @memberof MailLogEntry
      */
     mxHostname?: string | null;
 }
@@ -192,7 +142,7 @@ export function instanceOfMailLogEntry(value: object): value is MailLogEntry {
     if (!('user' in value) || value['user'] === undefined) return false;
     if (!('transtype' in value) || value['transtype'] === undefined) return false;
     if (!('origin' in value) || value['origin'] === undefined) return false;
-    if (!('_interface' in value) || value['_interface'] === undefined) return false;
+    if ((!('_interface' in (value as Record<string, any>)) && !('interface' in (value as Record<string, any>))) || ((value as Record<string, any>)['_interface'] === undefined && (value as Record<string, any>)['interface'] === undefined)) return false;
     return true;
 }
 
@@ -216,21 +166,21 @@ export function MailLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'transtype': json['transtype'],
         'origin': json['origin'],
         '_interface': json['interface'],
-        'subject': json['subject'] == null ? undefined : json['subject'],
-        'messageId': json['messageId'] == null ? undefined : json['messageId'],
-        'sendingZone': json['sendingZone'] == null ? undefined : json['sendingZone'],
-        'bodySize': json['bodySize'] == null ? undefined : json['bodySize'],
-        'seq': json['seq'] == null ? undefined : json['seq'],
-        'delivered': json['delivered'] == null ? undefined : json['delivered'],
-        'code': json['code'] == null ? undefined : json['code'],
-        'response': json['response'] == null ? undefined : json['response'],
-        'recipient': json['recipient'] == null ? undefined : json['recipient'],
-        'domain': json['domain'] == null ? undefined : json['domain'],
-        'locked': json['locked'] == null ? undefined : json['locked'],
-        'lockTime': json['lockTime'] == null ? undefined : json['lockTime'],
-        'assigned': json['assigned'] == null ? undefined : json['assigned'],
-        'queued': json['queued'] == null ? undefined : json['queued'],
-        'mxHostname': json['mxHostname'] == null ? undefined : json['mxHostname'],
+        'subject': json['subject'] === undefined ? undefined : json['subject'] === null ? null : json['subject'],
+        'messageId': json['messageId'] === undefined ? undefined : json['messageId'] === null ? null : json['messageId'],
+        'sendingZone': json['sendingZone'] === undefined ? undefined : json['sendingZone'] === null ? null : json['sendingZone'],
+        'bodySize': json['bodySize'] === undefined ? undefined : json['bodySize'] === null ? null : json['bodySize'],
+        'seq': json['seq'] === undefined ? undefined : json['seq'] === null ? null : json['seq'],
+        'delivered': json['delivered'] === undefined ? undefined : json['delivered'] === null ? null : json['delivered'],
+        'code': json['code'] === undefined ? undefined : json['code'] === null ? null : json['code'],
+        'response': json['response'] === undefined ? undefined : json['response'] === null ? null : json['response'],
+        'recipient': json['recipient'] === undefined ? undefined : json['recipient'] === null ? null : json['recipient'],
+        'domain': json['domain'] === undefined ? undefined : json['domain'] === null ? null : json['domain'],
+        'locked': json['locked'] === undefined ? undefined : json['locked'] === null ? null : json['locked'],
+        'lockTime': json['lockTime'] === undefined ? undefined : json['lockTime'] === null ? null : json['lockTime'],
+        'assigned': json['assigned'] === undefined ? undefined : json['assigned'] === null ? null : json['assigned'],
+        'queued': json['queued'] === undefined ? undefined : json['queued'] === null ? null : json['queued'],
+        'mxHostname': json['mxHostname'] === undefined ? undefined : json['mxHostname'] === null ? null : json['mxHostname'],
     };
 }
 

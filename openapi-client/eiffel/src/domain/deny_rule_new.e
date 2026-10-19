@@ -19,22 +19,14 @@ class DENY_RULE_NEW
 
 feature --Access
 
-    user: detachable STRING_32
-      -- Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
     type: detachable STRING_32
       -- The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
     data: detachable STRING_32
       -- The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+    user: detachable STRING_32
+      -- Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
 
 feature -- Change Element
-
-    set_user (a_name: like user)
-        -- Set 'user' with 'a_name'.
-      do
-        user := a_name
-      ensure
-        user_set: user = a_name
-      end
 
     set_type (a_name: like type)
         -- Set 'type' with 'a_name'.
@@ -52,6 +44,14 @@ feature -- Change Element
         data_set: data = a_name
       end
 
+    set_user (a_name: like user)
+        -- Set 'user' with 'a_name'.
+      do
+        user := a_name
+      ensure
+        user_set: user = a_name
+      end
+
 
  feature -- Status Report
 
@@ -60,11 +60,6 @@ feature -- Change Element
       do
         create Result.make_empty
         Result.append("%Nclass DENY_RULE_NEW%N")
-        if attached user as l_user then
-          Result.append ("%Nuser:")
-          Result.append (l_user.out)
-          Result.append ("%N")
-        end
         if attached type as l_type then
           Result.append ("%Ntype:")
           Result.append (l_type.out)
@@ -73,6 +68,11 @@ feature -- Change Element
         if attached data as l_data then
           Result.append ("%Ndata:")
           Result.append (l_data.out)
+          Result.append ("%N")
+        end
+        if attached user as l_user then
+          Result.append ("%Nuser:")
+          Result.append (l_user.out)
           Result.append ("%N")
         end
       end

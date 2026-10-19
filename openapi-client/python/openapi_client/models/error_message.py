@@ -28,8 +28,8 @@ class ErrorMessage(BaseModel):
     """
     The response body returned when an error occurs.
     """ # noqa: E501
-    code: StrictInt = Field(description="The HTTP-style status code associated with the error.")
-    message: StrictStr = Field(description="A human-readable description of the error.")
+    code: StrictInt = Field(description="The HTTP-style status code associated with the error.", json_schema_extra={"examples": [400]})
+    message: StrictStr = Field(description="A human-readable description of the error.", json_schema_extra={"examples": ["The specified ID was invalid."]})
     __properties: ClassVar[List[str]] = ["code", "message"]
 
     model_config = ConfigDict(

@@ -29,9 +29,9 @@ class SendMailTo(BaseModel):
     The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
     """
     # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="Single recipient email address.")
+    oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="Single recipient email address.", json_schema_extra={"examples": ["johndoe@company.com"]})
     # data type: List[str]
-    oneof_schema_2_validator: Optional[List[StrictStr]] = Field(default=None, description="Multiple recipient email addresses.")
+    oneof_schema_2_validator: Optional[List[StrictStr]] = Field(default=None, description="Multiple recipient email addresses.", json_schema_extra={"examples": [["johndoe@company.com", "janedoe@company.com"]]})
     actual_instance: Optional[Union[List[str], str]] = None
     one_of_schemas: Set[str] = { "List[str]", "str" }
 

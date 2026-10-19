@@ -24,15 +24,35 @@ case class DenyRuleNew(
   /* Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. */
   user: Option[String] = None
 )
-
 object DenyRuleNewEnums {
 
-  type `Type` = `Type`.Value
-  object `Type` extends Enumeration {
-    val Domain = Value("domain")
-    val Email = Value("email")
-    val Startswith = Value("startswith")
-    val Destination = Value("destination")
-  }
+  sealed trait `Type`
+  object `Type` {
+    case object Domain extends `Type` { override def toString: String = "domain" }
+    case object Email extends `Type` { override def toString: String = "email" }
+    case object Startswith extends `Type` { override def toString: String = "startswith" }
+    case object Destination extends `Type` { override def toString: String = "destination" }
 
+    import org.json4s._
+
+    implicit object `Type`Serializer extends Serializer[`Type`] {
+      def deserialize(implicit format: Formats): PartialFunction[(TypeInfo, JValue), `Type`] = {
+        case (TypeInfo(clazz, _), json) if classOf[`Type`].isAssignableFrom(clazz) =>
+          json match {
+            case JString("domain") => Domain
+            case JString("email") => Email
+            case JString("startswith") => Startswith
+            case JString("destination") => Destination
+            case other => throw new MappingException(s"Invalid `Type`: $other")
+          }
+      }
+
+      def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
+        case Domain => JString("domain")
+        case Email => JString("email")
+        case Startswith => JString("startswith")
+        case Destination => JString("destination")
+      }
+    }
+  }
 }

@@ -26,7 +26,7 @@ class ServicesApi {
   ///
   /// * [int] id (required):
   ///   The numeric ID of the mail order.
-  Future<Response> getMailOrderByIdWithHttpInfo(int id,) async {
+  Future<Response> getMailOrderByIdWithHttpInfo(int id, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/{id}'
       .replaceAll('{id}', id.toString());
@@ -49,6 +49,7 @@ class ServicesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -60,8 +61,8 @@ class ServicesApi {
   ///
   /// * [int] id (required):
   ///   The numeric ID of the mail order.
-  Future<MailOrderDetail?> getMailOrderById(int id,) async {
-    final response = await getMailOrderByIdWithHttpInfo(id,);
+  Future<MailOrderDetail?> getMailOrderById(int id, { Future<void>? abortTrigger, }) async {
+    final response = await getMailOrderByIdWithHttpInfo(id, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -80,7 +81,7 @@ class ServicesApi {
   /// Use this **before sending** if you need to discover which mail order `id` to pass to `/mail/send`, `/mail/advsend`, `/mail/rawsend`, `/mail/log`, or `/mail/stats`. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getMailOrdersWithHttpInfo() async {
+  Future<Response> getMailOrdersWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail';
 
@@ -102,14 +103,15 @@ class ServicesApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// List your provisioned mail orders (sending accounts)
   ///
   /// Use this **before sending** if you need to discover which mail order `id` to pass to `/mail/send`, `/mail/advsend`, `/mail/rawsend`, `/mail/log`, or `/mail/stats`. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. 
-  Future<List<MailOrder>?> getMailOrders() async {
-    final response = await getMailOrdersWithHttpInfo();
+  Future<List<MailOrder>?> getMailOrders({ Future<void>? abortTrigger, }) async {
+    final response = await getMailOrdersWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

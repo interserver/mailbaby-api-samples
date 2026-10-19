@@ -28,8 +28,8 @@ class EmailAddressName(BaseModel):
     """
     An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
     """ # noqa: E501
-    email: StrictStr = Field(description="The email address.")
-    name: Optional[StrictStr] = Field(default=None, description="Optional display name shown to recipients (e.g. in the `From:` header).")
+    email: StrictStr = Field(description="The email address.", json_schema_extra={"examples": ["user@domain.com"]})
+    name: Optional[StrictStr] = Field(default=None, description="Optional display name shown to recipients (e.g. in the `From:` header).", json_schema_extra={"examples": ["John Smith"]})
     __properties: ClassVar[List[str]] = ["email", "name"]
 
     model_config = ConfigDict(

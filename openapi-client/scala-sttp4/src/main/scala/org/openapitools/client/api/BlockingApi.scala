@@ -42,16 +42,16 @@ class BlockingApi(baseUrl: String) {
    * @param data The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
    * @param user Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
    */
-  def addRule(apiKeyHeader: String)(`type`: String, data: String, user: Option[String] = None): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def addRule(apiKeyHeader: String)(`type`: String, data: String, user: Option[String] = None): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/rules")
       .contentType("application/x-www-form-urlencoded")
       .header("X-API-KEY", apiKeyHeader)
       .body(Map(
         "user" -> user,
-        "type" -> `type`,
-        "data" -> data
-      ))
+        "type" -> Some(`type`),
+        "data" -> Some(data)
+      ).collect { case (k, Some(v)) => k -> v })
       .response(asJson[GenericResponse])
 
   /**
@@ -68,7 +68,7 @@ class BlockingApi(baseUrl: String) {
    * 
    * @param ruleId The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
    */
-  def deleteRule(apiKeyHeader: String)(ruleId: Int): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def deleteRule(apiKeyHeader: String)(ruleId: Int): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     basicRequest
       .method(Method.DELETE, uri"$baseUrl/mail/rules/${ruleId}")
       .contentType("application/json")
@@ -89,12 +89,12 @@ class BlockingApi(baseUrl: String) {
    * 
    * @param emailAddressParam 
    */
-  def delistBlock(apiKeyHeader: String)(emailAddressParam: EmailAddressParam): Request[Either[ResponseException[String, Exception], GenericResponse]] =
+  def delistBlock(apiKeyHeader: String)(emailAddressParam: EmailAddressParam): sttp.client4.Request[Either[ResponseException[String], GenericResponse]] =
     basicRequest
       .method(Method.POST, uri"$baseUrl/mail/blocks/delete")
       .contentType("application/json")
       .header("X-API-KEY", apiKeyHeader)
-      .body(emailAddressParam)
+      .body(asJson(emailAddressParam))
       .response(asJson[GenericResponse])
 
   /**
@@ -107,7 +107,7 @@ class BlockingApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def getMailBlocks(apiKeyHeader: String)(): Request[Either[ResponseException[String, Exception], MailBlocks]] =
+  def getMailBlocks(apiKeyHeader: String)(): sttp.client4.Request[Either[ResponseException[String], MailBlocks]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/blocks")
       .contentType("application/json")
@@ -124,7 +124,7 @@ class BlockingApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def getRules(apiKeyHeader: String)(): Request[Either[ResponseException[String, Exception], Seq[DenyRuleRecord]]] =
+  def getRules(apiKeyHeader: String)(): sttp.client4.Request[Either[ResponseException[String], Seq[DenyRuleRecord]]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/rules")
       .contentType("application/json")

@@ -25,6 +25,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
@@ -44,7 +45,7 @@ import org.openapitools.client.JSON;
 /**
  * An array of email contacts, each with an email address and optional display name.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T16:55:32.531880592-04:00[America/New_York]", comments = "Generator version: 7.22.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-18T20:35:30.618426333-04:00[America/New_York]", comments = "Generator version: 7.26.0")
 public class EmailAddressNames extends ArrayList<EmailAddressName> {
   public EmailAddressNames() {
   }

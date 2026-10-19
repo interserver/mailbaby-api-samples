@@ -5,22 +5,22 @@
 -export_type([openapi_deny_rule_record/0]).
 
 -type openapi_deny_rule_record() ::
-    #{ 'user' => binary(),
-       'type' := binary(),
+    #{ 'type' := binary(),
        'data' := binary(),
        'id' := binary(),
-       'created' := openapi_date_time:openapi_date_time()
+       'created' := openapi_date_time:openapi_date_time(),
+       'user' => binary()
      }.
 
-encode(#{ 'user' := User,
-          'type' := Type,
+encode(#{ 'type' := Type,
           'data' := Data,
           'id' := Id,
-          'created' := Created
+          'created' := Created,
+          'user' := User
         }) ->
-    #{ 'user' => User,
-       'type' => Type,
+    #{ 'type' => Type,
        'data' => Data,
        'id' => Id,
-       'created' => Created
+       'created' => Created,
+       'user' => User
      }.

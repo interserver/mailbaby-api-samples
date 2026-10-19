@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **getMailOrderById**
 ```swift
-    open class func getMailOrderById(id: Int64, completion: @escaping (_ data: MailOrderDetail?, _ error: Error?) -> Void)
+    open class func getMailOrderById(id: Int64, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MailOrderDetail
 ```
 
 Get one mail order's full detail including SMTP password
@@ -25,15 +25,11 @@ import OpenAPIClient
 let id = 987 // Int64 | The numeric ID of the mail order.
 
 // Get one mail order's full detail including SMTP password
-ServicesAPI.getMailOrderById(id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ServicesAPI.getMailOrderById(id: id)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -60,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **getMailOrders**
 ```swift
-    open class func getMailOrders(completion: @escaping (_ data: [MailOrder]?, _ error: Error?) -> Void)
+    open class func getMailOrders(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [MailOrder]
 ```
 
 List your provisioned mail orders (sending accounts)
@@ -74,15 +70,11 @@ import OpenAPIClient
 
 
 // List your provisioned mail orders (sending accounts)
-ServicesAPI.getMailOrders() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await ServicesAPI.getMailOrders()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

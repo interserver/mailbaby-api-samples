@@ -36,20 +36,14 @@ import {
 export interface MailBlocks {
     /**
      * Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
-     * @type {Array<MailBlockClickHouse>}
-     * @memberof MailBlocks
      */
     local: Array<MailBlockClickHouse>;
     /**
      * Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
-     * @type {Array<MailBlockClickHouse>}
-     * @memberof MailBlocks
      */
     mbtrap: Array<MailBlockClickHouse>;
     /**
      * Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
-     * @type {Array<MailBlockRspamd>}
-     * @memberof MailBlocks
      */
     subject: Array<MailBlockRspamd>;
 }

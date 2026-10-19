@@ -21,20 +21,14 @@ import { mapValues } from '../runtime';
 export interface MailStatsVolume {
     /**
      * Message counts keyed by destination (envelope `to`) email address.
-     * @type {{ [key: string]: number; }}
-     * @memberof MailStatsVolume
      */
     to?: { [key: string]: number; };
     /**
      * Message counts keyed by sender (envelope `from`) email address.
-     * @type {{ [key: string]: number; }}
-     * @memberof MailStatsVolume
      */
     from?: { [key: string]: number; };
     /**
      * Message counts keyed by originating client IP address.
-     * @type {{ [key: string]: number; }}
-     * @memberof MailStatsVolume
      */
     ip?: { [key: string]: number; };
 }

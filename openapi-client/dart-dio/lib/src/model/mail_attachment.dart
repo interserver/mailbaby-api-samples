@@ -122,3 +122,4 @@ class _$MailAttachmentSerializer implements PrimitiveSerializer<MailAttachment> 
   }
 }
 
+

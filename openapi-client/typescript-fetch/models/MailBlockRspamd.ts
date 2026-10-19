@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MailBlockRspamd {
     /**
      * The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
-     * @type {string}
-     * @memberof MailBlockRspamd
      */
     from: string;
     /**
      * The suspicious subject pattern that triggered the block.
-     * @type {string}
-     * @memberof MailBlockRspamd
      */
     subject: string;
 }

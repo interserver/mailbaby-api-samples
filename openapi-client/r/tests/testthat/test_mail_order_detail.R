@@ -29,18 +29,18 @@ test_that("username", {
   #expect_equal(model.instance$`username`, "EXPECTED_RESULT")
 })
 
-test_that("comment", {
-  # tests for the property `comment` (character)
-  # Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
-
-  # uncomment below to test the property
-  #expect_equal(model.instance$`comment`, "EXPECTED_RESULT")
-})
-
 test_that("password", {
   # tests for the property `password` (character)
   # The current SMTP AUTH password for this mail order.  Use with the &#x60;username&#x60; field to authenticate against &#x60;relay.mailbaby.net:25&#x60;.
 
   # uncomment below to test the property
   #expect_equal(model.instance$`password`, "EXPECTED_RESULT")
+})
+
+test_that("comment", {
+  # tests for the property `comment` (character)
+  # Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
+
+  # uncomment below to test the property
+  #expect_equal(model.instance$`comment`, "EXPECTED_RESULT")
 })

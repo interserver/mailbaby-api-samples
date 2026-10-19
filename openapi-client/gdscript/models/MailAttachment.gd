@@ -23,7 +23,7 @@ var __filename__was__set := false
 
 # The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
 # Required: True
-# Example: [B@3b48e183
+# Example: [B@1e692555
 # isArray: false
 @export var data: Array:
 	set(value):

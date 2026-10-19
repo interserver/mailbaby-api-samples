@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Date** | **string** | The date the block event was recorded. | 
 **From** | **string** | The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it. | 
-**MessageId** | Pointer to **NullableString** | The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present. | [optional] 
 **Subject** | **string** | The &#x60;Subject&#x60; header of the blocked message. | 
 **To** | **string** | The serialized list of recipients of the blocked message. | 
+**MessageId** | Pointer to **NullableString** | The &#x60;Message-ID&#x60; header of the blocked message, or &#x60;null&#x60; if not present. | [optional] 
 
 ## Methods
 
@@ -69,41 +69,6 @@ and a boolean to check if the value has been set.
 SetFrom sets From field to given value.
 
 
-### GetMessageId
-
-`func (o *MailBlockClickHouse) GetMessageId() string`
-
-GetMessageId returns the MessageId field if non-nil, zero value otherwise.
-
-### GetMessageIdOk
-
-`func (o *MailBlockClickHouse) GetMessageIdOk() (*string, bool)`
-
-GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMessageId
-
-`func (o *MailBlockClickHouse) SetMessageId(v string)`
-
-SetMessageId sets MessageId field to given value.
-
-### HasMessageId
-
-`func (o *MailBlockClickHouse) HasMessageId() bool`
-
-HasMessageId returns a boolean if a field has been set.
-
-### SetMessageIdNil
-
-`func (o *MailBlockClickHouse) SetMessageIdNil(b bool)`
-
- SetMessageIdNil sets the value for MessageId to be an explicit nil
-
-### UnsetMessageId
-`func (o *MailBlockClickHouse) UnsetMessageId()`
-
-UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
 ### GetSubject
 
 `func (o *MailBlockClickHouse) GetSubject() string`
@@ -144,6 +109,41 @@ and a boolean to check if the value has been set.
 SetTo sets To field to given value.
 
 
+### GetMessageId
+
+`func (o *MailBlockClickHouse) GetMessageId() string`
+
+GetMessageId returns the MessageId field if non-nil, zero value otherwise.
+
+### GetMessageIdOk
+
+`func (o *MailBlockClickHouse) GetMessageIdOk() (*string, bool)`
+
+GetMessageIdOk returns a tuple with the MessageId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessageId
+
+`func (o *MailBlockClickHouse) SetMessageId(v string)`
+
+SetMessageId sets MessageId field to given value.
+
+### HasMessageId
+
+`func (o *MailBlockClickHouse) HasMessageId() bool`
+
+HasMessageId returns a boolean if a field has been set.
+
+### SetMessageIdNil
+
+`func (o *MailBlockClickHouse) SetMessageIdNil(b bool)`
+
+ SetMessageIdNil sets the value for MessageId to be an explicit nil
+
+### UnsetMessageId
+`func (o *MailBlockClickHouse) UnsetMessageId()`
+
+UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

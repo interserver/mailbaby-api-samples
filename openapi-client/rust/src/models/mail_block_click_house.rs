@@ -20,15 +20,15 @@ pub struct MailBlockClickHouse {
     /// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
     #[serde(rename = "from")]
     pub from: String,
-    /// The `Message-ID` header of the blocked message, or `null` if not present.
-    #[serde(rename = "messageId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
-    pub message_id: Option<Option<String>>,
     /// The `Subject` header of the blocked message.
     #[serde(rename = "subject")]
     pub subject: String,
     /// The serialized list of recipients of the blocked message.
     #[serde(rename = "to")]
     pub to: String,
+    /// The `Message-ID` header of the blocked message, or `null` if not present.
+    #[serde(rename = "messageId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub message_id: Option<Option<String>>,
 }
 
 impl MailBlockClickHouse {
@@ -37,9 +37,9 @@ impl MailBlockClickHouse {
         MailBlockClickHouse {
             date,
             from,
-            message_id: None,
             subject,
             to,
+            message_id: None,
         }
     }
 }

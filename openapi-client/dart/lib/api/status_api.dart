@@ -21,7 +21,7 @@ class StatusApi {
   /// **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> pingServerWithHttpInfo() async {
+  Future<Response> pingServerWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/ping';
 
@@ -43,14 +43,15 @@ class StatusApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// Health check — verify the API is reachable
   ///
   /// **No authentication required.** Returns the plain-text string `Server is up and running` with a `200` status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
-  Future<String?> pingServer() async {
-    final response = await pingServerWithHttpInfo();
+  Future<String?> pingServer({ Future<void>? abortTrigger, }) async {
+    final response = await pingServerWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

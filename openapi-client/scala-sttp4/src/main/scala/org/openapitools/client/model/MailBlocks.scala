@@ -24,4 +24,3 @@ case class MailBlocks(
   /* Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days. */
   subject: Seq[MailBlockRspamd]
 )
-

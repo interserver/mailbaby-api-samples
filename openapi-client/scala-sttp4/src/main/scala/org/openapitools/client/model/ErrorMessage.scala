@@ -22,4 +22,3 @@ case class ErrorMessage(
   /* A human-readable description of the error. */
   message: String
 )
-

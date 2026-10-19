@@ -17,9 +17,9 @@ import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
-import org.junit.Test;
-import org.junit.Before;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.ws.rs.core.Response;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
@@ -49,7 +49,7 @@ public class HistoryApiTest {
 
     private HistoryApi api;
 
-    @Before
+    @BeforeEach
     public void setup() {
         JacksonJsonProvider provider = new JacksonJsonProvider();
         List providers = new ArrayList();

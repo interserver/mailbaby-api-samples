@@ -39,7 +39,7 @@ export namespace DenyRuleRecord {
         Domain: 'domain',
         Email: 'email',
         Startswith: 'startswith',
-        Destination: 'destination'
+        Destination: 'destination',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

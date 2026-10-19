@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **rawMail**
 ```swift
-    open class func rawMail(sendMailRaw: SendMailRaw, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func rawMail(sendMailRaw: SendMailRaw, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse
 ```
 
 Send a pre-built RFC 822 message verbatim (preserves DKIM)
@@ -26,15 +26,11 @@ import OpenAPIClient
 let sendMailRaw = SendMailRaw(rawEmail: "rawEmail_example", id: 123) // SendMailRaw | 
 
 // Send a pre-built RFC 822 message verbatim (preserves DKIM)
-SendingAPI.rawMail(sendMailRaw: sendMailRaw) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SendingAPI.rawMail(sendMailRaw: sendMailRaw)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -61,7 +57,7 @@ Name | Type | Description  | Notes
 
 # **sendAdvMail**
 ```swift
-    open class func sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes? = nil, cc: EmailAddressesTypes? = nil, bcc: EmailAddressesTypes? = nil, attachments: [MailAttachment]? = nil, id: Int64? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendAdvMail(subject: String, body: String, from: EmailAddressTypes, to: EmailAddressesTypes, replyto: EmailAddressesTypes? = nil, cc: EmailAddressesTypes? = nil, bcc: EmailAddressesTypes? = nil, attachments: [MailAttachment]? = nil, id: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse
 ```
 
 Send email with multiple recipients, CC/BCC, attachments, named contacts
@@ -84,15 +80,11 @@ let attachments = [MailAttachment(filename: "filename_example", data: 123)] // [
 let id = 987 // Int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 // Send email with multiple recipients, CC/BCC, attachments, named contacts
-SendingAPI.sendAdvMail(subject: subject, body: body, from: from, to: to, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SendingAPI.sendAdvMail(subject: subject, body: body, from: from, to: to, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -127,7 +119,7 @@ Name | Type | Description  | Notes
 
 # **sendMail**
 ```swift
-    open class func sendMail(to: SendMailTo, from: String, subject: String, body: String, id: Int64? = nil, completion: @escaping (_ data: GenericResponse?, _ error: Error?) -> Void)
+    open class func sendMail(to: SendMailTo, from: String, subject: String, body: String, id: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GenericResponse
 ```
 
 Send a simple email (single recipient, plain or HTML)
@@ -146,15 +138,11 @@ let body = "body_example" // String | The email body.  If the string contains an
 let id = 987 // Int64 | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
 // Send a simple email (single recipient, plain or HTML)
-SendingAPI.sendMail(to: to, from: from, subject: subject, body: body, id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SendingAPI.sendMail(to: to, from: from, subject: subject, body: body, id: id)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

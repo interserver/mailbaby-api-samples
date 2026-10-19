@@ -36,11 +36,11 @@ class TestDenyRuleRecord(unittest.TestCase):
         model = DenyRuleRecord()
         if include_optional:
             return DenyRuleRecord(
-                user = 'mb20682',
                 type = 'email',
                 data = 'domeinwo@server.guesshost.net',
                 id = '41124',
-                created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                user = 'mb20682'
             )
         else:
             return DenyRuleRecord(

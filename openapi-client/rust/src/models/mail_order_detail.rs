@@ -23,12 +23,12 @@ pub struct MailOrderDetail {
     /// The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
     #[serde(rename = "username")]
     pub username: String,
-    /// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
-    #[serde(rename = "comment", skip_serializing_if = "Option::is_none")]
-    pub comment: Option<String>,
     /// The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
     #[serde(rename = "password")]
     pub password: String,
+    /// Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
+    #[serde(rename = "comment", skip_serializing_if = "Option::is_none")]
+    pub comment: Option<String>,
 }
 
 impl MailOrderDetail {
@@ -38,8 +38,8 @@ impl MailOrderDetail {
             id,
             status,
             username,
-            comment: None,
             password,
+            comment: None,
         }
     }
 }

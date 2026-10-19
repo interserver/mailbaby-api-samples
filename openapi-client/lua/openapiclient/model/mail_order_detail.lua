@@ -19,13 +19,13 @@ local function cast_mail_order_detail(t)
 	return setmetatable(t, mail_order_detail_mt)
 end
 
-local function new_mail_order_detail(id, status, username, comment, password)
+local function new_mail_order_detail(id, status, username, password, comment)
 	return cast_mail_order_detail({
 		["id"] = id;
 		["status"] = status;
 		["username"] = username;
-		["comment"] = comment;
 		["password"] = password;
+		["comment"] = comment;
 	})
 end
 

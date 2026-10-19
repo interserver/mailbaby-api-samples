@@ -158,29 +158,29 @@ class MailOrderDetail {
 }
 
 /// The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
-class MailOrderDetailStatusEnum {
-  /// Instantiate a new enum with the provided [value].
-  const MailOrderDetailStatusEnum._(this.value);
+enum MailOrderDetailStatusEnum {
+  active._(r'active'),
+  canceled._(r'canceled'),
+  ;
+
+  /// Instantiate a new enum with the provided value.
+  const MailOrderDetailStatusEnum._(this._value);
 
   /// The underlying value of this enum member.
-  final String value;
+  final String _value;
 
   @override
-  String toString() => value;
+  String toString() => _value;
 
-  String toJson() => value;
+  /// Encodes this enum as a value suitable for JSON.
+  String toJson() => _value;
 
-  static const active = MailOrderDetailStatusEnum._(r'active');
-  static const canceled = MailOrderDetailStatusEnum._(r'canceled');
-
-  /// List of all possible values in this [enum][MailOrderDetailStatusEnum].
-  static const values = <MailOrderDetailStatusEnum>[
-    active,
-    canceled,
-  ];
-
+  /// Returns the instance of [MailOrderDetailStatusEnum] that was successfully decoded
+  /// from the passed [value] on success, null otherwise.
   static MailOrderDetailStatusEnum? fromJson(dynamic value) => MailOrderDetailStatusEnumTypeTransformer().decode(value);
 
+  /// Returns a [List] containing instances of [MailOrderDetailStatusEnum]
+  /// that were successfully decoded from the passed [JSON][json].
   static List<MailOrderDetailStatusEnum> listFromJson(dynamic json, {bool growable = false,}) {
     final result = <MailOrderDetailStatusEnum>[];
     if (json is List && json.isNotEmpty) {
@@ -202,9 +202,10 @@ class MailOrderDetailStatusEnumTypeTransformer {
 
   const MailOrderDetailStatusEnumTypeTransformer._();
 
-  String encode(MailOrderDetailStatusEnum data) => data.value;
+  String encode(MailOrderDetailStatusEnum data) => data._value;
 
-  /// Decodes a [dynamic value][data] to a MailOrderDetailStatusEnum.
+  /// Returns the instance of [MailOrderDetailStatusEnum] that was successfully decoded
+  /// from the passed [data] value on success, null otherwise.
   ///
   /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
   /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
@@ -213,6 +214,9 @@ class MailOrderDetailStatusEnumTypeTransformer {
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
   MailOrderDetailStatusEnum? decode(dynamic data, {bool allowNull = true}) {
+    if (data is MailOrderDetailStatusEnum) {
+      return data;
+    }
     if (data != null) {
       switch (data) {
         case r'active': return MailOrderDetailStatusEnum.active;
@@ -226,7 +230,7 @@ class MailOrderDetailStatusEnumTypeTransformer {
     return null;
   }
 
-  /// Singleton [MailOrderDetailStatusEnumTypeTransformer] instance.
+  /// The singleton instance of this transformer.
   static MailOrderDetailStatusEnumTypeTransformer? _instance;
 }
 

@@ -29,26 +29,18 @@ import {
 export interface MailLog {
     /**
      * Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
-     * @type {number}
-     * @memberof MailLog
      */
     total: number;
     /**
      * The `skip` value used for this page (echoed from the request).
-     * @type {number}
-     * @memberof MailLog
      */
     skip: number;
     /**
      * The `limit` value used for this page (echoed from the request).
-     * @type {number}
-     * @memberof MailLog
      */
     limit: number;
     /**
      * 
-     * @type {Array<MailLogEntry>}
-     * @memberof MailLog
      */
     emails: Array<MailLogEntry>;
 }

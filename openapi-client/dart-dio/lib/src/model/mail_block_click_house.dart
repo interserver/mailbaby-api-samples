@@ -177,3 +177,4 @@ class _$MailBlockClickHouseSerializer implements PrimitiveSerializer<MailBlockCl
   }
 }
 
+

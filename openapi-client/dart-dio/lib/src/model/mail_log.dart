@@ -157,3 +157,4 @@ class _$MailLogSerializer implements PrimitiveSerializer<MailLog> {
   }
 }
 
+

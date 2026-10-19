@@ -14,9 +14,6 @@ use serde::{Deserialize, Serialize};
 /// DenyRuleRecord : A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DenyRuleRecord {
-    /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<String>,
     /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
     #[serde(rename = "type")]
     pub r#type: Type,
@@ -29,17 +26,20 @@ pub struct DenyRuleRecord {
     /// The timestamp when the rule was created.
     #[serde(rename = "created")]
     pub created: chrono::DateTime<chrono::FixedOffset>,
+    /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<String>,
 }
 
 impl DenyRuleRecord {
     /// A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
     pub fn new(r#type: Type, data: String, id: String, created: chrono::DateTime<chrono::FixedOffset>) -> DenyRuleRecord {
         DenyRuleRecord {
-            user: None,
             r#type,
             data,
             id,
             created,
+            user: None,
         }
     }
 }

@@ -25,7 +25,7 @@ class SendingApi {
   /// Parameters:
   ///
   /// * [SendMailRaw] sendMailRaw (required):
-  Future<Response> rawMailWithHttpInfo(SendMailRaw sendMailRaw,) async {
+  Future<Response> rawMailWithHttpInfo(SendMailRaw sendMailRaw, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/rawsend';
 
@@ -47,6 +47,7 @@ class SendingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -57,8 +58,8 @@ class SendingApi {
   /// Parameters:
   ///
   /// * [SendMailRaw] sendMailRaw (required):
-  Future<GenericResponse?> rawMail(SendMailRaw sendMailRaw,) async {
-    final response = await rawMailWithHttpInfo(sendMailRaw,);
+  Future<GenericResponse?> rawMail(SendMailRaw sendMailRaw, { Future<void>? abortTrigger, }) async {
+    final response = await rawMailWithHttpInfo(sendMailRaw, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -106,7 +107,7 @@ class SendingApi {
   ///
   /// * [int] id:
   ///   Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-  Future<Response> sendAdvMailWithHttpInfo(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, { EmailAddressesTypes? replyto, EmailAddressesTypes? cc, EmailAddressesTypes? bcc, List<MailAttachment>? attachments, int? id, }) async {
+  Future<Response> sendAdvMailWithHttpInfo(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, { EmailAddressesTypes? replyto, EmailAddressesTypes? cc, EmailAddressesTypes? bcc, List<MailAttachment>? attachments, int? id, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/advsend';
 
@@ -155,6 +156,7 @@ class SendingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -190,8 +192,8 @@ class SendingApi {
   ///
   /// * [int] id:
   ///   Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-  Future<GenericResponse?> sendAdvMail(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, { EmailAddressesTypes? replyto, EmailAddressesTypes? cc, EmailAddressesTypes? bcc, List<MailAttachment>? attachments, int? id, }) async {
-    final response = await sendAdvMailWithHttpInfo(subject, body, from, to,  replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id, );
+  Future<GenericResponse?> sendAdvMail(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, { EmailAddressesTypes? replyto, EmailAddressesTypes? cc, EmailAddressesTypes? bcc, List<MailAttachment>? attachments, int? id, Future<void>? abortTrigger, }) async {
+    final response = await sendAdvMailWithHttpInfo(subject, body, from, to, replyto: replyto, cc: cc, bcc: bcc, attachments: attachments, id: id, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -226,7 +228,7 @@ class SendingApi {
   ///
   /// * [int] id:
   ///   Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-  Future<Response> sendMailWithHttpInfo(SendMailTo to, String from, String subject, String body, { int? id, }) async {
+  Future<Response> sendMailWithHttpInfo(SendMailTo to, String from, String subject, String body, { int? id, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/send';
 
@@ -263,6 +265,7 @@ class SendingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -285,8 +288,8 @@ class SendingApi {
   ///
   /// * [int] id:
   ///   Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-  Future<GenericResponse?> sendMail(SendMailTo to, String from, String subject, String body, { int? id, }) async {
-    final response = await sendMailWithHttpInfo(to, from, subject, body,  id: id, );
+  Future<GenericResponse?> sendMail(SendMailTo to, String from, String subject, String body, { int? id, Future<void>? abortTrigger, }) async {
+    final response = await sendMailWithHttpInfo(to, from, subject, body, id: id, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

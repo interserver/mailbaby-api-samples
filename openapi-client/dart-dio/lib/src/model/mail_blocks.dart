@@ -142,3 +142,4 @@ class _$MailBlocksSerializer implements PrimitiveSerializer<MailBlocks> {
   }
 }
 
+

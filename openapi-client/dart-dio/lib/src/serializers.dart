@@ -69,16 +69,32 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MailBlockRspamd)]),
+        () => ListBuilder<MailBlockRspamd>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(DenyRuleRecord)]),
         () => ListBuilder<DenyRuleRecord>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MailBlockClickHouse)]),
+        () => ListBuilder<MailBlockClickHouse>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(MailAttachment)]),
         () => ListBuilder<MailAttachment>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(int)]),
+        () => MapBuilder<String, int>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(MailOrder)]),
         () => ListBuilder<MailOrder>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(MailLogEntry)]),
+        () => ListBuilder<MailLogEntry>(),
       )
       ..add(DenyRuleNew.serializer)
       ..add(MailOrder.serializer)

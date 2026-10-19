@@ -59,3 +59,4 @@ class _$EmailAddressNamesSerializer implements PrimitiveSerializer<EmailAddressN
   }
 }
 
+

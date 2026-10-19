@@ -22,4 +22,3 @@ case class MailBlockRspamd(
   /* The suspicious subject pattern that triggered the block. */
   subject: String
 )
-

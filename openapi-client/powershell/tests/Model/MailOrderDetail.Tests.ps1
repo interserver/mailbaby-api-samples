@@ -10,7 +10,7 @@ Describe -tag 'PSOpenAPITools' -name 'MailOrderDetail' {
     Context 'MailOrderDetail' {
         It 'Initialize-MailOrderDetail' {
             # a simple test to create an object
-            #$NewObject = Initialize-MailOrderDetail -Id "TEST_VALUE" -Status "TEST_VALUE" -Username "TEST_VALUE" -Comment "TEST_VALUE" -Password "TEST_VALUE"
+            #$NewObject = Initialize-MailOrderDetail -Id "TEST_VALUE" -Status "TEST_VALUE" -Username "TEST_VALUE" -Password "TEST_VALUE" -Comment "TEST_VALUE"
             #$NewObject | Should -BeOfType MailOrderDetail
             #$NewObject.property | Should -Be 0
         }

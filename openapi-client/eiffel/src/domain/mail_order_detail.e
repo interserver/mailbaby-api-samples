@@ -25,10 +25,10 @@ feature --Access
       -- The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
     username: detachable STRING_32
       -- The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
-    comment: detachable STRING_32
-      -- Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
     password: detachable STRING_32
       -- The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
+    comment: detachable STRING_32
+      -- Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
 
 feature -- Change Element
 
@@ -56,20 +56,20 @@ feature -- Change Element
         username_set: username = a_name
       end
 
-    set_comment (a_name: like comment)
-        -- Set 'comment' with 'a_name'.
-      do
-        comment := a_name
-      ensure
-        comment_set: comment = a_name
-      end
-
     set_password (a_name: like password)
         -- Set 'password' with 'a_name'.
       do
         password := a_name
       ensure
         password_set: password = a_name
+      end
+
+    set_comment (a_name: like comment)
+        -- Set 'comment' with 'a_name'.
+      do
+        comment := a_name
+      ensure
+        comment_set: comment = a_name
       end
 
 
@@ -95,14 +95,14 @@ feature -- Change Element
           Result.append (l_username.out)
           Result.append ("%N")
         end
-        if attached comment as l_comment then
-          Result.append ("%Ncomment:")
-          Result.append (l_comment.out)
-          Result.append ("%N")
-        end
         if attached password as l_password then
           Result.append ("%Npassword:")
           Result.append (l_password.out)
+          Result.append ("%N")
+        end
+        if attached comment as l_comment then
+          Result.append ("%Ncomment:")
+          Result.append (l_comment.out)
           Result.append ("%N")
         end
       end

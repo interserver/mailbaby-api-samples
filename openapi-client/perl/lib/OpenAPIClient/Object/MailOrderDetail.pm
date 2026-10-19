@@ -240,17 +240,17 @@ __PACKAGE__->method_documentation({
         format => '',
         read_only => '',
             },
-    'comment' => {
-        datatype => 'string',
-        base_name => 'comment',
-        description => 'Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.',
-        format => '',
-        read_only => '',
-            },
     'password' => {
         datatype => 'string',
         base_name => 'password',
         description => 'The current SMTP AUTH password for this mail order.  Use with the &#x60;username&#x60; field to authenticate against &#x60;relay.mailbaby.net:25&#x60;.',
+        format => '',
+        read_only => '',
+            },
+    'comment' => {
+        datatype => 'string',
+        base_name => 'comment',
+        description => 'Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.',
         format => '',
         read_only => '',
             },
@@ -260,16 +260,16 @@ __PACKAGE__->openapi_types( {
     'id' => 'int',
     'status' => 'string',
     'username' => 'string',
-    'comment' => 'string',
-    'password' => 'string'
+    'password' => 'string',
+    'comment' => 'string'
 } );
 
 __PACKAGE__->attribute_map( {
     'id' => 'id',
     'status' => 'status',
     'username' => 'username',
-    'comment' => 'comment',
-    'password' => 'password'
+    'password' => 'password',
+    'comment' => 'comment'
 } );
 
 __PACKAGE__->mk_accessors(keys %{__PACKAGE__->attribute_map});

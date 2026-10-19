@@ -30,7 +30,7 @@ class EmailAddressTypes(BaseModel):
     A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
     """
     # data type: str
-    oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="A single email address or RFC 822 named-address string. Example: `\"user@domain.com\"` or `\"Joe <user@domain.com>\"`.")
+    oneof_schema_1_validator: Optional[StrictStr] = Field(default=None, description="A single email address or RFC 822 named-address string. Example: `\"user@domain.com\"` or `\"Joe <user@domain.com>\"`.", json_schema_extra={"examples": ["Joe <user@domain.com>"]})
     # data type: EmailAddressName
     oneof_schema_2_validator: Optional[EmailAddressName] = None
     actual_instance: Optional[Union[EmailAddressName, str]] = None

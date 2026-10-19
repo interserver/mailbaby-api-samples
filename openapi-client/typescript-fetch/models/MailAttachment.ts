@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface MailAttachment {
     /**
      * The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
-     * @type {string}
-     * @memberof MailAttachment
      */
     filename: string;
     /**
      * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
-     * @type {string}
-     * @memberof MailAttachment
      */
     data: string;
 }

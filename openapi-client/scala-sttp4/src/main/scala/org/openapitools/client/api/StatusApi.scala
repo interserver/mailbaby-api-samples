@@ -28,7 +28,7 @@ class StatusApi(baseUrl: String) {
    *   code 200 : String (Server is up and running)
    *   code 0 :  (Something is wrong)
    */
-  def pingServer(): Request[Either[ResponseException[String, Exception], String]] =
+  def pingServer(): sttp.client4.Request[Either[ResponseException[String], String]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/ping")
       .contentType("application/json")

@@ -23,12 +23,12 @@ feature --Access
       -- The date the block event was recorded.
     var_from: detachable STRING_32
       -- The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
-    message_id: detachable STRING_32
-      -- The `Message-ID` header of the blocked message, or `null` if not present.
     subject: detachable STRING_32
       -- The `Subject` header of the blocked message.
     to: detachable STRING_32
       -- The serialized list of recipients of the blocked message.
+    message_id: detachable STRING_32
+      -- The `Message-ID` header of the blocked message, or `null` if not present.
 
 feature -- Change Element
 
@@ -48,14 +48,6 @@ feature -- Change Element
         var_from_set: var_from = a_name
       end
 
-    set_message_id (a_name: like message_id)
-        -- Set 'message_id' with 'a_name'.
-      do
-        message_id := a_name
-      ensure
-        message_id_set: message_id = a_name
-      end
-
     set_subject (a_name: like subject)
         -- Set 'subject' with 'a_name'.
       do
@@ -70,6 +62,14 @@ feature -- Change Element
         to := a_name
       ensure
         to_set: to = a_name
+      end
+
+    set_message_id (a_name: like message_id)
+        -- Set 'message_id' with 'a_name'.
+      do
+        message_id := a_name
+      ensure
+        message_id_set: message_id = a_name
       end
 
 
@@ -90,11 +90,6 @@ feature -- Change Element
           Result.append (l_var_from.out)
           Result.append ("%N")
         end
-        if attached message_id as l_message_id then
-          Result.append ("%Nmessage_id:")
-          Result.append (l_message_id.out)
-          Result.append ("%N")
-        end
         if attached subject as l_subject then
           Result.append ("%Nsubject:")
           Result.append (l_subject.out)
@@ -103,6 +98,11 @@ feature -- Change Element
         if attached to as l_to then
           Result.append ("%Nto:")
           Result.append (l_to.out)
+          Result.append ("%N")
+        end
+        if attached message_id as l_message_id then
+          Result.append ("%Nmessage_id:")
+          Result.append (l_message_id.out)
           Result.append ("%N")
         end
       end

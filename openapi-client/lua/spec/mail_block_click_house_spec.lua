@@ -30,13 +30,6 @@ describe("mail_block_click_house", function()
     end)
   end)
 
-  -- unit tests for the property 'message_id'
-  describe("property message_id test", function()
-    it("should work", function()
-      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
-    end)
-  end)
-
   -- unit tests for the property 'subject'
   describe("property subject test", function()
     it("should work", function()
@@ -46,6 +39,13 @@ describe("mail_block_click_house", function()
 
   -- unit tests for the property 'to'
   describe("property to test", function()
+    it("should work", function()
+      -- TODO assertion here: http://olivinelabs.com/busted/#asserts
+    end)
+  end)
+
+  -- unit tests for the property 'message_id'
+  describe("property message_id test", function()
     it("should work", function()
       -- TODO assertion here: http://olivinelabs.com/busted/#asserts
     end)

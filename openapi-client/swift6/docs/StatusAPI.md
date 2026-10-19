@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **pingServer**
 ```swift
-    open class func pingServer(completion: @escaping (_ data: String?, _ error: Error?) -> Void)
+    open class func pingServer(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> String
 ```
 
 Health check — verify the API is reachable
@@ -23,15 +23,11 @@ import OpenAPIClient
 
 
 // Health check — verify the API is reachable
-StatusAPI.pingServer() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await StatusAPI.pingServer()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

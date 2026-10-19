@@ -809,11 +809,11 @@ class HistoryApi:
             
         if start_date is not None:
             
-            _query_params.append(('startDate', start_date))
+            _query_params.extend(self.api_client.explode_query_object('startDate', start_date))
             
         if end_date is not None:
             
-            _query_params.append(('endDate', end_date))
+            _query_params.extend(self.api_client.explode_query_object('endDate', end_date))
             
         if sort is not None:
             

@@ -30,10 +30,10 @@ class SendMail(BaseModel):
     Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
     """ # noqa: E501
     to: SendMailTo
-    var_from: StrictStr = Field(description="The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.", alias="from")
-    subject: StrictStr = Field(description="The subject line of the email.")
-    body: StrictStr = Field(description="The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.")
-    id: Optional[StrictInt] = Field(default=None, description="Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.")
+    var_from: StrictStr = Field(description="The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.", alias="from", json_schema_extra={"examples": ["janedoe@company.com"]})
+    subject: StrictStr = Field(description="The subject line of the email.", json_schema_extra={"examples": ["Attention Client"]})
+    body: StrictStr = Field(description="The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.", json_schema_extra={"examples": ["This is an email to inform you that something noteworthy happened."]})
+    id: Optional[StrictInt] = Field(default=None, description="Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.", json_schema_extra={"examples": [2604]})
     __properties: ClassVar[List[str]] = ["to", "from", "subject", "body", "id"]
 
     model_config = ConfigDict(

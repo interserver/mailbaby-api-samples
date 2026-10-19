@@ -16,6 +16,31 @@ package org.openapitools.client.model
    * SendMailTo
    * The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
    */
-case class SendMailTo(
-)
+sealed trait SendMailTo
 
+object SendMailTo {
+
+  import org.json4s._
+
+  // oneOf without discriminator - json4s custom serializer
+  implicit object SendMailToSerializer extends Serializer[SendMailTo] {
+    def deserialize(implicit format: Formats): PartialFunction[(TypeInfo, JValue), SendMailTo] = {
+      case (TypeInfo(clazz, _), json) if classOf[SendMailTo].isAssignableFrom(clazz) =>
+        // Try each oneOf type in order
+        Extraction.extract[Seq[String]](json) match {
+          case x: Seq[String] => return x
+          case _ => // continue
+        }
+        Extraction.extract[String](json) match {
+          case x: String => return x
+          case _ => // continue
+        }
+        throw new MappingException(s"Can't convert $json to SendMailTo")
+    }
+
+    def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
+      case x: Seq[String] => Extraction.decompose(x)
+      case x: String => Extraction.decompose(x)
+    }
+  }
+}

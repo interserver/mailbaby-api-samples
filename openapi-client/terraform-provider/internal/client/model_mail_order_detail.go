@@ -6,7 +6,7 @@ package client
 type MailOrderDetail struct {
 	Id int32 `json:"id"`
 	Status string `json:"status"`
-	Username string `json:"username" validate:"regexp=^mb\\\\d+$"`
-	Comment string `json:"comment,omitempty"`
+	Username string `json:"username" validate:"regexp=^mb\\d+$"`
 	Password string `json:"password"`
+	Comment string `json:"comment,omitempty"`
 }

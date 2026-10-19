@@ -16,6 +16,31 @@ package org.openapitools.client.model
    * DateOrTimestamp
    * A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).
    */
-case class DateOrTimestamp(
-)
+sealed trait DateOrTimestamp
 
+object DateOrTimestamp {
+
+  import org.json4s._
+
+  // oneOf without discriminator - json4s custom serializer
+  implicit object DateOrTimestampSerializer extends Serializer[DateOrTimestamp] {
+    def deserialize(implicit format: Formats): PartialFunction[(TypeInfo, JValue), DateOrTimestamp] = {
+      case (TypeInfo(clazz, _), json) if classOf[DateOrTimestamp].isAssignableFrom(clazz) =>
+        // Try each oneOf type in order
+        Extraction.extract[Long](json) match {
+          case x: Long => return x
+          case _ => // continue
+        }
+        Extraction.extract[String](json) match {
+          case x: String => return x
+          case _ => // continue
+        }
+        throw new MappingException(s"Can't convert $json to DateOrTimestamp")
+    }
+
+    def serialize(implicit format: Formats): PartialFunction[Any, JValue] = {
+      case x: Long => Extraction.decompose(x)
+      case x: String => Extraction.decompose(x)
+    }
+  }
+}

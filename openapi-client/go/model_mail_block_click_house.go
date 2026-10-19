@@ -26,12 +26,12 @@ type MailBlockClickHouse struct {
 	Date string `json:"date"`
 	// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
 	From string `json:"from"`
-	// The `Message-ID` header of the blocked message, or `null` if not present.
-	MessageId NullableString `json:"messageId,omitempty"`
 	// The `Subject` header of the blocked message.
 	Subject string `json:"subject"`
 	// The serialized list of recipients of the blocked message.
 	To string `json:"to"`
+	// The `Message-ID` header of the blocked message, or `null` if not present.
+	MessageId NullableString `json:"messageId,omitempty"`
 }
 
 type _MailBlockClickHouse MailBlockClickHouse
@@ -105,48 +105,6 @@ func (o *MailBlockClickHouse) SetFrom(v string) {
 	o.From = v
 }
 
-// GetMessageId returns the MessageId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *MailBlockClickHouse) GetMessageId() string {
-	if o == nil || IsNil(o.MessageId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.MessageId.Get()
-}
-
-// GetMessageIdOk returns a tuple with the MessageId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *MailBlockClickHouse) GetMessageIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.MessageId.Get(), o.MessageId.IsSet()
-}
-
-// HasMessageId returns a boolean if a field has been set.
-func (o *MailBlockClickHouse) HasMessageId() bool {
-	if o != nil && o.MessageId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetMessageId gets a reference to the given NullableString and assigns it to the MessageId field.
-func (o *MailBlockClickHouse) SetMessageId(v string) {
-	o.MessageId.Set(&v)
-}
-// SetMessageIdNil sets the value for MessageId to be an explicit nil
-func (o *MailBlockClickHouse) SetMessageIdNil() {
-	o.MessageId.Set(nil)
-}
-
-// UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
-func (o *MailBlockClickHouse) UnsetMessageId() {
-	o.MessageId.Unset()
-}
-
 // GetSubject returns the Subject field value
 func (o *MailBlockClickHouse) GetSubject() string {
 	if o == nil {
@@ -195,6 +153,48 @@ func (o *MailBlockClickHouse) SetTo(v string) {
 	o.To = v
 }
 
+// GetMessageId returns the MessageId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MailBlockClickHouse) GetMessageId() string {
+	if o == nil || IsNil(o.MessageId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.MessageId.Get()
+}
+
+// GetMessageIdOk returns a tuple with the MessageId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MailBlockClickHouse) GetMessageIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.MessageId.Get(), o.MessageId.IsSet()
+}
+
+// HasMessageId returns a boolean if a field has been set.
+func (o *MailBlockClickHouse) HasMessageId() bool {
+	if o != nil && o.MessageId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetMessageId gets a reference to the given NullableString and assigns it to the MessageId field.
+func (o *MailBlockClickHouse) SetMessageId(v string) {
+	o.MessageId.Set(&v)
+}
+// SetMessageIdNil sets the value for MessageId to be an explicit nil
+func (o *MailBlockClickHouse) SetMessageIdNil() {
+	o.MessageId.Set(nil)
+}
+
+// UnsetMessageId ensures that no value is present for MessageId, not even an explicit nil
+func (o *MailBlockClickHouse) UnsetMessageId() {
+	o.MessageId.Unset()
+}
+
 func (o MailBlockClickHouse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -207,11 +207,11 @@ func (o MailBlockClickHouse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["date"] = o.Date
 	toSerialize["from"] = o.From
+	toSerialize["subject"] = o.Subject
+	toSerialize["to"] = o.To
 	if o.MessageId.IsSet() {
 		toSerialize["messageId"] = o.MessageId.Get()
 	}
-	toSerialize["subject"] = o.Subject
-	toSerialize["to"] = o.To
 	return toSerialize, nil
 }
 

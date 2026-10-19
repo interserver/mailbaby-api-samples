@@ -29,12 +29,12 @@ class MailBlockClickHouse(BaseModel):
     """
     A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
     """ # noqa: E501
-    var_date: date = Field(description="The date the block event was recorded.", alias="date")
-    var_from: StrictStr = Field(description="The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.", alias="from")
-    message_id: Optional[StrictStr] = Field(default=None, description="The `Message-ID` header of the blocked message, or `null` if not present.", alias="messageId")
-    subject: StrictStr = Field(description="The `Subject` header of the blocked message.")
-    to: StrictStr = Field(description="The serialized list of recipients of the blocked message.")
-    __properties: ClassVar[List[str]] = ["date", "from", "messageId", "subject", "to"]
+    var_date: date = Field(description="The date the block event was recorded.", alias="date", json_schema_extra={"examples": ["2023-08-07"]})
+    var_from: StrictStr = Field(description="The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.", alias="from", json_schema_extra={"examples": ["user@domain.com"]})
+    subject: StrictStr = Field(description="The `Subject` header of the blocked message.", json_schema_extra={"examples": ["Test Email"]})
+    to: StrictStr = Field(description="The serialized list of recipients of the blocked message.", json_schema_extra={"examples": ["['client@site.com']"]})
+    message_id: Optional[StrictStr] = Field(default=None, description="The `Message-ID` header of the blocked message, or `null` if not present.", alias="messageId", json_schema_extra={"examples": ["pFaRqFUEWkucjhTuIzYuoAgWU@domain.com"]})
+    __properties: ClassVar[List[str]] = ["date", "from", "subject", "to", "messageId"]
 
     model_config = ConfigDict(
         validate_by_name=True,
@@ -94,9 +94,9 @@ class MailBlockClickHouse(BaseModel):
         _obj = cls.model_validate({
             "date": obj.get("date"),
             "from": obj.get("from"),
-            "messageId": obj.get("messageId"),
             "subject": obj.get("subject"),
-            "to": obj.get("to")
+            "to": obj.get("to"),
+            "messageId": obj.get("messageId")
         })
         return _obj
 

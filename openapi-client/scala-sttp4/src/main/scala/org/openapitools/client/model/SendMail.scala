@@ -27,4 +27,3 @@ case class SendMail(
   /* Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. */
   id: Option[Long] = None
 )
-

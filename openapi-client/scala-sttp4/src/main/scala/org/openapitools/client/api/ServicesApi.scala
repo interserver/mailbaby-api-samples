@@ -38,7 +38,7 @@ class ServicesApi(baseUrl: String) {
    * 
    * @param id The numeric ID of the mail order.
    */
-  def getMailOrderById(apiKeyHeader: String)(id: Long): Request[Either[ResponseException[String, Exception], MailOrderDetail]] =
+  def getMailOrderById(apiKeyHeader: String)(id: Long): sttp.client4.Request[Either[ResponseException[String], MailOrderDetail]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail/${id}")
       .contentType("application/json")
@@ -55,7 +55,7 @@ class ServicesApi(baseUrl: String) {
    * Available security schemes:
    *   apiKeyAuth (apiKey)
    */
-  def getMailOrders(apiKeyHeader: String)(): Request[Either[ResponseException[String, Exception], Seq[MailOrder]]] =
+  def getMailOrders(apiKeyHeader: String)(): sttp.client4.Request[Either[ResponseException[String], Seq[MailOrder]]] =
     basicRequest
       .method(Method.GET, uri"$baseUrl/mail")
       .contentType("application/json")

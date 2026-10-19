@@ -41,10 +41,10 @@ class MailOrderDetail : public oatpp::DTO {
 
   DTO_FIELD(oatpp::String, username);
 
-  DTO_FIELD(oatpp::String, comment);
-  DTO_FIELD(oatpp::Boolean, commentIsSet);
   DTO_FIELD(oatpp::String, password);
 
+  DTO_FIELD(oatpp::String, comment);
+  DTO_FIELD(oatpp::Boolean, commentIsSet);
 
 };
 

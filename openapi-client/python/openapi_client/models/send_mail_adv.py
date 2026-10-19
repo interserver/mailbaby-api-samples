@@ -31,15 +31,15 @@ class SendMailAdv(BaseModel):
     """
     Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.
     """ # noqa: E501
-    subject: StrictStr = Field(description="The subject line of the email.")
-    body: StrictStr = Field(description="The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.")
+    subject: StrictStr = Field(description="The subject line of the email.", json_schema_extra={"examples": ["Your Package has been Delivered!"]})
+    body: StrictStr = Field(description="The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.", json_schema_extra={"examples": ["The package you ordered on 2021-01-23 has been delivered."]})
     var_from: EmailAddressTypes = Field(description="The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.", alias="from")
     to: EmailAddressesTypes = Field(description="One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.")
     replyto: Optional[EmailAddressesTypes] = Field(default=None, description="Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.")
     cc: Optional[EmailAddressesTypes] = Field(default=None, description="Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.")
     bcc: Optional[EmailAddressesTypes] = Field(default=None, description="Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.")
     attachments: Optional[List[MailAttachment]] = Field(default=None, description="Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.")
-    id: Optional[StrictInt] = Field(default=None, description="Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.")
+    id: Optional[StrictInt] = Field(default=None, description="Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.", json_schema_extra={"examples": [5000]})
     __properties: ClassVar[List[str]] = ["subject", "body", "from", "to", "replyto", "cc", "bcc", "attachments", "id"]
 
     model_config = ConfigDict(
@@ -100,8 +100,7 @@ class SendMailAdv(BaseModel):
         _items = []
         if self.attachments:
             for _item_attachments in self.attachments:
-                if _item_attachments:
-                    _items.append(_item_attachments.to_dict())
+                _items.append(_item_attachments.to_dict() if _item_attachments is not None else None)
             _dict['attachments'] = _items
         return _dict
 

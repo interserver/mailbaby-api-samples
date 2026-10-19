@@ -10,8 +10,8 @@
 #' @field id The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. integer
 #' @field status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. character
 #' @field username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. character
-#' @field comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. character [optional]
 #' @field password The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`. character
+#' @field comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. character [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,8 +21,8 @@ MailOrderDetail <- R6::R6Class(
     `id` = NULL,
     `status` = NULL,
     `username` = NULL,
-    `comment` = NULL,
     `password` = NULL,
+    `comment` = NULL,
 
     #' @description
     #' Initialize a new MailOrderDetail class.
@@ -112,13 +112,13 @@ MailOrderDetail <- R6::R6Class(
         MailOrderDetailObject[["username"]] <-
           self$`username`
       }
-      if (!is.null(self$`comment`)) {
-        MailOrderDetailObject[["comment"]] <-
-          self$`comment`
-      }
       if (!is.null(self$`password`)) {
         MailOrderDetailObject[["password"]] <-
           self$`password`
+      }
+      if (!is.null(self$`comment`)) {
+        MailOrderDetailObject[["comment"]] <-
+          self$`comment`
       }
       return(MailOrderDetailObject)
     },
@@ -142,11 +142,11 @@ MailOrderDetail <- R6::R6Class(
       if (!is.null(this_object$`username`)) {
         self$`username` <- this_object$`username`
       }
-      if (!is.null(this_object$`comment`)) {
-        self$`comment` <- this_object$`comment`
-      }
       if (!is.null(this_object$`password`)) {
         self$`password` <- this_object$`password`
+      }
+      if (!is.null(this_object$`comment`)) {
+        self$`comment` <- this_object$`comment`
       }
       self
     },
@@ -175,8 +175,8 @@ MailOrderDetail <- R6::R6Class(
       }
       self$`status` <- this_object$`status`
       self$`username` <- this_object$`username`
-      self$`comment` <- this_object$`comment`
       self$`password` <- this_object$`password`
+      self$`comment` <- this_object$`comment`
       self
     },
 

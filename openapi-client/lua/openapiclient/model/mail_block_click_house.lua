@@ -19,13 +19,13 @@ local function cast_mail_block_click_house(t)
 	return setmetatable(t, mail_block_click_house_mt)
 end
 
-local function new_mail_block_click_house(date, from, message_id, subject, to)
+local function new_mail_block_click_house(date, from, subject, to, message_id)
 	return cast_mail_block_click_house({
 		["date"] = date;
 		["from"] = from;
-		["messageId"] = message_id;
 		["subject"] = subject;
 		["to"] = to;
+		["messageId"] = message_id;
 	})
 end
 

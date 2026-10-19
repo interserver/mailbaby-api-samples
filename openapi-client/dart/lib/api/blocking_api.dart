@@ -32,7 +32,7 @@ class BlockingApi {
   ///
   /// * [String] user:
   ///   Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-  Future<Response> addRuleWithHttpInfo(String type, String data, { String? user, }) async {
+  Future<Response> addRuleWithHttpInfo(String type, String data, { String? user, Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/rules';
 
@@ -63,6 +63,7 @@ class BlockingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -80,8 +81,8 @@ class BlockingApi {
   ///
   /// * [String] user:
   ///   Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-  Future<GenericResponse?> addRule(String type, String data, { String? user, }) async {
-    final response = await addRuleWithHttpInfo(type, data,  user: user, );
+  Future<GenericResponse?> addRule(String type, String data, { String? user, Future<void>? abortTrigger, }) async {
+    final response = await addRuleWithHttpInfo(type, data, user: user, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -105,7 +106,7 @@ class BlockingApi {
   ///
   /// * [int] ruleId (required):
   ///   The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
-  Future<Response> deleteRuleWithHttpInfo(int ruleId,) async {
+  Future<Response> deleteRuleWithHttpInfo(int ruleId, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/rules/{ruleId}'
       .replaceAll('{ruleId}', ruleId.toString());
@@ -128,6 +129,7 @@ class BlockingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -139,8 +141,8 @@ class BlockingApi {
   ///
   /// * [int] ruleId (required):
   ///   The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
-  Future<GenericResponse?> deleteRule(int ruleId,) async {
-    final response = await deleteRuleWithHttpInfo(ruleId,);
+  Future<GenericResponse?> deleteRule(int ruleId, { Future<void>? abortTrigger, }) async {
+    final response = await deleteRuleWithHttpInfo(ruleId, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -163,7 +165,7 @@ class BlockingApi {
   /// Parameters:
   ///
   /// * [EmailAddressParam] emailAddressParam (required):
-  Future<Response> delistBlockWithHttpInfo(EmailAddressParam emailAddressParam,) async {
+  Future<Response> delistBlockWithHttpInfo(EmailAddressParam emailAddressParam, { Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/blocks/delete';
 
@@ -185,6 +187,7 @@ class BlockingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
@@ -195,8 +198,8 @@ class BlockingApi {
   /// Parameters:
   ///
   /// * [EmailAddressParam] emailAddressParam (required):
-  Future<GenericResponse?> delistBlock(EmailAddressParam emailAddressParam,) async {
-    final response = await delistBlockWithHttpInfo(emailAddressParam,);
+  Future<GenericResponse?> delistBlock(EmailAddressParam emailAddressParam, { Future<void>? abortTrigger, }) async {
+    final response = await delistBlockWithHttpInfo(emailAddressParam, abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -215,7 +218,7 @@ class BlockingApi {
   /// **Use this to discover which addresses to delist.** The `from` value of any returned entry can be passed to `POST /mail/blocks/delete` (as the `email` field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. 
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getMailBlocksWithHttpInfo() async {
+  Future<Response> getMailBlocksWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/blocks';
 
@@ -237,14 +240,15 @@ class BlockingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// List addresses currently flagged by spam-filter block lists
   ///
   /// **Use this to discover which addresses to delist.** The `from` value of any returned entry can be passed to `POST /mail/blocks/delete` (as the `email` field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. 
-  Future<MailBlocks?> getMailBlocks() async {
-    final response = await getMailBlocksWithHttpInfo();
+  Future<MailBlocks?> getMailBlocks({ Future<void>? abortTrigger, }) async {
+    final response = await getMailBlocksWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -263,7 +267,7 @@ class BlockingApi {
   /// **Use this to inspect or pick a `ruleId` to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. 
   ///
   /// Note: This method returns the HTTP [Response].
-  Future<Response> getRulesWithHttpInfo() async {
+  Future<Response> getRulesWithHttpInfo({ Future<void>? abortTrigger, }) async {
     // ignore: prefer_const_declarations
     final path = r'/mail/rules';
 
@@ -285,14 +289,15 @@ class BlockingApi {
       headerParams,
       formParams,
       contentTypes.isEmpty ? null : contentTypes.first,
+      abortTrigger: abortTrigger,
     );
   }
 
   /// List custom deny rules (sender / domain / destination / prefix)
   ///
   /// **Use this to inspect or pick a `ruleId` to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. 
-  Future<List<DenyRuleRecord>?> getRules() async {
-    final response = await getRulesWithHttpInfo();
+  Future<List<DenyRuleRecord>?> getRules({ Future<void>? abortTrigger, }) async {
+    final response = await getRulesWithHttpInfo(abortTrigger: abortTrigger,);
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

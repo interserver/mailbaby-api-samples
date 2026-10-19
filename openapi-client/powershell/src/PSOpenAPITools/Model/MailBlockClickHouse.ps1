@@ -19,12 +19,12 @@ A block event record sourced from the ClickHouse analytics store.  Represents a 
 The date the block event was recorded.
 .PARAMETER VarFrom
 The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
-.PARAMETER MessageId
-The `Message-ID` header of the blocked message, or `null` if not present.
 .PARAMETER Subject
 The `Subject` header of the blocked message.
 .PARAMETER To
 The serialized list of recipients of the blocked message.
+.PARAMETER MessageId
+The `Message-ID` header of the blocked message, or `null` if not present.
 .OUTPUTS
 
 MailBlockClickHouse<PSCustomObject>
@@ -41,13 +41,13 @@ function Initialize-MailBlockClickHouse {
         ${VarFrom},
         [Parameter(Position = 2, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${MessageId},
+        ${Subject},
         [Parameter(Position = 3, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${Subject},
+        ${To},
         [Parameter(Position = 4, ValueFromPipelineByPropertyName = $true)]
         [String]
-        ${To}
+        ${MessageId}
     )
 
     Process {
@@ -74,9 +74,9 @@ function Initialize-MailBlockClickHouse {
         $PSO = [PSCustomObject]@{
             'date' = ${Date}
             'from' = ${VarFrom}
-            'messageId' = ${MessageId}
             'subject' = ${Subject}
             'to' = ${To}
+            'messageId' = ${MessageId}
         }
 
 
@@ -114,7 +114,7 @@ function ConvertFrom-JsonToMailBlockClickHouse {
         $JsonParameters = ConvertFrom-Json -InputObject $Json
 
         # check if Json contains properties not defined in MailBlockClickHouse
-        $AllProperties = ('date', 'from', 'messageId', 'subject', 'to')
+        $AllProperties = ('date', 'from', 'subject', 'to', 'messageId')
         foreach ($name in $JsonParameters.PsObject.Properties.Name) {
             if (!($AllProperties.Contains($name))) {
                 throw "Error! JSON key '$name' not found in the properties: $($AllProperties)"
@@ -158,9 +158,9 @@ function ConvertFrom-JsonToMailBlockClickHouse {
         $PSO = [PSCustomObject]@{
             'date' = ${Date}
             'from' = ${VarFrom}
-            'messageId' = ${MessageId}
             'subject' = ${Subject}
             'to' = ${To}
+            'messageId' = ${MessageId}
         }
 
         return $PSO

@@ -21,14 +21,10 @@ import { mapValues } from '../runtime';
 export interface ErrorMessage {
     /**
      * The HTTP-style status code associated with the error.
-     * @type {number}
-     * @memberof ErrorMessage
      */
     code: number;
     /**
      * A human-readable description of the error.
-     * @type {string}
-     * @memberof ErrorMessage
      */
     message: string;
 }

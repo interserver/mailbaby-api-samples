@@ -122,3 +122,4 @@ class _$GenericResponseSerializer implements PrimitiveSerializer<GenericResponse
   }
 }
 
+

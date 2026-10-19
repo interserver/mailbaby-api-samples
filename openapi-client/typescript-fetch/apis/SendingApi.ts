@@ -50,26 +50,71 @@ import {
 } from '../models/SendMailTo';
 
 export interface RawMailRequest {
+    /**
+     * 
+     */
     sendMailRaw: SendMailRaw;
 }
 
 export interface SendAdvMailRequest {
+    /**
+     * The subject line of the email.
+     */
     subject: string;
+    /**
+     * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+     */
     body: string;
+    /**
+     * The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+     */
     from: EmailAddressTypes;
+    /**
+     * One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+     */
     to: EmailAddressesTypes;
+    /**
+     * Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+     */
     replyto?: EmailAddressesTypes;
+    /**
+     * Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+     */
     cc?: EmailAddressesTypes;
+    /**
+     * Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+     */
     bcc?: EmailAddressesTypes;
+    /**
+     * Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+     */
     attachments?: Array<MailAttachment>;
+    /**
+     * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
+     */
     id?: number;
 }
 
 export interface SendMailRequest {
+    /**
+     * 
+     */
     to: SendMailTo;
+    /**
+     * The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+     */
     from: string;
+    /**
+     * The subject line of the email.
+     */
     subject: string;
+    /**
+     * The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+     */
     body: string;
+    /**
+     * Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
+     */
     id?: number;
 }
 
@@ -195,23 +240,23 @@ export class SendingApi extends runtime.BaseAPI {
         }
 
         if (requestParameters['from'] != null) {
-            formParams.append('from', new Blob([JSON.stringify(EmailAddressTypesToJSON(requestParameters['from']))], { type: "application/json", }));
+            formParams.append('from', new Blob([JSON.stringify(runtime.anyToJSON(requestParameters['from']))], { type: "application/json", }));
                     }
 
         if (requestParameters['to'] != null) {
-            formParams.append('to', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['to']))], { type: "application/json", }));
+            formParams.append('to', new Blob([JSON.stringify(runtime.anyToJSON(requestParameters['to']))], { type: "application/json", }));
                     }
 
         if (requestParameters['replyto'] != null) {
-            formParams.append('replyto', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['replyto']))], { type: "application/json", }));
+            formParams.append('replyto', new Blob([JSON.stringify(runtime.anyToJSON(requestParameters['replyto']))], { type: "application/json", }));
                     }
 
         if (requestParameters['cc'] != null) {
-            formParams.append('cc', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['cc']))], { type: "application/json", }));
+            formParams.append('cc', new Blob([JSON.stringify(runtime.anyToJSON(requestParameters['cc']))], { type: "application/json", }));
                     }
 
         if (requestParameters['bcc'] != null) {
-            formParams.append('bcc', new Blob([JSON.stringify(EmailAddressesTypesToJSON(requestParameters['bcc']))], { type: "application/json", }));
+            formParams.append('bcc', new Blob([JSON.stringify(runtime.anyToJSON(requestParameters['bcc']))], { type: "application/json", }));
                     }
 
         if (requestParameters['attachments'] != null) {

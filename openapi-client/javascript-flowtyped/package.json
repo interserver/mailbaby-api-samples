@@ -28,7 +28,7 @@
     "@babel/plugin-transform-flow-strip-types": "^7.0.0",
     "@babel/preset-flow": "^7.0.0",
     "babel-preset-react-app": "^10.1.0",
-    "flow-copy-source": "^1.2.1",
+    "flow-copy-source": "^2.0.9",
     "lodash": ">=4.17.19",
     "rimraf": "^2.6.2"
   }

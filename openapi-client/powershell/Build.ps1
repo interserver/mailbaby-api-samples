@@ -60,7 +60,7 @@ $Manifest = @{
     ModuleVersion = '0.1.2'
 
     RootModule = 'MailBabyPowershell.psm1'
-    Guid = '{62B2B670-62F8-4EC6-BC6C-F1098C2E5766}' # Has to be static, otherwise each new build will be considered different module
+    Guid = '{C79692B8-F3AF-4A2D-9A0B-1392288DE03F}' # Has to be static, otherwise each new build will be considered different module
 
     PowerShellVersion = '6.2'
 

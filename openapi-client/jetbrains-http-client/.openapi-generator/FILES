@@ -1,8 +1,0 @@
-.openapi-generator-ignore
-Apis/BlockingApi.http
-Apis/HistoryApi.http
-Apis/SendingApi.http
-Apis/ServicesApi.http
-Apis/StatusApi.http
-Apis/http-client.template.env.json
-README.md

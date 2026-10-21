@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailBabyAspnetFastendpoints", "src\MailBabyAspnetFastendpoints\MailBabyAspnetFastendpoints.csproj", "{FB672EC4-B5EB-4318-B67D-37DA7DE43CB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailBabyAspnetFastendpoints", "src\MailBabyAspnetFastendpoints\MailBabyAspnetFastendpoints.csproj", "{CFB91864-2FE6-493C-B48A-CF41AF8D103D}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
         Release|Any CPU = Release|Any CPU
     EndGlobalSection
     GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {FB672EC4-B5EB-4318-B67D-37DA7DE43CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {FB672EC4-B5EB-4318-B67D-37DA7DE43CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {FB672EC4-B5EB-4318-B67D-37DA7DE43CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {FB672EC4-B5EB-4318-B67D-37DA7DE43CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+        {CFB91864-2FE6-493C-B48A-CF41AF8D103D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {CFB91864-2FE6-493C-B48A-CF41AF8D103D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {CFB91864-2FE6-493C-B48A-CF41AF8D103D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {CFB91864-2FE6-493C-B48A-CF41AF8D103D}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
     GlobalSection(SolutionProperties) = preSolution
         HideSolutionNode = FALSE
     EndGlobalSection
     GlobalSection(ExtensibilityGlobals) = postSolution
-        SolutionGuid = {AA81B44E-5AE9-4827-B076-71E80BBC2744}
+        SolutionGuid = {F5C76DE3-6BA8-4A50-9DB5-B09E8605AC38}
     EndGlobalSection
 EndGlobal

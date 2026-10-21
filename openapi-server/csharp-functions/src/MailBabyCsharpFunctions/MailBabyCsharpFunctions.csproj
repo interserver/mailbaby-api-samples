@@ -10,7 +10,7 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
     <AssemblyName>MailBabyCsharpFunctions</AssemblyName>
     <PackageId>MailBabyCsharpFunctions</PackageId>
-    <UserSecretsId>9f4a7b0d-65ae-4d44-b81d-3c164663f678</UserSecretsId>
+    <UserSecretsId>1df2f063-4ca1-4b3a-b9d6-17271c367f46</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>

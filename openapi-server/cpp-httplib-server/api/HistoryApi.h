@@ -12,7 +12,6 @@
 #include <variant>
 
 // Project headers
-#include "models/DateOrTimestamp.h"
 #include "models/ErrorMessage.h"
 #include "models/MailLog.h"
 #include "models/MailStatsType.h"
@@ -61,8 +60,8 @@ public:
         std::optional<int> m_delivered; //Query Params (optional)
         std::optional<int> m_skip; //Query Params (optional)
         std::optional<int> m_limit; //Query Params (optional)
-        std::optional<models::DateOrTimestamp> m_startDate; //Query Params (optional)
-        std::optional<models::DateOrTimestamp> m_endDate; //Query Params (optional)
+        std::optional<std::string> m_startDate; //Query Params (optional)
+        std::optional<std::string> m_endDate; //Query Params (optional)
         std::optional<std::string> m_sort; //Query Params (optional)
         std::optional<std::string> m_dir; //Query Params (optional)
         std::optional<std::string> m_groupby; //Query Params (optional)

@@ -1,6 +1,5 @@
 package org.openapitools.vertxweb.server.api;
 
-import org.openapitools.vertxweb.server.model.DateOrTimestamp;
 import org.openapitools.vertxweb.server.model.ErrorMessage;
 import org.openapitools.vertxweb.server.model.MailLog;
 import org.openapitools.vertxweb.server.model.MailStatsType;
@@ -80,8 +79,8 @@ public class HistoryApiHandler {
         Integer delivered = requestParameters.queryParameter("delivered") != null ? requestParameters.queryParameter("delivered").getInteger() : null;
         Integer skip = requestParameters.queryParameter("skip") != null ? requestParameters.queryParameter("skip").getInteger() : 0;
         Integer limit = requestParameters.queryParameter("limit") != null ? requestParameters.queryParameter("limit").getInteger() : 100;
-        DateOrTimestamp startDate = requestParameters.queryParameter("startDate") != null ? DatabindCodec.mapper().convertValue(requestParameters.queryParameter("startDate").get(), new TypeReference<DateOrTimestamp>(){}) : null;
-        DateOrTimestamp endDate = requestParameters.queryParameter("endDate") != null ? DatabindCodec.mapper().convertValue(requestParameters.queryParameter("endDate").get(), new TypeReference<DateOrTimestamp>(){}) : null;
+        String startDate = requestParameters.queryParameter("startDate") != null ? requestParameters.queryParameter("startDate").getString() : null;
+        String endDate = requestParameters.queryParameter("endDate") != null ? requestParameters.queryParameter("endDate").getString() : null;
         String sort = requestParameters.queryParameter("sort") != null ? requestParameters.queryParameter("sort").getString() : "time";
         String dir = requestParameters.queryParameter("dir") != null ? requestParameters.queryParameter("dir").getString() : "desc";
         String groupby = requestParameters.queryParameter("groupby") != null ? requestParameters.queryParameter("groupby").getString() : "recipient";

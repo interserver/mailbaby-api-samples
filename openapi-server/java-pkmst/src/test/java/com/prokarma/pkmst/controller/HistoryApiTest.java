@@ -14,7 +14,6 @@
 package com.prokarma.pkmst.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.prokarma.pkmst.model.DateOrTimestamp;
 import com.prokarma.pkmst.model.ErrorMessage;
 import com.prokarma.pkmst.model.MailLog;
 import com.prokarma.pkmst.model.MailStatsType;
@@ -81,8 +80,8 @@ public class HistoryApiTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        DateOrTimestamp startDate = null;
-        DateOrTimestamp endDate = null;
+        String startDate = null;
+        String endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

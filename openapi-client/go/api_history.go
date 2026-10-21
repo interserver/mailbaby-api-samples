@@ -191,8 +191,8 @@ type ApiViewMailLogRequest struct {
 	delivered *int32
 	skip *int32
 	limit *int32
-	startDate *DateOrTimestamp
-	endDate *DateOrTimestamp
+	startDate *string
+	endDate *string
 	sort *string
 	dir *string
 	groupby *string
@@ -277,13 +277,13 @@ func (r ApiViewMailLogRequest) Limit(limit int32) ApiViewMailLogRequest {
 }
 
 // Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60; or &#x60;last monday&#x60;.  Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included.
-func (r ApiViewMailLogRequest) StartDate(startDate DateOrTimestamp) ApiViewMailLogRequest {
+func (r ApiViewMailLogRequest) StartDate(startDate string) ApiViewMailLogRequest {
 	r.startDate = &startDate
 	return r
 }
 
 // Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-31&#x60; or &#x60;yesterday&#x60;. Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included.
-func (r ApiViewMailLogRequest) EndDate(endDate DateOrTimestamp) ApiViewMailLogRequest {
+func (r ApiViewMailLogRequest) EndDate(endDate string) ApiViewMailLogRequest {
 	r.endDate = &endDate
 	return r
 }

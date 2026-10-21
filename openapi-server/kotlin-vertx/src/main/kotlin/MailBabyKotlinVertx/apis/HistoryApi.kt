@@ -1,6 +1,5 @@
 package MailBabyKotlinVertx.apis
 
-import MailBabyKotlinVertx.models.DateOrTimestamp
 import MailBabyKotlinVertx.models.ErrorMessage
 import MailBabyKotlinVertx.models.MailLog
 import MailBabyKotlinVertx.models.MailStatsType
@@ -25,7 +24,7 @@ interface HistoryApi  {
     suspend fun getStats(time:kotlin.String?,context:OperationRequest):Response<MailStatsType>
     /* viewMailLog
      * Query the mail delivery log (filterable, paginated) */
-    suspend fun viewMailLog(id:kotlin.Long?,origin:kotlin.String?,mx:kotlin.String?,from:kotlin.String?,to:kotlin.String?,subject:kotlin.String?,mailid:kotlin.String?,messageId:kotlin.String?,replyto:kotlin.String?,headerfrom:kotlin.String?,delivered:kotlin.Int?,skip:kotlin.Int?,limit:kotlin.Int?,startDate:DateOrTimestamp?,endDate:DateOrTimestamp?,sort:kotlin.String?,dir:kotlin.String?,groupby:kotlin.String?,context:OperationRequest):Response<MailLog>
+    suspend fun viewMailLog(id:kotlin.Long?,origin:kotlin.String?,mx:kotlin.String?,from:kotlin.String?,to:kotlin.String?,subject:kotlin.String?,mailid:kotlin.String?,messageId:kotlin.String?,replyto:kotlin.String?,headerfrom:kotlin.String?,delivered:kotlin.Int?,skip:kotlin.Int?,limit:kotlin.Int?,startDate:kotlin.String?,endDate:kotlin.String?,sort:kotlin.String?,dir:kotlin.String?,groupby:kotlin.String?,context:OperationRequest):Response<MailLog>
     companion object {
         const val address = "HistoryApi-service"
         suspend fun createRouterFactory(vertx: Vertx,path:String): io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory {

@@ -6,7 +6,6 @@ import org.openapitools.api.MailApiService;
 import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;
@@ -252,7 +251,7 @@ public class MailApi  {
         @io.swagger.annotations.ApiResponse(code = 400, message = "Bad request — one or more input parameters were missing or invalid.", response = ErrorMessage.class),
         
         @io.swagger.annotations.ApiResponse(code = 401, message = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", response = ErrorMessage.class) })
-    public Response viewMailLog( @QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @Size(min=18,max=19) @QueryParam("mailid") String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom,, allowableValues="0, 1" @QueryParam("delivered") Integer delivered, @Min(0) @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000) @DefaultValue("100") @QueryParam("limit") Integer limit, @QueryParam("startDate") DateOrTimestamp startDate, @QueryParam("endDate") DateOrTimestamp endDate,, allowableValues="time" @DefaultValue("time") @QueryParam("sort") String sort,, allowableValues="asc, desc" @DefaultValue("desc") @QueryParam("dir") String dir,, allowableValues="message, recipient" @DefaultValue("recipient") @QueryParam("groupby") String groupby,@Context SecurityContext securityContext)
+    public Response viewMailLog( @QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @Size(min=18,max=19) @QueryParam("mailid") String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom,, allowableValues="0, 1" @QueryParam("delivered") Integer delivered, @Min(0) @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000) @DefaultValue("100") @QueryParam("limit") Integer limit, @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate,, allowableValues="time" @DefaultValue("time") @QueryParam("sort") String sort,, allowableValues="asc, desc" @DefaultValue("desc") @QueryParam("dir") String dir,, allowableValues="message, recipient" @DefaultValue("recipient") @QueryParam("groupby") String groupby,@Context SecurityContext securityContext)
     throws NotFoundException {
         return service.viewMailLog(id,origin,mx,from,to,subject,mailid,messageId,replyto,headerfrom,delivered,skip,limit,startDate,endDate,sort,dir,groupby,securityContext);
     }

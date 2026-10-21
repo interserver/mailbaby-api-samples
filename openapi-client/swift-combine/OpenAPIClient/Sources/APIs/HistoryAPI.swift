@@ -171,7 +171,7 @@ open class HistoryAPI {
     /// - parameter dir: (query) Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. (optional, default to .desc)
     /// - parameter groupby: (query) Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to .recipient)
     /// - returns: AnyPublisher<MailLog, Error> 
-    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil, skip: Int? = nil, limit: Int? = nil, startDate: DateOrTimestamp? = nil, endDate: DateOrTimestamp? = nil, sort: ViewMailLogSort? = nil, dir: ViewMailLogDir? = nil, groupby: ViewMailLogGroupby? = nil) -> AnyPublisher<MailLog, Error> {
+    open func viewMailLog(id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: ViewMailLogDelivered? = nil, skip: Int? = nil, limit: Int? = nil, startDate: String? = nil, endDate: String? = nil, sort: ViewMailLogSort? = nil, dir: ViewMailLogDir? = nil, groupby: ViewMailLogGroupby? = nil) -> AnyPublisher<MailLog, Error> {
         Deferred {
             Result<URLRequest, Error> {
                 guard let baseURL = self.transport.baseURL ?? self.baseURL else {
@@ -194,8 +194,8 @@ open class HistoryAPI {
                 if let delivered = delivered { queryItems.append(URLQueryItem(name: "delivered", value: delivered.rawValue)) } 
                 if let skip = skip { queryItems.append(URLQueryItem(name: "skip", value: "\(skip)")) } 
                 if let limit = limit { queryItems.append(URLQueryItem(name: "limit", value: "\(limit)")) } 
-                if let startDate = startDate { queryItems.append(URLQueryItem(name: "startDate", value: String(data: try self.encoder.encode(startDate), encoding: .utf8) ?? "")) } 
-                if let endDate = endDate { queryItems.append(URLQueryItem(name: "endDate", value: String(data: try self.encoder.encode(endDate), encoding: .utf8) ?? "")) } 
+                if let startDate = startDate { queryItems.append(URLQueryItem(name: "startDate", value: startDate)) } 
+                if let endDate = endDate { queryItems.append(URLQueryItem(name: "endDate", value: endDate)) } 
                 if let sort = sort { queryItems.append(URLQueryItem(name: "sort", value: sort.rawValue)) } 
                 if let dir = dir { queryItems.append(URLQueryItem(name: "dir", value: dir.rawValue)) } 
                 if let groupby = groupby { queryItems.append(URLQueryItem(name: "groupby", value: groupby.rawValue)) } 

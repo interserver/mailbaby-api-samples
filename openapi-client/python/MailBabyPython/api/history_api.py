@@ -17,7 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictInt, StrictStr, field_validator
-from typing import Any, Optional
+from typing import Optional
 from typing_extensions import Annotated
 from MailBabyPython.models.mail_log import MailLog
 from MailBabyPython.models.mail_stats_type import MailStatsType
@@ -322,8 +322,8 @@ class HistoryApi:
         delivered: Annotated[Optional[StrictInt], Field(description="Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.")] = None,
         skip: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).")] = None,
         limit: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.")] = None,
-        start_date: Annotated[Optional[Any], Field(description="Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")] = None,
-        end_date: Annotated[Optional[Any], Field(description="Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")] = None,
+        start_date: Annotated[Optional[StrictStr], Field(description="Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")] = None,
+        end_date: Annotated[Optional[StrictStr], Field(description="Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).")] = None,
         dir: Annotated[Optional[StrictStr], Field(description="Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.")] = None,
         groupby: Annotated[Optional[StrictStr], Field(description="Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.")] = None,
@@ -371,9 +371,9 @@ class HistoryApi:
         :param limit: Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         :type limit: int
         :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        :type start_date: DateOrTimestamp
+        :type start_date: str
         :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        :type end_date: DateOrTimestamp
+        :type end_date: str
         :param sort: Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         :type sort: str
         :param dir: Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
@@ -459,8 +459,8 @@ class HistoryApi:
         delivered: Annotated[Optional[StrictInt], Field(description="Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.")] = None,
         skip: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).")] = None,
         limit: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.")] = None,
-        start_date: Annotated[Optional[Any], Field(description="Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")] = None,
-        end_date: Annotated[Optional[Any], Field(description="Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")] = None,
+        start_date: Annotated[Optional[StrictStr], Field(description="Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")] = None,
+        end_date: Annotated[Optional[StrictStr], Field(description="Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).")] = None,
         dir: Annotated[Optional[StrictStr], Field(description="Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.")] = None,
         groupby: Annotated[Optional[StrictStr], Field(description="Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.")] = None,
@@ -508,9 +508,9 @@ class HistoryApi:
         :param limit: Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         :type limit: int
         :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        :type start_date: DateOrTimestamp
+        :type start_date: str
         :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        :type end_date: DateOrTimestamp
+        :type end_date: str
         :param sort: Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         :type sort: str
         :param dir: Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
@@ -596,8 +596,8 @@ class HistoryApi:
         delivered: Annotated[Optional[StrictInt], Field(description="Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.")] = None,
         skip: Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).")] = None,
         limit: Annotated[Optional[Annotated[int, Field(le=10000, strict=True, ge=1)]], Field(description="Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.")] = None,
-        start_date: Annotated[Optional[Any], Field(description="Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")] = None,
-        end_date: Annotated[Optional[Any], Field(description="Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")] = None,
+        start_date: Annotated[Optional[StrictStr], Field(description="Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.")] = None,
+        end_date: Annotated[Optional[StrictStr], Field(description="Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).")] = None,
         dir: Annotated[Optional[StrictStr], Field(description="Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.")] = None,
         groupby: Annotated[Optional[StrictStr], Field(description="Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.")] = None,
@@ -645,9 +645,9 @@ class HistoryApi:
         :param limit: Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         :type limit: int
         :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        :type start_date: DateOrTimestamp
+        :type start_date: str
         :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        :type end_date: DateOrTimestamp
+        :type end_date: str
         :param sort: Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         :type sort: str
         :param dir: Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
@@ -809,11 +809,11 @@ class HistoryApi:
             
         if start_date is not None:
             
-            _query_params.extend(self.api_client.explode_query_object('startDate', start_date))
+            _query_params.append(('startDate', start_date))
             
         if end_date is not None:
             
-            _query_params.extend(self.api_client.explode_query_object('endDate', end_date))
+            _query_params.append(('endDate', end_date))
             
         if sort is not None:
             

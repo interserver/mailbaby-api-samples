@@ -16,7 +16,6 @@ import type { AjaxResponse } from 'rxjs/ajax';
 import { BaseAPI } from '../runtime';
 import type { OperationOpts, HttpHeaders, HttpQuery } from '../runtime';
 import type {
-    DateOrTimestamp,
     ErrorMessage,
     MailLog,
     MailStatsType,
@@ -40,8 +39,8 @@ export interface ViewMailLogRequest {
     delivered?: ViewMailLogDeliveredEnum;
     skip?: number;
     limit?: number;
-    startDate?: DateOrTimestamp;
-    endDate?: DateOrTimestamp;
+    startDate?: string;
+    endDate?: string;
     sort?: ViewMailLogSortEnum;
     dir?: ViewMailLogDirEnum;
     groupby?: ViewMailLogGroupbyEnum;

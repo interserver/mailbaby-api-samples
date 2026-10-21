@@ -170,7 +170,7 @@ pplx::task<std::shared_ptr<MailStatsType>> HistoryApi::getStats(boost::optional<
         return localVarResult;
     });
 }
-pplx::task<std::shared_ptr<MailLog>> HistoryApi::viewMailLog(boost::optional<int64_t> id, boost::optional<utility::string_t> origin, boost::optional<utility::string_t> mx, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<utility::string_t> subject, boost::optional<utility::string_t> mailid, boost::optional<utility::string_t> messageId, boost::optional<utility::string_t> replyto, boost::optional<utility::string_t> headerfrom, boost::optional<int32_t> delivered, boost::optional<int32_t> skip, boost::optional<int32_t> limit, boost::optional<std::shared_ptr<DateOrTimestamp>> startDate, boost::optional<std::shared_ptr<DateOrTimestamp>> endDate, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> dir, boost::optional<utility::string_t> groupby) const
+pplx::task<std::shared_ptr<MailLog>> HistoryApi::viewMailLog(boost::optional<int64_t> id, boost::optional<utility::string_t> origin, boost::optional<utility::string_t> mx, boost::optional<utility::string_t> from, boost::optional<utility::string_t> to, boost::optional<utility::string_t> subject, boost::optional<utility::string_t> mailid, boost::optional<utility::string_t> messageId, boost::optional<utility::string_t> replyto, boost::optional<utility::string_t> headerfrom, boost::optional<int32_t> delivered, boost::optional<int32_t> skip, boost::optional<int32_t> limit, boost::optional<utility::string_t> startDate, boost::optional<utility::string_t> endDate, boost::optional<utility::string_t> sort, boost::optional<utility::string_t> dir, boost::optional<utility::string_t> groupby) const
 {
 
 
@@ -263,11 +263,11 @@ pplx::task<std::shared_ptr<MailLog>> HistoryApi::viewMailLog(boost::optional<int
     {
         localVarQueryParams[utility::conversions::to_string_t("limit")] = ApiClient::parameterToString(*limit);
     }
-    if (startDate && *startDate != nullptr)
+    if (startDate)
     {
         localVarQueryParams[utility::conversions::to_string_t("startDate")] = ApiClient::parameterToString(*startDate);
     }
-    if (endDate && *endDate != nullptr)
+    if (endDate)
     {
         localVarQueryParams[utility::conversions::to_string_t("endDate")] = ApiClient::parameterToString(*endDate);
     }

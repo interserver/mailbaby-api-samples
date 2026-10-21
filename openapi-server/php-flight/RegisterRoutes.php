@@ -194,8 +194,8 @@ class RegisterRoutes {
                     parseParam($r->query['delivered'] ?? null, '?\\OpenAPIServer\\Model\\DeliveredStatus'),
                     parseParam($r->query['skip'] ?? null, '?int'),
                     parseParam($r->query['limit'] ?? null, '?int'),
-                    parseParam($r->query['startDate'] ?? null, '?\\OpenAPIServer\\Model\\DateOrTimestamp'),
-                    parseParam($r->query['endDate'] ?? null, '?\\OpenAPIServer\\Model\\DateOrTimestamp'),
+                    parseParam($r->query['startDate'] ?? null, '?string'),
+                    parseParam($r->query['endDate'] ?? null, '?string'),
                     parseParam($r->query['sort'] ?? null, '?\\OpenAPIServer\\Model\\ViewMailLogSortParameter'),
                     parseParam($r->query['dir'] ?? null, '?\\OpenAPIServer\\Model\\ViewMailLogDirParameter'),
                     parseParam($r->query['groupby'] ?? null, '?\\OpenAPIServer\\Model\\ViewMailLogGroupbyParameter')
@@ -224,8 +224,8 @@ class RegisterRoutes {
                     parseParam($r->query['delivered'] ?? null, '?\\OpenAPIServer\\Model\\DeliveredStatus'),
                     parseParam($r->query['skip'] ?? null, '?int'),
                     parseParam($r->query['limit'] ?? null, '?int'),
-                    parseParam($r->query['startDate'] ?? null, '?\\OpenAPIServer\\Model\\DateOrTimestamp'),
-                    parseParam($r->query['endDate'] ?? null, '?\\OpenAPIServer\\Model\\DateOrTimestamp'),
+                    parseParam($r->query['startDate'] ?? null, '?string'),
+                    parseParam($r->query['endDate'] ?? null, '?string'),
                     parseParam($r->query['sort'] ?? null, '?\\OpenAPIServer\\Model\\ViewMailLogSortParameter'),
                     parseParam($r->query['dir'] ?? null, '?\\OpenAPIServer\\Model\\ViewMailLogDirParameter'),
                     parseParam($r->query['groupby'] ?? null, '?\\OpenAPIServer\\Model\\ViewMailLogGroupbyParameter')

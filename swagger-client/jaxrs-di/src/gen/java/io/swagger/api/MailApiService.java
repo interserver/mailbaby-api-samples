@@ -5,7 +5,6 @@ import io.swagger.model.*;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
-import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
@@ -48,5 +47,5 @@ public interface MailApiService {
     public Response sendAdvMail(SendMailAdv body,SecurityContext securityContext);
     public Response sendMail(SendMailTo to,String from,String subject,String body,Long id,SecurityContext securityContext);
     public Response sendMail(SendMail body,SecurityContext securityContext);
-    public Response viewMailLog( Long id, String origin, String mx, String from, String to, String subject, @Size(min=18,max=19) String mailid, String messageId, String replyto, String headerfrom, Integer delivered, @Min(0) Integer skip, @Min(1) @Max(10000) Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby,SecurityContext securityContext);
+    public Response viewMailLog( Long id, String origin, String mx, String from, String to, String subject, @Size(min=18,max=19) String mailid, String messageId, String replyto, String headerfrom, Integer delivered, @Min(0) Integer skip, @Min(1) @Max(10000) Integer limit, String startDate, String endDate, String sort, String dir, String groupby,SecurityContext securityContext);
 }

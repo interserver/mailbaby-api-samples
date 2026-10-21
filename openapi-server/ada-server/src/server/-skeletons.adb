@@ -318,8 +318,8 @@ package body .Skeletons is
          Delivered : Swagger.Nullable_Integer;
          Skip : Swagger.Nullable_Integer;
          Limit : Swagger.Nullable_Integer;
-         Start_Date : DateOrTimestamp_Type;
-         End_Date : DateOrTimestamp_Type;
+         Start_Date : Swagger.Nullable_UString;
+         End_Date : Swagger.Nullable_UString;
          Sort : Swagger.Nullable_UString;
          Dir : Swagger.Nullable_UString;
          Groupby : Swagger.Nullable_UString;
@@ -352,9 +352,9 @@ package body .Skeletons is
 
          Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
 
-         Start_Date := To_DateOrTimestamp_Type (Swagger.Servers.Get_Query_Parameter (Req, "startDate"));
+         Start_Date := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "startDate"));
 
-         End_Date := To_DateOrTimestamp_Type (Swagger.Servers.Get_Query_Parameter (Req, "endDate"));
+         End_Date := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "endDate"));
 
          Sort := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "sort"));
 
@@ -983,8 +983,8 @@ package body .Skeletons is
          Delivered : Swagger.Nullable_Integer;
          Skip : Swagger.Nullable_Integer;
          Limit : Swagger.Nullable_Integer;
-         Start_Date : DateOrTimestamp_Type;
-         End_Date : DateOrTimestamp_Type;
+         Start_Date : Swagger.Nullable_UString;
+         End_Date : Swagger.Nullable_UString;
          Sort : Swagger.Nullable_UString;
          Dir : Swagger.Nullable_UString;
          Groupby : Swagger.Nullable_UString;
@@ -1003,8 +1003,8 @@ package body .Skeletons is
          Delivered := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "delivered"));
          Skip := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "skip"));
          Limit := To_Integer (Swagger.Servers.Get_Query_Parameter (Req, "limit"));
-         Start_Date := To_DateOrTimestamp_Type (Swagger.Servers.Get_Query_Parameter (Req, "startDate"));
-         End_Date := To_DateOrTimestamp_Type (Swagger.Servers.Get_Query_Parameter (Req, "endDate"));
+         Start_Date := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "startDate"));
+         End_Date := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "endDate"));
          Sort := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "sort"));
          Dir := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "dir"));
          Groupby := To_Swagger.UString (Swagger.Servers.Get_Query_Parameter (Req, "groupby"));
@@ -1442,8 +1442,8 @@ package body .Skeletons is
              Delivered : in Swagger.Nullable_Integer;
              Skip : in Swagger.Nullable_Integer;
              Limit : in Swagger.Nullable_Integer;
-             Start_Date : in DateOrTimestamp_Type;
-             End_Date : in DateOrTimestamp_Type;
+             Start_Date : in Swagger.Nullable_UString;
+             End_Date : in Swagger.Nullable_UString;
              Sort : in Swagger.Nullable_UString;
              Dir : in Swagger.Nullable_UString;
              Groupby : in Swagger.Nullable_UString;

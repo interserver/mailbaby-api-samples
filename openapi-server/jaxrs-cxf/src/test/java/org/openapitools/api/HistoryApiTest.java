@@ -13,7 +13,6 @@
 
 package org.openapitools.api;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
@@ -104,8 +103,8 @@ public class HistoryApiTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        DateOrTimestamp startDate = null;
-        DateOrTimestamp endDate = null;
+        String startDate = null;
+        String endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

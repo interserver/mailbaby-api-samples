@@ -2,7 +2,6 @@ import unittest
 
 from flask import json
 
-from MailBabyPythonFlask.models.date_or_timestamp import DateOrTimestamp  # noqa: E501
 from MailBabyPythonFlask.models.error_message import ErrorMessage  # noqa: E501
 from MailBabyPythonFlask.models.mail_log import MailLog  # noqa: E501
 from MailBabyPythonFlask.models.mail_stats_type import MailStatsType  # noqa: E501
@@ -48,8 +47,8 @@ class TestHistoryController(BaseTestCase):
                         ('delivered', 1),
                         ('skip', 0),
                         ('limit', 100),
-                        ('startDate', MailBabyPythonFlask.DateOrTimestamp()),
-                        ('endDate', MailBabyPythonFlask.DateOrTimestamp()),
+                        ('startDate', '1641781008'),
+                        ('endDate', '1673317008'),
                         ('sort', 'time'),
                         ('dir', 'desc'),
                         ('groupby', 'recipient')]

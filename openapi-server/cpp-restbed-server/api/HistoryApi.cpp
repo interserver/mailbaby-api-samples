@@ -297,6 +297,8 @@ void MailLogResource::handler_GET_internal(const std::shared_ptr<restbed::Sessio
     int32_t delivered = request->get_query_parameter("delivered", 0);
     int32_t skip = request->get_query_parameter("skip", 0);
     int32_t limit = request->get_query_parameter("limit", 100);
+    std::string startDate = request->get_query_parameter("startDate", "");
+    std::string endDate = request->get_query_parameter("endDate", "");
     std::string sort = request->get_query_parameter("sort", "time");
     std::string dir = request->get_query_parameter("dir", "desc");
     std::string groupby = request->get_query_parameter("groupby", "recipient");
@@ -359,7 +361,7 @@ void MailLogResource::handler_GET_internal(const std::shared_ptr<restbed::Sessio
 
 
 std::pair<int, MailLog> MailLogResource::handler_GET(
-        int64_t & id, std::string & origin, std::string & mx, std::string & from, std::string & to, std::string & subject, std::string & mailid, std::string & messageId, std::string & replyto, std::string & headerfrom, int32_t & delivered, int32_t & skip, int32_t & limit, DateOrTimestamp & startDate, DateOrTimestamp & endDate, std::string & sort, std::string & dir, std::string & groupby)
+        int64_t & id, std::string & origin, std::string & mx, std::string & from, std::string & to, std::string & subject, std::string & mailid, std::string & messageId, std::string & replyto, std::string & headerfrom, int32_t & delivered, int32_t & skip, int32_t & limit, std::string & startDate, std::string & endDate, std::string & sort, std::string & dir, std::string & groupby)
 {
     return handler_GET_func(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby);
 }

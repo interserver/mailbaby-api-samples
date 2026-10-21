@@ -14,11 +14,6 @@
 
 import * as runtime from '../runtime';
 import {
-    type DateOrTimestamp,
-    DateOrTimestampFromJSON,
-    DateOrTimestampToJSON,
-} from '../models/DateOrTimestamp';
-import {
     type ErrorMessage,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
@@ -97,11 +92,11 @@ export interface ViewMailLogRequest {
     /**
      * Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
      */
-    startDate?: DateOrTimestamp;
+    startDate?: string;
     /**
      * Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
      */
-    endDate?: DateOrTimestamp;
+    endDate?: string;
     /**
      * Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
      */

@@ -687,7 +687,7 @@ paths:
         name: startDate
         required: false
         schema:
-          $ref: "#/components/schemas/DateOrTimestamp"
+          type: string
         style: form
       - description: Latest date to include.  Accepts either a Unix timestamp (integer
           seconds since epoch) or a date string parseable by `strtotime()` such as
@@ -699,7 +699,7 @@ paths:
         name: endDate
         required: false
         schema:
-          $ref: "#/components/schemas/DateOrTimestamp"
+          type: string
         style: form
       - description: Field to sort results by.  Currently only `time` is supported
           (sorts by internal row ID which corresponds to chronological order).

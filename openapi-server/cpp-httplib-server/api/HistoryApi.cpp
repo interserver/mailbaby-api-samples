@@ -231,30 +231,22 @@ bool History::parseMaillogGetParams(const httplib::Request& req, History::Maillo
     // Query Parameters - startDate
     if (req.has_param("startDate"))
     {
-        try
-        {
-            // Parse JSON object from query
-            auto val = req.get_param_value("startDate", 0);
-            params.m_startDate = nlohmann::json::parse(val).get<models::DateOrTimestamp>();
-        }
-        catch (const std::exception& e)
-        {
-            errors.push_back("Invalid query parameter 'startDate': " + std::string(e.what()));
-        }
+        params.m_startDate = req.get_param_value("startDate");
+    }
+    else
+    {
+        // Use default value for optional parameter
+        params.m_startDate = "";
     }
     // Query Parameters - endDate
     if (req.has_param("endDate"))
     {
-        try
-        {
-            // Parse JSON object from query
-            auto val = req.get_param_value("endDate", 0);
-            params.m_endDate = nlohmann::json::parse(val).get<models::DateOrTimestamp>();
-        }
-        catch (const std::exception& e)
-        {
-            errors.push_back("Invalid query parameter 'endDate': " + std::string(e.what()));
-        }
+        params.m_endDate = req.get_param_value("endDate");
+    }
+    else
+    {
+        // Use default value for optional parameter
+        params.m_endDate = "";
     }
     // Query Parameters - sort
     if (req.has_param("sort"))

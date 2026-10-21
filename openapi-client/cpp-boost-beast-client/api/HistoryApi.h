@@ -34,7 +34,6 @@
 #include "HttpClient.h"
 #include "../model/ValidationTypes.h"
 
-#include "../model/DateOrTimestamp.h"
 #include "../model/ErrorMessage.h"
 #include "../model/MailLog.h"
 #include "../model/MailStatsType.h"
@@ -96,7 +95,7 @@ public:
     /// </remarks>
     virtual std::shared_ptr<MailLog>
     viewMailLog(
-        const boost::optional<std::int64_t>& id, const boost::optional<std::string>& origin, const boost::optional<std::string>& mx, const boost::optional<std::string>& from, const boost::optional<std::string>& to, const boost::optional<std::string>& subject, const boost::optional<std::string>& mailid, const boost::optional<std::string>& messageId, const boost::optional<std::string>& replyto, const boost::optional<std::string>& headerfrom, const boost::optional<std::int32_t>& delivered, const boost::optional<std::int32_t>& skip, const boost::optional<std::int32_t>& limit, const boost::optional<DateOrTimestamp>& startDate, const boost::optional<DateOrTimestamp>& endDate, const boost::optional<std::string>& sort, const boost::optional<std::string>& dir, const boost::optional<std::string>& groupby);
+        const boost::optional<std::int64_t>& id, const boost::optional<std::string>& origin, const boost::optional<std::string>& mx, const boost::optional<std::string>& from, const boost::optional<std::string>& to, const boost::optional<std::string>& subject, const boost::optional<std::string>& mailid, const boost::optional<std::string>& messageId, const boost::optional<std::string>& replyto, const boost::optional<std::string>& headerfrom, const boost::optional<std::int32_t>& delivered, const boost::optional<std::int32_t>& skip, const boost::optional<std::int32_t>& limit, const boost::optional<std::string>& startDate, const boost::optional<std::string>& endDate, const boost::optional<std::string>& sort, const boost::optional<std::string>& dir, const boost::optional<std::string>& groupby);
 
 
     /// Credential hook invoked before each operation with its effective security

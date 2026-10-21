@@ -162,11 +162,11 @@ pub fn check_xss_map<T>(v: &std::collections::HashMap<String, T>) -> std::result
             /// Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
                 #[serde(rename = "startDate")]
                     #[serde(skip_serializing_if="Option::is_none")]
-                    pub start_date: Option<models::OneOfLessThanLongCommaStringGreaterThan>,
+                    pub start_date: Option<String>,
             /// Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
                 #[serde(rename = "endDate")]
                     #[serde(skip_serializing_if="Option::is_none")]
-                    pub end_date: Option<models::OneOfLessThanLongCommaStringGreaterThan>,
+                    pub end_date: Option<String>,
             /// Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
             /// Note: inline enums are not fully supported by openapi-generator
                 #[serde(rename = "sort")]

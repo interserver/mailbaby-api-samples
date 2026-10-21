@@ -1,6 +1,5 @@
 package io.swagger.api;
 
-import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
@@ -169,8 +168,8 @@ class MailApiControllerTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        DateOrTimestamp startDate = null;
-        DateOrTimestamp endDate = null;
+        String startDate = null;
+        String endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

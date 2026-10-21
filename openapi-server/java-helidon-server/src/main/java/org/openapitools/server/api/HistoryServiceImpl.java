@@ -1,6 +1,5 @@
 package org.openapitools.server.api;
 
-import org.openapitools.server.model.DateOrTimestamp;
 import org.openapitools.server.model.ErrorMessage;
 import java.util.HexFormat;
 import org.openapitools.server.model.MailLog;

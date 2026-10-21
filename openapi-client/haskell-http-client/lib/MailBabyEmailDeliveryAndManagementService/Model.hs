@@ -87,7 +87,7 @@ newtype Delivered = Delivered { unDelivered :: E'Delivered } deriving (P.Eq, P.S
 newtype Dir = Dir { unDir :: E'Dir } deriving (P.Eq, P.Show)
 
 -- ** EndDate
-newtype EndDate = EndDate { unEndDate :: DateOrTimestamp } deriving (P.Eq, P.Show)
+newtype EndDate = EndDate { unEndDate :: Text } deriving (P.Eq, P.Show)
 
 -- ** From
 newtype From = From { unFrom :: Text } deriving (P.Eq, P.Show)
@@ -141,7 +141,7 @@ newtype Skip = Skip { unSkip :: Int } deriving (P.Eq, P.Show)
 newtype Sort = Sort { unSort :: E'Sort } deriving (P.Eq, P.Show)
 
 -- ** StartDate
-newtype StartDate = StartDate { unStartDate :: DateOrTimestamp } deriving (P.Eq, P.Show)
+newtype StartDate = StartDate { unStartDate :: Text } deriving (P.Eq, P.Show)
 
 -- ** Subject
 newtype Subject = Subject { unSubject :: Text } deriving (P.Eq, P.Show)

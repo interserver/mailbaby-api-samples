@@ -35,7 +35,7 @@ namespace MailBabyCsharp.Model
         /// Initializes a new instance of the <see cref="DateOrTimestamp" /> class.
         /// </summary>
         /// <param name="long"></param>
-        public DateOrTimestamp(long @long)
+        internal DateOrTimestamp(long @long)
         {
             Long = @long;
             OnCreated();
@@ -45,7 +45,7 @@ namespace MailBabyCsharp.Model
         /// Initializes a new instance of the <see cref="DateOrTimestamp" /> class.
         /// </summary>
         /// <param name="string"></param>
-        public DateOrTimestamp(string @string)
+        internal DateOrTimestamp(string @string)
         {
             String = @string;
             OnCreated();

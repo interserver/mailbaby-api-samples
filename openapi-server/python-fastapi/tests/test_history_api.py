@@ -4,7 +4,7 @@ from fastapi.testclient import TestClient
 
 
 from pydantic import Field, field_validator  # noqa: F401
-from typing import Any, Optional  # noqa: F401
+from typing import Optional  # noqa: F401
 from typing_extensions import Annotated  # noqa: F401
 from MailBabyPythonFastapi.models.error_message import ErrorMessage  # noqa: F401
 from MailBabyPythonFastapi.models.mail_log import MailLog  # noqa: F401
@@ -16,7 +16,7 @@ def test_view_mail_log(client: TestClient):
 
     Query the mail delivery log (filterable, paginated)
     """
-    params = [("id", 2604),     ("origin", '1.2.3.4'),     ("mx", 'mx.google.com'),     ("var_from", 'me@sender.com'),     ("to", 'you@receiver.com'),     ("subject", 'Your order has shipped'),     ("mailid", '185997065c60008840'),     ("message_id", '<abc123@yourdomain.com>'),     ("replyto", 'replies@sender.com'),     ("headerfrom", 'newsletter@sender.com'),     ("delivered", 1),     ("skip", 0),     ("limit", 100),     ("start_date", MailBabyPythonFastapi.DateOrTimestamp()),     ("end_date", MailBabyPythonFastapi.DateOrTimestamp()),     ("sort", 'time'),     ("dir", 'desc'),     ("groupby", 'recipient')]
+    params = [("id", 2604),     ("origin", '1.2.3.4'),     ("mx", 'mx.google.com'),     ("var_from", 'me@sender.com'),     ("to", 'you@receiver.com'),     ("subject", 'Your order has shipped'),     ("mailid", '185997065c60008840'),     ("message_id", '<abc123@yourdomain.com>'),     ("replyto", 'replies@sender.com'),     ("headerfrom", 'newsletter@sender.com'),     ("delivered", 1),     ("skip", 0),     ("limit", 100),     ("start_date", '1641781008'),     ("end_date", '1673317008'),     ("sort", 'time'),     ("dir", 'desc'),     ("groupby", 'recipient')]
     headers = {
         "apiKeyAuth": "special-key",
     }

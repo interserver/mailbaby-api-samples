@@ -1308,8 +1308,8 @@ impl<S, C, B> Api<C> for Client<S, C> where
         param_delivered: Option<models::DeliveredStatus>,
         param_skip: Option<u32>,
         param_limit: Option<u32>,
-        param_start_date: Option<models::DateOrTimestamp>,
-        param_end_date: Option<models::DateOrTimestamp>,
+        param_start_date: Option<String>,
+        param_end_date: Option<String>,
         param_sort: Option<models::ViewMailLogSortParameter>,
         param_dir: Option<models::ViewMailLogDirParameter>,
         param_groupby: Option<models::ViewMailLogGroupbyParameter>,
@@ -1379,11 +1379,11 @@ impl<S, C, B> Api<C> for Client<S, C> where
             }
             if let Some(param_start_date) = param_start_date {
                 query_string.append_pair("startDate",
-                    &param_start_date.to_string());
+                    &param_start_date);
             }
             if let Some(param_end_date) = param_end_date {
                 query_string.append_pair("endDate",
-                    &param_end_date.to_string());
+                    &param_end_date);
             }
             if let Some(param_sort) = param_sort {
                 query_string.append_pair("sort",

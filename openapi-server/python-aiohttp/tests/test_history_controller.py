@@ -4,7 +4,6 @@ import pytest
 import json
 from aiohttp import web
 
-from MailBabyPythonAiohttp.models.date_or_timestamp import DateOrTimestamp
 from MailBabyPythonAiohttp.models.error_message import ErrorMessage
 from MailBabyPythonAiohttp.models.mail_log import MailLog
 from MailBabyPythonAiohttp.models.mail_stats_type import MailStatsType
@@ -51,8 +50,8 @@ async def test_view_mail_log(client):
                     ('delivered', 1),
                     ('skip', 0),
                     ('limit', 100),
-                    ('startDate', MailBabyPythonAiohttp.DateOrTimestamp()),
-                    ('endDate', MailBabyPythonAiohttp.DateOrTimestamp()),
+                    ('startDate', '1641781008'),
+                    ('endDate', '1673317008'),
                     ('sort', 'time'),
                     ('dir', 'desc'),
                     ('groupby', 'recipient')]

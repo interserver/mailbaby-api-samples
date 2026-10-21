@@ -1,5 +1,4 @@
 namespace MailBabyFsharpGiraffeServer
-open MailBabyFsharpGiraffeServer.Model.DateOrTimestamp
 open MailBabyFsharpGiraffeServer.Model.ErrorMessage
 open MailBabyFsharpGiraffeServer.Model.MailLog
 open MailBabyFsharpGiraffeServer.Model.MailStatsType

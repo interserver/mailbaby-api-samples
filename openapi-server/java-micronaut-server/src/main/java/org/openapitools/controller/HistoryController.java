@@ -20,7 +20,6 @@ import io.micronaut.security.rules.SecurityRule;
 import reactor.core.publisher.Mono;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.exceptions.HttpStatusException;
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
@@ -159,8 +158,8 @@ public class HistoryController {
         @QueryValue(value="delivered") @Nullable Integer delivered, 
         @QueryValue(value="skip", defaultValue="0") @Nullable @Min(0) Integer skip, 
         @QueryValue(value="limit", defaultValue="100") @Nullable @Min(1) @Max(10000) Integer limit, 
-        @QueryValue(value="startDate") @Nullable @Valid DateOrTimestamp startDate, 
-        @QueryValue(value="endDate") @Nullable @Valid DateOrTimestamp endDate, 
+        @QueryValue(value="startDate") @Nullable String startDate, 
+        @QueryValue(value="endDate") @Nullable String endDate, 
         @QueryValue(value="sort", defaultValue="time") @Nullable String sort, 
         @QueryValue(value="dir", defaultValue="desc") @Nullable String dir, 
         @QueryValue(value="groupby", defaultValue="recipient") @Nullable String groupby

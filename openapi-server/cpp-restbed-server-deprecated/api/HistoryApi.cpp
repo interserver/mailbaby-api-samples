@@ -254,6 +254,8 @@ void HistoryApiMailLogResource::handler_GET_internal(const std::shared_ptr<restb
     const int32_t delivered = getQueryParam_delivered(request);
     const int32_t skip = getQueryParam_skip(request);
     const int32_t limit = getQueryParam_limit(request);
+    const std::string startDate = getQueryParam_startDate(request);
+    const std::string endDate = getQueryParam_endDate(request);
     const std::string sort = getQueryParam_sort(request);
     const std::string dir = getQueryParam_dir(request);
     const std::string groupby = getQueryParam_groupby(request);
@@ -303,7 +305,7 @@ void HistoryApiMailLogResource::handler_GET_internal(const std::shared_ptr<restb
 
 
 std::pair<int, std::shared_ptr<MailLog>> HistoryApiMailLogResource::handler_GET(
-        int64_t const & id, std::string const & origin, std::string const & mx, std::string const & from, std::string const & to, std::string const & subject, std::string const & mailid, std::string const & messageId, std::string const & replyto, std::string const & headerfrom, int32_t const & delivered, int32_t const & skip, int32_t const & limit, std::shared_ptr<DateOrTimestamp> const & startDate, std::shared_ptr<DateOrTimestamp> const & endDate, std::string const & sort, std::string const & dir, std::string const & groupby)
+        int64_t const & id, std::string const & origin, std::string const & mx, std::string const & from, std::string const & to, std::string const & subject, std::string const & mailid, std::string const & messageId, std::string const & replyto, std::string const & headerfrom, int32_t const & delivered, int32_t const & skip, int32_t const & limit, std::string const & startDate, std::string const & endDate, std::string const & sort, std::string const & dir, std::string const & groupby)
 {
     throw HistoryApiException(501, "Not implemented");
 }

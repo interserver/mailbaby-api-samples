@@ -56,8 +56,8 @@ interface HistoryApiInterface {
      * @param null | \OpenAPI\Server\Model\DeliveredStatus $delivered
      * @param null | int $skip
      * @param null | int $limit
-     * @param null | int|string $startDate
-     * @param null | int|string $endDate
+     * @param null | string $startDate
+     * @param null | string $endDate
      * @param null | \OpenAPI\Server\Model\ViewMailLogSortParameter $sort
      * @param null | \OpenAPI\Server\Model\ViewMailLogDirParameter $dir
      * @param null | \OpenAPI\Server\Model\ViewMailLogGroupbyParameter $groupby
@@ -77,8 +77,8 @@ interface HistoryApiInterface {
             ?\OpenAPI\Server\Model\DeliveredStatus $delivered,
             ?int $skip,
             ?int $limit,
-            ?int|string $startDate,
-            ?int|string $endDate,
+            ?string $startDate,
+            ?string $endDate,
             ?\OpenAPI\Server\Model\ViewMailLogSortParameter $sort,
             ?\OpenAPI\Server\Model\ViewMailLogDirParameter $dir,
             ?\OpenAPI\Server\Model\ViewMailLogGroupbyParameter $groupby,

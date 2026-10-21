@@ -12,7 +12,6 @@
 
 package org.openapitools.server.api
 
-import org.openapitools.server.model.DateOrTimestamp
 import org.openapitools.server.model.ErrorMessage
 import org.openapitools.server.model.MailLog
 import org.openapitools.server.model.MailStatsType
@@ -57,7 +56,7 @@ class HistoryApi(implicit val swagger: Swagger) extends ScalatraServlet
 
   val viewMailLogOperation = (apiOperation[MailLog]("viewMailLog")
     summary "Query the mail delivery log (filterable, paginated)"
-    parameters(queryParam[Long]("id").description("").optional, queryParam[String]("origin").description("").optional, queryParam[String]("mx").description("").optional, queryParam[String]("from").description("").optional, queryParam[String]("to").description("").optional, queryParam[String]("subject").description("").optional, queryParam[String]("mailid").description("").optional, queryParam[String]("messageId").description("").optional, queryParam[String]("replyto").description("").optional, queryParam[String]("headerfrom").description("").optional, queryParam[Int]("delivered").description("").optional, queryParam[Int]("skip").description("").optional.defaultValue(0), queryParam[Int]("limit").description("").optional.defaultValue(100), queryParam[DateOrTimestamp]("startDate").description("").optional, queryParam[DateOrTimestamp]("endDate").description("").optional, queryParam[String]("sort").description("").optional.defaultValue(time), queryParam[String]("dir").description("").optional.defaultValue(desc), queryParam[String]("groupby").description("").optional.defaultValue(recipient))
+    parameters(queryParam[Long]("id").description("").optional, queryParam[String]("origin").description("").optional, queryParam[String]("mx").description("").optional, queryParam[String]("from").description("").optional, queryParam[String]("to").description("").optional, queryParam[String]("subject").description("").optional, queryParam[String]("mailid").description("").optional, queryParam[String]("messageId").description("").optional, queryParam[String]("replyto").description("").optional, queryParam[String]("headerfrom").description("").optional, queryParam[Int]("delivered").description("").optional, queryParam[Int]("skip").description("").optional.defaultValue(0), queryParam[Int]("limit").description("").optional.defaultValue(100), queryParam[String]("startDate").description("").optional, queryParam[String]("endDate").description("").optional, queryParam[String]("sort").description("").optional.defaultValue(time), queryParam[String]("dir").description("").optional.defaultValue(desc), queryParam[String]("groupby").description("").optional.defaultValue(recipient))
   )
 
   get("/mail/log", operation(viewMailLogOperation)) {
@@ -100,10 +99,10 @@ class HistoryApi(implicit val swagger: Swagger) extends ScalatraServlet
             val limit = params.getAs[Int]("limit")
 
     //println("limit: " + limit)
-            val startDate = params.getAs[DateOrTimestamp]("startDate")
+            val startDate = params.getAs[String]("startDate")
 
     //println("startDate: " + startDate)
-            val endDate = params.getAs[DateOrTimestamp]("endDate")
+            val endDate = params.getAs[String]("endDate")
 
     //println("endDate: " + endDate)
             val sort = params.getAs[String]("sort")

@@ -6,4 +6,4 @@
  *)
 
 val get_stats : ?time:Enums.time -> unit -> Mail_stats_type.t Lwt.t
-val view_mail_log : ?id:int64 -> ?origin:string -> ?mx:string -> ?from:string -> ?_to:string -> ?subject:string -> ?mailid:string -> ?message_id:string -> ?replyto:string -> ?headerfrom:string -> ?delivered:Enums.delivered -> ?skip:int32 -> ?limit:int32 -> ?start_date:Date_or_timestamp.t -> ?end_date:Date_or_timestamp.t -> ?sort:Enums.sort -> ?dir:Enums.dir -> ?groupby:Enums.groupby -> unit -> Mail_log.t Lwt.t
+val view_mail_log : ?id:int64 -> ?origin:string -> ?mx:string -> ?from:string -> ?_to:string -> ?subject:string -> ?mailid:string -> ?message_id:string -> ?replyto:string -> ?headerfrom:string -> ?delivered:Enums.delivered -> ?skip:int32 -> ?limit:int32 -> ?start_date:string -> ?end_date:string -> ?sort:Enums.sort -> ?dir:Enums.dir -> ?groupby:Enums.groupby -> unit -> Mail_log.t Lwt.t

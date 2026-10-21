@@ -824,7 +824,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: "#/components/schemas/DateOrTimestamp"
+          type: string
         example: 1641781008
       - name: endDate
         in: query
@@ -836,7 +836,7 @@ paths:
         style: form
         explode: true
         schema:
-          $ref: "#/components/schemas/DateOrTimestamp"
+          type: string
         example: 1673317008
       - name: sort
         in: query

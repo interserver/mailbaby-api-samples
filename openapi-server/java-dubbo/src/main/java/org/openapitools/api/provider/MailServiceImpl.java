@@ -1,6 +1,5 @@
 package org.openapitools.api.provider;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;
@@ -182,8 +181,8 @@ public class MailServiceImpl implements MailService {
         Integer delivered,
         Integer skip,
         Integer limit,
-        DateOrTimestamp startDate,
-        DateOrTimestamp endDate,
+        String startDate,
+        String endDate,
         String sort,
         String dir,
         String groupby

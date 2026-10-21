@@ -25,7 +25,7 @@ std::shared_ptr<oatpp::web::protocol::http::outgoing::Response> HistoryApiContro
     
     return createResponse(Status::CODE_501, "TODO: Implement API Handler");
 }
-std::shared_ptr<oatpp::web::protocol::http::outgoing::Response> HistoryApiController::view_mail_log(const std::shared_ptr<IncomingRequest> &request, const oatpp::Int64 &id, const oatpp::String &origin, const oatpp::String &mx, const oatpp::String &from, const oatpp::String &to, const oatpp::String &subject, const oatpp::String &mailid, const oatpp::String &messageId, const oatpp::String &replyto, const oatpp::String &headerfrom, const oatpp::Int32 &delivered, const oatpp::Int32 &skip, const oatpp::Int32 &limit, const org::openapitools::server::model::DateOrTimestamp &startDate, const org::openapitools::server::model::DateOrTimestamp &endDate, const oatpp::String &sort, const oatpp::String &dir, const oatpp::String &groupby) {
+std::shared_ptr<oatpp::web::protocol::http::outgoing::Response> HistoryApiController::view_mail_log(const std::shared_ptr<IncomingRequest> &request, const oatpp::Int64 &id, const oatpp::String &origin, const oatpp::String &mx, const oatpp::String &from, const oatpp::String &to, const oatpp::String &subject, const oatpp::String &mailid, const oatpp::String &messageId, const oatpp::String &replyto, const oatpp::String &headerfrom, const oatpp::Int32 &delivered, const oatpp::Int32 &skip, const oatpp::Int32 &limit, const oatpp::String &startDate, const oatpp::String &endDate, const oatpp::String &sort, const oatpp::String &dir, const oatpp::String &groupby) {
     (void)request;
     
     (void)id;

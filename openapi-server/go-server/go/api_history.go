@@ -217,16 +217,16 @@ func (c *HistoryAPIController) ViewMailLog(w http.ResponseWriter, r *http.Reques
 		var param int32 = 100
 		limitParam = param
 	}
-	var startDateParam DateOrTimestamp
+	var startDateParam string
 	if query.Has("startDate") {
-		param := DateOrTimestamp(query.Get("startDate"))
+		param := query.Get("startDate")
 
 		startDateParam = param
 	} else {
 	}
-	var endDateParam DateOrTimestamp
+	var endDateParam string
 	if query.Has("endDate") {
-		param := DateOrTimestamp(query.Get("endDate"))
+		param := query.Get("endDate")
 
 		endDateParam = param
 	} else {

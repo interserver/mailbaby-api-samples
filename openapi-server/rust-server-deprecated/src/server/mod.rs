@@ -1311,7 +1311,7 @@ where
                 let param_start_date = match param_start_date {
                     Some(param_start_date) => {
                         let param_start_date =
-                            <models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan as std::str::FromStr>::from_str
+                            <String as std::str::FromStr>::from_str
                                 (&param_start_date);
                         match param_start_date {
                             Ok(param_start_date) => Some(param_start_date),
@@ -1329,7 +1329,7 @@ where
                 let param_end_date = match param_end_date {
                     Some(param_end_date) => {
                         let param_end_date =
-                            <models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan as std::str::FromStr>::from_str
+                            <String as std::str::FromStr>::from_str
                                 (&param_end_date);
                         match param_end_date {
                             Ok(param_end_date) => Some(param_end_date),

@@ -6,7 +6,6 @@ import org.openapitools.model.*;
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.Multipart;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;
@@ -45,5 +44,5 @@ public interface MailApiService {
       public Response rawMail(SendMailRaw sendMailRaw, SecurityContext securityContext);
       public Response sendAdvMail(String subject, String body, EmailAddressTypes from, EmailAddressesTypes to, EmailAddressesTypes replyto, EmailAddressesTypes cc, EmailAddressesTypes bcc, List<@Valid MailAttachment> attachments, Long id, SecurityContext securityContext);
       public Response sendMail(SendMailTo to, String from, String subject, String body, Long id, SecurityContext securityContext);
-      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, SecurityContext securityContext);
+      public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject, String mailid, String messageId, String replyto, String headerfrom, Integer delivered, Integer skip, Integer limit, String startDate, String endDate, String sort, String dir, String groupby, SecurityContext securityContext);
 }

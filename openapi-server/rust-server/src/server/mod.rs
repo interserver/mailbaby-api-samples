@@ -1317,7 +1317,7 @@ where
                 let param_start_date = match param_start_date {
                     Some(param_start_date) => {
                         let param_start_date =
-                            <models::DateOrTimestamp as std::str::FromStr>::from_str
+                            <String as std::str::FromStr>::from_str
                                 (&param_start_date);
                         match param_start_date {
                             Ok(param_start_date) => Some(param_start_date),
@@ -1330,14 +1330,12 @@ where
                     },
                     None => None,
                 };
-    #[cfg(not(feature = "validate"))]
-                run_validation!(param_start_date, "startDate", validation);
                 let param_end_date = query_params.iter().filter(|e| e.0 == "endDate").map(|e| e.1.clone())
                     .next();
                 let param_end_date = match param_end_date {
                     Some(param_end_date) => {
                         let param_end_date =
-                            <models::DateOrTimestamp as std::str::FromStr>::from_str
+                            <String as std::str::FromStr>::from_str
                                 (&param_end_date);
                         match param_end_date {
                             Ok(param_end_date) => Some(param_end_date),
@@ -1350,8 +1348,6 @@ where
                     },
                     None => None,
                 };
-    #[cfg(not(feature = "validate"))]
-                run_validation!(param_end_date, "endDate", validation);
                 let param_sort = query_params.iter().filter(|e| e.0 == "sort").map(|e| e.1.clone())
                     .next();
                 let param_sort = match param_sort {

@@ -236,17 +236,17 @@ void HistoryApi::view_mail_log_handler(const Pistache::Rest::Request& request, P
             }
         }
         auto startDateQuery = request.query().get("startDate");
-        std::optional<DateOrTimestamp> startDate;
+        std::optional<std::string> startDate;
         if (startDateQuery.has_value()) {
-            DateOrTimestamp valueQuery_instance;
+            std::string valueQuery_instance;
             if (fromStringValue(startDateQuery.value(), valueQuery_instance)) {
                 startDate = valueQuery_instance;
             }
         }
         auto endDateQuery = request.query().get("endDate");
-        std::optional<DateOrTimestamp> endDate;
+        std::optional<std::string> endDate;
         if (endDateQuery.has_value()) {
-            DateOrTimestamp valueQuery_instance;
+            std::string valueQuery_instance;
             if (fromStringValue(endDateQuery.value(), valueQuery_instance)) {
                 endDate = valueQuery_instance;
             }

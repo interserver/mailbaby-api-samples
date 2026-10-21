@@ -19,7 +19,6 @@ local basexx = require "basexx"
 local MailBabyLua_error_message = require "MailBabyLua.model.error_message"
 local MailBabyLua_mail_log = require "MailBabyLua.model.mail_log"
 local MailBabyLua_mail_stats_type = require "MailBabyLua.model.mail_stats_type"
-local MailBabyLua_date_or_timestamp = require "MailBabyLua.model.date_or_timestamp"
 
 local history_api = {}
 local history_api_mt = {

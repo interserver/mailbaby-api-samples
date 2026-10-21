@@ -13,7 +13,6 @@
 
 package org.openapitools.client.api;
 
-import org.openapitools.client.model.DateOrTimestamp;
 import org.openapitools.client.model.ErrorMessage;
 import java.util.List;
 import org.openapitools.client.model.MailLog;

@@ -82,8 +82,8 @@ namespace MailBabyCsharp.Test.Api
             Client.Option<int> delivered = default!;
             Client.Option<int> skip = default!;
             Client.Option<int> limit = default!;
-            Client.Option<DateOrTimestamp> startDate = default!;
-            Client.Option<DateOrTimestamp> endDate = default!;
+            Client.Option<string> startDate = default!;
+            Client.Option<string> endDate = default!;
             Client.Option<string> sort = default!;
             Client.Option<string> dir = default!;
             Client.Option<string> groupby = default!;

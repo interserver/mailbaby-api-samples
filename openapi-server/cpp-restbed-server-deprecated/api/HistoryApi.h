@@ -30,7 +30,6 @@
 #include <corvusoft/restbed/service.hpp>
 #include <corvusoft/restbed/settings.hpp>
 
-#include "DateOrTimestamp.h"
 #include "ErrorMessage.h"
 #include "MailLog.h"
 #include "MailStatsType.h"
@@ -130,7 +129,7 @@ protected:
     //////////////////////////////////////////////////////////
 
     virtual std::pair<int, std::shared_ptr<MailLog>> handler_GET(
-        int64_t const & id, std::string const & origin, std::string const & mx, std::string const & from, std::string const & to, std::string const & subject, std::string const & mailid, std::string const & messageId, std::string const & replyto, std::string const & headerfrom, int32_t const & delivered, int32_t const & skip, int32_t const & limit, std::shared_ptr<DateOrTimestamp> const & startDate, std::shared_ptr<DateOrTimestamp> const & endDate, std::string const & sort, std::string const & dir, std::string const & groupby);
+        int64_t const & id, std::string const & origin, std::string const & mx, std::string const & from, std::string const & to, std::string const & subject, std::string const & mailid, std::string const & messageId, std::string const & replyto, std::string const & headerfrom, int32_t const & delivered, int32_t const & skip, int32_t const & limit, std::string const & startDate, std::string const & endDate, std::string const & sort, std::string const & dir, std::string const & groupby);
 
 
 protected:
@@ -203,6 +202,16 @@ protected:
     virtual int32_t getQueryParam_limit(const std::shared_ptr<const restbed::Request>& request)
     {
         return request->get_query_parameter("limit", 100);
+    }
+
+    virtual std::string getQueryParam_startDate(const std::shared_ptr<const restbed::Request>& request)
+    {
+        return request->get_query_parameter("startDate", "");
+    }
+
+    virtual std::string getQueryParam_endDate(const std::shared_ptr<const restbed::Request>& request)
+    {
+        return request->get_query_parameter("endDate", "");
     }
 
     virtual std::string getQueryParam_sort(const std::shared_ptr<const restbed::Request>& request)

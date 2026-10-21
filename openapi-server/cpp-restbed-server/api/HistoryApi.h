@@ -31,7 +31,6 @@
 #include <corvusoft/restbed/service.hpp>
 #include <corvusoft/restbed/settings.hpp>
 
-#include "DateOrTimestamp.h"
 #include "ErrorMessage.h"
 #include "MailLog.h"
 #include "MailStatsType.h"
@@ -146,8 +145,8 @@ public:
     // Set these to implement the server functionality //
     /////////////////////////////////////////////////////
     std::function<std::pair<int, MailLog>(
-        int64_t & id, std::string & origin, std::string & mx, std::string & from, std::string & to, std::string & subject, std::string & mailid, std::string & messageId, std::string & replyto, std::string & headerfrom, int32_t & delivered, int32_t & skip, int32_t & limit, DateOrTimestamp & startDate, DateOrTimestamp & endDate, std::string & sort, std::string & dir, std::string & groupby)> handler_GET_func =
-            [](int64_t &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, int32_t &, int32_t &, int32_t &, DateOrTimestamp &, DateOrTimestamp &, std::string &, std::string &, std::string &) -> std::pair<int, MailLog>
+        int64_t & id, std::string & origin, std::string & mx, std::string & from, std::string & to, std::string & subject, std::string & mailid, std::string & messageId, std::string & replyto, std::string & headerfrom, int32_t & delivered, int32_t & skip, int32_t & limit, std::string & startDate, std::string & endDate, std::string & sort, std::string & dir, std::string & groupby)> handler_GET_func =
+            [](int64_t &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, std::string &, int32_t &, int32_t &, int32_t &, std::string &, std::string &, std::string &, std::string &, std::string &) -> std::pair<int, MailLog>
                 { throw HistoryApiException(501, "Not implemented"); };
 
 
@@ -158,7 +157,7 @@ protected:
     //////////////////////////////////////////////////////////
 
     virtual std::pair<int, MailLog> handler_GET(
-        int64_t & id, std::string & origin, std::string & mx, std::string & from, std::string & to, std::string & subject, std::string & mailid, std::string & messageId, std::string & replyto, std::string & headerfrom, int32_t & delivered, int32_t & skip, int32_t & limit, DateOrTimestamp & startDate, DateOrTimestamp & endDate, std::string & sort, std::string & dir, std::string & groupby);
+        int64_t & id, std::string & origin, std::string & mx, std::string & from, std::string & to, std::string & subject, std::string & mailid, std::string & messageId, std::string & replyto, std::string & headerfrom, int32_t & delivered, int32_t & skip, int32_t & limit, std::string & startDate, std::string & endDate, std::string & sort, std::string & dir, std::string & groupby);
 
 
 protected:

@@ -11,7 +11,6 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.DateOrTimestamp
 import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.MailLog
 import org.openapitools.client.model.MailStatsType
@@ -105,7 +104,7 @@ case class HistoryApi[Auth <: org.openapitools.client.core.Authorization] privat
    * @param dir Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
    * @param groupby Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
    */
-  def viewMailLog(id: Option[Long] = scala.None, origin: Option[String] = scala.None, mx: Option[String] = scala.None, from: Option[String] = scala.None, to: Option[String] = scala.None, subject: Option[String] = scala.None, mailid: Option[String] = scala.None, messageId: Option[String] = scala.None, replyto: Option[String] = scala.None, headerfrom: Option[String] = scala.None, delivered: Option[Int] = scala.None, skip: Option[Int] = scala.None, limit: Option[Int] = scala.None, startDate: Option[DateOrTimestamp] = scala.None, endDate: Option[DateOrTimestamp] = scala.None, sort: Option[String] = scala.None, dir: Option[String] = scala.None, groupby: Option[String] = scala.None)(using Auth <:< org.openapitools.client.core.Authorization.ApiKey): sttp.client4.Request[Either[ResponseException[String], MailLog]] =
+  def viewMailLog(id: Option[Long] = scala.None, origin: Option[String] = scala.None, mx: Option[String] = scala.None, from: Option[String] = scala.None, to: Option[String] = scala.None, subject: Option[String] = scala.None, mailid: Option[String] = scala.None, messageId: Option[String] = scala.None, replyto: Option[String] = scala.None, headerfrom: Option[String] = scala.None, delivered: Option[Int] = scala.None, skip: Option[Int] = scala.None, limit: Option[Int] = scala.None, startDate: Option[String] = scala.None, endDate: Option[String] = scala.None, sort: Option[String] = scala.None, dir: Option[String] = scala.None, groupby: Option[String] = scala.None)(using Auth <:< org.openapitools.client.core.Authorization.ApiKey): sttp.client4.Request[Either[ResponseException[String], MailLog]] =
     val requestURL =
       uri"$baseUrl/mail/log"
         .addParams(FormSerializable.serialize("id", id, FormStyleFormat.FORM, true): _*)

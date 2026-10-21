@@ -1,5 +1,4 @@
 namespace MailBabyFsharpFunctions
-open MailBabyFsharpFunctions.Model.DateOrTimestamp
 open MailBabyFsharpFunctions.Model.ErrorMessage
 open MailBabyFsharpFunctions.Model.MailLog
 open MailBabyFsharpFunctions.Model.MailStatsType

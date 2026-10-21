@@ -1,6 +1,5 @@
 package controllers;
 
-import apimodels.DateOrTimestamp;
 import apimodels.ErrorMessage;
 import apimodels.MailLog;
 import apimodels.MailStatsType;
@@ -23,7 +22,7 @@ public class HistoryApiControllerImp extends HistoryApiControllerImpInterface {
     }
 
     @Override
-    public MailLog viewMailLog(Http.Request request, Long id, String origin, String mx, String from, String to, String subject,  @Size(min=18,max=19)String mailid, String messageId, String replyto, String headerfrom, Integer delivered,  @Min(0)Integer skip,  @Min(1) @Max(10000)Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby) throws Exception {
+    public MailLog viewMailLog(Http.Request request, Long id, String origin, String mx, String from, String to, String subject,  @Size(min=18,max=19)String mailid, String messageId, String replyto, String headerfrom, Integer delivered,  @Min(0)Integer skip,  @Min(1) @Max(10000)Integer limit, String startDate, String endDate, String sort, String dir, String groupby) throws Exception {
         //Do your magic!!!
         return new MailLog();
     }

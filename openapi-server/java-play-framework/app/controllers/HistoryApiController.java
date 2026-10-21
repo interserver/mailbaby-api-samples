@@ -1,6 +1,5 @@
 package controllers;
 
-import apimodels.DateOrTimestamp;
 import apimodels.ErrorMessage;
 import apimodels.MailLog;
 import apimodels.MailStatsType;
@@ -146,14 +145,14 @@ public class HistoryApiController extends Controller {
             limit = 100;
         }
         String valuestartDate = request.getQueryString("startDate");
-        DateOrTimestamp startDate;
+        String startDate;
         if (valuestartDate != null) {
             startDate = valuestartDate;
         } else {
             startDate = null;
         }
         String valueendDate = request.getQueryString("endDate");
-        DateOrTimestamp endDate;
+        String endDate;
         if (valueendDate != null) {
             endDate = valueendDate;
         } else {

@@ -1,6 +1,5 @@
 package org.openapitools.controller;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
@@ -120,8 +119,8 @@ public class HistoryControllerTest {
         Integer delivered = 1;
         Integer skip = 0;
         Integer limit = 100;
-        DateOrTimestamp startDate = new DateOrTimestamp();
-        DateOrTimestamp endDate = new DateOrTimestamp();
+        String startDate = "1641781008";
+        String endDate = "1673317008";
         String sort = "time";
         String dir = "desc";
         String groupby = "recipient";
@@ -160,8 +159,8 @@ public class HistoryControllerTest {
             .add("delivered", String.valueOf(1)) // The query parameter format should be 
             .add("skip", String.valueOf(0)) // The query parameter format should be 
             .add("limit", String.valueOf(100)) // The query parameter format should be 
-            .add("startDate", String.valueOf(new DateOrTimestamp())) // The query parameter format should be 
-            .add("endDate", String.valueOf(new DateOrTimestamp())) // The query parameter format should be 
+            .add("startDate", "1641781008") // The query parameter format should be 
+            .add("endDate", "1673317008") // The query parameter format should be 
             .add("sort", "time") // The query parameter format should be 
             .add("dir", "desc") // The query parameter format should be 
             .add("groupby", "recipient"); // The query parameter format should be 

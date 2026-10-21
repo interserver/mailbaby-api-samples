@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import "OAIDateOrTimestamp.h"
 #import "OAIErrorMessage.h"
 #import "OAIMailLog.h"
 #import "OAIMailStatsType.h"
@@ -79,8 +78,8 @@ extern NSInteger kOAIHistoryApiMissingParamErrorCode;
     delivered: (NSNumber*) delivered
     skip: (NSNumber*) skip
     limit: (NSNumber*) limit
-    startDate: (OAIDateOrTimestamp) startDate
-    endDate: (OAIDateOrTimestamp) endDate
+    startDate: (NSString*) startDate
+    endDate: (NSString*) endDate
     sort: (NSString*) sort
     dir: (NSString*) dir
     groupby: (NSString*) groupby

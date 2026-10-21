@@ -146,10 +146,10 @@ pub async fn view_mail_log(configuration: &configuration::Configuration, id: Opt
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_start_date {
-        req_builder = req_builder.query(&[("startDate", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("startDate", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_end_date {
-        req_builder = req_builder.query(&[("endDate", &serde_json::to_string(param_value)?)]);
+        req_builder = req_builder.query(&[("endDate", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_sort {
         req_builder = req_builder.query(&[("sort", &param_value.to_string())]);

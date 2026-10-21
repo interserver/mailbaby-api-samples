@@ -9,7 +9,6 @@ import misk.web.PathParam
 import misk.web.QueryParam
 import misk.web.RequestBody
 import misk.web.RequestHeader
-import MailBabyKotlinMisk.models.DateOrTimestamp
 import MailBabyKotlinMisk.models.ErrorMessage
 import MailBabyKotlinMisk.models.MailLog
 import MailBabyKotlinMisk.models.MailStatsType

@@ -15,7 +15,6 @@
 
 #include <QObject>
 
-#include "OAIDateOrTimestamp.h"
 #include "OAIErrorMessage.h"
 #include "OAIMailLog.h"
 #include "OAIMailStatsType.h"
@@ -34,7 +33,7 @@ public:
 
 public Q_SLOTS:
     virtual void getStats(QString time);
-    virtual void viewMailLog(qint64 id, QString origin, QString mx, QString from, QString to, QString subject, QString mailid, QString message_id, QString replyto, QString headerfrom, qint32 delivered, qint32 skip, qint32 limit, OAIDateOrTimestamp start_date, OAIDateOrTimestamp end_date, QString sort, QString dir, QString groupby);
+    virtual void viewMailLog(qint64 id, QString origin, QString mx, QString from, QString to, QString subject, QString mailid, QString message_id, QString replyto, QString headerfrom, qint32 delivered, qint32 skip, qint32 limit, QString start_date, QString end_date, QString sort, QString dir, QString groupby);
     
 
 };

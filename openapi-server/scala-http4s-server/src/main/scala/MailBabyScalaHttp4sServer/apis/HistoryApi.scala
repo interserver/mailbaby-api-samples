@@ -3,7 +3,6 @@ package MailBabyScalaHttp4sServer.apis
 import MailBabyScalaHttp4sServer.apis.path._
 import MailBabyScalaHttp4sServer.apis.query._
 
-import MailBabyScalaHttp4sServer.models.DateOrTimestamp
 import MailBabyScalaHttp4sServer.models.ErrorMessage
 import MailBabyScalaHttp4sServer.models.MailLog
 import MailBabyScalaHttp4sServer.models.MailStatsType
@@ -60,8 +59,8 @@ final case class HistoryApiRoutes[
     object deliveredQueryParam extends OptionalQueryParamDecoderMatcher[Int]("delivered")
     object skipQueryParam extends OptionalQueryParamDecoderMatcher[Refined[Int, GreaterEqual[0]]]("skip")
     object limitQueryParam extends OptionalQueryParamDecoderMatcher[Refined[Int, GreaterEqual[1] And LessEqual[10000]]]("limit")
-    object startDateQueryParam extends OptionalQueryParamDecoderMatcher[DateOrTimestamp]("startDate")
-    object endDateQueryParam extends OptionalQueryParamDecoderMatcher[DateOrTimestamp]("endDate")
+    object startDateQueryParam extends OptionalQueryParamDecoderMatcher[String]("startDate")
+    object endDateQueryParam extends OptionalQueryParamDecoderMatcher[String]("endDate")
     object sortQueryParam extends OptionalQueryParamDecoderMatcher[String]("sort")
     object dirQueryParam extends OptionalQueryParamDecoderMatcher[String]("dir")
     object groupbyQueryParam extends OptionalQueryParamDecoderMatcher[String]("groupby")
@@ -135,8 +134,8 @@ trait HistoryApiDelegate[F[_], apiKeyAuth] {
       delivered: Option[Int],
       skip: Option[Refined[Int, GreaterEqual[0]]],
       limit: Option[Refined[Int, GreaterEqual[1] And LessEqual[10000]]],
-      startDate: Option[DateOrTimestamp],
-      endDate: Option[DateOrTimestamp],
+      startDate: Option[String],
+      endDate: Option[String],
       sort: Option[String],
       dir: Option[String],
       groupby: Option[String],

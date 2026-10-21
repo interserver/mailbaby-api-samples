@@ -7,7 +7,6 @@ import akka.http.scaladsl.marshalling.ToEntityMarshaller
 import akka.http.scaladsl.unmarshalling.FromEntityUnmarshaller
 import akka.http.scaladsl.unmarshalling.FromStringUnmarshaller
 import org.openapitools.server.AkkaHttpHelper._
-import org.openapitools.server.model.DateOrTimestamp
 import org.openapitools.server.model.ErrorMessage
 import org.openapitools.server.model.MailLog
 import org.openapitools.server.model.MailStatsType

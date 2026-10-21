@@ -1,7 +1,6 @@
 package org.openapitools.api.impl;
 
 import org.openapitools.api.*;
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;
@@ -86,7 +85,7 @@ public class MailApiServiceImpl extends MailApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject,  @Size(min=18,max=19)String mailid, String messageId, String replyto, String headerfrom, Integer delivered,  @Min(0)Integer skip,  @Min(1) @Max(10000)Integer limit, DateOrTimestamp startDate, DateOrTimestamp endDate, String sort, String dir, String groupby, SecurityContext securityContext) throws NotFoundException {
+    public Response viewMailLog(Long id, String origin, String mx, String from, String to, String subject,  @Size(min=18,max=19)String mailid, String messageId, String replyto, String headerfrom, Integer delivered,  @Min(0)Integer skip,  @Min(1) @Max(10000)Integer limit, String startDate, String endDate, String sort, String dir, String groupby, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }

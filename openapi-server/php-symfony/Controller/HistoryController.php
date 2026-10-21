@@ -39,7 +39,6 @@ use OpenAPI\Server\Api\HistoryApiInterface;
 use OpenAPI\Server\Model\ErrorMessage;
 use OpenAPI\Server\Model\MailLog;
 use OpenAPI\Server\Model\MailStatsType;
-use OpenAPI\Server\Model\OpenAPI\Server\Model\DateOrTimestamp;
 
 /**
  * HistoryController Class Doc Comment
@@ -193,8 +192,8 @@ class HistoryController extends Controller
             $delivered = $this->deserialize($delivered, 'int', 'string');
             $skip = $this->deserialize($skip, 'int', 'string');
             $limit = $this->deserialize($limit, 'int', 'string');
-            $startDate = $this->deserialize($startDate, 'OpenAPI\Server\Model\DateOrTimestamp', 'string');
-            $endDate = $this->deserialize($endDate, 'OpenAPI\Server\Model\DateOrTimestamp', 'string');
+            $startDate = $this->deserialize($startDate, 'string', 'string');
+            $endDate = $this->deserialize($endDate, 'string', 'string');
             $sort = $this->deserialize($sort, 'string', 'string');
             $dir = $this->deserialize($dir, 'string', 'string');
             $groupby = $this->deserialize($groupby, 'string', 'string');
@@ -292,15 +291,13 @@ class HistoryController extends Controller
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type('OpenAPI\Server\Model\DateOrTimestamp');
-        $asserts[] = new Assert\Valid();
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($startDate, $asserts);
         if ($response instanceof Response) {
             return $response;
         }
         $asserts = [];
-        $asserts[] = new Assert\Type('OpenAPI\Server\Model\DateOrTimestamp');
-        $asserts[] = new Assert\Valid();
+        $asserts[] = new Assert\Type('string');
         $response = $this->validate($endDate, $asserts);
         if ($response instanceof Response) {
             return $response;

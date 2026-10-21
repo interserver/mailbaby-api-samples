@@ -1137,7 +1137,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
          * @summary Query the mail delivery log (filterable, paginated)
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options: RequestOptions): FetchArgs {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options: RequestOptions): FetchArgs {
             const localVarPath = `/mail/log`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions: RequestOptions = Object.assign({}, { method: 'GET' }, options);
@@ -1240,7 +1240,7 @@ export const HistoryApiFetchParamCreator = function (configuration?: Configurati
 export type HistoryApiType = { 
     getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', options?: RequestOptions): Promise<MailStatsType>,
 
-    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions): Promise<MailLog>,
+    viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions): Promise<MailLog>,
 }
 
 /**
@@ -1270,7 +1270,7 @@ export const HistoryApi = function(configuration?: Configuration, fetch: FetchAP
          * @summary Query the mail delivery log (filterable, paginated)
          * @throws {RequiredError}
          */
-        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions = {}): Promise<MailLog> {
+        viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', options?: RequestOptions = {}): Promise<MailLog> {
             const localVarFetchArgs = HistoryApiFetchParamCreator(configuration).viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby, options);
             return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                 if (response.status >= 200 && response.status < 300) {

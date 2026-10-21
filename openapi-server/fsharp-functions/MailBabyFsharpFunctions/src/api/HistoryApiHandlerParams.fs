@@ -1,6 +1,5 @@
 namespace MailBabyFsharpFunctions
 
-open MailBabyFsharpFunctions.Model.DateOrTimestamp
 open MailBabyFsharpFunctions.Model.ErrorMessage
 open MailBabyFsharpFunctions.Model.MailLog
 open MailBabyFsharpFunctions.Model.MailStatsType
@@ -76,10 +75,10 @@ module HistoryApiHandlerParams =
       limit : int option;
 
 
-      startDate : DateOrTimestamp option;
+      startDate : string option;
 
 
-      endDate : DateOrTimestamp option;
+      endDate : string option;
 
 
       sort : string option;

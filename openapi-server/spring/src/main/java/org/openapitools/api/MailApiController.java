@@ -1,6 +1,5 @@
 package org.openapitools.api;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;

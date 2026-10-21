@@ -34,7 +34,6 @@ import MailBabyKotlinServer.Paths
 import MailBabyKotlinServer.infrastructure.ApiPrincipal
 
 
-import io.swagger.server.models.DateOrTimestamp
 import io.swagger.server.models.ErrorMessage
 import io.swagger.server.models.MailLog
 import io.swagger.server.models.MailStatsType

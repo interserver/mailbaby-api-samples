@@ -39,7 +39,7 @@ namespace IO.Swagger.Api
         /// <param name="dir">Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.</param>
         /// <param name="groupby">Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode.</param>
         /// <returns>MailLog</returns>
-        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, string messageId, string replyto, string headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp startDate, DateOrTimestamp endDate, string sort, string dir, string groupby);
+        MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, string messageId, string replyto, string headerfrom, int? delivered, int? skip, int? limit, string startDate, string endDate, string sort, string dir, string groupby);
     }
   
     /// <summary>
@@ -150,7 +150,7 @@ namespace IO.Swagger.Api
         /// <param name="dir">Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.</param>
         /// <param name="groupby">Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode.</param>
         /// <returns>MailLog</returns>
-        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, string messageId, string replyto, string headerfrom, int? delivered, int? skip, int? limit, DateOrTimestamp startDate, DateOrTimestamp endDate, string sort, string dir, string groupby)
+        public MailLog ViewMailLog (long? id, string origin, string mx, string from, string to, string subject, string mailid, string messageId, string replyto, string headerfrom, int? delivered, int? skip, int? limit, string startDate, string endDate, string sort, string dir, string groupby)
         {
     
             var path = "/mail/log";

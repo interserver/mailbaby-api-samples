@@ -24,7 +24,6 @@
 
 package io.swagger.api;
 
-import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.ErrorMessage;
 import io.swagger.model.MailLog;
 import io.swagger.model.MailStatsType;
@@ -112,8 +111,8 @@ public class HistoryApiTest {
         Integer delivered = null;
         Integer skip = null;
         Integer limit = null;
-        DateOrTimestamp startDate = null;
-        DateOrTimestamp endDate = null;
+        String startDate = null;
+        String endDate = null;
         String sort = null;
         String dir = null;
         String groupby = null;

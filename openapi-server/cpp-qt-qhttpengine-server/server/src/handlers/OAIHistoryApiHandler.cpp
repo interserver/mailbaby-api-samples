@@ -38,7 +38,7 @@ void OAIHistoryApiHandler::getStats(QString time) {
         reqObj->getStatsResponse(res);
     }
 }
-void OAIHistoryApiHandler::viewMailLog(qint64 id, QString origin, QString mx, QString from, QString to, QString subject, QString mailid, QString message_id, QString replyto, QString headerfrom, qint32 delivered, qint32 skip, qint32 limit, OAIDateOrTimestamp start_date, OAIDateOrTimestamp end_date, QString sort, QString dir, QString groupby) {
+void OAIHistoryApiHandler::viewMailLog(qint64 id, QString origin, QString mx, QString from, QString to, QString subject, QString mailid, QString message_id, QString replyto, QString headerfrom, qint32 delivered, qint32 skip, qint32 limit, QString start_date, QString end_date, QString sort, QString dir, QString groupby) {
     Q_UNUSED(id);
     Q_UNUSED(origin);
     Q_UNUSED(mx);

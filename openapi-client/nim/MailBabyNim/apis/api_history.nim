@@ -18,7 +18,6 @@ import tables
 import typetraits
 import uri
 
-import ../models/model_date_or_timestamp
 import ../models/model_error_message
 import ../models/model_mail_log
 import ../models/model_mail_stats_type
@@ -49,7 +48,7 @@ proc getStats*(httpClient: HttpClient, time: string): (Option[MailStatsType], Re
   constructResult[MailStatsType](response)
 
 
-proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, messageId: string, replyto: string, headerfrom: string, delivered: Delivered, skip: int, limit: int, startDate: DateOrTimestamp, endDate: DateOrTimestamp, sort: string, dir: string, groupby: string): (Option[MailLog], Response) =
+proc viewMailLog*(httpClient: HttpClient, id: int64, origin: string, mx: string, `from`: string, to: string, subject: string, mailid: string, messageId: string, replyto: string, headerfrom: string, delivered: Delivered, skip: int, limit: int, startDate: string, endDate: string, sort: string, dir: string, groupby: string): (Option[MailLog], Response) =
   ## Query the mail delivery log (filterable, paginated)
   var query_params_list: seq[(string, string)] = @[]
   if $id != "":

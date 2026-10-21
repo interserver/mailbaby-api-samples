@@ -1,6 +1,5 @@
 package MailBabyKotlinSpring.apis
 
-import MailBabyKotlinSpring.models.DateOrTimestamp
 import MailBabyKotlinSpring.models.DenyRuleRecord
 import MailBabyKotlinSpring.models.EmailAddressParam
 import MailBabyKotlinSpring.models.EmailAddressTypes
@@ -230,8 +229,8 @@ class MailApiTest {
         val delivered: kotlin.Int? = TODO()
         val skip: kotlin.Int = TODO()
         val limit: kotlin.Int = TODO()
-        val startDate: DateOrTimestamp? = TODO()
-        val endDate: DateOrTimestamp? = TODO()
+        val startDate: kotlin.String? = TODO()
+        val endDate: kotlin.String? = TODO()
         val sort: kotlin.String = TODO()
         val dir: kotlin.String = TODO()
         val groupby: kotlin.String = TODO()

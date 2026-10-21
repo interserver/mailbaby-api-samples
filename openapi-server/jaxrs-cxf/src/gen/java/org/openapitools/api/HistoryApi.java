@@ -1,6 +1,5 @@
 package org.openapitools.api;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.ErrorMessage;
 import org.openapitools.model.MailLog;
 import org.openapitools.model.MailStatsType;
@@ -57,5 +56,5 @@ public interface HistoryApi  {
         @ApiResponse(code = 200, message = "Paginated list of mail log entries", response = MailLog.class),
         @ApiResponse(code = 400, message = "Bad request — one or more input parameters were missing or invalid.", response = ErrorMessage.class),
         @ApiResponse(code = 401, message = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", response = ErrorMessage.class) })
-    public MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") @Size(min=18,max=19) String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @QueryParam("skip") @Min(0) @DefaultValue("0")Integer skip, @QueryParam("limit") @Min(1) @Max(10000) @DefaultValue("100")Integer limit, @QueryParam("startDate") DateOrTimestamp startDate, @QueryParam("endDate") DateOrTimestamp endDate, @QueryParam("sort") @DefaultValue("time")String sort, @QueryParam("dir") @DefaultValue("desc")String dir, @QueryParam("groupby") @DefaultValue("recipient")String groupby);
+    public MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") @Size(min=18,max=19) String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @QueryParam("skip") @Min(0) @DefaultValue("0")Integer skip, @QueryParam("limit") @Min(1) @Max(10000) @DefaultValue("100")Integer limit, @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate, @QueryParam("sort") @DefaultValue("time")String sort, @QueryParam("dir") @DefaultValue("desc")String dir, @QueryParam("groupby") @DefaultValue("recipient")String groupby);
 }

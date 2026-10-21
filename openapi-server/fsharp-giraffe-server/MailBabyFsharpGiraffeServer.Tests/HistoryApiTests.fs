@@ -16,7 +16,6 @@ open TestHelper
 open HistoryApiHandlerTestsHelper
 open MailBabyFsharpGiraffeServer.HistoryApiHandler
 open MailBabyFsharpGiraffeServer.HistoryApiHandlerParams
-open MailBabyFsharpGiraffeServer.Model.DateOrTimestamp
 open MailBabyFsharpGiraffeServer.Model.ErrorMessage
 open MailBabyFsharpGiraffeServer.Model.MailLog
 open MailBabyFsharpGiraffeServer.Model.MailStatsType

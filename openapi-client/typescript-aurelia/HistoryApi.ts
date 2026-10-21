@@ -17,7 +17,6 @@ import { AuthStorage } from './AuthStorage';
 import {
   MailLog,
   MailStatsType,
-  DateOrTimestamp,
 } from './models';
 
 /**
@@ -44,8 +43,8 @@ export interface IViewMailLogParams {
   delivered?: 0 | 1;
   skip?: number;
   limit?: number;
-  startDate?: DateOrTimestamp;
-  endDate?: DateOrTimestamp;
+  startDate?: string;
+  endDate?: string;
   sort?: 'time';
   dir?: 'asc' | 'desc';
   groupby?: 'message' | 'recipient';

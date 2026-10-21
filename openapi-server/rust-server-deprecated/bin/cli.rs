@@ -140,11 +140,9 @@ enum Operation {
         /// Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
         limit: Option<i32>,
         /// Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-        #[clap(value_parser = parse_json::<models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan>)]
-        start_date: Option<models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan>,
+        start_date: Option<String>,
         /// Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
-        #[clap(value_parser = parse_json::<models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan>)]
-        end_date: Option<models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan>,
+        end_date: Option<String>,
         /// Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
         #[clap(value_parser = parse_json::<models::ViewMailLogSortParameter>)]
         sort: Option<models::ViewMailLogSortParameter>,

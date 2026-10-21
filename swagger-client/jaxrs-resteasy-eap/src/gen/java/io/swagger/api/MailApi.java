@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
-import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
@@ -272,6 +271,6 @@ public interface MailApi  {
                 @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                 @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
          })
-    Response viewMailLog( @QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @Size(min=18,max=19) @QueryParam("mailid") String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @Min(0) @QueryParam("skip") Integer skip, @Min(1) @Max(10000) @QueryParam("limit") Integer limit, @QueryParam("startDate") DateOrTimestamp startDate, @QueryParam("endDate") DateOrTimestamp endDate, @QueryParam("sort") String sort, @QueryParam("dir") String dir, @QueryParam("groupby") String groupby,@Context SecurityContext securityContext);
+    Response viewMailLog( @QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @Size(min=18,max=19) @QueryParam("mailid") String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @Min(0) @QueryParam("skip") Integer skip, @Min(1) @Max(10000) @QueryParam("limit") Integer limit, @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate, @QueryParam("sort") String sort, @QueryParam("dir") String dir, @QueryParam("groupby") String groupby,@Context SecurityContext securityContext);
 
 }

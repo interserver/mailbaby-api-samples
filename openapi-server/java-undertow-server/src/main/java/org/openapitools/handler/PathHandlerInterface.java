@@ -337,7 +337,7 @@ public interface PathHandlerInterface {
      * <p>"<b>startDate</b>"
      * <p>Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.</p>
      * <p>
-     * - Parameter type: <b>{@link DateOrTimestamp}</b><br/>
+     * - Parameter type: <b>{@link String}</b><br/>
      * - Appears in: <b>{@link HttpServerExchange#getQueryParameters Query}</b><br/>
      * - Required: <b>false</b>
      * </p>
@@ -346,7 +346,7 @@ public interface PathHandlerInterface {
      * <p>"<b>endDate</b>"
      * <p>Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.</p>
      * <p>
-     * - Parameter type: <b>{@link DateOrTimestamp}</b><br/>
+     * - Parameter type: <b>{@link String}</b><br/>
      * - Appears in: <b>{@link HttpServerExchange#getQueryParameters Query}</b><br/>
      * - Required: <b>false</b>
      * </p>

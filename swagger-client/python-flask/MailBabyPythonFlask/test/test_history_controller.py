@@ -5,7 +5,6 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from MailBabyPythonFlask.models.date_or_timestamp import DateOrTimestamp  # noqa: E501
 from MailBabyPythonFlask.models.error_message import ErrorMessage  # noqa: E501
 from MailBabyPythonFlask.models.mail_log import MailLog  # noqa: E501
 from MailBabyPythonFlask.models.mail_stats_type import MailStatsType  # noqa: E501
@@ -46,8 +45,8 @@ class TestHistoryController(BaseTestCase):
                         ('delivered', 56),
                         ('skip', 1),
                         ('limit', 10000),
-                        ('start_date', DateOrTimestamp()),
-                        ('end_date', DateOrTimestamp()),
+                        ('start_date', 'start_date_example'),
+                        ('end_date', 'end_date_example'),
                         ('sort', 'time'),
                         ('dir', 'desc'),
                         ('groupby', 'recipient')]

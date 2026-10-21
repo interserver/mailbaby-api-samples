@@ -28,7 +28,6 @@ import misk.web.RequestHeader
 import misk.web.Response
 import misk.web.ResponseContentType
 import misk.web.mediatype.MediaTypes
-import MailBabyKotlinMisk.models.DateOrTimestamp
 import MailBabyKotlinMisk.models.ErrorMessage
 import MailBabyKotlinMisk.models.MailLog
 import MailBabyKotlinMisk.models.MailStatsType
@@ -68,8 +67,8 @@ class HistoryApiAction @Inject constructor(
          @QueryParam(value = "delivered") delivered: kotlin.Int?, 
          @QueryParam(value = "skip") skip: kotlin.Int, 
          @QueryParam(value = "limit") limit: kotlin.Int, 
-         startDate: DateOrTimestamp?, 
-         endDate: DateOrTimestamp?, 
+         @QueryParam(value = "startDate") startDate: kotlin.String?, 
+         @QueryParam(value = "endDate") endDate: kotlin.String?, 
          @QueryParam(value = "sort") sort: kotlin.String, 
          @QueryParam(value = "dir") dir: kotlin.String, 
          @QueryParam(value = "groupby") groupby: kotlin.String

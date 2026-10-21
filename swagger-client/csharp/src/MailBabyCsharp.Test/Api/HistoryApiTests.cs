@@ -93,8 +93,8 @@ namespace MailBabyCsharp.Test
             //int? delivered = null;
             //int? skip = null;
             //int? limit = null;
-            //DateOrTimestamp startDate = null;
-            //DateOrTimestamp endDate = null;
+            //string startDate = null;
+            //string endDate = null;
             //string sort = null;
             //string dir = null;
             //string groupby = null;

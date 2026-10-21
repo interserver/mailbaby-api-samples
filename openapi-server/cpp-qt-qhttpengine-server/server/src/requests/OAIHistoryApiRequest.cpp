@@ -136,12 +136,12 @@ void OAIHistoryApiRequest::viewMailLogRequest(){
         fromStringValue(socket->queryString().value("limit"), limit);
     }
     
-    OAIDateOrTimestamp start_date;
+    QString start_date;
     if(socket->queryString().keys().contains("start_date")){
         fromStringValue(socket->queryString().value("start_date"), start_date);
     }
     
-    OAIDateOrTimestamp end_date;
+    QString end_date;
     if(socket->queryString().keys().contains("end_date")){
         fromStringValue(socket->queryString().value("end_date"), end_date);
     }

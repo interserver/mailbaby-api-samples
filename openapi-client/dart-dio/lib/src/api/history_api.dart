@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/model/date_or_timestamp.dart';
 import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/mail_log.dart';
 import 'package:openapi/src/model/mail_stats_type.dart';
@@ -149,8 +148,8 @@ _responseData = rawData == null ? null : deserialize<MailStatsType, MailStatsTyp
     int? delivered,
     int? skip = 0,
     int? limit = 100,
-    DateOrTimestamp? startDate,
-    DateOrTimestamp? endDate,
+    String? startDate,
+    String? endDate,
     String? sort = 'time',
     String? dir = 'desc',
     String? groupby = 'recipient',

@@ -21,7 +21,6 @@ import scalaz.concurrent.Task
 
 import HelperCodecs._
 
-import org.openapitools.client.api.DateOrTimestamp
 import org.openapitools.client.api.ErrorMessage
 import org.openapitools.client.api.MailLog
 import org.openapitools.client.api.MailStatsType
@@ -53,7 +52,7 @@ object HistoryApi {
     } yield resp
   }
 
-  def viewMailLog(host: String, id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, messageId: String, replyto: String, headerfrom: String, delivered: Integer, skip: Integer = 0, limit: Integer = 100, startDate: DateOrTimestamp, endDate: DateOrTimestamp, sort: String = time, dir: String = desc, groupby: String = recipient)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], messageIdQuery: QueryParam[String], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String], deliveredQuery: QueryParam[Integer], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[DateOrTimestamp], endDateQuery: QueryParam[DateOrTimestamp], sortQuery: QueryParam[String], dirQuery: QueryParam[String], groupbyQuery: QueryParam[String]): Task[MailLog] = {
+  def viewMailLog(host: String, id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, messageId: String, replyto: String, headerfrom: String, delivered: Integer, skip: Integer = 0, limit: Integer = 100, startDate: String, endDate: String, sort: String = time, dir: String = desc, groupby: String = recipient)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], messageIdQuery: QueryParam[String], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String], deliveredQuery: QueryParam[Integer], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[String], endDateQuery: QueryParam[String], sortQuery: QueryParam[String], dirQuery: QueryParam[String], groupbyQuery: QueryParam[String]): Task[MailLog] = {
     implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"
@@ -102,7 +101,7 @@ class HttpServiceHistoryApi(service: HttpService) {
     } yield resp
   }
 
-  def viewMailLog(id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, messageId: String, replyto: String, headerfrom: String, delivered: Integer, skip: Integer = 0, limit: Integer = 100, startDate: DateOrTimestamp, endDate: DateOrTimestamp, sort: String = time, dir: String = desc, groupby: String = recipient)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], messageIdQuery: QueryParam[String], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String], deliveredQuery: QueryParam[Integer], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[DateOrTimestamp], endDateQuery: QueryParam[DateOrTimestamp], sortQuery: QueryParam[String], dirQuery: QueryParam[String], groupbyQuery: QueryParam[String]): Task[MailLog] = {
+  def viewMailLog(id: Long, origin: String, mx: String, from: String, to: String, subject: String, mailid: String, messageId: String, replyto: String, headerfrom: String, delivered: Integer, skip: Integer = 0, limit: Integer = 100, startDate: String, endDate: String, sort: String = time, dir: String = desc, groupby: String = recipient)(implicit idQuery: QueryParam[Long], originQuery: QueryParam[String], mxQuery: QueryParam[String], fromQuery: QueryParam[String], toQuery: QueryParam[String], subjectQuery: QueryParam[String], mailidQuery: QueryParam[String], messageIdQuery: QueryParam[String], replytoQuery: QueryParam[String], headerfromQuery: QueryParam[String], deliveredQuery: QueryParam[Integer], skipQuery: QueryParam[Integer], limitQuery: QueryParam[Integer], startDateQuery: QueryParam[String], endDateQuery: QueryParam[String], sortQuery: QueryParam[String], dirQuery: QueryParam[String], groupbyQuery: QueryParam[String]): Task[MailLog] = {
     implicit val returnTypeDecoder: EntityDecoder[MailLog] = jsonOf[MailLog]
 
     val path = "/mail/log"

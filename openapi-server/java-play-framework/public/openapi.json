@@ -893,7 +893,7 @@
           "name" : "startDate",
           "required" : false,
           "schema" : {
-            "$ref" : "#/components/schemas/DateOrTimestamp"
+            "type" : "string"
           },
           "style" : "form"
         }, {
@@ -904,7 +904,7 @@
           "name" : "endDate",
           "required" : false,
           "schema" : {
-            "$ref" : "#/components/schemas/DateOrTimestamp"
+            "type" : "string"
           },
           "style" : "form"
         }, {

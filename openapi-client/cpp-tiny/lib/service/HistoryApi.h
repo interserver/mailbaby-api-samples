@@ -8,7 +8,6 @@
 #include "Helpers.h"
 #include <list>
 
-#include "DateOrTimestamp.h"
 #include "ErrorMessage.h"
 #include "MailLog.h"
 #include "MailStatsType.h"
@@ -107,10 +106,10 @@ public:
             int limit
             , 
             
-            DateOrTimestamp startDate
+            std::string startDate
             , 
             
-            DateOrTimestamp endDate
+            std::string endDate
             , 
             
             std::string sort

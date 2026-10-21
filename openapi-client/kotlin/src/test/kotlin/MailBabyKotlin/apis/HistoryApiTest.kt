@@ -27,7 +27,6 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.ShouldSpec
 
 import MailBabyKotlin.apis.HistoryApi
-import MailBabyKotlin.models.DateOrTimestamp
 import MailBabyKotlin.models.ErrorMessage
 import MailBabyKotlin.models.MailLog
 import MailBabyKotlin.models.MailStatsType
@@ -61,8 +60,8 @@ class HistoryApiTest : ShouldSpec() {
             //val delivered : kotlin.Int = 1 // kotlin.Int | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status.
             //val skip : kotlin.Int = 0 // kotlin.Int | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip).
             //val limit : kotlin.Int = 100 // kotlin.Int | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
-            //val startDate : DateOrTimestamp = 1641781008 // DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
-            //val endDate : DateOrTimestamp = 1673317008 // DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
+            //val startDate : kotlin.String = 1641781008 // kotlin.String | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
+            //val endDate : kotlin.String = 1673317008 // kotlin.String | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
             //val sort : kotlin.String = time // kotlin.String | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order).
             //val dir : kotlin.String = desc // kotlin.String | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
             //val groupby : kotlin.String = recipient // kotlin.String | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.

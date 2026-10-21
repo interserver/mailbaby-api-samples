@@ -29,7 +29,6 @@
 #include <HistoryApi.h>
 
 
-#include "DateOrTimestamp.h"
 #include "ErrorMessage.h"
 #include "MailLog.h"
 #include "MailStatsType.h"
@@ -46,7 +45,7 @@ public:
     ~HistoryApiImpl() override = default;
 
     void get_stats(const std::optional<std::string> &time, Pistache::Http::ResponseWriter &response);
-    void view_mail_log(const std::optional<int64_t> &id, const std::optional<std::string> &origin, const std::optional<std::string> &mx, const std::optional<std::string> &from, const std::optional<std::string> &to, const std::optional<std::string> &subject, const std::optional<std::string> &mailid, const std::optional<std::string> &messageId, const std::optional<std::string> &replyto, const std::optional<std::string> &headerfrom, const std::optional<int32_t> &delivered, const std::optional<int32_t> &skip, const std::optional<int32_t> &limit, const std::optional<org::openapitools::server::model::DateOrTimestamp> &startDate, const std::optional<org::openapitools::server::model::DateOrTimestamp> &endDate, const std::optional<std::string> &sort, const std::optional<std::string> &dir, const std::optional<std::string> &groupby, Pistache::Http::ResponseWriter &response);
+    void view_mail_log(const std::optional<int64_t> &id, const std::optional<std::string> &origin, const std::optional<std::string> &mx, const std::optional<std::string> &from, const std::optional<std::string> &to, const std::optional<std::string> &subject, const std::optional<std::string> &mailid, const std::optional<std::string> &messageId, const std::optional<std::string> &replyto, const std::optional<std::string> &headerfrom, const std::optional<int32_t> &delivered, const std::optional<int32_t> &skip, const std::optional<int32_t> &limit, const std::optional<std::string> &startDate, const std::optional<std::string> &endDate, const std::optional<std::string> &sort, const std::optional<std::string> &dir, const std::optional<std::string> &groupby, Pistache::Http::ResponseWriter &response);
 
 };
 

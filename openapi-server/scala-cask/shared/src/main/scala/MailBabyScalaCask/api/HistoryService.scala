@@ -18,7 +18,6 @@
 // generated from apiService.mustache
 package MailBabyScalaCask.api
 
-import _root_.MailBabyScalaCask.model.DateOrTimestamp
 import _root_.MailBabyScalaCask.model.ErrorMessage
 import _root_.MailBabyScalaCask.model.MailLog
 import _root_.MailBabyScalaCask.model.MailStatsType
@@ -40,14 +39,14 @@ object HistoryService {
    */
   case class Handler[F[_]](
         getStatsHandler : (time : Option[String]) => F[MailStatsType | ErrorMessage], 
-        viewMailLogHandler : (id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[DateOrTimestamp], endDate : Option[DateOrTimestamp], sort : Option[String], dir : Option[String], groupby : Option[String]) => F[MailLog | ErrorMessage]
+        viewMailLogHandler : (id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[String], endDate : Option[String], sort : Option[String], dir : Option[String], groupby : Option[String]) => F[MailLog | ErrorMessage]
   ) extends HistoryService[F] {
 
         override def getStats(time : Option[String]) : F[MailStatsType | ErrorMessage] = {
           getStatsHandler(time)
         }
 
-        override def viewMailLog(id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[DateOrTimestamp], endDate : Option[DateOrTimestamp], sort : Option[String], dir : Option[String], groupby : Option[String]) : F[MailLog | ErrorMessage] = {
+        override def viewMailLog(id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[String], endDate : Option[String], sort : Option[String], dir : Option[String], groupby : Option[String]) : F[MailLog | ErrorMessage] = {
           viewMailLogHandler(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby)
         }
   }
@@ -88,13 +87,13 @@ trait HistoryService[F[_]] {
    * 
    * @return MailLog
    */
-  def viewMailLog(id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[DateOrTimestamp], endDate : Option[DateOrTimestamp], sort : Option[String], dir : Option[String], groupby : Option[String]) : F[MailLog | ErrorMessage]
+  def viewMailLog(id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[String], endDate : Option[String], sort : Option[String], dir : Option[String], groupby : Option[String]) : F[MailLog | ErrorMessage]
 
   /**
    * override viewMailLog with the given handler
    * @return a new implementation of HistoryService[F] with viewMailLog overridden using the given handler
    */
-  final def onViewMailLog(handler : (id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[DateOrTimestamp], endDate : Option[DateOrTimestamp], sort : Option[String], dir : Option[String], groupby : Option[String]) => F[MailLog | ErrorMessage]) : HistoryService[F] = {
+  final def onViewMailLog(handler : (id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[String], endDate : Option[String], sort : Option[String], dir : Option[String], groupby : Option[String]) => F[MailLog | ErrorMessage]) : HistoryService[F] = {
     asHandler.copy(viewMailLogHandler = handler)
   }
 
@@ -135,7 +134,7 @@ trait HistoryService[F[_]] {
         override def getStats(time : Option[String]) : G[MailStatsType | ErrorMessage] = changeEffect {
           self.getStats(time)
         }
-        override def viewMailLog(id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[DateOrTimestamp], endDate : Option[DateOrTimestamp], sort : Option[String], dir : Option[String], groupby : Option[String]) : G[MailLog | ErrorMessage] = changeEffect {
+        override def viewMailLog(id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[String], endDate : Option[String], sort : Option[String], dir : Option[String], groupby : Option[String]) : G[MailLog | ErrorMessage] = changeEffect {
           self.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby)
         }
     }

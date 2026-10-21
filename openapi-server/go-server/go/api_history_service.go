@@ -29,7 +29,7 @@ func NewHistoryAPIService() *HistoryAPIService {
 }
 
 // ViewMailLog - Query the mail delivery log (filterable, paginated)
-func (s *HistoryAPIService) ViewMailLog(ctx context.Context, id int64, origin string, mx string, from string, to string, subject string, mailid string, messageId string, replyto string, headerfrom string, delivered int32, skip int32, limit int32, startDate DateOrTimestamp, endDate DateOrTimestamp, sort string, dir string, groupby string) (ImplResponse, error) {
+func (s *HistoryAPIService) ViewMailLog(ctx context.Context, id int64, origin string, mx string, from string, to string, subject string, mailid string, messageId string, replyto string, headerfrom string, delivered int32, skip int32, limit int32, startDate string, endDate string, sort string, dir string, groupby string) (ImplResponse, error) {
 	// TODO - update ViewMailLog with the required logic for this service method.
 	// Add api_history_service.go to the .openapi-generator-ignore to avoid overwriting this service implementation when updating open api generation.
 

@@ -161,7 +161,7 @@ Protected Class HistoryApi
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ViewMailLog(, Optional id As Xoson.O.OptionalInt64, Optional origin As Xoson.O.OptionalString, Optional mx As Xoson.O.OptionalString, Optional from As Xoson.O.OptionalString, Optional Escapedto As Xoson.O.OptionalString, Optional subject As Xoson.O.OptionalString, Optional mailid As Xoson.O.OptionalString, Optional messageId As Xoson.O.OptionalString, Optional replyto As Xoson.O.OptionalString, Optional headerfrom As Xoson.O.OptionalString, delivered As DeliveredEnum_ViewMailLog, Optional skip As Xoson.O.OptionalInteger, Optional limit As Xoson.O.OptionalInteger, Optional startDate As OpenAPIClient.Models.DateOrTimestamp, Optional endDate As OpenAPIClient.Models.DateOrTimestamp, sort As SortEnum_ViewMailLog, dir As DirEnum_ViewMailLog, groupby As GroupbyEnum_ViewMailLog)
+		Sub ViewMailLog(, Optional id As Xoson.O.OptionalInt64, Optional origin As Xoson.O.OptionalString, Optional mx As Xoson.O.OptionalString, Optional from As Xoson.O.OptionalString, Optional Escapedto As Xoson.O.OptionalString, Optional subject As Xoson.O.OptionalString, Optional mailid As Xoson.O.OptionalString, Optional messageId As Xoson.O.OptionalString, Optional replyto As Xoson.O.OptionalString, Optional headerfrom As Xoson.O.OptionalString, delivered As DeliveredEnum_ViewMailLog, Optional skip As Xoson.O.OptionalInteger, Optional limit As Xoson.O.OptionalInteger, Optional startDate As Xoson.O.OptionalString, Optional endDate As Xoson.O.OptionalString, sort As SortEnum_ViewMailLog, dir As DirEnum_ViewMailLog, groupby As GroupbyEnum_ViewMailLog)
 		  // Operation viewMailLog
 		  // Query the mail delivery log (filterable, paginated)
 		  // - 
@@ -178,8 +178,8 @@ Protected Class HistoryApi
 		  // - parameter delivered: (query) Filter by delivery status.  &#x60;1&#x60; returns only messages that were successfully delivered to the destination MX.  &#x60;0&#x60; returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional, default to 0)
 		  // - parameter skip: (query) Number of records to skip for pagination.  Use in combination with &#x60;limit&#x60; to page through large result sets.  Defaults to &#x60;0&#x60; (no skip). (optional, default to 0)
 		  // - parameter limit: (query) Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages. (optional, default to 100)
-		  // - parameter startDate: (query) Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60; or &#x60;last monday&#x60;.  Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. (optional, default to Nil)
-		  // - parameter endDate: (query) Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-31&#x60; or &#x60;yesterday&#x60;. Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. (optional, default to Nil)
+		  // - parameter startDate: (query) Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60; or &#x60;last monday&#x60;.  Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included. (optional, default to Sample)
+		  // - parameter endDate: (query) Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-31&#x60; or &#x60;yesterday&#x60;. Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included. (optional, default to Sample)
 		  // - parameter sort: (query) Field to sort results by.  Currently only &#x60;time&#x60; is supported (sorts by internal row ID which corresponds to chronological order). (optional, default to time)
 		  // - parameter dir: (query) Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. (optional, default to desc)
 		  // - parameter groupby: (query) Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to recipient)
@@ -225,9 +225,9 @@ Protected Class HistoryApi
 		  
 		  If limit <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("limit") + "=" + EncodeURLComponent(limit.ToString)
 		  
-		  If startDate <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("startDate") + "=" + EncodeURLComponent(Xoson.toJSON(startDate))
+		  If startDate <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("startDate") + "=" + EncodeURLComponent(startDate)
 		  
-		  If endDate <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("endDate") + "=" + EncodeURLComponent(Xoson.toJSON(endDate))
+		  If endDate <> nil Then localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("endDate") + "=" + EncodeURLComponent(endDate)
 		  
 		  localVarQueryParams = localVarQueryParams + "&" + EncodeURLComponent("sort") + "=" + EncodeURLComponent(SortEnum_ViewMailLogToString(sort))
 		  

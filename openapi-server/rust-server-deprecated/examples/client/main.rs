@@ -190,8 +190,8 @@ fn main() {
                   Some(models::DeliveredStatus::Variant0),
                   Some(0),
                   Some(100),
-                  Some(serde_json::from_str::<models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan>(r#"1641781008"#).expect("Failed to parse JSON example")),
-                  Some(serde_json::from_str::<models::SwaggerColonColonOneOf2LessThanI64CommaStringGreaterThan>(r#"1673317008"#).expect("Failed to parse JSON example")),
+                  Some("1641781008".to_string()),
+                  Some("1673317008".to_string()),
                   Some(models::ViewMailLogSortParameter::Time),
                   Some(models::ViewMailLogDirParameter::Asc),
                   Some(models::ViewMailLogGroupbyParameter::Message)

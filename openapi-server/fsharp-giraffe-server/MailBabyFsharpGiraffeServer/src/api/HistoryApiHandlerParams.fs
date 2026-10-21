@@ -1,6 +1,5 @@
 namespace MailBabyFsharpGiraffeServer
 
-open MailBabyFsharpGiraffeServer.Model.DateOrTimestamp
 open MailBabyFsharpGiraffeServer.Model.ErrorMessage
 open MailBabyFsharpGiraffeServer.Model.MailLog
 open MailBabyFsharpGiraffeServer.Model.MailStatsType
@@ -76,10 +75,10 @@ module HistoryApiHandlerParams =
       limit : int option;
 
 
-      startDate : DateOrTimestamp option;
+      startDate : string option;
 
 
-      endDate : DateOrTimestamp option;
+      endDate : string option;
 
 
       sort : string option;

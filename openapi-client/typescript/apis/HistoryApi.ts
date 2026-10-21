@@ -8,7 +8,6 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { DateOrTimestamp } from '../models/DateOrTimestamp';
 import { ErrorMessage } from '../models/ErrorMessage';
 import { MailLog } from '../models/MailLog';
 import { MailStatsType } from '../models/MailStatsType';
@@ -77,7 +76,7 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
      * @param dir Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.
      * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode.
      */
-    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', _options?: Configuration): Promise<RequestContext> {
+    public async viewMailLog(id?: number, origin?: string, mx?: string, _from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
 
@@ -172,18 +171,12 @@ export class HistoryApiRequestFactory extends BaseAPIRequestFactory {
 
         // Query Params
         if (startDate !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(startDate, "DateOrTimestamp", "");
-            for (const key of Object.keys(serializedParams)) {
-                requestContext.setQueryParam(key, serializedParams[key]);
-            }
+            requestContext.setQueryParam("startDate", ObjectSerializer.serialize(startDate, "string", ""));
         }
 
         // Query Params
         if (endDate !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(endDate, "DateOrTimestamp", "");
-            for (const key of Object.keys(serializedParams)) {
-                requestContext.setQueryParam(key, serializedParams[key]);
-            }
+            requestContext.setQueryParam("endDate", ObjectSerializer.serialize(endDate, "string", ""));
         }
 
         // Query Params

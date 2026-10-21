@@ -11,7 +11,6 @@
  */
 package io.swagger.client.apis
 
-import io.swagger.client.models.DateOrTimestamp
 import io.swagger.client.models.ErrorMessage
 import io.swagger.client.models.MailLog
 import io.swagger.client.models.MailStatsType
@@ -73,7 +72,7 @@ class HistoryApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClie
      * @return MailLog
      */
     @Suppress("UNCHECKED_CAST")
-    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, messageId: kotlin.String? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: kotlin.Int? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null, startDate: DateOrTimestamp? = null, endDate: DateOrTimestamp? = null, sort: kotlin.String? = null, dir: kotlin.String? = null, groupby: kotlin.String? = null): MailLog {
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, messageId: kotlin.String? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: kotlin.Int? = null, skip: kotlin.Int? = null, limit: kotlin.Int? = null, startDate: kotlin.String? = null, endDate: kotlin.String? = null, sort: kotlin.String? = null, dir: kotlin.String? = null, groupby: kotlin.String? = null): MailLog {
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>().apply {
             if (id != null) {
                 put("id", listOf(id.toString()))

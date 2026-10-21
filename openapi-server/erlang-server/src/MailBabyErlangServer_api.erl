@@ -473,6 +473,7 @@ request_param_info('viewMailLog', 'startDate') ->
     #{
         source => qs_val,
         rules => [
+            {type, binary},
             not_required
         ]
     };
@@ -480,6 +481,7 @@ request_param_info('viewMailLog', 'endDate') ->
     #{
         source => qs_val,
         rules => [
+            {type, binary},
             not_required
         ]
     };

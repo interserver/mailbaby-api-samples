@@ -11,7 +11,6 @@
  */
 package org.openapitools.client.api
 
-import org.openapitools.client.model.DateOrTimestamp
 import org.openapitools.client.model.ErrorMessage
 import org.openapitools.client.model.MailLog
 import org.openapitools.client.model.MailStatsType
@@ -76,7 +75,7 @@ class HistoryApi(baseUrl: String) {
    * @param dir Sort direction.  `desc` returns newest first (default), `asc` returns oldest first.
    * @param groupby Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode.
    */
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Int] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[String] = None, dir: Option[String] = None, groupby: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailLog] =
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Int] = None, skip: Option[Int] = None, limit: Option[Int] = None, startDate: Option[String] = None, endDate: Option[String] = None, sort: Option[String] = None, dir: Option[String] = None, groupby: Option[String] = None)(implicit apiKey: ApiKeyValue): ApiRequest[MailLog] =
     ApiRequest[MailLog](ApiMethods.GET, baseUrl, "/mail/log", "application/json")
       .withApiKey(apiKey, "X-API-KEY", HEADER)
       .withQueryParam("id", id)

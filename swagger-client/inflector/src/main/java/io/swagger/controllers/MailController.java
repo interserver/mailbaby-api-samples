@@ -10,7 +10,6 @@ import java.util.List;
 
 import io.swagger.model.*;
 
-import io.swagger.model.DateOrTimestamp;
 import io.swagger.model.DenyRuleNew;
 import io.swagger.model.DenyRuleRecord;
 import io.swagger.model.EmailAddressParam;
@@ -173,8 +172,8 @@ public class MailController  {
 , Integer delivered 
 , Integer skip 
 , Integer limit 
-, DateOrTimestamp startDate 
-, DateOrTimestamp endDate 
+, String startDate 
+, String endDate 
 , String sort 
 , String dir 
 , String groupby 

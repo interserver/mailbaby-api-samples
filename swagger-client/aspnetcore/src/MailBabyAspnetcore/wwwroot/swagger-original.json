@@ -888,7 +888,7 @@
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/DateOrTimestamp"
+            "type" : "string"
           },
           "example" : 1641781008
         }, {
@@ -899,7 +899,7 @@
           "style" : "form",
           "explode" : true,
           "schema" : {
-            "$ref" : "#/components/schemas/DateOrTimestamp"
+            "type" : "string"
           },
           "example" : 1673317008
         }, {

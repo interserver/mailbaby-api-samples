@@ -2,7 +2,7 @@ import { Body, Controller, DefaultValuePipe, Get, Param, ParseIntPipe, ParseFloa
 import { Observable } from 'rxjs';
 import { Cookies, Headers } from '../decorators';
 import { HistoryApi } from '../api';
-import { 0 | 1, DateOrTimestamp, MailLog, MailStatsType,  } from '../models';
+import { 0 | 1, MailLog, MailStatsType,  } from '../models';
 
 @Controller()
 export class HistoryApiController {
@@ -14,7 +14,7 @@ export class HistoryApiController {
   }
 
   @Get('/mail/log')
-  viewMailLog(@Query('id') id: number | undefined, @Query('origin') origin: string | undefined, @Query('mx') mx: string | undefined, @Query('from') _from: string | undefined, @Query('to') to: string | undefined, @Query('subject') subject: string | undefined, @Query('mailid') mailid: string | undefined, @Query('messageId') messageId: string | undefined, @Query('replyto') replyto: string | undefined, @Query('headerfrom') headerfrom: string | undefined, @Query('delivered') delivered: 0 | 1 | undefined, @Query('skip', new DefaultValuePipe(0)) skip: number | undefined, @Query('limit', new DefaultValuePipe(100)) limit: number | undefined, @Query('startDate') startDate: DateOrTimestamp | undefined, @Query('endDate') endDate: DateOrTimestamp | undefined, @Query('sort', new DefaultValuePipe('time')) sort: 'time' | undefined, @Query('dir', new DefaultValuePipe('desc')) dir: 'asc' | 'desc' | undefined, @Query('groupby', new DefaultValuePipe('recipient')) groupby: 'message' | 'recipient' | undefined, @Req() request: Request): MailLog | Promise<MailLog> | Observable<MailLog> {
+  viewMailLog(@Query('id') id: number | undefined, @Query('origin') origin: string | undefined, @Query('mx') mx: string | undefined, @Query('from') _from: string | undefined, @Query('to') to: string | undefined, @Query('subject') subject: string | undefined, @Query('mailid') mailid: string | undefined, @Query('messageId') messageId: string | undefined, @Query('replyto') replyto: string | undefined, @Query('headerfrom') headerfrom: string | undefined, @Query('delivered') delivered: 0 | 1 | undefined, @Query('skip', new DefaultValuePipe(0)) skip: number | undefined, @Query('limit', new DefaultValuePipe(100)) limit: number | undefined, @Query('startDate') startDate: string | undefined, @Query('endDate') endDate: string | undefined, @Query('sort', new DefaultValuePipe('time')) sort: 'time' | undefined, @Query('dir', new DefaultValuePipe('desc')) dir: 'asc' | 'desc' | undefined, @Query('groupby', new DefaultValuePipe('recipient')) groupby: 'message' | 'recipient' | undefined, @Req() request: Request): MailLog | Promise<MailLog> | Observable<MailLog> {
     return this.historyApi.viewMailLog(id, origin, mx, _from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby, request);
   }
 

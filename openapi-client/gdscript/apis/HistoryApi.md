@@ -59,7 +59,7 @@ api.get_stats(
 # **view_mail_log**   { #view_mail_log }
 <a name="view_mail_log"></a>
 
-> `view_mail_log(id = null,origin = "",mx = "",from = null,to = null,subject = "",mailid = "",messageId = "",replyto = null,headerfrom = null,delivered = null,skip = 0,limit = 100,startDate = null,endDate = null,sort = "time",dir = "desc",groupby = "recipient", on_success: Callable, on_failure: Callable)`
+> `view_mail_log(id = null,origin = "",mx = "",from = null,to = null,subject = "",mailid = "",messageId = "",replyto = null,headerfrom = null,delivered = null,skip = 0,limit = 100,startDate = "",endDate = "",sort = "time",dir = "desc",groupby = "recipient", on_success: Callable, on_failure: Callable)`
 
 Query the mail delivery log (filterable, paginated)
 
@@ -125,10 +125,10 @@ api.view_mail_log(
 	# limit: int = 100   Eg: 100
 	# Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages.
 	limit,
-	# startDate: DateOrTimestamp   Eg: 1641781008
+	# startDate: String = ""   Eg: 1641781008
 	# Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included.
 	startDate,
-	# endDate: DateOrTimestamp   Eg: 1673317008
+	# endDate: String = ""   Eg: 1673317008
 	# Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included.
 	endDate,
 	# sort: String = "time"   Eg: time

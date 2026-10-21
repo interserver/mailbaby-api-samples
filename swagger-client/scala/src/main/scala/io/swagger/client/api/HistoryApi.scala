@@ -13,7 +13,6 @@ package io.swagger.client.api
 
 import java.text.SimpleDateFormat
 
-import io.swagger.client.model.DateOrTimestamp
 import io.swagger.client.model.ErrorMessage
 import io.swagger.client.model.MailLog
 import io.swagger.client.model.MailStatsType
@@ -131,7 +130,7 @@ class HistoryApi(
    * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to recipient)
    * @return MailLog
    */
-  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Integer] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[String] = Option("time"), dir: Option[String] = Option("desc"), groupby: Option[String] = Option("recipient")): Option[MailLog] = {
+  def viewMailLog(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Integer] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[String] = None, endDate: Option[String] = None, sort: Option[String] = Option("time"), dir: Option[String] = Option("desc"), groupby: Option[String] = Option("recipient")): Option[MailLog] = {
     val await = Try(Await.result(viewMailLogAsync(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
@@ -163,7 +162,7 @@ class HistoryApi(
    * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to recipient)
    * @return Future(MailLog)
    */
-  def viewMailLogAsync(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Integer] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[DateOrTimestamp] = None, endDate: Option[DateOrTimestamp] = None, sort: Option[String] = Option("time"), dir: Option[String] = Option("desc"), groupby: Option[String] = Option("recipient")): Future[MailLog] = {
+  def viewMailLogAsync(id: Option[Long] = None, origin: Option[String] = None, mx: Option[String] = None, from: Option[String] = None, to: Option[String] = None, subject: Option[String] = None, mailid: Option[String] = None, messageId: Option[String] = None, replyto: Option[String] = None, headerfrom: Option[String] = None, delivered: Option[Integer] = None, skip: Option[Integer] = Option(0), limit: Option[Integer] = Option(100), startDate: Option[String] = None, endDate: Option[String] = None, sort: Option[String] = Option("time"), dir: Option[String] = Option("desc"), groupby: Option[String] = Option("recipient")): Future[MailLog] = {
       helper.viewMailLog(id, origin, mx, from, to, subject, mailid, messageId, replyto, headerfrom, delivered, skip, limit, startDate, endDate, sort, dir, groupby)
   }
 
@@ -204,8 +203,8 @@ class HistoryApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     delivered: Option[Integer] = None,
     skip: Option[Integer] = Option(0),
     limit: Option[Integer] = Option(100),
-    startDate: Option[DateOrTimestamp] = None,
-    endDate: Option[DateOrTimestamp] = None,
+    startDate: Option[String] = None,
+    endDate: Option[String] = None,
     sort: Option[String] = Option("time"),
     dir: Option[String] = Option("desc"),
     groupby: Option[String] = Option("recipient")

@@ -139,7 +139,7 @@ open class HistoryAPI {
      - parameter groupby: (query) Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to recipient)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func viewMailLog(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: DateOrTimestamp? = nil, endDate: DateOrTimestamp? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil, completion: @escaping ((_ data: MailLog?,_ error: Error?) -> Void)) {
+    open class func viewMailLog(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: String? = nil, endDate: String? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil, completion: @escaping ((_ data: MailLog?,_ error: Error?) -> Void)) {
         viewMailLogWithRequestBuilder(_id: _id, origin: origin, mx: mx, from: from, to: to, subject: subject, mailid: mailid, messageId: messageId, replyto: replyto, headerfrom: headerfrom, delivered: delivered, skip: skip, limit: limit, startDate: startDate, endDate: endDate, sort: sort, dir: dir, groupby: groupby).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -232,7 +232,7 @@ open class HistoryAPI {
 
      - returns: RequestBuilder<MailLog> 
      */
-    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: DateOrTimestamp? = nil, endDate: DateOrTimestamp? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil) -> RequestBuilder<MailLog> {
+    open class func viewMailLogWithRequestBuilder(_id: Int64? = nil, origin: String? = nil, mx: String? = nil, from: String? = nil, to: String? = nil, subject: String? = nil, mailid: String? = nil, messageId: String? = nil, replyto: String? = nil, headerfrom: String? = nil, delivered: Delivered_viewMailLog? = nil, skip: Int? = nil, limit: Int? = nil, startDate: String? = nil, endDate: String? = nil, sort: Sort_viewMailLog? = nil, dir: Dir_viewMailLog? = nil, groupby: Groupby_viewMailLog? = nil) -> RequestBuilder<MailLog> {
         let path = "/mail/log"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil

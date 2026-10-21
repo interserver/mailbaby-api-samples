@@ -213,9 +213,11 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?reply
     
     
     
+    (fun x -> x)
     
     
-    .show
+        
+        
  start_date in
     let uri = Request.maybe_add_query_param uri "endDate"     
     
@@ -226,9 +228,11 @@ let view_mail_log ?id ?origin ?mx ?from ?_to ?subject ?mailid ?message_id ?reply
     
     
     
+    (fun x -> x)
     
     
-    .show
+        
+        
  end_date in
     let uri = Request.add_query_param uri "sort"         Enums.show_sort
         

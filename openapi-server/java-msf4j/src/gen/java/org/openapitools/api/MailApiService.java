@@ -6,7 +6,6 @@ import org.openapitools.model.*;
 import org.wso2.msf4j.formparam.FormDataParam;
 import org.wso2.msf4j.formparam.FileInfo;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;
@@ -79,8 +78,8 @@ public abstract class MailApiService {
  ,Integer delivered
  ,Integer skip
  ,Integer limit
- ,DateOrTimestamp startDate
- ,DateOrTimestamp endDate
+ ,String startDate
+ ,String endDate
  ,String sort
  ,String dir
  ,String groupby

@@ -16,7 +16,6 @@ import io.vertx.core.json.Json
 import io.vertx.core.json.JsonArray
 import com.google.gson.reflect.TypeToken
 import com.google.gson.Gson
-import MailBabyKotlinVertx.models.DateOrTimestamp
 import MailBabyKotlinVertx.models.ErrorMessage
 import MailBabyKotlinVertx.models.MailLog
 import MailBabyKotlinVertx.models.MailStatsType
@@ -99,10 +98,8 @@ class HistoryApiVertxProxyHandler(private val vertx: Vertx, private val service:
                     val delivered = ApiHandlerUtils.searchIntegerInJson(params,"delivered")
                     val skip = ApiHandlerUtils.searchIntegerInJson(params,"skip")
                     val limit = ApiHandlerUtils.searchIntegerInJson(params,"limit")
-                    val startDateParam = ApiHandlerUtils.searchJsonObjectInJson(params,"startDate")
-                    val startDate = if(startDateParam ==null) null else Gson().fromJson(startDateParam.encode(), DateOrTimestamp::class.java)
-                    val endDateParam = ApiHandlerUtils.searchJsonObjectInJson(params,"endDate")
-                    val endDate = if(endDateParam ==null) null else Gson().fromJson(endDateParam.encode(), DateOrTimestamp::class.java)
+                    val startDate = ApiHandlerUtils.searchStringInJson(params,"startDate")
+                    val endDate = ApiHandlerUtils.searchStringInJson(params,"endDate")
                     val sort = ApiHandlerUtils.searchStringInJson(params,"sort")
                     val dir = ApiHandlerUtils.searchStringInJson(params,"dir")
                     val groupby = ApiHandlerUtils.searchStringInJson(params,"groupby")

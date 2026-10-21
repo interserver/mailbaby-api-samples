@@ -76,7 +76,7 @@ type BlockingAPIServicer interface {
 // while the service implementation can be ignored with the .openapi-generator-ignore file
 // and updated with the logic required for the API.
 type HistoryAPIServicer interface { 
-	ViewMailLog(context.Context, int64, string, string, string, string, string, string, string, string, string, int32, int32, int32, DateOrTimestamp, DateOrTimestamp, string, string, string) (ImplResponse, error)
+	ViewMailLog(context.Context, int64, string, string, string, string, string, string, string, string, string, int32, int32, int32, string, string, string, string, string) (ImplResponse, error)
 	GetStats(context.Context, string) (ImplResponse, error)
 }
 

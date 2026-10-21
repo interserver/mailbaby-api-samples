@@ -72,8 +72,8 @@ function _oacinternal_view_mail_log(_api::HistoryApi; id=nothing, origin=nothing
     OpenAPI.Clients.set_param(_ctx.query, "delivered", delivered; style="form", is_explode=true)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "skip", skip; style="form", is_explode=true)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "limit", limit; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "startDate", start_date; style="form", is_explode=true)  # type DateOrTimestamp
-    OpenAPI.Clients.set_param(_ctx.query, "endDate", end_date; style="form", is_explode=true)  # type DateOrTimestamp
+    OpenAPI.Clients.set_param(_ctx.query, "startDate", start_date; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "endDate", end_date; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "sort", sort; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "dir", dir; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "groupby", groupby; style="form", is_explode=true)  # type String
@@ -100,8 +100,8 @@ Params:
 - `delivered`::`Int64`
 - `skip`::`Int64`
 - `limit`::`Int64`
-- `start_date`::`DateOrTimestamp`
-- `end_date`::`DateOrTimestamp`
+- `start_date`::`String`
+- `end_date`::`String`
 - `sort`::`String`
 - `dir`::`String`
 - `groupby`::`String`

@@ -17,7 +17,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { DateOrTimestamp } from '../model/dateOrTimestamp';
 import { ErrorMessage } from '../model/errorMessage';
 import { MailLog } from '../model/mailLog';
 import { MailStatsType } from '../model/mailStatsType';
@@ -131,10 +130,10 @@ export class HistoryService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: string, dir?: string, groupby?: string, observe?: 'body', reportProgress?: boolean): Observable<MailLog>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: string, dir?: string, groupby?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: string, dir?: string, groupby?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: string, dir?: string, groupby?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: string, dir?: string, groupby?: string, observe?: 'body', reportProgress?: boolean): Observable<MailLog>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: string, dir?: string, groupby?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: string, dir?: string, groupby?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: number, skip?: number, limit?: number, startDate?: string, endDate?: string, sort?: string, dir?: string, groupby?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
 

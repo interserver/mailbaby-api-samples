@@ -1,6 +1,5 @@
 package org.openapitools.api.consumer;
 
-import org.openapitools.model.DateOrTimestamp;
 import org.openapitools.model.DenyRuleRecord;
 import org.openapitools.model.EmailAddressParam;
 import org.openapitools.model.EmailAddressTypes;
@@ -139,8 +138,8 @@ public class MailServiceController {
         @RequestParam(name = "delivered") Integer delivered,
         @RequestParam(name = "skip", defaultValue = "0") Integer skip,
         @RequestParam(name = "limit", defaultValue = "100") Integer limit,
-        @RequestParam(name = "startDate") DateOrTimestamp startDate,
-        @RequestParam(name = "endDate") DateOrTimestamp endDate,
+        @RequestParam(name = "startDate") String startDate,
+        @RequestParam(name = "endDate") String endDate,
         @RequestParam(name = "sort", defaultValue = "time") String sort,
         @RequestParam(name = "dir", defaultValue = "desc") String dir,
         @RequestParam(name = "groupby", defaultValue = "recipient") String groupby

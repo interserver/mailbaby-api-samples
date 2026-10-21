@@ -229,8 +229,8 @@ package body .Clients is
        Delivered : in Swagger.Nullable_Integer;
        Skip : in Swagger.Nullable_Integer;
        Limit : in Swagger.Nullable_Integer;
-       Start_Date : in .Models.DateOrTimestamp_Type;
-       End_Date : in .Models.DateOrTimestamp_Type;
+       Start_Date : in Swagger.Nullable_UString;
+       End_Date : in Swagger.Nullable_UString;
        Sort : in Swagger.Nullable_UString;
        Dir : in Swagger.Nullable_UString;
        Groupby : in Swagger.Nullable_UString;
@@ -254,8 +254,8 @@ package body .Clients is
       URI.Add_Param ("delivered", Delivered);
       URI.Add_Param ("skip", Skip);
       URI.Add_Param ("limit", Limit);
-      URI.Add_Param ("startDate", .Models.To_String (Start_Date));
-      URI.Add_Param ("endDate", .Models.To_String (End_Date));
+      URI.Add_Param ("startDate", Start_Date);
+      URI.Add_Param ("endDate", End_Date);
       URI.Add_Param ("sort", Sort);
       URI.Add_Param ("dir", Dir);
       URI.Add_Param ("groupby", Groupby);

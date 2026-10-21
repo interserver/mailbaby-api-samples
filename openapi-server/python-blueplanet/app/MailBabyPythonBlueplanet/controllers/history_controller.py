@@ -1,6 +1,5 @@
 import connexion
 
-from app.MailBabyPythonBlueplanet.models.date_or_timestamp import DateOrTimestamp  # noqa: E501
 from app.MailBabyPythonBlueplanet.models.error_message import ErrorMessage  # noqa: E501
 from app.MailBabyPythonBlueplanet.models.mail_log import MailLog  # noqa: E501
 from app.MailBabyPythonBlueplanet.models.mail_stats_type import MailStatsType  # noqa: E501
@@ -52,9 +51,9 @@ def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=No
     :param limit: Maximum number of records to return per page.  Defaults to &#x60;100&#x60;. Maximum allowed value is &#x60;10000&#x60;.  The response also includes a &#x60;total&#x60; field with the full matched count so you can calculate the number of pages.
     :type limit: int
     :param start_date: Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-15&#x60; or &#x60;last monday&#x60;.  Messages with a &#x60;time&#x60; value **greater than or equal to** this value will be included.
-    :type start_date: dict | bytes
+    :type start_date: str
     :param end_date: Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by &#x60;strtotime()&#x60; such as &#x60;2024-01-31&#x60; or &#x60;yesterday&#x60;. Messages with a &#x60;time&#x60; value **less than or equal to** this value will be included.
-    :type end_date: dict | bytes
+    :type end_date: str
     :param sort: Field to sort results by.  Currently only &#x60;time&#x60; is supported (sorts by internal row ID which corresponds to chronological order).
     :type sort: str
     :param dir: Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first.
@@ -64,8 +63,4 @@ def view_mail_log(id=None, origin=None, mx=None, _from=None, to=None, subject=No
 
     :rtype: MailLog
     """
-    if connexion.request.is_json:
-        start_date = .from_dict(connexion.request.get_json())  # noqa: E501
-    if connexion.request.is_json:
-        end_date = .from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

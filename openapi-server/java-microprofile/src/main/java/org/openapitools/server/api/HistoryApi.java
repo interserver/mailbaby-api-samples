@@ -12,7 +12,6 @@
 
 package org.openapitools.server.api;
 
-import org.openapitools.server.model.DateOrTimestamp;
 import org.openapitools.server.model.ErrorMessage;
 import org.openapitools.server.model.MailLog;
 import org.openapitools.server.model.MailStatsType;
@@ -63,5 +62,5 @@ public interface HistoryApi  {
     @GET
     @Path("/log")
     @Produces({ "application/json" })
-    MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @QueryParam("skip") @DefaultValue("0") Integer skip, @QueryParam("limit") @DefaultValue("100") Integer limit, @QueryParam("startDate") DateOrTimestamp startDate, @QueryParam("endDate") DateOrTimestamp endDate, @QueryParam("sort") @DefaultValue("time") String sort, @QueryParam("dir") @DefaultValue("desc") String dir, @QueryParam("groupby") @DefaultValue("recipient") String groupby) throws ApiException, ProcessingException;
+    MailLog viewMailLog(@QueryParam("id") Long id, @QueryParam("origin") String origin, @QueryParam("mx") String mx, @QueryParam("from") String from, @QueryParam("to") String to, @QueryParam("subject") String subject, @QueryParam("mailid") String mailid, @QueryParam("messageId") String messageId, @QueryParam("replyto") String replyto, @QueryParam("headerfrom") String headerfrom, @QueryParam("delivered") Integer delivered, @QueryParam("skip") @DefaultValue("0") Integer skip, @QueryParam("limit") @DefaultValue("100") Integer limit, @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate, @QueryParam("sort") @DefaultValue("time") String sort, @QueryParam("dir") @DefaultValue("desc") String dir, @QueryParam("groupby") @DefaultValue("recipient") String groupby) throws ApiException, ProcessingException;
 }

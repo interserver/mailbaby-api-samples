@@ -205,10 +205,10 @@ function Invoke-ViewMailLog {
         [System.Nullable[Int32]]
         ${Limit},
         [Parameter(Position = 13, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
+        [String]
         ${StartDate},
         [Parameter(Position = 14, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
-        [PSCustomObject]
+        [String]
         ${EndDate},
         [Parameter(Position = 15, ValueFromPipelineByPropertyName = $true, Mandatory = $false)]
         [ValidateSet("time", "unknown_default_open_api")]

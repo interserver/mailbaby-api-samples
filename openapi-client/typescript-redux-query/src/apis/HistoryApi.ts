@@ -15,9 +15,6 @@
 import { HttpMethods, QueryConfig, ResponseBody, ResponseText } from 'redux-query';
 import * as runtime from '../runtime';
 import {
-    DateOrTimestamp,
-    DateOrTimestampFromJSON,
-    DateOrTimestampToJSON,
     ErrorMessage,
     ErrorMessageFromJSON,
     ErrorMessageToJSON,
@@ -47,8 +44,8 @@ export interface ViewMailLogRequest {
     delivered?: ViewMailLogDeliveredEnum;
     skip?: number;
     limit?: number;
-    startDate?: DateOrTimestamp;
-    endDate?: DateOrTimestamp;
+    startDate?: string;
+    endDate?: string;
     sort?: ViewMailLogSortEnum;
     dir?: ViewMailLogDirEnum;
     groupby?: ViewMailLogGroupbyEnum;

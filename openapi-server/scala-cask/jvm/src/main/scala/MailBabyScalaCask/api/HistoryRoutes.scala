@@ -24,7 +24,6 @@ import upickle.default.{ReadWriter => RW, macroRW}
 import upickle.default.*
 import scala.util.Try
 
-import MailBabyScalaCask.model.DateOrTimestamp
 import MailBabyScalaCask.model.ErrorMessage
 import MailBabyScalaCask.model.MailLog
 import MailBabyScalaCask.model.MailStatsType
@@ -59,7 +58,7 @@ class HistoryRoutes(service : HistoryService[Try]) extends cask.Routes {
          * 
          */
         @cask.get("/mail/log")
-        def viewMailLog(request: cask.Request, id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[DateOrTimestampData], endDate : Option[DateOrTimestampData], sort : Option[String], dir : Option[String], groupby : Option[String]) = {
+        def viewMailLog(request: cask.Request, id : Option[Long], origin : Option[String], mx : Option[String], from : Option[String], to : Option[String], subject : Option[String], mailid : Option[String], messageId : Option[String], replyto : Option[String], headerfrom : Option[String], delivered : Option[Int], skip : Option[Int], limit : Option[Int], startDate : Option[String], endDate : Option[String], sort : Option[String], dir : Option[String], groupby : Option[String]) = {
             // auth method apiKeyAuth : apiKey, keyParamName: X-API-KEY
 
         def failFast = request.queryParams.keySet.contains("failFast")

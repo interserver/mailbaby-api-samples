@@ -285,7 +285,7 @@ void OAIHistoryApi::getStatsCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &origin, const ::OpenAPI::OptionalParam<QString> &mx, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &mailid, const ::OpenAPI::OptionalParam<QString> &message_id, const ::OpenAPI::OptionalParam<QString> &replyto, const ::OpenAPI::OptionalParam<QString> &headerfrom, const ::OpenAPI::OptionalParam<qint32> &delivered, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit, const ::OpenAPI::OptionalParam<OAIDateOrTimestamp> &start_date, const ::OpenAPI::OptionalParam<OAIDateOrTimestamp> &end_date, const ::OpenAPI::OptionalParam<QString> &sort, const ::OpenAPI::OptionalParam<QString> &dir, const ::OpenAPI::OptionalParam<QString> &groupby) {
+void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, const ::OpenAPI::OptionalParam<QString> &origin, const ::OpenAPI::OptionalParam<QString> &mx, const ::OpenAPI::OptionalParam<QString> &from, const ::OpenAPI::OptionalParam<QString> &to, const ::OpenAPI::OptionalParam<QString> &subject, const ::OpenAPI::OptionalParam<QString> &mailid, const ::OpenAPI::OptionalParam<QString> &message_id, const ::OpenAPI::OptionalParam<QString> &replyto, const ::OpenAPI::OptionalParam<QString> &headerfrom, const ::OpenAPI::OptionalParam<qint32> &delivered, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<qint32> &limit, const ::OpenAPI::OptionalParam<QString> &start_date, const ::OpenAPI::OptionalParam<QString> &end_date, const ::OpenAPI::OptionalParam<QString> &sort, const ::OpenAPI::OptionalParam<QString> &dir, const ::OpenAPI::OptionalParam<QString> &groupby) {
     QString fullPath = QString(_serverConfigs["viewMailLog"][_serverIndices.value("viewMailLog")].URL()+"/mail/log");
     
     if (_apiKeys.contains("apiKeyAuth")) {
@@ -500,55 +500,9 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
             fullPath.append(queryPrefix);
         else
             fullPath.append("?");
-        
-        QString paramString = (queryStyle == "form" && true) ? "" : (queryStyle == "form" && !(true)) ? "startDate"+querySuffix : "";
-        QJsonObject parameter = start_date.value().asJsonObject();
-        qint32 count = 0;
-        for(const QString& key : parameter.keys()) {
-            if (count > 0) {
-                queryDelimiter =  ((queryStyle == "form" || queryStyle == "deepObject") && true) ? "&" : getParamStyleDelimiter(queryStyle, key, true);
-                paramString.append(queryDelimiter);
-            }
-            QString assignOperator;
-            if (queryStyle == "form")
-                assignOperator = (true) ? "=" : ",";
-            else if (queryStyle == "deepObject")
-                assignOperator = (true) ? "=" : "none";
-            switch(parameter.value(key).type()) {
-                case QJsonValue::String:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("startDate").append("[").append(key).append("]"))+assignOperator+parameter.value(key).toString());
-                    break;
-                }
-                case QJsonValue::Double:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("startDate").append("[").append(key).append("]"))+assignOperator+QString::number(parameter.value(key).toDouble()));
-                    break;
-                }
-                case QJsonValue::Bool:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("startDate").append("[").append(key).append("]"))+assignOperator+QVariant(parameter.value(key).toBool()).toString());
-                    break;
-                }
-                case QJsonValue::Array:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("startDate").append("[").append(key).append("]"))+assignOperator+QVariant(parameter.value(key).toArray()).toString());
-                    break;
-                }
-                case QJsonValue::Object:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("startDate").append("[").append(key).append("]"))+assignOperator+QVariant(parameter.value(key).toObject()).toString());
-                    break;
-                }
-                case QJsonValue::Null:
-                case QJsonValue::Undefined:
-                    break;
-            }
-            count++;
-        }
-        fullPath.append(paramString);
-        
-            }
+
+        fullPath.append(QUrl::toPercentEncoding("startDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(start_date.stringValue())));
+    }
     if (end_date.hasValue())
     {
         queryStyle = "form";
@@ -561,55 +515,9 @@ void OAIHistoryApi::viewMailLog(const ::OpenAPI::OptionalParam<qint64> &id, cons
             fullPath.append(queryPrefix);
         else
             fullPath.append("?");
-        
-        QString paramString = (queryStyle == "form" && true) ? "" : (queryStyle == "form" && !(true)) ? "endDate"+querySuffix : "";
-        QJsonObject parameter = end_date.value().asJsonObject();
-        qint32 count = 0;
-        for(const QString& key : parameter.keys()) {
-            if (count > 0) {
-                queryDelimiter =  ((queryStyle == "form" || queryStyle == "deepObject") && true) ? "&" : getParamStyleDelimiter(queryStyle, key, true);
-                paramString.append(queryDelimiter);
-            }
-            QString assignOperator;
-            if (queryStyle == "form")
-                assignOperator = (true) ? "=" : ",";
-            else if (queryStyle == "deepObject")
-                assignOperator = (true) ? "=" : "none";
-            switch(parameter.value(key).type()) {
-                case QJsonValue::String:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("endDate").append("[").append(key).append("]"))+assignOperator+parameter.value(key).toString());
-                    break;
-                }
-                case QJsonValue::Double:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("endDate").append("[").append(key).append("]"))+assignOperator+QString::number(parameter.value(key).toDouble()));
-                    break;
-                }
-                case QJsonValue::Bool:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("endDate").append("[").append(key).append("]"))+assignOperator+QVariant(parameter.value(key).toBool()).toString());
-                    break;
-                }
-                case QJsonValue::Array:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("endDate").append("[").append(key).append("]"))+assignOperator+QVariant(parameter.value(key).toArray()).toString());
-                    break;
-                }
-                case QJsonValue::Object:
-                {
-                    paramString.append(((queryStyle == "form") ? key : QString("endDate").append("[").append(key).append("]"))+assignOperator+QVariant(parameter.value(key).toObject()).toString());
-                    break;
-                }
-                case QJsonValue::Null:
-                case QJsonValue::Undefined:
-                    break;
-            }
-            count++;
-        }
-        fullPath.append(paramString);
-        
-            }
+
+        fullPath.append(QUrl::toPercentEncoding("endDate")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(end_date.stringValue())));
+    }
     if (sort.hasValue())
     {
         queryStyle = "form";

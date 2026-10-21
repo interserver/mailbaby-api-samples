@@ -93,10 +93,10 @@ using namespace Tiny;
             int limit
             , 
             
-            DateOrTimestamp startDate
+            std::string startDate
             , 
             
-            DateOrTimestamp endDate
+            std::string endDate
             , 
             
             std::string sort

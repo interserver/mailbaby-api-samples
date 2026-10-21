@@ -143,8 +143,10 @@ class HistoryController extends Controller
                     'integer',
                 ],
                 'startDate' => [
+                    'string',
                 ],
                 'endDate' => [
+                    'string',
                 ],
                 'sort' => [
                 ],
@@ -185,9 +187,9 @@ class HistoryController extends Controller
 
         $limit = $request->integer('limit');
 
-        $startDate = $this->serde->deserialize($request->getContent(), from: 'json', to: int|string::class);
+        $startDate = $request->string('startDate')->value();
 
-        $endDate = $this->serde->deserialize($request->getContent(), from: 'json', to: int|string::class);
+        $endDate = $request->string('endDate')->value();
 
         $sort = $this->serde->deserialize($request->getContent(), from: 'json', to: \OpenAPI\Server\Model\ViewMailLogSortParameter::class);
 

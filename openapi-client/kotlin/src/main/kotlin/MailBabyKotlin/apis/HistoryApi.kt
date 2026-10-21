@@ -27,7 +27,6 @@ import java.io.IOException
 import okhttp3.Call
 import okhttp3.HttpUrl
 
-import MailBabyKotlin.models.DateOrTimestamp
 import MailBabyKotlin.models.ErrorMessage
 import MailBabyKotlin.models.MailLog
 import MailBabyKotlin.models.MailStatsType
@@ -259,7 +258,7 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, messageId: kotlin.String? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: DeliveredViewMailLog? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: DateOrTimestamp? = null, endDate: DateOrTimestamp? = null, sort: SortViewMailLog? = SortViewMailLog.time, dir: DirViewMailLog? = DirViewMailLog.desc, groupby: GroupbyViewMailLog? = GroupbyViewMailLog.recipient) : MailLog {
+    fun viewMailLog(id: kotlin.Long? = null, origin: kotlin.String? = null, mx: kotlin.String? = null, from: kotlin.String? = null, to: kotlin.String? = null, subject: kotlin.String? = null, mailid: kotlin.String? = null, messageId: kotlin.String? = null, replyto: kotlin.String? = null, headerfrom: kotlin.String? = null, delivered: DeliveredViewMailLog? = null, skip: kotlin.Int? = 0, limit: kotlin.Int? = 100, startDate: kotlin.String? = null, endDate: kotlin.String? = null, sort: SortViewMailLog? = SortViewMailLog.time, dir: DirViewMailLog? = DirViewMailLog.desc, groupby: GroupbyViewMailLog? = GroupbyViewMailLog.recipient) : MailLog {
         val localVarResponse = viewMailLogWithHttpInfo(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate, sort = sort, dir = dir, groupby = groupby)
 
         return when (localVarResponse.responseType) {
@@ -305,7 +304,7 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      */
     @Suppress("UNCHECKED_CAST")
     @Throws(IllegalStateException::class, IOException::class)
-    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: DateOrTimestamp?, endDate: DateOrTimestamp?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : ApiResponse<MailLog?> {
+    fun viewMailLogWithHttpInfo(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.String?, endDate: kotlin.String?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : ApiResponse<MailLog?> {
         val localVariableConfig = viewMailLogRequestConfig(id = id, origin = origin, mx = mx, from = from, to = to, subject = subject, mailid = mailid, messageId = messageId, replyto = replyto, headerfrom = headerfrom, delivered = delivered, skip = skip, limit = limit, startDate = startDate, endDate = endDate, sort = sort, dir = dir, groupby = groupby)
 
         return request<Unit, MailLog>(
@@ -336,7 +335,7 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
      * @param groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to Groupby.recipient)
      * @return RequestConfig
      */
-    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: DateOrTimestamp?, endDate: DateOrTimestamp?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : RequestConfig<Unit> {
+    fun viewMailLogRequestConfig(id: kotlin.Long?, origin: kotlin.String?, mx: kotlin.String?, from: kotlin.String?, to: kotlin.String?, subject: kotlin.String?, mailid: kotlin.String?, messageId: kotlin.String?, replyto: kotlin.String?, headerfrom: kotlin.String?, delivered: DeliveredViewMailLog?, skip: kotlin.Int?, limit: kotlin.Int?, startDate: kotlin.String?, endDate: kotlin.String?, sort: SortViewMailLog?, dir: DirViewMailLog?, groupby: GroupbyViewMailLog?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
@@ -380,8 +379,10 @@ open class HistoryApi(basePath: kotlin.String = defaultBasePath, client: Call.Fa
                     put("limit", listOf(limit.toString()))
                 }
                 if (startDate != null) {
+                    put("startDate", listOf(startDate.toString()))
                 }
                 if (endDate != null) {
+                    put("endDate", listOf(endDate.toString()))
                 }
                 if (sort != null) {
                     put("sort", listOf(sort.value))

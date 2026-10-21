@@ -26,7 +26,7 @@ public class MailAttachment   {
   **/
   private String filename = null;
   
-  @Schema(example = "[B@5dca5c4f", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  @Schema(example = "[B@7d14dfed", required = true, description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
  /**
    * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.  
   **/

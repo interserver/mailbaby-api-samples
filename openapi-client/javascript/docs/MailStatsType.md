@@ -31,6 +31,8 @@ Name | Type | Description | Notes
 
 * `OneHour` (value: `"1h"`)
 
+* `unknown_default_open_api` (value: `"unknown_default_open_api"`)
+
 
 
 

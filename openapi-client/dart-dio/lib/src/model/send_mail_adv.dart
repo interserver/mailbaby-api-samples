@@ -3,261 +3,196 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/email_addresses_types.dart';
 import 'package:openapi/src/model/email_address_types.dart';
 import 'package:openapi/src/model/mail_attachment.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'send_mail_adv.g.dart';
 
-/// Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.
-///
-/// Properties:
-/// * [subject] - The subject line of the email.
-/// * [body] - The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-/// * [from] - The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
-/// * [to] - One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
-/// * [replyto] - Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
-/// * [cc] - Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
-/// * [bcc] - Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
-/// * [attachments] - Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
-/// * [id] - Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-@BuiltValue()
-abstract class SendMailAdv implements Built<SendMailAdv, SendMailAdvBuilder> {
-  /// The subject line of the email.
-  @BuiltValueField(wireName: r'subject')
-  String get subject;
 
-  /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-  @BuiltValueField(wireName: r'body')
-  String get body;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class SendMailAdv {
+  /// Returns a new [SendMailAdv] instance.
+  SendMailAdv({
 
-  /// The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
-  @BuiltValueField(wireName: r'from')
-  EmailAddressTypes get from;
+    required  this.subject,
 
-  /// One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
-  @BuiltValueField(wireName: r'to')
-  EmailAddressesTypes get to;
+    required  this.body,
 
-  /// Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
-  @BuiltValueField(wireName: r'replyto')
-  EmailAddressesTypes? get replyto;
+    required  this.from,
 
-  /// Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
-  @BuiltValueField(wireName: r'cc')
-  EmailAddressesTypes? get cc;
+    required  this.to,
 
-  /// Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
-  @BuiltValueField(wireName: r'bcc')
-  EmailAddressesTypes? get bcc;
+     this.replyto,
 
-  /// Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
-  @BuiltValueField(wireName: r'attachments')
-  BuiltList<MailAttachment>? get attachments;
+     this.cc,
 
-  /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-  @BuiltValueField(wireName: r'id')
-  int? get id;
+     this.bcc,
 
-  SendMailAdv._();
+     this.attachments,
 
-  factory SendMailAdv([void updates(SendMailAdvBuilder b)]) = _$SendMailAdv;
+     this.id,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SendMailAdvBuilder b) => b;
+      /// The subject line of the email.
+  @JsonKey(
+    
+    name: r'subject',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<SendMailAdv> get serializer => _$SendMailAdvSerializer();
+
+  final String subject;
+
+
+
+      /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+  @JsonKey(
+    
+    name: r'body',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String body;
+
+
+
+      /// The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+  @JsonKey(
+    
+    name: r'from',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final EmailAddressTypes from;
+
+
+
+      /// One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+  @JsonKey(
+    
+    name: r'to',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final EmailAddressesTypes to;
+
+
+
+      /// Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+  @JsonKey(
+    
+    name: r'replyto',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final EmailAddressesTypes? replyto;
+
+
+
+      /// Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+  @JsonKey(
+    
+    name: r'cc',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final EmailAddressesTypes? cc;
+
+
+
+      /// Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+  @JsonKey(
+    
+    name: r'bcc',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final EmailAddressesTypes? bcc;
+
+
+
+      /// Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+  @JsonKey(
+    
+    name: r'attachments',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final List<MailAttachment>? attachments;
+
+
+
+      /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? id;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is SendMailAdv &&
+      other.subject == subject &&
+      other.body == body &&
+      other.from == from &&
+      other.to == to &&
+      other.replyto == replyto &&
+      other.cc == cc &&
+      other.bcc == bcc &&
+      other.attachments == attachments &&
+      other.id == id;
+
+    @override
+    int get hashCode =>
+        subject.hashCode +
+        body.hashCode +
+        from.hashCode +
+        to.hashCode +
+        replyto.hashCode +
+        cc.hashCode +
+        bcc.hashCode +
+        attachments.hashCode +
+        id.hashCode;
+
+  factory SendMailAdv.fromJson(Map<String, dynamic> json) => _$SendMailAdvFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendMailAdvToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$SendMailAdvSerializer implements PrimitiveSerializer<SendMailAdv> {
-  @override
-  final Iterable<Type> types = const [SendMailAdv, _$SendMailAdv];
-
-  @override
-  final String wireName = r'SendMailAdv';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    SendMailAdv object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'subject';
-    yield serializers.serialize(
-      object.subject,
-      specifiedType: const FullType(String),
-    );
-    yield r'body';
-    yield serializers.serialize(
-      object.body,
-      specifiedType: const FullType(String),
-    );
-    yield r'from';
-    yield serializers.serialize(
-      object.from,
-      specifiedType: const FullType(EmailAddressTypes),
-    );
-    yield r'to';
-    yield serializers.serialize(
-      object.to,
-      specifiedType: const FullType(EmailAddressesTypes),
-    );
-    if (object.replyto != null) {
-      yield r'replyto';
-      yield serializers.serialize(
-        object.replyto,
-        specifiedType: const FullType(EmailAddressesTypes),
-      );
-    }
-    if (object.cc != null) {
-      yield r'cc';
-      yield serializers.serialize(
-        object.cc,
-        specifiedType: const FullType(EmailAddressesTypes),
-      );
-    }
-    if (object.bcc != null) {
-      yield r'bcc';
-      yield serializers.serialize(
-        object.bcc,
-        specifiedType: const FullType(EmailAddressesTypes),
-      );
-    }
-    if (object.attachments != null) {
-      yield r'attachments';
-      yield serializers.serialize(
-        object.attachments,
-        specifiedType: const FullType(BuiltList, [FullType(MailAttachment)]),
-      );
-    }
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    SendMailAdv object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required SendMailAdvBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'subject':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.subject = valueDes;
-          break;
-        case r'body':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.body = valueDes;
-          break;
-        case r'from':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(EmailAddressTypes),
-          ) as EmailAddressTypes;
-          result.from.replace(valueDes);
-          break;
-        case r'to':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(EmailAddressesTypes),
-          ) as EmailAddressesTypes;
-          result.to.replace(valueDes);
-          break;
-        case r'replyto':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(EmailAddressesTypes),
-          ) as EmailAddressesTypes?;
-          if (valueDes == null) continue;
-          result.replyto.replace(valueDes);
-          break;
-        case r'cc':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(EmailAddressesTypes),
-          ) as EmailAddressesTypes?;
-          if (valueDes == null) continue;
-          result.cc.replace(valueDes);
-          break;
-        case r'bcc':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(EmailAddressesTypes),
-          ) as EmailAddressesTypes?;
-          if (valueDes == null) continue;
-          result.bcc.replace(valueDes);
-          break;
-        case r'attachments':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(BuiltList, [FullType(MailAttachment)]),
-          ) as BuiltList<MailAttachment>?;
-          if (valueDes == null) continue;
-          result.attachments.replace(valueDes);
-          break;
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.id = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  SendMailAdv deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = SendMailAdvBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

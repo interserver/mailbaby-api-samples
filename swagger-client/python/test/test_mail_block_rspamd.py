@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.models.mail_block_rspamd import MailBlockRspamd  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_block_rspamd import MailBlockRspamd  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestMailBlockRspamd(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestMailBlockRspamd(unittest.TestCase):
     def testMailBlockRspamd(self):
         """Test MailBlockRspamd"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = mailbaby-client-python.models.mail_block_rspamd.MailBlockRspamd()  # noqa: E501
+        # model = MailBabyPython.models.mail_block_rspamd.MailBlockRspamd()  # noqa: E501
         pass
 
 

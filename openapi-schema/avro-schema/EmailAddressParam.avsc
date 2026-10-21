@@ -1,0 +1,14 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "A single email address parameter used as the body of `POST /mail/blocks/delete`.",
+  "name": "EmailAddressParam",
+  "fields": [
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "The email address to delist from all block lists."
+    }
+  ]
+
+}

@@ -35,6 +35,7 @@ public:
 	{
 		Active,
 		Canceled,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const StatusEnum& EnumValue);

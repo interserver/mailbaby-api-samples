@@ -16,23 +16,23 @@ EmailAddressesTypes <- R6::R6Class(
     #' @field actual_type the type of the object stored in this instance.
     actual_type = NULL,
     #' @field one_of  a list of types defined in the oneOf schema.
-    one_of = list("EmailAddressNames", "character"),
+    one_of = list("array[EmailAddressName]", "character"),
 
     #' @description
     #' Initialize a new EmailAddressesTypes.
     #'
-    #' @param instance an instance of the object defined in the oneOf schemas: "EmailAddressNames", "character"
+    #' @param instance an instance of the object defined in the oneOf schemas: "array[EmailAddressName]", "character"
     initialize = function(instance = NULL) {
       if (is.null(instance)) {
         # do nothing
-      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "EmailAddressNames") {
+      } else if (get(class(instance)[[1]], pos = -1)$classname ==  "array[EmailAddressName]") {
         self$actual_instance <- instance
-        self$actual_type <- "EmailAddressNames"
+        self$actual_type <- "array[EmailAddressName]"
       } else if (get(class(instance)[[1]], pos = -1)$classname ==  "character") {
         self$actual_instance <- instance
         self$actual_type <- "character"
       } else {
-        stop(paste("Failed to initialize EmailAddressesTypes with oneOf schemas EmailAddressNames, character. Provided class name: ",
+        stop(paste("Failed to initialize EmailAddressesTypes with oneOf schemas array[EmailAddressName], character. Provided class name: ",
                    get(class(instance)[[1]], pos = -1)$classname))
       }
     },
@@ -76,19 +76,19 @@ EmailAddressesTypes <- R6::R6Class(
         error_messages <- append(error_messages, `character_result`["message"])
       }
 
-      `EmailAddressNames_result` <- tryCatch({
-          `EmailAddressNames`$public_methods$validateJSON(input)
-          `EmailAddressNames_instance` <- `EmailAddressNames`$new()
-          instance <- `EmailAddressNames_instance`$fromJSON(input)
-          instance_type <- "EmailAddressNames"
-          matched_schemas <- append(matched_schemas, "EmailAddressNames")
+      `array[EmailAddressName]_result` <- tryCatch({
+          `array[EmailAddressName]`$public_methods$validateJSON(input)
+          `array[EmailAddressName]_instance` <- `array[EmailAddressName]`$new()
+          instance <- `array[EmailAddressName]_instance`$fromJSON(input)
+          instance_type <- "array[EmailAddressName]"
+          matched_schemas <- append(matched_schemas, "array[EmailAddressName]")
           matched <- matched + 1
         },
         error = function(err) err
       )
 
-      if (!is.null(`EmailAddressNames_result`["error"])) {
-        error_messages <- append(error_messages, `EmailAddressNames_result`["message"])
+      if (!is.null(`array[EmailAddressName]_result`["error"])) {
+        error_messages <- append(error_messages, `array[EmailAddressName]_result`["message"])
       }
 
       if (matched == 1) {
@@ -97,11 +97,11 @@ EmailAddressesTypes <- R6::R6Class(
         self$actual_type <- instance_type
       } else if (matched > 1) {
         # more than 1 match
-        stop(paste("Multiple matches found when deserializing the input into EmailAddressesTypes with oneOf schemas EmailAddressNames, character. Matched schemas: ",
+        stop(paste("Multiple matches found when deserializing the input into EmailAddressesTypes with oneOf schemas array[EmailAddressName], character. Matched schemas: ",
                    paste(matched_schemas, collapse = ", ")))
       } else {
         # no match
-        stop(paste("No match found when deserializing the input into EmailAddressesTypes with oneOf schemas EmailAddressNames, character. Details: >>",
+        stop(paste("No match found when deserializing the input into EmailAddressesTypes with oneOf schemas array[EmailAddressName], character. Details: >>",
                    paste(error_messages, collapse = " >> ")))
       }
 

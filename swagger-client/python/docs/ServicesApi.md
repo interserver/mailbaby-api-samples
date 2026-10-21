@@ -1,4 +1,4 @@
-# mailbaby-client-python.ServicesApi
+# MailBabyPython.ServicesApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -18,18 +18,18 @@ Get one mail order's full detail including SMTP password
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.ServicesApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.ServicesApi(MailBabyPython.ApiClient(configuration))
 id = 789 # int | The numeric ID of the mail order.
 
 try:
@@ -72,18 +72,18 @@ Use this **before sending** if you need to discover which mail order `id` to pas
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.ServicesApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.ServicesApi(MailBabyPython.ApiClient(configuration))
 
 try:
     # List your provisioned mail orders (sending accounts)

@@ -1,4 +1,4 @@
-# openapi::EmailAddressParam
+# MailBabyR::EmailAddressParam
 
 A single email address parameter used as the body of `POST /mail/blocks/delete`.
 

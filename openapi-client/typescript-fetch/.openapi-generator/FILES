@@ -10,7 +10,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -39,7 +38,6 @@ models/DateOrTimestamp.ts
 models/DenyRuleNew.ts
 models/DenyRuleRecord.ts
 models/EmailAddressName.ts
-models/EmailAddressNames.ts
 models/EmailAddressParam.ts
 models/EmailAddressTypes.ts
 models/EmailAddressesTypes.ts

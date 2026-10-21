@@ -9,6 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field from The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender. character
 #' @field subject The suspicious subject pattern that triggered the block. character
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,14 +19,17 @@ MailBlockRspamd <- R6::R6Class(
   public = list(
     `from` = NULL,
     `subject` = NULL,
+    `_field_list` = c("from", "subject"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailBlockRspamd class.
     #'
     #' @param from The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
     #' @param subject The suspicious subject pattern that triggered the block.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`from`, `subject`, ...) {
+    initialize = function(`from`, `subject`, additional_properties = NULL, ...) {
       if (!missing(`from`)) {
         if (!(is.character(`from`) && length(`from`) == 1)) {
           stop(paste("Error! Invalid data for `from`. Must be a string:", `from`))
@@ -36,6 +41,11 @@ MailBlockRspamd <- R6::R6Class(
           stop(paste("Error! Invalid data for `subject`. Must be a string:", `subject`))
         }
         self$`subject` <- `subject`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -78,6 +88,10 @@ MailBlockRspamd <- R6::R6Class(
         MailBlockRspamdObject[["subject"]] <-
           self$`subject`
       }
+      for (key in names(self$additional_properties)) {
+        MailBlockRspamdObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailBlockRspamdObject)
     },
 
@@ -94,6 +108,13 @@ MailBlockRspamd <- R6::R6Class(
       if (!is.null(this_object$`subject`)) {
         self$`subject` <- this_object$`subject`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -104,6 +125,9 @@ MailBlockRspamd <- R6::R6Class(
     #' @return MailBlockRspamd in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -117,6 +141,13 @@ MailBlockRspamd <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`from` <- this_object$`from`
       self$`subject` <- this_object$`subject`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

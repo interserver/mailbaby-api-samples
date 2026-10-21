@@ -3,178 +3,125 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/date.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'mail_block_click_house.g.dart';
 
-/// A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
-///
-/// Properties:
-/// * [date] - The date the block event was recorded.
-/// * [from] - The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
-/// * [subject] - The `Subject` header of the blocked message.
-/// * [to] - The serialized list of recipients of the blocked message.
-/// * [messageId] - The `Message-ID` header of the blocked message, or `null` if not present.
-@BuiltValue()
-abstract class MailBlockClickHouse implements Built<MailBlockClickHouse, MailBlockClickHouseBuilder> {
-  /// The date the block event was recorded.
-  @BuiltValueField(wireName: r'date')
-  Date get date;
 
-  /// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
-  @BuiltValueField(wireName: r'from')
-  String get from;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class MailBlockClickHouse {
+  /// Returns a new [MailBlockClickHouse] instance.
+  MailBlockClickHouse({
 
-  /// The `Subject` header of the blocked message.
-  @BuiltValueField(wireName: r'subject')
-  String get subject;
+    required  this.date,
 
-  /// The serialized list of recipients of the blocked message.
-  @BuiltValueField(wireName: r'to')
-  String get to;
+    required  this.from,
 
-  /// The `Message-ID` header of the blocked message, or `null` if not present.
-  @BuiltValueField(wireName: r'messageId')
-  String? get messageId;
+    required  this.subject,
 
-  MailBlockClickHouse._();
+    required  this.to,
 
-  factory MailBlockClickHouse([void updates(MailBlockClickHouseBuilder b)]) = _$MailBlockClickHouse;
+     this.messageId,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MailBlockClickHouseBuilder b) => b;
+      /// The date the block event was recorded.
+  @JsonKey(
+    
+    name: r'date',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<MailBlockClickHouse> get serializer => _$MailBlockClickHouseSerializer();
+
+  final DateTime date;
+
+
+
+      /// The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it.
+  @JsonKey(
+    
+    name: r'from',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String from;
+
+
+
+      /// The `Subject` header of the blocked message.
+  @JsonKey(
+    
+    name: r'subject',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String subject;
+
+
+
+      /// The serialized list of recipients of the blocked message.
+  @JsonKey(
+    
+    name: r'to',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String to;
+
+
+
+      /// The `Message-ID` header of the blocked message, or `null` if not present.
+  @JsonKey(
+    
+    name: r'messageId',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? messageId;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is MailBlockClickHouse &&
+      other.date == date &&
+      other.from == from &&
+      other.subject == subject &&
+      other.to == to &&
+      other.messageId == messageId;
+
+    @override
+    int get hashCode =>
+        date.hashCode +
+        from.hashCode +
+        subject.hashCode +
+        to.hashCode +
+        (messageId == null ? 0 : messageId.hashCode);
+
+  factory MailBlockClickHouse.fromJson(Map<String, dynamic> json) => _$MailBlockClickHouseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MailBlockClickHouseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$MailBlockClickHouseSerializer implements PrimitiveSerializer<MailBlockClickHouse> {
-  @override
-  final Iterable<Type> types = const [MailBlockClickHouse, _$MailBlockClickHouse];
-
-  @override
-  final String wireName = r'MailBlockClickHouse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    MailBlockClickHouse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'date';
-    yield serializers.serialize(
-      object.date,
-      specifiedType: const FullType(Date),
-    );
-    yield r'from';
-    yield serializers.serialize(
-      object.from,
-      specifiedType: const FullType(String),
-    );
-    yield r'subject';
-    yield serializers.serialize(
-      object.subject,
-      specifiedType: const FullType(String),
-    );
-    yield r'to';
-    yield serializers.serialize(
-      object.to,
-      specifiedType: const FullType(String),
-    );
-    if (object.messageId != null) {
-      yield r'messageId';
-      yield serializers.serialize(
-        object.messageId,
-        specifiedType: const FullType.nullable(String),
-      );
-    }
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    MailBlockClickHouse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required MailBlockClickHouseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'date':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(Date),
-          ) as Date;
-          result.date = valueDes;
-          break;
-        case r'from':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.from = valueDes;
-          break;
-        case r'subject':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.subject = valueDes;
-          break;
-        case r'to':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.to = valueDes;
-          break;
-        case r'messageId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.messageId = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  MailBlockClickHouse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = MailBlockClickHouseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

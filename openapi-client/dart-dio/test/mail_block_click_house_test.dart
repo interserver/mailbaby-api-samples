@@ -3,12 +3,12 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailBlockClickHouse
 void main() {
-  final instance = MailBlockClickHouseBuilder();
-  // TODO add properties to the builder and call build()
+  final MailBlockClickHouse? instance = /* MailBlockClickHouse(...) */ null;
+  // TODO add properties to the entity
 
   group(MailBlockClickHouse, () {
     // The date the block event was recorded.
-    // Date date
+    // DateTime date
     test('to test the property `date`', () async {
       // TODO
     });

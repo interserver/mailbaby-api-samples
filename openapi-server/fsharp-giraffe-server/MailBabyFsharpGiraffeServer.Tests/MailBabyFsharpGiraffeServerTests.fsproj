@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>MailBabyFsharpGiraffeServer.Tests</AssemblyName>
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.*" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.2.*" />
+    <PackageReference Include="xunit" Version="2.4.*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MailBabyFsharpGiraffeServer\src\MailBabyFsharpGiraffeServer.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="TestHelper.fs"/>
+    <Compile Include="BlockingApiTestsHelper.fs" />
+    <Compile Include="BlockingApiTests.fs" />
+    <Compile Include="HistoryApiTestsHelper.fs" />
+    <Compile Include="HistoryApiTests.fs" />
+    <Compile Include="SendingApiTestsHelper.fs" />
+    <Compile Include="SendingApiTests.fs" />
+    <Compile Include="ServicesApiTestsHelper.fs" />
+    <Compile Include="ServicesApiTests.fs" />
+    <Compile Include="StatusApiTestsHelper.fs" />
+    <Compile Include="StatusApiTests.fs" />
+  </ItemGroup>
+
+</Project>

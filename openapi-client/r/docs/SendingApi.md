@@ -18,7 +18,7 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Send a pre-built RFC 822 message verbatim (preserves DKIM)
 #
@@ -70,7 +70,7 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Send email with multiple recipients, CC/BCC, attachments, named contacts
 #
@@ -138,7 +138,7 @@ Send a simple email (single recipient, plain or HTML)
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Send a simple email (single recipient, plain or HTML)
 #

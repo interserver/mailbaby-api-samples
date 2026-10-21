@@ -195,7 +195,13 @@ MailStatsType['TimeEnum'] = {
      * value: "1h"
      * @const
      */
-    "OneHour": "1h"
+    "OneHour": "1h",
+
+    /**
+     * value: "unknown_default_open_api"
+     * @const
+     */
+    "unknown_default_open_api": "unknown_default_open_api"
 };
 
 

@@ -35,6 +35,7 @@ open class BlockingAPI {
         case email = "email"
         case startswith = "startswith"
         case destination = "destination"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum AddRuleError: Error, CustomStringConvertible {
         // Bad request — one or more input parameters were missing or invalid.

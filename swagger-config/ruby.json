@@ -1,11 +1,13 @@
 {
-  "sortParamsByRequiredFlag": "true",
-  "ensureUniqueParams": "true",
-  "allowUnicodeIdentifiers": "true",
-  "hideGenerationTimestamp": "true",
-  "artifactVersion": "1.0.0",
-  "packageName": "mailbaby-client-ruby",
-  "gitUserId": "interserver",
-  "gitRepoId": "mailbaby-client-ruby"
+    "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "disallowAdditionalPropertiesIfNotPresent": "false",
+    "ensureUniqueParams": "true",
+    "enumUnknownDefaultCase": "true",
+    "gitRepoId": "mailbaby-client-ruby",
+    "gitUserId": "interserver",
+    "hideGenerationTimestamp": "true",
+    "legacyDiscriminatorBehavior": "false",
+    "packageName": "MailBabyRuby",
+    "sortModelPropertiesByRequiredFlag": "true",
+    "sortParamsByRequiredFlag": "true"
 }
-

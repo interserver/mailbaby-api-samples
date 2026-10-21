@@ -24,7 +24,6 @@
             [mail-baby-email-delivery-and-management-service-api.specs.deny-rule-record :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-address-param :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.send-mail-adv :refer :all]
-            [mail-baby-email-delivery-and-management-service-api.specs.email-address-names :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.email-addresses-types :refer :all]
             [mail-baby-email-delivery-and-management-service-api.specs.mail-log :refer :all]
             )

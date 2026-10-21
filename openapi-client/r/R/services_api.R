@@ -16,7 +16,7 @@
 #' \dontrun{
 #' ####################  GetMailOrderById  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_id <- 39 # integer | The numeric ID of the mail order.
 #'
 #' #Get one mail order's full detail including SMTP password
@@ -33,7 +33,7 @@
 #'
 #' ####################  GetMailOrders  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #'
 #' #List your provisioned mail orders (sending accounts)
 #' api_instance <- ServicesApi$new()

@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ## delistBlock
 
-> GenericResponse delistBlock(EmailAddressParam)
+> GenericResponse delistBlock(emailAddressParam)
 
 Delist an email address from the spam-filter block lists
 
@@ -140,8 +140,8 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 //apiKeyAuth.apiKeyPrefix = 'Token';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.BlockingApi();
-let EmailAddressParam = {"email":"client@domain.com"}; // EmailAddressParam | 
-apiInstance.delistBlock(EmailAddressParam, (error, data, response) => {
+let emailAddressParam = {"email":"client@domain.com"}; // EmailAddressParam | 
+apiInstance.delistBlock(emailAddressParam, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -155,7 +155,7 @@ apiInstance.delistBlock(EmailAddressParam, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **EmailAddressParam** | [**EmailAddressParam**](EmailAddressParam.md)|  | 
+ **emailAddressParam** | [**EmailAddressParam**](EmailAddressParam.md)|  | 
 
 ### Return type
 

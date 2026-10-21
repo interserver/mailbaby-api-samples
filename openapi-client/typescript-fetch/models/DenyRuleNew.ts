@@ -43,6 +43,7 @@ export const DenyRuleNewTypeEnum = {
     Email: 'email',
     Startswith: 'startswith',
     Destination: 'destination',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRuleNewTypeEnum];
 

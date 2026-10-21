@@ -1,4 +1,4 @@
-# OpenAPIClient-php
+# MailBabyPhpNextgen
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -72,7 +72,7 @@ Download the files and include `autoload.php`:
 
 ```php
 <?php
-require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
+require_once('/path/to/MailBabyPhpNextgen/vendor/autoload.php');
 ```
 
 ## Getting Started
@@ -136,7 +136,6 @@ Class | Method | HTTP request | Description
 - [DenyRuleNew](docs/Model/DenyRuleNew.md)
 - [DenyRuleRecord](docs/Model/DenyRuleRecord.md)
 - [EmailAddressName](docs/Model/EmailAddressName.md)
-- [EmailAddressNames](docs/Model/EmailAddressNames.md)
 - [EmailAddressParam](docs/Model/EmailAddressParam.md)
 - [EmailAddressTypes](docs/Model/EmailAddressTypes.md)
 - [EmailAddressesTypes](docs/Model/EmailAddressesTypes.md)

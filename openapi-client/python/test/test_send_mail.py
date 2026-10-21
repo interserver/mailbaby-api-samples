@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.send_mail import SendMail
+from MailBabyPython.models.send_mail import SendMail
 
 class TestSendMail(unittest.TestCase):
     """SendMail unit test stubs"""

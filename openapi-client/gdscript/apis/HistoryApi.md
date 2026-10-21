@@ -12,7 +12,7 @@ Method | HTTP request | Description
 # **get_stats**   { #get_stats }
 <a name="get_stats"></a>
 
-> `get_stats(some_timenull = "1h", on_success: Callable, on_failure: Callable)`
+> `get_stats(some_time = "1h", on_success: Callable, on_failure: Callable)`
 
 Account usage, cost, and volume statistics for a time window
 
@@ -39,9 +39,9 @@ var api = HistoryApi.new(config)
 
 # Invoke an endpoint
 api.get_stats(
-	# some_timenull: String = "1h"   Eg: some_timenull_example
+	# some_time: String = "1h"   Eg: some_time_example
 	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
-	some_timenull,
+	some_time,
 	# On Success
 	func(response):  # response is ApiResponse
 		prints("Success!", "get_stats", response)

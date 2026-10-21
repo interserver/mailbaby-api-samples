@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.status_api import StatusApi
+from MailBabyPython.api.status_api import StatusApi
 
 
 class TestStatusApi(unittest.TestCase):

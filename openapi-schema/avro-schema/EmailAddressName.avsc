@@ -1,0 +1,20 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.",
+  "name": "EmailAddressName",
+  "fields": [
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "The email address."
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "Optional display name shown to recipients (e.g. in the `From:` header).",
+      "default": null
+    }
+  ]
+
+}

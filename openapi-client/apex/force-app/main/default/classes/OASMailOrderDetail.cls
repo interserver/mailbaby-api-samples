@@ -25,7 +25,8 @@ public class OASMailOrderDetail implements OASMailOrder {
      */
     public enum StatusEnum {
         ACTIVE,
-        CANCELED
+        CANCELED,
+        UNKNOWN_DEFAULT_OPEN_API
     }
 
     /**

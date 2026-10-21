@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$MailStatsType = Initialize-PSOpenAPIToolsMailStatsType  -Time null `
+$MailStatsType = Initialize-MailBabyPowershellMailStatsType  -Time null `
  -Usage null `
  -Currency null `
  -Cost null `

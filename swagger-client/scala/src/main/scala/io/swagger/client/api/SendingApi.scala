@@ -89,12 +89,12 @@ class SendingApi(
    * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: &#x60;raw_email&#x60; (full RFC 822 string with headers + body). Optional: &#x60;id&#x60; (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
    *
    * @param body  
-   * @param raw_email  
+   * @param rawEmail  
    * @param id  
    * @return GenericResponse
    */
-  def rawMail(body: SendMailRaw, raw_email: String, id: Long): Option[GenericResponse] = {
-    val await = Try(Await.result(rawMailAsync(body, raw_email, id), Duration.Inf))
+  def rawMail(body: SendMailRaw, rawEmail: String, id: Long): Option[GenericResponse] = {
+    val await = Try(Await.result(rawMailAsync(body, rawEmail, id), Duration.Inf))
     await match {
       case Success(i) => Some(await.get)
       case Failure(t) => None
@@ -106,12 +106,12 @@ class SendingApi(
    * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: &#x60;raw_email&#x60; (full RFC 822 string with headers + body). Optional: &#x60;id&#x60; (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
    *
    * @param body  
-   * @param raw_email  
+   * @param rawEmail  
    * @param id  
    * @return Future(GenericResponse)
    */
-  def rawMailAsync(body: SendMailRaw, raw_email: String, id: Long): Future[GenericResponse] = {
-      helper.rawMail(body, raw_email, id)
+  def rawMailAsync(body: SendMailRaw, rawEmail: String, id: Long): Future[GenericResponse] = {
+      helper.rawMail(body, rawEmail, id)
   }
 
   /**
@@ -199,7 +199,7 @@ class SendingApi(
 class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) extends ApiClient(client, config) {
 
   def rawMail(body: SendMailRaw,
-    raw_email: String,
+    rawEmail: String,
     id: Long)(implicit reader: ClientResponseReader[GenericResponse], writer: RequestWriter[SendMailRaw]): Future[GenericResponse] = {
     // create path and map variables
     val path = (addFmt("/mail/rawsend"))
@@ -209,7 +209,7 @@ class SendingApiAsyncHelper(client: TransportClient, config: SwaggerConfig) exte
     val headerParams = new mutable.HashMap[String, String]
 
     if (body == null) throw new Exception("Missing required parameter 'body' when calling SendingApi->rawMail")
-    if (raw_email == null) throw new Exception("Missing required parameter 'raw_email' when calling SendingApi->rawMail")
+    if (rawEmail == null) throw new Exception("Missing required parameter 'rawEmail' when calling SendingApi->rawMail")
 
 
     val resFuture = client.submit("POST", path, queryParams.toMap, headerParams.toMap, writer.write(body))

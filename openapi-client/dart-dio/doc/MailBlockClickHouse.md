@@ -8,7 +8,7 @@ import 'package:openapi/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**date** | [**Date**](Date.md) | The date the block event was recorded. | 
+**date** | [**DateTime**](DateTime.md) | The date the block event was recorded. | 
 **from** | **String** | The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it. | 
 **subject** | **String** | The `Subject` header of the blocked message. | 
 **to** | **String** | The serialized list of recipients of the blocked message. | 

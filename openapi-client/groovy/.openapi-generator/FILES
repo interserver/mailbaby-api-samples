@@ -11,7 +11,6 @@ src/main/groovy/org/openapitools/model/DateOrTimestamp.groovy
 src/main/groovy/org/openapitools/model/DenyRuleNew.groovy
 src/main/groovy/org/openapitools/model/DenyRuleRecord.groovy
 src/main/groovy/org/openapitools/model/EmailAddressName.groovy
-src/main/groovy/org/openapitools/model/EmailAddressNames.groovy
 src/main/groovy/org/openapitools/model/EmailAddressParam.groovy
 src/main/groovy/org/openapitools/model/EmailAddressTypes.groovy
 src/main/groovy/org/openapitools/model/EmailAddressesTypes.groovy

@@ -16,7 +16,7 @@ public class MailStatsType  {
   
 public enum TimeEnum {
 
-All(String.valueOf("all")), Billing(String.valueOf("billing")), Month(String.valueOf("month")), SevenDays(String.valueOf("7d")), TwentyFourHours(String.valueOf("24h")), Day(String.valueOf("day")), OneHour(String.valueOf("1h"));
+All(String.valueOf("all")), Billing(String.valueOf("billing")), Month(String.valueOf("month")), SevenDays(String.valueOf("7d")), TwentyFourHours(String.valueOf("24h")), Day(String.valueOf("day")), OneHour(String.valueOf("1h")), UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
 
     private String value;

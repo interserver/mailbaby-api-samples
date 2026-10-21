@@ -1,9 +1,9 @@
 .ocamlformat
 .openapi-generator-ignore
+MailBabyOcaml.opam
 README.md
 dune
 dune-project
-openapi.opam
 src/apis/blocking_api.ml
 src/apis/blocking_api.mli
 src/apis/history_api.ml
@@ -18,7 +18,6 @@ src/models/date_or_timestamp.ml
 src/models/deny_rule_new.ml
 src/models/deny_rule_record.ml
 src/models/email_address_name.ml
-src/models/email_address_names.ml
 src/models/email_address_param.ml
 src/models/email_address_types.ml
 src/models/email_addresses_types.ml

@@ -4,12 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/mail_order.dart';
 import 'package:openapi/src/model/mail_order_detail.dart';
@@ -18,9 +17,7 @@ class ServicesApi {
 
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const ServicesApi(this._dio, this._serializers);
+  const ServicesApi(this._dio);
 
   /// Get one mail order&#39;s full detail including SMTP password
   /// **Returns the SMTP password** in addition to the basic &#x60;GET /mail&#x60; fields. Use when you need to authenticate against &#x60;relay.mailbaby.net:25&#x60; from an SMTP client directly. Required: &#x60;id&#x60; (path; obtain from &#x60;GET /mail&#x60;). Returns the full detail record for one specific mail order identified by its numeric &#x60;id&#x60;.  The &#x60;username&#x60; and &#x60;password&#x60; values returned here can be used directly to authenticate against &#x60;relay.mailbaby.net:25&#x60; (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The &#x60;id&#x60; path parameter is the same integer &#x60;id&#x60; value returned by &#x60;GET /mail&#x60;. 
@@ -45,7 +42,7 @@ class ServicesApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/mail/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/mail/{id}'.replaceAll('{' r'id' '}', id.toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -76,11 +73,8 @@ class ServicesApi {
     MailOrderDetail? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(MailOrderDetail),
-      ) as MailOrderDetail;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<MailOrderDetail, MailOrderDetail>(rawData, 'MailOrderDetail', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -115,9 +109,9 @@ class ServicesApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<MailOrder>] as data
+  /// Returns a [Future] containing a [Response] with a [List<MailOrder>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<MailOrder>>> getMailOrders({ 
+  Future<Response<List<MailOrder>>> getMailOrders({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -153,14 +147,11 @@ class ServicesApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<MailOrder>? _responseData;
+    List<MailOrder>? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(MailOrder)]),
-      ) as BuiltList<MailOrder>;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<List<MailOrder>, MailOrder>(rawData, 'List<MailOrder>', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -172,7 +163,7 @@ class ServicesApi {
       );
     }
 
-    return Response<BuiltList<MailOrder>>(
+    return Response<List<MailOrder>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

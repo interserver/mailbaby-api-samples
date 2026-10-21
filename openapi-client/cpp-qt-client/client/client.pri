@@ -1,0 +1,79 @@
+QT += network
+
+HEADERS += \
+# Models
+    $${PWD}/OAIDateOrTimestamp.h \
+    $${PWD}/OAIDenyRuleNew.h \
+    $${PWD}/OAIDenyRuleRecord.h \
+    $${PWD}/OAIEmailAddressName.h \
+    $${PWD}/OAIEmailAddressParam.h \
+    $${PWD}/OAIEmailAddressTypes.h \
+    $${PWD}/OAIEmailAddressesTypes.h \
+    $${PWD}/OAIErrorMessage.h \
+    $${PWD}/OAIGenericResponse.h \
+    $${PWD}/OAIMailAttachment.h \
+    $${PWD}/OAIMailBlockClickHouse.h \
+    $${PWD}/OAIMailBlockRspamd.h \
+    $${PWD}/OAIMailBlocks.h \
+    $${PWD}/OAIMailLog.h \
+    $${PWD}/OAIMailLogEntry.h \
+    $${PWD}/OAIMailOrder.h \
+    $${PWD}/OAIMailOrderDetail.h \
+    $${PWD}/OAIMailStatsType.h \
+    $${PWD}/OAIMailStatsVolume.h \
+    $${PWD}/OAISendMail.h \
+    $${PWD}/OAISendMailAdv.h \
+    $${PWD}/OAISendMailRaw.h \
+    $${PWD}/OAISendMailTo.h \
+# APIs
+    $${PWD}/OAIBlockingApi.h \
+    $${PWD}/OAIHistoryApi.h \
+    $${PWD}/OAISendingApi.h \
+    $${PWD}/OAIServicesApi.h \
+    $${PWD}/OAIStatusApi.h \
+# Others
+    $${PWD}/OAIHelpers.h \
+    $${PWD}/OAIHttpRequest.h \
+    $${PWD}/OAIObject.h \
+    $${PWD}/OAIEnum.h \
+    $${PWD}/OAIHttpFileElement.h \
+    $${PWD}/OAIServerConfiguration.h \
+    $${PWD}/OAIServerVariable.h \
+    $${PWD}/OAIOauth.h
+
+SOURCES += \
+# Models
+    $${PWD}/OAIDateOrTimestamp.cpp \
+    $${PWD}/OAIDenyRuleNew.cpp \
+    $${PWD}/OAIDenyRuleRecord.cpp \
+    $${PWD}/OAIEmailAddressName.cpp \
+    $${PWD}/OAIEmailAddressParam.cpp \
+    $${PWD}/OAIEmailAddressTypes.cpp \
+    $${PWD}/OAIEmailAddressesTypes.cpp \
+    $${PWD}/OAIErrorMessage.cpp \
+    $${PWD}/OAIGenericResponse.cpp \
+    $${PWD}/OAIMailAttachment.cpp \
+    $${PWD}/OAIMailBlockClickHouse.cpp \
+    $${PWD}/OAIMailBlockRspamd.cpp \
+    $${PWD}/OAIMailBlocks.cpp \
+    $${PWD}/OAIMailLog.cpp \
+    $${PWD}/OAIMailLogEntry.cpp \
+    $${PWD}/OAIMailOrder.cpp \
+    $${PWD}/OAIMailOrderDetail.cpp \
+    $${PWD}/OAIMailStatsType.cpp \
+    $${PWD}/OAIMailStatsVolume.cpp \
+    $${PWD}/OAISendMail.cpp \
+    $${PWD}/OAISendMailAdv.cpp \
+    $${PWD}/OAISendMailRaw.cpp \
+    $${PWD}/OAISendMailTo.cpp \
+# APIs
+    $${PWD}/OAIBlockingApi.cpp \
+    $${PWD}/OAIHistoryApi.cpp \
+    $${PWD}/OAISendingApi.cpp \
+    $${PWD}/OAIServicesApi.cpp \
+    $${PWD}/OAIStatusApi.cpp \
+# Others
+    $${PWD}/OAIHelpers.cpp \
+    $${PWD}/OAIHttpRequest.cpp \
+    $${PWD}/OAIHttpFileElement.cpp \
+    $${PWD}/OAIOauth.cpp

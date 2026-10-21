@@ -11,7 +11,6 @@ models/DateOrTimestamp.js
 models/DenyRuleNew.js
 models/DenyRuleRecord.js
 models/EmailAddressName.js
-models/EmailAddressNames.js
 models/EmailAddressParam.js
 models/EmailAddressTypes.js
 models/EmailAddressesTypes.js

@@ -161,6 +161,7 @@ class MailOrderDetail {
 enum MailOrderDetailStatusEnum {
   active._(r'active'),
   canceled._(r'canceled'),
+  unknownDefaultOpenApi._(r'unknown_default_open_api'),
   ;
 
   /// Instantiate a new enum with the provided value.
@@ -221,6 +222,7 @@ class MailOrderDetailStatusEnumTypeTransformer {
       switch (data) {
         case r'active': return MailOrderDetailStatusEnum.active;
         case r'canceled': return MailOrderDetailStatusEnum.canceled;
+        case r'unknown_default_open_api': return MailOrderDetailStatusEnum.unknownDefaultOpenApi;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

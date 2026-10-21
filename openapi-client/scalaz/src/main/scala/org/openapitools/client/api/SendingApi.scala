@@ -35,7 +35,7 @@ object SendingApi {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def rawMail(host: String, SendMailRaw: SendMailRaw): Task[GenericResponse] = {
+  def rawMail(host: String, sendMailRaw: SendMailRaw): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/rawsend"
@@ -50,7 +50,7 @@ object SendingApi {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(host + path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(SendMailRaw)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMailRaw)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp
@@ -105,7 +105,7 @@ class HttpServiceSendingApi(service: HttpService) {
 
   def escape(value: String): String = URLEncoder.encode(value, "utf-8").replaceAll("\\+", "%20")
 
-  def rawMail(SendMailRaw: SendMailRaw): Task[GenericResponse] = {
+  def rawMail(sendMailRaw: SendMailRaw): Task[GenericResponse] = {
     implicit val returnTypeDecoder: EntityDecoder[GenericResponse] = jsonOf[GenericResponse]
 
     val path = "/mail/rawsend"
@@ -120,7 +120,7 @@ class HttpServiceSendingApi(service: HttpService) {
     for {
       uri           <- Task.fromDisjunction(Uri.fromString(path))
       uriWithParams =  uri.copy(query = queryParams)
-      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(SendMailRaw)
+      req           =  Request(method = httpMethod, uri = uriWithParams, headers = headers.put(contentType)).withBody(sendMailRaw)
       resp          <- client.expect[GenericResponse](req)
 
     } yield resp

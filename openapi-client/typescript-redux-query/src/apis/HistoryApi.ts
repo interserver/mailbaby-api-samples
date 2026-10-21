@@ -254,7 +254,8 @@ export enum GetStatsTimeEnum {
     SevenDays = '7d',
     TwentyFourHours = '24h',
     Day = 'day',
-    OneHour = '1h'
+    OneHour = '1h',
+    UnknownDefaultOpenApi = '11184809'
 }
 /**
     * @export
@@ -262,14 +263,16 @@ export enum GetStatsTimeEnum {
     */
 export enum ViewMailLogDeliveredEnum {
     NotDelivered = 0,
-    Delivered = 1
+    Delivered = 1,
+    NUMBER_unknown_default_open_api = 11184809
 }
 /**
     * @export
     * @enum {string}
     */
 export enum ViewMailLogSortEnum {
-    Time = 'time'
+    Time = 'time',
+    UnknownDefaultOpenApi = '11184809'
 }
 /**
     * @export
@@ -277,7 +280,8 @@ export enum ViewMailLogSortEnum {
     */
 export enum ViewMailLogDirEnum {
     Asc = 'asc',
-    Desc = 'desc'
+    Desc = 'desc',
+    UnknownDefaultOpenApi = '11184809'
 }
 /**
     * @export
@@ -285,5 +289,6 @@ export enum ViewMailLogDirEnum {
     */
 export enum ViewMailLogGroupbyEnum {
     Message = 'message',
-    Recipient = 'recipient'
+    Recipient = 'recipient',
+    UnknownDefaultOpenApi = '11184809'
 }

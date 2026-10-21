@@ -32,6 +32,8 @@
 #' @field assigned The relay server node assigned to deliver this message. character [optional]
 #' @field queued ISO 8601 timestamp when the message was placed into the delivery queue. character [optional]
 #' @field mxHostname The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`. character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -63,6 +65,8 @@ MailLogEntry <- R6::R6Class(
     `assigned` = NULL,
     `queued` = NULL,
     `mxHostname` = NULL,
+    `_field_list` = c("_id", "id", "from", "to", "created", "time", "user", "transtype", "origin", "interface", "subject", "messageId", "sendingZone", "bodySize", "seq", "delivered", "code", "response", "recipient", "domain", "locked", "lockTime", "assigned", "queued", "mxHostname"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailLogEntry class.
@@ -92,8 +96,9 @@ MailLogEntry <- R6::R6Class(
     #' @param assigned The relay server node assigned to deliver this message.
     #' @param queued ISO 8601 timestamp when the message was placed into the delivery queue.
     #' @param mxHostname The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`_id`, `id`, `from`, `to`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `subject` = NULL, `messageId` = NULL, `sendingZone` = NULL, `bodySize` = NULL, `seq` = NULL, `delivered` = NULL, `code` = NULL, `response` = NULL, `recipient` = NULL, `domain` = NULL, `locked` = NULL, `lockTime` = NULL, `assigned` = NULL, `queued` = NULL, `mxHostname` = NULL, ...) {
+    initialize = function(`_id`, `id`, `from`, `to`, `created`, `time`, `user`, `transtype`, `origin`, `interface`, `subject` = NULL, `messageId` = NULL, `sendingZone` = NULL, `bodySize` = NULL, `seq` = NULL, `delivered` = NULL, `code` = NULL, `response` = NULL, `recipient` = NULL, `domain` = NULL, `locked` = NULL, `lockTime` = NULL, `assigned` = NULL, `queued` = NULL, `mxHostname` = NULL, additional_properties = NULL, ...) {
       if (!missing(`_id`)) {
         if (!(is.numeric(`_id`) && length(`_id`) == 1)) {
           stop(paste("Error! Invalid data for `_id`. Must be an integer:", `_id`))
@@ -244,6 +249,11 @@ MailLogEntry <- R6::R6Class(
         }
         self$`mxHostname` <- `mxHostname`
       }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
+      }
     },
 
     #' @description
@@ -377,6 +387,10 @@ MailLogEntry <- R6::R6Class(
         MailLogEntryObject[["mxHostname"]] <-
           self$`mxHostname`
       }
+      for (key in names(self$additional_properties)) {
+        MailLogEntryObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailLogEntryObject)
     },
 
@@ -462,6 +476,13 @@ MailLogEntry <- R6::R6Class(
       if (!is.null(this_object$`mxHostname`)) {
         self$`mxHostname` <- this_object$`mxHostname`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -472,6 +493,9 @@ MailLogEntry <- R6::R6Class(
     #' @return MailLogEntry in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -508,6 +532,13 @@ MailLogEntry <- R6::R6Class(
       self$`assigned` <- this_object$`assigned`
       self$`queued` <- this_object$`queued`
       self$`mxHostname` <- this_object$`mxHostname`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

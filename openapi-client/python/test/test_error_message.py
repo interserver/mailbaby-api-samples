@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.error_message import ErrorMessage
+from MailBabyPython.models.error_message import ErrorMessage
 
 class TestErrorMessage(unittest.TestCase):
     """ErrorMessage unit test stubs"""

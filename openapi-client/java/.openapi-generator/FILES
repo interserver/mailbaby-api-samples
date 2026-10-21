@@ -11,7 +11,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -71,7 +70,6 @@ src/main/java/org/openapitools/client/model/DateOrTimestamp.java
 src/main/java/org/openapitools/client/model/DenyRuleNew.java
 src/main/java/org/openapitools/client/model/DenyRuleRecord.java
 src/main/java/org/openapitools/client/model/EmailAddressName.java
-src/main/java/org/openapitools/client/model/EmailAddressNames.java
 src/main/java/org/openapitools/client/model/EmailAddressParam.java
 src/main/java/org/openapitools/client/model/EmailAddressTypes.java
 src/main/java/org/openapitools/client/model/EmailAddressesTypes.java
@@ -100,7 +98,6 @@ src/test/java/org/openapitools/client/model/DateOrTimestampTest.java
 src/test/java/org/openapitools/client/model/DenyRuleNewTest.java
 src/test/java/org/openapitools/client/model/DenyRuleRecordTest.java
 src/test/java/org/openapitools/client/model/EmailAddressNameTest.java
-src/test/java/org/openapitools/client/model/EmailAddressNamesTest.java
 src/test/java/org/openapitools/client/model/EmailAddressParamTest.java
 src/test/java/org/openapitools/client/model/EmailAddressTypesTest.java
 src/test/java/org/openapitools/client/model/EmailAddressesTypesTest.java

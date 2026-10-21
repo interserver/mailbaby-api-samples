@@ -22,6 +22,7 @@ The fields required to create a new email deny rule via `POST /mail/rules`. The 
 | EMAIL | &quot;email&quot; |
 | STARTSWITH | &quot;startswith&quot; |
 | DESTINATION | &quot;destination&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

@@ -10,11 +10,12 @@ import Foundation
 /** A complete deny rule record as returned by &#x60;GET /mail/rules&#x60;.  Combines the rule definition fields (&#x60;DenyRuleNew&#x60;) with server-assigned metadata (&#x60;id&#x60; and &#x60;created&#x60;).  The &#x60;id&#x60; value is required by &#x60;DELETE /mail/rules/{ruleId}&#x60;. */
 public struct DenyRuleRecord: Sendable, Codable, Hashable {
 
-    public enum ModelType: String, Sendable, Codable, CaseIterable {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
         case destination = "destination"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. */
     public var type: ModelType
@@ -57,3 +58,10 @@ public struct DenyRuleRecord: Sendable, Codable, Hashable {
 
 
 extension DenyRuleRecord: Identifiable {}
+
+extension DenyRuleRecord: UnknownCaseCheckable {
+    public var containsUnknownDefaultOpenApiCase: Bool {
+        if type == .unknownDefaultOpenApi { return true }
+        return false
+    }
+}

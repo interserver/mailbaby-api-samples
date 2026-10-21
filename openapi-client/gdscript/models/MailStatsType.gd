@@ -15,16 +15,16 @@ class_name MailStatsType
 # Required: False
 # isArray: false
 # Allowed values: "all", "billing", "month", "7d", "24h", "day", "1h"
-@export var some_timenull: String = "1h":
+@export var some_time: String = "1h":
 	set(value):
-		if str(value) != "" and not (str(value) in __some_timenull__allowable__values):
-			push_error("MailStatsType: tried to set property `some_timenull` to a value that is not allowed." +
+		if str(value) != "" and not (str(value) in __some_time__allowable__values):
+			push_error("MailStatsType: tried to set property `some_time` to a value that is not allowed." +
 				"  Allowed values: `all`, `billing`, `month`, `7d`, `24h`, `day`, `1h`")
 			return
-		__some_timenull__was__set = true
-		some_timenull = value
-var __some_timenull__was__set := false
-var __some_timenull__allowable__values := ["all", "billing", "month", "7d", "24h", "day", "1h"]
+		__some_time__was__set = true
+		some_time = value
+var __some_time__was__set := false
+var __some_time__allowable__values := ["all", "billing", "month", "7d", "24h", "day", "1h"]
 
 # Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
 # Required: False
@@ -87,8 +87,8 @@ func bzz_collect_missing_properties() -> Array:
 
 func bzz_normalize() -> Dictionary:
 	var bzz_dictionary := Dictionary()
-	if self.__some_timenull__was__set:
-		bzz_dictionary["some_timenull"] = self.some_timenull
+	if self.__some_time__was__set:
+		bzz_dictionary["some_time"] = self.some_time
 	if self.__usage__was__set:
 		bzz_dictionary["usage"] = self.usage
 	if self.__currency__was__set:
@@ -107,8 +107,8 @@ func bzz_normalize() -> Dictionary:
 # Won't work for JSON+LD
 static func bzz_denormalize_single(from_dict: Dictionary):
 	var me := new()
-	if from_dict.has("some_timenull"):
-		me.some_timenull = from_dict["some_timenull"]
+	if from_dict.has("some_time"):
+		me.some_time = from_dict["some_time"]
 	if from_dict.has("usage"):
 		me.usage = from_dict["usage"]
 	if from_dict.has("currency"):

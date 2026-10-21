@@ -1,0 +1,10 @@
+# MailBabyCsharp.Model.SendMailTo
+The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

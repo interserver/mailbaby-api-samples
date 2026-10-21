@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet ErrorMessage"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a ErrorMessage"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  ErrorMessage {
+    title = ErrorMessage
+    description = ErrorMessage
+    derivedFrom = Root
+    properties {
+        code {
+          type =  integer
+          description = "The HTTP-style status code associated with the error."
+          optional = true
+        }
+        message {
+          type =  string
+          description = "A human-readable description of the error."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  ErrorMessage {
+    title = ErrorMessage
+    description = ErrorMessage
+    implements = MailBabyPythonBlueplanet.resourceTypes.ErrorMessage
+
+  }
+}

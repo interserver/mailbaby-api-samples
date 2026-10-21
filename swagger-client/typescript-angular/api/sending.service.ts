@@ -119,18 +119,18 @@ export class SendingService {
     /**
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: &#x60;raw_email&#x60; (full RFC 822 string with headers + body). Optional: &#x60;id&#x60; (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
-     * @param raw_email 
+     * @param rawEmail 
      * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public rawMailForm(raw_email: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
-    public rawMailForm(raw_email: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
-    public rawMailForm(raw_email: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
-    public rawMailForm(raw_email: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public rawMailForm(rawEmail: string, id: number, observe?: 'body', reportProgress?: boolean): Observable<GenericResponse>;
+    public rawMailForm(rawEmail: string, id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GenericResponse>>;
+    public rawMailForm(rawEmail: string, id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GenericResponse>>;
+    public rawMailForm(rawEmail: string, id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (raw_email === null || raw_email === undefined) {
-            throw new Error('Required parameter raw_email was null or undefined when calling rawMail.');
+        if (rawEmail === null || rawEmail === undefined) {
+            throw new Error('Required parameter rawEmail was null or undefined when calling rawMail.');
         }
 
         if (id === null || id === undefined) {
@@ -170,8 +170,8 @@ export class SendingService {
             formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         }
 
-        if (raw_email !== undefined) {
-            formParams = formParams.append('raw_email', <any>raw_email) as any || formParams;
+        if (rawEmail !== undefined) {
+            formParams = formParams.append('raw_email', <any>rawEmail) as any || formParams;
         }
         if (id !== undefined) {
             formParams = formParams.append('id', <any>id) as any || formParams;

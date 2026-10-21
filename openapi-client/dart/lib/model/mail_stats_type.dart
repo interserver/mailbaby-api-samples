@@ -219,6 +219,7 @@ enum MailStatsTypeTimeEnum {
   TwentyFourHours._(r'24h'),
   Day._(r'day'),
   OneHour._(r'1h'),
+  unknownDefaultOpenApi._(r'unknown_default_open_api'),
   ;
 
   /// Instantiate a new enum with the provided value.
@@ -284,6 +285,7 @@ class MailStatsTypeTimeEnumTypeTransformer {
         case r'24h': return MailStatsTypeTimeEnum.TwentyFourHours;
         case r'day': return MailStatsTypeTimeEnum.Day;
         case r'1h': return MailStatsTypeTimeEnum.OneHour;
+        case r'unknown_default_open_api': return MailStatsTypeTimeEnum.unknownDefaultOpenApi;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

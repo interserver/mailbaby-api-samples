@@ -1,4 +1,4 @@
-# openapi_client.ServicesApi
+# MailBabyPython.ServicesApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -25,14 +25,14 @@ The `id` path parameter is the same integer `id` value returned by `GET /mail`.
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.mail_order_detail import MailOrderDetail
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_order_detail import MailOrderDetail
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -48,9 +48,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ServicesApi(api_client)
+    api_instance = MailBabyPython.ServicesApi(api_client)
     id = 39 # int | The numeric ID of the mail order.
 
     try:
@@ -112,14 +112,14 @@ To retrieve full details — including the current SMTP password — for a singl
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.mail_order import MailOrder
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_order import MailOrder
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -135,9 +135,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ServicesApi(api_client)
+    api_instance = MailBabyPython.ServicesApi(api_client)
 
     try:
         # List your provisioned mail orders (sending accounts)

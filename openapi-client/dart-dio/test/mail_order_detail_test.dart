@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailOrderDetail
 void main() {
-  final instance = MailOrderDetailBuilder();
-  // TODO add properties to the builder and call build()
+  final MailOrderDetail? instance = /* MailOrderDetail(...) */ null;
+  // TODO add properties to the entity
 
   group(MailOrderDetail, () {
     // The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.

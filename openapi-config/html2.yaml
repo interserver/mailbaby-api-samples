@@ -1,22 +1,12 @@
-sortParamsByRequiredFlag: true
-sortModelPropertiesByRequiredFlag: true
-ensureUniqueParams: true
-allowUnicodeIdentifiers: true
-prependFormOrBodyParameters: false
-legacyDiscriminatorBehavior: false
-disallowAdditionalPropertiesIfNotPresent: false
-appName: MailBaby API 
-appDescription: API interface for sending mail through the MailBaby system. 
-infoUrl: https://mail.baby/ 
-infoEmail: support@mail.baby 
-licenseInfo: GNU GPL v3 
-licenseUrl: https://www.gnu.org/licenses/gpl-3.0.en.html 
-invokerPackage: MailBaby 
-#phpInvokerPackage: interserver/mailbaby-client-php
-phpInvokerPackage: Interserver\Mailbaby 
-perlModuleName: MailBabyApi 
-pythonPackageName: MailBabyApi
-packageName: MailBaby 
-groupId: com.mail.baby 
-artifactId: MailBaby 
-artifactVersion: 1.0.0
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-html2"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyHtml2"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

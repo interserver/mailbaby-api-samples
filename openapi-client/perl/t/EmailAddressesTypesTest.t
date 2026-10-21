@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::EmailAddressesTypes');
+use_ok('WWW::OpenAPIClient::Object::EmailAddressesTypes');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::EmailAddressesTypes->new();
+#my $instance = WWW::OpenAPIClient::Object::EmailAddressesTypes->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::EmailAddressesTypes');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::EmailAddressesTypes');
 
 
 done_testing();

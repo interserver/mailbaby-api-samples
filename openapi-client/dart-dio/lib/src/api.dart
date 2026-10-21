@@ -3,8 +3,6 @@
 //
 
 import 'package:dio/dio.dart';
-import 'package:built_value/serializer.dart';
-import 'package:openapi/src/serializers.dart';
 import 'package:openapi/src/auth/api_key_auth.dart';
 import 'package:openapi/src/auth/basic_auth.dart';
 import 'package:openapi/src/auth/bearer_auth.dart';
@@ -19,14 +17,11 @@ class Openapi {
   static const String basePath = r'https://api.mailbaby.net';
 
   final Dio dio;
-  final Serializers serializers;
-
   Openapi({
     Dio? dio,
-    Serializers? serializers,
     String? basePathOverride,
     List<Interceptor>? interceptors,
-  })  : this.serializers = serializers ?? standardSerializers,
+  })  : 
         this.dio = dio ??
             Dio(BaseOptions(
               baseUrl: basePathOverride ?? basePath,
@@ -112,30 +107,30 @@ class Openapi {
   /// Get BlockingApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BlockingApi getBlockingApi() {
-    return BlockingApi(dio, serializers);
+    return BlockingApi(dio);
   }
 
   /// Get HistoryApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   HistoryApi getHistoryApi() {
-    return HistoryApi(dio, serializers);
+    return HistoryApi(dio);
   }
 
   /// Get SendingApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   SendingApi getSendingApi() {
-    return SendingApi(dio, serializers);
+    return SendingApi(dio);
   }
 
   /// Get ServicesApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ServicesApi getServicesApi() {
-    return ServicesApi(dio, serializers);
+    return ServicesApi(dio);
   }
 
   /// Get StatusApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   StatusApi getStatusApi() {
-    return StatusApi(dio, serializers);
+    return StatusApi(dio);
   }
 }

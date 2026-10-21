@@ -1,0 +1,31 @@
+## SendingApi
+
+### Send a pre-built RFC 822 message verbatim (preserves DKIM)
+## Send a pre-built RFC 822 message verbatim (preserves DKIM)
+POST https://api.mailbaby.net/mail/rawsend
+Content-Type: application/json
+Content-Type: multipart/form-data
+Accept: application/json
+X-API-KEY: {{apiKey}}
+
+{
+ "raw_email": "<string>",
+ "id": "<number>"
+}
+
+
+### Send email with multiple recipients, CC/BCC, attachments, named contacts
+## Send email with multiple recipients, CC/BCC, attachments, named contacts
+POST https://api.mailbaby.net/mail/advsend
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
+Accept: application/json
+X-API-KEY: {{apiKey}}
+
+### Send a simple email (single recipient, plain or HTML)
+## Send a simple email (single recipient, plain or HTML)
+POST https://api.mailbaby.net/mail/send
+Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
+Accept: application/json
+X-API-KEY: {{apiKey}}

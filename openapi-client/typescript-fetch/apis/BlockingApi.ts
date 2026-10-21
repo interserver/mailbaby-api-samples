@@ -358,5 +358,6 @@ export const AddRuleTypeEnum = {
     Email: 'email',
     Startswith: 'startswith',
     Destination: 'destination',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];

@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::ErrorMessage
+# WWW::OpenAPIClient::Object::ErrorMessage
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::ErrorMessage;
+use WWW::OpenAPIClient::Object::ErrorMessage;
 ```
 
 ## Properties

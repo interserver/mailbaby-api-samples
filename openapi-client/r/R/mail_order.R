@@ -11,6 +11,8 @@
 #' @field status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send. character
 #' @field username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. character
 #' @field comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,6 +23,8 @@ MailOrder <- R6::R6Class(
     `status` = NULL,
     `username` = NULL,
     `comment` = NULL,
+    `_field_list` = c("id", "status", "username", "comment"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailOrder class.
@@ -29,8 +33,9 @@ MailOrder <- R6::R6Class(
     #' @param status The current order status.  Only `active` orders can be used for sending. `canceled` orders are retained for history but cannot send.
     #' @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
     #' @param comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `status`, `username`, `comment` = NULL, ...) {
+    initialize = function(`id`, `status`, `username`, `comment` = NULL, additional_properties = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.numeric(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be an integer:", `id`))
@@ -57,6 +62,11 @@ MailOrder <- R6::R6Class(
           stop(paste("Error! Invalid data for `comment`. Must be a string:", `comment`))
         }
         self$`comment` <- `comment`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -107,6 +117,10 @@ MailOrder <- R6::R6Class(
         MailOrderObject[["comment"]] <-
           self$`comment`
       }
+      for (key in names(self$additional_properties)) {
+        MailOrderObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailOrderObject)
     },
 
@@ -132,6 +146,13 @@ MailOrder <- R6::R6Class(
       if (!is.null(this_object$`comment`)) {
         self$`comment` <- this_object$`comment`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -142,6 +163,9 @@ MailOrder <- R6::R6Class(
     #' @return MailOrder in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -160,6 +184,13 @@ MailOrder <- R6::R6Class(
       self$`status` <- this_object$`status`
       self$`username` <- this_object$`username`
       self$`comment` <- this_object$`comment`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

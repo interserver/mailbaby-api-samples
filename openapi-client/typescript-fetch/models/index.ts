@@ -4,7 +4,6 @@ export * from './DateOrTimestamp';
 export * from './DenyRuleNew';
 export * from './DenyRuleRecord';
 export * from './EmailAddressName';
-export * from './EmailAddressNames';
 export * from './EmailAddressParam';
 export * from './EmailAddressTypes';
 export * from './EmailAddressesTypes';

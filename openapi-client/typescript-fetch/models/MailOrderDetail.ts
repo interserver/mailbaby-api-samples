@@ -48,6 +48,7 @@ export interface MailOrderDetail {
 export const MailOrderDetailStatusEnum = {
     Active: 'active',
     Canceled: 'canceled',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type MailOrderDetailStatusEnum = typeof MailOrderDetailStatusEnum[keyof typeof MailOrderDetailStatusEnum];
 

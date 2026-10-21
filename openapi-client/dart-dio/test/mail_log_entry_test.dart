@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailLogEntry
 void main() {
-  final instance = MailLogEntryBuilder();
-  // TODO add properties to the builder and call build()
+  final MailLogEntry? instance = /* MailLogEntry(...) */ null;
+  // TODO add properties to the entity
 
   group(MailLogEntry, () {
     // Internal auto-increment database row ID.  Not meaningful outside the API.

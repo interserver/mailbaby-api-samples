@@ -16,7 +16,7 @@ import io.swagger.client.models.ErrorMessage
 import io.swagger.client.models.MailLog
 import io.swagger.client.models.MailStatsType
 
-import mailbaby-client-kotlin-client.infrastructure.*
+import MailBabyKotlinClient.infrastructure.*
 
 class HistoryApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
 

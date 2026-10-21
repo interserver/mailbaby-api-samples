@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for EmailAddressName
 void main() {
-  final instance = EmailAddressNameBuilder();
-  // TODO add properties to the builder and call build()
+  final EmailAddressName? instance = /* EmailAddressName(...) */ null;
+  // TODO add properties to the entity
 
   group(EmailAddressName, () {
     // The email address.

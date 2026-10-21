@@ -4,8 +4,9 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 
@@ -13,9 +14,7 @@ class StatusApi {
 
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const StatusApi(this._dio, this._serializers);
+  const StatusApi(this._dio);
 
   /// Health check — verify the API is reachable
   /// **No authentication required.** Returns the plain-text string &#x60;Server is up and running&#x60; with a &#x60;200&#x60; status when the API host is reachable. Use this as a connectivity smoke-test before attempting any authenticated call. Useful for uptime monitoring, load-balancer health checks, and CI smoke tests. 
@@ -62,8 +61,8 @@ class StatusApi {
     String? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : rawResponse as String;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<String, String>(rawData, 'String', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(

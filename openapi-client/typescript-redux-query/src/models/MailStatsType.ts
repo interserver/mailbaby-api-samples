@@ -106,7 +106,8 @@ export enum MailStatsTypeTimeEnum {
     SevenDays = '7d',
     TwentyFourHours = '24h',
     Day = 'day',
-    OneHour = '1h'
+    OneHour = '1h',
+    UnknownDefaultOpenApi = '11184809'
 }
 
 

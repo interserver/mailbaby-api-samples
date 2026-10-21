@@ -1,4 +1,4 @@
-# openapi::MailOrder
+# MailBabyR::MailOrder
 
 A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 

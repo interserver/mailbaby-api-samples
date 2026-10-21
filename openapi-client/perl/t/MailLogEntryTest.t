@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::MailLogEntry');
+use_ok('WWW::OpenAPIClient::Object::MailLogEntry');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::MailLogEntry->new();
+#my $instance = WWW::OpenAPIClient::Object::MailLogEntry->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::MailLogEntry');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::MailLogEntry');
 
 
 done_testing();

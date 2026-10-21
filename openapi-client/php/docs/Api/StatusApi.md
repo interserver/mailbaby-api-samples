@@ -1,12 +1,10 @@
-# Interserver\Mailbaby\StatusApi
+# OpenAPI\Client\StatusApi
 
-Service health / uptime checks.
+All URIs are relative to https://api.mailbaby.net.
 
-All URIs are relative to https://api.mailbaby.net, except if the operation defines another base path.
-
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**pingServer()**](StatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**pingServer()**](StatusApi.md#pingServer) | **GET** /ping | Health check — verify the API is reachable
 
 
 ## `pingServer()`
@@ -27,9 +25,9 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Interserver\Mailbaby\Api\StatusApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\StatusApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
 

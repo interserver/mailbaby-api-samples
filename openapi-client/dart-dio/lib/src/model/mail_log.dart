@@ -3,158 +3,108 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/mail_log_entry.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'mail_log.g.dart';
 
-/// Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.
-///
-/// Properties:
-/// * [total] - Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
-/// * [skip] - The `skip` value used for this page (echoed from the request).
-/// * [limit] - The `limit` value used for this page (echoed from the request).
-/// * [emails] 
-@BuiltValue()
-abstract class MailLog implements Built<MailLog, MailLogBuilder> {
-  /// Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
-  @BuiltValueField(wireName: r'total')
-  int get total;
 
-  /// The `skip` value used for this page (echoed from the request).
-  @BuiltValueField(wireName: r'skip')
-  int get skip;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class MailLog {
+  /// Returns a new [MailLog] instance.
+  MailLog({
 
-  /// The `limit` value used for this page (echoed from the request).
-  @BuiltValueField(wireName: r'limit')
-  int get limit;
+    required  this.total,
 
-  @BuiltValueField(wireName: r'emails')
-  BuiltList<MailLogEntry> get emails;
+    required  this.skip,
 
-  MailLog._();
+    required  this.limit,
 
-  factory MailLog([void updates(MailLogBuilder b)]) = _$MailLog;
+    required  this.emails,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MailLogBuilder b) => b;
+      /// Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
+  @JsonKey(
+    
+    name: r'total',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<MailLog> get serializer => _$MailLogSerializer();
+
+  final int total;
+
+
+
+      /// The `skip` value used for this page (echoed from the request).
+  @JsonKey(
+    
+    name: r'skip',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final int skip;
+
+
+
+      /// The `limit` value used for this page (echoed from the request).
+  @JsonKey(
+    
+    name: r'limit',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final int limit;
+
+
+
+  @JsonKey(
+    
+    name: r'emails',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final List<MailLogEntry> emails;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is MailLog &&
+      other.total == total &&
+      other.skip == skip &&
+      other.limit == limit &&
+      other.emails == emails;
+
+    @override
+    int get hashCode =>
+        total.hashCode +
+        skip.hashCode +
+        limit.hashCode +
+        emails.hashCode;
+
+  factory MailLog.fromJson(Map<String, dynamic> json) => _$MailLogFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MailLogToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$MailLogSerializer implements PrimitiveSerializer<MailLog> {
-  @override
-  final Iterable<Type> types = const [MailLog, _$MailLog];
-
-  @override
-  final String wireName = r'MailLog';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    MailLog object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'total';
-    yield serializers.serialize(
-      object.total,
-      specifiedType: const FullType(int),
-    );
-    yield r'skip';
-    yield serializers.serialize(
-      object.skip,
-      specifiedType: const FullType(int),
-    );
-    yield r'limit';
-    yield serializers.serialize(
-      object.limit,
-      specifiedType: const FullType(int),
-    );
-    yield r'emails';
-    yield serializers.serialize(
-      object.emails,
-      specifiedType: const FullType(BuiltList, [FullType(MailLogEntry)]),
-    );
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    MailLog object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required MailLogBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'total':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.total = valueDes;
-          break;
-        case r'skip':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.skip = valueDes;
-          break;
-        case r'limit':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.limit = valueDes;
-          break;
-        case r'emails':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(BuiltList, [FullType(MailLogEntry)]),
-          ) as BuiltList<MailLogEntry>;
-          result.emails.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  MailLog deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = MailLogBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

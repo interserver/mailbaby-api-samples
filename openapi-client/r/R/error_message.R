@@ -9,6 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field code The HTTP-style status code associated with the error. integer
 #' @field message A human-readable description of the error. character
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,14 +19,17 @@ ErrorMessage <- R6::R6Class(
   public = list(
     `code` = NULL,
     `message` = NULL,
+    `_field_list` = c("code", "message"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new ErrorMessage class.
     #'
     #' @param code The HTTP-style status code associated with the error.
     #' @param message A human-readable description of the error.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`code`, `message`, ...) {
+    initialize = function(`code`, `message`, additional_properties = NULL, ...) {
       if (!missing(`code`)) {
         if (!(is.numeric(`code`) && length(`code`) == 1)) {
           stop(paste("Error! Invalid data for `code`. Must be an integer:", `code`))
@@ -36,6 +41,11 @@ ErrorMessage <- R6::R6Class(
           stop(paste("Error! Invalid data for `message`. Must be a string:", `message`))
         }
         self$`message` <- `message`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -78,6 +88,10 @@ ErrorMessage <- R6::R6Class(
         ErrorMessageObject[["message"]] <-
           self$`message`
       }
+      for (key in names(self$additional_properties)) {
+        ErrorMessageObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(ErrorMessageObject)
     },
 
@@ -94,6 +108,13 @@ ErrorMessage <- R6::R6Class(
       if (!is.null(this_object$`message`)) {
         self$`message` <- this_object$`message`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -104,6 +125,9 @@ ErrorMessage <- R6::R6Class(
     #' @return ErrorMessage in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -117,6 +141,13 @@ ErrorMessage <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`code` <- this_object$`code`
       self$`message` <- this_object$`message`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

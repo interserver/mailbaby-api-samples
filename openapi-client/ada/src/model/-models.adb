@@ -205,7 +205,6 @@ package body .Models is
       end loop;
    end Deserialize;
 
-
    procedure Serialize (Into  : in out Swagger.Streams.Output_Stream'Class;
                         Name  : in String;
                         Value : in .Models.EmailAddressParam_Type) is

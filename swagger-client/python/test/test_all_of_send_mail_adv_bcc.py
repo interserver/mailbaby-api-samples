@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.models.all_of_send_mail_adv_bcc import AllOfSendMailAdvBcc  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.all_of_send_mail_adv_bcc import AllOfSendMailAdvBcc  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestAllOfSendMailAdvBcc(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestAllOfSendMailAdvBcc(unittest.TestCase):
     def testAllOfSendMailAdvBcc(self):
         """Test AllOfSendMailAdvBcc"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = mailbaby-client-python.models.all_of_send_mail_adv_bcc.AllOfSendMailAdvBcc()  # noqa: E501
+        # model = MailBabyPython.models.all_of_send_mail_adv_bcc.AllOfSendMailAdvBcc()  # noqa: E501
         pass
 
 

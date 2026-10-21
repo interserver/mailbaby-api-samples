@@ -1,4 +1,4 @@
-# mailbaby-client-python.StatusApi
+# MailBabyPython.StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -17,12 +17,12 @@ Health check — verify the API is reachable
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.StatusApi()
+api_instance = MailBabyPython.StatusApi()
 
 try:
     # Health check — verify the API is reachable

@@ -1,4 +1,4 @@
-# openapi_client.SendingApi
+# MailBabyPython.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -30,15 +30,15 @@ On success the response `text` field contains the relay transaction ID.  This ID
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.generic_response import GenericResponse
-from openapi_client.models.send_mail_raw import SendMailRaw
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.generic_response import GenericResponse
+from MailBabyPython.models.send_mail_raw import SendMailRaw
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -54,10 +54,10 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.SendingApi(api_client)
-    send_mail_raw = openapi_client.SendMailRaw() # SendMailRaw | 
+    api_instance = MailBabyPython.SendingApi(api_client)
+    send_mail_raw = MailBabyPython.SendMailRaw() # SendMailRaw | 
 
     try:
         # Send a pre-built RFC 822 message verbatim (preserves DKIM)
@@ -167,15 +167,15 @@ On success the response `text` field contains the relay transaction ID which can
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.generic_response import GenericResponse
-from openapi_client.models.mail_attachment import MailAttachment
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.generic_response import GenericResponse
+from MailBabyPython.models.mail_attachment import MailAttachment
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -191,17 +191,17 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.SendingApi(api_client)
+    api_instance = MailBabyPython.SendingApi(api_client)
     subject = 'subject_example' # str | The subject line of the email.
     body = 'body_example' # str | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-    var_from = openapi_client.EmailAddressTypes() # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
-    to = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
-    replyto = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. (optional)
-    cc = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. (optional)
-    bcc = openapi_client.EmailAddressesTypes() # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-    attachments = [openapi_client.MailAttachment()] # List[MailAttachment] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
+    var_from = MailBabyPython.EmailAddressTypes() # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+    to = MailBabyPython.EmailAddressesTypes() # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+    replyto = MailBabyPython.EmailAddressesTypes() # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`. (optional)
+    cc = MailBabyPython.EmailAddressesTypes() # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients. (optional)
+    bcc = MailBabyPython.EmailAddressesTypes() # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+    attachments = [MailBabyPython.MailAttachment()] # List[MailAttachment] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. (optional)
     id = 56 # int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)
 
     try:
@@ -275,15 +275,15 @@ On success the response `text` field contains the relay transaction ID.  This ID
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.generic_response import GenericResponse
-from openapi_client.models.send_mail_to import SendMailTo
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.generic_response import GenericResponse
+from MailBabyPython.models.send_mail_to import SendMailTo
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -299,10 +299,10 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.SendingApi(api_client)
-    to = openapi_client.SendMailTo() # SendMailTo | 
+    api_instance = MailBabyPython.SendingApi(api_client)
+    to = MailBabyPython.SendMailTo() # SendMailTo | 
     var_from = 'var_from_example' # str | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
     subject = 'subject_example' # str | The subject line of the email.
     body = 'body_example' # str | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.

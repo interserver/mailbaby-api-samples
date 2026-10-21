@@ -46,6 +46,8 @@ pub enum Status {
     Active,
     #[serde(rename = "canceled")]
     Canceled,
+    #[serde(rename = "unknown_default_open_api")]
+    UnknownDefaultOpenApi,
 }
 
 impl Default for Status {

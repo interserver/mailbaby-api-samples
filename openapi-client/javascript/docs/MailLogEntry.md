@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**_id** | **Number** | Internal auto-increment database row ID.  Not meaningful outside the API. | 
+**id** | **Number** | Internal auto-increment database row ID.  Not meaningful outside the API. | 
 **id** | **String** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. | 
 **from** | **String** | SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). | 
 **to** | **String** | SMTP envelope &#x60;RCPT TO&#x60; address. | 

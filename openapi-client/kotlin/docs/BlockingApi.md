@@ -22,8 +22,8 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = BlockingApi()
 val type : kotlin.String = type_example // kotlin.String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
@@ -75,8 +75,8 @@ Delete a deny rule by its numeric ruleId
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = BlockingApi()
 val ruleId : kotlin.Int = 34 // kotlin.Int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
@@ -124,8 +124,8 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = BlockingApi()
 val emailAddressParam : EmailAddressParam = {"email":"client@domain.com"} // EmailAddressParam | 
@@ -173,8 +173,8 @@ List addresses currently flagged by spam-filter block lists
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = BlockingApi()
 try {
@@ -219,8 +219,8 @@ List custom deny rules (sender / domain / destination / prefix)
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = BlockingApi()
 try {

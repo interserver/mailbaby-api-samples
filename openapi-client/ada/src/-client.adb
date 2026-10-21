@@ -30,7 +30,7 @@ procedure .Client is
 
    procedure Usage is
    begin
-      Put_Line ("Usage: defaultProject {params}...");
+      Put_Line ("Usage: MailBabyAda {params}...");
    end Usage;
 
 begin

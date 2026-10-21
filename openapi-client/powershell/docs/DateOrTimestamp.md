@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DateOrTimestamp = Initialize-PSOpenAPIToolsDateOrTimestamp 
+$DateOrTimestamp = Initialize-MailBabyPowershellDateOrTimestamp 
 ```
 
 - Convert the resource to JSON

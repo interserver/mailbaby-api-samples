@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for ErrorMessage
 void main() {
-  final instance = ErrorMessageBuilder();
-  // TODO add properties to the builder and call build()
+  final ErrorMessage? instance = /* ErrorMessage(...) */ null;
+  // TODO add properties to the entity
 
   group(ErrorMessage, () {
     // The HTTP-style status code associated with the error.

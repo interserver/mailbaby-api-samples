@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.date_or_timestamp import DateOrTimestamp
+from MailBabyPython.models.date_or_timestamp import DateOrTimestamp
 
 class TestDateOrTimestamp(unittest.TestCase):
     """DateOrTimestamp unit test stubs"""

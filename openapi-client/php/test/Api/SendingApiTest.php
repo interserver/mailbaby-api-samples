@@ -4,7 +4,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Interserver\Mailbaby
+ * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,18 +26,18 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace Interserver\Mailbaby\Test\Api;
+namespace OpenAPI\Client\Test\Api;
 
-use \Interserver\Mailbaby\Configuration;
-use \Interserver\Mailbaby\ApiException;
-use \Interserver\Mailbaby\ObjectSerializer;
+use \OpenAPI\Client\Configuration;
+use \OpenAPI\Client\ApiException;
+use \OpenAPI\Client\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * SendingApiTest Class Doc Comment
  *
  * @category Class
- * @package  Interserver\Mailbaby
+ * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */

@@ -149,7 +149,10 @@ localVarFormParams.Value("data") = data
 		      Return "startswith"
 		    Case TypeEnum_AddRule.Destination
 		      Return "destination"
-		    
+		    Case TypeEnum_AddRule.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function
@@ -764,6 +767,7 @@ localVarFormParams.Value("data") = data
         Email
         Startswith
         Destination
+        UnknownDefaultOpenApi
 		
 	#tag EndEnum
 

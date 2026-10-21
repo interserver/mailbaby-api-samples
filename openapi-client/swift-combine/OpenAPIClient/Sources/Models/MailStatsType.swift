@@ -17,6 +17,7 @@ public struct MailStatsType: Codable {
         case TwentyFourHours = "24h"
         case Day = "day"
         case OneHour = "1h"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /// The time window these `received`, `sent`, and `volume` statistics cover.
     public var time: Time? = ._1h

@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools\Api.HistoryApi
+# MailBabyPowershell.MailBabyPowershell\Api.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 

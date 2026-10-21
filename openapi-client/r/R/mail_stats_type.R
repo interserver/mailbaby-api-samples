@@ -14,6 +14,8 @@
 #' @field received Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue. integer [optional]
 #' @field sent Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`. integer [optional]
 #' @field volume  \link{MailStatsVolume} [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -27,6 +29,8 @@ MailStatsType <- R6::R6Class(
     `received` = NULL,
     `sent` = NULL,
     `volume` = NULL,
+    `_field_list` = c("time", "usage", "currency", "cost", "received", "sent", "volume"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailStatsType class.
@@ -38,8 +42,9 @@ MailStatsType <- R6::R6Class(
     #' @param received Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
     #' @param sent Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
     #' @param volume volume
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`time` = "1h", `usage` = NULL, `currency` = NULL, `cost` = NULL, `received` = NULL, `sent` = NULL, `volume` = NULL, ...) {
+    initialize = function(`time` = "1h", `usage` = NULL, `currency` = NULL, `cost` = NULL, `received` = NULL, `sent` = NULL, `volume` = NULL, additional_properties = NULL, ...) {
       if (!is.null(`time`)) {
         if (!(`time` %in% c("all", "billing", "month", "7d", "24h", "day", "1h"))) {
           stop(paste("Error! \"", `time`, "\" cannot be assigned to `time`. Must be \"all\", \"billing\", \"month\", \"7d\", \"24h\", \"day\", \"1h\".", sep = ""))
@@ -82,6 +87,11 @@ MailStatsType <- R6::R6Class(
       if (!is.null(`volume`)) {
         stopifnot(R6::is.R6(`volume`))
         self$`volume` <- `volume`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -144,6 +154,10 @@ MailStatsType <- R6::R6Class(
         MailStatsTypeObject[["volume"]] <-
           self$extractSimpleType(self$`volume`)
       }
+      for (key in names(self$additional_properties)) {
+        MailStatsTypeObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailStatsTypeObject)
     },
 
@@ -203,6 +217,13 @@ MailStatsType <- R6::R6Class(
         `volume_object`$fromJSON(jsonlite::toJSON(this_object$`volume`, auto_unbox = TRUE, digits = NA))
         self$`volume` <- `volume_object`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -213,6 +234,9 @@ MailStatsType <- R6::R6Class(
     #' @return MailStatsType in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -234,6 +258,13 @@ MailStatsType <- R6::R6Class(
       self$`received` <- this_object$`received`
       self$`sent` <- this_object$`sent`
       self$`volume` <- MailStatsVolume$new()$fromJSON(jsonlite::toJSON(this_object$`volume`, auto_unbox = TRUE, digits = NA))
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

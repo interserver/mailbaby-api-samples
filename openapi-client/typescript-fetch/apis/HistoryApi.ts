@@ -296,6 +296,7 @@ export const GetStatsTimeEnum = {
     TwentyFourHours: '24h',
     Day: 'day',
     OneHour: '1h',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTimeEnum];
 /**
@@ -304,6 +305,7 @@ export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTime
 export const ViewMailLogDeliveredEnum = {
     NotDelivered: 0,
     Delivered: 1,
+    NUMBER_unknown_default_open_api: 11184809,
 } as const;
 export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typeof ViewMailLogDeliveredEnum];
 /**
@@ -311,6 +313,7 @@ export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typ
  */
 export const ViewMailLogSortEnum = {
     Time: 'time',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type ViewMailLogSortEnum = typeof ViewMailLogSortEnum[keyof typeof ViewMailLogSortEnum];
 /**
@@ -319,6 +322,7 @@ export type ViewMailLogSortEnum = typeof ViewMailLogSortEnum[keyof typeof ViewMa
 export const ViewMailLogDirEnum = {
     Asc: 'asc',
     Desc: 'desc',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type ViewMailLogDirEnum = typeof ViewMailLogDirEnum[keyof typeof ViewMailLogDirEnum];
 /**
@@ -327,5 +331,6 @@ export type ViewMailLogDirEnum = typeof ViewMailLogDirEnum[keyof typeof ViewMail
 export const ViewMailLogGroupbyEnum = {
     Message: 'message',
     Recipient: 'recipient',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type ViewMailLogGroupbyEnum = typeof ViewMailLogGroupbyEnum[keyof typeof ViewMailLogGroupbyEnum];

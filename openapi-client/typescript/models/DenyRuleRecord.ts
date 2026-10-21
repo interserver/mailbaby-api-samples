@@ -85,6 +85,7 @@ export enum DenyRuleRecordTypeEnum {
     Domain = 'domain',
     Email = 'email',
     Startswith = 'startswith',
-    Destination = 'destination'
+    Destination = 'destination',
+    UnknownDefaultOpenApi = '11184809'
 }
 

@@ -19,8 +19,8 @@ Account usage, cost, and volume statistics for a time window
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = HistoryApi()
 val time : kotlin.String = time_example // kotlin.String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
@@ -68,8 +68,8 @@ Query the mail delivery log (filterable, paginated)
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = HistoryApi()
 val id : kotlin.Long = 2604 // kotlin.Long | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`.

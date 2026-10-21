@@ -29,7 +29,6 @@ All URIs are relative to *https://api.mailbaby.net*
  - [DenyRuleNew](./Models/DenyRuleNew.md)
  - [DenyRuleRecord](./Models/DenyRuleRecord.md)
  - [EmailAddressName](./Models/EmailAddressName.md)
- - [EmailAddressNames](./Models/EmailAddressNames.md)
  - [EmailAddressParam](./Models/EmailAddressParam.md)
  - [EmailAddressTypes](./Models/EmailAddressTypes.md)
  - [EmailAddressesTypes](./Models/EmailAddressesTypes.md)

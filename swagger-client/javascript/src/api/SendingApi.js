@@ -53,21 +53,21 @@ export default class SendingApi {
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: &#x60;raw_email&#x60; (full RFC 822 string with headers + body). Optional: &#x60;id&#x60; (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
      * @param {module:model/SendMailRaw} body 
-     * @param {String} raw_email 
+     * @param {String} rawEmail 
      * @param {Number} id 
      * @param {module:api/SendingApi~rawMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link <&vendorExtensions.x-jsdoc-type>}
      */
-    rawMail(body, raw_email, id, callback) {
+    rawMail(body, rawEmail, id, callback) {
       
       let postBody = body;
       // verify the required parameter 'body' is set
       if (body === undefined || body === null) {
         throw new Error("Missing the required parameter 'body' when calling rawMail");
       }
-      // verify the required parameter 'raw_email' is set
-      if (raw_email === undefined || raw_email === null) {
-        throw new Error("Missing the required parameter 'raw_email' when calling rawMail");
+      // verify the required parameter 'rawEmail' is set
+      if (rawEmail === undefined || rawEmail === null) {
+        throw new Error("Missing the required parameter 'rawEmail' when calling rawMail");
       }
       // verify the required parameter 'id' is set
       if (id === undefined || id === null) {
@@ -84,7 +84,7 @@ export default class SendingApi {
         
       };
       let formParams = {
-        'raw_email': raw_email,'id': id
+        'raw_email': rawEmail,'id': id
       };
 
       let authNames = ['apiKeyAuth'];

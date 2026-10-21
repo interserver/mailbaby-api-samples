@@ -1,4 +1,4 @@
-# mailbaby-client-python.SendingApi
+# MailBabyPython.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,19 +19,19 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
-body = mailbaby-client-python.SendMailRaw() # SendMailRaw | 
+api_instance = MailBabyPython.SendingApi(MailBabyPython.ApiClient(configuration))
+body = MailBabyPython.SendMailRaw() # SendMailRaw | 
 
 try:
     # Send a pre-built RFC 822 message verbatim (preserves DKIM)
@@ -73,18 +73,18 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.SendingApi(MailBabyPython.ApiClient(configuration))
 subject = 'subject_example' # str | 
 body = 'body_example' # str | 
 _from = NULL # object | 
@@ -92,7 +92,7 @@ to = NULL # object |
 replyto = NULL # object | 
 cc = NULL # object | 
 bcc = NULL # object | 
-attachments = [mailbaby-client-python.MailAttachment()] # list[MailAttachment] | 
+attachments = [MailBabyPython.MailAttachment()] # list[MailAttachment] | 
 id = 789 # int | 
 
 try:
@@ -143,19 +143,19 @@ Send a simple email (single recipient, plain or HTML)
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.SendingApi(mailbaby-client-python.ApiClient(configuration))
-to = mailbaby-client-python.SendMailTo() # SendMailTo | 
+api_instance = MailBabyPython.SendingApi(MailBabyPython.ApiClient(configuration))
+to = MailBabyPython.SendMailTo() # SendMailTo | 
 _from = '_from_example' # str | 
 subject = 'subject_example' # str | 
 body = 'body_example' # str | 

@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Api.ServicesApi
+# MailBabyCsharp.Api.ServicesApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,9 +19,9 @@ Get one mail order's full detail including SMTP password
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -84,9 +84,9 @@ Use this **before sending** if you need to discover which mail order `id` to pas
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {

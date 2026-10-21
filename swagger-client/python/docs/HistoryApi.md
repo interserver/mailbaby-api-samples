@@ -1,4 +1,4 @@
-# mailbaby-client-python.HistoryApi
+# MailBabyPython.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -18,18 +18,18 @@ Account usage, cost, and volume statistics for a time window
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.HistoryApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.HistoryApi(MailBabyPython.ApiClient(configuration))
 time = '1h' # str | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
 try:
@@ -72,18 +72,18 @@ Query the mail delivery log (filterable, paginated)
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.HistoryApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.HistoryApi(MailBabyPython.ApiClient(configuration))
 id = 789 # int | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`. (optional)
 origin = 'origin_example' # str | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
 mx = 'mx_example' # str | Filter by the MX hostname the relay attempted delivery to.  For example `mx.google.com` would return messages destined for Gmail recipients. Maps to `mxHostname` in the `MailLogEntry` response. (optional)
@@ -97,8 +97,8 @@ headerfrom = 'headerfrom_example' # str | Filter by the `From` message header ad
 delivered = 56 # int | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
 skip = 0 # int | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
 limit = 100 # int | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-start_date = mailbaby-client-python.DateOrTimestamp() # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
-end_date = mailbaby-client-python.DateOrTimestamp() # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
+start_date = MailBabyPython.DateOrTimestamp() # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+end_date = MailBabyPython.DateOrTimestamp() # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
 sort = 'time' # str | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to time)
 dir = 'desc' # str | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to desc)
 groupby = 'recipient' # str | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to recipient)

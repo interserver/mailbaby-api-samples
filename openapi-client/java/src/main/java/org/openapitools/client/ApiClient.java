@@ -41,6 +41,9 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
@@ -139,7 +142,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/1.0.0/java");
+        setUserAgent("OpenAPI-Generator/1.5.0/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -351,6 +354,39 @@ public class ApiClient {
      */
     public ApiClient setSqlDateFormat(DateFormat dateFormat) {
         JSON.setSqlDateFormat(dateFormat);
+        return this;
+    }
+
+    /**
+     * <p>Set OffsetDateTimeFormat.</p>
+     *
+     * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
+     * @return a {@link org.openapitools.client.ApiClient} object
+     */
+    public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+        JSON.setOffsetDateTimeFormat(dateFormat);
+        return this;
+    }
+
+    /**
+     * <p>Set LocalDateFormat.</p>
+     *
+     * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
+     * @return a {@link org.openapitools.client.ApiClient} object
+     */
+    public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
+        JSON.setLocalDateFormat(dateFormat);
+        return this;
+    }
+
+    /**
+     * <p>Set LocalDateTimeFormat.</p>
+     *
+     * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
+     * @return a {@link org.openapitools.client.ApiClient} object
+     */
+    public ApiClient setLocalDateTimeFormat(DateTimeFormatter dateFormat) {
+        JSON.setLocalDateTimeFormat(dateFormat);
         return this;
     }
 
@@ -645,7 +681,7 @@ public class ApiClient {
     public String parameterToString(Object param) {
         if (param == null) {
             return "";
-        } else if (param instanceof Date ) {
+        } else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
             //Serialize to json string and remove the " enclosing characters
             String jsonStr = JSON.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);

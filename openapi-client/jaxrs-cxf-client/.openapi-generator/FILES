@@ -9,7 +9,6 @@ src/gen/java/org/openapitools/model/DateOrTimestamp.java
 src/gen/java/org/openapitools/model/DenyRuleNew.java
 src/gen/java/org/openapitools/model/DenyRuleRecord.java
 src/gen/java/org/openapitools/model/EmailAddressName.java
-src/gen/java/org/openapitools/model/EmailAddressNames.java
 src/gen/java/org/openapitools/model/EmailAddressParam.java
 src/gen/java/org/openapitools/model/EmailAddressTypes.java
 src/gen/java/org/openapitools/model/EmailAddressesTypes.java

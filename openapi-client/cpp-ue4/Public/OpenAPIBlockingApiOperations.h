@@ -41,6 +41,7 @@ public:
 		Email,
 		Startswith,
 		Destination,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const TypeEnum& EnumValue);

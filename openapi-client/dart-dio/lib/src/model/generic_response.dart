@@ -3,123 +3,74 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'generic_response.g.dart';
 
-/// Standard success response returned by write operations (send, add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.  The `text` field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.
-///
-/// Properties:
-/// * [status] - Always `\"ok\"` on success.
-/// * [text] - Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
-@BuiltValue()
-abstract class GenericResponse implements Built<GenericResponse, GenericResponseBuilder> {
-  /// Always `\"ok\"` on success.
-  @BuiltValueField(wireName: r'status')
-  String get status;
 
-  /// Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
-  @BuiltValueField(wireName: r'text')
-  String get text;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class GenericResponse {
+  /// Returns a new [GenericResponse] instance.
+  GenericResponse({
 
-  GenericResponse._();
+    required  this.status,
 
-  factory GenericResponse([void updates(GenericResponseBuilder b)]) = _$GenericResponse;
+    required  this.text,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(GenericResponseBuilder b) => b;
+      /// Always `\"ok\"` on success.
+  @JsonKey(
+    
+    name: r'status',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<GenericResponse> get serializer => _$GenericResponseSerializer();
+
+  final String status;
+
+
+
+      /// Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
+  @JsonKey(
+    
+    name: r'text',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String text;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is GenericResponse &&
+      other.status == status &&
+      other.text == text;
+
+    @override
+    int get hashCode =>
+        status.hashCode +
+        text.hashCode;
+
+  factory GenericResponse.fromJson(Map<String, dynamic> json) => _$GenericResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$GenericResponseToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$GenericResponseSerializer implements PrimitiveSerializer<GenericResponse> {
-  @override
-  final Iterable<Type> types = const [GenericResponse, _$GenericResponse];
-
-  @override
-  final String wireName = r'GenericResponse';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    GenericResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'status';
-    yield serializers.serialize(
-      object.status,
-      specifiedType: const FullType(String),
-    );
-    yield r'text';
-    yield serializers.serialize(
-      object.text,
-      specifiedType: const FullType(String),
-    );
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    GenericResponse object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required GenericResponseBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'status':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.status = valueDes;
-          break;
-        case r'text':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.text = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  GenericResponse deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = GenericResponseBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

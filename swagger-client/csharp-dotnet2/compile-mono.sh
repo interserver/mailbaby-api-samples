@@ -6,7 +6,7 @@ mcs -sdk:2 -r:vendor/Newtonsoft.Json.7.0.1/lib/net20/Newtonsoft.Json.dll,\
 vendor/RestSharp.Net2.1.1.11/lib/net20/RestSharp.Net2.dll,\
 System.Runtime.Serialization.dll \
 -target:library \
--out:bin/mailbaby-client-csharp-dotnet2.dll \
+-out:bin/MailBabyCsharpDotnet2.dll \
 -recurse:'src/*.cs' \
--doc:bin/mailbaby-client-csharp-dotnet2.xml \
+-doc:bin/MailBabyCsharpDotnet2.xml \
 -platform:anycpu

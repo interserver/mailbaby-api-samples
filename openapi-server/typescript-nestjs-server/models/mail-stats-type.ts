@@ -1,0 +1,48 @@
+import { MailStatsVolume } from './mail-stats-volume';
+
+
+/**
+ * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
+ */
+export interface MailStatsType { 
+  /**
+   * The time window these `received`, `sent`, and `volume` statistics cover.
+   */
+  time?: MailStatsType.TimeEnum;
+  /**
+   * Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+   */
+  usage?: number;
+  /**
+   * The ISO 4217 currency code for this account (e.g. `USD`).
+   */
+  currency?: string;
+  /**
+   * Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+   */
+  cost?: number;
+  /**
+   * Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+   */
+  received?: number;
+  /**
+   * Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
+   */
+  sent?: number;
+  volume?: MailStatsVolume;
+}
+export namespace MailStatsType {
+  export const TimeEnum = {
+    All: 'all',
+    Billing: 'billing',
+    Month: 'month',
+    SevenDays: '7d',
+    TwentyFourHours: '24h',
+    Day: 'day',
+    OneHour: '1h',
+    UnknownDefaultOpenApi: '11184809',
+  } as const;
+  export type TimeEnum = typeof TimeEnum[keyof typeof TimeEnum];
+}
+
+

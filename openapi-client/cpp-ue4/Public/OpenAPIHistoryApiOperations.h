@@ -43,6 +43,7 @@ public:
 		TwentyFourHours,
 		Day,
 		OneHour,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const TimeEnum& EnumValue);
@@ -96,6 +97,7 @@ public:
 	{
 		NotDelivered,
 		Delivered,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const DeliveredEnum& EnumValue);
@@ -113,6 +115,7 @@ public:
 	enum class SortEnum
 	{
 		Time,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const SortEnum& EnumValue);
@@ -123,6 +126,7 @@ public:
 	{
 		Asc,
 		Desc,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const DirEnum& EnumValue);
@@ -133,6 +137,7 @@ public:
 	{
 		Message,
 		Recipient,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const GroupbyEnum& EnumValue);

@@ -1,0 +1,14 @@
+.openapi-generator-ignore
+.scalafmt.conf
+build.sbt
+project/build.properties
+project/plugins.sbt
+src/main/scala/MailBabyScalaHttp4sServer/api.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/BlockingApi.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/HistoryApi.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/SendingApi.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/ServicesApi.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/StatusApi.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/path.scala
+src/main/scala/MailBabyScalaHttp4sServer/apis/query.scala
+src/main/scala/MailBabyScalaHttp4sServer/models/types.scala

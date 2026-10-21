@@ -124,7 +124,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
- - [EmailAddressNames](docs/EmailAddressNames.md)
  - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)

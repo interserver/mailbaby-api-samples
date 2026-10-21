@@ -19,8 +19,4 @@ RSpec.describe OpenapiClient::Models::ErrorMessage do
       expect(instance.list_invalid_properties).to be_empty
     end
   end
-
-  it 'rejects unknown attributes' do
-    expect { described_class.new(this_is_not_an_attribute: true) }.to raise_error(ArgumentError)
-  end
 end

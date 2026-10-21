@@ -1,9 +1,12 @@
-# Description: Lua package name (convention: single word).
-packageName: openapiclient
-
-# Description: Lua package version.
-packageVersion: 1.0.0-1
-
-# Description: Hides the generation timestamp when files are generated.
-hideGenerationTimestamp: true
-
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-lua"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyLua"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

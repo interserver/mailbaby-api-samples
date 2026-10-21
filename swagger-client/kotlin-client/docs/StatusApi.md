@@ -17,7 +17,7 @@ Health check — verify the API is reachable
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = StatusApi()

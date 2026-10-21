@@ -1,0 +1,33 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /api                        controllers.ApiDocController.api
+
+
+#Functions for Blocking API
+POST     /mail/rules                     controllers.BlockingApiController.addRule(request: Request)
+DELETE     /mail/rules/:ruleId                     controllers.BlockingApiController.deleteRule(request: Request, ruleId: Integer)
+POST     /mail/blocks/delete                     controllers.BlockingApiController.delistBlock(request: Request)
+GET     /mail/blocks                     controllers.BlockingApiController.getMailBlocks(request: Request)
+GET     /mail/rules                     controllers.BlockingApiController.getRules(request: Request)
+
+#Functions for History API
+GET     /mail/stats                     controllers.HistoryApiController.getStats(request: Request)
+GET     /mail/log                     controllers.HistoryApiController.viewMailLog(request: Request)
+
+#Functions for Sending API
+POST     /mail/rawsend                     controllers.SendingApiController.rawMail(request: Request)
+POST     /mail/advsend                     controllers.SendingApiController.sendAdvMail(request: Request)
+POST     /mail/send                     controllers.SendingApiController.sendMail(request: Request)
+
+#Functions for Services API
+GET     /mail/:id                     controllers.ServicesApiController.getMailOrderById(request: Request, id: Long)
+GET     /mail                     controllers.ServicesApiController.getMailOrders(request: Request)
+
+#Functions for Status API
+GET     /ping                     controllers.StatusApiController.pingServer(request: Request)
+
+# Map static resources from the /public folder to the /assets URL path
+GET /assets/*file           controllers.Assets.at(file)
+GET /versionedAssets/*file  controllers.Assets.versioned(file)

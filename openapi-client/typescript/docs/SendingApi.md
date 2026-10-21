@@ -27,7 +27,7 @@ const apiInstance = new SendingApi(configuration);
 const request: SendingApiRawMailRequest = {
   
   sendMailRaw: {
-    raw_email: "raw_email_example",
+    rawEmail: "rawEmail_example",
     id: 1,
   },
 };
@@ -102,7 +102,7 @@ const request: SendingApiSendAdvMailRequest = {
   attachments: [
     {
       filename: "message.txt",
-      data: [B@3a2e9f5b,
+      data: [B@fb49fdf,
     },
   ],
     // Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. (optional)

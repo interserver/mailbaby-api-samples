@@ -8,7 +8,7 @@ A block event record sourced from the ClickHouse analytics store.  Represents a 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**date** | **Date** | The date the block event was recorded. |  |
+|**date** | **LocalDate** | The date the block event was recorded. |  |
 |**from** | **String** | The SMTP envelope sender (&#x60;MAIL FROM&#x60;) address of the blocked message. Pass this value as &#x60;email&#x60; to &#x60;POST /mail/blocks/delete&#x60; to delist it. |  |
 |**subject** | **String** | The &#x60;Subject&#x60; header of the blocked message. |  |
 |**to** | **String** | The serialized list of recipients of the blocked message. |  |

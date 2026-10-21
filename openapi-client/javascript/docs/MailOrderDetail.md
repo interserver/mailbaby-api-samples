@@ -19,6 +19,8 @@ Name | Type | Description | Notes
 
 * `canceled` (value: `"canceled"`)
 
+* `unknown_default_open_api` (value: `"unknown_default_open_api"`)
+
 
 
 

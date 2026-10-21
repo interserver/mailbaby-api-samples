@@ -12,8 +12,6 @@ src/DenyRuleRecord.cpp
 src/DenyRuleRecord.h
 src/EmailAddressName.cpp
 src/EmailAddressName.h
-src/EmailAddressNames.cpp
-src/EmailAddressNames.h
 src/EmailAddressParam.cpp
 src/EmailAddressParam.h
 src/EmailAddressTypes.cpp

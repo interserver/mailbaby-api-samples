@@ -65,11 +65,11 @@ var __created__was__set := false
 # Required: True
 # Example: 1634215809
 # isArray: false
-@export var some_timenull: int:
+@export var some_time: int:
 	set(value):
-		__some_timenull__was__set = true
-		some_timenull = value
-var __some_timenull__was__set := false
+		__some_time__was__set = true
+		some_time = value
+var __some_time__was__set := false
 
 # The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
 # Required: True
@@ -274,8 +274,8 @@ func bzz_collect_missing_properties() -> Array:
 		bzz_missing_properties.append("to")
 	if not self.__created__was__set:
 		bzz_missing_properties.append("created")
-	if not self.__some_timenull__was__set:
-		bzz_missing_properties.append("some_timenull")
+	if not self.__some_time__was__set:
+		bzz_missing_properties.append("some_time")
 	if not self.__user__was__set:
 		bzz_missing_properties.append("user")
 	if not self.__transtype__was__set:
@@ -299,8 +299,8 @@ func bzz_normalize() -> Dictionary:
 		bzz_dictionary["to"] = self.to
 	if self.__created__was__set:
 		bzz_dictionary["created"] = self.created
-	if self.__some_timenull__was__set:
-		bzz_dictionary["some_timenull"] = self.some_timenull
+	if self.__some_time__was__set:
+		bzz_dictionary["some_time"] = self.some_time
 	if self.__user__was__set:
 		bzz_dictionary["user"] = self.user
 	if self.__transtype__was__set:
@@ -355,8 +355,8 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 		me.to = from_dict["to"]
 	if from_dict.has("created"):
 		me.created = from_dict["created"]
-	if from_dict.has("some_timenull"):
-		me.some_timenull = from_dict["some_timenull"]
+	if from_dict.has("some_time"):
+		me.some_time = from_dict["some_time"]
 	if from_dict.has("user"):
 		me.user = from_dict["user"]
 	if from_dict.has("transtype"):

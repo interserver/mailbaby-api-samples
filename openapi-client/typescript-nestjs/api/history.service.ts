@@ -11,7 +11,8 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-import { HttpService, Injectable, Optional } from '@nestjs/common';
+import { Injectable, Optional } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable, from, of, switchMap } from 'rxjs';
 import { DateOrTimestamp } from '../model/dateOrTimestamp';

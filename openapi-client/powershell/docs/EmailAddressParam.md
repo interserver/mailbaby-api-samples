@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$EmailAddressParam = Initialize-PSOpenAPIToolsEmailAddressParam  -Email user@domain.com
+$EmailAddressParam = Initialize-MailBabyPowershellEmailAddressParam  -Email user@domain.com
 ```
 
 - Convert the resource to JSON

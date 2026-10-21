@@ -1,0 +1,20 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.",
+  "name": "EmailAddressTypes",
+  "fields": [
+    {
+      "name": "email",
+      "type": "string",
+      "doc": "The email address."
+    },
+    {
+      "name": "name",
+      "type": ["null", "string"],
+      "doc": "Optional display name shown to recipients (e.g. in the `From:` header).",
+      "default": null
+    }
+  ]
+
+}

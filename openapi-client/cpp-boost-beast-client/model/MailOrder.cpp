@@ -898,8 +898,8 @@ std::string MailOrder::getStatus() const
 
 void MailOrder::setStatus(std::string value)
 {
-    static const std::array<std::string, 2> allowedValues = {
-        "active","canceled"
+    static const std::array<std::string, 3> allowedValues = {
+        "active","canceled","11184809"
     };
     if (std::find(allowedValues.begin(), allowedValues.end(), value) == allowedValues.end()) {
         std::ostringstream errorMessage;

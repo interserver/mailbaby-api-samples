@@ -238,6 +238,7 @@ class DenyRuleRecord implements ModelInterface, ArrayAccess, JsonSerializable
     public const TYPE_EMAIL = 'email';
     public const TYPE_STARTSWITH = 'startswith';
     public const TYPE_DESTINATION = 'destination';
+    public const TYPE_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
 
     /**
      * Gets allowable values of the enum
@@ -251,6 +252,7 @@ class DenyRuleRecord implements ModelInterface, ArrayAccess, JsonSerializable
             self::TYPE_EMAIL,
             self::TYPE_STARTSWITH,
             self::TYPE_DESTINATION,
+            self::TYPE_UNKNOWN_DEFAULT_OPEN_API,
         ];
     }
 
@@ -357,13 +359,7 @@ class DenyRuleRecord implements ModelInterface, ArrayAccess, JsonSerializable
         }
         $allowedValues = self::getTypeAllowableValues();
         if (!in_array($type, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
+            $type = self::TYPE_UNKNOWN_DEFAULT_OPEN_API;
         }
         $this->container['type'] = $type;
 

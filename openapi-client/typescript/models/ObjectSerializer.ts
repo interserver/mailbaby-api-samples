@@ -2,7 +2,6 @@ export * from '../models/DateOrTimestamp';
 export * from '../models/DenyRuleNew';
 export * from '../models/DenyRuleRecord';
 export * from '../models/EmailAddressName';
-export * from '../models/EmailAddressNames';
 export * from '../models/EmailAddressParam';
 export * from '../models/EmailAddressTypes';
 export * from '../models/EmailAddressesTypes';
@@ -27,7 +26,6 @@ import { DateOrTimestampClass } from '../models/DateOrTimestamp';
 import { DenyRuleNew, DenyRuleNewTypeEnum     } from '../models/DenyRuleNew';
 import { DenyRuleRecord, DenyRuleRecordTypeEnum       } from '../models/DenyRuleRecord';
 import { EmailAddressName } from '../models/EmailAddressName';
-import { EmailAddressNames } from '../models/EmailAddressNames';
 import { EmailAddressParam } from '../models/EmailAddressParam';
 import { EmailAddressTypesClass } from '../models/EmailAddressTypes';
 import { EmailAddressesTypesClass } from '../models/EmailAddressesTypes';
@@ -73,7 +71,6 @@ let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
     "EmailAddressName": EmailAddressName,
-    "EmailAddressNames": EmailAddressNames,
     "EmailAddressParam": EmailAddressParam,
     "EmailAddressTypes": EmailAddressTypesClass,
     "EmailAddressesTypes": EmailAddressesTypesClass,

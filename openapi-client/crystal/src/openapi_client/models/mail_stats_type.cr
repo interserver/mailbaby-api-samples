@@ -42,7 +42,7 @@ module OpenAPIClient
     @[JSON::Field(key: "volume", emit_null: false)]
     property volume : MailStatsVolume?
 
-    validates(time, String, true, enum: ["all", "billing", "month", "7d", "24h", "day", "1h"])
+    validates(time, String, true, enum: ["all", "billing", "month", "7d", "24h", "day", "1h", "unknown_default_open_api"])
 
     # Initializes the object
     # @param [Hash] attributes Model attributes in the form of hash

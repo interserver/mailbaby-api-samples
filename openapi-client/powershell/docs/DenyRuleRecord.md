@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DenyRuleRecord = Initialize-PSOpenAPIToolsDenyRuleRecord  -Type email `
+$DenyRuleRecord = Initialize-MailBabyPowershellDenyRuleRecord  -Type email `
  -VarData domeinwo@server.guesshost.net `
  -Id 41124 `
  -Created null `

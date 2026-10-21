@@ -3,187 +3,148 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/model/deny_rule_new.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'deny_rule_record.g.dart';
 
-/// A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
-///
-/// Properties:
-/// * [type] - The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
-/// * [data] - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
-/// * [id] - The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
-/// * [created] - The timestamp when the rule was created.
-/// * [user] - Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-@BuiltValue()
-abstract class DenyRuleRecord implements DenyRuleNew, Built<DenyRuleRecord, DenyRuleRecordBuilder> {
-  /// The timestamp when the rule was created.
-  @BuiltValueField(wireName: r'created')
-  DateTime get created;
 
-  /// The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
-  @BuiltValueField(wireName: r'id')
-  String get id;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class DenyRuleRecord {
+  /// Returns a new [DenyRuleRecord] instance.
+  DenyRuleRecord({
 
-  DenyRuleRecord._();
+    required  this.type,
 
-  factory DenyRuleRecord([void updates(DenyRuleRecordBuilder b)]) = _$DenyRuleRecord;
+    required  this.data,
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(DenyRuleRecordBuilder b) => b;
+    required  this.id,
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<DenyRuleRecord> get serializer => _$DenyRuleRecordSerializer();
+    required  this.created,
+
+     this.user,
+  });
+
+      /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
+  @JsonKey(
+    
+    name: r'type',
+    required: true,
+    includeIfNull: false,
+  unknownEnumValue: DenyRuleRecordTypeEnum.unknownDefaultOpenApi,
+  )
+
+
+  final DenyRuleRecordTypeEnum type;
+
+
+
+      /// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+  @JsonKey(
+    
+    name: r'data',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String data;
+
+
+
+      /// The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
+  @JsonKey(
+    
+    name: r'id',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String id;
+
+
+
+      /// The timestamp when the rule was created.
+  @JsonKey(
+    
+    name: r'created',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final DateTime created;
+
+
+
+      /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+  @JsonKey(
+    
+    name: r'user',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? user;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is DenyRuleRecord &&
+      other.type == type &&
+      other.data == data &&
+      other.id == id &&
+      other.created == created &&
+      other.user == user;
+
+    @override
+    int get hashCode =>
+        type.hashCode +
+        data.hashCode +
+        id.hashCode +
+        created.hashCode +
+        user.hashCode;
+
+  factory DenyRuleRecord.fromJson(Map<String, dynamic> json) => _$DenyRuleRecordFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DenyRuleRecordToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$DenyRuleRecordSerializer implements PrimitiveSerializer<DenyRuleRecord> {
-  @override
-  final Iterable<Type> types = const [DenyRuleRecord, _$DenyRuleRecord];
-
-  @override
-  final String wireName = r'DenyRuleRecord';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    DenyRuleRecord object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'id';
-    yield serializers.serialize(
-      object.id,
-      specifiedType: const FullType(String),
-    );
-    yield r'data';
-    yield serializers.serialize(
-      object.data,
-      specifiedType: const FullType(String),
-    );
-    yield r'type';
-    yield serializers.serialize(
-      object.type,
-      specifiedType: const FullType(DenyRuleNewTypeEnum),
-    );
-    if (object.user != null) {
-      yield r'user';
-      yield serializers.serialize(
-        object.user,
-        specifiedType: const FullType(String),
-      );
-    }
-    yield r'created';
-    yield serializers.serialize(
-      object.created,
-      specifiedType: const FullType(DateTime),
-    );
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    DenyRuleRecord object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required DenyRuleRecordBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'data':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.data = valueDes;
-          break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DenyRuleNewTypeEnum),
-          ) as DenyRuleNewTypeEnum;
-          result.type = valueDes;
-          break;
-        case r'user':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.user = valueDes;
-          break;
-        case r'created':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DateTime),
-          ) as DateTime;
-          result.created = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  DenyRuleRecord deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = DenyRuleRecordBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 
 /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
-class DenyRuleRecordTypeEnum extends EnumClass {
+enum DenyRuleRecordTypeEnum {
+@JsonValue(r'domain')
+domain(r'domain'),
+@JsonValue(r'email')
+email(r'email'),
+@JsonValue(r'startswith')
+startswith(r'startswith'),
+@JsonValue(r'destination')
+destination(r'destination'),
+@JsonValue(r'unknown_default_open_api')
+unknownDefaultOpenApi(r'unknown_default_open_api');
 
-  @BuiltValueEnumConst(wireName: r'domain')
-  static const DenyRuleRecordTypeEnum domain = _$denyRuleRecordTypeEnum_domain;
-  @BuiltValueEnumConst(wireName: r'email')
-  static const DenyRuleRecordTypeEnum email = _$denyRuleRecordTypeEnum_email;
-  @BuiltValueEnumConst(wireName: r'startswith')
-  static const DenyRuleRecordTypeEnum startswith = _$denyRuleRecordTypeEnum_startswith;
-  @BuiltValueEnumConst(wireName: r'destination')
-  static const DenyRuleRecordTypeEnum destination = _$denyRuleRecordTypeEnum_destination;
+const DenyRuleRecordTypeEnum(this.value);
 
-  static Serializer<DenyRuleRecordTypeEnum> get serializer => _$denyRuleRecordTypeEnumSerializer;
+final String value;
 
-  const DenyRuleRecordTypeEnum._(String name): super(name);
-
-  static BuiltSet<DenyRuleRecordTypeEnum> get values => _$denyRuleRecordTypeEnumValues;
-  static DenyRuleRecordTypeEnum valueOf(String name) => _$denyRuleRecordTypeEnumValueOf(name);
+@override
+String toString() => value;
 }
+
 

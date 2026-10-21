@@ -29,6 +29,7 @@ Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle 
 | TwentyFourHours | &quot;24h&quot; |
 | Day | &quot;day&quot; |
 | OneHour | &quot;1h&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

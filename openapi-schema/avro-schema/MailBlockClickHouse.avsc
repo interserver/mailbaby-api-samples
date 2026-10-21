@@ -1,0 +1,35 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.",
+  "name": "MailBlockClickHouse",
+  "fields": [
+    {
+      "name": "date",
+      "type": "string",
+      "doc": "The date the block event was recorded."
+    },
+    {
+      "name": "from",
+      "type": "string",
+      "doc": "The SMTP envelope sender (`MAIL FROM`) address of the blocked message. Pass this value as `email` to `POST /mail/blocks/delete` to delist it."
+    },
+    {
+      "name": "subject",
+      "type": "string",
+      "doc": "The `Subject` header of the blocked message."
+    },
+    {
+      "name": "to",
+      "type": "string",
+      "doc": "The serialized list of recipients of the blocked message."
+    },
+    {
+      "name": "messageId",
+      "type": ["null", "string"],
+      "doc": "The `Message-ID` header of the blocked message, or `null` if not present.",
+      "default": null
+    }
+  ]
+
+}

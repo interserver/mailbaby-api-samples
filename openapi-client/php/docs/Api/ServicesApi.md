@@ -1,19 +1,17 @@
-# Interserver\Mailbaby\ServicesApi
+# OpenAPI\Client\ServicesApi
 
-View and manage your MailBaby mail service orders.
+All URIs are relative to https://api.mailbaby.net.
 
-All URIs are relative to https://api.mailbaby.net, except if the operation defines another base path.
-
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**getMailOrderById()**](ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Get one mail order&#39;s full detail including SMTP password |
-| [**getMailOrders()**](ServicesApi.md#getMailOrders) | **GET** /mail | List your provisioned mail orders (sending accounts) |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getMailOrderById()**](ServicesApi.md#getMailOrderById) | **GET** /mail/{id} | Get one mail order&#39;s full detail including SMTP password
+[**getMailOrders()**](ServicesApi.md#getMailOrders) | **GET** /mail | List your provisioned mail orders (sending accounts)
 
 
 ## `getMailOrderById()`
 
 ```php
-getMailOrderById($id): \Interserver\Mailbaby\Model\MailOrderDetail
+getMailOrderById($id): \OpenAPI\Client\Model\MailOrderDetail
 ```
 
 Get one mail order's full detail including SMTP password
@@ -28,14 +26,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\ServicesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\ServicesApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -51,13 +49,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **int**| The numeric ID of the mail order. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The numeric ID of the mail order. |
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\MailOrderDetail**](../Model/MailOrderDetail.md)
+[**\OpenAPI\Client\Model\MailOrderDetail**](../Model/MailOrderDetail.md)
 
 ### Authorization
 
@@ -75,7 +73,7 @@ try {
 ## `getMailOrders()`
 
 ```php
-getMailOrders(): \Interserver\Mailbaby\Model\MailOrder[]
+getMailOrders(): \OpenAPI\Client\Model\MailOrder[]
 ```
 
 List your provisioned mail orders (sending accounts)
@@ -90,14 +88,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\ServicesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\ServicesApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -116,7 +114,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\MailOrder[]**](../Model/MailOrder.md)
+[**\OpenAPI\Client\Model\MailOrder[]**](../Model/MailOrder.md)
 
 ### Authorization
 

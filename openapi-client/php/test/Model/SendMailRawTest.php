@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Interserver\Mailbaby
+ * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace Interserver\Mailbaby\Test\Model;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description Request body for &#x60;POST /mail/rawsend&#x60;.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing &#x60;DKIM-Signature&#x60; header intact.  The &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, and &#x60;Bcc&#x60; addresses are extracted from the message headers automatically — you do not need to specify them separately.
- * @package     Interserver\Mailbaby
+ * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
@@ -81,7 +81,7 @@ class SendMailRawTest extends TestCase
     }
 
     /**
-     * Test attribute "rawEmail"
+     * Test attribute "raw_email"
      */
     public function testPropertyRawEmail()
     {

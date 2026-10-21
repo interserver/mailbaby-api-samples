@@ -1,0 +1,12 @@
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-kotlin-spring"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyKotlinSpring"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

@@ -23,7 +23,7 @@ export interface MailLogEntry  {
      * @type {number}
      * @memberof MailLogEntry
      */
-    _id: number;
+    id: number;
     /**
      * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
      * @type {string}
@@ -172,7 +172,7 @@ export interface MailLogEntry  {
 
 export function MailLogEntryFromJSON(json: any): MailLogEntry {
     return {
-        '_id': json['_id'],
+        'id': json['_id'],
         'id': json['id'],
         'from': json['from'],
         'to': json['to'],
@@ -205,7 +205,7 @@ export function MailLogEntryToJSON(value?: MailLogEntry): any {
         return undefined;
     }
     return {
-        '_id': value._id,
+        '_id': value.id,
         'id': value.id,
         'from': value.from,
         'to': value.to,

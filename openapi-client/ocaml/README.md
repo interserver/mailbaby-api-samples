@@ -1,4 +1,4 @@
-# OCaml API client for openapi
+# OCaml API client for MailBabyOcaml
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
 # Overview
@@ -51,7 +51,7 @@ OCaml 5.x
 
 ## Installation
 
-Please run the following commands to build the package `openapi`:
+Please run the following commands to build the package `MailBabyOcaml`:
 
 ```sh
 opam install . --deps-only --with-test

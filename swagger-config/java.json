@@ -1,11 +1,13 @@
 {
-  "sortParamsByRequiredFlag": "true",
-  "ensureUniqueParams": "true",
-  "allowUnicodeIdentifiers": "true",
-  "hideGenerationTimestamp": "true",
-  "artifactVersion": "1.0.0",
-  "packageName": "mailbaby-client-java",
-  "gitUserId": "interserver",
-  "gitRepoId": "mailbaby-client-java"
+    "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "disallowAdditionalPropertiesIfNotPresent": "false",
+    "ensureUniqueParams": "true",
+    "enumUnknownDefaultCase": "true",
+    "gitRepoId": "mailbaby-client-java",
+    "gitUserId": "interserver",
+    "hideGenerationTimestamp": "true",
+    "legacyDiscriminatorBehavior": "false",
+    "packageName": "MailBabyJava",
+    "sortModelPropertiesByRequiredFlag": "true",
+    "sortParamsByRequiredFlag": "true"
 }
-

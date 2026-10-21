@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::MailBlocks
+# WWW::OpenAPIClient::Object::MailBlocks
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::MailBlocks;
+use WWW::OpenAPIClient::Object::MailBlocks;
 ```
 
 ## Properties

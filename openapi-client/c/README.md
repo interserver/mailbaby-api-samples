@@ -87,7 +87,6 @@ Category | Method | HTTP request | Description
  - [deny_rule_new_t](docs/deny_rule_new.md)
  - [deny_rule_record_t](docs/deny_rule_record.md)
  - [email_address_name_t](docs/email_address_name.md)
- - [email_address_names_t](docs/email_address_names.md)
  - [email_address_param_t](docs/email_address_param.md)
  - [email_address_types_t](docs/email_address_types.md)
  - [email_addresses_types_t](docs/email_addresses_types.md)

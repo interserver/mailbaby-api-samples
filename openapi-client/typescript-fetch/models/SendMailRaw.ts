@@ -24,7 +24,7 @@ export interface SendMailRaw {
     /**
      * The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
      */
-    raw_email: string;
+    rawEmail: string;
     /**
      * Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.
      */
@@ -35,7 +35,7 @@ export interface SendMailRaw {
  * Check if a given object implements the SendMailRaw interface.
  */
 export function instanceOfSendMailRaw(value: object): value is SendMailRaw {
-    if (!('raw_email' in value) || value['raw_email'] === undefined) return false;
+    if ((!('rawEmail' in (value as Record<string, any>)) && !('raw_email' in (value as Record<string, any>))) || ((value as Record<string, any>)['rawEmail'] === undefined && (value as Record<string, any>)['raw_email'] === undefined)) return false;
     return true;
 }
 
@@ -49,7 +49,7 @@ export function SendMailRawFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'raw_email': json['raw_email'],
+        'rawEmail': json['raw_email'],
         'id': json['id'] == null ? undefined : json['id'],
     };
 }
@@ -65,7 +65,7 @@ export function SendMailRawToJSONTyped(value?: SendMailRaw | null, ignoreDiscrim
 
     return {
         
-        'raw_email': value['raw_email'],
+        'raw_email': value['rawEmail'],
         'id': value['id'],
     };
 }

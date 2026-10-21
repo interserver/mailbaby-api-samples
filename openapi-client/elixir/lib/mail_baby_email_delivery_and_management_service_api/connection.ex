@@ -13,12 +13,12 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Connection do
 
   The default base URL can also be set as:
 
-      config :mail_baby_email_delivery_and_management_service_api,
+      config :mail_baby_elixir,
         :base_url, "https://api.mailbaby.net"
   """
 
   @default_base_url Application.compile_env(
-                      :mail_baby_email_delivery_and_management_service_api,
+                      :mail_baby_elixir,
                       :base_url,
                       "https://api.mailbaby.net"
                     )
@@ -66,7 +66,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Connection do
       Keyword.get(
         options,
         :base_url,
-        Application.get_env(:mail_baby_email_delivery_and_management_service_api, :base_url, @default_base_url)
+        Application.get_env(:mail_baby_elixir, :base_url, @default_base_url)
       )
 
     tesla_options = Application.get_env(:tesla, __MODULE__, [])

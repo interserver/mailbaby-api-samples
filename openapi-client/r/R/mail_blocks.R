@@ -10,6 +10,8 @@
 #' @field local Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list. list(\link{MailBlockClickHouse})
 #' @field mbtrap Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection. list(\link{MailBlockClickHouse})
 #' @field subject Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days. list(\link{MailBlockRspamd})
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,6 +21,8 @@ MailBlocks <- R6::R6Class(
     `local` = NULL,
     `mbtrap` = NULL,
     `subject` = NULL,
+    `_field_list` = c("local", "mbtrap", "subject"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailBlocks class.
@@ -26,8 +30,9 @@ MailBlocks <- R6::R6Class(
     #' @param local Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
     #' @param mbtrap Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
     #' @param subject Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`local`, `mbtrap`, `subject`, ...) {
+    initialize = function(`local`, `mbtrap`, `subject`, additional_properties = NULL, ...) {
       if (!missing(`local`)) {
         stopifnot(is.vector(`local`), length(`local`) != 0)
         sapply(`local`, function(x) stopifnot(R6::is.R6(x)))
@@ -42,6 +47,11 @@ MailBlocks <- R6::R6Class(
         stopifnot(is.vector(`subject`), length(`subject`) != 0)
         sapply(`subject`, function(x) stopifnot(R6::is.R6(x)))
         self$`subject` <- `subject`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -88,6 +98,10 @@ MailBlocks <- R6::R6Class(
         MailBlocksObject[["subject"]] <-
           self$extractSimpleType(self$`subject`)
       }
+      for (key in names(self$additional_properties)) {
+        MailBlocksObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailBlocksObject)
     },
 
@@ -122,14 +136,21 @@ MailBlocks <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`local`)) {
-        self$`local` <- ApiClient$new()$deserializeObj(this_object$`local`, "array[MailBlockClickHouse]", loadNamespace("openapi"))
+        self$`local` <- ApiClient$new()$deserializeObj(this_object$`local`, "array[MailBlockClickHouse]", loadNamespace("MailBabyR"))
       }
       if (!is.null(this_object$`mbtrap`)) {
-        self$`mbtrap` <- ApiClient$new()$deserializeObj(this_object$`mbtrap`, "array[MailBlockClickHouse]", loadNamespace("openapi"))
+        self$`mbtrap` <- ApiClient$new()$deserializeObj(this_object$`mbtrap`, "array[MailBlockClickHouse]", loadNamespace("MailBabyR"))
       }
       if (!is.null(this_object$`subject`)) {
-        self$`subject` <- ApiClient$new()$deserializeObj(this_object$`subject`, "array[MailBlockRspamd]", loadNamespace("openapi"))
+        self$`subject` <- ApiClient$new()$deserializeObj(this_object$`subject`, "array[MailBlockRspamd]", loadNamespace("MailBabyR"))
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -140,6 +161,9 @@ MailBlocks <- R6::R6Class(
     #' @return MailBlocks in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -151,9 +175,16 @@ MailBlocks <- R6::R6Class(
     #' @return the instance of MailBlocks
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`local` <- ApiClient$new()$deserializeObj(this_object$`local`, "array[MailBlockClickHouse]", loadNamespace("openapi"))
-      self$`mbtrap` <- ApiClient$new()$deserializeObj(this_object$`mbtrap`, "array[MailBlockClickHouse]", loadNamespace("openapi"))
-      self$`subject` <- ApiClient$new()$deserializeObj(this_object$`subject`, "array[MailBlockRspamd]", loadNamespace("openapi"))
+      self$`local` <- ApiClient$new()$deserializeObj(this_object$`local`, "array[MailBlockClickHouse]", loadNamespace("MailBabyR"))
+      self$`mbtrap` <- ApiClient$new()$deserializeObj(this_object$`mbtrap`, "array[MailBlockClickHouse]", loadNamespace("MailBabyR"))
+      self$`subject` <- ApiClient$new()$deserializeObj(this_object$`subject`, "array[MailBlockRspamd]", loadNamespace("MailBabyR"))
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

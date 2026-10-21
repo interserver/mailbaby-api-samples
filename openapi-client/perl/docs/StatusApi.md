@@ -1,8 +1,8 @@
-# OpenAPIClient::StatusApi
+# WWW::OpenAPIClient::StatusApi
 
 ## Load the API package
 ```perl
-use OpenAPIClient::Object::StatusApi;
+use WWW::OpenAPIClient::Object::StatusApi;
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -22,8 +22,8 @@ Health check — verify the API is reachable
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::StatusApi;
-my $api_instance = OpenAPIClient::StatusApi->new(
+use WWW::OpenAPIClient::StatusApi;
+my $api_instance = WWW::OpenAPIClient::StatusApi->new(
 );
 
 

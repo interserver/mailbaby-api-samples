@@ -34,6 +34,7 @@ export namespace MailOrder {
     export const StatusEnum = {
         Active: 'active',
         Canceled: 'canceled',
+        UnknownDefaultOpenApi: '11184809',
     } as const;
     export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 }

@@ -1,0 +1,736 @@
+package org.openapitools.model;
+
+import org.openapitools.jackson.nullable.JsonNullable;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
+ */
+@ApiModel(description="A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.")
+
+public class MailLogEntry  {
+  
+ /**
+  * Internal auto-increment database row ID.  Not meaningful outside the API.
+  */
+  @ApiModelProperty(example = "103172", required = true, value = "Internal auto-increment database row ID.  Not meaningful outside the API.")
+
+  private Integer id;
+
+ /**
+  * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
+  */
+  @ApiModelProperty(example = "17c7eda538e0005d03", required = true, value = "The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.")
+
+  private String id;
+
+ /**
+  * SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
+  */
+  @ApiModelProperty(example = "person@mysite.com", required = true, value = "SMTP envelope `MAIL FROM` address (may differ from the `From:` header).")
+
+  private String from;
+
+ /**
+  * SMTP envelope `RCPT TO` address.
+  */
+  @ApiModelProperty(example = "client@isp.com", required = true, value = "SMTP envelope `RCPT TO` address.")
+
+  private String to;
+
+ /**
+  * Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.
+  */
+  @ApiModelProperty(example = "2021-10-14 08:50:10", required = true, value = "Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format.")
+
+  private String created;
+
+ /**
+  * Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.
+  */
+  @ApiModelProperty(example = "1634215809", required = true, value = "Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`.")
+
+  private Integer time;
+
+ /**
+  * The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.
+  */
+  @ApiModelProperty(example = "mb5658", required = true, value = "The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders.")
+
+  private String user;
+
+ /**
+  * SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).
+  */
+  @ApiModelProperty(example = "ESMTPSA", required = true, value = "SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`).")
+
+  private String transtype;
+
+ /**
+  * IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
+  */
+  @ApiModelProperty(example = "199.231.189.154", required = true, value = "IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.")
+
+  private String origin;
+
+ /**
+  * Relay interface name that accepted the message (e.g. `feeder`).
+  */
+  @ApiModelProperty(example = "feeder", required = true, value = "Relay interface name that accepted the message (e.g. `feeder`).")
+
+  private String _interface;
+
+ /**
+  * The `Subject` header value, if available.
+  */
+  @ApiModelProperty(example = "sell 0.005 shares", value = "The `Subject` header value, if available.")
+
+  private String subject;
+
+ /**
+  * The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.
+  */
+  @ApiModelProperty(example = "<vmiLEebsuCbSpUxD7oN3REpaN4VbN6BrdCAbNKIrdAo@relay0.mailbaby.net>", value = "The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.")
+
+  private String messageId;
+
+ /**
+  * The sending zone assigned by the relay for outbound delivery.
+  */
+  @ApiModelProperty(example = "interserver", value = "The sending zone assigned by the relay for outbound delivery.")
+
+  private String sendingZone;
+
+ /**
+  * Size of the message body in bytes.
+  */
+  @ApiModelProperty(example = "63", value = "Size of the message body in bytes.")
+
+  private Integer bodySize;
+
+ /**
+  * Sequence index of this recipient in a multi-recipient message. Starts at 1.
+  */
+  @ApiModelProperty(example = "1", value = "Sequence index of this recipient in a multi-recipient message. Starts at 1.")
+
+  private Integer seq;
+
+ /**
+  * Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.
+  */
+  @ApiModelProperty(example = "1", value = "Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.")
+
+  private Integer delivered;
+
+ /**
+  * The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).
+  */
+  @ApiModelProperty(example = "250", value = "The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).")
+
+  private Integer code;
+
+ /**
+  * The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).
+  */
+  @ApiModelProperty(example = "250 2.0.0 Ok queued as C91D83E128C", value = "The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).")
+
+  private String response;
+
+ /**
+  * The specific recipient address this delivery record is for.
+  */
+  @ApiModelProperty(example = "client@isp.com", value = "The specific recipient address this delivery record is for.")
+
+  private String recipient;
+
+ /**
+  * The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.
+  */
+  @ApiModelProperty(example = "interserver.net", value = "The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.")
+
+  private String domain;
+
+ /**
+  * Whether the queue entry is currently locked for delivery processing.
+  */
+  @ApiModelProperty(example = "1", value = "Whether the queue entry is currently locked for delivery processing.")
+
+  private Integer locked;
+
+ /**
+  * Millisecond-precision timestamp of the last queue lock acquisition.
+  */
+  @ApiModelProperty(example = "1634215818533", value = "Millisecond-precision timestamp of the last queue lock acquisition.")
+
+  private String lockTime;
+
+ /**
+  * The relay server node assigned to deliver this message.
+  */
+  @ApiModelProperty(example = "relay1", value = "The relay server node assigned to deliver this message.")
+
+  private String assigned;
+
+ /**
+  * ISO 8601 timestamp when the message was placed into the delivery queue.
+  */
+  @ApiModelProperty(example = "2021-10-14T12:50:15.487Z", value = "ISO 8601 timestamp when the message was placed into the delivery queue.")
+
+  private String queued;
+
+ /**
+  * The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.
+  */
+  @ApiModelProperty(example = "mx.j.is.cc", value = "The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.")
+
+  private String mxHostname;
+ /**
+   * Internal auto-increment database row ID.  Not meaningful outside the API.
+   * @return id
+  **/
+  @JsonProperty("_id")
+  @NotNull
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public MailLogEntry id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+ /**
+   * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;.
+   * @return id
+  **/
+  @JsonProperty("id")
+  @NotNull
+ @Size(min=18,max=19)  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public MailLogEntry id(String id) {
+    this.id = id;
+    return this;
+  }
+
+ /**
+   * SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header).
+   * @return from
+  **/
+  @JsonProperty("from")
+  @NotNull
+  public String getFrom() {
+    return from;
+  }
+
+  public void setFrom(String from) {
+    this.from = from;
+  }
+
+  public MailLogEntry from(String from) {
+    this.from = from;
+    return this;
+  }
+
+ /**
+   * SMTP envelope &#x60;RCPT TO&#x60; address.
+   * @return to
+  **/
+  @JsonProperty("to")
+  @NotNull
+  public String getTo() {
+    return to;
+  }
+
+  public void setTo(String to) {
+    this.to = to;
+  }
+
+  public MailLogEntry to(String to) {
+    this.to = to;
+    return this;
+  }
+
+ /**
+   * Human-readable creation timestamp in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format.
+   * @return created
+  **/
+  @JsonProperty("created")
+  @NotNull
+  public String getCreated() {
+    return created;
+  }
+
+  public void setCreated(String created) {
+    this.created = created;
+  }
+
+  public MailLogEntry created(String created) {
+    this.created = created;
+    return this;
+  }
+
+ /**
+   * Unix timestamp of message acceptance.  Corresponds to the &#x60;startDate&#x60; and &#x60;endDate&#x60; filter parameters on &#x60;GET /mail/log&#x60;.
+   * @return time
+  **/
+  @JsonProperty("time")
+  @NotNull
+  public Integer getTime() {
+    return time;
+  }
+
+  public void setTime(Integer time) {
+    this.time = time;
+  }
+
+  public MailLogEntry time(Integer time) {
+    this.time = time;
+    return this;
+  }
+
+ /**
+   * The SMTP AUTH username used to submit the message (e.g. &#x60;mb5658&#x60;). Corresponds to the &#x60;username&#x60; field in &#x60;GET /mail&#x60; orders.
+   * @return user
+  **/
+  @JsonProperty("user")
+  @NotNull
+  public String getUser() {
+    return user;
+  }
+
+  public void setUser(String user) {
+    this.user = user;
+  }
+
+  public MailLogEntry user(String user) {
+    this.user = user;
+    return this;
+  }
+
+ /**
+   * SMTP transaction type negotiated with the relay (e.g. &#x60;ESMTPSA&#x60;).
+   * @return transtype
+  **/
+  @JsonProperty("transtype")
+  @NotNull
+  public String getTranstype() {
+    return transtype;
+  }
+
+  public void setTranstype(String transtype) {
+    this.transtype = transtype;
+  }
+
+  public MailLogEntry transtype(String transtype) {
+    this.transtype = transtype;
+    return this;
+  }
+
+ /**
+   * IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;.
+   * @return origin
+  **/
+  @JsonProperty("origin")
+  @NotNull
+  public String getOrigin() {
+    return origin;
+  }
+
+  public void setOrigin(String origin) {
+    this.origin = origin;
+  }
+
+  public MailLogEntry origin(String origin) {
+    this.origin = origin;
+    return this;
+  }
+
+ /**
+   * Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;).
+   * @return _interface
+  **/
+  @JsonProperty("interface")
+  @NotNull
+  public String getInterface() {
+    return _interface;
+  }
+
+  public void setInterface(String _interface) {
+    this._interface = _interface;
+  }
+
+  public MailLogEntry _interface(String _interface) {
+    this._interface = _interface;
+    return this;
+  }
+
+ /**
+   * The &#x60;Subject&#x60; header value, if available.
+   * @return subject
+  **/
+  @JsonProperty("subject")
+  public String getSubject() {
+    return subject;
+  }
+
+  public void setSubject(String subject) {
+    this.subject = subject;
+  }
+
+  public MailLogEntry subject(String subject) {
+    this.subject = subject;
+    return this;
+  }
+
+ /**
+   * The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups.
+   * @return messageId
+  **/
+  @JsonProperty("messageId")
+  public String getMessageId() {
+    return messageId;
+  }
+
+  public void setMessageId(String messageId) {
+    this.messageId = messageId;
+  }
+
+  public MailLogEntry messageId(String messageId) {
+    this.messageId = messageId;
+    return this;
+  }
+
+ /**
+   * The sending zone assigned by the relay for outbound delivery.
+   * @return sendingZone
+  **/
+  @JsonProperty("sendingZone")
+  public String getSendingZone() {
+    return sendingZone;
+  }
+
+  public void setSendingZone(String sendingZone) {
+    this.sendingZone = sendingZone;
+  }
+
+  public MailLogEntry sendingZone(String sendingZone) {
+    this.sendingZone = sendingZone;
+    return this;
+  }
+
+ /**
+   * Size of the message body in bytes.
+   * @return bodySize
+  **/
+  @JsonProperty("bodySize")
+  public Integer getBodySize() {
+    return bodySize;
+  }
+
+  public void setBodySize(Integer bodySize) {
+    this.bodySize = bodySize;
+  }
+
+  public MailLogEntry bodySize(Integer bodySize) {
+    this.bodySize = bodySize;
+    return this;
+  }
+
+ /**
+   * Sequence index of this recipient in a multi-recipient message. Starts at 1.
+   * @return seq
+  **/
+  @JsonProperty("seq")
+  public Integer getSeq() {
+    return seq;
+  }
+
+  public void setSeq(Integer seq) {
+    this.seq = seq;
+  }
+
+  public MailLogEntry seq(Integer seq) {
+    this.seq = seq;
+    return this;
+  }
+
+ /**
+   * Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;.
+   * @return delivered
+  **/
+  @JsonProperty("delivered")
+  public Integer getDelivered() {
+    return delivered;
+  }
+
+  public void setDelivered(Integer delivered) {
+    this.delivered = delivered;
+  }
+
+  public MailLogEntry delivered(Integer delivered) {
+    this.delivered = delivered;
+    return this;
+  }
+
+ /**
+   * The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure).
+   * @return code
+  **/
+  @JsonProperty("code")
+  public Integer getCode() {
+    return code;
+  }
+
+  public void setCode(Integer code) {
+    this.code = code;
+  }
+
+  public MailLogEntry code(Integer code) {
+    this.code = code;
+    return this;
+  }
+
+ /**
+   * The SMTP response string received from the destination MX server upon delivery attempt (e.g. &#x60;\&quot;250 2.0.0 Ok queued as C91D83E128C\&quot;&#x60;).
+   * @return response
+  **/
+  @JsonProperty("response")
+  public String getResponse() {
+    return response;
+  }
+
+  public void setResponse(String response) {
+    this.response = response;
+  }
+
+  public MailLogEntry response(String response) {
+    this.response = response;
+    return this;
+  }
+
+ /**
+   * The specific recipient address this delivery record is for.
+   * @return recipient
+  **/
+  @JsonProperty("recipient")
+  public String getRecipient() {
+    return recipient;
+  }
+
+  public void setRecipient(String recipient) {
+    this.recipient = recipient;
+  }
+
+  public MailLogEntry recipient(String recipient) {
+    this.recipient = recipient;
+    return this;
+  }
+
+ /**
+   * The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;.
+   * @return domain
+  **/
+  @JsonProperty("domain")
+  public String getDomain() {
+    return domain;
+  }
+
+  public void setDomain(String domain) {
+    this.domain = domain;
+  }
+
+  public MailLogEntry domain(String domain) {
+    this.domain = domain;
+    return this;
+  }
+
+ /**
+   * Whether the queue entry is currently locked for delivery processing.
+   * @return locked
+  **/
+  @JsonProperty("locked")
+  public Integer getLocked() {
+    return locked;
+  }
+
+  public void setLocked(Integer locked) {
+    this.locked = locked;
+  }
+
+  public MailLogEntry locked(Integer locked) {
+    this.locked = locked;
+    return this;
+  }
+
+ /**
+   * Millisecond-precision timestamp of the last queue lock acquisition.
+   * @return lockTime
+  **/
+  @JsonProperty("lockTime")
+  public String getLockTime() {
+    return lockTime;
+  }
+
+  public void setLockTime(String lockTime) {
+    this.lockTime = lockTime;
+  }
+
+  public MailLogEntry lockTime(String lockTime) {
+    this.lockTime = lockTime;
+    return this;
+  }
+
+ /**
+   * The relay server node assigned to deliver this message.
+   * @return assigned
+  **/
+  @JsonProperty("assigned")
+  public String getAssigned() {
+    return assigned;
+  }
+
+  public void setAssigned(String assigned) {
+    this.assigned = assigned;
+  }
+
+  public MailLogEntry assigned(String assigned) {
+    this.assigned = assigned;
+    return this;
+  }
+
+ /**
+   * ISO 8601 timestamp when the message was placed into the delivery queue.
+   * @return queued
+  **/
+  @JsonProperty("queued")
+  public String getQueued() {
+    return queued;
+  }
+
+  public void setQueued(String queued) {
+    this.queued = queued;
+  }
+
+  public MailLogEntry queued(String queued) {
+    this.queued = queued;
+    return this;
+  }
+
+ /**
+   * The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;.
+   * @return mxHostname
+  **/
+  @JsonProperty("mxHostname")
+  public String getMxHostname() {
+    return mxHostname;
+  }
+
+  public void setMxHostname(String mxHostname) {
+    this.mxHostname = mxHostname;
+  }
+
+  public MailLogEntry mxHostname(String mxHostname) {
+    this.mxHostname = mxHostname;
+    return this;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    MailLogEntry mailLogEntry = (MailLogEntry) o;
+    return Objects.equals(this.id, mailLogEntry.id) &&
+        Objects.equals(this.id, mailLogEntry.id) &&
+        Objects.equals(this.from, mailLogEntry.from) &&
+        Objects.equals(this.to, mailLogEntry.to) &&
+        Objects.equals(this.created, mailLogEntry.created) &&
+        Objects.equals(this.time, mailLogEntry.time) &&
+        Objects.equals(this.user, mailLogEntry.user) &&
+        Objects.equals(this.transtype, mailLogEntry.transtype) &&
+        Objects.equals(this.origin, mailLogEntry.origin) &&
+        Objects.equals(this._interface, mailLogEntry._interface) &&
+        Objects.equals(this.subject, mailLogEntry.subject) &&
+        Objects.equals(this.messageId, mailLogEntry.messageId) &&
+        Objects.equals(this.sendingZone, mailLogEntry.sendingZone) &&
+        Objects.equals(this.bodySize, mailLogEntry.bodySize) &&
+        Objects.equals(this.seq, mailLogEntry.seq) &&
+        Objects.equals(this.delivered, mailLogEntry.delivered) &&
+        Objects.equals(this.code, mailLogEntry.code) &&
+        Objects.equals(this.response, mailLogEntry.response) &&
+        Objects.equals(this.recipient, mailLogEntry.recipient) &&
+        Objects.equals(this.domain, mailLogEntry.domain) &&
+        Objects.equals(this.locked, mailLogEntry.locked) &&
+        Objects.equals(this.lockTime, mailLogEntry.lockTime) &&
+        Objects.equals(this.assigned, mailLogEntry.assigned) &&
+        Objects.equals(this.queued, mailLogEntry.queued) &&
+        Objects.equals(this.mxHostname, mailLogEntry.mxHostname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, id, from, to, created, time, user, transtype, origin, _interface, subject, messageId, sendingZone, bodySize, seq, delivered, code, response, recipient, domain, locked, lockTime, assigned, queued, mxHostname);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class MailLogEntry {\n");
+    
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    from: ").append(toIndentedString(from)).append("\n");
+    sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    time: ").append(toIndentedString(time)).append("\n");
+    sb.append("    user: ").append(toIndentedString(user)).append("\n");
+    sb.append("    transtype: ").append(toIndentedString(transtype)).append("\n");
+    sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
+    sb.append("    _interface: ").append(toIndentedString(_interface)).append("\n");
+    sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
+    sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
+    sb.append("    sendingZone: ").append(toIndentedString(sendingZone)).append("\n");
+    sb.append("    bodySize: ").append(toIndentedString(bodySize)).append("\n");
+    sb.append("    seq: ").append(toIndentedString(seq)).append("\n");
+    sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    response: ").append(toIndentedString(response)).append("\n");
+    sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
+    sb.append("    locked: ").append(toIndentedString(locked)).append("\n");
+    sb.append("    lockTime: ").append(toIndentedString(lockTime)).append("\n");
+    sb.append("    assigned: ").append(toIndentedString(assigned)).append("\n");
+    sb.append("    queued: ").append(toIndentedString(queued)).append("\n");
+    sb.append("    mxHostname: ").append(toIndentedString(mxHostname)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private static String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}
+

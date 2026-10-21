@@ -1,4 +1,4 @@
-# mailbaby-client-kotlin-client - Kotlin client library for MailBaby Email Delivery and Management Service API
+# MailBabyKotlinClient - Kotlin client library for MailBaby Email Delivery and Management Service API
 
 ## Requires
 

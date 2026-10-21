@@ -54,6 +54,8 @@ pub enum Type {
     Startswith,
     #[serde(rename = "destination")]
     Destination,
+    #[serde(rename = "unknown_default_open_api")]
+    UnknownDefaultOpenApi,
 }
 
 impl Default for Type {

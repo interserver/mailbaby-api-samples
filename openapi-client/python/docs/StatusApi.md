@@ -1,4 +1,4 @@
-# openapi_client.StatusApi
+# MailBabyPython.StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,21 +19,21 @@ Health check — verify the API is reachable
 
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.StatusApi(api_client)
+    api_instance = MailBabyPython.StatusApi(api_client)
 
     try:
         # Health check — verify the API is reachable

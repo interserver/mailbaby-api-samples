@@ -472,10 +472,10 @@ class SendingApi
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  string|\OpenAPI\Client\Model\EmailAddressName $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  string|array $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  string|array|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  string|array|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  string|array|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
      * @param  \OpenAPI\Client\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int|null $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAdvMail'] to see the possible values for this operation
@@ -488,10 +488,10 @@ class SendingApi
         string $subject,
         string $body,
         string|\OpenAPI\Client\Model\EmailAddressName $from,
-        string|\OpenAPI\Client\Model\EmailAddressNames $to,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $cc = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc = null,
+        string|array $to,
+        string|array|null $replyto = null,
+        string|array|null $cc = null,
+        string|array|null $bcc = null,
         ?array $attachments = null,
         ?int $id = null,
         string $contentType = self::contentTypes['sendAdvMail'][0]
@@ -509,10 +509,10 @@ class SendingApi
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  string|\OpenAPI\Client\Model\EmailAddressName $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  string|array $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  string|array|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  string|array|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  string|array|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
      * @param  \OpenAPI\Client\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int|null $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAdvMail'] to see the possible values for this operation
@@ -525,10 +525,10 @@ class SendingApi
         string $subject,
         string $body,
         string|\OpenAPI\Client\Model\EmailAddressName $from,
-        string|\OpenAPI\Client\Model\EmailAddressNames $to,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $cc = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc = null,
+        string|array $to,
+        string|array|null $replyto = null,
+        string|array|null $cc = null,
+        string|array|null $bcc = null,
         ?array $attachments = null,
         ?int $id = null,
         string $contentType = self::contentTypes['sendAdvMail'][0]
@@ -651,10 +651,10 @@ class SendingApi
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  string|\OpenAPI\Client\Model\EmailAddressName $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  string|array $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  string|array|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  string|array|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  string|array|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
      * @param  \OpenAPI\Client\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int|null $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAdvMail'] to see the possible values for this operation
@@ -666,10 +666,10 @@ class SendingApi
         string $subject,
         string $body,
         string|\OpenAPI\Client\Model\EmailAddressName $from,
-        string|\OpenAPI\Client\Model\EmailAddressNames $to,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $cc = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc = null,
+        string|array $to,
+        string|array|null $replyto = null,
+        string|array|null $cc = null,
+        string|array|null $bcc = null,
         ?array $attachments = null,
         ?int $id = null,
         string $contentType = self::contentTypes['sendAdvMail'][0]
@@ -691,10 +691,10 @@ class SendingApi
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  string|\OpenAPI\Client\Model\EmailAddressName $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  string|array $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  string|array|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  string|array|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  string|array|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
      * @param  \OpenAPI\Client\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int|null $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAdvMail'] to see the possible values for this operation
@@ -706,10 +706,10 @@ class SendingApi
         string $subject,
         string $body,
         string|\OpenAPI\Client\Model\EmailAddressName $from,
-        string|\OpenAPI\Client\Model\EmailAddressNames $to,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $cc = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc = null,
+        string|array $to,
+        string|array|null $replyto = null,
+        string|array|null $cc = null,
+        string|array|null $bcc = null,
         ?array $attachments = null,
         ?int $id = null,
         string $contentType = self::contentTypes['sendAdvMail'][0]
@@ -760,10 +760,10 @@ class SendingApi
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  string|\OpenAPI\Client\Model\EmailAddressName $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  string|array $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  string|array|null $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  string|array|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  string|array|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
      * @param  \OpenAPI\Client\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int|null $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendAdvMail'] to see the possible values for this operation
@@ -775,10 +775,10 @@ class SendingApi
         string $subject,
         string $body,
         string|\OpenAPI\Client\Model\EmailAddressName $from,
-        string|\OpenAPI\Client\Model\EmailAddressNames $to,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $cc = null,
-        string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc = null,
+        string|array $to,
+        string|array|null $replyto = null,
+        string|array|null $cc = null,
+        string|array|null $bcc = null,
         ?array $attachments = null,
         ?int $id = null,
         string $contentType = self::contentTypes['sendAdvMail'][0]

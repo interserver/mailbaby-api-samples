@@ -163,6 +163,7 @@ enum DenyRuleRecordTypeEnum {
   email._(r'email'),
   startswith._(r'startswith'),
   destination._(r'destination'),
+  unknownDefaultOpenApi._(r'unknown_default_open_api'),
   ;
 
   /// Instantiate a new enum with the provided value.
@@ -225,6 +226,7 @@ class DenyRuleRecordTypeEnumTypeTransformer {
         case r'email': return DenyRuleRecordTypeEnum.email;
         case r'startswith': return DenyRuleRecordTypeEnum.startswith;
         case r'destination': return DenyRuleRecordTypeEnum.destination;
+        case r'unknown_default_open_api': return DenyRuleRecordTypeEnum.unknownDefaultOpenApi;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');

@@ -1,0 +1,41 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet EmailAddressTypes"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a EmailAddressTypes"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  EmailAddressName = MailBabyPythonBlueplanet.resourceTypes.EmailAddressName
+}
+resourceTypes {
+
+  EmailAddressTypes {
+    title = EmailAddressTypes
+    description = EmailAddressTypes
+    derivedFrom = Root
+    properties {
+        email {
+          type =  string
+          description = "The email address."
+          optional = true
+        }
+        name {
+          type =  string
+          description = "Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header)."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  EmailAddressTypes {
+    title = EmailAddressTypes
+    description = EmailAddressTypes
+    implements = MailBabyPythonBlueplanet.resourceTypes.EmailAddressTypes
+
+  }
+}

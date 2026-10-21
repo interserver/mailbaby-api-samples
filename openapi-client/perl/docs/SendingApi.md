@@ -1,8 +1,8 @@
-# OpenAPIClient::SendingApi
+# WWW::OpenAPIClient::SendingApi
 
 ## Load the API package
 ```perl
-use OpenAPIClient::Object::SendingApi;
+use WWW::OpenAPIClient::Object::SendingApi;
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -24,8 +24,8 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::SendingApi;
-my $api_instance = OpenAPIClient::SendingApi->new(
+use WWW::OpenAPIClient::SendingApi;
+my $api_instance = WWW::OpenAPIClient::SendingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -33,7 +33,7 @@ my $api_instance = OpenAPIClient::SendingApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $send_mail_raw = OpenAPIClient::Object::SendMailRaw->new(); # SendMailRaw | 
+my $send_mail_raw = WWW::OpenAPIClient::Object::SendMailRaw->new(); # SendMailRaw | 
 
 eval {
     my $result = $api_instance->raw_mail(send_mail_raw => $send_mail_raw);
@@ -75,8 +75,8 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::SendingApi;
-my $api_instance = OpenAPIClient::SendingApi->new(
+use WWW::OpenAPIClient::SendingApi;
+my $api_instance = WWW::OpenAPIClient::SendingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -86,12 +86,12 @@ my $api_instance = OpenAPIClient::SendingApi->new(
 
 my $subject = "subject_example"; # string | The subject line of the email.
 my $body = "body_example"; # string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-my $from = new OpenAPIClient.EmailAddressTypes(); # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
-my $to = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
-my $replyto = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
-my $cc = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
-my $bcc = new OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
-my $attachments = [(new OpenAPIClient.MailAttachment())]; # ARRAY[MailAttachment] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+my $from = new WWW::OpenAPIClient.EmailAddressTypes(); # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+my $to = new WWW::OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+my $replyto = new WWW::OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+my $cc = new WWW::OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+my $bcc = new WWW::OpenAPIClient.EmailAddressesTypes(); # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+my $attachments = [(new WWW::OpenAPIClient.MailAttachment())]; # ARRAY[MailAttachment] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
 my $id = 789; # int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 
 eval {
@@ -142,8 +142,8 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::SendingApi;
-my $api_instance = OpenAPIClient::SendingApi->new(
+use WWW::OpenAPIClient::SendingApi;
+my $api_instance = WWW::OpenAPIClient::SendingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -151,7 +151,7 @@ my $api_instance = OpenAPIClient::SendingApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $to = new OpenAPIClient.SendMailTo(); # SendMailTo | 
+my $to = new WWW::OpenAPIClient.SendMailTo(); # SendMailTo | 
 my $from = "from_example"; # string | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 my $subject = "subject_example"; # string | The subject line of the email.
 my $body = "body_example"; # string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.

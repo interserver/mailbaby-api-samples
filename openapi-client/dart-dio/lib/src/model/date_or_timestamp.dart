@@ -3,67 +3,40 @@
 //
 
 // ignore_for_file: unused_element
-import 'dart:core';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:one_of/one_of.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'date_or_timestamp.g.dart';
 
-/// A date/time value accepted as either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` (e.g. `2024-01-15`, `last monday`).
-@BuiltValue()
-abstract class DateOrTimestamp implements Built<DateOrTimestamp, DateOrTimestampBuilder> {
-  /// One Of [String], [int]
-  OneOf get oneOf;
 
-  DateOrTimestamp._();
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class DateOrTimestamp {
+  /// Returns a new [DateOrTimestamp] instance.
+  DateOrTimestamp({
+  });
 
-  factory DateOrTimestamp([void updates(DateOrTimestampBuilder b)]) = _$DateOrTimestamp;
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(DateOrTimestampBuilder b) => b;
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<DateOrTimestamp> get serializer => _$DateOrTimestampSerializer();
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is DateOrTimestamp &&
+
+    @override
+    int get hashCode =>
+
+  factory DateOrTimestamp.fromJson(Map<String, dynamic> json) => _$DateOrTimestampFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DateOrTimestampToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$DateOrTimestampSerializer implements PrimitiveSerializer<DateOrTimestamp> {
-  @override
-  final Iterable<Type> types = const [DateOrTimestamp, _$DateOrTimestamp];
-
-  @override
-  final String wireName = r'DateOrTimestamp';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    DateOrTimestamp object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    DateOrTimestamp object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final oneOf = object.oneOf;
-    return serializers.serialize(oneOf.value, specifiedType: FullType(oneOf.valueType))!;
-  }
-
-  @override
-  DateOrTimestamp deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = DateOrTimestampBuilder();
-    Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(int), FullType(String), ]);
-    oneOfDataSrc = serialized;
-    result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
-    return result.build();
-  }
-}
-
 

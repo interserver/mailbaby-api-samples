@@ -7,7 +7,6 @@ src/main/scala/org/openapitools/client/api/DateTimeCodecs.scala
 src/main/scala/org/openapitools/client/api/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/api/DenyRuleRecord.scala
 src/main/scala/org/openapitools/client/api/EmailAddressName.scala
-src/main/scala/org/openapitools/client/api/EmailAddressNames.scala
 src/main/scala/org/openapitools/client/api/EmailAddressParam.scala
 src/main/scala/org/openapitools/client/api/EmailAddressTypes.scala
 src/main/scala/org/openapitools/client/api/EmailAddressesTypes.scala

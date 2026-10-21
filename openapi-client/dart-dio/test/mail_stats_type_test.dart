@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailStatsType
 void main() {
-  final instance = MailStatsTypeBuilder();
-  // TODO add properties to the builder and call build()
+  final MailStatsType? instance = /* MailStatsType(...) */ null;
+  // TODO add properties to the entity
 
   group(MailStatsType, () {
     // The time window these `received`, `sent`, and `volume` statistics cover.

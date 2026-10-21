@@ -22,7 +22,6 @@ export {
   DenyRuleNew,
   DenyRuleRecord,
   EmailAddressName,
-  EmailAddressNames,
   EmailAddressParam,
   EmailAddressTypes,
   EmailAddressesTypes,

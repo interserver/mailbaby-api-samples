@@ -3,198 +3,114 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'deny_rule_new.g.dart';
 
-/// The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
-///
-/// Properties:
-/// * [type] - The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
-/// * [data] - The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
-/// * [user] - Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-@BuiltValue(instantiable: false)
-abstract class DenyRuleNew  {
-  /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
-  @BuiltValueField(wireName: r'type')
-  DenyRuleNewTypeEnum get type;
-  // enum typeEnum {  domain,  email,  startswith,  destination,  };
 
-  /// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
-  @BuiltValueField(wireName: r'data')
-  String get data;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class DenyRuleNew {
+  /// Returns a new [DenyRuleNew] instance.
+  DenyRuleNew({
 
-  /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
-  @BuiltValueField(wireName: r'user')
-  String? get user;
+    required  this.type,
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<DenyRuleNew> get serializer => _$DenyRuleNewSerializer();
-}
+    required  this.data,
 
-class _$DenyRuleNewSerializer implements PrimitiveSerializer<DenyRuleNew> {
+     this.user,
+  });
+
+      /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
+  @JsonKey(
+    
+    name: r'type',
+    required: true,
+    includeIfNull: false,
+  unknownEnumValue: DenyRuleNewTypeEnum.unknownDefaultOpenApi,
+  )
+
+
+  final DenyRuleNewTypeEnum type;
+
+
+
+      /// The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
+  @JsonKey(
+    
+    name: r'data',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String data;
+
+
+
+      /// Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+  @JsonKey(
+    
+    name: r'user',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? user;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is DenyRuleNew &&
+      other.type == type &&
+      other.data == data &&
+      other.user == user;
+
+    @override
+    int get hashCode =>
+        type.hashCode +
+        data.hashCode +
+        user.hashCode;
+
+  factory DenyRuleNew.fromJson(Map<String, dynamic> json) => _$DenyRuleNewFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DenyRuleNewToJson(this);
+
   @override
-  final Iterable<Type> types = const [DenyRuleNew];
-
-  @override
-  final String wireName = r'DenyRuleNew';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    DenyRuleNew object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'type';
-    yield serializers.serialize(
-      object.type,
-      specifiedType: const FullType(DenyRuleNewTypeEnum),
-    );
-    yield r'data';
-    yield serializers.serialize(
-      object.data,
-      specifiedType: const FullType(String),
-    );
-    if (object.user != null) {
-      yield r'user';
-      yield serializers.serialize(
-        object.user,
-        specifiedType: const FullType(String),
-      );
-    }
+  String toString() {
+    return toJson().toString();
   }
 
-  @override
-  Object serialize(
-    Serializers serializers,
-    DenyRuleNew object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  @override
-  DenyRuleNew deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return serializers.deserialize(serialized, specifiedType: FullType($DenyRuleNew)) as $DenyRuleNew;
-  }
-}
-
-
-/// a concrete implementation of [DenyRuleNew], since [DenyRuleNew] is not instantiable
-@BuiltValue(instantiable: true)
-abstract class $DenyRuleNew implements DenyRuleNew, Built<$DenyRuleNew, $DenyRuleNewBuilder> {
-  $DenyRuleNew._();
-
-  factory $DenyRuleNew([void Function($DenyRuleNewBuilder)? updates]) = _$$DenyRuleNew;
-
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults($DenyRuleNewBuilder b) => b;
-
-  @BuiltValueSerializer(custom: true)
-  static Serializer<$DenyRuleNew> get serializer => _$$DenyRuleNewSerializer();
-}
-
-class _$$DenyRuleNewSerializer implements PrimitiveSerializer<$DenyRuleNew> {
-  @override
-  final Iterable<Type> types = const [$DenyRuleNew, _$$DenyRuleNew];
-
-  @override
-  final String wireName = r'$DenyRuleNew';
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    $DenyRuleNew object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return serializers.serialize(object, specifiedType: FullType(DenyRuleNew))!;
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required DenyRuleNewBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(DenyRuleNewTypeEnum),
-          ) as DenyRuleNewTypeEnum;
-          result.type = valueDes;
-          break;
-        case r'data':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.data = valueDes;
-          break;
-        case r'user':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.user = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  $DenyRuleNew deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = $DenyRuleNewBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
 }
 
 /// The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
-class DenyRuleNewTypeEnum extends EnumClass {
+enum DenyRuleNewTypeEnum {
+@JsonValue(r'domain')
+domain(r'domain'),
+@JsonValue(r'email')
+email(r'email'),
+@JsonValue(r'startswith')
+startswith(r'startswith'),
+@JsonValue(r'destination')
+destination(r'destination'),
+@JsonValue(r'unknown_default_open_api')
+unknownDefaultOpenApi(r'unknown_default_open_api');
 
-  @BuiltValueEnumConst(wireName: r'domain')
-  static const DenyRuleNewTypeEnum domain = _$denyRuleNewTypeEnum_domain;
-  @BuiltValueEnumConst(wireName: r'email')
-  static const DenyRuleNewTypeEnum email = _$denyRuleNewTypeEnum_email;
-  @BuiltValueEnumConst(wireName: r'startswith')
-  static const DenyRuleNewTypeEnum startswith = _$denyRuleNewTypeEnum_startswith;
-  @BuiltValueEnumConst(wireName: r'destination')
-  static const DenyRuleNewTypeEnum destination = _$denyRuleNewTypeEnum_destination;
+const DenyRuleNewTypeEnum(this.value);
 
-  static Serializer<DenyRuleNewTypeEnum> get serializer => _$denyRuleNewTypeEnumSerializer;
+final String value;
 
-  const DenyRuleNewTypeEnum._(String name): super(name);
-
-  static BuiltSet<DenyRuleNewTypeEnum> get values => _$denyRuleNewTypeEnumValues;
-  static DenyRuleNewTypeEnum valueOf(String name) => _$denyRuleNewTypeEnumValueOf(name);
+@override
+String toString() => value;
 }
+
 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$ErrorMessage = Initialize-PSOpenAPIToolsErrorMessage  -Code 400 `
+$ErrorMessage = Initialize-MailBabyPowershellErrorMessage  -Code 400 `
  -Message The specified ID was invalid.
 ```
 

@@ -7,7 +7,7 @@ Request body for `POST /mail/rawsend`.  Accepts a complete RFC 822 message (all 
 
 Name | Type
 ------------ | -------------
-`raw_email` | string
+`rawEmail` | string
 `id` | number
 
 ## Example
@@ -17,7 +17,7 @@ import type { SendMailRaw } from ''
 
 // TODO: Update the object below with actual values
 const example = {
-  "raw_email": null,
+  "rawEmail": null,
   "id": null,
 } satisfies SendMailRaw
 

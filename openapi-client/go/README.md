@@ -1,4 +1,4 @@
-# Go API client for mailbaby
+# Go API client for MailBabyGo
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -52,7 +52,7 @@ For more information, please visit [https://www.mail.baby/contact/](https://www.
 Import the package in a go file in your project and run `go mod tidy`:
 
 ```go
-import mailbaby "github.com/GIT_USER_ID/GIT_REPO_ID"
+import MailBabyGo "github.com/GIT_USER_ID/GIT_REPO_ID"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -67,18 +67,18 @@ Default configuration comes with `Servers` field that contains server objects as
 
 ### Select Server Configuration
 
-For using other server than the one defined on index 0 set context value `mailbaby.ContextServerIndex` of type `int`.
+For using other server than the one defined on index 0 set context value `MailBabyGo.ContextServerIndex` of type `int`.
 
 ```go
-ctx := context.WithValue(context.Background(), mailbaby.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), MailBabyGo.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
 
-Templated server URL is formatted using default variables from configuration or from context value `mailbaby.ContextServerVariables` of type `map[string]string`.
+Templated server URL is formatted using default variables from configuration or from context value `MailBabyGo.ContextServerVariables` of type `map[string]string`.
 
 ```go
-ctx := context.WithValue(context.Background(), mailbaby.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), MailBabyGo.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -89,13 +89,13 @@ Note, enum values are always validated and all unused variables are silently ign
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
-Similar rules for overriding default operation server index and variables applies by using `mailbaby.ContextOperationServerIndices` and `mailbaby.ContextOperationServerVariables` context maps.
+Similar rules for overriding default operation server index and variables applies by using `MailBabyGo.ContextOperationServerIndices` and `MailBabyGo.ContextOperationServerVariables` context maps.
 
 ```go
-ctx := context.WithValue(context.Background(), mailbaby.ContextOperationServerIndices, map[string]int{
+ctx := context.WithValue(context.Background(), MailBabyGo.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), mailbaby.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), MailBabyGo.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -129,7 +129,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
- - [EmailAddressNames](docs/EmailAddressNames.md)
  - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)
@@ -168,8 +167,8 @@ Example
 ```go
 auth := context.WithValue(
 		context.Background(),
-		mailbaby.ContextAPIKeys,
-		map[string]mailbaby.APIKey{
+		MailBabyGo.ContextAPIKeys,
+		map[string]MailBabyGo.APIKey{
 			"apiKeyAuth": {Key: "API_KEY_STRING"},
 		},
 	)

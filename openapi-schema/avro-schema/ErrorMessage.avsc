@@ -1,0 +1,19 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "The response body returned when an error occurs.",
+  "name": "ErrorMessage",
+  "fields": [
+    {
+      "name": "code",
+      "type": "int",
+      "doc": "The HTTP-style status code associated with the error."
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "doc": "A human-readable description of the error."
+    }
+  ]
+
+}

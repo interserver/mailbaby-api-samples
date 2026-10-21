@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.models.mail_order_detail import MailOrderDetail  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_order_detail import MailOrderDetail  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestMailOrderDetail(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestMailOrderDetail(unittest.TestCase):
     def testMailOrderDetail(self):
         """Test MailOrderDetail"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = mailbaby-client-python.models.mail_order_detail.MailOrderDetail()  # noqa: E501
+        # model = MailBabyPython.models.mail_order_detail.MailOrderDetail()  # noqa: E501
         pass
 
 

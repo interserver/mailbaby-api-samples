@@ -1,9 +1,12 @@
-# Description: Julia client package name.
-packageName: APIClient
-
-# Description: Whether to generate code to export model names.
-exportModels: false
-
-# Description: Whether to generate code to export operation names.
-exportOperations: false
-
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-julia-client"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyJuliaClient"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

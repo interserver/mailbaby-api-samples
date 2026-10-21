@@ -1,0 +1,34 @@
+# coding: utf-8
+
+# flake8: noqa
+from __future__ import absolute_import
+# import models into model package
+from MailBabyPythonFlask.models.all_of_send_mail_adv_bcc import AllOfSendMailAdvBcc
+from MailBabyPythonFlask.models.all_of_send_mail_adv_cc import AllOfSendMailAdvCc
+from MailBabyPythonFlask.models.all_of_send_mail_adv_from import AllOfSendMailAdvFrom
+from MailBabyPythonFlask.models.all_of_send_mail_adv_replyto import AllOfSendMailAdvReplyto
+from MailBabyPythonFlask.models.all_of_send_mail_adv_to import AllOfSendMailAdvTo
+from MailBabyPythonFlask.models.date_or_timestamp import DateOrTimestamp
+from MailBabyPythonFlask.models.deny_rule_new import DenyRuleNew
+from MailBabyPythonFlask.models.deny_rule_record import DenyRuleRecord
+from MailBabyPythonFlask.models.email_address_name import EmailAddressName
+from MailBabyPythonFlask.models.email_address_names import EmailAddressNames
+from MailBabyPythonFlask.models.email_address_param import EmailAddressParam
+from MailBabyPythonFlask.models.email_address_types import EmailAddressTypes
+from MailBabyPythonFlask.models.email_addresses_types import EmailAddressesTypes
+from MailBabyPythonFlask.models.error_message import ErrorMessage
+from MailBabyPythonFlask.models.generic_response import GenericResponse
+from MailBabyPythonFlask.models.mail_attachment import MailAttachment
+from MailBabyPythonFlask.models.mail_block_click_house import MailBlockClickHouse
+from MailBabyPythonFlask.models.mail_block_rspamd import MailBlockRspamd
+from MailBabyPythonFlask.models.mail_blocks import MailBlocks
+from MailBabyPythonFlask.models.mail_log import MailLog
+from MailBabyPythonFlask.models.mail_log_entry import MailLogEntry
+from MailBabyPythonFlask.models.mail_order import MailOrder
+from MailBabyPythonFlask.models.mail_order_detail import MailOrderDetail
+from MailBabyPythonFlask.models.mail_stats_type import MailStatsType
+from MailBabyPythonFlask.models.mail_stats_volume import MailStatsVolume
+from MailBabyPythonFlask.models.send_mail import SendMail
+from MailBabyPythonFlask.models.send_mail_adv import SendMailAdv
+from MailBabyPythonFlask.models.send_mail_raw import SendMailRaw
+from MailBabyPythonFlask.models.send_mail_to import SendMailTo

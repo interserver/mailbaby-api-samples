@@ -22,6 +22,7 @@ Extended mail order record including the current SMTP password.  Returned by `GE
 |---- | -----|
 | ACTIVE | &quot;active&quot; |
 | CANCELED | &quot;canceled&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

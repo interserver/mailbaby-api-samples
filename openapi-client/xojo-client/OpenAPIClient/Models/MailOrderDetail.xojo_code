@@ -45,7 +45,8 @@ Protected Class MailOrderDetail
         
         Active
         Canceled
-        
+        UnknownDefaultOpenApi
+        Unknown
     #tag EndEnum
 
 
@@ -57,7 +58,10 @@ Protected Class MailOrderDetail
 		      Return "active"
 		    Case StatusEnum.Canceled
 		      Return "canceled"
-		    
+		    Case StatusEnum.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function

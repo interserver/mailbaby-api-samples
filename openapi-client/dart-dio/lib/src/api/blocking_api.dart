@@ -4,12 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/deny_rule_record.dart';
 import 'package:openapi/src/model/email_address_param.dart';
 import 'package:openapi/src/model/error_message.dart';
@@ -20,9 +19,7 @@ class BlockingApi {
 
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const BlockingApi(this._dio, this._serializers);
+  const BlockingApi(this._dio);
 
   /// Create a deny rule to block a sender, domain, destination, or prefix
   /// **Use this to prevent future relay attempts that match a pattern.** Required: &#x60;type&#x60; (&#x60;email&#x60;, &#x60;domain&#x60;, &#x60;destination&#x60;, or &#x60;startswith&#x60;) and &#x60;data&#x60; (the value to match). Optional: &#x60;user&#x60; (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The &#x60;type&#x60; field selects the matching strategy: - **&#x60;email&#x60;** — exact match against the SMTP envelope &#x60;MAIL FROM&#x60; address. - **&#x60;domain&#x60;** — matches any sender address at the specified domain. - **&#x60;destination&#x60;** — exact match against the SMTP envelope &#x60;RCPT TO&#x60; address. - **&#x60;startswith&#x60;** — matches any sender address whose local-part (the portion   before the &#x60;@&#x60;) starts with the given string.  Only alphanumeric characters   and &#x60;+&#x60;, &#x60;_&#x60;, &#x60;.&#x60;, &#x60;-&#x60; are permitted in the prefix.   If &#x60;username&#x60; is provided it must be the SMTP username of one of your active mail orders (e.g. &#x60;mb20682&#x60;).  If omitted the rule is associated with your first active order.  On success the response &#x60;text&#x60; field contains the newly created rule&#39;s &#x60;id&#x60;, which can later be passed to &#x60;DELETE /mail/rules/{ruleId}&#x60; to remove it. 
@@ -76,9 +73,9 @@ class BlockingApi {
 
     try {
       _bodyData = <String, dynamic>{
-        if (user != null) r'user': encodeQueryParameter(_serializers, user, const FullType(String)),
-        r'type': encodeQueryParameter(_serializers, type, const FullType(String)),
-        r'data': encodeQueryParameter(_serializers, data, const FullType(String)),
+        if (user != null) r'user': user,
+        r'type': type,
+        r'data': data,
       };
 
     } catch(error, stackTrace) {
@@ -105,11 +102,8 @@ class BlockingApi {
     GenericResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(GenericResponse),
-      ) as GenericResponse;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<GenericResponse, GenericResponse>(rawData, 'GenericResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -156,7 +150,7 @@ class BlockingApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/mail/rules/{ruleId}'.replaceAll('{' r'ruleId' '}', encodeQueryParameter(_serializers, ruleId, const FullType(int)).toString());
+    final _path = r'/mail/rules/{ruleId}'.replaceAll('{' r'ruleId' '}', ruleId.toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -187,11 +181,8 @@ class BlockingApi {
     GenericResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(GenericResponse),
-      ) as GenericResponse;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<GenericResponse, GenericResponse>(rawData, 'GenericResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -262,8 +253,7 @@ class BlockingApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(EmailAddressParam);
-      _bodyData = _serializers.serialize(emailAddressParam, specifiedType: _type);
+      _bodyData = jsonEncode(emailAddressParam);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -289,11 +279,8 @@ class BlockingApi {
     GenericResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(GenericResponse),
-      ) as GenericResponse;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<GenericResponse, GenericResponse>(rawData, 'GenericResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -369,11 +356,8 @@ class BlockingApi {
     MailBlocks? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(MailBlocks),
-      ) as MailBlocks;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<MailBlocks, MailBlocks>(rawData, 'MailBlocks', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -408,9 +392,9 @@ class BlockingApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<DenyRuleRecord>] as data
+  /// Returns a [Future] containing a [Response] with a [List<DenyRuleRecord>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<DenyRuleRecord>>> getRules({ 
+  Future<Response<List<DenyRuleRecord>>> getRules({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -446,14 +430,11 @@ class BlockingApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<DenyRuleRecord>? _responseData;
+    List<DenyRuleRecord>? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(DenyRuleRecord)]),
-      ) as BuiltList<DenyRuleRecord>;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<List<DenyRuleRecord>, DenyRuleRecord>(rawData, 'List<DenyRuleRecord>', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -465,7 +446,7 @@ class BlockingApi {
       );
     }
 
-    return Response<BuiltList<DenyRuleRecord>>(
+    return Response<List<DenyRuleRecord>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,

@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::EmailAddressesTypes
+# WWW::OpenAPIClient::Object::EmailAddressesTypes
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::EmailAddressesTypes;
+use WWW::OpenAPIClient::Object::EmailAddressesTypes;
 ```
 
 ## Properties

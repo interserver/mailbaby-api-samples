@@ -9,6 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field email The email address. character
 #' @field name Optional display name shown to recipients (e.g. in the `From:` header). character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,14 +19,17 @@ EmailAddressName <- R6::R6Class(
   public = list(
     `email` = NULL,
     `name` = NULL,
+    `_field_list` = c("email", "name"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new EmailAddressName class.
     #'
     #' @param email The email address.
     #' @param name Optional display name shown to recipients (e.g. in the `From:` header).
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`email`, `name` = NULL, ...) {
+    initialize = function(`email`, `name` = NULL, additional_properties = NULL, ...) {
       if (!missing(`email`)) {
         if (!(is.character(`email`) && length(`email`) == 1)) {
           stop(paste("Error! Invalid data for `email`. Must be a string:", `email`))
@@ -36,6 +41,11 @@ EmailAddressName <- R6::R6Class(
           stop(paste("Error! Invalid data for `name`. Must be a string:", `name`))
         }
         self$`name` <- `name`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -78,6 +88,10 @@ EmailAddressName <- R6::R6Class(
         EmailAddressNameObject[["name"]] <-
           self$`name`
       }
+      for (key in names(self$additional_properties)) {
+        EmailAddressNameObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(EmailAddressNameObject)
     },
 
@@ -94,6 +108,13 @@ EmailAddressName <- R6::R6Class(
       if (!is.null(this_object$`name`)) {
         self$`name` <- this_object$`name`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -104,6 +125,9 @@ EmailAddressName <- R6::R6Class(
     #' @return EmailAddressName in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -117,6 +141,13 @@ EmailAddressName <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`email` <- this_object$`email`
       self$`name` <- this_object$`name`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

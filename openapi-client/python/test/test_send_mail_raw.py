@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.send_mail_raw import SendMailRaw
+from MailBabyPython.models.send_mail_raw import SendMailRaw
 
 class TestSendMailRaw(unittest.TestCase):
     """SendMailRaw unit test stubs"""

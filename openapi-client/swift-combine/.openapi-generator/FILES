@@ -9,7 +9,6 @@ OpenAPIClient/Sources/Models/DateOrTimestamp.swift
 OpenAPIClient/Sources/Models/DenyRuleNew.swift
 OpenAPIClient/Sources/Models/DenyRuleRecord.swift
 OpenAPIClient/Sources/Models/EmailAddressName.swift
-OpenAPIClient/Sources/Models/EmailAddressNames.swift
 OpenAPIClient/Sources/Models/EmailAddressParam.swift
 OpenAPIClient/Sources/Models/EmailAddressTypes.swift
 OpenAPIClient/Sources/Models/EmailAddressesTypes.swift

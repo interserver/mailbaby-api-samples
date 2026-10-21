@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.api.services_api import ServicesApi  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.api.services_api import ServicesApi  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestServicesApi(unittest.TestCase):

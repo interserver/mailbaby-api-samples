@@ -1,6 +1,6 @@
 .openapi-generator-ignore
 config.gpr
-defaultproject.gpr
+mailbabyada.gpr
 src/-client.adb
 src/.ads
 src/client/-clients.adb

@@ -6,8 +6,6 @@ pub mod deny_rule_record;
 pub use self::deny_rule_record::DenyRuleRecord;
 pub mod email_address_name;
 pub use self::email_address_name::EmailAddressName;
-pub mod email_address_names;
-pub use self::email_address_names::EmailAddressNames;
 pub mod email_address_param;
 pub use self::email_address_param::EmailAddressParam;
 pub mod email_address_types;

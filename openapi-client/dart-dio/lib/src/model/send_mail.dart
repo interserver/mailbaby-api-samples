@@ -4,176 +4,124 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/send_mail_to.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'send_mail.g.dart';
 
-/// Request body for `POST /mail/send`.  Sends a simple single-recipient message. HTML detection is automatic — if `body` contains HTML tags the message is sent as `text/html`; otherwise as `text/plain`.  The `from` address is automatically set as both the `From` and `Reply-To` headers.  For multiple recipients, CC/BCC, attachments, or per-field Reply-To control, use `POST /mail/advsend` instead.
-///
-/// Properties:
-/// * [to] 
-/// * [from] - The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
-/// * [subject] - The subject line of the email.
-/// * [body] - The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-/// * [id] - Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-@BuiltValue()
-abstract class SendMail implements Built<SendMail, SendMailBuilder> {
-  @BuiltValueField(wireName: r'to')
-  SendMailTo get to;
 
-  /// The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
-  @BuiltValueField(wireName: r'from')
-  String get from;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class SendMail {
+  /// Returns a new [SendMail] instance.
+  SendMail({
 
-  /// The subject line of the email.
-  @BuiltValueField(wireName: r'subject')
-  String get subject;
+    required  this.to,
 
-  /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-  @BuiltValueField(wireName: r'body')
-  String get body;
+    required  this.from,
 
-  /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
-  @BuiltValueField(wireName: r'id')
-  int? get id;
+    required  this.subject,
 
-  SendMail._();
+    required  this.body,
 
-  factory SendMail([void updates(SendMailBuilder b)]) = _$SendMail;
+     this.id,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SendMailBuilder b) => b;
+  @JsonKey(
+    
+    name: r'to',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<SendMail> get serializer => _$SendMailSerializer();
+
+  final SendMailTo to;
+
+
+
+      /// The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
+  @JsonKey(
+    
+    name: r'from',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String from;
+
+
+
+      /// The subject line of the email.
+  @JsonKey(
+    
+    name: r'subject',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String subject;
+
+
+
+      /// The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
+  @JsonKey(
+    
+    name: r'body',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String body;
+
+
+
+      /// Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
+  @JsonKey(
+    
+    name: r'id',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? id;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is SendMail &&
+      other.to == to &&
+      other.from == from &&
+      other.subject == subject &&
+      other.body == body &&
+      other.id == id;
+
+    @override
+    int get hashCode =>
+        to.hashCode +
+        from.hashCode +
+        subject.hashCode +
+        body.hashCode +
+        id.hashCode;
+
+  factory SendMail.fromJson(Map<String, dynamic> json) => _$SendMailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SendMailToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$SendMailSerializer implements PrimitiveSerializer<SendMail> {
-  @override
-  final Iterable<Type> types = const [SendMail, _$SendMail];
-
-  @override
-  final String wireName = r'SendMail';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    SendMail object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'to';
-    yield serializers.serialize(
-      object.to,
-      specifiedType: const FullType(SendMailTo),
-    );
-    yield r'from';
-    yield serializers.serialize(
-      object.from,
-      specifiedType: const FullType(String),
-    );
-    yield r'subject';
-    yield serializers.serialize(
-      object.subject,
-      specifiedType: const FullType(String),
-    );
-    yield r'body';
-    yield serializers.serialize(
-      object.body,
-      specifiedType: const FullType(String),
-    );
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(int),
-      );
-    }
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    SendMail object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required SendMailBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'to':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(SendMailTo),
-          ) as SendMailTo;
-          result.to.replace(valueDes);
-          break;
-        case r'from':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.from = valueDes;
-          break;
-        case r'subject':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.subject = valueDes;
-          break;
-        case r'body':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.body = valueDes;
-          break;
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.id = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  SendMail deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = SendMailBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMailOrders**
-> BuiltList<MailOrder> getMailOrders()
+> List<MailOrder> getMailOrders()
 
 List your provisioned mail orders (sending accounts)
 
@@ -90,7 +90,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList&lt;MailOrder&gt;**](MailOrder.md)
+[**List&lt;MailOrder&gt;**](MailOrder.md)
 
 ### Authorization
 

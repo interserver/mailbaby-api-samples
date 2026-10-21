@@ -16,7 +16,7 @@
 #' \dontrun{
 #' ####################  AddRule  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_type <- "type_example" # character | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 #' var_data <- "data_example" # character | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 #' var_user <- "user_example" # character | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (Optional)
@@ -35,7 +35,7 @@
 #'
 #' ####################  DeleteRule  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_rule_id <- 34 # integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 #'
 #' #Delete a deny rule by its numeric ruleId
@@ -52,7 +52,7 @@
 #'
 #' ####################  DelistBlock  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_email_address_param <- EmailAddressParam$new("email_example") # EmailAddressParam | 
 #'
 #' #Delist an email address from the spam-filter block lists
@@ -69,7 +69,7 @@
 #'
 #' ####################  GetMailBlocks  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #'
 #' #List addresses currently flagged by spam-filter block lists
 #' api_instance <- BlockingApi$new()
@@ -85,7 +85,7 @@
 #'
 #' ####################  GetRules  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #'
 #' #List custom deny rules (sender / domain / destination / prefix)
 #' api_instance <- BlockingApi$new()

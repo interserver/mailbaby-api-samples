@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.email_address_types import EmailAddressTypes
+from MailBabyPython.models.email_address_types import EmailAddressTypes
 
 # TODO update the JSON string below
 json = "{}"

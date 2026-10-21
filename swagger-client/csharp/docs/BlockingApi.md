@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Api.BlockingApi
+# MailBabyCsharp.Api.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -22,9 +22,9 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -91,9 +91,9 @@ Delete a deny rule by its numeric ruleId
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -156,9 +156,9 @@ Delist an email address from the spam-filter block lists
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -221,9 +221,9 @@ List addresses currently flagged by spam-filter block lists
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -282,9 +282,9 @@ List custom deny rules (sender / domain / destination / prefix)
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {

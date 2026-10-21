@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="rawMail"></a>
 # **rawMail**
-> GenericResponse rawMail(body, raw_email, id)
+> GenericResponse rawMail(body, rawEmail, id)
 
 Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
@@ -29,10 +29,10 @@ apiKeyAuth.apiKey = 'YOUR API KEY';
 
 let apiInstance = new MailBabyEmailDeliveryAndManagementServiceApi.SendingApi();
 let body = new MailBabyEmailDeliveryAndManagementServiceApi.SendMailRaw(); // SendMailRaw | 
-let raw_email = "raw_email_example"; // String | 
+let rawEmail = "rawEmail_example"; // String | 
 let id = 789; // Number | 
 
-apiInstance.rawMail(body, raw_email, id, (error, data, response) => {
+apiInstance.rawMail(body, rawEmail, id, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -46,7 +46,7 @@ apiInstance.rawMail(body, raw_email, id, (error, data, response) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SendMailRaw**](SendMailRaw.md)|  | 
- **raw_email** | **String**|  | 
+ **rawEmail** | **String**|  | 
  **id** | **Number**|  | 
 
 ### Return type

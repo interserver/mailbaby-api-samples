@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.models.date_or_timestamp import DateOrTimestamp  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.date_or_timestamp import DateOrTimestamp  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestDateOrTimestamp(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestDateOrTimestamp(unittest.TestCase):
     def testDateOrTimestamp(self):
         """Test DateOrTimestamp"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = mailbaby-client-python.models.date_or_timestamp.DateOrTimestamp()  # noqa: E501
+        # model = MailBabyPython.models.date_or_timestamp.DateOrTimestamp()  # noqa: E501
         pass
 
 

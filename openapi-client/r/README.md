@@ -1,4 +1,4 @@
-# R API client for openapi
+# R API client for MailBabyR
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -65,14 +65,14 @@ install.packages("base64enc")
 git clone https://github.com/GIT_USER_ID/GIT_REPO_ID
 cd GIT_REPO_ID
 R CMD build .
-R CMD check openapi_1.0.0.tar.gz --no-manual
-R CMD INSTALL --preclean openapi_1.0.0.tar.gz
+R CMD check MailBabyR_1.0.0.tar.gz --no-manual
+R CMD INSTALL --preclean MailBabyR_1.0.0.tar.gz
 ```
 
 ### Install the package
 
 ```R
-install.packages("openapi")
+install.packages("MailBabyR")
 ```
 
 To install directly from Github, use `devtools`:
@@ -84,13 +84,13 @@ install_github("GIT_USER_ID/GIT_REPO_ID")
 
 To install the package from a local file:
 ```R
-install.packages("openapi_1.0.0.tar.gz", repos = NULL, type = "source")
+install.packages("MailBabyR_1.0.0.tar.gz", repos = NULL, type = "source")
 ```
 
 ### Usage
 
 ```R
-library(openapi)
+library(MailBabyR)
 ```
 
 ### Reformat code
@@ -131,7 +131,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
- - [EmailAddressNames](docs/EmailAddressNames.md)
  - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)

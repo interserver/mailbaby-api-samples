@@ -25,10 +25,6 @@ force-app/main/default/classes/OASEmailAddressName.cls
 force-app/main/default/classes/OASEmailAddressName.cls-meta.xml
 force-app/main/default/classes/OASEmailAddressNameTest.cls
 force-app/main/default/classes/OASEmailAddressNameTest.cls-meta.xml
-force-app/main/default/classes/OASEmailAddressNames.cls
-force-app/main/default/classes/OASEmailAddressNames.cls-meta.xml
-force-app/main/default/classes/OASEmailAddressNamesTest.cls
-force-app/main/default/classes/OASEmailAddressNamesTest.cls-meta.xml
 force-app/main/default/classes/OASEmailAddressParam.cls
 force-app/main/default/classes/OASEmailAddressParam.cls-meta.xml
 force-app/main/default/classes/OASEmailAddressParamTest.cls

@@ -43,7 +43,7 @@ export interface MailStatsType {
     volume?: MailStatsVolume;
 }
 export namespace MailStatsType {
-    export type TimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h';
+    export type TimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h' | '11184809';
     export const TimeEnum = {
         All: 'all' as TimeEnum,
         Billing: 'billing' as TimeEnum,
@@ -51,6 +51,7 @@ export namespace MailStatsType {
         SevenDays: '7d' as TimeEnum,
         TwentyFourHours: '24h' as TimeEnum,
         Day: 'day' as TimeEnum,
-        OneHour: '1h' as TimeEnum
+        OneHour: '1h' as TimeEnum,
+        UnknownDefaultOpenApi: '11184809' as TimeEnum
     }
 }

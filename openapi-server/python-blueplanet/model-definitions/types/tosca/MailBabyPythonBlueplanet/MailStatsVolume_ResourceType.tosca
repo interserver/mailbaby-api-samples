@@ -1,0 +1,45 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet MailStatsVolume"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a MailStatsVolume"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MailStatsVolume {
+    title = MailStatsVolume
+    description = MailStatsVolume
+    derivedFrom = Root
+    properties {
+        to {
+          # TODO
+          description = "Message counts keyed by destination (envelope &#x60;to&#x60;) email address."
+          optional = false
+        }
+        _from {
+          # TODO
+          description = "Message counts keyed by sender (envelope &#x60;from&#x60;) email address."
+          optional = false
+        }
+        ip {
+          # TODO
+          description = "Message counts keyed by originating client IP address."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MailStatsVolume {
+    title = MailStatsVolume
+    description = MailStatsVolume
+    implements = MailBabyPythonBlueplanet.resourceTypes.MailStatsVolume
+
+  }
+}

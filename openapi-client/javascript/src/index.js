@@ -17,7 +17,6 @@ import DateOrTimestamp from './model/DateOrTimestamp';
 import DenyRuleNew from './model/DenyRuleNew';
 import DenyRuleRecord from './model/DenyRuleRecord';
 import EmailAddressName from './model/EmailAddressName';
-import EmailAddressNames from './model/EmailAddressNames';
 import EmailAddressParam from './model/EmailAddressParam';
 import EmailAddressTypes from './model/EmailAddressTypes';
 import EmailAddressesTypes from './model/EmailAddressesTypes';
@@ -105,12 +104,6 @@ export {
      * @property {module:model/EmailAddressName}
      */
     EmailAddressName,
-
-    /**
-     * The EmailAddressNames model constructor.
-     * @property {module:model/EmailAddressNames}
-     */
-    EmailAddressNames,
 
     /**
      * The EmailAddressParam model constructor.

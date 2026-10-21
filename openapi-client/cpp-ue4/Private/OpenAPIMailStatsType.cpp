@@ -38,6 +38,8 @@ inline FString ToString(const OpenAPIMailStatsType::TimeEnum& Value)
 		return TEXT("day");
 	case OpenAPIMailStatsType::TimeEnum::OneHour:
 		return TEXT("1h");
+	case OpenAPIMailStatsType::TimeEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIMailStatsType::TimeEnum Value (%d)"), (int)Value);
@@ -58,7 +60,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIMailStatsType::TimeEn
 		{ TEXT("7d"), OpenAPIMailStatsType::TimeEnum::SevenDays },
 		{ TEXT("24h"), OpenAPIMailStatsType::TimeEnum::TwentyFourHours },
 		{ TEXT("day"), OpenAPIMailStatsType::TimeEnum::Day },
-		{ TEXT("1h"), OpenAPIMailStatsType::TimeEnum::OneHour }, };
+		{ TEXT("1h"), OpenAPIMailStatsType::TimeEnum::OneHour },
+		{ TEXT("11184809"), OpenAPIMailStatsType::TimeEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

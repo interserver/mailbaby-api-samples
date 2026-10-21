@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+pom.xml
+src/main/java/org/openapitools/mockserver/api/BlockingApiMockServer.java
+src/main/java/org/openapitools/mockserver/api/HistoryApiMockServer.java
+src/main/java/org/openapitools/mockserver/api/SendingApiMockServer.java
+src/main/java/org/openapitools/mockserver/api/ServicesApiMockServer.java
+src/main/java/org/openapitools/mockserver/api/StatusApiMockServer.java

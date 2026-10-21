@@ -3,123 +3,74 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'mail_block_rspamd.g.dart';
 
-/// A block pattern sourced from the rspamd database.  Represents a sender whose recent messages contained suspicious subject lines (e.g. containing relay/proxy strings) repeated more than 4 times in the last 3 days. The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
-///
-/// Properties:
-/// * [from] - The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
-/// * [subject] - The suspicious subject pattern that triggered the block.
-@BuiltValue()
-abstract class MailBlockRspamd implements Built<MailBlockRspamd, MailBlockRspamdBuilder> {
-  /// The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
-  @BuiltValueField(wireName: r'from')
-  String get from;
 
-  /// The suspicious subject pattern that triggered the block.
-  @BuiltValueField(wireName: r'subject')
-  String get subject;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class MailBlockRspamd {
+  /// Returns a new [MailBlockRspamd] instance.
+  MailBlockRspamd({
 
-  MailBlockRspamd._();
+    required  this.from,
 
-  factory MailBlockRspamd([void updates(MailBlockRspamdBuilder b)]) = _$MailBlockRspamd;
+    required  this.subject,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MailBlockRspamdBuilder b) => b;
+      /// The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.
+  @JsonKey(
+    
+    name: r'from',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<MailBlockRspamd> get serializer => _$MailBlockRspamdSerializer();
+
+  final String from;
+
+
+
+      /// The suspicious subject pattern that triggered the block.
+  @JsonKey(
+    
+    name: r'subject',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String subject;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is MailBlockRspamd &&
+      other.from == from &&
+      other.subject == subject;
+
+    @override
+    int get hashCode =>
+        from.hashCode +
+        subject.hashCode;
+
+  factory MailBlockRspamd.fromJson(Map<String, dynamic> json) => _$MailBlockRspamdFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MailBlockRspamdToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$MailBlockRspamdSerializer implements PrimitiveSerializer<MailBlockRspamd> {
-  @override
-  final Iterable<Type> types = const [MailBlockRspamd, _$MailBlockRspamd];
-
-  @override
-  final String wireName = r'MailBlockRspamd';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    MailBlockRspamd object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'from';
-    yield serializers.serialize(
-      object.from,
-      specifiedType: const FullType(String),
-    );
-    yield r'subject';
-    yield serializers.serialize(
-      object.subject,
-      specifiedType: const FullType(String),
-    );
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    MailBlockRspamd object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required MailBlockRspamdBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'from':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.from = valueDes;
-          break;
-        case r'subject':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.subject = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  MailBlockRspamd deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = MailBlockRspamdBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

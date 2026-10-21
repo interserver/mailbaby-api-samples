@@ -30,7 +30,7 @@ export interface MailLogEntry {
     /**
      * Internal auto-increment database row ID.  Not meaningful outside the API.
      */
-    _id: number;
+    id: number;
     /**
      * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
      */
@@ -133,7 +133,7 @@ export interface MailLogEntry {
  * Check if a given object implements the MailLogEntry interface.
  */
 export function instanceOfMailLogEntry(value: object): value is MailLogEntry {
-    if (!('_id' in value) || value['_id'] === undefined) return false;
+    if ((!('id' in (value as Record<string, any>)) && !('_id' in (value as Record<string, any>))) || ((value as Record<string, any>)['id'] === undefined && (value as Record<string, any>)['_id'] === undefined)) return false;
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('from' in value) || value['from'] === undefined) return false;
     if (!('to' in value) || value['to'] === undefined) return false;
@@ -156,7 +156,7 @@ export function MailLogEntryFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
-        '_id': json['_id'],
+        'id': json['_id'],
         'id': json['id'],
         'from': json['from'],
         'to': json['to'],
@@ -195,7 +195,7 @@ export function MailLogEntryToJSONTyped(value?: MailLogEntry | null, ignoreDiscr
 
     return {
         
-        '_id': value['_id'],
+        '_id': value['id'],
         'id': value['id'],
         'from': value['from'],
         'to': value['to'],

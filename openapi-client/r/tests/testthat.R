@@ -1,4 +1,4 @@
 library(testthat)
-library(openapi)
+library(MailBabyR)
 
-test_check("openapi")
+test_check("MailBabyR")

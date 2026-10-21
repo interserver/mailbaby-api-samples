@@ -123,7 +123,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](doc//DenyRuleNew.md)
  - [DenyRuleRecord](doc//DenyRuleRecord.md)
  - [EmailAddressName](doc//EmailAddressName.md)
- - [EmailAddressNames](doc//EmailAddressNames.md)
  - [EmailAddressParam](doc//EmailAddressParam.md)
  - [EmailAddressTypes](doc//EmailAddressTypes.md)
  - [EmailAddressesTypes](doc//EmailAddressesTypes.md)

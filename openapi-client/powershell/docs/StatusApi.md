@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools\Api.StatusApi
+# MailBabyPowershell.MailBabyPowershell\Api.StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 

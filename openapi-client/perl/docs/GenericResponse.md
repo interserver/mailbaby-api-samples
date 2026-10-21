@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::GenericResponse
+# WWW::OpenAPIClient::Object::GenericResponse
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::GenericResponse;
+use WWW::OpenAPIClient::Object::GenericResponse;
 ```
 
 ## Properties

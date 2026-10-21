@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailBlockRspamd
 void main() {
-  final instance = MailBlockRspamdBuilder();
-  // TODO add properties to the builder and call build()
+  final MailBlockRspamd? instance = /* MailBlockRspamd(...) */ null;
+  // TODO add properties to the entity
 
   group(MailBlockRspamd, () {
     // The sender email address.  Pass this value as `email` to `POST /mail/blocks/delete` to delist the sender.

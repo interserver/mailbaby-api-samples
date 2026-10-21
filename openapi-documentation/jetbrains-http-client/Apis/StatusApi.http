@@ -1,0 +1,7 @@
+## StatusApi
+
+### Health check — verify the API is reachable
+## Health check — verify the API is reachable
+GET https://api.mailbaby.net/ping
+Accept: text/plain
+Accept: application/json

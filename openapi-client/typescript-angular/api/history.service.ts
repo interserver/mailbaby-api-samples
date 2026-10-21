@@ -11,7 +11,7 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
 import { Observable }                                        from 'rxjs';
 import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
@@ -50,10 +50,10 @@ export class HistoryService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<MailStatsType>;
-    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<MailStatsType>>;
-    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<MailStatsType>>;
-    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<MailStatsType>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<MailStatsType>>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<MailStatsType>>;
+    public getStats(time?: 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
 
@@ -78,6 +78,9 @@ export class HistoryService extends BaseService {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
@@ -95,11 +98,13 @@ export class HistoryService extends BaseService {
         const { basePath, withCredentials } = this.configuration;
         return this.httpClient.request<MailStatsType>('get', `${basePath}${localVarPath}`,
             {
+                context: localVarHttpContext,
                 params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -131,10 +136,10 @@ export class HistoryService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<MailLog>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<MailLog>>;
-    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<MailLog>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<MailLog>>;
+    public viewMailLog(id?: number, origin?: string, mx?: string, from?: string, to?: string, subject?: string, mailid?: string, messageId?: string, replyto?: string, headerfrom?: string, delivered?: 0 | 1, skip?: number, limit?: number, startDate?: DateOrTimestamp, endDate?: DateOrTimestamp, sort?: 'time', dir?: 'asc' | 'desc', groupby?: 'message' | 'recipient', observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarQueryParameters = new OpenApiHttpParams(this.encoder);
 
@@ -312,6 +317,9 @@ export class HistoryService extends BaseService {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
@@ -329,11 +337,13 @@ export class HistoryService extends BaseService {
         const { basePath, withCredentials } = this.configuration;
         return this.httpClient.request<MailLog>('get', `${basePath}${localVarPath}`,
             {
+                context: localVarHttpContext,
                 params: localVarQueryParameters.toHttpParams(),
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

@@ -17,7 +17,6 @@ model/dateOrTimestamp.ts
 model/denyRuleNew.ts
 model/denyRuleRecord.ts
 model/emailAddressName.ts
-model/emailAddressNames.ts
 model/emailAddressParam.ts
 model/emailAddressTypes.ts
 model/emailAddressesTypes.ts
@@ -39,5 +38,6 @@ model/sendMailAdv.ts
 model/sendMailRaw.ts
 model/sendMailTo.ts
 param.ts
+provide-api.ts
 query.params.ts
 variables.ts

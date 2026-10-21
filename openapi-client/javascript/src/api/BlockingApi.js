@@ -145,15 +145,15 @@ export default class BlockingApi {
     /**
      * Delist an email address from the spam-filter block lists
      * **Destructive — wipes block records for the given address.** Required: `email` (must be a valid address; typically a `from` value previously returned by `GET /mail/blocks` or `GET /mail/log`). Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. 
-     * @param {module:model/EmailAddressParam} EmailAddressParam 
+     * @param {module:model/EmailAddressParam} emailAddressParam 
      * @param {module:api/BlockingApi~delistBlockCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    delistBlock(EmailAddressParam, callback) {
-      let postBody = EmailAddressParam;
-      // verify the required parameter 'EmailAddressParam' is set
-      if (EmailAddressParam === undefined || EmailAddressParam === null) {
-        throw new Error("Missing the required parameter 'EmailAddressParam' when calling delistBlock");
+    delistBlock(emailAddressParam, callback) {
+      let postBody = emailAddressParam;
+      // verify the required parameter 'emailAddressParam' is set
+      if (emailAddressParam === undefined || emailAddressParam === null) {
+        throw new Error("Missing the required parameter 'emailAddressParam' when calling delistBlock");
       }
 
       let pathParams = {

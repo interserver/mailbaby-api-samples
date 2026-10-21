@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+README.md
+Setup.hs
+lib/MailBabyEmailDeliveryAndManagementService/API.hs
+lib/MailBabyEmailDeliveryAndManagementService/Types.hs
+mailbaby-email-delivery-and-management-service.cabal
+stack.yaml

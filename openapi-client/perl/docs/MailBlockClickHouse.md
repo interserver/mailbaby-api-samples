@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::MailBlockClickHouse
+# WWW::OpenAPIClient::Object::MailBlockClickHouse
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::MailBlockClickHouse;
+use WWW::OpenAPIClient::Object::MailBlockClickHouse;
 ```
 
 ## Properties

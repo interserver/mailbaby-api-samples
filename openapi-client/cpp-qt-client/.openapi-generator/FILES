@@ -12,8 +12,6 @@ client/OAIDenyRuleRecord.cpp
 client/OAIDenyRuleRecord.h
 client/OAIEmailAddressName.cpp
 client/OAIEmailAddressName.h
-client/OAIEmailAddressNames.cpp
-client/OAIEmailAddressNames.h
 client/OAIEmailAddressParam.cpp
 client/OAIEmailAddressParam.h
 client/OAIEmailAddressTypes.cpp
@@ -72,4 +70,4 @@ client/OAIServicesApi.cpp
 client/OAIServicesApi.h
 client/OAIStatusApi.cpp
 client/OAIStatusApi.h
-client/OAIclient.pri
+client/client.pri

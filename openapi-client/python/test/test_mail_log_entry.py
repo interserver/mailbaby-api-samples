@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.mail_log_entry import MailLogEntry
+from MailBabyPython.models.mail_log_entry import MailLogEntry
 
 class TestMailLogEntry(unittest.TestCase):
     """MailLogEntry unit test stubs"""

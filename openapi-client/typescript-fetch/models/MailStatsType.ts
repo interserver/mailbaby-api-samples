@@ -69,6 +69,7 @@ export const MailStatsTypeTimeEnum = {
     TwentyFourHours: '24h',
     Day: 'day',
     OneHour: '1h',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type MailStatsTypeTimeEnum = typeof MailStatsTypeTimeEnum[keyof typeof MailStatsTypeTimeEnum];
 

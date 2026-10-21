@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailLog
 void main() {
-  final instance = MailLogBuilder();
-  // TODO add properties to the builder and call build()
+  final MailLog? instance = /* MailLog(...) */ null;
+  // TODO add properties to the entity
 
   group(MailLog, () {
     // Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`.
@@ -25,7 +25,7 @@ void main() {
       // TODO
     });
 
-    // BuiltList<MailLogEntry> emails
+    // List<MailLogEntry> emails
     test('to test the property `emails`', () async {
       // TODO
     });

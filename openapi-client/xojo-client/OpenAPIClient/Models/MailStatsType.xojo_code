@@ -63,7 +63,8 @@ Protected Class MailStatsType
         TwentyFourHours
         Day
         OneHour
-        
+        UnknownDefaultOpenApi
+        Unknown
     #tag EndEnum
 
 
@@ -85,7 +86,10 @@ Protected Class MailStatsType
 		      Return "day"
 		    Case TimeEnum.OneHour
 		      Return "1h"
-		    
+		    Case TimeEnum.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function

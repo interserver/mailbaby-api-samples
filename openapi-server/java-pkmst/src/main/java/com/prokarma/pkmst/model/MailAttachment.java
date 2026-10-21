@@ -1,0 +1,100 @@
+package com.prokarma.pkmst.model;
+
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+/**
+ * Response class to be returned by Api
+ * @author pkmst
+ *
+ */
+/**
+ * A file attachment for use with &#x60;POST /mail/advsend&#x60;.  The file content must be base64-encoded.  The &#x60;filename&#x60; is shown to recipients in their email client.
+ */
+@ApiModel(description = "A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.")
+
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaPKMSTServerCodegen", comments = "Generator version: 7.26.0")
+public class MailAttachment   {
+  @JsonProperty("filename")
+  private String filename;
+
+  @JsonProperty("data")
+  private byte[] data;
+
+  public MailAttachment filename(String filename) {
+    this.filename = filename;
+    return this;
+  }
+
+  /**
+   * The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
+   * @return filename
+   */
+  @ApiModelProperty(example = "message.txt", required = true, value = "The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).")
+  public String getFilename() {
+    return filename;
+  }
+
+  public void setFilename(String filename) {
+    this.filename = filename;
+  }
+
+  public MailAttachment data(byte[] data) {
+    this.data = data;
+    return this;
+  }
+
+  /**
+   * The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
+   * @return data
+   */
+  @ApiModelProperty(example = "[B@52b46d52", required = true, value = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.")
+  public byte[] getData() {
+    return data;
+  }
+
+  public void setData(byte[] data) {
+    this.data = data;
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    MailAttachment mailAttachment = (MailAttachment) o;
+    return Objects.equals(this.filename, mailAttachment.filename) &&
+        Objects.equals(this.data, mailAttachment.data);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(filename, data);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class MailAttachment {\n");
+    
+    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+}
+

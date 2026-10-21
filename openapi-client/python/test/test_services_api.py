@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.services_api import ServicesApi
+from MailBabyPython.api.services_api import ServicesApi
 
 
 class TestServicesApi(unittest.TestCase):

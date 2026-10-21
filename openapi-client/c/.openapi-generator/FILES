@@ -22,7 +22,6 @@ docs/date_or_timestamp.md
 docs/deny_rule_new.md
 docs/deny_rule_record.md
 docs/email_address_name.md
-docs/email_address_names.md
 docs/email_address_param.md
 docs/email_address_types.md
 docs/email_addresses_types.md
@@ -59,8 +58,6 @@ model/deny_rule_record.c
 model/deny_rule_record.h
 model/email_address_name.c
 model/email_address_name.h
-model/email_address_names.c
-model/email_address_names.h
 model/email_address_param.c
 model/email_address_param.h
 model/email_address_types.c
@@ -110,7 +107,6 @@ unit-test/test_date_or_timestamp.c
 unit-test/test_deny_rule_new.c
 unit-test/test_deny_rule_record.c
 unit-test/test_email_address_name.c
-unit-test/test_email_address_names.c
 unit-test/test_email_address_param.c
 unit-test/test_email_address_types.c
 unit-test/test_email_addresses_types.c

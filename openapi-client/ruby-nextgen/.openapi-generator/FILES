@@ -21,7 +21,6 @@ lib/openapi_client/models/date_or_timestamp.rb
 lib/openapi_client/models/deny_rule_new.rb
 lib/openapi_client/models/deny_rule_record.rb
 lib/openapi_client/models/email_address_name.rb
-lib/openapi_client/models/email_address_names.rb
 lib/openapi_client/models/email_address_param.rb
 lib/openapi_client/models/email_address_types.rb
 lib/openapi_client/models/email_addresses_types.rb
@@ -54,7 +53,6 @@ spec/models/date_or_timestamp_spec.rb
 spec/models/deny_rule_new_spec.rb
 spec/models/deny_rule_record_spec.rb
 spec/models/email_address_name_spec.rb
-spec/models/email_address_names_spec.rb
 spec/models/email_address_param_spec.rb
 spec/models/email_address_types_spec.rb
 spec/models/email_addresses_types_spec.rb

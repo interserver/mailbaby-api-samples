@@ -9,6 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field status Always `\"ok\"` on success. character
 #' @field text Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation. character
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,14 +19,17 @@ GenericResponse <- R6::R6Class(
   public = list(
     `status` = NULL,
     `text` = NULL,
+    `_field_list` = c("status", "text"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new GenericResponse class.
     #'
     #' @param status Always `\"ok\"` on success.
     #' @param text Operation-specific result string.  For send operations this is the relay transaction ID (e.g. `185caa69ff7000f47c`) which can be used as the `mailid` parameter in `GET /mail/log`.  For create operations this is the new record's numeric ID.  For delete operations this is a human-readable confirmation.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`status`, `text`, ...) {
+    initialize = function(`status`, `text`, additional_properties = NULL, ...) {
       if (!missing(`status`)) {
         if (!(is.character(`status`) && length(`status`) == 1)) {
           stop(paste("Error! Invalid data for `status`. Must be a string:", `status`))
@@ -36,6 +41,11 @@ GenericResponse <- R6::R6Class(
           stop(paste("Error! Invalid data for `text`. Must be a string:", `text`))
         }
         self$`text` <- `text`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -78,6 +88,10 @@ GenericResponse <- R6::R6Class(
         GenericResponseObject[["text"]] <-
           self$`text`
       }
+      for (key in names(self$additional_properties)) {
+        GenericResponseObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(GenericResponseObject)
     },
 
@@ -94,6 +108,13 @@ GenericResponse <- R6::R6Class(
       if (!is.null(this_object$`text`)) {
         self$`text` <- this_object$`text`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -104,6 +125,9 @@ GenericResponse <- R6::R6Class(
     #' @return GenericResponse in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -117,6 +141,13 @@ GenericResponse <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`status` <- this_object$`status`
       self$`text` <- this_object$`text`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

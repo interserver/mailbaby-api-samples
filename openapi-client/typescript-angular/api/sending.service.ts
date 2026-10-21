@@ -11,7 +11,7 @@
 
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent
+         HttpResponse, HttpEvent, HttpContext 
         }       from '@angular/common/http';
 import { Observable }                                        from 'rxjs';
 import { OpenApiHttpParams, QueryParamStyle } from '../query.params';
@@ -56,10 +56,10 @@ export class SendingService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public rawMail(sendMailRaw: SendMailRaw, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<GenericResponse>;
-    public rawMail(sendMailRaw: SendMailRaw, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<GenericResponse>>;
-    public rawMail(sendMailRaw: SendMailRaw, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<GenericResponse>>;
-    public rawMail(sendMailRaw: SendMailRaw, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public rawMail(sendMailRaw: SendMailRaw, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<GenericResponse>;
+    public rawMail(sendMailRaw: SendMailRaw, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GenericResponse>>;
+    public rawMail(sendMailRaw: SendMailRaw, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GenericResponse>>;
+    public rawMail(sendMailRaw: SendMailRaw, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (sendMailRaw === null || sendMailRaw === undefined) {
             throw new Error('Required parameter sendMailRaw was null or undefined when calling rawMail.');
         }
@@ -76,6 +76,9 @@ export class SendingService extends BaseService {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
 
         // to determine the Content-Type header
@@ -103,11 +106,13 @@ export class SendingService extends BaseService {
         const { basePath, withCredentials } = this.configuration;
         return this.httpClient.request<GenericResponse>('post', `${basePath}${localVarPath}`,
             {
+                context: localVarHttpContext,
                 body: sendMailRaw,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -130,10 +135,10 @@ export class SendingService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<GenericResponse>;
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<GenericResponse>>;
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<GenericResponse>>;
-    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<GenericResponse>;
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GenericResponse>>;
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GenericResponse>>;
+    public sendAdvMail(subject: string, body: string, from: EmailAddressTypes, to: EmailAddressesTypes, replyto?: EmailAddressesTypes, cc?: EmailAddressesTypes, bcc?: EmailAddressesTypes, attachments?: Array<MailAttachment>, id?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (subject === null || subject === undefined) {
             throw new Error('Required parameter subject was null or undefined when calling sendAdvMail.');
         }
@@ -159,6 +164,9 @@ export class SendingService extends BaseService {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
         // to determine the Content-Type header
         const consumes: string[] = [
@@ -226,11 +234,13 @@ export class SendingService extends BaseService {
         const { basePath, withCredentials } = this.configuration;
         return this.httpClient.request<GenericResponse>('post', `${basePath}${localVarPath}`,
             {
+                context: localVarHttpContext,
                 body: localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );
@@ -249,10 +259,10 @@ export class SendingService extends BaseService {
      * @param reportProgress flag to report request and response progress.
      * @param options additional options
      */
-    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<GenericResponse>;
-    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpResponse<GenericResponse>>;
-    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json',}): Observable<HttpEvent<GenericResponse>>;
-    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json',}): Observable<any> {
+    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<GenericResponse>;
+    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GenericResponse>>;
+    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GenericResponse>>;
+    public sendMail(to: SendMailTo, from: string, subject: string, body: string, id?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (to === null || to === undefined) {
             throw new Error('Required parameter to was null or undefined when calling sendMail.');
         }
@@ -278,6 +288,9 @@ export class SendingService extends BaseService {
             localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
         }
 
+        const localVarHttpContext: HttpContext = options?.context ?? new HttpContext();
+
+        const localVarTransferCache: boolean = options?.transferCache ?? true;
 
         // to determine the Content-Type header
         const consumes: string[] = [
@@ -327,11 +340,13 @@ export class SendingService extends BaseService {
         const { basePath, withCredentials } = this.configuration;
         return this.httpClient.request<GenericResponse>('post', `${basePath}${localVarPath}`,
             {
+                context: localVarHttpContext,
                 body: localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
                 responseType: <any>responseType_,
                 ...(withCredentials ? { withCredentials } : {}),
                 headers: localVarHeaders,
                 observe: observe,
+                ...(localVarTransferCache !== undefined ? { transferCache: localVarTransferCache } : {}),
                 reportProgress: reportProgress
             }
         );

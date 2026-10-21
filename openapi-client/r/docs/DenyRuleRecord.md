@@ -1,4 +1,4 @@
-# openapi::DenyRuleRecord
+# MailBabyR::DenyRuleRecord
 
 A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
 

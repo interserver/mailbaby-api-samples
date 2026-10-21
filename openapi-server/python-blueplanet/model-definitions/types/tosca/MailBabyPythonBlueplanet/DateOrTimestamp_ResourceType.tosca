@@ -1,0 +1,30 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet DateOrTimestamp"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a DateOrTimestamp"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  DateOrTimestamp {
+    title = DateOrTimestamp
+    description = DateOrTimestamp
+    derivedFrom = Root
+    properties {
+    }
+  }
+}
+
+serviceTemplates {
+
+  DateOrTimestamp {
+    title = DateOrTimestamp
+    description = DateOrTimestamp
+    implements = MailBabyPythonBlueplanet.resourceTypes.DateOrTimestamp
+
+  }
+}

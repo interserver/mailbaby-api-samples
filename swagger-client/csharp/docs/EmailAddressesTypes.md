@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Model.EmailAddressesTypes
+# MailBabyCsharp.Model.EmailAddressesTypes
 ## Properties
 
 Name | Type | Description | Notes

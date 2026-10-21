@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('OpenAPIClient::BlockingApi');
+use_ok('WWW::OpenAPIClient::BlockingApi');
 
-my $api = OpenAPIClient::BlockingApi->new();
-isa_ok($api, 'OpenAPIClient::BlockingApi');
+my $api = WWW::OpenAPIClient::BlockingApi->new();
+isa_ok($api, 'WWW::OpenAPIClient::BlockingApi');
 
 #
 # add_rule test

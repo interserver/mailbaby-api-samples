@@ -18,7 +18,7 @@ Account usage, cost, and volume statistics for a time window
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = HistoryApi()
@@ -65,7 +65,7 @@ Query the mail delivery log (filterable, paginated)
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = HistoryApi()

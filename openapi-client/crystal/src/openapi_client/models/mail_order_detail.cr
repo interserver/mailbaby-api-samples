@@ -36,7 +36,7 @@ module OpenAPIClient
     @[JSON::Field(key: "comment", emit_null: false)]
     property comment : String?
 
-    validates(status, String, false, enum: ["active", "canceled"])
+    validates(status, String, false, enum: ["active", "canceled", "unknown_default_open_api"])
     validates(username, String, false, pattern: /^mb\d+$/)
 
     # List of class defined in allOf (OpenAPI v3)

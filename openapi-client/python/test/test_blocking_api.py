@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.blocking_api import BlockingApi
+from MailBabyPython.api.blocking_api import BlockingApi
 
 
 class TestBlockingApi(unittest.TestCase):

@@ -1,0 +1,6 @@
+.openapi-generator-ignore
+BlockingApi.conf
+HistoryApi.conf
+SendingApi.conf
+ServicesApi.conf
+StatusApi.conf

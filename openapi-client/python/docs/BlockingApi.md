@@ -1,4 +1,4 @@
-# openapi_client.BlockingApi
+# MailBabyPython.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -34,14 +34,14 @@ On success the response `text` field contains the newly created rule's `id`, whi
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.generic_response import GenericResponse
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.generic_response import GenericResponse
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -57,9 +57,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BlockingApi(api_client)
+    api_instance = MailBabyPython.BlockingApi(api_client)
     type = 'type_example' # str | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
     data = 'data_example' # str | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
     user = 'user_example' # str | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional)
@@ -125,14 +125,14 @@ Only rules belonging to your own active mail account(s) can be deleted — the s
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.generic_response import GenericResponse
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.generic_response import GenericResponse
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -148,9 +148,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BlockingApi(api_client)
+    api_instance = MailBabyPython.BlockingApi(api_client)
     rule_id = 34 # int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
     try:
@@ -213,15 +213,15 @@ Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.email_address_param import EmailAddressParam
-from openapi_client.models.generic_response import GenericResponse
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.email_address_param import EmailAddressParam
+from MailBabyPython.models.generic_response import GenericResponse
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -237,9 +237,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BlockingApi(api_client)
+    api_instance = MailBabyPython.BlockingApi(api_client)
     email_address_param = {"email":"client@domain.com"} # EmailAddressParam | 
 
     try:
@@ -310,14 +310,14 @@ A sender address returned in any of these lists can be delisted using `POST /mai
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.mail_blocks import MailBlocks
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_blocks import MailBlocks
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -333,9 +333,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BlockingApi(api_client)
+    api_instance = MailBabyPython.BlockingApi(api_client)
 
     try:
         # List addresses currently flagged by spam-filter block lists
@@ -392,14 +392,14 @@ Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to rem
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.deny_rule_record import DenyRuleRecord
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.deny_rule_record import DenyRuleRecord
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -415,9 +415,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BlockingApi(api_client)
+    api_instance = MailBabyPython.BlockingApi(api_client)
 
     try:
         # List custom deny rules (sender / domain / destination / prefix)

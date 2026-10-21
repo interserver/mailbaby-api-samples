@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Model.AllOfSendMailAdvBcc
+# MailBabyCsharp.Model.AllOfSendMailAdvBcc
 ## Properties
 
 Name | Type | Description | Notes

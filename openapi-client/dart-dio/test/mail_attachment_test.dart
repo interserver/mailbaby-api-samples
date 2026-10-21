@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for MailAttachment
 void main() {
-  final instance = MailAttachmentBuilder();
-  // TODO add properties to the builder and call build()
+  final MailAttachment? instance = /* MailAttachment(...) */ null;
+  // TODO add properties to the entity
 
   group(MailAttachment, () {
     // The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).

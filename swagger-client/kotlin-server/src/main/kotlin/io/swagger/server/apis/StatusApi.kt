@@ -30,8 +30,8 @@ import io.ktor.response.respondText
 import io.ktor.routing.Route
 import io.ktor.routing.route
 
-import mailbaby-client-kotlin-server.Paths
-import mailbaby-client-kotlin-server.infrastructure.ApiPrincipal
+import MailBabyKotlinServer.Paths
+import MailBabyKotlinServer.infrastructure.ApiPrincipal
 
 
 

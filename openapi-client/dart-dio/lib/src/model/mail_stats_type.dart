@@ -3,258 +3,188 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/mail_stats_volume.dart';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'mail_stats_type.g.dart';
 
-/// Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
-///
-/// Properties:
-/// * [time] - The time window these `received`, `sent`, and `volume` statistics cover.
-/// * [usage] - Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
-/// * [currency] - The ISO 4217 currency code for this account (e.g. `USD`).
-/// * [cost] - Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
-/// * [received] - Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
-/// * [sent] - Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
-/// * [volume] 
-@BuiltValue()
-abstract class MailStatsType implements Built<MailStatsType, MailStatsTypeBuilder> {
-  /// The time window these `received`, `sent`, and `volume` statistics cover.
-  @BuiltValueField(wireName: r'time')
-  MailStatsTypeTimeEnum? get time;
-  // enum timeEnum {  all,  billing,  month,  7d,  24h,  day,  1h,  };
 
-  /// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
-  @BuiltValueField(wireName: r'usage')
-  int? get usage;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class MailStatsType {
+  /// Returns a new [MailStatsType] instance.
+  MailStatsType({
 
-  /// The ISO 4217 currency code for this account (e.g. `USD`).
-  @BuiltValueField(wireName: r'currency')
-  String? get currency;
+     this.time = const MailStatsTypeTimeEnum._('1h'),
 
-  /// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
-  @BuiltValueField(wireName: r'cost')
-  double? get cost;
+     this.usage,
 
-  /// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
-  @BuiltValueField(wireName: r'received')
-  int? get received;
+     this.currency,
 
-  /// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
-  @BuiltValueField(wireName: r'sent')
-  int? get sent;
+     this.cost,
 
-  @BuiltValueField(wireName: r'volume')
-  MailStatsVolume? get volume;
+     this.received,
 
-  MailStatsType._();
+     this.sent,
 
-  factory MailStatsType([void updates(MailStatsTypeBuilder b)]) = _$MailStatsType;
+     this.volume,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(MailStatsTypeBuilder b) => b
-      ..time = MailStatsTypeTimeEnum.valueOf('1h');
+      /// The time window these `received`, `sent`, and `volume` statistics cover.
+  @JsonKey(
+    defaultValue: '1h',
+    name: r'time',
+    required: false,
+    includeIfNull: false,
+  unknownEnumValue: MailStatsTypeTimeEnum.unknownDefaultOpenApi,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<MailStatsType> get serializer => _$MailStatsTypeSerializer();
+
+  final MailStatsTypeTimeEnum? time;
+
+
+
+      /// Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.
+  @JsonKey(
+    
+    name: r'usage',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? usage;
+
+
+
+      /// The ISO 4217 currency code for this account (e.g. `USD`).
+  @JsonKey(
+    
+    name: r'currency',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? currency;
+
+
+
+      /// Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).
+  @JsonKey(
+    
+    name: r'cost',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final double? cost;
+
+
+
+      /// Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.
+  @JsonKey(
+    
+    name: r'received',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? received;
+
+
+
+      /// Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.
+  @JsonKey(
+    
+    name: r'sent',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final int? sent;
+
+
+
+  @JsonKey(
+    
+    name: r'volume',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final MailStatsVolume? volume;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is MailStatsType &&
+      other.time == time &&
+      other.usage == usage &&
+      other.currency == currency &&
+      other.cost == cost &&
+      other.received == received &&
+      other.sent == sent &&
+      other.volume == volume;
+
+    @override
+    int get hashCode =>
+        time.hashCode +
+        usage.hashCode +
+        currency.hashCode +
+        cost.hashCode +
+        received.hashCode +
+        sent.hashCode +
+        volume.hashCode;
+
+  factory MailStatsType.fromJson(Map<String, dynamic> json) => _$MailStatsTypeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MailStatsTypeToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$MailStatsTypeSerializer implements PrimitiveSerializer<MailStatsType> {
-  @override
-  final Iterable<Type> types = const [MailStatsType, _$MailStatsType];
-
-  @override
-  final String wireName = r'MailStatsType';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    MailStatsType object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.time != null) {
-      yield r'time';
-      yield serializers.serialize(
-        object.time,
-        specifiedType: const FullType(MailStatsTypeTimeEnum),
-      );
-    }
-    if (object.usage != null) {
-      yield r'usage';
-      yield serializers.serialize(
-        object.usage,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.currency != null) {
-      yield r'currency';
-      yield serializers.serialize(
-        object.currency,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.cost != null) {
-      yield r'cost';
-      yield serializers.serialize(
-        object.cost,
-        specifiedType: const FullType(double),
-      );
-    }
-    if (object.received != null) {
-      yield r'received';
-      yield serializers.serialize(
-        object.received,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.sent != null) {
-      yield r'sent';
-      yield serializers.serialize(
-        object.sent,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.volume != null) {
-      yield r'volume';
-      yield serializers.serialize(
-        object.volume,
-        specifiedType: const FullType(MailStatsVolume),
-      );
-    }
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    MailStatsType object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required MailStatsTypeBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'time':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(MailStatsTypeTimeEnum),
-          ) as MailStatsTypeTimeEnum?;
-          if (valueDes == null) continue;
-          result.time = valueDes;
-          break;
-        case r'usage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.usage = valueDes;
-          break;
-        case r'currency':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.currency = valueDes;
-          break;
-        case r'cost':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(double),
-          ) as double?;
-          if (valueDes == null) continue;
-          result.cost = valueDes;
-          break;
-        case r'received':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.received = valueDes;
-          break;
-        case r'sent':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(int),
-          ) as int?;
-          if (valueDes == null) continue;
-          result.sent = valueDes;
-          break;
-        case r'volume':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(MailStatsVolume),
-          ) as MailStatsVolume?;
-          if (valueDes == null) continue;
-          result.volume.replace(valueDes);
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  MailStatsType deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = MailStatsTypeBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 
 /// The time window these `received`, `sent`, and `volume` statistics cover.
-class MailStatsTypeTimeEnum extends EnumClass {
+enum MailStatsTypeTimeEnum {
+@JsonValue(r'all')
+All(r'all'),
+@JsonValue(r'billing')
+Billing(r'billing'),
+@JsonValue(r'month')
+Month(r'month'),
+@JsonValue(r'7d')
+SevenDays(r'7d'),
+@JsonValue(r'24h')
+TwentyFourHours(r'24h'),
+@JsonValue(r'day')
+Day(r'day'),
+@JsonValue(r'1h')
+OneHour(r'1h'),
+@JsonValue(r'unknown_default_open_api')
+unknownDefaultOpenApi(r'unknown_default_open_api');
 
-  @BuiltValueEnumConst(wireName: r'all')
-  static const MailStatsTypeTimeEnum All = _$mailStatsTypeTimeEnum_All;
-  @BuiltValueEnumConst(wireName: r'billing')
-  static const MailStatsTypeTimeEnum Billing = _$mailStatsTypeTimeEnum_Billing;
-  @BuiltValueEnumConst(wireName: r'month')
-  static const MailStatsTypeTimeEnum Month = _$mailStatsTypeTimeEnum_Month;
-  @BuiltValueEnumConst(wireName: r'7d')
-  static const MailStatsTypeTimeEnum SevenDays = _$mailStatsTypeTimeEnum_SevenDays;
-  @BuiltValueEnumConst(wireName: r'24h')
-  static const MailStatsTypeTimeEnum TwentyFourHours = _$mailStatsTypeTimeEnum_TwentyFourHours;
-  @BuiltValueEnumConst(wireName: r'day')
-  static const MailStatsTypeTimeEnum Day = _$mailStatsTypeTimeEnum_Day;
-  @BuiltValueEnumConst(wireName: r'1h')
-  static const MailStatsTypeTimeEnum OneHour = _$mailStatsTypeTimeEnum_OneHour;
+const MailStatsTypeTimeEnum(this.value);
 
-  static Serializer<MailStatsTypeTimeEnum> get serializer => _$mailStatsTypeTimeEnumSerializer;
+final String value;
 
-  const MailStatsTypeTimeEnum._(String name): super(name);
-
-  static BuiltSet<MailStatsTypeTimeEnum> get values => _$mailStatsTypeTimeEnumValues;
-  static MailStatsTypeTimeEnum valueOf(String name) => _$mailStatsTypeTimeEnumValueOf(name);
+@override
+String toString() => value;
 }
+
 

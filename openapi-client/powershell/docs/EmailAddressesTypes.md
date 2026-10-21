@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$EmailAddressesTypes = Initialize-PSOpenAPIToolsEmailAddressesTypes 
+$EmailAddressesTypes = Initialize-MailBabyPowershellEmailAddressesTypes 
 ```
 
 - Convert the resource to JSON

@@ -1,4 +1,4 @@
-# openapi-client
+# MailBabyPython
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
 # Overview
@@ -66,7 +66,7 @@ pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 
 Then import the package:
 ```python
-import openapi_client
+import MailBabyPython
 ```
 
 ### Setuptools
@@ -80,7 +80,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import openapi_client
+import MailBabyPython
 ```
 
 ### Tests
@@ -93,13 +93,13 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 
-import openapi_client
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -116,9 +116,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BlockingApi(api_client)
+    api_instance = MailBabyPython.BlockingApi(api_client)
     type = 'type_example' # str | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
     data = 'data_example' # str | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
     user = 'user_example' # str | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional)
@@ -160,7 +160,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
- - [EmailAddressNames](docs/EmailAddressNames.md)
  - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)

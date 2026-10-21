@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::DateOrTimestamp');
+use_ok('WWW::OpenAPIClient::Object::DateOrTimestamp');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::DateOrTimestamp->new();
+#my $instance = WWW::OpenAPIClient::Object::DateOrTimestamp->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::DateOrTimestamp');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::DateOrTimestamp');
 
 
 done_testing();

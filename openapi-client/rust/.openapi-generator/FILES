@@ -8,7 +8,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -45,7 +44,6 @@ src/models/date_or_timestamp.rs
 src/models/deny_rule_new.rs
 src/models/deny_rule_record.rs
 src/models/email_address_name.rs
-src/models/email_address_names.rs
 src/models/email_address_param.rs
 src/models/email_address_types.rs
 src/models/email_addresses_types.rs

@@ -16,7 +16,7 @@
 #' \dontrun{
 #' ####################  RawMail  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_send_mail_raw <- SendMailRaw$new("raw_email_example", 123) # SendMailRaw | 
 #'
 #' #Send a pre-built RFC 822 message verbatim (preserves DKIM)
@@ -33,7 +33,7 @@
 #'
 #' ####################  SendAdvMail  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_subject <- "subject_example" # character | The subject line of the email.
 #' var_body <- "body_example" # character | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 #' var_from <- EmailAddressTypes$new("email_example", "name_example") # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
@@ -58,7 +58,7 @@
 #'
 #' ####################  SendMail  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_to <- SendMailTo$new() # SendMailTo | 
 #' var_from <- "from_example" # character | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 #' var_subject <- "subject_example" # character | The subject line of the email.

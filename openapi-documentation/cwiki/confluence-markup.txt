@@ -1790,14 +1790,6 @@ h2. Models
          |email |(/) |{noformat:nopanel=true}String{noformat} | The email address. |  | user@domain.com
          |name |(x) |{noformat:nopanel=true}String{noformat} | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header). |  | John Smith
          
-        {anchor:EmailAddressNamesModelAnchor}
-        h3. EmailAddressNames
-
-        An array of email contacts, each with an email address and optional display name.
-
-        
-        ||Field Name||Required||Type||Description||Enum||Example||
-         
         {anchor:EmailAddressParamModelAnchor}
         h3. EmailAddressParam
 

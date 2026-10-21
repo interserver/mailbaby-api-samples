@@ -9,7 +9,6 @@ internal/client/model_date_or_timestamp.go
 internal/client/model_deny_rule_new.go
 internal/client/model_deny_rule_record.go
 internal/client/model_email_address_name.go
-internal/client/model_email_address_names.go
 internal/client/model_email_address_param.go
 internal/client/model_email_address_types.go
 internal/client/model_email_addresses_types.go

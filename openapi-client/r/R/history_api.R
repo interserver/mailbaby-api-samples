@@ -16,7 +16,7 @@
 #' \dontrun{
 #' ####################  GetStats  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_time <- "1h" # character | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (Optional)
 #'
 #' #Account usage, cost, and volume statistics for a time window
@@ -33,7 +33,7 @@
 #'
 #' ####################  ViewMailLog  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #' var_id <- 2604 # integer | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`. (Optional)
 #' var_origin <- "1.2.3.4" # character | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (Optional)
 #' var_mx <- "mx.google.com" # character | Filter by the MX hostname the relay attempted delivery to.  For example `mx.google.com` would return messages destined for Gmail recipients. Maps to `mxHostname` in the `MailLogEntry` response. (Optional)

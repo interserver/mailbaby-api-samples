@@ -1,0 +1,41 @@
+{
+  "type": "form",
+  "version": "2.0",
+  "cells": [{
+    "label": "General",
+    "children": [
+      {"model": "label"},
+      {"model": "description"}
+    ]
+  },{
+    "label": "Details",
+    "model": "properties",
+    "children": [
+      {"model": "id" },
+      {"model": "id" },
+      {"model": "_from" },
+      {"model": "to" },
+      {"model": "created" },
+      {"model": "time" },
+      {"model": "user" },
+      {"model": "transtype" },
+      {"model": "origin" },
+      {"model": "interface" },
+      {"model": "subject" },
+      {"model": "message_id" },
+      {"model": "sending_zone" },
+      {"model": "body_size" },
+      {"model": "seq" },
+      {"model": "delivered" },
+      {"model": "code" },
+      {"model": "response" },
+      {"model": "recipient" },
+      {"model": "domain" },
+      {"model": "locked" },
+      {"model": "lock_time" },
+      {"model": "assigned" },
+      {"model": "queued" },
+      {"model": "mx_hostname" },
+    ]
+  }]
+}

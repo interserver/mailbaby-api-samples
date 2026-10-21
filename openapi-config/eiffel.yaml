@@ -1,9 +1,12 @@
-# Description: Eiffel Cluster name (convention: lowercase).
-packageName: openapi
-
-# Description: Eiffel package version.
-packageVersion: 1.0.0
-
-# Description: Hides the generation timestamp when files are generated.
-hideGenerationTimestamp: true
-
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-eiffel"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyEiffel"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$MailAttachment = Initialize-PSOpenAPIToolsMailAttachment  -Filename message.txt `
+$MailAttachment = Initialize-MailBabyPowershellMailAttachment  -Filename message.txt `
  -VarData [B@7f4701b1
 ```
 

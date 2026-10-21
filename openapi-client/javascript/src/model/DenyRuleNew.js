@@ -149,7 +149,13 @@ DenyRuleNew['TypeEnum'] = {
      * value: "destination"
      * @const
      */
-    "destination": "destination"
+    "destination": "destination",
+
+    /**
+     * value: "unknown_default_open_api"
+     * @const
+     */
+    "unknown_default_open_api": "unknown_default_open_api"
 };
 
 

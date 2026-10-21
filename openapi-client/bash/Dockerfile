@@ -37,7 +37,7 @@ line REST client for $(tput setaf 6)MailBaby Email Delivery and Management Servi
 For convenience, you can export the following environment variables:\n\
 \n\
 
-$(tput setaf 3)false$(tput sgr0) - access token, e.g. "ASDASHJDG63456asdASSD"\n\
+
 \n\
 $(tput setaf 7)Basic usage:$(tput sgr0)\n\
 \n\

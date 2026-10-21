@@ -187,7 +187,13 @@ MailOrderDetail['StatusEnum'] = {
      * value: "canceled"
      * @const
      */
-    "canceled": "canceled"
+    "canceled": "canceled",
+
+    /**
+     * value: "unknown_default_open_api"
+     * @const
+     */
+    "unknown_default_open_api": "unknown_default_open_api"
 };
 
 

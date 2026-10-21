@@ -12,6 +12,8 @@
 #' @field id The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule. character
 #' @field created The timestamp when the rule was created. character
 #' @field user Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -23,6 +25,8 @@ DenyRuleRecord <- R6::R6Class(
     `id` = NULL,
     `created` = NULL,
     `user` = NULL,
+    `_field_list` = c("type", "data", "id", "created", "user"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new DenyRuleRecord class.
@@ -32,8 +36,9 @@ DenyRuleRecord <- R6::R6Class(
     #' @param id The numeric ID of the deny rule, as a string.  Pass this as `ruleId` to `DELETE /mail/rules/{ruleId}` to remove the rule.
     #' @param created The timestamp when the rule was created.
     #' @param user Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`type`, `data`, `id`, `created`, `user` = NULL, ...) {
+    initialize = function(`type`, `data`, `id`, `created`, `user` = NULL, additional_properties = NULL, ...) {
       if (!missing(`type`)) {
         if (!(`type` %in% c("domain", "email", "startswith", "destination"))) {
           stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\", \"destination\".", sep = ""))
@@ -66,6 +71,11 @@ DenyRuleRecord <- R6::R6Class(
           stop(paste("Error! Invalid data for `user`. Must be a string:", `user`))
         }
         self$`user` <- `user`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -120,6 +130,10 @@ DenyRuleRecord <- R6::R6Class(
         DenyRuleRecordObject[["user"]] <-
           self$`user`
       }
+      for (key in names(self$additional_properties)) {
+        DenyRuleRecordObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(DenyRuleRecordObject)
     },
 
@@ -148,6 +162,13 @@ DenyRuleRecord <- R6::R6Class(
       if (!is.null(this_object$`user`)) {
         self$`user` <- this_object$`user`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -158,6 +179,9 @@ DenyRuleRecord <- R6::R6Class(
     #' @return DenyRuleRecord in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -177,6 +201,13 @@ DenyRuleRecord <- R6::R6Class(
       self$`id` <- this_object$`id`
       self$`created` <- this_object$`created`
       self$`user` <- this_object$`user`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

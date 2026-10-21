@@ -1,0 +1,64 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.",
+  "name": "MailStatsType",
+  "fields": [
+    {
+      "name": "time",
+      "type": [{
+        "type": "enum",
+        "name": "MailStatsType_time",
+        "symbols": [
+          "all",
+          "billing",
+          "month",
+          "_7d",
+          "_24h",
+          "day",
+          "_1h",
+          "11184809"
+        ]
+      }, "null"],
+      "doc": "The time window these `received`, `sent`, and `volume` statistics cover.",
+      "default": "1h"
+    },
+    {
+      "name": "usage",
+      "type": ["null", "int"],
+      "doc": "Total messages accepted during the current billing cycle.  Used to calculate the `cost` value.",
+      "default": null
+    },
+    {
+      "name": "currency",
+      "type": ["null", "string"],
+      "doc": "The ISO 4217 currency code for this account (e.g. `USD`).",
+      "default": null
+    },
+    {
+      "name": "cost",
+      "type": ["null", "double"],
+      "doc": "Estimated cost for the current billing cycle combining the base plan price and per-email charges ($0.20/1000 emails).",
+      "default": null
+    },
+    {
+      "name": "received",
+      "type": ["null", "int"],
+      "doc": "Count of messages accepted by the relay within the selected `time` window. Includes messages still in queue.",
+      "default": null
+    },
+    {
+      "name": "sent",
+      "type": ["null", "int"],
+      "doc": "Count of messages successfully delivered to the destination MX within the selected `time` window.  Will be ≤ `received`.",
+      "default": null
+    },
+    {
+      "name": "volume",
+      "type": ["null", "MailBabyAvroSchema.MailStatsVolume"],
+      "doc": "",
+      "default": null
+    }
+  ]
+
+}

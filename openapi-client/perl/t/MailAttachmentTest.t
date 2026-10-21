@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::MailAttachment');
+use_ok('WWW::OpenAPIClient::Object::MailAttachment');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::MailAttachment->new();
+#my $instance = WWW::OpenAPIClient::Object::MailAttachment->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::MailAttachment');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::MailAttachment');
 
 
 done_testing();

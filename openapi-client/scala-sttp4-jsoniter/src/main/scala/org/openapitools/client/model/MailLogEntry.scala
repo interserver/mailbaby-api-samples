@@ -19,7 +19,7 @@ import com.github.plokhotnyuk.jsoniter_scala.macros.named
    */
 case class MailLogEntry(
   /* Internal auto-increment database row ID.  Not meaningful outside the API. */
-  @named("_id") _id: Int,
+  @named("_id") id: Int,
   /* The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`. */
   @named("id") id: String,
   /* SMTP envelope `MAIL FROM` address (may differ from the `From:` header). */

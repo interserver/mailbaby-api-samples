@@ -18,9 +18,6 @@ package org.openapitools.client.model
    */
 sealed trait EmailAddressesTypes
 
-case class EmailAddressNames(
-) extends EmailAddressesTypes
-
 object EmailAddressesTypes {
 
   import org.json4s._

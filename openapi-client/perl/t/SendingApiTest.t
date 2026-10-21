@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('OpenAPIClient::SendingApi');
+use_ok('WWW::OpenAPIClient::SendingApi');
 
-my $api = OpenAPIClient::SendingApi->new();
-isa_ok($api, 'OpenAPIClient::SendingApi');
+my $api = WWW::OpenAPIClient::SendingApi->new();
+isa_ok($api, 'WWW::OpenAPIClient::SendingApi');
 
 #
 # raw_mail test

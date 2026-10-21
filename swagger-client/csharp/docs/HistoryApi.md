@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Api.HistoryApi
+# MailBabyCsharp.Api.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,9 +19,9 @@ Account usage, cost, and volume statistics for a time window
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -84,9 +84,9 @@ Query the mail delivery log (filterable, paginated)
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {

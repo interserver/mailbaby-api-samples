@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.mail_stats_volume import MailStatsVolume
+from MailBabyPython.models.mail_stats_volume import MailStatsVolume
 
 class TestMailStatsVolume(unittest.TestCase):
     """MailStatsVolume unit test stubs"""

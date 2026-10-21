@@ -10,9 +10,10 @@ import Foundation
 /** Extended mail order record including the current SMTP password.  Returned by &#x60;GET /mail/{id}&#x60;.  The &#x60;username&#x60; and &#x60;password&#x60; fields can be used to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API. */
 public struct MailOrderDetail: Sendable, Codable, Hashable {
 
-    public enum Status: String, Sendable, Codable, CaseIterable {
+    public enum Status: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case active = "active"
         case canceled = "canceled"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public static let usernameRule = StringRule(minLength: nil, maxLength: nil, pattern: "^mb\\d+$")
     /** The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. */
@@ -56,3 +57,10 @@ public struct MailOrderDetail: Sendable, Codable, Hashable {
 
 
 extension MailOrderDetail: Identifiable {}
+
+extension MailOrderDetail: UnknownCaseCheckable {
+    public var containsUnknownDefaultOpenApiCase: Bool {
+        if status == .unknownDefaultOpenApi { return true }
+        return false
+    }
+}

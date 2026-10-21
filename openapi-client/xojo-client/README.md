@@ -130,7 +130,6 @@ Class | Method | HTTP request | Description
  - [OpenAPIClient.Models.DenyRuleNew](DenyRuleNew.md)
  - [OpenAPIClient.Models.DenyRuleRecord](DenyRuleRecord.md)
  - [OpenAPIClient.Models.EmailAddressName](EmailAddressName.md)
- - [OpenAPIClient.Models.EmailAddressNames](EmailAddressNames.md)
  - [OpenAPIClient.Models.EmailAddressParam](EmailAddressParam.md)
  - [OpenAPIClient.Models.EmailAddressTypes](EmailAddressTypes.md)
  - [OpenAPIClient.Models.EmailAddressesTypes](EmailAddressesTypes.md)

@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Api.StatusApi
+# MailBabyCsharp.Api.StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -18,9 +18,9 @@ Health check — verify the API is reachable
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {

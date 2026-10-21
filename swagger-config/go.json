@@ -1,10 +1,13 @@
 {
-  "sortParamsByRequiredFlag": "true",
-  "ensureUniqueParams": "true",
-  "allowUnicodeIdentifiers": "true",
-  "hideGenerationTimestamp": "true",
-  "artifactVersion": "1.0.0",
-  "packageName": "mailbaby",
-  "gitUserId": "interserver",
-  "gitRepoId": "mailbaby-client-go"
+    "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "disallowAdditionalPropertiesIfNotPresent": "false",
+    "ensureUniqueParams": "true",
+    "enumUnknownDefaultCase": "true",
+    "gitRepoId": "mailbaby-client-go",
+    "gitUserId": "interserver",
+    "hideGenerationTimestamp": "true",
+    "legacyDiscriminatorBehavior": "false",
+    "packageName": "MailBabyGo",
+    "sortModelPropertiesByRequiredFlag": "true",
+    "sortParamsByRequiredFlag": "true"
 }

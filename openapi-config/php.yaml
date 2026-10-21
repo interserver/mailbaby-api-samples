@@ -1,18 +1,13 @@
-gitRepoId: mailbaby-client-php
-gitUserId: interserver
-sortParamsByRequiredFlag: true
-sortModelPropertiesByRequiredFlag: true
-ensureUniqueParams: true
-allowUnicodeIdentifiers: true
-prependFormOrBodyParameters: false
-legacyDiscriminatorBehavior: false
-disallowAdditionalPropertiesIfNotPresent: false
-modelPackage: Model 
-apiPackage: Api 
-variableNamingConvention: camelCase
-invokerPackage: Interserver\Mailbaby 
-packageName: MailBaby 
-srcBasePath: src
-artifactId: Api 
-artifactVersion: 1.0.0 
-hideGenerationTimestamp: true
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-php"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  library: "psr-18"
+  packageName: "MailBabyPhp"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

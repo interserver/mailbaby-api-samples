@@ -48,6 +48,7 @@ For more information, please visit [https://www.mail.baby/contact/](https://www.
 
 * Dart 2.15.0+ or Flutter 2.8.0+
 * Dio 5.0.0+ (https://pub.dev/packages/dio)
+* JSON Serializable 6.1.5+ (https://pub.dev/packages/json_serializable)
 
 ## Installation & Usage
 
@@ -125,7 +126,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](doc/DenyRuleNew.md)
  - [DenyRuleRecord](doc/DenyRuleRecord.md)
  - [EmailAddressName](doc/EmailAddressName.md)
- - [EmailAddressNames](doc/EmailAddressNames.md)
  - [EmailAddressParam](doc/EmailAddressParam.md)
  - [EmailAddressTypes](doc/EmailAddressTypes.md)
  - [EmailAddressesTypes](doc/EmailAddressesTypes.md)

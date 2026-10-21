@@ -7,8 +7,6 @@
 
 #include "EmailAddressNameTest.cpp"
 
-#include "EmailAddressNamesTest.cpp"
-
 #include "EmailAddressParamTest.cpp"
 
 #include "EmailAddressTypesTest.cpp"
@@ -87,7 +85,6 @@ void runTests(){
     
     
     RUN_TEST(test_EmailAddressName_name_is_assigned_from_json);
-    
     
     
     
@@ -364,7 +361,6 @@ void runTests(){
     
     
     RUN_TEST(test_EmailAddressName_name_is_converted_to_json);
-    
     
     
     

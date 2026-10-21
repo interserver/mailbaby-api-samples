@@ -10,9 +10,10 @@ import Foundation
 /** A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The &#x60;id&#x60; is the numeric identifier used across most API calls.  The &#x60;username&#x60; is always &#x60;mb&lt;id&gt;&#x60; and is the SMTP AUTH username for &#x60;relay.mailbaby.net&#x60;. */
 public struct MailOrder: Sendable, Codable, Hashable {
 
-    public enum Status: String, Sendable, Codable, CaseIterable {
+    public enum Status: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case active = "active"
         case canceled = "canceled"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public static let usernameRule = StringRule(minLength: nil, maxLength: nil, pattern: "^mb\\d+$")
     /** The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries. */
@@ -51,3 +52,10 @@ public struct MailOrder: Sendable, Codable, Hashable {
 
 
 extension MailOrder: Identifiable {}
+
+extension MailOrder: UnknownCaseCheckable {
+    public var containsUnknownDefaultOpenApiCase: Bool {
+        if status == .unknownDefaultOpenApi { return true }
+        return false
+    }
+}

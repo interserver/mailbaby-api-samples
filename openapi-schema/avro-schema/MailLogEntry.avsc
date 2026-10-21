@@ -1,0 +1,149 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.",
+  "name": "MailLogEntry",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "int",
+      "doc": "Internal auto-increment database row ID.  Not meaningful outside the API."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "doc": "The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`."
+    },
+    {
+      "name": "from",
+      "type": "string",
+      "doc": "SMTP envelope `MAIL FROM` address (may differ from the `From:` header)."
+    },
+    {
+      "name": "to",
+      "type": "string",
+      "doc": "SMTP envelope `RCPT TO` address."
+    },
+    {
+      "name": "created",
+      "type": "string",
+      "doc": "Human-readable creation timestamp in `YYYY-MM-DD HH:MM:SS` format."
+    },
+    {
+      "name": "time",
+      "type": "int",
+      "doc": "Unix timestamp of message acceptance.  Corresponds to the `startDate` and `endDate` filter parameters on `GET /mail/log`."
+    },
+    {
+      "name": "user",
+      "type": "string",
+      "doc": "The SMTP AUTH username used to submit the message (e.g. `mb5658`). Corresponds to the `username` field in `GET /mail` orders."
+    },
+    {
+      "name": "transtype",
+      "type": "string",
+      "doc": "SMTP transaction type negotiated with the relay (e.g. `ESMTPSA`)."
+    },
+    {
+      "name": "origin",
+      "type": "string",
+      "doc": "IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`."
+    },
+    {
+      "name": "interface",
+      "type": "string",
+      "doc": "Relay interface name that accepted the message (e.g. `feeder`)."
+    },
+    {
+      "name": "subject",
+      "type": ["null", "string"],
+      "doc": "The `Subject` header value, if available.",
+      "default": null
+    },
+    {
+      "name": "messageId",
+      "type": ["null", "string"],
+      "doc": "The `Message-ID` header value, if present.  Can be used with the `messageId` filter on `GET /mail/log` for subsequent lookups.",
+      "default": null
+    },
+    {
+      "name": "sendingZone",
+      "type": ["null", "string"],
+      "doc": "The sending zone assigned by the relay for outbound delivery.",
+      "default": null
+    },
+    {
+      "name": "bodySize",
+      "type": ["null", "int"],
+      "doc": "Size of the message body in bytes.",
+      "default": null
+    },
+    {
+      "name": "seq",
+      "type": ["null", "int"],
+      "doc": "Sequence index of this recipient in a multi-recipient message. Starts at 1.",
+      "default": null
+    },
+    {
+      "name": "delivered",
+      "type": ["null", "int"],
+      "doc": "Delivery status flag.  `1` = successfully delivered to destination MX. `0` = queued, deferred, or failed.  `null` = delivery not yet attempted. Corresponds to the `delivered` filter parameter on `GET /mail/log`.",
+      "default": null
+    },
+    {
+      "name": "code",
+      "type": ["null", "int"],
+      "doc": "The SMTP response code from the destination MX server (e.g. `250` for success, `550` for permanent failure).",
+      "default": null
+    },
+    {
+      "name": "response",
+      "type": ["null", "string"],
+      "doc": "The SMTP response string received from the destination MX server upon delivery attempt (e.g. `\"250 2.0.0 Ok queued as C91D83E128C\"`).",
+      "default": null
+    },
+    {
+      "name": "recipient",
+      "type": ["null", "string"],
+      "doc": "The specific recipient address this delivery record is for.",
+      "default": null
+    },
+    {
+      "name": "domain",
+      "type": ["null", "string"],
+      "doc": "The destination domain.  Corresponds to the `mx` filter parameter (which matches `mxHostname`, not `domain`) on `GET /mail/log`.",
+      "default": null
+    },
+    {
+      "name": "locked",
+      "type": ["null", "int"],
+      "doc": "Whether the queue entry is currently locked for delivery processing.",
+      "default": null
+    },
+    {
+      "name": "lockTime",
+      "type": ["null", "string"],
+      "doc": "Millisecond-precision timestamp of the last queue lock acquisition.",
+      "default": null
+    },
+    {
+      "name": "assigned",
+      "type": ["null", "string"],
+      "doc": "The relay server node assigned to deliver this message.",
+      "default": null
+    },
+    {
+      "name": "queued",
+      "type": ["null", "string"],
+      "doc": "ISO 8601 timestamp when the message was placed into the delivery queue.",
+      "default": null
+    },
+    {
+      "name": "mxHostname",
+      "type": ["null", "string"],
+      "doc": "The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`.",
+      "default": null
+    }
+  ]
+
+}

@@ -4,12 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/email_address_types.dart';
 import 'package:openapi/src/model/email_addresses_types.dart';
 import 'package:openapi/src/model/error_message.dart';
@@ -22,9 +21,7 @@ class SendingApi {
 
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const SendingApi(this._dio, this._serializers);
+  const SendingApi(this._dio);
 
   /// Send a pre-built RFC 822 message verbatim (preserves DKIM)
   /// **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: &#x60;raw_email&#x60; (full RFC 822 string with headers + body). Optional: &#x60;id&#x60; (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The &#x60;From&#x60; and recipient addresses are parsed automatically from the message headers (&#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, &#x60;Bcc&#x60;).  You do **not** need to specify them separately.  If an &#x60;id&#x60; is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response &#x60;text&#x60; field contains the relay transaction ID.  This ID can be used with &#x60;GET /mail/log&#x60; (via the &#x60;mailid&#x60; query parameter) to look up the delivery record. 
@@ -73,8 +70,7 @@ class SendingApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(SendMailRaw);
-      _bodyData = _serializers.serialize(sendMailRaw, specifiedType: _type);
+      _bodyData = jsonEncode(sendMailRaw);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -100,11 +96,8 @@ class SendingApi {
     GenericResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(GenericResponse),
-      ) as GenericResponse;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<GenericResponse, GenericResponse>(rawData, 'GenericResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -158,7 +151,7 @@ class SendingApi {
     EmailAddressesTypes? replyto,
     EmailAddressesTypes? cc,
     EmailAddressesTypes? bcc,
-    BuiltList<MailAttachment>? attachments,
+    List<MailAttachment>? attachments,
     int? id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -192,15 +185,15 @@ class SendingApi {
 
     try {
       _bodyData = <String, dynamic>{
-        r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
-        r'body': encodeQueryParameter(_serializers, body, const FullType(String)),
-        r'from': encodeQueryParameter(_serializers, from, const FullType(EmailAddressTypes)),
-        r'to': encodeQueryParameter(_serializers, to, const FullType(EmailAddressesTypes)),
-        if (replyto != null) r'replyto': encodeQueryParameter(_serializers, replyto, const FullType(EmailAddressesTypes)),
-        if (cc != null) r'cc': encodeQueryParameter(_serializers, cc, const FullType(EmailAddressesTypes)),
-        if (bcc != null) r'bcc': encodeQueryParameter(_serializers, bcc, const FullType(EmailAddressesTypes)),
-        if (attachments != null) r'attachments': encodeCollectionQueryParameter<MailAttachment>(_serializers, attachments, const FullType(BuiltList, [FullType(MailAttachment)]), format: ListFormat.csv,),
-        if (id != null) r'id': encodeQueryParameter(_serializers, id, const FullType(int)),
+        r'subject': subject,
+        r'body': body,
+        r'from': from,
+        r'to': to,
+        if (replyto != null) r'replyto': replyto,
+        if (cc != null) r'cc': cc,
+        if (bcc != null) r'bcc': bcc,
+        if (attachments != null) r'attachments': attachments,
+        if (id != null) r'id': id,
       };
 
     } catch(error, stackTrace) {
@@ -227,11 +220,8 @@ class SendingApi {
     GenericResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(GenericResponse),
-      ) as GenericResponse;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<GenericResponse, GenericResponse>(rawData, 'GenericResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -311,11 +301,11 @@ class SendingApi {
 
     try {
       _bodyData = <String, dynamic>{
-        r'to': encodeQueryParameter(_serializers, to, const FullType(SendMailTo)),
-        r'from': encodeQueryParameter(_serializers, from, const FullType(String)),
-        r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
-        r'body': encodeQueryParameter(_serializers, body, const FullType(String)),
-        if (id != null) r'id': encodeQueryParameter(_serializers, id, const FullType(int)),
+        r'to': to,
+        r'from': from,
+        r'subject': subject,
+        r'body': body,
+        if (id != null) r'id': id,
       };
 
     } catch(error, stackTrace) {
@@ -342,11 +332,8 @@ class SendingApi {
     GenericResponse? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(GenericResponse),
-      ) as GenericResponse;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<GenericResponse, GenericResponse>(rawData, 'GenericResponse', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(

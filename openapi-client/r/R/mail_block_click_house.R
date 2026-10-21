@@ -12,6 +12,8 @@
 #' @field subject The `Subject` header of the blocked message. character
 #' @field to The serialized list of recipients of the blocked message. character
 #' @field messageId The `Message-ID` header of the blocked message, or `null` if not present. character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -23,6 +25,8 @@ MailBlockClickHouse <- R6::R6Class(
     `subject` = NULL,
     `to` = NULL,
     `messageId` = NULL,
+    `_field_list` = c("date", "from", "subject", "to", "messageId"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailBlockClickHouse class.
@@ -32,8 +36,9 @@ MailBlockClickHouse <- R6::R6Class(
     #' @param subject The `Subject` header of the blocked message.
     #' @param to The serialized list of recipients of the blocked message.
     #' @param messageId The `Message-ID` header of the blocked message, or `null` if not present.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`date`, `from`, `subject`, `to`, `messageId` = NULL, ...) {
+    initialize = function(`date`, `from`, `subject`, `to`, `messageId` = NULL, additional_properties = NULL, ...) {
       if (!missing(`date`)) {
         if (!(is.character(`date`) && length(`date`) == 1)) {
           stop(paste("Error! Invalid data for `date`. Must be a string:", `date`))
@@ -63,6 +68,11 @@ MailBlockClickHouse <- R6::R6Class(
           stop(paste("Error! Invalid data for `messageId`. Must be a string:", `messageId`))
         }
         self$`messageId` <- `messageId`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -117,6 +127,10 @@ MailBlockClickHouse <- R6::R6Class(
         MailBlockClickHouseObject[["messageId"]] <-
           self$`messageId`
       }
+      for (key in names(self$additional_properties)) {
+        MailBlockClickHouseObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailBlockClickHouseObject)
     },
 
@@ -142,6 +156,13 @@ MailBlockClickHouse <- R6::R6Class(
       if (!is.null(this_object$`messageId`)) {
         self$`messageId` <- this_object$`messageId`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -152,6 +173,9 @@ MailBlockClickHouse <- R6::R6Class(
     #' @return MailBlockClickHouse in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -168,6 +192,13 @@ MailBlockClickHouse <- R6::R6Class(
       self$`subject` <- this_object$`subject`
       self$`to` <- this_object$`to`
       self$`messageId` <- this_object$`messageId`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

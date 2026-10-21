@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.email_addresses_types import EmailAddressesTypes
+from MailBabyPython.models.email_addresses_types import EmailAddressesTypes
 
 class TestEmailAddressesTypes(unittest.TestCase):
     """EmailAddressesTypes unit test stubs"""

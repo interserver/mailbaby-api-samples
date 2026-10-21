@@ -38,7 +38,6 @@ part 'model/date_or_timestamp.dart';
 part 'model/deny_rule_new.dart';
 part 'model/deny_rule_record.dart';
 part 'model/email_address_name.dart';
-part 'model/email_address_names.dart';
 part 'model/email_address_param.dart';
 part 'model/email_address_types.dart';
 part 'model/email_addresses_types.dart';

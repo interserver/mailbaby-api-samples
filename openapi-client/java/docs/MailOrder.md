@@ -21,6 +21,7 @@ A mail service order record.  Each order represents one provisioned sending acco
 |---- | -----|
 | ACTIVE | &quot;active&quot; |
 | CANCELED | &quot;canceled&quot; |
+| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
 
 
 

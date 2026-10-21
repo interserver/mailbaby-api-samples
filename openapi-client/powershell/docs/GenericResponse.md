@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$GenericResponse = Initialize-PSOpenAPIToolsGenericResponse  -Status ok `
+$GenericResponse = Initialize-MailBabyPowershellGenericResponse  -Status ok `
  -Text 185caa69ff7000f47c
 ```
 

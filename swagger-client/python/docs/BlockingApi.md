@@ -1,4 +1,4 @@
-# mailbaby-client-python.BlockingApi
+# MailBabyPython.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -21,18 +21,18 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.BlockingApi(MailBabyPython.ApiClient(configuration))
 user = 'user_example' # str | 
 type = 'type_example' # str | 
 data = 'data_example' # str | 
@@ -79,18 +79,18 @@ Delete a deny rule by its numeric ruleId
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.BlockingApi(MailBabyPython.ApiClient(configuration))
 rule_id = 56 # int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 try:
@@ -133,19 +133,19 @@ Delist an email address from the spam-filter block lists
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
-body = mailbaby-client-python.EmailAddressParam() # EmailAddressParam | 
+api_instance = MailBabyPython.BlockingApi(MailBabyPython.ApiClient(configuration))
+body = MailBabyPython.EmailAddressParam() # EmailAddressParam | 
 
 try:
     # Delist an email address from the spam-filter block lists
@@ -187,18 +187,18 @@ List addresses currently flagged by spam-filter block lists
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.BlockingApi(MailBabyPython.ApiClient(configuration))
 
 try:
     # List addresses currently flagged by spam-filter block lists
@@ -237,18 +237,18 @@ List custom deny rules (sender / domain / destination / prefix)
 ```python
 from __future__ import print_function
 import time
-import mailbaby-client-python
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-configuration = mailbaby-client-python.Configuration()
+configuration = MailBabyPython.Configuration()
 configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = mailbaby-client-python.BlockingApi(mailbaby-client-python.ApiClient(configuration))
+api_instance = MailBabyPython.BlockingApi(MailBabyPython.ApiClient(configuration))
 
 try:
     # List custom deny rules (sender / domain / destination / prefix)

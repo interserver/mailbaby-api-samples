@@ -21,7 +21,7 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -72,7 +72,7 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -125,7 +125,7 @@ Delete a deny rule by its numeric ruleId
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -172,7 +172,7 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -223,7 +223,7 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -270,7 +270,7 @@ List addresses currently flagged by spam-filter block lists
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()
@@ -313,7 +313,7 @@ List custom deny rules (sender / domain / destination / prefix)
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = BlockingApi()

@@ -8,7 +8,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -46,7 +45,6 @@ src/model/DateOrTimestamp.js
 src/model/DenyRuleNew.js
 src/model/DenyRuleRecord.js
 src/model/EmailAddressName.js
-src/model/EmailAddressNames.js
 src/model/EmailAddressParam.js
 src/model/EmailAddressTypes.js
 src/model/EmailAddressesTypes.js
@@ -75,7 +73,6 @@ test/model/DateOrTimestamp.spec.js
 test/model/DenyRuleNew.spec.js
 test/model/DenyRuleRecord.spec.js
 test/model/EmailAddressName.spec.js
-test/model/EmailAddressNames.spec.js
 test/model/EmailAddressParam.spec.js
 test/model/EmailAddressTypes.spec.js
 test/model/EmailAddressesTypes.spec.js

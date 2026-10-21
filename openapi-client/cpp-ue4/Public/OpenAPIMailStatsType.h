@@ -39,6 +39,7 @@ public:
 		TwentyFourHours,
 		Day,
 		OneHour,
+		UnknownDefaultOpenApi,
   	};
 
 	static FString EnumToString(const TimeEnum& EnumValue);

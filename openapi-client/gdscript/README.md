@@ -137,7 +137,6 @@ Class | Method | HTTP request | Description
 - [DenyRuleNew](models/DenyRuleNew.md)
 - [DenyRuleRecord](models/DenyRuleRecord.md)
 - [EmailAddressName](models/EmailAddressName.md)
-- [EmailAddressNames](models/EmailAddressNames.md)
 - [EmailAddressParam](models/EmailAddressParam.md)
 - [EmailAddressTypes](models/EmailAddressTypes.md)
 - [EmailAddressesTypes](models/EmailAddressesTypes.md)

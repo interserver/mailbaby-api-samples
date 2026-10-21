@@ -1,0 +1,26 @@
+# coding: utf-8
+
+# import models into model package
+from MailBabyPythonAiohttp.models.date_or_timestamp import DateOrTimestamp
+from MailBabyPythonAiohttp.models.deny_rule_new import DenyRuleNew
+from MailBabyPythonAiohttp.models.deny_rule_record import DenyRuleRecord
+from MailBabyPythonAiohttp.models.email_address_name import EmailAddressName
+from MailBabyPythonAiohttp.models.email_address_param import EmailAddressParam
+from MailBabyPythonAiohttp.models.email_address_types import EmailAddressTypes
+from MailBabyPythonAiohttp.models.email_addresses_types import EmailAddressesTypes
+from MailBabyPythonAiohttp.models.error_message import ErrorMessage
+from MailBabyPythonAiohttp.models.generic_response import GenericResponse
+from MailBabyPythonAiohttp.models.mail_attachment import MailAttachment
+from MailBabyPythonAiohttp.models.mail_block_click_house import MailBlockClickHouse
+from MailBabyPythonAiohttp.models.mail_block_rspamd import MailBlockRspamd
+from MailBabyPythonAiohttp.models.mail_blocks import MailBlocks
+from MailBabyPythonAiohttp.models.mail_log import MailLog
+from MailBabyPythonAiohttp.models.mail_log_entry import MailLogEntry
+from MailBabyPythonAiohttp.models.mail_order import MailOrder
+from MailBabyPythonAiohttp.models.mail_order_detail import MailOrderDetail
+from MailBabyPythonAiohttp.models.mail_stats_type import MailStatsType
+from MailBabyPythonAiohttp.models.mail_stats_volume import MailStatsVolume
+from MailBabyPythonAiohttp.models.send_mail import SendMail
+from MailBabyPythonAiohttp.models.send_mail_adv import SendMailAdv
+from MailBabyPythonAiohttp.models.send_mail_raw import SendMailRaw
+from MailBabyPythonAiohttp.models.send_mail_to import SendMailTo

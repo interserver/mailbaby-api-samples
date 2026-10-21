@@ -1,0 +1,34 @@
+#import "OAIMailLogEntry.h"
+
+@implementation OAIMailLogEntry
+
+- (instancetype)init {
+  self = [super init];
+  if (self) {
+    // initialize property's default value, if any
+    
+  }
+  return self;
+}
+
+
+/**
+ * Maps json key to property name.
+ * This method is used by `JSONModel`.
+ */
++ (JSONKeyMapper *)keyMapper {
+  return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"_id": @"_id", @"_id": @"id", @"from": @"from", @"to": @"to", @"created": @"created", @"time": @"time", @"user": @"user", @"transtype": @"transtype", @"origin": @"origin", @"_interface": @"interface", @"subject": @"subject", @"messageId": @"messageId", @"sendingZone": @"sendingZone", @"bodySize": @"bodySize", @"seq": @"seq", @"delivered": @"delivered", @"code": @"code", @"response": @"response", @"recipient": @"recipient", @"domain": @"domain", @"locked": @"locked", @"lockTime": @"lockTime", @"assigned": @"assigned", @"queued": @"queued", @"mxHostname": @"mxHostname" }];
+}
+
+/**
+ * Indicates whether the property with the given name is optional.
+ * If `propertyName` is optional, then return `YES`, otherwise return `NO`.
+ * This method is used by `JSONModel`.
+ */
++ (BOOL)propertyIsOptional:(NSString *)propertyName {
+
+  NSArray *optionalProperties = @[@"subject", @"messageId", @"sendingZone", @"bodySize", @"seq", @"delivered", @"code", @"response", @"recipient", @"domain", @"locked", @"lockTime", @"assigned", @"queued", @"mxHostname"];
+  return [optionalProperties containsObject:propertyName];
+}
+
+@end

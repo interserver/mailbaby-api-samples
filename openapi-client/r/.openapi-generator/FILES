@@ -13,7 +13,6 @@ R/date_or_timestamp.R
 R/deny_rule_new.R
 R/deny_rule_record.R
 R/email_address_name.R
-R/email_address_names.R
 R/email_address_param.R
 R/email_address_types.R
 R/email_addresses_types.R
@@ -43,7 +42,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -74,7 +72,6 @@ tests/testthat/test_date_or_timestamp.R
 tests/testthat/test_deny_rule_new.R
 tests/testthat/test_deny_rule_record.R
 tests/testthat/test_email_address_name.R
-tests/testthat/test_email_address_names.R
 tests/testthat/test_email_address_param.R
 tests/testthat/test_email_address_types.R
 tests/testthat/test_email_addresses_types.R

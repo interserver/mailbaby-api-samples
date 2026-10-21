@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | Internal auto-increment database row ID.  Not meaningful outside the API. |
+**_id** | **int** | Internal auto-increment database row ID.  Not meaningful outside the API. |
 **id** | **string** | The relay-assigned mail ID (18–19 hex characters).  This is the value returned as &#x60;text&#x60; by the sending endpoints and accepted as the &#x60;mailid&#x60; filter on &#x60;GET /mail/log&#x60;. |
 **from** | **string** | SMTP envelope &#x60;MAIL FROM&#x60; address (may differ from the &#x60;From:&#x60; header). |
 **to** | **string** | SMTP envelope &#x60;RCPT TO&#x60; address. |
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **origin** | **string** | IP address of the client that submitted the message to the relay. Corresponds to the &#x60;origin&#x60; filter parameter on &#x60;GET /mail/log&#x60;. |
 **interface** | **string** | Relay interface name that accepted the message (e.g. &#x60;feeder&#x60;). |
 **subject** | **string** | The &#x60;Subject&#x60; header value, if available. | [optional]
-**messageId** | **string** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional]
-**sendingZone** | **string** | The sending zone assigned by the relay for outbound delivery. | [optional]
-**bodySize** | **int** | Size of the message body in bytes. | [optional]
+**message_id** | **string** | The &#x60;Message-ID&#x60; header value, if present.  Can be used with the &#x60;messageId&#x60; filter on &#x60;GET /mail/log&#x60; for subsequent lookups. | [optional]
+**sending_zone** | **string** | The sending zone assigned by the relay for outbound delivery. | [optional]
+**body_size** | **int** | Size of the message body in bytes. | [optional]
 **seq** | **int** | Sequence index of this recipient in a multi-recipient message. Starts at 1. | [optional]
 **delivered** | **int** | Delivery status flag.  &#x60;1&#x60; &#x3D; successfully delivered to destination MX. &#x60;0&#x60; &#x3D; queued, deferred, or failed.  &#x60;null&#x60; &#x3D; delivery not yet attempted. Corresponds to the &#x60;delivered&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | [optional]
 **code** | **int** | The SMTP response code from the destination MX server (e.g. &#x60;250&#x60; for success, &#x60;550&#x60; for permanent failure). | [optional]
@@ -25,9 +25,9 @@ Name | Type | Description | Notes
 **recipient** | **string** | The specific recipient address this delivery record is for. | [optional]
 **domain** | **string** | The destination domain.  Corresponds to the &#x60;mx&#x60; filter parameter (which matches &#x60;mxHostname&#x60;, not &#x60;domain&#x60;) on &#x60;GET /mail/log&#x60;. | [optional]
 **locked** | **int** | Whether the queue entry is currently locked for delivery processing. | [optional]
-**lockTime** | **string** | Millisecond-precision timestamp of the last queue lock acquisition. | [optional]
+**lock_time** | **string** | Millisecond-precision timestamp of the last queue lock acquisition. | [optional]
 **assigned** | **string** | The relay server node assigned to deliver this message. | [optional]
 **queued** | **string** | ISO 8601 timestamp when the message was placed into the delivery queue. | [optional]
-**mxHostname** | **string** | The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | [optional]
+**mx_hostname** | **string** | The MX hostname the relay connected to for delivery.  Corresponds to the &#x60;mx&#x60; filter parameter on &#x60;GET /mail/log&#x60;. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

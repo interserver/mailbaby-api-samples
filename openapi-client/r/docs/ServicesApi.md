@@ -17,7 +17,7 @@ Get one mail order's full detail including SMTP password
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Get one mail order's full detail including SMTP password
 #
@@ -69,7 +69,7 @@ Use this **before sending** if you need to discover which mail order `id` to pas
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # List your provisioned mail orders (sending accounts)
 #

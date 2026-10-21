@@ -50,6 +50,7 @@ export const DenyRuleRecordTypeEnum = {
     Email: 'email',
     Startswith: 'startswith',
     Destination: 'destination',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
 

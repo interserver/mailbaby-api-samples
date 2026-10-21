@@ -20,7 +20,7 @@ export enum HttpMethod {
 /**
  * Represents an HTTP file which will be transferred from or to a server.
  */
-export type HttpFile = Buffer & { readonly name: string };
+export type HttpFile = Blob & { readonly name: string };
 
 export class HttpException extends Error {
     public constructor(msg: string) {
@@ -146,21 +146,21 @@ export class RequestContext {
 
 export interface ResponseBody {
     text(): Promise<string>;
-    binary(): Promise<Buffer>;
+    binary(): Promise<Blob>;
 }
 
 /**
  * Helper class to generate a `ResponseBody` from binary data
  */
 export class SelfDecodingBody implements ResponseBody {
-    constructor(private dataSource: Promise<Buffer>) {}
+    constructor(private dataSource: Promise<Blob>) {}
 
-    binary(): Promise<Buffer> {
+    binary(): Promise<Blob> {
         return this.dataSource;
     }
 
     async text(): Promise<string> {
-        const data: Buffer = await this.dataSource;
+        const data: Blob = await this.dataSource;
         // @ts-ignore
         if (data.text) {
             // @ts-ignore
@@ -236,7 +236,7 @@ export class ResponseContext {
      * Use a heuristic to get a body of unknown data structure.
      * Return as string if possible, otherwise as binary.
      */
-    public getBodyAsAny(): Promise<string | Buffer | undefined> {
+    public getBodyAsAny(): Promise<string | Blob | undefined> {
         try {
             return this.body.text();
         } catch {}

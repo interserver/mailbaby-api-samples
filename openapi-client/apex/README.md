@@ -88,7 +88,6 @@ Class | Method | HTTP request | Description
  - [OASDenyRuleNew](OASDenyRuleNew.md)
  - [OASDenyRuleRecord](OASDenyRuleRecord.md)
  - [OASEmailAddressName](OASEmailAddressName.md)
- - [OASEmailAddressNames](OASEmailAddressNames.md)
  - [OASEmailAddressParam](OASEmailAddressParam.md)
  - [OASEmailAddressTypes](OASEmailAddressTypes.md)
  - [OASEmailAddressesTypes](OASEmailAddressesTypes.md)

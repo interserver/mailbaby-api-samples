@@ -9,6 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field filename The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`). character
 #' @field data The file contents as a base64-encoded string.  Decode this to retrieve the original binary file. character
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,14 +19,17 @@ MailAttachment <- R6::R6Class(
   public = list(
     `filename` = NULL,
     `data` = NULL,
+    `_field_list` = c("filename", "data"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailAttachment class.
     #'
     #' @param filename The filename shown to recipients (e.g. `report.pdf`, `invoice.xlsx`).
     #' @param data The file contents as a base64-encoded string.  Decode this to retrieve the original binary file.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`filename`, `data`, ...) {
+    initialize = function(`filename`, `data`, additional_properties = NULL, ...) {
       if (!missing(`filename`)) {
         if (!(is.character(`filename`) && length(`filename`) == 1)) {
           stop(paste("Error! Invalid data for `filename`. Must be a string:", `filename`))
@@ -33,6 +38,11 @@ MailAttachment <- R6::R6Class(
       }
       if (!missing(`data`)) {
         self$`data` <- `data`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -75,6 +85,10 @@ MailAttachment <- R6::R6Class(
         MailAttachmentObject[["data"]] <-
           self$`data`
       }
+      for (key in names(self$additional_properties)) {
+        MailAttachmentObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailAttachmentObject)
     },
 
@@ -91,6 +105,13 @@ MailAttachment <- R6::R6Class(
       if (!is.null(this_object$`data`)) {
         self$`data` <- this_object$`data`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -101,6 +122,9 @@ MailAttachment <- R6::R6Class(
     #' @return MailAttachment in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -114,6 +138,13 @@ MailAttachment <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`filename` <- this_object$`filename`
       self$`data` <- this_object$`data`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

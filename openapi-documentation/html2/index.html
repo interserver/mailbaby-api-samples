@@ -940,18 +940,6 @@ ul.nav-tabs {
     "name" : "John Smith"
   }
 };
-    defs["EmailAddressNames"] = {
-  "title" : "EmailAddressNames",
-  "type" : "array",
-  "description" : "An array of email contacts, each with an email address and optional display name.",
-  "example" : [ {
-    "email" : "user@domain.com",
-    "name" : "John Smith"
-  } ],
-  "items" : {
-    "$ref" : "#/components/schemas/EmailAddressName"
-  }
-};
     defs["EmailAddressParam"] = {
   "title" : "EmailAddressParam",
   "required" : [ "email" ],
@@ -1844,10 +1832,10 @@ On success the response &#x60;text&#x60; field contains the newly created rule&#
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Blocking-addRule-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -1900,7 +1888,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Blocking-addRule-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BlockingApi;
 
 public class BlockingApiExample {
     public static void main(String[] args) {
@@ -1988,9 +1976,9 @@ api.addRule(type, data, opts, callback);
                             <div class="tab-pane" id="examples-Blocking-addRule-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -2027,9 +2015,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\BlockingApi();
@@ -2048,16 +2036,16 @@ try {
 
                             <div class="tab-pane" id="examples-Blocking-addRule-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::BlockingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::BlockingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::BlockingApi->new();
+my $api_instance = WWW::OPenAPIClient::BlockingApi->new();
 my $type = type_example; # String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 my $data = data_example; # String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 my $user = user_example; # String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
@@ -2074,17 +2062,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Blocking-addRule-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.BlockingApi()
+api_instance = openapi_client.BlockingApi()
 type = type_example # String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. (default to null)
 data = data_example # String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`. (default to null)
 user = user_example # String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. (optional) (default to null)
@@ -2611,10 +2599,10 @@ Only rules belonging to your own active mail account(s) can be deleted — the s
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Blocking-deleteRule-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -2663,7 +2651,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Blocking-deleteRule-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BlockingApi;
 
 public class BlockingApiExample {
     public static void main(String[] args) {
@@ -2741,9 +2729,9 @@ api.deleteRule(ruleId, callback);
                             <div class="tab-pane" id="examples-Blocking-deleteRule-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -2778,9 +2766,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\BlockingApi();
@@ -2797,16 +2785,16 @@ try {
 
                             <div class="tab-pane" id="examples-Blocking-deleteRule-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::BlockingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::BlockingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::BlockingApi->new();
+my $api_instance = WWW::OPenAPIClient::BlockingApi->new();
 my $ruleId = 34; # Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 eval {
@@ -2821,17 +2809,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Blocking-deleteRule-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.BlockingApi()
+api_instance = openapi_client.BlockingApi()
 ruleId = 34 # Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response. (default to null)
 
 try:
@@ -3303,10 +3291,10 @@ Use &#x60;GET /mail/blocks&#x60; to discover which addresses are currently block
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Blocking-delistBlock-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -3355,7 +3343,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Blocking-delistBlock-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BlockingApi;
 
 public class BlockingApiExample {
     public static void main(String[] args) {
@@ -3433,9 +3421,9 @@ api.delistBlock(emailAddressParam, callback);
                             <div class="tab-pane" id="examples-Blocking-delistBlock-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -3470,9 +3458,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\BlockingApi();
@@ -3489,17 +3477,17 @@ try {
 
                             <div class="tab-pane" id="examples-Blocking-delistBlock-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::BlockingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::BlockingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::BlockingApi->new();
-my $emailAddressParam = MailBabyApi::Object::EmailAddressParam->new(); # EmailAddressParam | 
+my $api_instance = WWW::OPenAPIClient::BlockingApi->new();
+my $emailAddressParam = WWW::OPenAPIClient::Object::EmailAddressParam->new(); # EmailAddressParam | 
 
 eval {
     my $result = $api_instance->delistBlock(emailAddressParam => $emailAddressParam);
@@ -3513,17 +3501,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Blocking-delistBlock-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.BlockingApi()
+api_instance = openapi_client.BlockingApi()
 emailAddressParam = {"email":"client@domain.com"} # EmailAddressParam | 
 
 try:
@@ -4035,10 +4023,10 @@ A sender address returned in any of these lists can be delisted using &#x60;POST
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Blocking-getMailBlocks-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -4085,7 +4073,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Blocking-getMailBlocks-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BlockingApi;
 
 public class BlockingApiExample {
     public static void main(String[] args) {
@@ -4159,9 +4147,9 @@ api.getMailBlocks(callback);
                             <div class="tab-pane" id="examples-Blocking-getMailBlocks-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -4195,9 +4183,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\BlockingApi();
@@ -4213,16 +4201,16 @@ try {
 
                             <div class="tab-pane" id="examples-Blocking-getMailBlocks-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::BlockingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::BlockingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::BlockingApi->new();
+my $api_instance = WWW::OPenAPIClient::BlockingApi->new();
 
 eval {
     my $result = $api_instance->getMailBlocks();
@@ -4236,17 +4224,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Blocking-getMailBlocks-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.BlockingApi()
+api_instance = openapi_client.BlockingApi()
 
 try:
     # List addresses currently flagged by spam-filter block lists
@@ -4532,10 +4520,10 @@ Use &#x60;POST /mail/rules&#x60; to add new rules and &#x60;DELETE /mail/rules/{
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Blocking-getRules-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -4582,7 +4570,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Blocking-getRules-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.BlockingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.BlockingApi;
 
 public class BlockingApiExample {
     public static void main(String[] args) {
@@ -4656,9 +4644,9 @@ api.getRules(callback);
                             <div class="tab-pane" id="examples-Blocking-getRules-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -4692,9 +4680,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\BlockingApi();
@@ -4710,16 +4698,16 @@ try {
 
                             <div class="tab-pane" id="examples-Blocking-getRules-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::BlockingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::BlockingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::BlockingApi->new();
+my $api_instance = WWW::OPenAPIClient::BlockingApi->new();
 
 eval {
     my $result = $api_instance->getRules();
@@ -4733,17 +4721,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Blocking-getRules-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.BlockingApi()
+api_instance = openapi_client.BlockingApi()
 
 try:
     # List custom deny rules (sender / domain / destination / prefix)
@@ -5037,10 +5025,10 @@ The response includes:
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-getStats-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.HistoryApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.HistoryApi;
 
 import java.io.File;
 import java.util.*;
@@ -5089,7 +5077,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-History-getStats-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.HistoryApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.HistoryApi;
 
 public class HistoryApiExample {
     public static void main(String[] args) {
@@ -5169,9 +5157,9 @@ api.getStats(opts, callback);
                             <div class="tab-pane" id="examples-History-getStats-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -5206,9 +5194,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\HistoryApi();
@@ -5225,16 +5213,16 @@ try {
 
                             <div class="tab-pane" id="examples-History-getStats-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::HistoryApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::HistoryApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::HistoryApi->new();
+my $api_instance = WWW::OPenAPIClient::HistoryApi->new();
 my $time = time_example; # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 
 eval {
@@ -5249,17 +5237,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-History-getStats-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.HistoryApi()
+api_instance = openapi_client.HistoryApi()
 time = time_example # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to 1h)
 
 try:
@@ -5583,10 +5571,10 @@ The &#x60;messageId&#x60; parameter searches the &#x60;Message-ID&#x60; email he
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-History-viewMailLog-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.HistoryApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.HistoryApi;
 
 import java.io.File;
 import java.util.*;
@@ -5669,7 +5657,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-History-viewMailLog-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.HistoryApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.HistoryApi;
 
 public class HistoryApiExample {
     public static void main(String[] args) {
@@ -5817,9 +5805,9 @@ api.viewMailLog(opts, callback);
                             <div class="tab-pane" id="examples-History-viewMailLog-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -5871,9 +5859,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\HistoryApi();
@@ -5907,16 +5895,16 @@ try {
 
                             <div class="tab-pane" id="examples-History-viewMailLog-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::HistoryApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::HistoryApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::HistoryApi->new();
+my $api_instance = WWW::OPenAPIClient::HistoryApi->new();
 my $id = 2604; # Long | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`.
 my $origin = 1.2.3.4; # String | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address.
 my $mx = mx.google.com; # String | Filter by the MX hostname the relay attempted delivery to.  For example `mx.google.com` would return messages destined for Gmail recipients. Maps to `mxHostname` in the `MailLogEntry` response.
@@ -5948,17 +5936,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-History-viewMailLog-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.HistoryApi()
+api_instance = openapi_client.HistoryApi()
 id = 2604 # Long | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`. (optional) (default to null)
 origin = 1.2.3.4 # String | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional) (default to null)
 mx = mx.google.com # String | Filter by the MX hostname the relay attempted delivery to.  For example `mx.google.com` would return messages destined for Gmail recipients. Maps to `mxHostname` in the `MailLogEntry` response. (optional) (default to null)
@@ -6818,10 +6806,10 @@ On success the response &#x60;text&#x60; field contains the relay transaction ID
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Sending-rawMail-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.SendingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.SendingApi;
 
 import java.io.File;
 import java.util.*;
@@ -6870,7 +6858,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Sending-rawMail-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.SendingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.SendingApi;
 
 public class SendingApiExample {
     public static void main(String[] args) {
@@ -6948,9 +6936,9 @@ api.rawMail(sendMailRaw, callback);
                             <div class="tab-pane" id="examples-Sending-rawMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -6985,9 +6973,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\SendingApi();
@@ -7004,17 +6992,17 @@ try {
 
                             <div class="tab-pane" id="examples-Sending-rawMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::SendingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::SendingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::SendingApi->new();
-my $sendMailRaw = MailBabyApi::Object::SendMailRaw->new(); # SendMailRaw | 
+my $api_instance = WWW::OPenAPIClient::SendingApi->new();
+my $sendMailRaw = WWW::OPenAPIClient::Object::SendMailRaw->new(); # SendMailRaw | 
 
 eval {
     my $result = $api_instance->rawMail(sendMailRaw => $sendMailRaw);
@@ -7028,17 +7016,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Sending-rawMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.SendingApi()
+api_instance = openapi_client.SendingApi()
 sendMailRaw =  # SendMailRaw | 
 
 try:
@@ -7586,10 +7574,10 @@ On success the response &#x60;text&#x60; field contains the relay transaction ID
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Sending-sendAdvMail-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.SendingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.SendingApi;
 
 import java.io.File;
 import java.util.*;
@@ -7654,7 +7642,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Sending-sendAdvMail-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.SendingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.SendingApi;
 
 public class SendingApiExample {
     public static void main(String[] args) {
@@ -7766,9 +7754,9 @@ api.sendAdvMail(subject, body, from, to, opts, callback);
                             <div class="tab-pane" id="examples-Sending-sendAdvMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -7811,9 +7799,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\SendingApi();
@@ -7838,16 +7826,16 @@ try {
 
                             <div class="tab-pane" id="examples-Sending-sendAdvMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::SendingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::SendingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::SendingApi->new();
+my $api_instance = WWW::OPenAPIClient::SendingApi->new();
 my $subject = subject_example; # String | The subject line of the email.
 my $body = body_example; # String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 my $from = ; # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`"Name <email>"`), or a `{"email": "...", "name": "..."}` object.
@@ -7870,17 +7858,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Sending-sendAdvMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.SendingApi()
+api_instance = openapi_client.SendingApi()
 subject = subject_example # String | The subject line of the email. (default to null)
 body = body_example # String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`. (default to null)
 from =  # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`"Name <email>"`), or a `{"email": "...", "name": "..."}` object. (default to null)
@@ -8548,10 +8536,10 @@ On success the response &#x60;text&#x60; field contains the relay transaction ID
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Sending-sendMail-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.SendingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.SendingApi;
 
 import java.io.File;
 import java.util.*;
@@ -8608,7 +8596,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Sending-sendMail-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.SendingApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.SendingApi;
 
 public class SendingApiExample {
     public static void main(String[] args) {
@@ -8704,9 +8692,9 @@ api.sendMail(to, from, subject, body, opts, callback);
                             <div class="tab-pane" id="examples-Sending-sendMail-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -8745,9 +8733,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\SendingApi();
@@ -8768,16 +8756,16 @@ try {
 
                             <div class="tab-pane" id="examples-Sending-sendMail-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::SendingApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::SendingApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::SendingApi->new();
+my $api_instance = WWW::OPenAPIClient::SendingApi->new();
 my $to = ; # SendMailTo | 
 my $from = from_example; # String | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 my $subject = subject_example; # String | The subject line of the email.
@@ -8796,17 +8784,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Sending-sendMail-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.SendingApi()
+api_instance = openapi_client.SendingApi()
 to =  # SendMailTo |  (default to null)
 from = from_example # String | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order. (default to null)
 subject = subject_example # String | The subject line of the email. (default to null)
@@ -9384,10 +9372,10 @@ The &#x60;id&#x60; path parameter is the same integer &#x60;id&#x60; value retur
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Services-getMailOrderById-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.ServicesApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.ServicesApi;
 
 import java.io.File;
 import java.util.*;
@@ -9436,7 +9424,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Services-getMailOrderById-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.ServicesApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.ServicesApi;
 
 public class ServicesApiExample {
     public static void main(String[] args) {
@@ -9514,9 +9502,9 @@ api.getMailOrderById(id, callback);
                             <div class="tab-pane" id="examples-Services-getMailOrderById-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -9551,9 +9539,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\ServicesApi();
@@ -9570,16 +9558,16 @@ try {
 
                             <div class="tab-pane" id="examples-Services-getMailOrderById-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::ServicesApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::ServicesApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::ServicesApi->new();
+my $api_instance = WWW::OPenAPIClient::ServicesApi->new();
 my $id = 39; # Long | The numeric ID of the mail order.
 
 eval {
@@ -9594,17 +9582,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Services-getMailOrderById-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.ServicesApi()
+api_instance = openapi_client.ServicesApi()
 id = 39 # Long | The numeric ID of the mail order. (default to null)
 
 try:
@@ -10102,10 +10090,10 @@ To retrieve full details — including the current SMTP password — for a singl
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Services-getMailOrders-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.ServicesApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.ServicesApi;
 
 import java.io.File;
 import java.util.*;
@@ -10152,7 +10140,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Services-getMailOrders-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.ServicesApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.ServicesApi;
 
 public class ServicesApiExample {
     public static void main(String[] args) {
@@ -10226,9 +10214,9 @@ api.getMailOrders(callback);
                             <div class="tab-pane" id="examples-Services-getMailOrders-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -10262,9 +10250,9 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 // Configure API key authorization: apiKeyAuth
-Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// OpenAPITools\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 // Create an instance of the API class
 $api_instance = new OpenAPITools\Client\Api\ServicesApi();
@@ -10280,16 +10268,16 @@ try {
 
                             <div class="tab-pane" id="examples-Services-getMailOrders-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::ServicesApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::ServicesApi;
 
 # Configure API key authorization: apiKeyAuth
-$MailBabyApi::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
+$WWW::OPenAPIClient::Configuration::api_key->{'X-API-KEY'} = 'YOUR_API_KEY';
 # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-#$MailBabyApi::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
+#$WWW::OPenAPIClient::Configuration::api_key_prefix->{'X-API-KEY'} = "Bearer";
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::ServicesApi->new();
+my $api_instance = WWW::OPenAPIClient::ServicesApi->new();
 
 eval {
     my $result = $api_instance->getMailOrders();
@@ -10303,17 +10291,17 @@ if ($@) {
                             <div class="tab-pane" id="examples-Services-getMailOrders-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: apiKeyAuth
-MailBabyApi.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
+openapi_client.configuration.api_key['X-API-KEY'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# MailBabyApi.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
+# openapi_client.configuration.api_key_prefix['X-API-KEY'] = 'Bearer'
 
 # Create an instance of the API class
-api_instance = MailBabyApi.ServicesApi()
+api_instance = openapi_client.ServicesApi()
 
 try:
     # List your provisioned mail orders (sending accounts)
@@ -10617,10 +10605,10 @@ pub fn main() {
 </code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Status-pingServer-0-java">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.*;
-import MailBaby.auth.*;
-import MailBaby.model.*;
-import MailBaby.api.StatusApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.*;
+import org.openapitools.client.auth.*;
+import org.openapitools.client.model.*;
+import org.openapitools.client.api.StatusApi;
 
 import java.io.File;
 import java.util.*;
@@ -10660,7 +10648,7 @@ try {
                           </div>
 
                           <div class="tab-pane" id="examples-Status-pingServer-0-android">
-                            <pre class="prettyprint"><code class="language-java">import MailBaby.api.StatusApi;
+                            <pre class="prettyprint"><code class="language-java">import org.openapitools.client.api.StatusApi;
 
 public class StatusApiExample {
     public static void main(String[] args) {
@@ -10721,9 +10709,9 @@ api.pingServer(callback);
                             <div class="tab-pane" id="examples-Status-pingServer-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
-using MailBaby.Api;
-using MailBaby.Client;
-using MailBaby.Model;
+using MailBabyHtml2.Api;
+using MailBabyHtml2.Client;
+using MailBabyHtml2.Model;
 
 namespace Example
 {
@@ -10766,11 +10754,11 @@ try {
 
                             <div class="tab-pane" id="examples-Status-pingServer-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
-use MailBabyApi::Configuration;
-use MailBabyApi::StatusApi;
+use WWW::OPenAPIClient::Configuration;
+use WWW::OPenAPIClient::StatusApi;
 
 # Create an instance of the API class
-my $api_instance = MailBabyApi::StatusApi->new();
+my $api_instance = WWW::OPenAPIClient::StatusApi->new();
 
 eval {
     my $result = $api_instance->pingServer();
@@ -10784,12 +10772,12 @@ if ($@) {
                             <div class="tab-pane" id="examples-Status-pingServer-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
-import MailBabyApi
-from MailBabyApi.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = MailBabyApi.StatusApi()
+api_instance = openapi_client.StatusApi()
 
 try:
     # Health check — verify the API is reachable

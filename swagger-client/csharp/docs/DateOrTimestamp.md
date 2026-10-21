@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Model.DateOrTimestamp
+# MailBabyCsharp.Model.DateOrTimestamp
 ## Properties
 
 Name | Type | Description | Notes

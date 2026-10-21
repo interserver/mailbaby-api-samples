@@ -7,7 +7,6 @@ import { DateOrTimestamp } from '../models/DateOrTimestamp';
 import { DenyRuleNew } from '../models/DenyRuleNew';
 import { DenyRuleRecord } from '../models/DenyRuleRecord';
 import { EmailAddressName } from '../models/EmailAddressName';
-import { EmailAddressNames } from '../models/EmailAddressNames';
 import { EmailAddressParam } from '../models/EmailAddressParam';
 import { EmailAddressTypes } from '../models/EmailAddressTypes';
 import { EmailAddressesTypes } from '../models/EmailAddressesTypes';

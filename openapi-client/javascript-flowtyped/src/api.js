@@ -77,7 +77,7 @@ export type DateOrTimestamp = {
 }
 
 
-            export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
+            export type DenyRuleNewTypeEnum = 'domain' | 'email' | 'startswith' | 'destination' | '11184809';
 /**
  * The fields required to create a new email deny rule via `POST /mail/rules`. The `type` controls what `data` is matched against: - `email` — exact sender address match - `domain` — all senders from a domain - `destination` — exact recipient address match - `startswith` — sender local-part prefix match (alphanumeric + `+_.-` only)
  * @export
@@ -104,7 +104,7 @@ export type DenyRuleNew = {
 }
 
 
-            export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith' | 'destination';
+            export type DenyRuleRecordTypeEnum = 'domain' | 'email' | 'startswith' | 'destination' | '11184809';
 /**
  * A complete deny rule record as returned by `GET /mail/rules`.  Combines the rule definition fields (`DenyRuleNew`) with server-assigned metadata (`id` and `created`).  The `id` value is required by `DELETE /mail/rules/{ruleId}`.
  * @export
@@ -160,13 +160,6 @@ export type EmailAddressName = {
      */
     name?: string;
 }
-
-/**
- * An array of email contacts, each with an email address and optional display name.
- * @export
- */
-export type EmailAddressNames = {
-} & Array&lt;EmailAddressName&gt;
 
 /**
  * A single email address parameter used as the body of `POST /mail/blocks/delete`.
@@ -534,7 +527,7 @@ export type MailLogEntry = {
 }
 
 
-            export type MailOrderStatusEnum = 'active' | 'canceled';
+            export type MailOrderStatusEnum = 'active' | 'canceled' | '11184809';
 /**
  * A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
  * @export
@@ -567,7 +560,7 @@ export type MailOrder = {
 }
 
 
-            export type MailOrderDetailStatusEnum = 'active' | 'canceled';
+            export type MailOrderDetailStatusEnum = 'active' | 'canceled' | '11184809';
 /**
  * Extended mail order record including the current SMTP password.  Returned by `GET /mail/{id}`.  The `username` and `password` fields can be used to authenticate directly against `relay.mailbaby.net:25` via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API.
  * @export
@@ -606,7 +599,7 @@ export type MailOrderDetail = {
 }
 
 
-            export type MailStatsTypeTimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h';
+            export type MailStatsTypeTimeEnum = 'all' | 'billing' | 'month' | '7d' | '24h' | 'day' | '1h' | '11184809';
 /**
  * Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
  * @export

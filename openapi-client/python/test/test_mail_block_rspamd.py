@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.mail_block_rspamd import MailBlockRspamd
+from MailBabyPython.models.mail_block_rspamd import MailBlockRspamd
 
 class TestMailBlockRspamd(unittest.TestCase):
     """MailBlockRspamd unit test stubs"""

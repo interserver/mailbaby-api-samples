@@ -12,6 +12,7 @@ public struct MailOrder: Codable {
     public enum Status: String, Codable, CaseIterable {
         case active = "active"
         case canceled = "canceled"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /// The unique numeric ID of the mail order.  Used as the `id` parameter on sending calls, log queries, and stats queries.
     public var id: Int

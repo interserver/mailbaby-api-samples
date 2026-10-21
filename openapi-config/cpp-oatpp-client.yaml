@@ -1,9 +1,12 @@
-# Description: Add the Possibility to fetch and compile external Libraries needed by this Framework.
-addExternalLibs: true
-
-# Description: Prefix to prepend to reserved words in order to avoid conflicts
-reservedWordPrefix: r_
-
-# Description: Make first character of variable name uppercase (eg. value -> Value)
-variableNameFirstCharacterUppercase: true
-
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-cpp-oatpp-client"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyCppOatppClient"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

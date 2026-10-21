@@ -12,6 +12,10 @@ module OpenapiClient
       include OpenapiClient::Serializable
       include OpenapiClient::Validations
 
+      # Unknown JSON keys (permitted by additionalProperties) are stashed here so they
+      # round-trip through from_hash/to_hash instead of being silently dropped.
+      attr_accessor :additional_properties
+
       attribute :id,
         type: 'Integer',
         json_key: 'id',
@@ -21,7 +25,7 @@ module OpenapiClient
         type: 'String',
         json_key: 'status',
         required: true,
-        enum: ['active', 'canceled']
+        enum: ['active', 'canceled', 'unknown_default_open_api']
 
       attribute :username,
         type: 'String',
@@ -36,10 +40,14 @@ module OpenapiClient
 
       def initialize(**attrs)
         attrs.each do |k, v|
-          raise ArgumentError, "unknown attribute: #{k}" unless respond_to?("#{k}=")
-
-          public_send("#{k}=", v)
+          if respond_to?("#{k}=")
+            public_send("#{k}=", v)
+          else
+            # additionalProperties is permitted: stash unknown keys rather than raise.
+            (@additional_properties ||= {})[k.to_s] = v
+          end
         end
+        @additional_properties ||= {}
         raise ArgumentError, list_invalid_properties.join(', ') unless valid?
       end
     end

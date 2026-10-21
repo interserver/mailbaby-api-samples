@@ -1,8 +1,8 @@
-# OpenAPIClient::BlockingApi
+# WWW::OpenAPIClient::BlockingApi
 
 ## Load the API package
 ```perl
-use OpenAPIClient::Object::BlockingApi;
+use WWW::OpenAPIClient::Object::BlockingApi;
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -26,8 +26,8 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::BlockingApi;
-my $api_instance = OpenAPIClient::BlockingApi->new(
+use WWW::OpenAPIClient::BlockingApi;
+my $api_instance = WWW::OpenAPIClient::BlockingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -81,8 +81,8 @@ Delete a deny rule by its numeric ruleId
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::BlockingApi;
-my $api_instance = OpenAPIClient::BlockingApi->new(
+use WWW::OpenAPIClient::BlockingApi;
+my $api_instance = WWW::OpenAPIClient::BlockingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -132,8 +132,8 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::BlockingApi;
-my $api_instance = OpenAPIClient::BlockingApi->new(
+use WWW::OpenAPIClient::BlockingApi;
+my $api_instance = WWW::OpenAPIClient::BlockingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -141,7 +141,7 @@ my $api_instance = OpenAPIClient::BlockingApi->new(
     #api_key_prefix => {'X-API-KEY' => 'Bearer'},
 );
 
-my $email_address_param = OpenAPIClient::Object::EmailAddressParam->new(); # EmailAddressParam | 
+my $email_address_param = WWW::OpenAPIClient::Object::EmailAddressParam->new(); # EmailAddressParam | 
 
 eval {
     my $result = $api_instance->delist_block(email_address_param => $email_address_param);
@@ -183,8 +183,8 @@ List addresses currently flagged by spam-filter block lists
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::BlockingApi;
-my $api_instance = OpenAPIClient::BlockingApi->new(
+use WWW::OpenAPIClient::BlockingApi;
+my $api_instance = WWW::OpenAPIClient::BlockingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -230,8 +230,8 @@ List custom deny rules (sender / domain / destination / prefix)
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::BlockingApi;
-my $api_instance = OpenAPIClient::BlockingApi->new(
+use WWW::OpenAPIClient::BlockingApi;
+my $api_instance = WWW::OpenAPIClient::BlockingApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},

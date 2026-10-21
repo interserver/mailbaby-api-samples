@@ -10,7 +10,6 @@ spec/models/date_or_timestamp_spec.cr
 spec/models/deny_rule_new_spec.cr
 spec/models/deny_rule_record_spec.cr
 spec/models/email_address_name_spec.cr
-spec/models/email_address_names_spec.cr
 spec/models/email_address_param_spec.cr
 spec/models/email_address_types_spec.cr
 spec/models/email_addresses_types_spec.cr
@@ -43,7 +42,6 @@ src/openapi_client/models/date_or_timestamp.cr
 src/openapi_client/models/deny_rule_new.cr
 src/openapi_client/models/deny_rule_record.cr
 src/openapi_client/models/email_address_name.cr
-src/openapi_client/models/email_address_names.cr
 src/openapi_client/models/email_address_param.cr
 src/openapi_client/models/email_address_types.cr
 src/openapi_client/models/email_addresses_types.cr

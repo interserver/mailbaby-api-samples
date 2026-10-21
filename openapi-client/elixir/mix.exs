@@ -3,7 +3,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Mixfile do
 
   def project do
     [
-      app: :mail_baby_email_delivery_and_management_service_api,
+      app: :mail_baby_elixir,
       version: "1.0.0",
       elixir: "~> 1.18",
       build_embedded: Mix.env() == :prod,
@@ -43,7 +43,7 @@ defmodule MailBabyEmailDeliveryAndManagementServiceAPI.Mixfile do
 
    defp package do
       [
-        name: "mail_baby_email_delivery_and_management_service_api",
+        name: "mail_baby_elixir",
         files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
       ]
   end

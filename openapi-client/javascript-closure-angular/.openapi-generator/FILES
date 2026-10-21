@@ -4,7 +4,6 @@ API/Client/DateOrTimestamp.js
 API/Client/DenyRuleNew.js
 API/Client/DenyRuleRecord.js
 API/Client/EmailAddressName.js
-API/Client/EmailAddressNames.js
 API/Client/EmailAddressParam.js
 API/Client/EmailAddressTypes.js
 API/Client/EmailAddressesTypes.js

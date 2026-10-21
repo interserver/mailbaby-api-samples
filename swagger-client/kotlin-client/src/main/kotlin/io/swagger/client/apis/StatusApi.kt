@@ -12,7 +12,7 @@
 package io.swagger.client.apis
 
 
-import mailbaby-client-kotlin-client.infrastructure.*
+import MailBabyKotlinClient.infrastructure.*
 
 class StatusApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
 

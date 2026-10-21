@@ -35,6 +35,8 @@ inline FString ToString(const OpenAPIBlockingApi::AddRuleRequest::TypeEnum& Valu
 		return TEXT("startswith");
 	case OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Destination:
 		return TEXT("destination");
+	case OpenAPIBlockingApi::AddRuleRequest::TypeEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIBlockingApi::AddRuleRequest::TypeEnum Value (%d)"), (int)Value);
@@ -52,7 +54,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIBlockingApi::AddRuleR
 		{ TEXT("domain"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Domain },
 		{ TEXT("email"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Email },
 		{ TEXT("startswith"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Startswith },
-		{ TEXT("destination"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Destination }, };
+		{ TEXT("destination"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::Destination },
+		{ TEXT("11184809"), OpenAPIBlockingApi::AddRuleRequest::TypeEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

@@ -1,4 +1,4 @@
-# org.openapitools.client - Kotlin client library for MailBaby Email Delivery and Management Service API
+# MailBabyKotlin - Kotlin client library for MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -100,30 +100,29 @@ All URIs are relative to *https://api.mailbaby.net*
 <a id="documentation-for-models"></a>
 ## Documentation for Models
 
- - [org.openapitools.client.models.DateOrTimestamp](docs/DateOrTimestamp.md)
- - [org.openapitools.client.models.DenyRuleNew](docs/DenyRuleNew.md)
- - [org.openapitools.client.models.DenyRuleRecord](docs/DenyRuleRecord.md)
- - [org.openapitools.client.models.EmailAddressName](docs/EmailAddressName.md)
- - [org.openapitools.client.models.EmailAddressNames](docs/EmailAddressNames.md)
- - [org.openapitools.client.models.EmailAddressParam](docs/EmailAddressParam.md)
- - [org.openapitools.client.models.EmailAddressTypes](docs/EmailAddressTypes.md)
- - [org.openapitools.client.models.EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [org.openapitools.client.models.ErrorMessage](docs/ErrorMessage.md)
- - [org.openapitools.client.models.GenericResponse](docs/GenericResponse.md)
- - [org.openapitools.client.models.MailAttachment](docs/MailAttachment.md)
- - [org.openapitools.client.models.MailBlockClickHouse](docs/MailBlockClickHouse.md)
- - [org.openapitools.client.models.MailBlockRspamd](docs/MailBlockRspamd.md)
- - [org.openapitools.client.models.MailBlocks](docs/MailBlocks.md)
- - [org.openapitools.client.models.MailLog](docs/MailLog.md)
- - [org.openapitools.client.models.MailLogEntry](docs/MailLogEntry.md)
- - [org.openapitools.client.models.MailOrder](docs/MailOrder.md)
- - [org.openapitools.client.models.MailOrderDetail](docs/MailOrderDetail.md)
- - [org.openapitools.client.models.MailStatsType](docs/MailStatsType.md)
- - [org.openapitools.client.models.MailStatsVolume](docs/MailStatsVolume.md)
- - [org.openapitools.client.models.SendMail](docs/SendMail.md)
- - [org.openapitools.client.models.SendMailAdv](docs/SendMailAdv.md)
- - [org.openapitools.client.models.SendMailRaw](docs/SendMailRaw.md)
- - [org.openapitools.client.models.SendMailTo](docs/SendMailTo.md)
+ - [MailBabyKotlin.models.DateOrTimestamp](docs/DateOrTimestamp.md)
+ - [MailBabyKotlin.models.DenyRuleNew](docs/DenyRuleNew.md)
+ - [MailBabyKotlin.models.DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [MailBabyKotlin.models.EmailAddressName](docs/EmailAddressName.md)
+ - [MailBabyKotlin.models.EmailAddressParam](docs/EmailAddressParam.md)
+ - [MailBabyKotlin.models.EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [MailBabyKotlin.models.EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [MailBabyKotlin.models.ErrorMessage](docs/ErrorMessage.md)
+ - [MailBabyKotlin.models.GenericResponse](docs/GenericResponse.md)
+ - [MailBabyKotlin.models.MailAttachment](docs/MailAttachment.md)
+ - [MailBabyKotlin.models.MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBabyKotlin.models.MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBabyKotlin.models.MailBlocks](docs/MailBlocks.md)
+ - [MailBabyKotlin.models.MailLog](docs/MailLog.md)
+ - [MailBabyKotlin.models.MailLogEntry](docs/MailLogEntry.md)
+ - [MailBabyKotlin.models.MailOrder](docs/MailOrder.md)
+ - [MailBabyKotlin.models.MailOrderDetail](docs/MailOrderDetail.md)
+ - [MailBabyKotlin.models.MailStatsType](docs/MailStatsType.md)
+ - [MailBabyKotlin.models.MailStatsVolume](docs/MailStatsVolume.md)
+ - [MailBabyKotlin.models.SendMail](docs/SendMail.md)
+ - [MailBabyKotlin.models.SendMailAdv](docs/SendMailAdv.md)
+ - [MailBabyKotlin.models.SendMailRaw](docs/SendMailRaw.md)
+ - [MailBabyKotlin.models.SendMailTo](docs/SendMailTo.md)
 
 
 <a id="documentation-for-authorization"></a>

@@ -10,11 +10,12 @@ import Foundation
 /** The fields required to create a new email deny rule via &#x60;POST /mail/rules&#x60;. The &#x60;type&#x60; controls what &#x60;data&#x60; is matched against: - &#x60;email&#x60; — exact sender address match - &#x60;domain&#x60; — all senders from a domain - &#x60;destination&#x60; — exact recipient address match - &#x60;startswith&#x60; — sender local-part prefix match (alphanumeric + &#x60;+_.-&#x60; only) */
 public struct DenyRuleNew: Sendable, Codable, Hashable {
 
-    public enum ModelType: String, Sendable, Codable, CaseIterable {
+    public enum ModelType: String, Sendable, Codable, CaseIterable, CaseIterableDefaultsLast {
         case domain = "domain"
         case email = "email"
         case startswith = "startswith"
         case destination = "destination"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     /** The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. */
     public var type: ModelType
@@ -45,3 +46,10 @@ public struct DenyRuleNew: Sendable, Codable, Hashable {
     }
 }
 
+
+extension DenyRuleNew: UnknownCaseCheckable {
+    public var containsUnknownDefaultOpenApiCase: Bool {
+        if type == .unknownDefaultOpenApi { return true }
+        return false
+    }
+}

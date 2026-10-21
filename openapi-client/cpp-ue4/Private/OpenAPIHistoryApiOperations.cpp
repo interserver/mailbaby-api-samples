@@ -41,6 +41,8 @@ inline FString ToString(const OpenAPIHistoryApi::GetStatsRequest::TimeEnum& Valu
 		return TEXT("day");
 	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::OneHour:
 		return TEXT("1h");
+	case OpenAPIHistoryApi::GetStatsRequest::TimeEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::GetStatsRequest::TimeEnum Value (%d)"), (int)Value);
@@ -61,7 +63,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::GetStatsR
 		{ TEXT("7d"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::SevenDays },
 		{ TEXT("24h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::TwentyFourHours },
 		{ TEXT("day"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::Day },
-		{ TEXT("1h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::OneHour }, };
+		{ TEXT("1h"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::OneHour },
+		{ TEXT("11184809"), OpenAPIHistoryApi::GetStatsRequest::TimeEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -141,6 +144,8 @@ inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEn
 		return TEXT("0");
 	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::Delivered:
 		return TEXT("1");
+	case OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum Value (%d)"), (int)Value);
@@ -156,7 +161,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailL
 {
 	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum> StringToEnum = { 
 		{ TEXT("0"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::NotDelivered },
-		{ TEXT("1"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::Delivered }, };
+		{ TEXT("1"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::Delivered },
+		{ TEXT("11184809"), OpenAPIHistoryApi::ViewMailLogRequest::DeliveredEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -192,6 +198,8 @@ inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& V
 	{
 	case OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::Time:
 		return TEXT("time");
+	case OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::SortEnum Value (%d)"), (int)Value);
@@ -206,7 +214,8 @@ FString OpenAPIHistoryApi::ViewMailLogRequest::EnumToString(const OpenAPIHistory
 inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailLogRequest::SortEnum& Value)
 {
 	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::SortEnum> StringToEnum = { 
-		{ TEXT("time"), OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::Time }, };
+		{ TEXT("time"), OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::Time },
+		{ TEXT("11184809"), OpenAPIHistoryApi::ViewMailLogRequest::SortEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -244,6 +253,8 @@ inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::DirEnum& Va
 		return TEXT("asc");
 	case OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Desc:
 		return TEXT("desc");
+	case OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::DirEnum Value (%d)"), (int)Value);
@@ -259,7 +270,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailL
 {
 	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::DirEnum> StringToEnum = { 
 		{ TEXT("asc"), OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Asc },
-		{ TEXT("desc"), OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Desc }, };
+		{ TEXT("desc"), OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::Desc },
+		{ TEXT("11184809"), OpenAPIHistoryApi::ViewMailLogRequest::DirEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)
@@ -297,6 +309,8 @@ inline FString ToString(const OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum
 		return TEXT("message");
 	case OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Recipient:
 		return TEXT("recipient");
+	case OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum Value (%d)"), (int)Value);
@@ -312,7 +326,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIHistoryApi::ViewMailL
 {
 	static TMap<FString, OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum> StringToEnum = { 
 		{ TEXT("message"), OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Message },
-		{ TEXT("recipient"), OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Recipient }, };
+		{ TEXT("recipient"), OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::Recipient },
+		{ TEXT("11184809"), OpenAPIHistoryApi::ViewMailLogRequest::GroupbyEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

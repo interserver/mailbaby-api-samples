@@ -1,0 +1,34 @@
+controllerPackage: org.openapitools.controllers
+modelPackage:  org.openapitools.model
+swaggerUrl: ./src/main/openapi/openapi.yaml
+modelMappings:
+  # to enable explicit mappings, use this syntax:
+  DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
+  DateOrTimestamp : org.openapitools.model.DateOrTimestamp
+DenyRuleNew : org.openapitools.model.DenyRuleNew
+DenyRuleRecord : org.openapitools.model.DenyRuleRecord
+EmailAddressName : org.openapitools.model.EmailAddressName
+EmailAddressParam : org.openapitools.model.EmailAddressParam
+EmailAddressTypes : org.openapitools.model.EmailAddressTypes
+EmailAddressesTypes : org.openapitools.model.EmailAddressesTypes
+ErrorMessage : org.openapitools.model.ErrorMessage
+GenericResponse : org.openapitools.model.GenericResponse
+MailAttachment : org.openapitools.model.MailAttachment
+MailBlockClickHouse : org.openapitools.model.MailBlockClickHouse
+MailBlockRspamd : org.openapitools.model.MailBlockRspamd
+MailBlocks : org.openapitools.model.MailBlocks
+MailLog : org.openapitools.model.MailLog
+MailLogEntry : org.openapitools.model.MailLogEntry
+MailOrder : org.openapitools.model.MailOrder
+MailOrderDetail : org.openapitools.model.MailOrderDetail
+MailStatsType : org.openapitools.model.MailStatsType
+MailStatsVolume : org.openapitools.model.MailStatsVolume
+SendMail : org.openapitools.model.SendMail
+SendMailAdv : org.openapitools.model.SendMailAdv
+SendMailRaw : org.openapitools.model.SendMailRaw
+SendMailTo : org.openapitools.model.SendMailTo
+
+entityProcessors:
+  - json
+  - xml
+  - yaml

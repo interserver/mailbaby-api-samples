@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for SendMailRaw
 void main() {
-  final instance = SendMailRawBuilder();
-  // TODO add properties to the builder and call build()
+  final SendMailRaw? instance = /* SendMailRaw(...) */ null;
+  // TODO add properties to the entity
 
   group(SendMailRaw, () {
     // The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.

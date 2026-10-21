@@ -52,6 +52,7 @@ export const DenyRuleNewTypeEnum = {
     Email: 'email',
     Startswith: 'startswith',
     Destination: 'destination',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 
 export type DenyRuleNewTypeEnum = typeof DenyRuleNewTypeEnum[keyof typeof DenyRuleNewTypeEnum];
@@ -87,6 +88,7 @@ export const DenyRuleRecordTypeEnum = {
     Email: 'email',
     Startswith: 'startswith',
     Destination: 'destination',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 
 export type DenyRuleRecordTypeEnum = typeof DenyRuleRecordTypeEnum[keyof typeof DenyRuleRecordTypeEnum];
@@ -103,11 +105,6 @@ export interface EmailAddressName {
      * Optional display name shown to recipients (e.g. in the `From:` header).
      */
     'name'?: string;
-}
-/**
- * An array of email contacts, each with an email address and optional display name.
- */
-export interface EmailAddressNames extends Array<EmailAddressName> {
 }
 /**
  * A single email address parameter used as the body of `POST /mail/blocks/delete`.
@@ -128,7 +125,7 @@ export type EmailAddressTypes = EmailAddressName | string;
  * @type EmailAddressesTypes
  * A flexible email address list that accepts either a plain RFC 822 string or a structured array of contact objects.  When a string is provided it is parsed as a comma-separated list of RFC 822 addresses (supporting the `\"Name <email>\"` and bare `email` formats).  When an array is provided each entry must have at least an `email` field with an optional `name` field.
  */
-export type EmailAddressesTypes = EmailAddressNames | string;
+export type EmailAddressesTypes = Array<EmailAddressName> | string;
 
 /**
  * The response body returned when an error occurs.
@@ -372,6 +369,7 @@ export interface MailOrder {
 export const MailOrderStatusEnum = {
     Active: 'active',
     Canceled: 'canceled',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 
 export type MailOrderStatusEnum = typeof MailOrderStatusEnum[keyof typeof MailOrderStatusEnum];
@@ -405,6 +403,7 @@ export interface MailOrderDetail {
 export const MailOrderDetailStatusEnum = {
     Active: 'active',
     Canceled: 'canceled',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 
 export type MailOrderDetailStatusEnum = typeof MailOrderDetailStatusEnum[keyof typeof MailOrderDetailStatusEnum];
@@ -448,6 +447,7 @@ export const MailStatsTypeTimeEnum = {
     TwentyFourHours: '24h',
     Day: 'day',
     OneHour: '1h',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 
 export type MailStatsTypeTimeEnum = typeof MailStatsTypeTimeEnum[keyof typeof MailStatsTypeTimeEnum];
@@ -954,6 +954,7 @@ export const AddRuleTypeEnum = {
     Email: 'email',
     Startswith: 'startswith',
     Destination: 'destination',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type AddRuleTypeEnum = typeof AddRuleTypeEnum[keyof typeof AddRuleTypeEnum];
 
@@ -1281,25 +1282,30 @@ export const GetStatsTimeEnum = {
     TwentyFourHours: '24h',
     Day: 'day',
     OneHour: '1h',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type GetStatsTimeEnum = typeof GetStatsTimeEnum[keyof typeof GetStatsTimeEnum];
 export const ViewMailLogDeliveredEnum = {
     NotDelivered: 0,
     Delivered: 1,
+    NUMBER_unknown_default_open_api: 11184809,
 } as const;
 export type ViewMailLogDeliveredEnum = typeof ViewMailLogDeliveredEnum[keyof typeof ViewMailLogDeliveredEnum];
 export const ViewMailLogSortEnum = {
     Time: 'time',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type ViewMailLogSortEnum = typeof ViewMailLogSortEnum[keyof typeof ViewMailLogSortEnum];
 export const ViewMailLogDirEnum = {
     Asc: 'asc',
     Desc: 'desc',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type ViewMailLogDirEnum = typeof ViewMailLogDirEnum[keyof typeof ViewMailLogDirEnum];
 export const ViewMailLogGroupbyEnum = {
     Message: 'message',
     Recipient: 'recipient',
+    UnknownDefaultOpenApi: '11184809',
 } as const;
 export type ViewMailLogGroupbyEnum = typeof ViewMailLogGroupbyEnum[keyof typeof ViewMailLogGroupbyEnum];
 

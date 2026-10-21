@@ -9,6 +9,8 @@
 #' @format An \code{R6Class} generator object
 #' @field raw_email The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination. character
 #' @field id Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`. integer [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -17,14 +19,17 @@ SendMailRaw <- R6::R6Class(
   public = list(
     `raw_email` = NULL,
     `id` = NULL,
+    `_field_list` = c("raw_email", "id"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new SendMailRaw class.
     #'
     #' @param raw_email The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
     #' @param id Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`raw_email`, `id` = NULL, ...) {
+    initialize = function(`raw_email`, `id` = NULL, additional_properties = NULL, ...) {
       if (!missing(`raw_email`)) {
         if (!(is.character(`raw_email`) && length(`raw_email`) == 1)) {
           stop(paste("Error! Invalid data for `raw_email`. Must be a string:", `raw_email`))
@@ -36,6 +41,11 @@ SendMailRaw <- R6::R6Class(
           stop(paste("Error! Invalid data for `id`. Must be an integer:", `id`))
         }
         self$`id` <- `id`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -78,6 +88,10 @@ SendMailRaw <- R6::R6Class(
         SendMailRawObject[["id"]] <-
           self$`id`
       }
+      for (key in names(self$additional_properties)) {
+        SendMailRawObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(SendMailRawObject)
     },
 
@@ -94,6 +108,13 @@ SendMailRaw <- R6::R6Class(
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -104,6 +125,9 @@ SendMailRaw <- R6::R6Class(
     #' @return SendMailRaw in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -117,6 +141,13 @@ SendMailRaw <- R6::R6Class(
       this_object <- jsonlite::fromJSON(input_json)
       self$`raw_email` <- this_object$`raw_email`
       self$`id` <- this_object$`id`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

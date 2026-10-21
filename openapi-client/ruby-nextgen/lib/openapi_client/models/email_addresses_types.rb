@@ -12,7 +12,7 @@ module OpenapiClient
     # else tries each candidate type in order.
     module EmailAddressesTypes
       CANDIDATES = [
-        'EmailAddressNames',
+        'Array<EmailAddressName>',
         'String',
       ].freeze
 

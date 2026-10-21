@@ -32,11 +32,11 @@ var __from__was__set := false
 # Message counts keyed by originating client IP address.
 # Required: False
 # isArray: false
-@export var some_ipnull: Dictionary:
+@export var some_ip: Dictionary:
 	set(value):
-		__some_ipnull__was__set = true
-		some_ipnull = value
-var __some_ipnull__was__set := false
+		__some_ip__was__set = true
+		some_ip = value
+var __some_ip__was__set := false
 
 
 func bzz_collect_missing_properties() -> Array:
@@ -50,8 +50,8 @@ func bzz_normalize() -> Dictionary:
 		bzz_dictionary["to"] = self.to
 	if self.__from__was__set:
 		bzz_dictionary["from"] = self.from
-	if self.__some_ipnull__was__set:
-		bzz_dictionary["some_ipnull"] = self.some_ipnull
+	if self.__some_ip__was__set:
+		bzz_dictionary["some_ip"] = self.some_ip
 	return bzz_dictionary
 
 
@@ -62,8 +62,8 @@ static func bzz_denormalize_single(from_dict: Dictionary):
 		me.to = from_dict["to"]
 	if from_dict.has("from"):
 		me.from = from_dict["from"]
-	if from_dict.has("some_ipnull"):
-		me.some_ipnull = from_dict["some_ipnull"]
+	if from_dict.has("some_ip"):
+		me.some_ip = from_dict["some_ip"]
 	return me
 
 

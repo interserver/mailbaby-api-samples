@@ -20,8 +20,8 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = SendingApi()
 val sendMailRaw : SendMailRaw =  // SendMailRaw | 
@@ -69,8 +69,8 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = SendingApi()
 val subject : kotlin.String = subject_example // kotlin.String | The subject line of the email.
@@ -134,8 +134,8 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = SendingApi()
 val to : SendMailTo =  // SendMailTo | 

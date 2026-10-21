@@ -38,6 +38,7 @@ open class HistoryAPI {
         case TwentyFourHours = "24h"
         case Day = "day"
         case OneHour = "1h"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum GetStatsError: Error, CustomStringConvertible {
         // Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).
@@ -104,12 +105,14 @@ open class HistoryAPI {
     public enum ViewMailLogDelivered: Int, Codable, CaseIterable {
         case NotDelivered = 0
         case Delivered = 1
+        case numberUnknownDefaultOpenApi = 11184809
     }
     ///
     /// Enum for parameter sort
     ///
     public enum ViewMailLogSort: String, Codable, CaseIterable {
         case time = "time"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     ///
     /// Enum for parameter dir
@@ -117,6 +120,7 @@ open class HistoryAPI {
     public enum ViewMailLogDir: String, Codable, CaseIterable {
         case asc = "asc"
         case desc = "desc"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     ///
     /// Enum for parameter groupby
@@ -124,6 +128,7 @@ open class HistoryAPI {
     public enum ViewMailLogGroupby: String, Codable, CaseIterable {
         case message = "message"
         case recipient = "recipient"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public enum ViewMailLogError: Error, CustomStringConvertible {
         // Bad request — one or more input parameters were missing or invalid.

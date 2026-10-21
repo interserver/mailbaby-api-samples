@@ -11,6 +11,8 @@
 #' @field skip The `skip` value used for this page (echoed from the request). integer
 #' @field limit The `limit` value used for this page (echoed from the request). integer
 #' @field emails  list(\link{MailLogEntry})
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -21,6 +23,8 @@ MailLog <- R6::R6Class(
     `skip` = NULL,
     `limit` = NULL,
     `emails` = NULL,
+    `_field_list` = c("total", "skip", "limit", "emails"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailLog class.
@@ -29,8 +33,9 @@ MailLog <- R6::R6Class(
     #' @param skip The `skip` value used for this page (echoed from the request).
     #' @param limit The `limit` value used for this page (echoed from the request).
     #' @param emails emails
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`total`, `skip`, `limit`, `emails`, ...) {
+    initialize = function(`total`, `skip`, `limit`, `emails`, additional_properties = NULL, ...) {
       if (!missing(`total`)) {
         if (!(is.numeric(`total`) && length(`total`) == 1)) {
           stop(paste("Error! Invalid data for `total`. Must be an integer:", `total`))
@@ -53,6 +58,11 @@ MailLog <- R6::R6Class(
         stopifnot(is.vector(`emails`), length(`emails`) != 0)
         sapply(`emails`, function(x) stopifnot(R6::is.R6(x)))
         self$`emails` <- `emails`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -103,6 +113,10 @@ MailLog <- R6::R6Class(
         MailLogObject[["emails"]] <-
           self$extractSimpleType(self$`emails`)
       }
+      for (key in names(self$additional_properties)) {
+        MailLogObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailLogObject)
     },
 
@@ -146,8 +160,15 @@ MailLog <- R6::R6Class(
         self$`limit` <- this_object$`limit`
       }
       if (!is.null(this_object$`emails`)) {
-        self$`emails` <- ApiClient$new()$deserializeObj(this_object$`emails`, "array[MailLogEntry]", loadNamespace("openapi"))
+        self$`emails` <- ApiClient$new()$deserializeObj(this_object$`emails`, "array[MailLogEntry]", loadNamespace("MailBabyR"))
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -158,6 +179,9 @@ MailLog <- R6::R6Class(
     #' @return MailLog in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -172,7 +196,14 @@ MailLog <- R6::R6Class(
       self$`total` <- this_object$`total`
       self$`skip` <- this_object$`skip`
       self$`limit` <- this_object$`limit`
-      self$`emails` <- ApiClient$new()$deserializeObj(this_object$`emails`, "array[MailLogEntry]", loadNamespace("openapi"))
+      self$`emails` <- ApiClient$new()$deserializeObj(this_object$`emails`, "array[MailLogEntry]", loadNamespace("MailBabyR"))
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

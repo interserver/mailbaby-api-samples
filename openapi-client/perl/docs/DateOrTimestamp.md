@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::DateOrTimestamp
+# WWW::OpenAPIClient::Object::DateOrTimestamp
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::DateOrTimestamp;
+use WWW::OpenAPIClient::Object::DateOrTimestamp;
 ```
 
 ## Properties

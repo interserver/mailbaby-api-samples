@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$EmailAddressTypes = Initialize-PSOpenAPIToolsEmailAddressTypes  -Email user@domain.com `
+$EmailAddressTypes = Initialize-MailBabyPowershellEmailAddressTypes  -Email user@domain.com `
  -Name John Smith
 ```
 

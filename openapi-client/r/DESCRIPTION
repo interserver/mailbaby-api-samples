@@ -1,4 +1,4 @@
-Package: openapi
+Package: MailBabyR
 Title: R Package Client for MailBaby Email Delivery and Management Service API
 Version: 1.0.0
 Author: person("Mail Baby", email = "support@interserver.net", role = c("aut", "cre"))

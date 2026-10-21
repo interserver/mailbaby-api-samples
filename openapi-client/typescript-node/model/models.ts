@@ -4,7 +4,6 @@ export * from './dateOrTimestamp';
 export * from './denyRuleNew';
 export * from './denyRuleRecord';
 export * from './emailAddressName';
-export * from './emailAddressNames';
 export * from './emailAddressParam';
 export * from './emailAddressTypes';
 export * from './emailAddressesTypes';
@@ -42,7 +41,6 @@ import { DateOrTimestamp } from './dateOrTimestamp';
 import { DenyRuleNew } from './denyRuleNew';
 import { DenyRuleRecord } from './denyRuleRecord';
 import { EmailAddressName } from './emailAddressName';
-import { EmailAddressNames } from './emailAddressNames';
 import { EmailAddressParam } from './emailAddressParam';
 import { EmailAddressTypes } from './emailAddressTypes';
 import { EmailAddressesTypes } from './emailAddressesTypes';
@@ -88,7 +86,6 @@ let typeMap: {[index: string]: any} = {
     "DenyRuleNew": DenyRuleNew,
     "DenyRuleRecord": DenyRuleRecord,
     "EmailAddressName": EmailAddressName,
-    "EmailAddressNames": EmailAddressNames,
     "EmailAddressParam": EmailAddressParam,
     "EmailAddressTypes": EmailAddressTypes,
     "EmailAddressesTypes": EmailAddressesTypes,

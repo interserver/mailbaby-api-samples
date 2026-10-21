@@ -12,6 +12,8 @@
 #' @field username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed. character
 #' @field password The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`. character
 #' @field comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment. character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -23,6 +25,8 @@ MailOrderDetail <- R6::R6Class(
     `username` = NULL,
     `password` = NULL,
     `comment` = NULL,
+    `_field_list` = c("id", "status", "username", "password", "comment"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailOrderDetail class.
@@ -32,8 +36,9 @@ MailOrderDetail <- R6::R6Class(
     #' @param username The SMTP AUTH username for this order, always in the format `mb<id>`. Use together with the password from `GET /mail/{id}` to authenticate directly against `relay.mailbaby.net:25` if needed.
     #' @param password The current SMTP AUTH password for this mail order.  Use with the `username` field to authenticate against `relay.mailbaby.net:25`.
     #' @param comment Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`id`, `status`, `username`, `password`, `comment` = NULL, ...) {
+    initialize = function(`id`, `status`, `username`, `password`, `comment` = NULL, additional_properties = NULL, ...) {
       if (!missing(`id`)) {
         if (!(is.numeric(`id`) && length(`id`) == 1)) {
           stop(paste("Error! Invalid data for `id`. Must be an integer:", `id`))
@@ -66,6 +71,11 @@ MailOrderDetail <- R6::R6Class(
           stop(paste("Error! Invalid data for `comment`. Must be a string:", `comment`))
         }
         self$`comment` <- `comment`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -120,6 +130,10 @@ MailOrderDetail <- R6::R6Class(
         MailOrderDetailObject[["comment"]] <-
           self$`comment`
       }
+      for (key in names(self$additional_properties)) {
+        MailOrderDetailObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailOrderDetailObject)
     },
 
@@ -148,6 +162,13 @@ MailOrderDetail <- R6::R6Class(
       if (!is.null(this_object$`comment`)) {
         self$`comment` <- this_object$`comment`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -158,6 +179,9 @@ MailOrderDetail <- R6::R6Class(
     #' @return MailOrderDetail in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -177,6 +201,13 @@ MailOrderDetail <- R6::R6Class(
       self$`username` <- this_object$`username`
       self$`password` <- this_object$`password`
       self$`comment` <- this_object$`comment`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

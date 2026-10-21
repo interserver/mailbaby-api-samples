@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Api.SendingApi
+# MailBabyCsharp.Api.SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -20,9 +20,9 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -85,9 +85,9 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {
@@ -166,9 +166,9 @@ Send a simple email (single recipient, plain or HTML)
 ```csharp
 using System;
 using System.Diagnostics;
-using Interserver.MailBaby.Client.Api;
-using Interserver.MailBaby.Client.Client;
-using Interserver.MailBaby.Client.Model;
+using MailBabyCsharp.Api;
+using MailBabyCsharp.Client;
+using MailBabyCsharp.Model;
 
 namespace Example
 {

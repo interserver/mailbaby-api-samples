@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.mail_stats_type import MailStatsType
+from MailBabyPython.models.mail_stats_type import MailStatsType
 
 class TestMailStatsType(unittest.TestCase):
     """MailStatsType unit test stubs"""

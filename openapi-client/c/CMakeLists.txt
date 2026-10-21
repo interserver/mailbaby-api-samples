@@ -52,7 +52,6 @@ set(SRCS
     model/deny_rule_new.c
     model/deny_rule_record.c
     model/email_address_name.c
-    model/email_address_names.c
     model/email_address_param.c
     model/email_address_types.c
     model/email_addresses_types.c
@@ -92,7 +91,6 @@ set(HDRS
     model/deny_rule_new.h
     model/deny_rule_record.h
     model/email_address_name.h
-    model/email_address_names.h
     model/email_address_param.h
     model/email_address_types.h
     model/email_addresses_types.h

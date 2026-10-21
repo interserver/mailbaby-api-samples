@@ -18,7 +18,7 @@ Get one mail order&#x27;s full detail including SMTP password
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = ServicesApi()
@@ -65,7 +65,7 @@ Use this **before sending** if you need to discover which mail order &#x60;id&#x
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = ServicesApi()

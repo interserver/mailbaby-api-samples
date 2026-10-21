@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$MailLog = Initialize-PSOpenAPIToolsMailLog  -Total 10234 `
+$MailLog = Initialize-MailBabyPowershellMailLog  -Total 10234 `
  -Skip 0 `
  -Limit 100 `
  -Emails null

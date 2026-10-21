@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$DenyRuleNew = Initialize-PSOpenAPIToolsDenyRuleNew  -Type email `
+$DenyRuleNew = Initialize-MailBabyPowershellDenyRuleNew  -Type email `
  -VarData domeinwo@server.guesshost.net `
  -User mb20682
 ```

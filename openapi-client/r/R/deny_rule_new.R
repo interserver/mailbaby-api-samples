@@ -10,6 +10,8 @@
 #' @field type The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix. character
 #' @field data The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`. character
 #' @field user Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`. character [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,6 +21,8 @@ DenyRuleNew <- R6::R6Class(
     `type` = NULL,
     `data` = NULL,
     `user` = NULL,
+    `_field_list` = c("type", "data", "user"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new DenyRuleNew class.
@@ -26,8 +30,9 @@ DenyRuleNew <- R6::R6Class(
     #' @param type The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
     #' @param data The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
     #' @param user Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`type`, `data`, `user` = NULL, ...) {
+    initialize = function(`type`, `data`, `user` = NULL, additional_properties = NULL, ...) {
       if (!missing(`type`)) {
         if (!(`type` %in% c("domain", "email", "startswith", "destination"))) {
           stop(paste("Error! \"", `type`, "\" cannot be assigned to `type`. Must be \"domain\", \"email\", \"startswith\", \"destination\".", sep = ""))
@@ -48,6 +53,11 @@ DenyRuleNew <- R6::R6Class(
           stop(paste("Error! Invalid data for `user`. Must be a string:", `user`))
         }
         self$`user` <- `user`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -94,6 +104,10 @@ DenyRuleNew <- R6::R6Class(
         DenyRuleNewObject[["user"]] <-
           self$`user`
       }
+      for (key in names(self$additional_properties)) {
+        DenyRuleNewObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(DenyRuleNewObject)
     },
 
@@ -116,6 +130,13 @@ DenyRuleNew <- R6::R6Class(
       if (!is.null(this_object$`user`)) {
         self$`user` <- this_object$`user`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -126,6 +147,9 @@ DenyRuleNew <- R6::R6Class(
     #' @return DenyRuleNew in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -143,6 +167,13 @@ DenyRuleNew <- R6::R6Class(
       self$`type` <- this_object$`type`
       self$`data` <- this_object$`data`
       self$`user` <- this_object$`user`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

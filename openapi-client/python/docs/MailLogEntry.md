@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.mail_log_entry import MailLogEntry
+from MailBabyPython.models.mail_log_entry import MailLogEntry
 
 # TODO update the JSON string below
 json = "{}"

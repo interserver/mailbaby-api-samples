@@ -26,7 +26,7 @@ export default class MailLogEntry {
    * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The &#x60;id&#x60; field matches the &#x60;mailid&#x60; query parameter on &#x60;GET /mail/log&#x60; and   the &#x60;text&#x60; field of a successful send response. - The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist a   flagged sender. - The &#x60;user&#x60; field is the SMTP username (e.g. &#x60;mb5658&#x60;) corresponding to the   &#x60;username&#x60; field in &#x60;GET /mail&#x60; / &#x60;GET /mail/{id}&#x60;.
    * @alias module:model/MailLogEntry
    * @class
-   * @param _id {Number} Internal auto-increment database row ID.  Not meaningful outside the API.
+   * @param id {Number} Internal auto-increment database row ID.  Not meaningful outside the API.
    * @param id {String} The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
    * @param from {String} SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
    * @param to {String} SMTP envelope `RCPT TO` address.
@@ -37,8 +37,8 @@ export default class MailLogEntry {
    * @param origin {String} IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
    * @param _interface {String} Relay interface name that accepted the message (e.g. `feeder`).
    */
-  constructor(_id, id, from, to, created, time, user, transtype, origin, _interface) {
-    this._id = _id;
+  constructor(id, id, from, to, created, time, user, transtype, origin, _interface) {
+    this.id = id;
     this.id = id;
     this.from = from;
     this.to = to;
@@ -61,7 +61,7 @@ export default class MailLogEntry {
     if (data) {
       obj = obj || new MailLogEntry();
       if (data.hasOwnProperty('_id'))
-        obj._id = ApiClient.convertToType(data['_id'], 'Number');
+        obj.id = ApiClient.convertToType(data['_id'], 'Number');
       if (data.hasOwnProperty('id'))
         obj.id = ApiClient.convertToType(data['id'], 'String');
       if (data.hasOwnProperty('from'))
@@ -117,9 +117,9 @@ export default class MailLogEntry {
 
 /**
  * Internal auto-increment database row ID.  Not meaningful outside the API.
- * @member {Number} _id
+ * @member {Number} id
  */
-MailLogEntry.prototype._id = undefined;
+MailLogEntry.prototype.id = undefined;
 
 /**
  * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.

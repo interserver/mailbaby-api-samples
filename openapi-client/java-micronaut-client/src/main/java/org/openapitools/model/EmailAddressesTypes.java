@@ -14,7 +14,8 @@ package org.openapitools.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import org.openapitools.model.EmailAddressNames;
+import java.util.List;
+import org.openapitools.model.EmailAddressName;
 import com.fasterxml.jackson.annotation.*;
 
 import javax.validation.constraints.*;
@@ -28,7 +29,7 @@ import javax.annotation.Generated;
 @JsonPropertyOrder({
 })
 @JsonTypeName("EmailAddressesTypes")
-@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", date="2026-10-20T20:42:21.675356880-04:00[America/New_York]", comments = "Generator version: 7.26.0")
+@Generated(value="org.openapitools.codegen.languages.JavaMicronautClientCodegen", comments = "Generator version: 7.26.0")
 @Introspected
 public class EmailAddressesTypes {
     public EmailAddressesTypes() {

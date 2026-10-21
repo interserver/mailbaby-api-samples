@@ -1,0 +1,32 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.",
+  "name": "MailLog",
+  "fields": [
+    {
+      "name": "total",
+      "type": "int",
+      "doc": "Total number of log entries that match the supplied filters, regardless of `skip` and `limit`.  Use this to calculate the number of pages: `ceil(total / limit)`."
+    },
+    {
+      "name": "skip",
+      "type": "int",
+      "doc": "The `skip` value used for this page (echoed from the request)."
+    },
+    {
+      "name": "limit",
+      "type": "int",
+      "doc": "The `limit` value used for this page (echoed from the request)."
+    },
+    {
+      "name": "emails",
+      "type": {
+        "type": "array",
+        "items": "MailBabyAvroSchema.MailLogEntry"
+      },
+      "doc": ""
+    }
+  ]
+
+}

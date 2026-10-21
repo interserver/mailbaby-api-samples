@@ -1,0 +1,17 @@
+-- By default this file is used by `parseRoutesFile` in Foundation.hs
+-- Syntax for this file here: https://www.yesodweb.com/book/routing-and-handlers
+
+-- /static StaticR Static appStatic
+
+/ping PingR GET
+/mail MailR GET
+/mail/#Int64 MailByInt64R GET
+!/mail/send MailSendR POST
+!/mail/rawsend MailRawsendR POST
+!/mail/advsend MailAdvsendR POST
+!/mail/log MailLogR GET
+!/mail/stats MailStatsR GET
+!/mail/blocks MailBlocksR GET
+/mail/blocks/delete MailBlocksDeleteR POST
+!/mail/rules MailRulesR GET POST
+/mail/rules/#Int MailRulesByIntR DELETE

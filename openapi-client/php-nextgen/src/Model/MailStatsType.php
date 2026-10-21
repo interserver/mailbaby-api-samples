@@ -253,6 +253,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, JsonSerializable
     public const TIME_TWENTY_FOUR_HOURS = '24h';
     public const TIME_DAY = 'day';
     public const TIME_ONE_HOUR = '1h';
+    public const TIME_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
 
     /**
      * Gets allowable values of the enum
@@ -269,6 +270,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, JsonSerializable
             self::TIME_TWENTY_FOUR_HOURS,
             self::TIME_DAY,
             self::TIME_ONE_HOUR,
+            self::TIME_UNKNOWN_DEFAULT_OPEN_API,
         ];
     }
 
@@ -365,13 +367,7 @@ class MailStatsType implements ModelInterface, ArrayAccess, JsonSerializable
         }
         $allowedValues = self::getTimeAllowableValues();
         if (!in_array($time, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'time', must be one of '%s'",
-                    $time,
-                    implode("', '", $allowedValues)
-                )
-            );
+            $time = self::TIME_UNKNOWN_DEFAULT_OPEN_API;
         }
         $this->container['time'] = $time;
 

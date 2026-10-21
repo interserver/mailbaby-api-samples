@@ -1,20 +1,12 @@
-# Description: R package name (convention: lowercase).
-packageName: openapi
-
-# Description: R package version.
-packageVersion: 1.0.0
-
-# Description: Hides the generation timestamp when files are generated.
-hideGenerationTimestamp: true
-
-# Description: Throw an exception on non success response codes
-returnExceptionOnFailure: false
-
-# Description: Specify the exception handling package
-# Available Values:
-#    default
-#         Use stop() for raising exceptions.
-#    rlang
-#         Use rlang package for exceptions.
-exceptionPackage: default
-
+# managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
+additionalProperties:
+  disallowAdditionalPropertiesIfNotPresent: "false"
+  ensureUniqueParams: "true"
+  enumUnknownDefaultCase: "true"
+  gitRepoId: "mailbaby-client-r"
+  gitUserId: "interserver"
+  hideGenerationTimestamp: "true"
+  legacyDiscriminatorBehavior: "false"
+  packageName: "MailBabyR"
+  sortModelPropertiesByRequiredFlag: "true"
+  sortParamsByRequiredFlag: "true"

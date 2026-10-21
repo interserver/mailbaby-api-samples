@@ -23,8 +23,6 @@ model/DenyRuleRecord.cpp
 model/DenyRuleRecord.h
 model/EmailAddressName.cpp
 model/EmailAddressName.h
-model/EmailAddressNames.cpp
-model/EmailAddressNames.h
 model/EmailAddressParam.cpp
 model/EmailAddressParam.h
 model/EmailAddressTypes.cpp

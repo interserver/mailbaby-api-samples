@@ -189,7 +189,6 @@ Class | Method | HTTP request | Description
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleNew](docs/DenyRuleNew.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.DenyRuleRecord](docs/DenyRuleRecord.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressName](docs/EmailAddressName.md)
- - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressNames](docs/EmailAddressNames.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressParam](docs/EmailAddressParam.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressTypes](docs/EmailAddressTypes.md)
  - [MailBabyEmailDeliveryAndManagementServiceApi.EmailAddressesTypes](docs/EmailAddressesTypes.md)

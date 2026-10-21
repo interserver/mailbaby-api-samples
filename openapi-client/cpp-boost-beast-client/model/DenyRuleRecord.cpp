@@ -925,8 +925,8 @@ std::string DenyRuleRecord::getType() const
 
 void DenyRuleRecord::setType(std::string value)
 {
-    static const std::array<std::string, 4> allowedValues = {
-        "domain","email","startswith","destination"
+    static const std::array<std::string, 5> allowedValues = {
+        "domain","email","startswith","destination","11184809"
     };
     if (std::find(allowedValues.begin(), allowedValues.end(), value) == allowedValues.end()) {
         std::ostringstream errorMessage;

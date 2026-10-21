@@ -3,126 +3,74 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'email_address_name.g.dart';
 
-/// An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
-///
-/// Properties:
-/// * [email] - The email address.
-/// * [name] - Optional display name shown to recipients (e.g. in the `From:` header).
-@BuiltValue()
-abstract class EmailAddressName implements Built<EmailAddressName, EmailAddressNameBuilder> {
-  /// The email address.
-  @BuiltValueField(wireName: r'email')
-  String get email;
 
-  /// Optional display name shown to recipients (e.g. in the `From:` header).
-  @BuiltValueField(wireName: r'name')
-  String? get name;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class EmailAddressName {
+  /// Returns a new [EmailAddressName] instance.
+  EmailAddressName({
 
-  EmailAddressName._();
+    required  this.email,
 
-  factory EmailAddressName([void updates(EmailAddressNameBuilder b)]) = _$EmailAddressName;
+     this.name,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(EmailAddressNameBuilder b) => b;
+      /// The email address.
+  @JsonKey(
+    
+    name: r'email',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<EmailAddressName> get serializer => _$EmailAddressNameSerializer();
+
+  final String email;
+
+
+
+      /// Optional display name shown to recipients (e.g. in the `From:` header).
+  @JsonKey(
+    
+    name: r'name',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? name;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is EmailAddressName &&
+      other.email == email &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        email.hashCode +
+        name.hashCode;
+
+  factory EmailAddressName.fromJson(Map<String, dynamic> json) => _$EmailAddressNameFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmailAddressNameToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$EmailAddressNameSerializer implements PrimitiveSerializer<EmailAddressName> {
-  @override
-  final Iterable<Type> types = const [EmailAddressName, _$EmailAddressName];
-
-  @override
-  final String wireName = r'EmailAddressName';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    EmailAddressName object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    EmailAddressName object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required EmailAddressNameBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(String),
-          ) as String?;
-          if (valueDes == null) continue;
-          result.name = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  EmailAddressName deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = EmailAddressNameBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

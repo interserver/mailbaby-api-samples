@@ -29,6 +29,7 @@ SevenDays | `"7d"`
 TwentyFourHours | `"24h"`
 Day | `"day"`
 OneHour | `"1h"`
+UNKNOWN_DEFAULT_OPEN_API | `"unknown_default_open_api"`
 
 
 

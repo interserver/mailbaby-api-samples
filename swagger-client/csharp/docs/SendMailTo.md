@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Model.SendMailTo
+# MailBabyCsharp.Model.SendMailTo
 ## Properties
 
 Name | Type | Description | Notes

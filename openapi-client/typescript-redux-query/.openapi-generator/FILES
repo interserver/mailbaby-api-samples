@@ -11,7 +11,6 @@ src/models/DateOrTimestamp.ts
 src/models/DenyRuleNew.ts
 src/models/DenyRuleRecord.ts
 src/models/EmailAddressName.ts
-src/models/EmailAddressNames.ts
 src/models/EmailAddressParam.ts
 src/models/EmailAddressTypes.ts
 src/models/EmailAddressesTypes.ts

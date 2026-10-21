@@ -15,7 +15,7 @@
 
 typedef struct email_addresses_types_t email_addresses_types_t;
 
-#include "email_address_names.h"
+#include "email_address_name.h"
 
 
 

@@ -1,4 +1,4 @@
-# CppBoostBeastOpenAPIClient
+# MailBabyCppBoostBeastClient
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 

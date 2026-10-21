@@ -16,7 +16,6 @@ src/gatling/scala/org/openapitools/client/model/DateOrTimestamp.scala
 src/gatling/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/gatling/scala/org/openapitools/client/model/DenyRuleRecord.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressName.scala
-src/gatling/scala/org/openapitools/client/model/EmailAddressNames.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressParam.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressTypes.scala
 src/gatling/scala/org/openapitools/client/model/EmailAddressesTypes.scala

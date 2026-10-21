@@ -4,71 +4,74 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/email_address_name.dart';
-import 'dart:core';
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:one_of/one_of.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'email_address_types.g.dart';
 
-/// A flexible single email address that accepts either a plain address string, an RFC 822 named-address string (`\"Name <email>\"`), or a structured contact object.
-///
-/// Properties:
-/// * [email] - The email address.
-/// * [name] - Optional display name shown to recipients (e.g. in the `From:` header).
-@BuiltValue()
-abstract class EmailAddressTypes implements Built<EmailAddressTypes, EmailAddressTypesBuilder> {
-  /// One Of [EmailAddressName], [String]
-  OneOf get oneOf;
 
-  EmailAddressTypes._();
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class EmailAddressTypes {
+  /// Returns a new [EmailAddressTypes] instance.
+  EmailAddressTypes({
 
-  factory EmailAddressTypes([void updates(EmailAddressTypesBuilder b)]) = _$EmailAddressTypes;
+    required  this.email,
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(EmailAddressTypesBuilder b) => b;
+     this.name,
+  });
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<EmailAddressTypes> get serializer => _$EmailAddressTypesSerializer();
+      /// The email address.
+  @JsonKey(
+    
+    name: r'email',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String email;
+
+
+
+      /// Optional display name shown to recipients (e.g. in the `From:` header).
+  @JsonKey(
+    
+    name: r'name',
+    required: false,
+    includeIfNull: false,
+  )
+
+
+  final String? name;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is EmailAddressTypes &&
+      other.email == email &&
+      other.name == name;
+
+    @override
+    int get hashCode =>
+        email.hashCode +
+        name.hashCode;
+
+  factory EmailAddressTypes.fromJson(Map<String, dynamic> json) => _$EmailAddressTypesFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmailAddressTypesToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$EmailAddressTypesSerializer implements PrimitiveSerializer<EmailAddressTypes> {
-  @override
-  final Iterable<Type> types = const [EmailAddressTypes, _$EmailAddressTypes];
-
-  @override
-  final String wireName = r'EmailAddressTypes';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    EmailAddressTypes object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    EmailAddressTypes object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final oneOf = object.oneOf;
-    return serializers.serialize(oneOf.value, specifiedType: FullType(oneOf.valueType))!;
-  }
-
-  @override
-  EmailAddressTypes deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = EmailAddressTypesBuilder();
-    Object? oneOfDataSrc;
-    final targetType = const FullType(OneOf, [FullType(String), FullType(EmailAddressName), ]);
-    oneOfDataSrc = serialized;
-    result.oneOf = serializers.deserialize(oneOfDataSrc, specifiedType: targetType) as OneOf;
-    return result.build();
-  }
-}
-
 

@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::ErrorMessage');
+use_ok('WWW::OpenAPIClient::Object::ErrorMessage');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::ErrorMessage->new();
+#my $instance = WWW::OpenAPIClient::Object::ErrorMessage->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::ErrorMessage');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::ErrorMessage');
 
 
 done_testing();

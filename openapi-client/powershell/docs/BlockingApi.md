@@ -1,4 +1,4 @@
-# PSOpenAPITools.PSOpenAPITools\Api.BlockingApi
+# MailBabyPowershell.MailBabyPowershell\Api.BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 

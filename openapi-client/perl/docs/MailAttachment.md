@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::MailAttachment
+# WWW::OpenAPIClient::Object::MailAttachment
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::MailAttachment;
+use WWW::OpenAPIClient::Object::MailAttachment;
 ```
 
 ## Properties

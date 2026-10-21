@@ -23,7 +23,7 @@ class MailLogEntry {
      * Constructs a new <code>MailLogEntry</code>.
      * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The &#x60;id&#x60; field matches the &#x60;mailid&#x60; query parameter on &#x60;GET /mail/log&#x60; and   the &#x60;text&#x60; field of a successful send response. - The &#x60;from&#x60; address can be passed to &#x60;POST /mail/blocks/delete&#x60; to delist a   flagged sender. - The &#x60;user&#x60; field is the SMTP username (e.g. &#x60;mb5658&#x60;) corresponding to the   &#x60;username&#x60; field in &#x60;GET /mail&#x60; / &#x60;GET /mail/{id}&#x60;.
      * @alias module:model/MailLogEntry
-     * @param _id {Number} Internal auto-increment database row ID.  Not meaningful outside the API.
+     * @param id {Number} Internal auto-increment database row ID.  Not meaningful outside the API.
      * @param id {String} The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
      * @param from {String} SMTP envelope `MAIL FROM` address (may differ from the `From:` header).
      * @param to {String} SMTP envelope `RCPT TO` address.
@@ -34,9 +34,9 @@ class MailLogEntry {
      * @param origin {String} IP address of the client that submitted the message to the relay. Corresponds to the `origin` filter parameter on `GET /mail/log`.
      * @param _interface {String} Relay interface name that accepted the message (e.g. `feeder`).
      */
-    constructor(_id, id, from, to, created, time, user, transtype, origin, _interface) { 
+    constructor(id, id, from, to, created, time, user, transtype, origin, _interface) { 
         
-        MailLogEntry.initialize(this, _id, id, from, to, created, time, user, transtype, origin, _interface);
+        MailLogEntry.initialize(this, id, id, from, to, created, time, user, transtype, origin, _interface);
     }
 
     /**
@@ -44,8 +44,8 @@ class MailLogEntry {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, _id, id, from, to, created, time, user, transtype, origin, _interface) { 
-        obj['_id'] = _id;
+    static initialize(obj, id, id, from, to, created, time, user, transtype, origin, _interface) { 
+        obj['_id'] = id;
         obj['id'] = id;
         obj['from'] = from;
         obj['to'] = to;

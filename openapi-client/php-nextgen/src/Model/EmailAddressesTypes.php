@@ -59,7 +59,7 @@ class EmailAddressesTypes implements OneOfInterface
     {
         return [
             'string',
-            '\OpenAPI\Client\Model\EmailAddressNames'
+            '\OpenAPI\Client\Model\EmailAddressName[]'
         ];
     }
 

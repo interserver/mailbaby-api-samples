@@ -1,4 +1,4 @@
-# @1.0.0
+# @
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
@@ -24,7 +24,7 @@ Navigate to the folder of your consuming project and run one of next commands.
 _published:_
 
 ```console
-npm install @1.0.0 --save
+npm install @ --save
 ```
 
 _without publishing (not recommended):_
@@ -58,157 +58,106 @@ Published packages are not effected by this issue.
 In your Angular project:
 
 ```typescript
-// without configuring providers
-import { ApiModule } from '';
-import { HttpClientModule } from '@angular/common/http';
 
-@NgModule({
-    imports: [
-        ApiModule,
-        // make sure to import the HttpClientModule in the AppModule only,
-        // see https://github.com/angular/angular/issues/20575
-        HttpClientModule
-    ],
-    declarations: [ AppComponent ],
-    providers: [],
-    bootstrap: [ AppComponent ]
-})
-export class AppModule {}
-```
+import { ApplicationConfig } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideApi } from '';
 
-```typescript
-// configuring providers
-import { ApiModule, Configuration, ConfigurationParameters } from '';
-
-export function apiConfigFactory (): Configuration {
-  const params: ConfigurationParameters = {
-    // set configuration parameters here.
-  }
-  return new Configuration(params);
-}
-
-@NgModule({
-    imports: [ ApiModule.forRoot(apiConfigFactory) ],
-    declarations: [ AppComponent ],
-    providers: [],
-    bootstrap: [ AppComponent ]
-})
-export class AppModule {}
-```
-
-```typescript
-// configuring providers with an authentication service that manages your access tokens
-import { ApiModule, Configuration } from '';
-
-@NgModule({
-    imports: [ ApiModule ],
-    declarations: [ AppComponent ],
+export const appConfig: ApplicationConfig = {
     providers: [
-      {
-        provide: Configuration,
-        useFactory: (authService: AuthService) => new Configuration(
-          {
-            basePath: environment.apiUrl,
-            accessToken: authService.getAccessToken.bind(authService)
-          }
-        ),
-        deps: [AuthService],
-        multi: false
-      }
+        // ...
+        provideHttpClient(),
+        provideApi()
     ],
-    bootstrap: [ AppComponent ]
-})
-export class AppModule {}
+};
+```
+
+**NOTE**
+If you're still using `AppModule` and haven't [migrated](https://angular.dev/reference/migrations/standalone) yet, you can still import an Angular module:
+```typescript
+import { ApiModule } from '';
+```
+
+If different from the generated base path, during app bootstrap, you can provide the base path to your service.
+
+```typescript
+import { ApplicationConfig } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideApi } from '';
+
+export const appConfig: ApplicationConfig = {
+    providers: [
+        // ...
+        provideHttpClient(),
+        provideApi('http://localhost:9999')
+    ],
+};
 ```
 
 ```typescript
-import { DefaultApi } from '';
+// with a custom configuration
+import { ApplicationConfig } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideApi } from '';
 
-export class AppComponent {
-    constructor(private apiGateway: DefaultApi) { }
-}
+export const appConfig: ApplicationConfig = {
+    providers: [
+        // ...
+        provideHttpClient(),
+        provideApi({
+            withCredentials: true,
+            username: 'user',
+            password: 'password'
+        })
+    ],
+};
 ```
 
-Note: The ApiModule is restricted to being instantiated once app wide.
-This is to ensure that all services are treated as singletons.
+```typescript
+// with factory building a custom configuration
+import { ApplicationConfig } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideApi, Configuration } from '';
 
-### Using multiple OpenAPI files / APIs / ApiModules
+export const appConfig: ApplicationConfig = {
+    providers: [
+        // ...
+        provideHttpClient(),
+        {
+            provide: Configuration,
+            useFactory: (authService: AuthService) => new Configuration({
+                    basePath: 'http://localhost:9999',
+                    withCredentials: true,
+                    username: authService.getUsername(),
+                    password: authService.getPassword(),
+            }),
+            deps: [AuthService],
+            multi: false
+        }
+    ],
+};
+```
 
-In order to use multiple `ApiModules` generated from different OpenAPI files,
+### Using multiple OpenAPI files / APIs
+
+In order to use multiple APIs generated from different OpenAPI files,
 you can create an alias name when importing the modules
 in order to avoid naming conflicts:
 
 ```typescript
-import { ApiModule } from 'my-api-path';
-import { ApiModule as OtherApiModule } from 'my-other-api-path';
+import { provideApi as provideUserApi } from 'my-user-api-path';
+import { provideApi as provideAdminApi } from 'my-admin-api-path';
 import { HttpClientModule } from '@angular/common/http';
-
-@NgModule({
-  imports: [
-    ApiModule,
-    OtherApiModule,
-    // make sure to import the HttpClientModule in the AppModule only,
-    // see https://github.com/angular/angular/issues/20575
-    HttpClientModule
-  ]
-})
-export class AppModule {
-
-}
-```
-
-### Set service base path
-
-If different than the generated base path, during app bootstrap, you can provide the base path to your service.
-
-```typescript
-import { BASE_PATH } from '';
-
-bootstrap(AppComponent, [
-    { provide: BASE_PATH, useValue: 'https://your-web-service.com' },
-]);
-```
-
-or
-
-```typescript
-import { BASE_PATH } from '';
-
-@NgModule({
-    imports: [],
-    declarations: [ AppComponent ],
-    providers: [ provide: BASE_PATH, useValue: 'https://your-web-service.com' ],
-    bootstrap: [ AppComponent ]
-})
-export class AppModule {}
-```
-
-### Using @angular/cli
-
-First extend your `src/environments/*.ts` files by adding the corresponding base path:
-
-```typescript
-export const environment = {
-  production: false,
-  API_BASE_PATH: 'http://127.0.0.1:8080'
-};
-```
-
-In the src/app/app.module.ts:
-
-```typescript
-import { BASE_PATH } from '';
 import { environment } from '../environments/environment';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [ ],
-  providers: [{ provide: BASE_PATH, useValue: environment.API_BASE_PATH }],
-  bootstrap: [ AppComponent ]
-})
-export class AppModule { }
+export const appConfig: ApplicationConfig = {
+    providers: [
+        // ...
+        provideHttpClient(),
+        provideUserApi(environment.basePath),
+        provideAdminApi(environment.basePath),
+    ],
+};
 ```
 
 ### Customizing path parameter encoding
@@ -234,3 +183,13 @@ new Configuration({
 [parameter-locations-url]: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#parameter-locations
 [style-values-url]: https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#style-values
 [@honoluluhenk/http-param-expander]: https://www.npmjs.com/package/@honoluluhenk/http-param-expander
+
+## Deep-object query parameters
+
+For `style: deepObject`, nested objects are serialized using bracket notation, for example
+`filter[name][contains]=Alice`. Arrays and sets use zero-based indices, for example
+`filter[sort][0][field]=name`. Dates are serialized as ISO strings; null and undefined
+values and empty containers are omitted.
+
+OpenAPI only specifies deepObject serialization for flat objects. This recursive
+encoding is a generator extension and requires a server that accepts bracket notation.

@@ -8,6 +8,8 @@
 #' @description EmailAddressParam Class
 #' @format An \code{R6Class} generator object
 #' @field email The email address to delist from all block lists. character
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -15,18 +17,26 @@ EmailAddressParam <- R6::R6Class(
   "EmailAddressParam",
   public = list(
     `email` = NULL,
+    `_field_list` = c("email"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new EmailAddressParam class.
     #'
     #' @param email The email address to delist from all block lists.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`email`, ...) {
+    initialize = function(`email`, additional_properties = NULL, ...) {
       if (!missing(`email`)) {
         if (!(is.character(`email`) && length(`email`) == 1)) {
           stop(paste("Error! Invalid data for `email`. Must be a string:", `email`))
         }
         self$`email` <- `email`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -65,6 +75,10 @@ EmailAddressParam <- R6::R6Class(
         EmailAddressParamObject[["email"]] <-
           self$`email`
       }
+      for (key in names(self$additional_properties)) {
+        EmailAddressParamObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(EmailAddressParamObject)
     },
 
@@ -78,6 +92,13 @@ EmailAddressParam <- R6::R6Class(
       if (!is.null(this_object$`email`)) {
         self$`email` <- this_object$`email`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -88,6 +109,9 @@ EmailAddressParam <- R6::R6Class(
     #' @return EmailAddressParam in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -100,6 +124,13 @@ EmailAddressParam <- R6::R6Class(
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       self$`email` <- this_object$`email`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

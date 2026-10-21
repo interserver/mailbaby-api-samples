@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.email_address_param import EmailAddressParam
+from MailBabyPython.models.email_address_param import EmailAddressParam
 
 class TestEmailAddressParam(unittest.TestCase):
     """EmailAddressParam unit test stubs"""

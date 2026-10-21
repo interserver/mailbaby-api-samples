@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::MailStatsVolume');
+use_ok('WWW::OpenAPIClient::Object::MailStatsVolume');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::MailStatsVolume->new();
+#my $instance = WWW::OpenAPIClient::Object::MailStatsVolume->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::MailStatsVolume');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::MailStatsVolume');
 
 
 done_testing();

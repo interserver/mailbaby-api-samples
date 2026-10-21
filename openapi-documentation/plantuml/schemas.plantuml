@@ -19,9 +19,6 @@ entity EmailAddressName {
     name: String
 }
 
-entity EmailAddressNames {
-}
-
 entity EmailAddressParam {
     * email: String
 }

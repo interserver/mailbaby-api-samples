@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for DenyRuleRecord
 void main() {
-  final instance = DenyRuleRecordBuilder();
-  // TODO add properties to the builder and call build()
+  final DenyRuleRecord? instance = /* DenyRuleRecord(...) */ null;
+  // TODO add properties to the entity
 
   group(DenyRuleRecord, () {
     // The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.

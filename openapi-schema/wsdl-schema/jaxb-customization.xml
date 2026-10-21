@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxws:bindings
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.1"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  wsdlLocation="service.wsdl">
+
+    <enableWrapperStyle>true</enableWrapperStyle>
+    <enableAsyncMapping>false</enableAsyncMapping>
+
+    <jaxws:bindings node="xsd:simpleType[@name='Type']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="domain" name="DOMAIN" />
+	        <jaxb:typesafeEnumMember value="email" name="EMAIL" />
+	        <jaxb:typesafeEnumMember value="startswith" name="STARTSWITH" />
+	        <jaxb:typesafeEnumMember value="destination" name="DESTINATION" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='Status']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="active" name="ACTIVE" />
+	        <jaxb:typesafeEnumMember value="canceled" name="CANCELED" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='Time']">
+    	<jaxb:typesafeEnumClass>
+	        <jaxb:typesafeEnumMember value="all" name="All" />
+	        <jaxb:typesafeEnumMember value="billing" name="Billing" />
+	        <jaxb:typesafeEnumMember value="month" name="Month" />
+	        <jaxb:typesafeEnumMember value="7d" name="SevenDays" />
+	        <jaxb:typesafeEnumMember value="24h" name="TwentyFourHours" />
+	        <jaxb:typesafeEnumMember value="day" name="Day" />
+	        <jaxb:typesafeEnumMember value="1h" name="OneHour" />
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+
+    <jaxws:bindings node="xsd:simpleType[@name='DateOrTimestamp']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='EmailAddressesTypes']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+    <jaxws:bindings node="xsd:simpleType[@name='SendMailTo']">
+    	<jaxb:typesafeEnumClass>
+	    </jaxb:typesafeEnumClass>
+    </jaxws:bindings>
+
+</jaxws:bindings>

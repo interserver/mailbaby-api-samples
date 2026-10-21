@@ -40,6 +40,7 @@ export interface MailOrder {
 export namespace MailOrder {
     export enum StatusEnum {
         Active = <any> 'active',
-        Canceled = <any> 'canceled'
+        Canceled = <any> 'canceled',
+        UnknownDefaultOpenApi = <any> '11184809'
     }
 }

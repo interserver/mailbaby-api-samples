@@ -1,4 +1,4 @@
-# openapi::ErrorMessage
+# MailBabyR::ErrorMessage
 
 The response body returned when an error occurs.
 

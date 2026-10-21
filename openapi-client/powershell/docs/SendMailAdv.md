@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$SendMailAdv = Initialize-PSOpenAPIToolsSendMailAdv  -Subject Your Package has been Delivered! `
+$SendMailAdv = Initialize-MailBabyPowershellSendMailAdv  -Subject Your Package has been Delivered! `
  -Body The package you ordered on 2021-01-23 has been delivered. `
  -VarFrom null `
  -To null `

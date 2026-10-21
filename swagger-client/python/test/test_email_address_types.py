@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.models.email_address_types import EmailAddressTypes  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.email_address_types import EmailAddressTypes  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestEmailAddressTypes(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestEmailAddressTypes(unittest.TestCase):
     def testEmailAddressTypes(self):
         """Test EmailAddressTypes"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = mailbaby-client-python.models.email_address_types.EmailAddressTypes()  # noqa: E501
+        # model = MailBabyPython.models.email_address_types.EmailAddressTypes()  # noqa: E501
         pass
 
 

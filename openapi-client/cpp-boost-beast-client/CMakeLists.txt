@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(CppBoostBeastOpenAPIClient VERSION 1.0.0 LANGUAGES CXX)
+project(MailBabyCppBoostBeastClient VERSION 1.0.0 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 
@@ -81,8 +81,6 @@ target_sources(${PROJECT_NAME} PRIVATE
     model/DenyRuleRecord.h
     model/EmailAddressName.cpp
     model/EmailAddressName.h
-    model/EmailAddressNames.cpp
-    model/EmailAddressNames.h
     model/EmailAddressParam.cpp
     model/EmailAddressParam.h
     model/EmailAddressTypes.cpp

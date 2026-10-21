@@ -17,7 +17,7 @@ package io.swagger.client.model
  *
  * A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
  *
- * @param _id Internal auto-increment database row ID.  Not meaningful outside the API. for example: '''103172'''
+ * @param id Internal auto-increment database row ID.  Not meaningful outside the API. for example: '''103172'''
  * @param id The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`. for example: '''17c7eda538e0005d03'''
  * @param from SMTP envelope `MAIL FROM` address (may differ from the `From:` header). for example: '''person@mysite.com'''
  * @param to SMTP envelope `RCPT TO` address. for example: '''client@isp.com'''
@@ -44,7 +44,7 @@ package io.swagger.client.model
  * @param mxHostname The MX hostname the relay connected to for delivery.  Corresponds to the `mx` filter parameter on `GET /mail/log`. for example: '''mx.j.is.cc'''
  */
 case class MailLogEntry (
-  _id: Integer,
+  id: Integer,
   id: String,
   from: String,
   to: String,

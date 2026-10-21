@@ -24,9 +24,9 @@ public enum SendMailTo: Sendable, Codable, Hashable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(String.self) {
+        if let value = try? container.decode(String.self), (value as? UnknownCaseCheckable)?.containsUnknownDefaultOpenApiCase != true {
             self = .typeString(value)
-        } else if let value = try? container.decode([String].self) {
+        } else if let value = try? container.decode([String].self), (value as? UnknownCaseCheckable)?.containsUnknownDefaultOpenApiCase != true {
             self = .typeArrayOfString(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of SendMailTo"))

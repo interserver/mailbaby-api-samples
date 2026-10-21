@@ -1,4 +1,4 @@
-# openapi_client.HistoryApi
+# MailBabyPython.HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -35,14 +35,14 @@ The response includes:
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.mail_stats_type import MailStatsType
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_stats_type import MailStatsType
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -58,9 +58,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.HistoryApi(api_client)
+    api_instance = MailBabyPython.HistoryApi(api_client)
     time = '1h' # str | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`. (optional) (default to '1h')
 
     try:
@@ -132,14 +132,14 @@ The `messageId` parameter searches the `Message-ID` email header (case-insensiti
 * Api Key Authentication (apiKeyAuth):
 
 ```python
-import openapi_client
-from openapi_client.models.mail_log import MailLog
-from openapi_client.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.mail_log import MailLog
+from MailBabyPython.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.mailbaby.net
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = MailBabyPython.Configuration(
     host = "https://api.mailbaby.net"
 )
 
@@ -155,9 +155,9 @@ configuration.api_key['apiKeyAuth'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['apiKeyAuth'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with MailBabyPython.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.HistoryApi(api_client)
+    api_instance = MailBabyPython.HistoryApi(api_client)
     id = 2604 # int | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`. (optional)
     origin = '1.2.3.4' # str | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address. (optional)
     mx = 'mx.google.com' # str | Filter by the MX hostname the relay attempted delivery to.  For example `mx.google.com` would return messages destined for Gmail recipients. Maps to `mxHostname` in the `MailLogEntry` response. (optional)
@@ -171,8 +171,8 @@ with openapi_client.ApiClient(configuration) as api_client:
     delivered = 1 # int | Filter by delivery status.  `1` returns only messages that were successfully delivered to the destination MX.  `0` returns messages that are still queued, deferred, or failed.  Omit to return all messages regardless of delivery status. (optional)
     skip = 0 # int | Number of records to skip for pagination.  Use in combination with `limit` to page through large result sets.  Defaults to `0` (no skip). (optional) (default to 0)
     limit = 100 # int | Maximum number of records to return per page.  Defaults to `100`. Maximum allowed value is `10000`.  The response also includes a `total` field with the full matched count so you can calculate the number of pages. (optional) (default to 100)
-    start_date = openapi_client.DateOrTimestamp() # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
-    end_date = openapi_client.DateOrTimestamp() # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
+    start_date = MailBabyPython.DateOrTimestamp() # DateOrTimestamp | Earliest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-15` or `last monday`.  Messages with a `time` value **greater than or equal to** this value will be included. (optional)
+    end_date = MailBabyPython.DateOrTimestamp() # DateOrTimestamp | Latest date to include.  Accepts either a Unix timestamp (integer seconds since epoch) or a date string parseable by `strtotime()` such as `2024-01-31` or `yesterday`. Messages with a `time` value **less than or equal to** this value will be included. (optional)
     sort = 'time' # str | Field to sort results by.  Currently only `time` is supported (sorts by internal row ID which corresponds to chronological order). (optional) (default to 'time')
     dir = 'desc' # str | Sort direction.  `desc` returns newest first (default), `asc` returns oldest first. (optional) (default to 'desc')
     groupby = 'recipient' # str | Controls how results are grouped.  `recipient` (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and delivery metadata.  `message` collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The `total` count in the response matches the grouping mode. (optional) (default to 'recipient')

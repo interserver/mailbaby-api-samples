@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$SendMailTo = Initialize-PSOpenAPIToolsSendMailTo 
+$SendMailTo = Initialize-MailBabyPowershellSendMailTo 
 ```
 
 - Convert the resource to JSON

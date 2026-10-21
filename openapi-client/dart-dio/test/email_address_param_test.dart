@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for EmailAddressParam
 void main() {
-  final instance = EmailAddressParamBuilder();
-  // TODO add properties to the builder and call build()
+  final EmailAddressParam? instance = /* EmailAddressParam(...) */ null;
+  // TODO add properties to the entity
 
   group(EmailAddressParam, () {
     // The email address to delist from all block lists.

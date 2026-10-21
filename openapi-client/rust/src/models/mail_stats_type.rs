@@ -67,6 +67,8 @@ pub enum Time {
     Day,
     #[serde(rename = "1h")]
     OneHour,
+    #[serde(rename = "unknown_default_open_api")]
+    UnknownDefaultOpenApi,
 }
 
 impl Default for Time {

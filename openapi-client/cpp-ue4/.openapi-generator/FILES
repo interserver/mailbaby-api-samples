@@ -7,7 +7,6 @@ Private/OpenAPIDateOrTimestamp.cpp
 Private/OpenAPIDenyRuleNew.cpp
 Private/OpenAPIDenyRuleRecord.cpp
 Private/OpenAPIEmailAddressName.cpp
-Private/OpenAPIEmailAddressNames.cpp
 Private/OpenAPIEmailAddressParam.cpp
 Private/OpenAPIEmailAddressTypes.cpp
 Private/OpenAPIEmailAddressesTypes.cpp
@@ -45,7 +44,6 @@ Public/OpenAPIDateOrTimestamp.h
 Public/OpenAPIDenyRuleNew.h
 Public/OpenAPIDenyRuleRecord.h
 Public/OpenAPIEmailAddressName.h
-Public/OpenAPIEmailAddressNames.h
 Public/OpenAPIEmailAddressParam.h
 Public/OpenAPIEmailAddressTypes.h
 Public/OpenAPIEmailAddressesTypes.h

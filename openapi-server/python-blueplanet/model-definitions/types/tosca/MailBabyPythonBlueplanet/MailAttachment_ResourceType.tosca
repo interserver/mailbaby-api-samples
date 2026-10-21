@@ -1,0 +1,40 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet MailAttachment"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a MailAttachment"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  MailAttachment {
+    title = MailAttachment
+    description = MailAttachment
+    derivedFrom = Root
+    properties {
+        filename {
+          type =  string
+          description = "The filename shown to recipients (e.g. &#x60;report.pdf&#x60;, &#x60;invoice.xlsx&#x60;)."
+          optional = true
+        }
+        data {
+          type =  string
+          description = "The file contents as a base64-encoded string.  Decode this to retrieve the original binary file."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MailAttachment {
+    title = MailAttachment
+    description = MailAttachment
+    implements = MailBabyPythonBlueplanet.resourceTypes.MailAttachment
+
+  }
+}

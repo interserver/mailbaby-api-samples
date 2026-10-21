@@ -1,22 +1,20 @@
-# Interserver\Mailbaby\BlockingApi
+# OpenAPI\Client\BlockingApi
 
-Manage block lists and custom deny rules to prevent unwanted outbound email.
+All URIs are relative to https://api.mailbaby.net.
 
-All URIs are relative to https://api.mailbaby.net, except if the operation defines another base path.
-
-| Method | HTTP request | Description |
-| ------------- | ------------- | ------------- |
-| [**addRule()**](BlockingApi.md#addRule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix |
-| [**deleteRule()**](BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId |
-| [**delistBlock()**](BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists |
-| [**getMailBlocks()**](BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists |
-| [**getRules()**](BlockingApi.md#getRules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix) |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**addRule()**](BlockingApi.md#addRule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+[**deleteRule()**](BlockingApi.md#deleteRule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+[**delistBlock()**](BlockingApi.md#delistBlock) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+[**getMailBlocks()**](BlockingApi.md#getMailBlocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+[**getRules()**](BlockingApi.md#getRules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
 
 
 ## `addRule()`
 
 ```php
-addRule($type, $data, $user): \Interserver\Mailbaby\Model\GenericResponse
+addRule($type, $data, $user): \OpenAPI\Client\Model\GenericResponse
 ```
 
 Create a deny rule to block a sender, domain, destination, or prefix
@@ -31,14 +29,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -56,15 +54,15 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **type** | **string**| The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix. | |
-| **data** | **string**| The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. | |
-| **user** | **string**| Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **type** | **string**| The matching strategy for this rule.  &#x60;email&#x60; blocks an exact sender address, &#x60;domain&#x60; blocks all senders at a domain, &#x60;destination&#x60; blocks an exact recipient address, and &#x60;startswith&#x60; blocks any sender whose local-part begins with the given prefix. |
+ **data** | **string**| The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. |
+ **user** | **string**| Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. | [optional]
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -82,7 +80,7 @@ try {
 ## `deleteRule()`
 
 ```php
-deleteRule($ruleId): \Interserver\Mailbaby\Model\GenericResponse
+deleteRule($rule_id): \OpenAPI\Client\Model\GenericResponse
 ```
 
 Delete a deny rule by its numeric ruleId
@@ -97,21 +95,21 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
-$ruleId = 34; // int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
+$rule_id = 34; // int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 try {
-    $result = $apiInstance->deleteRule($ruleId);
+    $result = $apiInstance->deleteRule($rule_id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlockingApi->deleteRule: ', $e->getMessage(), PHP_EOL;
@@ -120,13 +118,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **ruleId** | **int**| The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rule_id** | **int**| The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. |
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -144,7 +142,7 @@ try {
 ## `delistBlock()`
 
 ```php
-delistBlock($emailAddressParam): \Interserver\Mailbaby\Model\GenericResponse
+delistBlock($email_address_param): \OpenAPI\Client\Model\GenericResponse
 ```
 
 Delist an email address from the spam-filter block lists
@@ -159,21 +157,21 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
-$emailAddressParam = {"email":"client@domain.com"}; // \Interserver\Mailbaby\Model\EmailAddressParam
+$email_address_param = {"email":"client@domain.com"}; // \OpenAPI\Client\Model\EmailAddressParam
 
 try {
-    $result = $apiInstance->delistBlock($emailAddressParam);
+    $result = $apiInstance->delistBlock($email_address_param);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling BlockingApi->delistBlock: ', $e->getMessage(), PHP_EOL;
@@ -182,13 +180,13 @@ try {
 
 ### Parameters
 
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **emailAddressParam** | [**\Interserver\Mailbaby\Model\EmailAddressParam**](../Model/EmailAddressParam.md)|  | |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email_address_param** | [**\OpenAPI\Client\Model\EmailAddressParam**](../Model/EmailAddressParam.md)|  |
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -206,7 +204,7 @@ try {
 ## `getMailBlocks()`
 
 ```php
-getMailBlocks(): \Interserver\Mailbaby\Model\MailBlocks
+getMailBlocks(): \OpenAPI\Client\Model\MailBlocks
 ```
 
 List addresses currently flagged by spam-filter block lists
@@ -221,14 +219,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -247,7 +245,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\MailBlocks**](../Model/MailBlocks.md)
+[**\OpenAPI\Client\Model\MailBlocks**](../Model/MailBlocks.md)
 
 ### Authorization
 
@@ -265,7 +263,7 @@ This endpoint does not need any parameter.
 ## `getRules()`
 
 ```php
-getRules(): \Interserver\Mailbaby\Model\DenyRuleRecord[]
+getRules(): \OpenAPI\Client\Model\DenyRuleRecord[]
 ```
 
 List custom deny rules (sender / domain / destination / prefix)
@@ -280,14 +278,14 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Interserver\Mailbaby\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new Interserver\Mailbaby\Api\BlockingApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
+$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
@@ -306,7 +304,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Interserver\Mailbaby\Model\DenyRuleRecord[]**](../Model/DenyRuleRecord.md)
+[**\OpenAPI\Client\Model\DenyRuleRecord[]**](../Model/DenyRuleRecord.md)
 
 ### Authorization
 

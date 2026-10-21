@@ -27,7 +27,6 @@ Sources/OpenAPIClient/Models/DateOrTimestamp.swift
 Sources/OpenAPIClient/Models/DenyRuleNew.swift
 Sources/OpenAPIClient/Models/DenyRuleRecord.swift
 Sources/OpenAPIClient/Models/EmailAddressName.swift
-Sources/OpenAPIClient/Models/EmailAddressNames.swift
 Sources/OpenAPIClient/Models/EmailAddressParam.swift
 Sources/OpenAPIClient/Models/EmailAddressTypes.swift
 Sources/OpenAPIClient/Models/EmailAddressesTypes.swift
@@ -52,7 +51,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md

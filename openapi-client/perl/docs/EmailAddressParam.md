@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::EmailAddressParam
+# WWW::OpenAPIClient::Object::EmailAddressParam
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::EmailAddressParam;
+use WWW::OpenAPIClient::Object::EmailAddressParam;
 ```
 
 ## Properties

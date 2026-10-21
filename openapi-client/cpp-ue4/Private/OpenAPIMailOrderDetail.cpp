@@ -28,6 +28,8 @@ inline FString ToString(const OpenAPIMailOrderDetail::StatusEnum& Value)
 		return TEXT("active");
 	case OpenAPIMailOrderDetail::StatusEnum::Canceled:
 		return TEXT("canceled");
+	case OpenAPIMailOrderDetail::StatusEnum::UnknownDefaultOpenApi:
+		return TEXT("11184809");
 	}
 
 	UE_LOG(LogOpenAPI, Error, TEXT("Invalid OpenAPIMailOrderDetail::StatusEnum Value (%d)"), (int)Value);
@@ -43,7 +45,8 @@ inline bool FromString(const FString& EnumAsString, OpenAPIMailOrderDetail::Stat
 {
 	static TMap<FString, OpenAPIMailOrderDetail::StatusEnum> StringToEnum = { 
 		{ TEXT("active"), OpenAPIMailOrderDetail::StatusEnum::Active },
-		{ TEXT("canceled"), OpenAPIMailOrderDetail::StatusEnum::Canceled }, };
+		{ TEXT("canceled"), OpenAPIMailOrderDetail::StatusEnum::Canceled },
+		{ TEXT("11184809"), OpenAPIMailOrderDetail::StatusEnum::UnknownDefaultOpenApi }, };
 
 	const auto Found = StringToEnum.Find(EnumAsString);
 	if(Found)

@@ -18,7 +18,8 @@ use serde::{Deserialize, Serialize};
 pub enum EmailAddressesTypes {
     /// A single email address or RFC 822 comma-separated list. Example: `\"joe@example.com\"` or `\"Joe <joe@example.com>, jane@example.com\"`.
     EmailAddressString(String),
-    EmailAddressNames(models::EmailAddressNames),
+    /// An array of email contacts, each with an email address and optional display name.
+    EmailAddressNames(Vec<models::EmailAddressName>),
 }
 
 impl Default for EmailAddressesTypes {

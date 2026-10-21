@@ -24,7 +24,8 @@ public class OASMailStatsType implements OAS.MappedProperties {
         SevenDays,
         TwentyFourHours,
         Day,
-        OneHour
+        OneHour,
+        UNKNOWN_DEFAULT_OPEN_API
     }
 
     /**

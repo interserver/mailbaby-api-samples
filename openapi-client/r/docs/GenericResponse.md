@@ -1,4 +1,4 @@
-# openapi::GenericResponse
+# MailBabyR::GenericResponse
 
 Standard success response returned by write operations (send, add rule, delete, etc.).  The `status` field is always `\"ok\"` on success.  The `text` field carries operation-specific data — for sending calls it contains the relay transaction ID; for create calls it contains the new record's ID; for delete calls it contains a confirmation string.
 

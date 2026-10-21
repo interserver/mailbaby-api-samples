@@ -19,7 +19,7 @@
 #define EmailAddressesTypes_H_
 
 
-#include "EmailAddressNames.hpp"
+#include "EmailAddressName.hpp"
 #include "oatpp/core/macro/codegen.hpp"
 #include "oatpp/core/Types.hpp"
 

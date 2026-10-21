@@ -40,6 +40,7 @@ export namespace DenyRuleRecord {
         Email: 'email',
         Startswith: 'startswith',
         Destination: 'destination',
+        UnknownDefaultOpenApi: '11184809',
     } as const;
     export type TypeEnum = typeof TypeEnum[keyof typeof TypeEnum];
 }

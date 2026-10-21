@@ -71,7 +71,8 @@ export function MailOrderToJSON(value?: MailOrder): any {
 */
 export enum MailOrderStatusEnum {
     Active = 'active',
-    Canceled = 'canceled'
+    Canceled = 'canceled',
+    UnknownDefaultOpenApi = '11184809'
 }
 
 

@@ -83,6 +83,7 @@ export class MailOrderDetail {
 
 export enum MailOrderDetailStatusEnum {
     Active = 'active',
-    Canceled = 'canceled'
+    Canceled = 'canceled',
+    UnknownDefaultOpenApi = '11184809'
 }
 

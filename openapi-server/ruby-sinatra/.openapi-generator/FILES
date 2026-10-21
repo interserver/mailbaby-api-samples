@@ -1,0 +1,13 @@
+.openapi-generator-ignore
+Dockerfile
+Gemfile
+README.md
+api/blocking_api.rb
+api/history_api.rb
+api/sending_api.rb
+api/services_api.rb
+api/status_api.rb
+config.ru
+lib/openapiing.rb
+my_app.rb
+openapi.yaml

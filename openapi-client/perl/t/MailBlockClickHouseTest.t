@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::MailBlockClickHouse');
+use_ok('WWW::OpenAPIClient::Object::MailBlockClickHouse');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::MailBlockClickHouse->new();
+#my $instance = WWW::OpenAPIClient::Object::MailBlockClickHouse->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::MailBlockClickHouse');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::MailBlockClickHouse');
 
 
 done_testing();

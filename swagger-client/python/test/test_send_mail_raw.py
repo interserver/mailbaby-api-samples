@@ -14,9 +14,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import mailbaby-client-python
-from mailbaby-client-python.models.send_mail_raw import SendMailRaw  # noqa: E501
-from mailbaby-client-python.rest import ApiException
+import MailBabyPython
+from MailBabyPython.models.send_mail_raw import SendMailRaw  # noqa: E501
+from MailBabyPython.rest import ApiException
 
 
 class TestSendMailRaw(unittest.TestCase):
@@ -31,7 +31,7 @@ class TestSendMailRaw(unittest.TestCase):
     def testSendMailRaw(self):
         """Test SendMailRaw"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = mailbaby-client-python.models.send_mail_raw.SendMailRaw()  # noqa: E501
+        # model = MailBabyPython.models.send_mail_raw.SendMailRaw()  # noqa: E501
         pass
 
 

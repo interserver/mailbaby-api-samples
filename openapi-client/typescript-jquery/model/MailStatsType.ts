@@ -57,6 +57,7 @@ export namespace MailStatsType {
         SevenDays = <any> '7d',
         TwentyFourHours = <any> '24h',
         Day = <any> 'day',
-        OneHour = <any> '1h'
+        OneHour = <any> '1h',
+        UnknownDefaultOpenApi = <any> '11184809'
     }
 }

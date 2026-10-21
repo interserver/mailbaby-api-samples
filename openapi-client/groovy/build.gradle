@@ -4,7 +4,7 @@ apply plugin: 'eclipse'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 group = 'org.openapitools'
-version = '1.0.0'
+version = '1.5.0'
 archivesBaseName = 'openapi-gen-groovy'
 
 wrapper {

@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  Interserver\Mailbaby
+ * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace Interserver\Mailbaby\Test\Model;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
- * @package     Interserver\Mailbaby
+ * @package     OpenAPI\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

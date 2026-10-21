@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$MailOrderDetail = Initialize-PSOpenAPIToolsMailOrderDetail  -Id 21472 `
+$MailOrderDetail = Initialize-MailBabyPowershellMailOrderDetail  -Id 21472 `
  -Status active `
  -Username mb21472 `
  -Password s3cr3tpassword `

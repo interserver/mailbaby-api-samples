@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::MailOrderDetail
+# WWW::OpenAPIClient::Object::MailOrderDetail
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::MailOrderDetail;
+use WWW::OpenAPIClient::Object::MailOrderDetail;
 ```
 
 ## Properties

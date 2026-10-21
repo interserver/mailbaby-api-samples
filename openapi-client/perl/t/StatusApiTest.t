@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('OpenAPIClient::StatusApi');
+use_ok('WWW::OpenAPIClient::StatusApi');
 
-my $api = OpenAPIClient::StatusApi->new();
-isa_ok($api, 'OpenAPIClient::StatusApi');
+my $api = WWW::OpenAPIClient::StatusApi->new();
+isa_ok($api, 'WWW::OpenAPIClient::StatusApi');
 
 #
 # ping_server test

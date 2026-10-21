@@ -1,0 +1,57 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet MailOrderDetail"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a MailOrderDetail"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+  import re = MailBabyPythonBlueplanet.resourceTypes.import re
+}
+resourceTypes {
+
+  MailOrderDetail {
+    title = MailOrderDetail
+    description = MailOrderDetail
+    derivedFrom = Root
+    properties {
+        id {
+          type =  integer
+          description = "The unique numeric ID of the mail order.  Used as the &#x60;id&#x60; parameter on sending calls, log queries, and stats queries."
+          optional = true
+        }
+        status {
+          type =  string
+          description = "The current order status.  Only &#x60;active&#x60; orders can be used for sending. &#x60;canceled&#x60; orders are retained for history but cannot send."
+          enum = ["active", "canceled"]
+          optional = true
+        }
+        username {
+          type =  string
+          description = "The SMTP AUTH username for this order, always in the format &#x60;mb&lt;id&gt;&#x60;. Use together with the password from &#x60;GET /mail/{id}&#x60; to authenticate directly against &#x60;relay.mailbaby.net:25&#x60; if needed."
+          optional = true
+        }
+        password {
+          type =  string
+          description = "The current SMTP AUTH password for this mail order.  Use with the &#x60;username&#x60; field to authenticate against &#x60;relay.mailbaby.net:25&#x60;."
+          optional = true
+        }
+        comment {
+          type =  string
+          description = "Optional human-readable note associated with the order.  Only present in the response when the order has a non-empty comment."
+          optional = false
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  MailOrderDetail {
+    title = MailOrderDetail
+    description = MailOrderDetail
+    implements = MailBabyPythonBlueplanet.resourceTypes.MailOrderDetail
+
+  }
+}

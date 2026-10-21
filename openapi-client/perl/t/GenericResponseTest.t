@@ -25,12 +25,12 @@ use strict;
 use warnings;
 
 
-use_ok('OpenAPIClient::Object::GenericResponse');
+use_ok('WWW::OpenAPIClient::Object::GenericResponse');
 
 # uncomment below and update the test
-#my $instance = OpenAPIClient::Object::GenericResponse->new();
+#my $instance = WWW::OpenAPIClient::Object::GenericResponse->new();
 #
-#isa_ok($instance, 'OpenAPIClient::Object::GenericResponse');
+#isa_ok($instance, 'WWW::OpenAPIClient::Object::GenericResponse');
 
 
 done_testing();

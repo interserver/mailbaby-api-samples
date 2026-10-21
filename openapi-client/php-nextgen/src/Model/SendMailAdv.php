@@ -417,9 +417,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets to
      *
-     * @return string|\OpenAPI\Client\Model\EmailAddressNames
+     * @return string|array
      */
-    public function getTo(): string|\OpenAPI\Client\Model\EmailAddressNames
+    public function getTo(): string|array
     {
         return $this->container['to'];
     }
@@ -427,11 +427,11 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets to
      *
-     * @param string|\OpenAPI\Client\Model\EmailAddressNames $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+     * @param string|array $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
      *
      * @return $this
      */
-    public function setTo(string|\OpenAPI\Client\Model\EmailAddressNames $to): static
+    public function setTo(string|array $to): static
     {
         if (is_null($to)) {
             throw new InvalidArgumentException('non-nullable to cannot be null');
@@ -444,9 +444,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets replyto
      *
-     * @return string|\OpenAPI\Client\Model\EmailAddressNames|null
+     * @return string|array|null
      */
-    public function getReplyto(): string|\OpenAPI\Client\Model\EmailAddressNames|null
+    public function getReplyto(): string|array|null
     {
         return $this->container['replyto'];
     }
@@ -454,11 +454,11 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets replyto
      *
-     * @param string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+     * @param string|array|null $replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
      *
      * @return $this
      */
-    public function setReplyto(string|\OpenAPI\Client\Model\EmailAddressNames|null $replyto): static
+    public function setReplyto(string|array|null $replyto): static
     {
         if (is_null($replyto)) {
             throw new InvalidArgumentException('non-nullable replyto cannot be null');
@@ -471,9 +471,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets cc
      *
-     * @return string|\OpenAPI\Client\Model\EmailAddressNames|null
+     * @return string|array|null
      */
-    public function getCc(): string|\OpenAPI\Client\Model\EmailAddressNames|null
+    public function getCc(): string|array|null
     {
         return $this->container['cc'];
     }
@@ -481,11 +481,11 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets cc
      *
-     * @param string|\OpenAPI\Client\Model\EmailAddressNames|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+     * @param string|array|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
      *
      * @return $this
      */
-    public function setCc(string|\OpenAPI\Client\Model\EmailAddressNames|null $cc): static
+    public function setCc(string|array|null $cc): static
     {
         if (is_null($cc)) {
             throw new InvalidArgumentException('non-nullable cc cannot be null');
@@ -498,9 +498,9 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets bcc
      *
-     * @return string|\OpenAPI\Client\Model\EmailAddressNames|null
+     * @return string|array|null
      */
-    public function getBcc(): string|\OpenAPI\Client\Model\EmailAddressNames|null
+    public function getBcc(): string|array|null
     {
         return $this->container['bcc'];
     }
@@ -508,11 +508,11 @@ class SendMailAdv implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets bcc
      *
-     * @param string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+     * @param string|array|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
      *
      * @return $this
      */
-    public function setBcc(string|\OpenAPI\Client\Model\EmailAddressNames|null $bcc): static
+    public function setBcc(string|array|null $bcc): static
     {
         if (is_null($bcc)) {
             throw new InvalidArgumentException('non-nullable bcc cannot be null');

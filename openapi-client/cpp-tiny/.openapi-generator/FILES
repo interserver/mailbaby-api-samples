@@ -8,8 +8,6 @@ lib/Models/DenyRuleRecord.cpp
 lib/Models/DenyRuleRecord.h
 lib/Models/EmailAddressName.cpp
 lib/Models/EmailAddressName.h
-lib/Models/EmailAddressNames.cpp
-lib/Models/EmailAddressNames.h
 lib/Models/EmailAddressParam.cpp
 lib/Models/EmailAddressParam.h
 lib/Models/EmailAddressTypes.cpp
@@ -54,7 +52,6 @@ lib/TestFiles/DateOrTimestampTest.cpp
 lib/TestFiles/DenyRuleNewTest.cpp
 lib/TestFiles/DenyRuleRecordTest.cpp
 lib/TestFiles/EmailAddressNameTest.cpp
-lib/TestFiles/EmailAddressNamesTest.cpp
 lib/TestFiles/EmailAddressParamTest.cpp
 lib/TestFiles/EmailAddressTypesTest.cpp
 lib/TestFiles/EmailAddressesTypesTest.cpp

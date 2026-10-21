@@ -251,7 +251,7 @@ basic_auth_credential=""
 
 ##
 # The user API key
-apikey_auth_credential="$false"
+apikey_auth_credential=""
 
 ##
 # If true, the script will only output the actual cURL command that would be
@@ -632,7 +632,7 @@ EOF
     echo -e "${BOLD}${WHITE}Authentication methods${OFF}"
     echo -e ""
     echo -e "  - ${BLUE}Api-key${OFF} - add '${RED}X-API-KEY:<api-key>${OFF}' after ${YELLOW}<operation>${OFF}"
-    echo -e "              or export ${RED}false='<api-key>'${OFF}"
+    
     echo ""
     echo -e "${BOLD}${WHITE}Operations (grouped by tags)${OFF}"
     echo ""

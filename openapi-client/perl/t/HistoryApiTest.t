@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('OpenAPIClient::HistoryApi');
+use_ok('WWW::OpenAPIClient::HistoryApi');
 
-my $api = OpenAPIClient::HistoryApi->new();
-isa_ok($api, 'OpenAPIClient::HistoryApi');
+my $api = WWW::OpenAPIClient::HistoryApi->new();
+isa_ok($api, 'WWW::OpenAPIClient::HistoryApi');
 
 #
 # get_stats test

@@ -1,10 +1,13 @@
 {
-    "sortParamsByRequiredFlag": "true",
+    "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
-    "allowUnicodeIdentifiers": "true",
-    "hideGenerationTimestamp": "true",
-    "artifactVersion": "1.0.0",
-    "packageName": "mailbaby-client-openapi",
+    "enumUnknownDefaultCase": "true",
+    "gitRepoId": "mailbaby-client-openapi",
     "gitUserId": "interserver",
-    "gitRepoId": "mailbaby-client-openapi"
+    "hideGenerationTimestamp": "true",
+    "legacyDiscriminatorBehavior": "false",
+    "packageName": "MailBabyOpenapi",
+    "sortModelPropertiesByRequiredFlag": "true",
+    "sortParamsByRequiredFlag": "true"
 }

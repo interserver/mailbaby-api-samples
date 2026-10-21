@@ -16,7 +16,7 @@
 #' \dontrun{
 #' ####################  PingServer  ####################
 #'
-#' library(openapi)
+#' library(MailBabyR)
 #'
 #' #Health check — verify the API is reachable
 #' api_instance <- StatusApi$new()

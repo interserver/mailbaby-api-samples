@@ -1,10 +1,13 @@
 {
-    "sortParamsByRequiredFlag": "true",
+    "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
-    "allowUnicodeIdentifiers": "true",
-    "hideGenerationTimestamp": "true",
-    "artifactVersion": "1.0.0",
-    "packageName": "mailbaby-client-dynamic-html",
+    "enumUnknownDefaultCase": "true",
+    "gitRepoId": "mailbaby-client-dynamic-html",
     "gitUserId": "interserver",
-    "gitRepoId": "mailbaby-client-dynamic-html"
+    "hideGenerationTimestamp": "true",
+    "legacyDiscriminatorBehavior": "false",
+    "packageName": "MailBabyDynamicHtml",
+    "sortModelPropertiesByRequiredFlag": "true",
+    "sortParamsByRequiredFlag": "true"
 }

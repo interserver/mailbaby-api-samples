@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.email_address_param import EmailAddressParam
+from MailBabyPython.models.email_address_param import EmailAddressParam
 
 # TODO update the JSON string below
 json = "{}"

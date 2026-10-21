@@ -4,11 +4,11 @@
 
 import 'dart:async';
 
-import 'package:built_value/json_object.dart';
-import 'package:built_value/serializer.dart';
+// ignore: unused_import
+import 'dart:convert';
+import 'package:openapi/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/date_or_timestamp.dart';
 import 'package:openapi/src/model/error_message.dart';
 import 'package:openapi/src/model/mail_log.dart';
@@ -18,9 +18,7 @@ class HistoryApi {
 
   final Dio _dio;
 
-  final Serializers _serializers;
-
-  const HistoryApi(this._dio, this._serializers);
+  const HistoryApi(this._dio);
 
   /// Account usage, cost, and volume statistics for a time window
   /// **Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The &#x60;time&#x60; query param controls the window for &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; (&#x60;1h&#x60;, &#x60;24h&#x60;, &#x60;7d&#x60;, &#x60;month&#x60;, &#x60;day&#x60;, &#x60;billing&#x60;, &#x60;all&#x60;). The &#x60;usage&#x60; and &#x60;cost&#x60; fields are always for the current billing cycle, regardless of &#x60;time&#x60;.  The response includes: - **&#x60;usage&#x60;** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **&#x60;cost&#x60;** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **&#x60;received&#x60;** / **&#x60;sent&#x60;** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected &#x60;time&#x60; window. - **&#x60;volume&#x60;** — top-500 breakdown of message counts grouped by source IP (&#x60;ip&#x60;),   destination address (&#x60;to&#x60;), and sender address (&#x60;from&#x60;) within the selected window.   **Time windows** (controlled by the &#x60;time&#x60; parameter): | Value | Window | |-------|--------| | &#x60;1h&#x60; | Last 1 hour (default) | | &#x60;24h&#x60; | Last 24 hours | | &#x60;7d&#x60; | Last 7 days | | &#x60;month&#x60; | Current calendar month (1st to now) | | &#x60;day&#x60; | Today (midnight to now) | | &#x60;billing&#x60; | Current billing cycle (last invoice date to next invoice date) | | &#x60;all&#x60; | All time | 
@@ -66,7 +64,7 @@ class HistoryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (time != null) r'time': encodeQueryParameter(_serializers, time, const FullType(String)),
+      if (time != null) r'time': time,
     };
 
     final _response = await _dio.request<Object>(
@@ -81,11 +79,8 @@ class HistoryApi {
     MailStatsType? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(MailStatsType),
-      ) as MailStatsType;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<MailStatsType, MailStatsType>(rawData, 'MailStatsType', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -187,24 +182,24 @@ class HistoryApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (id != null) r'id': encodeQueryParameter(_serializers, id, const FullType(int)),
-      if (origin != null) r'origin': encodeQueryParameter(_serializers, origin, const FullType(String)),
-      if (mx != null) r'mx': encodeQueryParameter(_serializers, mx, const FullType(String)),
-      if (from != null) r'from': encodeQueryParameter(_serializers, from, const FullType(String)),
-      if (to != null) r'to': encodeQueryParameter(_serializers, to, const FullType(String)),
-      if (subject != null) r'subject': encodeQueryParameter(_serializers, subject, const FullType(String)),
-      if (mailid != null) r'mailid': encodeQueryParameter(_serializers, mailid, const FullType(String)),
-      if (messageId != null) r'messageId': encodeQueryParameter(_serializers, messageId, const FullType(String)),
-      if (replyto != null) r'replyto': encodeQueryParameter(_serializers, replyto, const FullType(String)),
-      if (headerfrom != null) r'headerfrom': encodeQueryParameter(_serializers, headerfrom, const FullType(String)),
-      if (delivered != null) r'delivered': encodeQueryParameter(_serializers, delivered, const FullType(int)),
-      if (skip != null) r'skip': encodeQueryParameter(_serializers, skip, const FullType(int)),
-      if (limit != null) r'limit': encodeQueryParameter(_serializers, limit, const FullType(int)),
-      if (startDate != null) r'startDate': encodeQueryParameter(_serializers, startDate, const FullType(DateOrTimestamp)),
-      if (endDate != null) r'endDate': encodeQueryParameter(_serializers, endDate, const FullType(DateOrTimestamp)),
-      if (sort != null) r'sort': encodeQueryParameter(_serializers, sort, const FullType(String)),
-      if (dir != null) r'dir': encodeQueryParameter(_serializers, dir, const FullType(String)),
-      if (groupby != null) r'groupby': encodeQueryParameter(_serializers, groupby, const FullType(String)),
+      if (id != null) r'id': id,
+      if (origin != null) r'origin': origin,
+      if (mx != null) r'mx': mx,
+      if (from != null) r'from': from,
+      if (to != null) r'to': to,
+      if (subject != null) r'subject': subject,
+      if (mailid != null) r'mailid': mailid,
+      if (messageId != null) r'messageId': messageId,
+      if (replyto != null) r'replyto': replyto,
+      if (headerfrom != null) r'headerfrom': headerfrom,
+      if (delivered != null) r'delivered': delivered,
+      if (skip != null) r'skip': skip,
+      if (limit != null) r'limit': limit,
+      if (startDate != null) r'startDate': startDate,
+      if (endDate != null) r'endDate': endDate,
+      if (sort != null) r'sort': sort,
+      if (dir != null) r'dir': dir,
+      if (groupby != null) r'groupby': groupby,
     };
 
     final _response = await _dio.request<Object>(
@@ -219,11 +214,8 @@ class HistoryApi {
     MailLog? _responseData;
 
     try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(MailLog),
-      ) as MailLog;
+final rawData = _response.data;
+_responseData = rawData == null ? null : deserialize<MailLog, MailLog>(rawData, 'MailLog', growable: true);
 
     } catch (error, stackTrace) {
       throw DioException(

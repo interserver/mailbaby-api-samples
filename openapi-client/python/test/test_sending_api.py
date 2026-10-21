@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.api.sending_api import SendingApi
+from MailBabyPython.api.sending_api import SendingApi
 
 
 class TestSendingApi(unittest.TestCase):

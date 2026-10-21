@@ -1,4 +1,4 @@
-# openapi::MailStatsVolume
+# MailBabyR::MailStatsVolume
 
 Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
 

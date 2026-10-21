@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.mail_order_detail import MailOrderDetail
+from MailBabyPython.models.mail_order_detail import MailOrderDetail
 
 class TestMailOrderDetail(unittest.TestCase):
     """MailOrderDetail unit test stubs"""

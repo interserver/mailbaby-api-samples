@@ -236,6 +236,7 @@ class MailOrderDetail implements ModelInterface, ArrayAccess, JsonSerializable
 
     public const STATUS_ACTIVE = 'active';
     public const STATUS_CANCELED = 'canceled';
+    public const STATUS_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
 
     /**
      * Gets allowable values of the enum
@@ -247,6 +248,7 @@ class MailOrderDetail implements ModelInterface, ArrayAccess, JsonSerializable
         return [
             self::STATUS_ACTIVE,
             self::STATUS_CANCELED,
+            self::STATUS_UNKNOWN_DEFAULT_OPEN_API,
         ];
     }
 
@@ -384,13 +386,7 @@ class MailOrderDetail implements ModelInterface, ArrayAccess, JsonSerializable
         }
         $allowedValues = self::getStatusAllowableValues();
         if (!in_array($status, $allowedValues, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
+            $status = self::STATUS_UNKNOWN_DEFAULT_OPEN_API;
         }
         $this->container['status'] = $status;
 

@@ -17,7 +17,7 @@ Account usage, cost, and volume statistics for a time window
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Account usage, cost, and volume statistics for a time window
 #
@@ -67,7 +67,7 @@ Query the mail delivery log (filterable, paginated)
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Query the mail delivery log (filterable, paginated)
 #

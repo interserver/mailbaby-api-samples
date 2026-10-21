@@ -15,7 +15,7 @@
 
 import unittest
 
-from openapi_client.models.deny_rule_new import DenyRuleNew
+from MailBabyPython.models.deny_rule_new import DenyRuleNew
 
 class TestDenyRuleNew(unittest.TestCase):
     """DenyRuleNew unit test stubs"""

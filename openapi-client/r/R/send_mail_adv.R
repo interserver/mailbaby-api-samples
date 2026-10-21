@@ -16,6 +16,8 @@
 #' @field bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. \link{EmailAddressesTypes} [optional]
 #' @field attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name. list(\link{MailAttachment}) [optional]
 #' @field id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`. integer [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -31,6 +33,8 @@ SendMailAdv <- R6::R6Class(
     `bcc` = NULL,
     `attachments` = NULL,
     `id` = NULL,
+    `_field_list` = c("subject", "body", "from", "to", "replyto", "cc", "bcc", "attachments", "id"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new SendMailAdv class.
@@ -44,8 +48,9 @@ SendMailAdv <- R6::R6Class(
     #' @param bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
     #' @param attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
     #' @param id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`subject`, `body`, `from`, `to`, `replyto` = NULL, `cc` = NULL, `bcc` = NULL, `attachments` = NULL, `id` = NULL, ...) {
+    initialize = function(`subject`, `body`, `from`, `to`, `replyto` = NULL, `cc` = NULL, `bcc` = NULL, `attachments` = NULL, `id` = NULL, additional_properties = NULL, ...) {
       if (!missing(`subject`)) {
         if (!(is.character(`subject`) && length(`subject`) == 1)) {
           stop(paste("Error! Invalid data for `subject`. Must be a string:", `subject`))
@@ -88,6 +93,11 @@ SendMailAdv <- R6::R6Class(
           stop(paste("Error! Invalid data for `id`. Must be an integer:", `id`))
         }
         self$`id` <- `id`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -158,6 +168,10 @@ SendMailAdv <- R6::R6Class(
         SendMailAdvObject[["id"]] <-
           self$`id`
       }
+      for (key in names(self$additional_properties)) {
+        SendMailAdvObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(SendMailAdvObject)
     },
 
@@ -223,11 +237,18 @@ SendMailAdv <- R6::R6Class(
         self$`bcc` <- `bcc_object`
       }
       if (!is.null(this_object$`attachments`)) {
-        self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[MailAttachment]", loadNamespace("openapi"))
+        self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[MailAttachment]", loadNamespace("MailBabyR"))
       }
       if (!is.null(this_object$`id`)) {
         self$`id` <- this_object$`id`
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -238,6 +259,9 @@ SendMailAdv <- R6::R6Class(
     #' @return SendMailAdv in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -256,8 +280,15 @@ SendMailAdv <- R6::R6Class(
       self$`replyto` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`replyto`, auto_unbox = TRUE, digits = NA))
       self$`cc` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`cc`, auto_unbox = TRUE, digits = NA))
       self$`bcc` <- EmailAddressesTypes$new()$fromJSON(jsonlite::toJSON(this_object$`bcc`, auto_unbox = TRUE, digits = NA))
-      self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[MailAttachment]", loadNamespace("openapi"))
+      self$`attachments` <- ApiClient$new()$deserializeObj(this_object$`attachments`, "array[MailAttachment]", loadNamespace("MailBabyR"))
       self$`id` <- this_object$`id`
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

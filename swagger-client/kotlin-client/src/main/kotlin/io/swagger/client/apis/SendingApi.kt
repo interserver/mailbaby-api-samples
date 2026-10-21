@@ -19,7 +19,7 @@ import io.swagger.client.models.SendMailAdv
 import io.swagger.client.models.SendMailRaw
 import io.swagger.client.models.SendMailTo
 
-import mailbaby-client-kotlin-client.infrastructure.*
+import MailBabyKotlinClient.infrastructure.*
 
 class SendingApi(basePath: kotlin.String = "https://api.mailbaby.net") : ApiClient(basePath) {
 

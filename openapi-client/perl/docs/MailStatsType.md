@@ -1,8 +1,8 @@
-# OpenAPIClient::Object::MailStatsType
+# WWW::OpenAPIClient::Object::MailStatsType
 
 ## Load the model package
 ```perl
-use OpenAPIClient::Object::MailStatsType;
+use WWW::OpenAPIClient::Object::MailStatsType;
 ```
 
 ## Properties

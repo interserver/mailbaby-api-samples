@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Description>MailBabyFsharpGiraffeServer</Description>
+    <Copyright>MailBabyFsharpGiraffeServer</Copyright>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <DebugType>portable</DebugType>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
+    <AssemblyName>MailBabyFsharpGiraffeServer</AssemblyName>
+    <PackageId>MailBabyFsharpGiraffeServer</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" />
+    <PackageReference Include="Giraffe" Version="3.4.*" />
+    <PackageReference Include="TaskBuilder.fs" Version="2.1.*" />
+    <PackageReference Include="AspNet.Security.OAuth.GitHub" Version="2.0.1" />
+    <PackageReference Include="AspNet.Security.ApiKey.Providers" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="openapi.yaml"/>
+    <Compile Include="helpers/Helpers.fs" />
+    <Compile Include="model/SendMailTo.fs" />
+    <Compile Include="model/SendMailRaw.fs" />
+    <Compile Include="model/EmailAddressName.fs" />
+    <Compile Include="model/SendMail.fs" />
+    <Compile Include="model/MailStatsVolume.fs" />
+    <Compile Include="model/MailStatsType.fs" />
+    <Compile Include="model/MailOrderDetail.fs" />
+    <Compile Include="model/MailOrder.fs" />
+    <Compile Include="model/MailLogEntry.fs" />
+    <Compile Include="model/MailLog.fs" />
+    <Compile Include="model/MailBlockClickHouse.fs" />
+    <Compile Include="model/MailBlockRspamd.fs" />
+    <Compile Include="model/MailBlocks.fs" />
+    <Compile Include="model/MailAttachment.fs" />
+    <Compile Include="model/GenericResponse.fs" />
+    <Compile Include="model/ErrorMessage.fs" />
+    <Compile Include="model/EmailAddressTypes.fs" />
+    <Compile Include="model/EmailAddressesTypes.fs" />
+    <Compile Include="model/EmailAddressParam.fs" />
+    <Compile Include="model/SendMailAdv.fs" />
+    <Compile Include="model/DenyRuleRecord.fs" />
+    <Compile Include="model/DenyRuleNew.fs" />
+    <Compile Include="model/DateOrTimestamp.fs" />
+    <Compile Include="api/BlockingApiHandlerParams.fs" />
+    <Compile Include="api/BlockingApiServiceInterface.fs" />
+    <Compile Include="impl/BlockingApiService.fs" />
+    <Compile Include="api/BlockingApiHandler.fs" />
+    <Compile Include="api/HistoryApiHandlerParams.fs" />
+    <Compile Include="api/HistoryApiServiceInterface.fs" />
+    <Compile Include="impl/HistoryApiService.fs" />
+    <Compile Include="api/HistoryApiHandler.fs" />
+    <Compile Include="api/SendingApiHandlerParams.fs" />
+    <Compile Include="api/SendingApiServiceInterface.fs" />
+    <Compile Include="impl/SendingApiService.fs" />
+    <Compile Include="api/SendingApiHandler.fs" />
+    <Compile Include="api/ServicesApiHandlerParams.fs" />
+    <Compile Include="api/ServicesApiServiceInterface.fs" />
+    <Compile Include="impl/ServicesApiService.fs" />
+    <Compile Include="api/ServicesApiHandler.fs" />
+    <Compile Include="api/StatusApiHandlerParams.fs" />
+    <Compile Include="api/StatusApiServiceInterface.fs" />
+    <Compile Include="impl/StatusApiService.fs" />
+    <Compile Include="api/StatusApiHandler.fs" />
+    <Compile Include="impl/CustomHandlers.fs" />
+    <Compile Include="auth/AuthSchemes.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>

@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for SendMailTo
 void main() {
-  final instance = SendMailToBuilder();
-  // TODO add properties to the builder and call build()
+  final SendMailTo? instance = /* SendMailTo(...) */ null;
+  // TODO add properties to the entity
 
   group(SendMailTo, () {
   });

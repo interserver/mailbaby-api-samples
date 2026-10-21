@@ -13,4 +13,4 @@ EXPOSE 8080
 
 ENTRYPOINT ["python3"]
 
-CMD ["-m", "mailbaby-client-python-flask"]
+CMD ["-m", "MailBabyPythonFlask"]

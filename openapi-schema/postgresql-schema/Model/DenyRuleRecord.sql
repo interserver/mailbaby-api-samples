@@ -1,0 +1,28 @@
+--
+-- "MailBaby Email Delivery and Management Service API"
+-- Prepared SQL queries for 'DenyRuleRecord' definition.
+-- Created using 'openapi-generator' ('postgresql-schema' generator)
+-- (https://openapi-generator.tech/docs/generators/postgresql-schema)
+--
+
+
+--
+-- SELECT template for table 'deny_rule_record'
+--
+SELECT "type", "data", "id", created, "user" FROM deny_rule_record WHERE 1=1;
+
+--
+-- INSERT template for table 'deny_rule_record'
+--
+INSERT INTO deny_rule_record ("type", "data", "id", created, "user") VALUES (?, ?, ?, ?, ?);
+
+--
+-- UPDATE template for table 'deny_rule_record'
+--
+UPDATE deny_rule_record SET "type" = ?, "data" = ?, "id" = ?, created = ?, "user" = ? WHERE 1=2;
+
+--
+-- DELETE template for table 'deny_rule_record'
+--
+DELETE FROM deny_rule_record WHERE 1=2;
+

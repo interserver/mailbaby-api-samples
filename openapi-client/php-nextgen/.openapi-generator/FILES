@@ -14,7 +14,6 @@ docs/Model/DateOrTimestamp.md
 docs/Model/DenyRuleNew.md
 docs/Model/DenyRuleRecord.md
 docs/Model/EmailAddressName.md
-docs/Model/EmailAddressNames.md
 docs/Model/EmailAddressParam.md
 docs/Model/EmailAddressTypes.md
 docs/Model/EmailAddressesTypes.md
@@ -50,7 +49,6 @@ src/Model/DateOrTimestamp.php
 src/Model/DenyRuleNew.php
 src/Model/DenyRuleRecord.php
 src/Model/EmailAddressName.php
-src/Model/EmailAddressNames.php
 src/Model/EmailAddressParam.php
 src/Model/EmailAddressTypes.php
 src/Model/EmailAddressesTypes.php
@@ -82,7 +80,6 @@ tests/Model/DateOrTimestampTest.php
 tests/Model/DenyRuleNewTest.php
 tests/Model/DenyRuleRecordTest.php
 tests/Model/EmailAddressNameTest.php
-tests/Model/EmailAddressNamesTest.php
 tests/Model/EmailAddressParamTest.php
 tests/Model/EmailAddressTypesTest.php
 tests/Model/EmailAddressesTypesTest.php

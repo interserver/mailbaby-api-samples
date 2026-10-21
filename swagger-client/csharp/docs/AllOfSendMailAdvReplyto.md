@@ -1,4 +1,4 @@
-# Interserver.MailBaby.Client.Model.AllOfSendMailAdvReplyto
+# MailBabyCsharp.Model.AllOfSendMailAdvReplyto
 ## Properties
 
 Name | Type | Description | Notes

@@ -24,10 +24,10 @@ use lib 'lib';
 use strict;
 use warnings;
 
-use_ok('OpenAPIClient::ServicesApi');
+use_ok('WWW::OpenAPIClient::ServicesApi');
 
-my $api = OpenAPIClient::ServicesApi->new();
-isa_ok($api, 'OpenAPIClient::ServicesApi');
+my $api = WWW::OpenAPIClient::ServicesApi->new();
+isa_ok($api, 'WWW::OpenAPIClient::ServicesApi');
 
 #
 # get_mail_order_by_id test

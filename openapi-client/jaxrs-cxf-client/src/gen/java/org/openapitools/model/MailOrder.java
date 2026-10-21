@@ -22,7 +22,7 @@ public class MailOrder  {
 
 public enum StatusEnum {
 
-ACTIVE(String.valueOf("active")), CANCELED(String.valueOf("canceled"));
+ACTIVE(String.valueOf("active")), CANCELED(String.valueOf("canceled")), UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
 
 
     private String value;

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$MailBlockClickHouse = Initialize-PSOpenAPIToolsMailBlockClickHouse  -Date Sun Aug 06 20:00:00 EDT 2023 `
+$MailBlockClickHouse = Initialize-MailBabyPowershellMailBlockClickHouse  -Date Sun Aug 06 20:00:00 EDT 2023 `
  -VarFrom user@domain.com `
  -Subject Test Email `
  -To [&#39;client@site.com&#39;] `

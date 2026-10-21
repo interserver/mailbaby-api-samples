@@ -26,10 +26,10 @@ export default class SendMailRaw {
    * Request body for &#x60;POST /mail/rawsend&#x60;.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing &#x60;DKIM-Signature&#x60; header intact.  The &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, and &#x60;Bcc&#x60; addresses are extracted from the message headers automatically — you do not need to specify them separately.
    * @alias module:model/SendMailRaw
    * @class
-   * @param raw_email {String} The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
+   * @param rawEmail {String} The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
    */
-  constructor(raw_email) {
-    this.raw_email = raw_email;
+  constructor(rawEmail) {
+    this.rawEmail = rawEmail;
   }
 
   /**
@@ -43,7 +43,7 @@ export default class SendMailRaw {
     if (data) {
       obj = obj || new SendMailRaw();
       if (data.hasOwnProperty('raw_email'))
-        obj.raw_email = ApiClient.convertToType(data['raw_email'], 'String');
+        obj.rawEmail = ApiClient.convertToType(data['raw_email'], 'String');
       if (data.hasOwnProperty('id'))
         obj.id = ApiClient.convertToType(data['id'], 'Number');
     }
@@ -53,9 +53,9 @@ export default class SendMailRaw {
 
 /**
  * The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.
- * @member {String} raw_email
+ * @member {String} rawEmail
  */
-SendMailRaw.prototype.raw_email = undefined;
+SendMailRaw.prototype.rawEmail = undefined;
 
 /**
  * Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.

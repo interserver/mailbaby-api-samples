@@ -1,0 +1,35 @@
+"$schema"   = "http://cyaninc.com/json-schemas/tosca-lite-v1/definition-module#"
+title       = "MailBabyPythonBlueplanet EmailAddressParam"
+package     = MailBabyPythonBlueplanet
+version     = "1.0"
+description = "Defines a EmailAddressParam"
+authors     = ["F. Bar (foo@bar.baz)"]
+
+imports {
+  Root = tosca.resourceTypes.Root
+}
+resourceTypes {
+
+  EmailAddressParam {
+    title = EmailAddressParam
+    description = EmailAddressParam
+    derivedFrom = Root
+    properties {
+        email {
+          type =  string
+          description = "The email address to delist from all block lists."
+          optional = true
+        }
+    }
+  }
+}
+
+serviceTemplates {
+
+  EmailAddressParam {
+    title = EmailAddressParam
+    description = EmailAddressParam
+    implements = MailBabyPythonBlueplanet.resourceTypes.EmailAddressParam
+
+  }
+}

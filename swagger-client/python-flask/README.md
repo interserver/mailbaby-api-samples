@@ -15,7 +15,7 @@ To run the server, please execute the following from the root directory:
 
 ```
 pip3 install -r requirements.txt
-python3 -m mailbaby-client-python-flask
+python3 -m MailBabyPythonFlask
 ```
 
 and open your browser to here:
@@ -42,8 +42,8 @@ To run the server on a Docker container, please execute the following from the r
 
 ```bash
 # building the image
-docker build -t mailbaby-client-python-flask .
+docker build -t MailBabyPythonFlask .
 
 # starting up a container
-docker run -p 8080:8080 mailbaby-client-python-flask
+docker run -p 8080:8080 MailBabyPythonFlask
 ```

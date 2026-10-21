@@ -151,7 +151,10 @@ Protected Class HistoryApi
 		      Return "day"
 		    Case TimeEnum_GetStats.OneHour
 		      Return "1h"
-		    
+		    Case TimeEnum_GetStats.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function
@@ -347,7 +350,10 @@ Protected Class HistoryApi
 		    
 		    Case SortEnum_ViewMailLog.Time
 		      Return "time"
-		    
+		    Case SortEnum_ViewMailLog.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function
@@ -360,7 +366,10 @@ Protected Class HistoryApi
 		      Return "asc"
 		    Case DirEnum_ViewMailLog.Desc
 		      Return "desc"
-		    
+		    Case DirEnum_ViewMailLog.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function
@@ -373,7 +382,10 @@ Protected Class HistoryApi
 		      Return "message"
 		    Case GroupbyEnum_ViewMailLog.Recipient
 		      Return "recipient"
-		    
+		    Case GroupbyEnum_ViewMailLog.UnknownDefaultOpenApi
+		      Return "unknown_default_open_api"
+		    Case 
+		      Return ""
 		  End Select
 		  Return ""
 		End Function
@@ -468,6 +480,7 @@ Protected Class HistoryApi
         TwentyFourHours
         Day
         OneHour
+        UnknownDefaultOpenApi
 		
 	#tag EndEnum
 
@@ -475,12 +488,14 @@ Protected Class HistoryApi
 		
         NotDelivered = "0"
         Delivered = "1"
-		
+        UnknownDefaultOpenApi = "11184809"
+		 = 
 	#tag EndEnum
 
 	#tag Enum, Name = SortEnum_ViewMailLog, Type = Integer, Flags = &h0
 		
         Time
+        UnknownDefaultOpenApi
 		
 	#tag EndEnum
 
@@ -488,6 +503,7 @@ Protected Class HistoryApi
 		
         Asc
         Desc
+        UnknownDefaultOpenApi
 		
 	#tag EndEnum
 
@@ -495,6 +511,7 @@ Protected Class HistoryApi
 		
         Message
         Recipient
+        UnknownDefaultOpenApi
 		
 	#tag EndEnum
 

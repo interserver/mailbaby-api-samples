@@ -1,4 +1,4 @@
-# openapi::MailStatsType
+# MailBabyR::MailStatsType
 
 Account usage statistics returned by `GET /mail/stats`.  Includes billing-cycle usage totals (for cost calculation) as well as time-windowed sent/received counts and volume breakdowns by IP, destination, and source address.
 

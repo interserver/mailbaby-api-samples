@@ -205,7 +205,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getRules**
-> BuiltList<DenyRuleRecord> getRules()
+> List<DenyRuleRecord> getRules()
 
 List custom deny rules (sender / domain / destination / prefix)
 
@@ -234,7 +234,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**BuiltList&lt;DenyRuleRecord&gt;**](DenyRuleRecord.md)
+[**List&lt;DenyRuleRecord&gt;**](DenyRuleRecord.md)
 
 ### Authorization
 

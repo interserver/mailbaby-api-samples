@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.date_or_timestamp import DateOrTimestamp
+from MailBabyPython.models.date_or_timestamp import DateOrTimestamp
 
 # TODO update the JSON string below
 json = "{}"

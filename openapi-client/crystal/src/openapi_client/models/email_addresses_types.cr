@@ -16,7 +16,7 @@ module OpenAPIClient
   class EmailAddressesTypes
     getter value
 
-    def initialize(@value : EmailAddressNames)
+    def initialize(@value : Array(EmailAddressName))
     end
     def initialize(@value : String)
     end
@@ -24,7 +24,7 @@ module OpenAPIClient
     # List of classes defined in oneOf (OpenAPI v3)
     def self.openapi_one_of
       [
-        EmailAddressNames, String
+        Array(EmailAddressName), String
       ]
     end
 
@@ -39,7 +39,7 @@ module OpenAPIClient
     def self.from_json_any(data : JSON::Any) : self
       json = data.to_json
       begin
-        return new(EmailAddressNames.from_json(json))
+        return new(Array(EmailAddressName).from_json(json))
       rescue JSON::ParseException | ArgumentError | TypeCastError
       end
       begin
@@ -58,7 +58,7 @@ module OpenAPIClient
 
     def self.new(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
       begin
-        return new(EmailAddressNames.new(ctx, node))
+        return new(Array(EmailAddressName).new(ctx, node))
       rescue YAML::ParseException | ArgumentError | TypeCastError
       end
       begin

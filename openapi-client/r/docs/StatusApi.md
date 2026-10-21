@@ -16,7 +16,7 @@ Health check — verify the API is reachable
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Health check — verify the API is reachable
 #

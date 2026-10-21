@@ -53,7 +53,7 @@
 
 #include "EmailAddressesTypes.h"
 
-#include "EmailAddressNames.h"
+#include "EmailAddressName.h"
 #include <string>
 #include <vector>
 #include <variant>
@@ -526,7 +526,7 @@ EmailAddressesTypes fromJsonValue_EmailAddressesTypes(boost::json::value const& 
             return;
         }
         if (matchedBranchIndex == 1) {
-            EmailAddressNames converted;
+            std::vector<EmailAddressName> converted;
             if (!tryParseBranch(value, converted, &errorPath)) {
                 throw std::invalid_argument(
                     "Branch 1 conversion failed for EmailAddressesTypes");

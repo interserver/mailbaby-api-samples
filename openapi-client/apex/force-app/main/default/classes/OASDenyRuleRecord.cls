@@ -21,7 +21,8 @@ public class OASDenyRuleRecord implements OASDenyRuleNew {
         DOMAIN,
         EMAIL,
         STARTSWITH,
-        DESTINATION
+        DESTINATION,
+        UNKNOWN_DEFAULT_OPEN_API
     }
 
     /**

@@ -411,7 +411,7 @@ export interface MailLogEntry {
      * @type {number}
      * @memberof MailLogEntry
      */
-    _id: number;
+    id: number;
     /**
      * The relay-assigned mail ID (18–19 hex characters).  This is the value returned as `text` by the sending endpoints and accepted as the `mailid` filter on `GET /mail/log`.
      * @type {string}
@@ -826,7 +826,7 @@ export interface SendMailRaw {
      * @type {string}
      * @memberof SendMailRaw
      */
-    raw_email: string;
+    rawEmail: string;
     /**
      * Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.
      * @type {number}
@@ -1645,19 +1645,19 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
          * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Send a pre-built RFC 822 message verbatim (preserves DKIM)
          * @param {SendMailRaw} body 
-         * @param {string} raw_email 
+         * @param {string} rawEmail 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: SendMailRaw, raw_email: string, id: number, options: any = {}): FetchArgs {
+        rawMail(body: SendMailRaw, rawEmail: string, id: number, options: any = {}): FetchArgs {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
                 throw new RequiredError('body','Required parameter body was null or undefined when calling rawMail.');
             }
-            // verify required parameter 'raw_email' is not null or undefined
-            if (raw_email === null || raw_email === undefined) {
-                throw new RequiredError('raw_email','Required parameter raw_email was null or undefined when calling rawMail.');
+            // verify required parameter 'rawEmail' is not null or undefined
+            if (rawEmail === null || rawEmail === undefined) {
+                throw new RequiredError('rawEmail','Required parameter rawEmail was null or undefined when calling rawMail.');
             }
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
@@ -1678,8 +1678,8 @@ export const SendingApiFetchParamCreator = function (configuration?: Configurati
                 localVarHeaderParameter["X-API-KEY"] = localVarApiKeyValue;
             }
 
-            if (raw_email !== undefined) {
-                localVarFormParams.set('raw_email', raw_email as any);
+            if (rawEmail !== undefined) {
+                localVarFormParams.set('raw_email', rawEmail as any);
             }
 
             if (id !== undefined) {
@@ -1932,13 +1932,13 @@ export const SendingApiFp = function(configuration?: Configuration) {
          * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Send a pre-built RFC 822 message verbatim (preserves DKIM)
          * @param {SendMailRaw} body 
-         * @param {string} raw_email 
+         * @param {string} rawEmail 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: SendMailRaw, raw_email: string, id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
-            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(body, raw_email, id, options);
+        rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GenericResponse> {
+            const localVarFetchArgs = SendingApiFetchParamCreator(configuration).rawMail(body, rawEmail, id, options);
             return (fetch: FetchAPI = isomorphicFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2014,13 +2014,13 @@ export const SendingApiFactory = function (configuration?: Configuration, fetch?
          * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
          * @summary Send a pre-built RFC 822 message verbatim (preserves DKIM)
          * @param {SendMailRaw} body 
-         * @param {string} raw_email 
+         * @param {string} rawEmail 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rawMail(body: SendMailRaw, raw_email: string, id: number, options?: any) {
-            return SendingApiFp(configuration).rawMail(body, raw_email, id, options)(fetch, basePath);
+        rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any) {
+            return SendingApiFp(configuration).rawMail(body, rawEmail, id, options)(fetch, basePath);
         },
         /**
          * **Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.  **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `\"Joe <joe@example.com>, jane@example.com\"`) and the structured `[{\"email\":\"...\",\"name\":\"...\"}]` array format.  When using JSON, both formats are equally supported.  **HTML detection** is automatic — if `body` contains HTML tags the `Content-Type` is set to `text/html`; otherwise `text/plain`.  **Attachments** must be base64-encoded.  Each attachment requires at least a `data` field; the optional `filename` field controls the attachment name shown to recipients.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  On success the response `text` field contains the relay transaction ID which can be looked up in `GET /mail/log` via the `mailid` query parameter.  ## Examples  ### Form — basic string addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d from=user@domain.com \\   -d to=support@interserver.net ``` ### Form — RFC 822 named addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d 'from=Joe <user@domain.com>' \\   -d 'to=Jane <support@interserver.net>' ``` ### Form — multiple recipients as array ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' -d 'body=Hello' \\   -d from=user@domain.com \\   -d 'to[0][name]=Joe' -d 'to[0][email]=support@interserver.net' \\   -d 'to[1][name]=Jane' -d 'to[1][email]=jane@interserver.net' ``` ### JSON — structured objects ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/json' \\   -d '{     \"subject\": \"Welcome\",     \"body\": \"<h1>Hello</h1>\",     \"from\": {\"email\": \"user@domain.com\", \"name\": \"Sender Name\"},     \"to\": [{\"email\": \"joe@client.com\", \"name\": \"Joe Client\"}],     \"cc\": [{\"email\": \"manager@client.com\"}],     \"attachments\": [{\"filename\": \"report.pdf\", \"data\": \"BASE64_DATA\"}]   }' ``` 
@@ -2070,14 +2070,14 @@ export class SendingApi extends BaseAPI {
      * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
      * @summary Send a pre-built RFC 822 message verbatim (preserves DKIM)
      * @param {SendMailRaw} body 
-     * @param {string} raw_email 
+     * @param {string} rawEmail 
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SendingApi
      */
-    public rawMail(body: SendMailRaw, raw_email: string, id: number, options?: any) {
-        return SendingApiFp(this.configuration).rawMail(body, raw_email, id, options)(this.fetch, this.basePath);
+    public rawMail(body: SendMailRaw, rawEmail: string, id: number, options?: any) {
+        return SendingApiFp(this.configuration).rawMail(body, rawEmail, id, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -8,7 +8,6 @@ doc/DateOrTimestamp.md
 doc/DenyRuleNew.md
 doc/DenyRuleRecord.md
 doc/EmailAddressName.md
-doc/EmailAddressNames.md
 doc/EmailAddressParam.md
 doc/EmailAddressTypes.md
 doc/EmailAddressesTypes.md
@@ -51,7 +50,6 @@ lib/model/date_or_timestamp.dart
 lib/model/deny_rule_new.dart
 lib/model/deny_rule_record.dart
 lib/model/email_address_name.dart
-lib/model/email_address_names.dart
 lib/model/email_address_param.dart
 lib/model/email_address_types.dart
 lib/model/email_addresses_types.dart
@@ -77,7 +75,6 @@ test/date_or_timestamp_test.dart
 test/deny_rule_new_test.dart
 test/deny_rule_record_test.dart
 test/email_address_name_test.dart
-test/email_address_names_test.dart
 test/email_address_param_test.dart
 test/email_address_types_test.dart
 test/email_addresses_types_test.dart

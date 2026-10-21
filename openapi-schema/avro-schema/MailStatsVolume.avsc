@@ -1,0 +1,36 @@
+{
+  "namespace": "MailBabyAvroSchema",
+  "type": "record",
+  "doc": "Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.",
+  "name": "MailStatsVolume",
+  "fields": [
+    {
+      "name": "to",
+      "type": ["null", {
+        "type": "map",
+        "items": "int"
+      }],
+      "doc": "Message counts keyed by destination (envelope `to`) email address.",
+      "default": null
+    },
+    {
+      "name": "from",
+      "type": ["null", {
+        "type": "map",
+        "items": "int"
+      }],
+      "doc": "Message counts keyed by sender (envelope `from`) email address.",
+      "default": null
+    },
+    {
+      "name": "ip",
+      "type": ["null", {
+        "type": "map",
+        "items": "int"
+      }],
+      "doc": "Message counts keyed by originating client IP address.",
+      "default": null
+    }
+  ]
+
+}

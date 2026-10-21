@@ -3,123 +3,74 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'error_message.g.dart';
 
-/// The response body returned when an error occurs.
-///
-/// Properties:
-/// * [code] - The HTTP-style status code associated with the error.
-/// * [message] - A human-readable description of the error.
-@BuiltValue()
-abstract class ErrorMessage implements Built<ErrorMessage, ErrorMessageBuilder> {
-  /// The HTTP-style status code associated with the error.
-  @BuiltValueField(wireName: r'code')
-  int get code;
 
-  /// A human-readable description of the error.
-  @BuiltValueField(wireName: r'message')
-  String get message;
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class ErrorMessage {
+  /// Returns a new [ErrorMessage] instance.
+  ErrorMessage({
 
-  ErrorMessage._();
+    required  this.code,
 
-  factory ErrorMessage([void updates(ErrorMessageBuilder b)]) = _$ErrorMessage;
+    required  this.message,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(ErrorMessageBuilder b) => b;
+      /// The HTTP-style status code associated with the error.
+  @JsonKey(
+    
+    name: r'code',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<ErrorMessage> get serializer => _$ErrorMessageSerializer();
+
+  final int code;
+
+
+
+      /// A human-readable description of the error.
+  @JsonKey(
+    
+    name: r'message',
+    required: true,
+    includeIfNull: false,
+  )
+
+
+  final String message;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is ErrorMessage &&
+      other.code == code &&
+      other.message == message;
+
+    @override
+    int get hashCode =>
+        code.hashCode +
+        message.hashCode;
+
+  factory ErrorMessage.fromJson(Map<String, dynamic> json) => _$ErrorMessageFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ErrorMessageToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$ErrorMessageSerializer implements PrimitiveSerializer<ErrorMessage> {
-  @override
-  final Iterable<Type> types = const [ErrorMessage, _$ErrorMessage];
-
-  @override
-  final String wireName = r'ErrorMessage';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    ErrorMessage object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'code';
-    yield serializers.serialize(
-      object.code,
-      specifiedType: const FullType(int),
-    );
-    yield r'message';
-    yield serializers.serialize(
-      object.message,
-      specifiedType: const FullType(String),
-    );
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    ErrorMessage object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required ErrorMessageBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'code':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.code = valueDes;
-          break;
-        case r'message':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.message = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  ErrorMessage deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = ErrorMessageBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

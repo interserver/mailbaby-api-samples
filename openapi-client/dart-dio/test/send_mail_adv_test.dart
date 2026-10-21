@@ -3,8 +3,8 @@ import 'package:openapi/openapi.dart';
 
 // tests for SendMailAdv
 void main() {
-  final instance = SendMailAdvBuilder();
-  // TODO add properties to the builder and call build()
+  final SendMailAdv? instance = /* SendMailAdv(...) */ null;
+  // TODO add properties to the entity
 
   group(SendMailAdv, () {
     // The subject line of the email.
@@ -50,7 +50,7 @@ void main() {
     });
 
     // Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
-    // BuiltList<MailAttachment> attachments
+    // List<MailAttachment> attachments
     test('to test the property `attachments`', () async {
       // TODO
     });

@@ -18,8 +18,8 @@ Health check — verify the API is reachable
 ### Example
 ```kotlin
 // Import classes:
-//import org.openapitools.client.infrastructure.*
-//import org.openapitools.client.models.*
+//import MailBabyKotlin.infrastructure.*
+//import MailBabyKotlin.models.*
 
 val apiInstance = StatusApi()
 try {

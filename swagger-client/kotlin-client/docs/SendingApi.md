@@ -19,7 +19,7 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -66,7 +66,7 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -115,7 +115,7 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -178,7 +178,7 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -233,7 +233,7 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()
@@ -288,7 +288,7 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```kotlin
 // Import classes:
-//import mailbaby-client-kotlin-client.infrastructure.*
+//import MailBabyKotlinClient.infrastructure.*
 //import io.swagger.client.models.*;
 
 val apiInstance = SendingApi()

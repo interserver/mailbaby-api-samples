@@ -1,6 +1,6 @@
 # NAME
 
-OpenAPIClient::Role - a Moose role for the MailBaby Email Delivery and Management Service API
+WWW::OpenAPIClient::Role - a Moose role for the MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -53,7 +53,7 @@ For more information, please visit [https://www.mail.baby/contact/](https://www.
 ## A note on Moose
 
 This role is the only component of the library that uses Moose. See
-OpenAPIClient::ApiFactory for non-Moosey usage.
+WWW::OpenAPIClient::ApiFactory for non-Moosey usage.
 
 # SYNOPSIS
 
@@ -67,7 +67,7 @@ role.
 
         package MyApp;
         use Moose;
-        with 'OpenAPIClient::Role';
+        with 'WWW::OpenAPIClient::Role';
 
         package main;
 
@@ -126,7 +126,7 @@ you are accessing. Usually `prefix` and `in` will be determined by the code gene
 the spec and you will not need to set them at run time. If not, `in` will
 default to 'head' and `prefix` to the empty string.
 
-The tokens will be placed in a L<OpenAPIClient::Configuration> instance
+The tokens will be placed in a L<WWW::OpenAPIClient::Configuration> instance
 as follows, but you don't need to know about this.
 
 - `$cfg->{username}`
@@ -171,7 +171,7 @@ returns the current value of `base_url`.
 
 Returns an API factory object. You probably won't need to call this directly.
 
-        $self->api_factory('Pet'); # returns a OpenAPIClient::PetApi instance
+        $self->api_factory('Pet'); # returns a WWW::OpenAPIClient::PetApi instance
 
         $self->pet_api;            # the same
 
@@ -268,40 +268,39 @@ cpanm --quiet --no-interactive Class::Accessor Test::Exception Test::More Log::A
 
 To load the API packages:
 ```perl
-use OpenAPIClient::BlockingApi;
-use OpenAPIClient::HistoryApi;
-use OpenAPIClient::SendingApi;
-use OpenAPIClient::ServicesApi;
-use OpenAPIClient::StatusApi;
+use WWW::OpenAPIClient::BlockingApi;
+use WWW::OpenAPIClient::HistoryApi;
+use WWW::OpenAPIClient::SendingApi;
+use WWW::OpenAPIClient::ServicesApi;
+use WWW::OpenAPIClient::StatusApi;
 
 ```
 
 To load the models:
 ```perl
-use OpenAPIClient::Object::DateOrTimestamp;
-use OpenAPIClient::Object::DenyRuleNew;
-use OpenAPIClient::Object::DenyRuleRecord;
-use OpenAPIClient::Object::EmailAddressName;
-use OpenAPIClient::Object::EmailAddressNames;
-use OpenAPIClient::Object::EmailAddressParam;
-use OpenAPIClient::Object::EmailAddressTypes;
-use OpenAPIClient::Object::EmailAddressesTypes;
-use OpenAPIClient::Object::ErrorMessage;
-use OpenAPIClient::Object::GenericResponse;
-use OpenAPIClient::Object::MailAttachment;
-use OpenAPIClient::Object::MailBlockClickHouse;
-use OpenAPIClient::Object::MailBlockRspamd;
-use OpenAPIClient::Object::MailBlocks;
-use OpenAPIClient::Object::MailLog;
-use OpenAPIClient::Object::MailLogEntry;
-use OpenAPIClient::Object::MailOrder;
-use OpenAPIClient::Object::MailOrderDetail;
-use OpenAPIClient::Object::MailStatsType;
-use OpenAPIClient::Object::MailStatsVolume;
-use OpenAPIClient::Object::SendMail;
-use OpenAPIClient::Object::SendMailAdv;
-use OpenAPIClient::Object::SendMailRaw;
-use OpenAPIClient::Object::SendMailTo;
+use WWW::OpenAPIClient::Object::DateOrTimestamp;
+use WWW::OpenAPIClient::Object::DenyRuleNew;
+use WWW::OpenAPIClient::Object::DenyRuleRecord;
+use WWW::OpenAPIClient::Object::EmailAddressName;
+use WWW::OpenAPIClient::Object::EmailAddressParam;
+use WWW::OpenAPIClient::Object::EmailAddressTypes;
+use WWW::OpenAPIClient::Object::EmailAddressesTypes;
+use WWW::OpenAPIClient::Object::ErrorMessage;
+use WWW::OpenAPIClient::Object::GenericResponse;
+use WWW::OpenAPIClient::Object::MailAttachment;
+use WWW::OpenAPIClient::Object::MailBlockClickHouse;
+use WWW::OpenAPIClient::Object::MailBlockRspamd;
+use WWW::OpenAPIClient::Object::MailBlocks;
+use WWW::OpenAPIClient::Object::MailLog;
+use WWW::OpenAPIClient::Object::MailLogEntry;
+use WWW::OpenAPIClient::Object::MailOrder;
+use WWW::OpenAPIClient::Object::MailOrderDetail;
+use WWW::OpenAPIClient::Object::MailStatsType;
+use WWW::OpenAPIClient::Object::MailStatsVolume;
+use WWW::OpenAPIClient::Object::SendMail;
+use WWW::OpenAPIClient::Object::SendMailAdv;
+use WWW::OpenAPIClient::Object::SendMailRaw;
+use WWW::OpenAPIClient::Object::SendMailTo;
 
 ````
 
@@ -313,43 +312,42 @@ use lib 'lib';
 use strict;
 use warnings;
 # load the API package
-use OpenAPIClient::BlockingApi;
-use OpenAPIClient::HistoryApi;
-use OpenAPIClient::SendingApi;
-use OpenAPIClient::ServicesApi;
-use OpenAPIClient::StatusApi;
+use WWW::OpenAPIClient::BlockingApi;
+use WWW::OpenAPIClient::HistoryApi;
+use WWW::OpenAPIClient::SendingApi;
+use WWW::OpenAPIClient::ServicesApi;
+use WWW::OpenAPIClient::StatusApi;
 
 # load the models
-use OpenAPIClient::Object::DateOrTimestamp;
-use OpenAPIClient::Object::DenyRuleNew;
-use OpenAPIClient::Object::DenyRuleRecord;
-use OpenAPIClient::Object::EmailAddressName;
-use OpenAPIClient::Object::EmailAddressNames;
-use OpenAPIClient::Object::EmailAddressParam;
-use OpenAPIClient::Object::EmailAddressTypes;
-use OpenAPIClient::Object::EmailAddressesTypes;
-use OpenAPIClient::Object::ErrorMessage;
-use OpenAPIClient::Object::GenericResponse;
-use OpenAPIClient::Object::MailAttachment;
-use OpenAPIClient::Object::MailBlockClickHouse;
-use OpenAPIClient::Object::MailBlockRspamd;
-use OpenAPIClient::Object::MailBlocks;
-use OpenAPIClient::Object::MailLog;
-use OpenAPIClient::Object::MailLogEntry;
-use OpenAPIClient::Object::MailOrder;
-use OpenAPIClient::Object::MailOrderDetail;
-use OpenAPIClient::Object::MailStatsType;
-use OpenAPIClient::Object::MailStatsVolume;
-use OpenAPIClient::Object::SendMail;
-use OpenAPIClient::Object::SendMailAdv;
-use OpenAPIClient::Object::SendMailRaw;
-use OpenAPIClient::Object::SendMailTo;
+use WWW::OpenAPIClient::Object::DateOrTimestamp;
+use WWW::OpenAPIClient::Object::DenyRuleNew;
+use WWW::OpenAPIClient::Object::DenyRuleRecord;
+use WWW::OpenAPIClient::Object::EmailAddressName;
+use WWW::OpenAPIClient::Object::EmailAddressParam;
+use WWW::OpenAPIClient::Object::EmailAddressTypes;
+use WWW::OpenAPIClient::Object::EmailAddressesTypes;
+use WWW::OpenAPIClient::Object::ErrorMessage;
+use WWW::OpenAPIClient::Object::GenericResponse;
+use WWW::OpenAPIClient::Object::MailAttachment;
+use WWW::OpenAPIClient::Object::MailBlockClickHouse;
+use WWW::OpenAPIClient::Object::MailBlockRspamd;
+use WWW::OpenAPIClient::Object::MailBlocks;
+use WWW::OpenAPIClient::Object::MailLog;
+use WWW::OpenAPIClient::Object::MailLogEntry;
+use WWW::OpenAPIClient::Object::MailOrder;
+use WWW::OpenAPIClient::Object::MailOrderDetail;
+use WWW::OpenAPIClient::Object::MailStatsType;
+use WWW::OpenAPIClient::Object::MailStatsVolume;
+use WWW::OpenAPIClient::Object::SendMail;
+use WWW::OpenAPIClient::Object::SendMailAdv;
+use WWW::OpenAPIClient::Object::SendMailRaw;
+use WWW::OpenAPIClient::Object::SendMailTo;
 
 # for displaying the API response data
 use Data::Dumper;
 
 
-my $api_instance = OpenAPIClient::BlockingApi->new(
+my $api_instance = WWW::OpenAPIClient::BlockingApi->new(
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
     # uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -392,30 +390,29 @@ Class | Method | HTTP request | Description
 
 
 # DOCUMENTATION FOR MODELS
- - [OpenAPIClient::Object::DateOrTimestamp](docs/DateOrTimestamp.md)
- - [OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
- - [OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
- - [OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
- - [OpenAPIClient::Object::EmailAddressNames](docs/EmailAddressNames.md)
- - [OpenAPIClient::Object::EmailAddressParam](docs/EmailAddressParam.md)
- - [OpenAPIClient::Object::EmailAddressTypes](docs/EmailAddressTypes.md)
- - [OpenAPIClient::Object::EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [OpenAPIClient::Object::ErrorMessage](docs/ErrorMessage.md)
- - [OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
- - [OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
- - [OpenAPIClient::Object::MailBlockClickHouse](docs/MailBlockClickHouse.md)
- - [OpenAPIClient::Object::MailBlockRspamd](docs/MailBlockRspamd.md)
- - [OpenAPIClient::Object::MailBlocks](docs/MailBlocks.md)
- - [OpenAPIClient::Object::MailLog](docs/MailLog.md)
- - [OpenAPIClient::Object::MailLogEntry](docs/MailLogEntry.md)
- - [OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
- - [OpenAPIClient::Object::MailOrderDetail](docs/MailOrderDetail.md)
- - [OpenAPIClient::Object::MailStatsType](docs/MailStatsType.md)
- - [OpenAPIClient::Object::MailStatsVolume](docs/MailStatsVolume.md)
- - [OpenAPIClient::Object::SendMail](docs/SendMail.md)
- - [OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
- - [OpenAPIClient::Object::SendMailRaw](docs/SendMailRaw.md)
- - [OpenAPIClient::Object::SendMailTo](docs/SendMailTo.md)
+ - [WWW::OpenAPIClient::Object::DateOrTimestamp](docs/DateOrTimestamp.md)
+ - [WWW::OpenAPIClient::Object::DenyRuleNew](docs/DenyRuleNew.md)
+ - [WWW::OpenAPIClient::Object::DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [WWW::OpenAPIClient::Object::EmailAddressName](docs/EmailAddressName.md)
+ - [WWW::OpenAPIClient::Object::EmailAddressParam](docs/EmailAddressParam.md)
+ - [WWW::OpenAPIClient::Object::EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [WWW::OpenAPIClient::Object::EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [WWW::OpenAPIClient::Object::ErrorMessage](docs/ErrorMessage.md)
+ - [WWW::OpenAPIClient::Object::GenericResponse](docs/GenericResponse.md)
+ - [WWW::OpenAPIClient::Object::MailAttachment](docs/MailAttachment.md)
+ - [WWW::OpenAPIClient::Object::MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [WWW::OpenAPIClient::Object::MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [WWW::OpenAPIClient::Object::MailBlocks](docs/MailBlocks.md)
+ - [WWW::OpenAPIClient::Object::MailLog](docs/MailLog.md)
+ - [WWW::OpenAPIClient::Object::MailLogEntry](docs/MailLogEntry.md)
+ - [WWW::OpenAPIClient::Object::MailOrder](docs/MailOrder.md)
+ - [WWW::OpenAPIClient::Object::MailOrderDetail](docs/MailOrderDetail.md)
+ - [WWW::OpenAPIClient::Object::MailStatsType](docs/MailStatsType.md)
+ - [WWW::OpenAPIClient::Object::MailStatsVolume](docs/MailStatsVolume.md)
+ - [WWW::OpenAPIClient::Object::SendMail](docs/SendMail.md)
+ - [WWW::OpenAPIClient::Object::SendMailAdv](docs/SendMailAdv.md)
+ - [WWW::OpenAPIClient::Object::SendMailRaw](docs/SendMailRaw.md)
+ - [WWW::OpenAPIClient::Object::SendMailTo](docs/SendMailTo.md)
 
 
 # DOCUMENTATION FOR AUTHORIZATION

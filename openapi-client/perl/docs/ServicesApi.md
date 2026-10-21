@@ -1,8 +1,8 @@
-# OpenAPIClient::ServicesApi
+# WWW::OpenAPIClient::ServicesApi
 
 ## Load the API package
 ```perl
-use OpenAPIClient::Object::ServicesApi;
+use WWW::OpenAPIClient::Object::ServicesApi;
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -23,8 +23,8 @@ Get one mail order's full detail including SMTP password
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::ServicesApi;
-my $api_instance = OpenAPIClient::ServicesApi->new(
+use WWW::OpenAPIClient::ServicesApi;
+my $api_instance = WWW::OpenAPIClient::ServicesApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -74,8 +74,8 @@ Use this **before sending** if you need to discover which mail order `id` to pas
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::ServicesApi;
-my $api_instance = OpenAPIClient::ServicesApi->new(
+use WWW::OpenAPIClient::ServicesApi;
+my $api_instance = WWW::OpenAPIClient::ServicesApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},

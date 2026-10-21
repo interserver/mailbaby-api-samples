@@ -1,4 +1,4 @@
-# Eiffel API client for openapi
+# Eiffel API client for MailBabyEiffel
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -81,7 +81,6 @@ Class | Method | HTTP request | Description
  - [DENY_RULE_RECORD](docs/DENY_RULE_RECORD.md)
  - [EMAIL_ADDRESSES_TYPES](docs/EMAIL_ADDRESSES_TYPES.md)
  - [EMAIL_ADDRESS_NAME](docs/EMAIL_ADDRESS_NAME.md)
- - [EMAIL_ADDRESS_NAMES](docs/EMAIL_ADDRESS_NAMES.md)
  - [EMAIL_ADDRESS_PARAM](docs/EMAIL_ADDRESS_PARAM.md)
  - [EMAIL_ADDRESS_TYPES](docs/EMAIL_ADDRESS_TYPES.md)
  - [ERROR_MESSAGE](docs/ERROR_MESSAGE.md)

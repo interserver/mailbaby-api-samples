@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(QtOpenAPIClient)
+project(MailBabyCppQtClient)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -15,7 +15,6 @@ add_library(${PROJECT_NAME}
   OAIDenyRuleNew.h
   OAIDenyRuleRecord.h
   OAIEmailAddressName.h
-  OAIEmailAddressNames.h
   OAIEmailAddressParam.h
   OAIEmailAddressTypes.h
   OAIEmailAddressesTypes.h
@@ -52,7 +51,6 @@ add_library(${PROJECT_NAME}
   OAIDenyRuleNew.cpp
   OAIDenyRuleRecord.cpp
   OAIEmailAddressName.cpp
-  OAIEmailAddressNames.cpp
   OAIEmailAddressParam.cpp
   OAIEmailAddressTypes.cpp
   OAIEmailAddressesTypes.cpp

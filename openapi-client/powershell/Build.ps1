@@ -47,20 +47,20 @@ function Get-FunctionsToExport {
 
 $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
 $FunctionPath = 'Api', 'Model', 'Client' | Where-Object {
-    Join-Path "$ScriptDir\src\PSOpenAPITools\" $_ | Test-Path
-} | ForEach-Object { Join-Path "$ScriptDir\src\PSOpenAPITools\" $_ }
+    Join-Path "$ScriptDir\src\MailBabyPowershell\" $_ | Test-Path
+} | ForEach-Object { Join-Path "$ScriptDir\src\MailBabyPowershell\" $_ }
 
 $Manifest = @{
-    Path = "$ScriptDir\src\PSOpenAPITools\PSOpenAPITools.psd1"
+    Path = "$ScriptDir\src\MailBabyPowershell\MailBabyPowershell.psd1"
 
     Author = 'OpenAPI Generator Team'
     CompanyName = 'openapitools.org'
-    Description = 'PSOpenAPITools - the PowerShell module for MailBaby Email Delivery and Management Service API'
+    Description = 'MailBabyPowershell - the PowerShell module for MailBaby Email Delivery and Management Service API'
 
     ModuleVersion = '0.1.2'
 
-    RootModule = 'PSOpenAPITools.psm1'
-    Guid = '{F206773C-DE28-4802-9FA5-73961BD9E32E}' # Has to be static, otherwise each new build will be considered different module
+    RootModule = 'MailBabyPowershell.psm1'
+    Guid = '{EE90097B-8FF7-4FED-A430-F341F5CB3409}' # Has to be static, otherwise each new build will be considered different module
 
     PowerShellVersion = '6.2'
 

@@ -6,8 +6,8 @@ support@interserver.net
 :toclevels: 4
 :source-highlighter: highlightjs
 :keywords: openapi, rest, MailBaby Email Delivery and Management Service API
-:specDir: ..
-:snippetDir: .
+:specDir: 
+:snippetDir: 
 :generator-template: v1 2019-12-20
 :info-url: https://www.mail.baby/contact/
 :app-name: MailBaby Email Delivery and Management Service API
@@ -1521,21 +1521,6 @@ An email contact with an optional display name.  Used in structured address fiel
 |   String  
 | Optional display name shown to recipients (e.g. in the &#x60;From:&#x60; header).
 |     
-
-|===
-
-
-
-[#EmailAddressNames]
-=== _EmailAddressNames_ EmailAddressNames
-
-An array of email contacts, each with an email address and optional display name.
-
-
-[.fields-EmailAddressNames]
-[cols="2,1,1,2,4,1"]
-|===
-| Field Name| Required| Nullable | Type| Description | Format
 
 |===
 

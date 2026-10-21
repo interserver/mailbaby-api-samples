@@ -33,9 +33,10 @@ export interface MailOrder {
     comment?: string;
 }
 export namespace MailOrder {
-    export type StatusEnum = 'active' | 'canceled';
+    export type StatusEnum = 'active' | 'canceled' | '11184809';
     export const StatusEnum = {
         Active: 'active' as StatusEnum,
-        Canceled: 'canceled' as StatusEnum
+        Canceled: 'canceled' as StatusEnum,
+        UnknownDefaultOpenApi: '11184809' as StatusEnum
     }
 }

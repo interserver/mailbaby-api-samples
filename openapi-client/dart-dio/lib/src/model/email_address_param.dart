@@ -3,106 +3,57 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'email_address_param.g.dart';
 
-/// A single email address parameter used as the body of `POST /mail/blocks/delete`.
-///
-/// Properties:
-/// * [email] - The email address to delist from all block lists.
-@BuiltValue()
-abstract class EmailAddressParam implements Built<EmailAddressParam, EmailAddressParamBuilder> {
-  /// The email address to delist from all block lists.
-  @BuiltValueField(wireName: r'email')
-  String get email;
 
-  EmailAddressParam._();
+@CopyWith()
+@JsonSerializable(
+  checked: true,
+  createToJson: true,
+  disallowUnrecognizedKeys: false,
+  explicitToJson: true,
+)
+class EmailAddressParam {
+  /// Returns a new [EmailAddressParam] instance.
+  EmailAddressParam({
 
-  factory EmailAddressParam([void updates(EmailAddressParamBuilder b)]) = _$EmailAddressParam;
+    required  this.email,
+  });
 
-  @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(EmailAddressParamBuilder b) => b;
+      /// The email address to delist from all block lists.
+  @JsonKey(
+    
+    name: r'email',
+    required: true,
+    includeIfNull: false,
+  )
 
-  @BuiltValueSerializer(custom: true)
-  static Serializer<EmailAddressParam> get serializer => _$EmailAddressParamSerializer();
+
+  final String email;
+
+
+
+
+
+    @override
+    bool operator ==(Object other) => identical(this, other) || other is EmailAddressParam &&
+      other.email == email;
+
+    @override
+    int get hashCode =>
+        email.hashCode;
+
+  factory EmailAddressParam.fromJson(Map<String, dynamic> json) => _$EmailAddressParamFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EmailAddressParamToJson(this);
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
 }
-
-class _$EmailAddressParamSerializer implements PrimitiveSerializer<EmailAddressParam> {
-  @override
-  final Iterable<Type> types = const [EmailAddressParam, _$EmailAddressParam];
-
-  @override
-  final String wireName = r'EmailAddressParam';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    EmailAddressParam object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    yield r'email';
-    yield serializers.serialize(
-      object.email,
-      specifiedType: const FullType(String),
-    );
-  }
-
-  @override
-  Object serialize(
-    Serializers serializers,
-    EmailAddressParam object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required EmailAddressParamBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'email':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.email = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
-  }
-
-  @override
-  EmailAddressParam deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = EmailAddressParamBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
-  }
-}
-
 

@@ -2,7 +2,6 @@
 
 MailBaby Email Delivery and Management Service API
 - API version: 1.5.0
-  - Build date: 2026-10-20T20:42:18.916811285-04:00[America/New_York]
   - Generator version: 7.26.0
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
@@ -78,7 +77,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>org.openapitools</groupId>
   <artifactId>openapi-java-client</artifactId>
-  <version>1.0.0</version>
+  <version>1.5.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -94,7 +93,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "org.openapitools:openapi-java-client:1.0.0"
+     implementation "org.openapitools:openapi-java-client:1.5.0"
   }
 ```
 
@@ -108,7 +107,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/openapi-java-client-1.0.0.jar`
+* `target/openapi-java-client-1.5.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -182,7 +181,6 @@ Class | Method | HTTP request | Description
  - [DenyRuleNew](docs/DenyRuleNew.md)
  - [DenyRuleRecord](docs/DenyRuleRecord.md)
  - [EmailAddressName](docs/EmailAddressName.md)
- - [EmailAddressNames](docs/EmailAddressNames.md)
  - [EmailAddressParam](docs/EmailAddressParam.md)
  - [EmailAddressTypes](docs/EmailAddressTypes.md)
  - [EmailAddressesTypes](docs/EmailAddressesTypes.md)

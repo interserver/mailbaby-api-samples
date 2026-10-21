@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.send_mail_adv import SendMailAdv
+from MailBabyPython.models.send_mail_adv import SendMailAdv
 
 # TODO update the JSON string below
 json = "{}"

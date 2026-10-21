@@ -1,4 +1,4 @@
-# openapi::MailOrderDetail
+# MailBabyR::MailOrderDetail
 
 Extended mail order record including the current SMTP password.  Returned by `GET /mail/{id}`.  The `username` and `password` fields can be used to authenticate directly against `relay.mailbaby.net:25` via SMTP AUTH if you prefer to send via a native SMTP client rather than the REST API.
 

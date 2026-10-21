@@ -191,8 +191,6 @@ class ApiClient {
           return DenyRuleRecord.fromJson(value);
         case 'EmailAddressName':
           return EmailAddressName.fromJson(value);
-        case 'EmailAddressNames':
-          return EmailAddressNames.fromJson(value);
         case 'EmailAddressParam':
           return EmailAddressParam.fromJson(value);
         case 'EmailAddressTypes':

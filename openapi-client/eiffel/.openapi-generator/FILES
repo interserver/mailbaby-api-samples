@@ -8,7 +8,6 @@ docs/DENY_RULE_NEW.md
 docs/DENY_RULE_RECORD.md
 docs/EMAIL_ADDRESSES_TYPES.md
 docs/EMAIL_ADDRESS_NAME.md
-docs/EMAIL_ADDRESS_NAMES.md
 docs/EMAIL_ADDRESS_PARAM.md
 docs/EMAIL_ADDRESS_TYPES.md
 docs/ERROR_MESSAGE.md
@@ -41,7 +40,6 @@ src/domain/date_or_timestamp.e
 src/domain/deny_rule_new.e
 src/domain/deny_rule_record.e
 src/domain/email_address_name.e
-src/domain/email_address_names.e
 src/domain/email_address_param.e
 src/domain/email_address_types.e
 src/domain/email_addresses_types.e

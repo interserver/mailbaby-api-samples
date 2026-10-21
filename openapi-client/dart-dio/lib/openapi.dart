@@ -7,8 +7,7 @@ export 'package:openapi/src/auth/api_key_auth.dart';
 export 'package:openapi/src/auth/basic_auth.dart';
 export 'package:openapi/src/auth/bearer_auth.dart';
 export 'package:openapi/src/auth/oauth.dart';
-export 'package:openapi/src/serializers.dart';
-export 'package:openapi/src/model/date.dart';
+
 
 export 'package:openapi/src/api/blocking_api.dart';
 export 'package:openapi/src/api/history_api.dart';
@@ -20,7 +19,6 @@ export 'package:openapi/src/model/date_or_timestamp.dart';
 export 'package:openapi/src/model/deny_rule_new.dart';
 export 'package:openapi/src/model/deny_rule_record.dart';
 export 'package:openapi/src/model/email_address_name.dart';
-export 'package:openapi/src/model/email_address_names.dart';
 export 'package:openapi/src/model/email_address_param.dart';
 export 'package:openapi/src/model/email_address_types.dart';
 export 'package:openapi/src/model/email_addresses_types.dart';

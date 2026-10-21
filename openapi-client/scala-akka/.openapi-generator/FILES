@@ -7,7 +7,6 @@ docs/DateOrTimestamp.md
 docs/DenyRuleNew.md
 docs/DenyRuleRecord.md
 docs/EmailAddressName.md
-docs/EmailAddressNames.md
 docs/EmailAddressParam.md
 docs/EmailAddressTypes.md
 docs/EmailAddressesTypes.md
@@ -50,7 +49,6 @@ src/main/scala/org/openapitools/client/model/DateOrTimestamp.scala
 src/main/scala/org/openapitools/client/model/DenyRuleNew.scala
 src/main/scala/org/openapitools/client/model/DenyRuleRecord.scala
 src/main/scala/org/openapitools/client/model/EmailAddressName.scala
-src/main/scala/org/openapitools/client/model/EmailAddressNames.scala
 src/main/scala/org/openapitools/client/model/EmailAddressParam.scala
 src/main/scala/org/openapitools/client/model/EmailAddressTypes.scala
 src/main/scala/org/openapitools/client/model/EmailAddressesTypes.scala

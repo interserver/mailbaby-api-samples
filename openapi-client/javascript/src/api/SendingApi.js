@@ -51,15 +51,15 @@ export default class SendingApi {
     /**
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      * **Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. 
-     * @param {module:model/SendMailRaw} SendMailRaw 
+     * @param {module:model/SendMailRaw} sendMailRaw 
      * @param {module:api/SendingApi~rawMailCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/GenericResponse}
      */
-    rawMail(SendMailRaw, callback) {
-      let postBody = SendMailRaw;
-      // verify the required parameter 'SendMailRaw' is set
-      if (SendMailRaw === undefined || SendMailRaw === null) {
-        throw new Error("Missing the required parameter 'SendMailRaw' when calling rawMail");
+    rawMail(sendMailRaw, callback) {
+      let postBody = sendMailRaw;
+      // verify the required parameter 'sendMailRaw' is set
+      if (sendMailRaw === undefined || sendMailRaw === null) {
+        throw new Error("Missing the required parameter 'sendMailRaw' when calling rawMail");
       }
 
       let pathParams = {

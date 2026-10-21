@@ -1,17 +1,13 @@
 {
-  "sortParamsByRequiredFlag": "true",
-  "ensureUniqueParams": "true",
-  "allowUnicodeIdentifiers": "true",
-  "modelPackage": "Model",
-  "apiPackage": "Api",
-  "variableNamingConvention": "camelCase",
-  "invokerPackage": "Interserver\\Mailbaby",
-  "packagePath": "",
-  "srcBasePath": "src",
-  "gitUserId": "interserver",
-  "gitRepoId": "mailbaby-client-php",
-  "composerVendorName": "interserver",
-  "composerProjectName": "mailbaby-client-php",
-  "artifactVersion": "1.0.0",
-  "hideGenerationTimestamp": "true"
+    "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "disallowAdditionalPropertiesIfNotPresent": "false",
+    "ensureUniqueParams": "true",
+    "enumUnknownDefaultCase": "true",
+    "gitRepoId": "mailbaby-client-php",
+    "gitUserId": "interserver",
+    "hideGenerationTimestamp": "true",
+    "legacyDiscriminatorBehavior": "false",
+    "packageName": "MailBabyPhp",
+    "sortModelPropertiesByRequiredFlag": "true",
+    "sortParamsByRequiredFlag": "true"
 }

@@ -1,0 +1,15 @@
+.openapi-generator-ignore
+README.md
+priv/openapi.json
+rebar.config
+src/MailBabyErlangServer.app.src
+src/MailBabyErlangServer_api.erl
+src/MailBabyErlangServer_auth.erl
+src/MailBabyErlangServer_blocking_handler.erl
+src/MailBabyErlangServer_history_handler.erl
+src/MailBabyErlangServer_logic_handler.erl
+src/MailBabyErlangServer_router.erl
+src/MailBabyErlangServer_sending_handler.erl
+src/MailBabyErlangServer_server.erl
+src/MailBabyErlangServer_services_handler.erl
+src/MailBabyErlangServer_status_handler.erl

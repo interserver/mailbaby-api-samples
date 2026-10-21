@@ -10,6 +10,8 @@
 #' @field to Message counts keyed by destination (envelope `to`) email address. named list(integer) [optional]
 #' @field from Message counts keyed by sender (envelope `from`) email address. named list(integer) [optional]
 #' @field ip Message counts keyed by originating client IP address. named list(integer) [optional]
+#' @field _field_list a list of fields list(character)
+#' @field additional_properties additional properties list(character) [optional]
 #' @importFrom R6 R6Class
 #' @importFrom jsonlite fromJSON toJSON
 #' @export
@@ -19,6 +21,8 @@ MailStatsVolume <- R6::R6Class(
     `to` = NULL,
     `from` = NULL,
     `ip` = NULL,
+    `_field_list` = c("to", "from", "ip"),
+    `additional_properties` = list(),
 
     #' @description
     #' Initialize a new MailStatsVolume class.
@@ -26,8 +30,9 @@ MailStatsVolume <- R6::R6Class(
     #' @param to Message counts keyed by destination (envelope `to`) email address.
     #' @param from Message counts keyed by sender (envelope `from`) email address.
     #' @param ip Message counts keyed by originating client IP address.
+    #' @param additional_properties additional properties (optional)
     #' @param ... Other optional arguments.
-    initialize = function(`to` = NULL, `from` = NULL, `ip` = NULL, ...) {
+    initialize = function(`to` = NULL, `from` = NULL, `ip` = NULL, additional_properties = NULL, ...) {
       if (!is.null(`to`)) {
         stopifnot(is.vector(`to`), length(`to`) != 0)
         sapply(`to`, function(x) stopifnot(is.character(x)))
@@ -42,6 +47,11 @@ MailStatsVolume <- R6::R6Class(
         stopifnot(is.vector(`ip`), length(`ip`) != 0)
         sapply(`ip`, function(x) stopifnot(is.character(x)))
         self$`ip` <- `ip`
+      }
+      if (!is.null(additional_properties)) {
+        for (key in names(additional_properties)) {
+          self$additional_properties[[key]] <- additional_properties[[key]]
+        }
       }
     },
 
@@ -88,6 +98,10 @@ MailStatsVolume <- R6::R6Class(
         MailStatsVolumeObject[["ip"]] <-
           self$`ip`
       }
+      for (key in names(self$additional_properties)) {
+        MailStatsVolumeObject[[key]] <- self$additional_properties[[key]]
+      }
+
       return(MailStatsVolumeObject)
     },
 
@@ -99,14 +113,21 @@ MailStatsVolume <- R6::R6Class(
     fromJSON = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
       if (!is.null(this_object$`to`)) {
-        self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "map(integer)", loadNamespace("openapi"))
+        self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "map(integer)", loadNamespace("MailBabyR"))
       }
       if (!is.null(this_object$`from`)) {
-        self$`from` <- ApiClient$new()$deserializeObj(this_object$`from`, "map(integer)", loadNamespace("openapi"))
+        self$`from` <- ApiClient$new()$deserializeObj(this_object$`from`, "map(integer)", loadNamespace("MailBabyR"))
       }
       if (!is.null(this_object$`ip`)) {
-        self$`ip` <- ApiClient$new()$deserializeObj(this_object$`ip`, "map(integer)", loadNamespace("openapi"))
+        self$`ip` <- ApiClient$new()$deserializeObj(this_object$`ip`, "map(integer)", loadNamespace("MailBabyR"))
       }
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 
@@ -117,6 +138,9 @@ MailStatsVolume <- R6::R6Class(
     #' @return MailStatsVolume in JSON format
     toJSONString = function(...) {
       simple <- self$toSimpleType()
+      for (key in names(self$additional_properties)) {
+        simple[[key]] <- self$additional_properties[[key]]
+      }
       json <- jsonlite::toJSON(simple, auto_unbox = TRUE, digits = NA, ...)
       return(as.character(jsonlite::minify(json)))
     },
@@ -128,9 +152,16 @@ MailStatsVolume <- R6::R6Class(
     #' @return the instance of MailStatsVolume
     fromJSONString = function(input_json) {
       this_object <- jsonlite::fromJSON(input_json)
-      self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "map(integer)", loadNamespace("openapi"))
-      self$`from` <- ApiClient$new()$deserializeObj(this_object$`from`, "map(integer)", loadNamespace("openapi"))
-      self$`ip` <- ApiClient$new()$deserializeObj(this_object$`ip`, "map(integer)", loadNamespace("openapi"))
+      self$`to` <- ApiClient$new()$deserializeObj(this_object$`to`, "map(integer)", loadNamespace("MailBabyR"))
+      self$`from` <- ApiClient$new()$deserializeObj(this_object$`from`, "map(integer)", loadNamespace("MailBabyR"))
+      self$`ip` <- ApiClient$new()$deserializeObj(this_object$`ip`, "map(integer)", loadNamespace("MailBabyR"))
+      # process additional properties/fields in the payload
+      for (key in names(this_object)) {
+        if (!(key %in% self$`_field_list`)) { # json key not in list of fields
+          self$additional_properties[[key]] <- this_object[[key]]
+        }
+      }
+
       self
     },
 

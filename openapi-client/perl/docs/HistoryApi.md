@@ -1,8 +1,8 @@
-# OpenAPIClient::HistoryApi
+# WWW::OpenAPIClient::HistoryApi
 
 ## Load the API package
 ```perl
-use OpenAPIClient::Object::HistoryApi;
+use WWW::OpenAPIClient::Object::HistoryApi;
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -23,8 +23,8 @@ Account usage, cost, and volume statistics for a time window
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::HistoryApi;
-my $api_instance = OpenAPIClient::HistoryApi->new(
+use WWW::OpenAPIClient::HistoryApi;
+my $api_instance = WWW::OpenAPIClient::HistoryApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},
@@ -74,8 +74,8 @@ Query the mail delivery log (filterable, paginated)
 ### Example
 ```perl
 use Data::Dumper;
-use OpenAPIClient::HistoryApi;
-my $api_instance = OpenAPIClient::HistoryApi->new(
+use WWW::OpenAPIClient::HistoryApi;
+my $api_instance = WWW::OpenAPIClient::HistoryApi->new(
 
     # Configure API key authorization: apiKeyAuth
     api_key => {'X-API-KEY' => 'YOUR_API_KEY'},

@@ -19,9 +19,9 @@ func _bzz_get_api_name() -> String:
 #
 # **Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The `time` query param controls the window for `received`, `sent`, and `volume` (`1h`, `24h`, `7d`, `month`, `day`, `billing`, `all`). The `usage` and `cost` fields are always for the current billing cycle, regardless of `time`.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | 
 func get_stats(
-	# some_timenull: String = "1h"   Eg: some_timenull_example
+	# some_time: String = "1h"   Eg: some_time_example
 	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
-	some_timenull = "1h",
+	some_time = "1h",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ):
@@ -43,7 +43,7 @@ func get_stats(
 	# Collect the query parameters
 	# Note: we do not support multiple values for a single param (for now), nor arrays
 	var bzz_query := Dictionary()
-	bzz_query["time"] = some_timenull
+	bzz_query["time"] = some_time
 
 	var bzz_body = null
 
@@ -60,16 +60,16 @@ func get_stats(
 
 
 func get_stats_threaded(
-	# some_timenull: String = "1h"   Eg: some_timenull_example
+	# some_time: String = "1h"   Eg: some_time_example
 	# The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
-	some_timenull = "1h",
+	some_time = "1h",
 	on_success: Callable = Callable(),  # func(response: ApiResponse)
 	on_failure: Callable = Callable(),  # func(error: ApiError)
 ) -> Thread:
 	var bzz_thread := Thread.new()
 	var bzz_callable := Callable(self, "get_stats")
 	bzz_callable.bind(
-		some_timenull,
+		some_time,
 		on_success,
 		on_failure,
 	)

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 
 - Prepare the resource
 ```powershell
-$SendMailRaw = Initialize-PSOpenAPIToolsSendMailRaw  -RawEmail null `
+$SendMailRaw = Initialize-MailBabyPowershellSendMailRaw  -RawEmail null `
  -Id null
 ```
 

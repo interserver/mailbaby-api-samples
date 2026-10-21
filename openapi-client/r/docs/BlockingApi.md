@@ -20,7 +20,7 @@ Create a deny rule to block a sender, domain, destination, or prefix
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Create a deny rule to block a sender, domain, destination, or prefix
 #
@@ -76,7 +76,7 @@ Delete a deny rule by its numeric ruleId
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Delete a deny rule by its numeric ruleId
 #
@@ -128,7 +128,7 @@ Delist an email address from the spam-filter block lists
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # Delist an email address from the spam-filter block lists
 #
@@ -180,7 +180,7 @@ List addresses currently flagged by spam-filter block lists
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # List addresses currently flagged by spam-filter block lists
 #
@@ -225,7 +225,7 @@ List custom deny rules (sender / domain / destination / prefix)
 
 ### Example
 ```R
-library(openapi)
+library(MailBabyR)
 
 # List custom deny rules (sender / domain / destination / prefix)
 #

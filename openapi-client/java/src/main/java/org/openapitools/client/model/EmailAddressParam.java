@@ -49,7 +49,7 @@ import org.openapitools.client.JSON;
 /**
  * A single email address parameter used as the body of &#x60;POST /mail/blocks/delete&#x60;.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-18T20:35:30.618426333-04:00[America/New_York]", comments = "Generator version: 7.26.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T20:42:18.916811285-04:00[America/New_York]", comments = "Generator version: 7.26.0")
 public class EmailAddressParam {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)

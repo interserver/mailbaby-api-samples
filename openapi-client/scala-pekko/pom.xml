@@ -15,17 +15,17 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <java.version>1.8</java.version>
-    <scala.version>3.10.0</scala.version>
+    <scala.version>2.13.12</scala.version>
     <json4s.jackson.version>4.0.7</json4s.jackson.version>
     <json4s.ext.version>4.0.7</json4s.ext.version>
-    <pekko.version>1.7.1</pekko.version>
-    <pekko.http.version>1.4.2</pekko.http.version>
-    <typesafeconfig.version>1.4.9</typesafeconfig.version>
-    <pekko.http.json4s.version>3.12.0</pekko.http.json4s.version>
-    <scala.test.version>3.3.0-SNAP4</scala.test.version>
-    <scala.test.plus.version>3.3.0.0-SNAP3</scala.test.plus.version>
+    <pekko.version>1.0.2</pekko.version>
+    <pekko.http.version>1.0.0</pekko.http.version>
+    <typesafeconfig.version>1.4.3</typesafeconfig.version>
+    <pekko.http.json4s.version>2.3.2</pekko.http.json4s.version>
+    <scala.test.version>3.2.17</scala.test.version>
+    <scala.test.plus.version>3.2.17.0</scala.test.plus.version>
 
-    <scala.maven.plugin.version>4.10.0</scala.maven.plugin.version>
+    <scala.maven.plugin.version>3.3.1</scala.maven.plugin.version>
   </properties>
 
   <dependencies>
@@ -251,13 +251,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>

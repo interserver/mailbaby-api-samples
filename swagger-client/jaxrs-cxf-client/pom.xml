@@ -151,7 +151,7 @@
     <dependency>
         <groupId>javax.xml.bind</groupId>
         <artifactId>jaxb-api</artifactId>
-        <version>2.4.0-b180830.0359</version>
+        <version>2.2.6</version>
     </dependency>
     <dependency>
         <groupId>javax.activation</groupId>
@@ -172,62 +172,13 @@
     <java.version>1.7</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <swagger-core-version>2.2.55</swagger-core-version>
+    <swagger-core-version>2.0.0</swagger-core-version>
     <jetty-version>9.2.9.v20150224</jetty-version>
-    <junit-version>4.13.2</junit-version>
-    <logback-version>1.6.5</logback-version>
+    <junit-version>4.13.1</junit-version>
+    <logback-version>1.4.14</logback-version>
     <servlet-api-version>2.5</servlet-api-version>
-    <cxf-version>4.2.4</cxf-version>
-    <jackson-jaxrs-version>2.22.4</jackson-jaxrs-version>
+    <cxf-version>3.2.4</cxf-version>
+    <jackson-jaxrs-version>2.9.1</jackson-jaxrs-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.yaml</groupId>
-        <artifactId>snakeyaml</artifactId>
-        <version>2.7</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>4.1.1</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-core</artifactId>
-        <version>1.6.16</version>
-      </dependency>
-      <dependency>
-        <groupId>io.micronaut</groupId>
-        <artifactId>micronaut-inject</artifactId>
-        <version>5.2.16</version>
-      </dependency>
-      <dependency>
-        <groupId>org.openapitools</groupId>
-        <artifactId>jackson-databind-nullable</artifactId>
-        <version>0.2.12</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jaxrs</artifactId>
-        <version>1.6.16</version>
-      </dependency>
-      <dependency>
-        <groupId>io.micronaut</groupId>
-        <artifactId>micronaut-http-client</artifactId>
-        <version>5.2.16</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.module</groupId>
-        <artifactId>jackson-module-scala_2.11</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>

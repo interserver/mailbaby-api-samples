@@ -15,18 +15,18 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <java.version>1.8</java.version>
-    <scala.version>3.10.0</scala.version>
-    <json4s.jackson.version>4.0.7</json4s.jackson.version>
+    <scala.version>2.12.13</scala.version>
+    <json4s.jackson.version>3.6.7</json4s.jackson.version>
     <json4s.ext.version>3.6.7</json4s.ext.version>
-    <akka.version>2.8.8</akka.version>
-    <akka.http.version>10.5.3</akka.http.version>
-    <typesafeconfig.version>1.4.9</typesafeconfig.version>
-    <akka.http.json4s.version>1.39.2</akka.http.json4s.version>
-    <scala.compat.version>2.14.0</scala.compat.version>
-    <scala.test.version>3.3.0-SNAP4</scala.test.version>
-    <scala.test.plus.version>3.3.0.0-SNAP3</scala.test.plus.version>
+    <akka.version>2.6.12</akka.version>
+    <akka.http.version>10.2.3</akka.http.version>
+    <typesafeconfig.version>1.4.1</typesafeconfig.version>
+    <akka.http.json4s.version>1.27.0</akka.http.json4s.version>
+    <scala.compat.version>2.4.1</scala.compat.version>
+    <scala.test.version>3.2.3</scala.test.version>
+    <scala.test.plus.version>3.2.3.0</scala.test.plus.version>
 
-    <scala.maven.plugin.version>4.10.0</scala.maven.plugin.version>
+    <scala.maven.plugin.version>3.3.1</scala.maven.plugin.version>
   </properties>
 
   <dependencies>
@@ -257,73 +257,4 @@
       </plugin>
     </plugins>
   </build>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.http4s</groupId>
-        <artifactId>http4s-server-metrics_2.11</artifactId>
-        <version>0.19.0</version>
-      </dependency>
-      <dependency>
-        <groupId>com.typesafe.akka</groupId>
-        <artifactId>akka-http-core_2.12</artifactId>
-        <version>10.5.3</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>4.2.0-M2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.openapitools</groupId>
-        <artifactId>jackson-databind-nullable</artifactId>
-        <version>0.2.12</version>
-      </dependency>
-      <dependency>
-        <groupId>org.json4s</groupId>
-        <artifactId>json4s-jackson_2.13</artifactId>
-        <version>4.0.7</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jaxrs</artifactId>
-        <version>1.6.16</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger.core.v3</groupId>
-        <artifactId>swagger-jaxrs2</artifactId>
-        <version>2.2.55</version>
-      </dependency>
-      <dependency>
-        <groupId>io.micronaut</groupId>
-        <artifactId>micronaut-http-client</artifactId>
-        <version>5.2.16</version>
-      </dependency>
-      <dependency>
-        <groupId>io.micronaut</groupId>
-        <artifactId>micronaut-graal</artifactId>
-        <version>5.2.16</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.module</groupId>
-        <artifactId>jackson-module-scala_2.11</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.jaxrs</groupId>
-        <artifactId>jackson-jaxrs-json-provider</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>

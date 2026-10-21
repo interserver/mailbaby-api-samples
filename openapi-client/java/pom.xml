@@ -324,76 +324,17 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <gson-fire-version>1.9.0</gson-fire-version>
-        <okhttp-version>5.5.0</okhttp-version>
-        <gson-version>2.14.0</gson-version>
-        <commons-lang3-version>3.21.0</commons-lang3-version>
+        <okhttp-version>4.12.0</okhttp-version>
+        <gson-version>2.10.1</gson-version>
+        <commons-lang3-version>3.18.0</commons-lang3-version>
         <jackson-databind-nullable-version>0.2.12</jackson-databind-nullable-version>
-        <jakarta-annotation-version>3.0.0</jakarta-annotation-version>
+        <jakarta-annotation-version>1.3.5</jakarta-annotation-version>
         <beanvalidation-version>2.0.2</beanvalidation-version>
-        <junit-version>6.1.3</junit-version>
-        <junit-platform-runner.version>1.14.4</junit-platform-runner.version>
-        <jakarta.ws.rs-api-version>4.0.0</jakarta.ws.rs-api-version>
+        <junit-version>5.10.3</junit-version>
+        <junit-platform-runner.version>1.10.0</junit-platform-runner.version>
+        <jakarta.ws.rs-api-version>2.1.6</jakarta.ws.rs-api-version>
         <jsr311-api-version>1.1.1</jsr311-api-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spotless.version>3.10.4</spotless.version>
+        <spotless.version>2.43.0</spotless.version>
     </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-stdlib</artifactId>
-        <version>2.4.21</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <version>4.2.0-M2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.json4s</groupId>
-        <artifactId>json4s-jackson_2.13</artifactId>
-        <version>4.0.7</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-jaxrs</artifactId>
-        <version>1.6.16</version>
-      </dependency>
-      <dependency>
-        <groupId>io.swagger.core.v3</groupId>
-        <artifactId>swagger-jaxrs2</artifactId>
-        <version>2.2.55</version>
-      </dependency>
-      <dependency>
-        <groupId>io.micronaut</groupId>
-        <artifactId>micronaut-http-client</artifactId>
-        <version>5.2.16</version>
-      </dependency>
-      <dependency>
-        <groupId>io.micronaut</groupId>
-        <artifactId>micronaut-graal</artifactId>
-        <version>5.2.16</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.module</groupId>
-        <artifactId>jackson-module-scala_2.11</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.jaxrs</groupId>
-        <artifactId>jackson-jaxrs-json-provider</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.22.4</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 </project>

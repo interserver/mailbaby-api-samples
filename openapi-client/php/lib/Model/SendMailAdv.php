@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace MailBabyPhp\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \MailBabyPhp\ObjectSerializer;
 
 /**
  * SendMailAdv Class Doc Comment
  *
  * @category Class
  * @description Request body for &#x60;POST /mail/advsend&#x60;.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (&#x60;from&#x60;, &#x60;to&#x60;, &#x60;replyto&#x60;, &#x60;cc&#x60;, &#x60;bcc&#x60;) each accept either a plain RFC 822 string (e.g. &#x60;\&quot;Joe &lt;joe@example.com&gt;\&quot;&#x60; or a comma-separated list) or a structured array of &#x60;{\&quot;email\&quot;: \&quot;...\&quot;, \&quot;name\&quot;: \&quot;...\&quot;}&#x60; objects.  HTML detection is automatic based on whether &#x60;body&#x60; contains HTML tags.
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,12 +61,12 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'subject' => 'string',
         'body' => 'string',
-        'from' => '\OpenAPI\Client\Model\EmailAddressTypes',
-        'to' => '\OpenAPI\Client\Model\EmailAddressesTypes',
-        'replyto' => '\OpenAPI\Client\Model\EmailAddressesTypes',
-        'cc' => '\OpenAPI\Client\Model\EmailAddressesTypes',
-        'bcc' => '\OpenAPI\Client\Model\EmailAddressesTypes',
-        'attachments' => '\OpenAPI\Client\Model\MailAttachment[]',
+        'from' => '\MailBabyPhp\Model\EmailAddressTypes',
+        'to' => '\MailBabyPhp\Model\EmailAddressesTypes',
+        'replyto' => '\MailBabyPhp\Model\EmailAddressesTypes',
+        'cc' => '\MailBabyPhp\Model\EmailAddressesTypes',
+        'bcc' => '\MailBabyPhp\Model\EmailAddressesTypes',
+        'attachments' => '\MailBabyPhp\Model\MailAttachment[]',
         'id' => 'int'
     ];
 
@@ -416,7 +416,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets from
      *
-     * @return \OpenAPI\Client\Model\EmailAddressTypes
+     * @return \MailBabyPhp\Model\EmailAddressTypes
      */
     public function getFrom()
     {
@@ -426,7 +426,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets from
      *
-     * @param \OpenAPI\Client\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
+     * @param \MailBabyPhp\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (`\"Name <email>\"`), or a `{\"email\": \"...\", \"name\": \"...\"}` object.
      *
      * @return self
      */
@@ -443,7 +443,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets to
      *
-     * @return \OpenAPI\Client\Model\EmailAddressesTypes
+     * @return \MailBabyPhp\Model\EmailAddressesTypes
      */
     public function getTo()
     {
@@ -453,7 +453,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets to
      *
-     * @param \OpenAPI\Client\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+     * @param \MailBabyPhp\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
      *
      * @return self
      */
@@ -470,7 +470,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets replyto
      *
-     * @return \OpenAPI\Client\Model\EmailAddressesTypes|null
+     * @return \MailBabyPhp\Model\EmailAddressesTypes|null
      */
     public function getReplyto()
     {
@@ -480,7 +480,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets replyto
      *
-     * @param \OpenAPI\Client\Model\EmailAddressesTypes|null $replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+     * @param \MailBabyPhp\Model\EmailAddressesTypes|null $replyto Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
      *
      * @return self
      */
@@ -497,7 +497,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cc
      *
-     * @return \OpenAPI\Client\Model\EmailAddressesTypes|null
+     * @return \MailBabyPhp\Model\EmailAddressesTypes|null
      */
     public function getCc()
     {
@@ -507,7 +507,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cc
      *
-     * @param \OpenAPI\Client\Model\EmailAddressesTypes|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+     * @param \MailBabyPhp\Model\EmailAddressesTypes|null $cc Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
      *
      * @return self
      */
@@ -524,7 +524,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets bcc
      *
-     * @return \OpenAPI\Client\Model\EmailAddressesTypes|null
+     * @return \MailBabyPhp\Model\EmailAddressesTypes|null
      */
     public function getBcc()
     {
@@ -534,7 +534,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets bcc
      *
-     * @param \OpenAPI\Client\Model\EmailAddressesTypes|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+     * @param \MailBabyPhp\Model\EmailAddressesTypes|null $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
      *
      * @return self
      */
@@ -551,7 +551,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets attachments
      *
-     * @return \OpenAPI\Client\Model\MailAttachment[]|null
+     * @return \MailBabyPhp\Model\MailAttachment[]|null
      */
     public function getAttachments()
     {
@@ -561,7 +561,7 @@ class SendMailAdv implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets attachments
      *
-     * @param \OpenAPI\Client\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+     * @param \MailBabyPhp\Model\MailAttachment[]|null $attachments Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
      *
      * @return self
      */

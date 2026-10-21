@@ -18,7 +18,7 @@ To initiate an instance of `BlockingApi`, you can use micronaut's `ApplicationCo
 /* imports
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.context.ApplicationContext;
-import org.openapitools.api.BlockingApi;
+import io.interserver.micronaut.api.BlockingApi;
 */
 
 ApplicationContext context = Micronaut.run(/* ... */);

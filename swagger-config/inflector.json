@@ -1,13 +1,15 @@
 {
     "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "apiPackage": "io.interserver.inflector.api",
     "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
     "enumUnknownDefaultCase": "true",
     "gitRepoId": "mailbaby-client-inflector",
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
+    "invokerPackage": "io.interserver.inflector",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyInflector",
+    "modelPackage": "io.interserver.inflector.model",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

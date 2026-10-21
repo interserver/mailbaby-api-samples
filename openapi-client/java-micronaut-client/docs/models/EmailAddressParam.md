@@ -4,7 +4,7 @@
 
 A single email address parameter used as the body of `POST /mail/blocks/delete`.
 
-The class is defined in **[EmailAddressParam.java](../../src/main/java/org/openapitools/model/EmailAddressParam.java)**
+The class is defined in **[EmailAddressParam.java](../../src/main/java/io/interserver/micronaut/model/EmailAddressParam.java)**
 
 ## Properties
 

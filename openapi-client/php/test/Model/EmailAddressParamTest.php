@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client\Test\Model;
+namespace MailBabyPhp\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -36,7 +36,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @category    Class
  * @description A single email address parameter used as the body of &#x60;POST /mail/blocks/delete&#x60;.
- * @package     OpenAPI\Client
+ * @package     MailBabyPhp
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */

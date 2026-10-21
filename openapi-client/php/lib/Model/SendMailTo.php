@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace MailBabyPhp\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \MailBabyPhp\ObjectSerializer;
 
 /**
  * SendMailTo Class Doc Comment
  *
  * @category Class
  * @description The primary recipient address for a simple send request. Accepts a single email address string or an array of email address strings for multiple recipients.
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>

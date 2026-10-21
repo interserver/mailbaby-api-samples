@@ -21,11 +21,11 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -80,11 +80,11 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -135,11 +135,11 @@ Delete a deny rule by its numeric ruleId
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -190,11 +190,11 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -245,11 +245,11 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -300,11 +300,11 @@ List addresses currently flagged by spam-filter block lists
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -351,11 +351,11 @@ List custom deny rules (sender / domain / destination / prefix)
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.BlockingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.BlockingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

@@ -4,7 +4,7 @@
 
 A single email record in the mail log.  Combines data from the message store (envelope metadata), the queue release table (delivery status and response), and the sender delivery table (MX routing details).  Key field relationships with other API calls: - The `id` field matches the `mailid` query parameter on `GET /mail/log` and   the `text` field of a successful send response. - The `from` address can be passed to `POST /mail/blocks/delete` to delist a   flagged sender. - The `user` field is the SMTP username (e.g. `mb5658`) corresponding to the   `username` field in `GET /mail` / `GET /mail/{id}`.
 
-The class is defined in **[MailLogEntry.java](../../src/main/java/org/openapitools/model/MailLogEntry.java)**
+The class is defined in **[MailLogEntry.java](../../src/main/java/io/interserver/micronaut/model/MailLogEntry.java)**
 
 ## Properties
 

@@ -4,7 +4,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace MailBabyPhp\Api;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
@@ -40,12 +40,12 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\RequestFactory;
 use Http\Promise\Promise;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\DebugPlugin;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use MailBabyPhp\ApiException;
+use MailBabyPhp\Configuration;
+use MailBabyPhp\DebugPlugin;
+use MailBabyPhp\HeaderSelector;
+use MailBabyPhp\FormDataProcessor;
+use MailBabyPhp\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -60,7 +60,7 @@ use function sprintf;
  * SendingApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -180,11 +180,11 @@ class SendingApi
      *
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      *
-     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw send_mail_raw (required)
+     * @param  \MailBabyPhp\Model\SendMailRaw $send_mail_raw send_mail_raw (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function rawMail($send_mail_raw)
     {
@@ -197,11 +197,11 @@ class SendingApi
      *
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      *
-     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
+     * @param  \MailBabyPhp\Model\SendMailRaw $send_mail_raw (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function rawMailWithHttpInfo($send_mail_raw)
     {
@@ -237,25 +237,25 @@ class SendingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -276,7 +276,7 @@ class SendingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GenericResponse',
+                '\MailBabyPhp\Model\GenericResponse',
                 $request,
                 $response,
             );
@@ -285,7 +285,7 @@ class SendingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -293,7 +293,7 @@ class SendingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +301,7 @@ class SendingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -309,7 +309,7 @@ class SendingApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -326,7 +326,7 @@ class SendingApi
      *
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      *
-     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
+     * @param  \MailBabyPhp\Model\SendMailRaw $send_mail_raw (required)
      *
      * @throws \InvalidArgumentException
      * @return Promise
@@ -346,14 +346,14 @@ class SendingApi
      *
      * Send a pre-built RFC 822 message verbatim (preserves DKIM)
      *
-     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
+     * @param  \MailBabyPhp\Model\SendMailRaw $send_mail_raw (required)
      *
      * @throws \InvalidArgumentException
      * @return Promise
      */
     public function rawMailAsyncWithHttpInfo($send_mail_raw)
     {
-        $returnType = '\OpenAPI\Client\Model\GenericResponse';
+        $returnType = '\MailBabyPhp\Model\GenericResponse';
         $request = $this->rawMailRequest($send_mail_raw);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -391,7 +391,7 @@ class SendingApi
     /**
      * Create request for operation 'rawMail'
      *
-     * @param  \OpenAPI\Client\Model\SendMailRaw $send_mail_raw (required)
+     * @param  \MailBabyPhp\Model\SendMailRaw $send_mail_raw (required)
      *
      * @throws \InvalidArgumentException
      * @return RequestInterface
@@ -484,17 +484,17 @@ class SendingApi
      *
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-     * @param  \OpenAPI\Client\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  \MailBabyPhp\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function sendAdvMail($subject, $body, $from, $to, $replyto = null, $cc = null, $bcc = null, $attachments = null, $id = null)
     {
@@ -509,17 +509,17 @@ class SendingApi
      *
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-     * @param  \OpenAPI\Client\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  \MailBabyPhp\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendAdvMailWithHttpInfo($subject, $body, $from, $to, $replyto = null, $cc = null, $bcc = null, $attachments = null, $id = null)
     {
@@ -555,25 +555,25 @@ class SendingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -594,7 +594,7 @@ class SendingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GenericResponse',
+                '\MailBabyPhp\Model\GenericResponse',
                 $request,
                 $response,
             );
@@ -603,7 +603,7 @@ class SendingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -611,7 +611,7 @@ class SendingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -619,7 +619,7 @@ class SendingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -627,7 +627,7 @@ class SendingApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -646,12 +646,12 @@ class SendingApi
      *
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-     * @param  \OpenAPI\Client\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  \MailBabyPhp\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
      * @throws \InvalidArgumentException
@@ -674,12 +674,12 @@ class SendingApi
      *
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-     * @param  \OpenAPI\Client\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  \MailBabyPhp\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
      * @throws \InvalidArgumentException
@@ -687,7 +687,7 @@ class SendingApi
      */
     public function sendAdvMailAsyncWithHttpInfo($subject, $body, $from, $to, $replyto = null, $cc = null, $bcc = null, $attachments = null, $id = null)
     {
-        $returnType = '\OpenAPI\Client\Model\GenericResponse';
+        $returnType = '\MailBabyPhp\Model\GenericResponse';
         $request = $this->sendAdvMailRequest($subject, $body, $from, $to, $replyto, $cc, $bcc, $attachments, $id);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -727,12 +727,12 @@ class SendingApi
      *
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
-     * @param  \OpenAPI\Client\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
-     * @param  \OpenAPI\Client\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressTypes $from The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $to One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. (required)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $replyto Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $cc Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. (optional)
+     * @param  \MailBabyPhp\Model\EmailAddressesTypes $bcc Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. (optional)
+     * @param  \MailBabyPhp\Model\MailAttachment[] $attachments Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. (optional)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
      * @throws \InvalidArgumentException
@@ -853,15 +853,15 @@ class SendingApi
      *
      * Send a simple email (single recipient, plain or HTML)
      *
-     * @param  \OpenAPI\Client\Model\SendMailTo $to to (required)
+     * @param  \MailBabyPhp\Model\SendMailTo $to to (required)
      * @param  string $from The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. (required)
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function sendMail($to, $from, $subject, $body, $id = null)
     {
@@ -874,15 +874,15 @@ class SendingApi
      *
      * Send a simple email (single recipient, plain or HTML)
      *
-     * @param  \OpenAPI\Client\Model\SendMailTo $to (required)
+     * @param  \MailBabyPhp\Model\SendMailTo $to (required)
      * @param  string $from The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. (required)
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
      * @param  int $id Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. (optional)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function sendMailWithHttpInfo($to, $from, $subject, $body, $id = null)
     {
@@ -918,25 +918,25 @@ class SendingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -957,7 +957,7 @@ class SendingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GenericResponse',
+                '\MailBabyPhp\Model\GenericResponse',
                 $request,
                 $response,
             );
@@ -966,7 +966,7 @@ class SendingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -974,7 +974,7 @@ class SendingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -982,7 +982,7 @@ class SendingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -990,7 +990,7 @@ class SendingApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1007,7 +1007,7 @@ class SendingApi
      *
      * Send a simple email (single recipient, plain or HTML)
      *
-     * @param  \OpenAPI\Client\Model\SendMailTo $to (required)
+     * @param  \MailBabyPhp\Model\SendMailTo $to (required)
      * @param  string $from The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. (required)
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
@@ -1031,7 +1031,7 @@ class SendingApi
      *
      * Send a simple email (single recipient, plain or HTML)
      *
-     * @param  \OpenAPI\Client\Model\SendMailTo $to (required)
+     * @param  \MailBabyPhp\Model\SendMailTo $to (required)
      * @param  string $from The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. (required)
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)
@@ -1042,7 +1042,7 @@ class SendingApi
      */
     public function sendMailAsyncWithHttpInfo($to, $from, $subject, $body, $id = null)
     {
-        $returnType = '\OpenAPI\Client\Model\GenericResponse';
+        $returnType = '\MailBabyPhp\Model\GenericResponse';
         $request = $this->sendMailRequest($to, $from, $subject, $body, $id);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1080,7 +1080,7 @@ class SendingApi
     /**
      * Create request for operation 'sendMail'
      *
-     * @param  \OpenAPI\Client\Model\SendMailTo $to (required)
+     * @param  \MailBabyPhp\Model\SendMailTo $to (required)
      * @param  string $from The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. (required)
      * @param  string $subject The subject line of the email. (required)
      * @param  string $body The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. (required)

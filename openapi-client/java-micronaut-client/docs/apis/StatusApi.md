@@ -14,7 +14,7 @@ To initiate an instance of `StatusApi`, you can use micronaut's `ApplicationCont
 /* imports
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.context.ApplicationContext;
-import org.openapitools.api.StatusApi;
+import io.interserver.micronaut.api.StatusApi;
 */
 
 ApplicationContext context = Micronaut.run(/* ... */);

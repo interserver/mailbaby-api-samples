@@ -1,4 +1,4 @@
-# SwaggerClient::StatusApi
+# MailBabyRuby::StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -16,15 +16,15 @@ Health check — verify the API is reachable
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 
-api_instance = SwaggerClient::StatusApi.new
+api_instance = MailBabyRuby::StatusApi.new
 
 begin
   #Health check — verify the API is reachable
   result = api_instance.ping_server
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling StatusApi->ping_server: #{e}"
 end
 ```

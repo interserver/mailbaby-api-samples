@@ -6,7 +6,7 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:openapi/src/deserialize.dart';
+import 'package:mailbaby_client_dart_dio/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
 

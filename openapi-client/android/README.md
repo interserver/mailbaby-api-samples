@@ -58,7 +58,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.api.BlockingApi;
 
 public class BlockingApiExample {
 

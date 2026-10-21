@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace "org.openapitools.client"
+    namespace "io.interserver.client"
     compileSdkVersion 33
     buildToolsVersion '34.0.0'
     defaultConfig {

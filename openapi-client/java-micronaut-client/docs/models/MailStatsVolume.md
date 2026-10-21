@@ -4,7 +4,7 @@
 
 Top-500 breakdown of message counts within the selected time window, grouped by originating IP, destination address, and sender address.
 
-The class is defined in **[MailStatsVolume.java](../../src/main/java/org/openapitools/model/MailStatsVolume.java)**
+The class is defined in **[MailStatsVolume.java](../../src/main/java/io/interserver/micronaut/model/MailStatsVolume.java)**
 
 ## Properties
 

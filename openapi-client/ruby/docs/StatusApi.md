@@ -1,4 +1,4 @@
-# OpenapiClient::StatusApi
+# MailBabyRuby::StatusApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -19,15 +19,15 @@ Health check — verify the API is reachable
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-api_instance = OpenapiClient::StatusApi.new
+api_instance = MailBabyRuby::StatusApi.new
 
 begin
   # Health check — verify the API is reachable
   result = api_instance.ping_server
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling StatusApi->ping_server: #{e}"
 end
 ```
@@ -45,7 +45,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => String
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling StatusApi->ping_server_with_http_info: #{e}"
 end
 ```

@@ -17,8 +17,8 @@ Health check — verify the API is reachable
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.StatusApi;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.api.StatusApi;
 
 
 StatusApi apiInstance = new StatusApi();

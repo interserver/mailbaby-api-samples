@@ -1,4 +1,4 @@
-# SwaggerClient::MailLog
+# MailBabyRuby::MailLog
 
 ## Properties
 Name | Type | Description | Notes

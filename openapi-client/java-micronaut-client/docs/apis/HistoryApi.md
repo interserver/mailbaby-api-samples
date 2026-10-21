@@ -15,7 +15,7 @@ To initiate an instance of `HistoryApi`, you can use micronaut's `ApplicationCon
 /* imports
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.context.ApplicationContext;
-import org.openapitools.api.HistoryApi;
+import io.interserver.micronaut.api.HistoryApi;
 */
 
 ApplicationContext context = Micronaut.run(/* ... */);

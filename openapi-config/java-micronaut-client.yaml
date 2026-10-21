@@ -1,12 +1,14 @@
 # managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
 additionalProperties:
+  apiPackage: "io.interserver.micronaut.api"
   disallowAdditionalPropertiesIfNotPresent: "false"
   ensureUniqueParams: "true"
   enumUnknownDefaultCase: "true"
   gitRepoId: "mailbaby-client-java-micronaut-client"
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
+  invokerPackage: "io.interserver.micronaut"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabyJavaMicronautClient"
+  modelPackage: "io.interserver.micronaut.model"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

@@ -1,8 +1,8 @@
-# openapi.api.BlockingApi
+# mailbaby_client_dart_dio.api.BlockingApi
 
 ## Load the API package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -25,13 +25,13 @@ Create a deny rule to block a sender, domain, destination, or prefix
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getBlockingApi();
+final api = MailbabyClientDartDio().getBlockingApi();
 final String type = type_example; // String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 final String data = data_example; // String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 final String user = user_example; // String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.
@@ -76,13 +76,13 @@ Delete a deny rule by its numeric ruleId
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getBlockingApi();
+final api = MailbabyClientDartDio().getBlockingApi();
 final int ruleId = 34; // int | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 try {
@@ -123,13 +123,13 @@ Delist an email address from the spam-filter block lists
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getBlockingApi();
+final api = MailbabyClientDartDio().getBlockingApi();
 final EmailAddressParam emailAddressParam = {"email":"client@domain.com"}; // EmailAddressParam | 
 
 try {
@@ -170,13 +170,13 @@ List addresses currently flagged by spam-filter block lists
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getBlockingApi();
+final api = MailbabyClientDartDio().getBlockingApi();
 
 try {
     final response = api.getMailBlocks();
@@ -213,13 +213,13 @@ List custom deny rules (sender / domain / destination / prefix)
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getBlockingApi();
+final api = MailbabyClientDartDio().getBlockingApi();
 
 try {
     final response = api.getRules();

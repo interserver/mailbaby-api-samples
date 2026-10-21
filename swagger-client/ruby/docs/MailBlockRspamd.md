@@ -1,4 +1,4 @@
-# SwaggerClient::MailBlockRspamd
+# MailBabyRuby::MailBlockRspamd
 
 ## Properties
 Name | Type | Description | Notes

@@ -8,6 +8,6 @@ additionalProperties:
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabyObjc"
+  podName: "MailBabyObjc"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

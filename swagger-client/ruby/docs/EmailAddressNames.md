@@ -1,4 +1,4 @@
-# SwaggerClient::EmailAddressNames
+# MailBabyRuby::EmailAddressNames
 
 ## Properties
 Name | Type | Description | Notes

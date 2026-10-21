@@ -1,4 +1,4 @@
-# OpenapiClient::DenyRuleNew
+# MailBabyRuby::DenyRuleNew
 
 ## Properties
 
@@ -11,9 +11,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::DenyRuleNew.new(
+instance = MailBabyRuby::DenyRuleNew.new(
   type: email,
   data: domeinwo@server.guesshost.net,
   user: mb20682

@@ -6,14 +6,14 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:openapi/src/deserialize.dart';
+import 'package:mailbaby_client_dart_dio/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/model/deny_rule_record.dart';
-import 'package:openapi/src/model/email_address_param.dart';
-import 'package:openapi/src/model/error_message.dart';
-import 'package:openapi/src/model/generic_response.dart';
-import 'package:openapi/src/model/mail_blocks.dart';
+import 'package:mailbaby_client_dart_dio/src/model/deny_rule_record.dart';
+import 'package:mailbaby_client_dart_dio/src/model/email_address_param.dart';
+import 'package:mailbaby_client_dart_dio/src/model/error_message.dart';
+import 'package:mailbaby_client_dart_dio/src/model/generic_response.dart';
+import 'package:mailbaby_client_dart_dio/src/model/mail_blocks.dart';
 
 class BlockingApi {
 

@@ -1,4 +1,4 @@
-# OpenapiClient::MailBlocks
+# MailBabyRuby::MailBlocks
 
 ## Properties
 
@@ -11,9 +11,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailBlocks.new(
+instance = MailBabyRuby::MailBlocks.new(
   local: null,
   mbtrap: null,
   subject: null

@@ -1,13 +1,15 @@
 {
     "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "apiPackage": "io.interserver.jaxrs.di.api",
     "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
     "enumUnknownDefaultCase": "true",
     "gitRepoId": "mailbaby-client-jaxrs-di",
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
+    "invokerPackage": "io.interserver.jaxrs.di",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyJaxrsDi",
+    "modelPackage": "io.interserver.jaxrs.di.model",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

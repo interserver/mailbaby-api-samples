@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:mailbaby_client_dart_dio/mailbaby_client_dart_dio.dart';
 
 
 /// tests for StatusApi
 void main() {
-  final instance = Openapi().getStatusApi();
+  final instance = MailbabyClientDartDio().getStatusApi();
 
   group(StatusApi, () {
     // Health check — verify the API is reachable

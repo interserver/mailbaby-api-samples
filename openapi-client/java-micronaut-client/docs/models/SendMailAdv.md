@@ -4,7 +4,7 @@
 
 Request body for `POST /mail/advsend`.  Provides full control over all email headers and supports multiple recipients, CC, BCC, Reply-To, and file attachments.  Address fields (`from`, `to`, `replyto`, `cc`, `bcc`) each accept either a plain RFC 822 string (e.g. `\"Joe <joe@example.com>\"` or a comma-separated list) or a structured array of `{\"email\": \"...\", \"name\": \"...\"}` objects.  HTML detection is automatic based on whether `body` contains HTML tags.
 
-The class is defined in **[SendMailAdv.java](../../src/main/java/org/openapitools/model/SendMailAdv.java)**
+The class is defined in **[SendMailAdv.java](../../src/main/java/io/interserver/micronaut/model/SendMailAdv.java)**
 
 ## Properties
 

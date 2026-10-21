@@ -1,4 +1,4 @@
-# SwaggerClient::AllOfSendMailAdvReplyto
+# MailBabyRuby::AllOfSendMailAdvReplyto
 
 ## Properties
 Name | Type | Description | Notes

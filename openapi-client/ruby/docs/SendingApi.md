@@ -1,4 +1,4 @@
-# OpenapiClient::SendingApi
+# MailBabyRuby::SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -21,23 +21,23 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::SendingApi.new
-send_mail_raw = OpenapiClient::SendMailRaw.new({raw_email: 'raw_email_example'}) # SendMailRaw | 
+api_instance = MailBabyRuby::SendingApi.new
+send_mail_raw = MailBabyRuby::SendMailRaw.new({raw_email: 'raw_email_example'}) # SendMailRaw | 
 
 begin
   # Send a pre-built RFC 822 message verbatim (preserves DKIM)
   result = api_instance.raw_mail(send_mail_raw)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling SendingApi->raw_mail: #{e}"
 end
 ```
@@ -55,7 +55,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GenericResponse>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling SendingApi->raw_mail_with_http_info: #{e}"
 end
 ```
@@ -92,25 +92,25 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::SendingApi.new
+api_instance = MailBabyRuby::SendingApi.new
 subject = 'subject_example' # String | The subject line of the email.
 body = 'body_example' # String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-from = OpenapiClient::EmailAddressName.new({email: 'user@domain.com'}) # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+from = MailBabyRuby::EmailAddressName.new({email: 'user@domain.com'}) # EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
 to = nil # EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
 opts = {
   replyto: nil, # EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
   cc: nil, # EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
   bcc: nil, # EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
-  attachments: [OpenapiClient::MailAttachment.new({filename: 'message.txt', data: '[B@3b95a6db'})], # Array<MailAttachment> | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+  attachments: [MailBabyRuby::MailAttachment.new({filename: 'message.txt', data: '[B@3a2e9f5b'})], # Array<MailAttachment> | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
   id: 789 # Integer | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 }
 
@@ -118,7 +118,7 @@ begin
   # Send email with multiple recipients, CC/BCC, attachments, named contacts
   result = api_instance.send_adv_mail(subject, body, from, to, opts)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling SendingApi->send_adv_mail: #{e}"
 end
 ```
@@ -136,7 +136,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GenericResponse>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling SendingApi->send_adv_mail_with_http_info: #{e}"
 end
 ```
@@ -181,16 +181,16 @@ Send a simple email (single recipient, plain or HTML)
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::SendingApi.new
+api_instance = MailBabyRuby::SendingApi.new
 to = nil # SendMailTo | 
 from = 'from_example' # String | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 subject = 'subject_example' # String | The subject line of the email.
@@ -203,7 +203,7 @@ begin
   # Send a simple email (single recipient, plain or HTML)
   result = api_instance.send_mail(to, from, subject, body, opts)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling SendingApi->send_mail: #{e}"
 end
 ```
@@ -221,7 +221,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GenericResponse>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling SendingApi->send_mail_with_http_info: #{e}"
 end
 ```

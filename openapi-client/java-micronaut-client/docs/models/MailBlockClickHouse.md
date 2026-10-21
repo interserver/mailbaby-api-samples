@@ -4,7 +4,7 @@
 
 A block event record sourced from the ClickHouse analytics store.  Represents a message that triggered one of the rspamd block rules (`LOCAL_BL_RCPT` or `MBTRAP`). The `from` address can be passed to `POST /mail/blocks/delete` to delist it.
 
-The class is defined in **[MailBlockClickHouse.java](../../src/main/java/org/openapitools/model/MailBlockClickHouse.java)**
+The class is defined in **[MailBlockClickHouse.java](../../src/main/java/io/interserver/micronaut/model/MailBlockClickHouse.java)**
 
 ## Properties
 

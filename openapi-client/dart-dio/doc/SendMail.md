@@ -1,8 +1,8 @@
-# openapi.model.SendMail
+# mailbaby_client_dart_dio.model.SendMail
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 ## Properties

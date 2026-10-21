@@ -1,6 +1,6 @@
-# openapi_client
+# mailbaby_client_ruby
 
-OpenapiClient - the Ruby gem for the MailBaby Email Delivery and Management Service API
+MailBabyRuby - the Ruby gem for the MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -55,28 +55,28 @@ For more information, please visit [https://www.mail.baby/contact/](https://www.
 To build the Ruby code into a gem:
 
 ```shell
-gem build openapi_client.gemspec
+gem build mailbaby_client_ruby.gemspec
 ```
 
 Then either install the gem locally:
 
 ```shell
-gem install ./openapi_client-1.0.0.gem
+gem install ./mailbaby_client_ruby-1.0.0.gem
 ```
 
-(for development, run `gem install --dev ./openapi_client-1.0.0.gem` to install the development dependencies)
+(for development, run `gem install --dev ./mailbaby_client_ruby-1.0.0.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'openapi_client', '~> 1.0.0'
+    gem 'mailbaby_client_ruby', '~> 1.0.0'
 
 ### Install from Git
 
 If the Ruby gem is hosted at a git repository: https://github.com/GIT_USER_ID/GIT_REPO_ID, then add the following in the Gemfile:
 
-    gem 'openapi_client', :git => 'https://github.com/GIT_USER_ID/GIT_REPO_ID.git'
+    gem 'mailbaby_client_ruby', :git => 'https://github.com/GIT_USER_ID/GIT_REPO_ID.git'
 
 ### Include the Ruby code directly
 
@@ -92,17 +92,17 @@ Please follow the [installation](#installation) procedure and then run the follo
 
 ```ruby
 # Load the gem
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
 # Setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 type = 'domain' # String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 data = 'data_example' # String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 opts = {
@@ -113,7 +113,7 @@ begin
   #Create a deny rule to block a sender, domain, destination, or prefix
   result = api_instance.add_rule(type, data, opts)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->add_rule: #{e}"
 end
 
@@ -125,46 +125,46 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*OpenapiClient::BlockingApi* | [**add_rule**](docs/BlockingApi.md#add_rule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
-*OpenapiClient::BlockingApi* | [**delete_rule**](docs/BlockingApi.md#delete_rule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
-*OpenapiClient::BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
-*OpenapiClient::BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
-*OpenapiClient::BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
-*OpenapiClient::HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
-*OpenapiClient::HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
-*OpenapiClient::SendingApi* | [**raw_mail**](docs/SendingApi.md#raw_mail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
-*OpenapiClient::SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
-*OpenapiClient::SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
-*OpenapiClient::ServicesApi* | [**get_mail_order_by_id**](docs/ServicesApi.md#get_mail_order_by_id) | **GET** /mail/{id} | Get one mail order's full detail including SMTP password
-*OpenapiClient::ServicesApi* | [**get_mail_orders**](docs/ServicesApi.md#get_mail_orders) | **GET** /mail | List your provisioned mail orders (sending accounts)
-*OpenapiClient::StatusApi* | [**ping_server**](docs/StatusApi.md#ping_server) | **GET** /ping | Health check — verify the API is reachable
+*MailBabyRuby::BlockingApi* | [**add_rule**](docs/BlockingApi.md#add_rule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+*MailBabyRuby::BlockingApi* | [**delete_rule**](docs/BlockingApi.md#delete_rule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+*MailBabyRuby::BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+*MailBabyRuby::BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+*MailBabyRuby::BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
+*MailBabyRuby::HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+*MailBabyRuby::HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
+*MailBabyRuby::SendingApi* | [**raw_mail**](docs/SendingApi.md#raw_mail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
+*MailBabyRuby::SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
+*MailBabyRuby::SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
+*MailBabyRuby::ServicesApi* | [**get_mail_order_by_id**](docs/ServicesApi.md#get_mail_order_by_id) | **GET** /mail/{id} | Get one mail order's full detail including SMTP password
+*MailBabyRuby::ServicesApi* | [**get_mail_orders**](docs/ServicesApi.md#get_mail_orders) | **GET** /mail | List your provisioned mail orders (sending accounts)
+*MailBabyRuby::StatusApi* | [**ping_server**](docs/StatusApi.md#ping_server) | **GET** /ping | Health check — verify the API is reachable
 
 
 ## Documentation for Models
 
- - [OpenapiClient::DateOrTimestamp](docs/DateOrTimestamp.md)
- - [OpenapiClient::DenyRuleNew](docs/DenyRuleNew.md)
- - [OpenapiClient::DenyRuleRecord](docs/DenyRuleRecord.md)
- - [OpenapiClient::EmailAddressName](docs/EmailAddressName.md)
- - [OpenapiClient::EmailAddressParam](docs/EmailAddressParam.md)
- - [OpenapiClient::EmailAddressTypes](docs/EmailAddressTypes.md)
- - [OpenapiClient::EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [OpenapiClient::ErrorMessage](docs/ErrorMessage.md)
- - [OpenapiClient::GenericResponse](docs/GenericResponse.md)
- - [OpenapiClient::MailAttachment](docs/MailAttachment.md)
- - [OpenapiClient::MailBlockClickHouse](docs/MailBlockClickHouse.md)
- - [OpenapiClient::MailBlockRspamd](docs/MailBlockRspamd.md)
- - [OpenapiClient::MailBlocks](docs/MailBlocks.md)
- - [OpenapiClient::MailLog](docs/MailLog.md)
- - [OpenapiClient::MailLogEntry](docs/MailLogEntry.md)
- - [OpenapiClient::MailOrder](docs/MailOrder.md)
- - [OpenapiClient::MailOrderDetail](docs/MailOrderDetail.md)
- - [OpenapiClient::MailStatsType](docs/MailStatsType.md)
- - [OpenapiClient::MailStatsVolume](docs/MailStatsVolume.md)
- - [OpenapiClient::SendMail](docs/SendMail.md)
- - [OpenapiClient::SendMailAdv](docs/SendMailAdv.md)
- - [OpenapiClient::SendMailRaw](docs/SendMailRaw.md)
- - [OpenapiClient::SendMailTo](docs/SendMailTo.md)
+ - [MailBabyRuby::DateOrTimestamp](docs/DateOrTimestamp.md)
+ - [MailBabyRuby::DenyRuleNew](docs/DenyRuleNew.md)
+ - [MailBabyRuby::DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [MailBabyRuby::EmailAddressName](docs/EmailAddressName.md)
+ - [MailBabyRuby::EmailAddressParam](docs/EmailAddressParam.md)
+ - [MailBabyRuby::EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [MailBabyRuby::EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [MailBabyRuby::ErrorMessage](docs/ErrorMessage.md)
+ - [MailBabyRuby::GenericResponse](docs/GenericResponse.md)
+ - [MailBabyRuby::MailAttachment](docs/MailAttachment.md)
+ - [MailBabyRuby::MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBabyRuby::MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBabyRuby::MailBlocks](docs/MailBlocks.md)
+ - [MailBabyRuby::MailLog](docs/MailLog.md)
+ - [MailBabyRuby::MailLogEntry](docs/MailLogEntry.md)
+ - [MailBabyRuby::MailOrder](docs/MailOrder.md)
+ - [MailBabyRuby::MailOrderDetail](docs/MailOrderDetail.md)
+ - [MailBabyRuby::MailStatsType](docs/MailStatsType.md)
+ - [MailBabyRuby::MailStatsVolume](docs/MailStatsVolume.md)
+ - [MailBabyRuby::SendMail](docs/SendMail.md)
+ - [MailBabyRuby::SendMailAdv](docs/SendMailAdv.md)
+ - [MailBabyRuby::SendMailRaw](docs/SendMailRaw.md)
+ - [MailBabyRuby::SendMailTo](docs/SendMailTo.md)
 
 
 ## Documentation for Authorization

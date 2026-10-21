@@ -18,11 +18,11 @@ Account usage, cost, and volume statistics for a time window
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.HistoryApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.HistoryApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -73,11 +73,11 @@ Query the mail delivery log (filterable, paginated)
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.HistoryApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.HistoryApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

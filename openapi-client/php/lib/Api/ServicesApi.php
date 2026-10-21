@@ -4,7 +4,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace MailBabyPhp\Api;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
@@ -40,12 +40,12 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\RequestFactory;
 use Http\Promise\Promise;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\DebugPlugin;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use MailBabyPhp\ApiException;
+use MailBabyPhp\Configuration;
+use MailBabyPhp\DebugPlugin;
+use MailBabyPhp\HeaderSelector;
+use MailBabyPhp\FormDataProcessor;
+use MailBabyPhp\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -60,7 +60,7 @@ use function sprintf;
  * ServicesApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -182,9 +182,9 @@ class ServicesApi
      *
      * @param  int $id The numeric ID of the mail order. (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MailOrderDetail|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\MailOrderDetail|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function getMailOrderById($id)
     {
@@ -199,9 +199,9 @@ class ServicesApi
      *
      * @param  int $id The numeric ID of the mail order. (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MailOrderDetail|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\MailOrderDetail|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMailOrderByIdWithHttpInfo($id)
     {
@@ -237,25 +237,25 @@ class ServicesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MailOrderDetail',
+                        '\MailBabyPhp\Model\MailOrderDetail',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -276,7 +276,7 @@ class ServicesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MailOrderDetail',
+                '\MailBabyPhp\Model\MailOrderDetail',
                 $request,
                 $response,
             );
@@ -285,7 +285,7 @@ class ServicesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MailOrderDetail',
+                        '\MailBabyPhp\Model\MailOrderDetail',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -293,7 +293,7 @@ class ServicesApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -301,7 +301,7 @@ class ServicesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -309,7 +309,7 @@ class ServicesApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -353,7 +353,7 @@ class ServicesApi
      */
     public function getMailOrderByIdAsyncWithHttpInfo($id)
     {
-        $returnType = '\OpenAPI\Client\Model\MailOrderDetail';
+        $returnType = '\MailBabyPhp\Model\MailOrderDetail';
         $request = $this->getMailOrderByIdRequest($id);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -485,9 +485,9 @@ class ServicesApi
      * List your provisioned mail orders (sending accounts)
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MailOrder[]|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\MailOrder[]|\MailBabyPhp\Model\ErrorMessage
      */
     public function getMailOrders()
     {
@@ -501,9 +501,9 @@ class ServicesApi
      * List your provisioned mail orders (sending accounts)
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MailOrder[]|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\MailOrder[]|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMailOrdersWithHttpInfo()
     {
@@ -539,13 +539,13 @@ class ServicesApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MailOrder[]',
+                        '\MailBabyPhp\Model\MailOrder[]',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -566,7 +566,7 @@ class ServicesApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MailOrder[]',
+                '\MailBabyPhp\Model\MailOrder[]',
                 $request,
                 $response,
             );
@@ -575,7 +575,7 @@ class ServicesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MailOrder[]',
+                        '\MailBabyPhp\Model\MailOrder[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -583,7 +583,7 @@ class ServicesApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -625,7 +625,7 @@ class ServicesApi
      */
     public function getMailOrdersAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\MailOrder[]';
+        $returnType = '\MailBabyPhp\Model\MailOrder[]';
         $request = $this->getMailOrdersRequest();
 
         return $this->httpAsyncClient->sendAsyncRequest($request)

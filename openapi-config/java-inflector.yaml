@@ -1,12 +1,14 @@
 # managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
 additionalProperties:
+  apiPackage: "io.interserver.inflector.api"
   disallowAdditionalPropertiesIfNotPresent: "false"
   ensureUniqueParams: "true"
   enumUnknownDefaultCase: "true"
   gitRepoId: "mailbaby-client-java-inflector"
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
+  invokerPackage: "io.interserver.inflector"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabyJavaInflector"
+  modelPackage: "io.interserver.inflector.model"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

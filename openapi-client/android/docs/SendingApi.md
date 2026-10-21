@@ -22,7 +22,7 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.SendingApi;
+//import io.interserver.client.api.SendingApi;
 
 SendingApi apiInstance = new SendingApi();
 SendMailRaw sendMailRaw = new SendMailRaw(); // SendMailRaw | 
@@ -68,7 +68,7 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.SendingApi;
+//import io.interserver.client.api.SendingApi;
 
 SendingApi apiInstance = new SendingApi();
 String subject = null; // String | The subject line of the email.
@@ -130,7 +130,7 @@ Send a simple email (single recipient, plain or HTML)
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.SendingApi;
+//import io.interserver.client.api.SendingApi;
 
 SendingApi apiInstance = new SendingApi();
 SendMailTo to = null; // SendMailTo | 

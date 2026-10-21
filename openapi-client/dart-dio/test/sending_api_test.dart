@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:mailbaby_client_dart_dio/mailbaby_client_dart_dio.dart';
 
 
 /// tests for SendingApi
 void main() {
-  final instance = Openapi().getSendingApi();
+  final instance = MailbabyClientDartDio().getSendingApi();
 
   group(SendingApi, () {
     // Send a pre-built RFC 822 message verbatim (preserves DKIM)

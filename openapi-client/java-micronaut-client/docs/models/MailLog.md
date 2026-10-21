@@ -4,7 +4,7 @@
 
 Paginated mail log response returned by `GET /mail/log`.  Contains the full matched count (`total`) plus a page of `MailLogEntry` records.  Use `skip` and `limit` to page through large result sets.
 
-The class is defined in **[MailLog.java](../../src/main/java/org/openapitools/model/MailLog.java)**
+The class is defined in **[MailLog.java](../../src/main/java/io/interserver/micronaut/model/MailLog.java)**
 
 ## Properties
 

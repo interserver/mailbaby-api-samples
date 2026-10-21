@@ -1,4 +1,4 @@
-# SwaggerClient::MailAttachment
+# MailBabyRuby::MailAttachment
 
 ## Properties
 Name | Type | Description | Notes

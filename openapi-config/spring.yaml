@@ -1,5 +1,8 @@
 # managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
 additionalProperties:
+  apiPackage: "io.interserver.spring.api"
+  basePackage: "io.interserver.spring"
+  configPackage: "io.interserver.spring.configuration"
   disallowAdditionalPropertiesIfNotPresent: "false"
   ensureUniqueParams: "true"
   enumUnknownDefaultCase: "true"
@@ -7,6 +10,6 @@ additionalProperties:
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabySpring"
+  modelPackage: "io.interserver.spring.model"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

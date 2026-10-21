@@ -16,7 +16,7 @@ To initiate an instance of `SendingApi`, you can use micronaut's `ApplicationCon
 /* imports
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.context.ApplicationContext;
-import org.openapitools.api.SendingApi;
+import io.interserver.micronaut.api.SendingApi;
 */
 
 ApplicationContext context = Micronaut.run(/* ... */);

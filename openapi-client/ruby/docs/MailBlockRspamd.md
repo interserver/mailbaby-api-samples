@@ -1,4 +1,4 @@
-# OpenapiClient::MailBlockRspamd
+# MailBabyRuby::MailBlockRspamd
 
 ## Properties
 
@@ -10,9 +10,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailBlockRspamd.new(
+instance = MailBabyRuby::MailBlockRspamd.new(
   from: user@domain.com,
   subject: Test email
 )

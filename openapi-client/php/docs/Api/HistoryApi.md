@@ -1,4 +1,4 @@
-# OpenAPI\Client\HistoryApi
+# MailBabyPhp\HistoryApi
 
 All URIs are relative to https://api.mailbaby.net.
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `getStats()`
 
 ```php
-getStats($time): \OpenAPI\Client\Model\MailStatsType
+getStats($time): \MailBabyPhp\Model\MailStatsType
 ```
 
 Account usage, cost, and volume statistics for a time window
@@ -26,12 +26,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\HistoryApi(
+$apiInstance = new MailBabyPhp\Api\HistoryApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\MailStatsType**](../Model/MailStatsType.md)
+[**\MailBabyPhp\Model\MailStatsType**](../Model/MailStatsType.md)
 
 ### Authorization
 
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 ## `viewMailLog()`
 
 ```php
-viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $message_id, $replyto, $headerfrom, $delivered, $skip, $limit, $start_date, $end_date, $sort, $dir, $groupby): \OpenAPI\Client\Model\MailLog
+viewMailLog($id, $origin, $mx, $from, $to, $subject, $mailid, $message_id, $replyto, $headerfrom, $delivered, $skip, $limit, $start_date, $end_date, $sort, $dir, $groupby): \MailBabyPhp\Model\MailLog
 ```
 
 Query the mail delivery log (filterable, paginated)
@@ -88,12 +88,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\HistoryApi(
+$apiInstance = new MailBabyPhp\Api\HistoryApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\MailLog**](../Model/MailLog.md)
+[**\MailBabyPhp\Model\MailLog**](../Model/MailLog.md)
 
 ### Authorization
 

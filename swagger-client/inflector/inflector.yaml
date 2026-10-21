@@ -1,38 +1,38 @@
-controllerPackage: io.swagger.controllers
-modelPackage:  io.swagger.model
+controllerPackage: io.interserver.inflector
+modelPackage:  io.interserver.inflector.model
 swaggerUrl: ./src/main/resources/openapi3.yaml
 modelMappings:
   # to enable explicit mappings, use this syntax:
   DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
-  AllOfSendMailAdvBcc : io.swagger.model.AllOfSendMailAdvBcc
-AllOfSendMailAdvCc : io.swagger.model.AllOfSendMailAdvCc
-AllOfSendMailAdvFrom : io.swagger.model.AllOfSendMailAdvFrom
-AllOfSendMailAdvReplyto : io.swagger.model.AllOfSendMailAdvReplyto
-AllOfSendMailAdvTo : io.swagger.model.AllOfSendMailAdvTo
-DateOrTimestamp : io.swagger.model.DateOrTimestamp
-DenyRuleNew : io.swagger.model.DenyRuleNew
-DenyRuleRecord : io.swagger.model.DenyRuleRecord
-EmailAddressName : io.swagger.model.EmailAddressName
-EmailAddressNames : io.swagger.model.EmailAddressNames
-EmailAddressParam : io.swagger.model.EmailAddressParam
-EmailAddressTypes : io.swagger.model.EmailAddressTypes
-EmailAddressesTypes : io.swagger.model.EmailAddressesTypes
-ErrorMessage : io.swagger.model.ErrorMessage
-GenericResponse : io.swagger.model.GenericResponse
-MailAttachment : io.swagger.model.MailAttachment
-MailBlockClickHouse : io.swagger.model.MailBlockClickHouse
-MailBlockRspamd : io.swagger.model.MailBlockRspamd
-MailBlocks : io.swagger.model.MailBlocks
-MailLog : io.swagger.model.MailLog
-MailLogEntry : io.swagger.model.MailLogEntry
-MailOrder : io.swagger.model.MailOrder
-MailOrderDetail : io.swagger.model.MailOrderDetail
-MailStatsType : io.swagger.model.MailStatsType
-MailStatsVolume : io.swagger.model.MailStatsVolume
-SendMail : io.swagger.model.SendMail
-SendMailAdv : io.swagger.model.SendMailAdv
-SendMailRaw : io.swagger.model.SendMailRaw
-SendMailTo : io.swagger.model.SendMailTo
+  AllOfSendMailAdvBcc : io.interserver.inflector.model.AllOfSendMailAdvBcc
+AllOfSendMailAdvCc : io.interserver.inflector.model.AllOfSendMailAdvCc
+AllOfSendMailAdvFrom : io.interserver.inflector.model.AllOfSendMailAdvFrom
+AllOfSendMailAdvReplyto : io.interserver.inflector.model.AllOfSendMailAdvReplyto
+AllOfSendMailAdvTo : io.interserver.inflector.model.AllOfSendMailAdvTo
+DateOrTimestamp : io.interserver.inflector.model.DateOrTimestamp
+DenyRuleNew : io.interserver.inflector.model.DenyRuleNew
+DenyRuleRecord : io.interserver.inflector.model.DenyRuleRecord
+EmailAddressName : io.interserver.inflector.model.EmailAddressName
+EmailAddressNames : io.interserver.inflector.model.EmailAddressNames
+EmailAddressParam : io.interserver.inflector.model.EmailAddressParam
+EmailAddressTypes : io.interserver.inflector.model.EmailAddressTypes
+EmailAddressesTypes : io.interserver.inflector.model.EmailAddressesTypes
+ErrorMessage : io.interserver.inflector.model.ErrorMessage
+GenericResponse : io.interserver.inflector.model.GenericResponse
+MailAttachment : io.interserver.inflector.model.MailAttachment
+MailBlockClickHouse : io.interserver.inflector.model.MailBlockClickHouse
+MailBlockRspamd : io.interserver.inflector.model.MailBlockRspamd
+MailBlocks : io.interserver.inflector.model.MailBlocks
+MailLog : io.interserver.inflector.model.MailLog
+MailLogEntry : io.interserver.inflector.model.MailLogEntry
+MailOrder : io.interserver.inflector.model.MailOrder
+MailOrderDetail : io.interserver.inflector.model.MailOrderDetail
+MailStatsType : io.interserver.inflector.model.MailStatsType
+MailStatsVolume : io.interserver.inflector.model.MailStatsVolume
+SendMail : io.interserver.inflector.model.SendMail
+SendMailAdv : io.interserver.inflector.model.SendMailAdv
+SendMailRaw : io.interserver.inflector.model.SendMailRaw
+SendMailTo : io.interserver.inflector.model.SendMailTo
 
 entityProcessors:
   - json

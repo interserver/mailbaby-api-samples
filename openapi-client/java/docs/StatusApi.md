@@ -18,11 +18,11 @@ Health check — verify the API is reachable
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.StatusApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.models.*;
+import io.interserver.client.api.StatusApi;
 
 public class Example {
   public static void main(String[] args) {

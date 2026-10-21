@@ -1,4 +1,4 @@
-# OpenapiClient::HistoryApi
+# MailBabyRuby::HistoryApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -20,16 +20,16 @@ Account usage, cost, and volume statistics for a time window
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::HistoryApi.new
+api_instance = MailBabyRuby::HistoryApi.new
 opts = {
   time: 'all' # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 }
@@ -38,7 +38,7 @@ begin
   # Account usage, cost, and volume statistics for a time window
   result = api_instance.get_stats(opts)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling HistoryApi->get_stats: #{e}"
 end
 ```
@@ -56,7 +56,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <MailStatsType>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling HistoryApi->get_stats_with_http_info: #{e}"
 end
 ```
@@ -93,16 +93,16 @@ Query the mail delivery log (filterable, paginated)
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::HistoryApi.new
+api_instance = MailBabyRuby::HistoryApi.new
 opts = {
   id: 2604, # Integer | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`.
   origin: '1.2.3.4', # String | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address.
@@ -128,7 +128,7 @@ begin
   # Query the mail delivery log (filterable, paginated)
   result = api_instance.view_mail_log(opts)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling HistoryApi->view_mail_log: #{e}"
 end
 ```
@@ -146,7 +146,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <MailLog>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling HistoryApi->view_mail_log_with_http_info: #{e}"
 end
 ```

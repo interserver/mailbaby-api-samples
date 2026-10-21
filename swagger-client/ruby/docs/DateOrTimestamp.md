@@ -1,4 +1,4 @@
-# SwaggerClient::DateOrTimestamp
+# MailBabyRuby::DateOrTimestamp
 
 ## Properties
 Name | Type | Description | Notes

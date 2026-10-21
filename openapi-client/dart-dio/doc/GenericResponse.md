@@ -1,8 +1,8 @@
-# openapi.model.GenericResponse
+# mailbaby_client_dart_dio.model.GenericResponse
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 ## Properties

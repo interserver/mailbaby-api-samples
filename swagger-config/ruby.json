@@ -3,11 +3,12 @@
     "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
     "enumUnknownDefaultCase": "true",
+    "gemName": "mailbaby_client_ruby",
     "gitRepoId": "mailbaby-client-ruby",
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyRuby",
+    "moduleName": "MailBabyRuby",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

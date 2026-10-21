@@ -19,11 +19,11 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SendingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.SendingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -74,11 +74,11 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SendingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.SendingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -131,11 +131,11 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SendingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.SendingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -202,11 +202,11 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SendingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.SendingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -257,11 +257,11 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SendingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.SendingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -320,11 +320,11 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.SendingApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.SendingApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

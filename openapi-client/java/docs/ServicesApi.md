@@ -19,12 +19,12 @@ Get one mail order&#39;s full detail including SMTP password
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.ServicesApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.ServicesApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -91,12 +91,12 @@ Use this **before sending** if you need to discover which mail order &#x60;id&#x
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.ServicesApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.ServicesApi;
 
 public class Example {
   public static void main(String[] args) {

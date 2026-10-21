@@ -1,4 +1,4 @@
-# SwaggerClient::SendMailRaw
+# MailBabyRuby::SendMailRaw
 
 ## Properties
 Name | Type | Description | Notes

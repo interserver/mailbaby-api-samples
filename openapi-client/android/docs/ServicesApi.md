@@ -21,7 +21,7 @@ Get one mail order&#39;s full detail including SMTP password
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.ServicesApi;
+//import io.interserver.client.api.ServicesApi;
 
 ServicesApi apiInstance = new ServicesApi();
 Long id = 39; // Long | The numeric ID of the mail order.
@@ -67,7 +67,7 @@ Use this **before sending** if you need to discover which mail order &#x60;id&#x
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.ServicesApi;
+//import io.interserver.client.api.ServicesApi;
 
 ServicesApi apiInstance = new ServicesApi();
 try {

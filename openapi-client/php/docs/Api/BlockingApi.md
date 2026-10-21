@@ -1,4 +1,4 @@
-# OpenAPI\Client\BlockingApi
+# MailBabyPhp\BlockingApi
 
 All URIs are relative to https://api.mailbaby.net.
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `addRule()`
 
 ```php
-addRule($type, $data, $user): \OpenAPI\Client\Model\GenericResponse
+addRule($type, $data, $user): \MailBabyPhp\Model\GenericResponse
 ```
 
 Create a deny rule to block a sender, domain, destination, or prefix
@@ -29,12 +29,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+$apiInstance = new MailBabyPhp\Api\BlockingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\MailBabyPhp\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 ## `deleteRule()`
 
 ```php
-deleteRule($rule_id): \OpenAPI\Client\Model\GenericResponse
+deleteRule($rule_id): \MailBabyPhp\Model\GenericResponse
 ```
 
 Delete a deny rule by its numeric ruleId
@@ -95,12 +95,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+$apiInstance = new MailBabyPhp\Api\BlockingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\MailBabyPhp\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 ## `delistBlock()`
 
 ```php
-delistBlock($email_address_param): \OpenAPI\Client\Model\GenericResponse
+delistBlock($email_address_param): \MailBabyPhp\Model\GenericResponse
 ```
 
 Delist an email address from the spam-filter block lists
@@ -157,18 +157,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+$apiInstance = new MailBabyPhp\Api\BlockingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
-$email_address_param = {"email":"client@domain.com"}; // \OpenAPI\Client\Model\EmailAddressParam
+$email_address_param = {"email":"client@domain.com"}; // \MailBabyPhp\Model\EmailAddressParam
 
 try {
     $result = $apiInstance->delistBlock($email_address_param);
@@ -182,11 +182,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email_address_param** | [**\OpenAPI\Client\Model\EmailAddressParam**](../Model/EmailAddressParam.md)|  |
+ **email_address_param** | [**\MailBabyPhp\Model\EmailAddressParam**](../Model/EmailAddressParam.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\MailBabyPhp\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 ## `getMailBlocks()`
 
 ```php
-getMailBlocks(): \OpenAPI\Client\Model\MailBlocks
+getMailBlocks(): \MailBabyPhp\Model\MailBlocks
 ```
 
 List addresses currently flagged by spam-filter block lists
@@ -219,12 +219,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+$apiInstance = new MailBabyPhp\Api\BlockingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -245,7 +245,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\MailBlocks**](../Model/MailBlocks.md)
+[**\MailBabyPhp\Model\MailBlocks**](../Model/MailBlocks.md)
 
 ### Authorization
 
@@ -263,7 +263,7 @@ This endpoint does not need any parameter.
 ## `getRules()`
 
 ```php
-getRules(): \OpenAPI\Client\Model\DenyRuleRecord[]
+getRules(): \MailBabyPhp\Model\DenyRuleRecord[]
 ```
 
 List custom deny rules (sender / domain / destination / prefix)
@@ -278,12 +278,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\BlockingApi(
+$apiInstance = new MailBabyPhp\Api\BlockingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -304,7 +304,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\DenyRuleRecord[]**](../Model/DenyRuleRecord.md)
+[**\MailBabyPhp\Model\DenyRuleRecord[]**](../Model/DenyRuleRecord.md)
 
 ### Authorization
 

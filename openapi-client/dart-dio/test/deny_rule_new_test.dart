@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:mailbaby_client_dart_dio/mailbaby_client_dart_dio.dart';
 
 // tests for DenyRuleNew
 void main() {

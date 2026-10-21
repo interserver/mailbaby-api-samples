@@ -11,14 +11,14 @@ Swagger Codegen version: 3.0.82
 
 require 'spec_helper'
 
-describe SwaggerClient::Configuration do
-  let(:config) { SwaggerClient::Configuration.default }
+describe MailBabyRuby::Configuration do
+  let(:config) { MailBabyRuby::Configuration.default }
 
   before(:each) do
     # uncomment below to setup host and base_path
     # require 'URI'
     # uri = URI.parse("https://api.mailbaby.net")
-    # SwaggerClient.configure do |c|
+    # MailBabyRuby.configure do |c|
     #   c.host = uri.host
     #   c.base_path = uri.path
     # end

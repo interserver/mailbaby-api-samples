@@ -3,21 +3,21 @@
 //
 
 import 'package:dio/dio.dart';
-import 'package:openapi/src/auth/api_key_auth.dart';
-import 'package:openapi/src/auth/basic_auth.dart';
-import 'package:openapi/src/auth/bearer_auth.dart';
-import 'package:openapi/src/auth/oauth.dart';
-import 'package:openapi/src/api/blocking_api.dart';
-import 'package:openapi/src/api/history_api.dart';
-import 'package:openapi/src/api/sending_api.dart';
-import 'package:openapi/src/api/services_api.dart';
-import 'package:openapi/src/api/status_api.dart';
+import 'package:mailbaby_client_dart_dio/src/auth/api_key_auth.dart';
+import 'package:mailbaby_client_dart_dio/src/auth/basic_auth.dart';
+import 'package:mailbaby_client_dart_dio/src/auth/bearer_auth.dart';
+import 'package:mailbaby_client_dart_dio/src/auth/oauth.dart';
+import 'package:mailbaby_client_dart_dio/src/api/blocking_api.dart';
+import 'package:mailbaby_client_dart_dio/src/api/history_api.dart';
+import 'package:mailbaby_client_dart_dio/src/api/sending_api.dart';
+import 'package:mailbaby_client_dart_dio/src/api/services_api.dart';
+import 'package:mailbaby_client_dart_dio/src/api/status_api.dart';
 
-class Openapi {
+class MailbabyClientDartDio {
   static const String basePath = r'https://api.mailbaby.net';
 
   final Dio dio;
-  Openapi({
+  MailbabyClientDartDio({
     Dio? dio,
     String? basePathOverride,
     List<Interceptor>? interceptors,

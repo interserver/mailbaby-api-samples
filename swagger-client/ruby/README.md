@@ -1,6 +1,6 @@
-# swagger_client
+# mailbaby_client_ruby
 
-SwaggerClient - the Ruby gem for the MailBaby Email Delivery and Management Service API
+MailBabyRuby - the Ruby gem for the MailBaby Email Delivery and Management Service API
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**  # Overview  This is the API interface to the [Mail Baby](https://mail.baby/) Mail services provided by [InterServer](https://www.interserver.net). To use this service you must have an account with us at [my.interserver.net](https://my.interserver.net).  # Mail Orders  Every sending account in MailBaby is backed by a **Mail Order** — a provisioned sending credential with a numeric `id` and a corresponding SMTP username (`mb<id>`).  Most calls accept an optional `id` parameter; when omitted the API automatically selects the first active order on your account. Use `GET /mail` to list all orders, and `GET /mail/{id}` to inspect a single order including its current SMTP password.  # Sending Email  Three sending methods are available depending on your use-case: | Endpoint | Best for | |----------|----------| | `POST /mail/send` | Simple single-recipient messages | | `POST /mail/advsend` | Multiple recipients, CC/BCC, attachments, named contacts | | `POST /mail/rawsend` | Pre-built RFC 822 messages (e.g. DKIM-signed payloads) |  After a successful send each endpoint returns a `GenericResponse` whose `text` field contains the **transaction ID** assigned by the relay.  This ID can later be matched against entries in `GET /mail/log` via the `mailid` query parameter.  # Filtering & Logs  `GET /mail/log` provides paginated access to every message accepted by the relay for your account. Combine any of the query parameters to narrow results — e.g. `from`, `to`, `subject`, `messageId`, `origin`, `mx`, `startDate`/`endDate`, and `delivered`.  # Blocking  Two independent mechanisms exist for suppressing unwanted email: - **Block lists** (`GET /mail/blocks`, `POST /mail/blocks/delete`) — addresses flagged by the   system spam filters (LOCAL_BL_RCPT / MBTRAP rules in rspamd, and suspicious subjects). - **Deny rules** (`GET /mail/rules`, `POST /mail/rules`, `DELETE /mail/rules/{ruleId}`) —   custom rules you configure to reject specific senders, domains, destination addresses, or   subject-line prefixes before a message is even attempted.   # Authentication  In order to use most of the API calls you must pass credentials from the [my.interserver.net](https://my.interserver.net/) site. We support several different authentication methods but the preferred method is to use the **API Key** which you can get from the [Account Security](https://my.interserver.net/account_security) page. Pass your key in the `X-API-KEY` HTTP request header for every protected call. 
 
@@ -18,27 +18,27 @@ For more information, please visit [https://www.mail.baby/contact/](https://www.
 To build the Ruby code into a gem:
 
 ```shell
-gem build swagger_client.gemspec
+gem build mailbaby_client_ruby.gemspec
 ```
 
 Then either install the gem locally:
 
 ```shell
-gem install ./swagger_client-1.0.0.gem
+gem install ./mailbaby_client_ruby-1.0.0.gem
 ```
-(for development, run `gem install --dev ./swagger_client-1.0.0.gem` to install the development dependencies)
+(for development, run `gem install --dev ./mailbaby_client_ruby-1.0.0.gem` to install the development dependencies)
 
 or publish the gem to a gem hosting service, e.g. [RubyGems](https://rubygems.org/).
 
 Finally add this to the Gemfile:
 
-    gem 'swagger_client', '~> 1.0.0'
+    gem 'mailbaby_client_ruby', '~> 1.0.0'
 
 ### Install from Git
 
 If the Ruby gem is hosted at a git repository: https://github.com/interserver/mailbaby-client-ruby, then add the following in the Gemfile:
 
-    gem 'swagger_client', :git => 'https://github.com/interserver/mailbaby-client-ruby.git'
+    gem 'mailbaby_client_ruby', :git => 'https://github.com/interserver/mailbaby-client-ruby.git'
 
 ### Include the Ruby code directly
 
@@ -53,38 +53,38 @@ ruby -Ilib script.rb
 Please follow the [installation](#installation) procedure and then run the following code:
 ```ruby
 # Load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 user = 'user_example' # String | 
 type = 'type_example' # String | 
 data = 'data_example' # String | 
-body = SwaggerClient::DenyRuleNew.new # DenyRuleNew | Fields required to create a new email deny rule.
+body = MailBabyRuby::DenyRuleNew.new # DenyRuleNew | Fields required to create a new email deny rule.
 
 
 begin
   #Create a deny rule to block a sender, domain, destination, or prefix
   result = api_instance.add_rule(user, type, data, body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->add_rule: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 rule_id = 56 # Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 
@@ -92,19 +92,19 @@ begin
   #Delete a deny rule by its numeric ruleId
   result = api_instance.delete_rule(rule_id)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->delete_rule: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
-body = SwaggerClient::EmailAddressParam.new # EmailAddressParam | 
+api_instance = MailBabyRuby::BlockingApi.new
+body = MailBabyRuby::EmailAddressParam.new # EmailAddressParam | 
 email = 'email_example' # String | 
 
 
@@ -112,52 +112,52 @@ begin
   #Delist an email address from the spam-filter block lists
   result = api_instance.delist_block(body, email)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->delist_block: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 
 begin
   #List addresses currently flagged by spam-filter block lists
   result = api_instance.get_mail_blocks
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->get_mail_blocks: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 
 begin
   #List custom deny rules (sender / domain / destination / prefix)
   result = api_instance.get_rules
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->get_rules: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::HistoryApi.new
+api_instance = MailBabyRuby::HistoryApi.new
 opts = { 
   time: '1h' # String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
 }
@@ -166,18 +166,18 @@ begin
   #Account usage, cost, and volume statistics for a time window
   result = api_instance.get_stats(opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling HistoryApi->get_stats: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::HistoryApi.new
+api_instance = MailBabyRuby::HistoryApi.new
 opts = { 
   id: 789, # Integer | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`.
   origin: 'origin_example', # String | Filter by the originating IP address from which the message was submitted to the relay.  Must be a valid IPv4 or IPv6 address.
@@ -203,19 +203,19 @@ begin
   #Query the mail delivery log (filterable, paginated)
   result = api_instance.view_mail_log(opts)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling HistoryApi->view_mail_log: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
-body = SwaggerClient::SendMailRaw.new # SendMailRaw | 
+api_instance = MailBabyRuby::SendingApi.new
+body = MailBabyRuby::SendMailRaw.new # SendMailRaw | 
 raw_email = 'raw_email_example' # String | 
 id = 789 # Integer | 
 
@@ -224,70 +224,70 @@ begin
   #Send a pre-built RFC 822 message verbatim (preserves DKIM)
   result = api_instance.raw_mail(body, raw_email, id)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->raw_mail: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
+api_instance = MailBabyRuby::SendingApi.new
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::null.new #  | 
-to = SwaggerClient::null.new #  | 
-replyto = SwaggerClient::null.new #  | 
-cc = SwaggerClient::null.new #  | 
-bcc = SwaggerClient::null.new #  | 
-attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
+from = MailBabyRuby::null.new #  | 
+to = MailBabyRuby::null.new #  | 
+replyto = MailBabyRuby::null.new #  | 
+cc = MailBabyRuby::null.new #  | 
+bcc = MailBabyRuby::null.new #  | 
+attachments = [MailBabyRuby::MailAttachment.new] # Array<MailAttachment> | 
 id = 789 # Integer | 
-body = SwaggerClient::SendMailAdv.new # SendMailAdv | 
+body = MailBabyRuby::SendMailAdv.new # SendMailAdv | 
 
 
 begin
   #Send email with multiple recipients, CC/BCC, attachments, named contacts
   result = api_instance.send_adv_mail(subject, body, from, to, replyto, cc, bcc, attachments, id, body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->send_adv_mail: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
-to = SwaggerClient::SendMailTo.new # SendMailTo | 
+api_instance = MailBabyRuby::SendingApi.new
+to = MailBabyRuby::SendMailTo.new # SendMailTo | 
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
 id = 789 # Integer | 
-body = SwaggerClient::SendMail.new # SendMail | 
+body = MailBabyRuby::SendMail.new # SendMail | 
 
 
 begin
   #Send a simple email (single recipient, plain or HTML)
   result = api_instance.send_mail(to, from, subject, body, id, body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->send_mail: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::ServicesApi.new
+api_instance = MailBabyRuby::ServicesApi.new
 id = 789 # Integer | The numeric ID of the mail order.
 
 
@@ -295,34 +295,34 @@ begin
   #Get one mail order's full detail including SMTP password
   result = api_instance.get_mail_order_by_id(id)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling ServicesApi->get_mail_order_by_id: #{e}"
 end
 # Setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::ServicesApi.new
+api_instance = MailBabyRuby::ServicesApi.new
 
 begin
   #List your provisioned mail orders (sending accounts)
   result = api_instance.get_mail_orders
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling ServicesApi->get_mail_orders: #{e}"
 end
 
-api_instance = SwaggerClient::StatusApi.new
+api_instance = MailBabyRuby::StatusApi.new
 
 begin
   #Health check — verify the API is reachable
   result = api_instance.ping_server
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling StatusApi->ping_server: #{e}"
 end
 ```
@@ -333,51 +333,51 @@ All URIs are relative to *https://api.mailbaby.net*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SwaggerClient::BlockingApi* | [**add_rule**](docs/BlockingApi.md#add_rule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
-*SwaggerClient::BlockingApi* | [**delete_rule**](docs/BlockingApi.md#delete_rule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
-*SwaggerClient::BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
-*SwaggerClient::BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
-*SwaggerClient::BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
-*SwaggerClient::HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
-*SwaggerClient::HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
-*SwaggerClient::SendingApi* | [**raw_mail**](docs/SendingApi.md#raw_mail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
-*SwaggerClient::SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
-*SwaggerClient::SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
-*SwaggerClient::ServicesApi* | [**get_mail_order_by_id**](docs/ServicesApi.md#get_mail_order_by_id) | **GET** /mail/{id} | Get one mail order's full detail including SMTP password
-*SwaggerClient::ServicesApi* | [**get_mail_orders**](docs/ServicesApi.md#get_mail_orders) | **GET** /mail | List your provisioned mail orders (sending accounts)
-*SwaggerClient::StatusApi* | [**ping_server**](docs/StatusApi.md#ping_server) | **GET** /ping | Health check — verify the API is reachable
+*MailBabyRuby::BlockingApi* | [**add_rule**](docs/BlockingApi.md#add_rule) | **POST** /mail/rules | Create a deny rule to block a sender, domain, destination, or prefix
+*MailBabyRuby::BlockingApi* | [**delete_rule**](docs/BlockingApi.md#delete_rule) | **DELETE** /mail/rules/{ruleId} | Delete a deny rule by its numeric ruleId
+*MailBabyRuby::BlockingApi* | [**delist_block**](docs/BlockingApi.md#delist_block) | **POST** /mail/blocks/delete | Delist an email address from the spam-filter block lists
+*MailBabyRuby::BlockingApi* | [**get_mail_blocks**](docs/BlockingApi.md#get_mail_blocks) | **GET** /mail/blocks | List addresses currently flagged by spam-filter block lists
+*MailBabyRuby::BlockingApi* | [**get_rules**](docs/BlockingApi.md#get_rules) | **GET** /mail/rules | List custom deny rules (sender / domain / destination / prefix)
+*MailBabyRuby::HistoryApi* | [**get_stats**](docs/HistoryApi.md#get_stats) | **GET** /mail/stats | Account usage, cost, and volume statistics for a time window
+*MailBabyRuby::HistoryApi* | [**view_mail_log**](docs/HistoryApi.md#view_mail_log) | **GET** /mail/log | Query the mail delivery log (filterable, paginated)
+*MailBabyRuby::SendingApi* | [**raw_mail**](docs/SendingApi.md#raw_mail) | **POST** /mail/rawsend | Send a pre-built RFC 822 message verbatim (preserves DKIM)
+*MailBabyRuby::SendingApi* | [**send_adv_mail**](docs/SendingApi.md#send_adv_mail) | **POST** /mail/advsend | Send email with multiple recipients, CC/BCC, attachments, named contacts
+*MailBabyRuby::SendingApi* | [**send_mail**](docs/SendingApi.md#send_mail) | **POST** /mail/send | Send a simple email (single recipient, plain or HTML)
+*MailBabyRuby::ServicesApi* | [**get_mail_order_by_id**](docs/ServicesApi.md#get_mail_order_by_id) | **GET** /mail/{id} | Get one mail order's full detail including SMTP password
+*MailBabyRuby::ServicesApi* | [**get_mail_orders**](docs/ServicesApi.md#get_mail_orders) | **GET** /mail | List your provisioned mail orders (sending accounts)
+*MailBabyRuby::StatusApi* | [**ping_server**](docs/StatusApi.md#ping_server) | **GET** /ping | Health check — verify the API is reachable
 
 ## Documentation for Models
 
- - [SwaggerClient::AllOfSendMailAdvBcc](docs/AllOfSendMailAdvBcc.md)
- - [SwaggerClient::AllOfSendMailAdvCc](docs/AllOfSendMailAdvCc.md)
- - [SwaggerClient::AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
- - [SwaggerClient::AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
- - [SwaggerClient::AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
- - [SwaggerClient::DateOrTimestamp](docs/DateOrTimestamp.md)
- - [SwaggerClient::DenyRuleNew](docs/DenyRuleNew.md)
- - [SwaggerClient::DenyRuleRecord](docs/DenyRuleRecord.md)
- - [SwaggerClient::EmailAddressName](docs/EmailAddressName.md)
- - [SwaggerClient::EmailAddressNames](docs/EmailAddressNames.md)
- - [SwaggerClient::EmailAddressParam](docs/EmailAddressParam.md)
- - [SwaggerClient::EmailAddressTypes](docs/EmailAddressTypes.md)
- - [SwaggerClient::EmailAddressesTypes](docs/EmailAddressesTypes.md)
- - [SwaggerClient::ErrorMessage](docs/ErrorMessage.md)
- - [SwaggerClient::GenericResponse](docs/GenericResponse.md)
- - [SwaggerClient::MailAttachment](docs/MailAttachment.md)
- - [SwaggerClient::MailBlockClickHouse](docs/MailBlockClickHouse.md)
- - [SwaggerClient::MailBlockRspamd](docs/MailBlockRspamd.md)
- - [SwaggerClient::MailBlocks](docs/MailBlocks.md)
- - [SwaggerClient::MailLog](docs/MailLog.md)
- - [SwaggerClient::MailLogEntry](docs/MailLogEntry.md)
- - [SwaggerClient::MailOrder](docs/MailOrder.md)
- - [SwaggerClient::MailOrderDetail](docs/MailOrderDetail.md)
- - [SwaggerClient::MailStatsType](docs/MailStatsType.md)
- - [SwaggerClient::MailStatsVolume](docs/MailStatsVolume.md)
- - [SwaggerClient::SendMail](docs/SendMail.md)
- - [SwaggerClient::SendMailAdv](docs/SendMailAdv.md)
- - [SwaggerClient::SendMailRaw](docs/SendMailRaw.md)
- - [SwaggerClient::SendMailTo](docs/SendMailTo.md)
+ - [MailBabyRuby::AllOfSendMailAdvBcc](docs/AllOfSendMailAdvBcc.md)
+ - [MailBabyRuby::AllOfSendMailAdvCc](docs/AllOfSendMailAdvCc.md)
+ - [MailBabyRuby::AllOfSendMailAdvFrom](docs/AllOfSendMailAdvFrom.md)
+ - [MailBabyRuby::AllOfSendMailAdvReplyto](docs/AllOfSendMailAdvReplyto.md)
+ - [MailBabyRuby::AllOfSendMailAdvTo](docs/AllOfSendMailAdvTo.md)
+ - [MailBabyRuby::DateOrTimestamp](docs/DateOrTimestamp.md)
+ - [MailBabyRuby::DenyRuleNew](docs/DenyRuleNew.md)
+ - [MailBabyRuby::DenyRuleRecord](docs/DenyRuleRecord.md)
+ - [MailBabyRuby::EmailAddressName](docs/EmailAddressName.md)
+ - [MailBabyRuby::EmailAddressNames](docs/EmailAddressNames.md)
+ - [MailBabyRuby::EmailAddressParam](docs/EmailAddressParam.md)
+ - [MailBabyRuby::EmailAddressTypes](docs/EmailAddressTypes.md)
+ - [MailBabyRuby::EmailAddressesTypes](docs/EmailAddressesTypes.md)
+ - [MailBabyRuby::ErrorMessage](docs/ErrorMessage.md)
+ - [MailBabyRuby::GenericResponse](docs/GenericResponse.md)
+ - [MailBabyRuby::MailAttachment](docs/MailAttachment.md)
+ - [MailBabyRuby::MailBlockClickHouse](docs/MailBlockClickHouse.md)
+ - [MailBabyRuby::MailBlockRspamd](docs/MailBlockRspamd.md)
+ - [MailBabyRuby::MailBlocks](docs/MailBlocks.md)
+ - [MailBabyRuby::MailLog](docs/MailLog.md)
+ - [MailBabyRuby::MailLogEntry](docs/MailLogEntry.md)
+ - [MailBabyRuby::MailOrder](docs/MailOrder.md)
+ - [MailBabyRuby::MailOrderDetail](docs/MailOrderDetail.md)
+ - [MailBabyRuby::MailStatsType](docs/MailStatsType.md)
+ - [MailBabyRuby::MailStatsVolume](docs/MailStatsVolume.md)
+ - [MailBabyRuby::SendMail](docs/SendMail.md)
+ - [MailBabyRuby::SendMailAdv](docs/SendMailAdv.md)
+ - [MailBabyRuby::SendMailRaw](docs/SendMailRaw.md)
+ - [MailBabyRuby::SendMailTo](docs/SendMailTo.md)
 
 ## Documentation for Authorization
 

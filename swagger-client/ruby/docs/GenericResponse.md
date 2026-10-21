@@ -1,4 +1,4 @@
-# SwaggerClient::GenericResponse
+# MailBabyRuby::GenericResponse
 
 ## Properties
 Name | Type | Description | Notes

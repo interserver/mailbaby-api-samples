@@ -4,7 +4,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace MailBabyPhp\Api;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
@@ -40,12 +40,12 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\RequestFactory;
 use Http\Promise\Promise;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\DebugPlugin;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use MailBabyPhp\ApiException;
+use MailBabyPhp\Configuration;
+use MailBabyPhp\DebugPlugin;
+use MailBabyPhp\HeaderSelector;
+use MailBabyPhp\FormDataProcessor;
+use MailBabyPhp\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -60,7 +60,7 @@ use function sprintf;
  * HistoryApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -182,9 +182,9 @@ class HistoryApi
      *
      * @param  string $time The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle. Defaults to &#x60;1h&#x60;. (optional, default to '1h')
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MailStatsType|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\MailStatsType|\MailBabyPhp\Model\ErrorMessage
      */
     public function getStats($time = '1h')
     {
@@ -199,9 +199,9 @@ class HistoryApi
      *
      * @param  string $time The time window to scope &#x60;received&#x60;, &#x60;sent&#x60;, and &#x60;volume&#x60; statistics. Does not affect &#x60;usage&#x60; or &#x60;cost&#x60;, which are always calculated over the current billing cycle. Defaults to &#x60;1h&#x60;. (optional, default to '1h')
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MailStatsType|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\MailStatsType|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function getStatsWithHttpInfo($time = '1h')
     {
@@ -237,13 +237,13 @@ class HistoryApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MailStatsType',
+                        '\MailBabyPhp\Model\MailStatsType',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -264,7 +264,7 @@ class HistoryApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MailStatsType',
+                '\MailBabyPhp\Model\MailStatsType',
                 $request,
                 $response,
             );
@@ -273,7 +273,7 @@ class HistoryApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MailStatsType',
+                        '\MailBabyPhp\Model\MailStatsType',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -281,7 +281,7 @@ class HistoryApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -325,7 +325,7 @@ class HistoryApi
      */
     public function getStatsAsyncWithHttpInfo($time = '1h')
     {
-        $returnType = '\OpenAPI\Client\Model\MailStatsType';
+        $returnType = '\MailBabyPhp\Model\MailStatsType';
         $request = $this->getStatsRequest($time);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -472,9 +472,9 @@ class HistoryApi
      * @param  string $dir Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. (optional, default to 'desc')
      * @param  string $groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to 'recipient')
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MailLog|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\MailLog|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function viewMailLog($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $message_id = null, $replyto = null, $headerfrom = null, $delivered = null, $skip = 0, $limit = 100, $start_date = null, $end_date = null, $sort = 'time', $dir = 'desc', $groupby = 'recipient')
     {
@@ -506,9 +506,9 @@ class HistoryApi
      * @param  string $dir Sort direction.  &#x60;desc&#x60; returns newest first (default), &#x60;asc&#x60; returns oldest first. (optional, default to 'desc')
      * @param  string $groupby Controls how results are grouped.  &#x60;recipient&#x60; (default) returns one row per delivery attempt — a message sent to 4 recipients produces 4 rows, each with its own &#x60;recipient&#x60;, &#x60;delivered&#x60;, &#x60;response&#x60;, and delivery metadata.  &#x60;message&#x60; collapses to one row per unique message ID; delivery-level fields will reflect one arbitrary recipient per message.  The &#x60;total&#x60; count in the response matches the grouping mode. (optional, default to 'recipient')
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MailLog|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\MailLog|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function viewMailLogWithHttpInfo($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $message_id = null, $replyto = null, $headerfrom = null, $delivered = null, $skip = 0, $limit = 100, $start_date = null, $end_date = null, $sort = 'time', $dir = 'desc', $groupby = 'recipient')
     {
@@ -544,19 +544,19 @@ class HistoryApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MailLog',
+                        '\MailBabyPhp\Model\MailLog',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -577,7 +577,7 @@ class HistoryApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MailLog',
+                '\MailBabyPhp\Model\MailLog',
                 $request,
                 $response,
             );
@@ -586,7 +586,7 @@ class HistoryApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MailLog',
+                        '\MailBabyPhp\Model\MailLog',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -594,7 +594,7 @@ class HistoryApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -602,7 +602,7 @@ class HistoryApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -680,7 +680,7 @@ class HistoryApi
      */
     public function viewMailLogAsyncWithHttpInfo($id = null, $origin = null, $mx = null, $from = null, $to = null, $subject = null, $mailid = null, $message_id = null, $replyto = null, $headerfrom = null, $delivered = null, $skip = 0, $limit = 100, $start_date = null, $end_date = null, $sort = 'time', $dir = 'desc', $groupby = 'recipient')
     {
-        $returnType = '\OpenAPI\Client\Model\MailLog';
+        $returnType = '\MailBabyPhp\Model\MailLog';
         $request = $this->viewMailLogRequest($id, $origin, $mx, $from, $to, $subject, $mailid, $message_id, $replyto, $headerfrom, $delivered, $skip, $limit, $start_date, $end_date, $sort, $dir, $groupby);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)

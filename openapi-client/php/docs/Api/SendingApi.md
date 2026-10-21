@@ -1,4 +1,4 @@
-# OpenAPI\Client\SendingApi
+# MailBabyPhp\SendingApi
 
 All URIs are relative to https://api.mailbaby.net.
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `rawMail()`
 
 ```php
-rawMail($send_mail_raw): \OpenAPI\Client\Model\GenericResponse
+rawMail($send_mail_raw): \MailBabyPhp\Model\GenericResponse
 ```
 
 Send a pre-built RFC 822 message verbatim (preserves DKIM)
@@ -27,18 +27,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\SendingApi(
+$apiInstance = new MailBabyPhp\Api\SendingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
-$send_mail_raw = new \OpenAPI\Client\Model\SendMailRaw(); // \OpenAPI\Client\Model\SendMailRaw
+$send_mail_raw = new \MailBabyPhp\Model\SendMailRaw(); // \MailBabyPhp\Model\SendMailRaw
 
 try {
     $result = $apiInstance->rawMail($send_mail_raw);
@@ -52,11 +52,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **send_mail_raw** | [**\OpenAPI\Client\Model\SendMailRaw**](../Model/SendMailRaw.md)|  |
+ **send_mail_raw** | [**\MailBabyPhp\Model\SendMailRaw**](../Model/SendMailRaw.md)|  |
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\MailBabyPhp\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 ## `sendAdvMail()`
 
 ```php
-sendAdvMail($subject, $body, $from, $to, $replyto, $cc, $bcc, $attachments, $id): \OpenAPI\Client\Model\GenericResponse
+sendAdvMail($subject, $body, $from, $to, $replyto, $cc, $bcc, $attachments, $id): \MailBabyPhp\Model\GenericResponse
 ```
 
 Send email with multiple recipients, CC/BCC, attachments, named contacts
@@ -89,12 +89,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\SendingApi(
+$apiInstance = new MailBabyPhp\Api\SendingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
@@ -102,12 +102,12 @@ $apiInstance = new OpenAPI\Client\Api\SendingApi(
 );
 $subject = 'subject_example'; // string | The subject line of the email.
 $body = 'body_example'; // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
-$from = new \OpenAPI\Client\Model\EmailAddressTypes(); // \OpenAPI\Client\Model\EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
-$to = new \OpenAPI\Client\Model\EmailAddressesTypes(); // \OpenAPI\Client\Model\EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
-$replyto = new \OpenAPI\Client\Model\EmailAddressesTypes(); // \OpenAPI\Client\Model\EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
-$cc = new \OpenAPI\Client\Model\EmailAddressesTypes(); // \OpenAPI\Client\Model\EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
-$bcc = new \OpenAPI\Client\Model\EmailAddressesTypes(); // \OpenAPI\Client\Model\EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
-$attachments = array(new \OpenAPI\Client\Model\\OpenAPI\Client\Model\MailAttachment()); // \OpenAPI\Client\Model\MailAttachment[] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
+$from = new \MailBabyPhp\Model\EmailAddressTypes(); // \MailBabyPhp\Model\EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
+$to = new \MailBabyPhp\Model\EmailAddressesTypes(); // \MailBabyPhp\Model\EmailAddressesTypes | One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects.
+$replyto = new \MailBabyPhp\Model\EmailAddressesTypes(); // \MailBabyPhp\Model\EmailAddressesTypes | Optional.  One or more addresses to set as the `Reply-To` header. When recipients reply to the message their email client will address the reply to these addresses instead of `from`.
+$cc = new \MailBabyPhp\Model\EmailAddressesTypes(); // \MailBabyPhp\Model\EmailAddressesTypes | Optional.  Carbon-copy recipients.  These addresses are listed in the `Cc` header and are visible to all recipients.
+$bcc = new \MailBabyPhp\Model\EmailAddressesTypes(); // \MailBabyPhp\Model\EmailAddressesTypes | Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header.
+$attachments = array(new \MailBabyPhp\Model\\MailBabyPhp\Model\MailAttachment()); // \MailBabyPhp\Model\MailAttachment[] | Optional list of file attachments.  Each file must be base64-encoded. Include `filename` so recipients see a meaningful attachment name.
 $id = 56; // int | Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by `GET /mail`.
 
 try {
@@ -124,17 +124,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subject** | **string**| The subject line of the email. |
  **body** | **string**| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. |
- **from** | [**\OpenAPI\Client\Model\EmailAddressTypes**](../Model/EmailAddressTypes.md)| The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. |
- **to** | [**\OpenAPI\Client\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. |
- **replyto** | [**\OpenAPI\Client\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. | [optional]
- **cc** | [**\OpenAPI\Client\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. | [optional]
- **bcc** | [**\OpenAPI\Client\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. | [optional]
- **attachments** | [**\OpenAPI\Client\Model\MailAttachment[]**](../Model/\OpenAPI\Client\Model\MailAttachment.md)| Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [optional]
+ **from** | [**\MailBabyPhp\Model\EmailAddressTypes**](../Model/EmailAddressTypes.md)| The sender address.  Accepts a plain email string, an RFC 822 named string (&#x60;\\\&quot;Name &lt;email&gt;\\\&quot;&#x60;), or a &#x60;{\\\&quot;email\\\&quot;: \\\&quot;...\\\&quot;, \\\&quot;name\\\&quot;: \\\&quot;...\\\&quot;}&#x60; object. |
+ **to** | [**\MailBabyPhp\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| One or more destination addresses.  Accepts a comma-separated RFC 822 string or an array of contact objects. |
+ **replyto** | [**\MailBabyPhp\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| Optional.  One or more addresses to set as the &#x60;Reply-To&#x60; header. When recipients reply to the message their email client will address the reply to these addresses instead of &#x60;from&#x60;. | [optional]
+ **cc** | [**\MailBabyPhp\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| Optional.  Carbon-copy recipients.  These addresses are listed in the &#x60;Cc&#x60; header and are visible to all recipients. | [optional]
+ **bcc** | [**\MailBabyPhp\Model\EmailAddressesTypes**](../Model/EmailAddressesTypes.md)| Optional.  Blind-carbon-copy recipients.  These addresses receive the message but are not listed in any visible header. | [optional]
+ **attachments** | [**\MailBabyPhp\Model\MailAttachment[]**](../Model/\MailBabyPhp\Model\MailAttachment.md)| Optional list of file attachments.  Each file must be base64-encoded. Include &#x60;filename&#x60; so recipients see a meaningful attachment name. | [optional]
  **id** | **int**| Optional numeric ID of the mail order to send through.  If omitted the first active order on your account is used automatically.  Valid IDs are returned by &#x60;GET /mail&#x60;. | [optional]
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\MailBabyPhp\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 ## `sendMail()`
 
 ```php
-sendMail($to, $from, $subject, $body, $id): \OpenAPI\Client\Model\GenericResponse
+sendMail($to, $from, $subject, $body, $id): \MailBabyPhp\Model\GenericResponse
 ```
 
 Send a simple email (single recipient, plain or HTML)
@@ -167,18 +167,18 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 // Configure API key authorization: apiKeyAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
+$config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKey('X-API-KEY', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
+// $config = MailBabyPhp\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-KEY', 'Bearer');
 
 
-$apiInstance = new OpenAPI\Client\Api\SendingApi(
+$apiInstance = new MailBabyPhp\Api\SendingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client(),
     $config
 );
-$to = new \OpenAPI\Client\Model\SendMailTo(); // \OpenAPI\Client\Model\SendMailTo
+$to = new \MailBabyPhp\Model\SendMailTo(); // \MailBabyPhp\Model\SendMailTo
 $from = 'from_example'; // string | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 $subject = 'subject_example'; // string | The subject line of the email.
 $body = 'body_example'; // string | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
@@ -196,7 +196,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **to** | [**\OpenAPI\Client\Model\SendMailTo**](../Model/SendMailTo.md)|  |
+ **to** | [**\MailBabyPhp\Model\SendMailTo**](../Model/SendMailTo.md)|  |
  **from** | **string**| The sender address.  This is used as both the &#x60;From&#x60; header and the &#x60;Reply-To&#x60; header automatically.  Must be a valid email address authorized for your mail order. |
  **subject** | **string**| The subject line of the email. |
  **body** | **string**| The email body.  If the string contains any HTML tags the message is automatically sent as &#x60;text/html&#x60;; otherwise it is sent as &#x60;text/plain&#x60;. |
@@ -204,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\OpenAPI\Client\Model\GenericResponse**](../Model/GenericResponse.md)
+[**\MailBabyPhp\Model\GenericResponse**](../Model/GenericResponse.md)
 
 ### Authorization
 

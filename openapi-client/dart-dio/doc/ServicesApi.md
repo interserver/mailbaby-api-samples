@@ -1,8 +1,8 @@
-# openapi.api.ServicesApi
+# mailbaby_client_dart_dio.api.ServicesApi
 
 ## Load the API package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -22,13 +22,13 @@ Get one mail order's full detail including SMTP password
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getServicesApi();
+final api = MailbabyClientDartDio().getServicesApi();
 final int id = 39; // int | The numeric ID of the mail order.
 
 try {
@@ -69,13 +69,13 @@ Use this **before sending** if you need to discover which mail order `id` to pas
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getServicesApi();
+final api = MailbabyClientDartDio().getServicesApi();
 
 try {
     final response = api.getMailOrders();

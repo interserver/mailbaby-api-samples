@@ -1,4 +1,4 @@
-# OpenapiClient::SendMailAdv
+# MailBabyRuby::SendMailAdv
 
 ## Properties
 
@@ -17,9 +17,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::SendMailAdv.new(
+instance = MailBabyRuby::SendMailAdv.new(
   subject: Your Package has been Delivered!,
   body: The package you ordered on 2021-01-23 has been delivered.,
   from: null,

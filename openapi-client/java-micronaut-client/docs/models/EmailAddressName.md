@@ -4,7 +4,7 @@
 
 An email contact with an optional display name.  Used in structured address fields (`from`, `to`, `cc`, `bcc`, `replyto`) in `SendMailAdv`.
 
-The class is defined in **[EmailAddressName.java](../../src/main/java/org/openapitools/model/EmailAddressName.java)**
+The class is defined in **[EmailAddressName.java](../../src/main/java/io/interserver/micronaut/model/EmailAddressName.java)**
 
 ## Properties
 

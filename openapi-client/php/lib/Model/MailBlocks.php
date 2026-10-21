@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace MailBabyPhp\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \MailBabyPhp\ObjectSerializer;
 
 /**
  * MailBlocks Class Doc Comment
  *
  * @category Class
  * @description The complete set of blocked addresses and message patterns returned by &#x60;GET /mail/blocks&#x60;. Three independent block sources are combined into one response. Use &#x60;POST /mail/blocks/delete&#x60; with a &#x60;from&#x60; address from any entry to delist it.
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,9 +59,9 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $openAPITypes = [
-        'local' => '\OpenAPI\Client\Model\MailBlockClickHouse[]',
-        'mbtrap' => '\OpenAPI\Client\Model\MailBlockClickHouse[]',
-        'subject' => '\OpenAPI\Client\Model\MailBlockRspamd[]'
+        'local' => '\MailBabyPhp\Model\MailBlockClickHouse[]',
+        'mbtrap' => '\MailBabyPhp\Model\MailBlockClickHouse[]',
+        'subject' => '\MailBabyPhp\Model\MailBlockRspamd[]'
     ];
 
     /**
@@ -317,7 +317,7 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets local
      *
-     * @return \OpenAPI\Client\Model\MailBlockClickHouse[]
+     * @return \MailBabyPhp\Model\MailBlockClickHouse[]
      */
     public function getLocal()
     {
@@ -327,7 +327,7 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets local
      *
-     * @param \OpenAPI\Client\Model\MailBlockClickHouse[] $local Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
+     * @param \MailBabyPhp\Model\MailBlockClickHouse[] $local Messages flagged by the `LOCAL_BL_RCPT` rspamd rule in the last 5 days. These are messages sent to recipients on a local block list.
      *
      * @return self
      */
@@ -344,7 +344,7 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets mbtrap
      *
-     * @return \OpenAPI\Client\Model\MailBlockClickHouse[]
+     * @return \MailBabyPhp\Model\MailBlockClickHouse[]
      */
     public function getMbtrap()
     {
@@ -354,7 +354,7 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets mbtrap
      *
-     * @param \OpenAPI\Client\Model\MailBlockClickHouse[] $mbtrap Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
+     * @param \MailBabyPhp\Model\MailBlockClickHouse[] $mbtrap Messages flagged by the `MBTRAP` rspamd rule in the last 5 days. These triggered MailBaby's honeypot / trap address detection.
      *
      * @return self
      */
@@ -371,7 +371,7 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets subject
      *
-     * @return \OpenAPI\Client\Model\MailBlockRspamd[]
+     * @return \MailBabyPhp\Model\MailBlockRspamd[]
      */
     public function getSubject()
     {
@@ -381,7 +381,7 @@ class MailBlocks implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets subject
      *
-     * @param \OpenAPI\Client\Model\MailBlockRspamd[] $subject Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
+     * @param \MailBabyPhp\Model\MailBlockRspamd[] $subject Senders whose messages contained spam-indicative subjects (containing `@`, `smtp`, `socks4`, or `socks5`) with more than 4 occurrences of the same subject in the last 3 days.
      *
      * @return self
      */

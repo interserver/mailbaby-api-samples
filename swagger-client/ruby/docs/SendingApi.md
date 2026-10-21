@@ -1,4 +1,4 @@
-# SwaggerClient::SendingApi
+# MailBabyRuby::SendingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -21,24 +21,24 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
-body = SwaggerClient::SendMailRaw.new # SendMailRaw | 
+api_instance = MailBabyRuby::SendingApi.new
+body = MailBabyRuby::SendMailRaw.new # SendMailRaw | 
 
 
 begin
   #Send a pre-built RFC 822 message verbatim (preserves DKIM)
   result = api_instance.raw_mail(body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->raw_mail: #{e}"
 end
 ```
@@ -74,16 +74,16 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
+api_instance = MailBabyRuby::SendingApi.new
 raw_email = 'raw_email_example' # String | 
 id = 789 # Integer | 
 
@@ -92,7 +92,7 @@ begin
   #Send a pre-built RFC 822 message verbatim (preserves DKIM)
   result = api_instance.raw_mail(raw_emailid)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->raw_mail: #{e}"
 end
 ```
@@ -129,24 +129,24 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
+api_instance = MailBabyRuby::SendingApi.new
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
-from = SwaggerClient::null.new #  | 
-to = SwaggerClient::null.new #  | 
-replyto = SwaggerClient::null.new #  | 
-cc = SwaggerClient::null.new #  | 
-bcc = SwaggerClient::null.new #  | 
-attachments = [SwaggerClient::MailAttachment.new] # Array<MailAttachment> | 
+from = MailBabyRuby::null.new #  | 
+to = MailBabyRuby::null.new #  | 
+replyto = MailBabyRuby::null.new #  | 
+cc = MailBabyRuby::null.new #  | 
+bcc = MailBabyRuby::null.new #  | 
+attachments = [MailBabyRuby::MailAttachment.new] # Array<MailAttachment> | 
 id = 789 # Integer | 
 
 
@@ -154,7 +154,7 @@ begin
   #Send email with multiple recipients, CC/BCC, attachments, named contacts
   result = api_instance.send_adv_mail(subjectbodyfromtoreplytoccbccattachmentsid)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->send_adv_mail: #{e}"
 end
 ```
@@ -198,24 +198,24 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
-body = SwaggerClient::SendMailAdv.new # SendMailAdv | 
+api_instance = MailBabyRuby::SendingApi.new
+body = MailBabyRuby::SendMailAdv.new # SendMailAdv | 
 
 
 begin
   #Send email with multiple recipients, CC/BCC, attachments, named contacts
   result = api_instance.send_adv_mail(body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->send_adv_mail: #{e}"
 end
 ```
@@ -251,17 +251,17 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
-to = SwaggerClient::SendMailTo.new # SendMailTo | 
+api_instance = MailBabyRuby::SendingApi.new
+to = MailBabyRuby::SendMailTo.new # SendMailTo | 
 from = 'from_example' # String | 
 subject = 'subject_example' # String | 
 body = 'body_example' # String | 
@@ -272,7 +272,7 @@ begin
   #Send a simple email (single recipient, plain or HTML)
   result = api_instance.send_mail(tofromsubjectbodyid)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->send_mail: #{e}"
 end
 ```
@@ -312,24 +312,24 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::SendingApi.new
-body = SwaggerClient::SendMail.new # SendMail | 
+api_instance = MailBabyRuby::SendingApi.new
+body = MailBabyRuby::SendMail.new # SendMail | 
 
 
 begin
   #Send a simple email (single recipient, plain or HTML)
   result = api_instance.send_mail(body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling SendingApi->send_mail: #{e}"
 end
 ```

@@ -4,7 +4,7 @@
 
 A mail service order record.  Each order represents one provisioned sending account with a dedicated SMTP username.  The `id` is the numeric identifier used across most API calls.  The `username` is always `mb<id>` and is the SMTP AUTH username for `relay.mailbaby.net`.
 
-The class is defined in **[MailOrder.java](../../src/main/java/org/openapitools/model/MailOrder.java)**
+The class is defined in **[MailOrder.java](../../src/main/java/io/interserver/micronaut/model/MailOrder.java)**
 
 ## Properties
 

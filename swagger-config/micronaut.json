@@ -1,5 +1,8 @@
 {
     "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "apiPackage": "io.interserver.micronaut.api",
+    "basePackage": "io.interserver.micronaut",
+    "configPackage": "io.interserver.micronaut.configuration",
     "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
     "enumUnknownDefaultCase": "true",
@@ -7,7 +10,7 @@
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyMicronaut",
+    "modelPackage": "io.interserver.micronaut.model",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

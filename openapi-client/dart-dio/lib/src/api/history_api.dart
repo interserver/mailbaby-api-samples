@@ -6,12 +6,12 @@ import 'dart:async';
 
 // ignore: unused_import
 import 'dart:convert';
-import 'package:openapi/src/deserialize.dart';
+import 'package:mailbaby_client_dart_dio/src/deserialize.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/model/error_message.dart';
-import 'package:openapi/src/model/mail_log.dart';
-import 'package:openapi/src/model/mail_stats_type.dart';
+import 'package:mailbaby_client_dart_dio/src/model/error_message.dart';
+import 'package:mailbaby_client_dart_dio/src/model/mail_log.dart';
+import 'package:mailbaby_client_dart_dio/src/model/mail_stats_type.dart';
 
 class HistoryApi {
 

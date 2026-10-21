@@ -1,4 +1,4 @@
-# OpenapiClient::MailLog
+# MailBabyRuby::MailLog
 
 ## Properties
 
@@ -12,9 +12,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailLog.new(
+instance = MailBabyRuby::MailLog.new(
   total: 10234,
   skip: 0,
   limit: 100,

@@ -117,12 +117,12 @@ Please follow the [installation](#installation) instruction and execute the foll
 ```java
 
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.model.*;
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.model.*;
+import io.interserver.client.api.BlockingApi;
 
 public class Example {
   public static void main(String[] args) {

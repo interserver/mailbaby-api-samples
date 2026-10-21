@@ -1,4 +1,4 @@
-# OpenapiClient::BlockingApi
+# MailBabyRuby::BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -23,16 +23,16 @@ Create a deny rule to block a sender, domain, destination, or prefix
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 type = 'domain' # String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 data = 'data_example' # String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 opts = {
@@ -43,7 +43,7 @@ begin
   # Create a deny rule to block a sender, domain, destination, or prefix
   result = api_instance.add_rule(type, data, opts)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->add_rule: #{e}"
 end
 ```
@@ -61,7 +61,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GenericResponse>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->add_rule_with_http_info: #{e}"
 end
 ```
@@ -100,23 +100,23 @@ Delete a deny rule by its numeric ruleId
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 rule_id = 34 # Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 begin
   # Delete a deny rule by its numeric ruleId
   result = api_instance.delete_rule(rule_id)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->delete_rule: #{e}"
 end
 ```
@@ -134,7 +134,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GenericResponse>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->delete_rule_with_http_info: #{e}"
 end
 ```
@@ -171,23 +171,23 @@ Delist an email address from the spam-filter block lists
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::BlockingApi.new
-email_address_param = OpenapiClient::EmailAddressParam.new({email: 'user@domain.com'}) # EmailAddressParam | 
+api_instance = MailBabyRuby::BlockingApi.new
+email_address_param = MailBabyRuby::EmailAddressParam.new({email: 'user@domain.com'}) # EmailAddressParam | 
 
 begin
   # Delist an email address from the spam-filter block lists
   result = api_instance.delist_block(email_address_param)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->delist_block: #{e}"
 end
 ```
@@ -205,7 +205,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <GenericResponse>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->delist_block_with_http_info: #{e}"
 end
 ```
@@ -242,22 +242,22 @@ List addresses currently flagged by spam-filter block lists
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 
 begin
   # List addresses currently flagged by spam-filter block lists
   result = api_instance.get_mail_blocks
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->get_mail_blocks: #{e}"
 end
 ```
@@ -275,7 +275,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <MailBlocks>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->get_mail_blocks_with_http_info: #{e}"
 end
 ```
@@ -310,22 +310,22 @@ List custom deny rules (sender / domain / destination / prefix)
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 
 begin
   # List custom deny rules (sender / domain / destination / prefix)
   result = api_instance.get_rules
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->get_rules: #{e}"
 end
 ```
@@ -343,7 +343,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Array<DenyRuleRecord>>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling BlockingApi->get_rules_with_http_info: #{e}"
 end
 ```

@@ -7,7 +7,7 @@ additionalProperties:
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabyDartDio"
+  pubName: "mailbaby_client_dart_dio"
   serializationLibrary: "json_serializable"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

@@ -1,4 +1,4 @@
-# SwaggerClient::DenyRuleNew
+# MailBabyRuby::DenyRuleNew
 
 ## Properties
 Name | Type | Description | Notes

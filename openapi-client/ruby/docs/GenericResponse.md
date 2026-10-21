@@ -1,4 +1,4 @@
-# OpenapiClient::GenericResponse
+# MailBabyRuby::GenericResponse
 
 ## Properties
 
@@ -10,9 +10,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::GenericResponse.new(
+instance = MailBabyRuby::GenericResponse.new(
   status: ok,
   text: 185caa69ff7000f47c
 )

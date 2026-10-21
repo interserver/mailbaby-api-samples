@@ -1,4 +1,4 @@
-# SwaggerClient::BlockingApi
+# MailBabyRuby::BlockingApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -22,16 +22,16 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 user = 'user_example' # String | 
 type = 'type_example' # String | 
 data = 'data_example' # String | 
@@ -41,7 +41,7 @@ begin
   #Create a deny rule to block a sender, domain, destination, or prefix
   result = api_instance.add_rule(usertypedata)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->add_rule: #{e}"
 end
 ```
@@ -79,24 +79,24 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
-body = SwaggerClient::DenyRuleNew.new # DenyRuleNew | Fields required to create a new email deny rule.
+api_instance = MailBabyRuby::BlockingApi.new
+body = MailBabyRuby::DenyRuleNew.new # DenyRuleNew | Fields required to create a new email deny rule.
 
 
 begin
   #Create a deny rule to block a sender, domain, destination, or prefix
   result = api_instance.add_rule(body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->add_rule: #{e}"
 end
 ```
@@ -132,16 +132,16 @@ Delete a deny rule by its numeric ruleId
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 rule_id = 56 # Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
 
 
@@ -149,7 +149,7 @@ begin
   #Delete a deny rule by its numeric ruleId
   result = api_instance.delete_rule(rule_id)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->delete_rule: #{e}"
 end
 ```
@@ -185,24 +185,24 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
-body = SwaggerClient::EmailAddressParam.new # EmailAddressParam | 
+api_instance = MailBabyRuby::BlockingApi.new
+body = MailBabyRuby::EmailAddressParam.new # EmailAddressParam | 
 
 
 begin
   #Delist an email address from the spam-filter block lists
   result = api_instance.delist_block(body)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->delist_block: #{e}"
 end
 ```
@@ -238,16 +238,16 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 email = 'email_example' # String | 
 
 
@@ -255,7 +255,7 @@ begin
   #Delist an email address from the spam-filter block lists
   result = api_instance.delist_block(email)
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->delist_block: #{e}"
 end
 ```
@@ -291,22 +291,22 @@ List addresses currently flagged by spam-filter block lists
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 
 begin
   #List addresses currently flagged by spam-filter block lists
   result = api_instance.get_mail_blocks
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->get_mail_blocks: #{e}"
 end
 ```
@@ -339,22 +339,22 @@ List custom deny rules (sender / domain / destination / prefix)
 ### Example
 ```ruby
 # load the gem
-require 'swagger_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-SwaggerClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   #config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = SwaggerClient::BlockingApi.new
+api_instance = MailBabyRuby::BlockingApi.new
 
 begin
   #List custom deny rules (sender / domain / destination / prefix)
   result = api_instance.get_rules
   p result
-rescue SwaggerClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Exception when calling BlockingApi->get_rules: #{e}"
 end
 ```

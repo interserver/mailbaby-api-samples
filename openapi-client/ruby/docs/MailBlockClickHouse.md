@@ -1,4 +1,4 @@
-# OpenapiClient::MailBlockClickHouse
+# MailBabyRuby::MailBlockClickHouse
 
 ## Properties
 
@@ -13,9 +13,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailBlockClickHouse.new(
+instance = MailBabyRuby::MailBlockClickHouse.new(
   date: Sun Aug 06 20:00:00 EDT 2023,
   from: user@domain.com,
   subject: Test Email,

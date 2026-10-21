@@ -1,13 +1,15 @@
 {
     "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "apiPackage": "io.interserver.jaxrs.cxf.client.api",
     "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
     "enumUnknownDefaultCase": "true",
     "gitRepoId": "mailbaby-client-jaxrs-cxf-client",
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
+    "invokerPackage": "io.interserver.jaxrs.cxf.client",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyJaxrsCxfClient",
+    "modelPackage": "io.interserver.jaxrs.cxf.client.model",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

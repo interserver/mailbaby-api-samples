@@ -20,12 +20,12 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.SendingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.SendingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -92,12 +92,12 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.SendingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.SendingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -180,12 +180,12 @@ Send a simple email (single recipient, plain or HTML)
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.SendingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.SendingApi;
 
 public class Example {
   public static void main(String[] args) {

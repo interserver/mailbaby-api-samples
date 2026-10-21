@@ -1,0 +1,368 @@
+package io.interserver.jaxrs.resteasy.api;
+
+import io.interserver.jaxrs.resteasy.model.*;
+import io.interserver.jaxrs.resteasy.api.MailApiService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+import io.interserver.jaxrs.resteasy.model.DenyRuleNew;
+import io.interserver.jaxrs.resteasy.model.DenyRuleRecord;
+import io.interserver.jaxrs.resteasy.model.EmailAddressParam;
+import io.interserver.jaxrs.resteasy.model.ErrorMessage;
+import io.interserver.jaxrs.resteasy.model.GenericResponse;
+import io.interserver.jaxrs.resteasy.model.MailAttachment;
+import io.interserver.jaxrs.resteasy.model.MailBlocks;
+import io.interserver.jaxrs.resteasy.model.MailLog;
+import io.interserver.jaxrs.resteasy.model.MailOrder;
+import io.interserver.jaxrs.resteasy.model.MailOrderDetail;
+import io.interserver.jaxrs.resteasy.model.MailStatsType;
+import io.interserver.jaxrs.resteasy.model.SendMail;
+import io.interserver.jaxrs.resteasy.model.SendMailAdv;
+import io.interserver.jaxrs.resteasy.model.SendMailRaw;
+import io.interserver.jaxrs.resteasy.model.SendMailTo;
+
+import java.util.Map;
+import java.util.List;
+import io.interserver.jaxrs.resteasy.api.NotFoundException;
+
+import java.io.InputStream;
+
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.*;
+import javax.inject.Inject;
+
+import javax.validation.constraints.*;
+@Path("/mail")
+
+
+
+public class MailApi  {
+
+    @Inject MailApiService service;
+
+    @POST
+    @Path("/rules")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Create a deny rule to block a sender, domain, destination, or prefix", description = "**Use this to prevent future relay attempts that match a pattern.** Required: `type` (`email`, `domain`, `destination`, or `startswith`) and `data` (the value to match). Optional: `user` (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Rule created successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response addRule(@Parameter(description = "", required=true)@FormParam("user")  String user,@Parameter(description = "", required=true, schema=@Schema(allowableValues={ "domain", "email", "startswith", "destination" })
+)@FormParam("type")  String type,@Parameter(description = "", required=true)@FormParam("data")  String data,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.addRule(user,type,data,securityContext);
+    }
+    @POST
+    @Path("/rules")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Create a deny rule to block a sender, domain, destination, or prefix", description = "**Use this to prevent future relay attempts that match a pattern.** Required: `type` (`email`, `domain`, `destination`, or `startswith`) and `data` (the value to match). Optional: `user` (SMTP username; auto-selects first active order if omitted). Adds a deny rule to block specific senders, domains, destinations, or sender prefixes from being relayed through your mail account.  The `type` field selects the matching strategy: - **`email`** — exact match against the SMTP envelope `MAIL FROM` address. - **`domain`** — matches any sender address at the specified domain. - **`destination`** — exact match against the SMTP envelope `RCPT TO` address. - **`startswith`** — matches any sender address whose local-part (the portion   before the `@`) starts with the given string.  Only alphanumeric characters   and `+`, `_`, `.`, `-` are permitted in the prefix.   If `username` is provided it must be the SMTP username of one of your active mail orders (e.g. `mb20682`).  If omitted the rule is associated with your first active order.  On success the response `text` field contains the newly created rule's `id`, which can later be passed to `DELETE /mail/rules/{ruleId}` to remove it. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Rule created successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response addRule(
+@Parameter(description = "Fields required to create a new email deny rule." ,required=true) DenyRuleNew body
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.addRule(body,securityContext);
+    }
+    @DELETE
+    @Path("/rules/{ruleId}")
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "Delete a deny rule by its numeric ruleId", description = "**Destructive — permanently removes the rule.** Required: `ruleId` (path param; obtain from the `id` field returned by `GET /mail/rules` or the `text` field returned by `POST /mail/rules`). Permanently removes a single deny rule identified by its numeric `ruleId`.  The `ruleId` is the `id` field returned by `GET /mail/rules` or the `text` field from a successful `POST /mail/rules` response.  Only rules belonging to your own active mail account(s) can be deleted — the server will reject attempts to delete rules that belong to a different account. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Rule deleted successfully", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response deleteRule( @PathParam("ruleId") Integer ruleId,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.deleteRule(ruleId,securityContext);
+    }
+    @POST
+    @Path("/blocks/delete")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Delist an email address from the spam-filter block lists", description = "**Destructive — wipes block records for the given address.** Required: `email` (must be a valid address; typically a `from` value previously returned by `GET /mail/blocks` or `GET /mail/log`). Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Address successfully delisted", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response delistBlock(
+@Parameter(description = "" ,required=true) EmailAddressParam body
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.delistBlock(body,securityContext);
+    }
+    @POST
+    @Path("/blocks/delete")
+    @Consumes({ "application/json", "application/x-www-form-urlencoded" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Delist an email address from the spam-filter block lists", description = "**Destructive — wipes block records for the given address.** Required: `email` (must be a valid address; typically a `from` value previously returned by `GET /mail/blocks` or `GET /mail/log`). Delists an email address from all three block list stores: 1. The rspamd spam-filter database (`fromemail` / envelope sender records). 2. The MailChannels integration block table. 3. The MailBaby internal block table.  Use `GET /mail/blocks` to discover which addresses are currently blocked.  The `from` field in any returned block entry is a valid input for this call.  **Note:** Delisting an address removes it from the block tracking databases but does not prevent the spam filter from re-blocking it if future messages continue to trigger filter rules. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Address successfully delisted", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response delistBlock(@Parameter(description = "", required=true)@FormParam("email")  String email,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.delistBlock(email,securityContext);
+    }
+    @GET
+    @Path("/blocks")
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "List addresses currently flagged by spam-filter block lists", description = "**Use this to discover which addresses to delist.** The `from` value of any returned entry can be passed to `POST /mail/blocks/delete` (as the `email` field) to remove the block. Returns addresses and messages that have been flagged by the spam filtering system for your mail account(s). Three categories are returned:  - **`local`** — messages flagged by the `LOCAL_BL_RCPT` rspamd rule.  These are   messages sent to recipients on your account's local block list. - **`mbtrap`** — messages flagged by the `MBTRAP` rspamd rule.  These are messages   that triggered MailBaby's internal trap / honeypot detection. - **`subject`** — senders whose recent messages contain spam-indicative subjects   (strings containing `@`, `smtp`, `socks4`, or `socks5`) with high repetition   (more than 4 identical subjects from the same sender in the last 3 days).   The `local` and `mbtrap` results cover the last 5 days.  The `subject` results cover the last 3 days.  A sender address returned in any of these lists can be delisted using `POST /mail/blocks/delete` with the `email` field set to that address. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailBlocks.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response getMailBlocks(@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.getMailBlocks(securityContext);
+    }
+    @GET
+    @Path("/{id}")
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "Get one mail order's full detail including SMTP password", description = "**Returns the SMTP password** in addition to the basic `GET /mail` fields. Use when you need to authenticate against `relay.mailbaby.net:25` from an SMTP client directly. Required: `id` (path; obtain from `GET /mail`). Returns the full detail record for one specific mail order identified by its numeric `id`.  The `username` and `password` values returned here can be used directly to authenticate against `relay.mailbaby.net:25` (SMTP AUTH) if you need to send email via a native SMTP client rather than through the REST API.  The `id` path parameter is the same integer `id` value returned by `GET /mail`. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Services" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailOrderDetail.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response getMailOrderById( @PathParam("id") Long id,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.getMailOrderById(id,securityContext);
+    }
+    @GET
+    
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "List your provisioned mail orders (sending accounts)", description = "Use this **before sending** if you need to discover which mail order `id` to pass to `/mail/send`, `/mail/advsend`, `/mail/rawsend`, `/mail/log`, or `/mail/stats`. Returns every mail order (active **and** canceled) on your account. Each record includes the numeric `id`, the `status` (`active` or `canceled`), the SMTP `username` (always `mb<id>`), and an optional `comment`.  The `id` values returned here are used as the `id` input parameter on all sending endpoints (`/mail/send`, `/mail/advsend`, `/mail/rawsend`) as well as the log and stats queries.  When the `id` parameter is omitted on those calls the API automatically picks the **first active** order returned by this endpoint.  To retrieve full details — including the current SMTP password — for a single order use `GET /mail/{id}`. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Services" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MailOrder.class)))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response getMailOrders(@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.getMailOrders(securityContext);
+    }
+    @GET
+    @Path("/rules")
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "List custom deny rules (sender / domain / destination / prefix)", description = "**Use this to inspect or pick a `ruleId` to delete.** Returns all deny rules you have configured for your active mail account(s). Deny rules are evaluated **before** a message is transmitted and cause it to be rejected immediately when it matches.  Four rule types are supported: | `type` | `data` format | Effect | |--------|---------------|--------| | `email` | `user@domain.com` | Rejects any message from this exact sender address | | `domain` | `domain.com` | Rejects any message from any address at this domain | | `destination` | `user@domain.com` | Rejects any message addressed to this recipient | | `startswith` | `prefix` | Rejects any message whose sender address begins with this string (alphanumeric, `+`, `_`, `.`, `-` only) |  Use `POST /mail/rules` to add new rules and `DELETE /mail/rules/{ruleId}` to remove them.  The `id` field in each returned record is the value needed for the delete call. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Blocking" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = DenyRuleRecord.class)))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response getRules(@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.getRules(securityContext);
+    }
+    @GET
+    @Path("/stats")
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "Account usage, cost, and volume statistics for a time window", description = "**Use this for dashboards or billing-cycle reviews.** Returns aggregate sending statistics for your mail account(s). The `time` query param controls the window for `received`, `sent`, and `volume` (`1h`, `24h`, `7d`, `month`, `day`, `billing`, `all`). The `usage` and `cost` fields are always for the current billing cycle, regardless of `time`.  The response includes: - **`usage`** — total messages accepted by the relay during the current billing   cycle (used for cost calculation). - **`cost`** — estimated cost for the billing cycle based on the base plan price   plus per-email charges. - **`received`** / **`sent`** — count of messages accepted by the relay /   successfully delivered to the destination MX within the selected `time` window. - **`volume`** — top-500 breakdown of message counts grouped by source IP (`ip`),   destination address (`to`), and sender address (`from`) within the selected window.   **Time windows** (controlled by the `time` parameter): | Value | Window | |-------|--------| | `1h` | Last 1 hour (default) | | `24h` | Last 24 hours | | `7d` | Last 7 days | | `month` | Current calendar month (1st to now) | | `day` | Today (midnight to now) | | `billing` | Current billing cycle (last invoice date to next invoice date) | | `all` | All time | ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "History" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailStatsType.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response getStats(  @DefaultValue("1h") @QueryParam("time") String time,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.getStats(time,securityContext);
+    }
+    @POST
+    @Path("/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Send a pre-built RFC 822 message verbatim (preserves DKIM)", description = "**Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email accepted for delivery", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response rawMail(
+@Parameter(description = "" ,required=true) SendMailRaw body
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.rawMail(body,securityContext);
+    }
+    @POST
+    @Path("/rawsend")
+    @Consumes({ "application/json", "multipart/form-data" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Send a pre-built RFC 822 message verbatim (preserves DKIM)", description = "**Use this when you have already built (and possibly DKIM-signed) the full RFC 822 message yourself** and want the relay to transmit it byte-for-byte. Required: `raw_email` (full RFC 822 string with headers + body). Optional: `id` (mail order to authenticate as). Accepts a complete, pre-built RFC 822 email message (headers + body) as a string and injects it into the relay without any modification.  This endpoint is particularly useful when the message has already been **DKIM-signed** — because the relay transmits the exact bytes you provide, the DKIM signature remains intact. If you use the other sending endpoints the relay may add or reorder headers, breaking an existing signature.  The `From` and recipient addresses are parsed automatically from the message headers (`From`, `To`, `Cc`, `Bcc`).  You do **not** need to specify them separately.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  The SMTP credentials for the selected order are used to authenticate with the relay.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email accepted for delivery", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response rawMail(@Parameter(description = "", required=true)@FormParam("raw_email")  String rawEmail,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.rawMail(rawEmail,id,securityContext);
+    }
+    @POST
+    @Path("/advsend")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Send email with multiple recipients, CC/BCC, attachments, named contacts", description = "**Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.  **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `\"Joe <joe@example.com>, jane@example.com\"`) and the structured `[{\"email\":\"...\",\"name\":\"...\"}]` array format.  When using JSON, both formats are equally supported.  **HTML detection** is automatic — if `body` contains HTML tags the `Content-Type` is set to `text/html`; otherwise `text/plain`.  **Attachments** must be base64-encoded.  Each attachment requires at least a `data` field; the optional `filename` field controls the attachment name shown to recipients.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  On success the response `text` field contains the relay transaction ID which can be looked up in `GET /mail/log` via the `mailid` query parameter.  ## Examples  ### Form — basic string addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d from=user@domain.com \\   -d to=support@interserver.net ``` ### Form — RFC 822 named addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d 'from=Joe <user@domain.com>' \\   -d 'to=Jane <support@interserver.net>' ``` ### Form — multiple recipients as array ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' -d 'body=Hello' \\   -d from=user@domain.com \\   -d 'to[0][name]=Joe' -d 'to[0][email]=support@interserver.net' \\   -d 'to[1][name]=Jane' -d 'to[1][email]=jane@interserver.net' ``` ### JSON — structured objects ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/json' \\   -d '{     \"subject\": \"Welcome\",     \"body\": \"<h1>Hello</h1>\",     \"from\": {\"email\": \"user@domain.com\", \"name\": \"Sender Name\"},     \"to\": [{\"email\": \"joe@client.com\", \"name\": \"Joe Client\"}],     \"cc\": [{\"email\": \"manager@client.com\"}],     \"attachments\": [{\"filename\": \"report.pdf\", \"data\": \"BASE64_DATA\"}]   }' ``` ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email accepted for delivery", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response sendAdvMail(@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("from")  Object from,@Parameter(description = "", required=true)@FormParam("to")  Object to,@Parameter(description = "", required=true)@FormParam("replyto")  Object replyto,@Parameter(description = "", required=true)@FormParam("cc")  Object cc,@Parameter(description = "", required=true)@FormParam("bcc")  Object bcc,@Parameter(description = "", required=true)@FormParam("attachments")  List<MailAttachment> attachments,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.sendAdvMail(subject,body,from,to,replyto,cc,bcc,attachments,id,securityContext);
+    }
+    @POST
+    @Path("/advsend")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Send email with multiple recipients, CC/BCC, attachments, named contacts", description = "**Use this when the simple send is not enough** — multiple recipients, CC/BCC, named contacts, custom Reply-To, or file attachments. Required: `from`, `to`, `subject`, `body`. Optional: `cc`, `bcc`, `replyto`, `attachments` (array of `{filename,data}` with base64 data), `id`. Sends through one of your mail orders with full control over recipients, headers, and attachments.  **Content-type flexibility** — the request body may be submitted as either `application/x-www-form-urlencoded` or `application/json`.  When using form encoding, address fields (`from`, `to`, `replyto`, `cc`, `bcc`) accept both a plain RFC 822 comma-separated string (e.g. `\"Joe <joe@example.com>, jane@example.com\"`) and the structured `[{\"email\":\"...\",\"name\":\"...\"}]` array format.  When using JSON, both formats are equally supported.  **HTML detection** is automatic — if `body` contains HTML tags the `Content-Type` is set to `text/html`; otherwise `text/plain`.  **Attachments** must be base64-encoded.  Each attachment requires at least a `data` field; the optional `filename` field controls the attachment name shown to recipients.  If an `id` is provided it must correspond to an active mail order on your account. If omitted, the first active order is selected automatically.  On success the response `text` field contains the relay transaction ID which can be looked up in `GET /mail/log` via the `mailid` query parameter.  ## Examples  ### Form — basic string addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d from=user@domain.com \\   -d to=support@interserver.net ``` ### Form — RFC 822 named addresses ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' \\   -d 'body=Hello' \\   -d 'from=Joe <user@domain.com>' \\   -d 'to=Jane <support@interserver.net>' ``` ### Form — multiple recipients as array ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/x-www-form-urlencoded' \\   -d 'subject=Welcome' -d 'body=Hello' \\   -d from=user@domain.com \\   -d 'to[0][name]=Joe' -d 'to[0][email]=support@interserver.net' \\   -d 'to[1][name]=Jane' -d 'to[1][email]=jane@interserver.net' ``` ### JSON — structured objects ```sh curl -X POST https://api.mailbaby.net/mail/advsend \\   -H 'X-API-KEY: YOUR_API_KEY' \\   -H 'Content-Type: application/json' \\   -d '{     \"subject\": \"Welcome\",     \"body\": \"<h1>Hello</h1>\",     \"from\": {\"email\": \"user@domain.com\", \"name\": \"Sender Name\"},     \"to\": [{\"email\": \"joe@client.com\", \"name\": \"Joe Client\"}],     \"cc\": [{\"email\": \"manager@client.com\"}],     \"attachments\": [{\"filename\": \"report.pdf\", \"data\": \"BASE64_DATA\"}]   }' ``` ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email accepted for delivery", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response sendAdvMail(
+@Parameter(description = "" ,required=true) SendMailAdv body
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.sendAdvMail(body,securityContext);
+    }
+    @POST
+    @Path("/send")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Send a simple email (single recipient, plain or HTML)", description = "**Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: `from`, `to`, `subject`, `body`. Optional: `id` (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email accepted for delivery", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response sendMail(@Parameter(description = "", required=true)@FormParam("to")  SendMailTo to,@Parameter(description = "", required=true)@FormParam("from")  String from,@Parameter(description = "", required=true)@FormParam("subject")  String subject,@Parameter(description = "", required=true)@FormParam("body")  String body,@Parameter(description = "", required=true)@FormParam("id")  Long id,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.sendMail(to,from,subject,body,id,securityContext);
+    }
+    @POST
+    @Path("/send")
+    @Consumes({ "application/x-www-form-urlencoded", "application/json" })
+    @Produces({ "application/json" })
+    @Operation(summary = "Send a simple email (single recipient, plain or HTML)", description = "**Use this for the simplest case** — one or a few plain-string recipients, no attachments, no CC/BCC, no named contacts. Required: `from`, `to`, `subject`, `body`. Optional: `id` (selects which mail order to send through; auto-selects your first active order if omitted). Sends through one of your mail orders using a flat set of fields.  **HTML detection** is automatic — if the `body` value contains any HTML tags the message will be sent as `text/html`; otherwise it is sent as `text/plain`.  The `from` address is also automatically set as the `Reply-To` header.  *Note*: If you need to send to multiple recipients, add CC/BCC, or include file attachments, use `POST /mail/advsend` instead.  If you have a pre-built RFC 822 message (e.g. already DKIM-signed), use `POST /mail/rawsend`.  On success the response `text` field contains the relay transaction ID.  This ID can be used with `GET /mail/log` (via the `mailid` query parameter) to look up the delivery record. ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "Sending" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email accepted for delivery", content = @Content(mediaType = "application/json", schema = @Schema(implementation = GenericResponse.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "404", description = "The specified resource was not found or does not belong to your account.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response sendMail(
+@Parameter(description = "" ,required=true) SendMail body
+,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.sendMail(body,securityContext);
+    }
+    @GET
+    @Path("/log")
+    
+    @Produces({ "application/json" })
+    @Operation(summary = "Query the mail delivery log (filterable, paginated)", description = "**Use this to find or audit sent messages.** All filters are optional and combinable. The most useful filters: `mailid` (the transaction id returned by a send call), `from` / `to` (envelope addresses), `subject`, `messageId` (case-insensitive substring on the `Message-ID` header), `delivered` (`1`=delivered, `0`=queued/failed), and the `startDate`/`endDate` date range. Returns a paginated list of every email message accepted by the relay for your mail account(s).  **Row grouping** is controlled by the `groupby` parameter.  By default (`groupby=recipient`), the response contains one row per delivery attempt — so a single message sent to 4 recipients produces 4 rows, each with its own `recipient`, `delivered`, `response`, and `mxHostname` values.  Set `groupby=message` to collapse to one row per message (delivery fields will reflect one arbitrary recipient).  **Pagination** is controlled by `skip` and `limit`.  The `total` in the response reflects the row count **after** grouping, so it matches the number of pages you need to fetch.  **Date filtering** accepts either a Unix timestamp (integer) or a date string parseable by PHP `strtotime()` such as `2024-01-15`, `last monday`, or `2024-01-01 00:00:00`.  Examples: `startDate=1704067200&endDate=1706745599` or `startDate=2024-01-01&endDate=2024-01-31`.  **Sorting** is controlled by `sort` and `dir`.  Currently the only sort key is `time` (default), which orders by internal row ID.  **Delivery status** can be filtered with the `delivered` parameter: `delivered=1` returns only successfully delivered messages; `delivered=0` returns messages still in queue or that failed.  **Address filtering** distinguishes between the SMTP envelope address (`from`, `to`) and message headers (`headerfrom` for the `From:` header, `replyto` for `Reply-To:`). These may differ when a message is sent on behalf of another address.  The `mailid` parameter corresponds to the `id` field in the returned `MailLogEntry` objects, **not** the `_id` field.  It also matches the transaction ID returned in the `text` field of a successful send response from `/mail/send`, `/mail/advsend`, or `/mail/rawsend`.  The `messageId` parameter searches the `Message-ID` email header (case-insensitive substring match). ", security = {
+        @SecurityRequirement(name = "apiKeyAuth")
+    }, tags={ "History" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Paginated list of mail log entries", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MailLog.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Bad request — one or more input parameters were missing or invalid.", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+        
+        @ApiResponse(responseCode = "401", description = "Authentication failed.  Ensure you are sending a valid `X-API-KEY` header. Obtain your API key from [my.interserver.net/account_security](https://my.interserver.net/account_security).", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))) })
+    public Response viewMailLog(  @QueryParam("id") Long id,  @QueryParam("origin") String origin,  @QueryParam("mx") String mx,  @QueryParam("from") String from,  @QueryParam("to") String to,  @QueryParam("subject") String subject, @Size(min=18,max=19)  @QueryParam("mailid") String mailid,  @QueryParam("messageId") String messageId,  @QueryParam("replyto") String replyto,  @QueryParam("headerfrom") String headerfrom,  @QueryParam("delivered") Integer delivered, @Min(0)  @DefaultValue("0") @QueryParam("skip") Integer skip, @Min(1) @Max(10000)  @DefaultValue("100") @QueryParam("limit") Integer limit,  @QueryParam("startDate") String startDate,  @QueryParam("endDate") String endDate,  @DefaultValue("time") @QueryParam("sort") String sort,  @DefaultValue("desc") @QueryParam("dir") String dir,  @DefaultValue("recipient") @QueryParam("groupby") String groupby,@Context SecurityContext securityContext)
+    throws NotFoundException {
+        return service.viewMailLog(id,origin,mx,from,to,subject,mailid,messageId,replyto,headerfrom,delivered,skip,limit,startDate,endDate,sort,dir,groupby,securityContext);
+    }
+}

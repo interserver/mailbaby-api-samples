@@ -1,13 +1,14 @@
 # managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
 additionalProperties:
+  composerPackageName: "interserver/mailbaby-client-php"
   disallowAdditionalPropertiesIfNotPresent: "false"
   ensureUniqueParams: "true"
   enumUnknownDefaultCase: "true"
   gitRepoId: "mailbaby-client-php"
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
+  invokerPackage: "MailBabyPhp"
   legacyDiscriminatorBehavior: "false"
   library: "psr-18"
-  packageName: "MailBabyPhp"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

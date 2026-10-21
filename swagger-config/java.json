@@ -1,13 +1,15 @@
 {
     "__managedBy": "update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove the \"__managedBy\" key to hand-curate.",
+    "apiPackage": "io.interserver.client.api",
     "disallowAdditionalPropertiesIfNotPresent": "false",
     "ensureUniqueParams": "true",
     "enumUnknownDefaultCase": "true",
     "gitRepoId": "mailbaby-client-java",
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
+    "invokerPackage": "io.interserver.client",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyJava",
+    "modelPackage": "io.interserver.client.model",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

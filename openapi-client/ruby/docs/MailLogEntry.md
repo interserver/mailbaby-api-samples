@@ -1,4 +1,4 @@
-# OpenapiClient::MailLogEntry
+# MailBabyRuby::MailLogEntry
 
 ## Properties
 
@@ -33,9 +33,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailLogEntry.new(
+instance = MailBabyRuby::MailLogEntry.new(
   _id: 103172,
   id: 17c7eda538e0005d03,
   from: person@mysite.com,

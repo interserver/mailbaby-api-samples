@@ -1,4 +1,4 @@
-# OpenapiClient::MailOrderDetail
+# MailBabyRuby::MailOrderDetail
 
 ## Properties
 
@@ -13,9 +13,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailOrderDetail.new(
+instance = MailBabyRuby::MailOrderDetail.new(
   id: 21472,
   status: active,
   username: mb21472,

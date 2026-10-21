@@ -1,8 +1,8 @@
-# openapi.api.SendingApi
+# mailbaby_client_dart_dio.api.SendingApi
 
 ## Load the API package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -23,13 +23,13 @@ Send a pre-built RFC 822 message verbatim (preserves DKIM)
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getSendingApi();
+final api = MailbabyClientDartDio().getSendingApi();
 final SendMailRaw sendMailRaw = ; // SendMailRaw | 
 
 try {
@@ -70,13 +70,13 @@ Send email with multiple recipients, CC/BCC, attachments, named contacts
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getSendingApi();
+final api = MailbabyClientDartDio().getSendingApi();
 final String subject = subject_example; // String | The subject line of the email.
 final String body = body_example; // String | The email body.  If the string contains any HTML tags the message is automatically sent as `text/html`; otherwise it is sent as `text/plain`.
 final EmailAddressTypes from = ; // EmailAddressTypes | The sender address.  Accepts a plain email string, an RFC 822 named string (`\\\"Name <email>\\\"`), or a `{\\\"email\\\": \\\"...\\\", \\\"name\\\": \\\"...\\\"}` object.
@@ -133,13 +133,13 @@ Send a simple email (single recipient, plain or HTML)
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
 
-final api = Openapi().getSendingApi();
+final api = MailbabyClientDartDio().getSendingApi();
 final SendMailTo to = ; // SendMailTo | 
 final String from = from_example; // String | The sender address.  This is used as both the `From` header and the `Reply-To` header automatically.  Must be a valid email address authorized for your mail order.
 final String subject = subject_example; // String | The subject line of the email.

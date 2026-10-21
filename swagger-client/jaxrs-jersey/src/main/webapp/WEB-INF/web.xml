@@ -10,7 +10,7 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>
                 io.swagger.v3.jaxrs2.integration.resources,
-                io.swagger.api
+                io.interserver.jaxrs.jersey.api
             </param-value>
         </init-param>
         <init-param>
@@ -35,7 +35,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>ApiOriginFilter</filter-name>
-        <filter-class>io.swagger.api.ApiOriginFilter</filter-class>
+        <filter-class>io.interserver.jaxrs.jersey.api.ApiOriginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ApiOriginFilter</filter-name>

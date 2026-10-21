@@ -71,10 +71,10 @@ Then manually install the following JARs:
 Please follow the [installation](#installation) instruction and execute the following Java code:
 
 ```java
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.BlockingApi;
+import io.interserver.client.*;
+import io.interserver.client.auth.*;
+import io.interserver.client.model.*;
+import io.interserver.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -104,10 +104,10 @@ public class BlockingApiExample {
         }
     }
 }
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.BlockingApi;
+import io.interserver.client.*;
+import io.interserver.client.auth.*;
+import io.interserver.client.model.*;
+import io.interserver.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -134,10 +134,10 @@ public class BlockingApiExample {
         }
     }
 }
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.BlockingApi;
+import io.interserver.client.*;
+import io.interserver.client.auth.*;
+import io.interserver.client.model.*;
+import io.interserver.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -165,10 +165,10 @@ public class BlockingApiExample {
         }
     }
 }
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.BlockingApi;
+import io.interserver.client.*;
+import io.interserver.client.auth.*;
+import io.interserver.client.model.*;
+import io.interserver.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;
@@ -194,10 +194,10 @@ public class BlockingApiExample {
         }
     }
 }
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.BlockingApi;
+import io.interserver.client.*;
+import io.interserver.client.auth.*;
+import io.interserver.client.model.*;
+import io.interserver.client.api.BlockingApi;
 
 import java.io.File;
 import java.util.*;

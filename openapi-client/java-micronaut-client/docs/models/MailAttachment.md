@@ -4,7 +4,7 @@
 
 A file attachment for use with `POST /mail/advsend`.  The file content must be base64-encoded.  The `filename` is shown to recipients in their email client.
 
-The class is defined in **[MailAttachment.java](../../src/main/java/org/openapitools/model/MailAttachment.java)**
+The class is defined in **[MailAttachment.java](../../src/main/java/io/interserver/micronaut/model/MailAttachment.java)**
 
 ## Properties
 

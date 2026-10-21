@@ -1,4 +1,4 @@
-# SwaggerClient::SendMailTo
+# MailBabyRuby::SendMailTo
 
 ## Properties
 Name | Type | Description | Notes

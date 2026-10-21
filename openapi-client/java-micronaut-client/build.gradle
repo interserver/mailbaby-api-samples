@@ -4,7 +4,7 @@ plugins {
 }
 
 version = "1.5.0"
-group = "org.openapitools"
+group = "io.interserver.micronaut"
 
 repositories {
     mavenCentral()
@@ -15,7 +15,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("org.openapitools.*")
+        annotations("io.interserver.micronaut.*")
     }
 }
 
@@ -34,7 +34,7 @@ dependencies {
 
 // TODO Set the main class
 application {
-    mainClass.set("org.openapitools.Application")
+    mainClass.set("io.interserver.micronaut.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("1.8")

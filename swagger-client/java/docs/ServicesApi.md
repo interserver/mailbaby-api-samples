@@ -18,11 +18,11 @@ Get one mail order&#x27;s full detail including SMTP password
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ServicesApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.ServicesApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -73,11 +73,11 @@ Use this **before sending** if you need to discover which mail order &#x60;id&#x
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiClient;
-//import io.swagger.client.ApiException;
-//import io.swagger.client.Configuration;
-//import io.swagger.client.auth.*;
-//import io.swagger.client.api.ServicesApi;
+//import io.interserver.client.ApiClient;
+//import io.interserver.client.ApiException;
+//import io.interserver.client.Configuration;
+//import io.interserver.client.auth.*;
+//import io.interserver.client.api.ServicesApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

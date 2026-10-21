@@ -4,7 +4,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace MailBabyPhp\Api;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
@@ -40,12 +40,12 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\RequestFactory;
 use Http\Promise\Promise;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\DebugPlugin;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use MailBabyPhp\ApiException;
+use MailBabyPhp\Configuration;
+use MailBabyPhp\DebugPlugin;
+use MailBabyPhp\HeaderSelector;
+use MailBabyPhp\FormDataProcessor;
+use MailBabyPhp\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -60,7 +60,7 @@ use function sprintf;
  * BlockingApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -184,9 +184,9 @@ class BlockingApi
      * @param  string $data The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. (required)
      * @param  string $user Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. (optional)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function addRule($type, $data, $user = null)
     {
@@ -203,9 +203,9 @@ class BlockingApi
      * @param  string $data The value to match against, interpreted according to &#x60;type&#x60;: a full email address for &#x60;email&#x60;/&#x60;destination&#x60;, a domain name for &#x60;domain&#x60;, or an alphanumeric prefix string for &#x60;startswith&#x60;. (required)
      * @param  string $user Optional SMTP username of the mail order to associate this rule with (e.g. &#x60;mb20682&#x60;).  If omitted the first active order is used.  Valid usernames are the &#x60;username&#x60; values returned by &#x60;GET /mail&#x60;. (optional)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function addRuleWithHttpInfo($type, $data, $user = null)
     {
@@ -241,25 +241,25 @@ class BlockingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -280,7 +280,7 @@ class BlockingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GenericResponse',
+                '\MailBabyPhp\Model\GenericResponse',
                 $request,
                 $response,
             );
@@ -289,7 +289,7 @@ class BlockingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -297,7 +297,7 @@ class BlockingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -305,7 +305,7 @@ class BlockingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -313,7 +313,7 @@ class BlockingApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -361,7 +361,7 @@ class BlockingApi
      */
     public function addRuleAsyncWithHttpInfo($type, $data, $user = null)
     {
-        $returnType = '\OpenAPI\Client\Model\GenericResponse';
+        $returnType = '\MailBabyPhp\Model\GenericResponse';
         $request = $this->addRuleRequest($type, $data, $user);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -505,9 +505,9 @@ class BlockingApi
      *
      * @param  int $rule_id The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function deleteRule($rule_id)
     {
@@ -522,9 +522,9 @@ class BlockingApi
      *
      * @param  int $rule_id The numeric ID of the deny rule to delete.  Obtain this from the &#x60;id&#x60; field in &#x60;GET /mail/rules&#x60; or the &#x60;text&#x60; field of a &#x60;POST /mail/rules&#x60; response. (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function deleteRuleWithHttpInfo($rule_id)
     {
@@ -560,25 +560,25 @@ class BlockingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -599,7 +599,7 @@ class BlockingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GenericResponse',
+                '\MailBabyPhp\Model\GenericResponse',
                 $request,
                 $response,
             );
@@ -608,7 +608,7 @@ class BlockingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -616,7 +616,7 @@ class BlockingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -624,7 +624,7 @@ class BlockingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -632,7 +632,7 @@ class BlockingApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -676,7 +676,7 @@ class BlockingApi
      */
     public function deleteRuleAsyncWithHttpInfo($rule_id)
     {
-        $returnType = '\OpenAPI\Client\Model\GenericResponse';
+        $returnType = '\MailBabyPhp\Model\GenericResponse';
         $request = $this->deleteRuleRequest($rule_id);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -807,11 +807,11 @@ class BlockingApi
      *
      * Delist an email address from the spam-filter block lists
      *
-     * @param  \OpenAPI\Client\Model\EmailAddressParam $email_address_param email_address_param (required)
+     * @param  \MailBabyPhp\Model\EmailAddressParam $email_address_param email_address_param (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage
      */
     public function delistBlock($email_address_param)
     {
@@ -824,11 +824,11 @@ class BlockingApi
      *
      * Delist an email address from the spam-filter block lists
      *
-     * @param  \OpenAPI\Client\Model\EmailAddressParam $email_address_param (required)
+     * @param  \MailBabyPhp\Model\EmailAddressParam $email_address_param (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\GenericResponse|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\GenericResponse|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function delistBlockWithHttpInfo($email_address_param)
     {
@@ -864,25 +864,25 @@ class BlockingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $request,
                         $response,
                     );
                 case 400:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
                 case 404:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -903,7 +903,7 @@ class BlockingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\GenericResponse',
+                '\MailBabyPhp\Model\GenericResponse',
                 $request,
                 $response,
             );
@@ -912,7 +912,7 @@ class BlockingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\GenericResponse',
+                        '\MailBabyPhp\Model\GenericResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -920,7 +920,7 @@ class BlockingApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -928,7 +928,7 @@ class BlockingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -936,7 +936,7 @@ class BlockingApi
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -953,7 +953,7 @@ class BlockingApi
      *
      * Delist an email address from the spam-filter block lists
      *
-     * @param  \OpenAPI\Client\Model\EmailAddressParam $email_address_param (required)
+     * @param  \MailBabyPhp\Model\EmailAddressParam $email_address_param (required)
      *
      * @throws \InvalidArgumentException
      * @return Promise
@@ -973,14 +973,14 @@ class BlockingApi
      *
      * Delist an email address from the spam-filter block lists
      *
-     * @param  \OpenAPI\Client\Model\EmailAddressParam $email_address_param (required)
+     * @param  \MailBabyPhp\Model\EmailAddressParam $email_address_param (required)
      *
      * @throws \InvalidArgumentException
      * @return Promise
      */
     public function delistBlockAsyncWithHttpInfo($email_address_param)
     {
-        $returnType = '\OpenAPI\Client\Model\GenericResponse';
+        $returnType = '\MailBabyPhp\Model\GenericResponse';
         $request = $this->delistBlockRequest($email_address_param);
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1018,7 +1018,7 @@ class BlockingApi
     /**
      * Create request for operation 'delistBlock'
      *
-     * @param  \OpenAPI\Client\Model\EmailAddressParam $email_address_param (required)
+     * @param  \MailBabyPhp\Model\EmailAddressParam $email_address_param (required)
      *
      * @throws \InvalidArgumentException
      * @return RequestInterface
@@ -1110,9 +1110,9 @@ class BlockingApi
      * List addresses currently flagged by spam-filter block lists
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\MailBlocks|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\MailBlocks|\MailBabyPhp\Model\ErrorMessage
      */
     public function getMailBlocks()
     {
@@ -1126,9 +1126,9 @@ class BlockingApi
      * List addresses currently flagged by spam-filter block lists
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\MailBlocks|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\MailBlocks|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function getMailBlocksWithHttpInfo()
     {
@@ -1164,13 +1164,13 @@ class BlockingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\MailBlocks',
+                        '\MailBabyPhp\Model\MailBlocks',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -1191,7 +1191,7 @@ class BlockingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\MailBlocks',
+                '\MailBabyPhp\Model\MailBlocks',
                 $request,
                 $response,
             );
@@ -1200,7 +1200,7 @@ class BlockingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\MailBlocks',
+                        '\MailBabyPhp\Model\MailBlocks',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1208,7 +1208,7 @@ class BlockingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1250,7 +1250,7 @@ class BlockingApi
      */
     public function getMailBlocksAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\MailBlocks';
+        $returnType = '\MailBabyPhp\Model\MailBlocks';
         $request = $this->getMailBlocksRequest();
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1367,9 +1367,9 @@ class BlockingApi
      * List custom deny rules (sender / domain / destination / prefix)
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\DenyRuleRecord[]|\OpenAPI\Client\Model\ErrorMessage
+     * @return \MailBabyPhp\Model\DenyRuleRecord[]|\MailBabyPhp\Model\ErrorMessage
      */
     public function getRules()
     {
@@ -1383,9 +1383,9 @@ class BlockingApi
      * List custom deny rules (sender / domain / destination / prefix)
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\DenyRuleRecord[]|\OpenAPI\Client\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MailBabyPhp\Model\DenyRuleRecord[]|\MailBabyPhp\Model\ErrorMessage, HTTP status code, HTTP response headers (array of strings)
      */
     public function getRulesWithHttpInfo()
     {
@@ -1421,13 +1421,13 @@ class BlockingApi
             switch($statusCode) {
                 case 200:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\DenyRuleRecord[]',
+                        '\MailBabyPhp\Model\DenyRuleRecord[]',
                         $request,
                         $response,
                     );
                 case 401:
                     return $this->handleResponseWithDataType(
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $request,
                         $response,
                     );
@@ -1448,7 +1448,7 @@ class BlockingApi
             }
 
             return $this->handleResponseWithDataType(
-                '\OpenAPI\Client\Model\DenyRuleRecord[]',
+                '\MailBabyPhp\Model\DenyRuleRecord[]',
                 $request,
                 $response,
             );
@@ -1457,7 +1457,7 @@ class BlockingApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\DenyRuleRecord[]',
+                        '\MailBabyPhp\Model\DenyRuleRecord[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1465,7 +1465,7 @@ class BlockingApi
                 case 401:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\ErrorMessage',
+                        '\MailBabyPhp\Model\ErrorMessage',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1507,7 +1507,7 @@ class BlockingApi
      */
     public function getRulesAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\DenyRuleRecord[]';
+        $returnType = '\MailBabyPhp\Model\DenyRuleRecord[]';
         $request = $this->getRulesRequest();
 
         return $this->httpAsyncClient->sendAsyncRequest($request)

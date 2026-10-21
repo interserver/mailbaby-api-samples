@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:mailbaby_client_dart_dio/mailbaby_client_dart_dio.dart';
 
 
 /// tests for BlockingApi
 void main() {
-  final instance = Openapi().getBlockingApi();
+  final instance = MailbabyClientDartDio().getBlockingApi();
 
   group(BlockingApi, () {
     // Create a deny rule to block a sender, domain, destination, or prefix

@@ -1,4 +1,4 @@
-# openapi (EXPERIMENTAL)
+# mailbaby_client_dart_dio (EXPERIMENTAL)
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
 # Overview
@@ -56,14 +56,14 @@ For more information, please visit [https://www.mail.baby/contact/](https://www.
 To use the package from [pub.dev](https://pub.dev), please include the following in pubspec.yaml
 ```yaml
 dependencies:
-  openapi: 1.0.0
+  mailbaby_client_dart_dio: 1.0.0
 ```
 
 ### Github
 If this Dart package is published to Github, please include the following in pubspec.yaml
 ```yaml
 dependencies:
-  openapi:
+  mailbaby_client_dart_dio:
     git:
       url: https://github.com/GIT_USER_ID/GIT_REPO_ID.git
       #ref: main
@@ -73,8 +73,8 @@ dependencies:
 To use the package from your local drive, please include the following in pubspec.yaml
 ```yaml
 dependencies:
-  openapi:
-    path: /path/to/openapi
+  mailbaby_client_dart_dio:
+    path: /path/to/mailbaby_client_dart_dio
 ```
 
 ## Getting Started
@@ -82,10 +82,10 @@ dependencies:
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```dart
-import 'package:openapi/openapi.dart';
+import 'package:mailbaby_client_dart_dio/mailbaby_client_dart_dio.dart';
 
 
-final api = Openapi().getBlockingApi();
+final api = MailbabyClientDartDio().getBlockingApi();
 final String type = type_example; // String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
 final String data = data_example; // String | The value to match against, interpreted according to `type`: a full email address for `email`/`destination`, a domain name for `domain`, or an alphanumeric prefix string for `startswith`.
 final String user = user_example; // String | Optional SMTP username of the mail order to associate this rule with (e.g. `mb20682`).  If omitted the first active order is used.  Valid usernames are the `username` values returned by `GET /mail`.

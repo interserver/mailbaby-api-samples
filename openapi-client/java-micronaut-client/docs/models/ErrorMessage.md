@@ -4,7 +4,7 @@
 
 The response body returned when an error occurs.
 
-The class is defined in **[ErrorMessage.java](../../src/main/java/org/openapitools/model/ErrorMessage.java)**
+The class is defined in **[ErrorMessage.java](../../src/main/java/io/interserver/micronaut/model/ErrorMessage.java)**
 
 ## Properties
 

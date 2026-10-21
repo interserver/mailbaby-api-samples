@@ -1,4 +1,4 @@
-# OpenapiClient::ServicesApi
+# MailBabyRuby::ServicesApi
 
 All URIs are relative to *https://api.mailbaby.net*
 
@@ -20,23 +20,23 @@ Get one mail order's full detail including SMTP password
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::ServicesApi.new
+api_instance = MailBabyRuby::ServicesApi.new
 id = 39 # Integer | The numeric ID of the mail order.
 
 begin
   # Get one mail order's full detail including SMTP password
   result = api_instance.get_mail_order_by_id(id)
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling ServicesApi->get_mail_order_by_id: #{e}"
 end
 ```
@@ -54,7 +54,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <MailOrderDetail>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling ServicesApi->get_mail_order_by_id_with_http_info: #{e}"
 end
 ```
@@ -91,22 +91,22 @@ Use this **before sending** if you need to discover which mail order `id` to pas
 
 ```ruby
 require 'time'
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 # setup authorization
-OpenapiClient.configure do |config|
+MailBabyRuby.configure do |config|
   # Configure API key authorization: apiKeyAuth
   config.api_key['X-API-KEY'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
   # config.api_key_prefix['X-API-KEY'] = 'Bearer'
 end
 
-api_instance = OpenapiClient::ServicesApi.new
+api_instance = MailBabyRuby::ServicesApi.new
 
 begin
   # List your provisioned mail orders (sending accounts)
   result = api_instance.get_mail_orders
   p result
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling ServicesApi->get_mail_orders: #{e}"
 end
 ```
@@ -124,7 +124,7 @@ begin
   p status_code # => 2xx
   p headers # => { ... }
   p data # => <Array<MailOrder>>
-rescue OpenapiClient::ApiError => e
+rescue MailBabyRuby::ApiError => e
   puts "Error when calling ServicesApi->get_mail_orders_with_http_info: #{e}"
 end
 ```

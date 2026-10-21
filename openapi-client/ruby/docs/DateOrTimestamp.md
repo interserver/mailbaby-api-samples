@@ -1,4 +1,4 @@
-# OpenapiClient::DateOrTimestamp
+# MailBabyRuby::DateOrTimestamp
 
 ## Class instance methods
 
@@ -9,9 +9,9 @@ Returns the list of classes defined in oneOf.
 #### Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-OpenapiClient::DateOrTimestamp.openapi_one_of
+MailBabyRuby::DateOrTimestamp.openapi_one_of
 # =>
 # [
 #   :'Integer',
@@ -26,12 +26,12 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 #### Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-OpenapiClient::DateOrTimestamp.build(data)
+MailBabyRuby::DateOrTimestamp.build(data)
 # => #<Integer:0x00007fdd4aab02a0>
 
-OpenapiClient::DateOrTimestamp.build(data_that_doesnt_match)
+MailBabyRuby::DateOrTimestamp.build(data_that_doesnt_match)
 # => nil
 ```
 

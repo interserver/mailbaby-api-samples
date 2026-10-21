@@ -1,4 +1,4 @@
-# SwaggerClient::MailOrder
+# MailBabyRuby::MailOrder
 
 ## Properties
 Name | Type | Description | Notes

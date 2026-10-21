@@ -1,4 +1,4 @@
-# SwaggerClient::MailStatsType
+# MailBabyRuby::MailStatsType
 
 ## Properties
 Name | Type | Description | Notes

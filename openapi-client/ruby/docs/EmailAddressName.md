@@ -1,4 +1,4 @@
-# OpenapiClient::EmailAddressName
+# MailBabyRuby::EmailAddressName
 
 ## Properties
 
@@ -10,9 +10,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::EmailAddressName.new(
+instance = MailBabyRuby::EmailAddressName.new(
   email: user@domain.com,
   name: John Smith
 )

@@ -4,7 +4,7 @@
  * PHP version 7.2
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,7 +26,7 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Api;
+namespace MailBabyPhp\Api;
 
 use GuzzleHttp\Psr7\MultipartStream;
 use Http\Client\Common\Plugin\ErrorPlugin;
@@ -40,12 +40,12 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
 use Http\Message\RequestFactory;
 use Http\Promise\Promise;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\DebugPlugin;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\FormDataProcessor;
-use OpenAPI\Client\ObjectSerializer;
+use MailBabyPhp\ApiException;
+use MailBabyPhp\Configuration;
+use MailBabyPhp\DebugPlugin;
+use MailBabyPhp\HeaderSelector;
+use MailBabyPhp\FormDataProcessor;
+use MailBabyPhp\ObjectSerializer;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -60,7 +60,7 @@ use function sprintf;
  * StatusApi Class Doc Comment
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -181,7 +181,7 @@ class StatusApi
      * Health check — verify the API is reachable
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return string
      */
@@ -197,7 +197,7 @@ class StatusApi
      * Health check — verify the API is reachable
      *
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \MailBabyPhp\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of string, HTTP status code, HTTP response headers (array of strings)
      */

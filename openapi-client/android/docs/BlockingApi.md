@@ -24,7 +24,7 @@ Create a deny rule to block a sender, domain, destination, or prefix
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.BlockingApi;
+//import io.interserver.client.api.BlockingApi;
 
 BlockingApi apiInstance = new BlockingApi();
 String type = null; // String | The matching strategy for this rule.  `email` blocks an exact sender address, `domain` blocks all senders at a domain, `destination` blocks an exact recipient address, and `startswith` blocks any sender whose local-part begins with the given prefix.
@@ -74,7 +74,7 @@ Delete a deny rule by its numeric ruleId
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.BlockingApi;
+//import io.interserver.client.api.BlockingApi;
 
 BlockingApi apiInstance = new BlockingApi();
 Integer ruleId = 34; // Integer | The numeric ID of the deny rule to delete.  Obtain this from the `id` field in `GET /mail/rules` or the `text` field of a `POST /mail/rules` response.
@@ -120,7 +120,7 @@ Delist an email address from the spam-filter block lists
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.BlockingApi;
+//import io.interserver.client.api.BlockingApi;
 
 BlockingApi apiInstance = new BlockingApi();
 EmailAddressParam emailAddressParam = {"email":"client@domain.com"}; // EmailAddressParam | 
@@ -166,7 +166,7 @@ List addresses currently flagged by spam-filter block lists
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.BlockingApi;
+//import io.interserver.client.api.BlockingApi;
 
 BlockingApi apiInstance = new BlockingApi();
 try {
@@ -208,7 +208,7 @@ List custom deny rules (sender / domain / destination / prefix)
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.BlockingApi;
+//import io.interserver.client.api.BlockingApi;
 
 BlockingApi apiInstance = new BlockingApi();
 try {

@@ -6,8 +6,9 @@
     "gitRepoId": "mailbaby-client-php",
     "gitUserId": "interserver",
     "hideGenerationTimestamp": "true",
+    "invokerPackage": "MailBabyPhp",
     "legacyDiscriminatorBehavior": "false",
-    "packageName": "MailBabyPhp",
+    "packagePath": ".",
     "sortModelPropertiesByRequiredFlag": "true",
     "sortParamsByRequiredFlag": "true"
 }

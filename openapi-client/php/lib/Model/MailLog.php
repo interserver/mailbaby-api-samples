@@ -5,7 +5,7 @@
  * PHP version 8.1
  *
  * @category Class
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -27,17 +27,17 @@
  * Do not edit the class manually.
  */
 
-namespace OpenAPI\Client\Model;
+namespace MailBabyPhp\Model;
 
 use \ArrayAccess;
-use \OpenAPI\Client\ObjectSerializer;
+use \MailBabyPhp\ObjectSerializer;
 
 /**
  * MailLog Class Doc Comment
  *
  * @category Class
  * @description Paginated mail log response returned by &#x60;GET /mail/log&#x60;.  Contains the full matched count (&#x60;total&#x60;) plus a page of &#x60;MailLogEntry&#x60; records.  Use &#x60;skip&#x60; and &#x60;limit&#x60; to page through large result sets.
- * @package  OpenAPI\Client
+ * @package  MailBabyPhp
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -62,7 +62,7 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
         'total' => 'int',
         'skip' => 'int',
         'limit' => 'int',
-        'emails' => '\OpenAPI\Client\Model\MailLogEntry[]'
+        'emails' => '\MailBabyPhp\Model\MailLogEntry[]'
     ];
 
     /**
@@ -408,7 +408,7 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets emails
      *
-     * @return \OpenAPI\Client\Model\MailLogEntry[]
+     * @return \MailBabyPhp\Model\MailLogEntry[]
      */
     public function getEmails()
     {
@@ -418,7 +418,7 @@ class MailLog implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets emails
      *
-     * @param \OpenAPI\Client\Model\MailLogEntry[] $emails emails
+     * @param \MailBabyPhp\Model\MailLogEntry[] $emails emails
      *
      * @return self
      */

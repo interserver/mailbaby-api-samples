@@ -1,4 +1,4 @@
-# OpenapiClient::MailAttachment
+# MailBabyRuby::MailAttachment
 
 ## Properties
 
@@ -10,11 +10,11 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailAttachment.new(
+instance = MailBabyRuby::MailAttachment.new(
   filename: message.txt,
-  data: [B@3b95a6db
+  data: [B@3a2e9f5b
 )
 ```
 

@@ -20,7 +20,7 @@ Health check — verify the API is reachable
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.StatusApi;
+//import io.interserver.client.api.StatusApi;
 
 StatusApi apiInstance = new StatusApi();
 try {

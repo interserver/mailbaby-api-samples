@@ -1,4 +1,4 @@
-# OpenapiClient::SendMail
+# MailBabyRuby::SendMail
 
 ## Properties
 
@@ -13,9 +13,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::SendMail.new(
+instance = MailBabyRuby::SendMail.new(
   to: null,
   from: janedoe@company.com,
   subject: Attention Client,

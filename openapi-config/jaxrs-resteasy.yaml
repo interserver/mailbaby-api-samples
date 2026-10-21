@@ -1,12 +1,14 @@
 # managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
 additionalProperties:
+  apiPackage: "io.interserver.jaxrs.resteasy.api"
   disallowAdditionalPropertiesIfNotPresent: "false"
   ensureUniqueParams: "true"
   enumUnknownDefaultCase: "true"
   gitRepoId: "mailbaby-client-jaxrs-resteasy"
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
+  invokerPackage: "io.interserver.jaxrs.resteasy"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabyJaxrsResteasy"
+  modelPackage: "io.interserver.jaxrs.resteasy.model"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

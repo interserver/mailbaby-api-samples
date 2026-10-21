@@ -1,4 +1,4 @@
-# OpenapiClient::ErrorMessage
+# MailBabyRuby::ErrorMessage
 
 ## Properties
 
@@ -10,9 +10,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::ErrorMessage.new(
+instance = MailBabyRuby::ErrorMessage.new(
   code: 400,
   message: The specified ID was invalid.
 )

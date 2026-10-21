@@ -1,12 +1,14 @@
 # managed-by update-samples.php config-mode=curated rev 1 — edits here are overwritten; remove this line to hand-curate.
 additionalProperties:
+  apiPackage: "io.interserver.jaxrs.jersey.api"
   disallowAdditionalPropertiesIfNotPresent: "false"
   ensureUniqueParams: "true"
   enumUnknownDefaultCase: "true"
   gitRepoId: "mailbaby-client-jaxrs-jersey"
   gitUserId: "interserver"
   hideGenerationTimestamp: "true"
+  invokerPackage: "io.interserver.jaxrs.jersey"
   legacyDiscriminatorBehavior: "false"
-  packageName: "MailBabyJaxrsJersey"
+  modelPackage: "io.interserver.jaxrs.jersey.model"
   sortModelPropertiesByRequiredFlag: "true"
   sortParamsByRequiredFlag: "true"

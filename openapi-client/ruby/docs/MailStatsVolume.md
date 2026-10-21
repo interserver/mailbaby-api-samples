@@ -1,4 +1,4 @@
-# OpenapiClient::MailStatsVolume
+# MailBabyRuby::MailStatsVolume
 
 ## Properties
 
@@ -11,9 +11,9 @@
 ## Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-instance = OpenapiClient::MailStatsVolume.new(
+instance = MailBabyRuby::MailStatsVolume.new(
   to: null,
   from: null,
   ip: null

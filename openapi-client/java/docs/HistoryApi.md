@@ -19,12 +19,12 @@ Account usage, cost, and volume statistics for a time window
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.HistoryApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.HistoryApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -89,12 +89,12 @@ Query the mail delivery log (filterable, paginated)
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.HistoryApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.HistoryApi;
 
 public class Example {
   public static void main(String[] args) {

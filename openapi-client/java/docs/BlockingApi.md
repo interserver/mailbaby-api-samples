@@ -22,12 +22,12 @@ Create a deny rule to block a sender, domain, destination, or prefix
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.BlockingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -98,12 +98,12 @@ Delete a deny rule by its numeric ruleId
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.BlockingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -170,12 +170,12 @@ Delist an email address from the spam-filter block lists
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.BlockingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -242,12 +242,12 @@ List addresses currently flagged by spam-filter block lists
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.BlockingApi;
 
 public class Example {
   public static void main(String[] args) {
@@ -308,12 +308,12 @@ List custom deny rules (sender / domain / destination / prefix)
 ### Example
 ```java
 // Import classes:
-import org.openapitools.client.ApiClient;
-import org.openapitools.client.ApiException;
-import org.openapitools.client.Configuration;
-import org.openapitools.client.auth.*;
-import org.openapitools.client.models.*;
-import org.openapitools.client.api.BlockingApi;
+import io.interserver.client.ApiClient;
+import io.interserver.client.ApiException;
+import io.interserver.client.Configuration;
+import io.interserver.client.auth.*;
+import io.interserver.client.models.*;
+import io.interserver.client.api.BlockingApi;
 
 public class Example {
   public static void main(String[] args) {

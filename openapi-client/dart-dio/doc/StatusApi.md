@@ -1,8 +1,8 @@
-# openapi.api.StatusApi
+# mailbaby_client_dart_dio.api.StatusApi
 
 ## Load the API package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 All URIs are relative to *https://api.mailbaby.net*
@@ -21,9 +21,9 @@ Health check — verify the API is reachable
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 
-final api = Openapi().getStatusApi();
+final api = MailbabyClientDartDio().getStatusApi();
 
 try {
     final response = api.pingServer();

@@ -1,8 +1,8 @@
-# openapi.model.DenyRuleNew
+# mailbaby_client_dart_dio.model.DenyRuleNew
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:mailbaby_client_dart_dio/api.dart';
 ```
 
 ## Properties

@@ -1,32 +1,32 @@
-controllerPackage: org.openapitools.controllers
-modelPackage:  org.openapitools.model
+controllerPackage: io.interserver.inflector
+modelPackage:  io.interserver.inflector.model
 swaggerUrl: ./src/main/openapi/openapi.yaml
 modelMappings:
   # to enable explicit mappings, use this syntax:
   DefinitionFromSwaggerSpecification: fully.qualified.path.to.Model
-  DateOrTimestamp : org.openapitools.model.DateOrTimestamp
-DenyRuleNew : org.openapitools.model.DenyRuleNew
-DenyRuleRecord : org.openapitools.model.DenyRuleRecord
-EmailAddressName : org.openapitools.model.EmailAddressName
-EmailAddressParam : org.openapitools.model.EmailAddressParam
-EmailAddressTypes : org.openapitools.model.EmailAddressTypes
-EmailAddressesTypes : org.openapitools.model.EmailAddressesTypes
-ErrorMessage : org.openapitools.model.ErrorMessage
-GenericResponse : org.openapitools.model.GenericResponse
-MailAttachment : org.openapitools.model.MailAttachment
-MailBlockClickHouse : org.openapitools.model.MailBlockClickHouse
-MailBlockRspamd : org.openapitools.model.MailBlockRspamd
-MailBlocks : org.openapitools.model.MailBlocks
-MailLog : org.openapitools.model.MailLog
-MailLogEntry : org.openapitools.model.MailLogEntry
-MailOrder : org.openapitools.model.MailOrder
-MailOrderDetail : org.openapitools.model.MailOrderDetail
-MailStatsType : org.openapitools.model.MailStatsType
-MailStatsVolume : org.openapitools.model.MailStatsVolume
-SendMail : org.openapitools.model.SendMail
-SendMailAdv : org.openapitools.model.SendMailAdv
-SendMailRaw : org.openapitools.model.SendMailRaw
-SendMailTo : org.openapitools.model.SendMailTo
+  DateOrTimestamp : io.interserver.inflector.model.DateOrTimestamp
+DenyRuleNew : io.interserver.inflector.model.DenyRuleNew
+DenyRuleRecord : io.interserver.inflector.model.DenyRuleRecord
+EmailAddressName : io.interserver.inflector.model.EmailAddressName
+EmailAddressParam : io.interserver.inflector.model.EmailAddressParam
+EmailAddressTypes : io.interserver.inflector.model.EmailAddressTypes
+EmailAddressesTypes : io.interserver.inflector.model.EmailAddressesTypes
+ErrorMessage : io.interserver.inflector.model.ErrorMessage
+GenericResponse : io.interserver.inflector.model.GenericResponse
+MailAttachment : io.interserver.inflector.model.MailAttachment
+MailBlockClickHouse : io.interserver.inflector.model.MailBlockClickHouse
+MailBlockRspamd : io.interserver.inflector.model.MailBlockRspamd
+MailBlocks : io.interserver.inflector.model.MailBlocks
+MailLog : io.interserver.inflector.model.MailLog
+MailLogEntry : io.interserver.inflector.model.MailLogEntry
+MailOrder : io.interserver.inflector.model.MailOrder
+MailOrderDetail : io.interserver.inflector.model.MailOrderDetail
+MailStatsType : io.interserver.inflector.model.MailStatsType
+MailStatsVolume : io.interserver.inflector.model.MailStatsVolume
+SendMail : io.interserver.inflector.model.SendMail
+SendMailAdv : io.interserver.inflector.model.SendMailAdv
+SendMailRaw : io.interserver.inflector.model.SendMailRaw
+SendMailTo : io.interserver.inflector.model.SendMailTo
 
 entityProcessors:
   - json

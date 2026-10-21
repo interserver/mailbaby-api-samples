@@ -1,4 +1,4 @@
-# OpenAPIClient
+# MailBabyObjc
 
 **Send emails fast and with confidence through our easy to use [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) API interface.**
 
@@ -56,7 +56,7 @@ The SDK requires [**ARC (Automatic Reference Counting)**](http://stackoverflow.c
 Add the following to the Podfile:
 
 ```ruby
-pod 'OpenAPIClient', :git => 'https://github.com/GIT_USER_ID/GIT_REPO_ID.git'
+pod 'MailBabyObjc', :git => 'https://github.com/GIT_USER_ID/GIT_REPO_ID.git'
 ```
 
 To specify a particular branch, append `, :branch => 'branch-name-here'`
@@ -65,10 +65,10 @@ To specify a particular commit, append `, :commit => '11aa22'`
 
 ### Install from local path using [CocoaPods](https://cocoapods.org/)
 
-Put the SDK under your project folder (e.g. /path/to/objc_project/Vendor/OpenAPIClient) and then add the following to the Podfile:
+Put the SDK under your project folder (e.g. /path/to/objc_project/Vendor/MailBabyObjc) and then add the following to the Podfile:
 
 ```ruby
-pod 'OpenAPIClient', :path => 'Vendor/OpenAPIClient'
+pod 'MailBabyObjc', :path => 'Vendor/MailBabyObjc'
 ```
 
 ### Usage
@@ -76,38 +76,38 @@ pod 'OpenAPIClient', :path => 'Vendor/OpenAPIClient'
 Import the following:
 
 ```objc
-#import <OpenAPIClient/OAIApiClient.h>
-#import <OpenAPIClient/OAIDefaultConfiguration.h>
+#import <MailBabyObjc/OAIApiClient.h>
+#import <MailBabyObjc/OAIDefaultConfiguration.h>
 // load models
-#import <OpenAPIClient/OAIDateOrTimestamp.h>
-#import <OpenAPIClient/OAIDenyRuleNew.h>
-#import <OpenAPIClient/OAIDenyRuleRecord.h>
-#import <OpenAPIClient/OAIEmailAddressName.h>
-#import <OpenAPIClient/OAIEmailAddressParam.h>
-#import <OpenAPIClient/OAIEmailAddressTypes.h>
-#import <OpenAPIClient/OAIEmailAddressesTypes.h>
-#import <OpenAPIClient/OAIErrorMessage.h>
-#import <OpenAPIClient/OAIGenericResponse.h>
-#import <OpenAPIClient/OAIMailAttachment.h>
-#import <OpenAPIClient/OAIMailBlockClickHouse.h>
-#import <OpenAPIClient/OAIMailBlockRspamd.h>
-#import <OpenAPIClient/OAIMailBlocks.h>
-#import <OpenAPIClient/OAIMailLog.h>
-#import <OpenAPIClient/OAIMailLogEntry.h>
-#import <OpenAPIClient/OAIMailOrder.h>
-#import <OpenAPIClient/OAIMailOrderDetail.h>
-#import <OpenAPIClient/OAIMailStatsType.h>
-#import <OpenAPIClient/OAIMailStatsVolume.h>
-#import <OpenAPIClient/OAISendMail.h>
-#import <OpenAPIClient/OAISendMailAdv.h>
-#import <OpenAPIClient/OAISendMailRaw.h>
-#import <OpenAPIClient/OAISendMailTo.h>
+#import <MailBabyObjc/OAIDateOrTimestamp.h>
+#import <MailBabyObjc/OAIDenyRuleNew.h>
+#import <MailBabyObjc/OAIDenyRuleRecord.h>
+#import <MailBabyObjc/OAIEmailAddressName.h>
+#import <MailBabyObjc/OAIEmailAddressParam.h>
+#import <MailBabyObjc/OAIEmailAddressTypes.h>
+#import <MailBabyObjc/OAIEmailAddressesTypes.h>
+#import <MailBabyObjc/OAIErrorMessage.h>
+#import <MailBabyObjc/OAIGenericResponse.h>
+#import <MailBabyObjc/OAIMailAttachment.h>
+#import <MailBabyObjc/OAIMailBlockClickHouse.h>
+#import <MailBabyObjc/OAIMailBlockRspamd.h>
+#import <MailBabyObjc/OAIMailBlocks.h>
+#import <MailBabyObjc/OAIMailLog.h>
+#import <MailBabyObjc/OAIMailLogEntry.h>
+#import <MailBabyObjc/OAIMailOrder.h>
+#import <MailBabyObjc/OAIMailOrderDetail.h>
+#import <MailBabyObjc/OAIMailStatsType.h>
+#import <MailBabyObjc/OAIMailStatsVolume.h>
+#import <MailBabyObjc/OAISendMail.h>
+#import <MailBabyObjc/OAISendMailAdv.h>
+#import <MailBabyObjc/OAISendMailRaw.h>
+#import <MailBabyObjc/OAISendMailTo.h>
 // load API classes for accessing endpoints
-#import <OpenAPIClient/OAIBlockingApi.h>
-#import <OpenAPIClient/OAIHistoryApi.h>
-#import <OpenAPIClient/OAISendingApi.h>
-#import <OpenAPIClient/OAIServicesApi.h>
-#import <OpenAPIClient/OAIStatusApi.h>
+#import <MailBabyObjc/OAIBlockingApi.h>
+#import <MailBabyObjc/OAIHistoryApi.h>
+#import <MailBabyObjc/OAISendingApi.h>
+#import <MailBabyObjc/OAIServicesApi.h>
+#import <MailBabyObjc/OAIStatusApi.h>
 
 ```
 

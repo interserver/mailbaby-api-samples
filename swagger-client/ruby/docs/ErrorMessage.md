@@ -1,4 +1,4 @@
-# SwaggerClient::ErrorMessage
+# MailBabyRuby::ErrorMessage
 
 ## Properties
 Name | Type | Description | Notes

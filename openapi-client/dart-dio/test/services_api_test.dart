@@ -1,10 +1,10 @@
 import 'package:test/test.dart';
-import 'package:openapi/openapi.dart';
+import 'package:mailbaby_client_dart_dio/mailbaby_client_dart_dio.dart';
 
 
 /// tests for ServicesApi
 void main() {
-  final instance = Openapi().getServicesApi();
+  final instance = MailbabyClientDartDio().getServicesApi();
 
   group(ServicesApi, () {
     // Get one mail order's full detail including SMTP password

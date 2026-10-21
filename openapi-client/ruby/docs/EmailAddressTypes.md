@@ -1,4 +1,4 @@
-# OpenapiClient::EmailAddressTypes
+# MailBabyRuby::EmailAddressTypes
 
 ## Class instance methods
 
@@ -9,9 +9,9 @@ Returns the list of classes defined in oneOf.
 #### Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-OpenapiClient::EmailAddressTypes.openapi_one_of
+MailBabyRuby::EmailAddressTypes.openapi_one_of
 # =>
 # [
 #   :'EmailAddressName',
@@ -26,12 +26,12 @@ Find the appropriate object from the `openapi_one_of` list and casts the data in
 #### Example
 
 ```ruby
-require 'openapi_client'
+require 'mailbaby_client_ruby'
 
-OpenapiClient::EmailAddressTypes.build(data)
+MailBabyRuby::EmailAddressTypes.build(data)
 # => #<EmailAddressName:0x00007fdd4aab02a0>
 
-OpenapiClient::EmailAddressTypes.build(data_that_doesnt_match)
+MailBabyRuby::EmailAddressTypes.build(data_that_doesnt_match)
 # => nil
 ```
 

@@ -9,7 +9,7 @@
         <Version>1.0.0</Version>
         <AssemblyName>MailBabyAspnetcore</AssemblyName>
         <PackageId>MailBabyAspnetcore</PackageId>
-        <UserSecretsId>d367dd74-acc1-422a-bfc6-735fade5871a</UserSecretsId>
+        <UserSecretsId>45bc623d-768f-4b3b-89ab-f12e45befe1a</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>

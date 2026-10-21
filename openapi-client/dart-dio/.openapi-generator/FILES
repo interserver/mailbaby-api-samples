@@ -31,7 +31,7 @@ doc/SendMailTo.md
 doc/SendingApi.md
 doc/ServicesApi.md
 doc/StatusApi.md
-lib/openapi.dart
+lib/mailbaby_client_dart_dio.dart
 lib/src/api.dart
 lib/src/api/blocking_api.dart
 lib/src/api/history_api.dart

@@ -1,0 +1,151 @@
+package io.interserver.jaxrs.spec.model;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.*;
+import javax.validation.Valid;
+
+import io.swagger.annotations.*;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+/**
+ * Request body for &#x60;POST /mail/rawsend&#x60;.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing &#x60;DKIM-Signature&#x60; header intact.  The &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Cc&#x60;, and &#x60;Bcc&#x60; addresses are extracted from the message headers automatically — you do not need to specify them separately.
+ **/
+@ApiModel(description = "Request body for `POST /mail/rawsend`.  Accepts a complete RFC 822 message (all headers and body) as a verbatim string.  The relay injects it without modification, preserving any existing `DKIM-Signature` header intact.  The `From`, `To`, `Cc`, and `Bcc` addresses are extracted from the message headers automatically — you do not need to specify them separately.")
+@JsonTypeName("SendMailRaw")
+@JsonFormat(shape=JsonFormat.Shape.OBJECT)
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJAXRSSpecServerCodegen", comments = "Generator version: 7.26.0")
+public class SendMailRaw   {
+  private String rawEmail;
+  private Long id;
+
+  public SendMailRaw() {
+  }
+
+  @JsonCreator
+  public SendMailRaw(
+    @JsonProperty(required = true, value = "raw_email") String rawEmail
+  ) {
+    this.rawEmail = rawEmail;
+  }
+
+  /**
+   * The complete RFC 822 email message including all headers and the body. Must include at minimum &#x60;From&#x60;, &#x60;To&#x60;, &#x60;Subject&#x60;, &#x60;Date&#x60;, and &#x60;MIME-Version&#x60; headers.  DKIM signatures in the &#x60;DKIM-Signature&#x60; header are transmitted verbatim and will pass verification at the destination.
+   **/
+  public SendMailRaw rawEmail(String rawEmail) {
+    this.rawEmail = rawEmail;
+    return this;
+  }
+
+  
+  @ApiModelProperty(required = true, value = "The complete RFC 822 email message including all headers and the body. Must include at minimum `From`, `To`, `Subject`, `Date`, and `MIME-Version` headers.  DKIM signatures in the `DKIM-Signature` header are transmitted verbatim and will pass verification at the destination.")
+  @JsonProperty(required = true, value = "raw_email")
+  @NotNull public String getRawEmail() {
+    return rawEmail;
+  }
+
+  @JsonProperty(required = true, value = "raw_email")
+  public void setRawEmail(String rawEmail) {
+    this.rawEmail = rawEmail;
+  }
+
+  /**
+   * Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by &#x60;GET /mail&#x60;.
+   **/
+  public SendMailRaw id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  
+  @ApiModelProperty(value = "Optional numeric ID of the mail order to use for SMTP authentication. If omitted the first active order on your account is used.  Valid IDs are returned by `GET /mail`.")
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  @JsonProperty("id")
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * Creates the property if it does not already exist, otherwise replaces it.
+   * @param key the name of the property
+   * @param value the value of the property
+   * @return self reference
+   */
+  @JsonAnySetter
+  public SendMailRaw putAdditionalProperty(String key, Object value) {
+    this.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) properties.
+   * @return the additional (undeclared) properties
+   */
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   * @param key the name of the property
+   * @return the additional (undeclared) property with the specified name
+   */
+  public Object getAdditionalProperty(String key) {
+    return this.get(key);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    SendMailRaw sendMailRaw = (SendMailRaw) o;
+    return Objects.equals(this.rawEmail, sendMailRaw.rawEmail) &&
+        Objects.equals(this.id, sendMailRaw.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(rawEmail, id);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class SendMailRaw {\n");
+    
+    sb.append("    rawEmail: ").append(toIndentedString(rawEmail)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
+  }
+
+
+}

@@ -21,7 +21,7 @@ Account usage, cost, and volume statistics for a time window
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.HistoryApi;
+//import io.interserver.client.api.HistoryApi;
 
 HistoryApi apiInstance = new HistoryApi();
 String time = 1h; // String | The time window to scope `received`, `sent`, and `volume` statistics. Does not affect `usage` or `cost`, which are always calculated over the current billing cycle. Defaults to `1h`.
@@ -67,7 +67,7 @@ Query the mail delivery log (filterable, paginated)
 
 ```java
 // Import classes:
-//import org.openapitools.client.api.HistoryApi;
+//import io.interserver.client.api.HistoryApi;
 
 HistoryApi apiInstance = new HistoryApi();
 Long id = 2604; // Long | The numeric ID of the mail order to filter by.  When omitted, logs from the first active mail order are returned.  Obtain valid IDs from `GET /mail` or `GET /mail/{id}`.
